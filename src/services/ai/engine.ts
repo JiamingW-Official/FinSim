@@ -15,6 +15,8 @@ import {
   calculateVWAP,
   calculateATR,
   calculateStochastic,
+  type IndicatorPoint,
+  type MACDHistogramPoint,
 } from "@/services/indicators";
 import {
   detectSignals,
@@ -23,13 +25,32 @@ import {
   type SignalDirection,
 } from "./signals";
 import { detectCandlePatterns, type CandlePattern } from "./patterns";
+import { detectMarketRegime, type RegimeAnalysis } from "./regime";
+import { detectDivergences, type Divergence } from "./divergence";
+import { detectLevels, type PriceLevel, type PivotPoints } from "./levels";
+import {
+  analyzeTraderPersonality,
+  type TraderProfile,
+} from "./personality";
+
+export type { RegimeAnalysis, Divergence, PriceLevel, PivotPoints, TraderProfile };
 
 export interface AnalysisResult {
   score: number;
+  rawScore: number;
   bias: "bullish" | "bearish" | "neutral";
+  conviction: "low" | "medium" | "high";
+  regime: RegimeAnalysis;
   signals: Signal[];
   patterns: CandlePattern[];
+  divergences: Divergence[];
+  levels: { supports: PriceLevel[]; resistances: PriceLevel[]; pivots: PivotPoints };
+  traderProfile: TraderProfile | null;
   text: string;
+  summary: string;      // 1–2 sentence punchy coach comment for visual display
+  grade?: string;       // "A"|"B"|"C"|"D"|"F" — review mode only
+  wentWell?: string;    // review mode: what went well (short)
+  improve?: string;     // review mode: what to improve (short)
 }
 
 // ─── Snapshot Extraction ────────────────────────────────────────────────────
@@ -67,43 +88,35 @@ function extractSnapshot(
       }
     : null!;
 
-  // RSI
   if (has("rsi") && bars.length >= 15) {
-    const rsiData = calculateRSI(bars, 14);
-    if (rsiData.length >= 1) current.rsi = rsiData[rsiData.length - 1].value;
-    if (rsiData.length >= 2 && prev) prev.rsi = rsiData[rsiData.length - 2].value;
+    const d = calculateRSI(bars, 14);
+    if (d.length >= 1) current.rsi = d[d.length - 1].value;
+    if (d.length >= 2 && prev) prev.rsi = d[d.length - 2].value;
   }
 
-  // MACD
   if (has("macd") && bars.length >= 35) {
-    const macdData = calculateMACD(bars);
-    const ml = macdData.macdLine;
-    const sl = macdData.signalLine;
-    const hist = macdData.histogram;
-    if (ml.length >= 1) current.macdLine = ml[ml.length - 1].value;
-    if (sl.length >= 1) current.macdSignal = sl[sl.length - 1].value;
-    if (hist.length >= 1) current.macdHistogram = hist[hist.length - 1].value;
-    if (hist.length >= 2 && prev) {
-      prev.macdHistogram = hist[hist.length - 2].value;
-      prev.macdLine = ml.length >= 2 ? ml[ml.length - 2].value : undefined;
+    const d = calculateMACD(bars);
+    if (d.macdLine.length >= 1) current.macdLine = d.macdLine[d.macdLine.length - 1].value;
+    if (d.signalLine.length >= 1) current.macdSignal = d.signalLine[d.signalLine.length - 1].value;
+    if (d.histogram.length >= 1) current.macdHistogram = d.histogram[d.histogram.length - 1].value;
+    if (d.histogram.length >= 2 && prev) {
+      prev.macdHistogram = d.histogram[d.histogram.length - 2].value;
+      prev.macdLine = d.macdLine.length >= 2 ? d.macdLine[d.macdLine.length - 2].value : undefined;
     }
   }
 
-  // Bollinger
   if (has("bollinger") && bars.length >= 20) {
-    const bb = calculateBollingerBands(bars, 20, 2);
-    if (bb.upper.length >= 1) {
-      current.bbUpper = bb.upper[bb.upper.length - 1].value;
-      current.bbMiddle = bb.middle[bb.middle.length - 1].value;
-      current.bbLower = bb.lower[bb.lower.length - 1].value;
-      if (current.bbUpper && current.bbLower) {
-        current.bbWidth = current.bbUpper - current.bbLower;
-      }
+    const d = calculateBollingerBands(bars, 20, 2);
+    if (d.upper.length >= 1) {
+      current.bbUpper = d.upper[d.upper.length - 1].value;
+      current.bbMiddle = d.middle[d.middle.length - 1].value;
+      current.bbLower = d.lower[d.lower.length - 1].value;
+      if (current.bbUpper && current.bbLower) current.bbWidth = current.bbUpper - current.bbLower;
     }
-    if (bb.upper.length >= 2 && prev) {
-      prev.bbUpper = bb.upper[bb.upper.length - 2].value;
-      prev.bbMiddle = bb.middle[bb.middle.length - 2].value;
-      prev.bbLower = bb.lower[bb.lower.length - 2].value;
+    if (d.upper.length >= 2 && prev) {
+      prev.bbUpper = d.upper[d.upper.length - 2].value;
+      prev.bbMiddle = d.middle[d.middle.length - 2].value;
+      prev.bbLower = d.lower[d.lower.length - 2].value;
       if (prev.bbUpper && prev.bbLower) {
         prev.bbWidth = prev.bbUpper - prev.bbLower;
         current.prevBbWidth = prev.bbWidth;
@@ -111,110 +124,137 @@ function extractSnapshot(
     }
   }
 
-  // SMA20
   if (has("sma20") && bars.length >= 20) {
-    const sma = calculateSMA(bars, 20);
-    if (sma.length >= 1) current.sma20 = sma[sma.length - 1].value;
-    if (sma.length >= 2 && prev) prev.sma20 = sma[sma.length - 2].value;
+    const d = calculateSMA(bars, 20);
+    if (d.length >= 1) current.sma20 = d[d.length - 1].value;
+    if (d.length >= 2 && prev) prev.sma20 = d[d.length - 2].value;
   }
 
-  // SMA50
   if (has("sma50") && bars.length >= 50) {
-    const sma = calculateSMA(bars, 50);
-    if (sma.length >= 1) current.sma50 = sma[sma.length - 1].value;
-    if (sma.length >= 2 && prev) prev.sma50 = sma[sma.length - 2].value;
+    const d = calculateSMA(bars, 50);
+    if (d.length >= 1) current.sma50 = d[d.length - 1].value;
+    if (d.length >= 2 && prev) prev.sma50 = d[d.length - 2].value;
   }
 
-  // EMA12
   if (has("ema12") && bars.length >= 12) {
-    const ema = calculateEMA(bars, 12);
-    if (ema.length >= 1) current.ema12 = ema[ema.length - 1].value;
+    const d = calculateEMA(bars, 12);
+    if (d.length >= 1) current.ema12 = d[d.length - 1].value;
   }
 
-  // EMA26
   if (has("ema26") && bars.length >= 26) {
-    const ema = calculateEMA(bars, 26);
-    if (ema.length >= 1) current.ema26 = ema[ema.length - 1].value;
+    const d = calculateEMA(bars, 26);
+    if (d.length >= 1) current.ema26 = d[d.length - 1].value;
   }
 
-  // ADX
   if (has("adx") && bars.length >= 28) {
-    const adxData = calculateADX(bars, 14);
-    if (adxData.length >= 1) current.adx = adxData[adxData.length - 1].value;
+    const d = calculateADX(bars, 14);
+    if (d.length >= 1) current.adx = d[d.length - 1].value;
   }
 
-  // OBV
   if (has("obv") && bars.length >= 2) {
-    const obvData = calculateOBV(bars);
-    if (obvData.length >= 1) current.obvCurrent = obvData[obvData.length - 1].value;
-    if (obvData.length >= 2) current.obvPrev = obvData[obvData.length - 2].value;
+    const d = calculateOBV(bars);
+    if (d.length >= 1) current.obvCurrent = d[d.length - 1].value;
+    if (d.length >= 2) current.obvPrev = d[d.length - 2].value;
   }
 
-  // CCI
   if (has("cci") && bars.length >= 20) {
-    const cciData = calculateCCI(bars, 20);
-    if (cciData.length >= 1) current.cci = cciData[cciData.length - 1].value;
-    if (cciData.length >= 2 && prev) prev.cci = cciData[cciData.length - 2].value;
+    const d = calculateCCI(bars, 20);
+    if (d.length >= 1) current.cci = d[d.length - 1].value;
+    if (d.length >= 2 && prev) prev.cci = d[d.length - 2].value;
   }
 
-  // Williams %R
   if (has("williams_r") && bars.length >= 14) {
-    const wrData = calculateWilliamsR(bars, 14);
-    if (wrData.length >= 1) current.williamsR = wrData[wrData.length - 1].value;
-    if (wrData.length >= 2 && prev) prev.williamsR = wrData[wrData.length - 2].value;
+    const d = calculateWilliamsR(bars, 14);
+    if (d.length >= 1) current.williamsR = d[d.length - 1].value;
+    if (d.length >= 2 && prev) prev.williamsR = d[d.length - 2].value;
   }
 
-  // PSAR
   if (has("psar") && bars.length >= 10) {
-    const psarData = calculateParabolicSAR(bars, 0.02, 0.2);
-    if (psarData.length >= 1) current.psarValue = psarData[psarData.length - 1].value;
-    if (psarData.length >= 2 && prev) prev.psarValue = psarData[psarData.length - 2].value;
+    const d = calculateParabolicSAR(bars, 0.02, 0.2);
+    if (d.length >= 1) current.psarValue = d[d.length - 1].value;
+    if (d.length >= 2 && prev) prev.psarValue = d[d.length - 2].value;
   }
 
-  // VWAP
   if (has("vwap") && bars.length >= 1) {
-    const vwapData = calculateVWAP(bars);
-    if (vwapData.length >= 1) current.vwap = vwapData[vwapData.length - 1].value;
-    if (vwapData.length >= 2 && prev) prev.vwap = vwapData[vwapData.length - 2].value;
+    const d = calculateVWAP(bars);
+    if (d.length >= 1) current.vwap = d[d.length - 1].value;
+    if (d.length >= 2 && prev) prev.vwap = d[d.length - 2].value;
   }
 
-  // ATR
   if (has("atr") && bars.length >= 20) {
-    const atrData = calculateATR(bars, 14);
-    if (atrData.length >= 1) current.atr = atrData[atrData.length - 1].value;
-    // Average ATR over last 10 periods
-    if (atrData.length >= 10) {
-      const last10 = atrData.slice(-10);
-      current.atrAvg = last10.reduce((s, p) => s + p.value, 0) / 10;
+    const d = calculateATR(bars, 14);
+    if (d.length >= 1) current.atr = d[d.length - 1].value;
+    if (d.length >= 10) {
+      current.atrAvg = d.slice(-10).reduce((s, p) => s + p.value, 0) / 10;
     }
   }
 
-  // Stochastic
   if (has("stochastic") && bars.length >= 17) {
-    const stochData = calculateStochastic(bars, 14, 3);
-    if (stochData.kLine.length >= 1) {
-      current.stochK = stochData.kLine[stochData.kLine.length - 1].value;
-    }
-    if (stochData.dLine.length >= 1) {
-      current.stochD = stochData.dLine[stochData.dLine.length - 1].value;
-    }
-    if (stochData.kLine.length >= 2 && prev) {
-      prev.stochK = stochData.kLine[stochData.kLine.length - 2].value;
-    }
-    if (stochData.dLine.length >= 2 && prev) {
-      prev.stochD = stochData.dLine[stochData.dLine.length - 2].value;
-    }
+    const d = calculateStochastic(bars, 14, 3);
+    if (d.kLine.length >= 1) current.stochK = d.kLine[d.kLine.length - 1].value;
+    if (d.dLine.length >= 1) current.stochD = d.dLine[d.dLine.length - 1].value;
+    if (d.kLine.length >= 2 && prev) prev.stochK = d.kLine[d.kLine.length - 2].value;
+    if (d.dLine.length >= 2 && prev) prev.stochD = d.dLine[d.dLine.length - 2].value;
   }
 
   return { current, prev: secondLast ? prev : null };
 }
 
-// ─── NLG Helpers ────────────────────────────────────────────────────────────
+// ─── Indicator Array Extraction (for divergence detection) ──────────────────
+
+function extractIndicatorArrays(
+  bars: OHLCVBar[],
+  activeIndicators: IndicatorType[],
+): { rsiValues: IndicatorPoint[]; macdHistValues: MACDHistogramPoint[] } {
+  const has = (ind: IndicatorType) => activeIndicators.includes(ind);
+  return {
+    rsiValues: has("rsi") && bars.length >= 15 ? calculateRSI(bars, 14) : [],
+    macdHistValues:
+      has("macd") && bars.length >= 35
+        ? calculateMACD(bars).histogram
+        : [],
+  };
+}
+
+// ─── Helpers ────────────────────────────────────────────────────────────────
+
+function clampScore(v: number): number {
+  return Math.max(-100, Math.min(100, Math.round(v)));
+}
 
 function scoreBias(score: number): "bullish" | "bearish" | "neutral" {
   if (score >= 15) return "bullish";
   if (score <= -15) return "bearish";
   return "neutral";
+}
+
+function computeConviction(
+  signals: Signal[],
+  score: number,
+): "low" | "medium" | "high" {
+  const directional = signals.filter((s) => s.direction !== "neutral").length;
+  const absScore = Math.abs(score);
+  if (directional >= 7 && absScore >= 40) return "high";
+  if (directional >= 4 && absScore >= 20) return "medium";
+  return "low";
+}
+
+function calcRiskReward(
+  close: number,
+  nearestRes: PriceLevel | undefined,
+  nearestSup: PriceLevel | undefined,
+): string {
+  if (!nearestRes || !nearestSup) return "N/A";
+  const reward = nearestRes.price - close;
+  const risk = close - nearestSup.price;
+  if (risk <= 0 || reward <= 0) return "N/A";
+  const ratio = reward / risk;
+  if (ratio > 10) return "1:10+";
+  return `1:${ratio.toFixed(1)}`;
+}
+
+function levelStr(level: PriceLevel): string {
+  return `$${level.price.toFixed(2)} (${level.label})`;
 }
 
 function topSignals(signals: Signal[], count: number): Signal[] {
@@ -233,33 +273,24 @@ function volatilityLevel(snap: IndicatorSnapshot): string {
   return "normal";
 }
 
-function keyResistance(snap: IndicatorSnapshot): string {
-  if (snap.bbUpper !== undefined) {
-    return `Bollinger upper band at $${snap.bbUpper.toFixed(2)}`;
-  }
-  if (snap.sma50 !== undefined) {
-    return `50-day SMA at $${snap.sma50.toFixed(2)}`;
-  }
-  if (snap.sma20 !== undefined) {
-    return `20-day SMA at $${snap.sma20.toFixed(2)}`;
-  }
-  if (snap.vwap !== undefined) {
-    return `VWAP at $${snap.vwap.toFixed(2)}`;
-  }
-  return "recent price highs";
+// Default regime for when we don't have enough data
+function defaultRegime(): RegimeAnalysis {
+  return {
+    regime: "ranging",
+    label: "Ranging",
+    color: "amber",
+    adxLevel: "weak",
+    trendDirection: "sideways",
+    scoreMultiplier: 0.85,
+  };
 }
 
-function keySupport(snap: IndicatorSnapshot): string {
-  if (snap.bbLower !== undefined) {
-    return `Bollinger lower band at $${snap.bbLower.toFixed(2)}`;
-  }
-  if (snap.sma20 !== undefined) {
-    return `20-day SMA at $${snap.sma20.toFixed(2)}`;
-  }
-  if (snap.vwap !== undefined) {
-    return `VWAP at $${snap.vwap.toFixed(2)}`;
-  }
-  return "recent price lows";
+function defaultLevels(): AnalysisResult["levels"] {
+  return {
+    supports: [],
+    resistances: [],
+    pivots: { pp: 0, r1: 0, r2: 0, r3: 0, s1: 0, s2: 0, s3: 0 },
+  };
 }
 
 // ─── analyzeTradeSetup ───────────────────────────────────────────────────────
@@ -269,24 +300,71 @@ export function analyzeTradeSetup(params: {
   activeIndicators: IndicatorType[];
   positions: Position[];
   currentTicker: string;
+  tradeHistory?: TradeRecord[];
 }): AnalysisResult {
-  const { visibleData, activeIndicators, positions, currentTicker } = params;
+  const { visibleData, activeIndicators, positions, currentTicker, tradeHistory = [] } = params;
 
   if (visibleData.length < 5) {
     return {
       score: 0,
+      rawScore: 0,
       bias: "neutral",
+      conviction: "low",
+      regime: defaultRegime(),
       signals: [],
       patterns: [],
-      text: "• Insufficient data — advance the time travel slider to load more bars.\n• Enable indicators from the toolbar to get signal analysis.\n• Try toggling RSI or MACD for momentum readings.",
+      divergences: [],
+      levels: defaultLevels(),
+      traderProfile: null,
+      text: "• Insufficient data — advance the time travel slider to load more bars.\n• Enable indicators from the toolbar to get signal analysis.\n• Try toggling RSI or MACD for momentum readings.\n• Add SMA20/SMA50 for trend context and regime detection.",
+      summary: "Advance the time slider to load more bars, then enable RSI or MACD for signal analysis.",
     };
   }
 
+  // 1. Extract snapshot for signals
   const { current, prev } = extractSnapshot(visibleData, activeIndicators);
-  const { signals, score } = detectSignals(current, prev, activeIndicators);
+
+  // 2. Market regime
+  const regime = detectMarketRegime({
+    close: current.close,
+    adx: current.adx,
+    sma20: current.sma20,
+    sma50: current.sma50,
+  });
+
+  // 3. Indicator arrays for divergence
+  const { rsiValues, macdHistValues } = extractIndicatorArrays(visibleData, activeIndicators);
+
+  // 4. Divergences
+  const divergences = detectDivergences({
+    bars: visibleData,
+    rsiValues,
+    macdHistValues,
+  });
+
+  // 5. Support/Resistance levels
+  const levels = detectLevels({ bars: visibleData, currentPrice: current.close });
+
+  // 6. Trader personality
+  const traderProfile = analyzeTraderPersonality(tradeHistory);
+
+  // 7. Signals
+  const { signals, score: rawScore } = detectSignals(current, prev, activeIndicators);
+
+  // 8. Candlestick patterns
   const patterns = detectCandlePatterns(visibleData, 10);
 
-  // Convert patterns to signals for scoring
+  // 9. Convert divergences + patterns to signals
+  const dirMap: Record<SignalDirection, number> = { bullish: 1, bearish: -1, neutral: 0 };
+
+  const divergenceSignals: Signal[] = divergences.map((d) => ({
+    id: `div_${d.indicator}_${d.type}`,
+    category: "momentum" as const,
+    direction: d.type,
+    strength: d.strength,
+    description: d.description,
+  }));
+
   const patternSignals: Signal[] = patterns.map((p) => ({
     id: `pattern_${p.name.replace(/\s/g, "_").toLowerCase()}`,
     category: "pattern" as const,
@@ -295,72 +373,127 @@ export function analyzeTradeSetup(params: {
     description: p.description,
   }));
 
-  const allSignals = [...signals, ...patternSignals];
+  const allSignals = [...signals, ...divergenceSignals, ...patternSignals];
 
-  // Re-score with patterns included
-  const dirMap: Record<SignalDirection, number> = { bullish: 1, bearish: -1, neutral: 0 };
-  let rawScore = 0;
+  // 10. Re-score with all signals
+  let rawCombined = 0;
   let weightedMax = 0;
   for (const s of allSignals) {
-    rawScore += dirMap[s.direction] * s.strength;
+    rawCombined += dirMap[s.direction] * s.strength;
     weightedMax += s.strength;
   }
-  const finalScore = weightedMax > 0 ? Math.round((rawScore / weightedMax) * 100) : score;
-  const bias = scoreBias(finalScore);
+  const baseScore = weightedMax > 0 ? Math.round((rawCombined / weightedMax) * 100) : rawScore;
 
-  // Build NLG text
-  const top = topSignals(allSignals, 3);
-  const volLevel = volatilityLevel(current);
+  // 11. Apply regime multiplier
+  const finalScore = clampScore(baseScore * regime.scoreMultiplier);
+  const bias = scoreBias(finalScore);
+  const conviction = computeConviction(allSignals, finalScore);
+
+  // ─── 4-Bullet NLG ────────────────────────────────────────────────────────
+
+  const dirLabel =
+    bias === "bullish" ? "bullish" : bias === "bearish" ? "bearish" : "mixed";
+  const signalCount = allSignals.filter((s) => s.direction !== "neutral").length;
+  const convLabel = conviction.toUpperCase();
+
+  // Bullet 1: Regime + conviction
+  const bullet1 = `• ${regime.label} regime | ${convLabel} conviction (${finalScore > 0 ? "+" : ""}${finalScore}/100) — ${signalCount} ${dirLabel} signals detected.`;
+
+  // Bullet 2: Setup details — divergences first, then top signals, then pattern
+  const setupParts: string[] = [];
+  if (divergences.length > 0) {
+    setupParts.push(divergences[0].description);
+  }
+  const topSigs = topSignals(allSignals.filter((s) => s.category !== "pattern"), 2);
+  if (topSigs.length > 0) setupParts.push(...topSigs.map((s) => s.description));
+  if (patterns.length > 0) setupParts.push(patterns[0].description);
+  if (setupParts.length === 0) {
+    setupParts.push("Enable indicators for signal detail — RSI, MACD, or Bollinger recommended.");
+  }
+  const bullet2 = `• Setup: ${setupParts.join(". ")}.`;
+
+  // Bullet 3: Key levels + R/R
+  const nearestRes = levels.resistances[0];
+  const nearestSup = levels.supports[0];
+  const secondRes = levels.resistances[1];
+  const secondSup = levels.supports[1];
+  const rr = calcRiskReward(current.close, nearestRes, nearestSup);
+
+  let levelsText: string;
+  if (nearestRes || nearestSup) {
+    const resPart = nearestRes
+      ? `Resistance: ${levelStr(nearestRes)}${secondRes ? ` | ${levelStr(secondRes)}` : ""}`
+      : "";
+    const supPart = nearestSup
+      ? `Support: ${levelStr(nearestSup)}${secondSup ? ` | ${levelStr(secondSup)}` : ""}`
+      : "";
+    const parts = [resPart, supPart].filter(Boolean);
+    levelsText = parts.join(". ") + `. R/R from here: ${rr}.`;
+  } else {
+    levelsText = `Enable SMA or Bollinger Bands to compute key levels. Pivot PP: $${levels.pivots.pp}.`;
+  }
+  const bullet3 = `• Levels: ${levelsText}`;
+
+  // Bullet 4: Personalized edge OR position context OR generic tip
+  let bullet4: string;
   const currentPos = positions.find((p) => p.ticker === currentTicker);
 
-  let bullet1: string;
-  if (top.length === 0) {
-    bullet1 = `• Signal: Neutral setup (score ${finalScore}/100). Enable more indicators for deeper analysis.`;
-  } else {
-    const biasLabel =
-      bias === "bullish" ? "Bullish" : bias === "bearish" ? "Bearish" : "Mixed";
-    const topDesc = top
-      .slice(0, 2)
-      .map((s) => s.description)
-      .join(". ");
-    bullet1 = `• Signal: ${biasLabel} setup (score ${finalScore}/100). ${topDesc}.`;
-  }
-
-  let bullet2: string;
-  if (bias === "bullish") {
-    bullet2 = `• Risk: Watch ${keyResistance(current)} as overhead resistance — ${volLevel} volatility environment.`;
-  } else if (bias === "bearish") {
-    bullet2 = `• Risk: Watch ${keySupport(current)} as downside support — ${volLevel} volatility environment.`;
-  } else {
-    bullet2 = `• Risk: Conflicting signals — wait for clearer direction. ${volLevel.charAt(0).toUpperCase() + volLevel.slice(1)} volatility environment.`;
-  }
-
-  let bullet3: string;
-  if (currentPos) {
+  if (traderProfile && traderProfile.totalTrades >= 5) {
+    const styleLabel =
+      traderProfile.style.charAt(0).toUpperCase() + traderProfile.style.slice(1);
+    const aligned =
+      (bias === "bullish" && currentPos?.side === "long") ||
+      (bias === "bearish" && currentPos?.side === "short");
+    bullet4 = `• Your edge: ${styleLabel} trader • ${(traderProfile.winRate * 100).toFixed(0)}% WR • ${traderProfile.riskRewardRatio.toFixed(1)}:1 R/R${currentPos ? ` — position ${aligned ? "aligned ✓" : "conflicted ⚠"}` : ""}. ${traderProfile.strengthMessage}`;
+  } else if (currentPos) {
     const pnl = currentPos.unrealizedPnL;
     const pnlStr = pnl >= 0 ? `+$${pnl.toFixed(2)}` : `-$${Math.abs(pnl).toFixed(2)}`;
     const aligned =
       (bias === "bullish" && currentPos.side === "long") ||
       (bias === "bearish" && currentPos.side === "short");
-    bullet3 = `• Position: Holding ${currentPos.quantity} shares ${currentPos.side} (unrealized ${pnlStr}). ${
-      aligned ? "Trend aligns with position." : "Consider tightening stop-loss."
-    }`;
+    bullet4 = `• Position: Holding ${currentPos.quantity} shares ${currentPos.side} (${pnlStr} unrealized). ${aligned ? "Trend confirms — hold with trailing stop." : "Trend conflicts — consider tightening stop-loss."}`;
   } else if (bias === "bullish") {
-    const trigger = current.rsi !== undefined
-      ? `RSI pulling back from overbought`
-      : current.macdHistogram !== undefined && current.macdHistogram < 0
-      ? `MACD recrossing signal line`
-      : `price retesting nearest SMA`;
-    bullet3 = `• Watch: Wait for ${trigger} before entering long — confirm with volume.`;
+    const volStr = volatilityLevel(current);
+    bullet4 = `• Watch: ${volStr === "compressed" ? "Bollinger squeeze — await volume breakout before entering." : `Wait for price to hold above ${nearestSup ? levelStr(nearestSup) : "nearest support"} on a pullback — then enter with defined stop below it.`}`;
   } else if (bias === "bearish") {
-    bullet3 = `• Watch: Monitor ${keyResistance(current)} — a rejection there strengthens the bear case.`;
+    bullet4 = `• Watch: Monitor ${nearestRes ? levelStr(nearestRes) : "nearest resistance"} — a failed retest confirms the bear case. Set stop above that level if shorting.`;
   } else {
-    bullet3 = `• Watch: Look for a breakout above ${keyResistance(current)} or breakdown below ${keySupport(current)} for directional clarity.`;
+    bullet4 = `• Watch: No directional edge yet. Look for breakout above ${nearestRes ? levelStr(nearestRes) : "resistance"} or breakdown below ${nearestSup ? levelStr(nearestSup) : "support"} for entry signal.`;
   }
 
-  const text = [bullet1, bullet2, bullet3].join("\n");
+  const text = [bullet1, bullet2, bullet3, bullet4].join("\n");
 
-  return { score: finalScore, bias, signals: allSignals, patterns, text };
+  // ─── Short summary for visual display ────────────────────────────────────
+  let summary: string;
+  if (conviction === "high" && bias === "bullish") {
+    summary = `Strong bull setup — ${signalCount} signals aligned.${nearestSup ? ` Consider entry near support $${nearestSup.price} with stop below.` : " Watch for pullback entry near nearest support."}`;
+  } else if (conviction === "high" && bias === "bearish") {
+    summary = `Bear pressure confirmed — ${signalCount} signals.${nearestRes ? ` Watch resistance $${nearestRes.price} for failed retest entry.` : " Resistance zone is key — failed retest confirms bear case."}`;
+  } else if (divergences.length > 0 && bias !== "bearish") {
+    summary = `Divergence detected — momentum shift forming.${nearestRes ? ` Wait for breakout above $${nearestRes.price}.` : " Wait for follow-through confirmation before entry."}`;
+  } else if (divergences.length > 0 && bias === "bearish") {
+    summary = `Bearish divergence — rally may be running out of steam.${nearestRes ? ` Monitor $${nearestRes.price} for resistance rejection.` : " Volume confirmation needed before shorting."}`;
+  } else if (conviction === "medium") {
+    const keyLevel = nearestSup ?? nearestRes;
+    summary = `Mixed signals in ${regime.label} market. Best edge: wait for confluence${keyLevel ? ` at $${keyLevel.price}` : " at a key level"}.`;
+  } else {
+    summary = `${regime.label} regime — no clear directional edge yet. ${regime.regime === "ranging" ? "Oscillator signals more reliable in this range." : "Watch for trend confirmation before entering."}`;
+  }
+
+  return {
+    score: finalScore,
+    rawScore: baseScore,
+    bias,
+    conviction,
+    regime,
+    signals: allSignals,
+    patterns,
+    divergences,
+    levels,
+    traderProfile,
+    text,
+    summary,
+  };
 }
 
 // ─── reviewLastTrade ─────────────────────────────────────────────────────────
@@ -368,145 +501,170 @@ export function analyzeTradeSetup(params: {
 export function reviewLastTrade(params: {
   lastSell: TradeRecord;
   entryPrice: number;
+  tradeHistory?: TradeRecord[];
 }): AnalysisResult {
-  const { lastSell, entryPrice } = params;
+  const { lastSell, entryPrice, tradeHistory = [] } = params;
 
   const exit = lastSell.price;
   const pnlDollar = lastSell.realizedPnL ?? 0;
   const pnlPct = entryPrice > 0 ? ((exit - entryPrice) / entryPrice) * 100 : 0;
   const pnlSign = pnlDollar >= 0 ? "+" : "";
 
+  const traderProfile = analyzeTraderPersonality(tradeHistory);
+
   let grade: string;
   let gradeDesc: string;
-  if (pnlPct > 15) {
-    grade = "A";
-    gradeDesc = "Excellent trade execution";
-  } else if (pnlPct > 5) {
-    grade = "B";
-    gradeDesc = "Strong trade with good timing";
-  } else if (pnlPct > 0) {
-    grade = "C";
-    gradeDesc = "Profitable but room to optimize";
-  } else if (pnlPct > -5) {
-    grade = "D";
-    gradeDesc = "Small loss — acceptable risk management";
-  } else {
-    grade = "F";
-    gradeDesc = "Stop-loss discipline needed";
-  }
+  if (pnlPct > 15) { grade = "A"; gradeDesc = "Excellent trade execution"; }
+  else if (pnlPct > 5) { grade = "B"; gradeDesc = "Strong trade with good timing"; }
+  else if (pnlPct > 0) { grade = "C"; gradeDesc = "Profitable but room to optimize"; }
+  else if (pnlPct > -5) { grade = "D"; gradeDesc = "Small loss — acceptable risk management"; }
+  else { grade = "F"; gradeDesc = "Stop-loss discipline needed"; }
+
+  const bullet1 = `• Grade ${grade}: ${gradeDesc}. P&L: ${pnlSign}$${Math.abs(pnlDollar).toFixed(2)} (${pnlSign}${pnlPct.toFixed(1)}%) | Entry $${entryPrice.toFixed(2)} → Exit $${exit.toFixed(2)}`;
 
   let wentWell: string;
-  let improve: string;
-
   if (pnlDollar >= 0) {
-    const holdReturn = ((exit - entryPrice) / entryPrice) * 100;
     wentWell =
-      holdReturn > 10
-        ? `Excellent patience — held through ${holdReturn.toFixed(1)}% move from entry $${entryPrice.toFixed(2)}.`
-        : `Profitable exit at $${exit.toFixed(2)} from entry $${entryPrice.toFixed(2)}. Positive risk management.`;
-    improve =
-      pnlPct < 5
-        ? `Consider using a trailing stop to lock in gains on larger moves. Small profit of ${pnlSign}${pnlPct.toFixed(1)}% may have been exited too early.`
-        : `Look for high ADX (>25) environments to ride winners longer. Current momentum indicators could improve entry precision.`;
+      pnlPct > 10
+        ? `Excellent patience — held through a ${pnlPct.toFixed(1)}% move. Entry at $${entryPrice.toFixed(2)} was well-timed.`
+        : `Profitable exit. Entry $${entryPrice.toFixed(2)}, exit $${exit.toFixed(2)} — positive discipline.`;
   } else {
     wentWell =
       Math.abs(pnlPct) < 5
-        ? `Loss was contained at ${pnlSign}${pnlPct.toFixed(1)}% — good risk control limiting the damage.`
-        : `You recognized the losing position and closed it rather than holding through a larger drawdown.`;
-    improve =
-      Math.abs(pnlPct) > 10
-        ? `A predefined stop-loss at 5-7% would have reduced this loss from ${Math.abs(pnlPct).toFixed(1)}%. Always set stops before entry.`
-        : `Review entry signals — check if MACD and RSI were aligned at entry. Mixed signals suggest waiting for confluence.`;
+        ? `Loss contained at ${pnlSign}${pnlPct.toFixed(1)}% — you avoided a larger drawdown.`
+        : `Recognized the losing position and closed it rather than holding and hoping.`;
   }
 
-  const text = [
-    `• Grade ${grade}: ${gradeDesc}. P&L: ${pnlSign}$${Math.abs(pnlDollar).toFixed(2)} (${pnlSign}${pnlPct.toFixed(1)}%) | Entry $${entryPrice.toFixed(2)} → Exit $${exit.toFixed(2)}`,
-    `• What worked: ${wentWell}`,
-    `• Improve: ${improve}`,
-  ].join("\n");
+  let improve: string;
+  if (pnlDollar >= 0 && pnlPct < 5) {
+    improve = `Consider a trailing stop to capture more of the move. A 5-7% profit target with trailing exit often outperforms fixed exits.`;
+  } else if (pnlDollar < 0 && Math.abs(pnlPct) > 10) {
+    improve = `A predefined stop-loss at 5-7% would have saved ${(Math.abs(pnlPct) - 6).toFixed(1)}% of this loss. Always set stops before entry.`;
+  } else if (pnlDollar < 0) {
+    improve = `Review entry conditions — were RSI and MACD aligned? Waiting for multi-indicator confluence before entry reduces false signals.`;
+  } else {
+    improve = `Solid trade. Next step: increase position sizing when multiple indicators agree (ADX > 25 + RSI oversold + MACD cross).`;
+  }
+
+  const bullet2 = `• Worked: ${wentWell}`;
+  const bullet3 = `• Improve: ${improve}`;
+
+  let bullet4: string;
+  if (traderProfile && traderProfile.totalTrades >= 5) {
+    const styleLabel = traderProfile.style.charAt(0).toUpperCase() + traderProfile.style.slice(1);
+    bullet4 = `• Profile: ${styleLabel} trader — ${(traderProfile.winRate * 100).toFixed(0)}% WR, ${traderProfile.riskRewardRatio.toFixed(1)}:1 R/R, profit factor ${traderProfile.profitFactor.toFixed(1)}. ${traderProfile.improvementMessage}`;
+  } else {
+    bullet4 = `• Keep trading — pattern recognition improves with repetition. Log your entry/exit rationale as notes for each trade.`;
+  }
+
+  const summary = `Grade ${grade} — ${gradeDesc}. ${wentWell.split(".")[0]}. ${improve.split(".")[0]}.`;
 
   return {
-    score: Math.round(Math.max(-100, Math.min(100, pnlPct * 5))),
+    score: clampScore(pnlPct * 5),
+    rawScore: clampScore(pnlPct * 5),
     bias: pnlDollar >= 0 ? "bullish" : "bearish",
+    conviction: Math.abs(pnlPct) > 10 ? "high" : Math.abs(pnlPct) > 3 ? "medium" : "low",
+    regime: defaultRegime(),
     signals: [],
     patterns: [],
-    text,
+    divergences: [],
+    levels: defaultLevels(),
+    traderProfile,
+    text: [bullet1, bullet2, bullet3, bullet4].join("\n"),
+    summary,
+    grade,
+    wentWell,
+    improve,
   };
 }
 
 // ─── generateMarketBrief ─────────────────────────────────────────────────────
 
 const TICKER_CONTEXT: Record<string, { sector: string; context: string }> = {
-  AAPL: { sector: "Technology", context: "Apple is a mega-cap consumer technology company known for iPhone cycles, services growth, and margin expansion." },
-  MSFT: { sector: "Technology", context: "Microsoft is a cloud-first enterprise giant with Azure, Office 365, and AI integration via OpenAI partnership." },
-  GOOG: { sector: "Technology", context: "Alphabet dominates digital advertising and cloud computing, with AI-driven search evolution as a key theme." },
-  AMZN: { sector: "Consumer/Cloud", context: "Amazon leads e-commerce and cloud infrastructure (AWS), with profitability driven by high-margin AWS and advertising." },
-  NVDA: { sector: "Semiconductors", context: "NVIDIA dominates AI accelerator GPUs, with explosive data center demand driving revenue growth cycles." },
-  TSLA: { sector: "EV/Automotive", context: "Tesla leads the EV market with high volatility around production, margin, and autonomous driving milestones." },
-  JPM: { sector: "Financial", context: "JPMorgan Chase is a diversified financial giant; trades on interest rate expectations and credit cycle dynamics." },
-  SPY: { sector: "ETF", context: "The S&P 500 ETF tracks broad market sentiment — watch macro data (Fed, inflation, earnings) as primary drivers." },
-  QQQ: { sector: "ETF", context: "The Nasdaq 100 ETF is tech-heavy; highly sensitive to rate changes and large-cap tech earnings." },
-  META: { sector: "Technology", context: "Meta Platforms monetizes social media at scale, with AI-driven ad targeting and metaverse investments." },
+  AAPL: { sector: "Technology", context: "Apple is a mega-cap consumer technology company — iPhone cycles, services growth, and margin expansion drive sentiment." },
+  MSFT: { sector: "Technology", context: "Microsoft leads enterprise cloud (Azure) and AI integration — revenue is resilient and predictable." },
+  GOOG: { sector: "Technology", context: "Alphabet dominates digital advertising and cloud — AI-driven search evolution is the key volatility theme." },
+  AMZN: { sector: "Consumer/Cloud", context: "Amazon: e-commerce + AWS cloud + advertising. High-margin AWS and ad revenue drive profitability." },
+  NVDA: { sector: "Semiconductors", context: "NVIDIA dominates AI accelerator GPUs. Data center demand cycles create large momentum moves." },
+  TSLA: { sector: "EV/Automotive", context: "Tesla leads EVs — high volatility around production, margin, and autonomous driving milestones." },
+  JPM: { sector: "Financial", context: "JPMorgan Chase — diversified financial giant. Trades on Fed rate expectations and credit cycle dynamics." },
+  SPY: { sector: "ETF", context: "S&P 500 ETF — broad market proxy. Watch macro data (Fed, CPI, earnings seasons) as primary drivers." },
+  QQQ: { sector: "ETF", context: "Nasdaq 100 ETF — tech-heavy. Highly sensitive to rate changes and large-cap tech earnings." },
+  META: { sector: "Technology", context: "Meta Platforms — social media monetization at scale via AI-driven ad targeting and Reels growth." },
 };
 
 export function generateMarketBrief(params: {
   ticker: string;
   visibleData: OHLCVBar[];
   activeIndicators: IndicatorType[];
+  tradeHistory?: TradeRecord[];
 }): AnalysisResult {
-  const { ticker, visibleData, activeIndicators } = params;
+  const { ticker, visibleData, activeIndicators, tradeHistory = [] } = params;
 
   const info = TICKER_CONTEXT[ticker] ?? {
     sector: "Equity",
-    context: `${ticker} is a traded equity. Review fundamentals and recent news before trading.`,
+    context: `${ticker} is a traded equity. Review recent fundamentals before trading.`,
   };
 
   const { current, prev } = extractSnapshot(visibleData, activeIndicators);
+  const regime = detectMarketRegime({
+    close: current.close,
+    adx: current.adx,
+    sma20: current.sma20,
+    sma50: current.sma50,
+  });
+  const { rsiValues, macdHistValues } = extractIndicatorArrays(visibleData, activeIndicators);
+  const divergences = detectDivergences({ bars: visibleData, rsiValues, macdHistValues });
+  const levels = detectLevels({ bars: visibleData, currentPrice: current.close });
+  const traderProfile = analyzeTraderPersonality(tradeHistory);
   const { signals } = detectSignals(current, prev, activeIndicators);
 
-  const bullSignals = signals.filter((s) => s.direction === "bullish");
-  const bearSignals = signals.filter((s) => s.direction === "bearish");
-
-  const activeCount = activeIndicators.length;
   const priceStr = `$${current.close.toFixed(2)}`;
+  const bullet1 = `• Context: ${info.context} ${ticker} currently at ${priceStr} in a ${regime.label} regime.`;
 
-  // Build 3 watch bullets from available signals
-  const watches: string[] = [];
-
-  if (bullSignals.length > 0 && bearSignals.length > 0) {
-    watches.push(
-      `Mixed signals detected — ${bullSignals.length} bullish vs ${bearSignals.length} bearish signals. Wait for confluence before entering.`,
-    );
-  } else if (bullSignals.length > bearSignals.length) {
-    const top = bullSignals.sort((a, b) => b.strength - a.strength)[0];
-    watches.push(`Bullish lean: ${top.description}.`);
-  } else if (bearSignals.length > bullSignals.length) {
-    const top = bearSignals.sort((a, b) => b.strength - a.strength)[0];
-    watches.push(`Bearish lean: ${top.description}.`);
+  // Key signals
+  const bullSigs = signals.filter((s) => s.direction === "bullish");
+  const bearSigs = signals.filter((s) => s.direction === "bearish");
+  let bullet2: string;
+  if (divergences.length > 0) {
+    bullet2 = `• Watch 1: ${divergences[0].description}. This is a high-quality reversal signal — confirm with volume.`;
+  } else if (bullSigs.length > 0 && bearSigs.length === 0) {
+    bullet2 = `• Watch 1: ${bullSigs[0].description}. ${bullSigs.length > 1 ? bullSigs[1].description + "." : ""}`;
+  } else if (bearSigs.length > 0 && bullSigs.length === 0) {
+    bullet2 = `• Watch 1: ${bearSigs[0].description}. ${bearSigs.length > 1 ? bearSigs[1].description + "." : ""}`;
   } else {
-    watches.push(`No active indicators toggled — enable RSI or MACD for signal analysis.`);
+    bullet2 = `• Watch 1: Mixed signals (${bullSigs.length} bullish, ${bearSigs.length} bearish). Wait for ${regime.regime === "ranging" ? "range breakout" : "trend confirmation"} before entering.`;
   }
 
-  if (activeCount > 0) {
-    watches.push(
-      `Key level: ${keyResistance(current)} is overhead resistance; ${keySupport(current)} is downside support.`,
-    );
+  const nearestRes = levels.resistances[0];
+  const nearestSup = levels.supports[0];
+  const bullet3 = nearestRes || nearestSup
+    ? `• Watch 2: Key levels — ${nearestRes ? `Resistance ${levelStr(nearestRes)}` : ""}${nearestRes && nearestSup ? " | " : ""}${nearestSup ? `Support ${levelStr(nearestSup)}` : ""}. Enter only on confirmed breakout or bounce.`
+    : `• Watch 2: Enable Bollinger Bands or SMA20 for key level detection. Pivot PP: $${levels.pivots.pp}.`;
+
+  let bullet4: string;
+  if (traderProfile && traderProfile.totalTrades >= 5) {
+    const styleLabel = traderProfile.style.charAt(0).toUpperCase() + traderProfile.style.slice(1);
+    bullet4 = `• Watch 3: Your ${styleLabel} profile (${(traderProfile.winRate * 100).toFixed(0)}% WR) favors ${traderProfile.style === "momentum" ? "strong trending setups — wait for ADX > 25" : traderProfile.style === "mean_reversion" ? "oversold bounces — watch RSI < 30" : "clear S/R setups with volume confirmation"}.`;
   } else {
-    watches.push(`Enable Bollinger Bands or SMA to identify key support and resistance levels.`);
+    bullet4 = `• Watch 3: Volume and pattern confirmation — look for Engulfing or Pin Bar candles at key S/R levels to time entries precisely.`;
   }
 
-  watches.push(
-    `Volume and momentum confirmation: look for candle patterns (Engulfing, Pin Bars) at key levels to time entries precisely.`,
-  );
+  const topSig = [...signals].filter((s) => s.direction !== "neutral").sort((a, b) => b.strength - a.strength)[0];
+  const briefSummary = `${ticker} in ${regime.label} regime at ${priceStr}.${divergences.length > 0 ? ` Divergence detected — watch for momentum shift.` : topSig ? ` ${topSig.description}.` : " Enable indicators for signal analysis."}${levels.resistances[0] ? ` Key resistance: $${levels.resistances[0].price}.` : ""}`;
 
-  const context = `${info.context} Current price: ${priceStr}.`;
-
-  const text = [
-    `• Context: ${context}`,
-    `• Watch 1: ${watches[0]}`,
-    `• Watch 2: ${watches[1]}`,
-    `• Watch 3: ${watches[2]}`,
-  ].join("\n");
-
-  return { score: 0, bias: "neutral", signals, patterns: [], text };
+  return {
+    score: 0,
+    rawScore: 0,
+    bias: "neutral",
+    conviction: "low",
+    regime,
+    signals,
+    patterns: [],
+    divergences,
+    levels,
+    traderProfile,
+    text: [bullet1, bullet2, bullet3, bullet4].join("\n"),
+    summary: briefSummary,
+  };
 }

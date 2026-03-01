@@ -1,8 +1,8 @@
 "use client";
 
-import { useState, useCallback, useRef } from "react";
+import { useState, useCallback, useRef, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Bot, ChevronDown, ChevronUp, RotateCcw, AlertCircle } from "lucide-react";
+import { ChevronDown, ChevronUp, RotateCcw, AlertCircle, Zap } from "lucide-react";
 import { useTradingStore } from "@/stores/trading-store";
 import { useChartStore } from "@/stores/chart-store";
 import { useMarketDataStore } from "@/stores/market-data-store";
@@ -11,6 +11,7 @@ import {
   analyzeTradeSetup,
   reviewLastTrade,
   generateMarketBrief,
+  type AnalysisResult,
 } from "@/services/ai/engine";
 
 type Mode = "trade" | "review" | "brief";
@@ -21,17 +22,277 @@ const MODES: { value: Mode; label: string; desc: string }[] = [
   { value: "brief", label: "Morning Brief", desc: "Market context for current ticker" },
 ];
 
+// ─── Inline Sub-Components ───────────────────────────────────────────────────
+
+function ScoreGauge({ score, bias }: { score: number; bias: string }) {
+  // 20 segments: indices 0-9 = negative half (-100 to 0), 10-19 = positive half (0 to +100)
+  // Each segment covers 10 score units
+  const SEGMENTS = 20;
+  const label =
+    bias === "bullish" ? "BULLISH" : bias === "bearish" ? "BEARISH" : "NEUTRAL";
+  const labelColor =
+    bias === "bullish" ? "text-emerald-400" : bias === "bearish" ? "text-red-400" : "text-amber-400";
+
+  return (
+    <div className="space-y-1">
+      <div className="flex items-center justify-between text-[9px]">
+        <span className="text-muted-foreground">Signal Score</span>
+        <span className={cn("font-black", labelColor)}>
+          {score > 0 ? "+" : ""}{score} / 100 {label}
+        </span>
+      </div>
+      {/* Segmented bar */}
+      <div className="flex gap-0.5">
+        {Array.from({ length: SEGMENTS }, (_, i) => {
+          const segMin = -100 + i * 10; // segment floor value
+          const isBullSeg = i >= SEGMENTS / 2;
+          const isActive = score >= 0
+            ? isBullSeg && segMin < score
+            : !isBullSeg && segMin >= score;
+          const isCenter = i === 9 || i === 10;
+          return (
+            <div
+              key={i}
+              className={cn(
+                "h-1.5 flex-1 rounded-sm transition-all duration-500",
+                isActive
+                  ? isBullSeg
+                    ? score >= 40 ? "bg-emerald-500" : "bg-green-400"
+                    : score <= -40 ? "bg-red-500" : "bg-orange-400"
+                  : isCenter
+                  ? "bg-border"
+                  : "bg-muted",
+              )}
+            />
+          );
+        })}
+      </div>
+      <div className="flex justify-between text-[8px] text-muted-foreground/50">
+        <span>−100</span>
+        <span>0</span>
+        <span>+100</span>
+      </div>
+    </div>
+  );
+}
+
+function SignalChips({ signals }: { signals: AnalysisResult["signals"] }) {
+  const top = [...signals]
+    .filter((s) => s.direction !== "neutral")
+    .sort((a, b) => b.strength - a.strength)
+    .slice(0, 6);
+
+  if (top.length === 0) return null;
+
+  return (
+    <div className="flex gap-1 overflow-x-auto pb-0.5 scrollbar-hide">
+      {top.map((s) => (
+        <span
+          key={s.id}
+          title={s.description}
+          className={cn(
+            "shrink-0 rounded border px-1.5 py-0.5 text-[8px] font-bold leading-none whitespace-nowrap",
+            s.direction === "bullish"
+              ? "bg-emerald-500/15 text-emerald-400 border-emerald-500/30"
+              : "bg-red-500/15 text-red-400 border-red-500/30",
+          )}
+        >
+          {s.direction === "bullish" ? "↑" : "↓"}{" "}
+          {s.description.length > 22 ? s.description.slice(0, 22) + "…" : s.description}
+        </span>
+      ))}
+    </div>
+  );
+}
+
+function LevelLadder({
+  levels,
+  currentPrice,
+}: {
+  levels: AnalysisResult["levels"];
+  currentPrice: number;
+}) {
+  const nearestRes = levels.resistances[0];
+  const nearestSup = levels.supports[0];
+
+  if (!nearestRes && !nearestSup) return null;
+
+  const rr =
+    nearestRes && nearestSup
+      ? (() => {
+          const reward = nearestRes.price - currentPrice;
+          const risk = currentPrice - nearestSup.price;
+          if (risk <= 0 || reward <= 0) return null;
+          return `1:${(reward / risk).toFixed(1)}`;
+        })()
+      : null;
+
+  return (
+    <div className="rounded-md bg-background/40 border border-border/40 px-2 py-1.5 space-y-0.5">
+      {nearestRes && (
+        <div className="flex items-center justify-between text-[9px]">
+          <span className="text-red-400 font-bold">${nearestRes.price.toFixed(2)}</span>
+          <span className="text-muted-foreground/70">{nearestRes.label}</span>
+          <span className="text-red-400/60 text-[8px]">▲ R</span>
+        </div>
+      )}
+      <div className="flex items-center justify-between text-[9px] py-0.5 border-y border-border/30">
+        <span className="text-foreground font-black">● ${currentPrice.toFixed(2)}</span>
+        <span className="text-muted-foreground/50 text-[8px]">current</span>
+        {rr && <span className="text-amber-400 font-bold text-[8px]">R/R {rr}</span>}
+      </div>
+      {nearestSup && (
+        <div className="flex items-center justify-between text-[9px]">
+          <span className="text-emerald-400 font-bold">${nearestSup.price.toFixed(2)}</span>
+          <span className="text-muted-foreground/70">{nearestSup.label}</span>
+          <span className="text-emerald-400/60 text-[8px]">▼ S</span>
+        </div>
+      )}
+    </div>
+  );
+}
+
+function DivergenceAlert({ divergences }: { divergences: AnalysisResult["divergences"] }) {
+  if (divergences.length === 0) return null;
+  const d = divergences[0];
+  const isBull = d.type === "bullish";
+
+  return (
+    <div
+      className={cn(
+        "flex items-center gap-1.5 rounded border px-2 py-1.5",
+        isBull
+          ? "bg-purple-500/10 border-purple-500/30"
+          : "bg-orange-500/10 border-orange-500/30",
+      )}
+    >
+      <div
+        className={cn(
+          "w-0.5 h-5 rounded-full shrink-0 animate-pulse",
+          isBull ? "bg-purple-400" : "bg-orange-400",
+        )}
+      />
+      <Zap
+        className={cn("h-3 w-3 shrink-0", isBull ? "text-purple-400" : "text-orange-400")}
+      />
+      <span
+        className={cn(
+          "text-[9px] font-bold leading-tight",
+          isBull ? "text-purple-300" : "text-orange-300",
+        )}
+      >
+        {d.description.length > 65 ? d.description.slice(0, 65) + "…" : d.description}
+      </span>
+    </div>
+  );
+}
+
+function ProfileCard({ profile }: { profile: AnalysisResult["traderProfile"] }) {
+  if (!profile || profile.totalTrades < 5) return null;
+
+  const styleLabel = profile.style.charAt(0).toUpperCase() + profile.style.slice(1);
+
+  return (
+    <div className="rounded bg-background/40 border border-border/50 px-2 py-1.5 space-y-0.5">
+      <div className="flex items-center gap-1.5 text-[9px]">
+        <span className="text-[10px]">📊</span>
+        <span className="font-bold text-foreground/80">{styleLabel}</span>
+        <span className="text-muted-foreground">
+          {(profile.winRate * 100).toFixed(0)}% WR
+        </span>
+        <span className="text-muted-foreground">•</span>
+        <span className="text-muted-foreground">{profile.riskRewardRatio.toFixed(1)}:1 R/R</span>
+        <span className="text-muted-foreground">•</span>
+        <span className="text-muted-foreground">PF {profile.profitFactor.toFixed(1)}</span>
+      </div>
+      <div className="text-[8px] text-muted-foreground/70 leading-tight">
+        {profile.strengthMessage}
+      </div>
+    </div>
+  );
+}
+
+function GradeBadge({ grade }: { grade: string }) {
+  const cls =
+    grade === "A" ? "bg-emerald-500/15 text-emerald-400 border-emerald-500/30"
+    : grade === "B" ? "bg-green-500/15 text-green-400 border-green-500/30"
+    : grade === "C" ? "bg-amber-500/15 text-amber-400 border-amber-500/30"
+    : grade === "D" ? "bg-orange-500/15 text-orange-400 border-orange-500/30"
+    : "bg-red-500/15 text-red-400 border-red-500/30";
+
+  return (
+    <div className={cn("rounded border px-3 py-2 text-center", cls)}>
+      <div className="text-2xl font-black leading-none">{grade}</div>
+      <div className="text-[8px] font-bold mt-0.5 opacity-80">TRADE GRADE</div>
+    </div>
+  );
+}
+
+function ReviewDisplay({ result }: { result: AnalysisResult }) {
+  if (!result.grade) return null;
+
+  return (
+    <div className="space-y-1.5">
+      <div className="flex items-center gap-2">
+        <GradeBadge grade={result.grade} />
+        <div className="flex-1 space-y-1">
+          <div className="text-[9px] text-emerald-400 leading-tight">
+            <span className="font-bold">✓ Worked: </span>
+            {result.wentWell}
+          </div>
+          <div className="text-[9px] text-amber-400 leading-tight">
+            <span className="font-bold">↑ Improve: </span>
+            {result.improve}
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+function SmallBadge({ label, cls }: { label: string; cls: { bg: string; text: string; border: string } }) {
+  return (
+    <span
+      className={cn(
+        "rounded border px-1 py-0.5 text-[9px] font-black leading-none",
+        cls.bg, cls.text, cls.border,
+      )}
+    >
+      {label}
+    </span>
+  );
+}
+
+const REGIME_CLASSES: Record<string, { bg: string; text: string; border: string }> = {
+  strong_bull: { bg: "bg-emerald-500/15", text: "text-emerald-400", border: "border-emerald-500/30" },
+  bull:        { bg: "bg-green-500/15",   text: "text-green-400",   border: "border-green-500/30" },
+  ranging:     { bg: "bg-amber-500/15",   text: "text-amber-400",   border: "border-amber-500/30" },
+  bear:        { bg: "bg-red-500/15",     text: "text-red-400",     border: "border-red-500/30" },
+  strong_bear: { bg: "bg-rose-500/15",    text: "text-rose-400",    border: "border-rose-500/30" },
+};
+
+const CONVICTION_CLASSES: Record<string, { bg: string; text: string; border: string }> = {
+  high:   { bg: "bg-primary/15",   text: "text-primary",          border: "border-primary/30" },
+  medium: { bg: "bg-orange-500/15", text: "text-orange-400",       border: "border-orange-500/30" },
+  low:    { bg: "bg-muted",         text: "text-muted-foreground", border: "border-border" },
+};
+
+// ─── Main Component ──────────────────────────────────────────────────────────
+
 export function AICoachPanel() {
   const [expanded, setExpanded] = useState(false);
   const [mode, setMode] = useState<Mode>("trade");
-  const [text, setText] = useState("");
-  const [score, setScore] = useState<number | null>(null);
+  const [summaryText, setSummaryText] = useState("");
+  const [result, setResult] = useState<AnalysisResult | null>(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const typingRef = useRef<ReturnType<typeof setInterval> | null>(null);
+  const reanalysisTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const autoTriggerTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
 
   const positions = useTradingStore((s) => s.positions);
   const tradeHistory = useTradingStore((s) => s.tradeHistory);
+  const tradeHistoryLength = useTradingStore((s) => s.tradeHistory.length);
   const currentTicker = useChartStore((s) => s.currentTicker);
   const activeIndicators = useChartStore((s) => s.activeIndicators);
   const allData = useMarketDataStore((s) => s.allData);
@@ -49,89 +310,174 @@ export function AICoachPanel() {
   const startTyping = useCallback(
     (fullText: string) => {
       stopTyping();
-      setText("");
+      setSummaryText("");
       const chars = fullText.split("");
       let i = 0;
       typingRef.current = setInterval(() => {
         if (i < chars.length) {
-          setText((prev) => prev + chars[i]);
+          setSummaryText((prev) => prev + chars[i]);
           i++;
         } else {
           stopTyping();
           setLoading(false);
         }
-      }, 12);
+      }, 14);
     },
     [stopTyping],
   );
 
-  const handleAnalyze = useCallback(() => {
-    stopTyping();
-    setLoading(true);
-    setText("");
-    setScore(null);
-    setError(null);
+  const runAnalysis = useCallback(
+    (overrideMode?: Mode) => {
+      const activeMode = overrideMode ?? mode;
+      stopTyping();
+      setLoading(true);
+      setSummaryText("");
+      setResult(null);
+      setError(null);
 
-    // Defer to next tick so UI updates before computation
-    setTimeout(() => {
-      try {
-        let result;
+      setTimeout(() => {
+        try {
+          let analysisResult: AnalysisResult;
 
-        if (mode === "trade") {
-          result = analyzeTradeSetup({
-            visibleData,
-            activeIndicators: activeIndicators as string[] as Parameters<typeof analyzeTradeSetup>[0]["activeIndicators"],
-            positions,
-            currentTicker,
-          });
-        } else if (mode === "review") {
-          const lastSell = [...tradeHistory].find((t) => t.side === "sell");
-          if (!lastSell) {
-            setError("No completed sell trades yet. Make a trade first.");
-            setLoading(false);
-            return;
+          if (activeMode === "trade") {
+            analysisResult = analyzeTradeSetup({
+              visibleData,
+              activeIndicators: activeIndicators as Parameters<typeof analyzeTradeSetup>[0]["activeIndicators"],
+              positions,
+              currentTicker,
+              tradeHistory,
+            });
+          } else if (activeMode === "review") {
+            const lastSell = [...tradeHistory].find((t) => t.side === "sell");
+            if (!lastSell) {
+              setError("No completed sell trades yet. Make a trade first.");
+              setLoading(false);
+              return;
+            }
+            const lastBuy = tradeHistory.find(
+              (t) => t.side === "buy" && t.ticker === lastSell.ticker,
+            );
+            analysisResult = reviewLastTrade({
+              lastSell,
+              entryPrice: lastBuy?.price ?? lastSell.price,
+              tradeHistory,
+            });
+          } else {
+            analysisResult = generateMarketBrief({
+              ticker: currentTicker,
+              visibleData,
+              activeIndicators: activeIndicators as Parameters<typeof generateMarketBrief>[0]["activeIndicators"],
+              tradeHistory,
+            });
           }
-          const lastBuy = tradeHistory.find(
-            (t) => t.side === "buy" && t.ticker === lastSell.ticker,
-          );
-          result = reviewLastTrade({
-            lastSell,
-            entryPrice: lastBuy?.price ?? lastSell.price,
-          });
-        } else {
-          result = generateMarketBrief({
-            ticker: currentTicker,
-            visibleData,
-            activeIndicators: activeIndicators as string[] as Parameters<typeof generateMarketBrief>[0]["activeIndicators"],
-          });
+
+          setResult(analysisResult);
+          startTyping(analysisResult.summary);
+        } catch (err) {
+          setError(err instanceof Error ? err.message : "Analysis failed");
+          setLoading(false);
         }
+      }, 0);
+    },
+    [mode, visibleData, activeIndicators, positions, currentTicker, tradeHistory, startTyping, stopTyping],
+  );
 
-        setScore(result.score);
-        startTyping(result.text);
-      } catch (err) {
-        setError(err instanceof Error ? err.message : "Analysis failed");
-        setLoading(false);
+  const handleAnalyze = useCallback(() => runAnalysis(), [runAnalysis]);
+
+  // ─── Agentic Trigger 1: New sell trade → auto switch to review + analyze ──
+  const prevTradeLen = useRef(tradeHistoryLength);
+  useEffect(() => {
+    if (tradeHistoryLength > prevTradeLen.current) {
+      const hasSell = tradeHistory[0]?.side === "sell";
+      if (hasSell) {
+        setMode("review");
+        setExpanded(true);
+        stopTyping();
+        setSummaryText("");
+        setResult(null);
+        if (autoTriggerTimer.current) clearTimeout(autoTriggerTimer.current);
+        autoTriggerTimer.current = setTimeout(() => {
+          runAnalysis("review");
+        }, 350);
       }
-    }, 0);
-  }, [
-    mode,
-    visibleData,
-    activeIndicators,
-    positions,
-    currentTicker,
-    tradeHistory,
-    startTyping,
-    stopTyping,
-  ]);
+    }
+    prevTradeLen.current = tradeHistoryLength;
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [tradeHistoryLength]);
 
-  const scoreBgClass =
-    score === null
-      ? ""
-      : score >= 15
-      ? "bg-emerald-500/15 text-emerald-400 border-emerald-500/30"
-      : score <= -15
-      ? "bg-red-500/15 text-red-400 border-red-500/30"
-      : "bg-muted text-muted-foreground border-border";
+  // ─── Agentic Trigger 2: Ticker change → auto morning brief (if open) ──────
+  const prevTicker = useRef(currentTicker);
+  useEffect(() => {
+    if (prevTicker.current !== currentTicker && expanded) {
+      prevTicker.current = currentTicker;
+      setMode("brief");
+      stopTyping();
+      setSummaryText("");
+      setResult(null);
+      if (autoTriggerTimer.current) clearTimeout(autoTriggerTimer.current);
+      autoTriggerTimer.current = setTimeout(() => {
+        runAnalysis("brief");
+      }, 400);
+    } else {
+      prevTicker.current = currentTicker;
+    }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [currentTicker]);
+
+  // ─── Agentic Trigger 3: Indicator toggle → re-analyze (debounced 800ms) ───
+  const indicatorKey = activeIndicators.join(",");
+  useEffect(() => {
+    if (!result) return;
+    if (reanalysisTimer.current) clearTimeout(reanalysisTimer.current);
+    reanalysisTimer.current = setTimeout(() => {
+      runAnalysis();
+    }, 800);
+    return () => {
+      if (reanalysisTimer.current) clearTimeout(reanalysisTimer.current);
+    };
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [indicatorKey]);
+
+  // Cleanup on unmount
+  useEffect(() => {
+    return () => {
+      stopTyping();
+      if (reanalysisTimer.current) clearTimeout(reanalysisTimer.current);
+      if (autoTriggerTimer.current) clearTimeout(autoTriggerTimer.current);
+    };
+  }, [stopTyping]);
+
+  // ─── Mood emoji ────────────────────────────────────────────────────────────
+  const moodEmoji = !result
+    ? "🤖"
+    : result.conviction === "high" && result.bias === "bullish"
+    ? "🚀"
+    : result.conviction === "high" && result.bias === "bearish"
+    ? "🐻"
+    : result.divergences.length > 0
+    ? "⚡"
+    : result.bias === "neutral"
+    ? "🔍"
+    : "📊";
+
+  // Badge classes
+  const regimeCls = result?.regime
+    ? (REGIME_CLASSES[result.regime.regime] ?? REGIME_CLASSES.ranging)
+    : REGIME_CLASSES.ranging;
+
+  const convictionCls = result?.conviction
+    ? (CONVICTION_CLASSES[result.conviction] ?? CONVICTION_CLASSES.low)
+    : CONVICTION_CLASSES.low;
+
+  const scoreCls = !result
+    ? CONVICTION_CLASSES.low
+    : result.score >= 15
+    ? REGIME_CLASSES.bull
+    : result.score <= -15
+    ? REGIME_CLASSES.bear
+    : CONVICTION_CLASSES.low;
+
+  const currentPrice = visibleData[visibleData.length - 1]?.close ?? 0;
 
   return (
     <div className="shrink-0 border-t border-border bg-card">
@@ -141,25 +487,24 @@ export function AICoachPanel() {
         onClick={() => setExpanded((v) => !v)}
         className="flex w-full items-center justify-between px-3 py-2 text-xs hover:bg-accent/20 transition-colors"
       >
-        <div className="flex items-center gap-2">
-          <Bot className="h-3.5 w-3.5 text-primary" />
-          <span className="font-bold">AI Coach</span>
-          {score !== null && !expanded && (
-            <span
-              className={cn(
-                "rounded border px-1 py-0.5 text-[9px] font-bold leading-none",
-                scoreBgClass,
-              )}
-            >
-              {score > 0 ? "+" : ""}
-              {score}
-            </span>
+        <div className="flex items-center gap-1.5 flex-wrap">
+          <span className="text-sm leading-none">{moodEmoji}</span>
+          <span className="font-bold">AlphaBot</span>
+          {result && !expanded && (
+            <>
+              <SmallBadge label={result.regime.label} cls={regimeCls} />
+              <SmallBadge
+                label={`${result.score > 0 ? "+" : ""}${result.score}`}
+                cls={scoreCls}
+              />
+              <SmallBadge label={result.conviction.toUpperCase()} cls={convictionCls} />
+            </>
           )}
         </div>
         {expanded ? (
-          <ChevronDown className="h-3 w-3 text-muted-foreground" />
+          <ChevronDown className="h-3 w-3 text-muted-foreground shrink-0" />
         ) : (
-          <ChevronUp className="h-3 w-3 text-muted-foreground" />
+          <ChevronUp className="h-3 w-3 text-muted-foreground shrink-0" />
         )}
       </button>
 
@@ -181,8 +526,8 @@ export function AICoachPanel() {
                     key={m.value}
                     onClick={() => {
                       setMode(m.value);
-                      setText("");
-                      setScore(null);
+                      setSummaryText("");
+                      setResult(null);
                       setError(null);
                       stopTyping();
                     }}
@@ -199,48 +544,59 @@ export function AICoachPanel() {
                 ))}
               </div>
 
-              {/* Output area */}
-              {(text || loading || error) && (
-                <div className="max-h-48 overflow-y-auto rounded-md bg-background/60 p-2">
-                  {/* Score badge */}
-                  {score !== null && (
-                    <div className="mb-1.5 flex items-center gap-1.5">
-                      <span
-                        className={cn(
-                          "rounded border px-1.5 py-0.5 text-[9px] font-black leading-none",
-                          scoreBgClass,
-                        )}
-                      >
-                        {score > 0 ? "+" : ""}
-                        {score} / 100
-                      </span>
-                      <span className="text-[9px] text-muted-foreground">
-                        confluence score
-                      </span>
-                    </div>
+              {/* ── Visual output area ─────────────────────────────────── */}
+              {result && (
+                <div className="space-y-2">
+                  {/* Review mode: grade + worked/improve */}
+                  {mode === "review" && result.grade ? (
+                    <ReviewDisplay result={result} />
+                  ) : (
+                    <>
+                      {/* Score gauge */}
+                      <ScoreGauge score={result.score} bias={result.bias} />
+
+                      {/* Signal chips */}
+                      {result.signals.length > 0 && (
+                        <SignalChips signals={result.signals} />
+                      )}
+
+                      {/* Divergence alert */}
+                      <DivergenceAlert divergences={result.divergences} />
+
+                      {/* Level ladder */}
+                      {currentPrice > 0 && (
+                        <LevelLadder levels={result.levels} currentPrice={currentPrice} />
+                      )}
+                    </>
                   )}
 
-                  {error && (
-                    <div className="flex items-start gap-1.5 text-[10px] text-red-400">
-                      <AlertCircle className="h-3 w-3 mt-0.5 shrink-0" />
-                      <span>{error}</span>
-                    </div>
-                  )}
-
-                  {text && (
-                    <p className="whitespace-pre-wrap text-[10px] leading-relaxed text-foreground/80">
-                      {text}
+                  {/* Typed summary (all modes) */}
+                  {(summaryText || loading) && (
+                    <div className="rounded-md bg-background/60 px-2 py-1.5 text-[10px] leading-relaxed text-foreground/80">
+                      {summaryText}
                       {loading && (
                         <span className="ml-0.5 inline-block h-2 w-0.5 animate-pulse bg-primary" />
                       )}
-                    </p>
-                  )}
-
-                  {loading && !text && (
-                    <div className="text-[10px] text-muted-foreground animate-pulse">
-                      Analyzing...
                     </div>
                   )}
+
+                  {/* Trader profile */}
+                  <ProfileCard profile={result.traderProfile} />
+                </div>
+              )}
+
+              {/* Loading state (before result) */}
+              {loading && !result && (
+                <div className="text-[10px] text-muted-foreground animate-pulse text-center py-2">
+                  AlphaBot is analyzing…
+                </div>
+              )}
+
+              {/* Error state */}
+              {error && (
+                <div className="flex items-start gap-1.5 text-[10px] text-red-400 rounded bg-red-500/10 border border-red-500/20 px-2 py-1.5">
+                  <AlertCircle className="h-3 w-3 mt-0.5 shrink-0" />
+                  <span>{error}</span>
                 </div>
               )}
 
@@ -257,9 +613,9 @@ export function AICoachPanel() {
                       : "bg-primary text-white hover:bg-primary/90 active:bg-primary/80",
                   )}
                 >
-                  {loading ? "Analyzing..." : "Get Analysis"}
+                  {loading ? "Analyzing…" : "Get Analysis"}
                 </button>
-                {text && !loading && (
+                {result && !loading && (
                   <button
                     type="button"
                     onClick={handleAnalyze}
