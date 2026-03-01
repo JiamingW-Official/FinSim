@@ -49,9 +49,9 @@ export function TopBar() {
   return (
     <div className="glass flex h-10 items-center justify-between border-b border-border/50 px-4">
       <div className="flex items-center gap-4">
-        <span className="text-sm font-bold tracking-wider text-primary">
-          <span className="inline-flex items-center gap-1.5">
-            <Activity className="h-3.5 w-3.5" />
+        <span className="text-sm font-black tracking-wider">
+          <span className="inline-flex items-center gap-1.5 gradient-text-brand">
+            <Activity className="h-3.5 w-3.5 text-primary" />
             ALPHA DECK
           </span>
         </span>

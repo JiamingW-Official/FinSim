@@ -1,5 +1,10 @@
 import type { Unit } from "./types";
-import { PRACTICE_POSITION_SIZE } from "./practice-data";
+import {
+  PRACTICE_POSITION_SIZE,
+  PRACTICE_RISK_REWARD,
+  PRACTICE_DRAWDOWN,
+  PRACTICE_BB_SQUEEZE,
+} from "./practice-data";
 
 export const UNIT_RISK: Unit = {
   id: "risk",
@@ -118,6 +123,19 @@ export const UNIT_RISK: Unit = {
           explanation:
             "Holding 20 stocks in the same sector isn't true diversification. If the tech sector declines, all 20 stocks are likely to fall together. Diversification requires spreading across different, uncorrelated sectors and asset classes.",
         },
+        {
+          type: "practice",
+          instruction:
+            "Observe how a concentrated position amplifies portfolio swings. Watch the volatility without trading.",
+          objective: "Watch the volatility play out over time",
+          actionType: "observe",
+          challenge: {
+            priceData: PRACTICE_BB_SQUEEZE.bars,
+            initialReveal: PRACTICE_BB_SQUEEZE.initialReveal,
+            objectives: [{ kind: "advance-time", bars: 10 }],
+            hint: "Advance bars and notice how large the swings are. Imagine holding 80% of your portfolio in this one stock.",
+          },
+        },
       ],
     },
     {
@@ -176,6 +194,23 @@ export const UNIT_RISK: Unit = {
           explanation:
             "Absolutely! If your winners are significantly larger than your losers, you can be profitable with a win rate below 50%. A trader winning 35% of trades with a 1:3 R:R is solidly profitable.",
         },
+        {
+          type: "practice",
+          instruction:
+            "Buy the dip and sell for a profit of at least $20. Practice identifying a good entry and taking profit.",
+          objective: "Buy low, sell high for profit",
+          actionType: "buy",
+          challenge: {
+            priceData: PRACTICE_RISK_REWARD.bars,
+            initialReveal: PRACTICE_RISK_REWARD.initialReveal,
+            objectives: [
+              { kind: "buy", minQuantity: 5 },
+              { kind: "profit-target", minProfit: 20 },
+            ],
+            startingCash: 5000,
+            hint: "Wait for a dip to buy, then sell after the price recovers. Aim for at least $20 profit.",
+          },
+        },
       ],
     },
     {
@@ -228,6 +263,23 @@ export const UNIT_RISK: Unit = {
           correctIndex: 0,
           explanation:
             "After an 18% drawdown, the smart move is to scale down, review your mistakes, and trade smaller until you regain confidence. 'Sure thing' trades don't exist — this is emotional thinking.",
+        },
+        {
+          type: "practice",
+          instruction:
+            "Buy shares, then sell before the loss exceeds $50. Practice cutting losses early.",
+          objective: "Practice stop-loss discipline",
+          actionType: "buy",
+          challenge: {
+            priceData: PRACTICE_DRAWDOWN.bars,
+            initialReveal: PRACTICE_DRAWDOWN.initialReveal,
+            objectives: [
+              { kind: "buy", minQuantity: 5 },
+              { kind: "stop-loss", maxLoss: -50 },
+            ],
+            startingCash: 5000,
+            hint: "Buy shares, advance time, and sell quickly if the price drops. Don't let your loss exceed $50.",
+          },
         },
       ],
     },

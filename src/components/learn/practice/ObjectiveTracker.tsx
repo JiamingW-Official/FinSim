@@ -11,6 +11,8 @@ interface ObjectiveTrackerProps {
   objectives: PracticeObjective[];
   completedObjectives: boolean[];
   allComplete: boolean;
+  /** When true, all bars have been revealed — show a fallback continue even if incomplete */
+  barsExhausted?: boolean;
   onContinue: () => void;
 }
 
@@ -24,6 +26,10 @@ function objectiveLabel(obj: PracticeObjective): string {
       return `Advance ${obj.bars} bar${obj.bars > 1 ? "s" : ""} forward`;
     case "toggle-indicator":
       return `Toggle on ${obj.indicator.toUpperCase()}`;
+    case "profit-target":
+      return `Earn $${obj.minProfit.toFixed(0)}+ profit`;
+    case "stop-loss":
+      return `Sell before losing more than $${Math.abs(obj.maxLoss).toFixed(0)}`;
     default:
       return "Complete objective";
   }
@@ -33,6 +39,7 @@ export function ObjectiveTracker({
   objectives,
   completedObjectives,
   allComplete,
+  barsExhausted = false,
   onContinue,
 }: ObjectiveTrackerProps) {
   const prevCompleted = useRef(completedObjectives.map(() => false));
@@ -116,6 +123,37 @@ export function ObjectiveTracker({
                 type="button"
                 onClick={onContinue}
                 className="rounded-lg bg-[#10b981] px-3 py-1.5 text-xs font-bold text-white transition-all hover:brightness-110 active:scale-[0.97]"
+              >
+                Continue
+              </button>
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+
+      {/* Bars exhausted fallback — let user continue even if objectives are incomplete */}
+      <AnimatePresence>
+        {barsExhausted && !allComplete && (
+          <motion.div
+            initial={{ opacity: 0, height: 0 }}
+            animate={{ opacity: 1, height: "auto" }}
+            exit={{ opacity: 0, height: 0 }}
+            transition={{ type: "spring", stiffness: 300, damping: 25 }}
+            className="overflow-hidden"
+          >
+            <div className="flex items-center justify-between rounded-xl bg-amber-500/10 border border-amber-500/20 px-3 py-2">
+              <div className="flex flex-col gap-0.5">
+                <span className="text-xs font-semibold text-amber-400">
+                  All candles revealed
+                </span>
+                <span className="text-[10px] text-muted-foreground">
+                  {completedObjectives.filter(Boolean).length}/{objectives.length} objectives done
+                </span>
+              </div>
+              <button
+                type="button"
+                onClick={onContinue}
+                className="rounded-lg bg-amber-500 px-3 py-1.5 text-xs font-bold text-white transition-all hover:brightness-110 active:scale-[0.97]"
               >
                 Continue
               </button>

@@ -9,6 +9,7 @@ import { LevelUpOverlay } from "@/components/game/LevelUpOverlay";
 import { ComboIndicator } from "@/components/game/ComboIndicator";
 import { PageTransition } from "@/components/motion/PageTransition";
 import { TutorialOverlay } from "@/components/tutorial/TutorialOverlay";
+import { DailyRewardsPopup } from "@/components/daily-rewards/DailyRewardsPopup";
 
 export default function DashboardLayout({
   children,
@@ -30,6 +31,7 @@ export default function DashboardLayout({
         <LevelUpOverlay />
         <ComboIndicator />
         <TutorialOverlay />
+        <DailyRewardsPopup />
       </div>
     </Providers>
   );

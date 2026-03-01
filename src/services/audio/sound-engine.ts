@@ -11,6 +11,9 @@ import {
   playCorrectSound,
   playWrongSound,
   playLessonCompleteSound,
+  playCardFlipSound,
+  playStreakSound,
+  playClaimSound,
 } from "./synth-sounds";
 
 class SoundEngine {
@@ -103,6 +106,15 @@ class SoundEngine {
     } catch {
       // ignore
     }
+  }
+  playCardFlip() {
+    this.play(playCardFlipSound);
+  }
+  playStreak() {
+    this.play(playStreakSound);
+  }
+  playClaim() {
+    this.play(playClaimSound);
   }
 }
 

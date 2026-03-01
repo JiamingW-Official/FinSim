@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useCallback, useEffect } from "react";
-import { AnimatePresence } from "framer-motion";
+import { AnimatePresence, motion } from "framer-motion";
 import { X } from "lucide-react";
 import { useRouter } from "next/navigation";
 import { cn } from "@/lib/utils";
@@ -20,27 +20,34 @@ interface LessonPlayerProps {
   lesson: Lesson;
 }
 
+interface QuizResult {
+  correct: boolean;
+  timeMs: number;
+  difficulty: number;
+}
+
 export function LessonPlayer({ lesson }: LessonPlayerProps) {
   const router = useRouter();
   const [currentStepIndex, setCurrentStepIndex] = useState(0);
   const [correctCount, setCorrectCount] = useState(0);
   const [totalQuizzes, setTotalQuizzes] = useState(0);
   const [showComplete, setShowComplete] = useState(false);
+  const [quizResults, setQuizResults] = useState<QuizResult[]>([]);
+  const [currentCombo, setCurrentCombo] = useState(0);
+  const [bestCombo, setBestCombo] = useState(0);
+  const [practiceProfit, setPracticeProfit] = useState(0);
+  const [finalBreakdown, setFinalBreakdown] = useState<LessonScoreBreakdown | null>(null);
 
-  const hearts = useLearnStore((s) => s.hearts);
   const loseHeart = useLearnStore((s) => s.loseHeart);
   const completeLesson = useLearnStore((s) => s.completeLesson);
-  const [outOfHearts, setOutOfHearts] = useState(false);
 
   const steps = lesson.steps;
   const step = steps[currentStepIndex];
-  const progress = ((currentStepIndex + 1) / steps.length) * 100;
 
   // Keyboard shortcuts
   useEffect(() => {
     const handleKey = (e: KeyboardEvent) => {
-      if (e.key === "Enter" && !showComplete && !outOfHearts) {
-        // Enter to continue only works on teach steps
+      if (e.key === "Enter" && !showComplete) {
         if (step?.type === "teach") {
           advance();
         }
@@ -54,30 +61,69 @@ export function LessonPlayer({ lesson }: LessonPlayerProps) {
     if (currentStepIndex < steps.length - 1) {
       setCurrentStepIndex((i) => i + 1);
     } else {
-      // Lesson complete
+      // Lesson complete — compute full score breakdown
       const accuracy = totalQuizzes > 0 ? Math.round((correctCount / totalQuizzes) * 100) : 100;
-      const score = accuracy;
-      completeLesson(lesson.id, score, lesson.xpReward);
+
+      // Quiz points: weighted by difficulty (TF=1, MC=2, Scenario=3)
+      let quizPts = 0;
+      let quizMax = 0;
+      for (const r of quizResults) {
+        const weight = r.difficulty;
+        quizMax += weight * 10;
+        if (r.correct) quizPts += weight * 10;
+      }
+
+      // Speed bonus: faster answers earn more (max 50 per question for <1s)
+      const speedBns = quizResults.reduce((sum, r) => {
+        if (!r.correct) return sum;
+        return sum + Math.max(0, Math.round((5000 - r.timeMs) / 100));
+      }, 0);
+
+      // Combo bonus: reward long correct streaks
+      const comboBns = bestCombo >= 3 ? (bestCombo - 2) * 10 : 0;
+
+      // Practice bonus
+      const practiceBns = practiceProfit > 0 ? 30 : 0;
+
+      const totalPts = quizPts + speedBns + comboBns + practiceBns;
+      const maxPts = Math.max(quizMax + 50 + 30 + 30, 1); // theoretical max: quiz + speed + combo + practice
+
+      const breakdown: LessonScoreBreakdown = {
+        quizPoints: quizPts,
+        quizMaxPoints: quizMax,
+        speedBonus: speedBns,
+        comboBonus: comboBns,
+        practiceBonus: practiceBns,
+        totalPoints: totalPts,
+        maxPoints: maxPts,
+        grade: calculateGrade(totalPts / maxPts),
+        accuracy,
+        bestCombo,
+      };
+      setFinalBreakdown(breakdown);
+      completeLesson(lesson.id, breakdown, lesson.xpReward);
       setShowComplete(true);
     }
   }, [currentStepIndex, steps.length, totalQuizzes, correctCount, completeLesson, lesson]);
 
-  const handleQuizCorrect = useCallback(() => {
+  const handleQuizCorrect = useCallback((timeMs: number, difficulty: number) => {
     setCorrectCount((c) => c + 1);
     setTotalQuizzes((t) => t + 1);
+    setQuizResults((r) => [...r, { correct: true, timeMs, difficulty }]);
+    setCurrentCombo((c) => {
+      const next = c + 1;
+      setBestCombo((b) => Math.max(b, next));
+      return next;
+    });
     advance();
   }, [advance]);
 
-  const handleQuizWrong = useCallback(() => {
+  const handleQuizWrong = useCallback((timeMs: number, difficulty: number) => {
     setTotalQuizzes((t) => t + 1);
+    setQuizResults((r) => [...r, { correct: false, timeMs, difficulty }]);
+    setCurrentCombo(0);
     loseHeart();
-    // Check if out of hearts after losing one
-    const currentHearts = useLearnStore.getState().hearts;
-    if (currentHearts <= 0) {
-      setOutOfHearts(true);
-    } else {
-      advance();
-    }
+    advance();
   }, [advance, loseHeart]);
 
   const handleClose = () => {
@@ -96,7 +142,6 @@ export function LessonPlayer({ lesson }: LessonPlayerProps) {
             step={s}
             onCorrect={handleQuizCorrect}
             onWrong={handleQuizWrong}
-            heartsLeft={hearts}
           />
         );
       case "practice":
@@ -144,13 +189,25 @@ export function LessonPlayer({ lesson }: LessonPlayerProps) {
           })}
         </div>
 
+        {currentCombo >= 2 && (
+          <motion.div
+            key={currentCombo}
+            initial={{ scale: 0, rotate: -12 }}
+            animate={{ scale: 1, rotate: 0 }}
+            transition={{ type: "spring", stiffness: 500, damping: 12 }}
+            className="rounded-full bg-amber-500/20 px-2.5 py-0.5 text-[11px] font-bold text-amber-400 shrink-0"
+          >
+            x{currentCombo}
+          </motion.div>
+        )}
+
         <HeartsDisplay />
       </div>
 
       {/* Main content */}
       <div className="flex flex-1 items-start justify-center overflow-y-auto px-4 py-6">
         <div className="w-full max-w-lg">
-          {!showComplete && !outOfHearts && (
+          {!showComplete && (
             <StepTransition stepKey={`step-${currentStepIndex}`}>
               <div className="glass rounded-2xl border border-border/50 p-5">
                 {/* Step type badge */}
@@ -168,32 +225,14 @@ export function LessonPlayer({ lesson }: LessonPlayerProps) {
               </div>
             </StepTransition>
           )}
-
-          {outOfHearts && (
-            <div className="flex flex-col items-center gap-6 py-12">
-              <div className="text-5xl">💔</div>
-              <h2 className="text-xl font-bold">Out of Hearts!</h2>
-              <p className="text-sm text-muted-foreground text-center max-w-xs">
-                Hearts regenerate 1 per hour. Come back later to continue learning!
-              </p>
-              <HeartsDisplay />
-              <button
-                type="button"
-                onClick={handleClose}
-                className="rounded-xl bg-primary px-8 py-3 text-sm font-bold text-primary-foreground transition-all hover:brightness-110"
-              >
-                Back to Learn
-              </button>
-            </div>
-          )}
         </div>
       </div>
 
       {/* Lesson complete overlay */}
       <AnimatePresence>
-        {showComplete && (
+        {showComplete && finalBreakdown && (
           <LessonComplete
-            score={totalQuizzes > 0 ? Math.round((correctCount / totalQuizzes) * 100) : 100}
+            breakdown={finalBreakdown}
             xpEarned={lesson.xpReward}
             onContinue={handleClose}
           />

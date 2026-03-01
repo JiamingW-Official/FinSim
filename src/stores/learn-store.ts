@@ -50,7 +50,7 @@ function getYesterday(): string {
   return new Date(Date.now() - 86400000).toISOString().slice(0, 10);
 }
 
-function computeHearts(currentHearts: number, lastHeartLoss: number): number {
+export function computeHearts(currentHearts: number, lastHeartLoss: number): number {
   if (currentHearts >= 5) return 5;
   if (lastHeartLoss === 0) return 5;
   const elapsed = Date.now() - lastHeartLoss;
@@ -190,23 +190,36 @@ export const useLearnStore = create<LearnState>()(
       }),
       onRehydrateStorage: () => (state) => {
         if (!state) return;
+        // Zustand v5 persist: direct mutations to `state` here do NOT
+        // propagate to the store. We must call setState() explicitly.
+        const updates: Record<string, unknown> = {};
+
         // Regenerate hearts on rehydrate
         const regenHearts = computeHearts(state.hearts, state.lastHeartLoss);
         if (regenHearts !== state.hearts) {
-          state.hearts = regenHearts;
+          updates.hearts = regenHearts;
         }
         // Reset daily count if not today
         const today = getToday();
         if (state.lastLearnDate !== today) {
-          state.dailyLessonsCompleted = 0;
+          updates.dailyLessonsCompleted = 0;
         }
         // Migrate old number-based scores to LessonScoreBreakdown
         if (state.lessonScores) {
+          let needsMigration = false;
           const migrated: Record<string, LessonScoreBreakdown> = {};
           for (const [id, val] of Object.entries(state.lessonScores)) {
-            migrated[id] = migrateScore(val as number | LessonScoreBreakdown);
+            const m = migrateScore(val as number | LessonScoreBreakdown);
+            if (m !== val) needsMigration = true;
+            migrated[id] = m;
           }
-          state.lessonScores = migrated;
+          if (needsMigration) {
+            updates.lessonScores = migrated;
+          }
+        }
+
+        if (Object.keys(updates).length > 0) {
+          useLearnStore.setState(updates);
         }
       },
     },

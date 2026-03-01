@@ -23,7 +23,7 @@ function normalRandom(rng: () => number): number {
    CANDLESTICK PATTERN TYPES
    ============================================ */
 
-type CandlePattern =
+export type CandlePattern =
   | "doji"
   | "hammer"
   | "shooting-star"
@@ -39,7 +39,7 @@ interface PatternInjection {
    REALISTIC BAR GENERATION CONFIG
    ============================================ */
 
-interface BarGenConfig {
+export interface BarGenConfig {
   count: number;
   startPrice: number;
   seed: number;
@@ -59,7 +59,7 @@ interface BarGenConfig {
    CORE ENGINE: Ornstein-Uhlenbeck with patterns
    ============================================ */
 
-function generateRealisticBars(config: BarGenConfig): PracticeBar[] {
+export function generateRealisticBars(config: BarGenConfig): PracticeBar[] {
   const {
     count, startPrice, seed, drift, volatility,
     meanReversion, target,

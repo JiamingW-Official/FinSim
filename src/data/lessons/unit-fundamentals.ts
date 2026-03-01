@@ -29,6 +29,27 @@ export const UNIT_FUNDAMENTALS: Unit = {
             "**High P/E (>30)**: Investors expect high growth (tech stocks). Or the stock is overvalued.\n**Low P/E (<15)**: Could be undervalued, or the company has slow/no growth.\n**Negative P/E**: Company is losing money (no earnings).\n\n**Compare within sectors**: A P/E of 25 is cheap for tech but expensive for utilities.\n\nP/E alone doesn't tell the whole story — always look at growth rate (PEG ratio).",
         },
         {
+          type: "teach",
+          title: "The PEG Ratio",
+          content:
+            "The **PEG ratio** accounts for growth, making it more useful than P/E alone.\n\n**PEG = P/E Ratio ÷ Annual EPS Growth Rate**\n\nExample: Stock with P/E of 30 and 30% EPS growth → PEG = 1.0\n\n• **PEG < 1**: Potentially undervalued relative to growth\n• **PEG = 1**: Fairly valued\n• **PEG > 2**: Potentially overvalued, even considering growth\n\nPeter Lynch popularized PEG — he looked for stocks with PEG under 1.",
+          highlight: ["PEG ratio", "growth rate", "Peter Lynch"],
+        },
+        {
+          type: "quiz-mc",
+          question:
+            "A stock has a P/E of 40 and EPS growth of 20% per year. What is its PEG ratio?",
+          options: [
+            "2.0 — potentially overvalued relative to growth",
+            "0.5 — undervalued",
+            "40 — same as P/E",
+            "20 — same as growth rate",
+          ],
+          correctIndex: 0,
+          explanation:
+            "PEG = P/E ÷ Growth Rate = 40 ÷ 20 = 2.0. A PEG above 2 suggests the stock may be expensive even accounting for its growth rate.",
+        },
+        {
           type: "quiz-mc",
           question:
             "Company A has P/E of 15, Company B has P/E of 45. Both are in the tech sector. Which statement is most accurate?",

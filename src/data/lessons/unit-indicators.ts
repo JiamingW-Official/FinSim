@@ -121,17 +121,21 @@ export const UNIT_INDICATORS: Unit = {
         {
           type: "practice",
           instruction:
-            "Toggle on SMA 20 and advance time to see the indicator respond to price changes.",
-          objective: "Enable the moving average and observe it in action",
+            "Toggle on the RSI indicator and advance time to see overbought/oversold levels.",
+          objective: "Enable RSI and observe how it reacts to price swings",
           actionType: "indicator",
           challenge: {
             priceData: PRACTICE_RSI_BOUNCE.bars,
             initialReveal: PRACTICE_RSI_BOUNCE.initialReveal,
             objectives: [
-              { kind: "toggle-indicator", indicator: "sma20" },
+              { kind: "toggle-indicator", indicator: "rsi" },
               { kind: "advance-time", bars: 5 },
             ],
-            hint: "Toggle SMA 20 on, then advance a few bars.",
+            availableIndicators: [
+              { id: "rsi", label: "RSI 14" },
+              { id: "sma20", label: "SMA 20" },
+            ],
+            hint: "Click the RSI 14 chip, then advance bars to watch the RSI respond to price moves.",
           },
         },
       ],
@@ -180,17 +184,21 @@ export const UNIT_INDICATORS: Unit = {
         {
           type: "practice",
           instruction:
-            "Toggle on SMA 20 and advance time to observe momentum shifts in the chart.",
-          objective: "Enable the indicator and watch the trend develop",
+            "Toggle on the MACD indicator and advance time to see crossover signals and histogram changes.",
+          objective: "Enable MACD and observe momentum shifts",
           actionType: "indicator",
           challenge: {
             priceData: PRACTICE_MACD_SIGNAL.bars,
             initialReveal: PRACTICE_MACD_SIGNAL.initialReveal,
             objectives: [
-              { kind: "toggle-indicator", indicator: "sma20" },
+              { kind: "toggle-indicator", indicator: "macd" },
               { kind: "advance-time", bars: 5 },
             ],
-            hint: "Toggle SMA 20 on, then advance bars to see the trend.",
+            availableIndicators: [
+              { id: "macd", label: "MACD" },
+              { id: "sma20", label: "SMA 20" },
+            ],
+            hint: "Click the MACD chip, then advance bars to watch for crossover signals.",
           },
         },
       ],
@@ -247,17 +255,21 @@ export const UNIT_INDICATORS: Unit = {
         {
           type: "practice",
           instruction:
-            "Toggle on SMA 20 to see how the average interacts with a volatility squeeze and breakout.",
-          objective: "Enable the indicator and advance time to watch the breakout",
+            "Toggle on Bollinger Bands and advance time to watch the squeeze and breakout.",
+          objective: "Enable Bollinger Bands and observe the volatility squeeze",
           actionType: "indicator",
           challenge: {
             priceData: PRACTICE_BB_SQUEEZE.bars,
             initialReveal: PRACTICE_BB_SQUEEZE.initialReveal,
             objectives: [
-              { kind: "toggle-indicator", indicator: "sma20" },
+              { kind: "toggle-indicator", indicator: "bb" },
               { kind: "advance-time", bars: 8 },
             ],
-            hint: "Enable SMA 20 and advance bars to watch low volatility transition to a breakout.",
+            availableIndicators: [
+              { id: "bb", label: "Bollinger" },
+              { id: "sma20", label: "SMA 20" },
+            ],
+            hint: "Click the Bollinger chip, then advance bars to watch the bands squeeze and expand.",
           },
         },
       ],

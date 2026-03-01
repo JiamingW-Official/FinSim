@@ -241,6 +241,77 @@ export const LEARNING_ACHIEVEMENT_DEFS: LearningAchievementDef[] = [
   },
 ];
 
+// Mini-game achievements — checked by flashcard/prediction/daily-rewards stores
+export interface MiniGameAchievementDef {
+  id: string;
+  name: string;
+  description: string;
+  icon: string;
+}
+
+export const MINIGAME_ACHIEVEMENT_DEFS: MiniGameAchievementDef[] = [
+  {
+    id: "flashcard_starter",
+    name: "Card Sharp",
+    description: "Review 10 flashcards",
+    icon: "Brain",
+  },
+  {
+    id: "flashcard_master",
+    name: "Walking Encyclopedia",
+    description: "Reach 80% mastery on all cards",
+    icon: "GraduationCap",
+  },
+  {
+    id: "prediction_streak_5",
+    name: "Crystal Ball",
+    description: "Predict 5 candles correctly in a row",
+    icon: "Eye",
+  },
+  {
+    id: "prediction_streak_10",
+    name: "Market Oracle",
+    description: "Predict 10 candles correctly in a row",
+    icon: "Sparkles",
+  },
+  {
+    id: "daily_reward_7",
+    name: "Dedicated Trader",
+    description: "Claim all 7 days in a reward cycle",
+    icon: "Gift",
+  },
+  {
+    id: "first_backtest",
+    name: "Lab Rat",
+    description: "Run your first backtest",
+    icon: "FlaskConical",
+  },
+  {
+    id: "profitable_strategy",
+    name: "Alpha Found",
+    description: "Create a profitable strategy",
+    icon: "TrendingUp",
+  },
+  {
+    id: "sharpe_above_1",
+    name: "Risk Adjusted",
+    description: "Achieve Sharpe ratio above 1.0",
+    icon: "Shield",
+  },
+  {
+    id: "ten_backtests",
+    name: "Systematic Thinker",
+    description: "Run 10 backtests",
+    icon: "BarChart3",
+  },
+  {
+    id: "s_rank_backtest",
+    name: "Master Strategist",
+    description: "Get S grade on a backtest",
+    icon: "Crown",
+  },
+];
+
 export function getLevelForXP(xp: number): number {
   let level = 1;
   for (let i = 0; i < LEVEL_THRESHOLDS.length; i++) {

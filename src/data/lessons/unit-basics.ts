@@ -3,6 +3,7 @@ import {
   PRACTICE_BASIC,
   PRACTICE_CANDLES,
   PRACTICE_VOLUME,
+  PRACTICE_SUPPORT_RESISTANCE,
   PRACTICE_UPTREND,
   PRACTICE_UP_DOWN,
 } from "./practice-data";
@@ -206,6 +207,78 @@ export const UNIT_BASICS: Unit = {
       ],
     },
     {
+      id: "basics-sr",
+      title: "Support & Resistance",
+      description: "Identify key price levels where markets reverse",
+      icon: "Minus",
+      xpReward: 60,
+      steps: [
+        {
+          type: "teach",
+          title: "Price Has Memory",
+          content:
+            "**Support** is a price level where buying pressure tends to prevent further decline — like a floor.\n\n**Resistance** is a price level where selling pressure tends to prevent further advance — like a ceiling.\n\nThese levels form because traders remember past prices. If a stock bounced off $100 three times, many traders will buy again near $100, creating a self-fulfilling support level.",
+          visual: "candlestick",
+          highlight: ["support", "resistance", "price level"],
+        },
+        {
+          type: "teach",
+          title: "Why S/R Levels Work",
+          content:
+            "S/R levels form at:\n\n• **Round numbers**: $50, $100, $200 (psychological anchors)\n• **Prior highs/lows**: Previous turning points act as magnets\n• **High-volume areas**: Where many shares changed hands\n\n**Role reversal**: When support breaks, it often becomes resistance — and vice versa. A stock that fell through $100 support may later struggle to rise back above $100 (now resistance).",
+          highlight: ["round numbers", "role reversal", "breakout"],
+        },
+        {
+          type: "quiz-tf",
+          statement: "Support acts like a floor that prevents prices from falling further.",
+          correct: true,
+          explanation:
+            "Support is a price level where demand (buying pressure) is strong enough to prevent the price from declining further. Traders place buy orders near support, creating a 'floor' effect.",
+        },
+        {
+          type: "quiz-mc",
+          question: "What typically happens when a support level breaks?",
+          options: [
+            "It often becomes a new resistance level",
+            "It immediately becomes stronger support",
+            "Nothing — support levels are random",
+            "The stock always recovers within a day",
+          ],
+          correctIndex: 0,
+          explanation:
+            "When support breaks, it signals that selling pressure overwhelmed buyers. The old support often becomes resistance because traders who bought at that level want to sell to break even if the price recovers to that point.",
+        },
+        {
+          type: "quiz-scenario",
+          scenario:
+            "A stock has bounced off the $98 level three times in the past month. It's now trading at $99 and approaching $104, which it has failed to break above twice.",
+          question: "What is the most likely behavior?",
+          options: [
+            "The stock will likely trade between $98 support and $104 resistance",
+            "The stock will immediately break above $104",
+            "Support and resistance don't apply to this stock",
+            "The stock will crash below $90",
+          ],
+          correctIndex: 0,
+          explanation:
+            "With established support at $98 (tested 3×) and resistance at $104 (tested 2×), the stock is most likely to continue ranging between these levels until one side breaks with conviction.",
+        },
+        {
+          type: "practice",
+          instruction:
+            "Observe price bouncing between support and resistance levels. Watch how price reacts at key levels.",
+          objective: "Watch price interact with S/R levels",
+          actionType: "observe",
+          challenge: {
+            priceData: PRACTICE_SUPPORT_RESISTANCE.bars,
+            initialReveal: PRACTICE_SUPPORT_RESISTANCE.initialReveal,
+            objectives: [{ kind: "advance-time", bars: 10 }],
+            hint: "Advance bars and notice how price bounces near the same levels repeatedly.",
+          },
+        },
+      ],
+    },
+    {
       id: "basics-4",
       title: "Your First Trade",
       description: "Place your very first buy and sell orders",
@@ -228,7 +301,7 @@ export const UNIT_BASICS: Unit = {
         {
           type: "quiz-mc",
           question: "You buy 50 shares at $100. The price rises to $105. What is your profit?",
-          options: ["$250", "$500", "$105", "$50"],
+          options: ["$250", "$500", "$200", "$5"],
           correctIndex: 0,
           explanation:
             "Profit = Quantity × (Current Price - Buy Price) = 50 × ($105 - $100) = 50 × $5 = $250",

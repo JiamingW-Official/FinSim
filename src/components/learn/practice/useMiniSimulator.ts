@@ -23,6 +23,7 @@ interface MiniSimState {
   isPlaying: boolean;
   totalBars: number;
   totalAdvanced: number; // bars advanced by user since start
+  realizedPnL: number; // cumulative realized profit/loss
 }
 
 type MiniSimAction =
@@ -54,6 +55,13 @@ function checkObjective(
       return state.totalAdvanced >= obj.bars;
     case "toggle-indicator":
       return state.activeIndicators.includes(obj.indicator);
+    case "profit-target":
+      return state.realizedPnL >= obj.minProfit;
+    case "stop-loss": {
+      // Check if user sold at a loss ≤ maxLoss (cut losses early)
+      const sellTrades = trades.filter((t) => t.side === "sell");
+      return sellTrades.length > 0 && state.realizedPnL >= obj.maxLoss;
+    }
     default:
       return false;
   }
@@ -106,6 +114,10 @@ function createReducer(challenge: PracticeChallenge) {
         if (!currentBar) return state;
         const price = currentBar.close;
         const revenue = price * action.quantity;
+
+        // Track realized PnL
+        const pnlFromSell = (price - state.position.avgPrice) * action.quantity;
+        next.realizedPnL = state.realizedPnL + pnlFromSell;
 
         next.cash = state.cash + revenue;
         const trade: MiniTrade = {
@@ -161,6 +173,7 @@ export function useMiniSimulator(challenge: PracticeChallenge) {
     isPlaying: false,
     totalBars: challenge.priceData.length,
     totalAdvanced: 0,
+    realizedPnL: 0,
   };
 
   const [state, dispatch] = useReducer(reducer, initialState);

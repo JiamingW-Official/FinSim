@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useRef } from "react";
 import { motion } from "framer-motion";
 import { cn } from "@/lib/utils";
 import type { QuizMCStep, QuizTFStep, QuizScenarioStep } from "@/data/lessons/types";
@@ -10,9 +10,8 @@ type QuizStepData = QuizMCStep | QuizTFStep | QuizScenarioStep;
 
 interface QuizStepProps {
   step: QuizStepData;
-  onCorrect: () => void;
-  onWrong: () => void;
-  heartsLeft: number;
+  onCorrect: (timeMs: number, difficulty: number) => void;
+  onWrong: (timeMs: number, difficulty: number) => void;
 }
 
 function getOptions(step: QuizStepData): string[] {
@@ -30,18 +29,29 @@ function getQuestion(step: QuizStepData): string {
   return step.question;
 }
 
-export function QuizStepComponent({ step, onCorrect, onWrong, heartsLeft }: QuizStepProps) {
+function getDifficulty(step: QuizStepData): number {
+  if (step.difficulty) return step.difficulty;
+  if (step.type === "quiz-tf") return 1;
+  if (step.type === "quiz-scenario") return 3;
+  return 2;
+}
+
+export function QuizStepComponent({ step, onCorrect, onWrong }: QuizStepProps) {
   const [selected, setSelected] = useState<number | null>(null);
   const [showResult, setShowResult] = useState(false);
+  const mountTime = useRef(Date.now());
+  const [answerTimeMs, setAnswerTimeMs] = useState(0);
 
   const options = getOptions(step);
   const correctIndex = getCorrectIndex(step);
   const question = getQuestion(step);
   const isCorrect = selected === correctIndex;
-  const noHearts = heartsLeft <= 0;
+  const difficulty = getDifficulty(step);
 
   const handleSelect = (index: number) => {
-    if (showResult || noHearts) return;
+    if (showResult) return;
+    const elapsed = Date.now() - mountTime.current;
+    setAnswerTimeMs(elapsed);
     setSelected(index);
     setShowResult(true);
 
@@ -53,9 +63,13 @@ export function QuizStepComponent({ step, onCorrect, onWrong, heartsLeft }: Quiz
   };
 
   const handleContinue = () => {
-    if (isCorrect) onCorrect();
-    else onWrong();
+    if (isCorrect) onCorrect(answerTimeMs, difficulty);
+    else onWrong(answerTimeMs, difficulty);
   };
+
+  const speedLabel = answerTimeMs > 0
+    ? (answerTimeMs < 3000 ? "LIGHTNING!" : answerTimeMs < 5000 ? "FAST!" : null)
+    : null;
 
   return (
     <div className="flex flex-col gap-4">
@@ -107,7 +121,7 @@ export function QuizStepComponent({ step, onCorrect, onWrong, heartsLeft }: Quiz
               key={i}
               type="button"
               onClick={() => handleSelect(i)}
-              disabled={showResult || noHearts}
+              disabled={showResult}
               initial={{ opacity: 0, y: 8 }}
               animate={{
                 opacity: 1,
@@ -123,8 +137,8 @@ export function QuizStepComponent({ step, onCorrect, onWrong, heartsLeft }: Quiz
                 "relative rounded-xl border-2 p-3 text-left text-sm font-medium transition-colors",
                 borderColor,
                 bg,
-                !showResult && !noHearts && "hover:border-primary/50 hover:bg-accent/50 cursor-pointer",
-                (showResult || noHearts) && "cursor-default",
+                !showResult && "hover:border-primary/50 hover:bg-accent/50 cursor-pointer",
+                showResult && "cursor-default",
               )}
             >
               <span className="mr-2 inline-flex h-5 w-5 items-center justify-center rounded-full bg-muted text-[10px] font-bold">
@@ -166,12 +180,27 @@ export function QuizStepComponent({ step, onCorrect, onWrong, heartsLeft }: Quiz
               : "border-[#ef4444]/30 border-l-[#ef4444] bg-[#ef4444]/5",
           )}
         >
-          <p className={cn(
-            "text-xs font-bold mb-1",
-            isCorrect ? "text-[#10b981]" : "text-[#ef4444]",
-          )}>
-            {isCorrect ? "Correct!" : "Not quite!"}
-          </p>
+          <div className="flex items-center gap-2">
+            <p className={cn(
+              "text-xs font-bold mb-1",
+              isCorrect ? "text-[#10b981]" : "text-[#ef4444]",
+            )}>
+              {isCorrect ? "Correct!" : "Not quite!"}
+            </p>
+            {isCorrect && speedLabel && (
+              <motion.span
+                initial={{ scale: 0, rotate: -12 }}
+                animate={{ scale: 1, rotate: 0 }}
+                transition={{ type: "spring", stiffness: 500, damping: 15 }}
+                className={cn(
+                  "rounded-full px-2 py-0.5 text-[10px] font-bold",
+                  speedLabel === "LIGHTNING!" ? "bg-amber-400/20 text-amber-400" : "bg-blue-400/20 text-blue-400",
+                )}
+              >
+                {speedLabel === "LIGHTNING!" ? "⚡" : "💨"} {speedLabel}
+              </motion.span>
+            )}
+          </div>
           <p className="text-xs text-muted-foreground">{step.explanation}</p>
         </motion.div>
       )}

@@ -2,17 +2,19 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { BarChart3, Briefcase, FlaskConical, GraduationCap, Trophy, Settings } from "lucide-react";
+import { motion, AnimatePresence } from "framer-motion";
+import { BarChart3, Briefcase, FlaskConical, GraduationCap, Swords, Trophy, Settings, Sparkles } from "lucide-react";
 import { Tooltip, TooltipTrigger, TooltipContent } from "@/components/ui/tooltip";
 import { cn } from "@/lib/utils";
 
 const NAV_ITEMS = [
-  { icon: BarChart3, label: "Trade", href: "/trade" },
-  { icon: Briefcase, label: "Portfolio", href: "/portfolio" },
-  { icon: FlaskConical, label: "Backtest", href: "#", disabled: true },
-  { icon: GraduationCap, label: "Learn", href: "/learn" },
-  { icon: Trophy, label: "Leaderboard", href: "#", disabled: true },
-  { icon: Settings, label: "Settings", href: "/settings" },
+  { icon: BarChart3, label: "Trade", href: "/trade", activeColor: "text-emerald-400", activeBg: "bg-emerald-500/12", dotColor: "bg-emerald-400" },
+  { icon: Briefcase, label: "Portfolio", href: "/portfolio", activeColor: "text-blue-400", activeBg: "bg-blue-500/12", dotColor: "bg-blue-400" },
+  { icon: FlaskConical, label: "Backtest", href: "/backtest", activeColor: "text-violet-400", activeBg: "bg-violet-500/12", dotColor: "bg-violet-400" },
+  { icon: GraduationCap, label: "Learn", href: "/learn", activeColor: "text-amber-400", activeBg: "bg-amber-500/12", dotColor: "bg-amber-400" },
+  { icon: Swords, label: "Challenges", href: "/challenges", activeColor: "text-rose-400", activeBg: "bg-rose-500/12", dotColor: "bg-rose-400" },
+  { icon: Trophy, label: "Leaderboard", href: "/leaderboard", activeColor: "text-purple-400", activeBg: "bg-purple-500/12", dotColor: "bg-purple-400" },
+  { icon: Settings, label: "Settings", href: "/settings", activeColor: "text-gray-400", activeBg: "bg-gray-500/12", dotColor: "bg-gray-400" },
 ];
 
 export function Sidebar() {
@@ -20,24 +22,19 @@ export function Sidebar() {
 
   return (
     <div className="flex w-14 flex-col items-center border-r border-border bg-sidebar py-3 gap-1">
+      {/* Logo mark */}
+      <motion.div
+        className="mb-3 flex h-8 w-8 items-center justify-center"
+        whileHover={{ scale: 1.15, rotate: 5 }}
+        whileTap={{ scale: 0.9 }}
+      >
+        <span className="text-lg font-black gradient-text-brand select-none">A</span>
+      </motion.div>
+
+      <div className="divider-glow w-6 mb-2" />
+
       {NAV_ITEMS.map((item) => {
         const isActive = pathname === item.href;
-
-        if (item.disabled) {
-          return (
-            <Tooltip key={item.label}>
-              <TooltipTrigger asChild>
-                <span className="flex h-10 w-10 items-center justify-center rounded-md text-muted-foreground/40 cursor-not-allowed">
-                  <item.icon className="h-4.5 w-4.5" />
-                </span>
-              </TooltipTrigger>
-              <TooltipContent side="right" sideOffset={8}>
-                <span className="font-medium">{item.label}</span>
-                <span className="ml-1.5 text-muted-foreground">Coming Soon</span>
-              </TooltipContent>
-            </Tooltip>
-          );
-        }
 
         return (
           <Tooltip key={item.label}>
@@ -45,13 +42,32 @@ export function Sidebar() {
               <Link
                 href={item.href}
                 className={cn(
-                  "flex h-10 w-10 items-center justify-center rounded-md transition-colors",
+                  "relative flex h-10 w-10 items-center justify-center rounded-lg transition-all duration-200",
                   isActive
-                    ? "bg-primary/10 text-primary"
+                    ? `${item.activeBg} ${item.activeColor} sidebar-active-indicator`
                     : "text-muted-foreground hover:bg-accent hover:text-foreground",
                 )}
               >
-                <item.icon className="h-4.5 w-4.5" />
+                <motion.div
+                  whileHover={{ scale: 1.15 }}
+                  whileTap={{ scale: 0.85 }}
+                  transition={{ type: "spring", stiffness: 500, damping: 20 }}
+                >
+                  <item.icon className="h-4.5 w-4.5" />
+                </motion.div>
+
+                {/* Active glow dot */}
+                <AnimatePresence>
+                  {isActive && (
+                    <motion.span
+                      className={cn("absolute -bottom-0.5 h-1 w-1 rounded-full", item.dotColor)}
+                      initial={{ scale: 0, opacity: 0 }}
+                      animate={{ scale: 1, opacity: 1 }}
+                      exit={{ scale: 0, opacity: 0 }}
+                      transition={{ type: "spring", stiffness: 500, damping: 25 }}
+                    />
+                  )}
+                </AnimatePresence>
               </Link>
             </TooltipTrigger>
             <TooltipContent side="right" sideOffset={8}>
@@ -60,6 +76,17 @@ export function Sidebar() {
           </Tooltip>
         );
       })}
+
+      <div className="flex-1" />
+
+      {/* Bottom sparkle decoration */}
+      <motion.div
+        className="mb-1 text-muted-foreground/20"
+        animate={{ rotate: [0, 180, 360], scale: [0.8, 1, 0.8] }}
+        transition={{ duration: 8, repeat: Infinity, ease: "linear" }}
+      >
+        <Sparkles className="h-3 w-3" />
+      </motion.div>
     </div>
   );
 }

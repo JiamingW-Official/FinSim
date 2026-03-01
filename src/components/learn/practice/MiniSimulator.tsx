@@ -52,6 +52,7 @@ export function MiniSimulator({
         isPlaying={sim.isPlaying}
         activeIndicators={sim.activeIndicators}
         allComplete={sim.allComplete}
+        availableIndicators={challenge.availableIndicators}
         onBuy={sim.buy}
         onSell={sim.sell}
         onAdvance={sim.advance}
@@ -72,6 +73,7 @@ export function MiniSimulator({
         objectives={challenge.objectives}
         completedObjectives={sim.completedObjectives}
         allComplete={sim.allComplete}
+        barsExhausted={sim.revealedCount >= sim.totalBars}
         onContinue={onComplete}
       />
     </div>
