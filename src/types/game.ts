@@ -25,6 +25,9 @@ export interface PlayerStats {
   uniqueTickersTraded: string[];
   shortTradesCount: number;
   limitOrdersUsed: number;
+  dailyStreak: number;
+  lastTradeDate: string;
+  comboCount: number;
 }
 
 export const INITIAL_STATS: PlayerStats = {
@@ -38,7 +41,31 @@ export const INITIAL_STATS: PlayerStats = {
   uniqueTickersTraded: [],
   shortTradesCount: 0,
   limitOrdersUsed: 0,
+  dailyStreak: 0,
+  lastTradeDate: "",
+  comboCount: 0,
 };
+
+// Lesson score breakdown — multi-dimensional scoring
+export interface LessonScoreBreakdown {
+  quizPoints: number;
+  quizMaxPoints: number;
+  speedBonus: number;
+  comboBonus: number;
+  practiceBonus: number;
+  totalPoints: number;
+  maxPoints: number;
+  grade: "S" | "A" | "B" | "C";
+  accuracy: number;
+  bestCombo: number;
+}
+
+export function calculateGrade(ratio: number): "S" | "A" | "B" | "C" {
+  if (ratio >= 0.95) return "S";
+  if (ratio >= 0.80) return "A";
+  if (ratio >= 0.60) return "B";
+  return "C";
+}
 
 // XP required to reach each level (index 0 = level 1)
 export const LEVEL_THRESHOLDS: number[] = Array.from({ length: 50 }, (_, i) =>
@@ -122,6 +149,95 @@ export const ACHIEVEMENT_DEFS: AchievementDef[] = [
     description: "Trade 5 different stocks",
     icon: "Layers",
     condition: (s) => s.uniqueTickersTraded.length >= 5,
+  },
+  {
+    id: "on_a_roll",
+    name: "On A Roll",
+    description: "3-day trading streak",
+    icon: "Flame",
+    condition: (s) => s.dailyStreak >= 3,
+  },
+  {
+    id: "dedicated",
+    name: "Dedicated",
+    description: "7-day trading streak",
+    icon: "Flame",
+    condition: (s) => s.dailyStreak >= 7,
+  },
+  {
+    id: "combo_master",
+    name: "Unstoppable",
+    description: "Reach a 5x combo",
+    icon: "Zap",
+    condition: (s) => s.comboCount >= 5,
+  },
+];
+
+// Learning achievements — checked separately by learn-store
+export interface LearningAchievementDef {
+  id: string;
+  name: string;
+  description: string;
+  icon: string;
+  condition: (completedLessons: string[], lessonScores: Record<string, LessonScoreBreakdown>, learningStreak: number) => boolean;
+}
+
+export const LEARNING_ACHIEVEMENT_DEFS: LearningAchievementDef[] = [
+  {
+    id: "quick_learner",
+    name: "Quick Learner",
+    description: "Complete 5 lessons",
+    icon: "BookOpen",
+    condition: (cl) => cl.length >= 5,
+  },
+  {
+    id: "scholar",
+    name: "Scholar",
+    description: "Complete all 20 lessons",
+    icon: "GraduationCap",
+    condition: (cl) => cl.length >= 20,
+  },
+  {
+    id: "perfect_score",
+    name: "Perfect Score",
+    description: "Get S rank on any lesson",
+    icon: "Star",
+    condition: (_cl, scores) => Object.values(scores).some((s) => s.grade === "S"),
+  },
+  {
+    id: "bookworm",
+    name: "Bookworm",
+    description: "7-day learning streak",
+    icon: "Flame",
+    condition: (_cl, _scores, streak) => streak >= 7,
+  },
+  {
+    id: "s_rank",
+    name: "S-Rank Master",
+    description: "Get S rank on 10 lessons",
+    icon: "Crown",
+    condition: (_cl, scores) => Object.values(scores).filter((s) => s.grade === "S").length >= 10,
+  },
+  {
+    id: "speed_demon",
+    name: "Speed Demon",
+    description: "Earn 50+ speed bonus in one lesson",
+    icon: "Zap",
+    condition: (_cl, scores) => Object.values(scores).some((s) => s.speedBonus >= 50),
+  },
+  {
+    id: "combo_king",
+    name: "Combo King",
+    description: "Achieve a 5x combo streak",
+    icon: "Flame",
+    condition: (_cl, scores) => Object.values(scores).some((s) => s.bestCombo >= 5),
+  },
+  {
+    id: "profitable_student",
+    name: "Profitable Student",
+    description: "Earn practice bonus in 5 lessons",
+    icon: "TrendingUp",
+    condition: (_cl, scores) => Object.values(scores).filter((s) => s.practiceBonus > 0).length >= 5,
   },
 ];
 

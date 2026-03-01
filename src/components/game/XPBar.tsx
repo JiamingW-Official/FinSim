@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import { useGameStore } from "@/stores/game-store";
 import { getXPForNextLevel, LEVEL_THRESHOLDS } from "@/types/game";
 import { cn } from "@/lib/utils";
+import { soundEngine } from "@/services/audio/sound-engine";
 
 export function XPBar() {
   const xp = useGameStore((s) => s.xp);
@@ -23,6 +24,7 @@ export function XPBar() {
     if (lastXPGain === null) return;
     setFloatXP(lastXPGain);
     setPulse(true);
+    soundEngine.playXP();
     const timer = setTimeout(() => {
       setFloatXP(null);
       setPulse(false);

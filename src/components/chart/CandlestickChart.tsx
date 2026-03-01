@@ -27,6 +27,10 @@ import {
   calculateEMA,
   calculateBollingerBands,
   calculateRSI,
+  calculateMACD,
+  calculateStochastic,
+  calculateATR,
+  calculateVWAP,
 } from "@/services/indicators";
 
 const CHART_COLORS = {
@@ -46,6 +50,12 @@ const INDICATOR_COLORS: Record<string, string> = {
   ema26: "#ec4899",
   bollinger: "#6366f1",
   rsi: "#f59e0b",
+  macd: "#06b6d4",
+  macd_signal: "#f97316",
+  stochastic_k: "#a78bfa",
+  stochastic_d: "#fb923c",
+  atr: "#14b8a6",
+  vwap: "#facc15",
 };
 
 interface CrosshairData {
@@ -66,7 +76,7 @@ export function CandlestickChart() {
   const priceLineRef = useRef<IPriceLine | null>(null);
   const pendingLinesRef = useRef<Map<string, IPriceLine>>(new Map());
   const markersPluginRef = useRef<ISeriesMarkersPluginApi<Time> | null>(null);
-  const indicatorSeriesRefs = useRef<Map<string, ISeriesApi<"Line">>>(
+  const indicatorSeriesRefs = useRef<Map<string, ISeriesApi<"Line"> | ISeriesApi<"Histogram">>>(
     new Map(),
   );
   const prevTickerRef = useRef<string>("");
@@ -419,6 +429,55 @@ export function CandlestickChart() {
           chart.priceScale("rsi").applyOptions({
             scaleMargins: { top: 0.85, bottom: 0 },
           });
+          break;
+        }
+        case "macd": {
+          const macdResult = calculateMACD(visibleData);
+          // Histogram series (green/red bars)
+          if (macdResult.histogram.length > 0) {
+            const histSeries = chart.addSeries(HistogramSeries, {
+              priceScaleId: "macd",
+              priceLineVisible: false,
+              lastValueVisible: false,
+            });
+            histSeries.setData(
+              macdResult.histogram.map((p) => ({
+                time: p.time as UTCTimestamp,
+                value: p.value,
+                color: p.color,
+              })),
+            );
+            indicatorSeriesRefs.current.set("macd_hist", histSeries);
+          }
+          // MACD line
+          addLineSeries("macd_line", macdResult.macdLine, INDICATOR_COLORS.macd, 1, 0, "macd");
+          // Signal line
+          addLineSeries("macd_signal", macdResult.signalLine, INDICATOR_COLORS.macd_signal, 1, 0, "macd");
+          chart.priceScale("macd").applyOptions({
+            scaleMargins: { top: 0.82, bottom: 0 },
+          });
+          break;
+        }
+        case "stochastic": {
+          const stochResult = calculateStochastic(visibleData);
+          addLineSeries("stoch_k", stochResult.kLine, INDICATOR_COLORS.stochastic_k, 1, 0, "stochastic");
+          addLineSeries("stoch_d", stochResult.dLine, INDICATOR_COLORS.stochastic_d, 1, 0, "stochastic");
+          chart.priceScale("stochastic").applyOptions({
+            scaleMargins: { top: 0.85, bottom: 0 },
+          });
+          break;
+        }
+        case "atr": {
+          const atrData = calculateATR(visibleData);
+          addLineSeries("atr", atrData, INDICATOR_COLORS.atr, 1, 0, "atr");
+          chart.priceScale("atr").applyOptions({
+            scaleMargins: { top: 0.85, bottom: 0 },
+          });
+          break;
+        }
+        case "vwap": {
+          const vwapData = calculateVWAP(visibleData);
+          addLineSeries("vwap", vwapData, INDICATOR_COLORS.vwap, 2);
           break;
         }
       }

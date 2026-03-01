@@ -21,6 +21,9 @@ import {
 } from "lucide-react";
 import type { OrderSide, OrderType } from "@/types/trading";
 import { TradeConfirmDialog } from "./TradeConfirmDialog";
+import { TradeResultFeedback, type TradeFeedback } from "@/components/education/TradeResultFeedback";
+import { RiskMeter } from "@/components/education/RiskMeter";
+import { soundEngine } from "@/services/audio/sound-engine";
 
 const ORDER_TYPES: { value: OrderType; label: string; icon: typeof Zap }[] = [
   { value: "market", label: "Market", icon: Zap },
@@ -38,6 +41,7 @@ export function OrderEntry() {
   const [takeProfitPrice, setTakeProfitPrice] = useState("");
   const [tradeFlash, setTradeFlash] = useState<"buy" | "sell" | null>(null);
   const [showConfirm, setShowConfirm] = useState(false);
+  const [tradeFeedback, setTradeFeedback] = useState<TradeFeedback | null>(null);
 
   const currentTicker = useChartStore((s) => s.currentTicker);
   const allData = useMarketDataStore((s) => s.allData);
@@ -47,6 +51,7 @@ export function OrderEntry() {
       ? allData[revealedCount - 1]
       : null;
   const cash = useTradingStore((s) => s.cash);
+  const portfolioValue = useTradingStore((s) => s.portfolioValue);
   const positions = useTradingStore((s) => s.positions);
   const placeBuyOrder = useTradingStore((s) => s.placeBuyOrder);
   const placeSellOrder = useTradingStore((s) => s.placeSellOrder);
@@ -111,11 +116,20 @@ export function OrderEntry() {
         const order = placeBuyOrder(currentTicker, qty, price, simDate);
         if (order) {
           triggerTradeFlash("buy");
+          soundEngine.playBuy();
           toast.success(
             `Bought ${qty} ${currentTicker} @ ${formatCurrency(order.avgFillPrice)}`,
           );
           recordTrade(0, currentTicker, false, false);
+          setTradeFeedback({
+            type: "buy",
+            ticker: currentTicker,
+            quantity: qty,
+            price: order.avgFillPrice,
+            avgCost: position ? position.avgPrice : order.avgFillPrice,
+          });
         } else {
+          soundEngine.playError();
           toast.error("Insufficient funds");
         }
       } else {
@@ -124,13 +138,25 @@ export function OrderEntry() {
           const order = placeSellOrder(currentTicker, qty, price, simDate);
           if (order) {
             triggerTradeFlash("sell");
+            soundEngine.playSell();
             toast.success(
               `Sold ${qty} ${currentTicker} @ ${formatCurrency(order.avgFillPrice)}`,
             );
             const pnl =
               (order.avgFillPrice - position.avgPrice) * qty -
               (order.fees ?? 0);
+            const pnlPct =
+              ((order.avgFillPrice - position.avgPrice) / position.avgPrice) *
+              100;
             recordTrade(pnl, currentTicker, false, false);
+            setTradeFeedback({
+              type: "sell",
+              ticker: currentTicker,
+              quantity: qty,
+              price: order.avgFillPrice,
+              pnl,
+              pnlPercent: pnlPct,
+            });
           }
         } else {
           // Short sell (or close remaining long + short the rest)
@@ -149,6 +175,7 @@ export function OrderEntry() {
             placeShortOrder(currentTicker, qty, price, simDate);
           }
           triggerTradeFlash("sell");
+          soundEngine.playSell();
           toast.success(`Short sold ${qty} ${currentTicker}`);
           recordTrade(0, currentTicker, true, false);
         }
@@ -156,28 +183,34 @@ export function OrderEntry() {
     } else if (orderType === "limit") {
       const lp = parseFloat(limitPrice);
       if (isNaN(lp) || lp <= 0) {
+        soundEngine.playError();
         toast.error("Invalid limit price");
         return;
       }
       placeLimitOrder(currentTicker, side, qty, lp, simDate);
+      soundEngine.playOrderFill();
       toast.info(
         `Limit ${side} order placed: ${qty} ${currentTicker} @ ${formatCurrency(lp)}`,
       );
     } else if (orderType === "stop_loss") {
       const sp = parseFloat(stopPrice);
       if (isNaN(sp) || sp <= 0) {
+        soundEngine.playError();
         toast.error("Invalid stop price");
         return;
       }
       placeStopLossOrder(currentTicker, qty, sp, simDate);
+      soundEngine.playOrderFill();
       toast.info(`Stop-loss set at ${formatCurrency(sp)}`);
     } else if (orderType === "take_profit") {
       const tp = parseFloat(takeProfitPrice);
       if (isNaN(tp) || tp <= 0) {
+        soundEngine.playError();
         toast.error("Invalid target price");
         return;
       }
       placeTakeProfitOrder(currentTicker, qty, tp, simDate);
+      soundEngine.playOrderFill();
       toast.info(`Take-profit set at ${formatCurrency(tp)}`);
     }
   };
@@ -216,7 +249,7 @@ export function OrderEntry() {
           className={cn(
             "rounded py-1.5 text-xs font-semibold transition-all duration-200",
             side === "buy"
-              ? "bg-[#10b981] text-white shadow-[0_0_10px_rgba(16,185,129,0.3)]"
+              ? "bg-[#10b981] text-white shadow-[0_0_12px_rgba(16,185,129,0.35)] gradient-border-green"
               : "text-muted-foreground hover:text-foreground",
           )}
         >
@@ -231,7 +264,7 @@ export function OrderEntry() {
           className={cn(
             "rounded py-1.5 text-xs font-semibold transition-all duration-200",
             side === "sell"
-              ? "bg-[#ef4444] text-white shadow-[0_0_10px_rgba(239,68,68,0.3)]"
+              ? "bg-[#ef4444] text-white shadow-[0_0_12px_rgba(239,68,68,0.35)] gradient-border-red"
               : "text-muted-foreground hover:text-foreground",
           )}
         >
@@ -408,6 +441,17 @@ export function OrderEntry() {
         )}
       </div>
 
+      {/* Risk Meter */}
+      {orderType === "market" && side === "buy" && qty > 0 && price > 0 && (
+        <RiskMeter
+          ticker={currentTicker}
+          quantity={qty}
+          price={price}
+          portfolioValue={portfolioValue}
+          existingPositionValue={position ? position.quantity * price : 0}
+        />
+      )}
+
       {/* Execute button */}
       <Button
         onClick={() => setShowConfirm(true)}
@@ -444,6 +488,12 @@ export function OrderEntry() {
         takeProfitPrice={parseFloat(takeProfitPrice) || undefined}
         commission={commission}
         estimatedSlippage={price * qty * 0.00025}
+      />
+
+      {/* Trade result feedback */}
+      <TradeResultFeedback
+        feedback={tradeFeedback}
+        onDismiss={() => setTradeFeedback(null)}
       />
 
       {/* Keyboard hint */}

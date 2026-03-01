@@ -15,6 +15,9 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { useKeyboardShortcuts } from "@/hooks/useKeyboardShortcuts";
 import { useOnboarding } from "@/hooks/useOnboarding";
 import { useTradingStore } from "@/stores/trading-store";
+import { ContextualTip } from "@/components/game/ContextualTip";
+import { IndicatorInfoPanel } from "@/components/education/IndicatorInfoPanel";
+import { FundamentalsPanel } from "@/components/trading/FundamentalsPanel";
 import { cn } from "@/lib/utils";
 import { Loader2 } from "lucide-react";
 
@@ -59,7 +62,7 @@ export default function TradePage() {
   return (
     <div className="flex h-full">
       {/* Left: Watchlist */}
-      <div className="relative">
+      <div className="relative" data-tutorial="watchlist">
         <Watchlist />
         {showWatchlist && (
           <OnboardingHint
@@ -75,9 +78,10 @@ export default function TradePage() {
 
       {/* Center: Chart + Time Travel + Positions/History */}
       <div className="flex flex-1 flex-col overflow-hidden">
-        <ChartToolbar />
+        <ChartToolbar data-tutorial="indicators" />
+        <IndicatorInfoPanel />
 
-        <div className={cn("relative flex-1", flashClass)}>
+        <div className={cn("relative flex-1", flashClass)} data-tutorial="chart">
           {isLoading && (
             <div className="absolute inset-0 z-10 flex items-center justify-center bg-background/80">
               <Loader2 className="h-6 w-6 animate-spin text-primary" />
@@ -93,7 +97,7 @@ export default function TradePage() {
           <CandlestickChart />
         </div>
 
-        <div className="relative">
+        <div className="relative" data-tutorial="time-travel">
           <TimeTravelControls />
           {showTimeTravel && (
             <OnboardingHint
@@ -107,8 +111,10 @@ export default function TradePage() {
           )}
         </div>
 
+        <ContextualTip />
+
         {/* Bottom panel: Positions & History tabs */}
-        <div className="h-48 shrink-0 overflow-hidden border-t border-border">
+        <div className="h-48 shrink-0 overflow-hidden border-t border-border" data-tutorial="positions">
           <Tabs defaultValue="positions" className="h-full flex flex-col">
             <TabsList className="h-7 w-full justify-start rounded-none border-b border-border bg-card px-2">
               <TabsTrigger
@@ -129,6 +135,12 @@ export default function TradePage() {
               >
                 Pending{pendingCount > 0 && ` (${pendingCount})`}
               </TabsTrigger>
+              <TabsTrigger
+                value="fundamentals"
+                className="h-6 rounded-none border-b-2 border-transparent px-3 text-xs data-[state=active]:border-primary data-[state=active]:bg-transparent"
+              >
+                Fundamentals
+              </TabsTrigger>
             </TabsList>
             <TabsContent value="positions" className="flex-1 overflow-auto mt-0">
               <PositionsTable />
@@ -139,12 +151,15 @@ export default function TradePage() {
             <TabsContent value="pending" className="flex-1 overflow-auto mt-0">
               <PendingOrders />
             </TabsContent>
+            <TabsContent value="fundamentals" className="flex-1 overflow-auto mt-0">
+              <FundamentalsPanel />
+            </TabsContent>
           </Tabs>
         </div>
       </div>
 
       {/* Right: Order Entry */}
-      <div className="relative w-64 shrink-0 overflow-y-auto border-l border-border bg-card">
+      <div className="relative w-64 shrink-0 overflow-y-auto border-l border-border bg-card" data-tutorial="order-entry">
         <OrderEntry />
         {showOrderEntry && (
           <OnboardingHint

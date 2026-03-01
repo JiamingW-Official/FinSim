@@ -7,6 +7,8 @@ import { WATCHLIST_STOCKS } from "@/types/market";
 import { formatCurrency, cn } from "@/lib/utils";
 import { TrendingUp, TrendingDown, Minus } from "lucide-react";
 import { MiniSparkline } from "./MiniSparkline";
+import { FUNDAMENTALS } from "@/data/fundamentals";
+import { Tooltip, TooltipTrigger, TooltipContent } from "@/components/ui/tooltip";
 
 export function Watchlist() {
   const { currentTicker, setTicker } = useChartStore();
@@ -46,65 +48,85 @@ export function Watchlist() {
         {WATCHLIST_STOCKS.map((stock) => {
           const isActive = stock.ticker === currentTicker;
           const showPrice = isActive && currentBar;
+          const fund = FUNDAMENTALS[stock.ticker];
 
           return (
-            <button
-              key={stock.ticker}
-              onClick={() => setTicker(stock.ticker)}
-              className={cn(
-                "group flex w-full items-center justify-between px-3 py-2 text-left transition-all duration-150",
-                isActive
-                  ? "bg-primary/5 border-l-2 border-primary"
-                  : "border-l-2 border-transparent hover:bg-accent/50",
-              )}
-            >
-              <div>
-                <div
+            <Tooltip key={stock.ticker}>
+              <TooltipTrigger asChild>
+                <button
+                  type="button"
+                  onClick={() => setTicker(stock.ticker)}
                   className={cn(
-                    "text-xs font-semibold transition-colors",
-                    isActive ? "text-primary" : "text-foreground group-hover:text-primary/80",
+                    "group flex w-full items-center justify-between px-3 py-2 text-left transition-all duration-150",
+                    isActive
+                      ? "bg-primary/5 border-l-2 border-primary"
+                      : "border-l-2 border-transparent hover:bg-accent/50",
                   )}
                 >
-                  {stock.ticker}
-                </div>
-                <div className="text-[10px] text-muted-foreground">
-                  {stock.sector}
-                </div>
-              </div>
-              {showPrice && (
-                <div className="flex flex-col items-end gap-0.5">
-                  <div className="text-xs tabular-nums font-medium">
-                    {formatCurrency(currentBar.close)}
+                  <div>
+                    <div
+                      className={cn(
+                        "text-xs font-semibold transition-colors",
+                        isActive ? "text-primary" : "text-foreground group-hover:text-primary/80",
+                      )}
+                    >
+                      {stock.ticker}
+                    </div>
+                    <div className="text-[10px] text-muted-foreground">
+                      {stock.sector}
+                    </div>
                   </div>
-                  <MiniSparkline data={sparkData} />
-                  <div
-                    className={cn(
-                      "flex items-center justify-end gap-0.5 text-[10px] tabular-nums",
-                      priceChange > 0
-                        ? "text-[#10b981]"
-                        : priceChange < 0
-                          ? "text-[#ef4444]"
-                          : "text-muted-foreground",
-                    )}
-                  >
-                    {priceChange > 0 ? (
-                      <TrendingUp className="h-2.5 w-2.5" />
-                    ) : priceChange < 0 ? (
-                      <TrendingDown className="h-2.5 w-2.5" />
-                    ) : (
-                      <Minus className="h-2.5 w-2.5" />
-                    )}
-                    {priceChange >= 0 ? "+" : ""}
-                    {priceChange.toFixed(2)}%
+                  {showPrice && (
+                    <div className="flex flex-col items-end gap-0.5">
+                      <div className="text-xs tabular-nums font-medium">
+                        {formatCurrency(currentBar.close)}
+                      </div>
+                      <MiniSparkline data={sparkData} />
+                      <div
+                        className={cn(
+                          "flex items-center justify-end gap-0.5 text-[10px] tabular-nums",
+                          priceChange > 0
+                            ? "text-[#10b981]"
+                            : priceChange < 0
+                              ? "text-[#ef4444]"
+                              : "text-muted-foreground",
+                        )}
+                      >
+                        {priceChange > 0 ? (
+                          <TrendingUp className="h-2.5 w-2.5" />
+                        ) : priceChange < 0 ? (
+                          <TrendingDown className="h-2.5 w-2.5" />
+                        ) : (
+                          <Minus className="h-2.5 w-2.5" />
+                        )}
+                        {priceChange >= 0 ? "+" : ""}
+                        {priceChange.toFixed(2)}%
+                      </div>
+                    </div>
+                  )}
+                  {!isActive && (
+                    <div className="text-[10px] text-muted-foreground/50 opacity-0 transition-opacity group-hover:opacity-100">
+                      Click
+                    </div>
+                  )}
+                </button>
+              </TooltipTrigger>
+              {fund && (
+                <TooltipContent
+                  side="right"
+                  sideOffset={8}
+                  className="max-w-[200px] space-y-0.5 bg-card text-card-foreground border border-border p-2"
+                >
+                  <div className="text-[10px] font-semibold">{stock.name}</div>
+                  <div className="text-[10px] text-muted-foreground">
+                    {fund.sector} | P/E: {fund.peRatio} | MCap: {fund.marketCap}
                   </div>
-                </div>
+                  <div className="text-[10px] text-muted-foreground">
+                    Beta: {fund.beta} | Div: {fund.dividendYield > 0 ? `${fund.dividendYield}%` : "N/A"}
+                  </div>
+                </TooltipContent>
               )}
-              {!isActive && (
-                <div className="text-[10px] text-muted-foreground/50 opacity-0 transition-opacity group-hover:opacity-100">
-                  Click
-                </div>
-              )}
-            </button>
+            </Tooltip>
           );
         })}
       </div>

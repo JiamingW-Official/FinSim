@@ -7,27 +7,39 @@ export type IndicatorType =
   | "ema12"
   | "ema26"
   | "bollinger"
-  | "rsi";
+  | "rsi"
+  | "macd"
+  | "stochastic"
+  | "atr"
+  | "vwap";
 
 interface ChartState {
   currentTicker: string;
   currentTimeframe: Timeframe;
   activeIndicators: IndicatorType[];
+  lastToggledIndicator: IndicatorType | null;
   setTicker: (ticker: string) => void;
   setTimeframe: (tf: Timeframe) => void;
   toggleIndicator: (ind: IndicatorType) => void;
+  clearLastToggled: () => void;
 }
 
 export const useChartStore = create<ChartState>((set) => ({
   currentTicker: "AAPL",
   currentTimeframe: "1d",
   activeIndicators: [],
+  lastToggledIndicator: null,
   setTicker: (ticker) => set({ currentTicker: ticker }),
   setTimeframe: (tf) => set({ currentTimeframe: tf }),
   toggleIndicator: (ind) =>
-    set((state) => ({
-      activeIndicators: state.activeIndicators.includes(ind)
-        ? state.activeIndicators.filter((i) => i !== ind)
-        : [...state.activeIndicators, ind],
-    })),
+    set((state) => {
+      const isRemoving = state.activeIndicators.includes(ind);
+      return {
+        activeIndicators: isRemoving
+          ? state.activeIndicators.filter((i) => i !== ind)
+          : [...state.activeIndicators, ind],
+        lastToggledIndicator: isRemoving ? null : ind,
+      };
+    }),
+  clearLastToggled: () => set({ lastToggledIndicator: null }),
 }));

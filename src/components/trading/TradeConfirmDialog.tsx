@@ -9,6 +9,7 @@ import {
 import { Button } from "@/components/ui/button";
 import { formatCurrency, cn } from "@/lib/utils";
 import type { OrderSide, OrderType } from "@/types/trading";
+import { soundEngine } from "@/services/audio/sound-engine";
 
 interface TradeConfirmDialogProps {
   open: boolean;
@@ -55,7 +56,7 @@ export function TradeConfirmDialog({
 
   return (
     <Dialog open={open} onOpenChange={(v) => !v && onCancel()}>
-      <DialogContent className="max-w-xs border-border bg-card p-0">
+      <DialogContent className="glass max-w-xs border-border/50 p-0">
         {/* Colored header banner */}
         <div
           className={cn(
@@ -130,14 +131,14 @@ export function TradeConfirmDialog({
             <Button
               variant="outline"
               size="sm"
-              onClick={onCancel}
+              onClick={() => { soundEngine.playClick(); onCancel(); }}
               className="flex-1 text-xs"
             >
               Cancel
             </Button>
             <Button
               size="sm"
-              onClick={onConfirm}
+              onClick={() => { soundEngine.playClick(); onConfirm(); }}
               className={cn(
                 "flex-1 text-xs font-semibold text-white",
                 isBuy

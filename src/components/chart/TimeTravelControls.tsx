@@ -10,6 +10,8 @@ import {
 import { useTimeTravel } from "@/hooks/useTimeTravel";
 import { formatDate, cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
+import { motion } from "framer-motion";
+import { soundEngine } from "@/services/audio/sound-engine";
 
 const SPEEDS = [1, 2, 5, 10];
 
@@ -34,45 +36,51 @@ export function TimeTravelControls() {
     <div className="flex items-center gap-3 border-t border-border bg-card px-3 py-2">
       {/* Playback controls */}
       <div className="flex items-center gap-1">
-        <Button
-          variant="ghost"
-          size="icon"
-          className="h-7 w-7"
-          onClick={reset}
-          title="Reset (R)"
-        >
-          <RotateCcw className="h-3.5 w-3.5" />
-        </Button>
+        <motion.div whileTap={{ scale: 0.9 }}>
+          <Button
+            variant="ghost"
+            size="icon"
+            className="h-7 w-7"
+            onClick={() => { soundEngine.playClick(); reset(); }}
+            title="Reset (R)"
+          >
+            <RotateCcw className="h-3.5 w-3.5" />
+          </Button>
+        </motion.div>
 
-        <Button
-          variant="ghost"
-          size="icon"
-          className={cn(
-            "h-8 w-8 transition-all",
-            isPlaying &&
-              "bg-primary/15 text-primary ring-1 ring-primary/30 shadow-[0_0_8px_rgba(16,185,129,0.2)]",
-          )}
-          onClick={isPlaying ? pause : play}
-          disabled={atEnd}
-          title={isPlaying ? "Pause (Space)" : "Play (Space)"}
-        >
-          {isPlaying ? (
-            <Pause className="h-4 w-4" />
-          ) : (
-            <Play className="h-4 w-4" />
-          )}
-        </Button>
+        <motion.div whileTap={{ scale: 0.92 }}>
+          <Button
+            variant="ghost"
+            size="icon"
+            className={cn(
+              "h-8 w-8 transition-all",
+              isPlaying &&
+                "bg-primary/15 text-primary ring-1 ring-primary/30 shadow-[0_0_8px_rgba(16,185,129,0.2)]",
+            )}
+            onClick={() => { soundEngine.playClick(); isPlaying ? pause() : play(); }}
+            disabled={atEnd}
+            title={isPlaying ? "Pause (Space)" : "Play (Space)"}
+          >
+            {isPlaying ? (
+              <Pause className="h-4 w-4" />
+            ) : (
+              <Play className="h-4 w-4" />
+            )}
+          </Button>
+        </motion.div>
 
-        <Button
-          variant="ghost"
-          size="icon"
-          className="h-7 w-7"
-          onClick={advance}
-          disabled={atEnd}
-          title="Step Forward (→)"
-        >
-          <SkipForward className="h-3.5 w-3.5" />
-        </Button>
+        <motion.div whileTap={{ scale: 0.9 }}>
+          <Button
+            variant="ghost"
+            size="icon"
+            className="h-7 w-7"
+            onClick={() => { soundEngine.playClick(); advance(); }}
+            disabled={atEnd}
+            title="Step Forward (→)"
+          >
+            <SkipForward className="h-3.5 w-3.5" />
+          </Button>
+        </motion.div>
       </div>
 
       {/* Speed selector */}
@@ -81,7 +89,7 @@ export function TimeTravelControls() {
         {SPEEDS.map((s) => (
           <button
             key={s}
-            onClick={() => changeSpeed(s)}
+            onClick={() => { soundEngine.playClick(); changeSpeed(s); }}
             className={cn(
               "rounded px-2 py-0.5 text-[10px] font-bold transition-all duration-200",
               speed === s

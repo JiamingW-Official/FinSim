@@ -17,6 +17,8 @@ interface GameState {
   pendingAchievements: Achievement[];
   lastXPGain: number | null;
   lastLevelUp: number | null;
+  comboMultiplier: number;
+  lastCombo: number | null;
 
   awardXP: (amount: number) => void;
   recordTrade: (
@@ -28,6 +30,7 @@ interface GameState {
   dismissAchievement: () => void;
   clearXPGain: () => void;
   clearLevelUp: () => void;
+  clearCombo: () => void;
   resetGame: () => void;
 }
 
@@ -42,6 +45,8 @@ export const useGameStore = create<GameState>()(
       pendingAchievements: [],
       lastXPGain: null,
       lastLevelUp: null,
+      comboMultiplier: 1,
+      lastCombo: null,
 
       awardXP: (amount) => {
         set((state) => {
@@ -62,6 +67,19 @@ export const useGameStore = create<GameState>()(
         const state = get();
         const isProfitable = pnL > 0;
 
+        // Daily streak logic
+        const today = new Date().toISOString().slice(0, 10);
+        const lastDate = state.stats.lastTradeDate;
+        let dailyStreak = state.stats.dailyStreak;
+        if (lastDate !== today) {
+          const yesterday = new Date(Date.now() - 86400000).toISOString().slice(0, 10);
+          dailyStreak = lastDate === yesterday ? dailyStreak + 1 : 1;
+        }
+
+        // Combo logic: consecutive profitable trades
+        const newComboCount = isProfitable ? state.stats.comboCount + 1 : 0;
+        const comboMultiplier = Math.min(1 + newComboCount * 0.25, 3);
+
         // Update stats
         const newStats: PlayerStats = {
           ...state.stats,
@@ -77,14 +95,21 @@ export const useGameStore = create<GameState>()(
             : [...state.stats.uniqueTickersTraded, ticker],
           shortTradesCount: state.stats.shortTradesCount + (isShort ? 1 : 0),
           limitOrdersUsed: state.stats.limitOrdersUsed + (isLimitOrder ? 1 : 0),
+          dailyStreak,
+          lastTradeDate: today,
+          comboCount: newComboCount,
         };
 
-        // Calculate XP
+        // Calculate XP with combo multiplier and streak bonus
         let xpGain = 10; // base XP for any trade
         if (isProfitable) xpGain += 25;
         else xpGain += 5;
         if (isLimitOrder) xpGain += 15;
         if (isShort) xpGain += 10;
+        // Streak bonus (5 per streak day, cap 50)
+        xpGain += Math.min(dailyStreak * 5, 50);
+        // Apply combo multiplier
+        xpGain = Math.floor(xpGain * comboMultiplier);
 
         const newXP = state.xp + xpGain;
         const newLevel = getLevelForXP(newXP);
@@ -119,6 +144,8 @@ export const useGameStore = create<GameState>()(
           ],
           lastXPGain: xpGain,
           lastLevelUp: leveledUp ? newLevel : null,
+          comboMultiplier,
+          lastCombo: newComboCount >= 2 ? newComboCount : null,
         });
 
         return newAchievements;
@@ -132,6 +159,7 @@ export const useGameStore = create<GameState>()(
 
       clearXPGain: () => set({ lastXPGain: null }),
       clearLevelUp: () => set({ lastLevelUp: null }),
+      clearCombo: () => set({ lastCombo: null }),
 
       resetGame: () =>
         set({
@@ -143,6 +171,8 @@ export const useGameStore = create<GameState>()(
           pendingAchievements: [],
           lastXPGain: null,
           lastLevelUp: null,
+          comboMultiplier: 1,
+          lastCombo: null,
         }),
     }),
     {

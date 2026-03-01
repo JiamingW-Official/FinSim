@@ -28,7 +28,7 @@ export function StatusBar() {
   const animatedCash = useAnimatedNumber(cash, 300);
 
   return (
-    <div className="flex h-7 items-center justify-between border-t border-border bg-card px-4 text-xs text-muted-foreground">
+    <div className="glass-subtle flex h-7 items-center justify-between border-t border-border/50 px-4 text-xs text-muted-foreground">
       <div className="flex items-center gap-4">
         <span className="tabular-nums">
           Cash: <span className="text-foreground">{formatCurrency(animatedCash)}</span>

@@ -6,6 +6,9 @@ import { StatusBar } from "@/components/layout/StatusBar";
 import { Providers } from "@/app/providers";
 import { AchievementPopup } from "@/components/game/AchievementPopup";
 import { LevelUpOverlay } from "@/components/game/LevelUpOverlay";
+import { ComboIndicator } from "@/components/game/ComboIndicator";
+import { PageTransition } from "@/components/motion/PageTransition";
+import { TutorialOverlay } from "@/components/tutorial/TutorialOverlay";
 
 export default function DashboardLayout({
   children,
@@ -18,11 +21,15 @@ export default function DashboardLayout({
         <TopBar />
         <div className="flex flex-1 overflow-hidden">
           <Sidebar />
-          <main className="flex-1 overflow-hidden">{children}</main>
+          <main className="flex-1 overflow-hidden">
+            <PageTransition>{children}</PageTransition>
+          </main>
         </div>
         <StatusBar />
         <AchievementPopup />
         <LevelUpOverlay />
+        <ComboIndicator />
+        <TutorialOverlay />
       </div>
     </Providers>
   );

@@ -7,9 +7,14 @@ import { WATCHLIST_STOCKS } from "@/types/market";
 import { formatCurrency, formatPercent, formatDate } from "@/lib/utils";
 import { usePriceFlash, useAnimatedNumber } from "@/hooks/usePriceFlash";
 import { cn } from "@/lib/utils";
-import { TrendingUp, TrendingDown, Activity } from "lucide-react";
-import { LevelBadge } from "@/components/game/LevelBadge";
+import { TrendingUp, TrendingDown, Activity, Volume2, VolumeX, BookOpen } from "lucide-react";
+import { useSettingsStore } from "@/stores/settings-store";
+import { useLearnStore } from "@/stores/learn-store";
 import { XPBar } from "@/components/game/XPBar";
+import { ProgressRing } from "@/components/game/ProgressRing";
+import { StreakBadge } from "@/components/game/StreakBadge";
+import { useGameStore } from "@/stores/game-store";
+import { getXPForNextLevel, LEVEL_THRESHOLDS } from "@/types/game";
 
 export function TopBar() {
   const { currentTicker } = useChartStore();
@@ -35,8 +40,14 @@ export function TopBar() {
 
   const priceDisplay = price > 0 ? formatCurrency(animatedPrice) : "---";
 
+  const xp = useGameStore((s) => s.xp);
+  const level = useGameStore((s) => s.level);
+  const currentLevelXP = level > 1 ? LEVEL_THRESHOLDS[level - 2] : 0;
+  const nextLevelXP = getXPForNextLevel(level);
+  const xpPercent = level >= 50 ? 100 : Math.min(((xp - currentLevelXP) / (nextLevelXP - currentLevelXP)) * 100, 100);
+
   return (
-    <div className="flex h-10 items-center justify-between border-b border-border bg-card px-4">
+    <div className="glass flex h-10 items-center justify-between border-b border-border/50 px-4">
       <div className="flex items-center gap-4">
         <span className="text-sm font-bold tracking-wider text-primary">
           <span className="inline-flex items-center gap-1.5">
@@ -80,8 +91,15 @@ export function TopBar() {
       </div>
 
       <div className="flex items-center gap-3 text-sm">
-        <LevelBadge />
-        <XPBar />
+        <div className="flex items-center gap-2" data-tutorial="xp-level">
+          <ProgressRing progress={xpPercent} size={28} strokeWidth={2.5}>
+            <span className="text-[8px] font-black tabular-nums text-primary">{level}</span>
+          </ProgressRing>
+          <XPBar />
+          <StreakBadge />
+          <LearnStreakBadge />
+        </div>
+        <SoundToggle />
         <div className="h-4 w-px bg-border" />
         {currentBar && (
           <span className="text-muted-foreground">
@@ -89,7 +107,7 @@ export function TopBar() {
           </span>
         )}
         <div className="h-4 w-px bg-border" />
-        <div className="flex items-center gap-1.5">
+        <div className="flex items-center gap-1.5" data-tutorial="portfolio">
           <span className="text-muted-foreground">Portfolio</span>
           <span className="font-semibold tabular-nums">
             {formatCurrency(animatedPortfolio)}
@@ -103,5 +121,39 @@ export function TopBar() {
         )}
       </div>
     </div>
+  );
+}
+
+function LearnStreakBadge() {
+  const learningStreak = useLearnStore((s) => s.learningStreak);
+  if (learningStreak <= 0) return null;
+
+  return (
+    <div className="flex items-center gap-0.5 rounded-full bg-violet-500/10 px-1.5 py-0.5">
+      <BookOpen className="h-3 w-3 text-violet-400" />
+      <span className="text-[10px] font-bold tabular-nums text-violet-400">
+        {learningStreak}
+      </span>
+    </div>
+  );
+}
+
+function SoundToggle() {
+  const soundEnabled = useSettingsStore((s) => s.soundEnabled);
+  const toggleSound = useSettingsStore((s) => s.toggleSound);
+
+  return (
+    <button
+      type="button"
+      onClick={toggleSound}
+      className="rounded p-1 text-muted-foreground transition-colors hover:text-foreground"
+      title={soundEnabled ? "Mute sounds" : "Enable sounds"}
+    >
+      {soundEnabled ? (
+        <Volume2 className="h-3.5 w-3.5" />
+      ) : (
+        <VolumeX className="h-3.5 w-3.5 text-muted-foreground/50" />
+      )}
+    </button>
   );
 }

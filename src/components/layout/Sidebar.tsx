@@ -10,9 +10,9 @@ const NAV_ITEMS = [
   { icon: BarChart3, label: "Trade", href: "/trade" },
   { icon: Briefcase, label: "Portfolio", href: "/portfolio" },
   { icon: FlaskConical, label: "Backtest", href: "#", disabled: true },
-  { icon: GraduationCap, label: "Learn", href: "#", disabled: true },
+  { icon: GraduationCap, label: "Learn", href: "/learn" },
   { icon: Trophy, label: "Leaderboard", href: "#", disabled: true },
-  { icon: Settings, label: "Settings", href: "#", disabled: true },
+  { icon: Settings, label: "Settings", href: "/settings" },
 ];
 
 export function Sidebar() {
