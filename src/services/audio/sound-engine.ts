@@ -14,6 +14,11 @@ import {
   playCardFlipSound,
   playStreakSound,
   playClaimSound,
+  playQuestCompleteSound,
+  playArenaWinSound,
+  playArenaLoseSound,
+  playMatchFoundSound,
+  playSeasonClaimSound,
 } from "./synth-sounds";
 
 class SoundEngine {
@@ -115,6 +120,21 @@ class SoundEngine {
   }
   playClaim() {
     this.play(playClaimSound);
+  }
+  playQuestComplete() {
+    this.play(playQuestCompleteSound);
+  }
+  playArenaWin() {
+    this.play(playArenaWinSound);
+  }
+  playArenaLose() {
+    this.play(playArenaLoseSound);
+  }
+  playMatchFound() {
+    this.play(playMatchFoundSound);
+  }
+  playSeasonClaim() {
+    this.play(playSeasonClaimSound);
   }
 }
 

@@ -148,6 +148,21 @@ export const useGameStore = create<GameState>()(
           lastCombo: newComboCount >= 2 ? newComboCount : null,
         });
 
+        // Quest + Season hooks (lazy imports to avoid circular deps)
+        try {
+          const { useQuestStore } = require("./quest-store");
+          useQuestStore.getState().incrementSession("sessionTradesCount");
+          if (isProfitable) useQuestStore.getState().incrementSession("sessionProfitableTrades");
+          useQuestStore.getState().incrementSession("sessionPnL", pnL);
+          useQuestStore.getState().incrementSession("sessionXPEarned", xpGain);
+        } catch { /* quest store not loaded yet */ }
+
+        try {
+          const { useSeasonStore } = require("./season-store");
+          useSeasonStore.getState().awardSeasonXP("trade_completed");
+          if (isProfitable) useSeasonStore.getState().awardSeasonXP("profitable_trade");
+        } catch { /* season store not loaded yet */ }
+
         return newAchievements;
       },
 

@@ -258,6 +258,7 @@ export function ChallengePlayer({
               trades={sim.trades}
               activeIndicators={sim.activeIndicators}
               currentPrice={sim.currentPrice}
+              maxVisibleBars={60}
             />
 
             <MiniTradePanel

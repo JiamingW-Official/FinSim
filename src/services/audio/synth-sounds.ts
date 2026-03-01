@@ -267,6 +267,136 @@ export function playStreakSound(ctx: AudioContext, volume: number) {
   }
 }
 
+export function playQuestCompleteSound(ctx: AudioContext, volume: number) {
+  const now = ctx.currentTime;
+  // Bright ascending: D5 → F#5 → A5 → D6
+  const notes = [587.33, 739.99, 880.0, 1174.66];
+  const step = 0.08;
+
+  for (let i = 0; i < notes.length; i++) {
+    const t = now + i * step;
+    const gain = ctx.createGain();
+    gain.connect(ctx.destination);
+    gain.gain.setValueAtTime(volume * 0.25, t);
+    gain.gain.exponentialRampToValueAtTime(0.001, t + step + 0.12);
+
+    const osc = ctx.createOscillator();
+    osc.type = "triangle";
+    osc.frequency.setValueAtTime(notes[i], t);
+    osc.connect(gain);
+    osc.start(t);
+    osc.stop(t + step + 0.12);
+  }
+}
+
+export function playArenaWinSound(ctx: AudioContext, volume: number) {
+  const now = ctx.currentTime;
+  // Victory fanfare: G4 → B4 → D5 → G5
+  const notes = [392.0, 493.88, 587.33, 783.99];
+  const step = 0.12;
+
+  for (let i = 0; i < notes.length; i++) {
+    const t = now + i * step;
+    const gain = ctx.createGain();
+    gain.connect(ctx.destination);
+    gain.gain.setValueAtTime(volume * 0.3, t);
+    gain.gain.exponentialRampToValueAtTime(0.001, t + 0.3);
+
+    const osc = ctx.createOscillator();
+    osc.type = "triangle";
+    osc.frequency.setValueAtTime(notes[i], t);
+    osc.connect(gain);
+    osc.start(t);
+    osc.stop(t + 0.3);
+  }
+}
+
+export function playArenaLoseSound(ctx: AudioContext, volume: number) {
+  const now = ctx.currentTime;
+  // Descending minor: Eb4 → C4 → Ab3
+  const notes = [311.13, 261.63, 207.65];
+  const step = 0.15;
+
+  for (let i = 0; i < notes.length; i++) {
+    const t = now + i * step;
+    const gain = ctx.createGain();
+    gain.connect(ctx.destination);
+    gain.gain.setValueAtTime(volume * 0.2, t);
+    gain.gain.exponentialRampToValueAtTime(0.001, t + 0.25);
+
+    const osc = ctx.createOscillator();
+    osc.type = "sawtooth";
+    osc.frequency.setValueAtTime(notes[i], t);
+
+    const filter = ctx.createBiquadFilter();
+    filter.type = "lowpass";
+    filter.frequency.setValueAtTime(600, t);
+
+    osc.connect(filter);
+    filter.connect(gain);
+    osc.start(t);
+    osc.stop(t + 0.25);
+  }
+}
+
+export function playMatchFoundSound(ctx: AudioContext, volume: number) {
+  const now = ctx.currentTime;
+  // Alert: two quick ascending tones
+  const gain = ctx.createGain();
+  gain.connect(ctx.destination);
+  gain.gain.setValueAtTime(volume * 0.25, now);
+  gain.gain.exponentialRampToValueAtTime(0.001, now + 0.15);
+
+  const osc = ctx.createOscillator();
+  osc.type = "square";
+  osc.frequency.setValueAtTime(880, now);
+  osc.connect(gain);
+  osc.start(now);
+  osc.stop(now + 0.06);
+
+  const gain2 = ctx.createGain();
+  gain2.connect(ctx.destination);
+  gain2.gain.setValueAtTime(volume * 0.3, now + 0.08);
+  gain2.gain.exponentialRampToValueAtTime(0.001, now + 0.2);
+
+  const osc2 = ctx.createOscillator();
+  osc2.type = "square";
+  osc2.frequency.setValueAtTime(1320, now + 0.08);
+  osc2.connect(gain2);
+  osc2.start(now + 0.08);
+  osc2.stop(now + 0.2);
+}
+
+export function playSeasonClaimSound(ctx: AudioContext, volume: number) {
+  const now = ctx.currentTime;
+  // Golden coin-like: high sine with reverb-like tail
+  const gain = ctx.createGain();
+  gain.connect(ctx.destination);
+  gain.gain.setValueAtTime(volume * 0.35, now);
+  gain.gain.exponentialRampToValueAtTime(0.001, now + 0.4);
+
+  const osc = ctx.createOscillator();
+  osc.type = "sine";
+  osc.frequency.setValueAtTime(2637, now); // E7
+  osc.frequency.exponentialRampToValueAtTime(2093, now + 0.15); // C7
+  osc.connect(gain);
+  osc.start(now);
+  osc.stop(now + 0.4);
+
+  // Shimmer harmonic
+  const gain2 = ctx.createGain();
+  gain2.connect(ctx.destination);
+  gain2.gain.setValueAtTime(volume * 0.15, now);
+  gain2.gain.exponentialRampToValueAtTime(0.001, now + 0.35);
+
+  const osc2 = ctx.createOscillator();
+  osc2.type = "sine";
+  osc2.frequency.setValueAtTime(5274, now);
+  osc2.connect(gain2);
+  osc2.start(now);
+  osc2.stop(now + 0.35);
+}
+
 export function playClaimSound(ctx: AudioContext, volume: number) {
   const now = ctx.currentTime;
   // Metallic ping — high sine with quick decay

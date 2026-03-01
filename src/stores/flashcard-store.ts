@@ -105,6 +105,16 @@ export const useFlashcardStore = create<FlashcardState>()(
           }));
         }
 
+        // Quest + Season hooks
+        try {
+          const { useQuestStore } = require("./quest-store");
+          useQuestStore.getState().incrementSession("sessionCardsReviewed");
+        } catch { /* not loaded yet */ }
+        try {
+          const { useSeasonStore } = require("./season-store");
+          useSeasonStore.getState().awardSeasonXP("flashcard_session");
+        } catch { /* not loaded yet */ }
+
         return xp;
       },
 

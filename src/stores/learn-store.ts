@@ -138,6 +138,19 @@ export const useLearnStore = create<LearnState>()(
             pendingAchievements: [...gs.pendingAchievements, ...newAchievements],
           }));
         }
+
+        // Quest + Season hooks
+        try {
+          const { useQuestStore } = require("./quest-store");
+          useQuestStore.getState().incrementSession("sessionLessonsCompleted");
+          if (breakdown.grade === "S") useQuestStore.getState().incrementSession("sessionSRankLessons");
+        } catch { /* quest store not loaded yet */ }
+
+        try {
+          const { useSeasonStore } = require("./season-store");
+          useSeasonStore.getState().awardSeasonXP("lesson_completed");
+          if (breakdown.grade === "S") useSeasonStore.getState().awardSeasonXP("lesson_s_rank");
+        } catch { /* season store not loaded yet */ }
       },
 
       loseHeart: () => {

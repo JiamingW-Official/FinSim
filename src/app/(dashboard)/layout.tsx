@@ -10,6 +10,7 @@ import { ComboIndicator } from "@/components/game/ComboIndicator";
 import { PageTransition } from "@/components/motion/PageTransition";
 import { TutorialOverlay } from "@/components/tutorial/TutorialOverlay";
 import { DailyRewardsPopup } from "@/components/daily-rewards/DailyRewardsPopup";
+import { SeasonXPToast } from "@/components/season/SeasonXPToast";
 
 export default function DashboardLayout({
   children,
@@ -32,6 +33,7 @@ export default function DashboardLayout({
         <ComboIndicator />
         <TutorialOverlay />
         <DailyRewardsPopup />
+        <SeasonXPToast />
       </div>
     </Providers>
   );

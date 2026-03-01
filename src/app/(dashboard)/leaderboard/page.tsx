@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useMemo } from "react";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import { cn } from "@/lib/utils";
 import {
   Trophy, DollarSign, Target, TrendingUp, Flame,
@@ -11,6 +11,8 @@ import { useLeaderboard } from "@/hooks/useLeaderboard";
 import { PlayerStatsCard } from "@/components/leaderboard/PlayerStatsCard";
 import { LeaderboardTable } from "@/components/leaderboard/LeaderboardTable";
 import { LeagueBadge } from "@/components/leaderboard/LeagueBadge";
+import { SeasonBanner } from "@/components/season/SeasonBanner";
+import { SeasonRewardTrack } from "@/components/season/SeasonRewardTrack";
 import { DIMENSIONS, LEAGUES, getLeagueForLevel } from "@/types/leaderboard";
 import { useGameStore } from "@/stores/game-store";
 import type { LeaderboardDimension, LeagueTier, RankedEntry } from "@/types/leaderboard";
@@ -45,6 +47,7 @@ const TIPS = [
 
 export default function LeaderboardPage() {
   const [dimension, setDimension] = useState<LeaderboardDimension>("total_pnl");
+  const [seasonExpanded, setSeasonExpanded] = useState(false);
   const { ranked, userRank } = useLeaderboard(dimension);
   const level = useGameStore((s) => s.level);
   const league = getLeagueForLevel(level);
@@ -147,6 +150,14 @@ export default function LeaderboardPage() {
 
       {/* ===== CONTENT — two-column layout ===== */}
       <div className="flex-1 overflow-y-auto px-4 py-4">
+        {/* Season Pass */}
+        <div className="mb-4 space-y-0">
+          <SeasonBanner expanded={seasonExpanded} onToggle={() => setSeasonExpanded((v) => !v)} />
+          <AnimatePresence>
+            {seasonExpanded && <SeasonRewardTrack />}
+          </AnimatePresence>
+        </div>
+
         <div className="flex gap-5">
           {/* Left column — main leaderboard */}
           <motion.div

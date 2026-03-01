@@ -310,6 +310,51 @@ export const MINIGAME_ACHIEVEMENT_DEFS: MiniGameAchievementDef[] = [
     description: "Get S grade on a backtest",
     icon: "Crown",
   },
+  // Quest achievements
+  {
+    id: "quest_first",
+    name: "Quest Seeker",
+    description: "Complete your first quest",
+    icon: "ScrollText",
+  },
+  {
+    id: "quest_daily_streak_7",
+    name: "Daily Devotion",
+    description: "Complete all daily quests 7 days in a row",
+    icon: "Flame",
+  },
+  // Arena achievements
+  {
+    id: "arena_first_win",
+    name: "Gladiator",
+    description: "Win your first arena match",
+    icon: "Swords",
+  },
+  {
+    id: "arena_gold",
+    name: "Golden Fighter",
+    description: "Reach Gold rank in Arena",
+    icon: "Medal",
+  },
+  {
+    id: "arena_streak_5",
+    name: "Unstoppable Force",
+    description: "Win 5 arena matches in a row",
+    icon: "Flame",
+  },
+  // Season achievements
+  {
+    id: "season_tier_10",
+    name: "Season Veteran",
+    description: "Reach tier 10 in a season",
+    icon: "Star",
+  },
+  {
+    id: "season_tier_20",
+    name: "Season Champion",
+    description: "Reach tier 20 in a season",
+    icon: "Trophy",
+  },
 ];
 
 export function getLevelForXP(xp: number): number {

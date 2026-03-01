@@ -37,14 +37,19 @@ export function PredictionGame({ onClose }: PredictionGameProps) {
   const sessionSeed = useMemo(() => Math.floor(Date.now() / 60000), []);
   const allBars = useMemo(() => {
     return Array.from({ length: ROUNDS }, (_, i) => {
+      const sp = 100 + Math.sin(i * 1.7) * 30;
+      const driftDir = Math.sin(i * 2.3 + sessionSeed) > 0 ? 0.002 : -0.002;
       const bars = generateRealisticBars({
-        count: VISIBLE_BARS + 1, // +1 for the hidden bar
-        startPrice: 100 + Math.sin(i * 1.7) * 30,
+        count: VISIBLE_BARS + 1,
+        startPrice: sp,
         seed: sessionSeed + i * 1337,
-        drift: 0.001,
-        volatility: 0.02,
-        meanReversion: 0.05,
-        target: 100 + Math.sin(i * 1.7) * 30,
+        drift: driftDir,
+        volatility: 0.018,
+        meanReversion: 0.04,
+        target: sp + driftDir * 800,
+        momentumBias: 0.55,
+        support: [sp * 0.96],
+        resistance: [sp * 1.06],
       });
       return bars;
     });

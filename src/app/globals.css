@@ -933,3 +933,60 @@
 ::-webkit-scrollbar-thumb:hover {
   background: #374151;
 }
+
+/* ============================================
+   QUEST / ARENA / SEASON ANIMATIONS
+   ============================================ */
+
+/* Quest claim button pop */
+.quest-claim {
+  animation: quest-claim-pop 0.3s ease-out;
+}
+
+@keyframes quest-claim-pop {
+  0% { transform: scale(0.7); opacity: 0; }
+  60% { transform: scale(1.1); }
+  100% { transform: scale(1); opacity: 1; }
+}
+
+/* Arena timer pulse when <10s */
+.arena-timer {
+  transition: all 0.3s ease;
+}
+
+/* Matchmaking radar sweep */
+.matchmaking-radar {
+  position: relative;
+  overflow: hidden;
+}
+
+.matchmaking-radar::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 100%;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, rgba(239, 68, 68, 0.6), transparent);
+  transform-origin: left center;
+  animation: radar-sweep 2s linear infinite;
+}
+
+@keyframes radar-sweep {
+  0% { transform: translate(-50%, -50%) rotate(0deg); }
+  100% { transform: translate(-50%, -50%) rotate(360deg); }
+}
+
+/* Season tier unlock golden glow */
+.season-tier-unlock:not(:disabled):hover {
+  box-shadow: 0 0 12px rgba(245, 158, 11, 0.3);
+}
+
+/* Scrollbar hide for reward track */
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
+.scrollbar-hide {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}

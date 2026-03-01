@@ -113,6 +113,16 @@ export const useChallengeStore = create<ChallengeState>()(
         // Award XP
         useGameStore.getState().awardXP(xpReward);
 
+        // Quest + Season hooks
+        try {
+          const { useQuestStore } = require("./quest-store");
+          useQuestStore.getState().incrementSession("sessionChallengesCompleted");
+        } catch { /* not loaded yet */ }
+        try {
+          const { useSeasonStore } = require("./season-store");
+          useSeasonStore.getState().awardSeasonXP("daily_challenge_completed");
+        } catch { /* not loaded yet */ }
+
         // Check challenge achievements
         checkAchievements(newTotal, state.scenarioResults);
       },
@@ -140,6 +150,13 @@ export const useChallengeStore = create<ChallengeState>()(
 
         // Award XP
         useGameStore.getState().awardXP(result.xpEarned);
+
+        // Season hooks
+        try {
+          const { useSeasonStore } = require("./season-store");
+          useSeasonStore.getState().awardSeasonXP("scenario_completed");
+          if (result.grade === "S") useSeasonStore.getState().awardSeasonXP("scenario_s_rank");
+        } catch { /* not loaded yet */ }
 
         // Check challenge achievements
         checkAchievements(state.totalDailyChallengesCompleted, newScenarios);

@@ -93,6 +93,17 @@ export const useBacktestStore = create<BacktestState>()(
         check("ten_backtests", "Systematic Thinker", "Run 10 backtests", "BarChart3", newTotal >= 10);
         check("s_rank_backtest", "Master Strategist", "Get S grade on a backtest", "Crown", result.grade === "S");
 
+        // Quest + Season hooks
+        try {
+          const { useQuestStore } = require("./quest-store");
+          useQuestStore.getState().incrementSession("sessionBacktestsRun");
+        } catch { /* not loaded yet */ }
+        try {
+          const { useSeasonStore } = require("./season-store");
+          useSeasonStore.getState().awardSeasonXP("backtest_run");
+          if (result.metrics.totalReturn > 0) useSeasonStore.getState().awardSeasonXP("backtest_profitable");
+        } catch { /* not loaded yet */ }
+
         return result;
       },
 

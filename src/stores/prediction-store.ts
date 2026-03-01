@@ -99,6 +99,17 @@ export const usePredictionStore = create<PredictionState>()(
           }
         }
 
+        // Quest + Season hooks
+        try {
+          const { useQuestStore } = require("./quest-store");
+          useQuestStore.getState().incrementSession("sessionPredictions");
+          if (correct) useQuestStore.getState().incrementSession("sessionCorrectPredictions");
+        } catch { /* not loaded yet */ }
+        try {
+          const { useSeasonStore } = require("./season-store");
+          if (correct) useSeasonStore.getState().awardSeasonXP("prediction_correct");
+        } catch { /* not loaded yet */ }
+
         return xp;
       },
 

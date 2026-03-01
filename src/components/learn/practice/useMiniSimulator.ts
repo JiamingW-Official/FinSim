@@ -1,13 +1,16 @@
 import { useReducer, useCallback, useEffect, useRef } from "react";
 import type { PracticeChallenge, PracticeObjective } from "@/data/lessons/types";
 
-interface MiniPosition {
+// ── Types ─────────────────────────────────────────────────────
+
+export interface MiniPosition {
   quantity: number;
   avgPrice: number;
+  side: "long" | "short";
 }
 
-interface MiniTrade {
-  side: "buy" | "sell";
+export interface MiniTrade {
+  side: "buy" | "sell" | "short" | "cover";
   quantity: number;
   price: number;
   barIndex: number;
@@ -22,16 +25,21 @@ interface MiniSimState {
   activeIndicators: string[];
   isPlaying: boolean;
   totalBars: number;
-  totalAdvanced: number; // bars advanced by user since start
-  realizedPnL: number; // cumulative realized profit/loss
+  totalAdvanced: number;
+  realizedPnL: number;
 }
 
 type MiniSimAction =
   | { type: "ADVANCE" }
   | { type: "BUY"; quantity: number }
   | { type: "SELL"; quantity: number }
+  | { type: "SHORT"; quantity: number }
+  | { type: "COVER"; quantity: number }
+  | { type: "CLOSE_POSITION" }
   | { type: "TOGGLE_INDICATOR"; indicator: string }
   | { type: "SET_PLAYING"; playing: boolean };
+
+// ── Objective checking ────────────────────────────────────────
 
 function checkObjective(
   obj: PracticeObjective,
@@ -58,19 +66,20 @@ function checkObjective(
     case "profit-target":
       return state.realizedPnL >= obj.minProfit;
     case "stop-loss": {
-      // Check if user sold at a loss ≤ maxLoss (cut losses early)
-      const sellTrades = trades.filter((t) => t.side === "sell");
-      return sellTrades.length > 0 && state.realizedPnL >= obj.maxLoss;
+      const closeTrades = trades.filter((t) => t.side === "sell" || t.side === "cover");
+      return closeTrades.length > 0 && state.realizedPnL >= obj.maxLoss;
     }
     default:
       return false;
   }
 }
 
+// ── Reducer ───────────────────────────────────────────────────
+
 function createReducer(challenge: PracticeChallenge) {
   return function reducer(state: MiniSimState, action: MiniSimAction): MiniSimState {
     const bars = challenge.priceData;
-    let next = { ...state };
+    const next = { ...state };
 
     switch (action.type) {
       case "ADVANCE": {
@@ -79,72 +88,121 @@ function createReducer(challenge: PracticeChallenge) {
         next.totalAdvanced = state.totalAdvanced + 1;
         break;
       }
+
       case "BUY": {
         const currentBar = bars[state.revealedCount - 1];
         if (!currentBar) return state;
         const price = currentBar.close;
         const cost = price * action.quantity;
         if (cost > state.cash) return state;
+        // Can't buy while short — must cover first
+        if (state.position && state.position.side === "short") return state;
 
         next.cash = state.cash - cost;
-        const trade: MiniTrade = {
-          side: "buy",
-          quantity: action.quantity,
-          price,
-          barIndex: state.revealedCount - 1,
-        };
-        next.trades = [...state.trades, trade];
+        next.trades = [...state.trades, { side: "buy" as const, quantity: action.quantity, price, barIndex: state.revealedCount - 1 }];
 
-        if (state.position) {
+        if (state.position && state.position.side === "long") {
           const totalQty = state.position.quantity + action.quantity;
-          const totalCost =
-            state.position.avgPrice * state.position.quantity + price * action.quantity;
-          next.position = {
-            quantity: totalQty,
-            avgPrice: totalCost / totalQty,
-          };
+          const totalCost = state.position.avgPrice * state.position.quantity + price * action.quantity;
+          next.position = { quantity: totalQty, avgPrice: totalCost / totalQty, side: "long" };
         } else {
-          next.position = { quantity: action.quantity, avgPrice: price };
+          next.position = { quantity: action.quantity, avgPrice: price, side: "long" };
         }
         break;
       }
+
       case "SELL": {
-        if (!state.position || state.position.quantity < action.quantity) return state;
+        if (!state.position || state.position.side !== "long" || state.position.quantity < action.quantity) return state;
         const currentBar = bars[state.revealedCount - 1];
         if (!currentBar) return state;
         const price = currentBar.close;
-        const revenue = price * action.quantity;
 
-        // Track realized PnL
-        const pnlFromSell = (price - state.position.avgPrice) * action.quantity;
-        next.realizedPnL = state.realizedPnL + pnlFromSell;
-
-        next.cash = state.cash + revenue;
-        const trade: MiniTrade = {
-          side: "sell",
-          quantity: action.quantity,
-          price,
-          barIndex: state.revealedCount - 1,
-        };
-        next.trades = [...state.trades, trade];
+        const pnl = (price - state.position.avgPrice) * action.quantity;
+        next.realizedPnL = state.realizedPnL + pnl;
+        next.cash = state.cash + price * action.quantity;
+        next.trades = [...state.trades, { side: "sell" as const, quantity: action.quantity, price, barIndex: state.revealedCount - 1 }];
 
         const remaining = state.position.quantity - action.quantity;
-        next.position =
-          remaining > 0
-            ? { quantity: remaining, avgPrice: state.position.avgPrice }
-            : null;
+        next.position = remaining > 0
+          ? { quantity: remaining, avgPrice: state.position.avgPrice, side: "long" }
+          : null;
         break;
       }
+
+      case "SHORT": {
+        const currentBar = bars[state.revealedCount - 1];
+        if (!currentBar) return state;
+        const price = currentBar.close;
+        // Can't short while long — must sell first
+        if (state.position && state.position.side === "long") return state;
+        // Margin: need price × qty in cash as collateral
+        const margin = price * action.quantity;
+        if (margin > state.cash) return state;
+
+        next.cash = state.cash - margin;
+        next.trades = [...state.trades, { side: "short" as const, quantity: action.quantity, price, barIndex: state.revealedCount - 1 }];
+
+        if (state.position && state.position.side === "short") {
+          const totalQty = state.position.quantity + action.quantity;
+          const totalCost = state.position.avgPrice * state.position.quantity + price * action.quantity;
+          next.position = { quantity: totalQty, avgPrice: totalCost / totalQty, side: "short" };
+        } else {
+          next.position = { quantity: action.quantity, avgPrice: price, side: "short" };
+        }
+        break;
+      }
+
+      case "COVER": {
+        if (!state.position || state.position.side !== "short" || state.position.quantity < action.quantity) return state;
+        const currentBar = bars[state.revealedCount - 1];
+        if (!currentBar) return state;
+        const price = currentBar.close;
+
+        // Short profit = (entry - exit) × qty
+        const pnl = (state.position.avgPrice - price) * action.quantity;
+        next.realizedPnL = state.realizedPnL + pnl;
+        // Return margin + P&L
+        next.cash = state.cash + state.position.avgPrice * action.quantity + pnl;
+        next.trades = [...state.trades, { side: "cover" as const, quantity: action.quantity, price, barIndex: state.revealedCount - 1 }];
+
+        const remaining = state.position.quantity - action.quantity;
+        next.position = remaining > 0
+          ? { quantity: remaining, avgPrice: state.position.avgPrice, side: "short" }
+          : null;
+        break;
+      }
+
+      case "CLOSE_POSITION": {
+        if (!state.position) return state;
+        const currentBar = bars[state.revealedCount - 1];
+        if (!currentBar) return state;
+        const price = currentBar.close;
+        const qty = state.position.quantity;
+
+        if (state.position.side === "long") {
+          const pnl = (price - state.position.avgPrice) * qty;
+          next.realizedPnL = state.realizedPnL + pnl;
+          next.cash = state.cash + price * qty;
+          next.trades = [...state.trades, { side: "sell" as const, quantity: qty, price, barIndex: state.revealedCount - 1 }];
+        } else {
+          const pnl = (state.position.avgPrice - price) * qty;
+          next.realizedPnL = state.realizedPnL + pnl;
+          next.cash = state.cash + state.position.avgPrice * qty + pnl;
+          next.trades = [...state.trades, { side: "cover" as const, quantity: qty, price, barIndex: state.revealedCount - 1 }];
+        }
+        next.position = null;
+        break;
+      }
+
       case "TOGGLE_INDICATOR": {
         if (state.activeIndicators.includes(action.indicator)) {
-          next.activeIndicators = state.activeIndicators.filter(
-            (i) => i !== action.indicator,
-          );
+          next.activeIndicators = state.activeIndicators.filter((i) => i !== action.indicator);
         } else {
           next.activeIndicators = [...state.activeIndicators, action.indicator];
         }
         break;
       }
+
       case "SET_PLAYING": {
         next.isPlaying = action.playing;
         break;
@@ -160,7 +218,17 @@ function createReducer(challenge: PracticeChallenge) {
   };
 }
 
-export function useMiniSimulator(challenge: PracticeChallenge) {
+// ── Hook ──────────────────────────────────────────────────────
+
+export interface MiniSimOptions {
+  playSpeedMs?: number;
+  initialIndicators?: string[];
+}
+
+export function useMiniSimulator(challenge: PracticeChallenge, options?: MiniSimOptions) {
+  const playSpeed = options?.playSpeedMs ?? 600;
+  const initialIndicators = options?.initialIndicators ?? [];
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   const reducer = useCallback(createReducer(challenge), [challenge]);
 
   const initialState: MiniSimState = {
@@ -169,7 +237,7 @@ export function useMiniSimulator(challenge: PracticeChallenge) {
     position: null,
     trades: [],
     completedObjectives: challenge.objectives.map(() => false),
-    activeIndicators: [],
+    activeIndicators: initialIndicators,
     isPlaying: false,
     totalBars: challenge.priceData.length,
     totalAdvanced: 0,
@@ -182,6 +250,9 @@ export function useMiniSimulator(challenge: PracticeChallenge) {
   const advance = useCallback(() => dispatch({ type: "ADVANCE" }), []);
   const buy = useCallback((qty: number) => dispatch({ type: "BUY", quantity: qty }), []);
   const sell = useCallback((qty: number) => dispatch({ type: "SELL", quantity: qty }), []);
+  const short = useCallback((qty: number) => dispatch({ type: "SHORT", quantity: qty }), []);
+  const cover = useCallback((qty: number) => dispatch({ type: "COVER", quantity: qty }), []);
+  const closePosition = useCallback(() => dispatch({ type: "CLOSE_POSITION" }), []);
   const toggleIndicator = useCallback(
     (ind: string) => dispatch({ type: "TOGGLE_INDICATOR", indicator: ind }),
     [],
@@ -189,12 +260,12 @@ export function useMiniSimulator(challenge: PracticeChallenge) {
   const play = useCallback(() => dispatch({ type: "SET_PLAYING", playing: true }), []);
   const pause = useCallback(() => dispatch({ type: "SET_PLAYING", playing: false }), []);
 
-  // Auto-play
+  // Auto-play with configurable speed
   useEffect(() => {
     if (state.isPlaying && state.revealedCount < state.totalBars) {
       intervalRef.current = setInterval(() => {
         dispatch({ type: "ADVANCE" });
-      }, 600);
+      }, playSpeed);
     } else {
       if (intervalRef.current) clearInterval(intervalRef.current);
       if (state.isPlaying && state.revealedCount >= state.totalBars) {
@@ -204,7 +275,7 @@ export function useMiniSimulator(challenge: PracticeChallenge) {
     return () => {
       if (intervalRef.current) clearInterval(intervalRef.current);
     };
-  }, [state.isPlaying, state.revealedCount, state.totalBars]);
+  }, [state.isPlaying, state.revealedCount, state.totalBars, playSpeed]);
 
   const allComplete = state.completedObjectives.every(Boolean);
   const currentPrice =
@@ -212,8 +283,11 @@ export function useMiniSimulator(challenge: PracticeChallenge) {
       ? challenge.priceData[state.revealedCount - 1].close
       : challenge.priceData[0].close;
 
+  // Long profits when price rises, short profits when price falls
   const unrealizedPnL = state.position
-    ? (currentPrice - state.position.avgPrice) * state.position.quantity
+    ? state.position.side === "long"
+      ? (currentPrice - state.position.avgPrice) * state.position.quantity
+      : (state.position.avgPrice - currentPrice) * state.position.quantity
     : 0;
 
   return {
@@ -224,10 +298,13 @@ export function useMiniSimulator(challenge: PracticeChallenge) {
     advance,
     buy,
     sell,
+    short,
+    cover,
+    closePosition,
     toggleIndicator,
     play,
     pause,
   };
 }
 
-export type { MiniTrade, MiniPosition };
+// MiniTrade and MiniPosition are exported via their interface declarations above

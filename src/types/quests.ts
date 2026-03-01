@@ -92,6 +92,8 @@ export interface QuestDefinition {
   conditions: QuestCondition[];
   rewards: QuestReward[];
   xpReward: number;
+  /** Navigation route for "Go Complete" button (e.g. "/trade", "/learn") */
+  route?: string;
   /** For milestone chains — group ID */
   chainId?: string;
   /** For milestone chains — position in chain (0-based) */

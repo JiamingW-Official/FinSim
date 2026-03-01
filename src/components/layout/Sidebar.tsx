@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
-import { BarChart3, Briefcase, FlaskConical, GraduationCap, Swords, Trophy, Settings, Sparkles } from "lucide-react";
+import { BarChart3, Briefcase, FlaskConical, GraduationCap, Swords, ScrollText, Crosshair, Trophy, Settings, Sparkles } from "lucide-react";
 import { Tooltip, TooltipTrigger, TooltipContent } from "@/components/ui/tooltip";
 import { cn } from "@/lib/utils";
 
@@ -13,6 +13,8 @@ const NAV_ITEMS = [
   { icon: FlaskConical, label: "Backtest", href: "/backtest", activeColor: "text-violet-400", activeBg: "bg-violet-500/12", dotColor: "bg-violet-400" },
   { icon: GraduationCap, label: "Learn", href: "/learn", activeColor: "text-amber-400", activeBg: "bg-amber-500/12", dotColor: "bg-amber-400" },
   { icon: Swords, label: "Challenges", href: "/challenges", activeColor: "text-rose-400", activeBg: "bg-rose-500/12", dotColor: "bg-rose-400" },
+  { icon: ScrollText, label: "Quests", href: "/quests", activeColor: "text-cyan-400", activeBg: "bg-cyan-500/12", dotColor: "bg-cyan-400" },
+  { icon: Crosshair, label: "Arena", href: "/arena", activeColor: "text-red-400", activeBg: "bg-red-500/12", dotColor: "bg-red-400" },
   { icon: Trophy, label: "Leaderboard", href: "/leaderboard", activeColor: "text-purple-400", activeBg: "bg-purple-500/12", dotColor: "bg-purple-400" },
   { icon: Settings, label: "Settings", href: "/settings", activeColor: "text-gray-400", activeBg: "bg-gray-500/12", dotColor: "bg-gray-400" },
 ];
