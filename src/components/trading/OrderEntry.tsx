@@ -1,0 +1,457 @@
+"use client";
+
+import { useState, useCallback } from "react";
+import { useChartStore } from "@/stores/chart-store";
+import { useTradingStore } from "@/stores/trading-store";
+import { useMarketDataStore } from "@/stores/market-data-store";
+import { useGameStore } from "@/stores/game-store";
+import { formatCurrency, cn } from "@/lib/utils";
+import { usePriceFlash, useAnimatedNumber } from "@/hooks/usePriceFlash";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { toast } from "sonner";
+import {
+  TrendingUp,
+  TrendingDown,
+  DollarSign,
+  Package,
+  Target,
+  Shield,
+  Zap,
+} from "lucide-react";
+import type { OrderSide, OrderType } from "@/types/trading";
+import { TradeConfirmDialog } from "./TradeConfirmDialog";
+
+const ORDER_TYPES: { value: OrderType; label: string; icon: typeof Zap }[] = [
+  { value: "market", label: "Market", icon: Zap },
+  { value: "limit", label: "Limit", icon: Target },
+  { value: "stop_loss", label: "Stop", icon: Shield },
+  { value: "take_profit", label: "TP", icon: TrendingUp },
+];
+
+export function OrderEntry() {
+  const [side, setSide] = useState<OrderSide>("buy");
+  const [orderType, setOrderType] = useState<OrderType>("market");
+  const [quantity, setQuantity] = useState("10");
+  const [limitPrice, setLimitPrice] = useState("");
+  const [stopPrice, setStopPrice] = useState("");
+  const [takeProfitPrice, setTakeProfitPrice] = useState("");
+  const [tradeFlash, setTradeFlash] = useState<"buy" | "sell" | null>(null);
+  const [showConfirm, setShowConfirm] = useState(false);
+
+  const currentTicker = useChartStore((s) => s.currentTicker);
+  const allData = useMarketDataStore((s) => s.allData);
+  const revealedCount = useMarketDataStore((s) => s.revealedCount);
+  const currentBar =
+    allData.length > 0 && revealedCount > 0
+      ? allData[revealedCount - 1]
+      : null;
+  const cash = useTradingStore((s) => s.cash);
+  const positions = useTradingStore((s) => s.positions);
+  const placeBuyOrder = useTradingStore((s) => s.placeBuyOrder);
+  const placeSellOrder = useTradingStore((s) => s.placeSellOrder);
+  const placeShortOrder = useTradingStore((s) => s.placeShortOrder);
+  const placeLimitOrder = useTradingStore((s) => s.placeLimitOrder);
+  const placeStopLossOrder = useTradingStore((s) => s.placeStopLossOrder);
+  const placeTakeProfitOrder = useTradingStore((s) => s.placeTakeProfitOrder);
+  const recordTrade = useGameStore((s) => s.recordTrade);
+
+  const price = currentBar?.close ?? 0;
+  const priceFlash = usePriceFlash(price || undefined);
+  const animatedPrice = useAnimatedNumber(price, 250);
+  const qty = Math.max(0, parseInt(quantity) || 0);
+  const estimatedCost = qty * price;
+  const commission = Math.max(1, qty * 0.01);
+
+  const position = positions.find(
+    (p) => p.ticker === currentTicker && p.side === "long",
+  );
+  const shortPosition = positions.find(
+    (p) => p.ticker === currentTicker && p.side === "short",
+  );
+  const maxSellQty = position?.quantity ?? 0;
+
+  // For market orders: buy needs funds, sell needs shares (or short sell)
+  const canExecuteMarket =
+    orderType === "market" &&
+    qty > 0 &&
+    price > 0 &&
+    (side === "buy" ? estimatedCost + commission <= cash : true);
+
+  // For limit/stop/tp: just need valid price inputs
+  const canExecuteLimit =
+    orderType === "limit" &&
+    qty > 0 &&
+    parseFloat(limitPrice) > 0;
+  const canExecuteStop =
+    orderType === "stop_loss" &&
+    qty > 0 &&
+    parseFloat(stopPrice) > 0 &&
+    (position || shortPosition);
+  const canExecuteTP =
+    orderType === "take_profit" &&
+    qty > 0 &&
+    parseFloat(takeProfitPrice) > 0 &&
+    (position || shortPosition);
+
+  const canExecute =
+    canExecuteMarket || canExecuteLimit || canExecuteStop || canExecuteTP;
+
+  const triggerTradeFlash = useCallback((tradeSide: "buy" | "sell") => {
+    setTradeFlash(tradeSide);
+    setTimeout(() => setTradeFlash(null), 600);
+  }, []);
+
+  const handleExecute = () => {
+    if (!currentBar) return;
+    const simDate = currentBar.timestamp;
+
+    if (orderType === "market") {
+      if (side === "buy") {
+        const order = placeBuyOrder(currentTicker, qty, price, simDate);
+        if (order) {
+          triggerTradeFlash("buy");
+          toast.success(
+            `Bought ${qty} ${currentTicker} @ ${formatCurrency(order.avgFillPrice)}`,
+          );
+          recordTrade(0, currentTicker, false, false);
+        } else {
+          toast.error("Insufficient funds");
+        }
+      } else {
+        // Sell: close long position, or short sell
+        if (position && position.quantity >= qty) {
+          const order = placeSellOrder(currentTicker, qty, price, simDate);
+          if (order) {
+            triggerTradeFlash("sell");
+            toast.success(
+              `Sold ${qty} ${currentTicker} @ ${formatCurrency(order.avgFillPrice)}`,
+            );
+            const pnl =
+              (order.avgFillPrice - position.avgPrice) * qty -
+              (order.fees ?? 0);
+            recordTrade(pnl, currentTicker, false, false);
+          }
+        } else {
+          // Short sell (or close remaining long + short the rest)
+          if (position && position.quantity > 0) {
+            placeSellOrder(
+              currentTicker,
+              position.quantity,
+              price,
+              simDate,
+            );
+            const shortQty = qty - position.quantity;
+            if (shortQty > 0) {
+              placeShortOrder(currentTicker, shortQty, price, simDate);
+            }
+          } else {
+            placeShortOrder(currentTicker, qty, price, simDate);
+          }
+          triggerTradeFlash("sell");
+          toast.success(`Short sold ${qty} ${currentTicker}`);
+          recordTrade(0, currentTicker, true, false);
+        }
+      }
+    } else if (orderType === "limit") {
+      const lp = parseFloat(limitPrice);
+      if (isNaN(lp) || lp <= 0) {
+        toast.error("Invalid limit price");
+        return;
+      }
+      placeLimitOrder(currentTicker, side, qty, lp, simDate);
+      toast.info(
+        `Limit ${side} order placed: ${qty} ${currentTicker} @ ${formatCurrency(lp)}`,
+      );
+    } else if (orderType === "stop_loss") {
+      const sp = parseFloat(stopPrice);
+      if (isNaN(sp) || sp <= 0) {
+        toast.error("Invalid stop price");
+        return;
+      }
+      placeStopLossOrder(currentTicker, qty, sp, simDate);
+      toast.info(`Stop-loss set at ${formatCurrency(sp)}`);
+    } else if (orderType === "take_profit") {
+      const tp = parseFloat(takeProfitPrice);
+      if (isNaN(tp) || tp <= 0) {
+        toast.error("Invalid target price");
+        return;
+      }
+      placeTakeProfitOrder(currentTicker, qty, tp, simDate);
+      toast.info(`Take-profit set at ${formatCurrency(tp)}`);
+    }
+  };
+
+  return (
+    <div
+      className={cn(
+        "flex flex-col gap-2.5 p-3 transition-colors duration-500",
+        tradeFlash === "buy" && "trade-flash-buy",
+        tradeFlash === "sell" && "trade-flash-sell",
+      )}
+    >
+      <div className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">
+        Order Entry
+      </div>
+
+      {/* Ticker & Price */}
+      <div className="flex items-baseline justify-between">
+        <span className="text-sm font-semibold">{currentTicker}</span>
+        <span
+          className={cn(
+            "text-lg font-bold tabular-nums transition-colors duration-300",
+            priceFlash === "up" && "price-flash-up",
+            priceFlash === "down" && "price-flash-down",
+          )}
+        >
+          {price > 0 ? formatCurrency(animatedPrice) : "---"}
+        </span>
+      </div>
+
+      {/* Buy / Sell Toggle */}
+      <div className="grid grid-cols-2 gap-1 rounded-md bg-muted p-0.5">
+        <button
+          type="button"
+          onClick={() => setSide("buy")}
+          className={cn(
+            "rounded py-1.5 text-xs font-semibold transition-all duration-200",
+            side === "buy"
+              ? "bg-[#10b981] text-white shadow-[0_0_10px_rgba(16,185,129,0.3)]"
+              : "text-muted-foreground hover:text-foreground",
+          )}
+        >
+          <span className="inline-flex items-center gap-1">
+            <TrendingUp className="h-3 w-3" />
+            BUY
+          </span>
+        </button>
+        <button
+          type="button"
+          onClick={() => setSide("sell")}
+          className={cn(
+            "rounded py-1.5 text-xs font-semibold transition-all duration-200",
+            side === "sell"
+              ? "bg-[#ef4444] text-white shadow-[0_0_10px_rgba(239,68,68,0.3)]"
+              : "text-muted-foreground hover:text-foreground",
+          )}
+        >
+          <span className="inline-flex items-center gap-1">
+            <TrendingDown className="h-3 w-3" />
+            SELL
+          </span>
+        </button>
+      </div>
+
+      {/* Order Type Selector */}
+      <div className="grid grid-cols-4 gap-0.5 rounded-md bg-muted p-0.5">
+        {ORDER_TYPES.map((ot) => {
+          const Icon = ot.icon;
+          return (
+            <button
+              key={ot.value}
+              type="button"
+              onClick={() => setOrderType(ot.value)}
+              className={cn(
+                "rounded py-1 text-[10px] font-medium transition-all duration-150",
+                orderType === ot.value
+                  ? "bg-background text-foreground shadow-sm"
+                  : "text-muted-foreground hover:text-foreground",
+              )}
+            >
+              <span className="inline-flex items-center gap-0.5">
+                <Icon className="h-2.5 w-2.5" />
+                {ot.label}
+              </span>
+            </button>
+          );
+        })}
+      </div>
+
+      {/* Conditional price inputs */}
+      {orderType === "limit" && (
+        <div>
+          <label className="mb-1 flex items-center gap-1 text-xs text-muted-foreground">
+            <Target className="h-3 w-3" />
+            Limit Price
+          </label>
+          <Input
+            type="number"
+            step="0.01"
+            placeholder={price > 0 ? price.toFixed(2) : "0.00"}
+            value={limitPrice}
+            onChange={(e) => setLimitPrice(e.target.value)}
+            className="h-8 bg-background text-sm tabular-nums"
+          />
+        </div>
+      )}
+      {orderType === "stop_loss" && (
+        <div>
+          <label className="mb-1 flex items-center gap-1 text-xs text-muted-foreground">
+            <Shield className="h-3 w-3 text-[#ef4444]" />
+            Stop Price
+          </label>
+          <Input
+            type="number"
+            step="0.01"
+            placeholder={
+              price > 0 ? (price * 0.95).toFixed(2) : "0.00"
+            }
+            value={stopPrice}
+            onChange={(e) => setStopPrice(e.target.value)}
+            className="h-8 bg-background text-sm tabular-nums"
+          />
+        </div>
+      )}
+      {orderType === "take_profit" && (
+        <div>
+          <label className="mb-1 flex items-center gap-1 text-xs text-muted-foreground">
+            <TrendingUp className="h-3 w-3 text-[#10b981]" />
+            Target Price
+          </label>
+          <Input
+            type="number"
+            step="0.01"
+            placeholder={
+              price > 0 ? (price * 1.1).toFixed(2) : "0.00"
+            }
+            value={takeProfitPrice}
+            onChange={(e) => setTakeProfitPrice(e.target.value)}
+            className="h-8 bg-background text-sm tabular-nums"
+          />
+        </div>
+      )}
+
+      {/* Quantity */}
+      <div>
+        <label className="mb-1 flex items-center gap-1 text-xs text-muted-foreground">
+          <Package className="h-3 w-3" />
+          Quantity
+        </label>
+        <Input
+          type="number"
+          min="1"
+          value={quantity}
+          onChange={(e) => setQuantity(e.target.value)}
+          className="h-8 bg-background text-sm tabular-nums"
+        />
+      </div>
+
+      {/* Quick quantity buttons */}
+      <div className="flex gap-1">
+        {[1, 5, 10, 25, 50, 100].map((q) => (
+          <button
+            key={q}
+            type="button"
+            onClick={() => setQuantity(String(q))}
+            className={cn(
+              "flex-1 rounded py-1 text-[10px] font-medium transition-all duration-150",
+              parseInt(quantity) === q
+                ? "bg-primary/20 text-primary"
+                : "bg-muted text-muted-foreground hover:bg-accent hover:text-foreground",
+            )}
+          >
+            {q}
+          </button>
+        ))}
+      </div>
+
+      {/* Estimated Cost + Fees */}
+      {orderType === "market" && price > 0 && qty > 0 && (
+        <div className="space-y-1 rounded-md bg-muted/50 p-2">
+          <div className="flex items-center justify-between text-xs">
+            <span className="inline-flex items-center gap-1 text-muted-foreground">
+              <DollarSign className="h-3 w-3" />
+              {side === "buy" ? "Est. Cost" : "Est. Proceeds"}
+            </span>
+            <span className="tabular-nums font-medium">
+              {formatCurrency(estimatedCost)}
+            </span>
+          </div>
+          <div className="flex items-center justify-between text-[10px] text-muted-foreground">
+            <span>Commission</span>
+            <span className="tabular-nums">
+              {formatCurrency(commission)}
+            </span>
+          </div>
+          <div className="flex items-center justify-between text-[10px] text-muted-foreground">
+            <span>Est. Slippage</span>
+            <span className="tabular-nums">
+              ~{formatCurrency(price * qty * 0.00025)}
+            </span>
+          </div>
+        </div>
+      )}
+
+      {/* Cash / Position info */}
+      <div className="rounded-md bg-muted/50 p-2">
+        <div className="flex items-center justify-between text-xs">
+          <span className="text-muted-foreground">Cash Available</span>
+          <span className="tabular-nums font-medium">
+            {formatCurrency(cash)}
+          </span>
+        </div>
+        {position && (
+          <div className="mt-1 flex items-center justify-between text-xs">
+            <span className="text-muted-foreground">Long Position</span>
+            <span className="tabular-nums font-medium text-[#10b981]">
+              {position.quantity} shares
+            </span>
+          </div>
+        )}
+        {shortPosition && (
+          <div className="mt-1 flex items-center justify-between text-xs">
+            <span className="text-muted-foreground">Short Position</span>
+            <span className="tabular-nums font-medium text-[#ef4444]">
+              {shortPosition.quantity} shares
+            </span>
+          </div>
+        )}
+      </div>
+
+      {/* Execute button */}
+      <Button
+        onClick={() => setShowConfirm(true)}
+        disabled={!canExecute}
+        className={cn(
+          "w-full font-semibold transition-all duration-200",
+          orderType !== "market"
+            ? "bg-[#f59e0b] hover:bg-[#d97706] text-white hover:shadow-[0_0_15px_rgba(245,158,11,0.3)]"
+            : side === "buy"
+              ? "bg-[#10b981] hover:bg-[#059669] text-white hover:shadow-[0_0_15px_rgba(16,185,129,0.3)]"
+              : "bg-[#ef4444] hover:bg-[#dc2626] text-white hover:shadow-[0_0_15px_rgba(239,68,68,0.3)]",
+        )}
+      >
+        {orderType === "market"
+          ? `${side === "buy" ? "BUY" : "SELL"} ${currentTicker}`
+          : `PLACE ${orderType.replace("_", " ").toUpperCase()}`}
+      </Button>
+
+      {/* Confirmation dialog */}
+      <TradeConfirmDialog
+        open={showConfirm}
+        onConfirm={() => {
+          setShowConfirm(false);
+          handleExecute();
+        }}
+        onCancel={() => setShowConfirm(false)}
+        side={side}
+        orderType={orderType}
+        ticker={currentTicker}
+        quantity={qty}
+        price={price}
+        limitPrice={parseFloat(limitPrice) || undefined}
+        stopPrice={parseFloat(stopPrice) || undefined}
+        takeProfitPrice={parseFloat(takeProfitPrice) || undefined}
+        commission={commission}
+        estimatedSlippage={price * qty * 0.00025}
+      />
+
+      {/* Keyboard hint */}
+      <div className="flex justify-center gap-2 text-[10px] text-muted-foreground/50">
+        <span>Space: Play/Pause</span>
+        <span>→: Step</span>
+        <span>1-4: Speed</span>
+      </div>
+    </div>
+  );
+}
