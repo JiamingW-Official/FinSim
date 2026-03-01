@@ -15,6 +15,9 @@ import { ProgressRing } from "@/components/game/ProgressRing";
 import { StreakBadge } from "@/components/game/StreakBadge";
 import { useGameStore } from "@/stores/game-store";
 import { getXPForNextLevel, LEVEL_THRESHOLDS } from "@/types/game";
+import { NotificationCenter } from "./NotificationCenter";
+import { HeartsDisplay } from "@/components/learn/HeartsDisplay";
+import { usePathname } from "next/navigation";
 
 export function TopBar() {
   const { currentTicker } = useChartStore();
@@ -40,6 +43,7 @@ export function TopBar() {
 
   const priceDisplay = price > 0 ? formatCurrency(animatedPrice) : "---";
 
+  const pathname = usePathname();
   const xp = useGameStore((s) => s.xp);
   const level = useGameStore((s) => s.level);
   const currentLevelXP = level > 1 ? LEVEL_THRESHOLDS[level - 2] : 0;
@@ -98,7 +102,9 @@ export function TopBar() {
           <XPBar />
           <StreakBadge />
           <LearnStreakBadge />
+          {pathname?.startsWith("/learn") && <HeartsDisplay compact />}
         </div>
+        <NotificationCenter />
         <SoundToggle />
         <div className="h-4 w-px bg-border" />
         {currentBar && (

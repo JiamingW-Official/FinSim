@@ -99,6 +99,8 @@ interface TradingState {
   ) => void;
   clearTradeFlash: () => void;
   resetPortfolio: () => void;
+  deductCash: (amount: number) => boolean;
+  addCash: (amount: number) => void;
 }
 
 function recalcPortfolioValue(
@@ -811,6 +813,30 @@ export const useTradingStore = create<TradingState>()(
           equityHistory: [],
           lastTradeFlash: null,
         }),
+
+      deductCash: (amount: number) => {
+        const state = get();
+        if (state.cash < amount) return false;
+        set({
+          cash: state.cash - amount,
+          portfolioValue: recalcPortfolioValue(
+            state.cash - amount,
+            state.positions,
+          ),
+        });
+        return true;
+      },
+
+      addCash: (amount: number) => {
+        const state = get();
+        set({
+          cash: state.cash + amount,
+          portfolioValue: recalcPortfolioValue(
+            state.cash + amount,
+            state.positions,
+          ),
+        });
+      },
     }),
     {
       name: "alpha-deck-trading",

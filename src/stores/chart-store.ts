@@ -11,7 +11,12 @@ export type IndicatorType =
   | "macd"
   | "stochastic"
   | "atr"
-  | "vwap";
+  | "vwap"
+  | "adx"
+  | "obv"
+  | "cci"
+  | "williams_r"
+  | "psar";
 
 interface ChartState {
   currentTicker: string;

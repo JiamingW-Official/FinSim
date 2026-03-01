@@ -9,12 +9,30 @@ import { useTradingStore } from "@/stores/trading-store";
 import { INITIAL_CAPITAL } from "@/types/trading";
 import { formatCurrency } from "@/lib/utils";
 import { cn } from "@/lib/utils";
-import { Shield, BarChart3, BookOpen, TrendingUp, TrendingDown, Trophy, Wallet, Briefcase } from "lucide-react";
+import { Shield, BarChart3, BookOpen, TrendingUp, TrendingDown, Trophy, Wallet, Briefcase, Award, Target, Calendar } from "lucide-react";
+import { AchievementGallery } from "@/components/game/AchievementGallery";
+import { ExportMenu } from "@/components/portfolio/ExportMenu";
 
 const EquityCurve = dynamic(
   () =>
     import("@/components/portfolio/EquityCurve").then(
       (mod) => mod.EquityCurve,
+    ),
+  { ssr: false },
+);
+
+const WinRateChart = dynamic(
+  () =>
+    import("@/components/portfolio/WinRateChart").then(
+      (mod) => mod.WinRateChart,
+    ),
+  { ssr: false },
+);
+
+const TradeCalendar = dynamic(
+  () =>
+    import("@/components/portfolio/TradeCalendar").then(
+      (mod) => mod.TradeCalendar,
     ),
   { ssr: false },
 );
@@ -63,6 +81,7 @@ export default function PortfolioPage() {
             </div>
           </div>
           <div className="flex items-center gap-2">
+            <ExportMenu />
             <motion.div
               className="badge-premium flex items-center gap-1.5 rounded-lg px-2.5 py-1.5"
               whileHover={{ scale: 1.05 }}
@@ -125,6 +144,24 @@ export default function PortfolioPage() {
           <EquityCurve />
         </motion.div>
 
+        {/* Win Rate Chart + Trade Calendar */}
+        <motion.div variants={fadeUp} className="grid grid-cols-2 gap-3">
+          <div className="card-hover-glow rounded-xl border border-border bg-card p-3">
+            <div className="mb-2 flex items-center gap-1.5 text-xs font-bold text-muted-foreground">
+              <Target className="h-3.5 w-3.5 text-cyan-400" />
+              Win Rate (Rolling 10)
+            </div>
+            <WinRateChart />
+          </div>
+          <div className="card-hover-glow rounded-xl border border-border bg-card p-3">
+            <div className="mb-2 flex items-center gap-1.5 text-xs font-bold text-muted-foreground">
+              <Calendar className="h-3.5 w-3.5 text-green-400" />
+              Trade Calendar
+            </div>
+            <TradeCalendar />
+          </div>
+        </motion.div>
+
         {/* Performance Metrics */}
         <motion.div variants={fadeUp}>
           <div className="mb-2 flex items-center gap-1.5 text-xs font-bold text-muted-foreground">
@@ -141,6 +178,15 @@ export default function PortfolioPage() {
             Trade Journal
           </div>
           <TradeJournal />
+        </motion.div>
+
+        {/* Achievement Gallery */}
+        <motion.div variants={fadeUp} className="card-hover-glow rounded-xl border border-border bg-card p-3">
+          <div className="mb-2 flex items-center gap-1.5 text-xs font-bold text-muted-foreground">
+            <Award className="h-3.5 w-3.5 text-amber-400" />
+            Achievements
+          </div>
+          <AchievementGallery />
         </motion.div>
       </motion.div>
     </div>

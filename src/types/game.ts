@@ -28,6 +28,12 @@ export interface PlayerStats {
   dailyStreak: number;
   lastTradeDate: string;
   comboCount: number;
+  optionsTradesCount: number;
+  optionsSpreadsCount: number;
+  optionsCondorsCount: number;
+  optionsTotalPnL: number;
+  optionsAnalysisViewed: boolean;
+  unusualActivityViewed: boolean;
 }
 
 export const INITIAL_STATS: PlayerStats = {
@@ -44,6 +50,12 @@ export const INITIAL_STATS: PlayerStats = {
   dailyStreak: 0,
   lastTradeDate: "",
   comboCount: 0,
+  optionsTradesCount: 0,
+  optionsSpreadsCount: 0,
+  optionsCondorsCount: 0,
+  optionsTotalPnL: 0,
+  optionsAnalysisViewed: false,
+  unusualActivityViewed: false,
 };
 
 // Lesson score breakdown — multi-dimensional scoring
@@ -170,6 +182,62 @@ export const ACHIEVEMENT_DEFS: AchievementDef[] = [
     description: "Reach a 5x combo",
     icon: "Zap",
     condition: (s) => s.comboCount >= 5,
+  },
+  {
+    id: "options_first",
+    name: "Options Initiate",
+    description: "Place your first options trade",
+    icon: "Activity",
+    condition: (s) => s.optionsTradesCount >= 1,
+  },
+  {
+    id: "options_spread",
+    name: "Spread Eagle",
+    description: "Execute a spread strategy",
+    icon: "GitBranch",
+    condition: (s) => s.optionsSpreadsCount >= 1,
+  },
+  {
+    id: "options_iron_condor",
+    name: "Iron Will",
+    description: "Execute an Iron Condor",
+    icon: "Shield",
+    condition: (s) => s.optionsCondorsCount >= 1,
+  },
+  {
+    id: "options_profit_1k",
+    name: "Premium Collector",
+    description: "Earn $1,000+ from options trades",
+    icon: "DollarSign",
+    condition: (s) => s.optionsTotalPnL >= 1000,
+  },
+  {
+    id: "vol_analyst",
+    name: "Volatility Analyst",
+    description: "Study the Analysis dashboard",
+    icon: "LineChart",
+    condition: (s) => s.optionsAnalysisViewed,
+  },
+  {
+    id: "flow_watcher",
+    name: "Flow Watcher",
+    description: "Investigate unusual options activity",
+    icon: "Eye",
+    condition: (s) => s.unusualActivityViewed,
+  },
+  {
+    id: "condor_master",
+    name: "Iron Condor Master",
+    description: "Execute 3 Iron Condor strategies",
+    icon: "Shield",
+    condition: (s) => s.optionsCondorsCount >= 3,
+  },
+  {
+    id: "options_millionaire",
+    name: "Options Millionaire",
+    description: "Earn $10,000+ from options trades",
+    icon: "Trophy",
+    condition: (s) => s.optionsTotalPnL >= 10000,
   },
 ];
 

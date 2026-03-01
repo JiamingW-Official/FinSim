@@ -19,6 +19,11 @@ const INDICATOR_OPTIONS: { value: IndicatorType; label: string }[] = [
   { value: "stochastic", label: "STOCH" },
   { value: "atr", label: "ATR" },
   { value: "vwap", label: "VWAP" },
+  { value: "adx", label: "ADX" },
+  { value: "obv", label: "OBV" },
+  { value: "cci", label: "CCI" },
+  { value: "williams_r", label: "%R" },
+  { value: "psar", label: "PSAR" },
 ];
 
 export function ChartToolbar() {

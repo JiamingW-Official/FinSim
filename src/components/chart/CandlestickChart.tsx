@@ -31,6 +31,11 @@ import {
   calculateStochastic,
   calculateATR,
   calculateVWAP,
+  calculateADX,
+  calculateOBV,
+  calculateCCI,
+  calculateWilliamsR,
+  calculateParabolicSAR,
 } from "@/services/indicators";
 
 const CHART_COLORS = {
@@ -56,6 +61,12 @@ const INDICATOR_COLORS: Record<string, string> = {
   stochastic_d: "#fb923c",
   atr: "#14b8a6",
   vwap: "#facc15",
+  adx: "#f97316",
+  obv: "#06b6d4",
+  cci: "#a78bfa",
+  williams_r: "#fb923c",
+  psar_bull: "#10b981",
+  psar_bear: "#ef4444",
 };
 
 interface CrosshairData {
@@ -478,6 +489,59 @@ export function CandlestickChart() {
         case "vwap": {
           const vwapData = calculateVWAP(visibleData);
           addLineSeries("vwap", vwapData, INDICATOR_COLORS.vwap, 2);
+          break;
+        }
+        case "adx": {
+          const adxData = calculateADX(visibleData);
+          addLineSeries("adx", adxData, INDICATOR_COLORS.adx, 1, 0, "adx");
+          chart.priceScale("adx").applyOptions({
+            scaleMargins: { top: 0.85, bottom: 0 },
+          });
+          break;
+        }
+        case "obv": {
+          const obvData = calculateOBV(visibleData);
+          addLineSeries("obv", obvData, INDICATOR_COLORS.obv, 1, 0, "obv");
+          chart.priceScale("obv").applyOptions({
+            scaleMargins: { top: 0.85, bottom: 0 },
+          });
+          break;
+        }
+        case "cci": {
+          const cciData = calculateCCI(visibleData);
+          addLineSeries("cci", cciData, INDICATOR_COLORS.cci, 1, 0, "cci");
+          chart.priceScale("cci").applyOptions({
+            scaleMargins: { top: 0.85, bottom: 0 },
+          });
+          break;
+        }
+        case "williams_r": {
+          const wrData = calculateWilliamsR(visibleData);
+          addLineSeries("williams_r", wrData, INDICATOR_COLORS.williams_r, 1, 0, "williams_r");
+          chart.priceScale("williams_r").applyOptions({
+            scaleMargins: { top: 0.85, bottom: 0 },
+          });
+          break;
+        }
+        case "psar": {
+          const psarData = calculateParabolicSAR(visibleData);
+          // Split into bullish (SAR below close) and bearish (SAR above close) series
+          const psarBull: { time: number; value: number }[] = [];
+          const psarBear: { time: number; value: number }[] = [];
+          psarData.forEach((pt, i) => {
+            const bar = visibleData[i + 1]; // psarData starts from index 1
+            if (bar && pt.value < bar.close) {
+              psarBull.push(pt);
+            } else if (bar) {
+              psarBear.push(pt);
+            }
+          });
+          if (psarBull.length > 0) {
+            addLineSeries("psar_bull", psarBull, INDICATOR_COLORS.psar_bull, 1);
+          }
+          if (psarBear.length > 0) {
+            addLineSeries("psar_bear", psarBear, INDICATOR_COLORS.psar_bear, 1);
+          }
           break;
         }
       }

@@ -18,6 +18,9 @@ import { useTradingStore } from "@/stores/trading-store";
 import { ContextualTip } from "@/components/game/ContextualTip";
 import { IndicatorInfoPanel } from "@/components/education/IndicatorInfoPanel";
 import { FundamentalsPanel } from "@/components/trading/FundamentalsPanel";
+import { NewsTicker } from "@/components/layout/NewsTicker";
+import { AICoachPanel } from "@/components/ai/AICoachPanel";
+import { TradeShareCard } from "@/components/trading/TradeShareCard";
 import { cn } from "@/lib/utils";
 import { Loader2 } from "lucide-react";
 
@@ -61,6 +64,7 @@ export default function TradePage() {
 
   return (
     <div className="flex h-full">
+      <TradeShareCard />
       {/* Left: Watchlist */}
       <div className="relative" data-tutorial="watchlist">
         <Watchlist />
@@ -112,6 +116,7 @@ export default function TradePage() {
         </div>
 
         <ContextualTip />
+        <NewsTicker />
 
         {/* Bottom panel: Positions & History tabs */}
         <div className="h-48 shrink-0 overflow-hidden border-t border-border" data-tutorial="positions">
@@ -158,19 +163,22 @@ export default function TradePage() {
         </div>
       </div>
 
-      {/* Right: Order Entry */}
-      <div className="relative w-64 shrink-0 overflow-y-auto border-l border-border bg-card" data-tutorial="order-entry">
-        <OrderEntry />
-        {showOrderEntry && (
-          <OnboardingHint
-            title="Place Orders"
-            description="Enter quantity and choose order type. Try a market buy to get started, or use limit orders for more control."
-            visible
-            onDismiss={() => dismiss("order-entry")}
-            position="bottom"
-            className="left-2 top-12"
-          />
-        )}
+      {/* Right: Order Entry + AI Coach */}
+      <div className="relative w-64 shrink-0 flex flex-col border-l border-border bg-card" data-tutorial="order-entry">
+        <div className="flex-1 min-h-0 overflow-y-auto">
+          <OrderEntry />
+          {showOrderEntry && (
+            <OnboardingHint
+              title="Place Orders"
+              description="Enter quantity and choose order type. Try a market buy to get started, or use limit orders for more control."
+              visible
+              onDismiss={() => dismiss("order-entry")}
+              position="bottom"
+              className="left-2 top-12"
+            />
+          )}
+        </div>
+        <AICoachPanel />
       </div>
     </div>
   );

@@ -11,15 +11,22 @@ import { PageTransition } from "@/components/motion/PageTransition";
 import { TutorialOverlay } from "@/components/tutorial/TutorialOverlay";
 import { DailyRewardsPopup } from "@/components/daily-rewards/DailyRewardsPopup";
 import { SeasonXPToast } from "@/components/season/SeasonXPToast";
+import { KeyboardShortcutGuide } from "@/components/game/KeyboardShortcutGuide";
+import { ComboMeter } from "@/components/game/ComboMeter";
+import { StreakCelebration } from "@/components/game/StreakCelebration";
+import { usePreferencesStore } from "@/stores/preferences-store";
+import { cn } from "@/lib/utils";
 
 export default function DashboardLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
+  const colorblindMode = usePreferencesStore((s) => s.colorblindMode);
+
   return (
     <Providers>
-      <div className="flex h-screen flex-col overflow-hidden">
+      <div className={cn("flex h-screen flex-col overflow-hidden", colorblindMode && "colorblind-mode")}>
         <TopBar />
         <div className="flex flex-1 overflow-hidden">
           <Sidebar />
@@ -31,9 +38,12 @@ export default function DashboardLayout({
         <AchievementPopup />
         <LevelUpOverlay />
         <ComboIndicator />
+        <ComboMeter />
         <TutorialOverlay />
         <DailyRewardsPopup />
         <SeasonXPToast />
+        <KeyboardShortcutGuide />
+        <StreakCelebration />
       </div>
     </Providers>
   );

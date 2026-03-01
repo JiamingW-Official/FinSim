@@ -3,12 +3,14 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
-import { BarChart3, Briefcase, FlaskConical, GraduationCap, Swords, ScrollText, Crosshair, Trophy, Settings, Sparkles } from "lucide-react";
+import { Home, BarChart3, Briefcase, FlaskConical, GraduationCap, Swords, ScrollText, Crosshair, Trophy, User, Settings, Sparkles, Activity } from "lucide-react";
 import { Tooltip, TooltipTrigger, TooltipContent } from "@/components/ui/tooltip";
 import { cn } from "@/lib/utils";
 
 const NAV_ITEMS = [
+  { icon: Home, label: "Home", href: "/home", activeColor: "text-primary", activeBg: "bg-primary/12", dotColor: "bg-primary" },
   { icon: BarChart3, label: "Trade", href: "/trade", activeColor: "text-emerald-400", activeBg: "bg-emerald-500/12", dotColor: "bg-emerald-400" },
+  { icon: Activity, label: "Options", href: "/options", activeColor: "text-orange-400", activeBg: "bg-orange-500/12", dotColor: "bg-orange-400" },
   { icon: Briefcase, label: "Portfolio", href: "/portfolio", activeColor: "text-blue-400", activeBg: "bg-blue-500/12", dotColor: "bg-blue-400" },
   { icon: FlaskConical, label: "Backtest", href: "/backtest", activeColor: "text-violet-400", activeBg: "bg-violet-500/12", dotColor: "bg-violet-400" },
   { icon: GraduationCap, label: "Learn", href: "/learn", activeColor: "text-amber-400", activeBg: "bg-amber-500/12", dotColor: "bg-amber-400" },
@@ -16,6 +18,7 @@ const NAV_ITEMS = [
   { icon: ScrollText, label: "Quests", href: "/quests", activeColor: "text-cyan-400", activeBg: "bg-cyan-500/12", dotColor: "bg-cyan-400" },
   { icon: Crosshair, label: "Arena", href: "/arena", activeColor: "text-red-400", activeBg: "bg-red-500/12", dotColor: "bg-red-400" },
   { icon: Trophy, label: "Leaderboard", href: "/leaderboard", activeColor: "text-purple-400", activeBg: "bg-purple-500/12", dotColor: "bg-purple-400" },
+  { icon: User, label: "Profile", href: "/profile", activeColor: "text-indigo-400", activeBg: "bg-indigo-500/12", dotColor: "bg-indigo-400" },
   { icon: Settings, label: "Settings", href: "/settings", activeColor: "text-gray-400", activeBg: "bg-gray-500/12", dotColor: "bg-gray-400" },
 ];
 

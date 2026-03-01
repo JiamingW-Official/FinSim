@@ -50,6 +50,11 @@ export function HeartsDisplay({ compact }: HeartsDisplayProps) {
       <div className="flex items-center gap-1">
         <Heart className="h-3.5 w-3.5 fill-red-500 text-red-500" />
         <span className="text-xs font-bold tabular-nums">{effectiveHearts}</span>
+        {effectiveHearts >= 5 ? (
+          <span className="text-[9px] font-bold text-emerald-400">Full</span>
+        ) : regenTimer ? (
+          <span className="text-[9px] tabular-nums text-muted-foreground">{regenTimer}</span>
+        ) : null}
       </div>
     );
   }

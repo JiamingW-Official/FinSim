@@ -107,4 +107,49 @@ export const INDICATOR_EXPLANATIONS: Record<
     bearSignal: "Price crosses below VWAP (sellers in control)",
     bestFor: "Finding fair value and institutional price levels",
   },
+  adx: {
+    name: "ADX",
+    shortDesc: "Average Directional Index — measures trend strength 0–100",
+    howToRead:
+      "ADX measures how strong a trend is, not its direction. Above 25 = strong trend (trade with it). Below 20 = weak/ranging market (avoid trend strategies). Above 40 = very strong trend.",
+    bullSignal: "ADX rising above 25 while price is in uptrend",
+    bearSignal: "ADX rising above 25 while price is in downtrend",
+    bestFor: "Knowing whether to use trend-following or range strategies",
+  },
+  obv: {
+    name: "OBV",
+    shortDesc: "On-Balance Volume — cumulative volume momentum",
+    howToRead:
+      "OBV adds volume on up days and subtracts on down days. When OBV rises with price, the trend is confirmed by volume. Divergence (OBV falling while price rises) is a warning sign.",
+    bullSignal: "OBV rising alongside rising price (confirmed uptrend)",
+    bearSignal: "OBV falling while price rises (bearish divergence)",
+    bestFor: "Confirming trends with volume and spotting divergences",
+  },
+  cci: {
+    name: "CCI",
+    shortDesc: "Commodity Channel Index — overbought/oversold oscillator",
+    howToRead:
+      "CCI measures how far price is from its average. Above +100 = overbought (consider selling). Below -100 = oversold (consider buying). Zero line = price at its average.",
+    bullSignal: "CCI crosses above -100 from oversold territory",
+    bearSignal: "CCI crosses below +100 from overbought territory",
+    bestFor: "Spotting overbought/oversold extremes and trend reversals",
+  },
+  williams_r: {
+    name: "Williams %R",
+    shortDesc: "Williams %R — inverse stochastic oscillator (0 to -100)",
+    howToRead:
+      "Williams %R measures where price sits within its recent high-low range. Above -20 = overbought. Below -80 = oversold. Scale is inverted: -100 is the low, 0 is the high.",
+    bullSignal: "Williams %R rises above -80 from oversold levels",
+    bearSignal: "Williams %R falls below -20 from overbought levels",
+    bestFor: "Short-term reversals and overbought/oversold timing",
+  },
+  psar: {
+    name: "Parabolic SAR",
+    shortDesc: "Parabolic SAR — trailing stop and reversal dots",
+    howToRead:
+      "Dots below price = bullish trend (SAR acts as trailing stop below). Dots above price = bearish trend (SAR acts as trailing stop above). When price crosses the SAR dots, the trend may be reversing.",
+    bullSignal: "SAR dots flip from above to below price (bullish reversal)",
+    bearSignal: "SAR dots flip from below to above price (bearish reversal)",
+    bestFor: "Trailing stop placement and trend reversal detection",
+  },
 };

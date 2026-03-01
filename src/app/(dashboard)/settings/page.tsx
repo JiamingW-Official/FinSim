@@ -1,12 +1,32 @@
 "use client";
 
+import { useState } from "react";
 import { motion } from "framer-motion";
 import { useSettingsStore } from "@/stores/settings-store";
 import { useGameStore } from "@/stores/game-store";
 import { useTradingStore } from "@/stores/trading-store";
+import { cn } from "@/lib/utils";
 import { Switch } from "@/components/ui/switch";
 import { Button } from "@/components/ui/button";
-import { Settings, Volume2, RotateCcw, GraduationCap, AlertTriangle, Shield, Sparkles } from "lucide-react";
+import { ResetConfirmDialog } from "@/components/settings/ResetConfirmDialog";
+import { usePreferencesStore, type Difficulty } from "@/stores/preferences-store";
+import { Settings, Volume2, RotateCcw, GraduationCap, AlertTriangle, Shield, Sparkles, Gamepad2, Bell, Eye } from "lucide-react";
+
+const DIFFICULTY_OPTIONS: { value: Difficulty; label: string; desc: string; color: string; bg: string }[] = [
+  { value: "easy", label: "Easy", desc: "Lower volatility, gentler markets", color: "text-emerald-400", bg: "bg-emerald-500/10 border-emerald-500/20" },
+  { value: "normal", label: "Normal", desc: "Realistic market conditions", color: "text-blue-400", bg: "bg-blue-500/10 border-blue-500/20" },
+  { value: "hard", label: "Hard", desc: "High volatility, brutal swings", color: "text-red-400", bg: "bg-red-500/10 border-red-500/20" },
+];
+
+const NOTIFICATION_LABELS: Record<string, string> = {
+  achievement: "Achievements",
+  level_up: "Level Ups",
+  trade: "Trades",
+  quest: "Quests",
+  arena: "Arena",
+  challenge: "Challenges",
+  xp: "XP Gains",
+};
 
 const stagger = {
   hidden: { opacity: 0 },
@@ -28,6 +48,13 @@ export default function SettingsPage() {
   const resetPortfolio = useTradingStore((s) => s.resetPortfolio);
   const level = useGameStore((s) => s.level);
   const title = useGameStore((s) => s.title);
+  const difficulty = usePreferencesStore((s) => s.difficulty);
+  const setDifficulty = usePreferencesStore((s) => s.setDifficulty);
+  const colorblindMode = usePreferencesStore((s) => s.colorblindMode);
+  const setColorblindMode = usePreferencesStore((s) => s.setColorblindMode);
+  const notifPrefs = usePreferencesStore((s) => s.notificationPreferences);
+  const setNotifPref = usePreferencesStore((s) => s.setNotificationPreference);
+  const [resetTarget, setResetTarget] = useState<"game" | "portfolio" | null>(null);
 
   return (
     <div className="flex h-full flex-col overflow-y-auto">
@@ -84,6 +111,7 @@ export default function SettingsPage() {
                 </span>
               </div>
               <input
+                aria-label="Volume"
                 type="range"
                 min={0}
                 max={1}
@@ -126,6 +154,70 @@ export default function SettingsPage() {
           </div>
         </motion.div>
 
+        {/* Difficulty */}
+        <motion.div variants={fadeUp} className="card-hover-glow rounded-xl border border-border bg-card p-4">
+          <div className="mb-3 flex items-center gap-2 text-sm font-black">
+            <Gamepad2 className="h-4 w-4 text-violet-400" />
+            Difficulty
+          </div>
+          <p className="mb-3 text-[10px] text-muted-foreground">
+            Adjusts market volatility in the trading simulator
+          </p>
+          <div className="grid grid-cols-3 gap-2">
+            {DIFFICULTY_OPTIONS.map((opt) => (
+              <button
+                key={opt.value}
+                onClick={() => setDifficulty(opt.value)}
+                className={cn(
+                  "rounded-lg border p-3 text-left transition-all",
+                  difficulty === opt.value
+                    ? `${opt.bg} ${opt.color} ring-1 ring-current`
+                    : "border-border bg-card/50 text-muted-foreground hover:bg-accent",
+                )}
+              >
+                <div className="text-sm font-bold">{opt.label}</div>
+                <div className="text-[9px] opacity-70">{opt.desc}</div>
+              </button>
+            ))}
+          </div>
+        </motion.div>
+
+        {/* Notifications */}
+        <motion.div variants={fadeUp} className="card-hover-glow rounded-xl border border-border bg-card p-4">
+          <div className="mb-3 flex items-center gap-2 text-sm font-black">
+            <Bell className="h-4 w-4 text-cyan-400" />
+            Notifications
+          </div>
+          <div className="space-y-3">
+            {Object.entries(NOTIFICATION_LABELS).map(([type, label]) => (
+              <div key={type} className="flex items-center justify-between">
+                <span className="text-sm font-medium">{label}</span>
+                <Switch
+                  checked={notifPrefs[type as keyof typeof notifPrefs] ?? true}
+                  onCheckedChange={(v) => setNotifPref(type as keyof typeof notifPrefs, v)}
+                />
+              </div>
+            ))}
+          </div>
+        </motion.div>
+
+        {/* Accessibility */}
+        <motion.div variants={fadeUp} className="card-hover-glow rounded-xl border border-border bg-card p-4">
+          <div className="mb-3 flex items-center gap-2 text-sm font-black">
+            <Eye className="h-4 w-4 text-teal-400" />
+            Accessibility
+          </div>
+          <div className="flex items-center justify-between">
+            <div>
+              <div className="text-sm font-medium">Colorblind Mode</div>
+              <div className="text-[10px] text-muted-foreground">
+                Uses blue/orange instead of green/red for profit/loss
+              </div>
+            </div>
+            <Switch checked={colorblindMode} onCheckedChange={setColorblindMode} />
+          </div>
+        </motion.div>
+
         {/* About */}
         <motion.div variants={fadeUp} className="rounded-xl border border-primary/15 bg-primary/5 p-4">
           <div className="flex items-center gap-2 mb-2">
@@ -157,7 +249,7 @@ export default function SettingsPage() {
                 variant="outline"
                 size="sm"
                 className="border-destructive/30 text-destructive hover:bg-destructive/10"
-                onClick={resetGame}
+                onClick={() => setResetTarget("game")}
               >
                 Reset XP
               </Button>
@@ -176,7 +268,7 @@ export default function SettingsPage() {
                 variant="outline"
                 size="sm"
                 className="border-destructive/30 text-destructive hover:bg-destructive/10"
-                onClick={resetPortfolio}
+                onClick={() => setResetTarget("portfolio")}
               >
                 Reset Portfolio
               </Button>
@@ -184,6 +276,23 @@ export default function SettingsPage() {
           </div>
         </motion.div>
       </motion.div>
+
+      <ResetConfirmDialog
+        open={resetTarget === "game"}
+        onConfirm={() => { resetGame(); setResetTarget(null); }}
+        onCancel={() => setResetTarget(null)}
+        title="Reset Game Progress"
+        description="This will permanently reset your XP, level, and all achievements to zero. This action cannot be undone."
+        confirmLabel="Reset XP"
+      />
+      <ResetConfirmDialog
+        open={resetTarget === "portfolio"}
+        onConfirm={() => { resetPortfolio(); setResetTarget(null); }}
+        onCancel={() => setResetTarget(null)}
+        title="Reset Portfolio"
+        description="This will clear all positions, trade history, and reset your cash to $100,000. This action cannot be undone."
+        confirmLabel="Reset Portfolio"
+      />
     </div>
   );
 }
