@@ -20,6 +20,7 @@ import { IndicatorInfoPanel } from "@/components/education/IndicatorInfoPanel";
 import { FundamentalsPanel } from "@/components/trading/FundamentalsPanel";
 import { NewsTicker } from "@/components/layout/NewsTicker";
 import { AICoachPanel } from "@/components/ai/AICoachPanel";
+import { AlphaBotAlerts } from "@/components/ai/AlphaBotAlerts";
 import { TradeShareCard } from "@/components/trading/TradeShareCard";
 import { cn } from "@/lib/utils";
 import { Loader2 } from "lucide-react";
@@ -65,6 +66,7 @@ export default function TradePage() {
   return (
     <div className="flex h-full">
       <TradeShareCard />
+      <AlphaBotAlerts />
       {/* Left: Watchlist */}
       <div className="relative" data-tutorial="watchlist">
         <Watchlist />

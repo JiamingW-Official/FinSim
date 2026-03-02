@@ -35,6 +35,16 @@ import {
 
 export type { RegimeAnalysis, Divergence, PriceLevel, PivotPoints, TraderProfile };
 
+export interface TradePlan {
+  entryZone: [number, number];   // [lower, upper] price band
+  stopLoss: number;              // price
+  target1: number;               // first take-profit
+  target2: number;               // second take-profit
+  positionSize: number;          // shares (2% account risk rule, $100k default)
+  riskRewardRatio: number;       // |target1 - entry| / |entry - stopLoss|
+  rationale: string;             // e.g. "Stop below Swing Low $185.20; T1 at R1 Pivot $192.40"
+}
+
 export interface AnalysisResult {
   score: number;
   rawScore: number;
@@ -47,10 +57,13 @@ export interface AnalysisResult {
   levels: { supports: PriceLevel[]; resistances: PriceLevel[]; pivots: PivotPoints };
   traderProfile: TraderProfile | null;
   text: string;
-  summary: string;      // 1–2 sentence punchy coach comment for visual display
+  summary: string;      // 1–2 sentence punchy coach comment
+  setupName: string | null;  // named setup: "Bull Confluence Setup", "Divergence Reversal", etc.
+  insights: string[];   // 2–4 specific, engaging coach observations
   grade?: string;       // "A"|"B"|"C"|"D"|"F" — review mode only
   wentWell?: string;    // review mode: what went well (short)
   improve?: string;     // review mode: what to improve (short)
+  tradePlan: TradePlan | null;  // concrete entry/stop/target plan (null if neutral/low conviction)
 }
 
 // ─── Snapshot Extraction ────────────────────────────────────────────────────
@@ -293,6 +306,222 @@ function defaultLevels(): AnalysisResult["levels"] {
   };
 }
 
+// ─── Named Setup Detection ───────────────────────────────────────────────────
+
+function detectSetup(
+  signals: Signal[],
+  divergences: Divergence[],
+  bias: "bullish" | "bearish" | "neutral",
+  conviction: "low" | "medium" | "high",
+  snap: IndicatorSnapshot,
+  levels: AnalysisResult["levels"],
+  currentPrice: number,
+): string | null {
+  const hasSignal = (id: string) => signals.some((s) => s.id === id);
+  const hasDiv = divergences.length > 0;
+  const rsi = snap.rsi ?? 50;
+  const atSupport = levels.supports.some(
+    (l) => Math.abs(l.price - currentPrice) / currentPrice < 0.012,
+  );
+  const atResistance = levels.resistances.some(
+    (l) => Math.abs(l.price - currentPrice) / currentPrice < 0.012,
+  );
+
+  if (bias === "bullish") {
+    if (conviction === "high") {
+      if (hasDiv && rsi < 35) return "Divergence Reversal";
+      if (hasSignal("macd_cross_bull") && rsi < 35) return "Double Confirmation Bounce";
+      if (hasSignal("golden_cross")) return "Golden Cross Breakout";
+      if (hasSignal("psar_flip_bull")) return "Trend Flip Entry";
+      if (atSupport) return "Support Defense Play";
+      return "Bull Confluence Setup";
+    }
+    if (conviction === "medium") {
+      if (rsi < 35) return "Oversold Bounce Watch";
+      if (hasSignal("macd_cross_bull")) return "MACD Entry Signal";
+      return "Bullish Developing";
+    }
+  }
+
+  if (bias === "bearish") {
+    if (conviction === "high") {
+      if (hasDiv && rsi > 65) return "Bearish Divergence Top";
+      if (atResistance) return "Resistance Rejection";
+      return "Bear Pressure Confirmed";
+    }
+    if (conviction === "medium") {
+      if (rsi > 65) return "Overbought Fade Setup";
+      return "Bearish Developing";
+    }
+  }
+
+  return null;
+}
+
+// ─── Insights Builder ────────────────────────────────────────────────────────
+
+function buildInsights(
+  signals: Signal[],
+  divergences: Divergence[],
+  levels: AnalysisResult["levels"],
+  snap: IndicatorSnapshot,
+  traderProfile: TraderProfile | null,
+  bias: string,
+  regime: RegimeAnalysis,
+  currentPrice: number,
+): string[] {
+  const insights: string[] = [];
+  const rsi = snap.rsi;
+  const nearestSup = levels.supports[0];
+  const nearestRes = levels.resistances[0];
+
+  // 1. RSI insight
+  if (rsi !== undefined) {
+    if (rsi < 25) {
+      insights.push(
+        `RSI at ${rsi.toFixed(1)} — capitulation-level oversold. These readings historically precede sharp bounces, especially with MACD confirmation.`,
+      );
+    } else if (rsi < 35) {
+      insights.push(
+        `RSI at ${rsi.toFixed(1)} — hitting oversold territory. Buyers tend to step in here, especially when price is near a support level.`,
+      );
+    } else if (rsi > 75) {
+      insights.push(
+        `RSI at ${rsi.toFixed(1)} — momentum is stretched. The first strong red candle here is often the fade trigger that stops the run.`,
+      );
+    } else if (rsi > 65) {
+      insights.push(
+        `RSI at ${rsi.toFixed(1)} — approaching overbought. Bulls are still in control but the crowd is getting crowded. Watch for exhaustion.`,
+      );
+    }
+  }
+
+  // 2. Divergence insight
+  if (divergences.length > 0) {
+    const d = divergences[0];
+    if (d.type === "bullish") {
+      insights.push(
+        `Bullish divergence confirmed — price hit a lower low but ${d.indicator.toUpperCase()} held higher lows. This disconnect often precedes reversals. Don't ignore it.`,
+      );
+    } else {
+      insights.push(
+        `Bearish divergence active — price pushed to a higher high but ${d.indicator.toUpperCase()} is declining. Momentum doesn't confirm the breakout. Stay cautious.`,
+      );
+    }
+  }
+
+  // 3. Level proximity insight
+  if (nearestSup && Math.abs(nearestSup.price - currentPrice) / currentPrice < 0.015) {
+    insights.push(
+      `Price is sitting right on ${nearestSup.label} at $${nearestSup.price.toFixed(2)} — a live test of support. A close above keeps bulls in the driver's seat.`,
+    );
+  } else if (nearestRes && Math.abs(nearestRes.price - currentPrice) / currentPrice < 0.015) {
+    insights.push(
+      `Price is pressing against ${nearestRes.label} at $${nearestRes.price.toFixed(2)} — the make-or-break level. Volume will tell you if this is a breakout or a bull trap.`,
+    );
+  }
+
+  // 4. Regime insight
+  if (regime.regime === "strong_bull" || regime.regime === "strong_bear") {
+    const dir = regime.trendDirection === "up" ? "uptrend" : "downtrend";
+    insights.push(
+      `ADX confirms a strong ${dir} in ${regime.label} regime. Don't fight the tape — trend-following setups outperform counter-trend here.`,
+    );
+  } else if (regime.regime === "ranging") {
+    insights.push(
+      `Market is coiling in a range — oscillator signals are your best tools. Avoid chasing breakouts until volume confirms direction.`,
+    );
+  }
+
+  // 5. Profile insight
+  if (traderProfile && traderProfile.totalTrades >= 5) {
+    const wr = (traderProfile.winRate * 100).toFixed(0);
+    const styleMatch =
+      (traderProfile.style === "momentum" && bias === "bullish") ||
+      (traderProfile.style === "mean_reversion" && rsi !== undefined && rsi < 35);
+    if (styleMatch) {
+      insights.push(
+        `This matches your ${traderProfile.style} profile — you've posted ${wr}% WR on similar setups. Trust the process and your edge.`,
+      );
+    } else if (insights.length < 3) {
+      insights.push(
+        `Your ${traderProfile.style} profile (${wr}% WR) is best in setups that match your style. Size appropriately if this deviates from your playbook.`,
+      );
+    }
+  }
+
+  return insights.slice(0, 4);
+}
+
+// ─── Trade Plan Builder ──────────────────────────────────────────────────────
+
+function buildTradePlan(
+  bias: "bullish" | "bearish" | "neutral",
+  conviction: "low" | "medium" | "high",
+  currentPrice: number,
+  levels: AnalysisResult["levels"],
+  snap: IndicatorSnapshot,
+  accountSize = 100_000,
+  riskPct = 0.02,
+): TradePlan | null {
+  if (bias === "neutral" || conviction === "low") return null;
+
+  const nearestSup = levels.supports[0];
+  const secondSup = levels.supports[1];
+  const nearestRes = levels.resistances[0];
+  const secondRes = levels.resistances[1];
+
+  let stopLoss: number;
+  let target1: number;
+  let target2: number;
+  let rationale: string;
+
+  if (bias === "bullish") {
+    // Stop: below nearest support or 3% hard stop; ATR-tightened if available
+    const atrStop = snap.atr ? currentPrice - snap.atr * 1.5 : null;
+    const baseStop = nearestSup?.price ?? currentPrice * 0.97;
+    stopLoss = atrStop ? Math.min(baseStop, atrStop) : baseStop;
+
+    target1 = nearestRes?.price ?? currentPrice * 1.06;
+    target2 = secondRes?.price ?? currentPrice * 1.12;
+
+    const stopLabel = nearestSup ? nearestSup.label : "3% stop";
+    const t1Label = nearestRes ? nearestRes.label : "+6% target";
+    rationale = `Stop below ${stopLabel} $${stopLoss.toFixed(2)}; T1 at ${t1Label} $${target1.toFixed(2)}`;
+  } else {
+    // bearish
+    const atrStop = snap.atr ? currentPrice + snap.atr * 1.5 : null;
+    const baseStop = nearestRes?.price ?? currentPrice * 1.03;
+    stopLoss = atrStop ? Math.max(baseStop, atrStop) : baseStop;
+
+    target1 = nearestSup?.price ?? currentPrice * 0.94;
+    target2 = secondSup?.price ?? currentPrice * 0.88;
+
+    const stopLabel = nearestRes ? nearestRes.label : "3% stop";
+    const t1Label = nearestSup ? nearestSup.label : "-6% target";
+    rationale = `Stop above ${stopLabel} $${stopLoss.toFixed(2)}; T1 at ${t1Label} $${target1.toFixed(2)}`;
+  }
+
+  const riskPerShare = Math.abs(currentPrice - stopLoss);
+  const rawSize = riskPerShare > 0
+    ? Math.floor((accountSize * riskPct) / riskPerShare)
+    : 1;
+  const positionSize = Math.max(1, Math.min(100, rawSize));
+  const riskRewardRatio = riskPerShare > 0
+    ? Math.abs(target1 - currentPrice) / riskPerShare
+    : 0;
+
+  return {
+    entryZone: [currentPrice * 0.997, currentPrice * 1.003],
+    stopLoss,
+    target1,
+    target2,
+    positionSize,
+    riskRewardRatio,
+    rationale,
+  };
+}
+
 // ─── analyzeTradeSetup ───────────────────────────────────────────────────────
 
 export function analyzeTradeSetup(params: {
@@ -318,6 +547,9 @@ export function analyzeTradeSetup(params: {
       traderProfile: null,
       text: "• Insufficient data — advance the time travel slider to load more bars.\n• Enable indicators from the toolbar to get signal analysis.\n• Try toggling RSI or MACD for momentum readings.\n• Add SMA20/SMA50 for trend context and regime detection.",
       summary: "Advance the time slider to load more bars, then enable RSI or MACD for signal analysis.",
+      setupName: null,
+      insights: [],
+      tradePlan: null,
     };
   }
 
@@ -363,6 +595,7 @@ export function analyzeTradeSetup(params: {
     direction: d.type,
     strength: d.strength,
     description: d.description,
+    shortLabel: `${d.indicator.toUpperCase()} Div`,
   }));
 
   const patternSignals: Signal[] = patterns.map((p) => ({
@@ -371,6 +604,7 @@ export function analyzeTradeSetup(params: {
     direction: p.direction,
     strength: p.strength,
     description: p.description,
+    shortLabel: p.name.length > 14 ? p.name.slice(0, 14) : p.name,
   }));
 
   const allSignals = [...signals, ...divergenceSignals, ...patternSignals];
@@ -384,8 +618,12 @@ export function analyzeTradeSetup(params: {
   }
   const baseScore = weightedMax > 0 ? Math.round((rawCombined / weightedMax) * 100) : rawScore;
 
-  // 11. Apply regime multiplier
-  const finalScore = clampScore(baseScore * regime.scoreMultiplier);
+  // 11. Apply regime multiplier + confluence bonus
+  const dominantCount = allSignals.filter((s) =>
+    baseScore >= 0 ? s.direction === "bullish" : s.direction === "bearish",
+  ).length;
+  const confluenceBonus = dominantCount >= 7 ? 1.2 : dominantCount >= 5 ? 1.1 : 1.0;
+  const finalScore = clampScore(baseScore * regime.scoreMultiplier * confluenceBonus);
   const bias = scoreBias(finalScore);
   const conviction = computeConviction(allSignals, finalScore);
 
@@ -480,6 +718,10 @@ export function analyzeTradeSetup(params: {
     summary = `${regime.label} regime — no clear directional edge yet. ${regime.regime === "ranging" ? "Oscillator signals more reliable in this range." : "Watch for trend confirmation before entering."}`;
   }
 
+  const setupName = detectSetup(allSignals, divergences, bias, conviction, current, levels, current.close);
+  const insights = buildInsights(allSignals, divergences, levels, current, traderProfile, bias, regime, current.close);
+  const tradePlan = buildTradePlan(bias, conviction, current.close, levels, current);
+
   return {
     score: finalScore,
     rawScore: baseScore,
@@ -493,6 +735,9 @@ export function analyzeTradeSetup(params: {
     traderProfile,
     text,
     summary,
+    setupName,
+    insights,
+    tradePlan,
   };
 }
 
@@ -572,9 +817,12 @@ export function reviewLastTrade(params: {
     traderProfile,
     text: [bullet1, bullet2, bullet3, bullet4].join("\n"),
     summary,
+    setupName: null,
+    insights: [wentWell, improve],
     grade,
     wentWell,
     improve,
+    tradePlan: null,
   };
 }
 
@@ -651,7 +899,22 @@ export function generateMarketBrief(params: {
   }
 
   const topSig = [...signals].filter((s) => s.direction !== "neutral").sort((a, b) => b.strength - a.strength)[0];
-  const briefSummary = `${ticker} in ${regime.label} regime at ${priceStr}.${divergences.length > 0 ? ` Divergence detected — watch for momentum shift.` : topSig ? ` ${topSig.description}.` : " Enable indicators for signal analysis."}${levels.resistances[0] ? ` Key resistance: $${levels.resistances[0].price}.` : ""}`;
+  const briefSummary = `${ticker} in ${regime.label} regime at ${priceStr}.${divergences.length > 0 ? ` Divergence detected — watch for momentum shift.` : topSig ? ` ${topSig.description.split(".")[0]}.` : " Enable indicators for signal analysis."}${levels.resistances[0] ? ` Key resistance: $${levels.resistances[0].price}.` : ""}`;
+
+  // Build contextual insights for brief mode
+  const briefInsights: string[] = [];
+  briefInsights.push(`${info.context}`);
+  if (divergences.length > 0) {
+    const d = divergences[0];
+    briefInsights.push(`${d.type === "bullish" ? "Bullish" : "Bearish"} divergence detected — ${d.indicator.toUpperCase()} momentum is disconnecting from price. Watch for a reversal.`);
+  } else if (topSig) {
+    briefInsights.push(topSig.description);
+  }
+  if (levels.resistances[0] || levels.supports[0]) {
+    const r = levels.resistances[0];
+    const s = levels.supports[0];
+    briefInsights.push(`Key levels to watch: ${r ? `Resistance $${r.price.toFixed(2)} (${r.label})` : ""}${r && s ? " | " : ""}${s ? `Support $${s.price.toFixed(2)} (${s.label})` : ""}. Enter only on confirmed breakout or bounce.`);
+  }
 
   return {
     score: 0,
@@ -666,5 +929,8 @@ export function generateMarketBrief(params: {
     traderProfile,
     text: [bullet1, bullet2, bullet3, bullet4].join("\n"),
     summary: briefSummary,
+    setupName: null,
+    insights: briefInsights.slice(0, 3),
+    tradePlan: null,
   };
 }

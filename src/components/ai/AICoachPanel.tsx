@@ -3,6 +3,7 @@
 import { useState, useCallback, useRef, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { ChevronDown, ChevronUp, RotateCcw, AlertCircle, Zap } from "lucide-react";
+import { toast } from "sonner";
 import { useTradingStore } from "@/stores/trading-store";
 import { useChartStore } from "@/stores/chart-store";
 import { useMarketDataStore } from "@/stores/market-data-store";
@@ -12,6 +13,7 @@ import {
   reviewLastTrade,
   generateMarketBrief,
   type AnalysisResult,
+  type TradePlan,
 } from "@/services/ai/engine";
 
 type Mode = "trade" | "review" | "brief";
@@ -76,31 +78,77 @@ function ScoreGauge({ score, bias }: { score: number; bias: string }) {
   );
 }
 
-function SignalChips({ signals }: { signals: AnalysisResult["signals"] }) {
+function SignalChips({
+  signals,
+  selectedId,
+  onSelect,
+}: {
+  signals: AnalysisResult["signals"];
+  selectedId: string | null;
+  onSelect: (id: string | null) => void;
+}) {
   const top = [...signals]
     .filter((s) => s.direction !== "neutral")
     .sort((a, b) => b.strength - a.strength)
-    .slice(0, 6);
+    .slice(0, 7);
 
   if (top.length === 0) return null;
 
+  const selectedSig = top.find((s) => s.id === selectedId);
+
   return (
-    <div className="flex gap-1 overflow-x-auto pb-0.5 scrollbar-hide">
-      {top.map((s) => (
-        <span
-          key={s.id}
-          title={s.description}
-          className={cn(
-            "shrink-0 rounded border px-1.5 py-0.5 text-[8px] font-bold leading-none whitespace-nowrap",
-            s.direction === "bullish"
-              ? "bg-emerald-500/15 text-emerald-400 border-emerald-500/30"
-              : "bg-red-500/15 text-red-400 border-red-500/30",
-          )}
-        >
-          {s.direction === "bullish" ? "↑" : "↓"}{" "}
-          {s.description.length > 22 ? s.description.slice(0, 22) + "…" : s.description}
-        </span>
-      ))}
+    <div className="space-y-1">
+      <div className="flex gap-1 overflow-x-auto pb-0.5 scrollbar-hide">
+        {top.map((s) => (
+          <button
+            type="button"
+            key={s.id}
+            onClick={() => onSelect(selectedId === s.id ? null : s.id)}
+            title={s.description}
+            className={cn(
+              "shrink-0 rounded border px-1.5 py-0.5 text-[8px] font-bold leading-none whitespace-nowrap transition-all",
+              s.direction === "bullish"
+                ? selectedId === s.id
+                  ? "bg-emerald-500/30 text-emerald-300 border-emerald-400/60 ring-1 ring-emerald-400/40"
+                  : "bg-emerald-500/15 text-emerald-400 border-emerald-500/30 hover:bg-emerald-500/25"
+                : selectedId === s.id
+                ? "bg-red-500/30 text-red-300 border-red-400/60 ring-1 ring-red-400/40"
+                : "bg-red-500/15 text-red-400 border-red-500/30 hover:bg-red-500/25",
+            )}
+          >
+            {s.direction === "bullish" ? "↑" : "↓"} {s.shortLabel}
+          </button>
+        ))}
+      </div>
+      {/* Expanded signal detail */}
+      <AnimatePresence>
+        {selectedSig && (
+          <motion.div
+            initial={{ opacity: 0, y: -4, height: 0 }}
+            animate={{ opacity: 1, y: 0, height: "auto" }}
+            exit={{ opacity: 0, y: -4, height: 0 }}
+            transition={{ duration: 0.15 }}
+            className="overflow-hidden"
+          >
+            <div
+              className={cn(
+                "rounded border px-2 py-1.5 text-[9px]",
+                selectedSig.direction === "bullish"
+                  ? "bg-emerald-500/10 border-emerald-500/25"
+                  : "bg-red-500/10 border-red-500/25",
+              )}
+            >
+              <div className="flex items-center justify-between mb-0.5">
+                <span className="font-bold text-foreground/80">{selectedSig.shortLabel}</span>
+                <span className="text-amber-400 text-[10px]">
+                  {"★".repeat(selectedSig.strength)}{"☆".repeat(3 - selectedSig.strength)}
+                </span>
+              </div>
+              <p className="text-muted-foreground leading-tight">{selectedSig.description}</p>
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </div>
   );
 }
@@ -277,6 +325,94 @@ const CONVICTION_CLASSES: Record<string, { bg: string; text: string; border: str
   low:    { bg: "bg-muted",         text: "text-muted-foreground", border: "border-border" },
 };
 
+function TradePlanCard({ plan }: { plan: TradePlan }) {
+  return (
+    <motion.div
+      initial={{ opacity: 0, y: 4 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ delay: 0.5 }}
+      className="rounded-md border border-border/40 bg-muted/30 px-2 py-2 space-y-1"
+    >
+      <div className="text-[9px] font-black uppercase tracking-wider text-foreground/50">
+        Trade Plan
+      </div>
+      <div className="flex justify-between text-[9px]">
+        <span className="text-muted-foreground">Entry Zone</span>
+        <span className="font-mono text-foreground">
+          ${plan.entryZone[0].toFixed(2)}–${plan.entryZone[1].toFixed(2)}
+        </span>
+      </div>
+      <div className="flex justify-between text-[9px]">
+        <span className="text-red-400/80">Stop Loss</span>
+        <span className="font-mono text-red-400">${plan.stopLoss.toFixed(2)}</span>
+      </div>
+      <div className="flex justify-between text-[9px]">
+        <span className="text-emerald-400/80">Target 1</span>
+        <span className="font-mono text-emerald-400">${plan.target1.toFixed(2)}</span>
+      </div>
+      <div className="flex justify-between text-[9px]">
+        <span className="text-emerald-400/50">Target 2</span>
+        <span className="font-mono text-emerald-400/60">${plan.target2.toFixed(2)}</span>
+      </div>
+      <div className="flex justify-between text-[9px]">
+        <span className="text-muted-foreground">Size / R:R</span>
+        <span className="font-mono text-foreground">
+          {plan.positionSize} sh&nbsp;•&nbsp;{plan.riskRewardRatio.toFixed(1)}:1
+        </span>
+      </div>
+      <p className="text-[8.5px] text-muted-foreground/60 leading-tight border-t border-border/30 pt-1">
+        {plan.rationale}
+      </p>
+    </motion.div>
+  );
+}
+
+function LivePositionCoach({
+  unrealizedPnL,
+  unrealizedPnLPercent,
+  atrTrailingStop,
+  alignmentMsg,
+}: {
+  unrealizedPnL: number;
+  unrealizedPnLPercent: number;
+  atrTrailingStop: number | null;
+  alignmentMsg: string;
+}) {
+  const isProfit = unrealizedPnL >= 0;
+  return (
+    <motion.div
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      className={cn(
+        "rounded-md border px-2 py-2 space-y-1",
+        isProfit ? "border-emerald-500/30 bg-emerald-500/5" : "border-red-500/30 bg-red-500/5",
+      )}
+    >
+      <div className="flex items-center justify-between">
+        <span className="text-[9px] font-black uppercase tracking-wider text-foreground/50">
+          Live Position
+        </span>
+        <span
+          className={cn(
+            "text-[10px] font-bold font-mono",
+            isProfit ? "text-emerald-400" : "text-red-400",
+          )}
+        >
+          {isProfit ? "+" : ""}${unrealizedPnL.toFixed(2)}{" "}
+          <span className="text-[8px]">({isProfit ? "+" : ""}{unrealizedPnLPercent.toFixed(1)}%)</span>
+        </span>
+      </div>
+      {atrTrailingStop !== null && (
+        <div className="flex justify-between text-[9px]">
+          <span className="text-muted-foreground">ATR Trail Stop</span>
+          <span className="font-mono text-amber-400">${atrTrailingStop.toFixed(2)}</span>
+        </div>
+      )}
+      <p className="text-[8.5px] text-muted-foreground/80 leading-tight">{alignmentMsg}</p>
+    </motion.div>
+  );
+}
+
 // ─── Main Component ──────────────────────────────────────────────────────────
 
 export function AICoachPanel() {
@@ -286,9 +422,11 @@ export function AICoachPanel() {
   const [result, setResult] = useState<AnalysisResult | null>(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  const [selectedSignalId, setSelectedSignalId] = useState<string | null>(null);
   const typingRef = useRef<ReturnType<typeof setInterval> | null>(null);
   const reanalysisTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
   const autoTriggerTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const prevRevealedRef = useRef(0);
 
   const positions = useTradingStore((s) => s.positions);
   const tradeHistory = useTradingStore((s) => s.tradeHistory);
@@ -334,6 +472,7 @@ export function AICoachPanel() {
       setSummaryText("");
       setResult(null);
       setError(null);
+      setSelectedSignalId(null);
 
       setTimeout(() => {
         try {
@@ -438,6 +577,40 @@ export function AICoachPanel() {
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [indicatorKey]);
 
+  // ─── Agentic Trigger 4: Bar advance → position commentary ──────────────
+  useEffect(() => {
+    if (revealedCount <= prevRevealedRef.current) {
+      prevRevealedRef.current = revealedCount;
+      return;
+    }
+    prevRevealedRef.current = revealedCount;
+
+    const openPos = positions.find((p) => p.ticker === currentTicker);
+    if (!openPos || !expanded) return;
+
+    const pct = openPos.unrealizedPnLPercent ?? 0;
+    const messages =
+      pct > 5
+        ? ["Looking strong — let winners run. Trail your stop up.", "Momentum in your favor. Consider partial profit here.", "Position working well. Keep your stop discipline."]
+        : pct > 0
+        ? ["Small edge so far — stay disciplined, respect your stop.", "In the green — watch for follow-through volume.", "Positive territory. Hold the plan."]
+        : pct > -3
+        ? ["Small drawdown — still within plan. Hold your stop level.", "Watch for reversal signals before adding or cutting.", "Drawdown manageable — reassess at your stop level."]
+        : ["Position under pressure — check if your stop is still valid.", "Significant drawdown. Is the thesis intact?", "Consider reducing size if conviction has dropped."];
+
+    const msg = messages[revealedCount % messages.length];
+    toast.custom(
+      () => (
+        <div className="flex items-center gap-2 rounded-lg border border-border/40 bg-zinc-900 px-3 py-1.5 shadow text-[10px] max-w-56">
+          <span className="shrink-0">📊</span>
+          <span className="text-zinc-400">{msg}</span>
+        </div>
+      ),
+      { duration: 2500, position: "bottom-right" },
+    );
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [revealedCount]);
+
   // Cleanup on unmount
   useEffect(() => {
     return () => {
@@ -478,6 +651,31 @@ export function AICoachPanel() {
     : CONVICTION_CLASSES.low;
 
   const currentPrice = visibleData[visibleData.length - 1]?.close ?? 0;
+
+  // ─── Live position coaching values ─────────────────────────────────────
+  const openPosition = positions.find((p) => p.ticker === currentTicker) ?? null;
+
+  const atrTrailingStop: number | null = (() => {
+    if (!openPosition || !result) return null;
+    // Find ATR from result signals or snap (use 3% fallback)
+    const atrSig = result.signals.find((s) => s.id.startsWith("atr_"));
+    const atrEstimate = atrSig ? currentPrice * 0.03 : currentPrice * 0.03;
+    if (openPosition.side === "long") {
+      return currentPrice - atrEstimate * 2;
+    }
+    return currentPrice + atrEstimate * 2;
+  })();
+
+  const trendAlignmentMessage: string = (() => {
+    if (!openPosition || !result) return "";
+    const posIsLong = openPosition.side === "long";
+    const biasAligned =
+      (posIsLong && result.bias === "bullish") ||
+      (!posIsLong && result.bias === "bearish");
+    if (biasAligned) return "Trend aligned — hold for target. Trail your stop as price advances.";
+    if (result.bias === "neutral") return "Signals are mixed — stay disciplined and respect your stop level.";
+    return "⚠️ Signals turned against your position. Consider reducing size or tightening stop.";
+  })();
 
   return (
     <div className="shrink-0 border-t border-border bg-card">
@@ -529,6 +727,7 @@ export function AICoachPanel() {
                       setSummaryText("");
                       setResult(null);
                       setError(null);
+                      setSelectedSignalId(null);
                       stopTyping();
                     }}
                     title={m.desc}
@@ -549,15 +748,39 @@ export function AICoachPanel() {
                 <div className="space-y-2">
                   {/* Review mode: grade + worked/improve */}
                   {mode === "review" && result.grade ? (
-                    <ReviewDisplay result={result} />
+                    <>
+                      <ReviewDisplay result={result} />
+                      {/* Typed summary */}
+                      {(summaryText || loading) && (
+                        <div className="rounded-md bg-background/60 px-2 py-1.5 text-[10px] leading-relaxed text-foreground/80">
+                          {summaryText}
+                          {loading && (
+                            <span className="ml-0.5 inline-block h-2 w-0.5 animate-pulse bg-primary" />
+                          )}
+                        </div>
+                      )}
+                    </>
                   ) : (
                     <>
+                      {/* Setup name hero badge */}
+                      {result.setupName && (
+                        <div className={cn("rounded-md border px-2 py-2 text-center", regimeCls.bg, regimeCls.border)}>
+                          <div className={cn("text-[10px] font-black tracking-wider uppercase", regimeCls.text)}>
+                            {moodEmoji} {result.setupName}
+                          </div>
+                        </div>
+                      )}
+
                       {/* Score gauge */}
                       <ScoreGauge score={result.score} bias={result.bias} />
 
-                      {/* Signal chips */}
+                      {/* Signal chips — clickable, expandable */}
                       {result.signals.length > 0 && (
-                        <SignalChips signals={result.signals} />
+                        <SignalChips
+                          signals={result.signals}
+                          selectedId={selectedSignalId}
+                          onSelect={setSelectedSignalId}
+                        />
                       )}
 
                       {/* Divergence alert */}
@@ -567,17 +790,50 @@ export function AICoachPanel() {
                       {currentPrice > 0 && (
                         <LevelLadder levels={result.levels} currentPrice={currentPrice} />
                       )}
+
+                      {/* Typed summary */}
+                      {(summaryText || loading) && (
+                        <div className="rounded-md bg-background/60 px-2 py-1.5 text-[10px] leading-relaxed text-foreground/80 italic">
+                          {summaryText}
+                          {loading && (
+                            <span className="ml-0.5 inline-block h-2 w-0.5 animate-pulse bg-primary" />
+                          )}
+                        </div>
+                      )}
+
+                      {/* Animated insights */}
+                      {result.insights.length > 0 && !loading && (
+                        <div className="space-y-1">
+                          {result.insights.map((insight, i) => (
+                            <motion.div
+                              key={i}
+                              initial={{ opacity: 0, x: -6 }}
+                              animate={{ opacity: 1, x: 0 }}
+                              transition={{ delay: 0.3 + i * 0.1 }}
+                              className="flex gap-1.5 text-[9px] leading-tight"
+                            >
+                              <span className="text-primary font-bold shrink-0 mt-0.5">›</span>
+                              <span className="text-muted-foreground">{insight}</span>
+                            </motion.div>
+                          ))}
+                        </div>
+                      )}
+
+                      {/* Trade Plan */}
+                      {result.tradePlan && mode === "trade" && !loading && (
+                        <TradePlanCard plan={result.tradePlan} />
+                      )}
                     </>
                   )}
 
-                  {/* Typed summary (all modes) */}
-                  {(summaryText || loading) && (
-                    <div className="rounded-md bg-background/60 px-2 py-1.5 text-[10px] leading-relaxed text-foreground/80">
-                      {summaryText}
-                      {loading && (
-                        <span className="ml-0.5 inline-block h-2 w-0.5 animate-pulse bg-primary" />
-                      )}
-                    </div>
+                  {/* Live Position Coach — shown whenever a position is open */}
+                  {openPosition && result && !loading && (
+                    <LivePositionCoach
+                      unrealizedPnL={openPosition.unrealizedPnL}
+                      unrealizedPnLPercent={openPosition.unrealizedPnLPercent}
+                      atrTrailingStop={atrTrailingStop}
+                      alignmentMsg={trendAlignmentMessage}
+                    />
                   )}
 
                   {/* Trader profile */}

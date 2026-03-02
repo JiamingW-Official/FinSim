@@ -8,6 +8,7 @@ export interface Signal {
   direction: SignalDirection;
   strength: 1 | 2 | 3;
   description: string;
+  shortLabel: string;   // ≤16 chars for chip display
 }
 
 export interface IndicatorSnapshot {
@@ -59,7 +60,7 @@ export interface IndicatorSnapshot {
   atrAvg?: number;
 }
 
-function fmt(v: number, decimals = 2): string {
+function fmt(v: number, decimals = 1): string {
   return v.toFixed(decimals);
 }
 
@@ -86,7 +87,8 @@ export function detectSignals(
         category: "momentum",
         direction: "bearish",
         strength: 3,
-        description: `RSI at ${fmt(rsi)} — severely overbought`,
+        shortLabel: `RSI ${fmt(rsi)}`,
+        description: `RSI at ${fmt(rsi)} — severely overbought. Momentum is exhausted. A hard fade could be coming.`,
       });
     } else if (rsi >= 70) {
       signals.push({
@@ -94,7 +96,8 @@ export function detectSignals(
         category: "momentum",
         direction: "bearish",
         strength: 2,
-        description: `RSI at ${fmt(rsi)} — overbought`,
+        shortLabel: `RSI ${fmt(rsi)}`,
+        description: `RSI at ${fmt(rsi)} — overbought. Bulls are getting stretched. Watch for the first rejection candle.`,
       });
     } else if (rsi <= 20) {
       signals.push({
@@ -102,7 +105,8 @@ export function detectSignals(
         category: "momentum",
         direction: "bullish",
         strength: 3,
-        description: `RSI at ${fmt(rsi)} — severely oversold`,
+        shortLabel: `RSI ${fmt(rsi)}`,
+        description: `RSI at ${fmt(rsi)} — capitulation-level oversold. These readings historically precede sharp bounces.`,
       });
     } else if (rsi <= 30) {
       signals.push({
@@ -110,7 +114,8 @@ export function detectSignals(
         category: "momentum",
         direction: "bullish",
         strength: 2,
-        description: `RSI at ${fmt(rsi)} — oversold`,
+        shortLabel: `RSI ${fmt(rsi)}`,
+        description: `RSI at ${fmt(rsi)} — oversold territory. Buyers tend to step in here, especially with trend support.`,
       });
     }
 
@@ -121,7 +126,8 @@ export function detectSignals(
           category: "momentum",
           direction: "bullish",
           strength: 1,
-          description: `RSI crossed above 50 — momentum building`,
+          shortLabel: "RSI > 50",
+          description: `RSI crossed above 50 — momentum shifting to bulls. This is an early trend confirmation signal.`,
         });
       } else if (prevRsi > 50 && rsi <= 50) {
         signals.push({
@@ -129,7 +135,8 @@ export function detectSignals(
           category: "momentum",
           direction: "bearish",
           strength: 1,
-          description: `RSI crossed below 50 — momentum weakening`,
+          shortLabel: "RSI < 50",
+          description: `RSI crossed below 50 — momentum weakening. Bears may be taking control.`,
         });
       }
     }
@@ -148,7 +155,8 @@ export function detectSignals(
           category: "momentum",
           direction: "bullish",
           strength: 2,
-          description: `MACD bullish crossover — histogram turned positive`,
+          shortLabel: "MACD Cross ↑",
+          description: `MACD just flipped green — histogram crossed zero for the first time. Momentum is shifting to bulls.`,
         });
       } else if (prevHist >= 0 && hist < 0) {
         signals.push({
@@ -156,7 +164,8 @@ export function detectSignals(
           category: "momentum",
           direction: "bearish",
           strength: 2,
-          description: `MACD bearish crossover — histogram turned negative`,
+          shortLabel: "MACD Cross ↓",
+          description: `MACD flipped red — histogram turned negative. Bears are taking over the momentum.`,
         });
       } else if (hist > 0 && hist > prevHist) {
         signals.push({
@@ -164,7 +173,8 @@ export function detectSignals(
           category: "momentum",
           direction: "bullish",
           strength: 1,
-          description: `MACD momentum accelerating upward`,
+          shortLabel: "MACD Accel ↑",
+          description: `MACD histogram expanding in positive territory — bullish momentum is building.`,
         });
       } else if (hist < 0 && hist < prevHist) {
         signals.push({
@@ -172,7 +182,8 @@ export function detectSignals(
           category: "momentum",
           direction: "bearish",
           strength: 1,
-          description: `MACD momentum accelerating downward`,
+          shortLabel: "MACD Accel ↓",
+          description: `MACD histogram expanding in negative territory — bearish momentum is increasing.`,
         });
       }
     }
@@ -183,7 +194,8 @@ export function detectSignals(
         category: "momentum",
         direction: "bullish",
         strength: 1,
-        description: `MACD line above zero — bullish bias`,
+        shortLabel: "MACD +Zone",
+        description: `MACD line above zero — broad bullish bias. Medium-term trend favors buyers.`,
       });
     } else if (line < 0) {
       signals.push({
@@ -191,7 +203,8 @@ export function detectSignals(
         category: "momentum",
         direction: "bearish",
         strength: 1,
-        description: `MACD line below zero — bearish bias`,
+        shortLabel: "MACD −Zone",
+        description: `MACD line below zero — broad bearish bias. Medium-term trend favors sellers.`,
       });
     }
   }
@@ -211,7 +224,8 @@ export function detectSignals(
         category: "volatility",
         direction: "bearish",
         strength: 2,
-        description: `Price at upper Bollinger band (${fmtCurrency(bbUpper)}) — overbought`,
+        shortLabel: "BB Upper",
+        description: `Price tagging upper Bollinger band at ${fmtCurrency(bbUpper)} — extended. Mean reversion risk is elevated.`,
       });
     } else if (close <= bbLower) {
       signals.push({
@@ -219,7 +233,8 @@ export function detectSignals(
         category: "volatility",
         direction: "bullish",
         strength: 2,
-        description: `Price at lower Bollinger band (${fmtCurrency(bbLower)}) — oversold`,
+        shortLabel: "BB Lower",
+        description: `Price touching lower Bollinger band at ${fmtCurrency(bbLower)} — oversold extreme. Snap-back potential is high.`,
       });
     } else if (prevSnap?.bbMiddle !== undefined) {
       const prevClose = prevSnap.close;
@@ -229,7 +244,8 @@ export function detectSignals(
           category: "volatility",
           direction: "bullish",
           strength: 1,
-          description: `Price recaptured Bollinger midband (${fmtCurrency(bbMiddle)})`,
+          shortLabel: "BB Mid Recap",
+          description: `Price recaptured Bollinger midband at ${fmtCurrency(bbMiddle)} — bulls regaining control.`,
         });
       } else if (prevClose > prevSnap.bbMiddle && close < bbMiddle) {
         signals.push({
@@ -237,7 +253,8 @@ export function detectSignals(
           category: "volatility",
           direction: "bearish",
           strength: 1,
-          description: `Price dropped below Bollinger midband (${fmtCurrency(bbMiddle)})`,
+          shortLabel: "BB Mid Lost",
+          description: `Price dropped below Bollinger midband at ${fmtCurrency(bbMiddle)} — bearish shift in trend.`,
         });
       }
     }
@@ -250,7 +267,8 @@ export function detectSignals(
           category: "volatility",
           direction: "neutral",
           strength: 1,
-          description: `Bollinger squeeze detected — breakout imminent`,
+          shortLabel: "BB Squeeze",
+          description: `Bollinger bands squeezing — volatility is compressing. A big move is loading. Direction TBD.`,
         });
       }
     }
@@ -267,7 +285,8 @@ export function detectSignals(
         category: "trend",
         direction: "bullish",
         strength: 1,
-        description: `Price above 20-day SMA (${fmtCurrency(snap.sma20)})`,
+        shortLabel: `> SMA20`,
+        description: `Price above 20-day SMA at ${fmtCurrency(snap.sma20)} — short-term trend is bullish.`,
       });
     } else {
       signals.push({
@@ -275,7 +294,8 @@ export function detectSignals(
         category: "trend",
         direction: "bearish",
         strength: 1,
-        description: `Price below 20-day SMA (${fmtCurrency(snap.sma20)})`,
+        shortLabel: `< SMA20`,
+        description: `Price below 20-day SMA at ${fmtCurrency(snap.sma20)} — short-term trend is bearish.`,
       });
     }
   }
@@ -287,7 +307,8 @@ export function detectSignals(
         category: "trend",
         direction: "bullish",
         strength: 1,
-        description: `Price above 50-day SMA (${fmtCurrency(snap.sma50)})`,
+        shortLabel: `> SMA50`,
+        description: `Price above 50-day SMA at ${fmtCurrency(snap.sma50)} — medium-term bulls in control.`,
       });
     } else {
       signals.push({
@@ -295,7 +316,8 @@ export function detectSignals(
         category: "trend",
         direction: "bearish",
         strength: 1,
-        description: `Price below 50-day SMA (${fmtCurrency(snap.sma50)})`,
+        shortLabel: `< SMA50`,
+        description: `Price below 50-day SMA at ${fmtCurrency(snap.sma50)} — medium-term bearish pressure.`,
       });
     }
   }
@@ -317,7 +339,8 @@ export function detectSignals(
         category: "trend",
         direction: "bullish",
         strength: 3,
-        description: `Golden cross — SMA20 crossed above SMA50`,
+        shortLabel: "Golden Cross",
+        description: `Golden Cross — 20-day crossed above 50-day. Classic long-term bullish shift. Institutions pay attention to this.`,
       });
     } else if (prevAbove && !nowAbove) {
       signals.push({
@@ -325,7 +348,8 @@ export function detectSignals(
         category: "trend",
         direction: "bearish",
         strength: 3,
-        description: `Death cross — SMA20 crossed below SMA50`,
+        shortLabel: "Death Cross",
+        description: `Death Cross — 20-day crossed below 50-day. Classic long-term bearish warning. Distribution phase may be starting.`,
       });
     }
   }
@@ -338,7 +362,8 @@ export function detectSignals(
         category: "trend",
         direction: "bullish",
         strength: 1,
-        description: `Price above EMA12 (${fmtCurrency(snap.ema12)})`,
+        shortLabel: `> EMA12`,
+        description: `Price above EMA12 at ${fmtCurrency(snap.ema12)} — short-term momentum is bullish.`,
       });
     } else {
       signals.push({
@@ -346,7 +371,8 @@ export function detectSignals(
         category: "trend",
         direction: "bearish",
         strength: 1,
-        description: `Price below EMA12 (${fmtCurrency(snap.ema12)})`,
+        shortLabel: `< EMA12`,
+        description: `Price below EMA12 at ${fmtCurrency(snap.ema12)} — short-term momentum is bearish.`,
       });
     }
   }
@@ -358,7 +384,8 @@ export function detectSignals(
         category: "trend",
         direction: "bullish",
         strength: 1,
-        description: `Price above EMA26 (${fmtCurrency(snap.ema26)})`,
+        shortLabel: `> EMA26`,
+        description: `Price above EMA26 at ${fmtCurrency(snap.ema26)} — medium-term bullish bias.`,
       });
     } else {
       signals.push({
@@ -366,7 +393,8 @@ export function detectSignals(
         category: "trend",
         direction: "bearish",
         strength: 1,
-        description: `Price below EMA26 (${fmtCurrency(snap.ema26)})`,
+        shortLabel: `< EMA26`,
+        description: `Price below EMA26 at ${fmtCurrency(snap.ema26)} — medium-term bearish bias.`,
       });
     }
   }
@@ -378,7 +406,8 @@ export function detectSignals(
         category: "trend",
         direction: "bullish",
         strength: 1,
-        description: `EMA12 above EMA26 — short-term bullish alignment`,
+        shortLabel: "EMA Aligned ↑",
+        description: `EMA12 above EMA26 — short-term EMA stack is bullish. Momentum favors longs.`,
       });
     } else {
       signals.push({
@@ -386,7 +415,8 @@ export function detectSignals(
         category: "trend",
         direction: "bearish",
         strength: 1,
-        description: `EMA12 below EMA26 — short-term bearish alignment`,
+        shortLabel: "EMA Aligned ↓",
+        description: `EMA12 below EMA26 — short-term EMA stack is bearish. Momentum favors shorts.`,
       });
     }
   }
@@ -400,7 +430,8 @@ export function detectSignals(
         category: "trend",
         direction: "neutral",
         strength: 1,
-        description: `ADX at ${fmt(adx)} — very strong trend, ride the momentum`,
+        shortLabel: `ADX ${fmt(adx, 0)}`,
+        description: `ADX at ${fmt(adx)} — extremely strong trend. Ride the momentum and avoid counter-trend trades.`,
       });
     } else if (adx >= 25) {
       signals.push({
@@ -408,7 +439,8 @@ export function detectSignals(
         category: "trend",
         direction: "neutral",
         strength: 1,
-        description: `ADX at ${fmt(adx)} — trending market, follow the trend`,
+        shortLabel: `ADX ${fmt(adx, 0)}`,
+        description: `ADX at ${fmt(adx)} — trending market confirmed. Trend-following signals are more reliable now.`,
       });
     } else {
       signals.push({
@@ -416,7 +448,8 @@ export function detectSignals(
         category: "trend",
         direction: "neutral",
         strength: 1,
-        description: `ADX at ${fmt(adx)} — ranging market, oscillators more reliable`,
+        shortLabel: `ADX ${fmt(adx, 0)}`,
+        description: `ADX at ${fmt(adx)} — ranging market. Oscillators are your best tools here. Trend signals are noisy.`,
       });
     }
   }
@@ -433,7 +466,8 @@ export function detectSignals(
         category: "volume",
         direction: "bullish",
         strength: 2,
-        description: `OBV confirms uptrend — volume supports price advance`,
+        shortLabel: "OBV Confirms ↑",
+        description: `OBV rising with price — smart money is participating in this rally. Volume confirms the move.`,
       });
     } else if (!obvRising && priceRising) {
       signals.push({
@@ -441,7 +475,8 @@ export function detectSignals(
         category: "volume",
         direction: "bearish",
         strength: 2,
-        description: `OBV divergence — volume not confirming price rally`,
+        shortLabel: "OBV Div ↓",
+        description: `OBV falling while price rises — volume doesn't confirm the rally. This is a distribution warning.`,
       });
     } else if (!obvRising && priceFalling) {
       signals.push({
@@ -449,7 +484,8 @@ export function detectSignals(
         category: "volume",
         direction: "bearish",
         strength: 1,
-        description: `OBV confirms downtrend — volume supports selling`,
+        shortLabel: "OBV Confirms ↓",
+        description: `OBV confirms the downtrend — sellers are active with volume. No sign of absorption yet.`,
       });
     } else if (obvRising && priceFalling) {
       signals.push({
@@ -457,7 +493,8 @@ export function detectSignals(
         category: "volume",
         direction: "bullish",
         strength: 2,
-        description: `OBV bullish divergence — volume accumulating despite price drop`,
+        shortLabel: "OBV Div ↑",
+        description: `OBV rising despite price dropping — smart money is accumulating on weakness. Bullish divergence.`,
       });
     }
   }
@@ -473,7 +510,8 @@ export function detectSignals(
         category: "momentum",
         direction: "bearish",
         strength: 3,
-        description: `CCI at ${fmt(cci)} — extremely overbought`,
+        shortLabel: `CCI ${fmt(cci, 0)}`,
+        description: `CCI at ${fmt(cci)} — extreme overbought. This level rarely sustains. Mean reversion is overdue.`,
       });
     } else if (cci >= 100) {
       signals.push({
@@ -481,7 +519,8 @@ export function detectSignals(
         category: "momentum",
         direction: "bearish",
         strength: 2,
-        description: `CCI at ${fmt(cci)} — overbought`,
+        shortLabel: `CCI ${fmt(cci, 0)}`,
+        description: `CCI at ${fmt(cci)} — overbought zone. Sellers often appear at these levels.`,
       });
     } else if (cci <= -200) {
       signals.push({
@@ -489,7 +528,8 @@ export function detectSignals(
         category: "momentum",
         direction: "bullish",
         strength: 3,
-        description: `CCI at ${fmt(cci)} — extremely oversold`,
+        shortLabel: `CCI ${fmt(cci, 0)}`,
+        description: `CCI at ${fmt(cci)} — extreme oversold. Buyers historically step in hard at these readings.`,
       });
     } else if (cci <= -100) {
       signals.push({
@@ -497,7 +537,8 @@ export function detectSignals(
         category: "momentum",
         direction: "bullish",
         strength: 2,
-        description: `CCI at ${fmt(cci)} — oversold`,
+        shortLabel: `CCI ${fmt(cci, 0)}`,
+        description: `CCI at ${fmt(cci)} — oversold zone. Price is statistically stretched to the downside.`,
       });
     }
 
@@ -507,7 +548,8 @@ export function detectSignals(
         category: "momentum",
         direction: "bullish",
         strength: 1,
-        description: `CCI crossed zero — momentum turning positive`,
+        shortLabel: "CCI Cross +",
+        description: `CCI crossed above zero — momentum just turned positive. Early bullish shift signal.`,
       });
     } else if (prevCci !== undefined && prevCci > 0 && cci <= 0) {
       signals.push({
@@ -515,7 +557,8 @@ export function detectSignals(
         category: "momentum",
         direction: "bearish",
         strength: 1,
-        description: `CCI crossed zero — momentum turning negative`,
+        shortLabel: "CCI Cross −",
+        description: `CCI crossed below zero — momentum just turned negative. Early bearish shift signal.`,
       });
     }
   }
@@ -531,7 +574,8 @@ export function detectSignals(
         category: "momentum",
         direction: "bearish",
         strength: 2,
-        description: `Williams %R at ${fmt(wr)} — overbought zone`,
+        shortLabel: `%R ${fmt(wr, 0)}`,
+        description: `Williams %R at ${fmt(wr)} — overbought zone. Bulls are running out of steam.`,
       });
     } else if (wr <= -80) {
       signals.push({
@@ -539,7 +583,8 @@ export function detectSignals(
         category: "momentum",
         direction: "bullish",
         strength: 2,
-        description: `Williams %R at ${fmt(wr)} — oversold zone`,
+        shortLabel: `%R ${fmt(wr, 0)}`,
+        description: `Williams %R at ${fmt(wr)} — oversold zone. Price is at a relative low. Watch for reversal.`,
       });
     }
 
@@ -549,7 +594,8 @@ export function detectSignals(
         category: "momentum",
         direction: "bullish",
         strength: 1,
-        description: `Williams %R crossing midline — momentum improving`,
+        shortLabel: "%R Cross +50",
+        description: `Williams %R crossed midline upward — momentum improving. Bulls gaining the edge.`,
       });
     } else if (prevWr !== undefined && prevWr > -50 && wr <= -50) {
       signals.push({
@@ -557,7 +603,8 @@ export function detectSignals(
         category: "momentum",
         direction: "bearish",
         strength: 1,
-        description: `Williams %R dropping below midline — momentum weakening`,
+        shortLabel: "%R Cross −50",
+        description: `Williams %R dropped below midline — momentum deteriorating. Bears gaining the edge.`,
       });
     }
   }
@@ -577,7 +624,8 @@ export function detectSignals(
         category: "trend",
         direction: "bullish",
         strength: 3,
-        description: `PSAR flipped bullish at ${fmtCurrency(snap.psarValue)} — trend reversal`,
+        shortLabel: "PSAR Flip ↑",
+        description: `PSAR flipped bullish at ${fmtCurrency(snap.psarValue)} — trend just reversed. Strong entry signal; stops trail below.`,
       });
     } else if (prevSarBullish !== null && prevSarBullish && !sarBullish) {
       signals.push({
@@ -585,7 +633,8 @@ export function detectSignals(
         category: "trend",
         direction: "bearish",
         strength: 3,
-        description: `PSAR flipped bearish at ${fmtCurrency(snap.psarValue)} — trend reversal`,
+        shortLabel: "PSAR Flip ↓",
+        description: `PSAR flipped bearish at ${fmtCurrency(snap.psarValue)} — sellers just took control. Trend reversal confirmed.`,
       });
     } else if (sarBullish) {
       signals.push({
@@ -593,7 +642,8 @@ export function detectSignals(
         category: "trend",
         direction: "bullish",
         strength: 2,
-        description: `PSAR below price at ${fmtCurrency(snap.psarValue)} — bullish trend intact`,
+        shortLabel: "PSAR Below",
+        description: `Parabolic SAR below price at ${fmtCurrency(snap.psarValue)} — bullish trend intact. Dots are your dynamic stop.`,
       });
     } else {
       signals.push({
@@ -601,7 +651,8 @@ export function detectSignals(
         category: "trend",
         direction: "bearish",
         strength: 2,
-        description: `PSAR above price at ${fmtCurrency(snap.psarValue)} — bearish trend intact`,
+        shortLabel: "PSAR Above",
+        description: `Parabolic SAR above price at ${fmtCurrency(snap.psarValue)} — bearish trend dominant. Price is under the SAR ceiling.`,
       });
     }
   }
@@ -620,7 +671,8 @@ export function detectSignals(
           category: "volume",
           direction: "bullish",
           strength: 2,
-          description: `Price crossed above VWAP (${fmtCurrency(snap.vwap)}) — institutional buy signal`,
+          shortLabel: "VWAP Cross ↑",
+          description: `Price crossed above VWAP at ${fmtCurrency(snap.vwap)} — institutions are now net buyers at this level.`,
         });
       } else if (!wasBelow && !nowAbove) {
         signals.push({
@@ -628,7 +680,8 @@ export function detectSignals(
           category: "volume",
           direction: "bearish",
           strength: 2,
-          description: `Price crossed below VWAP (${fmtCurrency(snap.vwap)}) — bearish signal`,
+          shortLabel: "VWAP Cross ↓",
+          description: `Price crossed below VWAP at ${fmtCurrency(snap.vwap)} — institutional sellers are stepping in.`,
         });
       }
     }
@@ -639,7 +692,8 @@ export function detectSignals(
         category: "volume",
         direction: "bullish",
         strength: 1,
-        description: `Price above VWAP (${fmtCurrency(snap.vwap)}) — institutional buy zone`,
+        shortLabel: "> VWAP",
+        description: `Price above VWAP at ${fmtCurrency(snap.vwap)} — buyers are in control at the volume-weighted average.`,
       });
     } else {
       signals.push({
@@ -647,7 +701,8 @@ export function detectSignals(
         category: "volume",
         direction: "bearish",
         strength: 1,
-        description: `Price below VWAP (${fmtCurrency(snap.vwap)}) — selling pressure`,
+        shortLabel: "< VWAP",
+        description: `Price below VWAP at ${fmtCurrency(snap.vwap)} — sellers dominating. VWAP is acting as overhead resistance.`,
       });
     }
   }
@@ -661,7 +716,8 @@ export function detectSignals(
         category: "volatility",
         direction: "neutral",
         strength: 1,
-        description: `High volatility (ATR ${fmtCurrency(snap.atr)}) — widen stops accordingly`,
+        shortLabel: `ATR High`,
+        description: `ATR at ${fmtCurrency(snap.atr)} — ${((ratio - 1) * 100).toFixed(0)}% above average. High volatility: widen your stops or reduce size.`,
       });
     } else if (ratio < 0.7) {
       signals.push({
@@ -669,7 +725,8 @@ export function detectSignals(
         category: "volatility",
         direction: "neutral",
         strength: 1,
-        description: `Low volatility (ATR ${fmtCurrency(snap.atr)}) — potential squeeze ahead`,
+        shortLabel: `ATR Squeeze`,
+        description: `ATR at ${fmtCurrency(snap.atr)} — ${((1 - ratio) * 100).toFixed(0)}% below average. Quiet before the storm. Big move may be loading.`,
       });
     }
   }
@@ -686,7 +743,8 @@ export function detectSignals(
         category: "momentum",
         direction: "bearish",
         strength: 2,
-        description: `Stochastic %K at ${fmt(k)} — overbought`,
+        shortLabel: `Stoch ${fmt(k, 0)}`,
+        description: `Stochastic %K at ${fmt(k)} — overbought. Expect a pullback or consolidation soon.`,
       });
     } else if (k <= 20) {
       signals.push({
@@ -694,7 +752,8 @@ export function detectSignals(
         category: "momentum",
         direction: "bullish",
         strength: 2,
-        description: `Stochastic %K at ${fmt(k)} — oversold`,
+        shortLabel: `Stoch ${fmt(k, 0)}`,
+        description: `Stochastic %K at ${fmt(k)} — oversold. Buyers historically emerge at these levels.`,
       });
     }
 
@@ -706,7 +765,8 @@ export function detectSignals(
           category: "momentum",
           direction: "bullish",
           strength: 2,
-          description: `Stochastic bullish crossover from oversold — strong buy signal`,
+          shortLabel: "Stoch Bull X",
+          description: `Stochastic bullish crossover from oversold — %K crossed above %D below 30. High-quality buy signal.`,
         });
       } else if (prevK >= prevD2 && k < snap.stochD && k > 70) {
         signals.push({
@@ -714,7 +774,8 @@ export function detectSignals(
           category: "momentum",
           direction: "bearish",
           strength: 2,
-          description: `Stochastic bearish crossover from overbought — strong sell signal`,
+          shortLabel: "Stoch Bear X",
+          description: `Stochastic bearish crossover from overbought — %K crossed below %D above 70. High-quality sell signal.`,
         });
       }
     }
