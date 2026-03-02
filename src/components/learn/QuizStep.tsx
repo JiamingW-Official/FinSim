@@ -271,7 +271,7 @@ export function QuizStepComponent({ step, onCorrect, onWrong }: QuizStepProps) {
           onClick={handleContinue}
           initial={{ opacity: 0, y: 8 }}
           animate={{ opacity: 1, y: 0 }}
-          whileHover={{ scale: 1.01, brightness: 1.1 }}
+          whileHover={{ scale: 1.01 }}
           whileTap={{ scale: 0.97 }}
           transition={{ delay: 0.15 }}
           className={cn(

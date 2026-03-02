@@ -24,43 +24,43 @@ export const UNIT_BASICS: Unit = {
       steps: [
         {
           type: "teach",
-          title: "Owning a Piece of the Pie",
+          title: "🍕 Owning a Piece of the Pie",
           content:
-            "A **stock** represents partial ownership in a company. When you buy shares of Apple (AAPL), you literally own a tiny fraction of the company.\n\nCompanies sell shares to raise money for growth. In return, shareholders benefit when the company's value increases.",
+            "A **stock** represents partial ownership in a company. When you buy shares of Apple (AAPL), you literally own a tiny fraction of the company — like owning one slice of a very expensive pizza.\n\nCompanies sell shares to raise money for growth. In return, shareholders benefit when the company's value increases. If Apple doubles in value, your shares do too.",
           visual: "portfolio-pie",
           highlight: ["stock", "shares", "ownership"],
         },
         {
           type: "teach",
-          title: "Why Do Prices Move?",
+          title: "📊 Why Do Prices Move?",
           content:
-            "Stock prices change based on **supply and demand**. If more people want to buy a stock (demand), the price goes up. If more want to sell (supply), the price drops.\n\nFactors that influence demand: company earnings, news, economic conditions, and investor sentiment.",
+            "Stock prices change based on **supply and demand** — just like an auction. If more people want to buy a stock, the price rises. If more people want to sell, the price falls.\n\nThink of concert tickets: when a massive tour is announced, demand spikes and prices skyrocket. Stocks behave the same way when demand outpaces supply.\n\nKey demand drivers: company earnings, news, economic conditions, and investor sentiment.",
         },
         {
           type: "quiz-tf",
           statement: "Buying a stock means you own a small part of the company.",
           correct: true,
           explanation:
-            "Correct! Each share of stock represents fractional ownership. If a company has 1 million shares and you own 100, you own 0.01% of the company.",
+            "Exactly right! Each share represents fractional ownership. If a company has 1 million shares and you own 100, you own 0.01% of the entire company — including a claim on its future profits.",
         },
         {
           type: "quiz-mc",
           question: "What primarily drives stock price changes?",
           options: [
             "Supply and demand from buyers and sellers",
-            "The CEO's personal decisions",
-            "The number of employees",
+            "The CEO's personal decisions alone",
+            "The number of company employees",
             "The company's office location",
           ],
           correctIndex: 0,
           explanation:
-            "Stock prices are driven by supply and demand. When more people want to buy than sell, prices rise. Company fundamentals, news, and sentiment influence this balance.",
+            "Stock prices are a real-time auction driven by supply and demand. When more people want to buy than sell, prices rise. Company earnings, news, and sentiment all influence which way that balance tips.",
         },
         {
           type: "teach",
-          title: "Key Terms to Know",
+          title: "📖 Key Terms Every Trader Knows",
           content:
-            "**Ticker Symbol**: A short code for a stock (e.g., AAPL = Apple, MSFT = Microsoft).\n\n**Market Cap**: Total value of all shares. A $3T market cap means all shares combined are worth $3 trillion.\n\n**P/E Ratio**: Price divided by earnings per share. It tells you how much investors pay for each dollar of profit.",
+            "**Ticker Symbol**: A short code for a stock (AAPL = Apple, TSLA = Tesla, MSFT = Microsoft).\n\n**Market Cap**: Total value of all shares outstanding. A $3 trillion market cap means investors collectively value the company at $3 trillion.\n\n**P/E Ratio**: Price divided by earnings per share. It tells you how much investors pay for each $1 of profit — a gauge of how 'expensive' a stock is relative to what it earns.",
           highlight: ["ticker", "market cap", "P/E ratio"],
         },
         {
@@ -86,21 +86,21 @@ export const UNIT_BASICS: Unit = {
       steps: [
         {
           type: "teach",
-          title: "Anatomy of a Candlestick",
+          title: "🕯️ Anatomy of a Candlestick",
           content:
-            "Each candlestick shows 4 data points for a time period:\n\n• **Open**: The price when the period started\n• **Close**: The price when the period ended\n• **High**: The highest price reached\n• **Low**: The lowest price reached\n\nThe **body** (thick part) shows the open-to-close range. The **wicks** (thin lines) show the high and low.",
+            "Each candlestick packs 4 data points into one visual snapshot:\n\n• **Open**: The price when the period started\n• **Close**: The price when the period ended\n• **High**: The highest price reached (tip of upper wick)\n• **Low**: The lowest price reached (tip of lower wick)\n\nThe **body** (thick rectangle) shows the open-to-close range. The **wicks** (thin lines) show how far price stretched beyond that range.",
           visual: "candlestick",
           highlight: ["open", "close", "high", "low", "body", "wick"],
         },
         {
           type: "teach",
-          title: "Green vs Red Candles",
+          title: "🟢🔴 Green vs Red — The Color Code",
           content:
-            "**Green candle**: Close > Open (price went UP). The body bottom is the open, top is the close.\n\n**Red candle**: Close < Open (price went DOWN). The body top is the open, bottom is the close.\n\nLong bodies = strong movement. Short bodies = indecision. Long wicks = the price was rejected at that level.",
+            "**Green candle**: Close > Open — price went UP. Bottom of the body is the open, top is the close.\n\n**Red candle**: Close < Open — price went DOWN. Top of the body is the open, bottom is the close.\n\nBody size reveals conviction:\n\n• **Long body** = strong directional move (one side dominated)\n• **Short body** = indecision (neither buyers nor sellers won)\n• **Long wick** = that price level was tested and rejected hard",
         },
         {
           type: "quiz-mc",
-          question: "In a green candlestick, where is the opening price?",
+          question: "In a green candlestick, where is the opening price located?",
           options: [
             "Bottom of the body",
             "Top of the body",
@@ -109,7 +109,7 @@ export const UNIT_BASICS: Unit = {
           ],
           correctIndex: 0,
           explanation:
-            "In a green (bullish) candle, the open is at the bottom of the body and the close is at the top, showing the price moved up during that period.",
+            "In a green (bullish) candle, price moved up — so the open is at the bottom and the close is at the top of the body. Green = close higher than open. Simple rule, powerful insight.",
         },
         {
           type: "quiz-tf",
@@ -117,27 +117,27 @@ export const UNIT_BASICS: Unit = {
             "A candlestick with a very long upper wick and small body suggests the price was rejected at higher levels.",
           correct: true,
           explanation:
-            "A long upper wick means buyers pushed the price up but sellers drove it back down. This 'rejection' pattern often signals potential resistance.",
+            "A long upper wick tells the story: buyers pushed the price up, but sellers stepped in hard and drove it back down. That 'rejection' at higher prices signals the bulls couldn't hold their gains.",
         },
         {
           type: "quiz-scenario",
           scenario:
             "You see a candlestick with a tiny body near the bottom and a very long upper wick. The candle is red.",
-          question: "What does this pattern suggest?",
+          question: "What does this pattern most likely suggest?",
           options: [
-            "Strong buying pressure pushed prices up but sellers took over",
-            "The stock is about to split",
-            "Trading volume was very low",
-            "The market is closed",
+            "Strong buying pressure initially, but sellers overwhelmed buyers by the close",
+            "The stock is about to do a stock split",
+            "Trading volume was very low during this period",
+            "The market closed early that day",
           ],
           correctIndex: 0,
           explanation:
-            "This is called a 'shooting star' pattern. The long upper wick shows buyers tried to push the price up but were overwhelmed by sellers, pushing the close back near the open.",
+            "This is the classic 'Shooting Star' — a well-known bearish reversal pattern. Buyers tried hard to push price up (long wick), but sellers crushed the rally and closed near the open. It signals potential weakness ahead.",
         },
         {
           type: "practice",
           instruction:
-            "Watch the candlestick chart unfold. Observe the green and red candles forming.",
+            "Watch the candlestick chart unfold. Notice how green and red candles form with each advancing bar.",
           objective:
             "Advance time to see candlesticks appear — green means price went up, red means down",
           actionType: "observe",
@@ -145,7 +145,7 @@ export const UNIT_BASICS: Unit = {
             priceData: PRACTICE_CANDLES.bars,
             initialReveal: PRACTICE_CANDLES.initialReveal,
             objectives: [{ kind: "advance-time", bars: 8 }],
-            hint: "Watch how the body color changes based on open vs close.",
+            hint: "Watch how the body color changes based on whether the close is higher or lower than the open.",
           },
         },
       ],
@@ -159,9 +159,9 @@ export const UNIT_BASICS: Unit = {
       steps: [
         {
           type: "teach",
-          title: "What is Volume?",
+          title: "📊 What is Volume?",
           content:
-            "**Volume** is the number of shares traded during a time period. It's shown as bars at the bottom of the chart.\n\nVolume tells you the **conviction** behind a price move:\n• High volume + price up = strong buying interest\n• High volume + price down = strong selling pressure\n• Low volume = lack of conviction, move may reverse",
+            "**Volume** is the total number of shares traded during a period. The bars at the bottom of the chart are your volume indicator — taller bars mean more shares changed hands.\n\nVolume reveals the **conviction** behind any price move:\n\n• High volume + price up = real buying conviction (bulls in control)\n• High volume + price down = real selling conviction (bears in control)\n• Low volume + price move = weak participation — the move may fade quickly",
           visual: "indicator-chart",
           highlight: ["volume", "conviction"],
         },
@@ -169,39 +169,39 @@ export const UNIT_BASICS: Unit = {
           type: "quiz-mc",
           question: "A stock price jumps 5% on very low volume. What does this suggest?",
           options: [
-            "The move may lack conviction and could reverse",
+            "The move may lack conviction and could easily reverse",
             "The stock will definitely keep going up",
-            "Volume doesn't matter for price moves",
-            "The stock will be halted",
+            "Volume has no relationship with price moves",
+            "The stock will be halted for volatility",
           ],
           correctIndex: 0,
           explanation:
-            "Low volume during a price spike suggests fewer participants are driving the move. Without broad conviction, the price is more likely to retrace.",
+            "Low volume means few participants drove the move. Without broad participation, the price is fragile. Think of it as 10 people cheering vs. 10,000 — one crowd is far more convincing than the other.",
         },
         {
           type: "quiz-tf",
           statement: "High trading volume always means the stock price is going up.",
           correct: false,
           explanation:
-            "High volume can occur during both upward and downward moves. It indicates strong interest and conviction — in either direction.",
+            "High volume simply means lots of trading activity — it can accompany moves in either direction! Strong volume on a down day signals aggressive selling. The direction of the candle tells you who's winning.",
         },
         {
           type: "teach",
-          title: "Volume Patterns",
+          title: "🔍 Volume Patterns to Watch For",
           content:
-            "**Breakout volume**: When price breaks above resistance on high volume, the breakout is more likely to sustain.\n\n**Climax volume**: An extremely high-volume spike after a long trend can signal exhaustion — the trend may reverse.\n\n**Average volume** varies by stock. AAPL trades ~50M shares/day while a small stock might trade 500K.",
+            "**Breakout volume**: When price clears resistance on unusually high volume, the breakout is more likely to hold. Low-volume breakouts frequently fail and reverse.\n\n**Climax volume**: An extreme volume spike after a prolonged trend often signals exhaustion — the last wave of buyers (or sellers) is piling in emotionally. Reversal risk is high.\n\n**Average volume** varies widely: Apple (AAPL) trades ~60M shares/day, while a small-cap might trade 200K.",
         },
         {
           type: "practice",
           instruction:
-            "Watch the volume bars at the bottom of the chart while advancing time.",
-          objective: "Advance bars and observe how volume relates to price movement",
+            "Advance the chart and watch the volume bars at the bottom while observing price movement.",
+          objective: "Advance bars and notice how volume relates to each price move",
           actionType: "observe",
           challenge: {
             priceData: PRACTICE_VOLUME.bars,
             initialReveal: PRACTICE_VOLUME.initialReveal,
             objectives: [{ kind: "advance-time", bars: 8 }],
-            hint: "Look at the height of volume bars below the candles — taller bars mean more trading activity.",
+            hint: "Look for tall volume bars — do they coincide with the larger price candles?",
           },
         },
       ],
@@ -215,17 +215,17 @@ export const UNIT_BASICS: Unit = {
       steps: [
         {
           type: "teach",
-          title: "Price Has Memory",
+          title: "🧠 Price Has Memory",
           content:
-            "**Support** is a price level where buying pressure tends to prevent further decline — like a floor.\n\n**Resistance** is a price level where selling pressure tends to prevent further advance — like a ceiling.\n\nThese levels form because traders remember past prices. If a stock bounced off $100 three times, many traders will buy again near $100, creating a self-fulfilling support level.",
+            "**Support** is a price level where buying pressure tends to stop a decline — like a floor beneath the stock.\n\n**Resistance** is a price level where selling pressure tends to stop an advance — like a ceiling the stock can't break through.\n\nThese levels form because traders remember the past. If a stock bounced off $100 three times, thousands of traders will buy again near $100, making it a self-fulfilling prophecy. The market has memory.",
           visual: "candlestick",
           highlight: ["support", "resistance", "price level"],
         },
         {
           type: "teach",
-          title: "Why S/R Levels Work",
+          title: "📐 Why S/R Levels Form Where They Do",
           content:
-            "S/R levels form at:\n\n• **Round numbers**: $50, $100, $200 (psychological anchors)\n• **Prior highs/lows**: Previous turning points act as magnets\n• **High-volume areas**: Where many shares changed hands\n\n**Role reversal**: When support breaks, it often becomes resistance — and vice versa. A stock that fell through $100 support may later struggle to rise back above $100 (now resistance).",
+            "Support and resistance cluster around predictable zones:\n\n• **Round numbers**: $50, $100, $200, $500 — psychological anchors where humans naturally cluster orders\n• **Prior highs and lows**: Previous turning points act like magnets for future price action\n• **High-volume areas**: Where millions of shares traded hands create lasting memory in the market\n\n**Role reversal** is powerful: when a support level breaks, it often becomes resistance — and vice versa. Old floors become new ceilings.",
           highlight: ["round numbers", "role reversal", "breakout"],
         },
         {
@@ -233,47 +233,47 @@ export const UNIT_BASICS: Unit = {
           statement: "Support acts like a floor that prevents prices from falling further.",
           correct: true,
           explanation:
-            "Support is a price level where demand (buying pressure) is strong enough to prevent the price from declining further. Traders place buy orders near support, creating a 'floor' effect.",
+            "Exactly. Support is where demand (buyers) steps in with enough force to halt a decline. Traders place buy orders near these levels, creating the 'floor' effect. The more times a level holds, the more significant it becomes.",
         },
         {
           type: "quiz-mc",
-          question: "What typically happens when a support level breaks?",
+          question: "What typically happens when a key support level breaks?",
           options: [
-            "It often becomes a new resistance level",
-            "It immediately becomes stronger support",
-            "Nothing — support levels are random",
-            "The stock always recovers within a day",
+            "It often flips and becomes a new resistance level (role reversal)",
+            "It immediately becomes even stronger support",
+            "Support levels are random — nothing predictable happens",
+            "The stock always recovers to the old support within a day",
           ],
           correctIndex: 0,
           explanation:
-            "When support breaks, it signals that selling pressure overwhelmed buyers. The old support often becomes resistance because traders who bought at that level want to sell to break even if the price recovers to that point.",
+            "Role reversal is real and widely used. Traders who bought at the old support are now underwater. When price recovers to their break-even, they sell — turning the old support into new resistance. It's human psychology at scale.",
         },
         {
           type: "quiz-scenario",
           scenario:
-            "A stock has bounced off the $98 level three times in the past month. It's now trading at $99 and approaching $104, which it has failed to break above twice.",
-          question: "What is the most likely behavior?",
+            "A stock has bounced off the $98 level three times in the past month. It's now at $99 and keeps failing to break above $104 (tested twice).",
+          question: "What behavior does this setup most likely lead to?",
           options: [
-            "The stock will likely trade between $98 support and $104 resistance",
-            "The stock will immediately break above $104",
-            "Support and resistance don't apply to this stock",
-            "The stock will crash below $90",
+            "The stock ranges between $98 support and $104 resistance until one side breaks",
+            "The stock will break above $104 on the very next attempt",
+            "Support and resistance levels don't apply to this stock",
+            "The stock will crash below $90 soon",
           ],
           correctIndex: 0,
           explanation:
-            "With established support at $98 (tested 3×) and resistance at $104 (tested 2×), the stock is most likely to continue ranging between these levels until one side breaks with conviction.",
+            "A well-defined range with tested support ($98 × 3) and resistance ($104 × 2) creates a tradeable range. Traders play bounces at support and fades at resistance until a breakout occurs with volume conviction. Patience is the edge.",
         },
         {
           type: "practice",
           instruction:
-            "Observe price bouncing between support and resistance levels. Watch how price reacts at key levels.",
-          objective: "Watch price interact with S/R levels",
+            "Advance the chart and observe how price bounces between the same levels repeatedly.",
+          objective: "Watch price interact with support and resistance",
           actionType: "observe",
           challenge: {
             priceData: PRACTICE_SUPPORT_RESISTANCE.bars,
             initialReveal: PRACTICE_SUPPORT_RESISTANCE.initialReveal,
             objectives: [{ kind: "advance-time", bars: 10 }],
-            hint: "Advance bars and notice how price bounces near the same levels repeatedly.",
+            hint: "Notice how price approaches the same price zones again and again — that's S/R in action.",
           },
         },
       ],
@@ -287,16 +287,16 @@ export const UNIT_BASICS: Unit = {
       steps: [
         {
           type: "teach",
-          title: "How Trading Works",
+          title: "⚡ How Trading Actually Works",
           content:
-            "In the simulator, you start with **$100,000** in virtual cash. To trade:\n\n1. Select a stock from the Watchlist\n2. Choose an order type (Market or Limit)\n3. Enter the quantity (number of shares)\n4. Click Buy or Sell\n\nA **Market order** executes immediately at the current price. A **Limit order** only executes at your specified price or better.",
+            "In the simulator, you start with **$100,000** in virtual cash. Think of it as a flight simulator for traders — real market mechanics, zero real risk.\n\nTo place a trade:\n\n• Select a stock from the Watchlist\n• Choose your order type (Market or Limit)\n• Enter your quantity (number of shares)\n• Hit Buy or Sell\n\nA **Market order** executes immediately at the current price. A **Limit order** only executes at your specified price or better — more control, but no guarantee of execution.",
           visual: "order-flow",
         },
         {
           type: "teach",
-          title: "Buying: Going Long",
+          title: "📈 Going Long: Betting on Growth",
           content:
-            "When you **buy** (go long), you profit when the price goes UP.\n\n**Example**: Buy 10 shares at $150 = $1,500 invested\nIf price rises to $160: profit = 10 × $10 = **$100**\nIf price falls to $140: loss = 10 × $10 = **-$100**\n\nYour **P&L** (Profit & Loss) updates in real-time in the Positions tab.",
+            "When you **buy** (go long), you profit when price goes UP.\n\n**Example**: Buy 10 shares at $150 = $1,500 invested\n\n• Price rises to $160 → profit = 10 × $10 = **+$100** ✓\n• Price falls to $140 → loss = 10 × $10 = **−$100** ✗\n\nYour **P&L** (Profit & Loss) updates live in the Positions tab as new bars appear. Watch it move — this is how it feels to have real skin in the game.",
         },
         {
           type: "quiz-mc",
@@ -304,32 +304,32 @@ export const UNIT_BASICS: Unit = {
           options: ["$250", "$500", "$200", "$5"],
           correctIndex: 0,
           explanation:
-            "Profit = Quantity × (Current Price - Buy Price) = 50 × ($105 - $100) = 50 × $5 = $250",
+            "Profit = Quantity × (Current Price − Buy Price) = 50 × ($105 − $100) = 50 × $5 = $250. Always calculate both the dollar P&L and the percentage return — they tell different parts of the story.",
         },
         {
           type: "practice",
           instruction:
-            "Buy shares using the Buy button below the chart. Try buying 10 shares!",
+            "Try placing a buy order — select a quantity and click Buy. Watch your position appear instantly.",
           objective: "Place a buy order for at least 1 share",
           actionType: "buy",
           challenge: {
             priceData: PRACTICE_UPTREND.bars,
             initialReveal: PRACTICE_UPTREND.initialReveal,
             objectives: [{ kind: "buy", minQuantity: 1 }],
-            hint: "Select a quantity and click the Buy button.",
+            hint: "Select a quantity (try 5 or 10 shares) and click the Buy button.",
             startingCash: 10000,
           },
         },
         {
           type: "teach",
-          title: "Selling: Closing Your Position",
+          title: "📉 Selling: Closing Your Position",
           content:
-            "To take profit or cut losses, you **sell** your shares. In the Positions tab, you'll see your open positions with current P&L.\n\nYou can also **sell short** — this means betting a stock will go DOWN. You borrow shares, sell them, then buy back later at (hopefully) a lower price.",
+            "To take profit or cut a loss, **sell** your shares from the Positions tab.\n\nYou can also **sell short**: borrow shares, sell them, then buy back at a (hopefully) lower price. Shorting lets you profit when prices fall — the same game, just in reverse.\n\nThe hardest lesson in trading: **cut losers fast, let winners run.** Most beginners do the opposite — they hold losers hoping they'll recover, and sell winners too early out of fear. Discipline beats intelligence here.",
         },
         {
           type: "practice",
           instruction:
-            "Buy shares, advance time, then sell to close your position. Watch your P&L!",
+            "Complete a full trade cycle: buy shares, advance the chart, then sell to close the position.",
           objective: "Complete a full buy-then-sell cycle",
           actionType: "buy",
           challenge: {
@@ -339,7 +339,7 @@ export const UNIT_BASICS: Unit = {
               { kind: "buy", minQuantity: 1 },
               { kind: "sell", minQuantity: 1 },
             ],
-            hint: "Buy first, advance a few bars to see price change, then sell.",
+            hint: "Buy first, advance a few bars to see price change, then sell from the Positions tab.",
             startingCash: 10000,
           },
         },
@@ -354,9 +354,9 @@ export const UNIT_BASICS: Unit = {
       steps: [
         {
           type: "teach",
-          title: "Calculating Profit & Loss",
+          title: "💰 Calculating Profit & Loss",
           content:
-            "**P&L** (Profit and Loss) is the difference between your selling price and buying price, multiplied by the number of shares.\n\nFormula: **P&L = Quantity × (Sell Price - Buy Price)**\n\n**Return %** = (P&L / Cost Basis) × 100\nCost Basis = Quantity × Buy Price",
+            "**P&L** (Profit and Loss) is your trading scorecard. The formula:\n\n**P&L = Quantity × (Sell Price − Buy Price)**\n\n**Return %** = (P&L ÷ Cost Basis) × 100\n\nWhere Cost Basis = Quantity × Buy Price\n\nExample: Buy 20 shares at $50 → cost = $1,000. Sell at $55 → P&L = 20 × $5 = **$100 (+10%).**",
         },
         {
           type: "quiz-mc",
@@ -365,17 +365,17 @@ export const UNIT_BASICS: Unit = {
           options: ["10%", "5%", "$100", "20%"],
           correctIndex: 0,
           explanation:
-            "P&L = 20 × ($55 - $50) = $100. Cost Basis = 20 × $50 = $1,000. Return = ($100 / $1,000) × 100 = 10%.",
+            "P&L = 20 × ($55 − $50) = $100. Cost Basis = 20 × $50 = $1,000. Return = ($100 ÷ $1,000) × 100 = 10%. Always think in percentages — they let you compare any trade on equal terms regardless of size.",
         },
         {
           type: "quiz-scenario",
           scenario:
-            "You bought 100 shares of NVDA at $800. The price dropped to $750. You're feeling nervous.",
+            "You bought 100 shares of NVDA at $800. The price has dropped to $750. You're feeling nervous.",
           question: "What is your current unrealized loss?",
           options: ["-$5,000", "-$50", "-$500", "-$7,500"],
           correctIndex: 0,
           explanation:
-            "Unrealized Loss = 100 × ($750 - $800) = 100 × (-$50) = -$5,000. It's 'unrealized' because you haven't sold yet — the loss isn't locked in.",
+            "Unrealized Loss = 100 × ($750 − $800) = −$5,000. It's 'unrealized' because you haven't sold yet — the loss only locks in when you close the position. Many great trades dip negative before turning profitable. Patience and a plan matter.",
         },
         {
           type: "quiz-tf",
@@ -383,13 +383,13 @@ export const UNIT_BASICS: Unit = {
             "An unrealized loss becomes a realized loss only when you sell the position.",
           correct: true,
           explanation:
-            "Unrealized P&L is your paper gain or loss on an open position. It becomes 'realized' when you close (sell) the position. Until then, the price could recover.",
+            "Correct! Unrealized P&L is your 'paper' gain or loss — it fluctuates with every price tick. The moment you sell, it becomes 'realized' and is permanent. This distinction matters enormously for both psychology and tax purposes.",
         },
         {
           type: "teach",
-          title: "Key P&L Concepts",
+          title: "📊 The P&L Concepts That Matter Most",
           content:
-            "**Unrealized P&L**: Paper profit/loss on positions you still hold.\n**Realized P&L**: Locked-in profit/loss from closed trades.\n**Average Cost**: If you buy at different prices, your avg cost = total spent ÷ total shares.\n\nTip: Don't let emotions drive decisions. A small loss taken early is better than hoping a losing trade will recover.",
+            "**Unrealized P&L**: Paper gain or loss on open positions. Fluctuates every bar — don't let it control your emotions.\n\n**Realized P&L**: Permanent gain or loss from closed trades. This is your actual track record.\n\n**Average Cost**: When you buy at multiple prices (averaging in), avg cost = total spent ÷ total shares.\n\nThe hardest truth in trading: the market doesn't care about your entry price. A small, controlled loss taken early always beats holding a loser and hoping it recovers.",
         },
       ],
     },

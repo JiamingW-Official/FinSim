@@ -8,11 +8,6 @@ import { IndicatorDiagram } from "./visuals/IndicatorDiagram";
 import { RiskPyramid } from "./visuals/RiskPyramid";
 import { PortfolioPie } from "./visuals/PortfolioPie";
 
-interface TeachStepProps {
-  step: TeachStepType;
-  onContinue: () => void;
-}
-
 const VISUAL_MAP = {
   candlestick: CandlestickDiagram,
   "order-flow": OrderFlowDiagram,
@@ -21,8 +16,9 @@ const VISUAL_MAP = {
   "portfolio-pie": PortfolioPie,
 } as const;
 
-function formatContent(content: string): React.ReactNode[] {
-  const parts = content.split(/(\*\*[^*]+\*\*)/g);
+// Render **bold** inline markers
+function formatInline(text: string): React.ReactNode[] {
+  const parts = text.split(/(\*\*[^*]+\*\*)/g);
   return parts.map((part, i) => {
     if (part.startsWith("**") && part.endsWith("**")) {
       return (
@@ -35,71 +31,143 @@ function formatContent(content: string): React.ReactNode[] {
   });
 }
 
-export function TeachStepComponent({ step, onContinue }: TeachStepProps) {
+// Parse content into typed blocks so bullets render as proper lists
+interface Block {
+  kind: "paragraph" | "bullets";
+  text?: string;
+  items?: string[];
+}
+
+function parseBlocks(content: string): Block[] {
+  return content.split("\n\n").map((para) => {
+    const lines = para.split("\n");
+    const hasBullet = lines.some((l) => l.trimStart().startsWith("•"));
+    if (hasBullet) {
+      return {
+        kind: "bullets",
+        items: lines
+          .filter((l) => l.trim().length > 0)
+          .map((l) => l.replace(/^[\s•]+/, "")),
+      };
+    }
+    return { kind: "paragraph", text: para };
+  });
+}
+
+export function TeachStepComponent({ step, onContinue }: { step: TeachStepType; onContinue: () => void }) {
   const VisualComponent = step.visual ? VISUAL_MAP[step.visual] : null;
+  const blocks = parseBlocks(step.content);
 
   return (
     <div className="flex flex-col gap-4">
+      {/* Title */}
       <motion.h2
-        className="text-lg font-bold"
+        className="text-lg font-bold leading-snug"
         initial={{ opacity: 0, y: -8 }}
         animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.3 }}
+        transition={{ duration: 0.28 }}
       >
         {step.title}
       </motion.h2>
 
+      {/* Visual diagram */}
       {VisualComponent && (
         <motion.div
-          className="glass rounded-lg border border-border overflow-hidden"
-          initial={{ opacity: 0, scale: 0.95 }}
+          className="glass rounded-xl border border-border overflow-hidden"
+          initial={{ opacity: 0, scale: 0.96 }}
           animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 0.4, delay: 0.1 }}
+          transition={{ duration: 0.35, delay: 0.08 }}
         >
           <VisualComponent />
         </motion.div>
       )}
 
-      <motion.div
-        className="rounded-lg bg-muted/30 border border-border/50 p-4 space-y-3"
-        initial={{ opacity: 0, y: 8 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.3, delay: 0.2 }}
-      >
-        {step.content.split("\n\n").map((paragraph, i) => (
-          <p key={i} className="whitespace-pre-line text-sm leading-relaxed text-foreground/90">
-            {formatContent(paragraph)}
-          </p>
-        ))}
-      </motion.div>
+      {/* Content blocks — each staggered in */}
+      <div className="space-y-2.5">
+        {blocks.map((block, bi) => {
+          const delay = 0.15 + bi * 0.1;
 
+          if (block.kind === "bullets" && block.items) {
+            return (
+              <motion.div
+                key={bi}
+                className="rounded-xl border border-border/40 bg-muted/25 px-4 py-3.5"
+                initial={{ opacity: 0, y: 6 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.28, delay }}
+              >
+                <ul className="space-y-2">
+                  {block.items.map((item, ii) => (
+                    <motion.li
+                      key={ii}
+                      className="flex items-start gap-2.5 text-sm leading-relaxed text-foreground/90"
+                      initial={{ opacity: 0, x: -6 }}
+                      animate={{ opacity: 1, x: 0 }}
+                      transition={{ delay: delay + ii * 0.06 }}
+                    >
+                      <span className="mt-[5px] h-1.5 w-1.5 shrink-0 rounded-full bg-primary/60" />
+                      <span>{formatInline(item)}</span>
+                    </motion.li>
+                  ))}
+                </ul>
+              </motion.div>
+            );
+          }
+
+          return (
+            <motion.div
+              key={bi}
+              className="rounded-xl border border-border/40 bg-muted/25 px-4 py-3.5"
+              initial={{ opacity: 0, y: 6 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.28, delay }}
+            >
+              <p className="whitespace-pre-line text-sm leading-relaxed text-foreground/90">
+                {formatInline(block.text ?? "")}
+              </p>
+            </motion.div>
+          );
+        })}
+      </div>
+
+      {/* Key terms */}
       {step.highlight && step.highlight.length > 0 && (
         <motion.div
-          className="flex flex-wrap gap-1.5"
+          className="flex flex-wrap items-center gap-1.5"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
-          transition={{ delay: 0.4 }}
+          transition={{ delay: 0.45 }}
         >
-          {step.highlight.map((term) => (
-            <span
+          <span className="text-[9px] font-bold uppercase tracking-wider text-muted-foreground/50 mr-0.5">
+            Key terms
+          </span>
+          {step.highlight.map((term, i) => (
+            <motion.span
               key={term}
-              className="rounded-full bg-primary/10 px-2.5 py-0.5 text-[10px] font-medium text-primary"
+              className="cursor-default rounded-full border border-primary/20 bg-primary/8 px-2.5 py-0.5 text-[10px] font-semibold text-primary transition-all hover:bg-primary/15 hover:border-primary/40"
+              initial={{ scale: 0.75, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              transition={{ delay: 0.48 + i * 0.06, type: "spring", stiffness: 400, damping: 15 }}
+              whileHover={{ scale: 1.07, y: -1 }}
             >
               {term}
-            </span>
+            </motion.span>
           ))}
         </motion.div>
       )}
 
+      {/* Continue */}
       <motion.button
         type="button"
         onClick={onContinue}
-        className="mt-2 w-full rounded-xl bg-primary py-3 text-sm font-bold text-primary-foreground transition-all hover:brightness-110 hover:shadow-[0_0_20px_hsl(var(--primary)/0.3)] active:scale-[0.98]"
+        className="mt-1 w-full rounded-xl bg-primary py-3.5 text-sm font-bold text-primary-foreground transition-all hover:brightness-110 hover:shadow-[0_0_20px_rgba(16,185,129,0.3)]"
         initial={{ opacity: 0, y: 8 }}
         animate={{ opacity: 1, y: 0 }}
-        transition={{ delay: 0.4 }}
+        whileHover={{ scale: 1.01 }}
+        whileTap={{ scale: 0.97 }}
+        transition={{ delay: 0.48 }}
       >
-        Continue
+        Got it, continue →
       </motion.button>
     </div>
   );

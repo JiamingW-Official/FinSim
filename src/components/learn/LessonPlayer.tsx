@@ -154,17 +154,40 @@ export function LessonPlayer({ lesson }: LessonPlayerProps) {
   return (
     <div className="flex h-full flex-col bg-background">
       {/* Top bar: progress + hearts + close */}
-      <div className="flex items-center gap-3 border-b border-border px-4 py-3">
-        <button
-          type="button"
-          onClick={handleClose}
-          className="rounded-lg p-1 text-muted-foreground transition-colors hover:text-foreground hover:bg-accent"
-        >
-          <X className="h-5 w-5" />
-        </button>
+      <div className="flex flex-col border-b border-border px-4 pt-3 pb-2.5 gap-2">
+        {/* Row 1: close | title | combo | hearts */}
+        <div className="flex items-center gap-2">
+          <button
+            type="button"
+            onClick={handleClose}
+            className="rounded-lg p-1 text-muted-foreground transition-colors hover:text-foreground hover:bg-accent shrink-0"
+            title="Back to lessons"
+          >
+            <X className="h-5 w-5" />
+          </button>
 
-        {/* Segmented progress bar — colored by step type */}
-        <div className="flex flex-1 items-center gap-0.5">
+          <span className="flex-1 min-w-0 text-xs font-semibold text-muted-foreground truncate">
+            {lesson.title}
+          </span>
+
+          {currentCombo >= 2 && (
+            <motion.div
+              key={currentCombo}
+              initial={{ scale: 0, rotate: -15 }}
+              animate={{ scale: [0, 1.25, 1], rotate: 0 }}
+              transition={{ type: "spring", stiffness: 500, damping: 12 }}
+              className="flex items-center gap-1 rounded-full bg-amber-500/20 border border-amber-500/30 px-2 py-0.5 shrink-0"
+            >
+              <span className="text-[10px]">🔥</span>
+              <span className="text-[10px] font-black text-amber-400">x{currentCombo}</span>
+            </motion.div>
+          )}
+
+          <HeartsDisplay />
+        </div>
+
+        {/* Row 2: step-type segmented progress bar */}
+        <div className="flex items-center gap-0.5">
           {steps.map((s, i) => {
             const color =
               s.type === "teach"
@@ -173,38 +196,22 @@ export function LessonPlayer({ lesson }: LessonPlayerProps) {
                   ? "bg-amber-500"
                   : "bg-blue-500";
             return (
-              <div key={i} className="h-2 flex-1 rounded-full overflow-hidden bg-muted/50">
-                <div
-                  className={cn(
-                    "h-full rounded-full transition-all duration-300",
-                    i < currentStepIndex
-                      ? `${color} w-full`
-                      : i === currentStepIndex
-                        ? `${color}/60 w-1/2`
-                        : "w-0",
-                  )}
+              <div key={i} className="h-1.5 flex-1 rounded-full overflow-hidden bg-muted/50">
+                <motion.div
+                  className={cn("h-full rounded-full", color)}
+                  initial={{ width: "0%" }}
+                  animate={{
+                    width: i < currentStepIndex ? "100%" : i === currentStepIndex ? "50%" : "0%",
+                  }}
+                  transition={{ duration: 0.35, ease: "easeOut" }}
                 />
               </div>
             );
           })}
+          <span className="ml-2 text-[10px] font-bold tabular-nums text-muted-foreground/50 shrink-0">
+            {currentStepIndex + 1}/{steps.length}
+          </span>
         </div>
-
-        {currentCombo >= 2 && (
-          <motion.div
-            key={currentCombo}
-            initial={{ scale: 0, rotate: -15, y: -4 }}
-            animate={{ scale: [0, 1.25, 1], rotate: 0, y: 0 }}
-            transition={{ type: "spring", stiffness: 500, damping: 12 }}
-            className="flex items-center gap-1 rounded-full bg-amber-500/20 border border-amber-500/30 px-2.5 py-0.5 shrink-0"
-          >
-            <span className="text-[11px]">🔥</span>
-            <span className="text-[11px] font-black text-amber-400">
-              x{currentCombo} COMBO!
-            </span>
-          </motion.div>
-        )}
-
-        <HeartsDisplay />
       </div>
 
       {/* Main content */}

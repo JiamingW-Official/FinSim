@@ -22,7 +22,7 @@ export const UNIT_INDICATORS: Unit = {
       steps: [
         {
           type: "teach",
-          title: "What are Moving Averages?",
+          title: "📈 What are Moving Averages?",
           content:
             "A **Moving Average** smooths out price data to show the overall trend direction.\n\n**SMA (Simple Moving Average)**: Average of the last N closing prices. SMA 20 = average of last 20 closes.\n\n**EMA (Exponential Moving Average)**: Gives more weight to recent prices, making it more responsive to new data.\n\nWhen price is ABOVE the MA → uptrend. When BELOW → downtrend.",
           visual: "indicator-chart",
@@ -30,7 +30,7 @@ export const UNIT_INDICATORS: Unit = {
         },
         {
           type: "teach",
-          title: "Golden Cross & Death Cross",
+          title: "✨ Golden Cross & Death Cross",
           content:
             "**Golden Cross**: Short-term MA crosses ABOVE long-term MA (e.g., SMA 20 crosses above SMA 50). This is a **bullish** signal.\n\n**Death Cross**: Short-term MA crosses BELOW long-term MA. This is a **bearish** signal.\n\nThese signals are more reliable on longer timeframes (daily/weekly) with high volume confirmation.",
         },
@@ -78,7 +78,7 @@ export const UNIT_INDICATORS: Unit = {
       steps: [
         {
           type: "teach",
-          title: "Relative Strength Index (RSI)",
+          title: "⚡ RSI: The Momentum Meter",
           content:
             "**RSI** measures how fast and how much prices change, on a scale of 0 to 100.\n\n• **RSI > 70**: **Overbought** — price may have risen too fast, potential pullback\n• **RSI < 30**: **Oversold** — price may have fallen too fast, potential bounce\n• **RSI 40-60**: Neutral zone\n\nRSI doesn't predict direction — it shows when a move might be overextended.",
           visual: "indicator-chart",
@@ -86,7 +86,7 @@ export const UNIT_INDICATORS: Unit = {
         },
         {
           type: "teach",
-          title: "RSI Divergence",
+          title: "🔍 RSI Divergence: The Hidden Signal",
           content:
             "**Bullish Divergence**: Price makes a lower low, but RSI makes a higher low. The selling pressure is weakening — potential reversal UP.\n\n**Bearish Divergence**: Price makes a higher high, but RSI makes a lower high. The buying pressure is fading — potential reversal DOWN.\n\nDivergence is one of the most powerful signals in technical analysis.",
         },
@@ -149,7 +149,7 @@ export const UNIT_INDICATORS: Unit = {
       steps: [
         {
           type: "teach",
-          title: "MACD Explained",
+          title: "📊 MACD Explained",
           content:
             "**MACD** (Moving Average Convergence Divergence) shows the relationship between two EMAs.\n\n• **MACD Line**: EMA 12 minus EMA 26\n• **Signal Line**: 9-period EMA of the MACD line\n• **Histogram**: The difference between MACD and Signal\n\nWhen MACD crosses ABOVE the signal line → **bullish**\nWhen MACD crosses BELOW the signal line → **bearish**",
           visual: "indicator-chart",
@@ -170,7 +170,7 @@ export const UNIT_INDICATORS: Unit = {
         },
         {
           type: "teach",
-          title: "Reading the Histogram",
+          title: "📉 Reading the MACD Histogram",
           content:
             "The MACD **histogram** visually shows the gap between MACD and signal lines.\n\n• **Growing green bars**: Bullish momentum is increasing\n• **Shrinking green bars**: Bullish momentum is fading\n• **Growing red bars**: Bearish momentum is increasing\n• **Shrinking red bars**: Bearish momentum is fading\n\nThe histogram often changes direction before the actual crossover — an early warning signal.",
         },
@@ -212,7 +212,7 @@ export const UNIT_INDICATORS: Unit = {
       steps: [
         {
           type: "teach",
-          title: "What are Bollinger Bands?",
+          title: "🎯 What are Bollinger Bands?",
           content:
             "**Bollinger Bands** consist of three lines:\n\n• **Middle Band**: 20-period SMA (the average)\n• **Upper Band**: SMA + 2 standard deviations\n• **Lower Band**: SMA - 2 standard deviations\n\nThe bands expand during **high volatility** and contract during **low volatility** (called a 'squeeze').\n\nStatistically, ~95% of price action should stay within the bands.",
           visual: "indicator-chart",
@@ -220,7 +220,7 @@ export const UNIT_INDICATORS: Unit = {
         },
         {
           type: "teach",
-          title: "Trading Bollinger Bands",
+          title: "📐 Trading the Bands",
           content:
             "**Band Bounce**: Price touching the lower band may bounce up. Price touching the upper band may pull back. Use with RSI for confirmation.\n\n**Bollinger Squeeze**: When bands narrow significantly, a big price move is coming. The breakout direction indicates the trend.\n\n**Walking the Band**: In strong trends, price can 'walk' along the upper or lower band for extended periods.",
         },

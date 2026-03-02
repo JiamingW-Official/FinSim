@@ -17,7 +17,7 @@ export const UNIT_ORDERS: Unit = {
       steps: [
         {
           type: "teach",
-          title: "What is a Market Order?",
+          title: "⚡ What is a Market Order?",
           content:
             "A **Market Order** buys or sells immediately at the current best available price. It prioritizes **speed** over **price**.\n\n**Pros**: Guaranteed execution, instant fill\n**Cons**: You might get a slightly different price than expected (called **slippage**), especially with volatile stocks or large orders.",
           visual: "order-flow",
@@ -25,7 +25,7 @@ export const UNIT_ORDERS: Unit = {
         },
         {
           type: "teach",
-          title: "When to Use Market Orders",
+          title: "🎯 When to Use Market Orders",
           content:
             "Use market orders when:\n• You need to enter or exit a position **immediately**\n• The stock is highly liquid (high volume, tight spread)\n• The price is moving fast and you don't want to miss it\n\nAvoid market orders when:\n• Trading illiquid stocks (wide spreads)\n• During market open/close (high volatility)\n• Placing very large orders relative to volume",
         },
@@ -73,7 +73,7 @@ export const UNIT_ORDERS: Unit = {
       steps: [
         {
           type: "teach",
-          title: "What is a Limit Order?",
+          title: "🎚️ What is a Limit Order?",
           content:
             "A **Limit Order** lets you set the maximum price you'll pay (buy) or minimum price you'll accept (sell). Your order only executes at your limit price or better.\n\n**Buy Limit**: \"I want to buy AAPL, but only if the price drops to $170.\"\n**Sell Limit**: \"I'll sell my MSFT shares, but only at $420 or higher.\"",
           visual: "order-flow",
@@ -81,7 +81,7 @@ export const UNIT_ORDERS: Unit = {
         },
         {
           type: "teach",
-          title: "Limit vs Market: The Tradeoff",
+          title: "⚖️ Limit vs Market: The Tradeoff",
           content:
             "**Market Order**: Speed ✓ | Price Control ✗\n**Limit Order**: Speed ✗ | Price Control ✓\n\nWith limit orders, you control the price but risk **non-execution** — if the stock never reaches your limit price, your order stays unfilled.\n\nPro tip: Set buy limits slightly below current price to enter at a discount during dips.",
         },
@@ -141,7 +141,7 @@ export const UNIT_ORDERS: Unit = {
       steps: [
         {
           type: "teach",
-          title: "The Safety Net",
+          title: "🛡️ The Safety Net: Stop-Loss",
           content:
             "A **Stop-Loss** order automatically sells your position when the price drops to a specified level. It's your safety net against large losses.\n\n**Example**: You buy TSLA at $250. You set a stop-loss at $230.\nIf TSLA drops to $230, your shares automatically sell, limiting your loss to $20/share.\n\nWithout a stop-loss, a 50% crash means losing half your investment.",
           visual: "risk-pyramid",
@@ -149,7 +149,7 @@ export const UNIT_ORDERS: Unit = {
         },
         {
           type: "teach",
-          title: "Setting Stop-Loss Levels",
+          title: "📏 Setting Your Stop-Loss Level",
           content:
             "Common approaches:\n\n**Percentage-based**: Set stop at 5-10% below entry price\n**Support-based**: Place stop just below a key support level\n**ATR-based**: Use Average True Range (e.g., 2× ATR below entry)\n\n**Golden Rule**: Never risk more than 1-2% of your total portfolio on a single trade. If your portfolio is $100K, max loss per trade should be $1K-$2K.",
         },
@@ -195,13 +195,13 @@ export const UNIT_ORDERS: Unit = {
       steps: [
         {
           type: "teach",
-          title: "Securing Your Wins",
+          title: "🎯 Securing Your Wins: Take-Profit",
           content:
             "A **Take-Profit** order automatically sells when the price reaches your target level. It locks in gains so you don't have to watch the screen constantly.\n\n**Example**: Buy at $100, set take-profit at $115.\nWhen price hits $115, your shares sell automatically for a 15% gain.\n\nThis prevents the common mistake of being too greedy — watching profits evaporate because you didn't sell.",
         },
         {
           type: "teach",
-          title: "Risk/Reward Ratio",
+          title: "⚖️ The Risk/Reward Ratio",
           content:
             "**Risk/Reward Ratio** compares your potential loss to potential gain.\n\nBuy at $100, Stop-Loss at $90, Take-Profit at $130:\n• Risk: $10 | Reward: $30\n• R:R = 1:3 (risking $1 to make $3)\n\n**Rule of thumb**: Only take trades with R:R of at least 1:2. This means even if you're wrong 50% of the time, you still profit overall.",
           visual: "risk-pyramid",
