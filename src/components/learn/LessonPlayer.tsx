@@ -192,12 +192,15 @@ export function LessonPlayer({ lesson }: LessonPlayerProps) {
         {currentCombo >= 2 && (
           <motion.div
             key={currentCombo}
-            initial={{ scale: 0, rotate: -12 }}
-            animate={{ scale: 1, rotate: 0 }}
+            initial={{ scale: 0, rotate: -15, y: -4 }}
+            animate={{ scale: [0, 1.25, 1], rotate: 0, y: 0 }}
             transition={{ type: "spring", stiffness: 500, damping: 12 }}
-            className="rounded-full bg-amber-500/20 px-2.5 py-0.5 text-[11px] font-bold text-amber-400 shrink-0"
+            className="flex items-center gap-1 rounded-full bg-amber-500/20 border border-amber-500/30 px-2.5 py-0.5 shrink-0"
           >
-            x{currentCombo}
+            <span className="text-[11px]">🔥</span>
+            <span className="text-[11px] font-black text-amber-400">
+              x{currentCombo} COMBO!
+            </span>
           </motion.div>
         )}
 
@@ -218,7 +221,11 @@ export function LessonPlayer({ lesson }: LessonPlayerProps) {
                     (step.type === "quiz-mc" || step.type === "quiz-tf" || step.type === "quiz-scenario") && "step-badge-quiz",
                     step.type === "practice" && "step-badge-practice",
                   )}>
-                    {step.type === "teach" ? "TEACH" : step.type === "practice" ? "PRACTICE" : "QUIZ"}
+                    {step.type === "teach" ? "📖 LEARN"
+                      : step.type === "practice" ? "🎮 PRACTICE"
+                      : step.type === "quiz-scenario" ? "🎭 SCENARIO"
+                      : step.type === "quiz-tf" ? "✅ TRUE / FALSE"
+                      : "❓ QUIZ"}
                   </span>
                 </div>
                 {renderStep(step)}

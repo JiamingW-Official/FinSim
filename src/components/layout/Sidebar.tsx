@@ -3,40 +3,39 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
-import { Home, BarChart3, Briefcase, FlaskConical, GraduationCap, Swords, ScrollText, Crosshair, Trophy, User, Settings, Sparkles, Activity } from "lucide-react";
+import {
+  Home, BarChart3, Briefcase, FlaskConical, GraduationCap,
+  Swords, ScrollText, Crosshair, Trophy, User, Settings, Activity,
+} from "lucide-react";
 import { Tooltip, TooltipTrigger, TooltipContent } from "@/components/ui/tooltip";
 import { cn } from "@/lib/utils";
 
 const NAV_ITEMS = [
-  { icon: Home, label: "Home", href: "/home", activeColor: "text-primary", activeBg: "bg-primary/12", dotColor: "bg-primary" },
-  { icon: BarChart3, label: "Trade", href: "/trade", activeColor: "text-emerald-400", activeBg: "bg-emerald-500/12", dotColor: "bg-emerald-400" },
-  { icon: Activity, label: "Options", href: "/options", activeColor: "text-orange-400", activeBg: "bg-orange-500/12", dotColor: "bg-orange-400" },
-  { icon: Briefcase, label: "Portfolio", href: "/portfolio", activeColor: "text-blue-400", activeBg: "bg-blue-500/12", dotColor: "bg-blue-400" },
-  { icon: FlaskConical, label: "Backtest", href: "/backtest", activeColor: "text-violet-400", activeBg: "bg-violet-500/12", dotColor: "bg-violet-400" },
-  { icon: GraduationCap, label: "Learn", href: "/learn", activeColor: "text-amber-400", activeBg: "bg-amber-500/12", dotColor: "bg-amber-400" },
-  { icon: Swords, label: "Challenges", href: "/challenges", activeColor: "text-rose-400", activeBg: "bg-rose-500/12", dotColor: "bg-rose-400" },
-  { icon: ScrollText, label: "Quests", href: "/quests", activeColor: "text-cyan-400", activeBg: "bg-cyan-500/12", dotColor: "bg-cyan-400" },
-  { icon: Crosshair, label: "Arena", href: "/arena", activeColor: "text-red-400", activeBg: "bg-red-500/12", dotColor: "bg-red-400" },
-  { icon: Trophy, label: "Leaderboard", href: "/leaderboard", activeColor: "text-purple-400", activeBg: "bg-purple-500/12", dotColor: "bg-purple-400" },
-  { icon: User, label: "Profile", href: "/profile", activeColor: "text-indigo-400", activeBg: "bg-indigo-500/12", dotColor: "bg-indigo-400" },
-  { icon: Settings, label: "Settings", href: "/settings", activeColor: "text-gray-400", activeBg: "bg-gray-500/12", dotColor: "bg-gray-400" },
+  { icon: Home,          label: "Home",        href: "/home" },
+  { icon: BarChart3,     label: "Trade",       href: "/trade" },
+  { icon: Activity,      label: "Options",     href: "/options" },
+  { icon: Briefcase,     label: "Portfolio",   href: "/portfolio" },
+  { icon: FlaskConical,  label: "Backtest",    href: "/backtest" },
+  { icon: GraduationCap, label: "Learn",       href: "/learn" },
+  { icon: Swords,        label: "Challenges",  href: "/challenges" },
+  { icon: ScrollText,    label: "Quests",      href: "/quests" },
+  { icon: Crosshair,     label: "Arena",       href: "/arena" },
+  { icon: Trophy,        label: "Leaderboard", href: "/leaderboard" },
+  { icon: User,          label: "Profile",     href: "/profile" },
+  { icon: Settings,      label: "Settings",    href: "/settings" },
 ];
 
 export function Sidebar() {
   const pathname = usePathname();
 
   return (
-    <div className="flex w-14 flex-col items-center border-r border-border bg-sidebar py-3 gap-1">
+    <div className="flex w-14 flex-col items-center border-r border-border/60 bg-sidebar py-4 gap-0.5">
       {/* Logo mark */}
-      <motion.div
-        className="mb-3 flex h-8 w-8 items-center justify-center"
-        whileHover={{ scale: 1.15, rotate: 5 }}
-        whileTap={{ scale: 0.9 }}
-      >
-        <span className="text-lg font-black gradient-text-brand select-none">A</span>
-      </motion.div>
+      <div className="mb-4 flex h-8 w-8 items-center justify-center">
+        <span className="text-[15px] font-black tracking-tight text-primary select-none">FS</span>
+      </div>
 
-      <div className="divider-glow w-6 mb-2" />
+      <div className="w-5 h-px bg-border/50 mb-3" />
 
       {NAV_ITEMS.map((item) => {
         const isActive = pathname === item.href;
@@ -47,51 +46,40 @@ export function Sidebar() {
               <Link
                 href={item.href}
                 className={cn(
-                  "relative flex h-10 w-10 items-center justify-center rounded-lg transition-all duration-200",
+                  "relative flex h-9 w-9 items-center justify-center rounded-md transition-colors duration-150",
                   isActive
-                    ? `${item.activeBg} ${item.activeColor} sidebar-active-indicator`
-                    : "text-muted-foreground hover:bg-accent hover:text-foreground",
+                    ? "bg-primary/10 text-primary"
+                    : "text-muted-foreground/60 hover:bg-accent/40 hover:text-foreground",
                 )}
               >
                 <motion.div
-                  whileHover={{ scale: 1.15 }}
-                  whileTap={{ scale: 0.85 }}
-                  transition={{ type: "spring", stiffness: 500, damping: 20 }}
+                  whileHover={{ scale: 1.12 }}
+                  whileTap={{ scale: 0.88 }}
+                  transition={{ type: "spring", stiffness: 500, damping: 25 }}
                 >
-                  <item.icon className="h-4.5 w-4.5" />
+                  <item.icon className="h-4 w-4" />
                 </motion.div>
 
-                {/* Active glow dot */}
+                {/* Left-edge active indicator */}
                 <AnimatePresence>
                   {isActive && (
                     <motion.span
-                      className={cn("absolute -bottom-0.5 h-1 w-1 rounded-full", item.dotColor)}
-                      initial={{ scale: 0, opacity: 0 }}
-                      animate={{ scale: 1, opacity: 1 }}
-                      exit={{ scale: 0, opacity: 0 }}
-                      transition={{ type: "spring", stiffness: 500, damping: 25 }}
+                      className="absolute -left-[9px] top-1/2 -translate-y-1/2 h-4 w-0.5 rounded-r-full bg-primary"
+                      initial={{ scaleY: 0, opacity: 0 }}
+                      animate={{ scaleY: 1, opacity: 1 }}
+                      exit={{ scaleY: 0, opacity: 0 }}
+                      transition={{ type: "spring", stiffness: 600, damping: 30 }}
                     />
                   )}
                 </AnimatePresence>
               </Link>
             </TooltipTrigger>
-            <TooltipContent side="right" sideOffset={8}>
+            <TooltipContent side="right" sideOffset={10} className="text-xs">
               {item.label}
             </TooltipContent>
           </Tooltip>
         );
       })}
-
-      <div className="flex-1" />
-
-      {/* Bottom sparkle decoration */}
-      <motion.div
-        className="mb-1 text-muted-foreground/20"
-        animate={{ rotate: [0, 180, 360], scale: [0.8, 1, 0.8] }}
-        transition={{ duration: 8, repeat: Infinity, ease: "linear" }}
-      >
-        <Sparkles className="h-3 w-3" />
-      </motion.div>
     </div>
   );
 }

@@ -14,6 +14,8 @@ import { SeasonXPToast } from "@/components/season/SeasonXPToast";
 import { KeyboardShortcutGuide } from "@/components/game/KeyboardShortcutGuide";
 import { ComboMeter } from "@/components/game/ComboMeter";
 import { StreakCelebration } from "@/components/game/StreakCelebration";
+import { TradeConfetti } from "@/components/game/TradeConfetti";
+import { FloatingEmojis } from "@/components/game/FloatingEmojis";
 import { usePreferencesStore } from "@/stores/preferences-store";
 import { cn } from "@/lib/utils";
 
@@ -44,6 +46,8 @@ export default function DashboardLayout({
         <SeasonXPToast />
         <KeyboardShortcutGuide />
         <StreakCelebration />
+        <TradeConfetti />
+        <FloatingEmojis />
       </div>
     </Providers>
   );

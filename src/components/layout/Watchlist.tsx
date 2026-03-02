@@ -1,6 +1,7 @@
 "use client";
 
 import { useMemo } from "react";
+import { motion } from "framer-motion";
 import { useChartStore } from "@/stores/chart-store";
 import { useMarketDataStore } from "@/stores/market-data-store";
 import { WATCHLIST_STOCKS } from "@/types/market";
@@ -9,6 +10,31 @@ import { TrendingUp, TrendingDown, Minus } from "lucide-react";
 import { MiniSparkline } from "./MiniSparkline";
 import { FUNDAMENTALS } from "@/data/fundamentals";
 import { Tooltip, TooltipTrigger, TooltipContent } from "@/components/ui/tooltip";
+
+function MarketMoodOrb({ close, open }: { close: number; open: number }) {
+  const pct = open > 0 ? ((close - open) / open) * 100 : 0;
+  const isBull = pct > 0.2;
+  const isBear = pct < -0.2;
+  const label = isBull ? "Bull" : isBear ? "Bear" : "Flat";
+  const orbColor = isBull ? "bg-emerald-400" : isBear ? "bg-red-400" : "bg-amber-400";
+  const orbGlow = isBull ? "orb-glow-green" : isBear ? "orb-glow-red" : "orb-glow-amber";
+
+  return (
+    <Tooltip>
+      <TooltipTrigger asChild>
+        <div className="flex items-center gap-1 cursor-default">
+          <div
+            className={cn("h-2.5 w-2.5 rounded-full animate-pulse shrink-0", orbColor, orbGlow)}
+          />
+          <span className="text-[8px] text-muted-foreground font-medium">{label}</span>
+        </div>
+      </TooltipTrigger>
+      <TooltipContent side="right" sideOffset={6} className="text-[10px] max-w-40 bg-card border border-border p-2">
+        Market mood based on current bar price action ({pct >= 0 ? "+" : ""}{pct.toFixed(2)}%)
+      </TooltipContent>
+    </Tooltip>
+  );
+}
 
 export function Watchlist() {
   const { currentTicker, setTicker } = useChartStore();
@@ -39,10 +65,13 @@ export function Watchlist() {
 
   return (
     <div className="flex w-48 flex-col border-r border-border bg-card">
-      <div className="border-b border-border px-3 py-2">
+      <div className="border-b border-border px-3 py-2 flex items-center justify-between">
         <span className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">
           Watchlist
         </span>
+        {currentBar && (
+          <MarketMoodOrb close={currentBar.close} open={currentBar.open} />
+        )}
       </div>
       <div className="flex-1 overflow-y-auto">
         {WATCHLIST_STOCKS.map((stock) => {
@@ -53,11 +82,13 @@ export function Watchlist() {
           return (
             <Tooltip key={stock.ticker}>
               <TooltipTrigger asChild>
-                <button
+                <motion.button
                   type="button"
                   onClick={() => setTicker(stock.ticker)}
+                  whileHover={{ x: 2 }}
+                  transition={{ type: "spring", stiffness: 400, damping: 25 }}
                   className={cn(
-                    "group flex w-full items-center justify-between px-3 py-2 text-left transition-all duration-150",
+                    "group flex w-full items-center justify-between px-3 py-2 text-left",
                     isActive
                       ? "bg-primary/5 border-l-2 border-primary"
                       : "border-l-2 border-transparent hover:bg-accent/50",
@@ -104,12 +135,7 @@ export function Watchlist() {
                       </div>
                     </div>
                   )}
-                  {!isActive && (
-                    <div className="text-[10px] text-muted-foreground/50 opacity-0 transition-opacity group-hover:opacity-100">
-                      Click
-                    </div>
-                  )}
-                </button>
+                </motion.button>
               </TooltipTrigger>
               {fund && (
                 <TooltipContent

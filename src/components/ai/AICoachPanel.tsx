@@ -367,6 +367,72 @@ function TradePlanCard({ plan }: { plan: TradePlan }) {
   );
 }
 
+function AlphaBotFace({
+  loading,
+  bias,
+  conviction,
+}: {
+  loading?: boolean;
+  bias?: string;
+  conviction?: string;
+}) {
+  const isHappy = !loading && bias === "bullish" && conviction === "high";
+  const isSad = !loading && bias === "bearish" && conviction === "high";
+
+  return (
+    <motion.div
+      whileHover={{ rotate: [-5, 5, -3, 0] }}
+      transition={{ duration: 0.4 }}
+      className="shrink-0"
+      style={{ originX: "50%", originY: "50%" }}
+    >
+      <svg width="20" height="20" viewBox="0 0 28 28" fill="none">
+        {/* Face */}
+        <rect x="2" y="3" width="24" height="22" rx="5" fill="#18181b" stroke="#3f3f46" strokeWidth="1.5" />
+        {/* Antenna */}
+        <line x1="14" y1="3" x2="14" y2="1" stroke="#6366f1" strokeWidth="1.5" />
+        <circle cx="14" cy="0.8" r="1.5" fill="#6366f1" />
+
+        {/* Expression */}
+        {loading ? (
+          <g>
+            <circle cx="9.5" cy="13" r="2.5" fill="#60a5fa" opacity="0.5" />
+            <circle cx="18.5" cy="13" r="2.5" fill="#60a5fa" opacity="0.5" />
+            {/* Bouncing dots */}
+            <motion.circle cx="10" cy="20.5" r="1.3" fill="#6366f1"
+              animate={{ cy: [20.5, 18.5, 20.5] }}
+              transition={{ repeat: Infinity, duration: 0.7, delay: 0 }} />
+            <motion.circle cx="14" cy="20.5" r="1.3" fill="#6366f1"
+              animate={{ cy: [20.5, 18.5, 20.5] }}
+              transition={{ repeat: Infinity, duration: 0.7, delay: 0.15 }} />
+            <motion.circle cx="18" cy="20.5" r="1.3" fill="#6366f1"
+              animate={{ cy: [20.5, 18.5, 20.5] }}
+              transition={{ repeat: Infinity, duration: 0.7, delay: 0.3 }} />
+          </g>
+        ) : isHappy ? (
+          <g>
+            <path d="M7 13.5 Q9.5 10.5 12 13.5" stroke="#60a5fa" strokeWidth="2" fill="none" strokeLinecap="round" />
+            <path d="M16 13.5 Q18.5 10.5 21 13.5" stroke="#60a5fa" strokeWidth="2" fill="none" strokeLinecap="round" />
+            <path d="M9 19.5 Q14 23.5 19 19.5" stroke="#34d399" strokeWidth="1.5" fill="none" strokeLinecap="round" />
+          </g>
+        ) : isSad ? (
+          <g>
+            <path d="M7 11.5 Q9.5 14.5 12 11.5" stroke="#94a3b8" strokeWidth="2" fill="none" strokeLinecap="round" />
+            <path d="M16 11.5 Q18.5 14.5 21 11.5" stroke="#94a3b8" strokeWidth="2" fill="none" strokeLinecap="round" />
+            <path d="M9 21.5 Q14 17.5 19 21.5" stroke="#f87171" strokeWidth="1.5" fill="none" strokeLinecap="round" />
+          </g>
+        ) : (
+          <g>
+            <circle cx="9.5" cy="12.5" r="2" fill="#60a5fa" />
+            <circle cx="18.5" cy="12.5" r="2" fill="#60a5fa" />
+            <path d="M9.5 19.5 L18.5 19.5" stroke="#52525b" strokeWidth="1.5" strokeLinecap="round" />
+          </g>
+        )}
+      </svg>
+    </motion.div>
+  );
+}
+
 function LivePositionCoach({
   unrealizedPnL,
   unrealizedPnLPercent,
@@ -423,9 +489,12 @@ export function AICoachPanel() {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [selectedSignalId, setSelectedSignalId] = useState<string | null>(null);
+  const [showCursor, setShowCursor] = useState(false);
   const typingRef = useRef<ReturnType<typeof setInterval> | null>(null);
   const reanalysisTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
   const autoTriggerTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const cursorTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const textScrollRef = useRef<HTMLDivElement>(null);
   const prevRevealedRef = useRef(0);
 
   const positions = useTradingStore((s) => s.positions);
@@ -449,15 +518,24 @@ export function AICoachPanel() {
     (fullText: string) => {
       stopTyping();
       setSummaryText("");
+      setShowCursor(false);
+      if (cursorTimerRef.current) clearTimeout(cursorTimerRef.current);
       const chars = fullText.split("");
       let i = 0;
       typingRef.current = setInterval(() => {
         if (i < chars.length) {
           setSummaryText((prev) => prev + chars[i]);
           i++;
+          // Auto-scroll text area
+          if (textScrollRef.current) {
+            textScrollRef.current.scrollTop = textScrollRef.current.scrollHeight;
+          }
         } else {
           stopTyping();
           setLoading(false);
+          // Show blinking cursor for 3s then fade
+          setShowCursor(true);
+          cursorTimerRef.current = setTimeout(() => setShowCursor(false), 3000);
         }
       }, 14);
     },
@@ -617,6 +695,7 @@ export function AICoachPanel() {
       stopTyping();
       if (reanalysisTimer.current) clearTimeout(reanalysisTimer.current);
       if (autoTriggerTimer.current) clearTimeout(autoTriggerTimer.current);
+      if (cursorTimerRef.current) clearTimeout(cursorTimerRef.current);
     };
   }, [stopTyping]);
 
@@ -686,7 +765,7 @@ export function AICoachPanel() {
         className="flex w-full items-center justify-between px-3 py-2 text-xs hover:bg-accent/20 transition-colors"
       >
         <div className="flex items-center gap-1.5 flex-wrap">
-          <span className="text-sm leading-none">{moodEmoji}</span>
+          <AlphaBotFace loading={loading} bias={result?.bias} conviction={result?.conviction} />
           <span className="font-bold">AlphaBot</span>
           {result && !expanded && (
             <>
@@ -757,6 +836,13 @@ export function AICoachPanel() {
                           {loading && (
                             <span className="ml-0.5 inline-block h-2 w-0.5 animate-pulse bg-primary" />
                           )}
+                          {!loading && showCursor && (
+                            <motion.span
+                              className="ml-0.5 inline-block h-2 w-0.5 bg-primary"
+                              animate={{ opacity: [1, 0, 1] }}
+                              transition={{ repeat: 5, duration: 0.5 }}
+                            />
+                          )}
                         </div>
                       )}
                     </>
@@ -793,10 +879,17 @@ export function AICoachPanel() {
 
                       {/* Typed summary */}
                       {(summaryText || loading) && (
-                        <div className="rounded-md bg-background/60 px-2 py-1.5 text-[10px] leading-relaxed text-foreground/80 italic">
+                        <div ref={textScrollRef} className="rounded-md bg-background/60 px-2 py-1.5 text-[10px] leading-relaxed text-foreground/80 italic max-h-24 overflow-y-auto scrollbar-hide">
                           {summaryText}
                           {loading && (
                             <span className="ml-0.5 inline-block h-2 w-0.5 animate-pulse bg-primary" />
+                          )}
+                          {!loading && showCursor && (
+                            <motion.span
+                              className="ml-0.5 inline-block h-2 w-0.5 bg-primary"
+                              animate={{ opacity: [1, 0, 1] }}
+                              transition={{ repeat: 5, duration: 0.5 }}
+                            />
                           )}
                         </div>
                       )}

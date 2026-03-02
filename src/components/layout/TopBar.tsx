@@ -7,7 +7,7 @@ import { WATCHLIST_STOCKS } from "@/types/market";
 import { formatCurrency, formatPercent, formatDate } from "@/lib/utils";
 import { usePriceFlash, useAnimatedNumber } from "@/hooks/usePriceFlash";
 import { cn } from "@/lib/utils";
-import { TrendingUp, TrendingDown, Activity, Volume2, VolumeX, BookOpen } from "lucide-react";
+import { TrendingUp, TrendingDown, Volume2, VolumeX, BookOpen } from "lucide-react";
 import { useSettingsStore } from "@/stores/settings-store";
 import { useLearnStore } from "@/stores/learn-store";
 import { XPBar } from "@/components/game/XPBar";
@@ -53,11 +53,9 @@ export function TopBar() {
   return (
     <div className="glass flex h-10 items-center justify-between border-b border-border/50 px-4">
       <div className="flex items-center gap-4">
-        <span className="text-sm font-black tracking-wider">
-          <span className="inline-flex items-center gap-1.5 gradient-text-brand">
-            <Activity className="h-3.5 w-3.5 text-primary" />
-            ALPHA DECK
-          </span>
+        <span className="inline-flex items-center gap-1.5">
+          <span className="text-sm font-black tracking-tight text-primary">FS</span>
+          <span className="text-sm font-semibold tracking-wide text-foreground/80">FinSim</span>
         </span>
         <div className="h-4 w-px bg-border" />
         <div className="flex items-center gap-2 text-sm">

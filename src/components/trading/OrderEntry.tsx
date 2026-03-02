@@ -1,6 +1,8 @@
 "use client";
 
 import { useState, useCallback } from "react";
+import { motion } from "framer-motion";
+import { AnimatedNumber } from "@/components/motion/AnimatedNumber";
 import { useChartStore } from "@/stores/chart-store";
 import { useTradingStore } from "@/stores/trading-store";
 import { useMarketDataStore } from "@/stores/market-data-store";
@@ -280,12 +282,15 @@ export function OrderEntry() {
         {ORDER_TYPES.map((ot) => {
           const Icon = ot.icon;
           return (
-            <button
+            <motion.button
               key={ot.value}
               type="button"
               onClick={() => setOrderType(ot.value)}
+              whileHover={{ y: -1 }}
+              whileTap={{ y: 1, scale: 0.95 }}
+              transition={{ type: "spring", stiffness: 400, damping: 20 }}
               className={cn(
-                "rounded py-1 text-[10px] font-medium transition-all duration-150",
+                "rounded py-1 text-[10px] font-medium transition-colors duration-150",
                 orderType === ot.value
                   ? "bg-background text-foreground shadow-sm"
                   : "text-muted-foreground hover:text-foreground",
@@ -295,7 +300,7 @@ export function OrderEntry() {
                 <Icon className="h-2.5 w-2.5" />
                 {ot.label}
               </span>
-            </button>
+            </motion.button>
           );
         })}
       </div>
@@ -396,9 +401,11 @@ export function OrderEntry() {
               <DollarSign className="h-3 w-3" />
               {side === "buy" ? "Est. Cost" : "Est. Proceeds"}
             </span>
-            <span className="tabular-nums font-medium">
-              {formatCurrency(estimatedCost)}
-            </span>
+            <AnimatedNumber
+              value={estimatedCost}
+              format={(n) => formatCurrency(n)}
+              className="tabular-nums font-medium"
+            />
           </div>
           <div className="flex items-center justify-between text-[10px] text-muted-foreground">
             <span>Commission</span>
@@ -453,22 +460,27 @@ export function OrderEntry() {
       )}
 
       {/* Execute button */}
-      <Button
-        onClick={() => setShowConfirm(true)}
-        disabled={!canExecute}
-        className={cn(
-          "w-full font-semibold transition-all duration-200",
-          orderType !== "market"
-            ? "bg-[#f59e0b] hover:bg-[#d97706] text-white hover:shadow-[0_0_15px_rgba(245,158,11,0.3)]"
-            : side === "buy"
-              ? "bg-[#10b981] hover:bg-[#059669] text-white hover:shadow-[0_0_15px_rgba(16,185,129,0.3)]"
-              : "bg-[#ef4444] hover:bg-[#dc2626] text-white hover:shadow-[0_0_15px_rgba(239,68,68,0.3)]",
-        )}
+      <motion.div
+        whileTap={canExecute ? { scale: 0.97 } : {}}
+        transition={{ type: "spring", stiffness: 500, damping: 20 }}
       >
-        {orderType === "market"
-          ? `${side === "buy" ? "BUY" : "SELL"} ${currentTicker}`
-          : `PLACE ${orderType.replace("_", " ").toUpperCase()}`}
-      </Button>
+        <Button
+          onClick={() => setShowConfirm(true)}
+          disabled={!canExecute}
+          className={cn(
+            "w-full font-semibold transition-all duration-200",
+            orderType !== "market"
+              ? "bg-[#f59e0b] hover:bg-[#d97706] text-white hover:shadow-[0_0_15px_rgba(245,158,11,0.3)]"
+              : side === "buy"
+                ? "bg-[#10b981] hover:bg-[#059669] text-white hover:shadow-[0_0_15px_rgba(16,185,129,0.3)]"
+                : "bg-[#ef4444] hover:bg-[#dc2626] text-white hover:shadow-[0_0_15px_rgba(239,68,68,0.3)]",
+          )}
+        >
+          {orderType === "market"
+            ? `${side === "buy" ? "BUY" : "SELL"} ${currentTicker}`
+            : `PLACE ${orderType.replace("_", " ").toUpperCase()}`}
+        </Button>
+      </motion.div>
 
       {/* Confirmation dialog */}
       <TradeConfirmDialog
