@@ -282,6 +282,195 @@ export const GLOSSARY: GlossaryEntry[] = [
     category: "fundamental",
     example: "Beta 1.5 → stock moves 50% more than the market. If S&P rises 10%, this stock may rise ~15%.",
   },
+  {
+    term: "Forward P/E",
+    definition:
+      "Valuation using the next 12 months' estimated earnings instead of past earnings. A lower Forward P/E than trailing P/E means analysts expect earnings to grow — the company is getting cheaper relative to future profits.",
+    category: "fundamental",
+    example: "NVDA trailing P/E 55× vs Forward P/E 35× means analysts expect rapid earnings growth to shrink the multiple.",
+  },
+  {
+    term: "EV/EBITDA",
+    definition:
+      "Enterprise Value divided by Earnings Before Interest, Taxes, Depreciation, and Amortization. Compares companies across different capital structures (debt levels). Often called the 'takeover multiple.'",
+    category: "fundamental",
+    example: "A 20× EV/EBITDA for a tech company is considered normal; above 40× suggests premium growth expectations.",
+  },
+  {
+    term: "Gross Margin",
+    definition:
+      "Revenue minus cost of goods sold, expressed as a percentage of revenue. High gross margin (>50%) signals pricing power — the company can charge more than it costs to produce. Margin compression is a red flag.",
+    category: "fundamental",
+    example: "Apple's 46% gross margin vs a hardware competitor's 22% shows Apple's brand premium and product mix advantage.",
+  },
+  {
+    term: "Operating Margin",
+    definition:
+      "Operating income divided by revenue. Shows how efficiently the company runs its core business after paying operating expenses (salaries, rent, R&D) but before interest and taxes.",
+    category: "fundamental",
+    example: "A company with 30% operating margin keeps $0.30 of every revenue dollar as operating profit — very healthy for tech.",
+  },
+  {
+    term: "Net Margin",
+    definition:
+      "Net income divided by revenue. The true bottom line — what percentage of every sales dollar becomes profit after all expenses, interest, and taxes. Hard to manipulate like operating metrics.",
+    category: "fundamental",
+    example: "AAPL net margin ~25% means Apple keeps $0.25 of every dollar of revenue as pure profit.",
+  },
+  {
+    term: "ROE",
+    definition:
+      "Return on Equity — net income divided by shareholders' equity. Measures how effectively management converts invested capital into profit. Above 15% is considered strong; above 30% is exceptional.",
+    category: "fundamental",
+    example: "ROE of 147% means AAPL generates $1.47 in profit for every $1 of equity — exceptional capital efficiency.",
+  },
+  {
+    term: "Debt-to-Equity",
+    definition:
+      "Total debt divided by shareholders' equity. Measures financial leverage. High D/E means the company relies heavily on borrowed money — riskier in downturns but can amplify returns in good times.",
+    category: "fundamental",
+    example: "D/E of 2.0 means the company has $2 of debt for every $1 of equity — moderate leverage for established firms.",
+  },
+  {
+    term: "Current Ratio",
+    definition:
+      "Current assets divided by current liabilities. Measures ability to pay short-term obligations. Above 1.5 is healthy; below 1.0 signals potential liquidity risk.",
+    category: "fundamental",
+    example: "Current ratio 1.8 means the company has $1.80 in liquid assets for every $1 of upcoming bills — comfortable buffer.",
+  },
+  {
+    term: "Free Cash Flow",
+    definition:
+      "Cash generated from operations minus capital expenditures. Unlike earnings, FCF is hard to manipulate with accounting. Companies with strong FCF can fund growth, pay dividends, or buy back shares.",
+    category: "fundamental",
+    example: "AAPL FCF of $108B/year funds its massive buyback program — Warren Buffett calls FCF the real earnings number.",
+  },
+  {
+    term: "Short Float",
+    definition:
+      "The percentage of a company's tradeable shares currently sold short by bearish traders. High short float (>15%) can trigger violent short squeezes if positive news forces covering.",
+    category: "fundamental",
+    example: "A stock with 35% short float that beats earnings expectations can surge 30%+ as shorts rush to cover losses.",
+  },
+  {
+    term: "Short Squeeze",
+    definition:
+      "When a heavily-shorted stock rises rapidly, forcing short-sellers to buy shares to close positions, which pushes the price even higher in a self-reinforcing feedback loop.",
+    category: "fundamental",
+    example: "GameStop (GME) went from $20 to $480 in days during a famous 2021 short squeeze as retail traders piled in.",
+  },
+  {
+    term: "Earnings Surprise",
+    definition:
+      "The difference between actual reported EPS and Wall Street analyst consensus estimate. Positive surprise (beat) often causes gap-ups; negative surprise (miss) causes gap-downs.",
+    category: "fundamental",
+    example: "Company estimates $1.50 EPS, reports $1.68 → +12% positive surprise. Stocks often move 5–10% on a 10%+ surprise.",
+  },
+  {
+    term: "Analyst Rating",
+    definition:
+      "Consensus recommendation from Wall Street analysts: Strong Buy → Buy → Hold → Sell → Strong Sell. Most analysts cluster around 'Buy' — a 'Hold' is often their polite way of saying 'avoid.'",
+    category: "fundamental",
+    example: "42 analysts cover AAPL: 28 Buy, 10 Hold, 4 Sell → consensus rating is Buy with $245 price target.",
+  },
+  {
+    term: "Price Target",
+    definition:
+      "An analyst's 12-month price forecast for a stock. The consensus price target is the average across all covering analysts. Upside to PT = (PT − current price) / current price × 100%.",
+    category: "fundamental",
+    example: "Stock at $188, consensus PT $245 → 30% upside to target. High PT range ($195–$300) shows analyst disagreement.",
+  },
+  {
+    term: "P/B Ratio",
+    definition:
+      "Price-to-Book Ratio: share price divided by book value per share (assets minus liabilities). Value investors traditionally look for P/B below 1 (trading below asset value). Less useful for asset-light tech firms.",
+    category: "fundamental",
+    example: "Bank stock P/B 0.85 means you're buying $1 of bank assets for $0.85 — a potential value opportunity.",
+  },
+  {
+    term: "P/S Ratio",
+    definition:
+      "Price-to-Sales Ratio: market cap divided by annual revenue. Useful for growth companies without earnings yet. High P/S requires strong revenue growth to justify the premium.",
+    category: "fundamental",
+    example: "SaaS startup P/S of 20× is expensive but may be justified if revenue is growing 50% annually.",
+  },
+  {
+    term: "PEG Ratio",
+    definition:
+      "P/E Ratio divided by the annual earnings growth rate. Peter Lynch popularized this: PEG below 1.0 may indicate undervalued relative to growth; above 2.0 may be expensive even if growth is fast.",
+    category: "fundamental",
+    example: "Stock with P/E 40 and 40% earnings growth has PEG of 1.0 — fairly priced for its growth rate.",
+  },
+  {
+    term: "Dividend Payout Ratio",
+    definition:
+      "Percentage of earnings paid as dividends. High payout (>80%) leaves little for reinvestment; low payout (<30%) signals reinvestment focus. A payout over 100% means dividends exceed earnings — unsustainable.",
+    category: "fundamental",
+    example: "Payout ratio 40%: for every $1 earned, $0.40 goes to dividends and $0.60 is reinvested into growth.",
+  },
+  {
+    term: "Float",
+    definition:
+      "The total number of shares available for public trading, excluding locked-up shares held by insiders, institutions with restrictions, or the company itself. Smaller float = more volatile price moves.",
+    category: "fundamental",
+    example: "Company with 100M total shares outstanding but 40M insider shares has a float of only 60M — easier to move.",
+  },
+  {
+    term: "Earnings Catalyst",
+    definition:
+      "A scheduled event that could significantly move a stock price: quarterly earnings report, product launch, FDA drug approval decision, analyst day, or major contract announcement.",
+    category: "fundamental",
+    example: "An FDA approval date 3 weeks away is a catalyst — biotech stocks often double or lose 60% on these events.",
+  },
+  {
+    term: "Sector Rotation",
+    definition:
+      "The movement of investment capital from one industry sector to another as economic conditions change. Early cycle: Financials, Consumer Discretionary. Late cycle: Energy, Materials. Recession: Utilities, Healthcare.",
+    category: "fundamental",
+    example: "Rising interest rates → investors rotate from growth tech into banks and value stocks that benefit from higher rates.",
+  },
+  {
+    term: "Valuation Premium",
+    definition:
+      "When a stock trades at a higher P/E or other multiple than its peers, justified by superior growth, competitive moat, management quality, or recurring revenue quality.",
+    category: "fundamental",
+    example: "NVDA trades at 2× its sector's average P/E — the premium reflects its AI dominance and pricing power in GPUs.",
+  },
+  {
+    term: "Bull Case",
+    definition:
+      "The optimistic scenario for a stock — what needs to go right for the stock to hit the analyst's high price target. Usually assumes best-case revenue growth, margin expansion, and multiple expansion.",
+    category: "fundamental",
+    example: "AAPL bull case ($300 PT): iPhone supercycle + Services revenue grows 20%/year + Vision Pro hits mainstream adoption.",
+  },
+  {
+    term: "Bear Case",
+    definition:
+      "The pessimistic scenario — what risks or negative events could send the stock to its low price target. Important for risk management: always know the bear case before buying.",
+    category: "fundamental",
+    example: "AAPL bear case ($195 PT): China revenue declines, antitrust forces App Store changes, consumer spending slows.",
+  },
+  {
+    term: "Revenue Growth YoY",
+    definition:
+      "Year-over-year revenue increase expressed as a percentage. One of the most important growth metrics — consistently high revenue growth (>20%) usually justifies premium valuations.",
+    category: "fundamental",
+    example: "NVDA revenue grew +122% YoY in fiscal 2024 driven by AI/data center demand — unprecedented for a company its size.",
+  },
+  {
+    term: "EPS Growth",
+    definition:
+      "Increase in earnings per share compared to the same period in the prior year. Drives stock valuations long-term — ultimately stock prices follow EPS trends. Negative EPS growth is a significant red flag.",
+    category: "fundamental",
+    example: "TSLA EPS growth of -52% YoY — earnings declining rapidly despite still-positive EPS. This drove significant multiple compression.",
+  },
+  {
+    term: "Insider Ownership",
+    definition:
+      "Percentage of outstanding shares owned by company executives, directors, and major shareholders. High insider ownership (>10%) aligns management incentives with shareholders — they win only when you win.",
+    category: "fundamental",
+    example: "Founders who own 20%+ of their company have strong incentive to maximize long-term value — skin in the game.",
+  },
 ];
 
 const glossaryMap = new Map<string, GlossaryEntry>();

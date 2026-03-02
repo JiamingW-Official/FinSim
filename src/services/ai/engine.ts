@@ -32,6 +32,7 @@ import {
   analyzeTraderPersonality,
   type TraderProfile,
 } from "./personality";
+import { FUNDAMENTALS } from "@/data/fundamentals";
 
 export type { RegimeAnalysis, Divergence, PriceLevel, PivotPoints, TraderProfile };
 
@@ -358,6 +359,42 @@ function detectSetup(
   return null;
 }
 
+// ─── Fundamental Insight ─────────────────────────────────────────────────────
+
+function getFundamentalInsight(ticker: string, currentPrice: number): string | null {
+  const f = FUNDAMENTALS[ticker];
+  if (!f || f.sector === "ETF") return null;
+
+  const pePremium =
+    f.sectorAvgPE > 0
+      ? Math.round(((f.peRatio - f.sectorAvgPE) / f.sectorAvgPE) * 100)
+      : 0;
+  const valuation =
+    pePremium > 25
+      ? "expensive vs peers"
+      : pePremium < -15
+      ? "undervalued vs peers"
+      : "fairly valued";
+  const growth =
+    f.epsGrowthYoY > 20
+      ? "high-growth"
+      : f.epsGrowthYoY < 0
+      ? "declining earnings"
+      : "moderate growth";
+  const earningsStr =
+    f.lastEarningsResult === "beat"
+      ? `beat estimates by ${f.earningsSurprisePct}%`
+      : f.lastEarningsResult === "miss"
+      ? `missed estimates by ${Math.abs(f.earningsSurprisePct)}%`
+      : "met estimates";
+  const targetUpside =
+    currentPrice > 0 && f.priceTarget > 0
+      ? Math.round((f.priceTarget / currentPrice - 1) * 100)
+      : null;
+
+  return `${ticker} fundamentals: ${valuation} at ${f.peRatio}× P/E (sector avg ${f.sectorAvgPE}×); ${growth} (EPS ${f.epsGrowthYoY > 0 ? "+" : ""}${f.epsGrowthYoY}% YoY); ${f.analystRating} consensus (${f.analystCount} analysts${targetUpside != null ? `, PT $${f.priceTarget} = ${targetUpside > 0 ? "+" : ""}${targetUpside}% upside` : ""}); last quarter ${earningsStr}.`;
+}
+
 // ─── Insights Builder ────────────────────────────────────────────────────────
 
 function buildInsights(
@@ -369,6 +406,7 @@ function buildInsights(
   bias: string,
   regime: RegimeAnalysis,
   currentPrice: number,
+  ticker?: string,
 ): string[] {
   const insights: string[] = [];
   const rsi = snap.rsi;
@@ -448,6 +486,12 @@ function buildInsights(
         `Your ${traderProfile.style} profile (${wr}% WR) is best in setups that match your style. Size appropriately if this deviates from your playbook.`,
       );
     }
+  }
+
+  // 6. Fundamental insight (injected when fewer than 3 technical insights available)
+  if (insights.length < 3 && ticker) {
+    const fundInsight = getFundamentalInsight(ticker, currentPrice);
+    if (fundInsight) insights.push(fundInsight);
   }
 
   return insights.slice(0, 4);
@@ -719,7 +763,7 @@ export function analyzeTradeSetup(params: {
   }
 
   const setupName = detectSetup(allSignals, divergences, bias, conviction, current, levels, current.close);
-  const insights = buildInsights(allSignals, divergences, levels, current, traderProfile, bias, regime, current.close);
+  const insights = buildInsights(allSignals, divergences, levels, current, traderProfile, bias, regime, current.close, currentTicker);
   const tradePlan = buildTradePlan(bias, conviction, current.close, levels, current);
 
   return {
@@ -903,6 +947,9 @@ export function generateMarketBrief(params: {
 
   // Build contextual insights for brief mode
   const briefInsights: string[] = [];
+  // Prepend fundamental insight when available (ticker context becomes second)
+  const fundInsight = getFundamentalInsight(ticker, current.close);
+  if (fundInsight) briefInsights.push(fundInsight);
   briefInsights.push(`${info.context}`);
   if (divergences.length > 0) {
     const d = divergences[0];
