@@ -98,6 +98,8 @@ export function DailyRewardsPopup() {
             <button
               type="button"
               onClick={handleClose}
+              title="Close"
+              aria-label="Close"
               className="absolute right-3 top-3 z-10 rounded-lg p-1.5 text-muted-foreground hover:text-foreground hover:bg-accent/30 transition-colors"
             >
               <X className="h-4 w-4" />
