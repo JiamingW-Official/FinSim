@@ -51,7 +51,7 @@ export function TopBar() {
   const xpPercent = level >= 50 ? 100 : Math.min(((xp - currentLevelXP) / (nextLevelXP - currentLevelXP)) * 100, 100);
 
   return (
-    <div className="glass flex h-10 items-center justify-between border-b border-border/50 px-4">
+    <div className="relative glass flex h-10 items-center justify-between px-4 border-b border-border/30 after:absolute after:inset-x-0 after:bottom-0 after:h-px after:bg-gradient-to-r after:from-transparent after:via-primary/20 after:to-transparent">
       <div className="flex items-center gap-4">
         <span className="inline-flex items-center gap-1.5">
           <span className="text-sm font-black tracking-tight text-primary">FS</span>

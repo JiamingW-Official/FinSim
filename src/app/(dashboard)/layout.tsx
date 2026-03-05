@@ -32,7 +32,7 @@ export default function DashboardLayout({
         <TopBar />
         <div className="flex flex-1 overflow-hidden">
           <Sidebar />
-          <main className="relative flex-1 overflow-hidden">
+          <main className="relative flex-1 overflow-hidden bg-[radial-gradient(ellipse_80%_30%_at_50%_0%,rgba(16,185,129,0.04),transparent)]">
             <PageTransition>{children}</PageTransition>
           </main>
         </div>
