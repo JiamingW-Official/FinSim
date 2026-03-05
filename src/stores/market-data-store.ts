@@ -1,7 +1,7 @@
 import { create } from "zustand";
 import type { OHLCVBar } from "@/types/market";
 
-const INITIAL_REVEALED = 50;
+const INITIAL_REVEALED = 1300; // ~50 days × 26 bars/day (15m bars)
 
 interface MarketDataState {
   allData: OHLCVBar[];

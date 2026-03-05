@@ -5,6 +5,7 @@ import { useEffect } from "react";
 import { useChartStore } from "@/stores/chart-store";
 import { useMarketDataStore } from "@/stores/market-data-store";
 import type { OHLCVBar } from "@/types/market";
+import { generateIntradayBars } from "@/services/market-data/intraday-generator";
 
 function getDateRange() {
   const to = new Date();
@@ -41,9 +42,11 @@ export function useMarketData() {
     queryFn: () => fetchBars(currentTicker, "1d", from, to),
   });
 
+  // Expand daily bars → 15m bars before storing. 15m is the core trading unit.
   useEffect(() => {
     if (query.data && query.data.length > 0) {
-      setAllData(query.data);
+      const intradayBars = generateIntradayBars(query.data, "15m");
+      setAllData(intradayBars);
     }
   }, [query.data, setAllData]);
 

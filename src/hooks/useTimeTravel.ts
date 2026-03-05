@@ -8,12 +8,17 @@ import { useGameStore } from "@/stores/game-store";
 import { toast } from "sonner";
 import { formatCurrency } from "@/lib/utils";
 
+// Speed intervals in ms per 15m bar
 const SPEED_INTERVALS: Record<number, number> = {
-  1: 1000,
-  2: 500,
-  5: 200,
-  10: 100,
+  1: 500,
+  2: 250,
+  5: 100,
+  10: 50,
 };
+
+function getDateKey(timestamp: number): string {
+  return new Date(timestamp).toISOString().slice(0, 10);
+}
 
 export function useTimeTravel() {
   const intervalRef = useRef<NodeJS.Timeout | null>(null);
@@ -45,6 +50,8 @@ export function useTimeTravel() {
       setIsPlaying(false);
       return;
     }
+
+    const prevBar = store.allData[store.revealedCount - 1];
     incrementRevealed();
     const newBar = store.allData[store.revealedCount];
     if (newBar) {
@@ -69,6 +76,16 @@ export function useTimeTravel() {
 
       // Record equity snapshot
       tradingStore.recordEquitySnapshot(newBar.timestamp);
+
+      // Day boundary detection — toast when a new trading day starts
+      if (prevBar && getDateKey(prevBar.timestamp) !== getDateKey(newBar.timestamp)) {
+        const dayLabel = new Date(prevBar.timestamp).toLocaleDateString("en-US", {
+          weekday: "short",
+          month: "short",
+          day: "numeric",
+        });
+        toast.info(`Day complete: ${dayLabel}`, { duration: 2500 });
+      }
     }
   }, [incrementRevealed, setIsPlaying, updatePositionPrice, currentTicker]);
 
@@ -99,6 +116,34 @@ export function useTimeTravel() {
     [setRevealedCount, allData, updatePositionPrice, currentTicker],
   );
 
+  // Skip to start of next trading day
+  const skipToNextDay = useCallback(() => {
+    const store = useMarketDataStore.getState();
+    if (store.revealedCount >= store.allData.length) return;
+
+    const currentDate = store.allData[store.revealedCount - 1]
+      ? getDateKey(store.allData[store.revealedCount - 1].timestamp)
+      : null;
+
+    let target = store.revealedCount;
+    while (target < store.allData.length) {
+      if (getDateKey(store.allData[target].timestamp) !== currentDate) break;
+      target++;
+    }
+
+    if (target < store.allData.length) {
+      setRevealedCount(target + 1);
+      const bar = store.allData[target];
+      if (bar) {
+        updatePositionPrice(currentTicker, bar.close);
+
+        // Process any pending orders for the skipped bars
+        const tradingStore = useTradingStore.getState();
+        tradingStore.recordEquitySnapshot(bar.timestamp);
+      }
+    }
+  }, [setRevealedCount, updatePositionPrice, currentTicker]);
+
   const reset = useCallback(() => {
     resetMarketData();
   }, [resetMarketData]);
@@ -111,7 +156,7 @@ export function useTimeTravel() {
     }
 
     if (isPlaying) {
-      const ms = SPEED_INTERVALS[speed] ?? 1000;
+      const ms = SPEED_INTERVALS[speed] ?? 500;
       intervalRef.current = setInterval(advance, ms);
     }
 
@@ -130,6 +175,7 @@ export function useTimeTravel() {
   }, [atEnd, isPlaying, setIsPlaying]);
 
   return {
+    allData,
     currentBar,
     isPlaying,
     speed,
@@ -142,6 +188,7 @@ export function useTimeTravel() {
     pause,
     changeSpeed,
     jumpTo,
+    skipToNextDay,
     reset,
   };
 }

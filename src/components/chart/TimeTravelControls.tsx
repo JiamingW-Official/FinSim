@@ -1,5 +1,6 @@
 "use client";
 
+import { useMemo } from "react";
 import {
   Play,
   Pause,
@@ -7,7 +8,7 @@ import {
   ChevronRight,
   RotateCcw,
   Zap,
-  Calendar,
+  SkipForward,
 } from "lucide-react";
 import { useTimeTravel } from "@/hooks/useTimeTravel";
 import { cn } from "@/lib/utils";
@@ -17,17 +18,26 @@ import { soundEngine } from "@/services/audio/sound-engine";
 
 const SPEEDS = [1, 2, 5, 10];
 
-function formatDayLabel(timestamp: number): string {
+function formatTimeLabel(timestamp: number): string {
+  return new Date(timestamp).toLocaleTimeString("en-US", {
+    hour: "numeric",
+    minute: "2-digit",
+    hour12: true,
+    timeZone: "UTC",
+  });
+}
+
+function formatDateLabel(timestamp: number): string {
   return new Date(timestamp).toLocaleDateString("en-US", {
     weekday: "short",
     month: "short",
     day: "numeric",
-    year: "numeric",
   });
 }
 
 export function TimeTravelControls() {
   const {
+    allData,
     currentBar,
     isPlaying,
     speed,
@@ -39,6 +49,7 @@ export function TimeTravelControls() {
     pause,
     changeSpeed,
     jumpTo,
+    skipToNextDay,
     reset,
   } = useTimeTravel();
 
@@ -51,6 +62,16 @@ export function TimeTravelControls() {
     soundEngine.playClick();
     advance();
   };
+
+  // Compute current day number
+  const dayNum = useMemo(() => {
+    if (allData.length === 0 || revealedCount === 0) return 0;
+    const seen = new Set<string>();
+    for (let i = 0; i < revealedCount && i < allData.length; i++) {
+      seen.add(new Date(allData[i].timestamp).toISOString().slice(0, 10));
+    }
+    return seen.size;
+  }, [allData, revealedCount]);
 
   return (
     <div className="flex items-center gap-2 border-t border-border bg-card px-3 py-1.5">
@@ -67,7 +88,7 @@ export function TimeTravelControls() {
         </Button>
       </motion.div>
 
-      {/* Prev day */}
+      {/* Prev bar */}
       <motion.div whileTap={{ scale: 0.9 }}>
         <Button
           variant="ghost"
@@ -75,7 +96,7 @@ export function TimeTravelControls() {
           className="h-7 w-7 shrink-0"
           onClick={handlePrev}
           disabled={revealedCount <= 1}
-          title="Previous Day (←)"
+          title="Previous Bar (←)"
         >
           <ChevronLeft className="h-4 w-4" />
         </Button>
@@ -106,7 +127,7 @@ export function TimeTravelControls() {
         </Button>
       </motion.div>
 
-      {/* Next day */}
+      {/* Next bar */}
       <motion.div whileTap={{ scale: 0.9 }}>
         <Button
           variant="ghost"
@@ -114,9 +135,23 @@ export function TimeTravelControls() {
           className="h-7 w-7 shrink-0"
           onClick={handleNext}
           disabled={atEnd}
-          title="Next Day (→)"
+          title="Next Bar (→)"
         >
           <ChevronRight className="h-4 w-4" />
+        </Button>
+      </motion.div>
+
+      {/* Skip to next day */}
+      <motion.div whileTap={{ scale: 0.9 }}>
+        <Button
+          variant="ghost"
+          size="icon"
+          className="h-7 w-7 shrink-0"
+          onClick={() => { soundEngine.playClick(); skipToNextDay(); }}
+          disabled={atEnd}
+          title="Skip to Next Day (⏭)"
+        >
+          <SkipForward className="h-3.5 w-3.5" />
         </Button>
       </motion.div>
 
@@ -154,19 +189,21 @@ export function TimeTravelControls() {
         />
       </div>
 
-      {/* Day counter + date */}
+      {/* Day counter + time + date */}
       <div className="flex shrink-0 items-center gap-2 text-xs text-muted-foreground">
-        <div className="flex items-center gap-1">
-          <Calendar className="h-3 w-3 text-muted-foreground/60" />
-          <span className="tabular-nums">
-            <span className="font-bold text-foreground">{revealedCount}</span>
-            <span className="text-muted-foreground/60">/{totalBars}</span>
-          </span>
-        </div>
+        <span className="tabular-nums">
+          <span className="font-bold text-foreground">Day {dayNum}</span>
+        </span>
         {currentBar && (
-          <span className="hidden whitespace-nowrap font-medium text-foreground sm:block">
-            {formatDayLabel(currentBar.timestamp)}
-          </span>
+          <>
+            <span className="text-muted-foreground/40">·</span>
+            <span className="tabular-nums font-medium text-primary">
+              {formatTimeLabel(currentBar.timestamp)}
+            </span>
+            <span className="hidden whitespace-nowrap font-medium text-foreground sm:block">
+              {formatDateLabel(currentBar.timestamp)}
+            </span>
+          </>
         )}
         {atEnd && (
           <span className="rounded bg-[#ef4444]/10 px-1.5 py-0.5 text-[9px] font-bold text-[#ef4444]">

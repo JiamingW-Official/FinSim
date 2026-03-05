@@ -23,8 +23,10 @@ import { useChartStore, type IndicatorType } from "@/stores/chart-store";
 import { INTRADAY_TIMEFRAMES } from "@/types/market";
 import type { Timeframe } from "@/types/market";
 import {
-  generateIntradayBars,
+  aggregateDailyBars,
+  aggregateHourlyBars,
   aggregateWeeklyBars,
+  expand15mTo5m,
 } from "@/services/market-data/intraday-generator";
 import { formatCurrency } from "@/lib/utils";
 import { cn } from "@/lib/utils";
@@ -105,7 +107,7 @@ export function CandlestickChart() {
   const allData = useMarketDataStore((s) => s.allData);
   const revealedCount = useMarketDataStore((s) => s.revealedCount);
   const isPlaying = useMarketDataStore((s) => s.isPlaying);
-  // visibleData = revealed daily bars (source of truth)
+  // visibleData = revealed 15m bars (source of truth for time progression)
   const visibleData = useMemo(
     () => allData.slice(0, revealedCount),
     [allData, revealedCount],
@@ -117,14 +119,15 @@ export function CandlestickChart() {
   const currentTicker = useChartStore((s) => s.currentTicker);
   const activeIndicators = useChartStore((s) => s.activeIndicators);
   const currentTimeframe = useChartStore((s) => s.currentTimeframe);
-  const isIntraday = INTRADAY_TIMEFRAMES.has(currentTimeframe as Timeframe);
-
-  // Derived display bars — expand to intraday or aggregate to weekly
+  // Derived display bars — allData is 15m; aggregate up or expand down
   const displayBars = useMemo(() => {
-    if (isIntraday) return generateIntradayBars(visibleData, currentTimeframe as Timeframe);
-    if (currentTimeframe === "1wk") return aggregateWeeklyBars(visibleData);
+    if (currentTimeframe === "5m") return expand15mTo5m(visibleData);
+    if (currentTimeframe === "15m") return visibleData;
+    if (currentTimeframe === "1h") return aggregateHourlyBars(visibleData);
+    if (currentTimeframe === "1d") return aggregateDailyBars(visibleData);
+    if (currentTimeframe === "1wk") return aggregateWeeklyBars(aggregateDailyBars(visibleData));
     return visibleData;
-  }, [visibleData, currentTimeframe, isIntraday]);
+  }, [visibleData, currentTimeframe]);
 
   // Ticker change detection for transition animation
   useEffect(() => {
@@ -254,13 +257,14 @@ export function CandlestickChart() {
     };
   }, [handleCrosshairMove]);
 
-  // Update timeVisible based on timeframe
+  // Update timeVisible based on timeframe (show HH:MM for sub-daily)
+  const showTime = currentTimeframe === "5m" || currentTimeframe === "15m" || currentTimeframe === "1h";
   useEffect(() => {
     if (!chartRef.current) return;
     chartRef.current.applyOptions({
-      timeScale: { timeVisible: isIntraday },
+      timeScale: { timeVisible: showTime },
     });
-  }, [isIntraday]);
+  }, [showTime]);
 
   // Update candle/volume data when displayBars changes
   useEffect(() => {
@@ -293,24 +297,15 @@ export function CandlestickChart() {
     }
   }, [displayBars, isPlaying]);
 
-  // Trade markers — only shown in daily / weekly view (timestamps match daily bars)
+  // Trade markers — match trades to displayBars timestamps
   useEffect(() => {
     if (!candleSeriesRef.current) return;
-
-    // Clear markers when in intraday view
-    if (isIntraday) {
-      if (markersPluginRef.current) {
-        markersPluginRef.current.detach();
-        markersPluginRef.current = null;
-      }
-      return;
-    }
 
     const markers: SeriesMarker<UTCTimestamp>[] = tradeHistory
       .filter((t) => t.ticker === currentTicker)
       .filter((t) => {
         const barTime = t.simulationDate / 1000;
-        return visibleData.some(
+        return displayBars.some(
           (bar) => Math.floor(bar.timestamp / 1000) === Math.floor(barTime),
         );
       })
@@ -335,7 +330,7 @@ export function CandlestickChart() {
         markers,
       );
     }
-  }, [tradeHistory, currentTicker, visibleData, isIntraday]);
+  }, [tradeHistory, currentTicker, displayBars]);
 
   // Average cost price line
   useEffect(() => {
@@ -428,7 +423,7 @@ export function CandlestickChart() {
     }
     indicatorSeriesRefs.current.clear();
 
-    if (visibleData.length === 0 || isIntraday) return;
+    if (displayBars.length === 0) return;
 
     const addLineSeries = (
       key: string,
@@ -460,26 +455,26 @@ export function CandlestickChart() {
     for (const ind of activeIndicators) {
       switch (ind) {
         case "sma20":
-          addLineSeries("sma20", calculateSMA(visibleData, 20), INDICATOR_COLORS.sma20);
+          addLineSeries("sma20", calculateSMA(displayBars, 20), INDICATOR_COLORS.sma20);
           break;
         case "sma50":
-          addLineSeries("sma50", calculateSMA(visibleData, 50), INDICATOR_COLORS.sma50);
+          addLineSeries("sma50", calculateSMA(displayBars, 50), INDICATOR_COLORS.sma50);
           break;
         case "ema12":
-          addLineSeries("ema12", calculateEMA(visibleData, 12), INDICATOR_COLORS.ema12);
+          addLineSeries("ema12", calculateEMA(displayBars, 12), INDICATOR_COLORS.ema12);
           break;
         case "ema26":
-          addLineSeries("ema26", calculateEMA(visibleData, 26), INDICATOR_COLORS.ema26);
+          addLineSeries("ema26", calculateEMA(displayBars, 26), INDICATOR_COLORS.ema26);
           break;
         case "bollinger": {
-          const bb = calculateBollingerBands(visibleData);
+          const bb = calculateBollingerBands(displayBars);
           addLineSeries("bb_upper", bb.upper, INDICATOR_COLORS.bollinger, 1, 2);
           addLineSeries("bb_middle", bb.middle, INDICATOR_COLORS.bollinger, 1, 0);
           addLineSeries("bb_lower", bb.lower, INDICATOR_COLORS.bollinger, 1, 2);
           break;
         }
         case "rsi": {
-          const rsiData = calculateRSI(visibleData);
+          const rsiData = calculateRSI(displayBars);
           addLineSeries("rsi", rsiData, INDICATOR_COLORS.rsi, 1, 0, "rsi");
           chart.priceScale("rsi").applyOptions({
             scaleMargins: { top: 0.85, bottom: 0 },
@@ -487,7 +482,7 @@ export function CandlestickChart() {
           break;
         }
         case "macd": {
-          const macdResult = calculateMACD(visibleData);
+          const macdResult = calculateMACD(displayBars);
           // Histogram series (green/red bars)
           if (macdResult.histogram.length > 0) {
             const histSeries = chart.addSeries(HistogramSeries, {
@@ -514,7 +509,7 @@ export function CandlestickChart() {
           break;
         }
         case "stochastic": {
-          const stochResult = calculateStochastic(visibleData);
+          const stochResult = calculateStochastic(displayBars);
           addLineSeries("stoch_k", stochResult.kLine, INDICATOR_COLORS.stochastic_k, 1, 0, "stochastic");
           addLineSeries("stoch_d", stochResult.dLine, INDICATOR_COLORS.stochastic_d, 1, 0, "stochastic");
           chart.priceScale("stochastic").applyOptions({
@@ -523,7 +518,7 @@ export function CandlestickChart() {
           break;
         }
         case "atr": {
-          const atrData = calculateATR(visibleData);
+          const atrData = calculateATR(displayBars);
           addLineSeries("atr", atrData, INDICATOR_COLORS.atr, 1, 0, "atr");
           chart.priceScale("atr").applyOptions({
             scaleMargins: { top: 0.85, bottom: 0 },
@@ -531,12 +526,12 @@ export function CandlestickChart() {
           break;
         }
         case "vwap": {
-          const vwapData = calculateVWAP(visibleData);
+          const vwapData = calculateVWAP(displayBars);
           addLineSeries("vwap", vwapData, INDICATOR_COLORS.vwap, 2);
           break;
         }
         case "adx": {
-          const adxData = calculateADX(visibleData);
+          const adxData = calculateADX(displayBars);
           addLineSeries("adx", adxData, INDICATOR_COLORS.adx, 1, 0, "adx");
           chart.priceScale("adx").applyOptions({
             scaleMargins: { top: 0.85, bottom: 0 },
@@ -544,7 +539,7 @@ export function CandlestickChart() {
           break;
         }
         case "obv": {
-          const obvData = calculateOBV(visibleData);
+          const obvData = calculateOBV(displayBars);
           addLineSeries("obv", obvData, INDICATOR_COLORS.obv, 1, 0, "obv");
           chart.priceScale("obv").applyOptions({
             scaleMargins: { top: 0.85, bottom: 0 },
@@ -552,7 +547,7 @@ export function CandlestickChart() {
           break;
         }
         case "cci": {
-          const cciData = calculateCCI(visibleData);
+          const cciData = calculateCCI(displayBars);
           addLineSeries("cci", cciData, INDICATOR_COLORS.cci, 1, 0, "cci");
           chart.priceScale("cci").applyOptions({
             scaleMargins: { top: 0.85, bottom: 0 },
@@ -560,7 +555,7 @@ export function CandlestickChart() {
           break;
         }
         case "williams_r": {
-          const wrData = calculateWilliamsR(visibleData);
+          const wrData = calculateWilliamsR(displayBars);
           addLineSeries("williams_r", wrData, INDICATOR_COLORS.williams_r, 1, 0, "williams_r");
           chart.priceScale("williams_r").applyOptions({
             scaleMargins: { top: 0.85, bottom: 0 },
@@ -568,12 +563,12 @@ export function CandlestickChart() {
           break;
         }
         case "psar": {
-          const psarData = calculateParabolicSAR(visibleData);
+          const psarData = calculateParabolicSAR(displayBars);
           // Split into bullish (SAR below close) and bearish (SAR above close) series
           const psarBull: { time: number; value: number }[] = [];
           const psarBear: { time: number; value: number }[] = [];
           psarData.forEach((pt, i) => {
-            const bar = visibleData[i + 1]; // psarData starts from index 1
+            const bar = displayBars[i + 1]; // psarData starts from index 1
             if (bar && pt.value < bar.close) {
               psarBull.push(pt);
             } else if (bar) {
@@ -601,7 +596,7 @@ export function CandlestickChart() {
       }
       indicatorSeriesRefs.current.clear();
     };
-  }, [activeIndicators, visibleData, isIntraday]);
+  }, [activeIndicators, displayBars]);
 
   // Current bar data for the OHLCV overlay (when crosshair isn't active)
   const lastBar =
@@ -615,7 +610,7 @@ export function CandlestickChart() {
           low: lastBar.low,
           close: lastBar.close,
           volume: lastBar.volume,
-          time: isIntraday
+          time: showTime
             ? new Date(lastBar.timestamp).toLocaleString("en-US", {
                 month: "short",
                 day: "numeric",

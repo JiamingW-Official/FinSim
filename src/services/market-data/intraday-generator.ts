@@ -110,6 +110,131 @@ export function generateIntradayBars(
 }
 
 /**
+ * Aggregate 15m bars back into daily bars (group by UTC date).
+ */
+export function aggregateDailyBars(bars: OHLCVBar[]): OHLCVBar[] {
+  if (bars.length === 0) return [];
+
+  const dayGroups = new Map<string, OHLCVBar[]>();
+  for (const bar of bars) {
+    const dateKey = new Date(bar.timestamp).toISOString().slice(0, 10);
+    if (!dayGroups.has(dateKey)) dayGroups.set(dateKey, []);
+    dayGroups.get(dateKey)!.push(bar);
+  }
+
+  const result: OHLCVBar[] = [];
+  const sortedKeys = Array.from(dayGroups.keys()).sort();
+
+  for (const dateKey of sortedKeys) {
+    const group = dayGroups.get(dateKey)!;
+    const first = group[0];
+    const last = group[group.length - 1];
+    let hi = first.high,
+      lo = first.low,
+      vol = 0;
+    for (const b of group) {
+      if (b.high > hi) hi = b.high;
+      if (b.low < lo) lo = b.low;
+      vol += b.volume;
+    }
+    result.push({
+      timestamp: first.timestamp,
+      open: first.open,
+      high: hi,
+      low: lo,
+      close: last.close,
+      volume: vol,
+      ticker: first.ticker,
+      timeframe: "1d",
+    });
+  }
+  return result;
+}
+
+/**
+ * Aggregate 15m bars into hourly bars (group by hour boundary).
+ */
+export function aggregateHourlyBars(bars: OHLCVBar[]): OHLCVBar[] {
+  if (bars.length === 0) return [];
+
+  const hourGroups = new Map<number, OHLCVBar[]>();
+  for (const bar of bars) {
+    // Floor to hour boundary
+    const hourKey = Math.floor(bar.timestamp / 3600000) * 3600000;
+    if (!hourGroups.has(hourKey)) hourGroups.set(hourKey, []);
+    hourGroups.get(hourKey)!.push(bar);
+  }
+
+  const result: OHLCVBar[] = [];
+  const sortedKeys = Array.from(hourGroups.keys()).sort((a, b) => a - b);
+
+  for (const hourKey of sortedKeys) {
+    const group = hourGroups.get(hourKey)!;
+    const first = group[0];
+    const last = group[group.length - 1];
+    let hi = first.high,
+      lo = first.low,
+      vol = 0;
+    for (const b of group) {
+      if (b.high > hi) hi = b.high;
+      if (b.low < lo) lo = b.low;
+      vol += b.volume;
+    }
+    result.push({
+      timestamp: first.timestamp,
+      open: first.open,
+      high: hi,
+      low: lo,
+      close: last.close,
+      volume: vol,
+      ticker: first.ticker,
+      timeframe: "1h",
+    });
+  }
+  return result;
+}
+
+/**
+ * Expand 15m bars to 5m bars (3 sub-bars per 15m bar via mini Brownian bridge).
+ */
+export function expand15mTo5m(bars15m: OHLCVBar[]): OHLCVBar[] {
+  if (bars15m.length === 0) return [];
+
+  const result: OHLCVBar[] = [];
+  const intervalMs = 5 * 60 * 1000;
+
+  for (const bar of bars15m) {
+    const { open, high, low, close, volume, ticker, timestamp } = bar;
+    const range = high - low || Math.abs(close) * 0.002 || 0.01;
+    const rand = mulberry32(hashSeed(timestamp, ticker + "5m"));
+
+    // 3 sub-bars: anchored open→mid1→mid2→close
+    const mid1 = open + (close - open) * 0.33 + (rand() - 0.5) * range * 0.3;
+    const mid2 = open + (close - open) * 0.67 + (rand() - 0.5) * range * 0.3;
+    const pts = [open, mid1, mid2, close];
+
+    for (let i = 0; i < 3; i++) {
+      const bOpen = pts[i];
+      const bClose = pts[i + 1];
+      const bMin = Math.min(bOpen, bClose);
+      const bMax = Math.max(bOpen, bClose);
+      const wick = range * 0.02 * rand();
+      result.push({
+        timestamp: timestamp + i * intervalMs,
+        open: bOpen,
+        high: Math.min(bMax + wick, high),
+        low: Math.max(bMin - wick, low),
+        close: bClose,
+        volume: Math.round(volume / 3),
+        ticker,
+        timeframe: "5m",
+      });
+    }
+  }
+  return result;
+}
+
+/**
  * Aggregate daily bars into weekly bars (Monday-anchored).
  */
 export function aggregateWeeklyBars(dailyBars: OHLCVBar[]): OHLCVBar[] {

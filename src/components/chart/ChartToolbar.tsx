@@ -1,7 +1,7 @@
 "use client";
 
 import { useChartStore, type IndicatorType } from "@/stores/chart-store";
-import { TIMEFRAME_OPTIONS, WATCHLIST_STOCKS, INTRADAY_TIMEFRAMES } from "@/types/market";
+import { TIMEFRAME_OPTIONS, WATCHLIST_STOCKS } from "@/types/market";
 import type { Timeframe } from "@/types/market";
 import { cn } from "@/lib/utils";
 import { LineChart } from "lucide-react";
@@ -38,8 +38,6 @@ export function ChartToolbar() {
     setTimeframe,
     toggleIndicator,
   } = useChartStore();
-
-  const isIntraday = INTRADAY_TIMEFRAMES.has(currentTimeframe as Timeframe);
 
   return (
     <div className="flex items-center justify-between border-b border-border bg-card px-3 py-1.5">
@@ -85,40 +83,31 @@ export function ChartToolbar() {
           ))}
         </div>
 
-        {/* Indicators — only shown in daily/weekly view */}
-        {!isIntraday && (
-          <div className="ml-2 flex flex-wrap items-center gap-1 border-l border-border pl-2">
-            <LineChart className="mr-0.5 h-3 w-3 text-muted-foreground" />
-            {INDICATOR_OPTIONS.map((opt) => (
-              <Tooltip key={opt.value}>
-                <TooltipTrigger asChild>
-                  <button
-                    type="button"
-                    onClick={() => toggleIndicator(opt.value)}
-                    className={cn(
-                      "rounded-full px-2 py-0.5 text-[10px] font-medium transition-all duration-200",
-                      activeIndicators.includes(opt.value)
-                        ? "bg-primary/15 text-primary shadow-[0_0_8px_rgba(16,185,129,0.2)]"
-                        : "text-muted-foreground hover:text-foreground hover:bg-accent",
-                    )}
-                  >
-                    {opt.label}
-                  </button>
-                </TooltipTrigger>
-                <TooltipContent side="bottom" sideOffset={4}>
-                  {INDICATOR_EXPLANATIONS[opt.value].shortDesc}
-                </TooltipContent>
-              </Tooltip>
-            ))}
-          </div>
-        )}
-
-        {/* Intraday label */}
-        {isIntraday && (
-          <span className="ml-3 text-[9px] text-muted-foreground/60 italic">
-            Simulated intraday · Indicators available in 1D / 1W view
-          </span>
-        )}
+        {/* Indicators — available on all timeframes */}
+        <div className="ml-2 flex flex-wrap items-center gap-1 border-l border-border pl-2">
+          <LineChart className="mr-0.5 h-3 w-3 text-muted-foreground" />
+          {INDICATOR_OPTIONS.map((opt) => (
+            <Tooltip key={opt.value}>
+              <TooltipTrigger asChild>
+                <button
+                  type="button"
+                  onClick={() => toggleIndicator(opt.value)}
+                  className={cn(
+                    "rounded-full px-2 py-0.5 text-[10px] font-medium transition-all duration-200",
+                    activeIndicators.includes(opt.value)
+                      ? "bg-primary/15 text-primary shadow-[0_0_8px_rgba(16,185,129,0.2)]"
+                      : "text-muted-foreground hover:text-foreground hover:bg-accent",
+                  )}
+                >
+                  {opt.label}
+                </button>
+              </TooltipTrigger>
+              <TooltipContent side="bottom" sideOffset={4}>
+                {INDICATOR_EXPLANATIONS[opt.value].shortDesc}
+              </TooltipContent>
+            </Tooltip>
+          ))}
+        </div>
       </div>
 
       <select
