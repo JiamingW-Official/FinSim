@@ -7,7 +7,6 @@ import {
   ChevronLeft,
   ChevronRight,
   RotateCcw,
-  Zap,
   SkipForward,
 } from "lucide-react";
 import { useTimeTravel } from "@/hooks/useTimeTravel";
@@ -16,14 +15,12 @@ import { Button } from "@/components/ui/button";
 import { motion } from "framer-motion";
 import { soundEngine } from "@/services/audio/sound-engine";
 
-const SPEEDS = [1, 2, 5, 10];
-
 function formatTimeLabel(timestamp: number): string {
   return new Date(timestamp).toLocaleTimeString("en-US", {
     hour: "numeric",
     minute: "2-digit",
     hour12: true,
-    timeZone: "UTC",
+    timeZone: "America/New_York",
   });
 }
 
@@ -40,14 +37,14 @@ export function TimeTravelControls() {
     allData,
     currentBar,
     isPlaying,
-    speed,
     totalBars,
     revealedCount,
+    subBarStep,
     atEnd,
     advance,
+    stepBack,
     play,
     pause,
-    changeSpeed,
     jumpTo,
     skipToNextDay,
     reset,
@@ -55,7 +52,7 @@ export function TimeTravelControls() {
 
   const handlePrev = () => {
     soundEngine.playClick();
-    jumpTo(Math.max(1, revealedCount - 1));
+    stepBack();
   };
 
   const handleNext = () => {
@@ -95,7 +92,7 @@ export function TimeTravelControls() {
           size="icon"
           className="h-7 w-7 shrink-0"
           onClick={handlePrev}
-          disabled={revealedCount <= 1}
+          disabled={revealedCount <= 1 && subBarStep === 0}
           title="Previous Bar (←)"
         >
           <ChevronLeft className="h-4 w-4" />
@@ -154,26 +151,6 @@ export function TimeTravelControls() {
           <SkipForward className="h-3.5 w-3.5" />
         </Button>
       </motion.div>
-
-      {/* Speed selector */}
-      <div className="flex items-center gap-0.5 border-l border-border/50 pl-2">
-        <Zap className="mr-0.5 h-3 w-3 shrink-0 text-muted-foreground" />
-        {SPEEDS.map((s) => (
-          <button
-            key={s}
-            type="button"
-            onClick={() => { soundEngine.playClick(); changeSpeed(s); }}
-            className={cn(
-              "rounded px-1.5 py-0.5 text-[9px] font-bold transition-all duration-200",
-              speed === s
-                ? "bg-primary/20 text-primary shadow-[0_0_6px_rgba(16,185,129,0.15)]"
-                : "text-muted-foreground hover:text-foreground hover:bg-accent",
-            )}
-          >
-            {s}x
-          </button>
-        ))}
-      </div>
 
       {/* Progress slider */}
       <div className="mx-1 flex-1">

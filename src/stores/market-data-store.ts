@@ -7,13 +7,14 @@ interface MarketDataState {
   allData: OHLCVBar[];
   revealedCount: number;
   isPlaying: boolean;
-  speed: number;
+  /** 5m sub-bar step within current 15m bar (0, 1, 2) */
+  subBarStep: number;
 
   setAllData: (data: OHLCVBar[]) => void;
   setRevealedCount: (n: number) => void;
   incrementRevealed: () => void;
   setIsPlaying: (playing: boolean) => void;
-  setSpeed: (speed: number) => void;
+  setSubBarStep: (step: number) => void;
   reset: () => void;
   getCurrentBar: () => OHLCVBar | null;
   getVisibleData: () => OHLCVBar[];
@@ -23,17 +24,19 @@ export const useMarketDataStore = create<MarketDataState>((set, get) => ({
   allData: [],
   revealedCount: INITIAL_REVEALED,
   isPlaying: false,
-  speed: 1,
+  subBarStep: 2, // start fully revealed (all 3 sub-bars of last 15m bar)
 
   setAllData: (data) =>
     set({
       allData: data,
       revealedCount: Math.min(INITIAL_REVEALED, data.length),
+      subBarStep: 2,
     }),
 
   setRevealedCount: (n) =>
     set((state) => ({
       revealedCount: Math.max(1, Math.min(n, state.allData.length)),
+      subBarStep: 2, // fully reveal sub-bars when jumping
     })),
 
   incrementRevealed: () =>
@@ -42,12 +45,13 @@ export const useMarketDataStore = create<MarketDataState>((set, get) => ({
     })),
 
   setIsPlaying: (playing) => set({ isPlaying: playing }),
-  setSpeed: (speed) => set({ speed }),
+  setSubBarStep: (step) => set({ subBarStep: step }),
 
   reset: () =>
     set((state) => ({
       revealedCount: Math.min(INITIAL_REVEALED, state.allData.length),
       isPlaying: false,
+      subBarStep: 2,
     })),
 
   getCurrentBar: () => {

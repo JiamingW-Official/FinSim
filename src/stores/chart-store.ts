@@ -31,7 +31,7 @@ interface ChartState {
 
 export const useChartStore = create<ChartState>((set) => ({
   currentTicker: "AAPL",
-  currentTimeframe: "1d",
+  currentTimeframe: "15m",
   activeIndicators: [],
   lastToggledIndicator: null,
   setTicker: (ticker) => set({ currentTicker: ticker }),

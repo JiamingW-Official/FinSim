@@ -119,15 +119,23 @@ export function CandlestickChart() {
   const currentTicker = useChartStore((s) => s.currentTicker);
   const activeIndicators = useChartStore((s) => s.activeIndicators);
   const currentTimeframe = useChartStore((s) => s.currentTimeframe);
+  const subBarStep = useMarketDataStore((s) => s.subBarStep);
   // Derived display bars — allData is 15m; aggregate up or expand down
+  // In 5m view, subBarStep (0-2) controls how many of the last 15m bar's
+  // sub-bars are revealed, giving a smooth progressive feel.
   const displayBars = useMemo(() => {
-    if (currentTimeframe === "5m") return expand15mTo5m(visibleData);
+    if (currentTimeframe === "5m") {
+      const expanded = expand15mTo5m(visibleData);
+      // Trim unrevealed sub-bars from the last 15m bar
+      const trimCount = 2 - subBarStep; // 2→hide 2, 1→hide 1, 0→show all
+      return trimCount > 0 ? expanded.slice(0, expanded.length - trimCount) : expanded;
+    }
     if (currentTimeframe === "15m") return visibleData;
     if (currentTimeframe === "1h") return aggregateHourlyBars(visibleData);
     if (currentTimeframe === "1d") return aggregateDailyBars(visibleData);
     if (currentTimeframe === "1wk") return aggregateWeeklyBars(aggregateDailyBars(visibleData));
     return visibleData;
-  }, [visibleData, currentTimeframe]);
+  }, [visibleData, currentTimeframe, subBarStep]);
 
   // Ticker change detection for transition animation
   useEffect(() => {
@@ -164,7 +172,7 @@ export function CandlestickChart() {
               hour: "2-digit",
               minute: "2-digit",
               hour12: false,
-              timeZone: "UTC",
+              timeZone: "America/New_York",
             })
           : new Date(bar.timestamp).toLocaleDateString("en-US", {
               month: "short",
@@ -297,7 +305,7 @@ export function CandlestickChart() {
     }
   }, [displayBars, isPlaying]);
 
-  // Trade markers — match trades to displayBars timestamps
+  // Trade markers + session boundary markers
   useEffect(() => {
     if (!candleSeriesRef.current) return;
 
@@ -315,8 +323,52 @@ export function CandlestickChart() {
         color: trade.side === "buy" ? "#10b981" : "#ef4444",
         shape: trade.side === "buy" ? ("arrowUp" as const) : ("arrowDown" as const),
         text: `${trade.side === "buy" ? "B" : "S"} ${trade.quantity}@${trade.price.toFixed(0)}`,
-      }))
-      .sort((a, b) => (a.time as number) - (b.time as number));
+      }));
+
+    // Session boundary markers for intraday views
+    const isIntraday = showTime;
+    if (isIntraday && displayBars.length > 0) {
+      // Session times in UTC offset from midnight:
+      // 9:30 AM ET = 14:30 UTC, 12:00 PM ET = 17:00 UTC, 4:00 PM ET = 21:00 UTC
+      const OPEN_UTC_H = 14.5;   // 9:30 AM ET
+      const LUNCH_UTC_H = 17;    // 12:00 PM ET
+
+      const seenDays = new Set<string>();
+      const seenLunches = new Set<string>();
+
+      for (const bar of displayBars) {
+        const d = new Date(bar.timestamp);
+        const dayKey = d.toISOString().slice(0, 10);
+        const utcH = d.getUTCHours() + d.getUTCMinutes() / 60;
+
+        // Market open marker — first bar of each day (≈14:30 UTC)
+        if (!seenDays.has(dayKey) && utcH >= OPEN_UTC_H && utcH < OPEN_UTC_H + 0.5) {
+          seenDays.add(dayKey);
+          markers.push({
+            time: (bar.timestamp / 1000) as UTCTimestamp,
+            position: "aboveBar",
+            color: "#3b82f6",
+            shape: "square",
+            text: "OPEN",
+          });
+        }
+
+        // Lunch / PM session marker — first bar at or after 12:00 PM ET (17:00 UTC)
+        if (!seenLunches.has(dayKey) && utcH >= LUNCH_UTC_H && utcH < LUNCH_UTC_H + 0.5) {
+          seenLunches.add(dayKey);
+          markers.push({
+            time: (bar.timestamp / 1000) as UTCTimestamp,
+            position: "aboveBar",
+            color: "#6b7280",
+            shape: "square",
+            text: "PM",
+          });
+        }
+      }
+    }
+
+    // Sort all markers by time
+    markers.sort((a, b) => (a.time as number) - (b.time as number));
 
     // Detach old markers plugin, create new one
     if (markersPluginRef.current) {
@@ -330,7 +382,7 @@ export function CandlestickChart() {
         markers,
       );
     }
-  }, [tradeHistory, currentTicker, displayBars]);
+  }, [tradeHistory, currentTicker, displayBars, showTime]);
 
   // Average cost price line
   useEffect(() => {
@@ -617,7 +669,7 @@ export function CandlestickChart() {
                 hour: "2-digit",
                 minute: "2-digit",
                 hour12: false,
-                timeZone: "UTC",
+                timeZone: "America/New_York",
               })
             : new Date(lastBar.timestamp).toLocaleDateString("en-US", {
                 month: "short",

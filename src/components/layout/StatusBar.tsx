@@ -3,7 +3,7 @@
 import { useTradingStore } from "@/stores/trading-store";
 import { useMarketDataStore } from "@/stores/market-data-store";
 import { INITIAL_CAPITAL } from "@/types/trading";
-import { formatCurrency, formatPercent, formatDate } from "@/lib/utils";
+import { formatCurrency, formatPercent } from "@/lib/utils";
 import { useAnimatedNumber } from "@/hooks/usePriceFlash";
 import { useGameStore } from "@/stores/game-store";
 import { cn } from "@/lib/utils";
@@ -14,7 +14,6 @@ export function StatusBar() {
   const allData = useMarketDataStore((s) => s.allData);
   const revealedCount = useMarketDataStore((s) => s.revealedCount);
   const isPlaying = useMarketDataStore((s) => s.isPlaying);
-  const speed = useMarketDataStore((s) => s.speed);
   const level = useGameStore((s) => s.level);
   const title = useGameStore((s) => s.title);
   const currentBar =
@@ -56,10 +55,10 @@ export function StatusBar() {
           Lv.{level} {title}
         </span>
         {currentBar && (
-          <span>Sim: {formatDate(currentBar.timestamp)}</span>
-        )}
-        {isPlaying && (
-          <span className="tabular-nums text-primary">{speed}x</span>
+          <span>Sim: {new Date(currentBar.timestamp).toLocaleString("en-US", {
+            month: "short", day: "numeric", hour: "numeric", minute: "2-digit",
+            hour12: true, timeZone: "America/New_York",
+          })} ET</span>
         )}
         <div className="flex items-center gap-1">
           <div
