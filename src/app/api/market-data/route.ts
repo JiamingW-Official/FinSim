@@ -4,7 +4,7 @@ import { marketDataCache } from "@/services/market-data/cache";
 import { WATCHLIST_STOCKS } from "@/types/market";
 import type { Timeframe } from "@/types/market";
 
-const VALID_TIMEFRAMES: Timeframe[] = ["1d", "1wk", "1mo"];
+const VALID_TIMEFRAMES: Timeframe[] = ["1d", "1wk"];
 const VALID_TICKERS = WATCHLIST_STOCKS.map((s) => s.ticker);
 
 export async function GET(request: NextRequest) {

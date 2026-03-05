@@ -35,9 +35,10 @@ export function useMarketData() {
   const setAllData = useMarketDataStore((s) => s.setAllData);
   const { from, to } = getDateRange();
 
+  // Always fetch daily bars; intraday/weekly views are derived client-side.
   const query = useQuery({
-    queryKey: ["market-data", currentTicker, currentTimeframe, from, to],
-    queryFn: () => fetchBars(currentTicker, currentTimeframe, from, to),
+    queryKey: ["market-data", currentTicker, from, to],
+    queryFn: () => fetchBars(currentTicker, "1d", from, to),
   });
 
   useEffect(() => {

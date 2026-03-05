@@ -20,6 +20,12 @@ import {
 import { useMarketDataStore } from "@/stores/market-data-store";
 import { useTradingStore } from "@/stores/trading-store";
 import { useChartStore, type IndicatorType } from "@/stores/chart-store";
+import { INTRADAY_TIMEFRAMES } from "@/types/market";
+import type { Timeframe } from "@/types/market";
+import {
+  generateIntradayBars,
+  aggregateWeeklyBars,
+} from "@/services/market-data/intraday-generator";
 import { formatCurrency } from "@/lib/utils";
 import { cn } from "@/lib/utils";
 import {
@@ -99,6 +105,7 @@ export function CandlestickChart() {
   const allData = useMarketDataStore((s) => s.allData);
   const revealedCount = useMarketDataStore((s) => s.revealedCount);
   const isPlaying = useMarketDataStore((s) => s.isPlaying);
+  // visibleData = revealed daily bars (source of truth)
   const visibleData = useMemo(
     () => allData.slice(0, revealedCount),
     [allData, revealedCount],
@@ -109,6 +116,15 @@ export function CandlestickChart() {
   const pendingOrders = useTradingStore((s) => s.pendingOrders);
   const currentTicker = useChartStore((s) => s.currentTicker);
   const activeIndicators = useChartStore((s) => s.activeIndicators);
+  const currentTimeframe = useChartStore((s) => s.currentTimeframe);
+  const isIntraday = INTRADAY_TIMEFRAMES.has(currentTimeframe as Timeframe);
+
+  // Derived display bars — expand to intraday or aggregate to weekly
+  const displayBars = useMemo(() => {
+    if (isIntraday) return generateIntradayBars(visibleData, currentTimeframe as Timeframe);
+    if (currentTimeframe === "1wk") return aggregateWeeklyBars(visibleData);
+    return visibleData;
+  }, [visibleData, currentTimeframe, isIntraday]);
 
   // Ticker change detection for transition animation
   useEffect(() => {
@@ -120,14 +136,14 @@ export function CandlestickChart() {
     prevTickerRef.current = currentTicker;
   }, [currentTicker]);
 
-  // Build a lookup map for crosshair data
+  // Build a lookup map for crosshair data (uses displayBars for intraday accuracy)
   const dataByTime = useMemo(() => {
     const map = new Map<number, (typeof allData)[0]>();
-    for (const bar of visibleData) {
+    for (const bar of displayBars) {
       map.set(Math.floor(bar.timestamp / 1000), bar);
     }
     return map;
-  }, [visibleData]);
+  }, [displayBars]);
 
   const handleCrosshairMove = useCallback(
     (param: MouseEventParams<Time>) => {
@@ -137,17 +153,28 @@ export function CandlestickChart() {
       }
       const bar = dataByTime.get(param.time as number);
       if (bar) {
+        const isIntradayBar = INTRADAY_TIMEFRAMES.has(bar.timeframe as Timeframe);
+        const timeLabel = isIntradayBar
+          ? new Date(bar.timestamp).toLocaleString("en-US", {
+              month: "short",
+              day: "numeric",
+              hour: "2-digit",
+              minute: "2-digit",
+              hour12: false,
+              timeZone: "UTC",
+            })
+          : new Date(bar.timestamp).toLocaleDateString("en-US", {
+              month: "short",
+              day: "numeric",
+              year: "numeric",
+            });
         setCrosshairData({
           open: bar.open,
           high: bar.high,
           low: bar.low,
           close: bar.close,
           volume: bar.volume,
-          time: new Date(bar.timestamp).toLocaleDateString("en-US", {
-            month: "short",
-            day: "numeric",
-            year: "numeric",
-          }),
+          time: timeLabel,
           isUp: bar.close >= bar.open,
         });
       }
@@ -227,12 +254,20 @@ export function CandlestickChart() {
     };
   }, [handleCrosshairMove]);
 
-  // Update data when visibleData changes
+  // Update timeVisible based on timeframe
+  useEffect(() => {
+    if (!chartRef.current) return;
+    chartRef.current.applyOptions({
+      timeScale: { timeVisible: isIntraday },
+    });
+  }, [isIntraday]);
+
+  // Update candle/volume data when displayBars changes
   useEffect(() => {
     if (!candleSeriesRef.current || !volumeSeriesRef.current) return;
-    if (visibleData.length === 0) return;
+    if (displayBars.length === 0) return;
 
-    const candleData = visibleData.map((bar) => ({
+    const candleData = displayBars.map((bar) => ({
       time: (bar.timestamp / 1000) as UTCTimestamp,
       open: bar.open,
       high: bar.high,
@@ -240,7 +275,7 @@ export function CandlestickChart() {
       close: bar.close,
     }));
 
-    const volumeData = visibleData.map((bar) => ({
+    const volumeData = displayBars.map((bar) => ({
       time: (bar.timestamp / 1000) as UTCTimestamp,
       value: bar.volume,
       color:
@@ -256,11 +291,20 @@ export function CandlestickChart() {
     if (isPlaying && chartRef.current) {
       chartRef.current.timeScale().scrollToRealTime();
     }
-  }, [visibleData, isPlaying]);
+  }, [displayBars, isPlaying]);
 
-  // Trade markers (buy/sell arrows on chart)
+  // Trade markers — only shown in daily / weekly view (timestamps match daily bars)
   useEffect(() => {
     if (!candleSeriesRef.current) return;
+
+    // Clear markers when in intraday view
+    if (isIntraday) {
+      if (markersPluginRef.current) {
+        markersPluginRef.current.detach();
+        markersPluginRef.current = null;
+      }
+      return;
+    }
 
     const markers: SeriesMarker<UTCTimestamp>[] = tradeHistory
       .filter((t) => t.ticker === currentTicker)
@@ -291,7 +335,7 @@ export function CandlestickChart() {
         markers,
       );
     }
-  }, [tradeHistory, currentTicker, visibleData]);
+  }, [tradeHistory, currentTicker, visibleData, isIntraday]);
 
   // Average cost price line
   useEffect(() => {
@@ -369,7 +413,7 @@ export function CandlestickChart() {
     }
   }, [pendingOrders, currentTicker]);
 
-  // Technical indicators
+  // Technical indicators — only in daily / weekly view
   useEffect(() => {
     const chart = chartRef.current;
     if (!chart) return;
@@ -384,7 +428,7 @@ export function CandlestickChart() {
     }
     indicatorSeriesRefs.current.clear();
 
-    if (visibleData.length === 0) return;
+    if (visibleData.length === 0 || isIntraday) return;
 
     const addLineSeries = (
       key: string,
@@ -557,11 +601,11 @@ export function CandlestickChart() {
       }
       indicatorSeriesRefs.current.clear();
     };
-  }, [activeIndicators, visibleData]);
+  }, [activeIndicators, visibleData, isIntraday]);
 
   // Current bar data for the OHLCV overlay (when crosshair isn't active)
   const lastBar =
-    visibleData.length > 0 ? visibleData[visibleData.length - 1] : null;
+    displayBars.length > 0 ? displayBars[displayBars.length - 1] : null;
   const displayData =
     crosshairData ??
     (lastBar
@@ -571,11 +615,20 @@ export function CandlestickChart() {
           low: lastBar.low,
           close: lastBar.close,
           volume: lastBar.volume,
-          time: new Date(lastBar.timestamp).toLocaleDateString("en-US", {
-            month: "short",
-            day: "numeric",
-            year: "numeric",
-          }),
+          time: isIntraday
+            ? new Date(lastBar.timestamp).toLocaleString("en-US", {
+                month: "short",
+                day: "numeric",
+                hour: "2-digit",
+                minute: "2-digit",
+                hour12: false,
+                timeZone: "UTC",
+              })
+            : new Date(lastBar.timestamp).toLocaleDateString("en-US", {
+                month: "short",
+                day: "numeric",
+                year: "numeric",
+              }),
           isUp: lastBar.close >= lastBar.open,
         }
       : null);
