@@ -40,6 +40,7 @@ export function ComboMeter() {
             transition={
               tier !== "warm"
                 ? {
+                    type: "tween",
                     duration: tier === "max" ? 0.8 : tier === "fire" ? 1 : 1.5,
                     repeat: Infinity,
                     ease: "easeInOut",

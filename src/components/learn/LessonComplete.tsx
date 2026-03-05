@@ -134,14 +134,14 @@ export function LessonComplete({ breakdown, xpEarned, onContinue }: LessonComple
           )}
           initial={{ scale: 0, rotate: -25 }}
           animate={{ scale: [0, 1.2, 0.9, 1.05, 1], rotate: 0 }}
-          transition={{ duration: 0.7, delay: 0.15 }}
+          transition={{ duration: 0.7, delay: 0.15, type: "tween" }}
         >
           {breakdown.grade}
           {/* Emoji badge in corner */}
           <motion.span
             className="absolute -top-3 -right-3 text-xl"
             initial={{ scale: 0 }}
-            animate={{ scale: [0, 1.4, 1] }}
+            animate={{ scale: 1 }}
             transition={{ delay: 0.6, type: "spring", stiffness: 400, damping: 12 }}
           >
             {config.emoji}

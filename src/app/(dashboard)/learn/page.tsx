@@ -87,7 +87,7 @@ export default function LearnPage() {
             >
               <motion.div
                 animate={{ scale: [1, 1.2, 1] }}
-                transition={{ duration: 1.8, repeat: Infinity, repeatDelay: 2 }}
+                transition={{ duration: 1.8, repeat: Infinity, repeatDelay: 2, type: "tween" }}
               >
                 <Flame className="h-3.5 w-3.5 text-amber-500" />
               </motion.div>

@@ -89,7 +89,7 @@ export function QuestCard({ quest, progress, onClaim }: QuestCardProps) {
                 : "bg-white/5 text-zinc-500",
           )}
           animate={isComplete && !isClaimed ? { scale: [1, 1.1, 1] } : {}}
-          transition={{ duration: 1.5, repeat: Infinity }}
+          transition={{ duration: 1.5, repeat: Infinity, type: "tween" }}
         >
           {isClaimed ? <Check className="h-4 w-4" /> : (QUEST_ICONS[quest.icon] ?? <Star className="h-4 w-4" />)}
         </motion.div>
@@ -129,7 +129,7 @@ export function QuestCard({ quest, progress, onClaim }: QuestCardProps) {
                     progress?.conditions[i] ? "bg-emerald-400" : "bg-zinc-700",
                   )}
                   animate={progress?.conditions[i] ? { scale: [1, 1.3, 1] } : {}}
-                  transition={{ duration: 0.3 }}
+                  transition={{ duration: 0.3, type: "tween" }}
                 />
                 <span
                   className={cn(

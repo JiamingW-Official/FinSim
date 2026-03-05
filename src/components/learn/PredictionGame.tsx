@@ -277,7 +277,7 @@ export function PredictionGame({ onClose }: PredictionGameProps) {
                 <motion.div
                   className="absolute inset-x-[15%] top-[30%] bottom-[30%] rounded border border-dashed border-muted-foreground/30 flex items-center justify-center"
                   animate={{ opacity: [0.3, 0.7, 0.3] }}
-                  transition={{ duration: 1.5, repeat: Infinity }}
+                  transition={{ duration: 1.5, repeat: Infinity, type: "tween" }}
                 >
                   <span className="text-[8px] font-bold text-muted-foreground">?</span>
                 </motion.div>

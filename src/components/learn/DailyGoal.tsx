@@ -32,7 +32,7 @@ export function DailyGoal({ compact }: DailyGoalProps) {
     <motion.div
       className="flex items-center gap-3"
       animate={goalMet ? { scale: [1, 1.05, 1] } : {}}
-      transition={{ duration: 0.5 }}
+      transition={{ duration: 0.5, type: "tween" }}
     >
       <ProgressRing progress={progress} size={40} strokeWidth={3.5}>
         <span className="text-xs font-bold">{dailyLessonsCompleted}</span>

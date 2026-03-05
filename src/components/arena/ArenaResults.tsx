@@ -245,7 +245,7 @@ export function ArenaResults({ result, onPlayAgain, onBackToLobby }: ArenaResult
           {rankChanged && (
             <motion.span
               initial={{ scale: 0, rotate: -10 }}
-              animate={{ scale: [0, 1.3, 1], rotate: [0, 5, 0] }}
+              animate={{ scale: 1, rotate: 0 }}
               transition={{ delay: 1.1, type: "spring", stiffness: 400 }}
               className="text-xs font-black text-amber-400 flex items-center gap-1"
             >

@@ -198,7 +198,7 @@ export function QuizStepComponent({ step, onCorrect, onWrong }: QuizStepProps) {
                 {showResult && isThis && isCorrect && (
                   <motion.span
                     initial={{ scale: 0, rotate: -20 }}
-                    animate={{ scale: [0, 1.3, 1], rotate: 0 }}
+                    animate={{ scale: 1, rotate: 0 }}
                     exit={{ scale: 0 }}
                     transition={{ type: "spring", stiffness: 500, damping: 15 }}
                     className="absolute right-3 top-1/2 -translate-y-1/2 text-emerald-400 text-xl"

@@ -263,7 +263,7 @@ export function ArenaPlayer({ config, opponent, onFinish, onCancel }: ArenaPlaye
           {/* Timer */}
           <motion.div
             animate={isCritical ? { scale: [1, 1.05, 1] } : {}}
-            transition={isCritical ? { duration: 0.5, repeat: Infinity } : {}}
+            transition={isCritical ? { duration: 0.5, repeat: Infinity, type: "tween" } : {}}
             className={cn(
               "arena-timer flex items-center gap-1.5 rounded-lg px-3 py-1.5 font-mono text-lg font-black tabular-nums",
               isUrgent ? "bg-red-500/20 text-red-400"

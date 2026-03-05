@@ -331,7 +331,7 @@ export function MiniTradePanel({
               isPlaying ? "bg-amber-500/10 text-amber-400"
                 : atEnd ? "bg-emerald-500/10 text-emerald-400" : "bg-muted/40 text-muted-foreground")}>
               {isPlaying && (
-                <motion.span animate={{ opacity: [1, 0.2, 1] }} transition={{ duration: 0.8, repeat: Infinity }}
+                <motion.span animate={{ opacity: [1, 0.2, 1] }} transition={{ duration: 0.8, repeat: Infinity, type: "tween" }}
                   className="inline-block h-1.5 w-1.5 rounded-full bg-amber-400" />
               )}
               {atEnd ? "Done" : isPlaying ? "Live" : <span className="tabular-nums">{revealedCount}/{totalBars}</span>}

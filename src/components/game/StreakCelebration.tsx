@@ -124,7 +124,7 @@ export function StreakCelebration() {
                 isLarge && "min-w-[240px]",
               )}
               animate={config.size === "xl" ? { scale: [1, 1.03, 1] } : {}}
-              transition={config.size === "xl" ? { duration: 1.5, repeat: Infinity } : undefined}
+              transition={config.size === "xl" ? { duration: 1.5, repeat: Infinity, type: "tween" } : undefined}
             >
               {/* Icon */}
               <motion.div

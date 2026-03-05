@@ -49,7 +49,7 @@ export function DailyChallengeCard({
         <motion.div
           className="absolute -top-1.5 -right-1.5"
           animate={{ rotate: [0, 15, -15, 0], scale: [1, 1.2, 1] }}
-          transition={{ duration: 2, repeat: Infinity, repeatDelay: 3 }}
+          transition={{ duration: 2, repeat: Infinity, repeatDelay: 3, type: "tween" }}
         >
           <Sparkles className="h-4 w-4 text-amber-400" />
         </motion.div>

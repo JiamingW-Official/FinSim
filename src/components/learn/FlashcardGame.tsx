@@ -221,7 +221,7 @@ export function FlashcardGame({ onClose }: FlashcardGameProps) {
                 <motion.div
                   className="flex items-center gap-1 mt-2"
                   animate={{ opacity: [0.4, 0.8, 0.4] }}
-                  transition={{ duration: 2, repeat: Infinity }}
+                  transition={{ duration: 2, repeat: Infinity, type: "tween" }}
                 >
                   <RotateCcw className="h-3 w-3 text-muted-foreground" />
                   <span className="text-[10px] text-muted-foreground">Tap to reveal</span>

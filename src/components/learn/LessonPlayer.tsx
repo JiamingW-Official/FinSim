@@ -174,7 +174,7 @@ export function LessonPlayer({ lesson }: LessonPlayerProps) {
             <motion.div
               key={currentCombo}
               initial={{ scale: 0, rotate: -15 }}
-              animate={{ scale: [0, 1.25, 1], rotate: 0 }}
+              animate={{ scale: 1, rotate: 0 }}
               transition={{ type: "spring", stiffness: 500, damping: 12 }}
               className="flex items-center gap-1 rounded-full bg-amber-500/20 border border-amber-500/30 px-2 py-0.5 shrink-0"
             >

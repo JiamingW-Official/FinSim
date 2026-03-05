@@ -840,7 +840,7 @@ export function AICoachPanel() {
                             <motion.span
                               className="ml-0.5 inline-block h-2 w-0.5 bg-primary"
                               animate={{ opacity: [1, 0, 1] }}
-                              transition={{ repeat: 5, duration: 0.5 }}
+                              transition={{ repeat: 5, duration: 0.5, type: "tween" }}
                             />
                           )}
                         </div>
@@ -888,7 +888,7 @@ export function AICoachPanel() {
                             <motion.span
                               className="ml-0.5 inline-block h-2 w-0.5 bg-primary"
                               animate={{ opacity: [1, 0, 1] }}
-                              transition={{ repeat: 5, duration: 0.5 }}
+                              transition={{ repeat: 5, duration: 0.5, type: "tween" }}
                             />
                           )}
                         </div>

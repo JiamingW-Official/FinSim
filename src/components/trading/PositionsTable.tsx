@@ -25,7 +25,7 @@ function PnLMilestoneBadge({ pct }: { pct: number }) {
           initial={{ scale: 0, opacity: 0 }}
           animate={{ scale: [0, 1.3, 1], opacity: 1 }}
           exit={{ scale: 0, opacity: 0 }}
-          transition={{ duration: 0.35 }}
+          transition={{ duration: 0.35, type: "tween" }}
           title={
             pct >= 20 ? "Diamond gain — exceptional!" :
             pct >= 10 ? "Rocket gain — excellent!" :

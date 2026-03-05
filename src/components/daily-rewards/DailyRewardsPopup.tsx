@@ -121,7 +121,7 @@ export function DailyRewardsPopup() {
                     : "border-primary/30 bg-primary/10",
                 )}
                 initial={{ scale: 0, rotate: -20 }}
-                animate={{ scale: [0, 1.2, 1], rotate: 0 }}
+                animate={{ scale: 1, rotate: 0 }}
                 transition={{ type: "spring", stiffness: 400, damping: 15, delay: 0.1 }}
               >
                 {isDay7 ? "👑" : "🎁"}
@@ -195,7 +195,7 @@ export function DailyRewardsPopup() {
                           <motion.span
                             className="text-base leading-none"
                             animate={isCurrent ? { scale: [1, 1.1, 1] } : {}}
-                            transition={{ duration: 2, repeat: Infinity, repeatDelay: 1 }}
+                            transition={{ duration: 2, repeat: Infinity, repeatDelay: 1, type: "tween" }}
                           >
                             {isLastDay ? <Crown className="h-4 w-4 text-amber-400" /> : DAY_EMOJIS[i]}
                           </motion.span>
@@ -222,7 +222,7 @@ export function DailyRewardsPopup() {
                             isLastDay ? "border-amber-400/40" : "border-primary/30",
                           )}
                           animate={{ opacity: [0.3, 0.8, 0.3] }}
-                          transition={{ duration: 1.8, repeat: Infinity }}
+                          transition={{ duration: 1.8, repeat: Infinity, type: "tween" }}
                         />
                       )}
                     </motion.div>
@@ -330,7 +330,7 @@ export function DailyRewardsPopup() {
                     rotate: p.rotate,
                   }}
                   exit={{ opacity: 0 }}
-                  transition={{ duration: 1.0, ease: "easeOut" }}
+                  transition={{ duration: 1.0, ease: "easeOut", type: "tween" }}
                 />
               ))}
             </AnimatePresence>

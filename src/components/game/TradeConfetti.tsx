@@ -86,7 +86,7 @@ export function TradeConfetti() {
                   opacity: 0,
                   x: tx,
                   y: ty,
-                  scale: [0.3, 1.2, 1.0],
+                  scale: [0.3, 1.0],
                   rotate: Math.random() > 0.5 ? 360 : -360,
                 }}
                 transition={{ duration: p.duration, ease: "easeOut" }}
