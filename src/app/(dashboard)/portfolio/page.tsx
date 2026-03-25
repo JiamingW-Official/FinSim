@@ -4,12 +4,13 @@ import dynamic from "next/dynamic";
 import { motion } from "framer-motion";
 import { PerformanceMetrics } from "@/components/portfolio/PerformanceMetrics";
 import { TradeJournal } from "@/components/portfolio/TradeJournal";
+import { QuantDashboard } from "@/components/portfolio/QuantDashboard";
 import { useGameStore } from "@/stores/game-store";
 import { useTradingStore } from "@/stores/trading-store";
 import { INITIAL_CAPITAL } from "@/types/trading";
 import { formatCurrency } from "@/lib/utils";
 import { cn } from "@/lib/utils";
-import { Shield, BarChart3, BookOpen, TrendingUp, TrendingDown, Trophy, Wallet, Briefcase, Award, Target, Calendar } from "lucide-react";
+import { Shield, BarChart3, BookOpen, TrendingUp, TrendingDown, Trophy, Wallet, Briefcase, Award, Target, Calendar, Activity } from "lucide-react";
 import { AchievementGallery } from "@/components/game/AchievementGallery";
 import { ExportMenu } from "@/components/portfolio/ExportMenu";
 
@@ -67,68 +68,53 @@ export default function PortfolioPage() {
         {/* Header — premium style */}
         <motion.div variants={fadeUp} className="flex items-center justify-between">
           <div className="flex items-center gap-3">
-            <motion.div
-              className="flex h-10 w-10 items-center justify-center rounded-xl bg-blue-500/10"
-              initial={{ scale: 0 }}
-              animate={{ scale: 1 }}
-              transition={{ type: "spring", stiffness: 400, damping: 15 }}
-            >
-              <Briefcase className="h-5 w-5 text-blue-400" />
-            </motion.div>
+            <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-blue-500/10">
+              <Briefcase className="h-4 w-4 text-blue-400" />
+            </div>
             <div>
-              <h1 className="text-lg font-black">Portfolio</h1>
-              <p className="text-[10px] text-muted-foreground">Your trading performance</p>
+              <h1 className="text-base font-semibold">Portfolio</h1>
+              <p className="text-[10px] text-muted-foreground">Performance and analytics</p>
             </div>
           </div>
           <div className="flex items-center gap-2">
             <ExportMenu />
-            <motion.div
-              className="badge-premium flex items-center gap-1.5 rounded-lg px-2.5 py-1.5"
-              whileHover={{ scale: 1.05 }}
-            >
-              <Shield className="h-3.5 w-3.5 text-primary" />
-              <span className="text-[11px] font-bold text-primary">
-                Lv.{level} {title}
-              </span>
-            </motion.div>
+            <div className="flex items-center gap-1.5 rounded-md bg-primary/8 px-2 py-1">
+              <Shield className="h-3 w-3 text-primary" />
+              <span className="text-[10px] font-medium text-primary">Lv.{level} {title}</span>
+            </div>
             {achievements.length > 0 && (
-              <motion.div
-                className="badge-gold flex items-center gap-1 rounded-lg px-2.5 py-1.5"
-                whileHover={{ scale: 1.05 }}
-              >
+              <div className="flex items-center gap-1 rounded-md bg-amber-500/8 px-2 py-1">
                 <Trophy className="h-3 w-3 text-amber-400" />
-                <span className="text-[11px] font-bold text-amber-400">
-                  {achievements.length}
-                </span>
-              </motion.div>
+                <span className="text-[10px] font-medium text-amber-400">{achievements.length}</span>
+              </div>
             )}
           </div>
         </motion.div>
 
         {/* Quick Stats Row */}
         <motion.div variants={fadeUp} className="grid grid-cols-3 gap-3">
-          <div className="card-hover-glow rounded-xl border border-border bg-card/50 p-3">
+          <div className="rounded-lg border border-border bg-card/50 p-3">
             <div className="flex items-center gap-1.5 text-[10px] font-medium text-muted-foreground mb-1">
               <Wallet className="h-3 w-3" />
               Portfolio Value
             </div>
-            <p className="text-base font-black tabular-nums">{formatCurrency(portfolioValue)}</p>
+            <p className="text-base font-semibold tabular-nums">{formatCurrency(portfolioValue)}</p>
           </div>
-          <div className="card-hover-glow rounded-xl border border-border bg-card/50 p-3">
+          <div className="rounded-lg border border-border bg-card/50 p-3">
             <div className="flex items-center gap-1.5 text-[10px] font-medium text-muted-foreground mb-1">
               {totalPnL >= 0 ? <TrendingUp className="h-3 w-3 text-emerald-400" /> : <TrendingDown className="h-3 w-3 text-red-400" />}
               Total P&L
             </div>
-            <p className={cn("text-base font-black tabular-nums", totalPnL >= 0 ? "text-emerald-400" : "text-red-400")}>
+            <p className={cn("text-base font-semibold tabular-nums", totalPnL >= 0 ? "text-emerald-400" : "text-red-400")}>
               {totalPnL >= 0 ? "+" : ""}{formatCurrency(totalPnL)}
             </p>
             <p className={cn("text-[10px] font-bold tabular-nums", totalPnLPct >= 0 ? "text-emerald-400/70" : "text-red-400/70")}>
               {totalPnLPct >= 0 ? "+" : ""}{totalPnLPct.toFixed(2)}%
             </p>
           </div>
-          <div className="card-hover-glow rounded-xl border border-border bg-card/50 p-3">
+          <div className="rounded-lg border border-border bg-card/50 p-3">
             <div className="text-[10px] font-medium text-muted-foreground mb-1">Positions</div>
-            <p className="text-base font-black tabular-nums">{positions.length}</p>
+            <p className="text-base font-semibold tabular-nums">{positions.length}</p>
             <p className="text-[10px] text-muted-foreground">
               Cash: {formatCurrency(cash)}
             </p>
@@ -136,8 +122,8 @@ export default function PortfolioPage() {
         </motion.div>
 
         {/* Equity Curve */}
-        <motion.div variants={fadeUp} className="card-hover-glow rounded-xl border border-border bg-card p-3">
-          <div className="mb-2 flex items-center gap-1.5 text-xs font-bold text-muted-foreground">
+        <motion.div variants={fadeUp} className="rounded-lg border border-border bg-card p-3">
+          <div className="mb-2 flex items-center gap-1.5 text-xs font-medium text-muted-foreground">
             <BarChart3 className="h-3.5 w-3.5 text-blue-400" />
             Equity Curve
           </div>
@@ -146,15 +132,15 @@ export default function PortfolioPage() {
 
         {/* Win Rate Chart + Trade Calendar */}
         <motion.div variants={fadeUp} className="grid grid-cols-2 gap-3">
-          <div className="card-hover-glow rounded-xl border border-border bg-card p-3">
-            <div className="mb-2 flex items-center gap-1.5 text-xs font-bold text-muted-foreground">
+          <div className="rounded-lg border border-border bg-card p-3">
+            <div className="mb-2 flex items-center gap-1.5 text-xs font-medium text-muted-foreground">
               <Target className="h-3.5 w-3.5 text-cyan-400" />
               Win Rate (Rolling 10)
             </div>
             <WinRateChart />
           </div>
-          <div className="card-hover-glow rounded-xl border border-border bg-card p-3">
-            <div className="mb-2 flex items-center gap-1.5 text-xs font-bold text-muted-foreground">
+          <div className="rounded-lg border border-border bg-card p-3">
+            <div className="mb-2 flex items-center gap-1.5 text-xs font-medium text-muted-foreground">
               <Calendar className="h-3.5 w-3.5 text-green-400" />
               Trade Calendar
             </div>
@@ -164,16 +150,25 @@ export default function PortfolioPage() {
 
         {/* Performance Metrics */}
         <motion.div variants={fadeUp}>
-          <div className="mb-2 flex items-center gap-1.5 text-xs font-bold text-muted-foreground">
+          <div className="mb-2 flex items-center gap-1.5 text-xs font-medium text-muted-foreground">
             <TrendingUp className="h-3.5 w-3.5 text-emerald-400" />
             Performance Metrics
           </div>
           <PerformanceMetrics />
         </motion.div>
 
+        {/* Quantitative Analytics */}
+        <motion.div variants={fadeUp}>
+          <div className="mb-2 flex items-center gap-1.5 text-xs font-medium text-muted-foreground">
+            <Activity className="h-3.5 w-3.5 text-blue-400" />
+            Quantitative Analytics
+          </div>
+          <QuantDashboard />
+        </motion.div>
+
         {/* Trade Journal */}
-        <motion.div variants={fadeUp} className="card-hover-glow rounded-xl border border-border bg-card p-3">
-          <div className="mb-2 flex items-center gap-1.5 text-xs font-bold text-muted-foreground">
+        <motion.div variants={fadeUp} className="rounded-lg border border-border bg-card p-3">
+          <div className="mb-2 flex items-center gap-1.5 text-xs font-medium text-muted-foreground">
             <BookOpen className="h-3.5 w-3.5 text-violet-400" />
             Trade Journal
           </div>
@@ -181,8 +176,8 @@ export default function PortfolioPage() {
         </motion.div>
 
         {/* Achievement Gallery */}
-        <motion.div variants={fadeUp} className="card-hover-glow rounded-xl border border-border bg-card p-3">
-          <div className="mb-2 flex items-center gap-1.5 text-xs font-bold text-muted-foreground">
+        <motion.div variants={fadeUp} className="rounded-lg border border-border bg-card p-3">
+          <div className="mb-2 flex items-center gap-1.5 text-xs font-medium text-muted-foreground">
             <Award className="h-3.5 w-3.5 text-amber-400" />
             Achievements
           </div>

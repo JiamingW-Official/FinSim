@@ -4,6 +4,7 @@ import { UNIT_ORDERS } from "./unit-orders";
 import { UNIT_INDICATORS } from "./unit-indicators";
 import { UNIT_RISK } from "./unit-risk";
 import { UNIT_FUNDAMENTALS } from "./unit-fundamentals";
+import { UNIT_PERSONAL_FINANCE } from "./unit-personal-finance";
 
 export const UNITS: Unit[] = [
   UNIT_BASICS,
@@ -11,6 +12,7 @@ export const UNITS: Unit[] = [
   UNIT_INDICATORS,
   UNIT_RISK,
   UNIT_FUNDAMENTALS,
+  UNIT_PERSONAL_FINANCE,
 ];
 
 export function getLessonById(lessonId: string): Lesson | undefined {

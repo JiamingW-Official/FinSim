@@ -11,9 +11,6 @@ import { getXPForNextLevel, LEVEL_THRESHOLDS } from "@/types/game";
 import { formatCurrency, cn } from "@/lib/utils";
 import {
   BarChart3,
-  GraduationCap,
-  Swords,
-  Crosshair,
   TrendingUp,
   TrendingDown,
   Wallet,
@@ -21,61 +18,24 @@ import {
   Trophy,
   Target,
   Sparkles,
-  ArrowRight,
 } from "lucide-react";
 import { SeasonProgress } from "@/components/season/SeasonProgress";
+import { LearningProgressCard } from "@/components/home/LearningProgressCard";
+import { PersonalizedInsights } from "@/components/home/PersonalizedInsights";
 
 const stagger = {
   hidden: { opacity: 0 },
-  show: { opacity: 1, transition: { staggerChildren: 0.06 } },
+  show: { opacity: 1, transition: { staggerChildren: 0.03 } },
 } as const;
 const fadeUp = {
-  hidden: { opacity: 0, y: 12 },
+  hidden: { opacity: 0, y: 6 },
   show: {
     opacity: 1,
     y: 0,
-    transition: { type: "spring" as const, stiffness: 300, damping: 25 },
+    transition: { duration: 0.2, ease: "easeOut" as const },
   },
 };
 
-const QUICK_ACTIONS = [
-  {
-    icon: BarChart3,
-    label: "Start Trading",
-    href: "/trade",
-    color: "emerald",
-    bg: "bg-emerald-500/10",
-    text: "text-emerald-400",
-    description: "Continue your simulation",
-  },
-  {
-    icon: GraduationCap,
-    label: "Continue Learning",
-    href: "/learn",
-    color: "amber",
-    bg: "bg-amber-500/10",
-    text: "text-amber-400",
-    description: "Next lesson awaits",
-  },
-  {
-    icon: Swords,
-    label: "Daily Challenge",
-    href: "/challenges",
-    color: "rose",
-    bg: "bg-rose-500/10",
-    text: "text-rose-400",
-    description: "Test your skills",
-  },
-  {
-    icon: Crosshair,
-    label: "Arena Match",
-    href: "/arena",
-    color: "red",
-    bg: "bg-red-500/10",
-    text: "text-red-400",
-    description: "Battle an opponent",
-  },
-];
 
 export default function HomePage() {
   const level = useGameStore((s) => s.level);
@@ -119,48 +79,38 @@ export default function HomePage() {
         {/* Welcome Banner */}
         <motion.div
           variants={fadeUp}
-          className="relative overflow-hidden rounded-2xl border border-primary/20 bg-gradient-to-br from-primary/10 via-card to-card p-5"
+          className="rounded-lg border border-border bg-card p-5"
         >
           <div className="flex items-center gap-4">
-            <motion.div
-              className="flex h-14 w-14 items-center justify-center rounded-2xl bg-primary/15"
-              initial={{ scale: 0, rotate: -15 }}
-              animate={{ scale: 1, rotate: 0 }}
-              transition={{ type: "spring", stiffness: 400, damping: 15 }}
-            >
-              <Sparkles className="h-7 w-7 text-primary" />
-            </motion.div>
+            <div className="flex h-12 w-12 items-center justify-center rounded-lg bg-primary/10">
+              <Sparkles className="h-5 w-5 text-primary" />
+            </div>
             <div className="flex-1">
-              <h1 className="text-xl font-black">Welcome back!</h1>
-              <p className="text-[11px] text-muted-foreground">
+              <h1 className="text-lg font-semibold">Welcome</h1>
+              <p className="text-xs text-muted-foreground">
                 Lv.{level} {title}
               </p>
-              {/* XP progress bar */}
               <div className="mt-2 flex items-center gap-2">
-                <div className="h-1.5 flex-1 overflow-hidden rounded-full bg-muted/30">
-                  <motion.div
-                    className="h-full rounded-full bg-primary"
-                    initial={{ width: 0 }}
-                    animate={{ width: `${xpProgress}%` }}
-                    transition={{ duration: 0.8, ease: "easeOut" }}
+                <div className="h-1 flex-1 overflow-hidden rounded-full bg-muted/30">
+                  <div
+                    className="h-full rounded-full bg-primary transition-all duration-500"
+                    style={{ width: `${xpProgress}%` }}
                   />
                 </div>
-                <span className="text-[9px] tabular-nums font-bold text-primary">
+                <span className="text-[10px] tabular-nums font-medium text-muted-foreground">
                   {xp} XP
                 </span>
               </div>
             </div>
             {achievements.length > 0 && (
-              <div className="badge-gold flex items-center gap-1 rounded-lg px-2.5 py-1.5">
-                <Trophy className="h-3.5 w-3.5 text-amber-400" />
-                <span className="text-[11px] font-bold text-amber-400">
+              <div className="flex items-center gap-1 rounded-md bg-amber-500/8 px-2 py-1">
+                <Trophy className="h-3 w-3 text-amber-400" />
+                <span className="text-[10px] font-semibold text-amber-400">
                   {achievements.length}
                 </span>
               </div>
             )}
           </div>
-          {/* Decorative corner glow */}
-          <div className="pointer-events-none absolute -right-8 -top-8 h-32 w-32 rounded-full bg-primary/5 blur-2xl" />
         </motion.div>
 
         {/* Quick Stats Row */}
@@ -202,39 +152,14 @@ export default function HomePage() {
           <SeasonProgress />
         </motion.div>
 
-        {/* Quick Actions */}
+        {/* Learning Progress */}
         <motion.div variants={fadeUp}>
-          <h2 className="mb-2.5 text-xs font-bold text-muted-foreground">
-            Quick Actions
-          </h2>
-          <div className="grid grid-cols-2 gap-3">
-            {QUICK_ACTIONS.map((action) => (
-              <Link key={action.href} href={action.href}>
-                <motion.div
-                  className="card-hover-glow flex items-center gap-3 rounded-xl border border-border bg-card p-3.5 transition-colors hover:border-border/80"
-                  whileHover={{ scale: 1.02, y: -2 }}
-                  whileTap={{ scale: 0.98 }}
-                  transition={{ type: "spring", stiffness: 400, damping: 20 }}
-                >
-                  <div
-                    className={cn(
-                      "flex h-9 w-9 items-center justify-center rounded-lg",
-                      action.bg,
-                    )}
-                  >
-                    <action.icon className={cn("h-4.5 w-4.5", action.text)} />
-                  </div>
-                  <div className="flex-1 min-w-0">
-                    <p className="text-sm font-bold">{action.label}</p>
-                    <p className="text-[10px] text-muted-foreground">
-                      {action.description}
-                    </p>
-                  </div>
-                  <ArrowRight className="h-3.5 w-3.5 text-muted-foreground/40" />
-                </motion.div>
-              </Link>
-            ))}
-          </div>
+          <LearningProgressCard />
+        </motion.div>
+
+        {/* Personalized Insights (agentic recommendations) */}
+        <motion.div variants={fadeUp}>
+          <PersonalizedInsights />
         </motion.div>
 
         {/* Recent Activity */}
@@ -252,13 +177,13 @@ export default function HomePage() {
               </Link>
             )}
           </div>
-          <div className="card-hover-glow rounded-xl border border-border bg-card">
+          <div className="rounded-lg border border-border bg-card">
             {recentTrades.length === 0 ? (
               <div className="flex flex-col items-center gap-1.5 py-6 text-muted-foreground">
-                <BarChart3 className="h-5 w-5 opacity-30" />
+                <BarChart3 className="h-5 w-5 opacity-20" />
                 <p className="text-[11px]">No trades yet</p>
-                <p className="text-[10px] opacity-60">
-                  Start trading to see your activity here
+                <p className="text-[10px] opacity-50">
+                  Place a trade to get started
                 </p>
               </div>
             ) : (
@@ -324,16 +249,15 @@ export default function HomePage() {
                 .slice(-3)
                 .reverse()
                 .map((a) => (
-                  <motion.div
+                  <div
                     key={a.id}
-                    className="card-hover-glow flex flex-col items-center gap-1.5 rounded-xl border border-amber-500/20 bg-amber-500/5 p-3"
-                    whileHover={{ scale: 1.03 }}
+                    className="flex flex-col items-center gap-1.5 rounded-lg border border-amber-500/15 bg-amber-500/5 p-3"
                   >
-                    <Trophy className="h-4 w-4 text-amber-400" />
-                    <p className="text-center text-[10px] font-bold leading-tight">
+                    <Trophy className="h-3.5 w-3.5 text-amber-400" />
+                    <p className="text-center text-[10px] font-medium leading-tight">
                       {a.name}
                     </p>
-                  </motion.div>
+                  </div>
                 ))}
             </div>
           </motion.div>
@@ -357,12 +281,12 @@ function StatCard({
   sub?: string;
 }) {
   return (
-    <div className="card-hover-glow rounded-xl border border-border bg-card/50 p-3">
+    <div className="rounded-lg border border-border bg-card p-3">
       <div className="mb-1 flex items-center gap-1 text-[10px] font-medium text-muted-foreground">
         {icon}
         {label}
       </div>
-      <p className={cn("text-sm font-black tabular-nums", valueClass)}>
+      <p className={cn("text-sm font-semibold tabular-nums", valueClass)}>
         {value}
       </p>
       {sub && (

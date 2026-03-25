@@ -1,7 +1,7 @@
 export interface GlossaryEntry {
   term: string;
   definition: string;
-  category: "basics" | "orders" | "indicators" | "risk" | "fundamental";
+  category: "basics" | "orders" | "indicators" | "risk" | "fundamental" | "personal-finance";
   example?: string;
 }
 
@@ -470,6 +470,85 @@ export const GLOSSARY: GlossaryEntry[] = [
       "Percentage of outstanding shares owned by company executives, directors, and major shareholders. High insider ownership (>10%) aligns management incentives with shareholders — they win only when you win.",
     category: "fundamental",
     example: "Founders who own 20%+ of their company have strong incentive to maximize long-term value — skin in the game.",
+  },
+  // --- Personal Finance ---
+  {
+    term: "Budget",
+    definition:
+      "A plan for how you allocate your income across needs, wants, savings, and investments. The 50/30/20 rule is a popular framework: 50% needs, 30% wants, 20% savings.",
+    category: "personal-finance",
+    example: "On a $5,000/month salary: $2,500 for rent/groceries, $1,500 for entertainment, $1,000 for savings and investing.",
+  },
+  {
+    term: "Compound Interest",
+    definition:
+      "Interest earned on both the original principal and previously accumulated interest. Over long periods, compounding creates exponential growth — the 'eighth wonder of the world.'",
+    category: "personal-finance",
+    example: "$10,000 at 8% compounded annually becomes $46,610 in 20 years without adding a single dollar.",
+  },
+  {
+    term: "Emergency Fund",
+    definition:
+      "3-6 months of living expenses held in a liquid, safe account (like a high-yield savings account). Protects you from selling investments at a loss when unexpected expenses arise.",
+    category: "personal-finance",
+  },
+  {
+    term: "Dollar-Cost Averaging",
+    definition:
+      "Investing a fixed dollar amount at regular intervals regardless of market conditions. Reduces the impact of volatility by buying more shares when prices are low and fewer when high.",
+    category: "personal-finance",
+    example: "Investing $500 on the 1st of every month into an S&P 500 index fund.",
+  },
+  {
+    term: "401(k)",
+    definition:
+      "Employer-sponsored retirement account. Contributions are pre-tax (reducing your taxable income now), and investments grow tax-deferred until withdrawal in retirement. Many employers match contributions — that is free money.",
+    category: "personal-finance",
+  },
+  {
+    term: "Roth IRA",
+    definition:
+      "Individual retirement account funded with after-tax dollars. All growth and qualified withdrawals are completely tax-free. Best for young investors who expect to be in higher tax brackets later.",
+    category: "personal-finance",
+    example: "Contributing $7,000/year in your 20s at 8% returns could grow to $1M+ tax-free by retirement.",
+  },
+  {
+    term: "Credit Score",
+    definition:
+      "A number (300-850) that represents your creditworthiness. Based on payment history (35%), utilization (30%), history length (15%), credit mix (10%), and new credit (10%). Affects loan rates, approvals, and sometimes job offers.",
+    category: "personal-finance",
+  },
+  {
+    term: "Index Fund",
+    definition:
+      "A mutual fund or ETF that tracks a market index (like the S&P 500). Provides instant diversification across hundreds of stocks with very low fees. Warren Buffett recommends them for most investors.",
+    category: "personal-finance",
+    example: "VTI (Vanguard Total Market) holds 3,600+ US stocks with a 0.03% expense ratio.",
+  },
+  {
+    term: "Inflation",
+    definition:
+      "The rate at which prices increase over time, reducing your purchasing power. Historically averages ~3% per year. Cash in a 0.5% savings account loses real value — investing is the primary defense.",
+    category: "personal-finance",
+    example: "$100 in 2000 would need to be $180 in 2024 to buy the same goods, due to ~3% annual inflation.",
+  },
+  {
+    term: "Rule of 72",
+    definition:
+      "Quick mental math to estimate how many years to double your money: divide 72 by the annual return rate. At 8% returns: 72/8 = 9 years to double.",
+    category: "personal-finance",
+  },
+  {
+    term: "Net Worth",
+    definition:
+      "Total assets (cash, investments, property) minus total liabilities (debts, loans). The single most important number for measuring financial health. Track it monthly.",
+    category: "personal-finance",
+  },
+  {
+    term: "Expense Ratio",
+    definition:
+      "The annual fee charged by a fund, expressed as a percentage of assets. A 0.03% expense ratio on $10,000 costs $3/year. Low-cost index funds typically charge 0.03-0.20%, while actively managed funds charge 0.50-1.50%.",
+    category: "personal-finance",
   },
 ];
 

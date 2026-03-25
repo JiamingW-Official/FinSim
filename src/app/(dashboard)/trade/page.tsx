@@ -15,9 +15,12 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { useKeyboardShortcuts } from "@/hooks/useKeyboardShortcuts";
 import { useOnboarding } from "@/hooks/useOnboarding";
 import { useTradingStore } from "@/stores/trading-store";
+import { useChartStore } from "@/stores/chart-store";
+import { useMarketDataStore } from "@/stores/market-data-store";
 import { ContextualTip } from "@/components/game/ContextualTip";
 import { IndicatorInfoPanel } from "@/components/education/IndicatorInfoPanel";
 import { FundamentalsPanel } from "@/components/trading/FundamentalsPanel";
+import { OrderBookDisplay } from "@/components/trading/OrderBookDisplay";
 import { NewsTicker } from "@/components/layout/NewsTicker";
 import { AICoachPanel } from "@/components/ai/AICoachPanel";
 import { AlphaBotAlerts } from "@/components/ai/AlphaBotAlerts";
@@ -32,6 +35,17 @@ const CandlestickChart = dynamic(
     ),
   { ssr: false },
 );
+
+function OrderBookPanel() {
+  const ticker = useChartStore((s) => s.currentTicker);
+  const allData = useMarketDataStore((s) => s.allData);
+  const revealedCount = useMarketDataStore((s) => s.revealedCount);
+  const currentPrice = allData.length > 0 && revealedCount > 0
+    ? allData[Math.min(revealedCount - 1, allData.length - 1)]?.close ?? 0
+    : 0;
+  if (currentPrice === 0) return <div className="p-4 text-xs text-muted-foreground">Loading...</div>;
+  return <OrderBookDisplay ticker={ticker} currentPrice={currentPrice} />;
+}
 
 export default function TradePage() {
   const { isLoading, error } = useMarketData();
@@ -148,6 +162,12 @@ export default function TradePage() {
               >
                 Fundamentals
               </TabsTrigger>
+              <TabsTrigger
+                value="orderbook"
+                className="h-6 rounded-none border-b-2 border-transparent px-3 text-xs data-[state=active]:border-primary data-[state=active]:bg-transparent"
+              >
+                Order Book
+              </TabsTrigger>
             </TabsList>
             <TabsContent value="positions" className="flex-1 overflow-auto mt-0">
               <PositionsTable />
@@ -160,6 +180,9 @@ export default function TradePage() {
             </TabsContent>
             <TabsContent value="fundamentals" className="flex-1 overflow-auto mt-0">
               <FundamentalsPanel />
+            </TabsContent>
+            <TabsContent value="orderbook" className="flex-1 overflow-auto mt-0">
+              <OrderBookPanel />
             </TabsContent>
           </Tabs>
         </div>

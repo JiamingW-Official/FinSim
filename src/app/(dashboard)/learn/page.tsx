@@ -2,7 +2,7 @@
 
 import { useState, useMemo } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { GraduationCap, BookOpen, Flame, Star, Brain, TrendingUp, Check, Zap } from "lucide-react";
+import { GraduationCap, BookOpen, Flame, Star, Brain, TrendingUp, Check, Zap, Calculator, History } from "lucide-react";
 import { useLearnStore } from "@/stores/learn-store";
 import { useGameStore } from "@/stores/game-store";
 import { useFlashcardStore } from "@/stores/flashcard-store";
@@ -12,6 +12,8 @@ import { DailyGoal } from "@/components/learn/DailyGoal";
 import { SkillPath } from "@/components/learn/SkillPath";
 import { FlashcardGame } from "@/components/learn/FlashcardGame";
 import { PredictionGame } from "@/components/learn/PredictionGame";
+import { ScenarioSimulator } from "@/components/learn/ScenarioSimulator";
+import { CompoundCalculator } from "@/components/learn/CompoundCalculator";
 
 const MOTIVATIONAL_TIPS = [
   { emoji: "🧠", text: "Diversification reduces risk — don't put all your eggs in one basket!" },
@@ -44,6 +46,7 @@ export default function LearnPage() {
   const predictionLastDate = usePredictionStore((s) => s.lastPlayDate);
 
   const [activeGame, setActiveGame] = useState<"flashcards" | "prediction" | null>(null);
+  const [activeTool, setActiveTool] = useState<"scenario" | "calculator" | null>(null);
 
   const todayStr = new Date().toISOString().slice(0, 10);
   const flashcardToday = flashcardLastDate === todayStr ? flashcardDaily : 0;
@@ -72,8 +75,8 @@ export default function LearnPage() {
             <GraduationCap className="h-4 w-4 text-amber-400" />
           </motion.div>
           <div>
-            <h1 className="text-sm font-black">Trading Academy</h1>
-            <p className="text-[9px] text-muted-foreground">Level up your skills, one lesson at a time</p>
+            <h1 className="text-sm font-semibold">Trading Academy</h1>
+            <p className="text-[9px] text-muted-foreground">Interactive lessons and practice tools</p>
           </div>
         </div>
         <div className="flex items-center gap-3">
@@ -117,9 +120,9 @@ export default function LearnPage() {
               <BookOpen className="h-5 w-5 text-primary" />
             </motion.div>
             <div className="flex-1">
-              <h2 className="text-sm font-black">Your Learning Path 🗺️</h2>
+              <h2 className="text-sm font-semibold">Your Learning Path</h2>
               <p className="text-[10px] text-muted-foreground">
-                Complete lessons to unlock new units. Earn stars for mastery!
+                Complete lessons to unlock new units
               </p>
             </div>
             <DailyGoal />
@@ -139,8 +142,8 @@ export default function LearnPage() {
               >
                 <Star className="h-4 w-4 text-amber-400" />
               </motion.div>
-              <span className="text-[11px] font-bold text-amber-400">
-                🔥 {learningStreak} day streak — you&apos;re on a roll!
+              <span className="text-[11px] font-medium text-amber-400">
+                {learningStreak} day streak
               </span>
             </motion.div>
           )}
@@ -205,7 +208,7 @@ export default function LearnPage() {
                 )}
               </div>
               <span className="text-[9px] text-muted-foreground">
-                {overallMastery}% mastery · tap to review ✨
+                {overallMastery}% mastery
               </span>
             </motion.button>
 
@@ -237,11 +240,11 @@ export default function LearnPage() {
                   </div>
                 )}
                 <span className="text-[9px] text-muted-foreground flex-1">
-                  {predictionAccuracy > 0 ? `${predictionAccuracy}% accuracy` : "Predict next candle 🕯️"}
+                  {predictionAccuracy > 0 ? `${predictionAccuracy}% accuracy` : "Predict next candle"}
                 </span>
               </div>
               <span className="text-[9px] text-muted-foreground">
-                {predictionToday > 0 ? `${predictionToday} played today · tap for more` : "Tap to start playing ▶"}
+                {predictionToday > 0 ? `${predictionToday} played today` : "Start playing"}
               </span>
             </motion.button>
           </div>
@@ -255,9 +258,69 @@ export default function LearnPage() {
           >
             <Zap className="h-3.5 w-3.5 text-primary shrink-0" />
             <span className="text-[10px] text-muted-foreground">
-              Complete lessons to earn XP, unlock achievements, and climb the leaderboard! 🏆
+              Complete lessons to earn XP and unlock achievements
             </span>
           </motion.div>
+
+          {/* Interactive Tools */}
+          <div className="mb-6 space-y-3">
+            <h3 className="text-xs font-bold text-muted-foreground flex items-center gap-1.5">
+              <Zap className="h-3 w-3 text-primary" />
+              Interactive Tools
+            </h3>
+            <div className="grid grid-cols-2 gap-3">
+              <motion.button
+                type="button"
+                onClick={() => setActiveTool(activeTool === "scenario" ? null : "scenario")}
+                className="group flex flex-col items-start gap-2 rounded-xl border border-orange-500/25 bg-orange-500/5 p-3.5 text-left transition-all hover:bg-orange-500/10 hover:border-orange-500/40"
+                whileHover={{ y: -2 }}
+                whileTap={{ scale: 0.97 }}
+              >
+                <div className="flex items-center gap-2 w-full">
+                  <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-orange-500/15 border border-orange-500/25">
+                    <History className="h-4 w-4 text-orange-400" />
+                  </div>
+                  <span className="text-xs font-black text-orange-300">Scenarios</span>
+                </div>
+                <span className="text-[9px] text-muted-foreground">
+                  Simulate 2008, COVID & dot-com crashes
+                </span>
+              </motion.button>
+              <motion.button
+                type="button"
+                onClick={() => setActiveTool(activeTool === "calculator" ? null : "calculator")}
+                className="group flex flex-col items-start gap-2 rounded-xl border border-cyan-500/25 bg-cyan-500/5 p-3.5 text-left transition-all hover:bg-cyan-500/10 hover:border-cyan-500/40"
+                whileHover={{ y: -2 }}
+                whileTap={{ scale: 0.97 }}
+              >
+                <div className="flex items-center gap-2 w-full">
+                  <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-cyan-500/15 border border-cyan-500/25">
+                    <Calculator className="h-4 w-4 text-cyan-400" />
+                  </div>
+                  <span className="text-xs font-black text-cyan-300">Calculator</span>
+                </div>
+                <span className="text-[9px] text-muted-foreground">
+                  Compound interest & wealth growth
+                </span>
+              </motion.button>
+            </div>
+
+            <AnimatePresence>
+              {activeTool && (
+                <motion.div
+                  initial={{ opacity: 0, height: 0 }}
+                  animate={{ opacity: 1, height: "auto" }}
+                  exit={{ opacity: 0, height: 0 }}
+                  transition={{ type: "spring", stiffness: 300, damping: 30 }}
+                  className="overflow-hidden"
+                >
+                  <div className="rounded-xl border border-border bg-card/50 p-4">
+                    {activeTool === "scenario" ? <ScenarioSimulator /> : <CompoundCalculator />}
+                  </div>
+                </motion.div>
+              )}
+            </AnimatePresence>
+          </div>
 
           {/* Skill tree */}
           <SkillPath />

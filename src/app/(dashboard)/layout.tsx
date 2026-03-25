@@ -16,7 +16,9 @@ import { ComboMeter } from "@/components/game/ComboMeter";
 import { StreakCelebration } from "@/components/game/StreakCelebration";
 import { TradeConfetti } from "@/components/game/TradeConfetti";
 import { FloatingEmojis } from "@/components/game/FloatingEmojis";
+import { OnboardingFlow } from "@/components/onboarding/OnboardingFlow";
 import { usePreferencesStore } from "@/stores/preferences-store";
+import { useOnboardingStore } from "@/stores/onboarding-store";
 import { cn } from "@/lib/utils";
 
 export default function DashboardLayout({
@@ -25,6 +27,7 @@ export default function DashboardLayout({
   children: React.ReactNode;
 }) {
   const colorblindMode = usePreferencesStore((s) => s.colorblindMode);
+  const hasCompletedOnboarding = useOnboardingStore((s) => s.hasCompletedOnboarding);
 
   return (
     <Providers>
@@ -48,6 +51,7 @@ export default function DashboardLayout({
         <StreakCelebration />
         <TradeConfetti />
         <FloatingEmojis />
+        {!hasCompletedOnboarding && <OnboardingFlow />}
       </div>
     </Providers>
   );
