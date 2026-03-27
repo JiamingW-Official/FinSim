@@ -16,12 +16,7 @@ import RiskScenariosTimeline from "@/components/education/RiskScenariosTimeline"
 // Demo / synthetic fallback data
 // ---------------------------------------------------------------------------
 
-const DEMO_POSITIONS = [
-  { ticker: "AAPL", quantity: 50, avgPrice: 178, currentPrice: 182, side: "long" as const, beta: 1.2, weight: 0.30 },
-  { ticker: "MSFT", quantity: 30, avgPrice: 415, currentPrice: 420, side: "long" as const, beta: 0.9, weight: 0.28 },
-  { ticker: "TSLA", quantity: 20, avgPrice: 220, currentPrice: 215, side: "long" as const, beta: 2.1, weight: 0.15 },
-  { ticker: "SPY",  quantity: 40, avgPrice: 510, currentPrice: 515, side: "long" as const, beta: 1.0, weight: 0.27 },
-];
+// DEMO_POSITIONS declared after RiskPosition interface below
 
 const TICKER_BETA: Record<string, number> = {
   AAPL: 1.2, MSFT: 0.9, TSLA: 2.1, SPY: 1.0,
@@ -329,11 +324,32 @@ function UnderwaterPlot({ snapshots, initialCapital }: {
 }
 
 // ---------------------------------------------------------------------------
+// Shared position type + demo data
+// ---------------------------------------------------------------------------
+
+interface RiskPosition {
+  ticker: string;
+  quantity: number;
+  avgPrice: number;
+  currentPrice: number;
+  side: "long" | "short";
+  beta: number;
+  weight: number;
+}
+
+const DEMO_POSITIONS: RiskPosition[] = [
+  { ticker: "AAPL", quantity: 50, avgPrice: 178, currentPrice: 182, side: "long", beta: 1.2, weight: 0.30 },
+  { ticker: "MSFT", quantity: 30, avgPrice: 415, currentPrice: 420, side: "long", beta: 0.9, weight: 0.28 },
+  { ticker: "TSLA", quantity: 20, avgPrice: 220, currentPrice: 215, side: "long", beta: 2.1, weight: 0.15 },
+  { ticker: "SPY",  quantity: 40, avgPrice: 510, currentPrice: 515, side: "long", beta: 1.0, weight: 0.27 },
+];
+
+// ---------------------------------------------------------------------------
 // Risk calculation helpers
 // ---------------------------------------------------------------------------
 
 function calcPortfolioStats(
-  positions: typeof DEMO_POSITIONS,
+  positions: RiskPosition[],
   tradeHistory: { realizedPnL: number; timestamp: number }[],
   portfolioValue: number,
 ) {
@@ -409,13 +425,17 @@ function riskLevel(score: number): { label: string; variant: "default" | "second
 function OverviewTab() {
   const { positions: rawPositions, portfolioValue, tradeHistory, equityHistory } = useTradingStore();
 
-  const positions = rawPositions.length > 0
+  const positions: RiskPosition[] = (rawPositions.length > 0
     ? rawPositions.map((p) => ({
-        ...p,
+        ticker: p.ticker,
+        quantity: p.quantity,
+        avgPrice: p.avgPrice,
+        currentPrice: p.currentPrice,
+        side: p.side as "long" | "short",
         beta: TICKER_BETA[p.ticker] ?? 1.0,
         weight: (p.currentPrice * p.quantity) / (portfolioValue || 1),
       }))
-    : DEMO_POSITIONS;
+    : DEMO_POSITIONS) as RiskPosition[];
 
   const pv = portfolioValue > 0 ? portfolioValue : INITIAL_CAPITAL;
   const tickers = positions.map((p) => p.ticker);
@@ -567,7 +587,17 @@ function OverviewTab() {
 function ScenariosTab() {
   const { portfolioValue, positions: rawPositions } = useTradingStore();
   const pv = portfolioValue > 0 ? portfolioValue : INITIAL_CAPITAL;
-  const positions = rawPositions.length > 0 ? rawPositions : DEMO_POSITIONS;
+  const positions: RiskPosition[] = rawPositions.length > 0
+    ? rawPositions.map((p) => ({
+        ticker: p.ticker,
+        quantity: p.quantity,
+        avgPrice: p.avgPrice,
+        currentPrice: p.currentPrice,
+        side: p.side,
+        beta: TICKER_BETA[p.ticker] ?? 1.0,
+        weight: (p.currentPrice * p.quantity) / (pv || 1),
+      }))
+    : DEMO_POSITIONS;
 
   const [customDrop, setCustomDrop] = useState(20);
   const [rateChange, setRateChange] = useState(100);
@@ -597,7 +627,7 @@ function ScenariosTab() {
               </div>
               <Slider
                 value={[customDrop]}
-                onValueChange={([v]) => setCustomDrop(v)}
+                onValueChange={(vals: number[]) => setCustomDrop(vals[0])}
                 min={0} max={80} step={1}
               />
             </div>
@@ -608,7 +638,7 @@ function ScenariosTab() {
               </div>
               <Slider
                 value={[rateChange]}
-                onValueChange={([v]) => setRateChange(v)}
+                onValueChange={(vals: number[]) => setRateChange(vals[0])}
                 min={0} max={500} step={25}
               />
             </div>
@@ -619,7 +649,7 @@ function ScenariosTab() {
               </div>
               <Slider
                 value={[vixSpike]}
-                onValueChange={([v]) => setVixSpike(v)}
+                onValueChange={(vals: number[]) => setVixSpike(vals[0])}
                 min={15} max={90} step={5}
               />
             </div>
@@ -727,7 +757,7 @@ function PositionSizingTab() {
             <div className="space-y-1.5">
               <label className="text-xs text-muted-foreground">Win Rate (%)</label>
               <div className="flex items-center gap-2">
-                <Slider value={[winRate]} onValueChange={([v]) => setWinRate(v)} min={1} max={99} step={1} className="flex-1" />
+                <Slider value={[winRate]} onValueChange={(vals: number[]) => setWinRate(vals[0])} min={1} max={99} step={1} className="flex-1" />
                 <span className="w-10 text-right text-sm font-medium">{winRate}%</span>
               </div>
             </div>
@@ -807,7 +837,7 @@ function PositionSizingTab() {
                 <span className="text-muted-foreground">Risk per Trade</span>
                 <span className="font-medium">{riskPct}% = ${riskDollar.toFixed(0)}</span>
               </div>
-              <Slider value={[riskPct]} onValueChange={([v]) => setRiskPct(v)} min={0.5} max={5} step={0.5} />
+              <Slider value={[riskPct]} onValueChange={(vals: number[]) => setRiskPct(vals[0])} min={0.5} max={5} step={0.5} />
             </div>
           </div>
           <div className="space-y-1.5">
@@ -815,7 +845,7 @@ function PositionSizingTab() {
               <span className="text-muted-foreground">Stop Distance</span>
               <span className="font-medium">{stopPct}% = ${stopDollar.toFixed(2)}/share</span>
             </div>
-            <Slider value={[stopPct]} onValueChange={([v]) => setStopPct(v)} min={0.5} max={20} step={0.5} />
+            <Slider value={[stopPct]} onValueChange={(vals: number[]) => setStopPct(vals[0])} min={0.5} max={20} step={0.5} />
           </div>
           <div className="grid grid-cols-2 gap-3">
             <div className="rounded-lg border border-border/50 p-3">
@@ -1084,7 +1114,7 @@ function StressTestsTab() {
             </div>
             <Slider
               value={[customPct]}
-              onValueChange={([v]) => setCustomPct(v)}
+              onValueChange={(vals: number[]) => setCustomPct(vals[0])}
               min={0}
               max={100}
               step={1}

@@ -2,14 +2,28 @@
 
 import { useState, useMemo, useCallback } from "react";
 import { useRouter } from "next/navigation";
-import { Bell, BellOff, X, Plus, TrendingUp, TrendingDown, Minus, ChevronRight, Settings2 } from "lucide-react";
+import {
+  Bell,
+  BellOff,
+  X,
+  Plus,
+  TrendingUp,
+  TrendingDown,
+  Minus,
+  ChevronUp,
+  ChevronDown,
+  ChevronRight,
+  LayoutList,
+} from "lucide-react";
 import { cn } from "@/lib/utils";
 import { useWatchlistStore } from "@/stores/watchlist-store";
 import { useChartStore } from "@/stores/chart-store";
 import { WATCHLIST_STOCKS } from "@/types/market";
+import { FUNDAMENTALS } from "@/data/fundamentals";
 import type { WatchlistItem } from "@/stores/watchlist-store";
 
-// Seeded PRNG for stable simulated prices per ticker
+// ─── Seeded PRNG ─────────────────────────────────────────────────────────────
+
 function mulberry32(seed: number) {
   return function () {
     seed |= 0;
@@ -24,12 +38,12 @@ function tickerSeed(ticker: string): number {
   let h = 0x811c9dc5;
   for (let i = 0; i < ticker.length; i++) {
     h ^= ticker.charCodeAt(i);
-    h = (Math.imul(h, 0x01000193)) >>> 0;
+    h = Math.imul(h, 0x01000193) >>> 0;
   }
   return h;
 }
 
-// Stable base prices derived from ticker hash — realistic ballpark
+// Stable base prices
 const BASE_PRICES: Record<string, number> = {
   AAPL: 213,
   MSFT: 415,
@@ -47,9 +61,51 @@ function simulatePrice(ticker: string): { price: number; changePct: number } {
   const base = BASE_PRICES[ticker] ?? 100;
   const seed = tickerSeed(ticker + Math.floor(Date.now() / 60000).toString());
   const rand = mulberry32(seed);
-  const changePct = (rand() - 0.5) * 4; // ±2% daily
+  const changePct = (rand() - 0.5) * 4;
   const price = base * (1 + changePct / 100);
   return { price: Math.max(price, 0.01), changePct };
+}
+
+// Generate a mini sparkline path for the last 8 simulated data points
+function generateSparkData(ticker: string): number[] {
+  const base = BASE_PRICES[ticker] ?? 100;
+  const seed = tickerSeed(ticker + "spark" + Math.floor(Date.now() / 3600000).toString());
+  const rand = mulberry32(seed);
+  const points: number[] = [base];
+  for (let i = 1; i < 8; i++) {
+    const prev = points[i - 1];
+    points.push(Math.max(prev * (1 + (rand() - 0.5) * 0.02), 0.01));
+  }
+  return points;
+}
+
+function MiniSparkline({ values }: { values: number[] }) {
+  if (values.length < 2) return null;
+  const min = Math.min(...values);
+  const max = Math.max(...values);
+  const range = max - min || 1;
+  const W = 40;
+  const H = 16;
+  const pts = values
+    .map((v, i) => {
+      const x = (i / (values.length - 1)) * W;
+      const y = H - ((v - min) / range) * H;
+      return `${x},${y}`;
+    })
+    .join(" ");
+  const isUp = values[values.length - 1] >= values[0];
+  return (
+    <svg width={W} height={H} className="shrink-0">
+      <polyline
+        points={pts}
+        fill="none"
+        stroke={isUp ? "#10b981" : "#ef4444"}
+        strokeWidth={1.2}
+        strokeLinejoin="round"
+        strokeLinecap="round"
+      />
+    </svg>
+  );
 }
 
 function hasActiveAlert(item: WatchlistItem): boolean {
@@ -59,16 +115,7 @@ function hasActiveAlert(item: WatchlistItem): boolean {
   );
 }
 
-function isNearAlert(item: WatchlistItem, price: number): boolean {
-  const threshold = 0.02; // 2%
-  if (item.alertAbove !== undefined && item.alertAboveEnabled !== false) {
-    if (Math.abs(price - item.alertAbove) / price < threshold) return true;
-  }
-  if (item.alertBelow !== undefined && item.alertBelowEnabled !== false) {
-    if (Math.abs(price - item.alertBelow) / price < threshold) return true;
-  }
-  return false;
-}
+// ─── AlertEditor ─────────────────────────────────────────────────────────────
 
 interface AlertEditorProps {
   item: WatchlistItem;
@@ -88,7 +135,11 @@ function AlertEditor({ item, price, onClose }: AlertEditorProps) {
   function handleSave() {
     const aboveVal = above !== "" ? parseFloat(above) : undefined;
     const belowVal = below !== "" ? parseFloat(below) : undefined;
-    if ((aboveVal !== undefined && isNaN(aboveVal)) || (belowVal !== undefined && isNaN(belowVal))) return;
+    if (
+      (aboveVal !== undefined && isNaN(aboveVal)) ||
+      (belowVal !== undefined && isNaN(belowVal))
+    )
+      return;
     setAlert(item.ticker, aboveVal, belowVal);
     onClose();
   }
@@ -101,17 +152,24 @@ function AlertEditor({ item, price, onClose }: AlertEditorProps) {
   return (
     <div className="border border-border rounded-md bg-background p-3 space-y-3 mx-2 mb-1">
       <div className="flex items-center justify-between">
-        <span className="text-xs font-medium text-foreground">Price Alerts — {item.ticker}</span>
+        <span className="text-xs font-medium text-foreground">
+          Alerts — {item.ticker}
+        </span>
         <button onClick={onClose} className="text-muted-foreground hover:text-foreground">
           <X className="h-3.5 w-3.5" />
         </button>
       </div>
       <div className="text-[10px] text-muted-foreground">
-        Current: <span className="font-mono tabular-nums text-foreground">${price.toFixed(2)}</span>
+        Current:{" "}
+        <span className="font-mono tabular-nums text-foreground">
+          ${price.toFixed(2)}
+        </span>
       </div>
       <div className="space-y-2">
         <div>
-          <label className="text-[10px] text-muted-foreground mb-1 block">Alert above ($)</label>
+          <label className="text-[10px] text-muted-foreground mb-1 block">
+            Alert above ($)
+          </label>
           <input
             type="number"
             value={above}
@@ -121,7 +179,9 @@ function AlertEditor({ item, price, onClose }: AlertEditorProps) {
           />
         </div>
         <div>
-          <label className="text-[10px] text-muted-foreground mb-1 block">Alert below ($)</label>
+          <label className="text-[10px] text-muted-foreground mb-1 block">
+            Alert below ($)
+          </label>
           <input
             type="number"
             value={below}
@@ -151,42 +211,88 @@ function AlertEditor({ item, price, onClose }: AlertEditorProps) {
   );
 }
 
+// ─── WatchlistRow ─────────────────────────────────────────────────────────────
+
 interface WatchlistRowProps {
   item: WatchlistItem;
+  index: number;
+  total: number;
   price: number;
   changePct: number;
+  sparkValues: number[];
   isAlertEditorOpen: boolean;
+  isActive: boolean;
   onToggleEditor: () => void;
   onNavigate: (ticker: string) => void;
   onRemove: (ticker: string) => void;
+  onMoveUp: (index: number) => void;
+  onMoveDown: (index: number) => void;
 }
 
 function WatchlistRow({
   item,
+  index,
+  total,
   price,
   changePct,
+  sparkValues,
   isAlertEditorOpen,
+  isActive,
   onToggleEditor,
   onNavigate,
   onRemove,
+  onMoveUp,
+  onMoveDown,
 }: WatchlistRowProps) {
   const alertActive = hasActiveAlert(item);
-  const nearAlert = isNearAlert(item, price);
 
   return (
     <div className="group">
-      <div className="flex items-center gap-1 px-3 py-2 hover:bg-accent/20 transition-colors">
+      <div
+        className={cn(
+          "flex items-center gap-0.5 px-2 py-1.5 hover:bg-accent/20 transition-colors",
+          isActive && "bg-primary/5 border-l-2 border-primary",
+          !isActive && "border-l-2 border-transparent",
+        )}
+      >
+        {/* Up/Down arrows */}
+        <div className="flex flex-col shrink-0 opacity-0 group-hover:opacity-100 transition-opacity">
+          <button
+            type="button"
+            onClick={() => onMoveUp(index)}
+            disabled={index === 0}
+            className="p-0.5 text-muted-foreground/60 hover:text-foreground disabled:opacity-20 disabled:cursor-not-allowed"
+            title="Move up"
+          >
+            <ChevronUp className="h-2.5 w-2.5" />
+          </button>
+          <button
+            type="button"
+            onClick={() => onMoveDown(index)}
+            disabled={index === total - 1}
+            className="p-0.5 text-muted-foreground/60 hover:text-foreground disabled:opacity-20 disabled:cursor-not-allowed"
+            title="Move down"
+          >
+            <ChevronDown className="h-2.5 w-2.5" />
+          </button>
+        </div>
+
         {/* Ticker + price */}
         <button
           onClick={() => onNavigate(item.ticker)}
-          className="flex flex-1 items-center gap-2 min-w-0 text-left"
+          className="flex flex-1 items-center gap-1.5 min-w-0 text-left"
         >
-          <div className="min-w-0">
-            <div className="flex items-center gap-1">
-              <span className="text-xs font-semibold text-foreground leading-none">
+          <div className="min-w-0 flex-1">
+            <div className="flex items-center gap-0.5">
+              <span
+                className={cn(
+                  "text-xs font-semibold leading-none",
+                  isActive ? "text-primary" : "text-foreground",
+                )}
+              >
                 {item.ticker}
               </span>
-              <ChevronRight className="h-3 w-3 text-muted-foreground/50 opacity-0 group-hover:opacity-100 transition-opacity" />
+              <ChevronRight className="h-2.5 w-2.5 text-muted-foreground/40 opacity-0 group-hover:opacity-100 transition-opacity" />
             </div>
             <div
               className={cn(
@@ -203,18 +309,10 @@ function WatchlistRow({
             </div>
           </div>
 
-          <div className="ml-auto text-right">
-            <div className="text-xs font-mono tabular-nums text-foreground">
+          <div className="flex flex-col items-end gap-0.5 shrink-0">
+            <MiniSparkline values={sparkValues} />
+            <div className="text-[10px] font-mono tabular-nums text-foreground">
               ${price.toFixed(2)}
-            </div>
-            <div className="flex items-center justify-end">
-              {changePct > 0 ? (
-                <TrendingUp className="h-2.5 w-2.5 text-green-500" />
-              ) : changePct < 0 ? (
-                <TrendingDown className="h-2.5 w-2.5 text-red-500" />
-              ) : (
-                <Minus className="h-2.5 w-2.5 text-muted-foreground" />
-              )}
             </div>
           </div>
         </button>
@@ -228,9 +326,7 @@ function WatchlistRow({
             isAlertEditorOpen
               ? "text-primary"
               : alertActive
-                ? nearAlert
-                  ? "text-amber-500 hover:text-amber-400"
-                  : "text-primary/70 hover:text-primary"
+                ? "text-primary/70 hover:text-primary"
                 : "text-muted-foreground/40 hover:text-muted-foreground",
           )}
         >
@@ -253,44 +349,64 @@ function WatchlistRow({
 
       {/* Alert editor inline */}
       {isAlertEditorOpen && (
-        <AlertEditor
-          item={item}
-          price={price}
-          onClose={onToggleEditor}
-        />
+        <AlertEditor item={item} price={price} onClose={onToggleEditor} />
       )}
     </div>
   );
 }
 
+// ─── Group-by types ───────────────────────────────────────────────────────────
+
+type GroupBy = "none" | "sector" | "performance";
+
+// ─── Main WatchlistPanel ──────────────────────────────────────────────────────
+
 export function WatchlistPanel() {
-  const { watchlist, addToWatchlist, removeFromWatchlist } = useWatchlistStore();
-  const { setTicker } = useChartStore();
+  const { watchlist, addToWatchlist, removeFromWatchlist, reorderWatchlist } =
+    useWatchlistStore();
+  const { currentTicker, setTicker } = useChartStore();
   const router = useRouter();
 
   const [addInput, setAddInput] = useState("");
   const [addError, setAddError] = useState("");
   const [openEditorTicker, setOpenEditorTicker] = useState<string | null>(null);
+  const [groupBy, setGroupBy] = useState<GroupBy>("none");
 
   // Simulate prices — stable per minute per ticker
   const prices = useMemo(() => {
-    const map: Record<string, { price: number; changePct: number }> = {};
+    const map: Record<string, { price: number; changePct: number; spark: number[] }> = {};
     for (const item of watchlist) {
-      map[item.ticker] = simulatePrice(item.ticker);
+      const { price, changePct } = simulatePrice(item.ticker);
+      map[item.ticker] = { price, changePct, spark: generateSparkData(item.ticker) };
     }
     return map;
   }, [watchlist]);
 
+  // Sorted/grouped watchlist
+  const displayList = useMemo(() => {
+    if (groupBy === "none") return watchlist;
+    if (groupBy === "performance") {
+      return [...watchlist].sort((a, b) => {
+        const pa = prices[a.ticker]?.changePct ?? 0;
+        const pb = prices[b.ticker]?.changePct ?? 0;
+        return pb - pa;
+      });
+    }
+    // sector: sort by sector name
+    return [...watchlist].sort((a, b) => {
+      const sa = FUNDAMENTALS[a.ticker]?.sector ?? "ZZZ";
+      const sb = FUNDAMENTALS[b.ticker]?.sector ?? "ZZZ";
+      return sa.localeCompare(sb);
+    });
+  }, [watchlist, groupBy, prices]);
+
   const handleAdd = useCallback(() => {
     const ticker = addInput.trim().toUpperCase();
     if (!ticker) return;
-
-    // Validate ticker: 1-5 uppercase letters
     if (!/^[A-Z]{1,5}$/.test(ticker)) {
       setAddError("Invalid ticker symbol");
       return;
     }
-
     addToWatchlist(ticker);
     setAddInput("");
     setAddError("");
@@ -316,6 +432,23 @@ export function WatchlistPanel() {
     [removeFromWatchlist, openEditorTicker],
   );
 
+  const handleMoveUp = useCallback(
+    (index: number) => {
+      // Find original index in watchlist (display list may be reordered for groupBy)
+      if (groupBy !== "none") return; // only allow reorder when ungrouped
+      reorderWatchlist(index, index - 1);
+    },
+    [groupBy, reorderWatchlist],
+  );
+
+  const handleMoveDown = useCallback(
+    (index: number) => {
+      if (groupBy !== "none") return;
+      reorderWatchlist(index, index + 1);
+    },
+    [groupBy, reorderWatchlist],
+  );
+
   // Quick-add from known stocks not yet watched
   const suggestions = useMemo(
     () =>
@@ -325,40 +458,133 @@ export function WatchlistPanel() {
     [watchlist],
   );
 
+  // Group headers for sector/performance grouping
+  const groupedSections = useMemo(() => {
+    if (groupBy === "none") return null;
+    if (groupBy === "sector") {
+      const sections: { label: string; items: WatchlistItem[] }[] = [];
+      const seen = new Set<string>();
+      for (const item of displayList) {
+        const sector = FUNDAMENTALS[item.ticker]?.sector ?? "Other";
+        if (!seen.has(sector)) {
+          seen.add(sector);
+          sections.push({ label: sector, items: [] });
+        }
+        sections[sections.length - 1].items.push(item);
+      }
+      return sections;
+    }
+    if (groupBy === "performance") {
+      const winners = displayList.filter(
+        (i) => (prices[i.ticker]?.changePct ?? 0) >= 0,
+      );
+      const losers = displayList.filter(
+        (i) => (prices[i.ticker]?.changePct ?? 0) < 0,
+      );
+      return [
+        { label: "Gainers", items: winners },
+        { label: "Losers", items: losers },
+      ].filter((s) => s.items.length > 0);
+    }
+    return null;
+  }, [groupBy, displayList, prices]);
+
   return (
-    <div className="flex flex-col h-full bg-card">
+    <div className="flex flex-col bg-card overflow-hidden" style={{ height: "100%" }}>
       {/* Header */}
       <div className="flex items-center justify-between border-b border-border px-3 py-2 shrink-0">
         <span className="text-[10px] font-medium uppercase tracking-wider text-muted-foreground">
           Watchlist
         </span>
-        <span className="text-[10px] text-muted-foreground/60">
-          {watchlist.length} tracked
-        </span>
+        <div className="flex items-center gap-1">
+          <span className="text-[10px] text-muted-foreground/60">
+            {watchlist.length}
+          </span>
+          {/* Group-by selector */}
+          <div className="relative">
+            <select
+              value={groupBy}
+              onChange={(e) => setGroupBy(e.target.value as GroupBy)}
+              className="appearance-none rounded border border-border bg-background pl-1 pr-4 py-0.5 text-[10px] text-muted-foreground focus:outline-none focus:border-primary cursor-pointer"
+              title="Group by"
+            >
+              <option value="none">None</option>
+              <option value="sector">Sector</option>
+              <option value="performance">Performance</option>
+            </select>
+            <LayoutList className="pointer-events-none absolute right-1 top-1/2 -translate-y-1/2 h-2.5 w-2.5 text-muted-foreground/60" />
+          </div>
+        </div>
       </div>
 
       {/* List */}
-      <div className="flex-1 overflow-y-auto">
+      <div className="flex-1 overflow-y-auto min-h-0">
         {watchlist.length === 0 ? (
-          <div className="flex flex-col items-center justify-center gap-2 px-4 py-10 text-center">
-            <Bell className="h-7 w-7 text-muted-foreground/30" />
+          <div className="flex flex-col items-center justify-center gap-2 px-4 py-8 text-center">
+            <Bell className="h-6 w-6 text-muted-foreground/30" />
             <p className="text-xs text-muted-foreground">
-              Add tickers to track them here
+              Add tickers to track
             </p>
           </div>
+        ) : groupedSections ? (
+          groupedSections.map((section) => (
+            <div key={section.label}>
+              <div className="px-3 py-1 text-[9px] uppercase tracking-wider text-muted-foreground/50 bg-muted/30 border-b border-border/40">
+                {section.label}
+              </div>
+              {section.items.map((item) => {
+                const { price, changePct, spark } = prices[item.ticker] ?? {
+                  price: 0,
+                  changePct: 0,
+                  spark: [],
+                };
+                const originalIndex = watchlist.findIndex(
+                  (w) => w.ticker === item.ticker,
+                );
+                return (
+                  <WatchlistRow
+                    key={item.ticker}
+                    item={item}
+                    index={originalIndex}
+                    total={watchlist.length}
+                    price={price}
+                    changePct={changePct}
+                    sparkValues={spark}
+                    isAlertEditorOpen={openEditorTicker === item.ticker}
+                    isActive={item.ticker === currentTicker}
+                    onToggleEditor={() => handleToggleEditor(item.ticker)}
+                    onNavigate={handleNavigate}
+                    onRemove={handleRemove}
+                    onMoveUp={handleMoveUp}
+                    onMoveDown={handleMoveDown}
+                  />
+                );
+              })}
+            </div>
+          ))
         ) : (
-          watchlist.map((item) => {
-            const { price, changePct } = prices[item.ticker] ?? { price: 0, changePct: 0 };
+          displayList.map((item, idx) => {
+            const { price, changePct, spark } = prices[item.ticker] ?? {
+              price: 0,
+              changePct: 0,
+              spark: [],
+            };
             return (
               <WatchlistRow
                 key={item.ticker}
                 item={item}
+                index={idx}
+                total={displayList.length}
                 price={price}
                 changePct={changePct}
+                sparkValues={spark}
                 isAlertEditorOpen={openEditorTicker === item.ticker}
+                isActive={item.ticker === currentTicker}
                 onToggleEditor={() => handleToggleEditor(item.ticker)}
                 onNavigate={handleNavigate}
                 onRemove={handleRemove}
+                onMoveUp={handleMoveUp}
+                onMoveDown={handleMoveDown}
               />
             );
           })

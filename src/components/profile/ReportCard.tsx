@@ -4,6 +4,7 @@ import { useMemo } from "react";
 import { useGameStore } from "@/stores/game-store";
 import { useTradingStore } from "@/stores/trading-store";
 import { cn } from "@/lib/utils";
+import { TrendingUp, Brain, AlertTriangle } from "lucide-react";
 
 type Grade = "A" | "B" | "C" | "D" | "F";
 
@@ -86,6 +87,77 @@ function gradeComment(label: string, grade: Grade): string {
   return comments[label]?.[grade] ?? `${label} needs attention.`;
 }
 
+// Derive overall performance grade from win rate + avg R:R proxy
+function computePerformanceGrade(
+  winRate: number,
+  avgPnL: number,
+  largestWin: number,
+  largestLoss: number,
+): Grade {
+  // Win rate score (0-60)
+  const wrScore = winRate * 60;
+  // R:R proxy: largestWin / |largestLoss| (0-40)
+  const rrRatio =
+    largestLoss < 0 && largestWin > 0
+      ? largestWin / Math.abs(largestLoss)
+      : largestWin > 0
+      ? 2.0
+      : 0;
+  const rrScore = Math.min(rrRatio / 3, 1) * 40;
+  // avgPnL modifier
+  const pnlMod =
+    avgPnL > 500 ? 5 : avgPnL > 100 ? 3 : avgPnL > 0 ? 1 : avgPnL > -100 ? -2 : -5;
+  const total = Math.min(100, Math.max(0, wrScore + rrScore + pnlMod));
+  return scoreToGrade(total);
+}
+
+// Detect trading DNA traits from stats
+function detectTradingDNA(
+  winRate: number,
+  shortRatio: number,
+  limitRatio: number,
+  diversification: number,
+  consecutiveWins: number,
+  avgPnL: number,
+  optionsRatio: number,
+): string[] {
+  const traits: Array<[string, number]> = [];
+
+  if (limitRatio > 0.5) traits.push(["Patient Trader", limitRatio * 100]);
+  if (shortRatio > 0.3) traits.push(["Contrarian", shortRatio * 100]);
+  if (diversification >= 5) traits.push(["Diversifier", diversification * 10]);
+  if (consecutiveWins >= 5) traits.push(["Momentum Follower", consecutiveWins * 10]);
+  if (winRate >= 0.6) traits.push(["High-Accuracy Trader", winRate * 100]);
+  if (avgPnL > 200) traits.push(["Big Move Hunter", avgPnL / 10]);
+  if (optionsRatio > 0.3) traits.push(["Options Specialist", optionsRatio * 100]);
+  if (winRate < 0.4 && avgPnL > 0) traits.push(["Risk-Taker", 60]);
+  if (winRate >= 0.5 && limitRatio >= 0.4) traits.push(["Risk-Conscious", 70]);
+  if (diversification < 3 && winRate >= 0.55) traits.push(["Focused Trader", 65]);
+
+  // Sort by score descending, return top 3 names
+  return traits
+    .sort((a, b) => b[1] - a[1])
+    .slice(0, 3)
+    .map(([name]) => name);
+}
+
+// Detect improvement areas from weakest metric scores
+function detectImprovementAreas(metrics: Metric[]): string[] {
+  const SUGGESTIONS: Record<string, string> = {
+    Consistency: "Build a daily trading habit to compound gains over time.",
+    "Risk Management": "Reduce position sizes and always define your max loss before entry.",
+    Timing: "Use limit orders and wait for confirmation before entering.",
+    Diversification: "Explore more tickers to reduce single-stock concentration risk.",
+    Discipline: "Switch to limit orders — patience rewards better entries.",
+    Profitability: "Review your losing trades for common patterns to eliminate.",
+  };
+
+  return metrics
+    .sort((a, b) => a.score - b.score)
+    .slice(0, 2)
+    .map((m) => SUGGESTIONS[m.label] ?? `Improve your ${m.label} score.`);
+}
+
 export function ReportCard() {
   const stats = useGameStore((s) => s.stats);
   const tradeHistory = useTradingStore((s) => s.tradeHistory);
@@ -96,17 +168,19 @@ export function ReportCard() {
     const winRate = totalTrades > 0 ? stats.profitableTrades / totalTrades : 0;
 
     // 1. Consistency — based on daily streak vs total trades
-    const consistencyRaw = Math.min(stats.dailyStreak * 15 + (totalTrades > 0 ? Math.min(totalTrades * 2, 40) : 0), 100);
+    const consistencyRaw = Math.min(
+      stats.dailyStreak * 15 + (totalTrades > 0 ? Math.min(totalTrades * 2, 40) : 0),
+      100,
+    );
 
     // 2. Risk Management — ratio of largest loss to largest win
     const riskRaw = (() => {
       if (totalTrades === 0) return 30;
-      const lossRatio = stats.largestLoss < 0 && stats.largestWin > 0
-        ? Math.abs(stats.largestLoss) / stats.largestWin
-        : 0;
-      // lossRatio < 1 is good (loss smaller than win)
-      const base = lossRatio < 0.5 ? 90 : lossRatio < 1 ? 70 : lossRatio < 2 ? 50 : 25;
-      return base;
+      const lossRatio =
+        stats.largestLoss < 0 && stats.largestWin > 0
+          ? Math.abs(stats.largestLoss) / stats.largestWin
+          : 0;
+      return lossRatio < 0.5 ? 90 : lossRatio < 1 ? 70 : lossRatio < 2 ? 50 : 25;
     })();
 
     // 3. Timing — approximate from average P&L per trade
@@ -134,7 +208,8 @@ export function ReportCard() {
     // 6. Profitability — win rate + total P&L
     const profitRaw = (() => {
       const wrScore = winRate * 80;
-      const pnlBonus = stats.totalPnL > 5000 ? 20 : stats.totalPnL > 1000 ? 10 : stats.totalPnL > 0 ? 5 : 0;
+      const pnlBonus =
+        stats.totalPnL > 5000 ? 20 : stats.totalPnL > 1000 ? 10 : stats.totalPnL > 0 ? 5 : 0;
       return Math.min(wrScore + pnlBonus, 100);
     })();
 
@@ -158,20 +233,107 @@ export function ReportCard() {
     return scoreToGrade(avg);
   }, [metrics]);
 
+  // Performance Grade (win rate + R:R)
+  const performanceGrade: Grade = useMemo(() => {
+    const sells = tradeHistory.filter((t) => t.side === "sell");
+    const totalTrades = stats.totalTrades;
+    const winRate = totalTrades > 0 ? stats.profitableTrades / totalTrades : 0;
+    const avgPnL =
+      sells.length > 0
+        ? sells.reduce((s, t) => s + t.realizedPnL, 0) / sells.length
+        : 0;
+    return computePerformanceGrade(
+      winRate,
+      avgPnL,
+      stats.largestWin,
+      stats.largestLoss,
+    );
+  }, [stats, tradeHistory]);
+
+  // Trading DNA
+  const tradingDNA: string[] = useMemo(() => {
+    const totalTrades = stats.totalTrades;
+    const winRate = totalTrades > 0 ? stats.profitableTrades / totalTrades : 0;
+    const shortRatio = totalTrades > 0 ? stats.shortTradesCount / totalTrades : 0;
+    const limitRatio = totalTrades > 0 ? stats.limitOrdersUsed / totalTrades : 0;
+    const optionsRatio =
+      totalTrades + stats.optionsTradesCount > 0
+        ? stats.optionsTradesCount / (totalTrades + stats.optionsTradesCount)
+        : 0;
+    const sells = tradeHistory.filter((t) => t.side === "sell");
+    const avgPnL =
+      sells.length > 0
+        ? sells.reduce((s, t) => s + t.realizedPnL, 0) / sells.length
+        : 0;
+    return detectTradingDNA(
+      winRate,
+      shortRatio,
+      limitRatio,
+      stats.uniqueTickersTraded.length,
+      stats.consecutiveWins,
+      avgPnL,
+      optionsRatio,
+    );
+  }, [stats, tradeHistory]);
+
+  // Improvement Areas
+  const improvementAreas: string[] = useMemo(
+    () => detectImprovementAreas(metrics),
+    [metrics],
+  );
+
   return (
-    <div className="space-y-3">
-      {/* Overall grade */}
-      <div className={cn("flex items-center justify-between rounded-xl border p-3", GRADE_BG[overallGrade])}>
-        <div>
-          <p className="text-[10px] font-bold uppercase tracking-wider text-muted-foreground">Overall Grade</p>
-          <p className="text-xs text-muted-foreground mt-0.5">
-            Based on {stats.totalTrades} trades across 6 dimensions
-          </p>
+    <div className="space-y-4">
+      {/* Row: Overall Grade + Performance Grade */}
+      <div className="grid grid-cols-2 gap-2">
+        <div className={cn("flex items-center justify-between rounded-xl border p-3", GRADE_BG[overallGrade])}>
+          <div>
+            <p className="text-[10px] font-bold uppercase tracking-wider text-muted-foreground">
+              Overall Grade
+            </p>
+            <p className="text-[9px] text-muted-foreground mt-0.5">
+              {stats.totalTrades} trades, 6 dimensions
+            </p>
+          </div>
+          <span className={cn("text-4xl font-black tabular-nums", GRADE_COLOR[overallGrade])}>
+            {overallGrade}
+          </span>
         </div>
-        <span className={cn("text-4xl font-black tabular-nums", GRADE_COLOR[overallGrade])}>
-          {overallGrade}
-        </span>
+
+        <div className={cn("flex items-center justify-between rounded-xl border p-3", GRADE_BG[performanceGrade])}>
+          <div>
+            <p className="text-[10px] font-bold uppercase tracking-wider text-muted-foreground">
+              Performance Grade
+            </p>
+            <p className="text-[9px] text-muted-foreground mt-0.5">
+              Win rate + R:R ratio
+            </p>
+          </div>
+          <span className={cn("text-4xl font-black tabular-nums", GRADE_COLOR[performanceGrade])}>
+            {performanceGrade}
+          </span>
+        </div>
       </div>
+
+      {/* Trading DNA */}
+      {tradingDNA.length > 0 && (
+        <div className="rounded-xl border border-border bg-card/50 p-3 space-y-2">
+          <div className="flex items-center gap-1.5 text-[10px] font-bold uppercase tracking-wider text-muted-foreground">
+            <Brain className="h-3.5 w-3.5 text-primary" />
+            Trading DNA
+          </div>
+          <div className="flex flex-wrap gap-1.5">
+            {tradingDNA.map((trait) => (
+              <span
+                key={trait}
+                className="rounded-md border border-primary/20 bg-primary/10 px-2 py-0.5 text-[10px] font-bold text-primary"
+              >
+                {trait}
+              </span>
+            ))}
+          </div>
+        </div>
+      )}
 
       {/* 6-metric grid */}
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
@@ -201,6 +363,24 @@ export function ReportCard() {
           </div>
         ))}
       </div>
+
+      {/* Improvement Areas */}
+      {improvementAreas.length > 0 && (
+        <div className="rounded-xl border border-border bg-card/50 p-3 space-y-2">
+          <div className="flex items-center gap-1.5 text-[10px] font-bold uppercase tracking-wider text-muted-foreground">
+            <AlertTriangle className="h-3.5 w-3.5 text-amber-400" />
+            Improvement Areas
+          </div>
+          <div className="space-y-2">
+            {improvementAreas.map((area, i) => (
+              <div key={i} className="flex items-start gap-2">
+                <TrendingUp className="h-3 w-3 mt-0.5 shrink-0 text-primary/60" />
+                <p className="text-[10px] leading-snug text-muted-foreground">{area}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      )}
     </div>
   );
 }

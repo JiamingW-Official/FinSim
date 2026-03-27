@@ -9,7 +9,9 @@ import { OrderEntry } from "@/components/trading/OrderEntry";
 import { PositionsTable } from "@/components/trading/PositionsTable";
 import { TradeHistory } from "@/components/trading/TradeHistory";
 import { PendingOrders } from "@/components/trading/PendingOrders";
-import { Watchlist } from "@/components/layout/Watchlist";
+import { ExecutionQuality } from "@/components/trading/ExecutionQuality";
+import { WatchlistPanel } from "@/components/trading/WatchlistPanel";
+import { PriceAlerts } from "@/components/trading/PriceAlerts";
 import { OnboardingHint } from "@/components/game/OnboardingHint";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { useKeyboardShortcuts } from "@/hooks/useKeyboardShortcuts";
@@ -40,10 +42,14 @@ function OrderBookPanel() {
   const ticker = useChartStore((s) => s.currentTicker);
   const allData = useMarketDataStore((s) => s.allData);
   const revealedCount = useMarketDataStore((s) => s.revealedCount);
-  const currentPrice = allData.length > 0 && revealedCount > 0
-    ? allData[Math.min(revealedCount - 1, allData.length - 1)]?.close ?? 0
-    : 0;
-  if (currentPrice === 0) return <div className="p-4 text-xs text-muted-foreground">Loading...</div>;
+  const currentPrice =
+    allData.length > 0 && revealedCount > 0
+      ? allData[Math.min(revealedCount - 1, allData.length - 1)]?.close ?? 0
+      : 0;
+  if (currentPrice === 0)
+    return (
+      <div className="p-4 text-xs text-muted-foreground">Loading...</div>
+    );
   return <OrderBookDisplay ticker={ticker} currentPrice={currentPrice} />;
 }
 
@@ -79,13 +85,26 @@ export default function TradePage() {
 
   return (
     <>
-      {/* ── Desktop layout (md+): side-by-side columns ── */}
+      {/* ── Desktop layout (md+): 3-panel columns ── */}
       <div className="hidden md:flex h-full">
         <TradeShareCard />
         <AlphaBotAlerts />
-        {/* Left: Watchlist */}
-        <div className="relative" data-tutorial="watchlist">
-          <Watchlist />
+
+        {/* ── Left sidebar (220px): Watchlist + PriceAlerts ── */}
+        <div
+          className="relative flex flex-col border-r border-border bg-card shrink-0"
+          style={{ width: 220 }}
+          data-tutorial="watchlist"
+        >
+          {/* WatchlistPanel takes top 60% */}
+          <div className="flex flex-col border-b border-border" style={{ flex: "3 3 0" }}>
+            <WatchlistPanel />
+          </div>
+          {/* PriceAlerts takes bottom 40% */}
+          <div className="flex flex-col overflow-hidden" style={{ flex: "2 2 0" }}>
+            <PriceAlerts />
+          </div>
+
           {showWatchlist && (
             <OnboardingHint
               title="Watchlist"
@@ -98,7 +117,7 @@ export default function TradePage() {
           )}
         </div>
 
-        {/* Center: Chart + Time Travel + Positions/History */}
+        {/* ── Center: Chart + Controls ── */}
         <div className="flex flex-1 flex-col overflow-hidden">
           <ChartToolbar data-tutorial="indicators" />
           <IndicatorInfoPanel />
@@ -136,28 +155,13 @@ export default function TradePage() {
           <ContextualTip />
           <NewsTicker />
 
-          {/* Bottom panel: Positions & History tabs */}
-          <div className="h-48 shrink-0 overflow-hidden border-t border-border" data-tutorial="positions">
-            <Tabs defaultValue="positions" className="h-full flex flex-col">
+          {/* Bottom panel: Fundamentals / Order Book tabs */}
+          <div
+            className="h-40 shrink-0 overflow-hidden border-t border-border"
+            data-tutorial="positions"
+          >
+            <Tabs defaultValue="fundamentals" className="h-full flex flex-col">
               <TabsList className="h-7 w-full justify-start rounded-none border-b border-border bg-card px-2">
-                <TabsTrigger
-                  value="positions"
-                  className="h-6 rounded-none border-b-2 border-transparent px-3 text-xs data-[state=active]:border-primary data-[state=active]:bg-transparent"
-                >
-                  Positions
-                </TabsTrigger>
-                <TabsTrigger
-                  value="history"
-                  className="h-6 rounded-none border-b-2 border-transparent px-3 text-xs data-[state=active]:border-primary data-[state=active]:bg-transparent"
-                >
-                  History
-                </TabsTrigger>
-                <TabsTrigger
-                  value="pending"
-                  className="h-6 rounded-none border-b-2 border-transparent px-3 text-xs data-[state=active]:border-primary data-[state=active]:bg-transparent"
-                >
-                  Pending{pendingCount > 0 && ` (${pendingCount})`}
-                </TabsTrigger>
                 <TabsTrigger
                   value="fundamentals"
                   className="h-6 rounded-none border-b-2 border-transparent px-3 text-xs data-[state=active]:border-primary data-[state=active]:bg-transparent"
@@ -171,15 +175,6 @@ export default function TradePage() {
                   Order Book
                 </TabsTrigger>
               </TabsList>
-              <TabsContent value="positions" className="flex-1 overflow-auto mt-0">
-                <PositionsTable />
-              </TabsContent>
-              <TabsContent value="history" className="flex-1 overflow-auto mt-0">
-                <TradeHistory />
-              </TabsContent>
-              <TabsContent value="pending" className="flex-1 overflow-auto mt-0">
-                <PendingOrders />
-              </TabsContent>
               <TabsContent value="fundamentals" className="flex-1 overflow-auto mt-0">
                 <FundamentalsPanel />
               </TabsContent>
@@ -190,22 +185,100 @@ export default function TradePage() {
           </div>
         </div>
 
-        {/* Right: Order Entry + AI Coach */}
-        <div className="relative w-64 shrink-0 flex flex-col border-l border-border bg-card" data-tutorial="order-entry">
-          <div className="flex-1 min-h-0 overflow-y-auto">
-            <OrderEntry />
-            {showOrderEntry && (
-              <OnboardingHint
-                title="Place Orders"
-                description="Enter quantity and choose order type. Try a market buy to get started, or use limit orders for more control."
-                visible
-                onDismiss={() => dismiss("order-entry")}
-                position="bottom"
-                className="left-2 top-12"
-              />
-            )}
-          </div>
-          <AICoachPanel />
+        {/* ── Right sidebar (280px): Order Entry + Tabs ── */}
+        <div
+          className="relative flex flex-col border-l border-border bg-card shrink-0"
+          style={{ width: 280 }}
+          data-tutorial="order-entry"
+        >
+          <Tabs defaultValue="order" className="flex flex-col h-full">
+            {/* Tab bar */}
+            <TabsList className="h-7 w-full justify-start rounded-none border-b border-border bg-card px-1 shrink-0">
+              <TabsTrigger
+                value="order"
+                className="h-6 rounded-none border-b-2 border-transparent px-2 text-[10px] data-[state=active]:border-primary data-[state=active]:bg-transparent"
+              >
+                Order
+              </TabsTrigger>
+              <TabsTrigger
+                value="positions"
+                className="h-6 rounded-none border-b-2 border-transparent px-2 text-[10px] data-[state=active]:border-primary data-[state=active]:bg-transparent"
+              >
+                Positions
+              </TabsTrigger>
+              <TabsTrigger
+                value="pending"
+                className="h-6 rounded-none border-b-2 border-transparent px-2 text-[10px] data-[state=active]:border-primary data-[state=active]:bg-transparent"
+              >
+                Orders{pendingCount > 0 && ` (${pendingCount})`}
+              </TabsTrigger>
+              <TabsTrigger
+                value="history"
+                className="h-6 rounded-none border-b-2 border-transparent px-2 text-[10px] data-[state=active]:border-primary data-[state=active]:bg-transparent"
+              >
+                History
+              </TabsTrigger>
+              <TabsTrigger
+                value="execution"
+                className="h-6 rounded-none border-b-2 border-transparent px-2 text-[10px] data-[state=active]:border-primary data-[state=active]:bg-transparent"
+              >
+                Exec
+              </TabsTrigger>
+            </TabsList>
+
+            {/* Order tab: OrderEntry + AI Coach stacked */}
+            <TabsContent
+              value="order"
+              className="flex-1 flex flex-col overflow-hidden mt-0 data-[state=inactive]:hidden"
+            >
+              <div className="flex-1 min-h-0 overflow-y-auto">
+                <OrderEntry />
+                {showOrderEntry && (
+                  <OnboardingHint
+                    title="Place Orders"
+                    description="Enter quantity and choose order type. Try a market buy to get started, or use limit orders for more control."
+                    visible
+                    onDismiss={() => dismiss("order-entry")}
+                    position="bottom"
+                    className="left-2 top-12"
+                  />
+                )}
+              </div>
+              <AICoachPanel />
+            </TabsContent>
+
+            {/* Positions tab */}
+            <TabsContent
+              value="positions"
+              className="flex-1 overflow-auto mt-0 data-[state=inactive]:hidden"
+            >
+              <PositionsTable />
+            </TabsContent>
+
+            {/* Pending Orders tab */}
+            <TabsContent
+              value="pending"
+              className="flex-1 overflow-auto mt-0 data-[state=inactive]:hidden"
+            >
+              <PendingOrders />
+            </TabsContent>
+
+            {/* History tab — last 10 trades */}
+            <TabsContent
+              value="history"
+              className="flex-1 overflow-auto mt-0 data-[state=inactive]:hidden"
+            >
+              <TradeHistory />
+            </TabsContent>
+
+            {/* Execution Quality tab */}
+            <TabsContent
+              value="execution"
+              className="flex-1 overflow-auto mt-0 data-[state=inactive]:hidden"
+            >
+              <ExecutionQuality />
+            </TabsContent>
+          </Tabs>
         </div>
       </div>
 
@@ -219,7 +292,10 @@ export default function TradePage() {
         <IndicatorInfoPanel />
 
         {/* Chart — fixed height on mobile */}
-        <div className={cn("relative h-[300px] shrink-0", flashClass)} data-tutorial="chart">
+        <div
+          className={cn("relative h-[300px] shrink-0", flashClass)}
+          data-tutorial="chart"
+        >
           {isLoading && (
             <div className="absolute inset-0 z-10 flex items-center justify-center bg-background/80">
               <Loader2 className="h-6 w-6 animate-spin text-primary" />
@@ -227,7 +303,9 @@ export default function TradePage() {
           )}
           {error && (
             <div className="absolute inset-0 z-10 flex items-center justify-center bg-background/80">
-              <p className="text-sm text-destructive">Failed to load data. Please try again.</p>
+              <p className="text-sm text-destructive">
+                Failed to load data. Please try again.
+              </p>
             </div>
           )}
           <CandlestickChart />
@@ -240,7 +318,7 @@ export default function TradePage() {
         <ContextualTip />
         <NewsTicker />
 
-        {/* Mobile tab panel: Order Entry | Positions | Indicators | AI Coach */}
+        {/* Mobile tab panel */}
         <div className="border-t border-border">
           <Tabs defaultValue="order">
             <TabsList className="h-9 w-full justify-start rounded-none border-b border-border bg-card px-2 overflow-x-auto flex-nowrap">
@@ -248,7 +326,7 @@ export default function TradePage() {
                 value="order"
                 className="h-7 shrink-0 rounded-none border-b-2 border-transparent px-3 text-xs data-[state=active]:border-primary data-[state=active]:bg-transparent"
               >
-                Order Entry
+                Order
               </TabsTrigger>
               <TabsTrigger
                 value="positions"
@@ -269,6 +347,12 @@ export default function TradePage() {
                 Pending{pendingCount > 0 && ` (${pendingCount})`}
               </TabsTrigger>
               <TabsTrigger
+                value="watchlist"
+                className="h-7 shrink-0 rounded-none border-b-2 border-transparent px-3 text-xs data-[state=active]:border-primary data-[state=active]:bg-transparent"
+              >
+                Watchlist
+              </TabsTrigger>
+              <TabsTrigger
                 value="ai"
                 className="h-7 shrink-0 rounded-none border-b-2 border-transparent px-3 text-xs data-[state=active]:border-primary data-[state=active]:bg-transparent"
               >
@@ -286,6 +370,9 @@ export default function TradePage() {
             </TabsContent>
             <TabsContent value="pending" className="mt-0">
               <PendingOrders />
+            </TabsContent>
+            <TabsContent value="watchlist" className="mt-0 h-80">
+              <WatchlistPanel />
             </TabsContent>
             <TabsContent value="ai" className="mt-0">
               <AICoachPanel />

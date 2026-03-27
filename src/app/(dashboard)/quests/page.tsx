@@ -126,7 +126,7 @@ function SimpleQuestCard({
           <div className="mt-2 space-y-1">
             <div className="flex items-center justify-between text-[10px]">
               <span className="text-muted-foreground">
-                {quest.category === "daily_60_winrate" || quest.id === "daily_60_winrate"
+                {quest.id === "daily_60_winrate"
                   ? `${progress}% / ${quest.target}%`
                   : `${progress} / ${quest.target}`}
               </span>
