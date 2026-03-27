@@ -4,25 +4,52 @@ import { useRef, useState, useCallback, useEffect } from "react";
 
 // ── Local drawing types (not stored in chart-store) ──────────────────────────
 
-export type DrawingTool = "none" | "trendline" | "hline" | "rect" | "fib" | "text" | "eraser";
+export type DrawingTool = "none" | "trendline" | "hline" | "vline" | "rect" | "fib" | "text" | "eraser";
 
 export interface DrawingPoint {
   x: number;
   y: number;
   price: number;
+  /** Normalized bar position 0..1 across the chart width */
+  barRatio: number;
 }
 
 export type Drawing =
   | { id: string; type: "hline"; price: number; color: string }
+  | { id: string; type: "vline"; barRatio: number; color: string }
   | { id: string; type: "trendline"; p1: DrawingPoint; p2: DrawingPoint; color: string }
   | { id: string; type: "rect"; p1: DrawingPoint; p2: DrawingPoint; color: string }
   | { id: string; type: "fib"; p1: DrawingPoint; p2: DrawingPoint; color: string; levels: { ratio: number; price: number }[] }
   | { id: string; type: "text"; p: DrawingPoint; text: string; color: string };
 
+// ── localStorage persistence ──────────────────────────────────────────────────
+
+const STORAGE_KEY = "finsim-chart-drawings-v1";
+
+function loadDrawings(): Drawing[] {
+  if (typeof window === "undefined") return [];
+  try {
+    const raw = localStorage.getItem(STORAGE_KEY);
+    if (!raw) return [];
+    return JSON.parse(raw) as Drawing[];
+  } catch {
+    return [];
+  }
+}
+
+function saveDrawings(drawings: Drawing[]) {
+  if (typeof window === "undefined") return;
+  try {
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(drawings));
+  } catch {
+    /* quota exceeded or SSR — ignore */
+  }
+}
+
 // ── Global drawing state (module-level singleton for cross-component sharing) ─
 
 let _activeTool: DrawingTool = "none";
-let _drawings: Drawing[] = [];
+let _drawings: Drawing[] = loadDrawings();
 const _listeners: Set<() => void> = new Set();
 
 function notifyListeners() {
@@ -41,9 +68,21 @@ export function useDrawingStore() {
     activeTool: _activeTool,
     drawings: _drawings,
     setActiveTool: (tool: DrawingTool) => { _activeTool = tool; notifyListeners(); },
-    addDrawing: (d: Drawing) => { _drawings = [..._drawings, d]; notifyListeners(); },
-    removeDrawing: (id: string) => { _drawings = _drawings.filter((d) => d.id !== id); notifyListeners(); },
-    clearDrawings: () => { _drawings = []; notifyListeners(); },
+    addDrawing: (d: Drawing) => {
+      _drawings = [..._drawings, d];
+      saveDrawings(_drawings);
+      notifyListeners();
+    },
+    removeDrawing: (id: string) => {
+      _drawings = _drawings.filter((d) => d.id !== id);
+      saveDrawings(_drawings);
+      notifyListeners();
+    },
+    clearDrawings: () => {
+      _drawings = [];
+      saveDrawings(_drawings);
+      notifyListeners();
+    },
   };
 }
 
@@ -68,7 +107,7 @@ const FIB_COLORS = [
   "#ec4899", // 100%
 ];
 
-interface DrawingOverlayProps {
+export interface DrawingOverlayProps {
   /** Current price at the top of the visible price range */
   priceHigh: number;
   /** Current price at the bottom of the visible price range */
@@ -130,9 +169,10 @@ export function DrawingOverlay({ priceHigh, priceLow, height, width }: DrawingOv
       const x = clientX - rect.left;
       const y = clientY - rect.top;
       const price = yToPrice(y, priceHigh, priceLow, height);
-      return { x, y, price };
+      const barRatio = width > 0 ? x / width : 0;
+      return { x, y, price, barRatio };
     },
-    [priceHigh, priceLow, height],
+    [priceHigh, priceLow, height, width],
   );
 
   const handleMouseMove = useCallback(
@@ -165,6 +205,17 @@ export function DrawingOverlay({ priceHigh, priceLow, height, width }: DrawingOv
             type: "hline",
             price: pt.price,
             color: "#f59e0b",
+          };
+          addDrawing(drawing);
+          break;
+        }
+
+        case "vline": {
+          const drawing: Drawing = {
+            id: uid(),
+            type: "vline",
+            barRatio: pt.barRatio,
+            color: "#06b6d4",
           };
           addDrawing(drawing);
           break;
@@ -349,6 +400,36 @@ export function DrawingOverlay({ priceHigh, priceLow, height, width }: DrawingOv
             );
           }
 
+          if (d.type === "vline") {
+            const x = d.barRatio * width;
+            return (
+              <g
+                key={d.id}
+                onClick={(e) => handleDrawingClick(e, d.id)}
+                className={hoverClass}
+              >
+                <line
+                  x1={x}
+                  y1={0}
+                  x2={x}
+                  y2={height}
+                  stroke={d.color}
+                  strokeWidth={1}
+                  strokeDasharray="4 3"
+                />
+                {/* Hit area */}
+                <line
+                  x1={x}
+                  y1={0}
+                  x2={x}
+                  y2={height}
+                  stroke="transparent"
+                  strokeWidth={10}
+                />
+              </g>
+            );
+          }
+
           if (d.type === "rect") {
             const x = Math.min(d.p1.x, d.p2.x);
             const y = Math.min(d.p1.y, d.p2.y);
@@ -523,7 +604,7 @@ export function DrawingOverlay({ priceHigh, priceLow, height, width }: DrawingOv
                 setTextInput("");
               }
             }}
-            placeholder="Label text…"
+            placeholder="Label text..."
             className="w-32 bg-transparent text-[11px] text-foreground outline-none placeholder:text-muted-foreground"
           />
           <button

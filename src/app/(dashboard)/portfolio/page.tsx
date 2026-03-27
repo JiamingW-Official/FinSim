@@ -229,13 +229,26 @@ export default function PortfolioPage() {
             </TabsContent>
 
             {/* ── Journal tab ── */}
-            <TabsContent value="journal">
+            <TabsContent value="journal" className="space-y-3">
+              {/* Recent 5 trades with notes */}
+              <RecentTradesPreview />
+
+              {/* Full journal link */}
               <div className="rounded-lg border border-border bg-card p-3">
                 <div className="mb-2 flex items-center gap-1.5 text-xs font-medium text-muted-foreground">
                   <BookOpen className="h-3.5 w-3.5 text-violet-400" />
                   Trade Journal
                 </div>
                 <TradeJournal />
+                <div className="mt-3 border-t border-border/40 pt-3">
+                  <a
+                    href="/journal"
+                    className="flex items-center gap-1.5 text-[11px] font-medium text-primary hover:underline"
+                  >
+                    View Full Journal
+                    <span className="text-muted-foreground">→</span>
+                  </a>
+                </div>
               </div>
             </TabsContent>
 

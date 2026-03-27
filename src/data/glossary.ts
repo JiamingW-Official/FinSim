@@ -13,6 +13,7 @@ export interface GlossaryEntry {
     | "options-advanced"
     | "technical";
   example?: string;
+  formula?: string;
 }
 
 export const GLOSSARY: GlossaryEntry[] = [

@@ -1,14 +1,15 @@
 "use client";
 
-import { useState, useMemo } from "react";
+import { useState, useMemo, useEffect } from "react";
 import dynamic from "next/dynamic";
 import { useTradingStore } from "@/stores/trading-store";
 import { INITIAL_CAPITAL } from "@/types/trading";
 import { formatCurrency, cn } from "@/lib/utils";
-import { BookOpen, BarChart3, Calendar, FileText, Loader2 } from "lucide-react";
+import { BookOpen, BarChart3, Calendar, FileText, Lightbulb, Loader2 } from "lucide-react";
 import { PnLCalendar } from "@/components/journal/PnLCalendar";
-import { TradeLogTable } from "@/components/journal/TradeLogTable";
+import { TradeLogTable, TagStatsChart, loadTradeTags } from "@/components/journal/TradeLogTable";
 import { JournalNotes } from "@/components/journal/JournalNotes";
+import { PerformanceInsights } from "@/components/journal/PerformanceInsights";
 
 const JournalEquityCurve = dynamic(
   () => import("@/components/journal/EquityCurve").then((m) => m.JournalEquityCurve),
@@ -155,19 +156,26 @@ function computeAnalytics(rows: TradeRow[]) {
 }
 
 // ── Page tabs ────────────────────────────────────────────────────────────────
-type PageTab = "log" | "analytics" | "calendar" | "notes";
+type PageTab = "log" | "analytics" | "calendar" | "notes" | "insights";
 
 const PAGE_TABS: { value: PageTab; label: string; icon: React.ReactNode }[] = [
   { value: "log",       label: "Log",       icon: <BookOpen className="h-3 w-3" /> },
   { value: "analytics", label: "Analytics", icon: <BarChart3 className="h-3 w-3" /> },
   { value: "calendar",  label: "Calendar",  icon: <Calendar className="h-3 w-3" /> },
   { value: "notes",     label: "Notes",     icon: <FileText className="h-3 w-3" /> },
+  { value: "insights",  label: "Insights",  icon: <Lightbulb className="h-3 w-3" /> },
 ];
 
 // ── Main Component ───────────────────────────────────────────────────────────
 export default function JournalPageClient() {
   const tradeHistory = useTradingStore((s) => s.tradeHistory);
   const [pageTab, setPageTab] = useState<PageTab>("log");
+  const [tradeTags, setTradeTags] = useState<Record<string, string[]>>({});
+
+  // Load trade tags from localStorage
+  useEffect(() => {
+    setTradeTags(loadTradeTags());
+  }, [pageTab]); // reload when switching tabs so analytics stay current
 
   // Build augmented rows: pair closing trades to their opening legs
   const rows = useMemo<TradeRow[]>(() => {
@@ -457,6 +465,12 @@ export default function JournalPageClient() {
                   </div>
                 </div>
 
+                {/* Tag distribution */}
+                <div className="rounded-lg border border-border bg-card p-3">
+                  <p className="mb-3 text-xs font-semibold">Tag Distribution</p>
+                  <TagStatsChart tradeTags={tradeTags} />
+                </div>
+
                 {/* Equity Curve */}
                 <div className="rounded-lg border border-border bg-card p-3">
                   <div className="mb-2 flex items-center gap-1.5 text-xs font-semibold">
@@ -493,6 +507,28 @@ export default function JournalPageClient() {
         {/* Notes */}
         {pageTab === "notes" && (
           <JournalNotes />
+        )}
+
+        {/* Insights */}
+        {pageTab === "insights" && (
+          <div className="space-y-4">
+            <div className="rounded-lg border border-border bg-card p-4">
+              <div className="mb-3 flex items-center gap-1.5 text-xs font-semibold">
+                <Lightbulb className="h-3.5 w-3.5 text-amber-400" />
+                Performance Insights
+              </div>
+              <PerformanceInsights rows={rows} />
+            </div>
+
+            {/* Tag distribution */}
+            <div className="rounded-lg border border-border bg-card p-4">
+              <div className="mb-3 flex items-center gap-1.5 text-xs font-semibold">
+                <BarChart3 className="h-3.5 w-3.5 text-primary" />
+                Tag Distribution
+              </div>
+              <TagStatsChart tradeTags={tradeTags} />
+            </div>
+          </div>
         )}
 
       </div>

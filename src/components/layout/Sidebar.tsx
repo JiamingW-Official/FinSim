@@ -5,7 +5,7 @@ import { usePathname } from "next/navigation";
 import {
   Home, BarChart3, Briefcase, FlaskConical, GraduationCap,
   Swords, ScrollText, Crosshair, Trophy, User, Settings, Activity,
-  TrendingUp, Globe, ChevronLeft, ChevronRight, BookOpen,
+  TrendingUp, Globe, ChevronLeft, ChevronRight, BookOpen, Bitcoin,
 } from "lucide-react";
 import { Tooltip, TooltipTrigger, TooltipContent } from "@/components/ui/tooltip";
 import { SearchTrigger } from "@/components/search/GlobalSearch";
@@ -23,6 +23,7 @@ const SHORTCUTS: Record<string, string> = {
   "/backtest":    "G B",
   "/predictions": "G D",
   "/market":      "G M",
+  "/crypto":      "G Y",
   "/learn":       "G L",
   "/glossary":    "G G",
   "/challenges":  "G C",
@@ -61,6 +62,7 @@ const NAV_GROUPS: NavGroup[] = [
       { icon: FlaskConical, label: "Backtest",     href: "/backtest" },
       { icon: TrendingUp,   label: "Predictions",  href: "/predictions" },
       { icon: Globe,        label: "Market Intel", href: "/market" },
+      { icon: Bitcoin,      label: "Crypto",       href: "/crypto" },
     ],
   },
   {

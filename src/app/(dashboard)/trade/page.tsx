@@ -1,10 +1,12 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef, useCallback } from "react";
 import dynamic from "next/dynamic";
 import { useMarketData } from "@/hooks/useMarketData";
 import { ChartToolbar } from "@/components/chart/ChartToolbar";
 import { TimeTravelControls } from "@/components/chart/TimeTravelControls";
+import { DrawingToolbar } from "@/components/chart/DrawingToolbar";
+import { DrawingOverlay } from "@/components/chart/DrawingOverlay";
 import { OrderEntry } from "@/components/trading/OrderEntry";
 import { PositionsTable } from "@/components/trading/PositionsTable";
 import { TradeHistory } from "@/components/trading/TradeHistory";
@@ -29,6 +31,59 @@ import { AlphaBotAlerts } from "@/components/ai/AlphaBotAlerts";
 import { TradeShareCard } from "@/components/trading/TradeShareCard";
 import { cn } from "@/lib/utils";
 import { Loader2 } from "lucide-react";
+
+// ── Chart area wrapper with DrawingOverlay ────────────────────────────────────
+
+function ChartWithDrawing({ children, flashClass }: { children: React.ReactNode; flashClass: string }) {
+  const containerRef = useRef<HTMLDivElement>(null);
+  const [dims, setDims] = useState({ width: 0, height: 0 });
+
+  // Measure container
+  const measure = useCallback(() => {
+    if (containerRef.current) {
+      setDims({
+        width: containerRef.current.offsetWidth,
+        height: containerRef.current.offsetHeight,
+      });
+    }
+  }, []);
+
+  useEffect(() => {
+    measure();
+    const ro = new ResizeObserver(measure);
+    if (containerRef.current) ro.observe(containerRef.current);
+    return () => ro.disconnect();
+  }, [measure]);
+
+  // Derive price range from visible bars
+  const allData = useMarketDataStore((s) => s.allData);
+  const revealedCount = useMarketDataStore((s) => s.revealedCount);
+  const visibleBars = revealedCount > 0 ? allData.slice(0, revealedCount) : allData;
+
+  let priceHigh = 0;
+  let priceLow = Infinity;
+  for (const bar of visibleBars) {
+    if (bar.high > priceHigh) priceHigh = bar.high;
+    if (bar.low < priceLow) priceLow = bar.low;
+  }
+  if (priceLow === Infinity) priceLow = 0;
+  // Add 5% padding to match chart's visible scale
+  const range = priceHigh - priceLow;
+  priceHigh = priceHigh + range * 0.05;
+  priceLow = Math.max(0, priceLow - range * 0.05);
+
+  return (
+    <div ref={containerRef} className={cn("relative flex-1", flashClass)} data-tutorial="chart">
+      {children}
+      <DrawingOverlay
+        width={dims.width}
+        height={dims.height}
+        priceHigh={priceHigh}
+        priceLow={priceLow}
+      />
+    </div>
+  );
+}
 
 const CandlestickChart = dynamic(
   () =>
