@@ -137,6 +137,22 @@ function notifyAchievementsAndLevel(
   leveledUp: boolean,
   newLevel: number,
 ) {
+  // Fire Sonner achievement toasts (inline JSX — no circular React import needed in a store)
+  for (const a of newAchievements) {
+    const def = ACHIEVEMENT_DEFS.find((d) => d.id === a.id);
+    const xpReward = def?.xpReward ?? 0;
+    const toastId = `achievement-${a.id}`;
+    toast(
+      `${a.name}${xpReward > 0 ? ` (+${xpReward} XP)` : ""}`,
+      {
+        id: toastId,
+        description: a.description,
+        duration: 6000,
+        position: "top-right",
+      },
+    );
+  }
+
   try {
     const { useNotificationStore } = require("./notification-store");
     const addNotif = useNotificationStore.getState().addNotification;
