@@ -17,6 +17,7 @@ interface WatchlistState {
 
   addToWatchlist: (ticker: string) => void;
   removeFromWatchlist: (ticker: string) => void;
+  reorderWatchlist: (fromIndex: number, toIndex: number) => void;
   setAlert: (ticker: string, above?: number, below?: number) => void;
   toggleAlertAbove: (ticker: string, enabled: boolean) => void;
   toggleAlertBelow: (ticker: string, enabled: boolean) => void;
@@ -48,6 +49,17 @@ export const useWatchlistStore = create<WatchlistState>()(
         set((state) => ({
           watchlist: state.watchlist.filter((w) => w.ticker !== ticker),
         }));
+      },
+
+      reorderWatchlist: (fromIndex, toIndex) => {
+        set((state) => {
+          const list = [...state.watchlist];
+          if (fromIndex < 0 || fromIndex >= list.length) return state;
+          if (toIndex < 0 || toIndex >= list.length) return state;
+          const [item] = list.splice(fromIndex, 1);
+          list.splice(toIndex, 0, item);
+          return { watchlist: list };
+        });
       },
 
       setAlert: (ticker, above, below) => {

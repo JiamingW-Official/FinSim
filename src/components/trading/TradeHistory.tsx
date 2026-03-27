@@ -23,17 +23,17 @@ export function TradeHistory() {
   }
 
   return (
-    <div className="overflow-auto max-h-64">
-      <table className="w-full text-xs">
+    <div className="overflow-x-auto max-h-64">
+      <table className="w-full text-xs" role="table">
         <thead>
           <tr className="border-b border-border text-muted-foreground">
-            <th className="px-2 py-1.5 text-left font-medium">Date</th>
-            <th className="px-2 py-1.5 text-left font-medium">Ticker</th>
-            <th className="px-2 py-1.5 text-center font-medium">Side</th>
-            <th className="px-2 py-1.5 text-right font-medium">Qty</th>
-            <th className="px-2 py-1.5 text-right font-medium">Price</th>
-            <th className="px-2 py-1.5 text-right font-medium">Fees</th>
-            <th className="px-2 py-1.5 text-right font-medium">Net P&L</th>
+            <th scope="col" className="px-2 py-1.5 text-left font-medium whitespace-nowrap">Date</th>
+            <th scope="col" className="px-2 py-1.5 text-left font-medium whitespace-nowrap">Ticker</th>
+            <th scope="col" className="px-2 py-1.5 text-center font-medium whitespace-nowrap">Side</th>
+            <th scope="col" className="px-2 py-1.5 text-right font-medium whitespace-nowrap">Qty</th>
+            <th scope="col" className="px-2 py-1.5 text-right font-medium whitespace-nowrap">Price</th>
+            <th scope="col" className="px-2 py-1.5 text-right font-medium whitespace-nowrap">Fees</th>
+            <th scope="col" className="px-2 py-1.5 text-right font-medium whitespace-nowrap">Net P&amp;L</th>
           </tr>
         </thead>
         <tbody>

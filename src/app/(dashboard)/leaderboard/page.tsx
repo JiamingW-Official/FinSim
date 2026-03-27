@@ -6,6 +6,7 @@ import { cn } from "@/lib/utils";
 import {
   Trophy, DollarSign, Target, TrendingUp, Flame,
   Zap, ShieldCheck, Star, Crown, Medal, Gem, Lightbulb,
+  Users, BarChart2, Lock, ChevronUp, ChevronDown,
 } from "lucide-react";
 import { useLeaderboard } from "@/hooks/useLeaderboard";
 import { PlayerStatsCard } from "@/components/leaderboard/PlayerStatsCard";
@@ -16,7 +17,15 @@ import { SeasonBanner } from "@/components/season/SeasonBanner";
 import { SeasonRewardTrack } from "@/components/season/SeasonRewardTrack";
 import { DIMENSIONS, LEAGUES, getLeagueForLevel } from "@/types/leaderboard";
 import { useGameStore } from "@/stores/game-store";
+import { useTradingStore } from "@/stores/trading-store";
+import { INITIAL_CAPITAL } from "@/types/trading";
+import { ACHIEVEMENT_DEFS } from "@/types/game";
 import type { LeaderboardDimension, LeagueTier, RankedEntry } from "@/types/leaderboard";
+
+// ── Types ─────────────────────────────────────────────────────────────────────
+
+type MainTab = "global" | "friends" | "stats" | "trophies";
+type TimePeriod = "week" | "month" | "all";
 
 const stagger = {
   hidden: { opacity: 0 },
@@ -46,11 +55,85 @@ const TIPS = [
   "Diversify across tickers to reduce your max drawdown.",
 ];
 
+// ── Seeded PRNG ───────────────────────────────────────────────────────────────
+
+function seededRng(seed: number) {
+  let s = seed === 0 ? 1 : Math.abs(seed);
+  return () => {
+    s = (s * 1103515245 + 12345) & 0x7fffffff;
+    return s / 0x7fffffff;
+  };
+}
+
+// ── Synthetic friends data ────────────────────────────────────────────────────
+
+const FRIEND_NAMES = ["Alex Chen", "Maya Patel", "Jordan Kim", "Sam Rivera", "Taylor Wu"];
+
+interface FriendEntry {
+  id: string;
+  name: string;
+  level: number;
+  portfolioValue: number;
+  returnPct: number;
+  winRate: number;
+  trades: number;
+  avatarSeed: number;
+  league: LeagueTier;
+}
+
+function generateFriends(): FriendEntry[] {
+  return FRIEND_NAMES.map((name, i) => {
+    const rng = seededRng(i * 777 + 42);
+    const level = Math.floor(rng() * 30) + 5;
+    const returnPct = (rng() - 0.3) * 40;
+    const portfolioValue = INITIAL_CAPITAL * (1 + returnPct / 100);
+    const winRate = 35 + rng() * 40;
+    const trades = Math.floor(rng() * 150) + 10;
+    const avatarSeed = Math.floor(rng() * 1000);
+    const league = getLeagueForLevel(level);
+    return { id: `friend-${i}`, name, level, portfolioValue, returnPct, winRate, trades, avatarSeed, league };
+  });
+}
+
+// ── Historical rank data (30 days synthetic) ──────────────────────────────────
+
+function generateRankHistory(currentRank: number, totalPlayers: number): number[] {
+  const rng = seededRng(currentRank * 13 + totalPlayers);
+  const history: number[] = [];
+  let rank = Math.min(totalPlayers, currentRank + Math.floor(rng() * 10) + 5);
+  for (let i = 0; i < 30; i++) {
+    const delta = Math.floor((rng() - 0.45) * 4);
+    rank = Math.max(1, Math.min(totalPlayers, rank + delta));
+    history.push(rank);
+  }
+  history[29] = currentRank;
+  return history;
+}
+
+// ── Avatar helpers ────────────────────────────────────────────────────────────
+
+const AVATAR_COLORS = [
+  "bg-blue-500", "bg-emerald-500", "bg-amber-500", "bg-rose-500",
+  "bg-purple-500", "bg-cyan-500", "bg-pink-500", "bg-indigo-500",
+];
+
+function getInitials(name: string): string {
+  const parts = name.split(/\s+/);
+  if (parts.length >= 2) return (parts[0][0] + parts[1][0]).toUpperCase();
+  return name.slice(0, 2).toUpperCase();
+}
+
+// ── Main page ─────────────────────────────────────────────────────────────────
+
 export default function LeaderboardPage() {
+  const [mainTab, setMainTab] = useState<MainTab>("global");
   const [dimension, setDimension] = useState<LeaderboardDimension>("total_pnl");
+  const [timePeriod, setTimePeriod] = useState<TimePeriod>("all");
   const [seasonExpanded, setSeasonExpanded] = useState(false);
+
   const { ranked, userRank } = useLeaderboard(dimension);
   const level = useGameStore((s) => s.level);
+  const achievements = useGameStore((s) => s.achievements);
   const league = getLeagueForLevel(level);
 
   const dimConfig = DIMENSIONS.find((d) => d.id === dimension)!;
@@ -67,6 +150,26 @@ export default function LeaderboardPage() {
 
   // Rotating tip
   const tipIndex = useMemo(() => Math.floor(Date.now() / 1800000) % TIPS.length, []);
+
+  // Time-period filtered ranks (synthetic offset for week/month)
+  const filteredRanked = useMemo(() => {
+    if (timePeriod === "all") return ranked;
+    // Apply deterministic offsets for week/month
+    const offsetSeed = timePeriod === "week" ? 111 : 222;
+    return [...ranked]
+      .map((e) => ({ ...e, _sort: e.isUser ? dimConfig.getValue(e) : dimConfig.getValue(e) * (0.7 + seededRng(e.avatarSeed + offsetSeed)() * 0.6) }))
+      .sort((a, b) => dimConfig.sortDescending ? b._sort - a._sort : a._sort - b._sort)
+      .map((e, i) => ({ ...e, rank: i + 1 }));
+  }, [ranked, timePeriod, dimConfig]);
+
+  const friends = useMemo(() => generateFriends(), []);
+
+  const mainTabs: { id: MainTab; label: string; icon: React.ReactNode }[] = [
+    { id: "global", label: "Global", icon: <Trophy className="h-3 w-3" /> },
+    { id: "friends", label: "Friends", icon: <Users className="h-3 w-3" /> },
+    { id: "stats", label: "Your Stats", icon: <BarChart2 className="h-3 w-3" /> },
+    { id: "trophies", label: "Trophies", icon: <Medal className="h-3 w-3" /> },
+  ];
 
   return (
     <div className="flex h-full flex-col">
@@ -116,29 +219,26 @@ export default function LeaderboardPage() {
         </div>
       </div>
 
-      {/* ===== DIMENSION TABS ===== */}
+      {/* ===== MAIN TABS ===== */}
       <div className="border-b border-border px-4 overflow-x-auto">
         <div className="flex gap-0">
-          {DIMENSIONS.map((dim) => {
-            const Icon = ICON_MAP[dim.icon];
-            const isActive = dimension === dim.id;
+          {mainTabs.map((tab) => {
+            const isActive = mainTab === tab.id;
             return (
               <button
-                key={dim.id}
+                key={tab.id}
                 type="button"
-                onClick={() => setDimension(dim.id)}
+                onClick={() => setMainTab(tab.id)}
                 className={cn(
                   "relative flex items-center gap-1.5 px-3 py-2.5 text-[11px] font-bold whitespace-nowrap transition-colors",
-                  isActive
-                    ? "text-foreground"
-                    : "text-muted-foreground hover:text-foreground",
+                  isActive ? "text-foreground" : "text-muted-foreground hover:text-foreground",
                 )}
               >
-                {Icon && <Icon className="h-3 w-3" />}
-                {dim.shortLabel}
+                {tab.icon}
+                {tab.label}
                 {isActive && (
                   <motion.span
-                    layoutId="leaderboard-tab-indicator"
+                    layoutId="leaderboard-main-tab"
                     className="absolute bottom-0 left-0 right-0 h-0.5 bg-purple-400 rounded-full"
                     transition={{ type: "spring", stiffness: 400, damping: 30 }}
                   />
@@ -149,164 +249,661 @@ export default function LeaderboardPage() {
         </div>
       </div>
 
-      {/* ===== CONTENT — two-column layout ===== */}
+      {/* ===== CONTENT ===== */}
       <div className="flex-1 overflow-y-auto px-4 py-4">
-        {/* Season Pass */}
-        <div className="mb-4 space-y-0">
-          <SeasonBanner expanded={seasonExpanded} onToggle={() => setSeasonExpanded((v) => !v)} />
-          <AnimatePresence>
-            {seasonExpanded && <SeasonRewardTrack />}
-          </AnimatePresence>
-        </div>
-
-        <div className="flex gap-5">
-          {/* Left column — main leaderboard */}
-          <motion.div
-            className="flex-1 min-w-0 space-y-4"
-            variants={stagger}
-            initial="hidden"
-            animate="show"
-          >
-            <motion.div variants={fadeUp}>
-              <PlayerStatsCard />
-            </motion.div>
-
-            <motion.div variants={fadeUp}>
-              <LeaderboardTable ranked={ranked} dimension={dimension} />
-            </motion.div>
-
-            <motion.div variants={fadeUp}>
-              <BeatTheBestPanel top3={top3} />
-            </motion.div>
-          </motion.div>
-
-          {/* Right column — sidebar panels */}
-          <motion.div
-            className="hidden lg:flex w-72 shrink-0 flex-col gap-4"
-            variants={stagger}
-            initial="hidden"
-            animate="show"
-          >
-            {/* ── Podium: Top 3 ── */}
+        <AnimatePresence mode="wait">
+          {mainTab === "global" && (
             <motion.div
-              variants={fadeUp}
-              className="rounded-xl border border-border bg-card/50 p-4"
+              key="global"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.15 }}
             >
-              <div className="flex items-center gap-2 mb-4">
-                <Crown className="h-4 w-4 text-amber-400" />
-                <span className="text-sm font-black">Top 3 — {dimConfig.label}</span>
+              {/* Season Pass */}
+              <div className="mb-4 space-y-0">
+                <SeasonBanner expanded={seasonExpanded} onToggle={() => setSeasonExpanded((v) => !v)} />
+                <AnimatePresence>
+                  {seasonExpanded && <SeasonRewardTrack />}
+                </AnimatePresence>
               </div>
 
-              <div className="flex items-end justify-center gap-3">
-                {/* 2nd place */}
-                {top3[1] && (
-                  <PodiumSlot entry={top3[1]} dimConfig={dimConfig} place={2} />
-                )}
-                {/* 1st place */}
-                {top3[0] && (
-                  <PodiumSlot entry={top3[0]} dimConfig={dimConfig} place={1} />
-                )}
-                {/* 3rd place */}
-                {top3[2] && (
-                  <PodiumSlot entry={top3[2]} dimConfig={dimConfig} place={3} />
-                )}
-              </div>
-            </motion.div>
+              {/* Dimension + Time Period filters */}
+              <div className="mb-4 flex flex-wrap items-center gap-3">
+                {/* Dimension pills */}
+                <div className="flex overflow-x-auto gap-1 flex-wrap">
+                  {DIMENSIONS.map((dim) => {
+                    const Icon = ICON_MAP[dim.icon];
+                    const isActive = dimension === dim.id;
+                    return (
+                      <button
+                        key={dim.id}
+                        type="button"
+                        onClick={() => setDimension(dim.id)}
+                        className={cn(
+                          "flex items-center gap-1 rounded-md px-2.5 py-1 text-[10px] font-bold transition-colors whitespace-nowrap",
+                          isActive
+                            ? "bg-purple-500/20 border border-purple-500/40 text-purple-300"
+                            : "bg-muted/20 border border-border text-muted-foreground hover:text-foreground",
+                        )}
+                      >
+                        {Icon && <Icon className="h-2.5 w-2.5" />}
+                        {dim.shortLabel}
+                      </button>
+                    );
+                  })}
+                </div>
 
-            {/* ── League Distribution ── */}
-            <motion.div
-              variants={fadeUp}
-              className="rounded-xl border border-border bg-card/50 p-4"
-            >
-              <div className="flex items-center gap-2 mb-3">
-                <Gem className="h-4 w-4 text-cyan-400" />
-                <span className="text-sm font-black">Leagues</span>
-              </div>
+                <div className="flex-1" />
 
-              <div className="space-y-2">
-                {(["alpha", "diamond", "gold", "silver", "bronze"] as LeagueTier[]).map((tier) => {
-                  const info = LEAGUES[tier];
-                  const count = leagueDistribution[tier];
-                  const pct = ranked.length > 0 ? (count / ranked.length) * 100 : 0;
-                  const isUserLeague = tier === league;
-
-                  return (
-                    <motion.div
-                      key={tier}
-                      className={cn(
-                        "flex items-center gap-2 rounded-lg px-2.5 py-1.5 transition-colors",
-                        isUserLeague && "bg-purple-500/5 border border-purple-500/20",
-                      )}
-                      initial={{ opacity: 0, x: 8 }}
-                      animate={{ opacity: 1, x: 0 }}
-                      transition={{ delay: 0.3 }}
-                    >
-                      <span className="text-sm">{info.emoji}</span>
-                      <span className={cn("text-[11px] font-bold flex-1", info.color)}>
-                        {info.label}
-                      </span>
-                      <span className="text-[10px] font-bold tabular-nums text-muted-foreground">
-                        {count}
-                      </span>
-                      {/* Mini bar */}
-                      <div className="w-12 h-1.5 rounded-full bg-muted/30 overflow-hidden">
-                        <motion.div
-                          className={cn("h-full rounded-full", {
-                            "bg-purple-400": tier === "alpha",
-                            "bg-cyan-400": tier === "diamond",
-                            "bg-amber-400": tier === "gold",
-                            "bg-gray-300": tier === "silver",
-                            "bg-orange-400": tier === "bronze",
-                          })}
-                          initial={{ width: 0 }}
-                          animate={{ width: `${pct}%` }}
-                          transition={{ delay: 0.5, duration: 0.6 }}
-                        />
-                      </div>
-                    </motion.div>
-                  );
-                })}
-              </div>
-            </motion.div>
-
-            {/* ── Your Next Goal ── */}
-            <motion.div
-              variants={fadeUp}
-              className="rounded-xl border border-border bg-card/50 p-4"
-            >
-              <div className="flex items-center gap-2 mb-3">
-                <Medal className="h-4 w-4 text-purple-400" />
-                <span className="text-sm font-black">Your Next Goal</span>
-              </div>
-
-              <NextGoalContent userRank={userRank} dimConfig={dimConfig} ranked={ranked} />
-            </motion.div>
-
-            {/* ── Trading Tip ── */}
-            <motion.div
-              variants={fadeUp}
-              className="rounded-xl border border-primary/15 bg-primary/5 p-4"
-            >
-              <div className="flex items-start gap-2">
-                <Lightbulb className="h-4 w-4 text-primary shrink-0 mt-0.5" />
-                <div>
-                  <span className="text-[10px] font-bold uppercase tracking-widest text-primary/70">
-                    Pro Tip
-                  </span>
-                  <p className="text-[11px] text-primary/80 leading-relaxed mt-1">
-                    {TIPS[tipIndex]}
-                  </p>
+                {/* Time period filter */}
+                <div className="flex items-center gap-1 rounded-lg border border-border bg-muted/10 p-0.5">
+                  {(["week", "month", "all"] as TimePeriod[]).map((p) => {
+                    const labels = { week: "Week", month: "Month", all: "All Time" };
+                    return (
+                      <button
+                        key={p}
+                        type="button"
+                        onClick={() => setTimePeriod(p)}
+                        className={cn(
+                          "rounded-md px-2.5 py-1 text-[10px] font-bold transition-colors",
+                          timePeriod === p
+                            ? "bg-card text-foreground shadow-sm"
+                            : "text-muted-foreground hover:text-foreground",
+                        )}
+                      >
+                        {labels[p]}
+                      </button>
+                    );
+                  })}
                 </div>
               </div>
+
+              <div className="flex gap-5">
+                {/* Left column — main leaderboard */}
+                <motion.div
+                  className="flex-1 min-w-0 space-y-4"
+                  variants={stagger}
+                  initial="hidden"
+                  animate="show"
+                >
+                  <motion.div variants={fadeUp}>
+                    <PlayerStatsCard />
+                  </motion.div>
+
+                  <motion.div variants={fadeUp}>
+                    <LeaderboardTable ranked={filteredRanked} dimension={dimension} />
+                  </motion.div>
+
+                  <motion.div variants={fadeUp}>
+                    <BeatTheBestPanel top3={top3} />
+                  </motion.div>
+                </motion.div>
+
+                {/* Right column — sidebar panels */}
+                <motion.div
+                  className="hidden lg:flex w-72 shrink-0 flex-col gap-4"
+                  variants={stagger}
+                  initial="hidden"
+                  animate="show"
+                >
+                  {/* Podium: Top 3 */}
+                  <motion.div
+                    variants={fadeUp}
+                    className="rounded-xl border border-border bg-card/50 p-4"
+                  >
+                    <div className="flex items-center gap-2 mb-4">
+                      <Crown className="h-4 w-4 text-amber-400" />
+                      <span className="text-sm font-black">Top 3 — {dimConfig.label}</span>
+                    </div>
+
+                    <div className="flex items-end justify-center gap-3">
+                      {top3[1] && <PodiumSlot entry={top3[1]} dimConfig={dimConfig} place={2} />}
+                      {top3[0] && <PodiumSlot entry={top3[0]} dimConfig={dimConfig} place={1} />}
+                      {top3[2] && <PodiumSlot entry={top3[2]} dimConfig={dimConfig} place={3} />}
+                    </div>
+                  </motion.div>
+
+                  {/* League Distribution */}
+                  <motion.div
+                    variants={fadeUp}
+                    className="rounded-xl border border-border bg-card/50 p-4"
+                  >
+                    <div className="flex items-center gap-2 mb-3">
+                      <Gem className="h-4 w-4 text-cyan-400" />
+                      <span className="text-sm font-black">Leagues</span>
+                    </div>
+
+                    <div className="space-y-2">
+                      {(["alpha", "diamond", "gold", "silver", "bronze"] as LeagueTier[]).map((tier) => {
+                        const info = LEAGUES[tier];
+                        const count = leagueDistribution[tier];
+                        const pct = ranked.length > 0 ? (count / ranked.length) * 100 : 0;
+                        const isUserLeague = tier === league;
+
+                        return (
+                          <motion.div
+                            key={tier}
+                            className={cn(
+                              "flex items-center gap-2 rounded-lg px-2.5 py-1.5 transition-colors",
+                              isUserLeague && "bg-purple-500/5 border border-purple-500/20",
+                            )}
+                            initial={{ opacity: 0, x: 8 }}
+                            animate={{ opacity: 1, x: 0 }}
+                            transition={{ delay: 0.3 }}
+                          >
+                            <span className="text-sm">{info.emoji}</span>
+                            <span className={cn("text-[11px] font-bold flex-1", info.color)}>
+                              {info.label}
+                            </span>
+                            <span className="text-[10px] font-bold tabular-nums text-muted-foreground">
+                              {count}
+                            </span>
+                            <div className="w-12 h-1.5 rounded-full bg-muted/30 overflow-hidden">
+                              <motion.div
+                                className={cn("h-full rounded-full", {
+                                  "bg-purple-400": tier === "alpha",
+                                  "bg-cyan-400": tier === "diamond",
+                                  "bg-amber-400": tier === "gold",
+                                  "bg-gray-300": tier === "silver",
+                                  "bg-orange-400": tier === "bronze",
+                                })}
+                                initial={{ width: 0 }}
+                                animate={{ width: `${pct}%` }}
+                                transition={{ delay: 0.5, duration: 0.6 }}
+                              />
+                            </div>
+                          </motion.div>
+                        );
+                      })}
+                    </div>
+                  </motion.div>
+
+                  {/* Your Next Goal */}
+                  <motion.div
+                    variants={fadeUp}
+                    className="rounded-xl border border-border bg-card/50 p-4"
+                  >
+                    <div className="flex items-center gap-2 mb-3">
+                      <Medal className="h-4 w-4 text-purple-400" />
+                      <span className="text-sm font-black">Your Next Goal</span>
+                    </div>
+                    <NextGoalContent userRank={userRank} dimConfig={dimConfig} ranked={filteredRanked} />
+                  </motion.div>
+
+                  {/* Trading Tip */}
+                  <motion.div
+                    variants={fadeUp}
+                    className="rounded-xl border border-primary/15 bg-primary/5 p-4"
+                  >
+                    <div className="flex items-start gap-2">
+                      <Lightbulb className="h-4 w-4 text-primary shrink-0 mt-0.5" />
+                      <div>
+                        <span className="text-[10px] font-bold uppercase tracking-widest text-primary/70">
+                          Pro Tip
+                        </span>
+                        <p className="text-[11px] text-primary/80 leading-relaxed mt-1">
+                          {TIPS[tipIndex]}
+                        </p>
+                      </div>
+                    </div>
+                  </motion.div>
+                </motion.div>
+              </div>
             </motion.div>
-          </motion.div>
-        </div>
+          )}
+
+          {mainTab === "friends" && (
+            <motion.div
+              key="friends"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.15 }}
+            >
+              <FriendsTab friends={friends} />
+            </motion.div>
+          )}
+
+          {mainTab === "stats" && (
+            <motion.div
+              key="stats"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.15 }}
+            >
+              <YourStatsTab ranked={ranked} userRank={userRank} />
+            </motion.div>
+          )}
+
+          {mainTab === "trophies" && (
+            <motion.div
+              key="trophies"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.15 }}
+            >
+              <TrophyCaseTab achievements={achievements} />
+            </motion.div>
+          )}
+        </AnimatePresence>
       </div>
     </div>
   );
 }
 
-/* ── Podium slot ── */
+// ── Friends Tab ───────────────────────────────────────────────────────────────
+
+function FriendsTab({ friends }: { friends: FriendEntry[] }) {
+  const [challenged, setChallenged] = useState<Set<string>>(new Set());
+
+  return (
+    <div className="space-y-4">
+      <div className="flex items-center gap-2 mb-2">
+        <Users className="h-4 w-4 text-muted-foreground" />
+        <h2 className="text-sm font-black">Friends Leaderboard</h2>
+        <span className="rounded-full bg-muted/30 px-2 py-0.5 text-[10px] font-bold text-muted-foreground">
+          {friends.length}
+        </span>
+      </div>
+
+      {/* Column headers */}
+      <div className="rounded-xl border border-border bg-card/50 overflow-hidden">
+        <div className="grid grid-cols-[2rem_1fr_5rem_4rem_4rem_5rem] gap-2 px-3 py-2 border-b border-border/50">
+          <span className="text-[9px] font-bold uppercase tracking-widest text-muted-foreground text-center">#</span>
+          <span className="text-[9px] font-bold uppercase tracking-widest text-muted-foreground">Player</span>
+          <span className="text-[9px] font-bold uppercase tracking-widest text-muted-foreground text-right">Portfolio</span>
+          <span className="text-[9px] font-bold uppercase tracking-widest text-muted-foreground text-right">Return</span>
+          <span className="text-[9px] font-bold uppercase tracking-widest text-muted-foreground text-right">Win %</span>
+          <span className="text-[9px] font-bold uppercase tracking-widest text-muted-foreground text-center">Action</span>
+        </div>
+
+        {friends.map((friend, i) => {
+          const colorClass = AVATAR_COLORS[friend.avatarSeed % AVATAR_COLORS.length];
+          const isChallenged = challenged.has(friend.id);
+
+          return (
+            <motion.div
+              key={friend.id}
+              className="grid grid-cols-[2rem_1fr_5rem_4rem_4rem_5rem] gap-2 items-center px-3 py-2.5 hover:bg-accent/20 transition-colors border-b border-border/30 last:border-0"
+              initial={{ opacity: 0, x: -8 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ delay: i * 0.06 }}
+            >
+              <span className="text-[11px] font-bold text-muted-foreground text-center">{i + 1}</span>
+
+              <div className="flex items-center gap-2 min-w-0">
+                <div className={cn("flex h-7 w-7 shrink-0 items-center justify-center rounded-lg text-[10px] font-black text-white", colorClass)}>
+                  {getInitials(friend.name)}
+                </div>
+                <div className="min-w-0">
+                  <span className="text-[11px] font-bold truncate block">{friend.name}</span>
+                  <div className="flex items-center gap-1">
+                    <span className="text-[9px] text-muted-foreground">Lv.{friend.level}</span>
+                    <LeagueBadge tier={friend.league} size="sm" />
+                  </div>
+                </div>
+              </div>
+
+              <span className="text-[11px] font-bold tabular-nums text-right">
+                ${(friend.portfolioValue / 1000).toFixed(1)}K
+              </span>
+
+              <span className={cn("text-[11px] font-bold tabular-nums text-right",
+                friend.returnPct >= 0 ? "text-emerald-400" : "text-red-400")}>
+                {friend.returnPct >= 0 ? "+" : ""}{friend.returnPct.toFixed(1)}%
+              </span>
+
+              <span className="text-[11px] font-bold tabular-nums text-right">
+                {friend.winRate.toFixed(0)}%
+              </span>
+
+              <div className="flex justify-center">
+                <button
+                  type="button"
+                  onClick={() => setChallenged((prev) => new Set([...prev, friend.id]))}
+                  disabled={isChallenged}
+                  className={cn(
+                    "rounded-md px-2 py-1 text-[9px] font-black transition-colors",
+                    isChallenged
+                      ? "bg-muted/20 text-muted-foreground cursor-default"
+                      : "bg-primary/10 border border-primary/20 text-primary hover:bg-primary/20",
+                  )}
+                >
+                  {isChallenged ? "Sent" : "Challenge"}
+                </button>
+              </div>
+            </motion.div>
+          );
+        })}
+      </div>
+
+      <div className="rounded-lg border border-border/50 bg-card/30 px-3 py-2.5">
+        <p className="text-[11px] text-muted-foreground leading-relaxed">
+          Challenge friends to head-to-head competitions. Win to earn bonus XP and climb the ranks faster.
+        </p>
+      </div>
+    </div>
+  );
+}
+
+// ── Your Stats Tab ────────────────────────────────────────────────────────────
+
+function YourStatsTab({ ranked, userRank }: { ranked: RankedEntry[]; userRank: RankedEntry }) {
+  const portfolioValue = useTradingStore((s) => s.portfolioValue);
+  const stats = useGameStore((s) => s.stats);
+
+  const totalPlayers = ranked.length;
+  const rank = userRank?.rank ?? totalPlayers;
+  const percentile = Math.round(((totalPlayers - rank) / totalPlayers) * 100);
+
+  // Historical rank (30-day synthetic)
+  const rankHistory = useMemo(() => generateRankHistory(rank, totalPlayers), [rank, totalPlayers]);
+
+  // Stats comparisons
+  const top10 = ranked.slice(0, 10);
+  const top10AvgPnL = top10.reduce((s, e) => s + e.totalPnL, 0) / top10.length;
+  const top10AvgWR = top10.reduce((s, e) => s + e.winRate, 0) / top10.length;
+  const top10AvgSharpe = top10.reduce((s, e) => s + e.sharpeRatio, 0) / top10.length;
+  const top10AvgTrades = top10.reduce((s, e) => s + e.totalTrades, 0) / top10.length;
+
+  const allAvgPnL = ranked.reduce((s, e) => s + e.totalPnL, 0) / ranked.length;
+  const allAvgWR = ranked.reduce((s, e) => s + e.winRate, 0) / ranked.length;
+  const allAvgSharpe = ranked.reduce((s, e) => s + e.sharpeRatio, 0) / ranked.length;
+  const allAvgTrades = ranked.reduce((s, e) => s + e.totalTrades, 0) / ranked.length;
+
+  const userPnL = portfolioValue - INITIAL_CAPITAL;
+  const userWR = stats.totalTrades > 0 ? (stats.profitableTrades / stats.totalTrades) * 100 : 0;
+  const userSharpe = userRank?.sharpeRatio ?? 0;
+  const userTrades = stats.totalTrades;
+
+  // SVG rank chart
+  const chartW = 280;
+  const chartH = 80;
+  const minRank = Math.min(...rankHistory);
+  const maxRank = Math.max(...rankHistory);
+  const range = maxRank - minRank || 1;
+
+  const points = rankHistory.map((r, i) => {
+    const x = (i / (rankHistory.length - 1)) * chartW;
+    // Lower rank = higher on chart (inverted Y)
+    const y = chartH - ((maxRank - r) / range) * chartH * 0.8 - chartH * 0.1;
+    return `${x.toFixed(1)},${y.toFixed(1)}`;
+  }).join(" ");
+
+  const compRows = [
+    {
+      label: "Total P&L",
+      user: `${userPnL >= 0 ? "+" : ""}$${Math.abs(userPnL).toLocaleString(undefined, { maximumFractionDigits: 0 })}`,
+      top10: `+$${Math.abs(top10AvgPnL).toLocaleString(undefined, { maximumFractionDigits: 0 })}`,
+      all: `${allAvgPnL >= 0 ? "+" : ""}$${Math.abs(allAvgPnL).toLocaleString(undefined, { maximumFractionDigits: 0 })}`,
+      userBetter: userPnL > allAvgPnL,
+    },
+    {
+      label: "Win Rate",
+      user: `${userWR.toFixed(1)}%`,
+      top10: `${top10AvgWR.toFixed(1)}%`,
+      all: `${allAvgWR.toFixed(1)}%`,
+      userBetter: userWR > allAvgWR,
+    },
+    {
+      label: "Sharpe",
+      user: userSharpe.toFixed(2),
+      top10: top10AvgSharpe.toFixed(2),
+      all: allAvgSharpe.toFixed(2),
+      userBetter: userSharpe > allAvgSharpe,
+    },
+    {
+      label: "Trades",
+      user: `${userTrades}`,
+      top10: `${Math.round(top10AvgTrades)}`,
+      all: `${Math.round(allAvgTrades)}`,
+      userBetter: userTrades > allAvgTrades,
+    },
+  ];
+
+  return (
+    <div className="space-y-4">
+      {/* Rank + Percentile */}
+      <div className="grid grid-cols-2 gap-3">
+        <div className="rounded-xl border border-border bg-card/50 p-4">
+          <div className="flex items-center gap-2 mb-1">
+            <Trophy className="h-4 w-4 text-purple-400" />
+            <span className="text-[11px] font-bold text-muted-foreground uppercase tracking-wide">Global Rank</span>
+          </div>
+          <div className="text-3xl font-black tabular-nums text-purple-400">#{rank}</div>
+          <p className="text-[10px] text-muted-foreground mt-0.5">out of {totalPlayers} players</p>
+        </div>
+
+        <div className="rounded-xl border border-border bg-card/50 p-4">
+          <div className="flex items-center gap-2 mb-1">
+            <Star className="h-4 w-4 text-amber-400" />
+            <span className="text-[11px] font-bold text-muted-foreground uppercase tracking-wide">Percentile</span>
+          </div>
+          <div className="text-3xl font-black tabular-nums text-amber-400">Top {Math.max(1, 100 - percentile)}%</div>
+          <div className="mt-2 h-2 rounded-full bg-muted/30 overflow-hidden">
+            <motion.div
+              className="h-full rounded-full bg-amber-400"
+              initial={{ width: 0 }}
+              animate={{ width: `${percentile}%` }}
+              transition={{ delay: 0.3, duration: 0.6 }}
+            />
+          </div>
+          <p className="text-[10px] text-muted-foreground mt-1">Better than {percentile}% of players</p>
+        </div>
+      </div>
+
+      {/* Historical rank chart */}
+      <div className="rounded-xl border border-border bg-card/50 p-4">
+        <div className="flex items-center gap-2 mb-3">
+          <TrendingUp className="h-4 w-4 text-primary" />
+          <span className="text-sm font-black">Rank History</span>
+          <span className="text-[10px] text-muted-foreground ml-auto">Last 30 days</span>
+        </div>
+
+        <div className="relative">
+          <svg width="100%" viewBox={`0 0 ${chartW} ${chartH}`} className="overflow-visible">
+            {/* Grid lines */}
+            {[0, 0.25, 0.5, 0.75, 1].map((frac, i) => (
+              <line
+                key={i}
+                x1={0} y1={chartH * frac}
+                x2={chartW} y2={chartH * frac}
+                stroke="currentColor"
+                strokeOpacity={0.08}
+                strokeWidth={1}
+              />
+            ))}
+
+            {/* Area fill */}
+            <defs>
+              <linearGradient id="rank-area-grad" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="0%" stopColor="hsl(var(--primary))" stopOpacity={0.15} />
+                <stop offset="100%" stopColor="hsl(var(--primary))" stopOpacity={0} />
+              </linearGradient>
+            </defs>
+            <polyline
+              points={`0,${chartH} ${points} ${chartW},${chartH}`}
+              fill="url(#rank-area-grad)"
+              stroke="none"
+            />
+
+            {/* Line */}
+            <polyline
+              points={points}
+              fill="none"
+              stroke="hsl(var(--primary))"
+              strokeWidth={1.5}
+              strokeLinejoin="round"
+            />
+
+            {/* Current rank dot */}
+            {rankHistory.length > 0 && (() => {
+              const lastPt = points.split(" ").pop() ?? "";
+              const [lx, ly] = lastPt.split(",").map(Number);
+              return (
+                <circle cx={lx} cy={ly} r={3} fill="hsl(var(--primary))" />
+              );
+            })()}
+          </svg>
+
+          <div className="flex justify-between mt-1">
+            <span className="text-[9px] text-muted-foreground">30 days ago</span>
+            <span className="text-[9px] text-muted-foreground">Today</span>
+          </div>
+        </div>
+
+        <div className="flex items-center gap-1.5 mt-2 text-[10px] text-muted-foreground">
+          {rankHistory[0] > rank ? (
+            <ChevronUp className="h-3 w-3 text-emerald-400" />
+          ) : (
+            <ChevronDown className="h-3 w-3 text-red-400" />
+          )}
+          <span>
+            {rankHistory[0] > rank
+              ? `Moved up ${rankHistory[0] - rank} spots this month`
+              : rankHistory[0] < rank
+                ? `Moved down ${rank - rankHistory[0]} spots this month`
+                : "Rank unchanged this month"}
+          </span>
+        </div>
+      </div>
+
+      {/* Comparison table */}
+      <div className="rounded-xl border border-border bg-card/50 overflow-hidden">
+        <div className="px-4 py-3 border-b border-border/50">
+          <span className="text-sm font-black">Performance Comparison</span>
+        </div>
+
+        <div className="grid grid-cols-4 px-4 py-2 border-b border-border/30">
+          <span className="text-[9px] font-bold uppercase tracking-widest text-muted-foreground">Metric</span>
+          <span className="text-[9px] font-bold uppercase tracking-widest text-muted-foreground text-center">You</span>
+          <span className="text-[9px] font-bold uppercase tracking-widest text-muted-foreground text-center">Top 10 Avg</span>
+          <span className="text-[9px] font-bold uppercase tracking-widest text-muted-foreground text-center">All Avg</span>
+        </div>
+
+        {compRows.map((row, i) => (
+          <div
+            key={row.label}
+            className={cn("grid grid-cols-4 px-4 py-2.5 items-center", i % 2 === 0 ? "bg-muted/5" : "")}
+          >
+            <span className="text-[11px] font-bold text-muted-foreground">{row.label}</span>
+            <span className={cn("text-[11px] font-black tabular-nums text-center", row.userBetter ? "text-emerald-400" : "text-foreground")}>
+              {row.user}
+            </span>
+            <span className="text-[11px] tabular-nums text-muted-foreground text-center">{row.top10}</span>
+            <span className="text-[11px] tabular-nums text-muted-foreground text-center">{row.all}</span>
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+}
+
+// ── Trophy Case Tab ───────────────────────────────────────────────────────────
+
+function TrophyCaseTab({ achievements }: { achievements: { id: string; name: string; description: string; icon: string; unlockedAt: number }[] }) {
+  const unlockedIds = new Set(achievements.filter((a) => a.unlockedAt > 0).map((a) => a.id));
+  const unlockedCount = unlockedIds.size;
+
+  // Merge achievement defs with unlock status
+  const allDefs = ACHIEVEMENT_DEFS.map((def) => {
+    const unlocked = unlockedIds.has(def.id);
+    const achievement = achievements.find((a) => a.id === def.id);
+    return {
+      ...def,
+      unlocked,
+      unlockedAt: achievement?.unlockedAt ?? 0,
+    };
+  });
+
+  const unlocked = allDefs.filter((a) => a.unlocked);
+  const locked = allDefs.filter((a) => !a.unlocked);
+
+  return (
+    <div className="space-y-4">
+      {/* Progress summary */}
+      <div className="rounded-xl border border-border bg-card/50 p-4">
+        <div className="flex items-center justify-between mb-3">
+          <div>
+            <span className="text-sm font-black">Trophy Case</span>
+            <p className="text-[10px] text-muted-foreground mt-0.5">{unlockedCount} of {allDefs.length} unlocked</p>
+          </div>
+          <div className="text-right">
+            <span className="text-2xl font-black tabular-nums text-amber-400">{unlockedCount}</span>
+            <span className="text-[10px] text-muted-foreground">/{allDefs.length}</span>
+          </div>
+        </div>
+        <div className="h-2 rounded-full bg-muted/30 overflow-hidden">
+          <motion.div
+            className="h-full rounded-full bg-amber-400"
+            initial={{ width: 0 }}
+            animate={{ width: `${(unlockedCount / allDefs.length) * 100}%` }}
+            transition={{ delay: 0.2, duration: 0.6 }}
+          />
+        </div>
+      </div>
+
+      {/* Unlocked achievements */}
+      {unlocked.length > 0 && (
+        <div>
+          <h3 className="text-[11px] font-bold uppercase tracking-widest text-muted-foreground mb-3">Earned</h3>
+          <div className="grid grid-cols-2 sm:grid-cols-3 gap-3">
+            {unlocked.map((a, i) => (
+              <motion.div
+                key={a.id}
+                className="rounded-xl border border-amber-500/20 bg-amber-500/5 p-3"
+                initial={{ opacity: 0, scale: 0.9 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ delay: i * 0.04 }}
+              >
+                <div className="flex items-center gap-2 mb-1.5">
+                  <Trophy className="h-4 w-4 text-amber-400 shrink-0" />
+                  <span className="text-[11px] font-black text-amber-400 truncate">{a.name}</span>
+                </div>
+                <p className="text-[10px] text-muted-foreground leading-relaxed mb-1">{a.description}</p>
+                {a.unlockedAt > 0 && (
+                  <p className="text-[9px] text-muted-foreground/60">
+                    {new Date(a.unlockedAt).toLocaleDateString()}
+                  </p>
+                )}
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      )}
+
+      {/* Locked achievements */}
+      {locked.length > 0 && (
+        <div>
+          <h3 className="text-[11px] font-bold uppercase tracking-widest text-muted-foreground mb-3">Locked</h3>
+          <div className="grid grid-cols-2 sm:grid-cols-3 gap-3">
+            {locked.map((a, i) => (
+              <motion.div
+                key={a.id}
+                className="rounded-xl border border-border bg-muted/5 p-3 opacity-50 grayscale"
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 0.5 }}
+                transition={{ delay: i * 0.03 }}
+              >
+                <div className="flex items-center gap-2 mb-1.5">
+                  <Lock className="h-4 w-4 text-muted-foreground shrink-0" />
+                  <span className="text-[11px] font-black text-muted-foreground truncate">{a.name}</span>
+                </div>
+                <p className="text-[10px] text-muted-foreground/70 leading-relaxed">{a.description}</p>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      )}
+    </div>
+  );
+}
+
+// ── Podium slot ───────────────────────────────────────────────────────────────
+
 function PodiumSlot({
   entry,
   dimConfig,
@@ -316,17 +913,11 @@ function PodiumSlot({
   dimConfig: (typeof DIMENSIONS)[number];
   place: 1 | 2 | 3;
 }) {
-  const medals = ["🥇", "🥈", "🥉"];
+  const placeLabels = ["#1", "#2", "#3"];
   const heights = { 1: "h-20", 2: "h-14", 3: "h-11" };
   const sizes = { 1: "h-11 w-11 text-sm", 2: "h-9 w-9 text-[11px]", 3: "h-9 w-9 text-[11px]" };
-  const AVATAR_COLORS = [
-    "bg-blue-500", "bg-emerald-500", "bg-amber-500", "bg-rose-500",
-    "bg-purple-500", "bg-cyan-500", "bg-pink-500", "bg-indigo-500",
-  ];
   const color = AVATAR_COLORS[entry.avatarSeed % AVATAR_COLORS.length];
-  const initials = entry.name.split(/\s+/).length >= 2
-    ? (entry.name[0] + entry.name.split(/\s+/)[1][0]).toUpperCase()
-    : entry.name.slice(0, 2).toUpperCase();
+  const initials = getInitials(entry.name);
 
   return (
     <motion.div
@@ -335,8 +926,11 @@ function PodiumSlot({
       animate={{ opacity: 1, y: 0 }}
       transition={{ delay: place === 1 ? 0.2 : place === 2 ? 0.3 : 0.4, type: "spring" as const, stiffness: 300, damping: 25 }}
     >
-      {/* Medal */}
-      <span className={cn("text-lg", place === 1 && "medal-shimmer")}>{medals[place - 1]}</span>
+      {/* Place label (no emoji) */}
+      <span className={cn(
+        "text-xs font-black tabular-nums",
+        place === 1 ? "text-amber-400" : place === 2 ? "text-gray-300" : "text-orange-400",
+      )}>{placeLabels[place - 1]}</span>
 
       {/* Avatar */}
       <div className={cn(
@@ -344,7 +938,7 @@ function PodiumSlot({
         sizes[place],
         entry.isUser ? "bg-primary" : color,
       )}>
-        {entry.isUser ? "🫵" : initials}
+        {entry.isUser ? "ME" : initials}
       </div>
 
       {/* Name */}
@@ -369,7 +963,8 @@ function PodiumSlot({
   );
 }
 
-/* ── Next Goal content ── */
+// ── Next Goal content ─────────────────────────────────────────────────────────
+
 function NextGoalContent({
   userRank,
   dimConfig,
@@ -382,16 +977,15 @@ function NextGoalContent({
   if (userRank.rank === 1) {
     return (
       <div className="flex items-center gap-2 rounded-lg bg-amber-500/10 border border-amber-500/20 px-3 py-2">
-        <span className="text-lg">👑</span>
+        <Crown className="h-4 w-4 text-amber-400 shrink-0" />
         <div>
-          <span className="text-xs font-black text-amber-400">You're #1!</span>
+          <span className="text-xs font-black text-amber-400">You&apos;re #1!</span>
           <p className="text-[10px] text-muted-foreground">Defend your title.</p>
         </div>
       </div>
     );
   }
 
-  // Find the player just above the user
   const targetRank = userRank.rank - 1;
   const target = ranked.find((e) => e.rank === targetRank);
   if (!target) return null;

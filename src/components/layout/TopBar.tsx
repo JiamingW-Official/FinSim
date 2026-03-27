@@ -15,7 +15,8 @@ import { ProgressRing } from "@/components/game/ProgressRing";
 import { StreakBadge } from "@/components/game/StreakBadge";
 import { useGameStore } from "@/stores/game-store";
 import { getXPForNextLevel, LEVEL_THRESHOLDS } from "@/types/game";
-import { NotificationCenter } from "./NotificationCenter";
+import { NotificationCenter } from "@/components/notifications/NotificationCenter";
+import { SearchTrigger } from "@/components/search/GlobalSearch";
 import { HeartsDisplay } from "@/components/learn/HeartsDisplay";
 import { usePathname } from "next/navigation";
 
@@ -102,6 +103,7 @@ export function TopBar() {
           <LearnStreakBadge />
           {pathname?.startsWith("/learn") && <HeartsDisplay compact />}
         </div>
+        <SearchTrigger />
         <NotificationCenter />
         <SoundToggle />
         <div className="h-4 w-px bg-border" />

@@ -17,6 +17,7 @@ import { ContractDetail } from "@/components/options/ContractDetail";
 import { StrategyBuilderV2 } from "@/components/options/StrategyBuilderV2";
 import { AnalysisPanel } from "@/components/options/AnalysisPanel";
 import { UnusualActivityFeed } from "@/components/options/UnusualActivityFeed";
+import { GreeksLab } from "@/components/options/GreeksLab";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Activity, Loader2 } from "lucide-react";
 import type { OptionContract, ChainFilters } from "@/types/options";
@@ -123,6 +124,12 @@ export default function OptionsPage() {
           >
             Unusual Activity
           </TabsTrigger>
+          <TabsTrigger
+            value="greeks-lab"
+            className="h-7 rounded-none border-b-2 border-transparent px-4 text-xs data-[state=active]:border-orange-400 data-[state=active]:bg-transparent data-[state=active]:text-orange-400"
+          >
+            Greeks Lab
+          </TabsTrigger>
         </TabsList>
 
         <div className="flex flex-1 overflow-hidden">
@@ -212,6 +219,7 @@ export default function OptionsPage() {
                     termStructure={termStructure}
                     oiVol={oiVol}
                     chain={chain}
+                    spotPrice={spotPrice}
                   />
                 </TabsContent>
 
@@ -222,11 +230,22 @@ export default function OptionsPage() {
                     onSelectContract={handleSelectContract}
                   />
                 </TabsContent>
+
+                {/* Greeks Lab tab */}
+                <TabsContent value="greeks-lab" className="mt-0 flex-1 overflow-auto data-[state=inactive]:hidden">
+                  <GreeksLab
+                    positions={positions}
+                    spotPrice={spotPrice}
+                    analytics={analytics}
+                    smile={smile}
+                    chain={chain}
+                  />
+                </TabsContent>
               </>
             )}
           </div>
 
-          {/* Right contextual panel */}
+          {/* Right contextual panel — hidden on mobile */}
           <AnimatePresence mode="wait">
             {selectedContract ? (
               <motion.div
@@ -235,7 +254,7 @@ export default function OptionsPage() {
                 animate={{ x: 0, opacity: 1 }}
                 exit={{ x: 72, opacity: 0 }}
                 transition={{ type: "spring", damping: 22, stiffness: 280 }}
-                className="w-72 shrink-0 overflow-y-auto border-l border-border bg-card"
+                className="hidden md:block w-72 shrink-0 overflow-y-auto border-l border-border bg-card"
               >
                 <ContractDetail
                   contract={selectedContract}
@@ -252,7 +271,7 @@ export default function OptionsPage() {
                 animate={{ opacity: 1 }}
                 exit={{ opacity: 0 }}
                 transition={{ duration: 0.15 }}
-                className="w-64 shrink-0 overflow-y-auto border-l border-border bg-card"
+                className="hidden md:block w-64 shrink-0 overflow-y-auto border-l border-border bg-card"
               >
                 <div className="flex items-center gap-2 border-b border-border bg-card px-3 py-2">
                   <motion.div

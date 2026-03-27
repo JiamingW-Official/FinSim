@@ -83,17 +83,17 @@ export function PositionsTable() {
   }
 
   return (
-    <div className="overflow-auto">
-      <table className="w-full text-xs">
+    <div className="overflow-x-auto">
+      <table className="w-full text-xs" role="table">
         <thead>
           <tr className="border-b border-border text-muted-foreground">
-            <th className="px-2 py-1.5 text-left font-medium">Ticker</th>
-            <th className="px-2 py-1.5 text-center font-medium">Side</th>
-            <th className="px-2 py-1.5 text-right font-medium">Qty</th>
-            <th className="px-2 py-1.5 text-right font-medium">Avg</th>
-            <th className="px-2 py-1.5 text-right font-medium">Price</th>
-            <th className="px-2 py-1.5 text-right font-medium">P&L</th>
-            <th className="w-8 px-1 py-1.5"></th>
+            <th scope="col" className="px-2 py-1.5 text-left font-medium whitespace-nowrap">Ticker</th>
+            <th scope="col" className="px-2 py-1.5 text-center font-medium whitespace-nowrap">Side</th>
+            <th scope="col" className="px-2 py-1.5 text-right font-medium whitespace-nowrap">Qty</th>
+            <th scope="col" className="px-2 py-1.5 text-right font-medium whitespace-nowrap">Avg</th>
+            <th scope="col" className="px-2 py-1.5 text-right font-medium whitespace-nowrap">Price</th>
+            <th scope="col" className="px-2 py-1.5 text-right font-medium whitespace-nowrap">P&amp;L</th>
+            <th scope="col" className="w-8 px-1 py-1.5"><span className="sr-only">Actions</span></th>
           </tr>
         </thead>
         <tbody>

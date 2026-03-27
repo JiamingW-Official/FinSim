@@ -69,22 +69,24 @@ export function OptionsChain({
 
   return (
     <div className="overflow-x-auto">
-      <table className="w-full text-[10px] tabular-nums">
+      <table className="w-full text-[10px] tabular-nums" role="table">
         <thead className="sticky top-0 z-10 bg-card">
           <tr className="border-b border-border text-muted-foreground">
             {showCalls && (
               <th
                 colSpan={CALL_COLS.length}
-                className="px-2 py-1.5 text-center text-[10px] font-bold text-emerald-400"
+                scope="col"
+                className="px-2 py-1.5 text-center text-[10px] font-bold text-emerald-400 whitespace-nowrap"
               >
                 CALLS
               </th>
             )}
-            <th className="px-2 py-1.5 text-center text-[10px] font-bold">Strike</th>
+            <th scope="col" className="px-2 py-1.5 text-center text-[10px] font-bold whitespace-nowrap">Strike</th>
             {showPuts && (
               <th
                 colSpan={PUT_COLS.length}
-                className="px-2 py-1.5 text-center text-[10px] font-bold text-red-400"
+                scope="col"
+                className="px-2 py-1.5 text-center text-[10px] font-bold text-red-400 whitespace-nowrap"
               >
                 PUTS
               </th>
@@ -93,14 +95,14 @@ export function OptionsChain({
           <tr className="border-b border-border/50 text-muted-foreground/70">
             {showCalls &&
               CALL_COLS.map((col) => (
-                <th key={`call-${col}`} className="px-1.5 py-1 text-right font-medium">
+                <th key={`call-${col}`} scope="col" className="px-1.5 py-1 text-right font-medium whitespace-nowrap">
                   {col}
                 </th>
               ))}
-            <th className="px-2 py-1 text-center font-bold">$</th>
+            <th scope="col" className="px-2 py-1 text-center font-bold whitespace-nowrap">$</th>
             {showPuts &&
               PUT_COLS.map((col) => (
-                <th key={`put-${col}`} className="px-1.5 py-1 text-right font-medium">
+                <th key={`put-${col}`} scope="col" className="px-1.5 py-1 text-right font-medium whitespace-nowrap">
                   {col}
                 </th>
               ))}

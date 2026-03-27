@@ -89,6 +89,8 @@ export interface Lesson {
   icon: string;
   xpReward: number;
   steps: LessonStep[];
+  difficulty?: "beginner" | "intermediate" | "advanced";
+  duration?: number;
 }
 
 export interface Unit {

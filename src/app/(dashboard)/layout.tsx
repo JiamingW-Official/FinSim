@@ -2,6 +2,7 @@
 
 import { TopBar } from "@/components/layout/TopBar";
 import { Sidebar } from "@/components/layout/Sidebar";
+import { MobileNav } from "@/components/layout/MobileNav";
 import { StatusBar } from "@/components/layout/StatusBar";
 import { Providers } from "@/app/providers";
 import { AchievementPopup } from "@/components/game/AchievementPopup";
@@ -33,15 +34,28 @@ export default function DashboardLayout({
   return (
     <Providers>
       <GlobalSearchProvider>
+        {/* Skip to main content — visible on focus for keyboard/screen reader users */}
+        <a
+          href="#main-content"
+          className="sr-only focus:not-sr-only focus:fixed focus:left-2 focus:top-2 focus:z-[9999] focus:rounded-md focus:bg-primary focus:px-3 focus:py-1.5 focus:text-xs focus:font-medium focus:text-primary-foreground focus:shadow-md"
+        >
+          Skip to content
+        </a>
+
         <div className={cn("flex h-screen flex-col overflow-hidden", colorblindMode && "colorblind-mode")}>
           <TopBar />
           <div className="flex flex-1 overflow-hidden">
             <Sidebar />
-            <main className="relative flex-1 overflow-hidden bg-[radial-gradient(ellipse_80%_30%_at_50%_0%,rgba(16,185,129,0.04),transparent)]">
+            <main
+              id="main-content"
+              className="relative flex-1 overflow-hidden bg-[radial-gradient(ellipse_80%_30%_at_50%_0%,rgba(16,185,129,0.04),transparent)] pb-16 md:pb-0"
+            >
               <PageTransition>{children}</PageTransition>
             </main>
           </div>
           <StatusBar />
+          {/* Mobile bottom navigation — only visible below md breakpoint */}
+          <MobileNav />
           <AchievementPopup />
           <LevelUpOverlay />
           <ComboIndicator />

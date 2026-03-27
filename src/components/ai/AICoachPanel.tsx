@@ -26,6 +26,7 @@ import {
 } from "@/services/ai/engine";
 import { TradeIdeaFeed } from "@/components/ai/TradeIdeaFeed";
 import { OpportunityScanner } from "@/components/ai/OpportunityScanner";
+import { SentimentGauge } from "@/components/ai/SentimentGauge";
 
 type Mode = "trade" | "review" | "brief" | "ideas" | "scan";
 
@@ -969,8 +970,17 @@ export function AICoachPanel() {
                         </div>
                       )}
 
-                      {/* Score gauge */}
-                      <ScoreGauge score={result.score} bias={result.bias} />
+                      {/* Sentiment Gauge (full semicircle) when signals are present */}
+                      {result.signals.length > 0 ? (
+                        <SentimentGauge
+                          score={result.score}
+                          bias={result.bias}
+                          signals={result.signals}
+                        />
+                      ) : (
+                        /* Fallback compact gauge when no indicator signals */
+                        <ScoreGauge score={result.score} bias={result.bias} />
+                      )}
 
                       {/* Signal chips — clickable, expandable */}
                       {result.signals.length > 0 && (
@@ -1083,9 +1093,15 @@ export function AICoachPanel() {
               {mode === "scan" && (
                 <div className="space-y-1.5">
                   <div className="text-[9px] font-black uppercase tracking-wider text-foreground/40">
-                    Opportunity Scanner — Top 5
+                    Opportunity Scanner
                   </div>
-                  <OpportunityScanner />
+                  <OpportunityScanner
+                    currentTicker={currentTicker}
+                    onSelectTicker={(t) => {
+                      const store = useChartStore.getState();
+                      store.setTicker(t);
+                    }}
+                  />
                 </div>
               )}
 

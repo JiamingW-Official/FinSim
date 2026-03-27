@@ -10,9 +10,30 @@ import { useTradingStore } from "@/stores/trading-store";
 import { INITIAL_CAPITAL } from "@/types/trading";
 import { formatCurrency } from "@/lib/utils";
 import { cn } from "@/lib/utils";
-import { Shield, BarChart3, BookOpen, TrendingUp, TrendingDown, Trophy, Wallet, Briefcase, Award, Target, Calendar, Activity } from "lucide-react";
+import {
+  Shield,
+  BarChart3,
+  BookOpen,
+  TrendingUp,
+  TrendingDown,
+  Trophy,
+  Wallet,
+  Briefcase,
+  Award,
+  Target,
+  Calendar,
+  Activity,
+  FlaskConical,
+} from "lucide-react";
 import { AchievementGallery } from "@/components/game/AchievementGallery";
 import { ExportMenu } from "@/components/portfolio/ExportMenu";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { WinLossDistribution } from "@/components/analytics/WinLossDistribution";
+import { HoldingPeriodAnalysis } from "@/components/analytics/HoldingPeriodAnalysis";
+import { TradeHeatmap } from "@/components/analytics/TradeHeatmap";
+import { MAEMFEScatter } from "@/components/analytics/MAEMFEScatter";
+import { StreakAnalysis } from "@/components/analytics/StreakAnalysis";
+import { RollingSharpeChart, RollingWinRateChart } from "@/components/analytics/RollingMetricsChart";
 
 const EquityCurve = dynamic(
   () =>
@@ -65,7 +86,7 @@ export default function PortfolioPage() {
         initial="hidden"
         animate="show"
       >
-        {/* Header — premium style */}
+        {/* Header */}
         <motion.div variants={fadeUp} className="flex items-center justify-between">
           <div className="flex items-center gap-3">
             <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-blue-500/10">
@@ -121,67 +142,162 @@ export default function PortfolioPage() {
           </div>
         </motion.div>
 
-        {/* Equity Curve */}
-        <motion.div variants={fadeUp} className="rounded-lg border border-border bg-card p-3">
-          <div className="mb-2 flex items-center gap-1.5 text-xs font-medium text-muted-foreground">
-            <BarChart3 className="h-3.5 w-3.5 text-blue-400" />
-            Equity Curve
-          </div>
-          <EquityCurve />
-        </motion.div>
-
-        {/* Win Rate Chart + Trade Calendar */}
-        <motion.div variants={fadeUp} className="grid grid-cols-2 gap-3">
-          <div className="rounded-lg border border-border bg-card p-3">
-            <div className="mb-2 flex items-center gap-1.5 text-xs font-medium text-muted-foreground">
-              <Target className="h-3.5 w-3.5 text-cyan-400" />
-              Win Rate (Rolling 10)
-            </div>
-            <WinRateChart />
-          </div>
-          <div className="rounded-lg border border-border bg-card p-3">
-            <div className="mb-2 flex items-center gap-1.5 text-xs font-medium text-muted-foreground">
-              <Calendar className="h-3.5 w-3.5 text-green-400" />
-              Trade Calendar
-            </div>
-            <TradeCalendar />
-          </div>
-        </motion.div>
-
-        {/* Performance Metrics */}
+        {/* Tabbed content */}
         <motion.div variants={fadeUp}>
-          <div className="mb-2 flex items-center gap-1.5 text-xs font-medium text-muted-foreground">
-            <TrendingUp className="h-3.5 w-3.5 text-emerald-400" />
-            Performance Metrics
-          </div>
-          <PerformanceMetrics />
-        </motion.div>
+          <Tabs defaultValue="overview">
+            <div className="mb-4 overflow-x-auto">
+              <TabsList className="flex h-8 min-w-max w-full gap-0.5 rounded-lg bg-card/60 p-0.5">
+                <TabsTrigger value="overview" className="flex-1 rounded-md text-[11px] h-7 whitespace-nowrap">
+                  Overview
+                </TabsTrigger>
+                <TabsTrigger value="analytics" className="flex-1 rounded-md text-[11px] h-7 whitespace-nowrap">
+                  Analytics
+                </TabsTrigger>
+                <TabsTrigger value="journal" className="flex-1 rounded-md text-[11px] h-7 whitespace-nowrap">
+                  Journal
+                </TabsTrigger>
+                <TabsTrigger value="achievements" className="flex-1 rounded-md text-[11px] h-7 whitespace-nowrap">
+                  Awards
+                </TabsTrigger>
+                <TabsTrigger value="deep" className="flex-1 rounded-md text-[11px] h-7 whitespace-nowrap">
+                  Deep
+                </TabsTrigger>
+              </TabsList>
+            </div>
 
-        {/* Quantitative Analytics */}
-        <motion.div variants={fadeUp}>
-          <div className="mb-2 flex items-center gap-1.5 text-xs font-medium text-muted-foreground">
-            <Activity className="h-3.5 w-3.5 text-blue-400" />
-            Quantitative Analytics
-          </div>
-          <QuantDashboard />
-        </motion.div>
+            {/* ── Overview tab ── */}
+            <TabsContent value="overview" className="space-y-4">
+              <div className="rounded-lg border border-border bg-card p-3">
+                <div className="mb-2 flex items-center gap-1.5 text-xs font-medium text-muted-foreground">
+                  <BarChart3 className="h-3.5 w-3.5 text-blue-400" />
+                  Equity Curve
+                </div>
+                <EquityCurve />
+              </div>
 
-        {/* Trade Journal */}
-        <motion.div variants={fadeUp} className="rounded-lg border border-border bg-card p-3">
-          <div className="mb-2 flex items-center gap-1.5 text-xs font-medium text-muted-foreground">
-            <BookOpen className="h-3.5 w-3.5 text-violet-400" />
-            Trade Journal
-          </div>
-          <TradeJournal />
-        </motion.div>
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                <div className="rounded-lg border border-border bg-card p-3">
+                  <div className="mb-2 flex items-center gap-1.5 text-xs font-medium text-muted-foreground">
+                    <Target className="h-3.5 w-3.5 text-cyan-400" />
+                    Win Rate (Rolling 10)
+                  </div>
+                  <WinRateChart />
+                </div>
+                <div className="rounded-lg border border-border bg-card p-3">
+                  <div className="mb-2 flex items-center gap-1.5 text-xs font-medium text-muted-foreground">
+                    <Calendar className="h-3.5 w-3.5 text-green-400" />
+                    Trade Calendar
+                  </div>
+                  <TradeCalendar />
+                </div>
+              </div>
 
-        {/* Achievement Gallery */}
-        <motion.div variants={fadeUp} className="rounded-lg border border-border bg-card p-3">
-          <div className="mb-2 flex items-center gap-1.5 text-xs font-medium text-muted-foreground">
-            <Award className="h-3.5 w-3.5 text-amber-400" />
-            Achievements
-          </div>
-          <AchievementGallery />
+              <div>
+                <div className="mb-2 flex items-center gap-1.5 text-xs font-medium text-muted-foreground">
+                  <TrendingUp className="h-3.5 w-3.5 text-emerald-400" />
+                  Performance Metrics
+                </div>
+                <PerformanceMetrics />
+              </div>
+            </TabsContent>
+
+            {/* ── Analytics tab ── */}
+            <TabsContent value="analytics" className="space-y-4">
+              <div>
+                <div className="mb-2 flex items-center gap-1.5 text-xs font-medium text-muted-foreground">
+                  <Activity className="h-3.5 w-3.5 text-blue-400" />
+                  Quantitative Analytics
+                </div>
+                <QuantDashboard />
+              </div>
+
+              <div className="rounded-lg border border-border bg-card p-3">
+                <div className="mb-3 flex items-center gap-1.5 text-xs font-medium text-muted-foreground">
+                  <TrendingUp className="h-3.5 w-3.5 text-blue-400" />
+                  Rolling Sharpe Ratio (30-trade window)
+                </div>
+                <RollingSharpeChart />
+              </div>
+
+              <div className="rounded-lg border border-border bg-card p-3">
+                <div className="mb-3 flex items-center gap-1.5 text-xs font-medium text-muted-foreground">
+                  <Target className="h-3.5 w-3.5 text-green-400" />
+                  Rolling Win Rate (20-trade window)
+                </div>
+                <RollingWinRateChart />
+              </div>
+            </TabsContent>
+
+            {/* ── Journal tab ── */}
+            <TabsContent value="journal">
+              <div className="rounded-lg border border-border bg-card p-3">
+                <div className="mb-2 flex items-center gap-1.5 text-xs font-medium text-muted-foreground">
+                  <BookOpen className="h-3.5 w-3.5 text-violet-400" />
+                  Trade Journal
+                </div>
+                <TradeJournal />
+              </div>
+            </TabsContent>
+
+            {/* ── Achievements tab ── */}
+            <TabsContent value="achievements">
+              <div className="rounded-lg border border-border bg-card p-3">
+                <div className="mb-2 flex items-center gap-1.5 text-xs font-medium text-muted-foreground">
+                  <Award className="h-3.5 w-3.5 text-amber-400" />
+                  Achievements
+                </div>
+                <AchievementGallery />
+              </div>
+            </TabsContent>
+
+            {/* ── Deep Analytics tab ── */}
+            <TabsContent value="deep" className="space-y-4">
+              {/* Trade Distribution */}
+              <div className="rounded-lg border border-border bg-card p-3">
+                <div className="mb-3 flex items-center gap-1.5 text-xs font-medium text-muted-foreground">
+                  <BarChart3 className="h-3.5 w-3.5 text-blue-400" />
+                  Trade Distribution
+                </div>
+                <WinLossDistribution />
+              </div>
+
+              {/* Holding Period Analysis */}
+              <div className="rounded-lg border border-border bg-card p-3">
+                <div className="mb-3 flex items-center gap-1.5 text-xs font-medium text-muted-foreground">
+                  <Calendar className="h-3.5 w-3.5 text-cyan-400" />
+                  Holding Period Analysis
+                </div>
+                <HoldingPeriodAnalysis />
+              </div>
+
+              {/* Trade Heatmap */}
+              <div className="rounded-lg border border-border bg-card p-3">
+                <div className="mb-3 flex items-center gap-1.5 text-xs font-medium text-muted-foreground">
+                  <Activity className="h-3.5 w-3.5 text-green-400" />
+                  Day-of-Week Heatmap
+                </div>
+                <TradeHeatmap />
+              </div>
+
+              {/* MAE/MFE Scatter */}
+              <div className="rounded-lg border border-border bg-card p-3">
+                <div className="mb-3 flex items-center gap-1.5 text-xs font-medium text-muted-foreground">
+                  <FlaskConical className="h-3.5 w-3.5 text-violet-400" />
+                  MAE/MFE Scatter — Trade Efficiency
+                </div>
+                <MAEMFEScatter />
+              </div>
+
+              {/* Streak Analysis */}
+              <div className="rounded-lg border border-border bg-card p-3">
+                <div className="mb-3 flex items-center gap-1.5 text-xs font-medium text-muted-foreground">
+                  <TrendingUp className="h-3.5 w-3.5 text-amber-400" />
+                  Streak Analysis
+                </div>
+                <StreakAnalysis />
+              </div>
+            </TabsContent>
+          </Tabs>
         </motion.div>
       </motion.div>
     </div>

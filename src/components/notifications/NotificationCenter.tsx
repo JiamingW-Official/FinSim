@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useRef, useEffect } from "react";
+import { useRouter } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
 import {
   Bell,
@@ -45,7 +46,7 @@ const ICON_MAP: Record<string, React.ReactNode> = {
 const TYPE_ACCENT: Record<string, string> = {
   achievement: "border-l-amber-400",
   level_up: "border-l-purple-400",
-  trade: "border-l-green-400",
+  trade: "border-l-emerald-400",
   quest: "border-l-cyan-400",
   arena: "border-l-red-400",
   challenge: "border-l-rose-400",
@@ -54,10 +55,6 @@ const TYPE_ACCENT: Record<string, string> = {
   system: "border-l-muted-foreground",
   alert: "border-l-amber-500",
 };
-
-// ── Unread dot colour ────────────────────────────────────────────────────────
-
-const UNREAD_DOT = "bg-primary";
 
 // ── Relative time formatter ──────────────────────────────────────────────────
 
@@ -73,47 +70,94 @@ function formatRelativeTime(timestamp: number): string {
   return `${days}d ago`;
 }
 
+// ── Group notifications into Today / Yesterday / Earlier ────────────────────
+
+function groupByDate(notifications: AppNotification[]): {
+  label: string;
+  items: AppNotification[];
+}[] {
+  const now = Date.now();
+  const dayMs = 1000 * 60 * 60 * 24;
+  const todayStart = now - (now % dayMs);
+  const yesterdayStart = todayStart - dayMs;
+
+  const today: AppNotification[] = [];
+  const yesterday: AppNotification[] = [];
+  const earlier: AppNotification[] = [];
+
+  for (const n of notifications) {
+    if (n.timestamp >= todayStart) {
+      today.push(n);
+    } else if (n.timestamp >= yesterdayStart) {
+      yesterday.push(n);
+    } else {
+      earlier.push(n);
+    }
+  }
+
+  const groups: { label: string; items: AppNotification[] }[] = [];
+  if (today.length > 0) groups.push({ label: "Today", items: today });
+  if (yesterday.length > 0) groups.push({ label: "Yesterday", items: yesterday });
+  if (earlier.length > 0) groups.push({ label: "Earlier", items: earlier });
+  return groups;
+}
+
 // ── Individual row ────────────────────────────────────────────────────────────
 
-function NotificationRow({ n }: { n: AppNotification }) {
+function NotificationRow({
+  n,
+  onClose,
+}: {
+  n: AppNotification;
+  onClose: () => void;
+}) {
+  const router = useRouter();
+  const markRead = useNotificationStore((s) => s.markRead);
+
+  function handleClick() {
+    markRead(n.id);
+    if (n.href) {
+      router.push(n.href);
+    }
+    onClose();
+  }
+
   return (
-    <motion.div
-      initial={{ opacity: 0, x: -12 }}
+    <motion.button
+      type="button"
+      initial={{ opacity: 0, x: -10 }}
       animate={{ opacity: 1, x: 0 }}
+      onClick={handleClick}
       className={cn(
-        "flex items-start gap-2.5 border-l-2 px-3 py-2 transition-colors hover:bg-accent/20",
+        "flex w-full items-start gap-2.5 border-l-2 px-3 py-2 text-left",
+        "transition-colors hover:bg-accent/20 focus-visible:outline-none focus-visible:bg-accent/20",
         TYPE_ACCENT[n.type] ?? "border-l-muted",
         !n.read && "bg-primary/5",
       )}
     >
-      {/* Icon */}
+      {/* Colored icon */}
       <div className={cn("mt-0.5 shrink-0", n.color)}>
         {ICON_MAP[n.icon] ?? <Star className="h-3.5 w-3.5" />}
       </div>
 
       {/* Body */}
       <div className="min-w-0 flex-1">
-        <p className="truncate text-[11px] font-semibold">{n.title}</p>
-        <p className="line-clamp-2 text-[10px] text-muted-foreground">
+        <p className="truncate text-[11px] font-semibold leading-tight">{n.title}</p>
+        <p className="line-clamp-2 text-[10px] text-muted-foreground leading-relaxed">
           {n.description}
         </p>
       </div>
 
       {/* Meta: time + unread dot */}
       <div className="flex shrink-0 flex-col items-end gap-1">
-        <span className="text-[9px] text-muted-foreground/60">
+        <span className="text-[9px] text-muted-foreground/60 whitespace-nowrap">
           {formatRelativeTime(n.timestamp)}
         </span>
         {!n.read && (
-          <span
-            className={cn(
-              "h-1.5 w-1.5 rounded-full",
-              UNREAD_DOT,
-            )}
-          />
+          <span className="h-1.5 w-1.5 rounded-full bg-primary" />
         )}
       </div>
-    </motion.div>
+    </motion.button>
   );
 }
 
@@ -129,6 +173,11 @@ export function NotificationCenter() {
   // Cap display to 20 most recent
   const displayNotifications = notifications.slice(0, 20);
   const unreadCount = notifications.filter((n) => !n.read).length;
+  const groups = groupByDate(displayNotifications);
+
+  function handleClose() {
+    setOpen(false);
+  }
 
   // Close dropdown on outside click
   useEffect(() => {
@@ -156,7 +205,7 @@ export function NotificationCenter() {
         type="button"
         onClick={handleToggle}
         className="relative rounded-md p-1 text-muted-foreground transition-colors hover:text-foreground hover:bg-accent cursor-pointer"
-        title="Activity feed"
+        title="Notifications"
         aria-label={`Notifications${unreadCount > 0 ? `, ${unreadCount} unread` : ""}`}
       >
         <Bell className="h-3.5 w-3.5" />
@@ -179,14 +228,14 @@ export function NotificationCenter() {
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: -8, scale: 0.95 }}
             transition={{ type: "spring", stiffness: 400, damping: 25 }}
-            className="absolute right-0 top-full z-50 mt-2 w-[calc(100vw-2rem)] sm:w-72 max-w-72 rounded-xl border border-border bg-card shadow-xl"
+            className="absolute right-0 top-full z-50 mt-2 w-[calc(100vw-2rem)] sm:w-72 max-w-72 rounded-lg border border-border bg-card shadow-xl"
           >
             {/* Header */}
             <div className="flex items-center justify-between border-b border-border px-3 py-2">
               <div className="flex items-center gap-1.5">
-                <span className="text-[11px] font-bold">Activity</span>
+                <span className="text-[11px] font-bold">Notifications</span>
                 {unreadCount > 0 && (
-                  <span className="rounded-full bg-red-500 px-1.5 py-px text-[8px] font-bold text-white">
+                  <span className="rounded-full bg-primary/20 px-1.5 py-px text-[8px] font-bold text-primary">
                     {unreadCount > 9 ? "9+" : unreadCount}
                   </span>
                 )}
@@ -199,7 +248,7 @@ export function NotificationCenter() {
                       onClick={markAllRead}
                       className="text-[10px] text-muted-foreground hover:text-foreground transition-colors"
                     >
-                      Mark read
+                      Mark all read
                     </button>
                     <span className="text-muted-foreground/30 text-[10px]">·</span>
                     <button
@@ -213,35 +262,51 @@ export function NotificationCenter() {
                 )}
                 <button
                   type="button"
-                  onClick={() => setOpen(false)}
+                  onClick={handleClose}
                   className="rounded p-0.5 text-muted-foreground hover:text-foreground transition-colors"
-                  aria-label="Close"
+                  aria-label="Close notifications"
                 >
                   <X className="h-3 w-3" />
                 </button>
               </div>
             </div>
 
-            {/* List */}
+            {/* Grouped list */}
             <div className="max-h-80 overflow-y-auto">
               {displayNotifications.length === 0 ? (
                 <div className="flex flex-col items-center gap-1.5 py-8 text-muted-foreground">
                   <Bell className="h-5 w-5 opacity-30" />
-                  <p className="text-[11px]">No activity yet</p>
+                  <p className="text-[11px] font-medium">All caught up!</p>
                   <p className="text-[10px] opacity-60">
-                    Start trading to see updates here
+                    No new notifications
                   </p>
                 </div>
               ) : (
-                <div className="divide-y divide-border/50">
-                  {displayNotifications.map((n) => (
-                    <NotificationRow key={n.id} n={n} />
+                <div>
+                  {groups.map((group) => (
+                    <div key={group.label}>
+                      {/* Date group header */}
+                      <div className="sticky top-0 bg-card/95 px-3 py-1 backdrop-blur-sm">
+                        <span className="text-[9px] font-semibold uppercase tracking-wider text-muted-foreground/50">
+                          {group.label}
+                        </span>
+                      </div>
+                      <div className="divide-y divide-border/40">
+                        {group.items.map((n) => (
+                          <NotificationRow
+                            key={n.id}
+                            n={n}
+                            onClose={handleClose}
+                          />
+                        ))}
+                      </div>
+                    </div>
                   ))}
                 </div>
               )}
             </div>
 
-            {/* Footer — only show when there are more than 20 items */}
+            {/* Footer */}
             {notifications.length > 20 && (
               <div className="border-t border-border px-3 py-2 text-center text-[10px] text-muted-foreground">
                 Showing 20 of {notifications.length} — clear to reset

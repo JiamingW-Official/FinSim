@@ -1,6 +1,8 @@
 "use client";
 
 import type { ChainAnalytics, OptionChainExpiry } from "@/types/options";
+import { CONTRACT_MULTIPLIER, RISK_FREE_RATE } from "@/types/options";
+import { blackScholes } from "@/services/options/black-scholes";
 import { cn } from "@/lib/utils";
 
 // ── Local format helper ───────────────────────────────────────────────────────
@@ -29,6 +31,7 @@ interface AnalysisPanelProps {
   termStructure: { dte: number; atmIV: number; expiry: string }[];
   oiVol: { strike: number; callOI: number; putOI: number; callVol: number; putVol: number }[];
   chain: OptionChainExpiry[];
+  spotPrice?: number;
 }
 
 // ── Shared card sub-components ────────────────────────────────────────────────
@@ -756,6 +759,105 @@ function TermStructureChart({
   );
 }
 
+// ── Scenario Analysis (3×3 price × IV grid) ──────────────────────────────────
+
+function ScenarioAnalysis({
+  analytics,
+  spotPrice,
+}: {
+  analytics: ChainAnalytics;
+  spotPrice: number;
+}) {
+  if (spotPrice <= 0) return null;
+
+  const strike = spotPrice; // ATM
+  const dte = 30;
+  const T = dte / 365;
+  const baseIV = Math.max(analytics.atmIV, 0.05);
+
+  // Reference price
+  const refPrice = blackScholes(spotPrice, strike, T, RISK_FREE_RATE, baseIV, "call");
+
+  const priceChanges = [-0.10, 0, 0.10];
+  const ivChanges = [-0.05, 0, 0.05];
+
+  const cells: { pricePct: number; ivChange: number; pnl: number }[] = [];
+  for (const p of priceChanges) {
+    for (const iv of ivChanges) {
+      const newSpot = spotPrice * (1 + p);
+      const newIV = Math.max(baseIV + iv, 0.01);
+      const newPrice = blackScholes(newSpot, strike, T, RISK_FREE_RATE, newIV, "call");
+      const pnl = (newPrice - refPrice) * CONTRACT_MULTIPLIER;
+      cells.push({ pricePct: p, ivChange: iv, pnl: +pnl.toFixed(2) });
+    }
+  }
+
+  const maxAbsPnL = Math.max(1, ...cells.map((c) => Math.abs(c.pnl)));
+
+  function cellColor(pnl: number): string {
+    const intensity = Math.min(1, Math.abs(pnl) / maxAbsPnL);
+    if (pnl > 0) {
+      const g = Math.round(180 + intensity * 75);
+      return `rgba(16, ${g}, 129, ${0.15 + intensity * 0.45})`;
+    } else {
+      const r = Math.round(180 + intensity * 75);
+      return `rgba(${r}, 68, 68, ${0.15 + intensity * 0.45})`;
+    }
+  }
+
+  return (
+    <div className="col-span-2 flex flex-col rounded-lg border border-border/50 bg-card">
+      <CardTitle
+        title="Scenario Analysis — ATM Call P&L"
+        subtitle={`Base: $${refPrice.toFixed(2)} | T=${dte}d | IV=${(baseIV * 100).toFixed(0)}%`}
+      />
+      <div className="p-3">
+        <div className="overflow-x-auto">
+          <table className="w-full text-center text-[10px]">
+            <thead>
+              <tr>
+                <th className="pb-2 pr-2 text-left text-[9px] font-semibold text-muted-foreground">
+                  Price \ IV
+                </th>
+                {ivChanges.map((iv) => (
+                  <th key={iv} className="pb-2 text-[9px] font-semibold text-muted-foreground">
+                    {iv > 0 ? "+" : ""}{(iv * 100).toFixed(0)}pp IV
+                  </th>
+                ))}
+              </tr>
+            </thead>
+            <tbody>
+              {priceChanges.map((p) => (
+                <tr key={p}>
+                  <td className={cn("py-1 pr-2 text-left font-semibold", p > 0 ? "text-emerald-400" : p < 0 ? "text-red-400" : "text-muted-foreground")}>
+                    {p > 0 ? "+" : ""}{(p * 100).toFixed(0)}%
+                  </td>
+                  {ivChanges.map((iv) => {
+                    const cell = cells.find((c) => c.pricePct === p && c.ivChange === iv);
+                    const pnl = cell?.pnl ?? 0;
+                    return (
+                      <td
+                        key={iv}
+                        className="rounded px-3 py-1.5 font-mono font-semibold"
+                        style={{ backgroundColor: cellColor(pnl), color: pnl >= 0 ? "#10b981" : "#ef4444" }}
+                      >
+                        {pnl >= 0 ? "+" : ""}${Math.abs(pnl).toFixed(0)}
+                      </td>
+                    );
+                  })}
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+        <p className="mt-2 text-[9px] text-muted-foreground">
+          P&L per 1 ATM call contract (100 shares) vs. base scenario. Rows = price change; Cols = IV change.
+        </p>
+      </div>
+    </div>
+  );
+}
+
 // ── Main Component ────────────────────────────────────────────────────────────
 
 export function AnalysisPanel({
@@ -764,6 +866,7 @@ export function AnalysisPanel({
   termStructure,
   oiVol,
   chain,
+  spotPrice = 0,
 }: AnalysisPanelProps) {
   // Max-pain strike: where total OI (call + put) is highest
   const atmStrike =
@@ -804,6 +907,11 @@ export function AnalysisPanel({
 
         {/* Chart 6: Volatility Term Structure */}
         <TermStructureChart termStructure={termStructure} />
+
+        {/* Chart 7: Scenario Analysis */}
+        {spotPrice > 0 && (
+          <ScenarioAnalysis analytics={analytics} spotPrice={spotPrice} />
+        )}
       </div>
     </div>
   );

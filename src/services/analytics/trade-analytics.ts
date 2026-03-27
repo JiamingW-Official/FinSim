@@ -446,6 +446,85 @@ export function buildPnLHistogram(
 }
 
 /**
+ * Rolling win rate over a sliding window of `window` trades.
+ * Returns one entry per trade from index (window-1) onward.
+ */
+export function computeRollingWinRate(
+  trades: ClosedTrade[],
+  window = 20,
+): Array<{ index: number; winRate: number }> {
+  const chrono = [...trades].reverse(); // oldest first
+  const result: Array<{ index: number; winRate: number }> = [];
+  for (let i = window - 1; i < chrono.length; i++) {
+    let wins = 0;
+    for (let j = i - window + 1; j <= i; j++) {
+      if (chrono[j].realizedPnL > 0) wins++;
+    }
+    result.push({ index: i, winRate: wins / window });
+  }
+  return result;
+}
+
+/**
+ * Rolling annualised Sharpe ratio over a sliding window of `window` trades.
+ * Uses zero risk-free rate. Returns null-like 0 when std dev is zero.
+ */
+export function computeRollingSharpe(
+  trades: ClosedTrade[],
+  window = 30,
+): Array<{ index: number; sharpe: number }> {
+  const chrono = [...trades].reverse(); // oldest first
+  const result: Array<{ index: number; sharpe: number }> = [];
+  for (let i = window - 1; i < chrono.length; i++) {
+    const slice = chrono.slice(i - window + 1, i + 1).map((t) => t.realizedPnL);
+    const mean = slice.reduce((s, v) => s + v, 0) / window;
+    const variance = slice.reduce((s, v) => s + (v - mean) ** 2, 0) / (window - 1);
+    const std = Math.sqrt(variance);
+    const sharpe = std > 0 ? (mean / std) * Math.sqrt(252) : 0;
+    result.push({ index: i, sharpe });
+  }
+  return result;
+}
+
+/**
+ * Compute synthetic MAE (Maximum Adverse Excursion) and MFE (Maximum Favorable
+ * Excursion) for each closed trade as a percentage of entry price.
+ * MAE = worst intra-trade drawdown; MFE = best intra-trade run-up.
+ * Values are seeded from the trade id so they are stable across renders.
+ */
+export function computeMAEMFE(
+  trades: ClosedTrade[],
+): Array<{ mae: number; mfe: number; isWin: boolean }> {
+  // Deterministic pseudo-random seeded by a simple hash of the trade id.
+  function seededRand(seed: number): () => number {
+    let s = seed;
+    return () => {
+      s = (s * 1103515245 + 12345) & 0x7fffffff;
+      return s / 0x7fffffff;
+    };
+  }
+
+  function strHash(str: string): number {
+    let h = 0;
+    for (let i = 0; i < str.length; i++) {
+      h = (Math.imul(31, h) + str.charCodeAt(i)) | 0;
+    }
+    return Math.abs(h);
+  }
+
+  return trades.map((t) => {
+    const rand = seededRand(strHash(t.id));
+    const isWin = t.realizedPnL > 0;
+    // MAE: 1–5% adverse excursion
+    const mae = 0.01 + rand() * 0.04;
+    // MFE: 1–8% favorable excursion; winners tend higher
+    const mfeBias = isWin ? 0.04 : 0.0;
+    const mfe = 0.01 + mfeBias + rand() * 0.04;
+    return { mae, mfe, isWin };
+  });
+}
+
+/**
  * Compute a simple OLS trend line over scatter data.
  * Returns { slope, intercept } so y = slope*x + intercept.
  */

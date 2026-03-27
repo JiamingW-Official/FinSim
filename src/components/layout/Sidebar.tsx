@@ -48,7 +48,7 @@ export function Sidebar() {
   const pathname = usePathname();
 
   return (
-    <div className="relative flex w-14 flex-col items-center border-r border-border/50 bg-sidebar py-3 gap-0">
+    <div className="relative hidden md:flex w-14 flex-col items-center border-r border-border/50 bg-sidebar py-3 gap-0">
       {/* Logo mark */}
       <div className="mb-2 flex h-8 w-8 items-center justify-center rounded-md bg-primary/10">
         <span className="text-[13px] font-black tracking-tight text-primary select-none">FS</span>
@@ -80,8 +80,9 @@ export function Sidebar() {
                   <TooltipTrigger asChild>
                     <Link
                       href={item.href}
+                      aria-label={item.label}
                       className={cn(
-                        "relative flex h-9 w-10 items-center justify-center rounded-md transition-colors duration-100 mb-0.5",
+                        "relative flex h-9 w-10 items-center justify-center rounded-md transition-colors duration-100 mb-0.5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary",
                         isActive
                           ? "bg-accent text-primary"
                           : "text-muted-foreground/50 hover:bg-accent/50 hover:text-foreground/80",

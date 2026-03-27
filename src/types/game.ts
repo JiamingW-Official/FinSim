@@ -11,6 +11,8 @@ export interface AchievementDef {
   name: string;
   description: string;
   icon: string;
+  xpReward?: number;
+  category?: "trading" | "learning" | "social" | "milestones";
   condition: (stats: PlayerStats) => boolean;
 }
 
@@ -34,6 +36,16 @@ export interface PlayerStats {
   optionsTotalPnL: number;
   optionsAnalysisViewed: boolean;
   unusualActivityViewed: boolean;
+  // new fields
+  optionsChainViewed: number;
+  lessonsCompleted: number;
+  predictionsCorrect: number;
+  portfolioValue: number;
+  tradesTodayPnLs: number[];   // P&L list for trades on current date (for perfect_day)
+  tradesTodayDate: string;     // date key for tradesTodayPnLs
+  maxDrawdownTrades: number;   // consecutive trades tracked for risk_master
+  maxDrawdownStreak: number;   // best (lowest-drawdown) streak so far
+  currentLowDrawdownStreak: number; // current streak of trades with drawdown < 5%
 }
 
 export const INITIAL_STATS: PlayerStats = {
@@ -56,6 +68,15 @@ export const INITIAL_STATS: PlayerStats = {
   optionsTotalPnL: 0,
   optionsAnalysisViewed: false,
   unusualActivityViewed: false,
+  optionsChainViewed: 0,
+  lessonsCompleted: 0,
+  predictionsCorrect: 0,
+  portfolioValue: 100000,
+  tradesTodayPnLs: [],
+  tradesTodayDate: "",
+  maxDrawdownTrades: 0,
+  maxDrawdownStreak: 0,
+  currentLowDrawdownStreak: 0,
 };
 
 // Lesson score breakdown — multi-dimensional scoring
@@ -104,13 +125,17 @@ export const ACHIEVEMENT_DEFS: AchievementDef[] = [
     name: "First Steps",
     description: "Complete your first trade",
     icon: "Zap",
+    xpReward: 25,
+    category: "trading",
     condition: (s) => s.totalTrades >= 1,
   },
   {
     id: "first_profit",
-    name: "In The Green",
-    description: "Close a trade with profit",
+    name: "First Blood",
+    description: "Make your first profitable trade",
     icon: "TrendingUp",
+    xpReward: 50,
+    category: "trading",
     condition: (s) => s.profitableTrades >= 1,
   },
   {
@@ -118,13 +143,17 @@ export const ACHIEVEMENT_DEFS: AchievementDef[] = [
     name: "Hot Streak",
     description: "Win 5 trades in a row",
     icon: "Flame",
+    xpReward: 200,
+    category: "trading",
     condition: (s) => s.consecutiveWins >= 5,
   },
   {
     id: "ten_trades",
     name: "Getting Started",
     description: "Complete 10 trades",
-    icon: "BarChart3",
+    icon: "Activity",
+    xpReward: 100,
+    category: "trading",
     condition: (s) => s.totalTrades >= 10,
   },
   {
@@ -132,6 +161,8 @@ export const ACHIEVEMENT_DEFS: AchievementDef[] = [
     name: "Seasoned",
     description: "Complete 50 trades",
     icon: "Award",
+    xpReward: 250,
+    category: "milestones",
     condition: (s) => s.totalTrades >= 50,
   },
   {
@@ -139,6 +170,8 @@ export const ACHIEVEMENT_DEFS: AchievementDef[] = [
     name: "Bear Mode",
     description: "Complete a short sale",
     icon: "TrendingDown",
+    xpReward: 50,
+    category: "trading",
     condition: (s) => s.shortTradesCount >= 1,
   },
   {
@@ -146,6 +179,8 @@ export const ACHIEVEMENT_DEFS: AchievementDef[] = [
     name: "Patient Trader",
     description: "Use 5 limit orders",
     icon: "Target",
+    xpReward: 75,
+    category: "trading",
     condition: (s) => s.limitOrdersUsed >= 5,
   },
   {
@@ -153,6 +188,8 @@ export const ACHIEVEMENT_DEFS: AchievementDef[] = [
     name: "Jackpot",
     description: "Make $5,000+ on a single trade",
     icon: "DollarSign",
+    xpReward: 300,
+    category: "trading",
     condition: (s) => s.largestWin >= 5000,
   },
   {
@@ -160,6 +197,8 @@ export const ACHIEVEMENT_DEFS: AchievementDef[] = [
     name: "Diversified",
     description: "Trade 5 different stocks",
     icon: "Layers",
+    xpReward: 100,
+    category: "trading",
     condition: (s) => s.uniqueTickersTraded.length >= 5,
   },
   {
@@ -167,6 +206,8 @@ export const ACHIEVEMENT_DEFS: AchievementDef[] = [
     name: "On A Roll",
     description: "3-day trading streak",
     icon: "Flame",
+    xpReward: 75,
+    category: "milestones",
     condition: (s) => s.dailyStreak >= 3,
   },
   {
@@ -174,6 +215,8 @@ export const ACHIEVEMENT_DEFS: AchievementDef[] = [
     name: "Dedicated",
     description: "7-day trading streak",
     icon: "Flame",
+    xpReward: 150,
+    category: "milestones",
     condition: (s) => s.dailyStreak >= 7,
   },
   {
@@ -181,6 +224,8 @@ export const ACHIEVEMENT_DEFS: AchievementDef[] = [
     name: "Unstoppable",
     description: "Reach a 5x combo",
     icon: "Zap",
+    xpReward: 150,
+    category: "trading",
     condition: (s) => s.comboCount >= 5,
   },
   {
@@ -188,6 +233,8 @@ export const ACHIEVEMENT_DEFS: AchievementDef[] = [
     name: "Options Initiate",
     description: "Place your first options trade",
     icon: "Activity",
+    xpReward: 50,
+    category: "trading",
     condition: (s) => s.optionsTradesCount >= 1,
   },
   {
@@ -195,6 +242,8 @@ export const ACHIEVEMENT_DEFS: AchievementDef[] = [
     name: "Spread Eagle",
     description: "Execute a spread strategy",
     icon: "GitBranch",
+    xpReward: 100,
+    category: "trading",
     condition: (s) => s.optionsSpreadsCount >= 1,
   },
   {
@@ -202,6 +251,8 @@ export const ACHIEVEMENT_DEFS: AchievementDef[] = [
     name: "Iron Will",
     description: "Execute an Iron Condor",
     icon: "Shield",
+    xpReward: 150,
+    category: "trading",
     condition: (s) => s.optionsCondorsCount >= 1,
   },
   {
@@ -209,6 +260,8 @@ export const ACHIEVEMENT_DEFS: AchievementDef[] = [
     name: "Premium Collector",
     description: "Earn $1,000+ from options trades",
     icon: "DollarSign",
+    xpReward: 200,
+    category: "trading",
     condition: (s) => s.optionsTotalPnL >= 1000,
   },
   {
@@ -216,6 +269,8 @@ export const ACHIEVEMENT_DEFS: AchievementDef[] = [
     name: "Volatility Analyst",
     description: "Study the Analysis dashboard",
     icon: "LineChart",
+    xpReward: 50,
+    category: "learning",
     condition: (s) => s.optionsAnalysisViewed,
   },
   {
@@ -223,6 +278,8 @@ export const ACHIEVEMENT_DEFS: AchievementDef[] = [
     name: "Flow Watcher",
     description: "Investigate unusual options activity",
     icon: "Eye",
+    xpReward: 50,
+    category: "learning",
     condition: (s) => s.unusualActivityViewed,
   },
   {
@@ -230,6 +287,8 @@ export const ACHIEVEMENT_DEFS: AchievementDef[] = [
     name: "Iron Condor Master",
     description: "Execute 3 Iron Condor strategies",
     icon: "Shield",
+    xpReward: 300,
+    category: "trading",
     condition: (s) => s.optionsCondorsCount >= 3,
   },
   {
@@ -237,7 +296,84 @@ export const ACHIEVEMENT_DEFS: AchievementDef[] = [
     name: "Options Millionaire",
     description: "Earn $10,000+ from options trades",
     icon: "Trophy",
+    xpReward: 500,
+    category: "milestones",
     condition: (s) => s.optionsTotalPnL >= 10000,
+  },
+  // New achievements (Task 2)
+  {
+    id: "win_streak_5",
+    name: "Hot Streak",
+    description: "Win 5 trades in a row",
+    icon: "Flame",
+    xpReward: 200,
+    category: "trading",
+    condition: (s) => s.consecutiveWins >= 5,
+  },
+  {
+    id: "perfect_day",
+    name: "Perfect Day",
+    description: "Green on every trade in a day (min 3)",
+    icon: "Sun",
+    xpReward: 150,
+    category: "trading",
+    condition: (s) =>
+      s.tradesTodayPnLs.length >= 3 &&
+      s.tradesTodayPnLs.every((p) => p > 0),
+  },
+  {
+    id: "risk_master",
+    name: "Risk Master",
+    description: "Keep max drawdown under 5% for 20 trades",
+    icon: "Shield",
+    xpReward: 300,
+    category: "trading",
+    condition: (s) => s.maxDrawdownStreak >= 20,
+  },
+  {
+    id: "options_explorer",
+    name: "Options Explorer",
+    description: "View the options chain 10 times",
+    icon: "BarChart2",
+    xpReward: 75,
+    category: "learning",
+    condition: (s) => s.optionsChainViewed >= 10,
+  },
+  {
+    id: "lesson_complete_5",
+    name: "Student",
+    description: "Complete 5 lessons",
+    icon: "BookOpen",
+    xpReward: 100,
+    category: "learning",
+    condition: (s) => s.lessonsCompleted >= 5,
+  },
+  {
+    id: "lesson_complete_20",
+    name: "Scholar",
+    description: "Complete 20 lessons",
+    icon: "GraduationCap",
+    xpReward: 300,
+    category: "learning",
+    condition: (s) => s.lessonsCompleted >= 20,
+  },
+  {
+    id: "prediction_correct_5",
+    name: "Oracle",
+    description: "Get 5 predictions correct",
+    icon: "Target",
+    xpReward: 200,
+    category: "milestones",
+    condition: (s) => s.predictionsCorrect >= 5,
+  },
+  {
+    id: "portfolio_10k",
+    name: "Growing Up",
+    description: "Reach $110,000 portfolio value",
+    icon: "DollarSign",
+    xpReward: 250,
+    category: "milestones",
+    condition: (s) => s.portfolioValue >= 110000,
   },
 ];
 

@@ -78,30 +78,148 @@ export default function TradePage() {
   const showWatchlist = !showTimeTravel && !showOrderEntry && shouldShow("watchlist");
 
   return (
-    <div className="flex h-full">
-      <TradeShareCard />
-      <AlphaBotAlerts />
-      {/* Left: Watchlist */}
-      <div className="relative" data-tutorial="watchlist">
-        <Watchlist />
-        {showWatchlist && (
-          <OnboardingHint
-            title="Watchlist"
-            description="Switch between stocks to analyze different tickers. Click any stock to load its chart."
-            visible
-            onDismiss={() => dismiss("watchlist")}
-            position="bottom"
-            className="left-2 top-10"
-          />
-        )}
+    <>
+      {/* ── Desktop layout (md+): side-by-side columns ── */}
+      <div className="hidden md:flex h-full">
+        <TradeShareCard />
+        <AlphaBotAlerts />
+        {/* Left: Watchlist */}
+        <div className="relative" data-tutorial="watchlist">
+          <Watchlist />
+          {showWatchlist && (
+            <OnboardingHint
+              title="Watchlist"
+              description="Switch between stocks to analyze different tickers. Click any stock to load its chart."
+              visible
+              onDismiss={() => dismiss("watchlist")}
+              position="bottom"
+              className="left-2 top-10"
+            />
+          )}
+        </div>
+
+        {/* Center: Chart + Time Travel + Positions/History */}
+        <div className="flex flex-1 flex-col overflow-hidden">
+          <ChartToolbar data-tutorial="indicators" />
+          <IndicatorInfoPanel />
+
+          <div className={cn("relative flex-1", flashClass)} data-tutorial="chart">
+            {isLoading && (
+              <div className="absolute inset-0 z-10 flex items-center justify-center bg-background/80">
+                <Loader2 className="h-6 w-6 animate-spin text-primary" />
+              </div>
+            )}
+            {error && (
+              <div className="absolute inset-0 z-10 flex items-center justify-center bg-background/80">
+                <p className="text-sm text-destructive">
+                  Failed to load data. Please try again.
+                </p>
+              </div>
+            )}
+            <CandlestickChart />
+          </div>
+
+          <div className="relative" data-tutorial="time-travel">
+            <TimeTravelControls />
+            {showTimeTravel && (
+              <OnboardingHint
+                title="Time Travel"
+                description="Use the slider or play button to advance through historical market data, one bar at a time."
+                visible
+                onDismiss={() => dismiss("time-travel")}
+                position="top"
+                className="left-4"
+              />
+            )}
+          </div>
+
+          <ContextualTip />
+          <NewsTicker />
+
+          {/* Bottom panel: Positions & History tabs */}
+          <div className="h-48 shrink-0 overflow-hidden border-t border-border" data-tutorial="positions">
+            <Tabs defaultValue="positions" className="h-full flex flex-col">
+              <TabsList className="h-7 w-full justify-start rounded-none border-b border-border bg-card px-2">
+                <TabsTrigger
+                  value="positions"
+                  className="h-6 rounded-none border-b-2 border-transparent px-3 text-xs data-[state=active]:border-primary data-[state=active]:bg-transparent"
+                >
+                  Positions
+                </TabsTrigger>
+                <TabsTrigger
+                  value="history"
+                  className="h-6 rounded-none border-b-2 border-transparent px-3 text-xs data-[state=active]:border-primary data-[state=active]:bg-transparent"
+                >
+                  History
+                </TabsTrigger>
+                <TabsTrigger
+                  value="pending"
+                  className="h-6 rounded-none border-b-2 border-transparent px-3 text-xs data-[state=active]:border-primary data-[state=active]:bg-transparent"
+                >
+                  Pending{pendingCount > 0 && ` (${pendingCount})`}
+                </TabsTrigger>
+                <TabsTrigger
+                  value="fundamentals"
+                  className="h-6 rounded-none border-b-2 border-transparent px-3 text-xs data-[state=active]:border-primary data-[state=active]:bg-transparent"
+                >
+                  Fundamentals
+                </TabsTrigger>
+                <TabsTrigger
+                  value="orderbook"
+                  className="h-6 rounded-none border-b-2 border-transparent px-3 text-xs data-[state=active]:border-primary data-[state=active]:bg-transparent"
+                >
+                  Order Book
+                </TabsTrigger>
+              </TabsList>
+              <TabsContent value="positions" className="flex-1 overflow-auto mt-0">
+                <PositionsTable />
+              </TabsContent>
+              <TabsContent value="history" className="flex-1 overflow-auto mt-0">
+                <TradeHistory />
+              </TabsContent>
+              <TabsContent value="pending" className="flex-1 overflow-auto mt-0">
+                <PendingOrders />
+              </TabsContent>
+              <TabsContent value="fundamentals" className="flex-1 overflow-auto mt-0">
+                <FundamentalsPanel />
+              </TabsContent>
+              <TabsContent value="orderbook" className="flex-1 overflow-auto mt-0">
+                <OrderBookPanel />
+              </TabsContent>
+            </Tabs>
+          </div>
+        </div>
+
+        {/* Right: Order Entry + AI Coach */}
+        <div className="relative w-64 shrink-0 flex flex-col border-l border-border bg-card" data-tutorial="order-entry">
+          <div className="flex-1 min-h-0 overflow-y-auto">
+            <OrderEntry />
+            {showOrderEntry && (
+              <OnboardingHint
+                title="Place Orders"
+                description="Enter quantity and choose order type. Try a market buy to get started, or use limit orders for more control."
+                visible
+                onDismiss={() => dismiss("order-entry")}
+                position="bottom"
+                className="left-2 top-12"
+              />
+            )}
+          </div>
+          <AICoachPanel />
+        </div>
       </div>
 
-      {/* Center: Chart + Time Travel + Positions/History */}
-      <div className="flex flex-1 flex-col overflow-hidden">
+      {/* ── Mobile layout (< md): vertical stack ── */}
+      <div className="flex flex-col h-full md:hidden overflow-y-auto">
+        <TradeShareCard />
+        <AlphaBotAlerts />
+
+        {/* Chart toolbar */}
         <ChartToolbar data-tutorial="indicators" />
         <IndicatorInfoPanel />
 
-        <div className={cn("relative flex-1", flashClass)} data-tutorial="chart">
+        {/* Chart — fixed height on mobile */}
+        <div className={cn("relative h-[300px] shrink-0", flashClass)} data-tutorial="chart">
           {isLoading && (
             <div className="absolute inset-0 z-10 flex items-center justify-center bg-background/80">
               <Loader2 className="h-6 w-6 animate-spin text-primary" />
@@ -109,9 +227,7 @@ export default function TradePage() {
           )}
           {error && (
             <div className="absolute inset-0 z-10 flex items-center justify-center bg-background/80">
-              <p className="text-sm text-destructive">
-                Failed to load data. Please try again.
-              </p>
+              <p className="text-sm text-destructive">Failed to load data. Please try again.</p>
             </div>
           )}
           <CandlestickChart />
@@ -119,92 +235,64 @@ export default function TradePage() {
 
         <div className="relative" data-tutorial="time-travel">
           <TimeTravelControls />
-          {showTimeTravel && (
-            <OnboardingHint
-              title="Time Travel"
-              description="Use the slider or play button to advance through historical market data, one bar at a time."
-              visible
-              onDismiss={() => dismiss("time-travel")}
-              position="top"
-              className="left-4"
-            />
-          )}
         </div>
 
         <ContextualTip />
         <NewsTicker />
 
-        {/* Bottom panel: Positions & History tabs */}
-        <div className="h-48 shrink-0 overflow-hidden border-t border-border" data-tutorial="positions">
-          <Tabs defaultValue="positions" className="h-full flex flex-col">
-            <TabsList className="h-7 w-full justify-start rounded-none border-b border-border bg-card px-2">
+        {/* Mobile tab panel: Order Entry | Positions | Indicators | AI Coach */}
+        <div className="border-t border-border">
+          <Tabs defaultValue="order">
+            <TabsList className="h-9 w-full justify-start rounded-none border-b border-border bg-card px-2 overflow-x-auto flex-nowrap">
+              <TabsTrigger
+                value="order"
+                className="h-7 shrink-0 rounded-none border-b-2 border-transparent px-3 text-xs data-[state=active]:border-primary data-[state=active]:bg-transparent"
+              >
+                Order Entry
+              </TabsTrigger>
               <TabsTrigger
                 value="positions"
-                className="h-6 rounded-none border-b-2 border-transparent px-3 text-xs data-[state=active]:border-primary data-[state=active]:bg-transparent"
+                className="h-7 shrink-0 rounded-none border-b-2 border-transparent px-3 text-xs data-[state=active]:border-primary data-[state=active]:bg-transparent"
               >
                 Positions
               </TabsTrigger>
               <TabsTrigger
                 value="history"
-                className="h-6 rounded-none border-b-2 border-transparent px-3 text-xs data-[state=active]:border-primary data-[state=active]:bg-transparent"
+                className="h-7 shrink-0 rounded-none border-b-2 border-transparent px-3 text-xs data-[state=active]:border-primary data-[state=active]:bg-transparent"
               >
                 History
               </TabsTrigger>
               <TabsTrigger
                 value="pending"
-                className="h-6 rounded-none border-b-2 border-transparent px-3 text-xs data-[state=active]:border-primary data-[state=active]:bg-transparent"
+                className="h-7 shrink-0 rounded-none border-b-2 border-transparent px-3 text-xs data-[state=active]:border-primary data-[state=active]:bg-transparent"
               >
                 Pending{pendingCount > 0 && ` (${pendingCount})`}
               </TabsTrigger>
               <TabsTrigger
-                value="fundamentals"
-                className="h-6 rounded-none border-b-2 border-transparent px-3 text-xs data-[state=active]:border-primary data-[state=active]:bg-transparent"
+                value="ai"
+                className="h-7 shrink-0 rounded-none border-b-2 border-transparent px-3 text-xs data-[state=active]:border-primary data-[state=active]:bg-transparent"
               >
-                Fundamentals
-              </TabsTrigger>
-              <TabsTrigger
-                value="orderbook"
-                className="h-6 rounded-none border-b-2 border-transparent px-3 text-xs data-[state=active]:border-primary data-[state=active]:bg-transparent"
-              >
-                Order Book
+                AI Coach
               </TabsTrigger>
             </TabsList>
-            <TabsContent value="positions" className="flex-1 overflow-auto mt-0">
+            <TabsContent value="order" className="mt-0">
+              <OrderEntry />
+            </TabsContent>
+            <TabsContent value="positions" className="mt-0">
               <PositionsTable />
             </TabsContent>
-            <TabsContent value="history" className="flex-1 overflow-auto mt-0">
+            <TabsContent value="history" className="mt-0">
               <TradeHistory />
             </TabsContent>
-            <TabsContent value="pending" className="flex-1 overflow-auto mt-0">
+            <TabsContent value="pending" className="mt-0">
               <PendingOrders />
             </TabsContent>
-            <TabsContent value="fundamentals" className="flex-1 overflow-auto mt-0">
-              <FundamentalsPanel />
-            </TabsContent>
-            <TabsContent value="orderbook" className="flex-1 overflow-auto mt-0">
-              <OrderBookPanel />
+            <TabsContent value="ai" className="mt-0">
+              <AICoachPanel />
             </TabsContent>
           </Tabs>
         </div>
       </div>
-
-      {/* Right: Order Entry + AI Coach */}
-      <div className="relative w-64 shrink-0 flex flex-col border-l border-border bg-card" data-tutorial="order-entry">
-        <div className="flex-1 min-h-0 overflow-y-auto">
-          <OrderEntry />
-          {showOrderEntry && (
-            <OnboardingHint
-              title="Place Orders"
-              description="Enter quantity and choose order type. Try a market buy to get started, or use limit orders for more control."
-              visible
-              onDismiss={() => dismiss("order-entry")}
-              position="bottom"
-              className="left-2 top-12"
-            />
-          )}
-        </div>
-        <AICoachPanel />
-      </div>
-    </div>
+    </>
   );
 }

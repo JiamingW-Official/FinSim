@@ -5,9 +5,10 @@ import dynamic from "next/dynamic";
 import { useTradingStore } from "@/stores/trading-store";
 import { INITIAL_CAPITAL } from "@/types/trading";
 import { formatCurrency, cn } from "@/lib/utils";
-import { BookOpen, BarChart3, Calendar, Loader2 } from "lucide-react";
+import { BookOpen, BarChart3, Calendar, FileText, Loader2 } from "lucide-react";
 import { PnLCalendar } from "@/components/journal/PnLCalendar";
 import { TradeLogTable } from "@/components/journal/TradeLogTable";
+import { JournalNotes } from "@/components/journal/JournalNotes";
 
 const JournalEquityCurve = dynamic(
   () => import("@/components/journal/EquityCurve").then((m) => m.JournalEquityCurve),
@@ -89,6 +90,52 @@ function computeAnalytics(rows: TradeRow[]) {
       : 0;
   const lossPct = 1 - winRate / 100;
   const expectancy = (winRate / 100) * avgWin + lossPct * avgLoss;
+
+  // Best win streak / worst loss streak
+  let bestStreak = 0;
+  let worstStreak = 0;
+  let curWin = 0;
+  let curLoss = 0;
+  for (const r of rows) {
+    if (r.trade.realizedPnL > 0) {
+      curWin++;
+      curLoss = 0;
+      if (curWin > bestStreak) bestStreak = curWin;
+    } else if (r.trade.realizedPnL < 0) {
+      curLoss++;
+      curWin = 0;
+      if (curLoss > worstStreak) worstStreak = curLoss;
+    } else {
+      curWin = 0;
+      curLoss = 0;
+    }
+  }
+
+  // Max drawdown from rows (cumulative PnL trough from peak)
+  let cumPnL = 0;
+  let peak = 0;
+  let maxDD = 0;
+  for (const r of rows) {
+    cumPnL += r.trade.realizedPnL;
+    if (cumPnL > peak) peak = cumPnL;
+    const dd = peak - cumPnL;
+    if (dd > maxDD) maxDD = dd;
+  }
+
+  // Trade count by ticker
+  const tickerMap = new Map<string, { wins: number; losses: number; pnl: number }>();
+  for (const r of rows) {
+    const t = r.trade.ticker;
+    if (!tickerMap.has(t)) tickerMap.set(t, { wins: 0, losses: 0, pnl: 0 });
+    const entry = tickerMap.get(t)!;
+    entry.pnl += r.trade.realizedPnL;
+    if (r.trade.realizedPnL > 0) entry.wins++;
+    else if (r.trade.realizedPnL < 0) entry.losses++;
+  }
+  const tickerStats = Array.from(tickerMap.entries())
+    .map(([ticker, s]) => ({ ticker, ...s, total: s.wins + s.losses }))
+    .sort((a, b) => b.total - a.total);
+
   return {
     winRate,
     avgWin,
@@ -100,16 +147,21 @@ function computeAnalytics(rows: TradeRow[]) {
     avgDuration,
     expectancy,
     totalTrades: rows.length,
+    bestStreak,
+    worstStreak,
+    maxDD,
+    tickerStats,
   };
 }
 
 // ── Page tabs ────────────────────────────────────────────────────────────────
-type PageTab = "log" | "analytics" | "calendar";
+type PageTab = "log" | "analytics" | "calendar" | "notes";
 
-const PAGE_TABS: { value: PageTab; label: string }[] = [
-  { value: "log", label: "Trade Log" },
-  { value: "analytics", label: "Analytics" },
-  { value: "calendar", label: "Calendar" },
+const PAGE_TABS: { value: PageTab; label: string; icon: React.ReactNode }[] = [
+  { value: "log",       label: "Log",       icon: <BookOpen className="h-3 w-3" /> },
+  { value: "analytics", label: "Analytics", icon: <BarChart3 className="h-3 w-3" /> },
+  { value: "calendar",  label: "Calendar",  icon: <Calendar className="h-3 w-3" /> },
+  { value: "notes",     label: "Notes",     icon: <FileText className="h-3 w-3" /> },
 ];
 
 // ── Main Component ───────────────────────────────────────────────────────────
@@ -165,8 +217,8 @@ export default function JournalPageClient() {
 
         {/* Header */}
         <div className="flex items-center gap-3">
-          <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-violet-500/10">
-            <BookOpen className="h-4 w-4 text-violet-400" />
+          <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-primary/10">
+            <BookOpen className="h-4 w-4 text-primary" />
           </div>
           <div>
             <h1 className="text-base font-semibold tracking-tight">Trade Journal</h1>
@@ -234,12 +286,13 @@ export default function JournalPageClient() {
               key={tab.value}
               onClick={() => setPageTab(tab.value)}
               className={cn(
-                "px-3 py-1.5 text-xs font-medium border-b-2 -mb-px transition-colors whitespace-nowrap",
+                "flex items-center gap-1.5 px-3 py-1.5 text-xs font-medium border-b-2 -mb-px transition-colors whitespace-nowrap",
                 pageTab === tab.value
                   ? "border-primary text-foreground"
                   : "border-transparent text-muted-foreground hover:text-foreground",
               )}
             >
+              {tab.icon}
               {tab.label}
             </button>
           ))}
@@ -257,6 +310,7 @@ export default function JournalPageClient() {
               <EmptyState message="No closed trades to analyse yet." />
             ) : (
               <>
+                {/* Key stats grid */}
                 <div className="grid grid-cols-2 gap-2 sm:grid-cols-4">
                   <StatChip
                     label="Win Rate"
@@ -279,42 +333,33 @@ export default function JournalPageClient() {
                     sub="Sum wins / sum losses"
                   />
                   <StatChip
+                    label="Best Streak"
+                    value={`${analytics.bestStreak}W`}
+                    color="text-green-400"
+                    sub="Consecutive wins"
+                  />
+                  <StatChip
+                    label="Worst Streak"
+                    value={`${analytics.worstStreak}L`}
+                    color="text-red-400"
+                    sub="Consecutive losses"
+                  />
+                </div>
+
+                <div className="grid grid-cols-2 gap-2 sm:grid-cols-4">
+                  <StatChip
+                    label="Max Drawdown"
+                    value={analytics.maxDD > 0 ? `-${formatCurrency(analytics.maxDD)}` : "—"}
+                    color="text-red-400"
+                    sub="From peak (realized)"
+                  />
+                  <StatChip
                     label="Expectancy"
                     value={formatCurrency(analytics.expectancy)}
                     color={
                       analytics.expectancy >= 0 ? "text-green-400" : "text-red-400"
                     }
                     sub="Per trade avg"
-                  />
-                  <StatChip
-                    label="Avg Hold Time"
-                    value={
-                      analytics.avgDuration > 0
-                        ? formatDuration(analytics.avgDuration)
-                        : "—"
-                    }
-                    sub="All closed trades"
-                  />
-                </div>
-
-                <div className="grid grid-cols-2 gap-2 sm:grid-cols-4">
-                  <StatChip
-                    label="Avg Winner"
-                    value={
-                      analytics.avgWin > 0
-                        ? formatCurrency(analytics.avgWin)
-                        : "—"
-                    }
-                    color="text-green-400"
-                  />
-                  <StatChip
-                    label="Avg Loser"
-                    value={
-                      analytics.avgLoss < 0
-                        ? formatCurrency(analytics.avgLoss)
-                        : "—"
-                    }
-                    color="text-red-400"
                   />
                   <StatChip
                     label="Best Trade"
@@ -337,6 +382,28 @@ export default function JournalPageClient() {
                     sub={analytics.worst?.trade.ticker}
                   />
                 </div>
+
+                {/* Win rate donut + Avg win/loss bars */}
+                <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
+                  {/* Win Rate Donut */}
+                  <WinRateDonut
+                    winRate={analytics.winRate}
+                    wins={rows.filter((r) => r.trade.realizedPnL > 0).length}
+                    losses={rows.filter((r) => r.trade.realizedPnL < 0).length}
+                    total={rows.length}
+                  />
+
+                  {/* Avg Win vs Avg Loss bar */}
+                  <AvgWinLossBar
+                    avgWin={analytics.avgWin}
+                    avgLoss={analytics.avgLoss}
+                  />
+                </div>
+
+                {/* Trade count by ticker */}
+                {analytics.tickerStats.length > 0 && (
+                  <TickerBreakdown tickerStats={analytics.tickerStats} />
+                )}
 
                 {/* Grade distribution */}
                 <div className="rounded-lg border border-border bg-card p-3">
@@ -393,7 +460,7 @@ export default function JournalPageClient() {
                 {/* Equity Curve */}
                 <div className="rounded-lg border border-border bg-card p-3">
                   <div className="mb-2 flex items-center gap-1.5 text-xs font-semibold">
-                    <BarChart3 className="h-3.5 w-3.5 text-blue-400" />
+                    <BarChart3 className="h-3.5 w-3.5 text-primary" />
                     Equity Curve with Drawdown
                   </div>
                   <JournalEquityCurve
@@ -423,6 +490,241 @@ export default function JournalPageClient() {
           </div>
         )}
 
+        {/* Notes */}
+        {pageTab === "notes" && (
+          <JournalNotes />
+        )}
+
+      </div>
+    </div>
+  );
+}
+
+// ── Win Rate Donut ────────────────────────────────────────────────────────────
+
+function WinRateDonut({
+  winRate,
+  wins,
+  losses,
+  total,
+}: {
+  winRate: number;
+  wins: number;
+  losses: number;
+  total: number;
+}) {
+  const r = 36;
+  const cx = 50;
+  const cy = 50;
+  const circumference = 2 * Math.PI * r;
+  const winArc = (winRate / 100) * circumference;
+  const lossArc = circumference - winArc;
+
+  return (
+    <div className="rounded-lg border border-border bg-card p-4">
+      <p className="mb-3 text-xs font-semibold">Win Rate</p>
+      <div className="flex items-center gap-4">
+        <svg viewBox="0 0 100 100" className="h-20 w-20 shrink-0 -rotate-90">
+          {/* Background ring */}
+          <circle
+            cx={cx}
+            cy={cy}
+            r={r}
+            fill="none"
+            stroke="rgba(255,255,255,0.06)"
+            strokeWidth={10}
+          />
+          {/* Loss arc */}
+          {lossArc > 0 && (
+            <circle
+              cx={cx}
+              cy={cy}
+              r={r}
+              fill="none"
+              stroke="rgba(239,68,68,0.5)"
+              strokeWidth={10}
+              strokeDasharray={`${lossArc} ${winArc}`}
+              strokeDashoffset={-winArc}
+              strokeLinecap="round"
+            />
+          )}
+          {/* Win arc */}
+          {winArc > 0 && (
+            <circle
+              cx={cx}
+              cy={cy}
+              r={r}
+              fill="none"
+              stroke="#22c55e"
+              strokeWidth={10}
+              strokeDasharray={`${winArc} ${lossArc}`}
+              strokeLinecap="round"
+            />
+          )}
+        </svg>
+        <div className="space-y-2 text-xs">
+          <div>
+            <p className="text-2xl font-bold tabular-nums text-foreground">
+              {winRate.toFixed(1)}%
+            </p>
+            <p className="text-[10px] text-muted-foreground">Win rate</p>
+          </div>
+          <div className="flex flex-col gap-1">
+            <div className="flex items-center gap-1.5">
+              <div className="h-2 w-2 rounded-full bg-green-400" />
+              <span className="text-[10px] text-muted-foreground">
+                {wins} win{wins !== 1 ? "s" : ""}
+              </span>
+            </div>
+            <div className="flex items-center gap-1.5">
+              <div className="h-2 w-2 rounded-full bg-red-400" />
+              <span className="text-[10px] text-muted-foreground">
+                {losses} loss{losses !== 1 ? "es" : ""}
+              </span>
+            </div>
+            <div className="flex items-center gap-1.5">
+              <div className="h-2 w-2 rounded-full bg-muted-foreground/30" />
+              <span className="text-[10px] text-muted-foreground">
+                {total} total
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+// ── Avg Win vs Avg Loss Bar ───────────────────────────────────────────────────
+
+function AvgWinLossBar({
+  avgWin,
+  avgLoss,
+}: {
+  avgWin: number;
+  avgLoss: number;
+}) {
+  const absWin = Math.abs(avgWin);
+  const absLoss = Math.abs(avgLoss);
+  const max = Math.max(absWin, absLoss, 1);
+  const winPct = (absWin / max) * 100;
+  const lossPct = (absLoss / max) * 100;
+  const rr = absLoss > 0 ? (absWin / absLoss).toFixed(2) : "∞";
+
+  return (
+    <div className="rounded-lg border border-border bg-card p-4">
+      <p className="mb-3 text-xs font-semibold">Avg Win vs Avg Loss</p>
+      <div className="space-y-3">
+        <div>
+          <div className="mb-1 flex items-center justify-between text-[10px]">
+            <span className="text-green-400 font-medium">Avg Win</span>
+            <span className="font-semibold tabular-nums text-green-400">
+              {avgWin > 0 ? formatCurrency(avgWin) : "—"}
+            </span>
+          </div>
+          <div className="h-2 w-full rounded-full bg-muted/30">
+            <div
+              className="h-2 rounded-full bg-green-500/70 transition-all"
+              style={{ width: `${winPct}%` }}
+            />
+          </div>
+        </div>
+        <div>
+          <div className="mb-1 flex items-center justify-between text-[10px]">
+            <span className="text-red-400 font-medium">Avg Loss</span>
+            <span className="font-semibold tabular-nums text-red-400">
+              {avgLoss < 0 ? formatCurrency(avgLoss) : "—"}
+            </span>
+          </div>
+          <div className="h-2 w-full rounded-full bg-muted/30">
+            <div
+              className="h-2 rounded-full bg-red-500/70 transition-all"
+              style={{ width: `${lossPct}%` }}
+            />
+          </div>
+        </div>
+        <div className="flex items-center justify-between border-t border-border/40 pt-2">
+          <span className="text-[10px] text-muted-foreground">
+            Reward / Risk ratio
+          </span>
+          <span
+            className={cn(
+              "text-xs font-bold tabular-nums",
+              parseFloat(rr) >= 1 || rr === "∞"
+                ? "text-green-400"
+                : "text-red-400",
+            )}
+          >
+            {rr}:1
+          </span>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+// ── Ticker breakdown ──────────────────────────────────────────────────────────
+
+interface TickerStat {
+  ticker: string;
+  wins: number;
+  losses: number;
+  pnl: number;
+  total: number;
+}
+
+function TickerBreakdown({ tickerStats }: { tickerStats: TickerStat[] }) {
+  const maxTotal = Math.max(...tickerStats.map((t) => t.total), 1);
+
+  return (
+    <div className="rounded-lg border border-border bg-card p-4">
+      <p className="mb-3 text-xs font-semibold">Trades by Ticker</p>
+      <div className="space-y-2">
+        {tickerStats.slice(0, 8).map((stat) => {
+          const winPct = stat.total > 0 ? (stat.wins / stat.total) * 100 : 0;
+          const barWidth = (stat.total / maxTotal) * 100;
+
+          return (
+            <div key={stat.ticker} className="flex items-center gap-3">
+              <span className="w-10 shrink-0 text-right text-[11px] font-semibold text-foreground/80">
+                {stat.ticker}
+              </span>
+              <div className="flex h-5 flex-1 overflow-hidden rounded-sm bg-muted/20">
+                {/* Win portion */}
+                <div
+                  className="h-full bg-green-500/50 transition-all"
+                  style={{ width: `${(winPct / 100) * barWidth}%` }}
+                />
+                {/* Loss portion */}
+                <div
+                  className="h-full bg-red-500/40 transition-all"
+                  style={{ width: `${((100 - winPct) / 100) * barWidth}%` }}
+                />
+              </div>
+              <div className="flex items-center gap-2 text-[10px] text-muted-foreground shrink-0">
+                <span className="w-6 text-right tabular-nums">{stat.total}</span>
+                <span
+                  className={cn(
+                    "w-16 text-right tabular-nums font-medium",
+                    stat.pnl > 0 ? "text-green-400" : stat.pnl < 0 ? "text-red-400" : "",
+                  )}
+                >
+                  {stat.pnl > 0 ? "+" : ""}{formatCurrency(stat.pnl)}
+                </span>
+              </div>
+            </div>
+          );
+        })}
+      </div>
+      <div className="mt-2 flex items-center gap-3 text-[9px] text-muted-foreground/60">
+        <div className="flex items-center gap-1">
+          <div className="h-2 w-2 rounded-sm bg-green-500/50" />
+          Wins
+        </div>
+        <div className="flex items-center gap-1">
+          <div className="h-2 w-2 rounded-sm bg-red-500/40" />
+          Losses
+        </div>
       </div>
     </div>
   );
