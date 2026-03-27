@@ -18,6 +18,7 @@ const MORE_NAV = [
   { label: "Portfolio", href: "/portfolio" },
   { label: "Options", href: "/options" },
   { label: "Backtest", href: "/backtest" },
+  { label: "Glossary", href: "/glossary" },
   { label: "Challenges", href: "/challenges" },
   { label: "Quests", href: "/quests" },
   { label: "Arena", href: "/arena" },

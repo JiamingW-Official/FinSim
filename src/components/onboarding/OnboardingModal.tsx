@@ -4,162 +4,233 @@ import { useRef, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { cn } from "@/lib/utils";
 import { useOnboardingStore } from "@/stores/onboarding-store";
-
-type ExperienceLevel = "beginner" | "intermediate" | "advanced";
-type TradingStyle = "day_trader" | "swing_trader" | "options_trader" | "long_term_investor";
-type LearningGoal = "technical_analysis" | "options_practice" | "risk_management" | "leaderboard";
+import { useTradingPreferencesStore } from "@/stores/trading-preferences-store";
+import type {
+  TradingExperience,
+  RiskTolerance,
+} from "@/stores/trading-preferences-store";
 import {
-  BarChart3,
-  GraduationCap,
+  Brain,
   TrendingUp,
-  Shield,
-  Trophy,
-  Clock,
-  Calendar,
-  Activity,
-  LineChart,
-  CheckCircle2,
-  ArrowRight,
+  GraduationCap,
   ChevronLeft,
+  ArrowRight,
+  CheckCircle2,
+  DollarSign,
+  BarChart2,
+  Shield,
+  Zap,
 } from "lucide-react";
 
-const TOTAL_STEPS = 5;
+// ---------------------------------------------------------------------------
+// Constants
+// ---------------------------------------------------------------------------
 
-// ---- Step 1: Welcome feature cards ----------------------------------------
+const TOTAL_STEPS = 6;
 
-const FEATURE_CARDS = [
+// Step 1 — feature highlights
+const FEATURES = [
   {
-    icon: <BarChart3 className="h-4 w-4 text-primary" />,
-    title: "Paper Trading",
-    desc: "$100k virtual capital, live-style charts",
+    icon: <Brain className="h-4 w-4 text-primary" />,
+    title: "AI Coach",
+    desc: "AlphaBot analyses your trades and suggests setups in real time",
+  },
+  {
+    icon: <BarChart2 className="h-4 w-4 text-blue-400" />,
+    title: "Real Market Data",
+    desc: "Historical candlestick data for 10 tickers across multiple timeframes",
   },
   {
     icon: <GraduationCap className="h-4 w-4 text-violet-400" />,
-    title: "Structured Learning",
-    desc: "30+ lessons, quizzes & flashcards",
+    title: "Gamified Learning",
+    desc: "30+ lessons, flashcards, quizzes, XP, achievements and leaderboards",
   },
-  {
-    icon: <Trophy className="h-4 w-4 text-amber-400" />,
-    title: "Compete & Grow",
-    desc: "Leaderboards, arena battles, quests",
-  },
-];
+] as const;
 
-// ---- Step 2: Experience levels ----------------------------------------------
+// Step 2 — experience levels
+type ExperienceChoice = "complete_beginner" | "some_knowledge" | "intermediate" | "advanced";
 
 const EXPERIENCE_OPTIONS: {
-  value: ExperienceLevel;
+  value: ExperienceChoice;
+  storeValue: TradingExperience;
   label: string;
   desc: string;
 }[] = [
   {
-    value: "beginner",
-    label: "Beginner",
-    desc: "New to markets — I want to learn the basics",
+    value: "complete_beginner",
+    storeValue: "beginner",
+    label: "Complete Beginner",
+    desc: "Never bought a stock — I want to learn from scratch",
+  },
+  {
+    value: "some_knowledge",
+    storeValue: "beginner",
+    label: "Some Knowledge",
+    desc: "I know the basics but have not placed real trades",
   },
   {
     value: "intermediate",
+    storeValue: "intermediate",
     label: "Intermediate",
-    desc: "I understand charts and have some trading experience",
+    desc: "I read charts and have some live trading experience",
   },
   {
     value: "advanced",
+    storeValue: "advanced",
     label: "Advanced",
-    desc: "I trade regularly and want to sharpen my edge",
+    desc: "I trade regularly and want to refine my edge",
   },
 ];
 
-// ---- Step 3: Trading styles -------------------------------------------------
+// Step 3 — trading goals (multi-select chips)
+type GoalKey =
+  | "learn_to_trade"
+  | "build_wealth"
+  | "generate_income"
+  | "understand_options"
+  | "master_risk"
+  | "trade_crypto";
 
-const STYLE_OPTIONS: {
-  value: TradingStyle;
+const GOAL_OPTIONS: { value: GoalKey; label: string }[] = [
+  { value: "learn_to_trade", label: "Learn to Trade" },
+  { value: "build_wealth", label: "Build Wealth" },
+  { value: "generate_income", label: "Generate Income" },
+  { value: "understand_options", label: "Understand Options" },
+  { value: "master_risk", label: "Master Risk" },
+  { value: "trade_crypto", label: "Trade Crypto" },
+];
+
+// Step 4 — risk tolerance
+const RISK_OPTIONS: {
+  value: RiskTolerance;
   label: string;
-  desc: string;
-  icon: React.ReactNode;
+  returnRange: string;
+  volatility: string;
+  instruments: string;
 }[] = [
   {
-    value: "day_trader",
-    label: "Day Trader",
-    desc: "Open and close positions within a single session",
-    icon: <Clock className="h-4 w-4" />,
+    value: "conservative",
+    label: "Conservative",
+    returnRange: "5 – 10% / yr",
+    volatility: "Low",
+    instruments: "Blue-chip stocks, ETFs, bonds",
   },
   {
-    value: "swing_trader",
-    label: "Swing Trader",
-    desc: "Hold positions for days to weeks on momentum",
-    icon: <TrendingUp className="h-4 w-4" />,
+    value: "moderate",
+    label: "Moderate",
+    returnRange: "10 – 20% / yr",
+    volatility: "Medium",
+    instruments: "Growth stocks, diversified portfolios",
   },
   {
-    value: "options_trader",
-    label: "Options Trader",
-    desc: "Use calls, puts and spreads for leverage and hedging",
-    icon: <Activity className="h-4 w-4" />,
-  },
-  {
-    value: "long_term_investor",
-    label: "Long-term Investor",
-    desc: "Focus on fundamentals and multi-month growth",
-    icon: <Calendar className="h-4 w-4" />,
+    value: "aggressive",
+    label: "Aggressive",
+    returnRange: "20%+ / yr",
+    volatility: "High",
+    instruments: "Options, leveraged positions, small-caps",
   },
 ];
 
-// ---- Step 4: Learning goals -------------------------------------------------
+// Step 5 — learning style
+type LearningStyle = "watch" | "do" | "mix" | "jump";
 
-const GOAL_OPTIONS: {
-  value: LearningGoal;
+const LEARNING_OPTIONS: {
+  value: LearningStyle;
   label: string;
   desc: string;
-  icon: React.ReactNode;
 }[] = [
   {
-    value: "technical_analysis",
-    label: "Learn technical analysis",
-    desc: "Master indicators, patterns and chart reading",
-    icon: <LineChart className="h-4 w-4" />,
+    value: "watch",
+    label: "Watch & Learn",
+    desc: "Step-by-step tutorials and guided walkthroughs",
   },
   {
-    value: "options_practice",
-    label: "Practice options trading",
-    desc: "Build strategies with calls, puts and spreads",
-    icon: <Activity className="h-4 w-4" />,
+    value: "do",
+    label: "Do It Myself",
+    desc: "Prefer exploring and figuring things out hands-on",
   },
   {
-    value: "risk_management",
-    label: "Improve risk management",
-    desc: "Control drawdowns, size positions correctly",
-    icon: <Shield className="h-4 w-4" />,
+    value: "mix",
+    label: "Mix of Both",
+    desc: "Some guidance, then independent practice",
   },
   {
-    value: "leaderboard",
-    label: "Compete on leaderboard",
-    desc: "Top the rankings and earn arena glory",
-    icon: <Trophy className="h-4 w-4" />,
+    value: "jump",
+    label: "Jump Right In",
+    desc: "No tutorials — drop me straight into the charts",
   },
 ];
 
-// ---- Step label summaries ---------------------------------------------------
-
-const LEVEL_LABELS: Record<ExperienceLevel, string> = {
-  beginner: "Beginner",
+// Labels for the summary step
+const EXPERIENCE_LABELS: Record<ExperienceChoice, string> = {
+  complete_beginner: "Complete Beginner",
+  some_knowledge: "Some Knowledge",
   intermediate: "Intermediate",
   advanced: "Advanced",
 };
 
-const STYLE_LABELS: Record<TradingStyle, string> = {
-  day_trader: "Day Trader",
-  swing_trader: "Swing Trader",
-  options_trader: "Options Trader",
-  long_term_investor: "Long-term Investor",
+const RISK_LABELS: Record<RiskTolerance, string> = {
+  conservative: "Conservative",
+  moderate: "Moderate",
+  aggressive: "Aggressive",
 };
 
-const GOAL_LABELS: Record<LearningGoal, string> = {
-  technical_analysis: "Technical Analysis",
-  options_practice: "Options Trading",
-  risk_management: "Risk Management",
-  leaderboard: "Competitive Play",
-};
+// ---------------------------------------------------------------------------
+// CSS-only confetti (Step 6)
+// ---------------------------------------------------------------------------
 
-// ---- Slide animation -------------------------------------------------------
+const CONFETTI_COLORS = [
+  "#3b82f6",
+  "#0ea5e9",
+  "#14b8a6",
+  "#8b5cf6",
+  "#f59e0b",
+  "#10b981",
+  "#ef4444",
+];
+
+function ConfettiPiece({
+  index,
+  color,
+}: {
+  index: number;
+  color: string;
+}) {
+  const left = `${5 + (index * 4.7) % 90}%`;
+  const delay = `${(index * 0.13) % 1.2}s`;
+  const duration = `${1.4 + (index * 0.11) % 0.8}s`;
+  const width = index % 3 === 0 ? 8 : 6;
+  const height = index % 3 === 0 ? 4 : 8;
+  const rotate = `${(index * 37) % 360}deg`;
+
+  return (
+    <span
+      aria-hidden
+      style={{
+        position: "absolute",
+        top: "-10%",
+        left,
+        width,
+        height,
+        backgroundColor: color,
+        borderRadius: 2,
+        transform: `rotate(${rotate})`,
+        animation: `confetti-fall ${duration} ${delay} linear forwards`,
+      }}
+    />
+  );
+}
+
+const confettiKeyframes = `
+@keyframes confetti-fall {
+  0%   { transform: translateY(0)   rotate(0deg)   opacity: 1; }
+  100% { transform: translateY(360px) rotate(720deg) opacity: 0; }
+}
+`;
+
+// ---------------------------------------------------------------------------
+// Slide animation variants
+// ---------------------------------------------------------------------------
 
 const slideVariants = {
   enter: (dir: number) => ({
@@ -178,37 +249,54 @@ const slideVariants = {
   }),
 };
 
-// ---- Backdrop --------------------------------------------------------------
-
-const backdropVariants = {
-  hidden: { opacity: 0 },
-  visible: { opacity: 1 },
-};
-
-// ---- Main component --------------------------------------------------------
+// ---------------------------------------------------------------------------
+// Main component
+// ---------------------------------------------------------------------------
 
 export function OnboardingModal() {
-  const { currentStep, nextStep, completeOnboarding } = useOnboardingStore();
+  const { currentStep, nextStep, setStep, completeOnboarding } =
+    useOnboardingStore();
+  const { setTradingExperience, setRiskTolerance } =
+    useTradingPreferencesStore();
 
-  const [experienceLevel, setExperienceLevel] = useState<ExperienceLevel | null>(null);
-  const [tradingStyle, setTradingStyle] = useState<TradingStyle | null>(null);
-  const [learningGoals, setLearningGoals] = useState<LearningGoal[]>([]);
+  // Local state for wizard answers
+  const [experience, setExperience] = useState<ExperienceChoice | null>(null);
+  const [goals, setGoals] = useState<GoalKey[]>([]);
+  const [riskTolerance, setLocalRiskTolerance] = useState<RiskTolerance | null>(
+    null
+  );
+  const [learningStyle, setLearningStyle] = useState<LearningStyle | null>(
+    null
+  );
 
-  function toggleLearningGoal(g: LearningGoal) {
-    setLearningGoals((prev) =>
-      prev.includes(g) ? prev.filter((x) => x !== g) : [...prev, g],
+  const dirRef = useRef<number>(1);
+
+  const isFirst = currentStep === 0;
+  const isLast = currentStep === TOTAL_STEPS - 1;
+
+  function toggleGoal(g: GoalKey) {
+    setGoals((prev) =>
+      prev.includes(g) ? prev.filter((x) => x !== g) : [...prev, g]
     );
   }
 
-  const modalStep = currentStep;
-  const dirRef = useRef<number>(1);
-
-  const isFirst = modalStep === 0;
-  const isLast = modalStep === TOTAL_STEPS - 1;
+  function canAdvance(): boolean {
+    if (currentStep === 1) return experience !== null;
+    if (currentStep === 2) return goals.length > 0;
+    if (currentStep === 3) return riskTolerance !== null;
+    if (currentStep === 4) return learningStyle !== null;
+    return true;
+  }
 
   function handleNext() {
     dirRef.current = 1;
     if (isLast) {
+      // Persist preferences before closing
+      if (experience) {
+        const opt = EXPERIENCE_OPTIONS.find((o) => o.value === experience);
+        if (opt) setTradingExperience(opt.storeValue);
+      }
+      if (riskTolerance) setRiskTolerance(riskTolerance);
       completeOnboarding();
     } else {
       nextStep();
@@ -217,35 +305,19 @@ export function OnboardingModal() {
 
   function handleBack() {
     dirRef.current = -1;
-    // no prevStep in actual store — use setStep if needed, but we just block going back past 0
-    // Since the actual store has no prevStep, we'll track locally if needed.
-    // The back button is hidden on step 0 so this only fires on steps 1+
-    // We can't go back with the current store — skip back navigation
+    setStep(Math.max(0, currentStep - 1));
   }
 
   function handleSkip() {
     completeOnboarding();
   }
 
-  // Whether the current step's "Next" button is enabled
-  function canAdvance(): boolean {
-    if (modalStep === 1) return experienceLevel !== null;
-    if (modalStep === 2) return tradingStyle !== null;
-    if (modalStep === 3) return learningGoals.length > 0;
-    return true;
-  }
-
   return (
-    <AnimatePresence>
-      <motion.div
-        key="onboarding-backdrop"
-        className="fixed inset-0 z-50 flex items-center justify-center bg-background/90 backdrop-blur-sm"
-        variants={backdropVariants}
-        initial="hidden"
-        animate="visible"
-        exit="hidden"
-        transition={{ duration: 0.2 }}
-      >
+    <>
+      {/* Inject confetti keyframes once */}
+      <style>{confettiKeyframes}</style>
+
+      <div className="fixed inset-0 z-50 flex items-center justify-center bg-background/90 backdrop-blur-sm">
         <motion.div
           initial={{ opacity: 0, y: 16 }}
           animate={{ opacity: 1, y: 0 }}
@@ -257,44 +329,66 @@ export function OnboardingModal() {
             {/* Header bar */}
             <div className="flex items-center justify-between border-b border-border/40 px-5 py-3.5">
               <span className="text-xs font-medium text-muted-foreground">
-                Step {modalStep + 1} of {TOTAL_STEPS}
+                Step {currentStep + 1} of {TOTAL_STEPS}
               </span>
-              <button
-                onClick={handleSkip}
-                className="text-xs text-muted-foreground/60 transition-colors hover:text-muted-foreground"
-              >
-                Skip tour
-              </button>
+              {!isLast && (
+                <button
+                  onClick={handleSkip}
+                  className="text-xs text-muted-foreground/60 transition-colors hover:text-muted-foreground"
+                >
+                  Skip tour
+                </button>
+              )}
             </div>
 
-            {/* Step content — fixed height to prevent layout shift */}
-            <div className="relative overflow-hidden" style={{ minHeight: 340 }}>
+            {/* Step content */}
+            <div className="relative overflow-hidden" style={{ minHeight: 360 }}>
               <AnimatePresence custom={dirRef.current} mode="wait">
                 <motion.div
-                  key={modalStep}
+                  key={currentStep}
                   custom={dirRef.current}
                   variants={slideVariants}
                   initial="enter"
                   animate="center"
                   exit="exit"
-                  className="absolute inset-0 flex flex-col px-5 py-6"
+                  className="absolute inset-0 flex flex-col px-5 py-6 overflow-y-auto"
                 >
-                  <StepContent
-                    step={modalStep}
-                    experienceLevel={experienceLevel}
-                    tradingStyle={tradingStyle}
-                    learningGoals={learningGoals}
-                    onSelectLevel={setExperienceLevel}
-                    onSelectStyle={setTradingStyle}
-                    onToggleGoal={toggleLearningGoal}
-                  />
+                  {currentStep === 0 && <StepWelcome />}
+                  {currentStep === 1 && (
+                    <StepExperience
+                      selected={experience}
+                      onSelect={setExperience}
+                    />
+                  )}
+                  {currentStep === 2 && (
+                    <StepGoals selected={goals} onToggle={toggleGoal} />
+                  )}
+                  {currentStep === 3 && (
+                    <StepRiskTolerance
+                      selected={riskTolerance}
+                      onSelect={setLocalRiskTolerance}
+                    />
+                  )}
+                  {currentStep === 4 && (
+                    <StepLearningStyle
+                      selected={learningStyle}
+                      onSelect={setLearningStyle}
+                    />
+                  )}
+                  {currentStep === 5 && (
+                    <StepComplete
+                      experience={experience}
+                      goals={goals}
+                      riskTolerance={riskTolerance}
+                    />
+                  )}
                 </motion.div>
               </AnimatePresence>
             </div>
 
             {/* Footer */}
             <div className="border-t border-border/40 px-5 py-4 flex items-center gap-3">
-              {!isFirst && (
+              {!isFirst && !isLast && (
                 <button
                   onClick={handleBack}
                   className="flex items-center gap-1.5 rounded-md border border-border/50 px-3 py-2 text-xs font-medium text-muted-foreground transition-colors hover:bg-accent/40 hover:text-foreground"
@@ -314,8 +408,15 @@ export function OnboardingModal() {
                     : "bg-muted text-muted-foreground cursor-not-allowed"
                 )}
               >
-                {isLast ? "Start Trading" : "Next"}
-                {!isLast && <ArrowRight className="h-3.5 w-3.5" />}
+                {currentStep === 0
+                  ? "Get Started"
+                  : isLast
+                    ? "Enter FinSim"
+                    : "Next"}
+                {currentStep === 0 && <ArrowRight className="h-3.5 w-3.5" />}
+                {!isLast && currentStep !== 0 && (
+                  <ArrowRight className="h-3.5 w-3.5" />
+                )}
               </button>
             </div>
 
@@ -326,9 +427,9 @@ export function OnboardingModal() {
                   key={i}
                   className={cn(
                     "block h-1.5 rounded-full transition-all duration-300",
-                    i === modalStep
+                    i === currentStep
                       ? "w-5 bg-primary"
-                      : i < modalStep
+                      : i < currentStep
                         ? "w-1.5 bg-primary/40"
                         : "w-1.5 bg-muted"
                   )}
@@ -337,61 +438,14 @@ export function OnboardingModal() {
             </div>
           </div>
         </motion.div>
-      </motion.div>
-    </AnimatePresence>
+      </div>
+    </>
   );
 }
 
-// ---- Per-step content ------------------------------------------------------
-
-interface StepContentProps {
-  step: number;
-  experienceLevel: ExperienceLevel | null;
-  tradingStyle: TradingStyle | null;
-  learningGoals: LearningGoal[];
-  onSelectLevel: (l: ExperienceLevel) => void;
-  onSelectStyle: (s: TradingStyle) => void;
-  onToggleGoal: (g: LearningGoal) => void;
-}
-
-function StepContent({
-  step,
-  experienceLevel,
-  tradingStyle,
-  learningGoals,
-  onSelectLevel,
-  onSelectStyle,
-  onToggleGoal,
-}: StepContentProps) {
-  switch (step) {
-    case 0:
-      return <StepWelcome />;
-    case 1:
-      return (
-        <StepExperience selected={experienceLevel} onSelect={onSelectLevel} />
-      );
-    case 2:
-      return (
-        <StepTradingStyle selected={tradingStyle} onSelect={onSelectStyle} />
-      );
-    case 3:
-      return (
-        <StepGoals selected={learningGoals} onToggle={onToggleGoal} />
-      );
-    case 4:
-      return (
-        <StepReady
-          level={experienceLevel}
-          style={tradingStyle}
-          goals={learningGoals}
-        />
-      );
-    default:
-      return null;
-  }
-}
-
-// ---- Step 1: Welcome -------------------------------------------------------
+// ---------------------------------------------------------------------------
+// Step 1 — Welcome
+// ---------------------------------------------------------------------------
 
 function StepWelcome() {
   return (
@@ -401,52 +455,61 @@ function StepWelcome() {
           Welcome to FinSim
         </h2>
         <p className="mt-1 text-sm text-muted-foreground leading-relaxed">
-          A paper trading simulator built for learning — from reading a chart for
-          the first time to managing a multi-leg options position.
+          Learn to trade without risking real money. Practice with virtual
+          capital, real data and an AI coach by your side.
         </p>
       </div>
 
       <div className="flex flex-col gap-2.5 mt-1">
-        {FEATURE_CARDS.map((card) => (
+        {FEATURES.map((f) => (
           <div
-            key={card.title}
+            key={f.title}
             className="flex items-start gap-3 rounded-lg border border-border/40 bg-muted/20 px-3.5 py-3"
           >
-            <div className="mt-0.5 flex-shrink-0">{card.icon}</div>
+            <div className="mt-0.5 flex-shrink-0">{f.icon}</div>
             <div>
-              <p className="text-xs font-semibold">{card.title}</p>
+              <p className="text-xs font-semibold">{f.title}</p>
               <p className="text-[11px] text-muted-foreground mt-0.5">
-                {card.desc}
+                {f.desc}
               </p>
             </div>
           </div>
         ))}
       </div>
+
+      <div className="mt-2 flex items-center gap-2 rounded-lg bg-primary/8 border border-primary/20 px-3.5 py-2.5">
+        <DollarSign className="h-4 w-4 text-primary flex-shrink-0" />
+        <p className="text-xs font-medium text-primary">
+          You start with $100,000 in virtual capital — no real money involved.
+        </p>
+      </div>
     </div>
   );
 }
 
-// ---- Step 2: Experience level ----------------------------------------------
+// ---------------------------------------------------------------------------
+// Step 2 — Experience Level
+// ---------------------------------------------------------------------------
 
 function StepExperience({
   selected,
   onSelect,
 }: {
-  selected: ExperienceLevel | null;
-  onSelect: (l: ExperienceLevel) => void;
+  selected: ExperienceChoice | null;
+  onSelect: (v: ExperienceChoice) => void;
 }) {
   return (
     <div className="flex flex-col gap-4">
       <div>
         <h2 className="text-lg font-semibold tracking-tight">
-          Choose your experience level
+          {"What's your trading experience?"}
         </h2>
         <p className="mt-1 text-sm text-muted-foreground">
           We will tailor content and tips to match where you are.
         </p>
       </div>
 
-      <div className="flex flex-col gap-2.5">
+      <div className="flex flex-col gap-2">
         {EXPERIENCE_OPTIONS.map((opt) => (
           <button
             key={opt.value}
@@ -469,50 +532,159 @@ function StepExperience({
   );
 }
 
-// ---- Step 3: Trading style -------------------------------------------------
+// ---------------------------------------------------------------------------
+// Step 3 — Trading Goals (multi-select chips)
+// ---------------------------------------------------------------------------
 
-function StepTradingStyle({
+function StepGoals({
   selected,
-  onSelect,
+  onToggle,
 }: {
-  selected: TradingStyle | null;
-  onSelect: (s: TradingStyle) => void;
+  selected: GoalKey[];
+  onToggle: (g: GoalKey) => void;
 }) {
   return (
     <div className="flex flex-col gap-4">
       <div>
         <h2 className="text-lg font-semibold tracking-tight">
-          Pick your trading style
+          What do you want to achieve?
         </h2>
         <p className="mt-1 text-sm text-muted-foreground">
-          This shapes which features and strategies get highlighted for you.
+          Select all that apply — you can update these in Settings.
         </p>
       </div>
 
-      <div className="grid grid-cols-2 gap-2">
-        {STYLE_OPTIONS.map((opt) => (
+      <div className="flex flex-wrap gap-2">
+        {GOAL_OPTIONS.map((opt) => {
+          const active = selected.includes(opt.value);
+          return (
+            <button
+              key={opt.value}
+              onClick={() => onToggle(opt.value)}
+              className={cn(
+                "flex items-center gap-1.5 rounded-lg border px-3.5 py-2 text-xs font-medium transition-colors",
+                active
+                  ? "border-primary bg-primary/10 text-primary"
+                  : "border-border/40 bg-muted/10 text-muted-foreground hover:bg-accent/30 hover:text-foreground"
+              )}
+            >
+              {active && <CheckCircle2 className="h-3 w-3 flex-shrink-0" />}
+              {opt.label}
+            </button>
+          );
+        })}
+      </div>
+
+      {selected.length === 0 && (
+        <p className="text-[11px] text-muted-foreground/60 mt-1">
+          Select at least one goal to continue.
+        </p>
+      )}
+    </div>
+  );
+}
+
+// ---------------------------------------------------------------------------
+// Step 4 — Risk Tolerance
+// ---------------------------------------------------------------------------
+
+function StepRiskTolerance({
+  selected,
+  onSelect,
+}: {
+  selected: RiskTolerance | null;
+  onSelect: (v: RiskTolerance) => void;
+}) {
+  return (
+    <div className="flex flex-col gap-4">
+      <div>
+        <h2 className="text-lg font-semibold tracking-tight">
+          How do you handle risk?
+        </h2>
+        <p className="mt-1 text-sm text-muted-foreground">
+          This shapes default position sizing and strategy recommendations.
+        </p>
+      </div>
+
+      <div className="flex flex-col gap-2.5">
+        {RISK_OPTIONS.map((opt) => (
           <button
             key={opt.value}
             onClick={() => onSelect(opt.value)}
             className={cn(
-              "flex flex-col gap-1.5 rounded-lg border px-3.5 py-3 text-left transition-colors",
+              "flex flex-col items-start rounded-lg border px-4 py-3 text-left transition-colors",
               selected === opt.value
                 ? "border-primary bg-primary/8 text-foreground"
                 : "border-border/40 bg-muted/10 text-muted-foreground hover:bg-accent/30 hover:text-foreground"
             )}
           >
-            <span
-              className={cn(
-                selected === opt.value
-                  ? "text-primary"
-                  : "text-muted-foreground"
-              )}
-            >
-              {opt.icon}
-            </span>
-            <span className="text-[11px] font-semibold leading-tight">
-              {opt.label}
-            </span>
+            <div className="flex items-center gap-2 w-full">
+              <span className="text-xs font-semibold">{opt.label}</span>
+              <span
+                className={cn(
+                  "ml-auto text-[10px] font-medium px-1.5 py-0.5 rounded",
+                  opt.value === "conservative" &&
+                    "bg-blue-500/10 text-blue-400",
+                  opt.value === "moderate" &&
+                    "bg-amber-500/10 text-amber-400",
+                  opt.value === "aggressive" && "bg-rose-500/10 text-rose-400"
+                )}
+              >
+                {opt.returnRange}
+              </span>
+            </div>
+            <div className="mt-1.5 grid grid-cols-2 gap-x-4 gap-y-0.5">
+              <span className="text-[10px]">
+                <span className="text-muted-foreground/60">Volatility: </span>
+                {opt.volatility}
+              </span>
+              <span className="text-[10px] col-span-2">
+                <span className="text-muted-foreground/60">Instruments: </span>
+                {opt.instruments}
+              </span>
+            </div>
+          </button>
+        ))}
+      </div>
+    </div>
+  );
+}
+
+// ---------------------------------------------------------------------------
+// Step 5 — Learning Style
+// ---------------------------------------------------------------------------
+
+function StepLearningStyle({
+  selected,
+  onSelect,
+}: {
+  selected: LearningStyle | null;
+  onSelect: (v: LearningStyle) => void;
+}) {
+  return (
+    <div className="flex flex-col gap-4">
+      <div>
+        <h2 className="text-lg font-semibold tracking-tight">
+          How do you learn best?
+        </h2>
+        <p className="mt-1 text-sm text-muted-foreground">
+          This affects how tutorials and hints are shown to you.
+        </p>
+      </div>
+
+      <div className="grid grid-cols-2 gap-2">
+        {LEARNING_OPTIONS.map((opt) => (
+          <button
+            key={opt.value}
+            onClick={() => onSelect(opt.value)}
+            className={cn(
+              "flex flex-col gap-1 rounded-lg border px-3.5 py-3 text-left transition-colors",
+              selected === opt.value
+                ? "border-primary bg-primary/8 text-foreground"
+                : "border-border/40 bg-muted/10 text-muted-foreground hover:bg-accent/30 hover:text-foreground"
+            )}
+          >
+            <span className="text-[11px] font-semibold">{opt.label}</span>
             <span className="text-[10px] leading-snug opacity-70">
               {opt.desc}
             </span>
@@ -523,125 +695,99 @@ function StepTradingStyle({
   );
 }
 
-// ---- Step 4: Goals multi-select --------------------------------------------
+// ---------------------------------------------------------------------------
+// Step 6 — Setup Complete
+// ---------------------------------------------------------------------------
 
-function StepGoals({
-  selected,
-  onToggle,
-}: {
-  selected: LearningGoal[];
-  onToggle: (g: LearningGoal) => void;
-}) {
-  return (
-    <div className="flex flex-col gap-4">
-      <div>
-        <h2 className="text-lg font-semibold tracking-tight">
-          Set your learning goals
-        </h2>
-        <p className="mt-1 text-sm text-muted-foreground">
-          Select one or more — you can change these later in Settings.
-        </p>
-      </div>
-
-      <div className="flex flex-col gap-2">
-        {GOAL_OPTIONS.map((opt) => {
-          const active = selected.includes(opt.value);
-          return (
-            <button
-              key={opt.value}
-              onClick={() => onToggle(opt.value)}
-              className={cn(
-                "flex items-center gap-3 rounded-lg border px-3.5 py-3 text-left transition-colors",
-                active
-                  ? "border-primary bg-primary/8 text-foreground"
-                  : "border-border/40 bg-muted/10 text-muted-foreground hover:bg-accent/30 hover:text-foreground"
-              )}
-            >
-              <span
-                className={cn(
-                  "flex-shrink-0",
-                  active ? "text-primary" : "text-muted-foreground"
-                )}
-              >
-                {opt.icon}
-              </span>
-              <div className="flex flex-col">
-                <span className="text-[11px] font-semibold">{opt.label}</span>
-                <span className="text-[10px] opacity-70 mt-0.5">
-                  {opt.desc}
-                </span>
-              </div>
-              {active && (
-                <CheckCircle2 className="ml-auto h-4 w-4 flex-shrink-0 text-primary" />
-              )}
-            </button>
-          );
-        })}
-      </div>
-    </div>
-  );
-}
-
-// ---- Step 5: Ready summary -------------------------------------------------
-
-function StepReady({
-  level,
-  style,
+function StepComplete({
+  experience,
   goals,
+  riskTolerance,
 }: {
-  level: ExperienceLevel | null;
-  style: TradingStyle | null;
-  goals: LearningGoal[];
+  experience: ExperienceChoice | null;
+  goals: GoalKey[];
+  riskTolerance: RiskTolerance | null;
 }) {
+  const confettiPieces = Array.from({ length: 20 }, (_, i) => ({
+    index: i,
+    color: CONFETTI_COLORS[i % CONFETTI_COLORS.length],
+  }));
+
   return (
-    <div className="flex flex-col gap-5">
+    <div className="flex flex-col gap-5 relative">
+      {/* Confetti overlay */}
+      <div
+        aria-hidden
+        className="pointer-events-none absolute inset-x-0 top-0 overflow-hidden"
+        style={{ height: 360 }}
+      >
+        {confettiPieces.map((p) => (
+          <ConfettiPiece key={p.index} index={p.index} color={p.color} />
+        ))}
+      </div>
+
+      {/* Heading */}
       <div>
-        <h2 className="text-lg font-semibold tracking-tight">
-          {"You're ready!"}
-        </h2>
-        <p className="mt-1 text-sm text-muted-foreground">
-          Here is what we have set up for you. You can adjust any of this in
-          Settings at any time.
+        <div className="flex items-center gap-2 mb-1">
+          <Zap className="h-4 w-4 text-primary" />
+          <h2 className="text-lg font-semibold tracking-tight">
+            {"You're ready to trade!"}
+          </h2>
+        </div>
+        <p className="text-sm text-muted-foreground leading-relaxed">
+          Your profile is set up. Here is a summary of your preferences.
         </p>
       </div>
 
-      <div className="flex flex-col gap-2.5">
-        {level && (
+      {/* Summary */}
+      <div className="flex flex-col gap-2 relative z-10">
+        {experience && (
           <SummaryRow
-            label="Experience level"
-            value={LEVEL_LABELS[level]}
+            label="Experience"
+            value={EXPERIENCE_LABELS[experience]}
           />
         )}
-        {style && (
+        {riskTolerance && (
           <SummaryRow
-            label="Trading style"
-            value={STYLE_LABELS[style]}
+            label="Risk profile"
+            value={RISK_LABELS[riskTolerance]}
           />
         )}
         {goals.length > 0 && (
-          <div className="flex flex-col gap-1 rounded-lg border border-border/40 bg-muted/10 px-3.5 py-3">
+          <div className="rounded-lg border border-border/40 bg-muted/10 px-3.5 py-3">
             <span className="text-[10px] font-medium uppercase tracking-wider text-muted-foreground">
-              Learning goals
+              Goals
             </span>
-            <div className="flex flex-wrap gap-1.5 mt-1">
-              {goals.map((g) => (
-                <span
-                  key={g}
-                  className="rounded-md bg-primary/10 px-2 py-0.5 text-[11px] font-medium text-primary"
-                >
-                  {GOAL_LABELS[g]}
-                </span>
-              ))}
+            <div className="flex flex-wrap gap-1.5 mt-1.5">
+              {goals.map((g) => {
+                const opt = GOAL_OPTIONS.find((o) => o.value === g);
+                return (
+                  <span
+                    key={g}
+                    className="rounded-md bg-primary/10 px-2 py-0.5 text-[11px] font-medium text-primary"
+                  >
+                    {opt?.label ?? g}
+                  </span>
+                );
+              })}
             </div>
           </div>
         )}
-      </div>
 
-      <p className="text-[11px] text-muted-foreground leading-relaxed">
-        Your $100,000 virtual portfolio is ready. Make your first trade, explore
-        the Learn track, or dive straight into the options chain — the choice is
-        yours.
-      </p>
+        {/* Portfolio */}
+        <div className="flex items-center gap-3 rounded-lg border border-border/40 bg-muted/10 px-3.5 py-3">
+          <TrendingUp className="h-4 w-4 text-primary flex-shrink-0" />
+          <div>
+            <p className="text-xs font-semibold">Starting portfolio</p>
+            <p className="text-[11px] text-muted-foreground mt-0.5">
+              $100,000 virtual capital — ready to deploy
+            </p>
+          </div>
+          <span className="ml-auto text-xs font-bold text-primary">
+            $100,000
+          </span>
+        </div>
+      </div>
     </div>
   );
 }

@@ -17,7 +17,7 @@ import { ComboMeter } from "@/components/game/ComboMeter";
 import { StreakCelebration } from "@/components/game/StreakCelebration";
 import { TradeConfetti } from "@/components/game/TradeConfetti";
 import { FloatingEmojis } from "@/components/game/FloatingEmojis";
-import { OnboardingFlow } from "@/components/onboarding/OnboardingFlow";
+import { OnboardingModal } from "@/components/onboarding/OnboardingModal";
 import { GlobalSearchProvider } from "@/components/search/GlobalSearch";
 import { usePreferencesStore } from "@/stores/preferences-store";
 import { useOnboardingStore } from "@/stores/onboarding-store";
@@ -67,7 +67,7 @@ export default function DashboardLayout({
           <StreakCelebration />
           <TradeConfetti />
           <FloatingEmojis />
-          {!hasCompletedOnboarding && <OnboardingFlow />}
+          {!hasCompletedOnboarding && <OnboardingModal />}
         </div>
       </GlobalSearchProvider>
     </Providers>
