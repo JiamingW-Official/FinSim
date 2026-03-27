@@ -2,7 +2,16 @@
 
 import { useState, useCallback, useRef, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { ChevronDown, ChevronUp, RotateCcw, AlertCircle, Zap } from "lucide-react";
+import {
+  ChevronDown,
+  ChevronUp,
+  RotateCcw,
+  AlertCircle,
+  Zap,
+  TrendingUp,
+  AlertTriangle,
+  Info,
+} from "lucide-react";
 import { toast } from "sonner";
 import { useTradingStore } from "@/stores/trading-store";
 import { useChartStore } from "@/stores/chart-store";
@@ -15,64 +24,145 @@ import {
   type AnalysisResult,
   type TradePlan,
 } from "@/services/ai/engine";
+import { TradeIdeaFeed } from "@/components/ai/TradeIdeaFeed";
+import { OpportunityScanner } from "@/components/ai/OpportunityScanner";
 
-type Mode = "trade" | "review" | "brief";
+type Mode = "trade" | "review" | "brief" | "ideas" | "scan";
 
 const MODES: { value: Mode; label: string; desc: string }[] = [
-  { value: "trade", label: "Trade Advisor", desc: "Analyze current chart setup" },
-  { value: "review", label: "Post-Trade", desc: "Review your last trade" },
-  { value: "brief", label: "Morning Brief", desc: "Market context for current ticker" },
+  { value: "trade", label: "Analyze", desc: "Analyze current chart setup" },
+  { value: "review", label: "Review", desc: "Review your last trade" },
+  { value: "brief", label: "Brief", desc: "Market context for current ticker" },
+  { value: "ideas", label: "Ideas", desc: "Top trade ideas across all tickers" },
+  { value: "scan", label: "Scan", desc: "Opportunity scanner — top 5 by score" },
 ];
 
 // ─── Inline Sub-Components ───────────────────────────────────────────────────
 
 function ScoreGauge({ score, bias }: { score: number; bias: string }) {
-  // 20 segments: indices 0-9 = negative half (-100 to 0), 10-19 = positive half (0 to +100)
-  // Each segment covers 10 score units
-  const SEGMENTS = 20;
+  // ── Semicircle SVG gauge ────────────────────────────────────────────────
+  // The arc sweeps 180° (π rad) from the left (180°) to the right (0°).
+  // We fill proportionally from the center outward in the bias direction.
   const label =
-    bias === "bullish" ? "BULLISH" : bias === "bearish" ? "BEARISH" : "NEUTRAL";
-  const labelColor =
-    bias === "bullish" ? "text-emerald-400" : bias === "bearish" ? "text-red-400" : "text-amber-400";
+    bias === "bullish" ? "Bullish" : bias === "bearish" ? "Bearish" : "Neutral";
+
+  const strokeColor =
+    score > 30
+      ? "#34d399" // emerald-400
+      : score < -30
+      ? "#f87171" // red-400
+      : "#fbbf24"; // amber-400
+
+  const textColor =
+    score > 30
+      ? "text-emerald-400"
+      : score < -30
+      ? "text-red-400"
+      : "text-amber-400";
+
+  // SVG dimensions
+  const W = 80;
+  const H = 46; // just above the radius so we see the full arc + number
+  const R = 34;  // arc radius
+  const CX = W / 2;
+  const CY = 42; // center slightly below bottom so arc is centered visually
+
+  // Arc from 180° to 0° (left to right, clockwise).
+  // Fill fraction: map score (-100..+100) → 0..1 based on how far from center
+  // The arc fills from 180° (left) for bearish, or from 0° (right) for bullish,
+  // always starting at center (90° = top of semicircle, or actually CY bottom).
+  //
+  // Simpler model: full arc is 180° sweep (left-to-right).
+  // Neutral center point = 90° from left = 270° in SVG coords.
+  // Fill from center toward left (bearish) or right (bullish).
+  // The filled sweep angle = |score| / 100 * 90°.
+
+  const sweepDeg = (Math.abs(score) / 100) * 90; // 0..90°
+
+  // Arc helper
+  function arcPoint(angleDeg: number) {
+    const rad = (angleDeg * Math.PI) / 180;
+    return {
+      x: CX + R * Math.cos(rad),
+      y: CY - R * Math.sin(rad),
+    };
+  }
+
+  // Background arc: full 180° from 0° to 180° (SVG angle: right=0, up=90, left=180)
+  const bgStart = arcPoint(0);
+  const bgEnd = arcPoint(180);
+  const bgD = `M ${bgStart.x} ${bgStart.y} A ${R} ${R} 0 0 1 ${bgEnd.x} ${bgEnd.y}`;
+
+  // Filled arc
+  let fillD = "";
+  if (score !== 0) {
+    // Center of arc at 90° (top)
+    const centerAngle = 90;
+    if (score > 0) {
+      // Bull: sweeps from center (90°) counterclockwise toward 180° (left-to-right)
+      // But visually: fill from center toward right (0°)
+      const startA = centerAngle;
+      const endA = centerAngle - sweepDeg; // e.g. score=100 → endA=0°
+      const p1 = arcPoint(startA);
+      const p2 = arcPoint(endA);
+      const large = sweepDeg > 90 ? 1 : 0;
+      fillD = `M ${p1.x} ${p1.y} A ${R} ${R} 0 ${large} 0 ${p2.x} ${p2.y}`;
+    } else {
+      // Bear: sweeps from center (90°) toward 180° (left)
+      const startA = centerAngle;
+      const endA = centerAngle + sweepDeg;
+      const p1 = arcPoint(startA);
+      const p2 = arcPoint(endA);
+      const large = sweepDeg > 90 ? 1 : 0;
+      fillD = `M ${p1.x} ${p1.y} A ${R} ${R} 0 ${large} 1 ${p2.x} ${p2.y}`;
+    }
+  }
 
   return (
-    <div className="space-y-1">
-      <div className="flex items-center justify-between text-[9px]">
-        <span className="text-muted-foreground">Signal Score</span>
-        <span className={cn("font-black", labelColor)}>
-          {score > 0 ? "+" : ""}{score} / 100 {label}
-        </span>
-      </div>
-      {/* Segmented bar */}
-      <div className="flex gap-0.5">
-        {Array.from({ length: SEGMENTS }, (_, i) => {
-          const segMin = -100 + i * 10; // segment floor value
-          const isBullSeg = i >= SEGMENTS / 2;
-          const isActive = score >= 0
-            ? isBullSeg && segMin < score
-            : !isBullSeg && segMin >= score;
-          const isCenter = i === 9 || i === 10;
-          return (
-            <div
-              key={i}
-              className={cn(
-                "h-1.5 flex-1 rounded-sm transition-all duration-500",
-                isActive
-                  ? isBullSeg
-                    ? score >= 40 ? "bg-emerald-500" : "bg-green-400"
-                    : score <= -40 ? "bg-red-500" : "bg-orange-400"
-                  : isCenter
-                  ? "bg-border"
-                  : "bg-muted",
-              )}
-            />
-          );
-        })}
-      </div>
-      <div className="flex justify-between text-[8px] text-muted-foreground/50">
-        <span>−100</span>
-        <span>0</span>
-        <span>+100</span>
+    <div className="flex items-center gap-3">
+      {/* SVG gauge */}
+      <svg width={W} height={H} viewBox={`0 0 ${W} ${H}`} className="shrink-0 overflow-visible">
+        {/* Background track */}
+        <path
+          d={bgD}
+          fill="none"
+          stroke="currentColor"
+          strokeWidth="5"
+          className="text-border/50"
+          strokeLinecap="round"
+        />
+        {/* Filled arc */}
+        {fillD && (
+          <path
+            d={fillD}
+            fill="none"
+            stroke={strokeColor}
+            strokeWidth="5"
+            strokeLinecap="round"
+            style={{ transition: "stroke-dashoffset 0.5s ease, d 0.5s ease" }}
+          />
+        )}
+        {/* Center dot */}
+        <circle cx={CX} cy={CY - R} r="2.5" fill={strokeColor} />
+        {/* Score number */}
+        <text
+          x={CX}
+          y={CY - 10}
+          textAnchor="middle"
+          dominantBaseline="middle"
+          fontSize="11"
+          fontWeight="900"
+          fontFamily="monospace"
+          fill={strokeColor}
+        >
+          {score > 0 ? "+" : ""}{score}
+        </text>
+      </svg>
+
+      {/* Label + context */}
+      <div className="flex-1 min-w-0 space-y-0.5">
+        <div className={cn("text-[11px] font-black leading-none", textColor)}>{label}</div>
+        <div className="text-[8.5px] text-muted-foreground">Signal score: {score > 0 ? "+" : ""}{score} / 100</div>
       </div>
     </div>
   );
@@ -496,6 +586,9 @@ export function AICoachPanel() {
   const cursorTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   const textScrollRef = useRef<HTMLDivElement>(null);
   const prevRevealedRef = useRef(0);
+  // Persist the last analysis result so switching to Ideas/Scan and back
+  // does not lose the trade analysis without re-running the engine.
+  const lastResultRef = useRef<AnalysisResult | null>(null);
 
   const positions = useTradingStore((s) => s.positions);
   const tradeHistory = useTradingStore((s) => s.tradeHistory);
@@ -589,6 +682,7 @@ export function AICoachPanel() {
           }
 
           setResult(analysisResult);
+          lastResultRef.current = analysisResult;
           startTyping(analysisResult.summary);
         } catch (err) {
           setError(err instanceof Error ? err.message : "Analysis failed");
@@ -796,13 +890,31 @@ export function AICoachPanel() {
           >
             <div className="flex flex-col gap-2 px-3 pb-3">
               {/* Mode selector */}
-              <div className="flex gap-1">
+              <div className="flex gap-1 flex-wrap">
                 {MODES.map((m) => (
                   <button
                     type="button"
                     key={m.value}
                     onClick={() => {
+                      const prevMode = mode;
                       setMode(m.value);
+                      // Ideas and Scan tabs are self-contained — don't clear analysis state.
+                      // When returning from ideas/scan back to an analysis mode, restore
+                      // the persisted result so it doesn't appear blank.
+                      if (m.value === "ideas" || m.value === "scan") {
+                        stopTyping();
+                        return;
+                      }
+                      if (
+                        (prevMode === "ideas" || prevMode === "scan") &&
+                        m.value === "trade" &&
+                        lastResultRef.current
+                      ) {
+                        // Restore without re-typing
+                        setResult(lastResultRef.current);
+                        setSummaryText(lastResultRef.current.summary);
+                        return;
+                      }
                       setSummaryText("");
                       setResult(null);
                       setError(null);
@@ -811,7 +923,7 @@ export function AICoachPanel() {
                     }}
                     title={m.desc}
                     className={cn(
-                      "flex-1 rounded px-1.5 py-1 text-[9px] font-bold transition-all leading-tight",
+                      "flex-1 rounded px-1 py-1 text-[8.5px] font-bold transition-all leading-tight min-w-0",
                       mode === m.value
                         ? "bg-primary/15 text-primary border border-primary/30"
                         : "text-muted-foreground hover:text-foreground hover:bg-accent border border-transparent",
@@ -894,21 +1006,44 @@ export function AICoachPanel() {
                         </div>
                       )}
 
-                      {/* Animated insights */}
+                      {/* Animated insights with sentiment icons */}
                       {result.insights.length > 0 && !loading && (
                         <div className="space-y-1">
-                          {result.insights.map((insight, i) => (
-                            <motion.div
-                              key={i}
-                              initial={{ opacity: 0, x: -6 }}
-                              animate={{ opacity: 1, x: 0 }}
-                              transition={{ delay: 0.3 + i * 0.1 }}
-                              className="flex gap-1.5 text-[9px] leading-tight"
-                            >
-                              <span className="text-primary font-bold shrink-0 mt-0.5">›</span>
-                              <span className="text-muted-foreground">{insight}</span>
-                            </motion.div>
-                          ))}
+                          {result.insights.map((insight, i) => {
+                            const lower = insight.toLowerCase();
+                            const isBullish =
+                              lower.includes("strong") ||
+                              lower.includes("bullish") ||
+                              lower.includes("upward") ||
+                              lower.includes("rising") ||
+                              lower.includes("buy") ||
+                              lower.includes("momentum");
+                            const isWarning =
+                              lower.includes("warning") ||
+                              lower.includes("risk") ||
+                              lower.includes("caution") ||
+                              lower.includes("bearish") ||
+                              lower.includes("downward") ||
+                              lower.includes("weak");
+                            return (
+                              <motion.div
+                                key={i}
+                                initial={{ opacity: 0, x: -6 }}
+                                animate={{ opacity: 1, x: 0 }}
+                                transition={{ delay: 0.3 + i * 0.12 }}
+                                className="flex gap-1.5 text-[9px] leading-tight"
+                              >
+                                {isBullish ? (
+                                  <TrendingUp className="h-3 w-3 text-emerald-400 shrink-0 mt-0.5" />
+                                ) : isWarning ? (
+                                  <AlertTriangle className="h-3 w-3 text-amber-400 shrink-0 mt-0.5" />
+                                ) : (
+                                  <Info className="h-3 w-3 text-primary/70 shrink-0 mt-0.5" />
+                                )}
+                                <span className="text-muted-foreground">{insight}</span>
+                              </motion.div>
+                            );
+                          })}
                         </div>
                       )}
 
@@ -934,22 +1069,43 @@ export function AICoachPanel() {
                 </div>
               )}
 
+              {/* ── Ideas tab ─────────────────────────────────────────────── */}
+              {mode === "ideas" && (
+                <div className="space-y-1.5">
+                  <div className="text-[9px] font-black uppercase tracking-wider text-foreground/40">
+                    Trade Ideas — All Tickers
+                  </div>
+                  <TradeIdeaFeed compact />
+                </div>
+              )}
+
+              {/* ── Scan tab ──────────────────────────────────────────────── */}
+              {mode === "scan" && (
+                <div className="space-y-1.5">
+                  <div className="text-[9px] font-black uppercase tracking-wider text-foreground/40">
+                    Opportunity Scanner — Top 5
+                  </div>
+                  <OpportunityScanner />
+                </div>
+              )}
+
               {/* Loading state (before result) */}
-              {loading && !result && (
+              {loading && !result && mode !== "ideas" && mode !== "scan" && (
                 <div className="text-[10px] text-muted-foreground animate-pulse text-center py-2">
                   AlphaBot is analyzing…
                 </div>
               )}
 
               {/* Error state */}
-              {error && (
+              {error && mode !== "ideas" && mode !== "scan" && (
                 <div className="flex items-start gap-1.5 text-[10px] text-red-400 rounded bg-red-500/10 border border-red-500/20 px-2 py-1.5">
                   <AlertCircle className="h-3 w-3 mt-0.5 shrink-0" />
                   <span>{error}</span>
                 </div>
               )}
 
-              {/* Action buttons */}
+              {/* Action buttons — hidden on Ideas and Scan tabs */}
+              {mode !== "ideas" && mode !== "scan" && (
               <div className="flex gap-1.5">
                 <button
                   type="button"
@@ -975,6 +1131,7 @@ export function AICoachPanel() {
                   </button>
                 )}
               </div>
+              )}
             </div>
           </motion.div>
         )}

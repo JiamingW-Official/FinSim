@@ -1,7 +1,17 @@
 export interface GlossaryEntry {
   term: string;
   definition: string;
-  category: "basics" | "orders" | "indicators" | "risk" | "fundamental" | "personal-finance";
+  category:
+    | "basics"
+    | "orders"
+    | "indicators"
+    | "risk"
+    | "fundamental"
+    | "personal-finance"
+    | "crypto"
+    | "macro"
+    | "options-advanced"
+    | "technical";
   example?: string;
 }
 
@@ -549,6 +559,280 @@ export const GLOSSARY: GlossaryEntry[] = [
     definition:
       "The annual fee charged by a fund, expressed as a percentage of assets. A 0.03% expense ratio on $10,000 costs $3/year. Low-cost index funds typically charge 0.03-0.20%, while actively managed funds charge 0.50-1.50%.",
     category: "personal-finance",
+  },
+
+  // --- Crypto / DeFi ---
+  {
+    term: "Layer 2",
+    definition:
+      "A secondary network built on top of a blockchain (Layer 1) to process transactions faster and cheaper, then settle batches back to the main chain. Examples include Arbitrum and Optimism on Ethereum.",
+    category: "crypto",
+    example:
+      "Ethereum mainnet charges $20 in gas fees; Arbitrum (Layer 2) processes the same transaction for $0.10 by batching thousands of transactions together.",
+  },
+  {
+    term: "Gas Fees",
+    definition:
+      "The transaction costs paid to network validators to process operations on a blockchain. Fees spike during high network congestion and fall during quiet periods. Paid in the chain's native token (ETH on Ethereum).",
+    category: "crypto",
+    example:
+      "Swapping $100 of tokens on Ethereum during peak congestion could cost $40 in gas — making small trades uneconomical.",
+  },
+  {
+    term: "Smart Contract",
+    definition:
+      "Self-executing code stored on a blockchain that automatically enforces the terms of an agreement when predetermined conditions are met — no intermediary needed. The foundation of DeFi, NFTs, and DAOs.",
+    category: "crypto",
+    example:
+      "A smart contract automatically releases payment to a freelancer when their code passes pre-defined tests — no escrow service required.",
+  },
+  {
+    term: "NFT",
+    definition:
+      "Non-Fungible Token — a unique digital asset on the blockchain representing ownership of a specific item (art, collectible, in-game item). Unlike fungible tokens (1 BTC = 1 BTC), each NFT is one-of-a-kind and cannot be replicated.",
+    category: "crypto",
+    example:
+      "A digital artwork NFT sold for $69M at Christie's auction in 2021 — the buyer owns a unique blockchain-verified token proving ownership.",
+  },
+  {
+    term: "Tokenomics",
+    definition:
+      "The economic model governing a cryptocurrency: total supply, emission schedule, distribution (team, investors, public), utility, and burn mechanisms. Good tokenomics align long-term incentives for all participants.",
+    category: "crypto",
+    example:
+      "Bitcoin's tokenomics: fixed 21M supply, halvings every 4 years reduce new supply — programmatic scarcity drives the deflationary thesis.",
+  },
+  {
+    term: "Stablecoin",
+    definition:
+      "A cryptocurrency pegged to a stable asset (usually the US dollar) to minimize price volatility. Types: fiat-backed (USDC), crypto-backed (DAI), or algorithmic. Used as a safe haven during crypto market downturns.",
+    category: "crypto",
+    example:
+      "Traders sell volatile crypto into USDC during a bear market to preserve dollar value without exiting to traditional banking.",
+  },
+  {
+    term: "DEX",
+    definition:
+      "Decentralized Exchange — a peer-to-peer trading platform that lets users swap tokens directly from their wallets using smart contracts and liquidity pools. No company holds your funds. Examples: Uniswap, Curve.",
+    category: "crypto",
+    example:
+      "On Uniswap (DEX), you swap ETH for USDC directly from your MetaMask wallet — no account, no KYC, no company custody.",
+  },
+  {
+    term: "CEX",
+    definition:
+      "Centralized Exchange — a traditional crypto exchange run by a company that holds custody of user funds (like a bank). Examples: Coinbase, Binance, Kraken. Easier to use but carries counterparty risk.",
+    category: "crypto",
+    example:
+      "Coinbase (CEX) holds your Bitcoin in their custody. When FTX (another CEX) collapsed in 2022, customers lost $8B in funds they thought they owned.",
+  },
+  {
+    term: "Bridge",
+    definition:
+      "A protocol that transfers tokens between different blockchains — for example, moving ETH from Ethereum mainnet to Arbitrum. Bridges lock assets on the source chain and mint wrapped equivalents on the destination chain.",
+    category: "crypto",
+    example:
+      "Bridging 1 ETH from Ethereum to Polygon takes about 7 minutes and costs a small fee — enabling cheaper transactions on the L2.",
+  },
+  {
+    term: "Cold Wallet",
+    definition:
+      "A hardware device or offline method for storing cryptocurrency private keys completely disconnected from the internet. Maximum security for long-term holdings. Examples: Ledger, Trezor. Contrast with hot wallets (online).",
+    category: "crypto",
+    example:
+      "Keeping $100K+ in crypto on a Ledger cold wallet means a hacker compromising your computer cannot steal your funds.",
+  },
+
+  // --- Macro ---
+  {
+    term: "Yield Curve Inversion",
+    definition:
+      "When short-term Treasury yields rise above long-term yields (e.g., 2-year rate > 10-year rate) — the opposite of the normal relationship. Has preceded every US recession in the last 50 years, typically by 12–18 months.",
+    category: "macro",
+    example:
+      "When the 2-year yield hit 5.1% vs the 10-year at 4.3% in 2023, the inverted curve signaled recession risk — investors in bonds expected rate cuts ahead.",
+  },
+  {
+    term: "Stagflation",
+    definition:
+      "A toxic economic combination of stagnant growth (or recession), high inflation, and high unemployment simultaneously. Stagflation is the central bank's nightmare — raising rates fights inflation but worsens unemployment.",
+    category: "macro",
+    example:
+      "1970s stagflation: US inflation at 13%, unemployment at 9%, GDP stagnating — the Fed eventually raised rates to 20% to break it.",
+  },
+  {
+    term: "Velocity of Money",
+    definition:
+      "How frequently each dollar changes hands in the economy over a given period. High velocity = a dollar is spent quickly, stimulating growth. Low velocity = money sits idle in savings, reducing economic activity.",
+    category: "macro",
+    example:
+      "During COVID-19, velocity collapsed as stimulus checks went into savings accounts rather than consumer spending — blunting inflation initially.",
+  },
+  {
+    term: "M2 Money Supply",
+    definition:
+      "A broad measure of money in circulation: cash, checking deposits, savings accounts, money market funds, and small CDs. Rapid M2 expansion often precedes inflation. The Fed monitors M2 to calibrate monetary policy.",
+    category: "macro",
+    example:
+      "The Fed expanded M2 by $6 trillion (40%) during 2020–2021 COVID stimulus, which many economists cite as a leading cause of the subsequent 9% inflation peak.",
+  },
+  {
+    term: "Repo Market",
+    definition:
+      "The overnight lending market where banks and financial institutions borrow cash short-term using securities as collateral (repurchase agreements). Stress in repo markets can signal broader financial system liquidity problems.",
+    category: "macro",
+    example:
+      "In September 2019, repo rates spiked to 10% overnight (from ~2%) — the Fed injected $75B to calm the market and prevent a broader liquidity crisis.",
+  },
+
+  // --- Options Advanced ---
+  {
+    term: "Pin Risk",
+    definition:
+      "The uncertainty for options traders when a stock closes exactly at or very near a strike price on expiration day. Sellers don't know whether the option will be exercised, creating overnight risk from an unexpected stock position.",
+    category: "options-advanced",
+    example:
+      "You sold a $150 call. Stock closes at $150.02 on expiration Friday. The buyer might or might not exercise — you could wake up Monday short 100 shares of stock.",
+  },
+  {
+    term: "Gamma Squeeze",
+    definition:
+      "A rapid price surge caused by market makers buying shares to hedge the gamma exposure of options they sold. As a stock rises, market makers must buy more shares to stay delta-neutral, which drives the price even higher in a feedback loop.",
+    category: "options-advanced",
+    example:
+      "Heavy call buying in GME forced market makers to buy millions of shares as hedges, accelerating the stock's rise from $20 to $480 — the gamma squeeze amplified the move dramatically.",
+  },
+  {
+    term: "Theta Gang",
+    definition:
+      "A community of options traders who primarily sell options (covered calls, cash-secured puts, iron condors) to systematically collect theta (time decay) premium. Their edge: options expire worthless about 70% of the time.",
+    category: "options-advanced",
+    example:
+      "Selling a monthly cash-secured put on AAPL at the 30-delta strike collects $3 in premium. If AAPL stays above strike, full $300/contract profit. Theta gang collects premium 'like an insurance company.'",
+  },
+  {
+    term: "Vol Crush",
+    definition:
+      "The rapid collapse in implied volatility (IV) immediately after a highly anticipated event like earnings, FDA approval, or Fed announcement. Options buyers lose money even if they correctly predicted the direction, because IV collapses faster than the move gains.",
+    category: "options-advanced",
+    example:
+      "AAPL options had IV of 45% into earnings. Stock moved up 4% (as expected) but IV crashed to 22% after — options buyers who were correct still lost 30% on their calls due to vol crush.",
+  },
+  {
+    term: "LEAPS",
+    definition:
+      "Long-Term Equity Anticipation Securities — options contracts with expiration dates more than one year away. Used as a low-cost substitute for stock ownership, providing leveraged exposure with capped downside.",
+    category: "options-advanced",
+    example:
+      "Buy a 2-year $150 call on a $175 stock for $35 (delta 0.70). If stock rises to $225, call worth ~$75 — a 2× return vs the stock's 29% gain, with only $35 at risk.",
+  },
+  {
+    term: "Synthetic Position",
+    definition:
+      "A combination of options (and sometimes stock) that replicates the payoff of another instrument. A synthetic long = long call + short put at the same strike. Allows traders to gain exposure without direct ownership.",
+    category: "options-advanced",
+    example:
+      "Synthetic long stock: buy $200 call + sell $200 put at same expiration. Same payoff as owning 100 shares, but requires only margin rather than full capital.",
+  },
+  {
+    term: "Delta Neutral",
+    definition:
+      "A portfolio or position with a total delta of approximately zero — meaning small price moves in the underlying asset have minimal impact on total P&L. Used by traders who want to profit from volatility or time decay while hedging directional risk.",
+    category: "options-advanced",
+    example:
+      "Sell an at-the-money straddle (delta ~0 overall) and profit from theta decay as long as the stock stays in a narrow range — the position makes money from time, not direction.",
+  },
+
+  // --- Technical Analysis ---
+  {
+    term: "Anchored VWAP",
+    definition:
+      "VWAP calculated from a specific starting point chosen by the trader (e.g., a major low, earnings date, or breakout date) rather than the daily open. Shows the average price paid by all participants since that key event.",
+    category: "technical",
+    example:
+      "Anchoring VWAP to an earnings gap date shows whether buyers who chased the gap-up are now sitting at a profit or loss — key context for support/resistance levels.",
+  },
+  {
+    term: "Market Profile",
+    definition:
+      "A charting method that displays price distribution over time as a bell curve rotated 90 degrees. Shows where the most trading occurred (Point of Control), and the Value Area — the price range containing 70% of volume.",
+    category: "technical",
+    example:
+      "Market Profile shows $183–$189 as the Value Area High and Low for a session. A return to $185 (POC) is likely to find support from traders anchored to that fair-value zone.",
+  },
+  {
+    term: "Volume Profile",
+    definition:
+      "A histogram displayed on the price axis showing how much volume traded at each price level over a selected period. Identifies high-volume nodes (strong support/resistance) and low-volume nodes (price moves quickly through these).",
+    category: "technical",
+    example:
+      "A large high-volume node at $185 means millions of shares changed hands there — price tends to return to high-volume nodes as participants defend their cost basis.",
+  },
+  {
+    term: "Point of Control",
+    definition:
+      "The single price level with the highest traded volume in a Volume Profile or Market Profile. Acts as a strong magnet for price — gaps away from the POC often close as price mean-reverts back to where most volume occurred.",
+    category: "technical",
+    example:
+      "Stock rallies to $205 but the Volume Profile POC is at $188. Traders watch for a pullback toward $188 as participants who bought at the POC defend their positions.",
+  },
+  {
+    term: "Value Area",
+    definition:
+      "The price range in a Volume or Market Profile where approximately 70% of the day's volume was traded. The Value Area High (VAH) and Value Area Low (VAL) act as key support and resistance levels for the following session.",
+    category: "technical",
+    example:
+      "Yesterday's VAH was $192. Price opens above $192 and holds — bullish sign as buyers control yesterday's high-volume zone. Failure to hold VAH often leads to a 'value area fill' back to the POC.",
+  },
+
+  // --- Risk ---
+  {
+    term: "Tail Risk",
+    definition:
+      "The probability of rare, extreme market events (beyond 3 standard deviations from the mean) that traditional models underestimate. Tail events cause outsized losses and occur far more frequently than bell-curve models predict.",
+    category: "risk",
+    example:
+      "A portfolio with 'normal' risk metrics can still lose 40% in a tail event like the 2020 COVID crash (34% in 33 days) — standard deviation models assign near-zero probability to such moves.",
+  },
+  {
+    term: "Fat Tails",
+    definition:
+      "The statistical phenomenon where extreme outcomes (large gains or losses) occur more frequently than a normal distribution predicts. Financial returns have fatter tails than bell curves — catastrophic crashes are more common than models suggest.",
+    category: "risk",
+    example:
+      "A normal distribution says a 5-standard-deviation daily move should happen once in 3.5 million trading days. In reality, markets see such moves several times per decade.",
+  },
+  {
+    term: "Black Swan",
+    definition:
+      "A term coined by Nassim Taleb for high-impact, nearly unpredictable events that are rationalized in hindsight as 'obvious.' Financial black swans: the 2008 financial crisis, COVID market crash, dot-com collapse. Risk managers try to ensure portfolios survive them.",
+    category: "risk",
+    example:
+      "No quantitative model predicted Lehman Brothers collapsing in 2008. After the fact, analysts said the signs were obvious — classic black swan rationalization bias.",
+  },
+  {
+    term: "Correlation Breakdown",
+    definition:
+      "When assets that historically moved independently suddenly move together during a crisis, eliminating diversification benefits precisely when you need them most. In a panic, 'all correlations go to 1.'",
+    category: "risk",
+    example:
+      "During the 2008 crisis, stocks, real estate, corporate bonds, and commodities all fell simultaneously — investors who thought they were diversified discovered their assets were all correlated to credit risk.",
+  },
+  {
+    term: "Liquidity Risk",
+    definition:
+      "The risk of being unable to sell a position quickly at a fair price. In a crisis, bid/ask spreads widen dramatically and buyers disappear. Illiquid positions can cause forced selling at catastrophic prices.",
+    category: "risk",
+    example:
+      "A hedge fund holding illiquid mortgage securities in 2008 couldn't sell even at 50 cents on the dollar — the market simply had no buyers, forcing the fund to liquidate at a fraction of book value.",
+  },
+  {
+    term: "Basis Risk",
+    definition:
+      "The risk that a hedge doesn't perfectly offset the underlying exposure because the hedge instrument moves differently than expected. Arises when the hedging asset and the position being hedged aren't perfectly correlated.",
+    category: "risk",
+    example:
+      "An airline hedges fuel costs by buying oil futures, but jet fuel prices (the actual cost) and crude oil futures don't move in lockstep — basis risk means the hedge is imperfect and residual exposure remains.",
   },
 ];
 

@@ -11,6 +11,7 @@ import { useLeaderboard } from "@/hooks/useLeaderboard";
 import { PlayerStatsCard } from "@/components/leaderboard/PlayerStatsCard";
 import { LeaderboardTable } from "@/components/leaderboard/LeaderboardTable";
 import { LeagueBadge } from "@/components/leaderboard/LeagueBadge";
+import { BeatTheBestPanel } from "@/components/leaderboard/BeatTheBestPanel";
 import { SeasonBanner } from "@/components/season/SeasonBanner";
 import { SeasonRewardTrack } from "@/components/season/SeasonRewardTrack";
 import { DIMENSIONS, LEAGUES, getLeagueForLevel } from "@/types/leaderboard";
@@ -172,6 +173,10 @@ export default function LeaderboardPage() {
 
             <motion.div variants={fadeUp}>
               <LeaderboardTable ranked={ranked} dimension={dimension} />
+            </motion.div>
+
+            <motion.div variants={fadeUp}>
+              <BeatTheBestPanel top3={top3} />
             </motion.div>
           </motion.div>
 

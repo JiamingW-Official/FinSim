@@ -1,0 +1,239 @@
+"use client";
+
+import { motion } from "framer-motion";
+import { Check, Lock, MapPin, Milestone } from "lucide-react";
+import { cn } from "@/lib/utils";
+import { useQuestStore } from "@/stores/quest-store";
+import { useGameStore } from "@/stores/game-store";
+
+// ── Map nodes ───────────────────────────────────────────────────
+
+interface MapNode {
+  id: string;
+  label: string;
+  sublabel: string;
+  /** Minimum totalQuestsCompleted to unlock this node */
+  requiredQuests: number;
+  /** Minimum level to unlock */
+  requiredLevel?: number;
+  /** Human-readable next-step hint shown for the active node */
+  nextHint?: string;
+  tier: "start" | "beginner" | "intermediate" | "advanced" | "legend";
+}
+
+const MAP_NODES: MapNode[] = [
+  {
+    id: "node_start",
+    label: "Start",
+    sublabel: "Your journey begins",
+    requiredQuests: 0,
+    tier: "start",
+    nextHint: "Complete your first quest",
+  },
+  {
+    id: "node_beginner",
+    label: "Beginner Quests",
+    sublabel: "1 quest completed",
+    requiredQuests: 1,
+    tier: "beginner",
+    nextHint: "Complete 5 quests total",
+  },
+  {
+    id: "node_intermediate",
+    label: "Intermediate",
+    sublabel: "5 quests completed",
+    requiredQuests: 5,
+    tier: "intermediate",
+    nextHint: "Complete 5 options trades",
+  },
+  {
+    id: "node_advanced",
+    label: "Advanced",
+    sublabel: "15 quests completed",
+    requiredQuests: 15,
+    tier: "advanced",
+    nextHint: "Reach Level 20",
+  },
+  {
+    id: "node_legend",
+    label: "Legend",
+    sublabel: "30 quests completed",
+    requiredQuests: 30,
+    requiredLevel: 20,
+    tier: "legend",
+    nextHint: "You have reached the pinnacle",
+  },
+];
+
+const TIER_COLORS: Record<string, string> = {
+  start:        "border-zinc-600 bg-zinc-800 text-zinc-400",
+  beginner:     "border-green-500/60 bg-green-500/10 text-green-400",
+  intermediate: "border-cyan-500/60 bg-cyan-500/10 text-cyan-400",
+  advanced:     "border-violet-500/60 bg-violet-500/10 text-violet-400",
+  legend:       "border-amber-500/60 bg-amber-500/10 text-amber-400",
+};
+
+const TIER_LINE_COLORS: Record<string, string> = {
+  start:        "bg-zinc-700",
+  beginner:     "bg-green-500/40",
+  intermediate: "bg-cyan-500/40",
+  advanced:     "bg-violet-500/40",
+  legend:       "bg-amber-500/40",
+};
+
+// ── Component ───────────────────────────────────────────────────
+
+export function QuestMap() {
+  const totalCompleted = useQuestStore((s) => s.totalQuestsCompleted);
+  const level = useGameStore((s) => s.level);
+
+  function isNodeUnlocked(node: MapNode): boolean {
+    if (totalCompleted < node.requiredQuests) return false;
+    if (node.requiredLevel && level < node.requiredLevel) return false;
+    return true;
+  }
+
+  // Find the current "active" node — the furthest unlocked node that hasn't been
+  // superseded by the next one being unlocked.
+  const currentNodeIndex = (() => {
+    let idx = 0;
+    for (let i = 0; i < MAP_NODES.length; i++) {
+      if (isNodeUnlocked(MAP_NODES[i])) idx = i;
+    }
+    return idx;
+  })();
+
+  const activeNode = MAP_NODES[currentNodeIndex];
+  const nextNode = MAP_NODES[currentNodeIndex + 1] ?? null;
+
+  return (
+    <div className="space-y-5">
+      {/* Next milestone hint */}
+      {nextNode && (
+        <motion.div
+          initial={{ opacity: 0, y: -6 }}
+          animate={{ opacity: 1, y: 0 }}
+          className="flex items-start gap-2.5 rounded-lg border border-cyan-500/15 bg-cyan-500/5 px-3.5 py-3"
+        >
+          <Milestone className="mt-0.5 h-4 w-4 shrink-0 text-cyan-400" />
+          <div>
+            <p className="text-xs font-bold text-cyan-300">Next milestone</p>
+            <p className="text-[11px] text-zinc-400 mt-0.5">{activeNode.nextHint}</p>
+            <p className="text-[10px] text-zinc-600 mt-0.5">
+              {nextNode.sublabel} to reach <span className="text-zinc-400 font-semibold">{nextNode.label}</span>
+            </p>
+          </div>
+        </motion.div>
+      )}
+
+      {/* Map path — horizontal scroll on small viewports */}
+      <div className="overflow-x-auto pb-2">
+        <div className="flex min-w-max items-center gap-0 px-1">
+          {MAP_NODES.map((node, i) => {
+            const unlocked = isNodeUnlocked(node);
+            const isCurrent = i === currentNodeIndex;
+            const isLast = i === MAP_NODES.length - 1;
+
+            return (
+              <div key={node.id} className="flex items-center">
+                {/* Connector line before each node (except first) */}
+                {i > 0 && (
+                  <motion.div
+                    className={cn(
+                      "h-0.5 w-12",
+                      unlocked ? TIER_LINE_COLORS[node.tier] : "bg-zinc-800",
+                    )}
+                    initial={{ scaleX: 0, originX: 0 }}
+                    animate={{ scaleX: 1 }}
+                    transition={{ delay: i * 0.12, duration: 0.35 }}
+                  />
+                )}
+
+                {/* Node */}
+                <div className="relative flex flex-col items-center gap-1.5">
+                  <motion.div
+                    initial={{ scale: 0, opacity: 0 }}
+                    animate={{ scale: 1, opacity: 1 }}
+                    transition={{ delay: i * 0.12, type: "spring", stiffness: 300, damping: 20 }}
+                    className="relative"
+                  >
+                    {/* Pulsing ring for current node */}
+                    {isCurrent && (
+                      <motion.div
+                        className={cn(
+                          "absolute inset-0 rounded-full border-2",
+                          TIER_COLORS[node.tier].split(" ")[0],
+                        )}
+                        animate={{ scale: [1, 1.4, 1], opacity: [0.6, 0, 0.6] }}
+                        transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
+                      />
+                    )}
+
+                    <div
+                      className={cn(
+                        "flex h-12 w-12 items-center justify-center rounded-full border-2 transition-all",
+                        unlocked
+                          ? TIER_COLORS[node.tier]
+                          : "border-zinc-800 bg-zinc-900 text-zinc-700",
+                      )}
+                    >
+                      {!unlocked ? (
+                        <Lock className="h-4 w-4" />
+                      ) : isLast || (!isCurrent && unlocked) ? (
+                        <Check className="h-4 w-4" />
+                      ) : (
+                        <MapPin className="h-4 w-4" />
+                      )}
+                    </div>
+                  </motion.div>
+
+                  {/* Label below node */}
+                  <motion.div
+                    initial={{ opacity: 0, y: 4 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: i * 0.12 + 0.1 }}
+                    className="flex flex-col items-center gap-0.5 text-center w-20"
+                  >
+                    <span
+                      className={cn(
+                        "text-[10px] font-bold leading-tight",
+                        unlocked
+                          ? isCurrent
+                            ? "text-zinc-200"
+                            : "text-zinc-400"
+                          : "text-zinc-700",
+                      )}
+                    >
+                      {node.label}
+                    </span>
+                    <span className="text-[9px] text-zinc-700 leading-tight">
+                      {node.sublabel}
+                    </span>
+                  </motion.div>
+                </div>
+              </div>
+            );
+          })}
+        </div>
+      </div>
+
+      {/* Progress summary */}
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ delay: 0.5 }}
+        className="flex items-center justify-between rounded-lg border border-white/5 bg-white/[0.02] px-4 py-2.5"
+      >
+        <span className="text-xs text-zinc-500">Total quests completed</span>
+        <div className="flex items-center gap-2">
+          <span className="text-sm font-black tabular-nums text-zinc-200">{totalCompleted}</span>
+          {nextNode && (
+            <span className="text-[10px] text-zinc-600">
+              / {nextNode.requiredQuests} for {nextNode.label}
+            </span>
+          )}
+        </div>
+      </motion.div>
+    </div>
+  );
+}

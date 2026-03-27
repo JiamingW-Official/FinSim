@@ -8,6 +8,7 @@ import {
   TrendingUp, Globe,
 } from "lucide-react";
 import { Tooltip, TooltipTrigger, TooltipContent } from "@/components/ui/tooltip";
+import { SearchTrigger } from "@/components/search/GlobalSearch";
 import { cn } from "@/lib/utils";
 
 const NAV_GROUPS = [
@@ -49,9 +50,19 @@ export function Sidebar() {
   return (
     <div className="relative flex w-14 flex-col items-center border-r border-border/50 bg-sidebar py-3 gap-0">
       {/* Logo mark */}
-      <div className="mb-3 flex h-8 w-8 items-center justify-center rounded-md bg-primary/10">
+      <div className="mb-2 flex h-8 w-8 items-center justify-center rounded-md bg-primary/10">
         <span className="text-[13px] font-black tracking-tight text-primary select-none">FS</span>
       </div>
+
+      {/* Search trigger */}
+      <Tooltip>
+        <TooltipTrigger asChild>
+          <SearchTrigger className="mb-2 h-9 w-10 justify-center" />
+        </TooltipTrigger>
+        <TooltipContent side="right" sideOffset={10} className="text-xs font-medium">
+          Search (⌘K)
+        </TooltipContent>
+      </Tooltip>
 
       {/* Nav groups */}
       <div className="flex w-full flex-col items-center flex-1">

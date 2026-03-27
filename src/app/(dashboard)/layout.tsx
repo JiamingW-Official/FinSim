@@ -17,6 +17,7 @@ import { StreakCelebration } from "@/components/game/StreakCelebration";
 import { TradeConfetti } from "@/components/game/TradeConfetti";
 import { FloatingEmojis } from "@/components/game/FloatingEmojis";
 import { OnboardingFlow } from "@/components/onboarding/OnboardingFlow";
+import { GlobalSearchProvider } from "@/components/search/GlobalSearch";
 import { usePreferencesStore } from "@/stores/preferences-store";
 import { useOnboardingStore } from "@/stores/onboarding-store";
 import { cn } from "@/lib/utils";
@@ -31,28 +32,30 @@ export default function DashboardLayout({
 
   return (
     <Providers>
-      <div className={cn("flex h-screen flex-col overflow-hidden", colorblindMode && "colorblind-mode")}>
-        <TopBar />
-        <div className="flex flex-1 overflow-hidden">
-          <Sidebar />
-          <main className="relative flex-1 overflow-hidden bg-[radial-gradient(ellipse_80%_30%_at_50%_0%,rgba(16,185,129,0.04),transparent)]">
-            <PageTransition>{children}</PageTransition>
-          </main>
+      <GlobalSearchProvider>
+        <div className={cn("flex h-screen flex-col overflow-hidden", colorblindMode && "colorblind-mode")}>
+          <TopBar />
+          <div className="flex flex-1 overflow-hidden">
+            <Sidebar />
+            <main className="relative flex-1 overflow-hidden bg-[radial-gradient(ellipse_80%_30%_at_50%_0%,rgba(16,185,129,0.04),transparent)]">
+              <PageTransition>{children}</PageTransition>
+            </main>
+          </div>
+          <StatusBar />
+          <AchievementPopup />
+          <LevelUpOverlay />
+          <ComboIndicator />
+          <ComboMeter />
+          <TutorialOverlay />
+          <DailyRewardsPopup />
+          <SeasonXPToast />
+          <KeyboardShortcutGuide />
+          <StreakCelebration />
+          <TradeConfetti />
+          <FloatingEmojis />
+          {!hasCompletedOnboarding && <OnboardingFlow />}
         </div>
-        <StatusBar />
-        <AchievementPopup />
-        <LevelUpOverlay />
-        <ComboIndicator />
-        <ComboMeter />
-        <TutorialOverlay />
-        <DailyRewardsPopup />
-        <SeasonXPToast />
-        <KeyboardShortcutGuide />
-        <StreakCelebration />
-        <TradeConfetti />
-        <FloatingEmojis />
-        {!hasCompletedOnboarding && <OnboardingFlow />}
-      </div>
+      </GlobalSearchProvider>
     </Providers>
   );
 }
