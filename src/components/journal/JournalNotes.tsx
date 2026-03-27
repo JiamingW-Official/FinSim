@@ -1,8 +1,8 @@
 "use client";
 
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useMemo, useRef } from "react";
 import { cn } from "@/lib/utils";
-import { Plus, X, Trash2, ChevronDown, ChevronUp } from "lucide-react";
+import { Plus, X, Trash2, ChevronDown, ChevronUp, Search } from "lucide-react";
 
 // ── Types ────────────────────────────────────────────────────────────────────
 
@@ -14,6 +14,8 @@ export interface JournalNote {
   mood: NoteMood;
   text: string;
 }
+
+type DateRangeFilter = "all" | "week" | "month";
 
 // ── Storage key ──────────────────────────────────────────────────────────────
 
@@ -95,6 +97,11 @@ export function JournalNotes() {
   const [expandedId, setExpandedId] = useState<string | null>(null);
   const textRef = useRef<HTMLTextAreaElement>(null);
 
+  // Filter state
+  const [search, setSearch] = useState("");
+  const [moodFilter, setMoodFilter] = useState<NoteMood | "all">("all");
+  const [dateRange, setDateRange] = useState<DateRangeFilter>("all");
+
   // Load on mount
   useEffect(() => {
     setNotes(loadNotes());
@@ -136,15 +143,45 @@ export function JournalNotes() {
     setShowForm(false);
   }
 
+  // Date range cutoff
+  const dateRangeCutoff = useMemo((): number => {
+    const now = Date.now();
+    if (dateRange === "week") return now - 7 * 24 * 60 * 60 * 1000;
+    if (dateRange === "month") return now - 30 * 24 * 60 * 60 * 1000;
+    return 0;
+  }, [dateRange]);
+
+  // Filtered notes
+  const filteredNotes = useMemo(() => {
+    return notes.filter((n) => {
+      if (search && !n.text.toLowerCase().includes(search.toLowerCase())) return false;
+      if (moodFilter !== "all" && n.mood !== moodFilter) return false;
+      if (dateRangeCutoff > 0 && n.date < dateRangeCutoff) return false;
+      return true;
+    });
+  }, [notes, search, moodFilter, dateRangeCutoff]);
+
+  const hasActiveFilters = search || moodFilter !== "all" || dateRange !== "all";
+
   return (
     <div className="space-y-4">
       {/* Header + Add button */}
       <div className="flex items-center justify-between">
-        <div>
-          <p className="text-sm font-semibold">Journal Notes</p>
-          <p className="text-[10px] text-muted-foreground">
-            {notes.length} {notes.length === 1 ? "entry" : "entries"}
-          </p>
+        <div className="flex items-center gap-2">
+          <div>
+            <p className="text-sm font-semibold">Journal Notes</p>
+            <p className="text-[10px] text-muted-foreground">
+              <span className="inline-flex items-center justify-center rounded-full bg-primary/10 px-1.5 py-0.5 text-[9px] font-semibold text-primary">
+                {notes.length}
+              </span>{" "}
+              {notes.length === 1 ? "note" : "notes"}
+              {hasActiveFilters && filteredNotes.length !== notes.length && (
+                <span className="ml-1 text-muted-foreground/60">
+                  ({filteredNotes.length} shown)
+                </span>
+              )}
+            </p>
+          </div>
         </div>
         {!showForm && (
           <button
@@ -155,6 +192,93 @@ export function JournalNotes() {
             Add Note
           </button>
         )}
+      </div>
+
+      {/* Search + filter bar */}
+      <div className="space-y-2">
+        {/* Search input */}
+        <div className="relative">
+          <Search className="absolute left-2.5 top-1/2 h-3.5 w-3.5 -translate-y-1/2 text-muted-foreground/50" />
+          <input
+            type="text"
+            placeholder="Search notes..."
+            value={search}
+            onChange={(e) => setSearch(e.target.value)}
+            className="w-full rounded-md border border-border bg-background py-1.5 pl-8 pr-3 text-[11px] text-foreground outline-none placeholder:text-muted-foreground/50 focus:border-primary/50 transition-colors"
+          />
+          {search && (
+            <button
+              onClick={() => setSearch("")}
+              className="absolute right-2 top-1/2 -translate-y-1/2 text-muted-foreground/50 hover:text-foreground"
+            >
+              <X className="h-3 w-3" />
+            </button>
+          )}
+        </div>
+
+        {/* Mood + date range filters */}
+        <div className="flex flex-wrap items-center gap-1.5">
+          {/* Mood chips */}
+          <span className="text-[9px] font-medium uppercase tracking-wider text-muted-foreground/60">
+            Mood:
+          </span>
+          <button
+            onClick={() => setMoodFilter("all")}
+            className={cn(
+              "rounded-md border px-2 py-0.5 text-[10px] font-medium transition-colors",
+              moodFilter === "all"
+                ? "border-primary/50 bg-primary/10 text-primary"
+                : "border-border text-muted-foreground hover:text-foreground",
+            )}
+          >
+            All
+          </button>
+          {MOODS.map((m) => (
+            <button
+              key={m.value}
+              onClick={() => setMoodFilter(moodFilter === m.value ? "all" : m.value)}
+              className={cn(
+                "rounded-md border px-2 py-0.5 text-[10px] font-medium transition-colors",
+                moodFilter === m.value ? m.activeClass : "border-border text-muted-foreground hover:text-foreground",
+              )}
+            >
+              {m.label}
+            </button>
+          ))}
+
+          {/* Date range */}
+          <span className="ml-2 text-[9px] font-medium uppercase tracking-wider text-muted-foreground/60">
+            Period:
+          </span>
+          {(["all", "week", "month"] as const).map((r) => (
+            <button
+              key={r}
+              onClick={() => setDateRange(r)}
+              className={cn(
+                "rounded-md border px-2 py-0.5 text-[10px] font-medium transition-colors",
+                dateRange === r
+                  ? "border-primary/50 bg-primary/10 text-primary"
+                  : "border-border text-muted-foreground hover:text-foreground",
+              )}
+            >
+              {r === "all" ? "All Time" : r === "week" ? "This Week" : "This Month"}
+            </button>
+          ))}
+
+          {/* Clear filters */}
+          {hasActiveFilters && (
+            <button
+              onClick={() => {
+                setSearch("");
+                setMoodFilter("all");
+                setDateRange("all");
+              }}
+              className="ml-auto flex items-center gap-1 text-[10px] text-muted-foreground hover:text-foreground"
+            >
+              <X className="h-3 w-3" /> Clear filters
+            </button>
+          )}
+        </div>
       </div>
 
       {/* Inline add form */}
@@ -228,16 +352,34 @@ export function JournalNotes() {
       )}
 
       {/* Notes list */}
-      {notes.length === 0 && !showForm ? (
+      {filteredNotes.length === 0 && !showForm ? (
         <div className="flex h-32 flex-col items-center justify-center gap-2 text-muted-foreground rounded-lg border border-dashed border-border/50">
-          <p className="text-sm">No journal notes yet.</p>
-          <p className="text-[11px] text-muted-foreground/60">
-            Capture your thoughts, observations, and lessons.
-          </p>
+          {notes.length === 0 ? (
+            <>
+              <p className="text-sm">No journal notes yet.</p>
+              <p className="text-[11px] text-muted-foreground/60">
+                Capture your thoughts, observations, and lessons.
+              </p>
+            </>
+          ) : (
+            <>
+              <p className="text-sm">No notes match your filters.</p>
+              <button
+                onClick={() => {
+                  setSearch("");
+                  setMoodFilter("all");
+                  setDateRange("all");
+                }}
+                className="text-[11px] text-primary hover:underline"
+              >
+                Clear filters
+              </button>
+            </>
+          )}
         </div>
       ) : (
         <div className="space-y-2">
-          {notes.map((note) => {
+          {filteredNotes.map((note) => {
             const mood = getMoodConfig(note.mood);
             const isExpanded = expandedId === note.id;
             const preview = note.text.slice(0, 120);
