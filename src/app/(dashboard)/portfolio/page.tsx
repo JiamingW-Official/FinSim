@@ -179,7 +179,7 @@ export default function PortfolioPage() {
                   Rebalance
                 </TabsTrigger>
                 <TabsTrigger value="optimize" className="flex-1 rounded-md text-[11px] h-7 whitespace-nowrap">
-                  Optimize
+                  Optimizer
                 </TabsTrigger>
                 <TabsTrigger value="frontier" className="flex-1 rounded-md text-[11px] h-7 whitespace-nowrap">
                   Frontier
