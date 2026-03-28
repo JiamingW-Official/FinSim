@@ -66,6 +66,10 @@ export interface Position {
   currentPrice: number;
   unrealizedPnL: number;
   unrealizedPnLPercent: number;
+  /** Bar index (revealedCount) when position was opened */
+  openedAtBar?: number;
+  /** AI analysis reason captured at entry */
+  entryReason?: string;
 }
 
 export interface TradeRecord {
