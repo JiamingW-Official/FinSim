@@ -18,6 +18,7 @@ import {
 } from "lucide-react";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { cn } from "@/lib/utils";
+import CommoditiesFuturesTrading from "@/components/commodities/CommoditiesFuturesTrading";
 
 // ── Seeded PRNG (mulberry32) ──────────────────────────────────────────────────
 

@@ -41,6 +41,8 @@ import { UNIT_REAL_ESTATE_INVESTING } from "./unit-real-estate-investing";
 import { UNIT_PORTFOLIO_THEORY } from "./unit-portfolio-theory";
 import { UNIT_STRUCTURED_PRODUCTS } from "./unit-structured-products";
 import { UNIT_CREDIT_ANALYSIS } from "./unit-credit-analysis";
+import { UNIT_MARKET_INTELLIGENCE } from "./unit-market-intelligence";
+import { UNIT_QUANT_STRATEGIES } from "./unit-quant-strategies";
 
 export const UNITS: Unit[] = [
   UNIT_BASICS,
@@ -85,6 +87,8 @@ export const UNITS: Unit[] = [
   UNIT_PORTFOLIO_THEORY,
   UNIT_STRUCTURED_PRODUCTS,
   UNIT_CREDIT_ANALYSIS,
+  UNIT_MARKET_INTELLIGENCE,
+  UNIT_QUANT_STRATEGIES,
 ];
 
 export function getLessonById(lessonId: string): Lesson | undefined {

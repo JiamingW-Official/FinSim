@@ -549,7 +549,7 @@ function buildStrategyDescription(s: LabStrategy): string {
 // ── SVG: Equity curve + drawdown ──────────────────────────────────────────────
 
 function LabEquityCurve({ result }: { result: LabBacktestResult }) {
-  const { equity, trades } = result;
+  const { equity } = result;
   const W = 640, H = 220;
   const PAD = { top: 16, right: 16, bottom: 32, left: 60 };
   const cW = W - PAD.left - PAD.right;
@@ -558,10 +558,6 @@ function LabEquityCurve({ result }: { result: LabBacktestResult }) {
   // Downsample to 200 points
   const step = Math.max(1, Math.floor(equity.length / 200));
   const sampled = equity.filter((_, i) => i % step === 0);
-  const bhEquity = sampled.map((_, i) => {
-    const idx = i * step;
-    return 10000 * (1 + (equity[idx] ? (equity[equity.length - 1] / 10000 - 1) * idx / equity.length : 0));
-  });
 
   const allVals = [...sampled, 10000];
   const minV = Math.min(...allVals);
@@ -908,14 +904,16 @@ function LabMetric({ label, value, positive, sub }: { label: string; value: stri
 
 // ── Condition row ─────────────────────────────────────────────────────────────
 
-function ConditionRow<T extends string>({
+type ConditionOptionMeta = { type: string; label: string; defaultParam: number; unit: string; hasParam: boolean };
+
+function ConditionRow({
   condition,
   options,
   onChange,
   onRemove,
 }: {
   condition: LabCondition;
-  options: { type: T; label: string; defaultParam: number; unit: string; hasParam: boolean }[];
+  options: ConditionOptionMeta[];
   onChange: (c: LabCondition) => void;
   onRemove: () => void;
 }) {
@@ -925,9 +923,9 @@ function ConditionRow<T extends string>({
       <select
         value={condition.type}
         onChange={e => {
-          const newType = e.target.value as T;
+          const newType = e.target.value;
           const newMeta = options.find(o => o.type === newType) ?? options[0];
-          onChange({ ...condition, type: newType, param: newMeta.defaultParam });
+          onChange({ ...condition, type: newType as EntryConditionType | ExitConditionType, param: newMeta.defaultParam });
         }}
         className="flex-1 bg-transparent text-xs text-zinc-300 outline-none"
       >
@@ -1305,7 +1303,7 @@ export default function StrategyLab() {
                   <ConditionRow
                     key={c.id}
                     condition={c}
-                    options={ENTRY_TYPES as Parameters<typeof ConditionRow>[0]["options"]}
+                    options={ENTRY_TYPES}
                     onChange={updateEntry}
                     onRemove={() => removeEntry(c.id)}
                   />
@@ -1332,7 +1330,7 @@ export default function StrategyLab() {
                   <ConditionRow
                     key={c.id}
                     condition={c}
-                    options={EXIT_TYPES as Parameters<typeof ConditionRow>[0]["options"]}
+                    options={EXIT_TYPES}
                     onChange={updateExit}
                     onRemove={() => removeExit(c.id)}
                   />
