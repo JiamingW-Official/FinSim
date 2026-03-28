@@ -66,6 +66,9 @@ import { UNIT_BANKING_SYSTEM } from "./unit-banking-system";
 import { UNIT_RETIREMENT_PLANNING } from "./unit-retirement-planning";
 import { UNIT_TAX_PLANNING } from "./unit-tax-planning";
 import { UNIT_EMERGING_MARKETS } from "./unit-emerging-markets";
+import { UNIT_RISK_ANALYTICS } from "./unit-risk-analytics";
+import { UNIT_CONSUMER_RETAIL } from "./unit-consumer-retail";
+import { UNIT_PORTFOLIO_STRESS } from "./unit-portfolio-stress";
 
 export const UNITS: Unit[] = [
   UNIT_BASICS,
@@ -135,6 +138,9 @@ export const UNITS: Unit[] = [
   UNIT_RETIREMENT_PLANNING,
   UNIT_TAX_PLANNING,
   UNIT_EMERGING_MARKETS,
+  UNIT_RISK_ANALYTICS,
+  UNIT_CONSUMER_RETAIL,
+  UNIT_PORTFOLIO_STRESS,
 ];
 
 export function getLessonById(lessonId: string): Lesson | undefined {
