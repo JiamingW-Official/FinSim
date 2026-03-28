@@ -1671,9 +1671,509 @@ function LoanCalculatorTab() {
   );
 }
 
+// ─── TAB 6: MACRO SIMULATOR ───────────────────────────────────────────────
+
+interface MacroVars {
+  gdpGrowth: number;       // -5 to +8
+  inflation: number;       // 0 to 15
+  fedFundsRate: number;    // 0 to 10
+  unemployment: number;    // 2 to 15
+  treasury10y: number;     // 0 to 10
+  dxy: number;             // 80 to 120
+  vix: number;             // 10 to 80
+}
+
+const MACRO_DEFAULTS: MacroVars = {
+  gdpGrowth: 2.5,
+  inflation: 3.0,
+  fedFundsRate: 4.5,
+  unemployment: 4.0,
+  treasury10y: 4.3,
+  dxy: 103,
+  vix: 18,
+};
+
+// Historical averages (for radar comparison)
+const MACRO_AVG: MacroVars = {
+  gdpGrowth: 2.5,
+  inflation: 3.0,
+  fedFundsRate: 3.0,
+  unemployment: 5.5,
+  treasury10y: 4.0,
+  dxy: 100,
+  vix: 20,
+};
+
+const MACRO_SCENARIOS: { id: string; label: string; desc: string; vars: MacroVars }[] = [
+  {
+    id: "stagflation",
+    label: "Stagflation 1970s",
+    desc: "High inflation, low growth, high rates",
+    vars: { gdpGrowth: -0.5, inflation: 10.5, fedFundsRate: 8.5, unemployment: 8.0, treasury10y: 9.0, dxy: 88, vix: 38 },
+  },
+  {
+    id: "crisis2008",
+    label: "2008 Crisis",
+    desc: "High unemployment, near-zero rates, recession",
+    vars: { gdpGrowth: -3.5, inflation: 1.5, fedFundsRate: 0.25, unemployment: 10.0, treasury10y: 2.2, dxy: 85, vix: 60 },
+  },
+  {
+    id: "recovery2020",
+    label: "2020 Recovery",
+    desc: "Post-COVID stimulus, low rates, high growth",
+    vars: { gdpGrowth: 5.7, inflation: 4.0, fedFundsRate: 0.1, unemployment: 5.4, treasury10y: 1.5, dxy: 90, vix: 25 },
+  },
+  {
+    id: "hikecycle2022",
+    label: "2022 Rate Hike",
+    desc: "High inflation, rapid rate increases",
+    vars: { gdpGrowth: 2.1, inflation: 8.5, fedFundsRate: 4.25, unemployment: 3.6, treasury10y: 4.2, dxy: 112, vix: 30 },
+  },
+  {
+    id: "softlanding",
+    label: "Soft Landing",
+    desc: "Inflation cooling, moderate growth, rate cuts",
+    vars: { gdpGrowth: 2.3, inflation: 2.5, fedFundsRate: 3.0, unemployment: 4.2, treasury10y: 3.5, dxy: 98, vix: 15 },
+  },
+];
+
+// Asset impact model — simplified linear relationships
+// Returns expected % return for each asset class
+function computeAssetImpacts(v: MacroVars): {
+  sp500: number;
+  qqq: number;
+  iwm: number;
+  tlt: number;
+  gold: number;
+  intl: number;
+} {
+  // S&P 500: loves GDP growth, hates high rates + VIX spikes
+  const sp500 =
+    v.gdpGrowth * 3.5 -
+    Math.max(0, v.inflation - 3) * 1.8 -
+    Math.max(0, v.fedFundsRate - 3) * 1.5 -
+    Math.max(0, v.vix - 20) * 0.3;
+
+  // QQQ (growth stocks): extra sensitive to rates (duration risk)
+  const qqq =
+    sp500 +
+    v.gdpGrowth * 1.2 -
+    Math.max(0, v.fedFundsRate - 2) * 2.5 -
+    Math.max(0, v.treasury10y - 3) * 2.0;
+
+  // IWM (small caps/value): benefits from domestic growth, less rate-sensitive
+  const iwm =
+    sp500 +
+    v.gdpGrowth * 0.8 +
+    Math.max(0, v.inflation - 2) * 0.5 -
+    Math.max(0, v.unemployment - 5) * 1.2;
+
+  // TLT (long bonds): inverse of rates
+  const tlt =
+    (MACRO_AVG.treasury10y - v.treasury10y) * 18 -
+    Math.max(0, v.inflation - 3) * 1.5;
+
+  // Gold: inflation hedge, fear asset
+  const gold =
+    Math.max(0, v.inflation - 3) * 2.5 +
+    Math.max(0, v.vix - 20) * 0.4 -
+    Math.max(0, v.fedFundsRate - 2) * 0.8 +
+    (100 - v.dxy) * 0.3;
+
+  // International stocks: hurt by strong USD, benefit from weak USD
+  const intl =
+    sp500 * 0.7 +
+    (100 - v.dxy) * 0.35 +
+    v.gdpGrowth * 0.9;
+
+  return {
+    sp500: Math.round(sp500 * 10) / 10,
+    qqq: Math.round(qqq * 10) / 10,
+    iwm: Math.round(iwm * 10) / 10,
+    tlt: Math.round(tlt * 10) / 10,
+    gold: Math.round(gold * 10) / 10,
+    intl: Math.round(intl * 10) / 10,
+  };
+}
+
+// Radar chart: normalize each var to 0..1 (0 = best, 1 = worst/most extreme)
+function normalizeForRadar(v: MacroVars): number[] {
+  return [
+    // GDP growth: low (negative) = risky = 1, high = safe = 0
+    1 - (v.gdpGrowth + 5) / 13,
+    // Inflation: high = risky
+    v.inflation / 15,
+    // Fed funds: high = risky
+    v.fedFundsRate / 10,
+    // Unemployment: high = risky
+    (v.unemployment - 2) / 13,
+    // 10Y: high = risky for stocks
+    v.treasury10y / 10,
+    // DXY: very high or very low both bad; peak risk at extremes
+    Math.abs(v.dxy - 100) / 20,
+    // VIX: high = risky
+    (v.vix - 10) / 70,
+  ];
+}
+
+// Simulated portfolio positions for stress test
+const STRESS_SECTORS = [
+  { label: "Tech (QQQ)", weight: 0.30, assetKey: "qqq" as const },
+  { label: "S&P 500 (SPY)", weight: 0.25, assetKey: "sp500" as const },
+  { label: "Small Cap (IWM)", weight: 0.15, assetKey: "iwm" as const },
+  { label: "Long Bonds (TLT)", weight: 0.15, assetKey: "tlt" as const },
+  { label: "Gold (GLD)", weight: 0.10, assetKey: "gold" as const },
+  { label: "Intl Stocks (EFA)", weight: 0.05, assetKey: "intl" as const },
+];
+
+function MacroRadarChart({ current, avg }: { current: number[]; avg: number[] }) {
+  const W = 280;
+  const H = 280;
+  const cx = W / 2;
+  const cy = H / 2;
+  const R = 100;
+  const N = 7;
+  const labels = ["GDP Growth", "Inflation", "Fed Rate", "Unemployment", "10Y Yield", "DXY", "VIX"];
+
+  const angle = (i: number) => (Math.PI * 2 * i) / N - Math.PI / 2;
+  const point = (r: number, i: number) => ({
+    x: cx + r * Math.cos(angle(i)),
+    y: cy + r * Math.sin(angle(i)),
+  });
+
+  // Danger zones: > 0.7 normalized = red, 0.4-0.7 = amber
+  const spokeColor = (val: number) =>
+    val > 0.7 ? "rgb(239,68,68)" : val > 0.4 ? "rgb(234,179,8)" : "rgb(34,197,94)";
+
+  const buildPath = (vals: number[]) =>
+    vals
+      .map((v, i) => {
+        const p = point(R * v, i);
+        return `${i === 0 ? "M" : "L"}${p.x.toFixed(1)},${p.y.toFixed(1)}`;
+      })
+      .join(" ") + "Z";
+
+  return (
+    <svg viewBox={`0 0 ${W} ${H}`} className="w-full h-auto max-w-[280px]">
+      {/* Grid rings */}
+      {[0.25, 0.5, 0.75, 1.0].map((r, ri) => (
+        <polygon
+          key={`ring-${ri}`}
+          points={Array.from({ length: N }, (_, i) => {
+            const p = point(R * r, i);
+            return `${p.x.toFixed(1)},${p.y.toFixed(1)}`;
+          }).join(" ")}
+          fill="none"
+          stroke="currentColor"
+          className="text-border"
+          strokeWidth={0.5}
+        />
+      ))}
+
+      {/* Spokes */}
+      {Array.from({ length: N }, (_, i) => {
+        const p = point(R, i);
+        return (
+          <line
+            key={`spoke-${i}`}
+            x1={cx}
+            y1={cy}
+            x2={p.x}
+            y2={p.y}
+            stroke="currentColor"
+            className="text-border"
+            strokeWidth={0.5}
+          />
+        );
+      })}
+
+      {/* Historical average outline */}
+      <path
+        d={buildPath(avg)}
+        fill="rgba(148,163,184,0.08)"
+        stroke="rgb(148,163,184)"
+        strokeWidth={1}
+        strokeDasharray="4,3"
+      />
+
+      {/* Current scenario fill */}
+      <path
+        d={buildPath(current)}
+        fill="rgba(14,165,233,0.12)"
+        stroke="rgb(14,165,233)"
+        strokeWidth={1.5}
+      />
+
+      {/* Danger-colored dots on current */}
+      {current.map((v, i) => {
+        const p = point(R * v, i);
+        return (
+          <circle key={`dot-${i}`} cx={p.x} cy={p.y} r={3.5} fill={spokeColor(v)} />
+        );
+      })}
+
+      {/* Labels */}
+      {labels.map((lbl, i) => {
+        const p = point(R * 1.22, i);
+        return (
+          <text
+            key={`lbl-${i}`}
+            x={p.x}
+            y={p.y}
+            textAnchor="middle"
+            dominantBaseline="middle"
+            fontSize={8.5}
+            fill="currentColor"
+            className="text-muted-foreground"
+          >
+            {lbl}
+          </text>
+        );
+      })}
+    </svg>
+  );
+}
+
+function MacroSimulatorTab() {
+  const [vars, setVars] = useState<MacroVars>(MACRO_DEFAULTS);
+  const setVar = useCallback(<K extends keyof MacroVars>(key: K, val: number) => {
+    setVars((prev) => ({ ...prev, [key]: val }));
+  }, []);
+
+  const impacts = useMemo(() => computeAssetImpacts(vars), [vars]);
+  const radarCurrent = useMemo(() => normalizeForRadar(vars), [vars]);
+  const radarAvg = useMemo(() => normalizeForRadar(MACRO_AVG), []);
+
+  // Portfolio stress test
+  const PORTFOLIO_VALUE = 100000;
+  const stressResults = useMemo(() =>
+    STRESS_SECTORS.map((s) => ({
+      ...s,
+      impact: impacts[s.assetKey],
+      dollarImpact: PORTFOLIO_VALUE * s.weight * (impacts[s.assetKey] / 100),
+    })),
+  [impacts]);
+
+  const totalImpact = stressResults.reduce((sum, s) => sum + s.dollarImpact, 0);
+  const totalImpactPct = (totalImpact / PORTFOLIO_VALUE) * 100;
+
+  // Best/worst case: ±1 std using VIX-based vol estimate
+  const vixFactor = vars.vix / 20; // 1.0 at VIX=20
+  const bestCase = totalImpactPct + 8 * vixFactor;
+  const worstCase = totalImpactPct - 10 * vixFactor;
+
+  const varRows: {
+    key: keyof MacroVars;
+    label: string;
+    min: number;
+    max: number;
+    step: number;
+    suffix: string;
+    fmt: (n: number) => string;
+  }[] = [
+    { key: "gdpGrowth", label: "GDP Growth Rate", min: -5, max: 8, step: 0.1, suffix: "%", fmt: (n) => `${n >= 0 ? "+" : ""}${n.toFixed(1)}%` },
+    { key: "inflation", label: "Inflation (CPI)", min: 0, max: 15, step: 0.1, suffix: "%", fmt: (n) => `${n.toFixed(1)}%` },
+    { key: "fedFundsRate", label: "Fed Funds Rate", min: 0, max: 10, step: 0.25, suffix: "%", fmt: (n) => `${n.toFixed(2)}%` },
+    { key: "unemployment", label: "Unemployment Rate", min: 2, max: 15, step: 0.1, suffix: "%", fmt: (n) => `${n.toFixed(1)}%` },
+    { key: "treasury10y", label: "10Y Treasury Yield", min: 0, max: 10, step: 0.1, suffix: "%", fmt: (n) => `${n.toFixed(2)}%` },
+    { key: "dxy", label: "Dollar Index (DXY)", min: 80, max: 120, step: 0.5, suffix: "", fmt: (n) => n.toFixed(1) },
+    { key: "vix", label: "VIX (Fear Index)", min: 10, max: 80, step: 1, suffix: "", fmt: (n) => n.toFixed(0) },
+  ];
+
+  const assetRows: { label: string; key: keyof typeof impacts }[] = [
+    { label: "S&P 500 (SPY)", key: "sp500" },
+    { label: "Growth Tech (QQQ)", key: "qqq" },
+    { label: "Small Cap (IWM)", key: "iwm" },
+    { label: "Long Bonds (TLT)", key: "tlt" },
+    { label: "Gold (GLD)", key: "gold" },
+    { label: "Intl Stocks (EFA)", key: "intl" },
+  ];
+
+  return (
+    <div className="space-y-6">
+      {/* Scenario presets */}
+      <Card>
+        <CardHeader className="pb-3">
+          <CardTitle className="text-sm font-medium">Scenario Templates</CardTitle>
+          <p className="text-xs text-muted-foreground">Quick-load historical macro regimes</p>
+        </CardHeader>
+        <CardContent>
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-3">
+            {MACRO_SCENARIOS.map((s) => (
+              <button
+                key={s.id}
+                onClick={() => setVars(s.vars)}
+                className="rounded-lg border border-border/60 bg-card p-3 text-left transition-colors hover:border-primary/50 hover:bg-primary/5"
+              >
+                <p className="text-xs font-medium leading-tight">{s.label}</p>
+                <p className="text-[10px] text-muted-foreground mt-1 leading-tight">{s.desc}</p>
+              </button>
+            ))}
+            <button
+              onClick={() => setVars(MACRO_DEFAULTS)}
+              className="rounded-lg border border-border/60 bg-card p-3 text-left transition-colors hover:border-primary/50 hover:bg-primary/5"
+            >
+              <p className="text-xs font-medium leading-tight">Reset to Default</p>
+              <p className="text-[10px] text-muted-foreground mt-1 leading-tight">Current macro baseline</p>
+            </button>
+          </div>
+        </CardContent>
+      </Card>
+
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+        {/* Economic Variables sliders */}
+        <Card>
+          <CardHeader className="pb-3">
+            <CardTitle className="text-sm font-medium">Economic Variables</CardTitle>
+          </CardHeader>
+          <CardContent className="space-y-5">
+            {varRows.map(({ key, label, min, max, step, fmt: fmtFn }) => {
+              const val = vars[key];
+              const isDanger = key === "vix" ? val > 35 : key === "inflation" ? val > 7 : false;
+              const isWarn = key === "vix" ? val > 22 : key === "inflation" ? val > 4 : false;
+              return (
+                <div key={key} className="space-y-1.5">
+                  <div className="flex justify-between text-xs">
+                    <span className="text-muted-foreground">{label}</span>
+                    <span
+                      className={`font-mono font-medium ${
+                        isDanger ? "text-red-400" : isWarn ? "text-yellow-500" : "text-foreground"
+                      }`}
+                    >
+                      {fmtFn(val)}
+                    </span>
+                  </div>
+                  <Slider
+                    min={min}
+                    max={max}
+                    step={step}
+                    value={[val]}
+                    onValueChange={([v]) => setVar(key, v)}
+                  />
+                </div>
+              );
+            })}
+          </CardContent>
+        </Card>
+
+        <div className="space-y-4">
+          {/* Asset Impact Model */}
+          <Card>
+            <CardHeader className="pb-3">
+              <CardTitle className="text-sm font-medium">Asset Impact Model</CardTitle>
+              <p className="text-xs text-muted-foreground">Expected annual return given current macro inputs</p>
+            </CardHeader>
+            <CardContent className="space-y-2">
+              {assetRows.map(({ label, key }) => {
+                const val = impacts[key];
+                const isPos = val >= 0;
+                const barPct = Math.min(100, Math.abs(val) * 4);
+                return (
+                  <div key={key} className="space-y-1">
+                    <div className="flex justify-between text-xs">
+                      <span className="text-muted-foreground">{label}</span>
+                      <span className={`font-mono font-medium ${isPos ? "text-green-500" : "text-red-400"}`}>
+                        {isPos ? "+" : ""}{val.toFixed(1)}%
+                      </span>
+                    </div>
+                    <div className="relative h-1.5 rounded-full bg-muted overflow-hidden">
+                      <div
+                        className={`absolute inset-y-0 rounded-full transition-all duration-300 ${
+                          isPos ? "left-1/2 bg-green-500" : "right-1/2 bg-red-400"
+                        }`}
+                        style={{ width: `${barPct / 2}%` }}
+                      />
+                    </div>
+                  </div>
+                );
+              })}
+            </CardContent>
+          </Card>
+
+          {/* Radar chart */}
+          <Card>
+            <CardHeader className="pb-2">
+              <CardTitle className="text-sm font-medium">Macro Environment Radar</CardTitle>
+              <p className="text-xs text-muted-foreground">Blue = current. Gray dashed = historical avg. Outer = extreme risk.</p>
+            </CardHeader>
+            <CardContent className="flex justify-center">
+              <MacroRadarChart current={radarCurrent} avg={radarAvg} />
+            </CardContent>
+          </Card>
+        </div>
+      </div>
+
+      {/* Portfolio Stress Test */}
+      <Card>
+        <CardHeader className="pb-3">
+          <CardTitle className="text-sm font-medium">Portfolio Stress Test</CardTitle>
+          <p className="text-xs text-muted-foreground">
+            Simulated $100K balanced portfolio — sector-by-sector estimated P&L under current macro scenario
+          </p>
+        </CardHeader>
+        <CardContent>
+          <div className="space-y-3">
+            {/* Sector rows */}
+            {stressResults.map((s) => {
+              const pos = s.dollarImpact >= 0;
+              return (
+                <div key={s.label} className="flex items-center gap-3 text-xs">
+                  <span className="w-36 shrink-0 text-muted-foreground">{s.label}</span>
+                  <span className="w-14 shrink-0 text-muted-foreground text-right font-mono">
+                    {(s.weight * 100).toFixed(0)}%
+                  </span>
+                  {/* bar */}
+                  <div className="flex-1 relative h-2 rounded-full bg-muted overflow-hidden">
+                    <div
+                      className={`absolute inset-y-0 rounded-full transition-all duration-300 ${pos ? "left-1/2 bg-green-500" : "right-1/2 bg-red-400"}`}
+                      style={{ width: `${Math.min(50, Math.abs(s.impact) * 2)}%` }}
+                    />
+                  </div>
+                  <span className={`w-20 shrink-0 text-right font-mono font-medium ${pos ? "text-green-500" : "text-red-400"}`}>
+                    {pos ? "+" : ""}{fmtK(s.dollarImpact)}
+                  </span>
+                </div>
+              );
+            })}
+
+            <div className="border-t border-border/60 pt-3 mt-3">
+              <div className="grid grid-cols-3 gap-4">
+                <div className="rounded-lg border border-border/60 p-3 space-y-0.5">
+                  <p className="text-xs text-muted-foreground">Portfolio P&L</p>
+                  <p className={`text-base font-semibold font-mono ${totalImpact >= 0 ? "text-green-500" : "text-red-400"}`}>
+                    {totalImpact >= 0 ? "+" : ""}{fmtK(totalImpact)}
+                  </p>
+                  <p className="text-[10px] text-muted-foreground">{totalImpactPct >= 0 ? "+" : ""}{totalImpactPct.toFixed(1)}%</p>
+                </div>
+                <div className="rounded-lg border border-green-500/30 bg-green-500/5 p-3 space-y-0.5">
+                  <p className="text-xs text-muted-foreground">Best Case</p>
+                  <p className="text-base font-semibold font-mono text-green-500">
+                    +{fmtK(PORTFOLIO_VALUE * (bestCase / 100))}
+                  </p>
+                  <p className="text-[10px] text-muted-foreground">+{bestCase.toFixed(1)}%</p>
+                </div>
+                <div className="rounded-lg border border-red-500/30 bg-red-500/5 p-3 space-y-0.5">
+                  <p className="text-xs text-muted-foreground">Worst Case</p>
+                  <p className="text-base font-semibold font-mono text-red-400">
+                    {fmtK(PORTFOLIO_VALUE * (worstCase / 100))}
+                  </p>
+                  <p className="text-[10px] text-muted-foreground">{worstCase.toFixed(1)}%</p>
+                </div>
+              </div>
+              <p className="text-[10px] text-muted-foreground mt-2">
+                Best/worst case adds VIX-scaled volatility band ({(vars.vix / 20).toFixed(1)}x) to base estimate.
+              </p>
+            </div>
+          </div>
+        </CardContent>
+      </Card>
+    </div>
+  );
+}
+
 // ─── PAGE ──────────────────────────────────────────────────────────────────
 
-type Tab = "twin" | "compound" | "scenario" | "tax" | "loan";
+type Tab = "twin" | "compound" | "scenario" | "tax" | "loan" | "macro";
 
 const TABS: { id: Tab; label: string }[] = [
   { id: "twin", label: "Digital Twin" },
@@ -1681,6 +2181,7 @@ const TABS: { id: Tab; label: string }[] = [
   { id: "scenario", label: "Scenario Simulator" },
   { id: "tax", label: "Tax Calculator" },
   { id: "loan", label: "Loan Calculator" },
+  { id: "macro", label: "Macro Simulator" },
 ];
 
 export default function ToolsPage() {

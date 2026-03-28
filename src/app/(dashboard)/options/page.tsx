@@ -282,6 +282,16 @@ export default function OptionsPage() {
                     chain={chain}
                   />
                 </TabsContent>
+
+                {/* Greeks Monitor tab */}
+                <TabsContent value="greeks-monitor" className="mt-0 flex-1 overflow-auto data-[state=inactive]:hidden">
+                  <GreeksMonitor
+                    positions={positions}
+                    spotPrice={spotPrice}
+                    analytics={analytics}
+                    chain={chain}
+                  />
+                </TabsContent>
               </>
             )}
           </div>
