@@ -1109,6 +1109,8 @@ export const useTradingStore = create<TradingState>()(
         tradeHistory: state.tradeHistory,
         portfolioValue: state.portfolioValue,
         equityHistory: state.equityHistory,
+        marginUsed: state.marginUsed,
+        marginLimit: state.marginLimit,
       }),
     },
   ),
