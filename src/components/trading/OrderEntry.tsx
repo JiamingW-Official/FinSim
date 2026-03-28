@@ -356,7 +356,10 @@ export function OrderEntry() {
   const placeOCOOrder = useTradingStore((s) => s.placeOCOOrder);
   const placeTrailingStopOrder = useTradingStore((s) => s.placeTrailingStopOrder);
   const placeConditionalOrder = useTradingStore((s) => s.placeConditionalOrder);
+  const coverShortOrder = useTradingStore((s) => s.coverShortOrder);
+  const borrowRates = useTradingStore((s) => s.borrowRates);
   const recordTrade = useGameStore((s) => s.recordTrade);
+  const borrowRate = borrowRates[currentTicker] ?? 1.0;
 
   const price = currentBar?.close ?? 0;
   const priceFlash = usePriceFlash(price || undefined);
@@ -373,7 +376,12 @@ export function OrderEntry() {
     orderType === "market" &&
     qty > 0 &&
     price > 0 &&
-    (side === "buy" ? estimatedCost + commission <= cash : true);
+    (tradeMode === "buy"
+      ? estimatedCost + commission <= cash || (shortPosition?.quantity ?? 0) > 0
+      : tradeMode === "sell"
+        ? (position?.quantity ?? 0) > 0
+        : true /* short: always allowed */
+    );
   const canExecuteLimit = orderType === "limit" && qty > 0 && parseFloat(limitPrice) > 0;
   const canExecuteStop =
     orderType === "stop_loss" && qty > 0 && parseFloat(stopPrice) > 0 && (position || shortPosition);
@@ -412,25 +420,47 @@ export function OrderEntry() {
     const simDate = currentBar.timestamp;
 
     if (orderType === "market") {
-      if (side === "buy") {
-        const order = placeBuyOrder(currentTicker, qty, price, simDate);
-        if (order) {
-          triggerTradeFlash("buy");
-          soundEngine.playBuy();
-          toast.success(`Bought ${qty} ${currentTicker} @ ${formatCurrency(order.avgFillPrice)}`);
-          recordTrade(0, currentTicker, false, false);
-          setTradeFeedback({
-            type: "buy",
-            ticker: currentTicker,
-            quantity: qty,
-            price: order.avgFillPrice,
-            avgCost: position ? position.avgPrice : order.avgFillPrice,
-          });
+      if (tradeMode === "buy") {
+        // If there's a short position, cover it first
+        if (shortPosition && shortPosition.quantity > 0) {
+          const coverQty = Math.min(qty, shortPosition.quantity);
+          const order = coverShortOrder(currentTicker, coverQty, price, simDate);
+          if (order) {
+            triggerTradeFlash("buy");
+            soundEngine.playBuy();
+            toast.success(`Covered ${coverQty} ${currentTicker} short @ ${formatCurrency(order.avgFillPrice)}`);
+            recordTrade(shortPosition.unrealizedPnL * (coverQty / shortPosition.quantity), currentTicker, false, false);
+          }
+          // Any remaining qty buys long
+          const remainingBuy = qty - coverQty;
+          if (remainingBuy > 0) {
+            const buyOrder = placeBuyOrder(currentTicker, remainingBuy, price, simDate);
+            if (buyOrder) {
+              triggerTradeFlash("buy");
+              soundEngine.playBuy();
+              toast.success(`Bought ${remainingBuy} ${currentTicker} @ ${formatCurrency(buyOrder.avgFillPrice)}`);
+            }
+          }
         } else {
-          soundEngine.playError();
-          toast.error("Insufficient funds");
+          const order = placeBuyOrder(currentTicker, qty, price, simDate);
+          if (order) {
+            triggerTradeFlash("buy");
+            soundEngine.playBuy();
+            toast.success(`Bought ${qty} ${currentTicker} @ ${formatCurrency(order.avgFillPrice)}`);
+            recordTrade(0, currentTicker, false, false);
+            setTradeFeedback({
+              type: "buy",
+              ticker: currentTicker,
+              quantity: qty,
+              price: order.avgFillPrice,
+              avgCost: position ? position.avgPrice : order.avgFillPrice,
+            });
+          } else {
+            soundEngine.playError();
+            toast.error("Insufficient funds");
+          }
         }
-      } else {
+      } else if (tradeMode === "sell") {
         if (position && position.quantity >= qty) {
           const order = placeSellOrder(currentTicker, qty, price, simDate);
           if (order) {
@@ -450,17 +480,26 @@ export function OrderEntry() {
             });
           }
         } else {
-          if (position && position.quantity > 0) {
-            placeSellOrder(currentTicker, position.quantity, price, simDate);
-            const shortQty = qty - position.quantity;
-            if (shortQty > 0) placeShortOrder(currentTicker, shortQty, price, simDate);
-          } else {
-            placeShortOrder(currentTicker, qty, price, simDate);
-          }
+          soundEngine.playError();
+          toast.error("No long position to sell. Use SHORT to borrow and short sell.");
+        }
+      } else {
+        // tradeMode === "short": explicit short sell
+        const order = placeShortOrder(currentTicker, qty, price, simDate);
+        if (order) {
           triggerTradeFlash("sell");
           soundEngine.playSell();
-          toast.success(`Short sold ${qty} ${currentTicker}`);
+          toast.success(`Short sold ${qty} ${currentTicker} @ ${formatCurrency(order.avgFillPrice)}`);
           recordTrade(0, currentTicker, true, false);
+          setTradeFeedback({
+            type: "sell",
+            ticker: currentTicker,
+            quantity: qty,
+            price: order.avgFillPrice,
+          });
+        } else {
+          soundEngine.playError();
+          toast.error("Could not place short order");
         }
       }
     } else if (orderType === "limit") {
@@ -575,14 +614,14 @@ export function OrderEntry() {
         </span>
       </div>
 
-      {/* Buy / Sell Toggle */}
-      <div className="grid grid-cols-2 gap-1 rounded-md bg-muted p-0.5">
+      {/* Buy / Sell / Short Toggle */}
+      <div className="grid grid-cols-3 gap-1 rounded-md bg-muted p-0.5">
         <button
           type="button"
-          onClick={() => setSide("buy")}
+          onClick={() => setTradeMode("buy")}
           className={cn(
             "rounded py-1.5 text-xs font-semibold transition-all duration-200",
-            side === "buy"
+            tradeMode === "buy"
               ? "bg-[#10b981] text-white shadow-[0_0_12px_rgba(16,185,129,0.35)]"
               : "text-muted-foreground hover:text-foreground",
           )}
@@ -594,10 +633,10 @@ export function OrderEntry() {
         </button>
         <button
           type="button"
-          onClick={() => setSide("sell")}
+          onClick={() => setTradeMode("sell")}
           className={cn(
             "rounded py-1.5 text-xs font-semibold transition-all duration-200",
-            side === "sell"
+            tradeMode === "sell"
               ? "bg-[#ef4444] text-white shadow-[0_0_12px_rgba(239,68,68,0.35)]"
               : "text-muted-foreground hover:text-foreground",
           )}
@@ -607,7 +646,62 @@ export function OrderEntry() {
             SELL
           </span>
         </button>
+        <button
+          type="button"
+          onClick={() => setTradeMode("short")}
+          className={cn(
+            "rounded py-1.5 text-xs font-semibold transition-all duration-200",
+            tradeMode === "short"
+              ? "bg-[#a855f7] text-white shadow-[0_0_12px_rgba(168,85,247,0.35)]"
+              : "text-muted-foreground hover:text-foreground",
+          )}
+        >
+          <span className="inline-flex items-center gap-1">
+            <ArrowDownLeft className="h-3 w-3" />
+            SHORT
+          </span>
+        </button>
       </div>
+
+      {/* Short mode: borrow rate + risk warning */}
+      <AnimatePresence initial={false}>
+        {tradeMode === "short" && (
+          <motion.div
+            initial={{ height: 0, opacity: 0 }}
+            animate={{ height: "auto", opacity: 1 }}
+            exit={{ height: 0, opacity: 0 }}
+            transition={{ duration: 0.18 }}
+            className="overflow-hidden"
+          >
+            <div className="space-y-1.5 rounded-md border border-[#a855f7]/20 bg-[#a855f7]/5 p-2">
+              <div className="flex items-center justify-between text-[10px]">
+                <span className="text-muted-foreground">Borrow Rate (annual)</span>
+                <span className="font-semibold tabular-nums text-[#a855f7]">{borrowRate.toFixed(2)}%</span>
+              </div>
+              <div className="flex items-center justify-between text-[10px]">
+                <span className="text-muted-foreground">Daily Cost ({qty > 0 && price > 0 ? `${qty} shares` : "—"})</span>
+                <span className="tabular-nums text-muted-foreground">
+                  {qty > 0 && price > 0
+                    ? formatCurrency(qty * price * (borrowRate / 100 / 365))
+                    : "—"}
+                </span>
+              </div>
+              {shortPosition && (
+                <div className="flex items-center justify-between text-[10px]">
+                  <span className="text-muted-foreground">Short Interest</span>
+                  <span className="font-medium tabular-nums text-[#a855f7]">
+                    {shortPosition.quantity} shares @ {formatCurrency(shortPosition.avgPrice)}
+                  </span>
+                </div>
+              )}
+              <div className="flex items-start gap-1.5 rounded bg-[#ef4444]/10 px-2 py-1.5 text-[10px] text-[#ef4444]">
+                <AlertTriangle className="mt-0.5 h-3 w-3 shrink-0" />
+                <span className="font-medium">Maximum loss is unlimited — price can rise indefinitely.</span>
+              </div>
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
 
       {/* Order Type Selector */}
       <div className="grid grid-cols-4 gap-0.5 rounded-md bg-muted p-0.5">
@@ -727,7 +821,7 @@ export function OrderEntry() {
           <div className="flex items-center justify-between text-xs">
             <span className="inline-flex items-center gap-1 text-muted-foreground">
               <DollarSign className="h-3 w-3" />
-              {side === "buy" ? "Est. Cost" : "Est. Proceeds"}
+              {tradeMode === "buy" ? "Est. Cost" : tradeMode === "short" ? "Short Proceeds" : "Est. Proceeds"}
             </span>
             <AnimatedNumber
               value={estimatedCost}
@@ -789,13 +883,19 @@ export function OrderEntry() {
             "w-full font-semibold transition-all duration-200",
             orderType !== "market"
               ? "bg-[#f59e0b] hover:bg-[#d97706] text-white hover:shadow-[0_0_15px_rgba(245,158,11,0.3)]"
-              : side === "buy"
+              : tradeMode === "buy"
                 ? "bg-[#10b981] hover:bg-[#059669] text-white hover:shadow-[0_0_15px_rgba(16,185,129,0.3)]"
-                : "bg-[#ef4444] hover:bg-[#dc2626] text-white hover:shadow-[0_0_15px_rgba(239,68,68,0.3)]",
+                : tradeMode === "short"
+                  ? "bg-[#a855f7] hover:bg-[#9333ea] text-white hover:shadow-[0_0_15px_rgba(168,85,247,0.3)]"
+                  : "bg-[#ef4444] hover:bg-[#dc2626] text-white hover:shadow-[0_0_15px_rgba(239,68,68,0.3)]",
           )}
         >
           {orderType === "market"
-            ? `${side === "buy" ? "BUY" : "SELL"} ${currentTicker}`
+            ? tradeMode === "buy"
+              ? `BUY ${currentTicker}`
+              : tradeMode === "short"
+                ? `SHORT SELL ${currentTicker}`
+                : `SELL ${currentTicker}`
             : `PLACE ${orderType.replace("_", " ").toUpperCase()}`}
         </Button>
       </motion.div>

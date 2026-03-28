@@ -10,6 +10,7 @@ import { PnLCalendar } from "@/components/journal/PnLCalendar";
 import { TradeLogTable, TagStatsChart, loadTradeTags } from "@/components/journal/TradeLogTable";
 import { JournalNotes } from "@/components/journal/JournalNotes";
 import { PerformanceInsights } from "@/components/journal/PerformanceInsights";
+import { WeeklyReview } from "@/components/analytics/WeeklyReview";
 
 const JournalEquityCurve = dynamic(
   () => import("@/components/journal/EquityCurve").then((m) => m.JournalEquityCurve),

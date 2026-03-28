@@ -6,7 +6,7 @@ import {
   Home, BarChart3, Briefcase, FlaskConical, GraduationCap,
   Swords, ScrollText, Crosshair, Trophy, User, Settings, Activity,
   TrendingUp, Globe, ChevronLeft, ChevronRight, BookOpen, Bitcoin,
-  ScanLine,
+  ScanLine, GitCompare, Users,
 } from "lucide-react";
 import { Tooltip, TooltipTrigger, TooltipContent } from "@/components/ui/tooltip";
 import { SearchTrigger } from "@/components/search/GlobalSearch";
@@ -64,6 +64,7 @@ const NAV_GROUPS: NavGroup[] = [
       { icon: FlaskConical, label: "Backtest",     href: "/backtest" },
       { icon: TrendingUp,   label: "Predictions",  href: "/predictions" },
       { icon: ScanLine,     label: "Scanner",      href: "/scanner" },
+      { icon: GitCompare,   label: "Pairs",        href: "/pairs" },
       { icon: Globe,        label: "Market Intel", href: "/market" },
       { icon: Bitcoin,      label: "Crypto",       href: "/crypto" },
     ],
@@ -79,8 +80,9 @@ const NAV_GROUPS: NavGroup[] = [
     ],
   },
   {
-    section: "Community",
+    section: "Social",
     items: [
+      { icon: Users,  label: "Community",   href: "/community" },
       { icon: Trophy, label: "Leaderboard", href: "/leaderboard", badgeKey: "achievements" },
       { icon: User,   label: "Profile",     href: "/profile" },
     ],

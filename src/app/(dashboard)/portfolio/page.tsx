@@ -48,6 +48,8 @@ import { PortfolioOptimizer } from "@/components/portfolio/PortfolioOptimizer";
 import { EfficientFrontier } from "@/components/portfolio/EfficientFrontier";
 import { DividendTracker } from "@/components/portfolio/DividendTracker";
 import { PortfolioAttribution } from "@/components/portfolio/PortfolioAttribution";
+import { LivePnLDashboard } from "@/components/portfolio/LivePnLDashboard";
+import { WeeklyReview } from "@/components/analytics/WeeklyReview";
 
 const EquityCurve = dynamic(
   () =>
@@ -193,6 +195,9 @@ export default function PortfolioPage() {
 
             {/* ── Overview tab ── */}
             <TabsContent value="overview" className="space-y-4">
+              {/* Live P&L Dashboard — prominent first widget */}
+              <LivePnLDashboard />
+
               <div className="rounded-lg border border-border bg-card p-3">
                 <div className="mb-2 flex items-center gap-1.5 text-xs font-medium text-muted-foreground">
                   <BarChart3 className="h-3.5 w-3.5 text-blue-400" />
@@ -233,6 +238,11 @@ export default function PortfolioPage() {
                   Performance Metrics
                 </div>
                 <PerformanceMetrics />
+              </div>
+
+              {/* Weekly Review card */}
+              <div>
+                <WeeklyReview />
               </div>
             </TabsContent>
 
