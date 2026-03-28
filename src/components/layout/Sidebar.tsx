@@ -78,6 +78,7 @@ const NAV_GROUPS: NavGroup[] = [
       { icon: LayoutGrid,   label: "Sectors",      href: "/sectors" },
       { icon: Bitcoin,      label: "Crypto",       href: "/crypto" },
       { icon: Landmark,     label: "Bonds",        href: "/bonds" },
+      { icon: Landmark,     label: "Wealth Plan",  href: "/wealth" },
       { icon: PieChart,     label: "ETFs",         href: "/etf" },
       { icon: BarChart3,    label: "Futures",      href: "/futures" },
       { icon: Package,      label: "Commodities",  href: "/commodities" },
