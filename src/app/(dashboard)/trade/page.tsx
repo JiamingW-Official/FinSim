@@ -32,6 +32,8 @@ import { ComparisonChart } from "@/components/chart/ComparisonChart";
 import { NewsTicker } from "@/components/layout/NewsTicker";
 import { AICoachPanel } from "@/components/ai/AICoachPanel";
 import { AlphaBotAlerts } from "@/components/ai/AlphaBotAlerts";
+import { PositionAlerts } from "@/components/trading/PositionAlerts";
+import { PortfolioHeatmap } from "@/components/trading/PortfolioHeatmap";
 import { TradeShareCard } from "@/components/trading/TradeShareCard";
 import { cn } from "@/lib/utils";
 import { Loader2 } from "lucide-react";

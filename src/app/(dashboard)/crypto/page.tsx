@@ -15,6 +15,12 @@ import {
   ArrowDownRight,
   Layers,
   Zap,
+  ImageIcon,
+  PieChart,
+  ShieldAlert,
+  RefreshCw,
+  Plus,
+  Trash2,
 } from "lucide-react";
 import { cn } from "@/lib/utils";
 
