@@ -15,6 +15,7 @@ import {
   CandlestickSeries,
   HistogramSeries,
   LineSeries,
+  AreaSeries,
   type UTCTimestamp,
 } from "lightweight-charts";
 import { useMarketDataStore } from "@/stores/market-data-store";
@@ -87,10 +88,112 @@ interface CrosshairData {
   isUp: boolean;
 }
 
+interface OHLCBar {
+  timestamp: number;
+  open: number;
+  high: number;
+  low: number;
+  close: number;
+  volume: number;
+  timeframe?: string;
+}
+
+/** Compute Heikin Ashi bars from regular OHLC bars */
+function computeHeikinAshi(bars: OHLCBar[]): OHLCBar[] {
+  if (bars.length === 0) return [];
+  const result: OHLCBar[] = [];
+  let prevHaOpen = (bars[0].open + bars[0].close) / 2;
+  let prevHaClose = (bars[0].open + bars[0].high + bars[0].low + bars[0].close) / 4;
+
+  for (let i = 0; i < bars.length; i++) {
+    const bar = bars[i];
+    const haClose = (bar.open + bar.high + bar.low + bar.close) / 4;
+    const haOpen = i === 0 ? prevHaOpen : (prevHaOpen + prevHaClose) / 2;
+    const haHigh = Math.max(bar.high, haOpen, haClose);
+    const haLow = Math.min(bar.low, haOpen, haClose);
+    result.push({
+      ...bar,
+      open: haOpen,
+      high: haHigh,
+      low: haLow,
+      close: haClose,
+    });
+    prevHaOpen = haOpen;
+    prevHaClose = haClose;
+  }
+  return result;
+}
+
+/** Generate synthetic quarterly earnings dates within the range of bars */
+function generateEarningsDates(bars: OHLCBar[], seed: number): number[] {
+  if (bars.length === 0) return [];
+  const startMs = bars[0].timestamp;
+  const endMs = bars[bars.length - 1].timestamp;
+  const QUARTER_MS = 91 * 24 * 3600 * 1000;
+  // Use seeded PRNG for offset within quarter
+  let s = seed;
+  const prng = () => {
+    s = (s * 1103515245 + 12345) & 0x7fffffff;
+    return s / 0x7fffffff;
+  };
+  const dates: number[] = [];
+  let t = startMs;
+  while (t <= endMs + QUARTER_MS) {
+    const offset = Math.floor(prng() * 20 * 24 * 3600 * 1000); // ±20d jitter
+    const earningsMs = t + offset;
+    if (earningsMs >= startMs && earningsMs <= endMs) {
+      dates.push(earningsMs);
+    }
+    t += QUARTER_MS;
+  }
+  return dates;
+}
+
+/** Generate synthetic semi-annual dividend dates within the range of bars */
+function generateDividendDates(bars: OHLCBar[], seed: number): number[] {
+  if (bars.length === 0) return [];
+  const startMs = bars[0].timestamp;
+  const endMs = bars[bars.length - 1].timestamp;
+  const SEMI_MS = 182 * 24 * 3600 * 1000;
+  let s = seed + 9999;
+  const prng = () => {
+    s = (s * 1103515245 + 12345) & 0x7fffffff;
+    return s / 0x7fffffff;
+  };
+  const dates: number[] = [];
+  let t = startMs;
+  while (t <= endMs + SEMI_MS) {
+    const offset = Math.floor(prng() * 10 * 24 * 3600 * 1000);
+    const divMs = t + offset;
+    if (divMs >= startMs && divMs <= endMs) {
+      dates.push(divMs);
+    }
+    t += SEMI_MS;
+  }
+  return dates;
+}
+
+/** Map a timestamp to the nearest bar timestamp */
+function snapToBar(tsMs: number, bars: OHLCBar[]): number | null {
+  if (bars.length === 0) return null;
+  let best = bars[0];
+  let bestDiff = Math.abs(bars[0].timestamp - tsMs);
+  for (const bar of bars) {
+    const diff = Math.abs(bar.timestamp - tsMs);
+    if (diff < bestDiff) {
+      bestDiff = diff;
+      best = bar;
+    }
+  }
+  return best.timestamp;
+}
+
 export function CandlestickChart() {
   const containerRef = useRef<HTMLDivElement>(null);
   const chartRef = useRef<IChartApi | null>(null);
   const candleSeriesRef = useRef<ISeriesApi<"Candlestick"> | null>(null);
+  const lineSeriesRef = useRef<ISeriesApi<"Line"> | null>(null);
+  const areaSeriesRef = useRef<ISeriesApi<"Area"> | null>(null);
   const volumeSeriesRef = useRef<ISeriesApi<"Histogram"> | null>(null);
   const priceLineRef = useRef<IPriceLine | null>(null);
   const pendingLinesRef = useRef<Map<string, IPriceLine>>(new Map());
@@ -119,15 +222,19 @@ export function CandlestickChart() {
   const currentTicker = useChartStore((s) => s.currentTicker);
   const activeIndicators = useChartStore((s) => s.activeIndicators);
   const currentTimeframe = useChartStore((s) => s.currentTimeframe);
+  const chartType = useChartStore((s) => s.chartType);
+  const showVolume = useChartStore((s) => s.showVolume);
+  const showGrid = useChartStore((s) => s.showGrid);
+  const useLog = useChartStore((s) => s.useLog);
+  const showEarnings = useChartStore((s) => s.showEarnings);
+  const showDividends = useChartStore((s) => s.showDividends);
   const subBarStep = useMarketDataStore((s) => s.subBarStep);
+
   // Derived display bars — allData is 15m; aggregate up or expand down
-  // In 5m view, subBarStep (0-2) controls how many of the last 15m bar's
-  // sub-bars are revealed, giving a smooth progressive feel.
   const displayBars = useMemo(() => {
     if (currentTimeframe === "5m") {
       const expanded = expand15mTo5m(visibleData);
-      // Trim unrevealed sub-bars from the last 15m bar
-      const trimCount = 2 - subBarStep; // 2→hide 2, 1→hide 1, 0→show all
+      const trimCount = 2 - subBarStep;
       return trimCount > 0 ? expanded.slice(0, expanded.length - trimCount) : expanded;
     }
     if (currentTimeframe === "15m") return visibleData;
@@ -136,6 +243,15 @@ export function CandlestickChart() {
     if (currentTimeframe === "1wk") return aggregateWeeklyBars(aggregateDailyBars(visibleData));
     return visibleData;
   }, [visibleData, currentTimeframe, subBarStep]);
+
+  // Heikin Ashi transformed bars (only computed when needed)
+  const haBars = useMemo(() => {
+    if (chartType !== "heikin_ashi") return displayBars;
+    return computeHeikinAshi(displayBars);
+  }, [displayBars, chartType]);
+
+  // The bars used for the primary price series rendering
+  const renderBars = chartType === "heikin_ashi" ? haBars : displayBars;
 
   // Ticker change detection for transition animation
   useEffect(() => {
@@ -232,6 +348,26 @@ export function CandlestickChart() {
       borderDownColor: CHART_COLORS.downColor,
       wickUpColor: CHART_COLORS.upColor,
       wickDownColor: CHART_COLORS.downColor,
+      visible: true,
+    });
+
+    const lineSeries = chart.addSeries(LineSeries, {
+      color: "#3b82f6",
+      lineWidth: 2,
+      priceLineVisible: false,
+      lastValueVisible: true,
+      crosshairMarkerVisible: true,
+      visible: false,
+    });
+
+    const areaSeries = chart.addSeries(AreaSeries, {
+      lineColor: "#3b82f6",
+      topColor: "rgba(59, 130, 246, 0.3)",
+      bottomColor: "rgba(59, 130, 246, 0.02)",
+      lineWidth: 2,
+      priceLineVisible: false,
+      lastValueVisible: true,
+      visible: false,
     });
 
     const volumeSeries = chart.addSeries(HistogramSeries, {
@@ -245,12 +381,16 @@ export function CandlestickChart() {
 
     chartRef.current = chart;
     candleSeriesRef.current = candleSeries;
+    lineSeriesRef.current = lineSeries;
+    areaSeriesRef.current = areaSeries;
     volumeSeriesRef.current = volumeSeries;
 
     return () => {
       chart.remove();
       chartRef.current = null;
       candleSeriesRef.current = null;
+      lineSeriesRef.current = null;
+      areaSeriesRef.current = null;
       volumeSeriesRef.current = null;
     };
   }, []);
@@ -274,17 +414,62 @@ export function CandlestickChart() {
     });
   }, [showTime]);
 
-  // Update candle/volume data when displayBars changes
+  // Apply grid visibility
+  useEffect(() => {
+    if (!chartRef.current) return;
+    const color = showGrid ? CHART_COLORS.grid : "transparent";
+    chartRef.current.applyOptions({
+      grid: {
+        vertLines: { color },
+        horzLines: { color },
+      },
+    });
+  }, [showGrid]);
+
+  // Apply log scale
+  useEffect(() => {
+    if (!chartRef.current) return;
+    chartRef.current.priceScale("right").applyOptions({
+      mode: useLog ? 1 : 0, // 1 = Logarithmic, 0 = Normal
+    });
+  }, [useLog]);
+
+  // Switch which series is visible based on chartType
+  useEffect(() => {
+    const candle = candleSeriesRef.current;
+    const line = lineSeriesRef.current;
+    const area = areaSeriesRef.current;
+    if (!candle || !line || !area) return;
+
+    const isCandleType = chartType === "candlestick" || chartType === "heikin_ashi";
+    candle.applyOptions({ visible: isCandleType });
+    line.applyOptions({ visible: chartType === "line" });
+    area.applyOptions({ visible: chartType === "area" });
+  }, [chartType]);
+
+  // Apply volume visibility
+  useEffect(() => {
+    if (!volumeSeriesRef.current) return;
+    volumeSeriesRef.current.applyOptions({ visible: showVolume });
+  }, [showVolume]);
+
+  // Update candle/volume data when displayBars / chartType changes
   useEffect(() => {
     if (!candleSeriesRef.current || !volumeSeriesRef.current) return;
-    if (displayBars.length === 0) return;
+    if (!lineSeriesRef.current || !areaSeriesRef.current) return;
+    if (renderBars.length === 0) return;
 
-    const candleData = displayBars.map((bar) => ({
+    const candleData = renderBars.map((bar) => ({
       time: (bar.timestamp / 1000) as UTCTimestamp,
       open: bar.open,
       high: bar.high,
       low: bar.low,
       close: bar.close,
+    }));
+
+    const lineData = displayBars.map((bar) => ({
+      time: (bar.timestamp / 1000) as UTCTimestamp,
+      value: bar.close,
     }));
 
     const volumeData = displayBars.map((bar) => ({
@@ -297,17 +482,39 @@ export function CandlestickChart() {
     }));
 
     candleSeriesRef.current.setData(candleData);
+    lineSeriesRef.current.setData(lineData);
+    areaSeriesRef.current.setData(lineData);
     volumeSeriesRef.current.setData(volumeData);
 
     // Auto-scroll to latest bar during playback
     if (isPlaying && chartRef.current) {
       chartRef.current.timeScale().scrollToRealTime();
     }
-  }, [displayBars, isPlaying]);
+  }, [renderBars, displayBars, isPlaying]);
 
-  // Trade markers + session boundary markers
+  // Synthetic earnings / dividend dates
+  const tickerSeed = useMemo(() => {
+    let h = 0;
+    for (let i = 0; i < currentTicker.length; i++) {
+      h = (h * 31 + currentTicker.charCodeAt(i)) & 0x7fffffff;
+    }
+    return h;
+  }, [currentTicker]);
+
+  const earningsDates = useMemo(() => {
+    if (!showEarnings) return [];
+    return generateEarningsDates(displayBars, tickerSeed);
+  }, [displayBars, tickerSeed, showEarnings]);
+
+  const dividendDates = useMemo(() => {
+    if (!showDividends) return [];
+    return generateDividendDates(displayBars, tickerSeed);
+  }, [displayBars, tickerSeed, showDividends]);
+
+  // Trade markers + session boundary markers + earnings/dividend markers
   useEffect(() => {
-    if (!candleSeriesRef.current) return;
+    const activeSeries = candleSeriesRef.current;
+    if (!activeSeries) return;
 
     const markers: SeriesMarker<UTCTimestamp>[] = tradeHistory
       .filter((t) => t.ticker === currentTicker)
@@ -328,11 +535,8 @@ export function CandlestickChart() {
     // Session boundary markers for intraday views
     const isIntraday = showTime;
     if (isIntraday && displayBars.length > 0) {
-      // Session times in UTC offset from midnight:
-      // 9:30 AM ET = 14:30 UTC, 12:00 PM ET = 17:00 UTC, 4:00 PM ET = 21:00 UTC
-      const OPEN_UTC_H = 14.5;   // 9:30 AM ET
-      const LUNCH_UTC_H = 17;    // 12:00 PM ET
-
+      const OPEN_UTC_H = 14.5;
+      const LUNCH_UTC_H = 17;
       const seenDays = new Set<string>();
       const seenLunches = new Set<string>();
 
@@ -341,7 +545,6 @@ export function CandlestickChart() {
         const dayKey = d.toISOString().slice(0, 10);
         const utcH = d.getUTCHours() + d.getUTCMinutes() / 60;
 
-        // Market open marker — first bar of each day (≈14:30 UTC)
         if (!seenDays.has(dayKey) && utcH >= OPEN_UTC_H && utcH < OPEN_UTC_H + 0.5) {
           seenDays.add(dayKey);
           markers.push({
@@ -353,7 +556,6 @@ export function CandlestickChart() {
           });
         }
 
-        // Lunch / PM session marker — first bar at or after 12:00 PM ET (17:00 UTC)
         if (!seenLunches.has(dayKey) && utcH >= LUNCH_UTC_H && utcH < LUNCH_UTC_H + 0.5) {
           seenLunches.add(dayKey);
           markers.push({
@@ -364,6 +566,34 @@ export function CandlestickChart() {
             text: "PM",
           });
         }
+      }
+    }
+
+    // Earnings markers
+    for (const ts of earningsDates) {
+      const snapped = snapToBar(ts, displayBars);
+      if (snapped !== null) {
+        markers.push({
+          time: (snapped / 1000) as UTCTimestamp,
+          position: "aboveBar",
+          color: "#f59e0b",
+          shape: "square",
+          text: "E",
+        });
+      }
+    }
+
+    // Dividend markers
+    for (const ts of dividendDates) {
+      const snapped = snapToBar(ts, displayBars);
+      if (snapped !== null) {
+        markers.push({
+          time: (snapped / 1000) as UTCTimestamp,
+          position: "belowBar",
+          color: "#8b5cf6",
+          shape: "circle",
+          text: "D",
+        });
       }
     }
 
@@ -378,33 +608,32 @@ export function CandlestickChart() {
 
     if (markers.length > 0) {
       markersPluginRef.current = createSeriesMarkers(
-        candleSeriesRef.current,
+        activeSeries,
         markers,
       );
     }
-  }, [tradeHistory, currentTicker, displayBars, showTime]);
+  }, [tradeHistory, currentTicker, displayBars, showTime, earningsDates, dividendDates]);
 
   // Average cost price line
   useEffect(() => {
-    if (!candleSeriesRef.current) return;
+    const activeSeries = candleSeriesRef.current;
+    if (!activeSeries) return;
 
-    // Remove old price line
     if (priceLineRef.current) {
-      candleSeriesRef.current.removePriceLine(priceLineRef.current);
+      activeSeries.removePriceLine(priceLineRef.current);
       priceLineRef.current = null;
     }
 
-    // Find current position for this ticker
     const position = positions.find((p) => p.ticker === currentTicker);
     if (position) {
-      priceLineRef.current = candleSeriesRef.current.createPriceLine({
+      priceLineRef.current = activeSeries.createPriceLine({
         price: position.avgPrice,
         color:
           position.side === "long"
             ? "rgba(16, 185, 129, 0.6)"
             : "rgba(239, 68, 68, 0.6)",
         lineWidth: 1,
-        lineStyle: 2, // dashed
+        lineStyle: 2,
         axisLabelVisible: true,
         title: `Avg ${position.side === "long" ? "Cost" : "Short"}: $${position.avgPrice.toFixed(2)}`,
       });
@@ -413,17 +642,16 @@ export function CandlestickChart() {
 
   // Pending order price lines
   useEffect(() => {
-    if (!candleSeriesRef.current) return;
+    const activeSeries = candleSeriesRef.current;
+    if (!activeSeries) return;
 
-    // Remove old pending lines
     for (const [, line] of pendingLinesRef.current) {
       try {
-        candleSeriesRef.current.removePriceLine(line);
+        activeSeries.removePriceLine(line);
       } catch { /* already removed */ }
     }
     pendingLinesRef.current.clear();
 
-    // Add lines for pending orders matching current ticker
     for (const order of pendingOrders) {
       if (order.ticker !== currentTicker) continue;
 
@@ -436,19 +664,19 @@ export function CandlestickChart() {
 
       if (order.type === "limit") {
         color = order.side === "buy" ? "rgba(16, 185, 129, 0.5)" : "rgba(239, 68, 68, 0.5)";
-        lineStyle = 3; // dotted
+        lineStyle = 3;
         title = `Limit ${order.side === "buy" ? "Buy" : "Sell"} @ $${triggerPrice.toFixed(2)}`;
       } else if (order.type === "stop_loss") {
         color = "rgba(239, 68, 68, 0.7)";
-        lineStyle = 2; // dashed
+        lineStyle = 2;
         title = `Stop @ $${triggerPrice.toFixed(2)}`;
       } else {
         color = "rgba(16, 185, 129, 0.7)";
-        lineStyle = 2; // dashed
+        lineStyle = 2;
         title = `TP @ $${triggerPrice.toFixed(2)}`;
       }
 
-      const line = candleSeriesRef.current.createPriceLine({
+      const line = activeSeries.createPriceLine({
         price: triggerPrice,
         color,
         lineWidth: 1,
@@ -465,7 +693,6 @@ export function CandlestickChart() {
     const chart = chartRef.current;
     if (!chart) return;
 
-    // Remove all existing indicator series
     for (const [, series] of indicatorSeriesRefs.current) {
       try {
         chart.removeSeries(series);
@@ -535,7 +762,6 @@ export function CandlestickChart() {
         }
         case "macd": {
           const macdResult = calculateMACD(displayBars);
-          // Histogram series (green/red bars)
           if (macdResult.histogram.length > 0) {
             const histSeries = chart.addSeries(HistogramSeries, {
               priceScaleId: "macd",
@@ -551,9 +777,7 @@ export function CandlestickChart() {
             );
             indicatorSeriesRefs.current.set("macd_hist", histSeries);
           }
-          // MACD line
           addLineSeries("macd_line", macdResult.macdLine, INDICATOR_COLORS.macd, 1, 0, "macd");
-          // Signal line
           addLineSeries("macd_signal", macdResult.signalLine, INDICATOR_COLORS.macd_signal, 1, 0, "macd");
           chart.priceScale("macd").applyOptions({
             scaleMargins: { top: 0.82, bottom: 0 },
@@ -616,11 +840,10 @@ export function CandlestickChart() {
         }
         case "psar": {
           const psarData = calculateParabolicSAR(displayBars);
-          // Split into bullish (SAR below close) and bearish (SAR above close) series
           const psarBull: { time: number; value: number }[] = [];
           const psarBear: { time: number; value: number }[] = [];
           psarData.forEach((pt, i) => {
-            const bar = displayBars[i + 1]; // psarData starts from index 1
+            const bar = displayBars[i + 1];
             if (bar && pt.value < bar.close) {
               psarBull.push(pt);
             } else if (bar) {
@@ -690,36 +913,28 @@ export function CandlestickChart() {
       {displayData && (
         <div className="pointer-events-none absolute left-3 top-3 z-10 flex items-center gap-3 text-[11px] tabular-nums">
           <span className="text-muted-foreground">{displayData.time}</span>
-          <span className="text-muted-foreground">
-            O{" "}
-            <span
-              className={cn(
-                displayData.isUp ? "text-[#10b981]" : "text-[#ef4444]",
-              )}
-            >
-              {formatCurrency(displayData.open)}
-            </span>
-          </span>
-          <span className="text-muted-foreground">
-            H{" "}
-            <span
-              className={cn(
-                displayData.isUp ? "text-[#10b981]" : "text-[#ef4444]",
-              )}
-            >
-              {formatCurrency(displayData.high)}
-            </span>
-          </span>
-          <span className="text-muted-foreground">
-            L{" "}
-            <span
-              className={cn(
-                displayData.isUp ? "text-[#10b981]" : "text-[#ef4444]",
-              )}
-            >
-              {formatCurrency(displayData.low)}
-            </span>
-          </span>
+          {(chartType === "candlestick" || chartType === "heikin_ashi") && (
+            <>
+              <span className="text-muted-foreground">
+                O{" "}
+                <span className={cn(displayData.isUp ? "text-[#10b981]" : "text-[#ef4444]")}>
+                  {formatCurrency(displayData.open)}
+                </span>
+              </span>
+              <span className="text-muted-foreground">
+                H{" "}
+                <span className={cn(displayData.isUp ? "text-[#10b981]" : "text-[#ef4444]")}>
+                  {formatCurrency(displayData.high)}
+                </span>
+              </span>
+              <span className="text-muted-foreground">
+                L{" "}
+                <span className={cn(displayData.isUp ? "text-[#10b981]" : "text-[#ef4444]")}>
+                  {formatCurrency(displayData.low)}
+                </span>
+              </span>
+            </>
+          )}
           <span className="text-muted-foreground">
             C{" "}
             <span
@@ -741,6 +956,9 @@ export function CandlestickChart() {
                   : displayData.volume.toLocaleString()}
             </span>
           </span>
+          {chartType === "heikin_ashi" && (
+            <span className="rounded bg-amber-500/20 px-1 text-[9px] text-amber-400">HA</span>
+          )}
         </div>
       )}
       <div ref={containerRef} className="h-full w-full" />
