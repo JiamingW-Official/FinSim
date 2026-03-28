@@ -56,6 +56,8 @@ import { UNIT_CORPORATE_GOVERNANCE } from "./unit-corporate-governance";
 import { UNIT_QUANT_FINANCE_ML } from "./unit-quant-finance-ml";
 import { UNIT_FINANCIAL_REGULATIONS } from "./unit-financial-regulations";
 import { UNIT_GLOBAL_MACRO_STRATEGIES } from "./unit-global-macro-strategies";
+import { UNIT_ECONOMIC_CYCLES } from "./unit-economic-cycles";
+import { UNIT_SUPPLY_CHAIN_FINANCE } from "./unit-supply-chain-finance";
 
 export const UNITS: Unit[] = [
   UNIT_BASICS,
@@ -115,6 +117,8 @@ export const UNITS: Unit[] = [
   UNIT_QUANT_FINANCE_ML,
   UNIT_FINANCIAL_REGULATIONS,
   UNIT_GLOBAL_MACRO_STRATEGIES,
+  UNIT_ECONOMIC_CYCLES,
+  UNIT_SUPPLY_CHAIN_FINANCE,
 ];
 
 export function getLessonById(lessonId: string): Lesson | undefined {
