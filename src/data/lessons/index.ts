@@ -16,6 +16,7 @@ import { UNIT_BEHAVIORAL_FINANCE } from "./unit-behavioral-finance";
 import { UNIT_OPTIONS_PRICING_THEORY } from "./unit-options-pricing-theory";
 import { UNIT_QUANTITATIVE_FINANCE } from "./unit-quantitative-finance";
 import { UNIT_INVESTMENT_BANKING } from "./unit-investment-banking";
+import { UNIT_RISK_MANAGEMENT_MASTERY } from "./unit-risk-management-mastery";
 
 export const UNITS: Unit[] = [
   UNIT_BASICS,
@@ -35,6 +36,7 @@ export const UNITS: Unit[] = [
   UNIT_OPTIONS_PRICING_THEORY,
   UNIT_QUANTITATIVE_FINANCE,
   UNIT_INVESTMENT_BANKING,
+  UNIT_RISK_MANAGEMENT_MASTERY,
 ];
 
 export function getLessonById(lessonId: string): Lesson | undefined {

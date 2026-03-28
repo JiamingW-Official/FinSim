@@ -704,6 +704,61 @@ function MarketsTab({ rows, seed }: { rows: CryptoRow[]; seed: number; }) {
           </table>
         </div>
       </div>
+
+      {/* ── Risk Metrics ── */}
+      <div className="rounded-lg border border-border/50 bg-card overflow-hidden">
+        <div className="px-4 py-3 border-b border-border/40">
+          <div className="text-xs font-semibold text-muted-foreground uppercase tracking-wide">Crypto Risk Metrics</div>
+          <div className="text-xs text-muted-foreground mt-0.5">30d realized volatility, max drawdown from ATH, Sharpe ratio</div>
+        </div>
+        <div className="overflow-x-auto">
+          <table className="w-full text-xs">
+            <thead>
+              <tr className="border-b border-border/30 bg-muted/20">
+                <th className="py-2 px-3 text-left text-muted-foreground font-semibold">Asset</th>
+                <th className="py-2 px-3 text-right text-muted-foreground font-semibold">Vol 30d</th>
+                <th className="py-2 px-3 text-right text-muted-foreground font-semibold">Max DD</th>
+                <th className="py-2 px-3 text-right text-muted-foreground font-semibold">Sharpe</th>
+                <th className="py-2 px-3 text-right text-muted-foreground font-semibold hidden sm:table-cell">ATH</th>
+                <th className="py-2 px-3 text-right text-muted-foreground font-semibold hidden sm:table-cell">vs S&amp;P</th>
+              </tr>
+            </thead>
+            <tbody>
+              {riskMetrics.slice(0, 8).map((m) => (
+                <tr key={m.symbol} className="border-b border-border/20 last:border-0 hover:bg-muted/20 transition-colors">
+                  <td className="py-2.5 px-3 font-semibold text-primary">{m.symbol}</td>
+                  <td className="py-2.5 px-3 text-right tabular-nums">
+                    <span className={cn("font-medium", m.realizedVol30d > 80 ? "text-red-500" : m.realizedVol30d > 60 ? "text-amber-500" : "text-muted-foreground")}>
+                      {m.realizedVol30d.toFixed(1)}%
+                    </span>
+                  </td>
+                  <td className="py-2.5 px-3 text-right tabular-nums text-red-500 font-medium">
+                    {m.maxDrawdown.toFixed(1)}%
+                  </td>
+                  <td className="py-2.5 px-3 text-right tabular-nums">
+                    <span className={cn("font-medium", m.sharpe > 0.5 ? "text-green-500" : m.sharpe > 0 ? "text-amber-500" : "text-red-500")}>
+                      {m.sharpe.toFixed(2)}
+                    </span>
+                  </td>
+                  <td className="py-2.5 px-3 text-right tabular-nums text-muted-foreground hidden sm:table-cell">
+                    {fmtPrice(m.ath)}
+                  </td>
+                  <td className="py-2.5 px-3 text-right hidden sm:table-cell">
+                    <span className="text-amber-500 font-medium text-xs">~{(m.realizedVol30d / 16).toFixed(1)}x</span>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+        <div className="px-4 py-3 border-t border-border/30 bg-muted/10">
+          <div className="text-xs text-muted-foreground leading-relaxed">
+            <span className="font-semibold text-foreground">Education:</span> Crypto assets typically carry 3-8x higher volatility than equities.
+            S&amp;P 500 historical vol is ~16% annualized. A Sharpe ratio above 1.0 is considered good; most crypto assets have negative Sharpe in bear markets.
+            Max drawdown shows the decline from all-time high — many altcoins have lost 80-95% from peak.
+          </div>
+        </div>
+      </div>
     </div>
   );
 }
@@ -888,6 +943,178 @@ function TradeTab({ rows, seed }: { rows: CryptoRow[]; seed: number }) {
 
 // ── Tab: DeFi Simulator ───────────────────────────────────────────────────────
 
+// ── Yield Farming Simulator ───────────────────────────────────────────────────
+
+function YieldFarmingSimulator() {
+  const [selectedFarm, setSelectedFarm] = useState<YieldFarmOpportunity>(YIELD_FARM_OPPORTUNITIES[0]);
+  const [depositAmt, setDepositAmt] = useState("10000");
+  const [periodDays, setPeriodDays] = useState("365");
+  const [harvested, setHarvested] = useState(false);
+  const [totalHarvested, setTotalHarvested] = useState(0);
+
+  const deposit = parseFloat(depositAmt || "0");
+  const days    = Math.max(1, parseInt(periodDays || "1", 10));
+  const apr     = selectedFarm.apy; // treat given rate as APR for base, then compute APY
+  const apy     = (Math.pow(1 + apr / 100 / 365, 365) - 1) * 100;
+  const dailyYield   = deposit * (apr / 100) / 365;
+  const weeklyYield  = dailyYield * 7;
+  const monthlyYield = dailyYield * 30;
+  const simpleReturn = deposit * (apr / 100) * (days / 365);
+  const compoundReturn = deposit * (Math.pow(1 + apr / 100 / 365, days) - 1);
+
+  // IL calc for LP positions: assume 50% price divergence for illustration
+  const ilPct = selectedFarm.isLP ? calcIL(50) : 0;
+  const ilImpact = deposit * Math.abs(ilPct) / 100;
+  const netAfterIL = compoundReturn + ilImpact; // ilImpact is negative
+
+  function harvestRewards() {
+    setTotalHarvested((p) => p + dailyYield * 7);
+    setHarvested(true);
+    setTimeout(() => setHarvested(false), 2000);
+  }
+
+  return (
+    <div className="rounded-lg border border-border/50 bg-card p-4 flex flex-col gap-4">
+      <div className="text-xs font-semibold text-muted-foreground uppercase tracking-wide">Yield Farming Simulator</div>
+
+      {/* Protocol selector */}
+      <div className="flex flex-wrap gap-1.5">
+        {YIELD_FARM_OPPORTUNITIES.map((f) => (
+          <button
+            key={f.id}
+            type="button"
+            onClick={() => setSelectedFarm(f)}
+            className={cn(
+              "rounded-md px-2.5 py-1.5 text-xs font-medium transition-colors",
+              selectedFarm.id === f.id
+                ? "bg-primary text-primary-foreground"
+                : "border border-border/50 text-muted-foreground hover:bg-accent/50",
+            )}
+          >
+            {f.protocol} · {f.apy}%
+          </button>
+        ))}
+      </div>
+
+      {/* Selected farm info */}
+      <div className="rounded-md bg-muted/20 border border-border/30 px-3 py-2.5 text-xs flex items-center justify-between">
+        <div>
+          <span className="font-semibold">{selectedFarm.protocol}</span>
+          <span className="text-muted-foreground ml-1">— {selectedFarm.pool}</span>
+          {selectedFarm.isLP && (
+            <span className="ml-2 inline-flex items-center gap-1 rounded-full bg-amber-500/15 text-amber-500 px-2 py-0.5 text-xs font-medium">
+              LP (IL risk)
+            </span>
+          )}
+        </div>
+        <span className="text-green-500 font-bold">{selectedFarm.apy.toFixed(1)}% APR</span>
+      </div>
+
+      {/* APY vs APR explanation */}
+      <div className="rounded-md bg-blue-500/5 border border-blue-500/20 px-3 py-2 text-xs text-muted-foreground leading-relaxed">
+        <span className="font-semibold text-foreground">APR vs APY:</span> APR ({apr.toFixed(1)}%) is simple interest — the base rate without compounding.
+        APY ({apy.toFixed(2)}%) accounts for compounding every day. The gap grows as the rate increases.
+        Daily compounding turns {apr.toFixed(1)}% APR into {apy.toFixed(2)}% APY.
+      </div>
+
+      {/* Inputs */}
+      <div className="grid grid-cols-2 gap-3">
+        <div>
+          <label className="text-xs text-muted-foreground">Deposit Amount (USD)</label>
+          <input
+            type="number" min="0" step="100" placeholder="10000" value={depositAmt}
+            onChange={(e) => setDepositAmt(e.target.value)}
+            className="mt-1 w-full rounded-md border border-border/60 bg-background px-3 py-2 text-sm tabular-nums focus:outline-none focus:ring-1 focus:ring-primary"
+          />
+        </div>
+        <div>
+          <label className="text-xs text-muted-foreground">Time Period (days)</label>
+          <input
+            type="number" min="1" max="3650" step="1" placeholder="365" value={periodDays}
+            onChange={(e) => setPeriodDays(e.target.value)}
+            className="mt-1 w-full rounded-md border border-border/60 bg-background px-3 py-2 text-sm tabular-nums focus:outline-none focus:ring-1 focus:ring-primary"
+          />
+        </div>
+      </div>
+
+      {/* Yield breakdown */}
+      {deposit > 0 && (
+        <div className="grid grid-cols-2 gap-2 sm:grid-cols-4 text-xs">
+          {[
+            { label: "Daily Yield",   val: `$${dailyYield.toFixed(2)}`,   color: "text-green-500" },
+            { label: "Weekly Yield",  val: `$${weeklyYield.toFixed(2)}`,  color: "text-green-500" },
+            { label: "Monthly Yield", val: `$${monthlyYield.toFixed(2)}`, color: "text-green-500" },
+            { label: `${days}d Simple`,  val: `$${simpleReturn.toFixed(2)}`, color: "text-muted-foreground" },
+          ].map((c) => (
+            <div key={c.label} className="rounded-md bg-muted/30 p-2.5">
+              <div className="text-muted-foreground">{c.label}</div>
+              <div className={cn("font-semibold tabular-nums mt-0.5", c.color)}>{c.val}</div>
+            </div>
+          ))}
+        </div>
+      )}
+
+      {/* Compound effect */}
+      {deposit > 0 && (
+        <div className="rounded-md border border-border/40 p-3 text-xs flex flex-col gap-2">
+          <div className="font-semibold text-muted-foreground uppercase tracking-wide text-xs">Auto-Compound Effect ({days} days)</div>
+          <div className="flex justify-between">
+            <span className="text-muted-foreground">Simple (no compounding)</span>
+            <span className="tabular-nums font-medium">${simpleReturn.toFixed(2)}</span>
+          </div>
+          <div className="flex justify-between">
+            <span className="text-muted-foreground">Compounded (daily)</span>
+            <span className="tabular-nums font-semibold text-green-500">${compoundReturn.toFixed(2)}</span>
+          </div>
+          <div className="flex justify-between text-amber-500">
+            <span>Compound bonus</span>
+            <span className="tabular-nums font-medium">+${(compoundReturn - simpleReturn).toFixed(2)}</span>
+          </div>
+          {selectedFarm.isLP && (
+            <>
+              <div className="border-t border-border/30 pt-2 flex justify-between">
+                <span className="text-muted-foreground">Est. IL (50% price move)</span>
+                <span className="tabular-nums text-red-500 font-medium">-${ilImpact.toFixed(2)}</span>
+              </div>
+              <div className="flex justify-between font-semibold">
+                <span>Net after IL (est.)</span>
+                <span className={cn("tabular-nums", netAfterIL >= 0 ? "text-green-500" : "text-red-500")}>
+                  {netAfterIL >= 0 ? "+" : ""}${netAfterIL.toFixed(2)}
+                </span>
+              </div>
+              <div className="text-xs text-muted-foreground italic leading-relaxed">
+                IL is calculated assuming token B price moves +50% vs token A. Actual IL depends on real price divergence.
+              </div>
+            </>
+          )}
+        </div>
+      )}
+
+      {/* Harvest button */}
+      <div className="flex items-center gap-3">
+        <button
+          type="button"
+          onClick={harvestRewards}
+          className={cn(
+            "flex items-center gap-2 rounded-md px-4 py-2.5 text-sm font-semibold transition-all",
+            harvested
+              ? "bg-green-600 text-white"
+              : "bg-primary text-primary-foreground hover:bg-primary/90",
+          )}
+        >
+          <RefreshCw className={cn("h-3.5 w-3.5", harvested && "animate-spin")} />
+          {harvested ? "Harvested!" : "Harvest Rewards"}
+        </button>
+        {totalHarvested > 0 && (
+          <span className="text-xs text-muted-foreground">
+            Total claimed: <span className="font-semibold text-green-500 tabular-nums">${totalHarvested.toFixed(2)}</span>
+          </span>
+        )}
+      </div>
+    </div>
+  );
+}
+
 function DeFiTab({ seed }: { seed: number }) {
   const pools        = useMemo(() => generatePools(seed), [seed]);
   const stakingPools = useMemo(() => generateStakingPools(seed), [seed]);
@@ -924,6 +1151,9 @@ function DeFiTab({ seed }: { seed: number }) {
 
   return (
     <div className="flex flex-col gap-4">
+      {/* Yield Farming Simulator */}
+      <YieldFarmingSimulator />
+
       {/* Liquidity Pools */}
       <div className="rounded-lg border border-border/50 bg-card p-4">
         <div className="text-xs font-semibold text-muted-foreground uppercase tracking-wide mb-3">Liquidity Pools</div>
