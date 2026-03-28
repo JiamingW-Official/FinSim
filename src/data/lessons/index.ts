@@ -76,6 +76,8 @@ import { UNIT_TA_PATTERNS } from "./unit-ta-patterns";
 import { UNIT_PERSONAL_BUDGETING } from "./unit-personal-budgeting";
 import { UNIT_INTEREST_RATE_RISK } from "./unit-interest-rate-risk";
 import { UNIT_LBO_MODELING } from "./unit-lbo-modeling";
+import { UNIT_DIVIDEND_INVESTING } from "./unit-dividend-investing";
+import { UNIT_GEOPOLITICAL_RISK } from "./unit-geopolitical-risk";
 
 export const UNITS: Unit[] = [
   UNIT_BASICS,
@@ -155,6 +157,8 @@ export const UNITS: Unit[] = [
   UNIT_PERSONAL_BUDGETING,
   UNIT_INTEREST_RATE_RISK,
   UNIT_LBO_MODELING,
+  UNIT_DIVIDEND_INVESTING,
+  UNIT_GEOPOLITICAL_RISK,
 ];
 
 export function getLessonById(lessonId: string): Lesson | undefined {
