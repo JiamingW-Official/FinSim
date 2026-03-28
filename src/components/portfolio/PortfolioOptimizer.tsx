@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useMemo, useCallback } from "react";
+import { useState, useMemo } from "react";
 import { cn } from "@/lib/utils";
 
 // ─── mulberry32 PRNG ──────────────────────────────────────────────────────────
@@ -584,7 +584,6 @@ function MeanVarianceSection() {
   const minVarStats = useMemo(() => portfolioStats(minVarW, returns, cov), [minVarW, returns, cov]);
   const maxSharpeStats = useMemo(() => portfolioStats(maxSharpeW, returns, cov), [maxSharpeW, returns, cov]);
   const rpStats = useMemo(() => portfolioStats(riskParityW, returns, cov), [riskParityW, returns, cov]);
-  const optStats = useMemo(() => portfolioStats(optimalW, returns, cov), [optimalW, returns, cov]);
 
   const frontierPoints = useMemo(() => generateEfficientFrontier(returns, cov, n), [returns, cov, n]);
 
@@ -1181,7 +1180,6 @@ function LDISection() {
   const growthPct = ((1 - hedgeRatio) * 100).toFixed(0);
 
   // Glide path: funding ratio over 30 years under 3 scenarios
-  const rng = useMemo(() => mulberry32(9999), []);
   const { bullPath, basePath, bearPath } = useMemo(() => {
     const years = 30;
     const bullPath: number[] = [fundingRatio];
