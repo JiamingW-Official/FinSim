@@ -134,6 +134,13 @@ export function GlobalSearchProvider({ children }: { children: React.ReactNode }
   const openSearch = useCallback(() => setOpen(true), []);
   const closeSearch = useCallback(() => setOpen(false), []);
 
+  // Listen for search:open custom event (emitted by useGlobalKeyboardShortcuts "/" key)
+  useEffect(() => {
+    const onOpen = () => setOpen(true);
+    window.addEventListener("search:open", onOpen);
+    return () => window.removeEventListener("search:open", onOpen);
+  }, []);
+
   // Cmd+K / Ctrl+K shortcut + vim-style "g<key>" navigation
   useEffect(() => {
     const handler = (e: KeyboardEvent) => {
