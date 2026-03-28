@@ -2,10 +2,10 @@ import type { Unit } from "./types";
 
 export const UNIT_BEHAVIORAL_FINANCE: Unit = {
   id: "behavioral-finance",
-  title: "Behavioral Finance",
+  title: "Behavioral Finance & Investor Psychology",
   description:
-    "Understand the psychology behind markets, biases, and how to build real trading discipline",
-  icon: "Brain",
+    "Understand the psychology behind markets, cognitive biases, loss aversion, herd behavior, and how to build real trading discipline",
+  icon: "🧠",
   color: "#8b5cf6",
   lessons: [
     // ─── Lesson 1: Cognitive Biases in Trading ────────────────────────────────
@@ -13,366 +13,366 @@ export const UNIT_BEHAVIORAL_FINANCE: Unit = {
       id: "bf-1",
       title: "🧠 Cognitive Biases in Trading",
       description:
-        "Anchoring, availability heuristic, representativeness, and overconfidence",
+        "Overconfidence, anchoring, availability heuristic, representativeness, and mental accounting",
       icon: "Zap",
       xpReward: 85,
       difficulty: "intermediate",
       steps: [
         {
           type: "teach",
-          title: "🔗 Anchoring Bias",
-          content:
-            "**Anchoring** occurs when you over-rely on the first piece of information you encounter (the 'anchor') and adjust insufficiently away from it.\n\nTrading examples:\n- You bought a stock at $200. It drops to $120. You refuse to sell because your anchor is $200, not the current $120.\n- Analysts anchor to a $50 price target from months ago and update it too slowly when fundamentals change.\n- You see a '52-week high' of $180 and anchor to it, assuming $120 is 'cheap' — even if fundamentals support $80.\n\nFix: Evaluate each position based on **current fundamentals**, not your entry price.",
-          highlight: ["anchoring", "anchor", "entry price", "price target"],
-        },
-        {
-          type: "teach",
-          title: "📰 Availability Heuristic & Representativeness",
-          content:
-            "**Availability heuristic**: You overweight vivid, memorable, or recent events when estimating probability.\n\n- After a market crash, you overestimate crash probability\n- After a hot IPO, you overestimate every IPO's chances of success\n- Media covers extreme events (crashes, meme stocks) — so they feel more likely than they are\n\n**Representativeness bias**: You assume a pattern or company that 'looks like' a past winner will also win.\n\n- 'This company reminds me of early Amazon' (overused rationalization)\n- Short track records look like skill when they may be luck\n- A stock that has risen 5 days in a row 'must' continue rising",
-          highlight: ["availability heuristic", "representativeness", "recency bias"],
-        },
-        {
-          type: "teach",
           title: "🏆 Overconfidence Bias",
           content:
-            "**Overconfidence** is the most documented bias in finance. Studies consistently show:\n\n- Most investors believe they are 'above average' traders (mathematically impossible for the majority)\n- Overconfident traders trade **more frequently** — generating more commissions, taxes, and errors\n- After a winning streak, overconfidence spikes — exactly when humility is most needed\n\n**Calibration exercise**: Keep a record of your predictions (entry, target, stop). Track your actual accuracy. Most traders discover their confidence exceeds their accuracy by 20–30 percentage points.\n\nAntidote: Trade smaller, track everything, and review your record ruthlessly.",
-          highlight: ["overconfidence", "calibration", "trading frequency"],
+            "**Overconfidence** is the most documented bias in finance. Traders overestimate their own skill and the precision of their information.\n\nKey findings:\n- Studies show men trade **67% more** than women and earn 1% less per year — overconfidence drives overtrading\n- Most investors rate themselves 'above average' — statistically impossible for the majority\n- After a winning streak, overconfidence spikes exactly when humility is most needed\n\nConsequences of overtrading:\n- More commissions and taxes erode returns\n- Higher transaction frequency means more chances to make emotional mistakes\n- Underdiversification — overconfident traders concentrate into 'sure things'\n\nAntidote: Track your predictions vs. actual outcomes over at least 50 trades. Most traders discover their confidence exceeds their accuracy by 20–30 percentage points.",
+          highlight: ["overconfidence", "overtrading", "calibration"],
+        },
+        {
+          type: "teach",
+          title: "🔗 Anchoring Bias",
+          content:
+            "**Anchoring** occurs when you over-rely on the first piece of information encountered — the 'anchor' — and adjust insufficiently away from it.\n\nTrading examples:\n- You bought a stock at $200. It drops to $120. You refuse to sell because your anchor is $200, not the current fundamentally relevant value.\n- Analysts anchor to old price targets and update them too slowly when conditions change.\n- Seeing a '52-week high' of $180 makes $120 feel 'cheap' — even if intrinsic value is $80.\n\n**Why it causes holding losers too long:**\nThe purchase price becomes a psychological reference point. Selling below it 'confirms' a mistake. But the entry price is irrelevant to future performance — what matters is current fundamentals and the opportunity cost of staying vs. reallocating.\n\nFix: When evaluating a position, deliberately ignore your cost basis. Ask: 'If I had cash instead of this stock today, would I buy it at this price?'",
+          highlight: ["anchoring", "purchase price", "reference point", "cost basis"],
+        },
+        {
+          type: "teach",
+          title: "📰 Availability Heuristic, Representativeness & Mental Accounting",
+          content:
+            "**Availability heuristic (recency bias)**: You overweight vivid, recent, or memorable events when estimating probability.\n- After a crash, you overestimate future crash probability\n- After a hot IPO, every IPO feels like a surefire win\n- Media amplifies extreme events — so they feel more likely than base rates suggest\n\n**Representativeness**: Assuming patterns persist — the 'gambler's fallacy in reverse.'\n- A stock rising 5 days straight 'must' continue (ignoring regression to the mean)\n- 'This company reminds me of early Amazon' — short records misread as reliable patterns\n\n**Mental accounting**: Treating 'house money' (profits) differently from initial capital.\n- After a big win, trading recklessly because 'it's just profit, not real money'\n- Money is fungible — a dollar of profit buys exactly the same thing as any other dollar\n- Fix: Evaluate all capital with identical rigor regardless of its source",
+          highlight: ["availability heuristic", "recency bias", "representativeness", "mental accounting", "house money"],
         },
         {
           type: "quiz-mc",
           question:
-            "A trader bought a stock at $100. It's now $60. She refuses to sell because 'it'll bounce back to $100.' Which bias is this?",
+            "What cognitive bias causes investors to hold losing stocks too long due to their original purchase price?",
           options: [
-            "Anchoring bias — over-relying on the $100 purchase price",
-            "Availability heuristic — remembering past bounces",
-            "Overconfidence — believing she can time the recovery",
-            "Representativeness — it looks like stocks that recovered before",
+            "Anchoring — fixation on the initial price paid as a reference point",
+            "Availability heuristic — overweighting recent price memories",
+            "Overconfidence — believing the stock will recover",
+            "Representativeness — pattern-matching to past recoveries",
           ],
           correctIndex: 0,
           explanation:
-            "Classic anchoring. The $100 entry price is the anchor, making $60 feel wrong. But the current value and future prospects should drive the decision — not where you bought it. 'It was worth $100' doesn't mean it will be again.",
-          difficulty: 2,
+            "Anchoring to the purchase price is the primary driver. The entry price becomes a psychological anchor — selling below it 'feels' like admitting failure, even though the entry price is irrelevant to future returns. Rational analysis requires ignoring sunk costs and evaluating only current value and future prospects.",
+          difficulty: 1,
         },
         {
           type: "quiz-tf",
           statement:
-            "After three consecutive winning trades, a trader should increase position sizes significantly because their strategy is clearly working.",
+            "Mental accounting means treating profits from a trade as 'real money' and being equally careful with them as with initial capital.",
           correct: false,
           explanation:
-            "This is overconfidence triggered by a short winning streak. Three wins in a row is statistically unremarkable — even a coin flip produces runs. Increasing size prematurely is how overconfident traders blow up. Track larger sample sizes (50+ trades) before drawing conclusions.",
+            "Mental accounting is the bias of treating money differently based on its source — often treating 'house money' (profits) as less real. This leads to excessive risk-taking with gains. Since money is fungible, a dollar of profit has identical value to a dollar of original capital and deserves the same discipline.",
           difficulty: 2,
         },
         {
           type: "quiz-scenario",
           scenario:
-            "After a dramatic market crash last year, investor Ben now avoids stocks entirely and keeps all savings in cash, even though historical average annual returns favor equities over 10+ year horizons.",
-          question: "Which bias primarily explains Ben's behavior?",
+            "A trader bought a stock at $80. It's now $45 after poor earnings. Fundamentally similar alternative positions exist. She refuses to sell because she 'needs to get back to $80 first.' A colleague who bought the same stock at $50 sold at $45 and reallocated.",
+          question: "Which bias is uniquely distorting the first trader's decision?",
           options: [
-            "Availability heuristic — the crash is vivid and feels representative of normal risk",
-            "Anchoring — he's anchored to pre-crash prices",
-            "Overconfidence — he's too confident in his cash strategy",
-            "Representativeness — he thinks all assets behave like crash-era stocks",
+            "Anchoring — her $80 cost basis is distorting rational evaluation",
+            "Loss aversion only — fear of realizing the loss",
+            "Availability heuristic — vivid memory of the $80 price",
+            "Representativeness — assuming the stock will behave like past recoveries",
           ],
           correctIndex: 0,
           explanation:
-            "The dramatic, memorable crash is cognitively 'available' and distorts his probability estimate of future crashes. Recency bias compounds this — the recent event feels more representative of 'normal' than the historical record shows.",
-          difficulty: 2,
+            "The $80 anchor is uniquely distorting her decision. Her colleague, with a different anchor at $50, made the rational decision to reallocate. Both own the same stock at $45 — only the anchor differs. This illustrates how anchoring, not the stock's actual prospects, drives the hold decision.",
+          difficulty: 3,
         },
       ],
     },
 
-    // ─── Lesson 2: Emotional Trading Psychology ───────────────────────────────
+    // ─── Lesson 2: Loss Aversion & Prospect Theory ────────────────────────────
     {
       id: "bf-2",
-      title: "😰 Emotional Trading Psychology",
+      title: "📉 Loss Aversion & Prospect Theory",
       description:
-        "Fear and greed cycle, loss aversion, FOMO, and revenge trading",
-      icon: "Heart",
-      xpReward: 85,
-      difficulty: "intermediate",
-      steps: [
-        {
-          type: "teach",
-          title: "😨 The Fear & Greed Cycle",
-          content:
-            "Markets are driven by two emotions cycling endlessly:\n\n**Greed phase**: Prices rise, news is positive, everyone is confident. Investors buy near peaks, ignoring valuation.\n\n**Fear phase**: Prices fall, news turns negative, panic sets in. Investors sell near bottoms, locking in losses.\n\nThe cycle repeats: Optimism → Excitement → Thrill → Euphoria → Anxiety → Denial → Panic → Capitulation → Despondency → Depression → Hope → Relief → Optimism...\n\n**Contrarian insight**: The best buying opportunities occur at peak fear (capitulation). The best selling opportunities occur at peak greed (euphoria). Most retail investors do the opposite.",
-          highlight: ["fear", "greed", "capitulation", "euphoria", "contrarian"],
-        },
-        {
-          type: "teach",
-          title: "📉 Loss Aversion",
-          content:
-            "**Loss aversion**: Psychologically, losses hurt roughly **twice as much** as equivalent gains feel good.\n\nA $1,000 loss creates about twice the emotional pain as a $1,000 gain creates pleasure. This asymmetry causes systematic errors:\n\n- **Holding losers too long**: Refusing to realize a loss (it would become 'real')\n- **Selling winners too early**: Taking profits quickly because the gain might 'disappear'\n- **Risk aversion in gains, risk-seeking in losses**: You play it safe when winning but gamble to 'get back to even' when losing\n\nThis behavior pattern guarantees cutting your winners short and letting your losers run — the exact opposite of what profitable trading requires.",
-          highlight: ["loss aversion", "holding losers", "selling winners", "get back to even"],
-        },
-        {
-          type: "teach",
-          title: "🚀 FOMO & Revenge Trading",
-          content:
-            "**FOMO (Fear of Missing Out)**: Buying into a rapidly moving stock because you're afraid of being left behind. FOMO buyers typically enter near the top, after most of the move is done.\n\nSigns of FOMO entry:\n- Stock has already risen 30%+ quickly\n- You didn't plan the trade — you saw social media buzz\n- You feel urgency ('I need to get in NOW')\n\n**Revenge trading**: After a loss, placing an oversized, emotional trade to 'make back' losses quickly. This is one of the fastest ways to blow up an account — emotional state is the worst trading advisor.\n\nBoth are the same root cause: **reacting emotionally to price moves** rather than following a pre-planned strategy.",
-          highlight: ["FOMO", "revenge trading", "emotional trading", "pre-planned"],
-        },
-        {
-          type: "quiz-mc",
-          question:
-            "A trader loses $800 on a trade. Feeling frustrated, he immediately bets $2,000 on a high-risk option to recover quickly. What is this called?",
-          options: [
-            "Revenge trading — emotional response to a loss",
-            "Position scaling — a legitimate risk management technique",
-            "Dollar-cost averaging — reducing average cost",
-            "Hedging — protecting against further losses",
-          ],
-          correctIndex: 0,
-          explanation:
-            "Revenge trading is placing an oversized, emotional trade immediately after a loss to 'get even.' It compounds the problem — you're trading angry, sizing up, and taking excessive risk at exactly the wrong moment.",
-          difficulty: 1,
-        },
-        {
-          type: "quiz-tf",
-          statement:
-            "Loss aversion causes traders to sell their winning trades too early and hold losing trades too long.",
-          correct: true,
-          explanation:
-            "Exactly. Fear of giving back gains makes us exit winners prematurely. Fear of realizing losses makes us hold losers hoping for recovery. This cuts winners short and lets losers run — mathematically destructive. The antidote is pre-defined exits (stops and targets) before entering.",
-          difficulty: 1,
-        },
-        {
-          type: "quiz-scenario",
-          scenario:
-            "GameStop surges 180% in 3 days on Reddit buzz. Maya sees it on social media, hasn't researched it, but feels certain it will keep going. She buys at the top with no stop-loss.",
-          question: "Which psychological forces are driving Maya's decision?",
-          options: [
-            "FOMO + availability heuristic + overconfidence",
-            "Loss aversion + anchoring",
-            "Value investing + fundamental analysis",
-            "Contrarian thinking + risk management",
-          ],
-          correctIndex: 0,
-          explanation:
-            "FOMO drives urgency ('I'll miss it'). The vivid social media coverage (availability heuristic) makes it feel like a sure thing. Overconfidence removes the stop-loss. This combination — common in meme stock episodes — creates catastrophic losses for late buyers.",
-          difficulty: 2,
-        },
-      ],
-    },
-
-    // ─── Lesson 3: Prospect Theory & Decision Making ──────────────────────────
-    {
-      id: "bf-3",
-      title: "🎲 Prospect Theory & Decision Making",
-      description:
-        "Kahneman and Tversky, value function, probability weighting, and mental accounting",
+        "Kahneman & Tversky, the disposition effect, fear of regret, endowment effect, and pre-committing to exit rules",
       icon: "BarChart2",
       xpReward: 90,
       difficulty: "advanced",
       steps: [
         {
           type: "teach",
-          title: "📚 Kahneman & Tversky's Breakthrough",
+          title: "📚 Kahneman & Tversky's Prospect Theory",
           content:
-            "In 1979, psychologists **Daniel Kahneman and Amos Tversky** published Prospect Theory — one of the most cited papers in economics. They challenged the assumption that people make rational, utility-maximizing decisions.\n\nKey finding: People evaluate outcomes **relative to a reference point** (usually the status quo or purchase price), not in absolute terms.\n\nTwo key effects:\n1. **Loss aversion**: Losses feel ~2× more painful than equivalent gains feel pleasurable\n2. **Diminishing sensitivity**: The difference between $100 and $200 feels larger than between $1,100 and $1,200 (even though both are $100)\n\nKahneman won the Nobel Prize in Economics in 2002 for this work.",
-          highlight: ["Prospect Theory", "Kahneman", "Tversky", "reference point", "loss aversion"],
+            "In 1979, psychologists **Daniel Kahneman and Amos Tversky** published Prospect Theory — challenging the assumption that people make rational, utility-maximizing decisions.\n\nCore finding: **Losses hurt approximately 2.5× more than equivalent gains feel good.**\n\nA $1,000 loss creates about 2.5× the emotional pain as a $1,000 gain creates pleasure. This asymmetry is hardwired — it likely evolved because losses (food, shelter) were more threatening than equivalent gains were beneficial.\n\nThe **S-shaped value function**:\n- Steeper slope in the loss domain than the gain domain\n- Diminishing sensitivity in both directions (the difference between $100 and $200 feels larger than $1,100 and $1,200)\n- Evaluated relative to a reference point, not absolute wealth\n\nKahneman won the **Nobel Prize in Economics in 2002** for this work.",
+          highlight: ["Prospect Theory", "Kahneman", "Tversky", "loss aversion", "2.5×"],
         },
         {
           type: "teach",
-          title: "📈 The Value Function & Probability Weighting",
+          title: "📊 The Disposition Effect & Fear of Regret",
           content:
-            "**The Value Function** in Prospect Theory is S-shaped:\n- Steeper for losses than gains (loss aversion)\n- Curves flatten at extremes (diminishing sensitivity)\n- Evaluated relative to a reference point, not absolute wealth\n\n**Probability Weighting**: People don't treat probabilities linearly:\n- Overweight small probabilities (why people buy lottery tickets and insurance)\n- Underweight moderate-to-large probabilities\n- Certainty effect: 100% feels disproportionately better than 95%\n\nTrading implication: Traders prefer a 'sure' small gain over a risky larger gain (sells too early), and prefer a gamble to a sure loss (holds losers too long). Both are Prospect Theory predictions.",
-          highlight: ["value function", "probability weighting", "certainty effect", "diminishing sensitivity"],
+            "The **disposition effect** (Shefrin & Statman, 1985): Investors systematically sell winners too early and hold losers too long — the exact opposite of what momentum-based trading requires.\n\nData: In studies of 10,000+ brokerage accounts, investors were **1.5× more likely** to sell a winning stock than a losing one on any given day.\n\nWhy? Two forces:\n1. **Loss aversion**: Realizing a loss makes it 'real' and painful. Holding an unrealized loss avoids that pain.\n2. **Regret avoidance**: Selling a winner that then rises further causes intense regret. Better to lock in the sure gain.\n\n**Fear of regret** is a distinct but related bias:\n- Investors avoid decisions where they could be demonstrably wrong and feel regret\n- This leads to inaction, following the crowd (if everyone is wrong, regret is diluted), and over-diversification\n- Commission of omission feels less regretful than commission of action\n\nResult: Portfolios accumulate losers and shed winners — a tax-inefficient, return-destroying pattern.",
+          highlight: ["disposition effect", "sell winners", "hold losers", "regret avoidance"],
         },
         {
           type: "teach",
-          title: "🧮 Mental Accounting",
+          title: "💍 Endowment Effect & Pre-Committing to Exit Rules",
           content:
-            "**Mental accounting** (Richard Thaler, Nobel 2017): People treat money differently based on its origin or intended purpose, even though money is fungible.\n\nExamples in trading:\n- 'House money effect': After a big win, trading recklessly because 'it's profit, not real money'\n- Keeping a losing trade open in a separate mental 'account' rather than taking the loss and reallocating\n- Treating a tax refund as 'bonus money' and spending it frivolously (it was always your money)\n- Refusing to sell a losing stock while simultaneously buying a similar stock — same risk, but one 'feels' like a loss and the other doesn't\n\nFix: Evaluate all capital the same way, regardless of its source.",
-          highlight: ["mental accounting", "house money effect", "Richard Thaler", "fungible"],
+            "**Endowment effect** (Richard Thaler): Once you own an asset, you value it more than you would if you didn't own it.\n\nClassic experiment: Students given a coffee mug demand ~$7 to sell it. Students without the mug offer ~$3 to buy it. Same object, dramatically different valuations based solely on ownership.\n\nIn trading: You value stocks you hold more than identical stocks you don't hold — making selling irrationally difficult.\n\n**The solution: Pre-commit to exit rules BEFORE entering positions**\n\nWhen you have no position, your thinking is clearest:\n- Set your stop-loss and target BEFORE entry\n- Write them down — this is a contract with yourself\n- Use hard stops in your broker platform, not mental stops\n- Define the thesis invalidation condition: 'I exit if the stock breaks below $X OR if Q2 earnings miss by >10%'\n\nPre-commitment removes the in-the-moment emotional negotiation that loss aversion and the endowment effect create.",
+          highlight: ["endowment effect", "pre-commit", "exit rules", "stop-loss", "thesis invalidation"],
         },
         {
           type: "quiz-mc",
           question:
-            "Prospect Theory predicts that most people, when given a choice between a guaranteed $500 and a 50% chance at $1,200, will choose:",
+            "According to Prospect Theory, how much more painful is a $1,000 loss compared to how good a $1,000 gain feels?",
           options: [
-            "The guaranteed $500 — certainty effect makes the sure gain more attractive",
-            "The 50% chance at $1,200 — expected value is higher at $600",
-            "They're indifferent — both have similar utility",
-            "The gamble — people are naturally risk-seeking",
+            "~2.5× more painful — losses feel disproportionately worse than equivalent gains",
+            "Exactly equal — gains and losses of the same amount feel the same",
+            "~1.1× — losses are slightly worse but roughly equivalent",
+            "~5× more painful — losses are catastrophically more impactful than gains",
           ],
           correctIndex: 0,
           explanation:
-            "Despite the 50% gamble having higher expected value ($600 vs $500), Prospect Theory predicts most people take the certain $500 in the gain domain. The certainty effect makes sure gains disproportionately attractive. Flip to losses and people become risk-seeking.",
-          difficulty: 2,
+            "Kahneman and Tversky found through repeated experiments that losses feel approximately 2–2.5× more painful than equivalent gains feel good. This asymmetry is the foundation of Prospect Theory and explains the disposition effect, excessive risk aversion in gains, and risk-seeking behavior in the loss domain.",
+          difficulty: 1,
         },
         {
           type: "quiz-tf",
           statement:
-            "The 'house money effect' refers to trading more conservatively after a big winning trade.",
+            "The disposition effect means investors tend to hold winning positions too long and sell losing positions too quickly.",
           correct: false,
           explanation:
-            "The house money effect is the opposite — traders become MORE reckless with profits because they mentally separate 'winnings' from 'real capital.' They rationalize excess risk because they're 'playing with the house's money.' This leads to giving back gains through oversized bets.",
+            "The disposition effect is the opposite: investors sell winners too early (locking in sure gains) and hold losers too long (avoiding realizing painful losses). This is driven by Prospect Theory's loss aversion and the certainty effect. The pattern is academically well-documented in millions of real brokerage accounts.",
           difficulty: 2,
         },
         {
           type: "quiz-scenario",
           scenario:
-            "Investor holds $10,000 in Stock A (down 15%) and $10,000 in Stock B (up 20%). Both have identical future prospects. He sells Stock B to 'lock in' the gain but keeps Stock A hoping for recovery.",
-          question: "Which behavioral biases are at work?",
+            "Investor Maria owns 100 shares of a biotech at $60 (cost basis $70). A friend recommends selling and buying a different biotech with identical risk/return profile at $40. Maria refuses, saying 'I can't sell at a loss — I'll wait until it gets back to $70.'",
+          question: "Which combination of biases is primarily driving Maria's decision?",
           options: [
-            "Loss aversion + mental accounting — avoids realizing the loss, locks in the gain early",
-            "Prospect Theory's certainty effect only",
-            "Rational tax optimization — selling the winner minimizes tax",
-            "Diversification — reducing concentration in both positions",
+            "Loss aversion + endowment effect + anchoring to $70 cost basis",
+            "Overconfidence in the recovery potential",
+            "Availability heuristic — recent memories of the stock at $70",
+            "Representativeness — biotech stocks always recover",
           ],
           correctIndex: 0,
           explanation:
-            "Classic Prospect Theory pattern: loss aversion keeps the loser (can't bear to realize the loss), and the certainty effect motivates selling the winner early (locking in the 'sure' gain). Mental accounting treats each position in isolation. Rationally, with identical prospects, there's no reason to sell B and hold A.",
+            "Three biases compound here: Loss aversion (realizing the $10 loss is painful), the endowment effect (she values her current stock more than the alternative), and anchoring to the $70 cost basis as a target. Rationally, both biotechs have identical prospects, so the switch should be neutral — but biases make it feel impossible.",
           difficulty: 3,
         },
       ],
     },
 
-    // ─── Lesson 4: Social Influences on Markets ───────────────────────────────
+    // ─── Lesson 3: Herd Behavior & Market Bubbles ────────────────────────────
     {
-      id: "bf-4",
-      title: "👥 Social Influences on Markets",
+      id: "bf-3",
+      title: "🐑 Herd Behavior & Market Bubbles",
       description:
-        "Herding behavior, narrative economics, short squeezes, and meme stock dynamics",
+        "Herd mentality, informational cascades, historical bubbles, bubble anatomy, and short selling constraints",
       icon: "Users",
-      xpReward: 80,
+      xpReward: 85,
       difficulty: "intermediate",
       steps: [
         {
           type: "teach",
-          title: "🐑 Herding Behavior",
+          title: "🐑 Herd Mentality & Informational Cascades",
           content:
-            "**Herding** occurs when investors follow the crowd rather than their own analysis — believing that collective behavior conveys information.\n\nWhy herding is rational (but dangerous):\n- If others know something you don't, following them makes sense\n- Social proof — if everyone is buying, it must be good\n- Career risk — fund managers fear underperforming by acting differently from peers\n\nHerding causes:\n- **Momentum**: Prices overshoot fair value as herds pile in\n- **Bubbles**: Asset prices disconnect from fundamentals\n- **Synchronized crashes**: Herds exit simultaneously, amplifying downside\n\nCountermeasure: Independent analysis. Ask 'Would I buy/sell this if nobody else was?'",
-          highlight: ["herding", "momentum", "bubble", "social proof", "independent analysis"],
+            "**Herd mentality**: Following the crowd rather than independent analysis — especially pronounced in bull markets when social proof reinforces the trend.\n\nWhy herding can feel rational:\n- If sophisticated investors are all buying, they might know something you don't\n- Social proof: collective wisdom of crowds sometimes is correct\n- Career risk: fund managers fear underperforming by acting differently from peers\n\n**Informational cascades** (Bikhchandani et al., 1992): A cascade occurs when people ignore their own private information and instead copy the actions of those who came before — even when their private signal contradicts the herd.\n\nExample sequence:\n1. Person A buys (positive private signal)\n2. Person B buys (positive signal; also saw A buy)\n3. Person C has a NEGATIVE signal but sees A and B buying → follows the herd anyway\n4. From C onward, all investors copy the herd regardless of their private signals\n\nResult: Markets can lock into incorrect equilibria. The cascade is fragile — a single public signal can reverse it instantly, causing a crash.",
+          highlight: ["herd mentality", "informational cascade", "social proof", "private information"],
         },
         {
           type: "teach",
-          title: "📖 Narrative Economics",
+          title: "💡 Historical Bubbles: Patterns Through History",
           content:
-            "Nobel economist Robert Shiller coined **narrative economics** — the idea that viral stories drive economic behavior as powerfully as data.\n\n'AI will replace every job' (2023–) drove trillion-dollar valuations.\n'Crypto is the future of money' drove Bitcoin to $69K then crashed to $16K.\n'Real estate always goes up' fueled the 2008 housing crisis.\n\nNarratives spread like viruses — contagious, emotionally resonant, and often only loosely tethered to facts. They create **self-fulfilling prophecies**: everyone believes the story, so everyone acts on it, which makes the story temporarily true.\n\nSkill: Separate the narrative from the valuation. What are you actually paying for?",
-          highlight: ["narrative economics", "Shiller", "self-fulfilling prophecy", "valuation"],
+            "Financial bubbles recur throughout history with striking regularity:\n\n**Tulip Mania (1637)**: Single tulip bulbs traded for 10× a craftsman's annual salary. Prices collapsed 99% in weeks.\n\n**South Sea Bubble (1720)**: British company with monopoly on South American trade. Isaac Newton lost £20,000 ('I can calculate the motion of heavenly bodies, but not the madness of people').\n\n**Dot-com Bubble (2000)**: Companies with no revenue valued in billions. Nasdaq fell 78% peak to trough. $5 trillion in market cap destroyed.\n\n**Housing Bubble (2008)**: 'Real estate always goes up' narrative + subprime lending + CDO complexity. Triggered global financial crisis.\n\n**Crypto Bubble (2021)**: Bitcoin reached $69,000, NFTs sold for millions. Bitcoin fell 75%. Many altcoins fell 95%+.\n\nCommon thread: A genuine innovation or narrative, amplified by leverage and herding, disconnects prices from fundamental value until a trigger causes cascading reversal.",
+          highlight: ["Tulip Mania", "Dot-com", "Housing Bubble", "Crypto", "bubble", "narrative"],
         },
         {
           type: "teach",
-          title: "🚀 Short Squeezes & Meme Stocks",
+          title: "📈 Bubble Anatomy & Short Selling Constraints",
           content:
-            "**Short squeeze**: When a heavily shorted stock rises sharply, forcing short sellers to buy shares to cover losses, which drives the price even higher.\n\nMechanism:\n1. Stock is heavily shorted (high short float >20%)\n2. Price rises (any catalyst)\n3. Short sellers face mounting losses\n4. They buy to cover → price spikes further\n5. More shorts forced out → cycle accelerates\n\n**Meme stocks** (GameStop 2021, AMC, etc.) combined short squeezes with coordinated retail buying from forums like Reddit's WallStreetBets.\n\nKey lesson: Short squeezes are momentum trades disconnected from fundamentals. They end violently. Late buyers absorb losses as early buyers exit.",
-          highlight: ["short squeeze", "short float", "meme stocks", "cover", "momentum"],
+            "**The 5 stages of a bubble** (Kindleberger/Minsky model):\n\n1. **Displacement**: A new technology, policy, or asset class captures imagination (internet, cheap credit, crypto)\n2. **Boom**: Prices rise, media coverage grows, credit expands, new investors enter\n3. **Euphoria**: Valuation metrics abandoned ('this time is different'). Everyone is making money.\n4. **Distress**: Insiders sell. Prices plateau. First cracks appear. Some investors start questioning.\n5. **Revulsion**: Panic selling, forced liquidations, prices overshoot to the downside.\n\n**Why don't rational investors prevent bubbles?**\nShort selling constraints:\n- Short selling costs money (borrow fees) and has unlimited theoretical loss\n- Timing is impossible — 'the market can stay irrational longer than you can stay solvent' (Keynes)\n- Career risk: managers who short bubbles are fired before being proven right (as happened to many dot-com skeptics in 1998–1999)\n- This prevents rational arbitrage from correcting mispricing until the bubble becomes unsustainable",
+          highlight: ["displacement", "boom", "euphoria", "distress", "revulsion", "short selling constraints"],
         },
         {
           type: "quiz-mc",
           question:
-            "A stock has a 35% short float. It unexpectedly reports strong earnings, and the price surges 15%. What is likely to happen next?",
+            "What is an 'informational cascade' in financial markets?",
           options: [
-            "Short squeeze — short sellers buy to cover, accelerating the price rise",
-            "Price reverses immediately — earnings surprises are priced in quickly",
-            "Short sellers add more positions betting on a reversal",
-            "The stock trades sideways as supply and demand balance",
+            "When investors ignore their own private signals and copy others' actions, locking markets into potentially incorrect equilibria",
+            "When price information cascades through different asset classes simultaneously",
+            "When company earnings information leaks before official announcements",
+            "When high-frequency trading algorithms react to order flow information",
           ],
           correctIndex: 0,
           explanation:
-            "A 35% short float is extremely high. A catalyst (strong earnings) forces short sellers to buy shares to cover losses. Their forced buying adds to demand, pushing price higher, triggering more covering — a classic short squeeze cascade.",
+            "An informational cascade occurs when observing others' actions leads rational individuals to disregard their own private information. Once established, the cascade propagates regardless of the underlying truth — everyone follows the herd. This makes markets fragile: a single piece of contradicting public information can instantly reverse the cascade.",
           difficulty: 2,
         },
         {
           type: "quiz-tf",
           statement:
-            "Herding behavior in financial markets is always irrational and provides no useful information.",
+            "Short sellers help prevent bubbles because they can always profit by betting against overvalued assets with no risk.",
           correct: false,
           explanation:
-            "Herding can be partially rational — if informed investors are all moving in one direction, following might be correct. The problem is that herd behavior amplifies both correct and incorrect signals, causing overshooting. Markets often 'overherd,' taking prices well beyond what fundamentals justify.",
+            "Short selling carries substantial risks: borrow costs, theoretically unlimited losses if prices rise further, and severe career/reputational risk for professional managers. As Keynes noted, markets can 'stay irrational longer than you can stay solvent.' These constraints allow bubbles to persist and expand even when smart investors recognize the overvaluation.",
           difficulty: 2,
         },
         {
           type: "quiz-scenario",
           scenario:
-            "A stock rises 400% in 2 weeks driven entirely by Reddit posts and social media hype, with no fundamental change in the business. Trading volume is 50× normal. You're considering buying.",
-          question: "What does behavioral finance suggest about this situation?",
+            "In 1999, a fund manager recognizes that tech stocks are wildly overvalued by all traditional metrics. He refuses to buy them. His fund underperforms peers by 30%. Clients withdraw assets. He is fired in early 2000 — just before the Nasdaq crashes 78%.",
+          question: "Which concept best explains why bubbles persist despite rational investors recognizing them?",
           options: [
-            "Classic meme stock/herd dynamics — late buyers absorb losses when narrative fades",
-            "Strong fundamental demand — volume confirms institutional buying",
-            "Short squeeze opportunity — load up for continued momentum",
-            "Efficient market reaction to positive news not yet widely reported",
+            "Short selling constraints — career risk and timing uncertainty prevent rational arbitrage from correcting mispricing",
+            "Informational asymmetry — rational investors had less information than bulls",
+            "Efficient markets — the tech valuations were actually correct",
+            "Overconfidence — the fund manager was wrong about overvaluation",
           ],
           correctIndex: 0,
           explanation:
-            "400% with no fundamental change is pure narrative/herding. Volume spike is retail FOMO, not institutional buying. Late buyers at peak hype face severe losses when the narrative fades (and it always does). The risk/reward of chasing parabolic meme moves is extremely poor.",
+            "This scenario illustrates the classic 'limits of arbitrage' problem. The manager was analytically correct but fired before being proven right. Career risk, client redemptions, and the difficulty of timing bubble peaks prevent rational investors from correcting bubbles. This is why bubbles persist — and why 'the market can stay irrational longer than you can stay solvent.'",
           difficulty: 3,
         },
       ],
     },
 
-    // ─── Lesson 5: Building Trading Discipline ────────────────────────────────
+    // ─── Lesson 4: Emotional Discipline Techniques ────────────────────────────
+    {
+      id: "bf-4",
+      title: "⚔️ Emotional Discipline Techniques",
+      description:
+        "Trading journal, pre-mortems, the 10/10/10 rule, systematic checklists, and emotional regulation",
+      icon: "CheckSquare",
+      xpReward: 90,
+      difficulty: "advanced",
+      steps: [
+        {
+          type: "teach",
+          title: "📓 Trading Journal: Record Emotions, Not Just Prices",
+          content:
+            "A **trading journal** is your most powerful self-improvement tool. Elite traders treat it the way athletes watch game film — ruthlessly honest review.\n\nCritical distinction: **Record emotions at entry and exit, not just prices and P&L.**\n\nFor every trade, log:\n- Date, ticker, entry/exit price, size\n- Setup rationale: WHY did you enter?\n- Emotional state at entry (confident/anxious/FOMO? Scale 1–10)\n- Was exit planned or reactive?\n- Emotional state at exit — did you feel relieved, regretful, greedy?\n- What you'd do differently\n\nWeekly review patterns:\n- Are you worst when trading angry or after a loss? (Revenge trading signal)\n- Do you exit early on winners when excited? (Greed cutting winners)\n- Are you better on certain setups or times of day?\n\nStudies of active traders show those who journal improve performance by **15–25%** over 3 months vs. those who don't.",
+          highlight: ["trading journal", "emotional state", "patterns", "setup rationale"],
+        },
+        {
+          type: "teach",
+          title: "🔍 Pre-Mortems & The 10/10/10 Rule",
+          content:
+            "**Pre-mortem** (Gary Klein): Before entering a trade, assume it has already failed. Work backward to identify why.\n\nAsk:\n- What is the most likely reason this trade loses money?\n- What would have to be true for the thesis to be wrong?\n- What specific price level or data point would prove me wrong?\n\nThis technique is used by hedge funds, special forces, and surgeons before high-stakes operations. It counteracts overconfidence by forcing you to steelman the bearish case BEFORE emotional attachment forms.\n\n**The 10/10/10 Rule** (Suzy Welch):\nWhen facing an emotional trading decision, ask:\n- How will I feel about this in **10 minutes**? (Immediate emotional state — often unreliable)\n- How will I feel about this in **10 months**? (Medium-term consequence)\n- How will I feel about this in **10 years**? (Long-term impact on wealth and habits)\n\nThis creates temporal perspective. A trade that feels urgent right now rarely matters in 10 months — but a pattern of breaking your rules does matter in 10 years.",
+          highlight: ["pre-mortem", "10/10/10 rule", "overconfidence", "temporal perspective"],
+        },
+        {
+          type: "teach",
+          title: "✅ Systematic Rules, Checklists & Emotional Regulation",
+          content:
+            "**Systematic rules vs. discretion**: Checklists, position sizing rules, and automated stops remove emotion from in-the-moment decisions.\n\nPre-trade checklist:\n□ Does this match my strategy criteria?\n□ Entry, stop-loss, and target defined BEFORE entry?\n□ R:R ≥ 1:2?\n□ Risk ≤ 1–2% of portfolio?\n□ Am I entering due to FOMO or genuine setup?\n□ What would invalidate my thesis?\n\n**Emotional regulation for traders** (documented in hedge fund research):\n- **Mindfulness meditation**: Studies of proprietary traders show 23% reduction in impulsive trades after 8-week mindfulness programs (Fenton-O'Creevy et al., 2012)\n- **Physical exercise**: Exercise reduces cortisol (stress hormone) and improves executive function — directly relevant to trading decisions\n- **Mandatory break rule**: After any loss exceeding X% of daily risk budget, stop trading for the day\n- **Breathing protocols**: Box breathing (4-4-4-4) before trade execution activates parasympathetic nervous system, reducing impulsivity\n\nThe goal is not to eliminate emotion — it's to prevent emotion from overriding pre-committed rules.",
+          highlight: ["checklist", "position sizing", "stop-loss automation", "mindfulness", "emotional regulation"],
+        },
+        {
+          type: "quiz-mc",
+          question:
+            "What is a 'pre-mortem' in trading context?",
+          options: [
+            "Imagining a trade has already failed and working backward to identify why it failed",
+            "Reviewing a trade after it closes to learn from the outcome",
+            "Calculating the maximum possible loss before entering",
+            "Checking historical performance of a pattern before trading it",
+          ],
+          correctIndex: 0,
+          explanation:
+            "A pre-mortem (from Gary Klein's research) involves prospective hindsight — assuming the bad outcome has already occurred before it can happen. By asking 'this trade failed, why?' BEFORE entry, you counteract overconfidence and identify risks that forward-looking analysis misses. It forces engagement with the bearish case before emotional attachment forms.",
+          difficulty: 1,
+        },
+        {
+          type: "quiz-tf",
+          statement:
+            "A skilled trader relies primarily on willpower and real-time emotional control to avoid bias, rather than pre-committed rules and automated stops.",
+          correct: false,
+          explanation:
+            "Research consistently shows willpower is unreliable under stress — exactly the conditions of active trading. Behavioral finance pioneers like Thaler recommend 'libertarian paternalism': design systems (hard stops, checklists, automated rules) that make the correct behavior the path of least resistance. Professional traders rely on rules, not in-the-moment willpower.",
+          difficulty: 2,
+        },
+        {
+          type: "quiz-scenario",
+          scenario:
+            "A trader is about to enter a momentum trade that's already moved 8%. He feels intense urgency. His checklist shows R:R is 1:1.3 (below his 1:2 minimum) and the setup only partially meets his criteria. He's about to override the checklist 'just this once.'",
+          question: "Applying the 10/10/10 rule, which perspective is most relevant here?",
+          options: [
+            "10 years: overriding rules 'just this once' establishes a habit of breaking rules — destroying discipline long-term",
+            "10 minutes: he'll feel good about acting on the urgency",
+            "10 months: one trade rarely matters over 10 months",
+            "10 years: missing this trade will cause long-term regret",
+          ],
+          correctIndex: 0,
+          explanation:
+            "The 10-year perspective reveals the true stakes: not whether this specific trade wins or loses, but whether 'just this once' rule-breaking becomes a pattern. Every systematic deviation erodes the discipline structure. The 10/10/10 rule helps see past immediate urgency (FOMO) to the long-term consequence of the habit being formed.",
+          difficulty: 3,
+        },
+      ],
+    },
+
+    // ─── Lesson 5: Market Anomalies & Behavioral Alpha ────────────────────────
     {
       id: "bf-5",
-      title: "⚔️ Building Trading Discipline",
+      title: "📈 Market Anomalies & Behavioral Alpha",
       description:
-        "Trading rules, journaling habits, pre-trade checklist, and review process",
-      icon: "CheckSquare",
+        "Momentum, value premium, January effect, post-earnings drift, and exploiting behavioral biases",
+      icon: "TrendingUp",
       xpReward: 95,
       difficulty: "advanced",
       steps: [
         {
           type: "teach",
-          title: "📜 Trading Rules That Save You",
+          title: "🚀 Momentum Anomaly: Underreaction Explains Persistence",
           content:
-            "Professional traders don't rely on willpower — they rely on **rules**. Rules remove emotion from in-the-moment decisions.\n\nEssential rules:\n1. **Never risk more than 1–2% of portfolio on one trade**\n2. **Always define stop-loss before entering** — not after\n3. **No trading in the first 30 minutes of market open** (highest volatility, spread manipulation)\n4. **No revenge trading** — mandatory 24-hour break after a large loss\n5. **No adding to losing positions** unless the thesis explicitly predicted it\n6. **Lock in partial profits** at first target; trail stop on remainder\n\nRules only work if they are **non-negotiable**. The moment you 'just this once' break a rule, the rule is gone.",
-          highlight: ["trading rules", "stop-loss", "risk per trade", "non-negotiable"],
+            "The **momentum anomaly**: Stocks that have performed well over the past 3–12 months tend to continue outperforming, and past losers continue underperforming — for another 3–12 months.\n\nThis violates the Efficient Market Hypothesis (past prices shouldn't predict future prices).\n\n**Behavioral explanation — investor underreaction:**\n- Investors update their beliefs too slowly when companies report good news\n- Initial market reaction is insufficient — prices drift up gradually as more investors slowly recognize the positive development\n- Anchoring to prior prices prevents immediate full repricing\n- Herding amplifies the effect as more investors pile in after the trend is visible\n\nEvidence:\n- Jegadeesh and Titman (1993): 12-month momentum strategy earns ~1% per month\n- Momentum is one of the most robust anomalies across 40+ countries and asset classes\n- Crashes violently during sharp market reversals (momentum crash risk)",
+          highlight: ["momentum", "underreaction", "anchoring", "price drift", "Jegadeesh Titman"],
         },
         {
           type: "teach",
-          title: "📓 The Trading Journal",
+          title: "💎 Value Premium & Post-Earnings Drift",
           content:
-            "A **trading journal** is your most powerful improvement tool. Elite traders treat it like athletes watch game film.\n\nWhat to log for every trade:\n- Date, ticker, entry/exit price, size\n- Setup rationale: WHY did you enter?\n- Emotional state before the trade (1–10 confidence, calm/anxious?)\n- Was exit planned or emotional?\n- What you'd do differently\n\nReview weekly: Look for patterns. Are you best at certain setups? Worst at certain times of day? Losing more on days when you feel overconfident?\n\nStudies show traders who journal show 15–25% improvement in performance within 3 months compared to those who don't.",
-          highlight: ["trading journal", "setup rationale", "emotional state", "patterns"],
+            "**Value premium**: 'Cheap' stocks (low P/E, P/B, EV/EBITDA) historically outperform 'expensive' growth stocks over long horizons.\n\n**Behavioral explanation — overreaction and extrapolation:**\n- Investors extrapolate past growth too far into the future, overpaying for glamour stocks\n- They overreact to bad news for value stocks, driving prices too low\n- When reality (mean reversion) disappoints glamour stocks and surprises value stocks, prices correct\n- This is the opposite of the momentum effect — here the bias is OVERreaction\n\n**Post-Earnings Announcement Drift (PEAD):**\n- After a positive earnings surprise, stocks drift upward for 3–6 months (not immediately priced in)\n- After a negative surprise, stocks drift downward for months\n- Classic underreaction: investors are slow to fully update beliefs after surprises\n- PEAD is one of the most replicated anomalies in finance — documented since Ball & Brown (1968)\n\n**January effect**: Small-cap stocks outperform in January, explained by tax-loss selling in December followed by reinvestment — a predictable behavioral pattern from tax optimization.",
+          highlight: ["value premium", "overreaction", "PEAD", "earnings drift", "January effect"],
         },
         {
           type: "teach",
-          title: "✅ Pre-Trade Checklist & Review Process",
+          title: "🎯 Exploiting Biases: Contrarian & Trend-Following Alpha",
           content:
-            "A **pre-trade checklist** (like a pilot's preflight check) prevents impulsive decisions:\n\n□ Does this setup match my strategy criteria?\n□ What is my entry price? Stop-loss? First target?\n□ What is the R:R ratio? (Minimum 1:2)\n□ How much am I risking? (Max 1–2% of portfolio)\n□ Why might I be wrong? What invalidates the trade?\n□ Am I entering due to FOMO or because the setup is genuinely there?\n\n**Weekly review process**:\n1. Review all trades — winners and losers\n2. Categorize: Followed plan / Deviated from plan\n3. Calculate metrics: Win rate, avg win, avg loss, EV\n4. Identify one improvement for next week\n\nMeasure process quality, not just P&L. Following your rules perfectly on a losing trade is success.",
-          highlight: ["pre-trade checklist", "R:R ratio", "review process", "process quality"],
+            "Understanding behavioral biases creates **behavioral alpha** — returns earned by systematically exploiting others' mistakes.\n\n**Contrarian investing** (exploits overreaction):\n- Buy stocks beaten down by overreaction to bad news; sell glamour stocks priced for perfection\n- Deep value investors (Graham, Buffett) have earned excess returns for decades\n- Requires emotional fortitude — you are buying what everyone hates\n\n**Trend following / momentum** (exploits underreaction):\n- Buy recent winners; sell recent losers\n- Systematic CTAs (commodity trading advisors) have profited from momentum across futures markets for 50+ years\n- Works because investors are slow to fully update beliefs\n\n**Behavioral factor ETFs:**\n- MTUM (momentum factor ETF), VLUE (value factor ETF), QMJ (quality minus junk)\n- Academic factors package behavioral anomalies into systematic rules\n\n**Key insight**: Biases create predictable patterns — but exploiting them requires rules-based systems. Human traders often abandon the strategy at the exact wrong moment (when it's most uncomfortable), eliminating the behavioral edge.",
+          highlight: ["behavioral alpha", "contrarian", "trend following", "momentum factor", "value factor"],
         },
         {
           type: "quiz-mc",
           question:
-            "A trader's pre-trade checklist shows an R:R of 1:1.5 and a setup that doesn't clearly match their strategy criteria. The stock is moving fast. What should the trader do?",
+            "What explains the momentum anomaly from a behavioral finance perspective?",
           options: [
-            "Skip the trade — R:R minimum not met and setup criteria unclear",
-            "Enter immediately — price is moving and the checklist can wait",
-            "Enter with a larger size to compensate for lower R:R",
-            "Remove the R:R criterion — it's too restrictive",
+            "Investors underreact to good news, causing gradual price adjustment as beliefs update slowly over months",
+            "Investors overreact to good news, creating a temporary spike that reverses",
+            "Institutional algorithms create artificial momentum through high-frequency trading",
+            "Markets are perfectly efficient and momentum returns are explained by risk premiums only",
           ],
           correctIndex: 0,
           explanation:
-            "The checklist exists to prevent exactly this mistake. R:R below 1:2 and ambiguous setup = skip. 'Price is moving' is FOMO talking, not analysis. The checklist has no meaning if it can be overridden whenever the market creates urgency.",
+            "Momentum persists because investors anchor to prior prices, update beliefs too slowly, and underreact to earnings surprises and positive news. Prices drift gradually upward as more investors slowly recognize the positive development. This is the behavioral explanation — distinct from risk-based explanations. The anomaly is documented across 40+ countries and multiple asset classes.",
           difficulty: 2,
         },
         {
           type: "quiz-tf",
           statement:
-            "A trading week with 60% win rate and positive P&L is more informative than a week where you followed your rules perfectly but lost money.",
+            "Post-Earnings Announcement Drift (PEAD) is explained by investors overreacting to earnings surprises, which causes prices to reverse after the initial move.",
           correct: false,
           explanation:
-            "Over short periods, outcomes are heavily influenced by randomness. A week of following your rules perfectly on a slightly unfavorable series of trades tells you more about your process quality than a lucky week with poor discipline. Consistent process, tracked over 50+ trades, reveals true edge.",
+            "PEAD is actually caused by investor UNDERREACTION, not overreaction. After an earnings surprise, prices drift in the direction of the surprise for 3–6 months — not reversing. Investors are slow to fully update beliefs and reprice the stock. The drift continues as the broader market gradually incorporates the information. Overreaction would cause a reversal; PEAD is the opposite.",
           difficulty: 3,
         },
         {
           type: "quiz-scenario",
           scenario:
-            "Trader James has been losing for 3 consecutive weeks. His journal shows: he's been trading for the first 15 minutes of open (his own rule says don't), adding to losers, and exiting winners at the first target without trailing. His account is down 12%.",
-          question: "What is the PRIMARY fix James needs to make?",
+            "A quantitative fund systematically buys stocks with strong 6-month price momentum and sells stocks with poor 6-month momentum, rebalancing monthly. In March 2009 (sharp market reversal), the momentum portfolio crashes 40% in 4 weeks — more than the market itself.",
+          question: "What does this illustrate about behavioral alpha strategies?",
           options: [
-            "Return to following his own rules before changing his strategy",
-            "Abandon the strategy and find a new one immediately",
-            "Increase position sizes to recover losses faster",
-            "Stop trading entirely — 12% loss means the strategy doesn't work",
+            "Momentum crashes during sharp reversals — behavioral strategies have specific risk characteristics that require understanding and risk management",
+            "The strategy is fundamentally flawed and behavioral anomalies don't exist",
+            "The January effect explains the March reversal",
+            "Overreaction by value investors caused momentum stocks to crash",
           ],
           correctIndex: 0,
           explanation:
-            "James has a discipline problem, not necessarily a strategy problem. His journal clearly shows he's violating his own rules. Fixing rule adherence should come before any strategy changes — otherwise he'll never know if the strategy works. Increasing size while undisciplined is dangerous.",
+            "The 'momentum crash' phenomenon (Daniel and Moskowitz, 2016) shows that momentum strategies have positive average returns but sharp, severe drawdowns during market reversals. Understanding WHEN a strategy fails is as important as knowing its average edge. Behavioral alpha is real but requires robust risk management — momentum works because of underreaction, but in crashes, forced deleveraging creates violent mean reversion.",
           difficulty: 3,
         },
       ],
