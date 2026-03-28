@@ -293,9 +293,14 @@ function Row({
 
 // ─── Main Component ───────────────────────────────────────────────────────────
 
+type TradeMode = "buy" | "sell" | "short";
+
 export function OrderEntry() {
   // Standard order state
-  const [side, setSide] = useState<OrderSide>("buy");
+  const [tradeMode, setTradeMode] = useState<TradeMode>("buy");
+  // Derive OrderSide from tradeMode (short uses "sell" for limit/stop orders)
+  const side: OrderSide = tradeMode === "buy" ? "buy" : "sell";
+  const setSide = (s: OrderSide) => setTradeMode(s === "buy" ? "buy" : "sell");
   const [orderType, setOrderType] = useState<OrderType>("market");
   const [quantity, setQuantity] = useState("10");
   const [limitPrice, setLimitPrice] = useState("");
