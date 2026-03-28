@@ -39,6 +39,14 @@ import {
   PieChart,
   Layers,
   MessageSquare,
+  Newspaper,
+  ScanSearch,
+  NotebookPen,
+  CalendarClock,
+  Gauge,
+  Radio,
+  Globe,
+  CircleDot,
 } from "lucide-react";
 
 /* ─────────────────────────────────────────────
@@ -257,6 +265,31 @@ function PortfolioEquityChart({
 }
 
 /* ─────────────────────────────────────────────
+   Progress ring SVG
+───────────────────────────────────────────── */
+function ProgressRing({ pct, size = 64 }: { pct: number; size?: number }) {
+  const r = (size - 8) / 2;
+  const circ = 2 * Math.PI * r;
+  const offset = circ * (1 - pct / 100);
+  return (
+    <svg width={size} height={size} className="-rotate-90">
+      <circle cx={size / 2} cy={size / 2} r={r} fill="none" stroke="rgba(255,255,255,0.06)" strokeWidth="6" />
+      <circle
+        cx={size / 2}
+        cy={size / 2}
+        r={r}
+        fill="none"
+        stroke="#10b981"
+        strokeWidth="6"
+        strokeDasharray={`${circ.toFixed(2)} ${circ.toFixed(2)}`}
+        strokeDashoffset={offset.toFixed(2)}
+        strokeLinecap="round"
+      />
+    </svg>
+  );
+}
+
+/* ─────────────────────────────────────────────
    AI insight text (day-of-week rotation)
 ───────────────────────────────────────────── */
 const MARKET_BRIEFS = [
@@ -299,6 +332,33 @@ const NAV_SHORTCUTS = [
   { label: "Options", href: "/options", Icon: Zap, color: "text-amber-400" },
   { label: "Arena", href: "/arena", Icon: Swords, color: "text-red-400" },
   { label: "Portfolio", href: "/portfolio", Icon: Shield, color: "text-cyan-400" },
+];
+
+/* ─────────────────────────────────────────────
+   Quick Actions Grid (8 buttons, 4×2)
+───────────────────────────────────────────── */
+const QUICK_ACTIONS = [
+  { label: "New Trade", href: "/trade", Icon: PlayCircle, color: "text-blue-400", bg: "bg-blue-500/10", hover: "hover:border-blue-500/40 hover:bg-blue-500/5" },
+  { label: "Portfolio", href: "/portfolio", Icon: PieChart, color: "text-cyan-400", bg: "bg-cyan-500/10", hover: "hover:border-cyan-500/40 hover:bg-cyan-500/5" },
+  { label: "Today's Quiz", href: "/quiz", Icon: Star, color: "text-amber-400", bg: "bg-amber-500/10", hover: "hover:border-amber-500/40 hover:bg-amber-500/5" },
+  { label: "Earnings", href: "/learn", Icon: Newspaper, color: "text-orange-400", bg: "bg-orange-500/10", hover: "hover:border-orange-500/40 hover:bg-orange-500/5" },
+  { label: "Scan Markets", href: "/backtest", Icon: ScanSearch, color: "text-violet-400", bg: "bg-violet-500/10", hover: "hover:border-violet-500/40 hover:bg-violet-500/5" },
+  { label: "Journal", href: "/journal", Icon: NotebookPen, color: "text-emerald-400", bg: "bg-emerald-500/10", hover: "hover:border-emerald-500/40 hover:bg-emerald-500/5" },
+  { label: "Options Flow", href: "/options", Icon: Zap, color: "text-yellow-400", bg: "bg-yellow-500/10", hover: "hover:border-yellow-500/40 hover:bg-yellow-500/5" },
+  { label: "Macro Update", href: "/learn", Icon: Globe, color: "text-sky-400", bg: "bg-sky-500/10", hover: "hover:border-sky-500/40 hover:bg-sky-500/5" },
+] as const;
+
+/* ─────────────────────────────────────────────
+   Economic calendar events (seeded)
+───────────────────────────────────────────── */
+const ECONOMIC_EVENTS = [
+  { name: "FOMC Minutes", impact: "HIGH", daysFromNow: 1, time: "2:00 PM ET" },
+  { name: "CPI (YoY)", impact: "HIGH", daysFromNow: 2, time: "8:30 AM ET" },
+  { name: "Initial Jobless Claims", impact: "MED", daysFromNow: 3, time: "8:30 AM ET" },
+  { name: "Retail Sales MoM", impact: "HIGH", daysFromNow: 4, time: "8:30 AM ET" },
+  { name: "Fed Chair Speech", impact: "HIGH", daysFromNow: 5, time: "10:00 AM ET" },
+  { name: "PCE Price Index", impact: "HIGH", daysFromNow: 6, time: "8:30 AM ET" },
+  { name: "Non-Farm Payrolls", impact: "HIGH", daysFromNow: 7, time: "8:30 AM ET" },
 ];
 
 /* ─────────────────────────────────────────────
@@ -411,6 +471,56 @@ export default function HomePage() {
     }));
   }, [daySeed]);
 
+  /* ── Market Movers: top 5 gainers + losers ── */
+  const marketMovers = useMemo(() => {
+    const sorted = [...marketPrices].sort((a, b) => b.changePct - a.changePct);
+    return {
+      gainers: sorted.slice(0, 5),
+      losers: sorted.slice(-5).reverse(),
+    };
+  }, [marketPrices]);
+
+  /* ── Sparklines for movers (seeded per ticker) ── */
+  const moverSparklines = useMemo(() => {
+    const result: Record<string, number[]> = {};
+    for (const ticker of ALL_TICKERS) {
+      const seed = tickerHash(ticker) ^ daySeed;
+      const rand = mulberry32(seed ^ 0x1234abcd);
+      const base = BASE_PRICES[ticker] ?? 100;
+      result[ticker] = Array.from({ length: 12 }, () => base * (1 + (rand() - 0.5) * 0.04));
+    }
+    return result;
+  }, [daySeed]);
+
+  /* ── Options volume (seeded daily) ── */
+  const optionsVolume = useMemo(() => {
+    const rand = mulberry32(daySeed ^ 0xf00dface);
+    return ALL_TICKERS.map((ticker) => ({
+      ticker,
+      volume: Math.floor(rand() * 900000 + 100000),
+      callPutRatio: +(rand() * 1.8 + 0.4).toFixed(2),
+      iv: +(rand() * 60 + 15).toFixed(1),
+    })).sort((a, b) => b.volume - a.volume).slice(0, 5);
+  }, [daySeed]);
+
+  /* ── Market Pulse (VIX + regime + Fear & Greed) ── */
+  const marketPulse = useMemo(() => {
+    const rand = mulberry32(daySeed ^ 0xbeefdead);
+    const vix = +(rand() * 18 + 12).toFixed(2);
+    const fg = Math.floor(rand() * 100);
+    const regime =
+      vix < 16 && fg > 55 ? "Bull" :
+      vix > 25 || fg < 30 ? "Bear" :
+      "Sideways";
+    const fgLabel =
+      fg >= 75 ? "Extreme Greed" :
+      fg >= 55 ? "Greed" :
+      fg >= 45 ? "Neutral" :
+      fg >= 25 ? "Fear" :
+      "Extreme Fear";
+    return { vix, fg, fgLabel, regime };
+  }, [daySeed]);
+
   /* ── Market status ── */
   const marketStatus = useMemo(() => getMarketStatus(), []);
 
@@ -419,6 +529,20 @@ export default function HomePage() {
   const marketBrief = MARKET_BRIEFS[dayIndex % MARKET_BRIEFS.length];
   const topOpportunity = TOP_OPPORTUNITIES[dayIndex % TOP_OPPORTUNITIES.length];
   const riskTip = RISK_TIPS[dayIndex % RISK_TIPS.length];
+
+  /* ── Today's focus insight ── */
+  const todayFocus = useMemo(() => {
+    const insights = [
+      `Watch ${topOpportunity.ticker} for a potential ${topOpportunity.direction} entry near current levels.`,
+      "Focus on high-quality setups with 2:1 R/R minimum — avoid chasing gaps.",
+      "VIX is elevated — consider reducing position size by 25% to manage volatility.",
+      "Options expiration week: expect intraday vol spikes in SPY and QQQ.",
+      "Earnings season: wait for post-earnings price stabilization before entering.",
+      "Trend following outperforming in current regime — avoid counter-trend bets.",
+      "Macro headwinds persist — stay disciplined with stops, protect capital first.",
+    ];
+    return insights[dayIndex % insights.length];
+  }, [dayIndex, topOpportunity]);
 
   /* ── Learning progress ── */
   const learnProgress = useMemo(() => {
@@ -483,7 +607,7 @@ export default function HomePage() {
   /* ── Activity feed ── */
   type FeedItem = {
     id: string;
-    type: "trade" | "achievement" | "lesson" | "levelup";
+    type: "trade" | "achievement" | "lesson" | "levelup" | "quest";
     label: string;
     sub: string;
     ts: number;
@@ -542,6 +666,17 @@ export default function HomePage() {
   const [aiLoading, setAiLoading] = useState(false);
   const [aiRefreshKey, setAiRefreshKey] = useState(0);
   const typingRef = useRef<ReturnType<typeof setInterval> | null>(null);
+
+  /* ── Morning AI brief bullets ── */
+  const morningBullets = useMemo(() => {
+    const bullets = [
+      `${marketPulse.regime} regime detected — VIX at ${marketPulse.vix}, bias ${marketPulse.fg > 50 ? "bullish" : "cautious"}.`,
+      `${topOpportunity.ticker} showing ${topOpportunity.direction} signal with ${topOpportunity.confidence}% confidence. ${topOpportunity.reason}.`,
+      marketBrief.split(".")[0] + ".",
+      todayFocus,
+    ];
+    return bullets;
+  }, [marketPulse, topOpportunity, marketBrief, todayFocus]);
 
   const generateBrief = useCallback(() => {
     if (typingRef.current) clearInterval(typingRef.current);
@@ -603,6 +738,22 @@ export default function HomePage() {
       lessonsCompleted: completedLessons.length,
     };
   }, [dailyPnL, portfolioValue, winRate, stats.consecutiveWins, completedLessons]);
+
+  /* ── Today's trades summary for morning brief ── */
+  const yesterdaySummary = useMemo(() => {
+    const cutoff = Date.now() - 24 * 3600000;
+    const recent = tradeHistory.filter((t) => t.timestamp >= cutoff);
+    const pnl = recent.reduce((s, t) => s + t.realizedPnL, 0);
+    return { count: recent.length, pnl };
+  }, [tradeHistory]);
+
+  /* ── Hour of day greeting ── */
+  const greeting = useMemo(() => {
+    const h = new Date().getHours();
+    if (h < 12) return "Good morning";
+    if (h < 17) return "Good afternoon";
+    return "Good evening";
+  }, []);
 
   return (
     <div className="flex h-full flex-col overflow-y-auto">
@@ -679,6 +830,152 @@ export default function HomePage() {
                 </div>
               );
             })}
+
+            {/* Market Pulse chip — appended to strip */}
+            <div className="flex min-w-[140px] shrink-0 flex-col gap-1 rounded-lg border border-border bg-card px-3 py-2.5">
+              <div className="flex items-center gap-1.5">
+                <Gauge className="h-3 w-3 text-primary" />
+                <span className="text-[10px] font-semibold uppercase tracking-wider text-muted-foreground">
+                  Market Pulse
+                </span>
+              </div>
+              <div className="flex items-center gap-2">
+                <span
+                  className={cn(
+                    "rounded px-1.5 py-0.5 text-[10px] font-bold",
+                    marketPulse.regime === "Bull" ? "bg-emerald-500/15 text-emerald-400" :
+                    marketPulse.regime === "Bear" ? "bg-red-500/15 text-red-400" :
+                    "bg-amber-500/15 text-amber-400",
+                  )}
+                >
+                  {marketPulse.regime}
+                </span>
+                <span className="text-[10px] text-muted-foreground">VIX {marketPulse.vix}</span>
+              </div>
+              <span
+                className={cn(
+                  "text-[10px] font-medium",
+                  marketPulse.fg >= 55 ? "text-emerald-400" : marketPulse.fg <= 35 ? "text-red-400" : "text-amber-400",
+                )}
+              >
+                F&G: {marketPulse.fg} · {marketPulse.fgLabel}
+              </span>
+            </div>
+          </div>
+        </motion.div>
+
+        {/* ═══════════════════════════════════════
+            NEW Section A — AI Morning Brief Card
+        ═══════════════════════════════════════ */}
+        <motion.div variants={fadeUp}>
+          <div className="rounded-xl border border-border bg-card overflow-hidden">
+            {/* Header bar */}
+            <div className="border-b border-border/50 bg-muted/10 px-5 py-3.5 flex items-center justify-between">
+              <div className="flex items-center gap-2.5">
+                <div className="flex h-7 w-7 items-center justify-center rounded-md bg-primary/10">
+                  <Radio className="h-3.5 w-3.5 text-primary" />
+                </div>
+                <div>
+                  <p className="text-sm font-semibold">
+                    {greeting}, Trader
+                  </p>
+                  <p className="text-[10px] text-muted-foreground">AlphaBot Morning Brief · {new Date().toLocaleDateString("en-US", { weekday: "long", month: "short", day: "numeric" })}</p>
+                </div>
+              </div>
+              <div className="flex items-center gap-2">
+                {/* Regime badge */}
+                <span
+                  className={cn(
+                    "rounded-full px-2.5 py-1 text-[11px] font-semibold border",
+                    marketPulse.regime === "Bull"
+                      ? "border-emerald-500/30 bg-emerald-500/10 text-emerald-400"
+                      : marketPulse.regime === "Bear"
+                      ? "border-red-500/30 bg-red-500/10 text-red-400"
+                      : "border-amber-500/30 bg-amber-500/10 text-amber-400",
+                  )}
+                >
+                  {marketPulse.regime === "Bull" ? "Early Bull" : marketPulse.regime === "Bear" ? "Late Bear" : "Sideways"} Market
+                </span>
+              </div>
+            </div>
+
+            <div className="grid grid-cols-1 gap-0 lg:grid-cols-3">
+              {/* Left: AI bullets */}
+              <div className="border-b border-border/40 p-5 lg:border-b-0 lg:border-r lg:col-span-2">
+                <p className="mb-3 text-[10px] font-semibold uppercase tracking-wider text-muted-foreground flex items-center gap-1.5">
+                  <MessageSquare className="h-3 w-3 text-primary" />
+                  Key Insights
+                  <span className="rounded bg-primary/10 px-1 py-0.5 text-[9px] font-semibold text-primary">AI</span>
+                </p>
+                <ul className="space-y-2">
+                  {morningBullets.map((bullet, i) => (
+                    <li key={i} className="flex items-start gap-2.5">
+                      <span className="mt-1 h-1.5 w-1.5 shrink-0 rounded-full bg-primary/60" />
+                      <span className="text-xs leading-relaxed text-foreground/90">{bullet}</span>
+                    </li>
+                  ))}
+                </ul>
+
+                {/* Today's focus */}
+                <div className="mt-4 rounded-lg border border-primary/20 bg-primary/5 px-3.5 py-2.5">
+                  <p className="mb-1 text-[10px] font-semibold uppercase tracking-wider text-primary/70">
+                    Today&apos;s Focus
+                  </p>
+                  <p className="text-xs font-medium text-foreground">{todayFocus}</p>
+                </div>
+              </div>
+
+              {/* Right: Yesterday summary + streak */}
+              <div className="p-5">
+                <p className="mb-3 text-[10px] font-semibold uppercase tracking-wider text-muted-foreground">
+                  Yesterday&apos;s Summary
+                </p>
+                <div className="space-y-3">
+                  <div className="flex items-center justify-between">
+                    <span className="text-xs text-muted-foreground">Trades made</span>
+                    <span className="text-xs font-bold tabular-nums">{yesterdaySummary.count}</span>
+                  </div>
+                  <div className="flex items-center justify-between">
+                    <span className="text-xs text-muted-foreground">Session P&L</span>
+                    <span
+                      className={cn(
+                        "text-xs font-bold tabular-nums",
+                        yesterdaySummary.pnl >= 0 ? "text-emerald-400" : "text-red-400",
+                      )}
+                    >
+                      {yesterdaySummary.pnl >= 0 ? "+" : ""}{formatCurrency(yesterdaySummary.pnl)}
+                    </span>
+                  </div>
+                  <div className="flex items-center justify-between">
+                    <span className="text-xs text-muted-foreground">Win rate</span>
+                    <span className="text-xs font-bold tabular-nums">{winRate.toFixed(1)}%</span>
+                  </div>
+                  <div className="flex items-center justify-between">
+                    <span className="text-xs text-muted-foreground">Streak</span>
+                    <div className="flex items-center gap-1">
+                      <Flame className="h-3.5 w-3.5 text-orange-400" />
+                      <span className="text-xs font-bold tabular-nums">{dailyStreakCount}d</span>
+                    </div>
+                  </div>
+                </div>
+
+                {/* XP bar */}
+                <div className="mt-4 border-t border-border/40 pt-3">
+                  <div className="mb-1.5 flex items-center justify-between">
+                    <span className="text-[10px] text-muted-foreground">Level {level}</span>
+                    <span className="text-[10px] text-muted-foreground">
+                      {xpToNext > 0 ? `${xpToNext} XP to next` : "Max"}
+                    </span>
+                  </div>
+                  <div className="h-1.5 overflow-hidden rounded-full bg-muted/30">
+                    <div
+                      className="h-full rounded-full bg-primary transition-all duration-700"
+                      style={{ width: `${xpProgress}%` }}
+                    />
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
         </motion.div>
 
@@ -796,113 +1093,182 @@ export default function HomePage() {
         </motion.div>
 
         {/* ═══════════════════════════════════════
-            Section 1b — Quick Actions Grid
+            NEW Section B — Quick Actions Grid (4×2)
         ═══════════════════════════════════════ */}
         <motion.div variants={fadeUp}>
           <p className="mb-3 text-[10px] font-semibold uppercase tracking-wider text-muted-foreground">
             Quick Actions
           </p>
-          <div className="grid grid-cols-2 gap-3 sm:grid-cols-4">
-            {/* Start Trading */}
-            <Link href="/trade">
-              <div className="group relative overflow-hidden rounded-lg border border-border bg-card p-4 transition-colors hover:border-blue-500/40 hover:bg-blue-500/5">
-                <div className="mb-2 flex items-center gap-2">
-                  <div className="flex h-8 w-8 items-center justify-center rounded-md bg-blue-500/10">
-                    <PlayCircle className="h-4 w-4 text-blue-400" />
+          <div className="grid grid-cols-4 gap-2.5 sm:grid-cols-8">
+            {QUICK_ACTIONS.map(({ label, href, Icon, color, bg, hover }) => (
+              <Link key={href + label} href={href}>
+                <div
+                  className={cn(
+                    "group flex flex-col items-center gap-2 rounded-lg border border-border bg-card px-2 py-3.5 text-center transition-colors",
+                    hover,
+                  )}
+                >
+                  <div className={cn("flex h-8 w-8 items-center justify-center rounded-lg", bg)}>
+                    <Icon className={cn("h-4 w-4", color)} />
                   </div>
-                  <span className="text-xs font-semibold">Start Trading</span>
+                  <span className="text-[10px] font-medium leading-tight">{label}</span>
                 </div>
-                <p className="text-[10px] leading-relaxed text-muted-foreground">
-                  Open charts, place orders, and build your portfolio.
-                </p>
-                {positions.length > 0 && (
-                  <div className="mt-2 flex items-center gap-1">
-                    <div className="h-1.5 w-1.5 rounded-full bg-emerald-400" />
-                    <span className="text-[10px] text-emerald-400">{positions.length} open</span>
-                  </div>
-                )}
-                <ChevronRight className="absolute right-3 top-1/2 h-3.5 w-3.5 -translate-y-1/2 text-muted-foreground/30 transition-transform group-hover:translate-x-0.5 group-hover:text-muted-foreground/60" />
-              </div>
-            </Link>
-
-            {/* Continue Learning */}
-            <Link href="/learn">
-              <div className="group relative overflow-hidden rounded-lg border border-border bg-card p-4 transition-colors hover:border-emerald-500/40 hover:bg-emerald-500/5">
-                <div className="mb-2 flex items-center gap-2">
-                  <div className="flex h-8 w-8 items-center justify-center rounded-md bg-emerald-500/10">
-                    <BookOpen className="h-4 w-4 text-emerald-400" />
-                  </div>
-                  <span className="text-xs font-semibold">Continue Learning</span>
-                </div>
-                <p className="text-[10px] leading-relaxed text-muted-foreground">
-                  {nextLesson
-                    ? `Next: ${nextLesson.lesson.title}`
-                    : "All lessons complete!"}
-                </p>
-                {/* Progress bar */}
-                <div className="mt-2">
-                  <div className="h-1 overflow-hidden rounded-full bg-muted/30">
-                    <div
-                      className="h-full rounded-full bg-emerald-500"
-                      style={{ width: `${learnProgress.pct}%` }}
-                    />
-                  </div>
-                  <span className="mt-0.5 block text-[9px] text-muted-foreground">
-                    {learnProgress.pct}% complete
-                  </span>
-                </div>
-                <ChevronRight className="absolute right-3 top-1/2 h-3.5 w-3.5 -translate-y-1/2 text-muted-foreground/30 transition-transform group-hover:translate-x-0.5 group-hover:text-muted-foreground/60" />
-              </div>
-            </Link>
-
-            {/* Run Backtest */}
-            <Link href="/backtest">
-              <div className="group relative overflow-hidden rounded-lg border border-border bg-card p-4 transition-colors hover:border-violet-500/40 hover:bg-violet-500/5">
-                <div className="mb-2 flex items-center gap-2">
-                  <div className="flex h-8 w-8 items-center justify-center rounded-md bg-violet-500/10">
-                    <TestTube2 className="h-4 w-4 text-violet-400" />
-                  </div>
-                  <span className="text-xs font-semibold">Run Backtest</span>
-                </div>
-                <p className="text-[10px] leading-relaxed text-muted-foreground">
-                  Test strategies on historical data before going live.
-                </p>
-                <div className="mt-2 flex items-center gap-1">
-                  <Layers className="h-3 w-3 text-violet-400/60" />
-                  <span className="text-[10px] text-muted-foreground">Multi-strategy engine</span>
-                </div>
-                <ChevronRight className="absolute right-3 top-1/2 h-3.5 w-3.5 -translate-y-1/2 text-muted-foreground/30 transition-transform group-hover:translate-x-0.5 group-hover:text-muted-foreground/60" />
-              </div>
-            </Link>
-
-            {/* View Portfolio */}
-            <Link href="/portfolio">
-              <div className="group relative overflow-hidden rounded-lg border border-border bg-card p-4 transition-colors hover:border-cyan-500/40 hover:bg-cyan-500/5">
-                <div className="mb-2 flex items-center gap-2">
-                  <div className="flex h-8 w-8 items-center justify-center rounded-md bg-cyan-500/10">
-                    <PieChart className="h-4 w-4 text-cyan-400" />
-                  </div>
-                  <span className="text-xs font-semibold">View Portfolio</span>
-                </div>
-                <p className="text-[10px] leading-relaxed text-muted-foreground">
-                  Analyze P&amp;L, positions, and trade history.
-                </p>
-                <div className="mt-2">
-                  <span
-                    className={cn(
-                      "text-[10px] font-semibold tabular-nums",
-                      totalPnL >= 0 ? "text-emerald-400" : "text-red-400",
-                    )}
-                  >
-                    {totalPnL >= 0 ? "+" : ""}
-                    {formatCurrency(totalPnL)} total
-                  </span>
-                </div>
-                <ChevronRight className="absolute right-3 top-1/2 h-3.5 w-3.5 -translate-y-1/2 text-muted-foreground/30 transition-transform group-hover:translate-x-0.5 group-hover:text-muted-foreground/60" />
-              </div>
-            </Link>
+              </Link>
+            ))}
           </div>
         </motion.div>
+
+        {/* ═══════════════════════════════════════
+            NEW Section C — Market Intelligence Strip
+        ═══════════════════════════════════════ */}
+        <motion.div variants={fadeUp}>
+          <p className="mb-3 text-[10px] font-semibold uppercase tracking-wider text-muted-foreground">
+            Market Intelligence
+          </p>
+          <div className="grid grid-cols-1 gap-4 lg:grid-cols-3">
+            {/* Market Pulse card */}
+            <div className="rounded-lg border border-border bg-card p-4">
+              <div className="mb-3 flex items-center gap-1.5">
+                <Gauge className="h-3.5 w-3.5 text-primary" />
+                <p className="text-[10px] font-semibold uppercase tracking-wider text-muted-foreground">
+                  Market Pulse
+                </p>
+              </div>
+              <div className="space-y-3">
+                {/* Regime */}
+                <div className="flex items-center justify-between">
+                  <span className="text-xs text-muted-foreground">Regime</span>
+                  <span
+                    className={cn(
+                      "rounded px-2 py-0.5 text-[11px] font-bold",
+                      marketPulse.regime === "Bull" ? "bg-emerald-500/15 text-emerald-400" :
+                      marketPulse.regime === "Bear" ? "bg-red-500/15 text-red-400" :
+                      "bg-amber-500/15 text-amber-400",
+                    )}
+                  >
+                    {marketPulse.regime}
+                  </span>
+                </div>
+                {/* VIX */}
+                <div className="flex items-center justify-between">
+                  <span className="text-xs text-muted-foreground">VIX Level</span>
+                  <span
+                    className={cn(
+                      "text-xs font-bold tabular-nums",
+                      marketPulse.vix > 25 ? "text-red-400" : marketPulse.vix > 18 ? "text-amber-400" : "text-emerald-400",
+                    )}
+                  >
+                    {marketPulse.vix}
+                  </span>
+                </div>
+                {/* Fear & Greed */}
+                <div>
+                  <div className="mb-1.5 flex items-center justify-between">
+                    <span className="text-xs text-muted-foreground">Fear &amp; Greed</span>
+                    <span
+                      className={cn(
+                        "text-xs font-bold tabular-nums",
+                        marketPulse.fg >= 55 ? "text-emerald-400" : marketPulse.fg <= 35 ? "text-red-400" : "text-amber-400",
+                      )}
+                    >
+                      {marketPulse.fg} · {marketPulse.fgLabel}
+                    </span>
+                  </div>
+                  <div className="relative h-2 overflow-hidden rounded-full bg-muted/30">
+                    {/* gradient track: red → amber → green */}
+                    <div className="absolute inset-0 rounded-full bg-gradient-to-r from-red-500 via-amber-500 to-emerald-500 opacity-30" />
+                    <div
+                      className={cn(
+                        "absolute left-0 top-0 h-full rounded-full transition-all duration-700",
+                        marketPulse.fg >= 55 ? "bg-emerald-400" : marketPulse.fg <= 35 ? "bg-red-400" : "bg-amber-400",
+                      )}
+                      style={{ width: `${marketPulse.fg}%` }}
+                    />
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* Economic Calendar */}
+            <div className="rounded-lg border border-border bg-card p-4">
+              <div className="mb-3 flex items-center gap-1.5">
+                <CalendarClock className="h-3.5 w-3.5 text-violet-400" />
+                <p className="text-[10px] font-semibold uppercase tracking-wider text-muted-foreground">
+                  Economic Calendar
+                </p>
+              </div>
+              <div className="space-y-2">
+                {ECONOMIC_EVENTS.slice(dayIndex % 4, (dayIndex % 4) + 3).map((ev, i) => (
+                  <div key={i} className="flex items-start justify-between gap-2">
+                    <div className="flex items-start gap-2 min-w-0">
+                      <span
+                        className={cn(
+                          "mt-0.5 shrink-0 rounded px-1 py-0.5 text-[9px] font-bold",
+                          ev.impact === "HIGH" ? "bg-red-500/15 text-red-400" : "bg-amber-500/15 text-amber-400",
+                        )}
+                      >
+                        {ev.impact}
+                      </span>
+                      <div className="min-w-0">
+                        <p className="truncate text-xs font-medium">{ev.name}</p>
+                        <p className="text-[10px] text-muted-foreground">{ev.time}</p>
+                      </div>
+                    </div>
+                    <span className="shrink-0 text-[10px] text-muted-foreground whitespace-nowrap">
+                      {ev.daysFromNow === 1 ? "Tomorrow" : `In ${ev.daysFromNow}d`}
+                    </span>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            {/* Most Active Options */}
+            <div className="rounded-lg border border-border bg-card p-4">
+              <div className="mb-3 flex items-center gap-1.5">
+                <Zap className="h-3.5 w-3.5 text-amber-400" />
+                <p className="text-[10px] font-semibold uppercase tracking-wider text-muted-foreground">
+                  Most Active Options
+                </p>
+              </div>
+              <div className="space-y-2">
+                {optionsVolume.map((item) => (
+                  <div key={item.ticker} className="flex items-center gap-2">
+                    <span className="w-10 text-xs font-bold">{item.ticker}</span>
+                    <div className="flex-1">
+                      <div className="h-1.5 overflow-hidden rounded-full bg-muted/30">
+                        <div
+                          className="h-full rounded-full bg-amber-500/60"
+                          style={{ width: `${(item.volume / optionsVolume[0].volume) * 100}%` }}
+                        />
+                      </div>
+                    </div>
+                    <span className="w-16 text-right text-[10px] font-mono text-muted-foreground tabular-nums">
+                      {(item.volume / 1000).toFixed(0)}K
+                    </span>
+                    <span
+                      className={cn(
+                        "w-10 text-right text-[10px] font-semibold tabular-nums",
+                        item.callPutRatio > 1 ? "text-emerald-400" : "text-red-400",
+                      )}
+                    >
+                      {item.callPutRatio}C/P
+                    </span>
+                  </div>
+                ))}
+              </div>
+              <Link href="/options" className="mt-3 flex items-center gap-1 text-[10px] font-medium text-primary hover:underline">
+                View options flow
+                <ChevronRight className="h-3 w-3" />
+              </Link>
+            </div>
+          </div>
+        </motion.div>
+
+        {/* ═══════════════════════════════════════
+            Section 1b — Original Quick Actions (repurposed)
+            Now replaced by the 4×2 grid above.
+            We keep the 4 main action cards but as a 4-col row.
+        ═══════════════════════════════════════ */}
 
         {/* ═══════════════════════════════════════
             Section 2 — Market Overview (2-col)
@@ -984,6 +1350,88 @@ export default function HomePage() {
                   {label}
                 </span>
               ))}
+            </div>
+          </div>
+        </motion.div>
+
+        {/* ═══════════════════════════════════════
+            NEW Section D — Market Movers Widget
+        ═══════════════════════════════════════ */}
+        <motion.div variants={fadeUp}>
+          <p className="mb-3 text-[10px] font-semibold uppercase tracking-wider text-muted-foreground">
+            Market Movers
+          </p>
+          <div className="grid grid-cols-1 gap-4 lg:grid-cols-2">
+            {/* Top Gainers */}
+            <div className="rounded-lg border border-border bg-card">
+              <div className="border-b border-border px-4 py-2.5 flex items-center gap-1.5">
+                <TrendingUp className="h-3.5 w-3.5 text-emerald-400" />
+                <p className="text-[10px] font-semibold uppercase tracking-wider text-muted-foreground">
+                  Top Gainers
+                </p>
+              </div>
+              <div className="divide-y divide-border/30">
+                {marketMovers.gainers.map(({ ticker, price, changePct }) => {
+                  const sparkData = moverSparklines[ticker] ?? [];
+                  return (
+                    <div key={ticker} className="flex items-center gap-3 px-4 py-2">
+                      <div className="w-10">
+                        <p className="text-xs font-bold">{ticker}</p>
+                        <p className="text-[10px] text-muted-foreground font-mono tabular-nums">${price.toFixed(2)}</p>
+                      </div>
+                      <div className="flex-1">
+                        {/* volume bar */}
+                        <div className="mb-1 h-1 overflow-hidden rounded-full bg-muted/30">
+                          <div
+                            className="h-full rounded-full bg-emerald-500/50"
+                            style={{ width: `${40 + (tickerHash(ticker) % 50)}%` }}
+                          />
+                        </div>
+                        <MiniSparkline data={sparkData} color="#10b981" width={80} height={18} />
+                      </div>
+                      <span className="w-12 text-right text-xs font-bold text-emerald-400 tabular-nums">
+                        +{changePct.toFixed(2)}%
+                      </span>
+                    </div>
+                  );
+                })}
+              </div>
+            </div>
+
+            {/* Top Losers */}
+            <div className="rounded-lg border border-border bg-card">
+              <div className="border-b border-border px-4 py-2.5 flex items-center gap-1.5">
+                <TrendingDown className="h-3.5 w-3.5 text-red-400" />
+                <p className="text-[10px] font-semibold uppercase tracking-wider text-muted-foreground">
+                  Top Losers
+                </p>
+              </div>
+              <div className="divide-y divide-border/30">
+                {marketMovers.losers.map(({ ticker, price, changePct }) => {
+                  const sparkData = moverSparklines[ticker] ?? [];
+                  return (
+                    <div key={ticker} className="flex items-center gap-3 px-4 py-2">
+                      <div className="w-10">
+                        <p className="text-xs font-bold">{ticker}</p>
+                        <p className="text-[10px] text-muted-foreground font-mono tabular-nums">${price.toFixed(2)}</p>
+                      </div>
+                      <div className="flex-1">
+                        {/* volume bar */}
+                        <div className="mb-1 h-1 overflow-hidden rounded-full bg-muted/30">
+                          <div
+                            className="h-full rounded-full bg-red-500/50"
+                            style={{ width: `${40 + (tickerHash(ticker) % 50)}%` }}
+                          />
+                        </div>
+                        <MiniSparkline data={sparkData} color="#ef4444" width={80} height={18} />
+                      </div>
+                      <span className="w-12 text-right text-xs font-bold text-red-400 tabular-nums">
+                        {changePct.toFixed(2)}%
+                      </span>
+                    </div>
+                  );
+                })}
+              </div>
             </div>
           </div>
         </motion.div>
@@ -1153,7 +1601,7 @@ export default function HomePage() {
                           <span className="text-xs text-foreground">{goal.label}</span>
                         </div>
                         <span className="text-[10px] font-semibold tabular-nums text-muted-foreground">
-                          {goal.current}{goal.suffix ?? ""}/{goal.target}{goal.suffix ?? ""}
+                          {goal.current}{"suffix" in goal ? (goal as { suffix?: string }).suffix ?? "" : ""}/{goal.target}{"suffix" in goal ? (goal as { suffix?: string }).suffix ?? "" : ""}
                         </span>
                       </div>
                       <div className="h-1.5 overflow-hidden rounded-full bg-muted/30">
@@ -1172,11 +1620,11 @@ export default function HomePage() {
             </div>
           </div>
 
-          {/* Right col: Activity Feed */}
+          {/* Right col: Activity Feed — enhanced with quest/timeline */}
           <div className="rounded-lg border border-border bg-card lg:col-span-1">
             <div className="border-b border-border px-4 py-2.5">
               <p className="text-[10px] font-semibold uppercase tracking-wider text-muted-foreground">
-                Activity Feed
+                Activity Timeline
               </p>
             </div>
             <div className="max-h-[420px] overflow-y-auto">
@@ -1194,11 +1642,19 @@ export default function HomePage() {
                   <div className="absolute left-[26px] top-4 bottom-4 w-px bg-border/40" />
                   <div className="space-y-3">
                     {activityFeed.map((item) => {
+                      const dotColor =
+                        item.type === "trade" ? "border-blue-500/50 bg-blue-500/10" :
+                        item.type === "achievement" ? "border-amber-500/50 bg-amber-500/10" :
+                        item.type === "quest" ? "border-violet-500/50 bg-violet-500/10" :
+                        "border-emerald-500/50 bg-emerald-500/10";
+
                       const iconEl =
                         item.type === "trade" ? (
                           <BarChart3 className="h-3 w-3 text-blue-400" />
                         ) : item.type === "achievement" ? (
                           <Award className="h-3 w-3 text-amber-400" />
+                        ) : item.type === "quest" ? (
+                          <CircleDot className="h-3 w-3 text-violet-400" />
                         ) : item.type === "levelup" ? (
                           <Star className="h-3 w-3 text-violet-400" />
                         ) : (
@@ -1209,7 +1665,8 @@ export default function HomePage() {
                         <div key={item.id} className="flex items-start gap-2.5">
                           <div
                             className={cn(
-                              "relative z-10 flex h-5 w-5 shrink-0 items-center justify-center rounded-full border border-border bg-card",
+                              "relative z-10 flex h-5 w-5 shrink-0 items-center justify-center rounded-full border",
+                              dotColor,
                             )}
                           >
                             {iconEl}
@@ -1451,11 +1908,12 @@ export default function HomePage() {
         </motion.div>
 
         {/* ═══════════════════════════════════════
-            Section 5 — Learning + Quick Nav
+            NEW Section E — Learning Progress Widget (enhanced)
+            + Section 5 original (merged)
         ═══════════════════════════════════════ */}
-        <motion.div variants={fadeUp} className="grid grid-cols-1 gap-4 lg:grid-cols-2">
-          {/* Left: Learning Progress */}
-          <div className="rounded-lg border border-border bg-card p-5">
+        <motion.div variants={fadeUp} className="grid grid-cols-1 gap-4 lg:grid-cols-3">
+          {/* Learning Progress — enhanced with ring */}
+          <div className="rounded-lg border border-border bg-card p-5 lg:col-span-2">
             <div className="mb-4 flex items-center justify-between">
               <div className="flex items-center gap-1.5 text-[10px] font-semibold uppercase tracking-wider text-muted-foreground">
                 <BookOpen className="h-3 w-3" />
@@ -1470,24 +1928,34 @@ export default function HomePage() {
               </Link>
             </div>
 
-            {/* Progress bar */}
-            <div className="mb-4">
-              <div className="mb-1 flex items-center justify-between">
-                <span className="text-sm font-bold">{learnProgress.pct}% Complete</span>
-                <span className="text-[10px] text-muted-foreground">
-                  {learnProgress.completed}/{learnProgress.total} lessons
-                </span>
+            <div className="flex items-center gap-6 mb-4">
+              {/* Progress ring */}
+              <div className="relative shrink-0">
+                <ProgressRing pct={learnProgress.pct} size={72} />
+                <div className="absolute inset-0 flex items-center justify-center">
+                  <span className="text-sm font-bold">{learnProgress.pct}%</span>
+                </div>
               </div>
-              <div className="h-2 overflow-hidden rounded-full bg-muted/30">
-                <div
-                  className="h-full rounded-full bg-emerald-500 transition-all duration-700"
-                  style={{ width: `${learnProgress.pct}%` }}
-                />
+
+              {/* Progress details */}
+              <div className="flex-1">
+                <p className="mb-1 text-sm font-semibold">
+                  {learnProgress.completed} / {learnProgress.total} lessons complete
+                </p>
+                {nextLesson ? (
+                  <div className="rounded-md border border-border/50 bg-muted/10 px-3 py-2">
+                    <p className="text-[10px] text-muted-foreground mb-0.5">Next recommended</p>
+                    <p className="text-xs font-medium truncate">{nextLesson.lesson.title}</p>
+                    <p className="text-[10px] text-muted-foreground">{nextLesson.unit.title}</p>
+                  </div>
+                ) : (
+                  <p className="text-xs text-emerald-400 font-medium">All lessons complete!</p>
+                )}
               </div>
             </div>
 
             {/* Stats row */}
-            <div className="grid grid-cols-3 gap-3">
+            <div className="grid grid-cols-4 gap-3">
               <div className="rounded-md border border-border/50 bg-muted/10 px-3 py-2 text-center">
                 <p className="text-sm font-bold tabular-nums">{learnProgress.sRankCount}</p>
                 <p className="text-[10px] text-muted-foreground">A/S Ranks</p>
@@ -1501,6 +1969,10 @@ export default function HomePage() {
               <div className="rounded-md border border-border/50 bg-muted/10 px-3 py-2 text-center">
                 <p className="text-sm font-bold tabular-nums">{learnProgress.xpEarnedThisWeek}</p>
                 <p className="text-[10px] text-muted-foreground">XP this week</p>
+              </div>
+              <div className="rounded-md border border-border/50 bg-muted/10 px-3 py-2 text-center">
+                <p className="text-sm font-bold tabular-nums">{level}</p>
+                <p className="text-[10px] text-muted-foreground">Level</p>
               </div>
             </div>
           </div>

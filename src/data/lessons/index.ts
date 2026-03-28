@@ -31,6 +31,7 @@ import { UNIT_HEDGE_FUNDS } from "./unit-hedge-funds";
 import { UNIT_MARKET_MICROSTRUCTURE } from "./unit-market-microstructure";
 import { UNIT_MARKET_HISTORY } from "./unit-market-history";
 import { UNIT_INFLATION_ECONOMICS } from "./unit-inflation-economics";
+import { UNIT_INSURANCE_PLANNING } from "./unit-insurance-planning";
 
 export const UNITS: Unit[] = [
   UNIT_BASICS,
@@ -65,6 +66,7 @@ export const UNITS: Unit[] = [
   UNIT_MARKET_MICROSTRUCTURE,
   UNIT_MARKET_HISTORY,
   UNIT_INFLATION_ECONOMICS,
+  UNIT_INSURANCE_PLANNING,
 ];
 
 export function getLessonById(lessonId: string): Lesson | undefined {

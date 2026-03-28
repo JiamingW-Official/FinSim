@@ -54,6 +54,7 @@ import { WeeklyReview } from "@/components/analytics/WeeklyReview";
 import { AdvancedAnalytics } from "@/components/portfolio/AdvancedAnalytics";
 import { StressTester } from "@/components/portfolio/StressTester";
 import { BlackLitterman } from "@/components/portfolio/BlackLitterman";
+import { RebalancingTool } from "@/components/portfolio/RebalancingTool";
 
 const EquityCurve = dynamic(
   () =>
@@ -205,6 +206,9 @@ export default function PortfolioPage() {
                 </TabsTrigger>
                 <TabsTrigger value="bl-optimizer" className="flex-1 rounded-md text-[11px] h-7 whitespace-nowrap">
                   BL Optimizer
+                </TabsTrigger>
+                <TabsTrigger value="rebalance-tool" className="flex-1 rounded-md text-[11px] h-7 whitespace-nowrap">
+                  Rebalance+
                 </TabsTrigger>
               </TabsList>
             </div>
@@ -402,6 +406,15 @@ export default function PortfolioPage() {
                 Black-Litterman Portfolio Optimizer
               </div>
               <BlackLitterman />
+            </TabsContent>
+
+            {/* ── Rebalance+ tab ── */}
+            <TabsContent value="rebalance-tool" className="space-y-4">
+              <div className="mb-2 flex items-center gap-1.5 text-xs font-medium text-muted-foreground">
+                <RefreshCw className="h-3.5 w-3.5 text-blue-400" />
+                Comprehensive Rebalancing Tool
+              </div>
+              <RebalancingTool />
             </TabsContent>
 
             {/* ── Deep Analytics tab ── */}

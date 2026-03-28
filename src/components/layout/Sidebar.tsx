@@ -7,7 +7,7 @@ import {
   Swords, ScrollText, Crosshair, Trophy, User, Settings, Activity,
   TrendingUp, Globe, ChevronLeft, ChevronRight, BookOpen, Bitcoin,
   ScanLine, GitCompare, Users, Landmark, BookMarked, DollarSign, Calculator, PieChart,
-  Brain, Building2, Zap, Wallet, Calendar, Newspaper, Bot, LayoutGrid, Package,
+  Brain, Building2, Zap, Wallet, Calendar, Newspaper, Bot, LayoutGrid, Package, Search,
 } from "lucide-react";
 import { Tooltip, TooltipTrigger, TooltipContent } from "@/components/ui/tooltip";
 import { SearchTrigger } from "@/components/search/GlobalSearch";
@@ -70,6 +70,7 @@ const NAV_GROUPS: NavGroup[] = [
       { icon: TrendingUp,   label: "Predictions",  href: "/predictions" },
       { icon: TrendingUp,   label: "Performance",  href: "/performance" },
       { icon: ScanLine,     label: "Scanner",      href: "/scanner" },
+      { icon: Search,       label: "Screener",     href: "/screener" },
       { icon: GitCompare,   label: "Pairs",        href: "/pairs" },
       { icon: Calendar,     label: "Earnings",     href: "/earnings" },
       { icon: Newspaper,    label: "News",         href: "/news" },
