@@ -83,6 +83,10 @@ import { UNIT_ACCOUNTING_EARNINGS } from "./unit-accounting-earnings";
 import { UNIT_INFLATION_INVESTING } from "./unit-inflation-investing";
 import { UNIT_INSURANCE_RISK } from "./unit-insurance-risk";
 import { UNIT_MOMENTUM_TREND } from "./unit-momentum-trend";
+import { UNIT_CRYPTO_YIELD } from "./unit-crypto-yield";
+import { UNIT_FIRE_MOVEMENT } from "./unit-fire-movement";
+import { UNIT_VALUE_INVESTING } from "./unit-value-investing";
+import { UNIT_GLOBAL_TRADE } from "./unit-global-trade";
 
 export const UNITS: Unit[] = [
   UNIT_BASICS,
@@ -169,6 +173,10 @@ export const UNITS: Unit[] = [
   UNIT_INFLATION_INVESTING,
   UNIT_INSURANCE_RISK,
   UNIT_MOMENTUM_TREND,
+  UNIT_CRYPTO_YIELD,
+  UNIT_FIRE_MOVEMENT,
+  UNIT_VALUE_INVESTING,
+  UNIT_GLOBAL_TRADE,
 ];
 
 export function getLessonById(lessonId: string): Lesson | undefined {

@@ -304,9 +304,6 @@ export const UNIT_CRYPTO_YIELD: Unit = {
             "Exactly 1.0 — the drop precisely triggers liquidation threshold",
             "Unchanged at 1.18 — Aave freezes HF during volatile markets",
           ],
-          correctIndex: 0,
-          explanation:
-            "After a 20% ETH drop, collateral value = $20,000 × 0.80 = $16,000. HF = $16,000 × 0.825 / $14,000 = $13,200 / $14,000 ≈ 0.94. Wait — that is actually below 1.0! The correct answer re-examined: HF = (collateral × liq threshold) / debt = (16,000 × 0.825) / 14,000 = 13,200 / 14,000 ≈ 0.943. This is below 1.0, meaning the position is liquidatable. The scenario demonstrates why borrowing close to maximum LTV is dangerous — even a 20% drop triggers liquidation.",
           correctIndex: 1,
           explanation:
             "After the 20% ETH drop: collateral = $20,000 × 0.8 = $16,000. HF = ($16,000 × 0.825) / $14,000 = $13,200 / $14,000 ≈ 0.943. This is below 1.0, making the position eligible for liquidation. Borrowing $14,000 against $20,000 at 70% LTV looked safe, but a 20% ETH drop was enough to breach the 82.5% liquidation threshold. This illustrates why Aave users should maintain a significant buffer above minimum LTV.",
