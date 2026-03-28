@@ -18,8 +18,6 @@ import {
   BarChart3,
   Trophy,
   CheckCircle2,
-  Circle,
-  Lock,
   ChevronRight,
   Flame,
   TrendingUp,
@@ -29,9 +27,7 @@ import {
   Shield,
   Clock,
   DollarSign,
-  Award,
   Activity,
-  Calendar,
   AlertTriangle,
   ArrowRight,
 } from "lucide-react";
@@ -264,10 +260,6 @@ function getSkillLevel(branchId: string, completedLessons: string[], totalTrades
   if (branchId === "risk" && totalTrades > 0) count += Math.min(1, Math.floor(totalTrades / 20));
 
   return Math.min(4, count); // 0–4 (maps to Novice–Master)
-}
-
-function getXPForLevel(level: number): number {
-  return LEVEL_THRESHOLDS[level - 1] ?? 100;
 }
 
 function getCurrentLevelProgress(xp: number): { current: number; needed: number; pct: number } {
@@ -505,7 +497,7 @@ export default function ProfilePage() {
   const archetype = useMemo(() => computeArchetype(quizAnswers), [quizAnswers]);
 
   // ── Trade stats computed ──
-  const trades = tradeHistory.filter((t) => t.side === "sell" || t.side === "cover_short");
+  const trades = tradeHistory.filter((t) => t.side === "sell");
   const wins = trades.filter((t) => t.realizedPnL > 0);
   const losses = trades.filter((t) => t.realizedPnL <= 0);
   const winRate = trades.length > 0 ? (wins.length / trades.length) * 100 : 0;
@@ -834,7 +826,6 @@ export default function ProfilePage() {
                 </CardHeader>
                 <CardContent className="space-y-4">
                   {skillLevels.map((branch) => {
-                    const xpPct = ((branch.level % 1 === 0 ? 0 : branch.level % 1) * 100) || (branch.level === 4 ? 100 : (branch.level / 4) * 100);
                     const Icon = branch.icon;
                     return (
                       <div key={branch.id} className="space-y-1.5">
@@ -868,7 +859,6 @@ export default function ProfilePage() {
                 </CardHeader>
                 <CardContent className="space-y-2">
                   {NEXT_LESSONS.map((lesson, i) => {
-                    const branch = skillLevels.find((b) => b.id === lesson.branch);
                     return (
                       <div key={i} className="flex items-center justify-between rounded-lg border border-border bg-background/50 px-3 py-2.5 hover:border-primary/30 transition-colors cursor-pointer">
                         <div className="flex items-center gap-2.5">
