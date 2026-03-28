@@ -16,7 +16,9 @@ import {
   ChevronRight,
   TrendingUp,
   Info,
+  FlaskConical,
 } from "lucide-react";
+import GreeksSimulator from "@/components/options/GreeksSimulator";
 
 // ─── Black-Scholes Math ──────────────────────────────────────────────────────
 
@@ -1545,6 +1547,10 @@ export default function GreeksPage() {
                 <Brain className="size-3.5" />
                 Quiz
               </TabsTrigger>
+              <TabsTrigger value="simulator" className="flex-1 flex items-center gap-1.5">
+                <FlaskConical className="size-3.5" />
+                Advanced Simulator
+              </TabsTrigger>
             </TabsList>
           </div>
 
@@ -1562,6 +1568,10 @@ export default function GreeksPage() {
 
           <TabsContent value="quiz" className="px-6 py-4">
             <GreeksQuiz />
+          </TabsContent>
+
+          <TabsContent value="simulator" className="px-6 py-4">
+            <GreeksSimulator />
           </TabsContent>
         </Tabs>
       </div>
