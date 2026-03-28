@@ -113,6 +113,8 @@ import { UNIT_SUPPLY_DEMAND } from "./unit-supply-demand";
 import { UNIT_CRYPTO_FUNDAMENTALS } from "./unit-crypto-fundamentals";
 import { UNIT_TRADE_FINANCE } from "./unit-trade-finance";
 import { UNIT_DCF_VALUATION } from "./unit-dcf-valuation";
+import { UNIT_POSITION_SIZING } from "./unit-position-sizing";
+import { UNIT_SECTOR_ANALYSIS } from "./unit-sector-analysis";
 
 export const UNITS: Unit[] = [
   UNIT_BASICS,
@@ -229,6 +231,8 @@ export const UNITS: Unit[] = [
   UNIT_CRYPTO_FUNDAMENTALS,
   UNIT_TRADE_FINANCE,
   UNIT_DCF_VALUATION,
+  UNIT_POSITION_SIZING,
+  UNIT_SECTOR_ANALYSIS,
 ];
 
 export function getLessonById(lessonId: string): Lesson | undefined {
