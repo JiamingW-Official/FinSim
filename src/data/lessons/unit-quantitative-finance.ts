@@ -2,507 +2,488 @@ import type { Unit } from "./types";
 
 export const UNIT_QUANTITATIVE_FINANCE: Unit = {
   id: "quantitative-finance",
-  title: "Quantitative Finance",
+  title: "Quantitative Finance & Systematic Trading",
   description:
-    "Statistical foundations, time series analysis, factor models, risk measurement, and algorithmic strategy construction",
-  icon: "BarChart2",
+    "Statistical foundations, factor models, backtesting rigor, signal generation, and portfolio construction for systematic traders",
+  icon: "📐",
   color: "#0ea5e9",
   lessons: [
-    /* ================================================================
-       LESSON 1 — Statistical Foundations for Trading
-       ================================================================ */
+    // ─── Lesson 1: Statistics for Trading ───────────────────────────────────────
     {
       id: "quant-1",
-      title: "Statistical Foundations for Trading",
+      title: "📊 Statistics for Trading",
       description:
-        "Mean, std, skewness, kurtosis, fat tails, Sharpe ratio math, and information ratio",
-      icon: "Activity",
+        "Normal distribution, fat tails, stationarity, cointegration, Sharpe and Sortino ratios",
+      icon: "BarChart2",
+      xpReward: 90,
       difficulty: "advanced",
-      duration: 20,
-      xpReward: 95,
       steps: [
         {
           type: "teach",
-          title: "Descriptive Statistics of Return Distributions",
+          title: "📉 Normal Distribution & Fat Tails",
           content:
-            "Every asset has a **return distribution** — the full picture of how its returns are spread over time. Four moments describe this distribution completely.\n\n**Mean (μ)**: The average daily/monthly/annual return. For a series r₁, r₂, …, rₙ:\nμ = (1/n) × Σrᵢ\n\n**Standard deviation (σ)**: Measures how spread out returns are around the mean — this is the standard proxy for risk.\nσ = √[(1/(n−1)) × Σ(rᵢ − μ)²]\n\n**Example**: A stock with daily μ = 0.05% and σ = 1.2% has an annualised return of ~12.6% (×252 trading days) and annualised volatility of ~19% (×√252).\n\n**Skewness**: Measures asymmetry of the distribution.\n- **Positive skew**: Long right tail — most returns cluster slightly below average, but occasional large positive outliers (lottery stocks, venture-style payoffs)\n- **Negative skew**: Long left tail — most returns are modestly positive, but occasional large crashes. **Most equity strategies have negative skew** — 'picking up pennies in front of a steamroller.'\n\n**Kurtosis**: Measures tail thickness. Normal distribution has kurtosis = 3. **Excess kurtosis = kurtosis − 3.**\n- Positive excess kurtosis ('fat tails'): More extreme observations than a normal distribution predicts. Daily equity returns typically have excess kurtosis of 5–10×.",
-          highlight: [
-            "mean",
-            "standard deviation",
-            "skewness",
-            "kurtosis",
-            "fat tails",
-            "return distribution",
-          ],
-        },
-        {
-          type: "teach",
-          title: "Fat Tails and the Limits of the Normal Distribution",
-          content:
-            "Finance theory often assumes returns are **normally distributed** (the 'bell curve'). This assumption is both mathematically convenient and dangerously wrong.\n\n**The normal distribution predicts**:\n- A 3-sigma daily move should happen once every ~3 years (0.3% probability)\n- A 5-sigma move should happen once every ~14,000 years\n- A 10-sigma move should be essentially impossible\n\n**Reality**: The S&P 500 has experienced multiple 5-sigma or greater daily moves in every decade. Black Monday 1987 (-22% in one day) was a ~25-sigma event under the normal distribution — theoretically impossible.\n\n**Fat-tailed distributions used in practice**:\n- **Student's t-distribution**: Heavier tails; parametrised by degrees of freedom ν (lower ν = fatter tails)\n- **Stable Paretian distributions**: Allow for infinite variance\n- **Historical simulation**: Use the actual empirical distribution rather than assuming a form\n\n**Why this matters for trading**: Risk models built on normality will systematically underestimate tail risk. Value-at-Risk (VaR) models assuming normality failed catastrophically in 2008. Fat tails mean you should always size positions as if the worst historical loss can be exceeded.",
+            "Most statistics courses assume financial returns follow a **normal distribution** — the classic bell curve. In practice, this assumption is dangerously wrong.\n\n**The normal distribution predicts**:\n- A 3-sigma daily move: once every ~3 years\n- A 5-sigma move: once every ~14,000 years\n- A 10-sigma move: essentially impossible\n\n**Reality**: Black Monday 1987 (-22% in one day) was a ~25-sigma event under the normal model. The S&P 500 has experienced multiple 5-sigma moves in every decade.\n\nFinancial returns have **excess kurtosis** — heavier tails than the normal distribution predicts. This means extreme events ('black swans') are far more frequent than normal-distribution models suggest.\n\n**Excess kurtosis = kurtosis − 3**. Normal distribution has excess kurtosis = 0. Daily equity returns typically show excess kurtosis of 5–10.\n\n**Negative skew**: Most equity strategies also exhibit negative skew — frequent small gains but occasional catastrophic losses. Think of it as 'picking up pennies in front of a steamroller.'\n\nRisk models built on normality will systematically underestimate tail risk. Always size positions as if the worst historical loss can be exceeded.",
           highlight: [
             "normal distribution",
             "fat tails",
-            "sigma move",
-            "Student's t-distribution",
+            "excess kurtosis",
+            "black swans",
+            "negative skew",
             "tail risk",
-            "historical simulation",
           ],
         },
         {
           type: "teach",
-          title: "Sharpe Ratio and Information Ratio",
+          title: "🔗 Correlation vs Causation & Stationarity",
           content:
-            "**The Sharpe Ratio** is the single most widely used risk-adjusted performance metric.\n\nSharpe = (Rₚ − Rƒ) / σₚ\n\nWhere Rₚ = portfolio return, Rƒ = risk-free rate, σₚ = portfolio standard deviation.\n\n**Interpretation**:\n- Sharpe < 0: Strategy loses money after the risk-free rate\n- Sharpe 0–0.5: Below average\n- Sharpe 0.5–1.0: Adequate\n- Sharpe > 1.0: Good — rare in live trading\n- Sharpe > 2.0: Exceptional — likely data-mined or short-term\n\n**Annualising**: If using daily returns, multiply numerator by 252 and denominator by √252.\n\n**Sharpe limitations**:\n1. Treats upside and downside volatility equally — penalises strategies with positive skew\n2. Assumes returns are normally distributed and i.i.d.\n3. Sensitive to the measurement period\n\n**Sortino Ratio**: Replaces σₚ with 'downside deviation' (only counts returns below the target/threshold). Better for strategies with positive skew.\nSortino = (Rₚ − Rƒ) / σ_downside\n\n**Information Ratio (IR)**: Measures consistent alpha generation relative to a benchmark.\nIR = (Rₚ − R_benchmark) / Tracking Error\nTracking Error = σ(Rₚ − R_benchmark)\n\nIR > 0.5 is good; > 1.0 is exceptional. Unlike Sharpe, IR is benchmark-relative — the right metric for active managers.",
+            "Two of the most important concepts for any quant trader:\n\n**Correlation vs Causation**:\nTwo series moving together does not mean one causes the other. Classic spurious example: US cheese consumption correlates with deaths by bedsheet tangling (r ≈ 0.95). Both are driven by time trends, not causal relationships.\n\nIn finance, many factor relationships that look causal are simply correlated through a common driver (e.g., both influenced by the economic cycle). Always ask: what is the economic mechanism?\n\n**Stationarity**:\nA time series is **stationary** if its mean, variance, and autocorrelation structure are constant over time.\n\nWhy it matters: almost every statistical model assumes the data-generating process is stable. If the distribution is shifting, parameters estimated on historical data are meaningless for future prediction.\n\n**Price levels are NOT stationary**: a stock price can drift to any positive level, with growing variance.\n**Returns ARE approximately stationary**: daily log returns have roughly stable mean (~0) and variance over medium windows.\n\nMost quant models work on returns, not price levels, for this reason.\n\nTest for stationarity with the **Augmented Dickey-Fuller (ADF) test**: reject the null (unit root) to confirm stationarity.",
           highlight: [
-            "Sharpe ratio",
-            "Sortino ratio",
-            "information ratio",
-            "tracking error",
-            "risk-adjusted return",
-            "downside deviation",
-          ],
-        },
-        {
-          type: "quiz-mc",
-          question:
-            "A strategy returns 18% annually with 15% annual volatility. The risk-free rate is 4%. What is its Sharpe ratio, and how would you classify this performance?",
-          options: [
-            "Sharpe = (18% − 4%) / 15% = 0.93 — adequate to good performance",
-            "Sharpe = 18% / 15% = 1.20 — the risk-free rate is not subtracted in the Sharpe calculation",
-            "Sharpe = (18% − 4%) / 15% = 1.40 — divide by half the volatility for annualised figures",
-            "Sharpe = 18% / 4% = 4.50 — divide return by the risk-free rate",
-          ],
-          correctIndex: 0,
-          explanation:
-            "Sharpe = (Rₚ − Rƒ) / σₚ = (18% − 4%) / 15% = 14% / 15% = 0.93. This falls in the adequate-to-good range (0.5–1.0). The risk-free rate must be subtracted because it represents what you earn without taking any risk — the Sharpe measures the excess return per unit of risk taken.",
-          difficulty: 2,
-        },
-        {
-          type: "quiz-tf",
-          statement:
-            "Because daily equity returns exhibit excess kurtosis (fat tails), a Value-at-Risk model that assumes a normal distribution will systematically underestimate the probability and magnitude of extreme losses.",
-          correct: true,
-          explanation:
-            "Normal distribution VaR underestimates tail risk because real return distributions have far more extreme events than the bell curve predicts. Under normality, a 5-sigma daily move should occur once in 14,000 years — yet markets experience them regularly. Risk models assuming normality gave false reassurance before the 2008 financial crisis and during the 1987 crash. Fat-tailed distributions (Student's t, historical simulation) produce materially larger VaR estimates for the same confidence levels.",
-          difficulty: 2,
-        },
-        {
-          type: "quiz-scenario",
-          scenario:
-            "You are comparing two strategies. Strategy A: 20% return, 18% volatility, slight positive skew. Strategy B: 16% return, 10% volatility, strongly negative skew (frequent small gains, occasional large crashes). Both use a 4% risk-free rate.",
-          question:
-            "Which strategy has the higher Sharpe ratio, and what does the skewness consideration add to your analysis?",
-          options: [
-            "Strategy B has higher Sharpe (1.20 vs 0.89), but negative skew means those large crash events are undercounted in a Sharpe context — use Sortino or max drawdown analysis to get the full picture",
-            "Strategy A has higher Sharpe (0.89) and is clearly superior because it also has positive skew",
-            "Strategy A has higher Sharpe (1.11) due to its higher absolute return",
-            "Both strategies have equal Sharpe ratios when skew is accounted for",
-          ],
-          correctIndex: 0,
-          explanation:
-            "Strategy A Sharpe: (20−4)/18 = 0.89. Strategy B Sharpe: (16−4)/10 = 1.20. Strategy B wins on Sharpe. However, Sharpe treats all volatility equally — it does not penalise negative skew. Strategy B's large crashes are just as 'bad' in Sharpe as the same-sized gains are 'good.' The Sortino ratio (which only counts downside deviation) or a max-drawdown analysis would better capture Strategy B's crash risk and might shift the comparison.",
-          difficulty: 3,
-        },
-      ],
-    },
-
-    /* ================================================================
-       LESSON 2 — Time Series Analysis
-       ================================================================ */
-    {
-      id: "quant-2",
-      title: "Time Series Analysis",
-      description:
-        "Stationarity, autocorrelation, AR/MA models, random walk hypothesis, and mean reversion testing",
-      icon: "TrendingUp",
-      difficulty: "advanced",
-      duration: 20,
-      xpReward: 100,
-      steps: [
-        {
-          type: "teach",
-          title: "Stationarity and Why It Matters",
-          content:
-            "A **time series** is stationary if its statistical properties — mean, variance, and autocorrelation structure — do not change over time.\n\n**Why stationarity matters**: Almost every statistical model (regression, ARIMA, ML models) assumes the data-generating process is stable. If the underlying distribution is shifting, parameters estimated on historical data are meaningless for future prediction.\n\n**Price levels are NOT stationary**: A stock price can wander to any positive level over time — no stable mean to revert to, and its variance grows without bound.\n\n**Returns ARE approximately stationary**: Daily log returns (ln(Pₜ/Pₜ₋₁)) are approximately mean-stationary (mean ~0 for most assets) with relatively stable variance over short to medium windows.\n\n**Log return**: r = ln(Pₜ/Pₜ₋₁) ≈ (Pₜ − Pₜ₋₁)/Pₜ₋₁ for small moves. Log returns compound additively — convenient mathematically.\n\n**Testing for stationarity**:\n- **Augmented Dickey-Fuller (ADF) test**: Tests the null hypothesis that the series has a unit root (non-stationary). Reject the null → the series is stationary.\n- **KPSS test**: Tests the null of stationarity. If both ADF rejects non-stationarity AND KPSS rejects stationarity, the series is ambiguous.\n\n**Making series stationary**: First-differencing (subtract the previous value) converts a random-walk price series to a returns series — this is standard practice.",
-          highlight: [
+            "correlation",
+            "causation",
+            "spurious correlation",
             "stationarity",
-            "log returns",
-            "unit root",
-            "Augmented Dickey-Fuller",
-            "mean reversion",
-            "first-differencing",
-          ],
-        },
-        {
-          type: "teach",
-          title: "Autocorrelation and the Random Walk Hypothesis",
-          content:
-            "**Autocorrelation** (also called serial correlation) measures whether a time series is correlated with a lagged version of itself.\n\nAutocorrelation at lag k: ρ(k) = Corr(rₜ, rₜ₋ₖ)\n\n**What autocorrelation tells us**:\n- ρ(k) ≈ 0: Returns at time t are unrelated to returns k periods ago — consistent with market efficiency\n- ρ(k) > 0: Positive serial correlation — past up moves predict future up moves (momentum)\n- ρ(k) < 0: Negative serial correlation — past up moves predict future down moves (mean reversion)\n\n**The Random Walk Hypothesis**: In its weak form, asset prices follow a random walk — past price movements contain no information about future movements. Formally, autocorrelation at all lags is zero.\n\n**Empirical evidence**:\n- Daily stock returns: Near-zero autocorrelation (consistent with weak-form efficiency)\n- Weekly/monthly returns: Small but detectable momentum at 1–12 month horizon (positive ρ)\n- Intraday returns: Significant microstructure effects (bid-ask bounce creates negative autocorrelation at tick frequency)\n- Volatility: Strongly autocorrelated — high-volatility days cluster together (GARCH effects)\n\n**Ljung-Box Q-test**: Tests whether a group of autocorrelations at multiple lags are jointly zero. A significant result means the series has exploitable autocorrelation structure.",
-          highlight: [
+            "mean",
+            "variance",
             "autocorrelation",
-            "random walk",
-            "momentum",
-            "mean reversion",
-            "weak-form efficiency",
-            "Ljung-Box test",
+            "Augmented Dickey-Fuller",
           ],
         },
         {
           type: "teach",
-          title: "AR/MA Models and Mean Reversion Testing",
+          title: "📐 Cointegration, Sharpe & Sortino",
           content:
-            "**Autoregressive (AR) models** express the current value as a linear function of past values plus a noise term:\n\nAR(1): rₜ = φ·rₜ₋₁ + εₜ\n\n- If |φ| < 1: The series is stationary and mean-reverting (a shock decays geometrically)\n- If φ = 1: Random walk — shocks are permanent (non-stationary)\n- If |φ| > 1: Explosive — unrealistic for returns\n\n**Moving Average (MA) models** express the current value as a function of current and past error terms:\n\nMA(1): rₜ = εₜ + θ·εₜ₋₁\n\n**ARMA(p,q)**: Combines p autoregressive terms and q moving-average terms. Used for stationary series.\n\n**ARIMA(p,d,q)**: Applies d rounds of differencing before fitting ARMA(p,q) — used for non-stationary price data.\n\n**Half-life of mean reversion**: For AR(1), the expected time for a shock to decay by half:\nhalf-life = −ln(2) / ln(|φ|)\n\nExample: φ = 0.9, half-life = −ln(2)/ln(0.9) ≈ 6.6 periods. A slow mean-reversion process.\n\n**Pairs trading and cointegration**: Two non-stationary price series that share a common stochastic trend are **cointegrated** — their spread is stationary and mean-reverting. This is the statistical foundation of pairs trading. The Engle-Granger test and Johansen test check for cointegration.",
+            "**Cointegration**:\nTwo non-stationary series (like stock prices) can have a stationary *relationship* — meaning they tend to move together over time. This is cointegration.\n\nExample: Coca-Cola and Pepsi prices individually wander (non-stationary), but their spread (KO − c × PEP) may be stationary. **Pairs trading** exploits this: when the spread widens unusually, bet on convergence.\n\nCointegration is stronger than simple correlation — it implies a long-run equilibrium relationship, not just short-term co-movement.\n\n**Sharpe Ratio**:\nThe most widely used risk-adjusted performance metric:\n\nSharpe = (Return − Rƒ) / Standard Deviation\n\nWhere Rƒ = risk-free rate. Interpretation:\n- Sharpe < 0: Loses money vs risk-free\n- 0–0.5: Below average\n- 0.5–1.0: Adequate\n- > 1.0: Good (rare in live trading)\n- > 2.0: Exceptional (possibly data-mined)\n\n**Sortino Ratio**:\nAddresses the Sharpe limitation of penalising upside volatility equally:\n\nSortino = (Return − Rƒ) / Downside Deviation\n\nDownside deviation only counts returns below the target (usually 0 or Rƒ). Better for strategies with positive skew.",
           highlight: [
-            "AR model",
-            "MA model",
-            "ARIMA",
-            "half-life",
             "cointegration",
             "pairs trading",
-            "mean reversion",
+            "Sharpe ratio",
+            "Sortino ratio",
+            "downside deviation",
+            "risk-adjusted return",
           ],
         },
         {
           type: "quiz-mc",
           question:
-            "An AR(1) model fitted to the spread between two ETFs gives φ = 0.85. What is the approximate half-life of mean reversion, and what does this imply for a pairs trading strategy?",
+            "What does it mean when a financial time series is 'stationary'?",
           options: [
-            "Half-life ≈ 4.3 periods — the spread reverts to its mean relatively quickly, making it suitable for a medium-frequency pairs trade with holding periods measured in days",
-            "Half-life ≈ 0.85 periods — since φ < 1 the series reverts within one day",
-            "Half-life = infinite — φ < 1 means the spread never fully reverts",
-            "Half-life ≈ 8.5 periods — calculated as 1/(1−φ) × ln(2)",
+            "Its mean, variance, and autocorrelation are constant over time",
+            "The price does not change over time",
+            "It follows a normal distribution",
+            "It has zero correlation with all other series",
           ],
           correctIndex: 0,
           explanation:
-            "Half-life = −ln(2) / ln(φ) = −ln(2) / ln(0.85) = −0.693 / (−0.163) ≈ 4.3 periods. If working with daily data, this means 4.3 days on average for a shock to the spread to decay by half. This is a reasonably fast mean reversion — slow enough to enter and exit positions, fast enough to generate frequent trading opportunities. A very slow half-life (e.g., 60+ days) would tie up capital too long and face more regime-change risk.",
-          difficulty: 3,
+            "A stationary time series has statistical properties — mean, variance, and autocorrelation structure — that do not change over time. This is required for most statistical models. Stock price levels are NOT stationary (they drift), but returns are approximately stationary. Testing for stationarity (e.g., ADF test) is a critical first step in any quantitative analysis.",
+          difficulty: 2,
         },
         {
           type: "quiz-tf",
           statement:
-            "Because stock price levels are non-stationary (integrated of order 1), regression models that use price levels rather than returns as inputs will typically produce spurious results with artificially high R-squared values.",
-          correct: true,
+            "Because financial returns exhibit fat tails (excess kurtosis), a risk model assuming a normal distribution will systematically overestimate the probability of extreme losses.",
+          correct: false,
           explanation:
-            "Regressing two non-stationary price series against each other produces 'spurious regression' — high R-squared and statistically significant coefficients even when the two series are entirely independent random walks. This is because both series trend over time, creating a mechanical correlation. The correct approach is to either use returns (which are approximately stationary) or test explicitly for cointegration if you believe the price levels share a genuine long-run relationship.",
+            "False — a normal distribution model will systematically UNDERESTIMATE the probability of extreme losses, not overestimate them. Fat tails mean there are more extreme observations than the bell curve predicts. Models assuming normality gave false reassurance before the 2008 crisis. Risk managers should use fat-tailed distributions (Student's t, historical simulation) for more realistic tail-risk estimates.",
           difficulty: 2,
         },
         {
           type: "quiz-scenario",
           scenario:
-            "You compute autocorrelations for a stock's daily log returns. At lag-1 the autocorrelation is +0.02 (p-value 0.4). At lag-1 for the squared returns (volatility proxy), the autocorrelation is +0.35 (p-value < 0.001).",
+            "Strategy A: 20% annual return, 16% volatility, risk-free rate 4%. Strategy B: 16% annual return, 10% volatility, risk-free rate 4%. Strategy B has strongly negative skew (frequent small gains, rare large crashes).",
           question:
-            "What do these results tell you about predictability in this stock?",
+            "Which strategy has a higher Sharpe ratio, and what does the skewness analysis add?",
           options: [
-            "Return direction is not predictable from yesterday's return (ρ near 0, not significant), but volatility is highly persistent — today's large move predicts tomorrow's large move, a phenomenon called GARCH clustering",
-            "The stock is perfectly efficient — neither returns nor volatility are predictable",
-            "A momentum strategy should work because lag-1 autocorrelation is positive at +0.02",
-            "The significant volatility autocorrelation means tomorrow's return direction can be predicted",
+            "Strategy B has higher Sharpe (1.20 vs 1.00), but its negative skew means tail losses are understated — use Sortino or max drawdown analysis",
+            "Strategy A has higher Sharpe because it has higher absolute return",
+            "Both have the same Sharpe because skew is already accounted for",
+            "Strategy B's negative skew makes its Sharpe calculation invalid",
           ],
           correctIndex: 0,
           explanation:
-            "The near-zero, insignificant autocorrelation in raw returns (+0.02, p=0.4) is consistent with weak-form efficiency — past return direction does not predict future direction. However, significant autocorrelation in squared returns (+0.35, p<0.001) reveals **volatility clustering** (GARCH effects) — large moves today are followed by large moves tomorrow, but the direction is random. This is exploitable for options pricing and risk management (volatility tends to remain elevated), but does not support a directional momentum strategy.",
+            "Strategy A Sharpe: (20−4)/16 = 1.00. Strategy B Sharpe: (16−4)/10 = 1.20. Strategy B wins on Sharpe. However, Sharpe treats upside and downside volatility equally. Strategy B's negative skew — large, infrequent crashes — is not captured by Sharpe. The Sortino ratio (using only downside deviation) or max drawdown analysis would better reveal Strategy B's true tail risk.",
           difficulty: 3,
         },
       ],
     },
 
-    /* ================================================================
-       LESSON 3 — Factor Models
-       ================================================================ */
+    // ─── Lesson 2: Factor Models ─────────────────────────────────────────────────
     {
-      id: "quant-3",
-      title: "Factor Models",
+      id: "quant-2",
+      title: "🧮 Factor Models",
       description:
-        "CAPM derivation, Fama-French 3-factor model, momentum, quality, and factor portfolio construction",
+        "CAPM, Fama-French multi-factor models, alpha, information ratio, and factor investing",
       icon: "Layers",
+      xpReward: 95,
       difficulty: "advanced",
-      duration: 20,
-      xpReward: 100,
       steps: [
         {
           type: "teach",
-          title: "CAPM: The Single-Factor Model",
+          title: "📈 CAPM: The Single-Factor Model",
           content:
-            "The **Capital Asset Pricing Model (CAPM)** is the foundational single-factor model of asset pricing, derived by Sharpe, Lintner, and Mossin in the 1960s.\n\n**CAPM equation**:\nE(Rᵢ) = Rƒ + βᵢ × [E(Rₘ) − Rƒ]\n\nWhere:\n- E(Rᵢ) = expected return of asset i\n- Rƒ = risk-free rate\n- βᵢ = systematic risk of asset i relative to the market\n- [E(Rₘ) − Rƒ] = equity risk premium (ERP) — historically ~4–6% per year\n\n**Beta derivation**:\nβᵢ = Cov(Rᵢ, Rₘ) / Var(Rₘ)\n\n**Numerical example**: Stock has Cov(Rᵢ, Rₘ) = 0.018, market Var(Rₘ) = 0.020. β = 0.018/0.020 = 0.90. With Rƒ = 3%, ERP = 5%: E(Rᵢ) = 3% + 0.90 × 5% = 7.5%.\n\n**CAPM implications**:\n1. Only systematic (market) risk is compensated — idiosyncratic risk is diversified away\n2. All investors should hold the same portfolio of risky assets (the market portfolio)\n3. The only reason to expect excess return is having higher beta\n\n**CAPM failures**: Empirically, stocks with identical beta often have very different returns. Small caps beat large caps; value beats growth; momentum persists. These 'anomalies' motivated multi-factor models.",
+            "The **Capital Asset Pricing Model (CAPM)** is the foundational factor model. It asserts that the expected return of any asset is determined entirely by its sensitivity to the market:\n\nE(R) = Rƒ + β × (Rm − Rƒ)\n\nWhere:\n- **Rƒ** = risk-free rate (e.g., 3-month T-bill)\n- **β (beta)** = sensitivity to the market portfolio\n- **(Rm − Rƒ)** = equity risk premium (historically ~5–7% per year)\n\n**Interpreting beta**:\n- β = 1.0: Stock moves in line with the market\n- β = 1.5: Stock is 1.5× more sensitive — rises 15% when market rises 10%, falls 15% when market falls 10%\n- β = 0.5: Defensive stock, half the market movement\n- β < 0: Moves opposite to the market (rare; gold sometimes exhibits this)\n\n**CAPM limitations**:\n1. Only one risk factor (the market) explains returns — empirically inadequate\n2. Assumes investors are rational and markets are perfectly efficient\n3. Beta is estimated from historical data and is unstable over time\n4. Cross-sectional evidence shows low-beta stocks outperform predictions (the low-volatility anomaly)\n\nDespite its limitations, CAPM remains the starting point for understanding risk premia and is used everywhere in corporate finance (cost of equity estimation).",
           highlight: [
             "CAPM",
             "beta",
             "equity risk premium",
+            "risk-free rate",
             "systematic risk",
-            "idiosyncratic risk",
-            "market portfolio",
           ],
         },
         {
           type: "teach",
-          title: "Fama-French Three-Factor Model",
+          title: "📐 Fama-French & Multi-Factor Models",
           content:
-            "Eugene Fama and Kenneth French documented in 1992–1993 that two factors — size and value — explain much of the cross-sectional variation in stock returns that CAPM cannot.\n\n**Fama-French 3-factor model**:\nRᵢ − Rƒ = αᵢ + βₘ(Rₘ − Rƒ) + βₛ·SMB + βᵥ·HML + εᵢ\n\n**The three factors**:\n1. **Market factor (Rₘ − Rƒ)**: Equity risk premium — compensation for owning stocks vs. cash\n2. **SMB (Small Minus Big)**: Return of small-cap stocks minus large-cap stocks. Small-cap stocks have historically earned ~2–3% premium per year. Rationale: illiquidity and distress risk.\n3. **HML (High Minus Low)**: Return of high book-to-market (value) stocks minus low book-to-market (growth) stocks. Value has earned ~3–5% premium historically. Rationale: financial distress risk (value companies are often in poor financial health).\n\n**Fitting the model**: Regress each stock's excess returns against the three factors. The output: factor loadings (βₘ, βₛ, βᵥ) and alpha (αᵢ). Alpha here is the return unexplained by the three factors — true 'abnormal return.'\n\n**Fama-French 5-factor extension (2015)**: Added two more factors: RMW (Robust Minus Weak profitability) and CMA (Conservative Minus Aggressive investment). The 5-factor model explains >95% of cross-sectional return variation in large datasets.",
+            "Eugene Fama and Kenneth French demonstrated that CAPM's single factor leaves significant return variation unexplained. Their **3-Factor Model** adds:\n\n1. **Market (Rm − Rƒ)**: Market risk premium (same as CAPM)\n2. **SMB (Small Minus Big)**: Small-cap stocks have historically outperformed large-cap stocks — the size premium\n3. **HML (High Minus Low)**: Value stocks (high book-to-market) have historically outperformed growth stocks — the value premium\n\nFama-French **5-Factor Model** (2015) adds:\n4. **RMW (Robust Minus Weak)**: Profitability premium — profitable firms outperform unprofitable\n5. **CMA (Conservative Minus Aggressive)**: Investment premium — firms investing conservatively outperform aggressive investors\n\nOther documented factors include:\n- **Momentum** (Carhart): Past 12-month winners continue to outperform\n- **Low Volatility**: Low-risk stocks outperform (anomaly vs CAPM)\n- **Quality**: High ROE, stable earnings premium\n\n**Factor investing** (smart beta) systematically harvests these known risk premia through rules-based portfolios — a middle ground between passive indexing and active stock picking.",
           highlight: [
             "Fama-French",
             "SMB",
             "HML",
+            "momentum",
+            "factor investing",
+            "smart beta",
             "size premium",
             "value premium",
-            "factor loading",
-            "alpha",
           ],
         },
         {
           type: "teach",
-          title: "Momentum, Quality, and Building a Factor Portfolio",
+          title: "⭐ Alpha & Information Ratio",
           content:
-            "**Momentum factor (WML — Winners Minus Losers)**: Stocks with the best 12-month (excluding the most recent month) return outperform stocks with the worst 12-month return. Carhart (1997) added momentum as the 4th factor. Premium: ~5–7% per year historically but with occasional severe crashes (momentum crashes of 40–60% in reversal months).\n\n**Quality factor**: High-quality companies — high ROE, stable earnings, low debt, strong free cash flow — outperform low-quality. Novy-Marx (2013) documented the 'gross profitability' anomaly. Rationale: investors underweight boring, profitable companies in favour of exciting growth stories.\n\n**Constructing a factor portfolio (long-short)**:\n1. **Universe**: Define investable universe (e.g., Russell 1000 or S&P 500)\n2. **Score**: Rank all stocks on the factor signal (e.g., book-to-market ratio for value)\n3. **Quintile split**: Long top quintile (best value stocks), short bottom quintile (most expensive)\n4. **Equal-weight or market-cap weight** within each leg\n5. **Rebalance**: Monthly or quarterly to maintain factor purity\n\n**Factor portfolio Sharpe ratios (historical, long-short, before costs)**:\n- Market: ~0.4\n- Value (HML): ~0.35\n- Momentum (WML): ~0.5\n- Quality: ~0.45\n\n**Transaction costs**: Long-short factor portfolios have high turnover and face significant trading costs — particularly for small caps and momentum. After realistic costs, premiums are halved or eliminated for capacity-constrained strategies.",
+            "**Alpha (α)**: The return unexplained by a factor model. True alpha represents genuine skill — generating returns beyond what is explained by known risk exposures.\n\nα = Actual Return − (Rƒ + β₁F₁ + β₂F₂ + … + βₙFₙ)\n\nA manager who earns 15% when CAPM predicts 12% has α = 3%. But if that manager also has hidden exposure to the value factor which itself returned 4%, the 'alpha' might be entirely explained by systematic factor exposure — not skill.\n\n**Information Ratio (IR)**:\nMeasures the consistency of alpha generation relative to a benchmark:\n\nIR = α / Tracking Error\n\nTracking Error = σ(Portfolio Returns − Benchmark Returns)\n\nInterpretation:\n- IR > 0.5: Good active management\n- IR > 1.0: Exceptional\n- Most active managers have IR < 0.3 net of fees\n\n**The key insight**: most fund manager 'alpha' disappears when properly controlling for factor exposures. A manager running a small-cap value portfolio should not be benchmarked to the S&P 500 — their 'excess return' over the S&P 500 may simply be the size and value premia.",
           highlight: [
-            "momentum factor",
-            "quality factor",
-            "long-short portfolio",
-            "quintile",
-            "factor construction",
-            "transaction costs",
+            "alpha",
+            "information ratio",
+            "tracking error",
+            "factor exposure",
+            "skill",
+            "benchmark",
           ],
         },
         {
           type: "quiz-mc",
-          question:
-            "A stock has a beta of 1.0 (market), a positive SMB loading of 0.6 (small-cap tilt), and a positive HML loading of 0.5 (value tilt). The market earns 8%, SMB earns 2%, HML earns 3%, and the risk-free rate is 3%. What return does the Fama-French model predict, and what would alpha represent if the actual return is 15%?",
+          question: "In CAPM, what does a beta of 1.5 mean?",
           options: [
-            "Predicted: 3% + 1.0×(8−3)% + 0.6×2% + 0.5×3% = 3 + 5 + 1.2 + 1.5 = 10.7%. Alpha = 15% − 10.7% = 4.3% — return unexplained by the three factors",
-            "Predicted: 8% (market return alone). Alpha = 7%",
-            "Predicted: 8% + 2% + 3% = 13%. Alpha = 2%",
-            "Predicted: 3% + 1.0×8% + 0.6×8% + 0.5×8% = 17.2%. Alpha = −2.2%",
+            "The stock is expected to move 1.5× the market's move",
+            "The stock has 1.5% higher expected return than the market",
+            "The stock has 50% more total risk than the average stock",
+            "The stock will outperform the market by 50% over time",
           ],
           correctIndex: 0,
           explanation:
-            "Rᵢ = Rƒ + βₘ×(Rₘ−Rƒ) + βₛ×SMB + βᵥ×HML = 3% + 1.0×(8%−3%) + 0.6×2% + 0.5×3% = 3% + 5% + 1.2% + 1.5% = 10.7%. The stock's exposure to three risk factors explains 10.7% return. The remaining 4.3% (15% actual − 10.7% predicted) is alpha — genuine excess return not attributable to systematic factor exposure. A positive alpha after controlling for size and value would be remarkable and warrant investigation.",
-          difficulty: 3,
-        },
-        {
-          type: "quiz-tf",
-          statement:
-            "According to CAPM, a stock with beta = 0.5 should earn a lower expected return than a stock with beta = 1.5, because it takes less systematic risk.",
-          correct: true,
-          explanation:
-            "CAPM's core insight is that only systematic risk (beta) is compensated — idiosyncratic risk is diversified away and earns no premium. A low-beta stock (0.5) moves less with the market and contributes less systematic risk to a diversified portfolio, so it commands a smaller risk premium. E(R) = Rƒ + β×ERP: with ERP = 5%, beta 0.5 earns Rƒ + 2.5% while beta 1.5 earns Rƒ + 7.5%. This is the Security Market Line (SML).",
+            "Beta measures a stock's sensitivity to the market. A beta of 1.5 means the stock is expected to move 1.5 times as much as the market — up 15% when the market rises 10%, down 15% when the market falls 10%. This is systematic (market) risk that cannot be diversified away. A beta of 1.5 does NOT guarantee outperformance; it means higher expected return AND higher expected risk relative to the market.",
           difficulty: 1,
         },
         {
+          type: "quiz-tf",
+          statement:
+            "A fund manager who consistently outperforms the S&P 500 by 4% annually necessarily possesses genuine stock-picking skill (positive alpha) that cannot be explained by factor exposures.",
+          correct: false,
+          explanation:
+            "False. Outperformance vs a benchmark can be entirely explained by factor exposures rather than skill. If the manager runs a small-cap value portfolio, the Fama-French SMB and HML factors alone might explain a 4% annual premium over the S&P 500. True alpha is the return *unexplained* after controlling for all relevant factor exposures. Most active manager 'alpha' disappears in multi-factor attribution analysis.",
+          difficulty: 2,
+        },
+        {
           type: "quiz-scenario",
           scenario:
-            "You have built a long-short value factor portfolio. It is 2010–2020. The portfolio consistently underperforms despite strong academic evidence that the value premium exists. Your factor loadings are correct — you are genuinely long cheap stocks and short expensive ones.",
+            "A portfolio manager earned 18% last year. The market returned 12%, the risk-free rate was 4%, and the manager's portfolio beta is 1.2. The Fama-French SMB factor returned 3% and the manager's SMB loading is 0.8.",
           question:
-            "Which explanation is most consistent with this underperformance, and what should you do?",
+            "What is the manager's CAPM alpha, and does the picture change with the Fama-French factor?",
           options: [
-            "Value experienced a decade-long drawdown driven by ultra-low rates favouring long-duration growth assets — this is factor cyclicality, not model failure; assess whether the underlying thesis is intact before abandoning the strategy",
-            "The Fama-French model is definitively wrong — value premium does not exist; immediately close the portfolio",
-            "Your short book (expensive growth stocks) must be incorrectly constructed; the long leg is fine",
-            "Rebalance more frequently — the value premium only works when you rebalance daily",
+            "CAPM alpha = 18% − [4% + 1.2 × (12%−4%)] = 4.4%; adding the size factor (0.8 × 3% = 2.4%) further reduces the true alpha to ~2%",
+            "CAPM alpha = 18% − 12% = 6%; factor models are not relevant for the alpha calculation",
+            "CAPM alpha = 18% / 12% = 1.5; the ratio of returns measures alpha",
+            "CAPM alpha = 0 because the manager has beta = 1.2 which means no skill premium",
           ],
           correctIndex: 0,
           explanation:
-            "Value dramatically underperformed from 2010–2020, with the longest drawdown in its recorded history. The likely explanation: ultra-low interest rates made long-duration growth assets (tech companies with earnings far in the future) disproportionately attractive via discounted cash flow mechanics. This is a regime effect, not evidence that the factor is dead. Academic factors have multi-year drawdown periods — patience and conviction in the underlying thesis (value stocks are mispriced due to behavioural and risk factors) are required. The 2022 environment (rising rates) saw value's strongest comeback in decades.",
+            "CAPM expected return = 4% + 1.2 × (12%−4%) = 4% + 9.6% = 13.6%. CAPM alpha = 18% − 13.6% = 4.4%. However, adding the SMB factor contribution: 0.8 × 3% = 2.4% — this was just exposure to the small-cap premium, not skill. Adjusted alpha ≈ 4.4% − 2.4% = 2%. Each additional factor strips out systematic premia until we isolate genuine stock-picking skill.",
           difficulty: 3,
         },
       ],
     },
 
-    /* ================================================================
-       LESSON 4 — Risk Models and VaR
-       ================================================================ */
+    // ─── Lesson 3: Backtesting & Research ───────────────────────────────────────
+    {
+      id: "quant-3",
+      title: "🔬 Backtesting & Research",
+      description:
+        "Survivorship bias, look-ahead bias, overfitting, walk-forward testing, and the multiple testing problem",
+      icon: "FlaskConical",
+      xpReward: 95,
+      difficulty: "advanced",
+      steps: [
+        {
+          type: "teach",
+          title: "⚠️ Backtest Bias 1: Survivorship Bias",
+          content:
+            "**Survivorship bias** is one of the most pervasive errors in quantitative research. It occurs when a study only includes assets (stocks, funds, strategies) that exist today, ignoring those that failed, went bankrupt, or were delisted.\n\n**Example**: Testing a strategy on today's S&P 500 constituents looks back at 500 successful companies. But in 2000, the index contained many companies that no longer exist. Your backtest is implicitly selecting winners with hindsight.\n\n**Magnitude of the bias**: Studies show survivorship bias inflates mutual fund performance by ~1–3% per year. For stock-picking strategies, the bias can be 5%+ per year — enough to make a losing strategy look profitable.\n\n**How to fix it**:\n- Use **point-in-time databases**: only include stocks that were in the index *at that time*, not today\n- Include **delisted stocks** and their returns up to delisting (usually very negative)\n- Use databases like CRSP (Center for Research in Security Prices) which correctly handle this\n\n**Beyond stocks**: Survivorship bias affects hedge fund databases (failed funds stop reporting), backtested factors (factors look better because bad implementations aren't studied), and strategy selection (only strategies that worked are published).",
+          highlight: [
+            "survivorship bias",
+            "point-in-time database",
+            "delisted stocks",
+            "backtest",
+            "CRSP",
+          ],
+        },
+        {
+          type: "teach",
+          title: "⚠️ Backtest Bias 2: Look-Ahead Bias & Overfitting",
+          content:
+            "**Look-ahead bias** occurs when a backtest uses data that would not have been available at the time of the trading decision.\n\nCommon examples:\n- Using **quarterly earnings** announced on March 15 to make a trade on March 1\n- Using **end-of-day prices** to fill an order that would have been placed at the open\n- Using **analyst consensus estimates** that were revised after the period under study\n- Using **index membership** as it stands today (stocks join/leave over time)\n\nA properly implemented backtest uses only data that existed at each decision point — a surprisingly hard engineering problem.\n\n**Overfitting (data snooping)**:\nWhen a strategy is tuned to fit historical data too precisely, it captures the noise of that specific sample rather than genuine market structure. Signs of overfitting:\n- Too many parameters relative to data points\n- Optimal parameters are very specific (e.g., RSI(14) works but RSI(13) or RSI(15) doesn't)\n- Dramatically different performance across sub-periods\n- Backtest Sharpe >> 2.0 for a simple strategy\n\nKoch's rule of thumb: for every parameter in a strategy, you need at least 100 independent observations. A strategy with 10 parameters needs 1,000+ independent trades to be trustworthy.",
+          highlight: [
+            "look-ahead bias",
+            "overfitting",
+            "data snooping",
+            "parameters",
+            "out-of-sample",
+          ],
+        },
+        {
+          type: "teach",
+          title: "🔄 Walk-Forward Testing & Multiple Testing Problem",
+          content:
+            "**Walk-forward testing** is the gold standard for validating systematic strategies:\n\n1. Divide data into **in-sample** (IS) and **out-of-sample** (OOS) periods\n2. Optimize strategy parameters on the IS period\n3. Evaluate performance on the OOS period (the 'test')\n4. Roll the window forward and repeat\n5. Assess the aggregate OOS performance\n\nA strategy that performs well OOS is far less likely to be the result of curve-fitting. The ratio of IS Sharpe to OOS Sharpe is revealing — a ratio > 2× suggests significant overfitting.\n\n**The Multiple Testing Problem**:\nIf you test 100 different strategy variants with a p < 0.05 significance threshold, you expect ~5 to appear 'significant' by pure random chance — even if none of them have real predictive power.\n\nIn quantitative finance, researchers test thousands of parameter combinations and factor definitions. The probability of finding a spurious 'working' strategy by chance approaches 100%.\n\n**Corrections**:\n- **Bonferroni correction**: Divide the significance threshold by the number of tests\n- **False Discovery Rate (FDR)**: Controls the expected fraction of discoveries that are false\n- **Harvey-Liu-Zhu (2016)**: A paper specifically addressing multiple testing in factor research — argues t-statistic threshold should be ~3.0, not 2.0, for new factors\n\n**Practical rule**: A strategy's backtest Sharpe must exceed 1.0 + 0.2 × log(number of parameter combinations tested) to be credible.",
+          highlight: [
+            "walk-forward testing",
+            "in-sample",
+            "out-of-sample",
+            "multiple testing",
+            "Bonferroni",
+            "false discovery rate",
+          ],
+        },
+        {
+          type: "quiz-mc",
+          question:
+            "What is 'survivorship bias' in backtesting?",
+          options: [
+            "Only including stocks that survived to present, excluding failed companies",
+            "Only testing strategies that survived the research process",
+            "Using only the most recent data that has survived market crashes",
+            "Selecting the time periods where the strategy performed best",
+          ],
+          correctIndex: 0,
+          explanation:
+            "Survivorship bias occurs when a backtest only includes stocks, funds, or other assets that exist today, ignoring those that went bankrupt, were delisted, or otherwise ceased to exist. Since failed companies typically had very negative returns before their demise, excluding them makes any strategy look significantly better than it actually would have been. The fix is to use point-in-time databases that include all historical constituents.",
+          difficulty: 1,
+        },
+        {
+          type: "quiz-tf",
+          statement:
+            "If you test 100 different trading strategies using a 5% significance level and find 6 that appear statistically profitable, this is strong evidence that those 6 strategies have genuine predictive power.",
+          correct: false,
+          explanation:
+            "False. With 100 strategies tested at the 5% significance level, you expect approximately 5 to appear significant purely by chance — even if none have any real predictive power. Finding 6 'significant' strategies is barely above the random expectation. This is the multiple testing problem. Proper corrections (Bonferroni, FDR) would require a much higher significance threshold across the 100 tests, or ideally, out-of-sample validation of each candidate.",
+          difficulty: 2,
+        },
+        {
+          type: "quiz-scenario",
+          scenario:
+            "A researcher tests a momentum strategy with 50 different parameter combinations on 20 years of S&P 500 data. The best combination has a backtest Sharpe of 1.8 in-sample. When tested on 5 years of held-out out-of-sample data, the Sharpe drops to 0.4.",
+          question:
+            "What does this result most likely indicate, and what should the researcher do?",
+          options: [
+            "Significant overfitting to the in-sample period — the 4.5× Sharpe ratio degradation suggests the strategy captured noise; the researcher should use robust parameter ranges and walk-forward validation",
+            "The strategy is valid; some Sharpe degradation OOS is always expected and 0.4 is still positive",
+            "The out-of-sample period was simply a bad market environment; test on a different OOS period",
+            "The strategy needs more parameters to better capture the market dynamics",
+          ],
+          correctIndex: 0,
+          explanation:
+            "A 4.5× degradation from IS Sharpe 1.8 to OOS Sharpe 0.4 is a major red flag indicating severe overfitting. The strategy has been tuned to the specific noise of the in-sample period. With 50 parameter combinations tested, the multiple testing problem applies — the best IS performer is almost certainly over-optimized. The researcher should: (1) use walk-forward testing across multiple periods, (2) check robustness to parameter changes, and (3) require the OOS Sharpe to be at least 50% of the IS Sharpe for credibility.",
+          difficulty: 3,
+        },
+      ],
+    },
+
+    // ─── Lesson 4: Signal Generation ────────────────────────────────────────────
     {
       id: "quant-4",
-      title: "Risk Models and VaR",
+      title: "📡 Signal Generation",
       description:
-        "Parametric VaR, historical simulation, Monte Carlo VaR, CVaR/Expected Shortfall, and stress testing",
-      icon: "Shield",
+        "Price-based, volume-based, and fundamental signals; alternative data; signal decay",
+      icon: "Radio",
+      xpReward: 90,
       difficulty: "advanced",
-      duration: 20,
-      xpReward: 95,
       steps: [
         {
           type: "teach",
-          title: "Value at Risk: Three Approaches",
+          title: "📊 Price-Based Signals",
           content:
-            "**Value at Risk (VaR)** answers: 'What is the maximum loss I should expect to incur over a given horizon at a given confidence level?'\n\nFormally: VaR(α, T) = the loss that will not be exceeded with probability (1−α) over horizon T.\n\nExample: 1-day 99% VaR of $1M means: there is a 1% chance of losing more than $1M in a single day.\n\n**Method 1 — Parametric VaR (variance-covariance)**:\nAssumes returns are normally distributed.\nVaR = μ − z_α × σ\nWhere z_α is the z-score for confidence level α.\nFor 95% VaR: z = 1.645; for 99% VaR: z = 2.326.\n\nExample: Portfolio daily μ = 0%, σ = $50,000. 99% 1-day VaR = 2.326 × $50,000 = $116,300.\n\nPros: Fast, analytical. Cons: Normality assumption — underestimates fat-tail losses.\n\n**Method 2 — Historical Simulation**:\nSort actual historical returns from worst to best. 1-day 99% VaR = the 1st percentile of the empirical distribution.\n\nExample: 500 days of P&L history. Sort ascending. 99% VaR = the 5th worst daily loss.\n\nPros: No distributional assumption; captures fat tails actually experienced. Cons: Depends heavily on which historical window is used; does not anticipate losses outside the sample.\n\n**Method 3 — Monte Carlo VaR**:\nSimulate thousands of scenarios from an assumed return model (e.g., correlated geometric Brownian motion). Compute the loss at the target percentile across simulations.\n\nPros: Handles complex non-linear portfolios (options), any distributional assumption. Cons: Computationally expensive; results depend on the model chosen.",
+            "**Price-based signals** are derived purely from the history of asset prices and are the oldest class of systematic signals.\n\n**Momentum (12-1 month)**:\nThe most robust factor in academic finance. Buy stocks that were top performers over the past 12 months, excluding the most recent month (which shows short-term reversal). Documented in 40+ countries and 200+ years of data.\n\nFormula: Momentum_t = Price_{t-1} / Price_{t-12} − 1\n\n**Mean reversion**:\n- **RSI**: When RSI < 30 (oversold), expect a bounce. Works better in range-bound markets.\n- **Bollinger Bands**: When price > 2σ above the 20-day mean, bet on reversion to the mean.\n- Short-term (1–5 day) mean reversion is well-documented in equities, especially for liquid large-caps.\n\n**Breakout signals**:\n- Price breaking above a 52-week high: historically bullish in the following months\n- Turtle traders famously used 20-day and 55-day breakout channels\n- Requires careful handling of false breakouts (use volume confirmation)\n\n**Key caveat**: Price signals work when they represent real economic effects (e.g., momentum reflects information diffusion) but can break down when overcrowded — if everyone trades the same signal, the edge disappears.",
           highlight: [
-            "Value at Risk",
-            "VaR",
-            "parametric VaR",
-            "historical simulation",
-            "Monte Carlo",
-            "confidence level",
+            "momentum",
+            "mean reversion",
+            "RSI",
+            "Bollinger Bands",
+            "breakout",
+            "52-week high",
           ],
         },
         {
           type: "teach",
-          title: "CVaR / Expected Shortfall and Why VaR Is Incomplete",
+          title: "📦 Volume-Based & Fundamental Signals",
           content:
-            "**The fundamental flaw of VaR**: VaR tells you where the tail begins, but nothing about what happens inside the tail.\n\nTwo portfolios can have identical 99% VaR = $1M, yet one might lose $1.1M 1% of the time while the other might lose $10M 1% of the time. VaR cannot distinguish them.\n\n**Conditional VaR (CVaR)**, also called **Expected Shortfall (ES)**:\nCVaR(α) = E[Loss | Loss > VaR(α)]\n\nThe expected loss given that you are already beyond the VaR threshold — the average of the tail.\n\n**Numerical example**:\nPortfolio has 1-day 99% VaR = $1M. The 20 worst days in 2,000 days of history (1% of 2,000) have losses: $1.1M, $1.3M, $1.5M, $2.0M, $2.2M, …, $5.0M (average = $2.4M).\n99% 1-day CVaR = $2.4M — much larger than the VaR.\n\n**Why regulators prefer CVaR**:\n- Basel III shifted banks from VaR to ES for market risk capital requirements\n- CVaR is a 'coherent risk measure' — it satisfies subadditivity (diversified portfolio risk ≤ sum of individual risks), which VaR does not always satisfy\n- CVaR penalises fat-tailed strategies that VaR misses\n\n**Backtesting VaR**: Count how often actual losses exceed the VaR threshold ('VaR exceedances'). For 99% VaR: expect 1% of days — about 2–3 per year. Too many exceedances suggests VaR is understated; too few suggests it is overly conservative.",
+            "**Volume-based signals**:\nVolume provides information about the conviction behind price moves.\n\n- **Volume-price divergence**: Price rising on declining volume suggests weakening conviction — potential reversal signal\n- **On-Balance Volume (OBV)**: Cumulative volume measure — adds volume on up days, subtracts on down days. Rising OBV with flat price = accumulation (bullish)\n- **VWAP deviation**: Price significantly below VWAP may attract institutional buying (value signal intraday)\n- **Volume spikes**: Unusual volume often precedes a trend change or confirms a breakout\n\n**Fundamental signals**:\nDerived from financial statement data — slower to change, but more persistent.\n\n- **Value**: Low P/E, P/B, EV/EBITDA relative to sector history → excess returns documented since Graham (1934)\n- **Quality**: High and stable ROE, low accruals (balance sheet health) → Piotrowski F-Score\n- **Growth**: Revenue and earnings surprise (actual > consensus estimates) → positive drift for weeks post-announcement\n- **Earnings momentum**: Consecutive EPS beats predict continued outperformance (analyst anchoring)\n\nFundamental signals require careful data sourcing — using reported numbers rather than point-in-time restated figures introduces look-ahead bias.",
           highlight: [
-            "CVaR",
-            "Expected Shortfall",
-            "tail risk",
-            "coherent risk measure",
-            "Basel III",
-            "VaR backtesting",
-            "VaR exceedances",
+            "OBV",
+            "volume-price divergence",
+            "VWAP",
+            "value factor",
+            "quality factor",
+            "earnings surprise",
+            "F-Score",
           ],
         },
         {
           type: "teach",
-          title: "Stress Testing and Scenario Analysis",
+          title: "🛰️ Alternative Data & Signal Decay",
           content:
-            "**Stress testing** answers: 'How much would my portfolio lose in a specific extreme scenario?' Unlike VaR, which focuses on a single probability threshold, stress testing evaluates specific historical or hypothetical scenarios.\n\n**Historical stress scenarios**:\n- **1987 Black Monday**: Single-day equity drawdown of ~22%. Impact on portfolio if equivalent move occurred.\n- **2008 GFC peak-to-trough**: Equities −57%, credit spreads +1,500bps, VIX to 80.\n- **2020 COVID crash**: Equities −34% in 33 days, correlation breakdown, liquidity crises.\n- **2022 rate shock**: Rates +400bps, equities −20%, bonds −15%.\n\n**Hypothetical scenarios**:\nConstruct scenarios based on economic narrative: 'What if rates rise 300bps in 6 months?' or 'What if China-Taiwan conflict disrupts supply chains?'\n\n**Factor-based stress testing**: Shock factor exposures. Example: Stress HML by −30% (value crashes), WML by −50% (momentum crash), market by −40%.\n\n**Reverse stress testing**: Instead of asking 'what is the loss in scenario X?', ask 'what scenario would cause my portfolio to lose 30%?' This uncovers hidden concentrations and tail risks the portfolio manager may not have recognised.\n\n**Liquidity-adjusted VaR (LVaR)**: Adjusts VaR for the fact that in stress scenarios, bid-ask spreads widen dramatically and position size cannot be exited at the marked price. LVaR adds an illiquidity haircut: LVaR = VaR × √(1 + days_to_exit/2).",
+            "**Alternative data** refers to non-traditional data sources that can provide a trading edge before public disclosure:\n\n- **Satellite imagery**: Counting cars in retail parking lots, oil inventory levels from tank shadows, crop health from spectral analysis\n- **Credit card transactions**: Real-time consumer spending by company, geofenced by store location\n- **Web traffic**: Website visits, app downloads — predictive of revenue before quarterly reports\n- **NLP on filings & transcripts**: Sentiment analysis on 10-K risk factors, earnings call transcripts (tone change predicts guidance revision)\n- **Job postings**: Hiring patterns signal expansion or contraction by product line\n- **Social media sentiment**: Retail-driven signals (r/WallStreetBets flows, Twitter sentiment) — noisy but real in some contexts\n\nAlternative data is expensive ($50K–$5M+ per dataset) and requires significant infrastructure. Edge diminishes rapidly as more firms access the same dataset.\n\n**Signal Decay**:\nHow quickly does a signal's predictive power fade over time?\n\n- Intraday signals: Decay within hours — constant recalibration needed\n- Short-term technical signals (RSI, momentum): Decay over days to weeks\n- Fundamental signals (value, quality): Persist for months to years\n- Alternative data: Varies widely; many dataset edges last 1–3 years before arbitraged away\n\nTurnover implications: fast-decaying signals require more frequent trading → higher transaction costs.",
           highlight: [
-            "stress testing",
-            "scenario analysis",
-            "reverse stress testing",
-            "liquidity-adjusted VaR",
-            "historical scenarios",
-            "factor stress",
+            "alternative data",
+            "satellite imagery",
+            "credit card data",
+            "NLP",
+            "signal decay",
+            "web traffic",
           ],
         },
         {
           type: "quiz-mc",
-          question:
-            "A portfolio's 1-day 95% parametric VaR is $500,000 (daily σ = $304,000, μ ≈ 0, z₉₅ = 1.645). Historical simulation gives a 95% VaR of $620,000. What most likely explains the difference?",
+          question: "What is 'alternative data' in quantitative investing?",
           options: [
-            "The actual return distribution has fatter tails than the normal distribution — historical simulation captures the actual tail, which is worse than the normal model predicts",
-            "Historical simulation is always lower than parametric VaR due to sampling error",
-            "Parametric VaR uses a higher z-score than historical simulation",
-            "The difference arises because historical simulation uses a different confidence level",
+            "Non-traditional data sources like satellite imagery or credit card transactions",
+            "Data from alternative investment vehicles like hedge funds and private equity",
+            "Historical data used as an alternative to real-time feeds",
+            "Simulated or synthetic data used to augment small datasets",
           ],
           correctIndex: 0,
           explanation:
-            "Parametric VaR assumes returns are normally distributed. Historical simulation uses the actual empirical distribution. When real returns have fat tails (as virtually all financial assets do), the actual 5th percentile loss exceeds what the normal distribution predicts. The $120,000 gap ($620K vs $500K) reflects the 'fat tail premium' — the extra loss in the real tail versus the Gaussian tail. This is why regulators and sophisticated risk managers prefer historical simulation or ES over parametric VaR for tail risk measurement.",
-          difficulty: 2,
+            "Alternative data refers to non-traditional information sources that go beyond standard financial data (prices, fundamentals) — such as satellite imagery (counting retail parking lot cars), credit card transaction data, web traffic, job postings, and NLP analysis of regulatory filings. These sources can provide insights into company performance before quarterly reports are published. Such data is typically expensive and its edge diminishes as more market participants gain access.",
+          difficulty: 1,
         },
         {
           type: "quiz-tf",
           statement:
-            "CVaR (Expected Shortfall) is considered a 'coherent risk measure' while VaR is not, because CVaR satisfies the subadditivity property — the risk of a combined portfolio is always less than or equal to the sum of individual risks.",
+            "The 12-1 month momentum signal (buying past 12-month winners, excluding the last month) has been documented in numerous countries and asset classes, making it one of the most robust factors in quantitative finance.",
           correct: true,
           explanation:
-            "Subadditivity is a crucial property: risk(A+B) ≤ risk(A) + risk(B). This embeds the principle that diversification cannot increase risk. VaR violates subadditivity for non-normal distributions — you can construct portfolios where the combined VaR exceeds the sum of individual VaRs, which is economically nonsensical. CVaR (ES) satisfies all four properties of a coherent risk measure (monotonicity, subadditivity, positive homogeneity, translation invariance), which is why Basel III adopted ES for regulatory market risk capital.",
+            "True. The momentum factor is among the most extensively documented in academic finance, found in over 40 countries and across 200+ years of data. The exclusion of the most recent month (t-1) is intentional — it avoids the short-term reversal effect seen at the 1-month horizon. Despite its robustness, momentum is prone to sudden crashes (especially in volatile market regimes) and requires careful risk management.",
           difficulty: 2,
         },
         {
           type: "quiz-scenario",
           scenario:
-            "Your portfolio has a 1-day 99% VaR of $2M. You backtest over 500 trading days and find 12 days where losses exceeded $2M. Your risk model uses parametric (normal distribution) VaR.",
+            "A quant fund identifies a signal based on satellite imagery of shopping mall parking lots. During testing on 3 years of data, it generates a Sharpe of 1.6 with 1-week signal decay. They purchase exclusive access to the dataset for 2 years.",
           question:
-            "What does this backtest reveal, and what should you do to improve the model?",
+            "What are the key risks and considerations the fund should evaluate before deploying capital?",
           options: [
-            "12 exceedances vs. 5 expected (1% of 500) indicates VaR is significantly understated — the normal distribution underestimates tail losses; switch to historical simulation or a fat-tailed distribution, and consider moving to CVaR/ES reporting",
-            "12 exceedances is within normal statistical variation — no action required",
-            "The VaR is overstated since 488 out of 500 days were below $2M, meaning the model is too conservative",
-            "A higher VaR confidence level (99.5%) would fix the exceedance problem without changing the distribution assumption",
+            "Signal decay speed requires high turnover (high transaction costs); exclusivity period limits the edge lifetime; the dataset needs look-ahead-free validation; crowding risk when exclusivity expires",
+            "Satellite data is illegal to use in trading — the fund should switch to traditional fundamental signals",
+            "The 1-week decay means the fund should only trade monthly to reduce costs",
+            "A Sharpe of 1.6 guarantees profitability regardless of signal decay or transaction costs",
           ],
           correctIndex: 0,
           explanation:
-            "At 99% confidence over 500 days, you expect 1% × 500 = 5 exceedances. Observing 12 is more than double the expected number — a statistically significant model failure (Kupiec's proportion-of-failures test would reject at the 5% level). The parametric normal-distribution model is systematically underestimating tail risk. The correct remediation is to use fat-tailed distributions (Student's t, historical simulation) and transition to CVaR/ES reporting which penalises the magnitude of tail events, not just their frequency.",
+            "Key considerations: (1) 1-week signal decay implies frequent trading — transaction costs must be modeled carefully, as they can easily consume most of the edge. (2) The 2-year exclusivity window is the likely edge lifetime — once competitors access the data, alpha will compress quickly. (3) The 3-year backtest must be validated for look-ahead bias (was satellite data truly not available before they say it was?). (4) Sharpe of 1.6 in backtest may degrade OOS — walk-forward validation is essential before full deployment.",
           difficulty: 3,
         },
       ],
     },
 
-    /* ================================================================
-       LESSON 5 — Algorithmic Strategy Construction
-       ================================================================ */
+    // ─── Lesson 5: Portfolio Construction & Execution ────────────────────────────
     {
       id: "quant-5",
-      title: "Algorithmic Strategy Construction",
+      title: "🏗️ Portfolio Construction & Execution",
       description:
-        "Signal generation, position sizing, execution rules, overfitting prevention, walk-forward validation, and performance targets",
-      icon: "Cpu",
+        "Mean-variance optimization, risk parity, transaction costs, turnover, and execution algorithms",
+      icon: "PieChart",
+      xpReward: 100,
       difficulty: "advanced",
-      duration: 22,
-      xpReward: 110,
       steps: [
         {
           type: "teach",
-          title: "Signal Generation and Position Sizing",
+          title: "📐 Mean-Variance Optimization",
           content:
-            "**An algorithmic strategy** transforms market data into trading decisions systematically and reproducibly. Building one requires four components: signal, sizing, execution, and risk management.\n\n**Signal generation**: A signal is a quantitative indicator that provides a directional view on an asset.\n\nTypes of signals:\n- **Momentum signals**: z-score of 12-1 month return cross-sectionally ranked; RSI divergence\n- **Mean reversion signals**: Bollinger band z-score; spread z-score in pairs trading\n- **Fundamental signals**: Earnings surprise; analyst revision momentum (ROE − COE)\n- **Macro signals**: Yield curve slope; PMI changes; credit spread widening\n\n**Signal quality metrics**:\n- **Information Coefficient (IC)**: Correlation between signal and subsequent return. IC > 0.05 is considered useful for equity signals; 0.10+ is strong.\n- **IC Information Ratio**: IC_mean / IC_std — measures consistency of the signal's predictive power.\n- **Hit rate**: Percentage of signal-triggered trades that are profitable (>50% required for flat risk/reward).\n\n**Position sizing approaches**:\n1. **Equal weight**: All positions identical size. Simple, anti-fragile to parameter error.\n2. **Volatility-scaled (vol target)**: Size inversely proportional to asset volatility. Target 1% daily VaR per position: size = (target_vol × account) / (asset_vol × price).\n3. **Kelly criterion**: Optimal size = (p × b − q) / b, where p = win probability, q = 1−p, b = win/loss ratio. Kelly maximises long-run geometric growth but produces very large drawdowns — most practitioners use half-Kelly.\n4. **Signal-scaled**: Size proportional to signal strength — larger positions when conviction is higher.",
+            "**Modern Portfolio Theory (Markowitz, 1952)** formalizes the intuition that diversification reduces risk. The core idea: for a given expected return, we can find the portfolio with minimum variance.\n\n**The Efficient Frontier**:\nThe set of portfolios that maximize return for each level of risk (or minimize risk for each level of return). Portfolios on the frontier are called 'mean-variance efficient.'\n\n**Inputs required**:\n1. **Expected returns** vector (μ) — each asset's expected return\n2. **Covariance matrix** (Σ) — how assets move together\n\n**The optimization problem**:\nMinimize: w᷊Σw (portfolio variance)\nSubject to: w᷊μ = target return, Σwᵢ = 1\n\n**Critical limitations**:\n- **Garbage in, garbage out**: Small errors in expected return estimates cause large changes in optimal weights. The optimizer treats your return estimates as if they were perfectly accurate.\n- **Concentrated portfolios**: Without constraints, MVO often allocates most weight to 2–3 assets.\n- **Covariance instability**: Correlations spike during market crises, exactly when diversification is most needed.\n\n**Practical fixes**: Black-Litterman model (Bayesian shrinkage of return estimates toward a prior), resampled efficiency, robust optimization, adding weight constraints.",
           highlight: [
-            "signal generation",
-            "information coefficient",
-            "position sizing",
-            "Kelly criterion",
-            "volatility scaling",
-            "hit rate",
+            "efficient frontier",
+            "mean-variance optimization",
+            "covariance matrix",
+            "Modern Portfolio Theory",
+            "diversification",
+            "Black-Litterman",
           ],
         },
         {
           type: "teach",
-          title: "Execution Rules and Overfitting Prevention",
+          title: "⚖️ Risk Parity",
           content:
-            "**Execution rules** define precisely when and how orders are placed — often overlooked but critical for real-world performance.\n\n**Entry/exit timing**:\n- Signal at close-of-day → enter at next open (standard for daily strategies)\n- Limit orders vs. market orders: Limit orders may get better fills but risk non-execution ('fill or miss' risk)\n- Slippage budget: For a daily mean-reversion strategy in mid-caps, budget 0.05–0.10% one-way slippage\n\n**Transaction cost model**:\nTotal cost = Commission + Bid-Ask Spread + Market Impact\nMarket Impact ≈ k × σ × √(trade_size / ADV) (Kyle's lambda)\nWhere ADV = average daily volume, k ≈ 0.1–0.5.\n\n**The overfitting problem**: Testing many parameter combinations on historical data will always find some combination that worked perfectly in the past — but this is fitting noise, not signal. A strategy with 10 free parameters fitted on 3 years of daily data (~750 observations) has roughly 75 data points per parameter — severely underdetermined.\n\n**Techniques to detect and prevent overfitting**:\n1. **Hold-out test set**: Reserve the most recent 20–30% of data exclusively for final testing — never touch it during development.\n2. **Walk-forward validation**: Train on a rolling window (e.g., 3 years), test on the next 6 months, slide forward. Produces a realistic out-of-sample equity curve.\n3. **Monte Carlo permutation tests**: Randomly shuffle returns and re-run the strategy — if the original Sharpe is not significantly better than shuffled results, the strategy has no edge.\n4. **Combinatorial Purged Cross-Validation (CPCV)**: Addresses leakage from time series overlapping between train and test folds.\n5. **Limit free parameters**: Each free parameter must be justified by economic intuition. Prefer simple, parsimonious models.",
+            "**Risk Parity** is an alternative portfolio construction approach that explicitly focuses on risk allocation rather than capital allocation.\n\n**The core idea**: In a traditional 60/40 portfolio, ~90% of the portfolio's risk comes from the 60% equity allocation (because equities are far more volatile than bonds). Risk parity allocates equal risk to each asset, not equal capital.\n\n**Equal Risk Contribution (ERC)**:\nWeights are chosen such that each asset contributes equally to total portfolio variance:\n\nRisk Contribution_i = wᵢ × (∂σ/∂wᵢ) = Total Portfolio Risk / N\n\n**Example**: A simple risk parity portfolio between stocks (σ = 15%) and bonds (σ = 5%):\n- Stocks get weight proportional to 1/15% ≈ 6.7%\n- Bonds get weight proportional to 1/5% = 20%\n- Normalized: Stocks ≈ 25%, Bonds ≈ 75%\n\n**Leverage**: Risk parity portfolios often use leverage on bonds to bring total portfolio risk to target levels (e.g., 10% annualized volatility). This makes them sensitive to rising interest rates.\n\n**Bridgewater's All Weather**: Famous risk parity implementation — designed to perform across all economic regimes (growth/inflation combinations).\n\n**Advantage over MVO**: Less sensitive to expected return estimates; focuses on the more stable covariance structure.",
           highlight: [
-            "execution rules",
-            "slippage",
+            "risk parity",
+            "equal risk contribution",
+            "capital allocation",
+            "leverage",
+            "All Weather",
+            "60/40 portfolio",
+          ],
+        },
+        {
+          type: "teach",
+          title: "💸 Transaction Costs & Execution Algorithms",
+          content:
+            "Transaction costs are the silent killer of systematic strategies. Even a strategy with a Sharpe of 1.5 gross can become unprofitable after costs at high turnover.\n\n**Components of transaction costs**:\n1. **Explicit costs**: Commissions (~$0 for retail, $0.001–0.005/share for institutions)\n2. **Bid-ask spread**: Half the spread paid on each trade. 10bp spread = 20bp round-trip.\n3. **Market impact**: For large orders, buying pushes price up, selling pushes price down. Impact ≈ σ × √(Order Size / ADV) where ADV = average daily volume.\n\n**Turnover and tax drag**: High-frequency signals require frequent rebalancing → higher transaction costs. For taxable accounts, short-term gains (< 1 year) are taxed at ordinary income rates. Annual turnover > 100% often becomes unprofitable after taxes.\n\n**Execution Algorithms**:\n- **VWAP (Volume-Weighted Average Price)**: Distribute order throughout the day in proportion to historical volume patterns. Goal: execute at or better than the daily VWAP.\n- **TWAP (Time-Weighted Average Price)**: Distribute order equally over time. Simpler, used when volume patterns are unknown.\n- **Implementation Shortfall**: Minimize the difference between the theoretical trade price at decision time and the actual executed price. Balances urgency vs. market impact.\n- **Arrival Price / POV**: Execute as a percentage of market volume to minimize footprint.\n\nInstitutional traders never send a 100,000-share order as a single market order — the market impact would be enormous.",
+          highlight: [
             "transaction costs",
-            "overfitting",
-            "walk-forward validation",
-            "hold-out test set",
-            "Monte Carlo permutation",
-          ],
-        },
-        {
-          type: "teach",
-          title: "Walk-Forward Validation and Performance Targets",
-          content:
-            "**Walk-forward validation (WFV)** is the gold standard for evaluating algorithmic strategies because it simulates the actual experience of a live trader: you train the model on past data, then trade forward in time, then re-train, then trade again.\n\n**WFV structure**:\n- Training window: 3 years rolling (anchored or rolling)\n- Test window: 6 months (out-of-sample, never seen during training)\n- Slide forward 6 months, repeat\n- Collect all out-of-sample periods into a single equity curve\n\n**Interpreting WFV results**:\n- Is the OOS Sharpe at least 60–70% of the in-sample Sharpe? (Higher decay suggests overfitting)\n- Is the OOS equity curve monotonically upward, or does it have structural breaks?\n- Do performance statistics (IC, hit rate) remain stable across OOS windows?\n\n**Realistic performance targets** for a well-constructed algorithmic equity strategy:\n- **Sharpe Ratio**: 0.6–1.0 after costs (live). Backtests showing > 2.0 are almost certainly overfit.\n- **Sortino Ratio**: > 0.8 after costs (penalises downside vol only)\n- **Maximum Drawdown**: < 20% peak-to-trough for long-only; < 30% for long-short\n- **Calmar Ratio** (annual return / max drawdown): > 0.5 is acceptable; > 1.0 is good\n- **Turnover**: Higher turnover requires higher IC to overcome transaction costs. Daily turnover strategy needs IC > 0.05; weekly strategy IC > 0.03.\n\n**The Deflated Sharpe Ratio**: Adjusts reported Sharpe for the number of trials conducted during research. A Sharpe of 1.0 from 1,000 backtests is worth far less than a Sharpe of 1.0 from 3 backtests. Use Bailey-Lopez de Prado's Probability of Backtest Overfitting (PBO) to quantify this.",
-          highlight: [
-            "walk-forward validation",
-            "out-of-sample",
-            "Sharpe target",
-            "Calmar ratio",
-            "Deflated Sharpe",
-            "overfitting",
-            "Sortino ratio",
+            "market impact",
+            "bid-ask spread",
+            "VWAP",
+            "TWAP",
+            "Implementation Shortfall",
+            "turnover",
           ],
         },
         {
           type: "quiz-mc",
           question:
-            "A researcher builds 500 variations of a momentum strategy, each with different lookback periods and thresholds. The best-performing variation has an in-sample Sharpe of 2.4. Walk-forward validation shows an OOS Sharpe of 0.4. What does this pattern indicate?",
+            "What is the goal of 'risk parity' portfolio construction?",
           options: [
-            "Severe overfitting — the in-sample Sharpe of 2.4 resulted from selecting the best combination out of 500 trials; the true OOS Sharpe of 0.4 reveals the strategy has little genuine edge after accounting for multiple testing",
-            "The strategy is excellent — a Sharpe of 2.4 in-sample confirms a real edge, and 0.4 OOS is sufficient for live trading",
-            "OOS Sharpe is always lower due to transaction costs — the 2.4 to 0.4 decay is expected and acceptable",
-            "The researcher should run more iterations to find a variation that achieves Sharpe > 2.0 out-of-sample",
+            "Allocate equal risk (not capital) to each asset in the portfolio",
+            "Allocate equal capital to each asset, regardless of volatility",
+            "Maximize the Sharpe ratio by concentrating in the highest-return assets",
+            "Minimize total portfolio volatility by holding only low-risk assets",
           ],
           correctIndex: 0,
           explanation:
-            "Testing 500 variations and selecting the best will inevitably find a combination that fitted historical noise. A 2.4 in-sample Sharpe decaying to 0.4 OOS — a 83% decay — is a strong signal of overfitting. Legitimate strategies typically show 30–40% Sharpe decay from IS to OOS, not 83%. The Probability of Backtest Overfitting framework by Bailey & Lopez de Prado formalises this: with 500 trials, even a random strategy will look great in-sample. Running more trials to find a '2.0 OOS Sharpe' would compound the multiple-testing problem.",
-          difficulty: 3,
+            "Risk parity allocates portfolio weights so that each asset contributes equally to the total portfolio risk, rather than allocating equal capital. In a traditional 60/40 portfolio, equities dominate risk (~90% of variance) despite being only 60% of capital, because equities are far more volatile than bonds. Risk parity corrects this by overweighting lower-volatility assets (bonds) and underweighting higher-volatility assets (equities), often requiring leverage to meet return targets.",
+          difficulty: 1,
         },
         {
           type: "quiz-tf",
           statement:
-            "Volatility-scaling position sizes (targeting a constant daily VaR per position) means that position sizes automatically decrease during high-volatility regimes and increase during low-volatility regimes, helping to smooth the equity curve.",
+            "In mean-variance optimization, larger estimation errors in expected returns have a much greater impact on the resulting portfolio weights than equal-sized errors in the covariance matrix.",
           correct: true,
           explanation:
-            "Volatility-scaled sizing: position size = (target daily vol × account size) / (asset vol × price). When asset volatility spikes (as in a crisis), the denominator increases, automatically reducing the dollar position. When volatility is low (calm markets), position sizes grow. This creates countercyclical sizing — you de-risk during crises and add risk during calm periods, smoothing the equity curve and preventing a single volatility spike from producing a catastrophic loss. The key risk is that after volatility spikes (when sizes are small), if there is a sharp recovery, you capture less upside.",
-          difficulty: 2,
+            "True. Mean-variance optimization is notoriously sensitive to expected return estimates — small changes in return assumptions can completely reshape the optimal portfolio. The covariance matrix, while also uncertain, has a more stable structure and affects portfolio weights less dramatically. This sensitivity is why the Black-Litterman model was developed: it blends investor views with an implied market equilibrium prior, preventing extreme portfolio concentrations that arise from point estimates of expected returns.",
+          difficulty: 3,
         },
         {
           type: "quiz-scenario",
           scenario:
-            "You have built a daily mean-reversion equity strategy. In-sample results (5 years, 2015–2020): Sharpe 1.4, max drawdown 12%, turnover 40% per day. Walk-forward OOS (2020–2024): Sharpe 0.65, max drawdown 22%. The strategy uses 3 parameters.",
+            "A systematic equity fund runs a monthly-rebalanced value strategy with annual turnover of 150%. The strategy has a gross Sharpe of 1.2 and average gross return of 14% per year. Estimated round-trip transaction costs are 0.25% per trade (bid-ask spread + market impact).",
           question:
-            "How do you evaluate this strategy's viability for live trading?",
+            "Approximately how much do transaction costs drag on annual returns, and what does this imply about the strategy's viability?",
           options: [
-            "The strategy shows acceptable characteristics: OOS Sharpe 0.65 is within the realistic range (0.6–1.0), 3 parameters limits overfitting risk, the IS-to-OOS Sharpe decay is ~54% which is elevated but not catastrophic; key concern is 40% daily turnover — compute transaction costs at 0.1% per trade (40% turnover = 0.04% per day or ~10% per year in costs) which would likely eliminate the edge",
-            "OOS Sharpe of 0.65 confirms the strategy is ready for live trading immediately with no further analysis",
-            "The drawdown increase from 12% to 22% OOS proves the strategy is fatally flawed and should be abandoned",
-            "With only 3 parameters the strategy is too simple to be profitable; add more parameters to increase in-sample Sharpe back to 1.4",
+            "Cost drag ≈ 1.5 × 0.25% × 2 = 0.75% per year — material but strategy remains viable; net return ~13.25% and Sharpe still healthy",
+            "Cost drag ≈ 150% × 0.25% = 37.5% per year — the strategy is completely unprofitable after costs",
+            "Cost drag ≈ 0.25% per year — costs are negligible relative to the 14% gross return",
+            "Cost drag cannot be estimated without knowing the number of individual positions in the portfolio",
           ],
           correctIndex: 0,
           explanation:
-            "This is a nuanced evaluation. Positives: 3 parameters (low overfitting risk), OOS Sharpe 0.65 is in the realistic range, walk-forward structure was used correctly. Concerns: 54% Sharpe decay (IS 1.4 → OOS 0.65) is somewhat high; max drawdown grew from 12% to 22%. Critical issue: 40% daily turnover means approximately 80% of positions turn over each day. At 0.1% two-way transaction cost, the daily cost is ~0.08% or ~20% annualised — which would likely wipe out a 0.65 Sharpe strategy. A thorough transaction cost analysis is required before considering live deployment.",
+            "With 150% annual turnover, approximately 150% of the portfolio is traded each year. At 0.25% per round-trip, cost drag ≈ 150% × 0.25% = 0.375%. Wait — turnover of 150% means 1.5 full portfolio rotations per year. Each rotation involves buying and selling, so: 1.5 × 0.25% = 0.375% ≈ roughly 0.375% drag. The strategy remains viable with net returns ~13.6% and net Sharpe slightly below 1.2. (Note: if turnover were 1,500% for a daily-rebalanced strategy, costs would be devastating at 3.75% drag.)",
           difficulty: 3,
         },
       ],

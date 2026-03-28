@@ -7,7 +7,7 @@ import {
   Swords, ScrollText, Crosshair, Trophy, User, Settings, Activity,
   TrendingUp, Globe, ChevronLeft, ChevronRight, BookOpen, Bitcoin,
   ScanLine, GitCompare, Users, Landmark, BookMarked, DollarSign, Calculator, PieChart,
-  Brain, Building2, Zap, Wallet, Calendar, Newspaper, Bot,
+  Brain, Building2, Zap, Wallet, Calendar, Newspaper, Bot, LayoutGrid,
 } from "lucide-react";
 import { Tooltip, TooltipTrigger, TooltipContent } from "@/components/ui/tooltip";
 import { SearchTrigger } from "@/components/search/GlobalSearch";
@@ -65,6 +65,7 @@ const NAV_GROUPS: NavGroup[] = [
       { icon: Activity,     label: "Options",      href: "/options" },
       { icon: Briefcase,    label: "Portfolio",    href: "/portfolio" },
       { icon: FlaskConical, label: "Backtest",     href: "/backtest" },
+      { icon: Bot,          label: "Algo Trading", href: "/algo" },
       { icon: BookMarked,   label: "Strategies",   href: "/strategies" },
       { icon: TrendingUp,   label: "Predictions",  href: "/predictions" },
       { icon: TrendingUp,   label: "Performance",  href: "/performance" },
@@ -74,6 +75,7 @@ const NAV_GROUPS: NavGroup[] = [
       { icon: Newspaper,    label: "News",         href: "/news" },
       { icon: Globe,        label: "Market Intel", href: "/market" },
       { icon: Globe,        label: "Macro",        href: "/macro" },
+      { icon: LayoutGrid,   label: "Sectors",      href: "/sectors" },
       { icon: Bitcoin,      label: "Crypto",       href: "/crypto" },
       { icon: Landmark,     label: "Bonds",        href: "/bonds" },
       { icon: PieChart,     label: "ETFs",         href: "/etf" },
