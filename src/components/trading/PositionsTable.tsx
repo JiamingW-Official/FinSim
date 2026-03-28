@@ -6,7 +6,7 @@ import { useMarketDataStore } from "@/stores/market-data-store";
 import { formatCurrency, formatPercent, cn } from "@/lib/utils";
 import { AnimatedNumber } from "@/components/motion/AnimatedNumber";
 import { Badge } from "@/components/ui/badge";
-import { X, Briefcase } from "lucide-react";
+import { X, Briefcase, ArrowDownLeft } from "lucide-react";
 import { toast } from "sonner";
 
 function PnLMilestoneBadge({ pct }: { pct: number }) {

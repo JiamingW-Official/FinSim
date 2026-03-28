@@ -257,6 +257,7 @@ export const useTradingStore = create<TradingState>()(
                 currentPrice: execPrice,
                 unrealizedPnL: 0,
                 unrealizedPnLPercent: 0,
+                openedAtTimestamp: simulationDate,
               },
             ];
           }
@@ -317,6 +318,7 @@ export const useTradingStore = create<TradingState>()(
               currentPrice: execPrice,
               unrealizedPnL: 0,
               unrealizedPnLPercent: 0,
+              openedAtTimestamp: simulationDate,
             },
           ];
         }

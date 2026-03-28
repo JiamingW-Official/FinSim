@@ -65,6 +65,7 @@ export default function ResultsPanel({ result, monteCarloResult, xpEarned, onSav
     { id: "analytics", label: "Analytics", icon: <LineChart className="h-3 w-3" /> },
     ...(monteCarloResult ? [{ id: "montecarlo" as Tab, label: "Monte Carlo", icon: <Dice5 className="h-3 w-3" /> }] : []),
     { id: "trades", label: "Trades", icon: <List className="h-3 w-3" /> },
+    { id: "compare", label: "Compare", icon: <GitCompare className="h-3 w-3" /> },
   ];
 
   return (
