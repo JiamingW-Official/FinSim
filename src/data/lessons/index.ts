@@ -98,6 +98,8 @@ import { UNIT_BEHAVIORAL_ECONOMICS } from "./unit-behavioral-economics";
 import { UNIT_INVESTMENT_MATH } from "./unit-investment-math";
 import { UNIT_SECURITIES_LAW } from "./unit-securities-law";
 import { UNIT_ECONOMIC_HISTORY } from "./unit-economic-history";
+import { UNIT_TAX_ADVANTAGED } from "./unit-tax-advantaged";
+import { UNIT_HEDGE_FUND_DD } from "./unit-hedge-fund-dd";
 
 export const UNITS: Unit[] = [
   UNIT_BASICS,
@@ -199,6 +201,8 @@ export const UNITS: Unit[] = [
   UNIT_INVESTMENT_MATH,
   UNIT_SECURITIES_LAW,
   UNIT_ECONOMIC_HISTORY,
+  UNIT_TAX_ADVANTAGED,
+  UNIT_HEDGE_FUND_DD,
 ];
 
 export function getLessonById(lessonId: string): Lesson | undefined {
