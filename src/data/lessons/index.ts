@@ -60,6 +60,7 @@ import { UNIT_ECONOMIC_CYCLES } from "./unit-economic-cycles";
 import { UNIT_SUPPLY_CHAIN_FINANCE } from "./unit-supply-chain-finance";
 import { UNIT_MERGERS_ACQUISITIONS } from "./unit-mergers-acquisitions";
 import { UNIT_GLOBAL_ECONOMICS } from "./unit-global-economics";
+import { UNIT_SOVEREIGN_DEBT } from "./unit-sovereign-debt";
 
 export const UNITS: Unit[] = [
   UNIT_BASICS,
@@ -123,6 +124,7 @@ export const UNITS: Unit[] = [
   UNIT_SUPPLY_CHAIN_FINANCE,
   UNIT_MERGERS_ACQUISITIONS,
   UNIT_GLOBAL_ECONOMICS,
+  UNIT_SOVEREIGN_DEBT,
 ];
 
 export function getLessonById(lessonId: string): Lesson | undefined {
