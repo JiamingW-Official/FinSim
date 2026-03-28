@@ -1,379 +1,372 @@
 import type { Unit } from "./types";
 
 export const UNIT_BEHAVIORAL_FINANCE: Unit = {
-  id: "behavioral-finance",
-  title: "Behavioral Finance",
+  id: "behavioral-finance-deep-dive",
+  title: "Behavioral Finance Deep Dive",
   description:
-    "Understand cognitive biases, prospect theory, market anomalies, and how to exploit behavioral edges",
-  icon: "Brain",
-  color: "#8b5cf6",
+    "Explore the psychology of investing — from cognitive biases and loss aversion to herd mentality and mental accounting — and learn evidence-based strategies to make more rational, disciplined financial decisions",
+  icon: "🧠",
+  color: "#7c3aed",
   lessons: [
-    // ─── Lesson 1: Prospect Theory & Loss Aversion ────────────────────────────
+    // ─── Lesson 1: Cognitive Biases in Investing ─────────────────────────────────
     {
-      id: "bf-1",
-      title: "🧠 Prospect Theory & Loss Aversion",
+      id: "behavioral-finance-deep-dive-1",
+      title: "🔍 Cognitive Biases in Investing",
       description:
-        "Kahneman & Tversky's value function, loss aversion coefficient, certainty effect, and the disposition effect",
-      icon: "Brain",
-      xpReward: 80,
-      difficulty: "intermediate",
-      steps: [
-        {
-          type: "teach",
-          title: "📐 The S-Curve Value Function",
-          content:
-            "In 1979, psychologists **Daniel Kahneman** and **Amos Tversky** published Prospect Theory — the most influential paper in behavioral economics and a direct challenge to the idea that people make rational, utility-maximizing decisions.\n\nThe core insight: people evaluate outcomes relative to a **reference point** (usually the status quo), not absolute wealth levels. And the function that maps outcomes to perceived value has a distinctive **S-shape**:\n\n**Gains domain (upper-right curve):**\n- Concave — each additional dollar gained is valued less than the previous dollar\n- Going from $0 to $100 feels better than $900 to $1,000, even though both are identical dollar gains\n- Reflects diminishing marginal sensitivity to gains\n\n**Losses domain (lower-left curve):**\n- Convex — each additional dollar lost is valued more painfully than the previous dollar\n- Going from $0 to -$100 hurts more than -$900 to -$1,000\n- Same diminishing sensitivity but in the loss domain\n\n**The critical asymmetry:** The loss curve is *steeper* than the gain curve. A $1,000 loss creates approximately **2.25× the emotional pain** of the pleasure a $1,000 gain generates. This ratio is called the **loss aversion coefficient (λ ≈ 2.25)**.\n\nKahneman was awarded the **Nobel Prize in Economics in 2002** for this work.",
-          highlight: ["Kahneman", "Tversky", "Prospect Theory", "S-curve", "loss aversion coefficient", "reference point"],
-        },
-        {
-          type: "teach",
-          title: "🎲 Certainty Effect & Reflection Effect",
-          content:
-            "Two additional distortions arise from the S-shaped value function:\n\n**The Certainty Effect:**\nPeople **overweight outcomes that are certain** relative to outcomes that are merely probable — even when the expected values are identical.\n\nKahneman & Tversky's classic choice:\n- Option A: 100% chance of winning $3,000\n- Option B: 80% chance of winning $4,000 (EV = $3,200)\n\nMost people choose A — sacrificing $200 in expected value for certainty. In markets: investors exit winning positions early to lock in 'sure' gains, even when holding has higher expected value.\n\n**The Reflection Effect:**\nSwitch the above to losses:\n- Option C: 100% chance of losing $3,000\n- Option D: 80% chance of losing $4,000 (EV = -$3,200)\n\nNow most people choose D — they become **risk-seeking** to avoid a certain loss. In markets: investors hold losing positions (gambling on recovery) rather than taking the certain smaller loss.\n\nResult:\n- **Risk-averse for gains** → sell winners too early\n- **Risk-seeking for losses** → hold losers too long\n\nThis is the behavioral foundation of the **disposition effect** — one of the most damaging trading mistakes.",
-          highlight: ["certainty effect", "reflection effect", "risk-averse", "risk-seeking", "expected value"],
-        },
-        {
-          type: "teach",
-          title: "💼 The Disposition Effect in Practice",
-          content:
-            "**The Disposition Effect** (Shefrin & Statman, 1985): Investors systematically sell winners too early and hold losers too long.\n\nThis emerges directly from Prospect Theory:\n- When a position is profitable, investors are in the **gain domain** → risk-averse → prefer the certainty of booking the gain\n- When a position is losing, investors are in the **loss domain** → risk-seeking → prefer to gamble on recovery rather than take the certain loss\n\n**Empirical evidence:**\n- Study of 10,000+ brokerage accounts: investors were **1.5× more likely** to sell a winner than a loser on any given day\n- Mutual fund managers exhibit the same bias despite professional training\n- Stocks that investors held (losers) subsequently underperformed; stocks they sold (winners) continued to outperform — the bias has real return costs\n\n**Why this destroys returns:**\n- Tax inefficiency: realizing gains early triggers capital gains taxes; holding losers forgoes tax-loss harvesting benefits\n- Return drag: you keep the underperformers and shed the outperformers\n- Momentum: winners tend to keep winning; by selling, you miss momentum returns\n\n**The fix:** Pre-commit to exit rules *before* entry, when your thinking is unbiased by gains or losses. Use trailing stops for winners; set hard stops for losers.",
-          highlight: ["disposition effect", "sell winners", "hold losers", "brokerage accounts", "trailing stops", "pre-commit"],
-        },
-        {
-          type: "quiz-mc",
-          question:
-            "You are offered two options: (A) a guaranteed $500 gain, or (B) a 60% chance of gaining $900 (EV = $540). Most people pick A despite lower expected value. Which Prospect Theory concept explains this?",
-          options: [
-            "Certainty effect — people overweight certain outcomes vs. probabilistic ones, sacrificing EV for guarantee",
-            "Reflection effect — risk-seeking behavior in the loss domain",
-            "Loss aversion — the fear that Option B could result in $0",
-            "Anchoring — fixating on the $500 reference point",
-          ],
-          correctIndex: 0,
-          explanation:
-            "The certainty effect (part of Prospect Theory) explains why people systematically prefer certain outcomes over probabilistic ones with higher expected value. Option A ($500 certain) beats Option B (EV $540) in most people's choices, despite being $40 worse in expected value terms. In trading, this manifests as exiting winning trades early to lock in 'sure' profits rather than holding for larger expected gains.",
-          difficulty: 1,
-        },
-        {
-          type: "quiz-tf",
-          statement:
-            "According to the reflection effect in Prospect Theory, investors become risk-averse when their position is at a loss, preferring the certainty of a smaller loss over gambling on a recovery.",
-          correct: false,
-          explanation:
-            "The reflection effect says the opposite: investors become **risk-seeking** in the loss domain. They prefer to gamble on a recovery (Option D: 80% chance of losing more) rather than accept a certain smaller loss (Option C: 100% chance of losing less). This is why traders hold losers too long — the pain of certain loss drives them to take on more risk in hopes of avoiding that loss. Risk-seeking in losses is the mirror image of risk-aversion in gains.",
-          difficulty: 2,
-        },
-        {
-          type: "quiz-scenario",
-          scenario:
-            "Two investors both hold a stock that fell 25%. Investor A has a cost basis of $100 (stock now at $75). Investor B entered at $80 (stock also at $75). Prospect Theory predicts both will be reluctant to sell — but Investor A should be significantly more reluctant. The stock has a 50% chance of recovering to $100 and a 50% chance of falling to $50.",
-          question: "What does Prospect Theory predict about each investor, and why?",
-          options: [
-            "Both exhibit the disposition effect, but Investor A more strongly — the larger unrealized loss (-$25 vs -$5) places Investor A deeper in the loss domain, amplifying risk-seeking behavior",
-            "Investor B is more reluctant — the smaller loss ($5) feels more certain and triggers loss aversion",
-            "Prospect Theory predicts identical behavior for both since the current stock price is the same",
-            "Investor A is actually more likely to sell — larger losses override the risk-seeking impulse",
-          ],
-          correctIndex: 0,
-          explanation:
-            "Prospect Theory evaluates outcomes relative to each investor's reference point (their purchase price). Investor A is $25 in the hole; Investor B is only $5 down. Because Investor A is deeper in the loss domain, the value function's convexity amplifies risk-seeking behavior more strongly. Larger unrealized losses create greater reluctance to realize them — which is why investors often 'double down' on large losers rather than cutting them. Both investors see the same stock, but face different behavioral pressures due to different reference points.",
-          difficulty: 3,
-        },
-      ],
-    },
-
-    // ─── Lesson 2: Cognitive Biases in Markets ────────────────────────────────
-    {
-      id: "bf-2",
-      title: "🔍 Cognitive Biases in Markets",
-      description:
-        "Anchoring, representativeness, availability heuristic, overconfidence, and hindsight bias",
-      icon: "Search",
+        "Discover how anchoring, availability, and representativeness biases systematically distort investor judgment — and how to recognize them in your own thinking",
+      icon: "BookOpen",
       xpReward: 85,
       difficulty: "intermediate",
       steps: [
         {
           type: "teach",
-          title: "⚓ Anchoring & Representativeness",
+          title: "Why Smart Investors Make Irrational Decisions",
           content:
-            "**Anchoring Bias:**\nThe first number you see becomes a cognitive anchor — you make insufficient adjustments away from it even when it is irrelevant.\n\nMarket manifestations:\n- **Analyst estimates**: Analysts anchor to prior-year earnings, adjusting too slowly for structural changes. When a company transforms its business model, estimates lag reality by quarters.\n- **52-week high**: A stock at $75 feels 'cheap' when the 52-week high is $180 — even if intrinsic value is $60. The $180 anchor distorts judgment.\n- **IPO anchor**: Early trading price becomes the reference, causing investors to dismiss whether the price reflects fair value vs. early speculation.\n- **Round numbers**: $100, $50, $1,000 act as psychological anchors for price targets, creating support/resistance that is self-fulfilling through anchoring alone.\n\n**Representativeness Heuristic:**\nJudging probability by how closely something resembles a prototype, ignoring base rates.\n\n- **Hot hand fallacy in fund selection**: A fund manager with 3 stellar years is assumed to be skilled, ignoring that even random coin-flippers produce 3-year streaks. Base rate: most outperformance is luck.\n- **Pattern projection**: 'This chart looks exactly like Apple in 2012' — short records get misread as reliable causal patterns.\n- **Story stocks**: Companies that 'look like' early-stage transformational companies get valued like them, regardless of actual business quality.",
-          highlight: ["anchoring", "52-week high", "analyst estimates", "representativeness", "hot hand fallacy", "base rates"],
+            "Behavioral finance is the study of how psychology influences financial decisions. It emerged when academics noticed that real investors consistently deviate from the 'rational agent' model assumed by classical economics.\n\n**The core insight:**\nThe human brain was not designed to evaluate probabilities, discount future cash flows, or remain emotionally neutral in the face of financial gains and losses. We use mental shortcuts — called **heuristics** — that served our ancestors well on the savanna but can lead us badly astray in markets.\n\n**Why this matters:**\n- Market prices are set by human beings, not robots — biases are embedded in prices\n- Understanding your own biases is the first step to guarding against them\n- Recognizing biases in others can reveal market mispricings\n\n**The two cognitive systems:**\n- **System 1 (fast)**: Automatic, intuitive, emotional — fires first, fires fast\n- **System 2 (slow)**: Deliberate, analytical, logical — requires effort to engage\n\nMost investing errors occur when System 1 hijacks decisions that should belong to System 2. The remedy is not to eliminate intuition, but to know when to override it with structured analysis.",
+          highlight: ["behavioral finance", "heuristics", "System 1", "System 2", "cognitive biases"],
         },
         {
           type: "teach",
-          title: "📰 Availability Heuristic & Overconfidence",
+          title: "Anchoring Bias — The Tyranny of the First Number",
           content:
-            "**Availability Heuristic:**\nEstimating probability by how easily examples come to mind — vivid, recent, or dramatic events are overweighted.\n\nTrading consequences:\n- After a crash: 'The market could collapse again any day' — crash risk feels much higher than base rates justify\n- After meme stock mania: every retail-driven surge feels like a meme opportunity, even in unrelated contexts\n- Media amplification: dramatic corporate failures dominate headlines; the thousands of stable, profitable companies generate no news — creating a survivorship-distorted probability map\n- Post-pandemic: supply chain disruptions, inflation, remote work effects all feel more permanent because they're vivid and recent\n\n**Overconfidence Bias:**\nTraders consistently overestimate both their skill and the precision of their forecasts.\n\nDocumented evidence:\n- **80% paradox**: Studies show 80% of investors believe they are above-average investors — mathematically impossible for the majority\n- **Gender gap**: Men trade 67% more than women and earn 1% less annually (Barber & Odean, 2001) — overconfidence drives overtrading and transaction costs\n- **Precision bias**: Asked for 90% confidence intervals on stock price forecasts, investors' actual correct ranges cover only 50–60% of outcomes — they are far more certain than accuracy warrants\n- **Streak effect**: Win streaks spike overconfidence exactly when humility is most needed\n\nOverconfidence is the one bias that is highly correlated with trading frequency — the most confident traders trade most and earn least.",
-          highlight: ["availability heuristic", "overconfidence", "80% paradox", "overtrading", "precision bias"],
+            "**Anchoring** occurs when the mind over-weights the first piece of information it receives — the 'anchor' — and adjusts insufficiently away from it, even when the anchor is irrelevant.\n\n**Classic experiments:**\n- Amos Tversky and Daniel Kahneman spun a roulette wheel rigged to land on 10 or 65, then asked participants to estimate the percentage of African countries in the United Nations. Those who saw 65 guessed much higher than those who saw 10 — a completely arbitrary number influenced a factual estimate.\n- In salary negotiations, whichever side makes the first offer strongly influences the final outcome.\n\n**Anchoring in investing:**\n- **Purchase price anchor**: Investors obsess over what they paid for a stock. If you bought at $100 and it falls to $60, the $100 becomes an anchor — making the stock feel 'cheap' at $75 even if its fair value is $50.\n- **52-week high/low anchor**: Stocks near their 52-week low feel like bargains; stocks near their 52-week high feel expensive — regardless of underlying fundamentals.\n- **Round-number anchors**: Investors place disproportionate sell orders at round numbers ($100, $500, $1,000), creating resistance levels that are purely psychological.\n- **Analyst price targets**: Once a $200 price target is published, investors anchor to it. A stock at $180 feels undervalued; at $220, overvalued — even if the company's prospects have dramatically changed.\n\n**The antidote:**\nAlways ask: 'What is this stock worth based on future cash flows, independent of what I paid or what the chart shows?' Force yourself to consider a fresh valuation from scratch.",
+          highlight: ["anchoring", "purchase price anchor", "52-week high", "round-number", "analyst price targets"],
         },
         {
           type: "teach",
-          title: "🔮 Hindsight Bias & Its Hidden Cost",
+          title: "Availability & Representativeness Biases",
           content:
-            "**Hindsight Bias:** After an event occurs, people believe they 'knew it all along' — even when they demonstrably did not.\n\n'I knew the 2008 crisis would happen.'\n'It was obvious Tesla would go to $1,000.'\n'Anyone could see the dot-com bubble was going to burst.'\n\nAt the time, very few predicted these outcomes. The hindsight bias rewrites memory to make outcomes seem inevitable.\n\n**Why hindsight bias is dangerous for learning:**\n- It prevents genuine post-trade review — 'I knew I should have held, so next time I'll just hold' replaces actual analysis\n- It inflates confidence without improving skill — you feel like you understood the market when you only rationalized after the fact\n- It makes rare events (crashes, short squeezes) feel more predictable than they are, leading to overconfidence in predictions\n- **No lesson is learned** from mistakes that are reinterpreted as 'what I knew all along'\n\n**The fix: Write predictions down before they happen.**\n- Maintain a predictions journal: 'I believe X will happen because Y. I will review this in 4 weeks.'\n- When you revisit, your original thesis is preserved — hindsight cannot rewrite a written record\n- Track your hit rate over 50+ predictions; most traders are shocked to find accuracy well below their felt confidence\n- This creates genuine calibration — the foundation of probabilistic thinking",
-          highlight: ["hindsight bias", "predictions journal", "calibration", "post-trade review", "wrote down"],
+            "**Availability Bias** causes people to judge the probability of an event based on how easily examples come to mind — not based on actual statistical frequency.\n\n**Investment examples:**\n- After a high-profile market crash dominates news headlines, investors overestimate the probability of another crash.\n- Tech stocks that appeared frequently in glowing magazine profiles in 1999 felt like sure winners — availability of vivid success stories inflated perceived probability.\n- Stocks you hear about from friends and family feel like safer investments than unknown companies — but familiarity is not the same as quality.\n\n**Key insight:** Dramatic, recent, emotionally charged events are mentally 'available' — they feel more probable than quiet, common occurrences. This creates systematic over-reaction to news.\n\n---\n\n**Representativeness Bias** is the tendency to judge a situation by how much it resembles a prototype or stereotype, ignoring base rates.\n\n**Investment examples:**\n- A company with an exciting product, charismatic CEO, and strong revenue growth 'looks like' a great investment — investors ignore the base rate that most fast-growing startups eventually disappoint.\n- A stock that has risen 50% in a year looks like a 'winner' — investors extrapolate past performance as representative of future performance, ignoring mean reversion.\n- A company with low earnings that looks like a 'cheap value stock' may simply be cheap because it is declining — representativeness causes investors to apply value investing templates to unsuitable situations.\n\n**The antidote for both:** Slow down, seek base rates, and ask 'What do companies in this category typically do over the next 5 years?' Don't let vivid stories or surface similarities substitute for data.",
+          highlight: ["availability bias", "representativeness bias", "base rates", "mean reversion", "vivid stories"],
         },
         {
           type: "quiz-mc",
           question:
-            "A fund manager has delivered top-decile returns for 5 consecutive years. Investors pour money in, assuming strong skill. A statistician notes that in a universe of 1,000 managers, approximately 31 would achieve a 5-year top-decile streak by pure chance (~0.9^5 ≈ 59% stay in bottom 90%, so ~10^5 = 1 in 100,000... actually 0.1^5 × 1000 = 0.1 → about 1 in 10,000; simpler: 1,000 managers × (1/3)^5 ≈ 0.4 per quintile streak). Which bias explains investors' neglect of this base rate?",
+            "An investor bought shares of a retailer at $90. The stock is now trading at $55. She refuses to sell, saying she'll 'wait until it gets back to $90.' Which bias is most clearly driving her decision?",
           options: [
-            "Representativeness — the track record 'looks like' a skilled manager and investors ignore the statistical base rate of lucky streaks",
-            "Anchoring — investors anchor to the 5-year return figure",
-            "Availability heuristic — the 5-year period is vivid and recent",
-            "Overconfidence — the manager's own belief in his skill",
+            "Anchoring bias — the $90 purchase price has become an arbitrary reference point",
+            "Availability bias — recent losses are mentally vivid so she overweights them",
+            "Representativeness bias — the stock looks similar to past recoveries",
+            "Overconfidence bias — she believes her original analysis was correct",
           ],
           correctIndex: 0,
           explanation:
-            "Representativeness causes investors to judge the manager as skilled because his track record 'resembles' a skilled manager prototype. They neglect the base rate: in a large universe of managers, multi-year streaks occur by chance alone. Kahneman called this 'the law of small numbers' — people see patterns in short sequences that have no predictive validity. Proper evaluation requires base-rate thinking: what fraction of managers with this track record are genuinely skilled vs. lucky?",
-          difficulty: 2,
+            "This is a textbook anchoring bias example. The original purchase price of $90 has become a mental anchor that distorts her evaluation. The stock's value should be assessed based on future prospects, not the price she paid. The market does not know or care what she paid — her reference point is economically irrelevant. An objective analysis might conclude that selling at $55 and redeploying capital elsewhere is the rational choice, but the anchor prevents her from seeing this clearly.",
+          difficulty: 1,
         },
         {
           type: "quiz-tf",
           statement:
-            "Hindsight bias primarily causes investors to be too pessimistic about future events because they remember past crashes so vividly.",
+            "Availability bias means that investors tend to overestimate the probability of events that are statistically common but not widely reported in the media.",
           correct: false,
           explanation:
-            "Hindsight bias does not make investors pessimistic — it makes them falsely certain. After a crash, hindsight bias causes investors to believe they 'knew it was coming,' which inflates confidence rather than creating appropriate humility. The availability heuristic (not hindsight bias) makes recent crashes feel more likely to recur. Hindsight bias's main harm is preventing genuine learning from mistakes, because outcomes are reinterpreted as having been predictable, so no actual analytical lesson is extracted.",
-          difficulty: 2,
-        },
-        {
-          type: "quiz-scenario",
-          scenario:
-            "After a biotech stock surges 200% on FDA approval news, a retail investor tells friends: 'I always knew it would get approved — the trial data was obviously strong.' Her trade log shows she actually sold half her position two weeks before the announcement, citing 'uncertainty about the outcome.' The FDA approval genuinely surprised the market.",
-          question: "What is this investor exhibiting, and what is the concrete harm?",
-          options: [
-            "Hindsight bias — her memory is rewriting the past, preventing her from learning why she undersized the position and sold early",
-            "Overconfidence — she is bragging to friends about a lucky outcome",
-            "Availability heuristic — the 200% surge makes future FDA plays feel more achievable",
-            "Representativeness — she is projecting this stock's pattern to all biotech names",
-          ],
-          correctIndex: 0,
-          explanation:
-            "This is a textbook hindsight bias case. Her trade log proves she was uncertain (she sold half before announcement), but after the event her memory reconstructs a narrative of prescient certainty. The concrete harm: she misses the lesson about position sizing under genuine uncertainty. Instead of analyzing 'how should I size a position in binary-outcome events?' she concludes she is good at FDA prediction — a false lesson that will lead to oversizing future binary bets.",
-          difficulty: 3,
+            "Availability bias works in the opposite direction. It causes people to overestimate the probability of events that are easy to recall — typically dramatic, recent, or emotionally vivid events that receive heavy media coverage. Quiet, mundane events (like the steady compounding of a boring index fund) receive little attention and feel less 'real' or likely, even though statistically they may be more probable. Availability bias inflates the perceived probability of dramatic but rare events and deflates the perceived probability of common but unremarkable ones.",
+          difficulty: 1,
         },
       ],
     },
 
-    // ─── Lesson 3: Market Anomalies & Behavioral Arbitrage ────────────────────
+    // ─── Lesson 2: Loss Aversion & Prospect Theory ───────────────────────────────
     {
-      id: "bf-3",
-      title: "📈 Market Anomalies & Behavioral Arbitrage",
+      id: "behavioral-finance-deep-dive-2",
+      title: "📉 Loss Aversion & Prospect Theory",
       description:
-        "PEAD, value premium, momentum effect, calendar anomalies, and limits to arbitrage",
+        "Understand Kahneman and Tversky's Nobel Prize-winning research showing that losses feel roughly twice as painful as equivalent gains — and how this distorts investor behavior",
+      icon: "TrendingDown",
+      xpReward: 90,
+      difficulty: "intermediate",
+      steps: [
+        {
+          type: "teach",
+          title: "Prospect Theory — How We Actually Evaluate Outcomes",
+          content:
+            "In 1979, Daniel Kahneman and Amos Tversky published **Prospect Theory**, one of the most cited papers in economics. It overturned the classical assumption that people evaluate outcomes based on final wealth levels — instead, people evaluate outcomes as **gains and losses relative to a reference point**.\n\n**The three pillars of Prospect Theory:**\n\n1. **Reference-dependence**: Outcomes are evaluated as gains or losses from a reference point (usually the status quo or purchase price), not as absolute values.\n\n2. **Loss aversion**: Losses feel roughly **2.0–2.5× more painful** than equivalent gains feel pleasurable. Losing $1,000 causes roughly twice the psychological pain as gaining $1,000 causes pleasure. This is not rationality — it is wiring.\n\n3. **Diminishing sensitivity**: Each additional unit of gain or loss has less psychological impact. Going from $0 to $1,000 feels better than going from $10,000 to $11,000. Going from $0 to −$1,000 feels worse than going from −$10,000 to −$11,000.\n\n**The value function:**\nThe resulting 'value function' is S-shaped: steep for small losses (steep negative slope), less steep for larger losses, and flatter throughout for gains. The kink at zero (the reference point) is sharp — this is the asymmetry of loss aversion.\n\n**Why this is revolutionary:** Classical utility theory predicted a smooth, consistent curve. Kahneman and Tversky showed the actual shape is kinked, asymmetric, and reference-dependent — explaining dozens of behavioral anomalies that rational models could not.",
+          highlight: ["Prospect Theory", "Kahneman", "Tversky", "loss aversion", "reference point", "value function"],
+        },
+        {
+          type: "teach",
+          title: "Loss Aversion in Practice — How It Warps Your Portfolio",
+          content:
+            "Loss aversion is arguably the single most destructive bias for long-term investors. Its effects cascade through every major investment decision.\n\n**The disposition effect:**\nInvestors tend to sell winners too early (locking in gains to feel the pleasure) and hold losers too long (avoiding the pain of realizing losses). This is the exact opposite of rational portfolio management.\n- **Research finding**: Terrance Odean studied 10,000 brokerage accounts and found investors were 50% more likely to sell a winning stock than a losing one — dramatically underperforming a simple buy-and-hold strategy.\n- Taxes make this even worse: short-term capital gains are taxed at higher rates, and holding losers prevents tax-loss harvesting.\n\n**Break-even obsession:**\nLoss aversion creates an irrational desire to 'get back to even.' Investors hold losing positions indefinitely waiting to recover their purchase price — turning a controlled loss into a potentially catastrophic one. The question should always be: 'Given current information, is this the best use of this capital?' Not: 'How can I avoid crystallizing this loss?'\n\n**Risk-seeking in losses:**\nProspect Theory predicts something counterintuitive: people become **risk-seeking** when already facing a loss. If you are down $5,000, a gamble that could recover everything or lose an additional $5,000 feels attractive — even if the expected value is negative. This explains why investors double-down on failing positions and take outsized risks to recover losses.\n\n**Fear of regret:**\nLoss aversion is amplified by anticipated regret — the pain not just of losing money but of having made the 'wrong' decision. This causes investors to hold a losing stock because selling 'confirms' the mistake.",
+          highlight: ["disposition effect", "break-even obsession", "risk-seeking in losses", "regret", "Odean"],
+        },
+        {
+          type: "teach",
+          title: "The Asymmetry in Real Numbers",
+          content:
+            "Loss aversion has concrete, measurable consequences for portfolio returns. Understanding the mathematics illuminates why the bias is so dangerous.\n\n**The recovery math problem:**\n- A stock falls 20% → needs to rise 25% to recover\n- A stock falls 33% → needs to rise 50% to recover\n- A stock falls 50% → needs to rise 100% to recover\n- A stock falls 75% → needs to rise 300% to recover\n\nLoss aversion causes investors to hold through the early declines (when recovery is still easy), only to find themselves trapped in catastrophic drawdowns where recovery becomes mathematically improbable.\n\n**Myopic loss aversion:**\nRichard Thaler and Shlomo Benartzi showed that the more frequently investors evaluate their portfolios, the more they feel the pain of losses and the more risk-averse they become. Investors who check portfolios daily experience 250 trading days of potential losses per year; annual reviewers experience just one. This 'myopic loss aversion' causes investors to dramatically under-allocate to equities — costing them enormous long-term wealth.\n\n**The equity risk premium:**\nBecause losses hurt more than gains help, investors demand a disproportionate premium to accept risk. This helps explain why equities have historically delivered ~6–7% real returns over bonds — a premium many economists consider too large to explain without loss aversion.\n\n**The practical implication:** Check your portfolio less frequently. Set rules-based decision processes that prevent emotional responses to short-term fluctuations. Define your exit criteria before you enter a position, not after losses have already triggered your loss-aversion circuitry.",
+          highlight: ["recovery math", "myopic loss aversion", "Thaler", "Benartzi", "equity premium"],
+        },
+        {
+          type: "quiz-mc",
+          question:
+            "According to Prospect Theory, which of the following best describes how most people feel about these two scenarios: A) winning $500, and B) losing $500?",
+          options: [
+            "The pain of losing $500 feels approximately twice as intense as the pleasure of winning $500",
+            "The pleasure of winning $500 and the pain of losing $500 feel roughly equal in intensity",
+            "The pleasure of winning $500 feels approximately twice as intense as the pain of losing $500",
+            "People feel more pleasure from winning than pain from losing because gains are motivating",
+          ],
+          correctIndex: 0,
+          explanation:
+            "Kahneman and Tversky's research consistently found that losses feel approximately 2 to 2.5 times more painful than equivalent gains feel pleasurable. This asymmetry — loss aversion — is one of the most robust findings in behavioral economics. It means that to compensate for the pain of a potential $500 loss, most people need the prospect of winning roughly $1,000 to $1,250. This is not rational by classical economic standards, but it is deeply embedded in human psychology.",
+          difficulty: 1,
+        },
+        {
+          type: "quiz-tf",
+          statement:
+            "The disposition effect — caused by loss aversion — leads investors to hold winning stocks too long and sell losing stocks too quickly.",
+          correct: false,
+          explanation:
+            "The disposition effect works in the opposite direction. Loss aversion causes investors to sell winners too early (to lock in the pleasure of realized gains) and hold losers too long (to avoid the pain of realizing a loss). Research by Odean and Shefrin found investors are significantly more likely to sell stocks at a gain than at a loss, even when the losing stocks subsequently underperform the sold winners. The rational approach is the reverse: let winners run and cut losses quickly when the investment thesis has broken down.",
+          difficulty: 2,
+        },
+      ],
+    },
+
+    // ─── Lesson 3: Herd Behavior & Market Bubbles ────────────────────────────────
+    {
+      id: "behavioral-finance-deep-dive-3",
+      title: "🐑 Herd Behavior & Market Bubbles",
+      description:
+        "Examine how social proof and momentum create self-reinforcing market bubbles — from tulip mania and the dot-com collapse to the 2008 housing crisis",
       icon: "TrendingUp",
       xpReward: 90,
-      difficulty: "advanced",
+      difficulty: "intermediate",
       steps: [
         {
           type: "teach",
-          title: "🚀 Post-Earnings Announcement Drift (PEAD)",
+          title: "The Psychology of Herding",
           content:
-            "**Post-Earnings Announcement Drift (PEAD)** is one of the most replicated and studied anomalies in finance — and one of the clearest signatures of behavioral bias.\n\n**What it is:**\nAfter a company reports earnings that *surprise* the market (beat or miss expectations), prices do not immediately adjust to full information. Instead, they **drift** in the direction of the surprise for 3–6 months.\n\n- Positive surprise → stock keeps drifting up\n- Negative surprise → stock keeps drifting down\n\n**Why it persists (behavioral explanation):**\n- Investors **underreact** to earnings surprises — they update beliefs too slowly\n- Anchoring to prior expectations: 'The company usually earns ~$1 per quarter' — a $1.40 beat takes time to be recalibrated into a new baseline\n- Attention limits: most investors don't read full earnings transcripts; they react to headlines and gradually absorb details over weeks\n- Institutional sluggishness: large fund mandates prevent immediate position changes post-earnings\n\n**Exploiting PEAD:**\n- After a large positive surprise, buy the stock within a few days post-announcement\n- Hold for 3–6 months (the average drift window)\n- Use Standardized Unexpected Earnings (SUE) rank: top-quintile positive surprises historically outperform bottom-quintile by ~8–10% over 60 trading days\n- First documented by Ball & Brown in 1968 — the anomaly has persisted for 50+ years despite widespread knowledge of it",
-          highlight: ["PEAD", "underreaction", "earnings surprise", "drift", "SUE rank", "Ball Brown"],
+            "**Herd behavior** occurs when individuals abandon their own assessments and follow the crowd. In social settings, this is often rational — other people's behavior contains information. In financial markets, it creates dangerous feedback loops.\n\n**Why herding happens:**\n\n1. **Informational cascades**: If 100 people before you all bought a stock, you rationally infer they collectively know something. This is 'social proof' — treating others' actions as evidence about quality. The problem: if the first few people also just followed the crowd, the whole chain rests on circular reasoning.\n\n2. **Regret minimization**: If everyone else is buying tech stocks and you are not, and tech stocks go up, you will feel terrible. If you buy along with the crowd and stocks fall, at least you made the 'normal' mistake. Conformity protects against regret.\n\n3. **Career risk**: Professional fund managers know that underperforming the benchmark while doing something different is career-ending. Underperforming while doing the same thing as everyone else is survivable. This creates powerful incentives to herd with the index.\n\n4. **Momentum and trend-following**: Rising prices attract buyers, whose buying raises prices further, attracting more buyers. This positive feedback loop is self-reinforcing — right up until it reverses.\n\n**The result:** Prices deviate wildly from fundamental value. Bubbles inflate, then burst catastrophically when the cascade reverses and everyone rushes for the exit simultaneously.",
+          highlight: ["herd behavior", "informational cascades", "social proof", "regret minimization", "momentum"],
         },
         {
           type: "teach",
-          title: "💎 Value Premium & Momentum Effect",
+          title: "Three Great Bubbles — Anatomy of Mania",
           content:
-            "**Value Premium:**\nStocks trading at low multiples (P/E, P/B, EV/EBITDA) historically outperform high-multiple 'glamour' stocks over long horizons.\n\nBehavioral explanation — **overreaction and extrapolation**:\n- Investors extrapolate recent growth rates too far into the future, overpaying for glamour companies\n- They overreact to bad news for cheap/value companies, driving prices below fair value\n- Mean reversion eventually disappoints glamour investors and surprises value investors\n- Fama and French (1992) formalized this as the value factor; debate continues: behavioral mispricing vs. distress risk premium\n\n**Momentum Effect:**\nStocks that have performed well over the past 3–12 months tend to continue outperforming for another 3–12 months (Jegadeesh & Titman, 1993).\n\nBehavioral explanation — **underreaction**:\n- Markets underreact to good news → prices drift up gradually\n- Anchoring prevents immediate full repricing\n- Herding amplifies as more investors pile in after the trend becomes visible\n- Evidence: ~1% per month alpha in long-short momentum strategies across 40+ countries\n\n**The irony:** Value and momentum represent opposite behavioral failures:\n- Value exploits **overreaction** (too negative on bad stocks)\n- Momentum exploits **underreaction** (too slow to reprice good stocks)\nBoth can be true simultaneously in different parts of the market.",
-          highlight: ["value premium", "glamour stocks", "overreaction", "momentum effect", "underreaction", "Jegadeesh Titman"],
+            "History's great speculative manias share a common anatomy: a compelling narrative, rising prices attracting new buyers, leverage, and eventually a catastrophic collapse.\n\n**Tulip Mania (1636–1637):**\nDutch tulip bulbs became a status symbol and speculative instrument. At the peak, a single Semper Augustus bulb sold for the price of a canal house in Amsterdam. Contracts for future delivery changed hands multiple times. When the market collapsed in February 1637, prices fell 99% within weeks. Traders who had borrowed to speculate were ruined.\n\n**Lesson**: Any asset can become a speculative vehicle when social narrative and rising prices create self-reinforcing demand.\n\n**The Dot-Com Bubble (1995–2000):**\nThe internet was real and transformative — but the valuations were not. Companies with no revenue, no profits, and no clear business model raised billions in IPOs. The Nasdaq rose 400% from 1995 to its peak in March 2000, then fell 78% over the next two years.\n\n**Lesson**: A correct technological prediction does not guarantee investment returns. Valuation still matters — paying any price for a good story destroys wealth.\n\n**The 2008 Housing Crisis:**\nRising home prices created a narrative that housing 'always goes up.' Banks packaged subprime mortgages into complex securities rated AAA. Rating agencies herded with the consensus, and investors worldwide bought. When prices stopped rising, defaults cascaded. U.S. home prices fell 33% nationally; the S&P 500 lost 57% peak-to-trough.\n\n**Lesson**: Leverage transforms a speculative bubble into a systemic crisis. Herding by sophisticated institutional investors is as dangerous as retail mania.",
+          highlight: ["tulip mania", "dot-com bubble", "2008 housing crisis", "leverage", "narrative"],
         },
         {
           type: "teach",
-          title: "📅 Calendar Anomalies & Limits to Arbitrage",
+          title: "Identifying Bubbles — Warning Signs",
           content:
-            "**Calendar Anomalies:**\nPredictable return patterns based on calendar timing — violations of market efficiency driven by behavioral patterns.\n\n- **January Effect**: Small-cap stocks outperform in January. Explanation: tax-loss selling in December (investors dump losers for tax deductions) → prices suppressed → January rebound as reinvestment occurs.\n- **Turn-of-month effect**: Last 3 and first 3 trading days of each month outperform mid-month. Linked to monthly salary/pension fund inflows.\n- **Day-of-week effect**: Historically, Friday returns are positive (optimism before weekend); Monday returns are negative (weekend news, pessimism). Effect has weakened with electronic trading.\n- **Pre-holiday effect**: Days before major holidays show positive abnormal returns.\n\n**Why don't these get arbitraged away?**\n**Limits to Arbitrage** (Shleifer & Vishny, 1997):\n1. **Noise trader risk**: Even if you are right fundamentally, mispricing can worsen before correcting — you can lose before being proven right\n2. **Short selling costs**: Borrowing fees, dividends on short positions, margin requirements\n3. **Career risk**: Fund managers who take contrarian positions face redemptions if the position runs against them before correcting\n4. **Synchronization risk**: You need other arbitrageurs to trade simultaneously — coordination failure leaves mispricing uncorrected\n\nResult: Behavioral biases create predictable patterns, but the *cost and risk* of exploiting them limits how quickly they are arbitraged away — allowing anomalies to persist for decades.",
-          highlight: ["January effect", "turn-of-month", "limits to arbitrage", "noise trader risk", "career risk", "Shleifer Vishny"],
+            "Bubbles are notoriously difficult to identify in real time — John Maynard Keynes warned that 'markets can remain irrational longer than you can remain solvent.' But certain conditions reliably precede collapses.\n\n**Classic bubble warning signs:**\n\n1. **'This time is different' narratives**: Every bubble produces a fundamental story for why traditional valuation no longer applies. In 1999 it was 'the internet changes everything.' In 2006 it was 'housing always appreciates.' These narratives have a kernel of truth — which is exactly what makes them dangerous.\n\n2. **Widespread retail participation**: When taxi drivers and neighbors give stock tips, when 'everyone knows' that something is a sure thing, informed early-stage speculation has given way to uninformed momentum chasing.\n\n3. **Leverage explosion**: Credit expands to fund speculative purchases. Margin loans rise sharply. Novel financial instruments appear to allow more leverage with seemingly less risk.\n\n4. **Valuation extremes**: P/E ratios, price-to-book, or other metrics reach levels far outside historical norms — often dismissed with 'new economy' arguments.\n\n5. **Suppression of negative analysis**: Short sellers, skeptical analysts, and bearish commentators are ridiculed. 'You just don't understand the new paradigm.'\n\n**The behavioral loop:**\nBubbles are self-fulfilling until they are not. Early buyers make money, confirming the narrative. New buyers enter on social proof. Rising prices attract media coverage. Media coverage attracts more buyers. Eventually, the supply of new buyers exhausts itself — and the whole structure collapses under the weight of its own leverage.",
+          highlight: ["this time is different", "retail participation", "leverage explosion", "valuation extremes", "short sellers"],
         },
         {
           type: "quiz-mc",
           question:
-            "A company reports earnings that beat consensus estimates by 40%. You are considering exploiting PEAD. Based on behavioral finance research, which strategy best captures the anomaly?",
+            "Professional fund managers often hold stocks similar to their benchmark index even when they believe other stocks are better investments. Which behavioral factor best explains this?",
           options: [
-            "Buy the stock within a few days post-announcement and hold for 3–6 months, capturing the gradual underreaction drift",
-            "Short the stock immediately after the pop — overreaction will reverse within a week",
-            "Wait 6 months for the full underreaction to play out, then buy on mean reversion",
-            "Buy on the day before earnings — the market pre-prices positive surprises",
+            "Career risk — underperforming while doing something different is more career-damaging than underperforming with the crowd",
+            "Anchoring bias — the benchmark weights become reference anchors for portfolio construction",
+            "Availability bias — index stocks receive more media coverage so they feel safer",
+            "Representativeness bias — index inclusion signals that a stock is high quality",
           ],
           correctIndex: 0,
           explanation:
-            "PEAD is driven by investor underreaction — prices drift upward for 3–6 months as the market gradually incorporates the positive surprise. The optimal strategy is to buy shortly after the announcement (once the initial surge settles) and hold through the drift period. Shorting after a pop exploits overreaction, which is the opposite of the PEAD mechanism. The anomaly is well-documented: top-quintile positive surprises outperform bottom-quintile by ~8–10% over 60 trading days, on average.",
+            "This is a career-risk-driven form of herding. Fund managers face asymmetric career consequences: if they deviate from the benchmark and underperform, they may lose their job. If they track the benchmark and underperform, they are 'doing what everyone else does' and may survive. This creates a rational (at the individual level) incentive to herd with the index even when the manager believes they could do better by deviating. This dynamic is why most active funds closely track their benchmarks — the famous 'closet indexing' phenomenon.",
           difficulty: 2,
         },
         {
           type: "quiz-tf",
           statement:
-            "If a market anomaly is widely known and published in academic journals, rational arbitrageurs will immediately trade away all excess returns, so anomalies cannot persist once discovered.",
+            "The dot-com bubble demonstrated that investors who correctly identified the internet as a transformative technology and invested in internet companies at the bubble's peak in 2000 would have generated strong long-term returns.",
           correct: false,
           explanation:
-            "The limits to arbitrage framework explains why anomalies persist even after being published. Noise trader risk, short selling costs, career risk, and synchronization failure prevent full arbitrage. PEAD has been documented since 1968, yet still generates excess returns. The momentum effect was published in 1993 and remains exploitable. The barriers to arbitrage — not ignorance — are what sustain these anomalies. A well-known anomaly that requires risk, capital, and patience to exploit will survive alongside sophisticated investors.",
+            "Being correct about a technology's transformative impact does not guarantee investment returns — valuation matters enormously. Many dot-com companies went bankrupt (Pets.com, Webvan, Boo.com). Even survivors like Amazon fell 93% from peak to trough during the bust. Cisco, the networking infrastructure giant that really did power the internet revolution, fell 86% and did not return to its 2000 peak price for over two decades. The insight that the internet would change the world was correct; the valuations assigned to internet companies in 1999–2000 were not. A correct macro prediction at the wrong price destroys capital.",
           difficulty: 2,
-        },
-        {
-          type: "quiz-scenario",
-          scenario:
-            "A hedge fund manager correctly identifies that a stock is 50% overvalued due to momentum herding and investor overreaction. She short sells. The stock then rallies another 30% over the next 6 months as momentum continues. Her fund suffers heavy losses. Investors withdraw capital. She is forced to close the short — just before the stock collapses 60%.",
-          question: "Which concept from behavioral arbitrage theory does this illustrate?",
-          options: [
-            "Limits to arbitrage — noise trader risk and career risk prevented rational arbitrage from correcting the mispricing before it became untenable",
-            "Overconfidence — the manager was wrong about the overvaluation",
-            "Herding — she followed other short sellers into an overcrowded trade",
-            "PEAD — the post-earnings drift continued beyond her position horizon",
-          ],
-          correctIndex: 0,
-          explanation:
-            "This is the canonical illustration of Shleifer & Vishny's limits to arbitrage. The manager was fundamentally correct (the stock was overvalued) but could not sustain the position long enough for the mispricing to correct. Noise trader risk (momentum extended mispricing) and career risk (fund redemptions forced closure) are the exact barriers arbitrage theory predicts. As Keynes noted: 'The market can remain irrational longer than you can remain solvent.' Smart money cannot always correct mispricing within the timeframe required to survive.",
-          difficulty: 3,
         },
       ],
     },
 
-    // ─── Lesson 4: Social & Herding Behavior ─────────────────────────────────
+    // ─── Lesson 4: Overconfidence & Illusion of Control ──────────────────────────
     {
-      id: "bf-4",
-      title: "🐑 Social & Herding Behavior",
+      id: "behavioral-finance-deep-dive-4",
+      title: "🎯 Overconfidence & Illusion of Control",
       description:
-        "Herding models, information cascades, bubble mechanics, sentiment indicators, and meme stocks",
-      icon: "Users",
+        "Discover why investors systematically overestimate their abilities, trade too much, and underperform benchmarks — and the research that quantifies the cost",
+      icon: "BookOpen",
       xpReward: 85,
       difficulty: "intermediate",
       steps: [
         {
           type: "teach",
-          title: "🏛️ Institutional Herding & Career Concerns",
+          title: "The Overconfidence Epidemic",
           content:
-            "**Herding** in financial markets occurs when investors mimic each other's trades rather than acting on independent analysis.\n\n**Why institutions herd (career concerns model):**\nThe career concerns model (Scharfstein & Stein, 1990) explains rational institutional herding:\n- If a fund manager underperforms by following the crowd, the blame is diffused — 'everyone was wrong'\n- If a manager takes a contrarian position and is wrong alone, career damage is severe\n- The asymmetry creates incentives to mimic peers, even when private analysis suggests a different view\n- *Being wrong in a crowd is survivable; being wrong alone is career-ending*\n\nEmpirical evidence:\n- Mutual fund managers buy stocks that other managers recently purchased\n- Analysts herd on recommendations — upgrading after peers upgrade, downgrading after peers downgrade\n- Institutional holdings are more correlated than would be expected if managers traded independently\n- This herding amplifies price movements — many institutions buying simultaneously drives prices above fundamental value\n\n**The individual investor version:**\n- Social proof: 'If 1 million Reddit users are buying, they must know something'\n- FOMO amplifies social herding — fear of missing a move others are experiencing\n- Herding feels rational (others may have information you lack) but is self-reinforcing",
-          highlight: ["herding", "career concerns model", "mutual fund managers", "social proof", "FOMO", "Scharfstein Stein"],
+            "Overconfidence is the most well-documented bias in the psychology literature — and arguably the most expensive for investors. It manifests in three distinct forms.\n\n**Three types of overconfidence:**\n\n1. **Overprecision**: Excessive confidence in the accuracy of your predictions. Ask investors to give a 90% confidence interval for the S&P 500's level in one year — most give ranges that are far too narrow. The actual outcome falls outside their 'confident' range roughly 40% of the time.\n\n2. **Overplacement**: Believing you are above average. In surveys, 80–90% of drivers claim to be above-average drivers. 70% of investors believe they will outperform the market. Only 50% can be above average by definition — and after costs, fewer still.\n\n3. **Overestimation**: Overestimating your own abilities, the quality of your information, and the precision of your analysis. Investors consistently rate their information as 'better than average' even when it comes from the same public sources as everyone else.\n\n**The biological basis:**\nOverconfidence appears to have evolutionary advantages — confident individuals take risks, lead groups, and pursue mates more successfully. The gene pool favored mild overconfidence. Unfortunately, this worked better for hunting mastodons than for managing equity portfolios.\n\n**The most dangerous manifestation:**\nOverconfidence in stock-picking ability leads investors to concentrate portfolios, overtrade, and ignore risk — all of which reliably destroy wealth relative to a simple diversified index strategy.",
+          highlight: ["overconfidence", "overprecision", "overplacement", "overestimation", "confidence interval"],
         },
         {
           type: "teach",
-          title: "🌊 Information Cascades & Bubble Mechanics",
+          title: "Trading Too Much — The Odean & Barber Evidence",
           content:
-            "**Information Cascades** (Bikhchandani, Hirshleifer & Welch, 1992):\nA cascade occurs when rational individuals observe others' actions and conclude the aggregate signal outweighs their own private information — even if the crowd is wrong.\n\nClassic sequence:\n1. Person A has a positive private signal → buys\n2. Person B has a positive signal, also saw A buy → buys (reinforced)\n3. Person C has a **negative** private signal but sees A and B buying → ignores own signal, buys to follow the herd\n4. From C onward: all private signals are overridden; the cascade locks in regardless of underlying truth\n\nCascades are *fragile*: a single credible public signal can instantly reverse them, triggering cascade collapse.\n\n**Kindleberger's 5-Stage Bubble Model:**\n1. **Displacement**: A new technology or policy captures imagination (internet, cheap credit, crypto)\n2. **Boom**: Prices rise, media attention grows, credit expands, new investors enter\n3. **Euphoria**: Traditional valuation abandoned — 'this time is different.' Everyone is making money. Leverage soars.\n4. **Distress**: Insiders quietly exit. Prices plateau. Cracks appear. Margin calls begin.\n5. **Revulsion**: Panic selling, forced liquidations, credit withdrawal, prices overshoot downward\n\nEach stage feeds the next through positive feedback loops until external shock or credit tightening triggers the turn.",
-          highlight: ["information cascade", "Bikhchandani", "5 stages", "Kindleberger", "displacement", "euphoria", "revulsion"],
+            "The landmark research by Brad Barber and Terrance Odean quantified exactly how much overconfidence costs individual investors.\n\n**The study:**\nBarber and Odean analyzed 66,465 households with brokerage accounts from 1991 to 1996. They found a clear, linear relationship: the more investors traded, the worse they performed.\n\n**The headline numbers:**\n- The average household earned 16.4% annual returns from the market during this period\n- The average trading household earned 15.3% after trading costs — already below the market\n- The most active quintile of traders earned just 11.4% — 5 percentage points below the market\n- Over five years: $10,000 at 16.4% grows to $21,400; at 11.4%, only $17,100\n\n**The mechanism:**\nOverconfident investors believe they have identified mispriced stocks. They buy 'undervalued' stocks and sell 'overvalued' ones. But the stocks they buy subsequently underperform the stocks they sell — suggesting their information edge is illusory. They pay transaction costs and taxes for the privilege of underperforming.\n\n**The gender finding:**\nBarber and Odean also found men traded 45% more than women — and underperformed women by 1.4% annually. Overconfidence is more pronounced in men, particularly in domains (like investing) perceived as masculine and skill-based. Single men traded the most and performed the worst.\n\n**The uncomfortable truth:**\nFor most investors, the optimal trading frequency is close to zero. Every trade is a bet that you know something the other side of the trade does not. In liquid public markets, this is extremely difficult to sustain.",
+          highlight: ["Barber", "Odean", "trading frequency", "transaction costs", "overtrading"],
         },
         {
           type: "teach",
-          title: "📊 Sentiment Indicators & Meme Stocks",
+          title: "Illusion of Control — Skill vs. Luck",
           content:
-            "**Behavioral Sentiment Indicators:**\n\n- **AAII Investor Sentiment Survey**: Weekly survey of retail investors' bullish/bearish/neutral outlook. Historically a contrarian signal — extreme bullishness near tops, extreme bearishness near bottoms.\n- **Put/Call Ratio**: High P/C (many puts vs. calls) indicates fear and excessive bearishness — often a contrarian buy signal. Low P/C indicates complacency — often a warning.\n- **VIX (CBOE Volatility Index)**: 'Fear gauge' measuring implied volatility in S&P 500 options. VIX > 30 typically signals panic; VIX < 15 signals complacency. Contrarian: extreme VIX spikes often coincide with near-term market bottoms.\n- **Short Interest**: High short float can signal either informed bearish conviction OR potential short-squeeze fuel.\n\n**Meme Stocks and Social Sentiment:**\nGameStop (2021) demonstrated a new dynamic:\n- Reddit's WallStreetBets coordinated retail buying, driving a heavily shorted stock from $20 to $483 in 2 weeks\n- Social sentiment (measured by Reddit post volume, Twitter mentions) became a leading indicator — preceding price moves by hours\n- Information driven by social narrative (vs. fundamentals) can temporarily overwhelm traditional valuation\n- However: social momentum is highly unstable — when the narrative shifts, the reversal is fast and brutal\n\n**Key distinction**: Social sentiment creates momentum-driven moves, not fundamental value. Trading social sentiment requires precise risk management and fast exits.",
-          highlight: ["AAII survey", "put/call ratio", "VIX", "fear gauge", "meme stocks", "GameStop", "social sentiment"],
+            "The **illusion of control** is the belief that you can influence outcomes that are actually determined by chance. In investing, it manifests as the belief that skill explains results that are largely driven by luck.\n\n**The research:**\nEllen Langer showed that people behave as if they can control random outcomes when certain skill-related cues are present: competition, familiar stimuli, choice, or involvement in the process. Investors who choose their own stocks, monitor them closely, and follow business news develop strong feelings of control — even though short-term market returns are highly random.\n\n**Where control is genuinely limited:**\n- Individual company earnings surprises are largely unpredictable quarter-to-quarter\n- Short-term stock price movements are essentially random walks\n- Macroeconomic forecasting — even by professional economists — is barely better than chance\n- Timing market tops and bottoms requires being right twice (exit and re-entry), compounding the difficulty\n\n**The 'skill vs. luck' diagnostic:**\nMichael Mauboussin provides a useful test: can you lose on purpose? In chess (high skill), a grandmaster can deliberately lose. In roulette (pure luck), no strategy allows you to reliably lose. Investing falls somewhere between — but much closer to the luck end than most investors believe for short time horizons.\n\n**The performance attribution trap:**\nWhen a portfolio does well, investors attribute it to skill. When it does poorly, they attribute it to bad luck. This asymmetric attribution reinforces overconfidence and prevents accurate self-assessment.\n\n**The practical remedy:**\nCompare your results to a relevant benchmark after all costs over multiple years (5+ years). A single good year proves nothing; consistent outperformance over a decade with a reasonable explanation is meaningful evidence of skill.",
+          highlight: ["illusion of control", "Langer", "skill vs. luck", "Mauboussin", "benchmark comparison"],
         },
         {
           type: "quiz-mc",
           question:
-            "A meme stock (XYZ) has no earnings, $5 in intrinsic value by any fundamental method, but is trading at $180 driven by Reddit hype and a short squeeze. A value investor shorts at $180; a momentum trader goes long. Three weeks later, XYZ crashes to $22. Which perspective does behavioral finance support?",
+            "A study of 66,465 brokerage accounts found that the most active trading quintile earned approximately 5 percentage points less per year than the least active quintile. What is the primary cause of this underperformance?",
           options: [
-            "Both were reasonable given their strategies — the value investor was correct about fundamentals but faced limits to arbitrage risk; the momentum trader captured the social cascade but needed an exit strategy",
-            "The value investor was always correct and the momentum trader was foolish — fundamentals always win",
-            "The momentum trader was right and the value investor was wrong — social sentiment is a valid fundamental",
-            "Both were wrong — no rational strategy works on meme stocks",
+            "Overconfident investors trade on the illusion of an information edge, paying transaction costs and taxes to buy stocks that underperform those they sold",
+            "Active traders focus on high-volatility stocks that have lower expected returns than stable, low-volatility holdings",
+            "Frequent trading causes emotional exhaustion that leads to worse decision-making over time",
+            "Active traders use margin more often, and leverage mechanically reduces long-term compound returns",
           ],
           correctIndex: 0,
           explanation:
-            "Behavioral finance recognizes that fundamentals and social cascades can coexist but operate on different timescales. The value investor was fundamentally correct (social cascade artificially inflated price) but faced the classic limits-to-arbitrage problem — the short could have run to $400 before reversing, triggering margin calls. The momentum trader was correct in identifying the social cascade but needed a clear exit rule; riding social momentum requires accepting it is not fundamental and requires fast exits when sentiment shifts.",
-          difficulty: 3,
+            "Barber and Odean's research showed that overconfident investors trade because they believe they have identified mispricings — but the stocks they buy subsequently underperform the stocks they sell, suggesting the information edge is illusory. They pay real transaction costs (commissions, bid-ask spreads) and taxes for the privilege of making these confidence-driven but ultimately value-destroying trades. The more they trade, the more costs accumulate and the more opportunities there are for the 'edge' to be wrong. The solution is lower turnover and honest assessment of whether you genuinely possess an information advantage.",
+          difficulty: 2,
         },
         {
           type: "quiz-tf",
           statement:
-            "The VIX is a direct measure of current market volatility — it tracks how much the S&P 500 has moved over the past 30 days.",
-          correct: false,
+            "The illusion of control in investing is primarily caused by investors being involved in choosing and monitoring their investments, which makes them feel their skill is determining outcomes even when returns are largely random.",
+          correct: true,
           explanation:
-            "The VIX measures *implied* volatility — the market's forecast of future volatility derived from options pricing — not historical realized volatility. It reflects the price investors are paying for options protection (their fear level), not what volatility has been. A high VIX means market participants are paying elevated premiums for downside protection, indicating fear or uncertainty about the near future. Historical volatility (how much the market actually moved) is a different, backward-looking measure.",
+            "Ellen Langer's research demonstrated exactly this: when skill-related cues are present — choice, involvement, competition, familiar stimuli — people develop the sense that they control outcomes even when the outcomes are random or near-random. Investors who personally select stocks, research companies, monitor earnings calls, and track positions daily develop a powerful sense of engagement and control. This feeling is partly real (a skilled analyst does add value) but is systematically overestimated. The involvement and effort feel like they must translate to superior outcomes — but the data shows most active investors underperform passive benchmarks after costs.",
           difficulty: 1,
         },
+      ],
+    },
+
+    // ─── Lesson 5: Mental Accounting ─────────────────────────────────────────────
+    {
+      id: "behavioral-finance-deep-dive-5",
+      title: "🗂️ Mental Accounting",
+      description:
+        "Understand how people assign different psychological values to money based on its source or purpose — and why treating money as fungible leads to better financial outcomes",
+      icon: "BookOpen",
+      xpReward: 85,
+      difficulty: "beginner",
+      steps: [
         {
-          type: "quiz-scenario",
-          scenario:
-            "In early 2000, the AAII sentiment survey showed 75% bulls — an all-time record high. The put/call ratio had fallen to 0.35 (extreme complacency). Three months later the Nasdaq peaked and fell 78% over the next two years. An investor using these sentiment indicators as contrarian signals would have been positioned defensively.",
-          question: "How should behavioral finance practitioners use sentiment indicators?",
+          type: "teach",
+          title: "Mental Accounting — Money Is Not Fungible in Our Minds",
+          content:
+            "**Mental accounting** is the tendency to treat money differently based on its source, purpose, or the mental 'account' it is assigned to — even though money is perfectly fungible in economic reality.\n\n**Richard Thaler**, who won the 2017 Nobel Prize in Economics partly for this work, documented how people maintain separate psychological 'buckets' for money:\n- **Current income**: Monthly salary — treated with moderate care\n- **Current assets**: Savings — treated conservatively, rarely spent\n- **Future income**: Expected bonuses or inheritance — spent freely in advance\n- **Windfall**: Lottery winnings, tax refunds, unexpected bonuses — treated as 'free money,' spent far more liberally\n\n**The economic reality:**\nOne dollar in your savings account and one dollar from a lottery win are identical — they buy the same things and compound at the same rate. But psychologically they feel completely different, and people make dramatically different decisions with them.\n\n**Common examples:**\n- Spending a $500 tax refund on a vacation while carrying $5,000 in credit card debt at 20% APY — the 'refund' feels like bonus money, while the debt feels like a separate problem\n- Gambling with winnings at a casino ('it's the house's money anyway') but being conservative with original stake\n- Spending a work bonus freely while carefully budgeting regular salary\n- Refusing to sell a stock at a loss even when the cash is needed for a better investment — the sale would 'close' the mental account at a loss\n\n**The key insight:** All money should be evaluated identically — by its highest-value use, discounted for time and risk. Mental accounting creates arbitrary distinctions that lead to irrational decisions.",
+          highlight: ["mental accounting", "Thaler", "fungible", "windfall", "psychological buckets"],
+        },
+        {
+          type: "teach",
+          title: "The House Money Effect",
+          content:
+            "The **house money effect** is one of mental accounting's most dangerous manifestations in investing: after a series of gains, investors become more risk-tolerant because they feel they are 'playing with the house's money.'\n\n**The casino origin:**\nThe term comes from gambling. After winning $200 at the blackjack table, gamblers often think of their original $200 as 'their money' and the winnings as 'the house's money.' They bet the winnings more aggressively because losing them doesn't feel like losing real money.\n\n**The economic reality:** It is all your money. $400 is $400, regardless of how it was accumulated.\n\n**The house money effect in markets:**\n- After a portfolio rises 30%, investors take on far more risk than they would rationally justify — 'I can afford to lose some of these gains'\n- Day traders who have a winning morning trade much larger in the afternoon — they're 'in the zone' and using 'house money'\n- Bull markets cause systematic underestimation of risk because rising prices make portfolios feel larger and gains feel less real\n- Investors in a winning sector increase concentration dramatically because 'it's profit anyway'\n\n**The reverse — snake-bit effect:**\nAfter losses, some investors become irrationally risk-averse — refusing even good opportunities because they are 'down on the year.' The prior loss has no bearing on whether a new investment is attractive, but mental accounting creates this linkage.\n\n**The compound danger:**\nHouse money effect (more risk after gains) combined with loss aversion (less risk after losses) creates a pattern of buying high with leverage and selling low in panic — the worst possible return profile.",
+          highlight: ["house money effect", "Thaler", "risk tolerance", "snake-bit effect", "bull market risk"],
+        },
+        {
+          type: "teach",
+          title: "Mental Accounting and Portfolio Construction",
+          content:
+            "Mental accounting pervades portfolio construction in ways that harm long-term returns.\n\n**The pyramid portfolio fallacy:**\nMany investors construct a 'safety pyramid': a large conservative base (bonds, savings), a middle layer of balanced investments, and a top tier of speculative bets. Each layer is managed independently. The problem: risk and return should be optimized across the entire portfolio simultaneously. An investor might hold 2% in penny stocks 'for excitement' while their bond allocation drags down overall returns — the total portfolio is suboptimal because each mental account is managed separately.\n\n**Dividend income vs. capital gains:**\nMany investors spend dividend income freely but refuse to sell shares to fund the same spending. 'I only live off dividends, never touch principal' seems disciplined — but a $5 dividend from a $100 stock is economically identical to selling $5 worth of shares. The preference for dividends over capital gains is pure mental accounting; it often leads to holding lower-quality high-dividend stocks.\n\n**Sunk cost fallacy:**\nMental accounting treats past investment as a 'debit' that must be closed at break-even. Having spent $10,000 on a stock, the investor maintains a separate mental account for that position. Sunk costs are irrelevant to future decisions — but mental accounting makes them feel binding. Rational analysis should only ask: 'Given current information, what is the best use of this money going forward?'\n\n**Bucketing retirement savings:**\nSome investors hold separate accounts for 'vacation fund,' 'emergency fund,' 'retirement,' and 'college savings' at different institutions. While organizational discipline has value, holding $10,000 in a 0.5% savings account while carrying $10,000 in 6% student loan debt is a pure mental accounting error — the net position is effectively borrowing at 6%, regardless of how the accounts are labeled.",
+          highlight: ["pyramid portfolio", "dividend income", "sunk cost fallacy", "bucketing", "break-even"],
+        },
+        {
+          type: "quiz-mc",
+          question:
+            "An investor receives a $3,000 tax refund and immediately books a vacation with it, while simultaneously carrying $3,000 in credit card debt at 22% annual interest. Which concept best explains this behavior?",
           options: [
-            "As contrarian signals — extreme bullishness near tops and extreme bearishness near bottoms, combined with other evidence, suggests mean reversion is likely",
-            "As momentum signals — extreme bullishness confirms the uptrend and suggests buying aggressively",
-            "Sentiment indicators have no predictive value and should be ignored in favor of pure fundamentals",
-            "Only the VIX is a valid indicator; AAII surveys are too small a sample to be useful",
+            "Mental accounting — the tax refund is placed in a 'windfall' mental bucket where spending feels justified, while the debt occupies a separate mental account",
+            "Loss aversion — spending the refund prevents the painful experience of watching savings decline",
+            "Overconfidence — the investor believes their income growth will easily cover the credit card debt",
+            "Availability bias — vacations are vivid and memorable while debt repayment is not",
           ],
           correctIndex: 0,
           explanation:
-            "Behavioral finance uses sentiment indicators as contrarian tools. Extreme bullishness (AAII 75% bulls, low put/call) signals that most market participants are already long and optimistic — there are few additional buyers left to push prices higher, while any disappointment triggers selling. Extreme bearishness signals the opposite. The 2000 case is emblematic: maximum sentiment at the market peak is a behavioral signature of the euphoria phase in Kindleberger's bubble model. These signals work best when multiple sentiment indicators align and diverge sharply from historical norms.",
+            "This is a classic mental accounting error. The tax refund and the credit card debt are in separate psychological 'buckets.' Rationally, receiving $3,000 when you owe $3,000 at 22% interest should lead you to pay off the debt — earning a guaranteed 22% return. But mental accounting labels the refund as 'bonus/windfall money' appropriate to spend on something pleasurable, and the debt as a separate, unrelated financial obligation. Paying 22% interest on $3,000 while spending that same $3,000 on a vacation costs $660 per year — an expensive psychological framing.",
+          difficulty: 1,
+        },
+        {
+          type: "quiz-tf",
+          statement:
+            "According to the house money effect, investors who have accumulated significant portfolio gains tend to become more risk-averse because they want to protect their profits.",
+          correct: false,
+          explanation:
+            "The house money effect predicts the opposite: investors become more risk-tolerant after gains, not less, because they mentally categorize their gains as 'the house's money' — less real, less painful to lose than their original stake. This is economically irrational (all money in the portfolio is equally real) but psychologically common. It can lead investors to take excessive risks during bull markets, concentrate in winning positions, or speculate with 'profits' they would never risk with their original capital. The reverse phenomenon — becoming overly risk-averse after losses — is called the 'snake-bit effect.'",
           difficulty: 2,
         },
       ],
     },
 
-    // ─── Lesson 5: Debiasing & Behavioral Alpha ───────────────────────────────
+    // ─── Lesson 6: Debiasing Strategies ──────────────────────────────────────────
     {
-      id: "bf-5",
-      title: "🎯 Debiasing & Behavioral Alpha",
+      id: "behavioral-finance-deep-dive-6",
+      title: "🛡️ Debiasing Strategies",
       description:
-        "Pre-mortem analysis, investment checklists, probabilistic thinking, reference class forecasting, and exploiting others' biases",
-      icon: "CheckSquare",
+        "Learn evidence-based techniques to counteract your cognitive biases — checklists, pre-mortems, rules-based investing, and investment journaling that systematically improve decision quality",
+      icon: "BookOpen",
       xpReward: 95,
       difficulty: "advanced",
       steps: [
         {
           type: "teach",
-          title: "🔍 Pre-Mortem Analysis & Investment Checklists",
+          title: "Why Knowing About Biases Is Not Enough",
           content:
-            "**Pre-Mortem Analysis** (Gary Klein, 1989):\nImagine that your investment has failed — it is now 12 months later and the position lost 40%. Working backward, explain *why* it failed.\n\nThis technique exploits **prospective hindsight**: by hypothetically placing yourself in the future after failure, the brain activates the same pattern-recognition systems it uses for hindsight — identifying risks that forward-looking overconfidence suppresses.\n\nHow to implement:\n1. Before any significant investment decision, write: 'It is now [date + 1 year]. My investment in [X] lost 35%. What happened?'\n2. List 5–10 specific reasons: missed earnings, competitive disruption, regulatory change, valuation multiple compression, leverage blowup\n3. For each risk, ask: 'Is this risk currently priced in? What would I see in the data if this were happening?'\n4. Decide: are you adequately compensated for the risks you just identified?\n\n**Investment Checklists** (inspired by Atul Gawande's surgical checklists):\nSystematically override intuition on high-stakes decisions:\n\n□ Does the business have durable competitive advantages?\n□ Is management aligned with shareholders (incentive check)?\n□ Is valuation reasonable vs. normalized earnings and growth?\n□ What is the bear case, and am I taking it seriously?\n□ What would I need to see to EXIT this position?\n□ Am I buying because of FOMO or genuine analysis?\n□ What is my position size relative to conviction and portfolio risk?\n\nInvestors who use written checklists show 20–30% fewer cognitive-bias-driven errors in studies of decision quality.",
-          highlight: ["pre-mortem", "prospective hindsight", "investment checklist", "bear case", "overconfidence"],
+            "A common misconception: once you understand cognitive biases, you become immune to them. Research shows this is largely false.\n\n**The limits of awareness:**\n- Knowing about the gambler's fallacy does not stop people from committing it\n- Finance professors who teach loss aversion still exhibit loss aversion in their own portfolios\n- Cognitive biases often operate below conscious awareness — System 1 fires before System 2 can intervene\n- Daniel Kahneman himself admitted that despite decades of studying his own biases, he remains vulnerable to them\n\n**What does work:**\nBias reduction requires **procedural interventions** — changing the process by which decisions are made, not just the knowledge state of the decision-maker. The goal is to design systems that constrain bad behavior before it occurs, not to rely on willpower and awareness in the moment of decision.\n\n**The key principles of effective debiasing:**\n1. **Pre-commitment**: Decide the rules before you are in an emotional state\n2. **Slowing down**: Insert structured delays and checklists between impulse and action\n3. **External accountability**: Write down your reasoning — you cannot fool a written record\n4. **Feedback loops**: Systematically review decisions to learn what actually worked\n5. **Structural separation**: Remove the ability to make certain bad decisions in the moment\n\n**The analogy:** Pilots use checklists not because they forget how to fly, but because systematic procedures prevent the costly errors that even skilled, experienced professionals make under stress. Investors need the same discipline.",
+          highlight: ["debiasing", "procedural interventions", "pre-commitment", "checklists", "System 1"],
         },
         {
           type: "teach",
-          title: "📊 Probabilistic Thinking & Bayesian Updating",
+          title: "Checklists & Pre-Mortems",
           content:
-            "Most investors think in terms of single-point forecasts: 'I think this stock will hit $200.' Behavioral finance practitioners think in **probability distributions**.\n\n**Probabilistic thinking:**\n- Instead of 'AAPL will hit $250,' think: '40% chance above $250, 35% chance $200–$250, 25% chance below $200'\n- Assign probabilities to scenarios, then calculate expected value across all of them\n- This forces engagement with the full distribution of outcomes, not just the base case\n- Keeps you from falling into narrative bias — the story that makes the investment compelling\n\n**Bayesian Framework for Updating:**\nBayes' theorem provides a mathematical structure for updating beliefs as new information arrives:\n\n`P(hypothesis | evidence) ∝ P(evidence | hypothesis) × P(hypothesis)`\n\nIn plain terms:\n- Start with a **prior** belief (the base rate): 'Most analyst upgrades precede stock outperformance ~55% of the time'\n- Observe **new evidence**: 'This analyst has a 72% track record over 5 years'\n- **Update** your posterior belief accordingly: 'This upgrade is worth more than average'\n\n**Avoiding the base rate neglect (a representativeness failure):**\n- Before acting on specific information, always ask: 'What is the base rate for this type of situation?'\n- New IPOs: base rate of 5-year underperformance vs. the market is ~65%\n- Fund manager outperformance: base rate of sustained outperformance over 10 years is ~5%\n- Incorporating base rates prevents over-updating on vivid but statistically weak signals",
-          highlight: ["probabilistic thinking", "probability distribution", "Bayesian", "prior", "base rate", "posterior"],
+            "**Investment Checklists:**\nA pre-investment checklist forces you to address specific risk factors before completing a trade — pulling System 2 (deliberate analysis) into decisions that System 1 would otherwise make impulsively.\n\n**A model investment checklist:**\n- What is my estimate of intrinsic value, and what are my key assumptions?\n- What would have to be true for this investment to be wrong? (Steelman the bear case)\n- Am I buying because of recent price momentum, or because of fundamental value?\n- Have I anchored to the 52-week high/low or my purchase price in my analysis?\n- What is my exit plan if the thesis is wrong? At what price do I sell?\n- Am I concentrating because I'm overconfident in this specific idea?\n- Has a smart bear made a compelling case against this investment? Have I read it?\n\n---\n\n**The Pre-Mortem:**\nDeveloped by Gary Klein and popularized by Daniel Kahneman, the pre-mortem is a structured exercise that dramatically improves the identification of failure modes before they occur.\n\n**How to conduct a pre-mortem:**\n1. Imagine it is one year in the future\n2. The investment has failed catastrophically\n3. Work backwards: what went wrong? List every plausible explanation\n4. Prioritize the identified risks and develop mitigation plans\n\n**Why it works:**\nThe pre-mortem defeats overconfidence by making failure feel real before it happens. It activates a different mode of thinking — instead of defending a decision already made, you are analyzing failure imaginatively. Research shows pre-mortems identify 30% more potential failure modes than standard risk analysis.",
+          highlight: ["investment checklist", "pre-mortem", "Gary Klein", "bear case", "exit plan"],
         },
         {
           type: "teach",
-          title: "🌍 Reference Class Forecasting & Building Behavioral Alpha",
+          title: "Rules-Based Investing & Investment Journals",
           content:
-            "**Reference Class Forecasting** (Philip Tetlock, Daniel Kahneman):\nWhen estimating outcomes, use the **outside view** (base rates from comparable situations) rather than the **inside view** (the specific details of this situation that make it feel unique).\n\n**Inside view problem:** Project managers estimate their project will take 12 months because the team is skilled and the plan is detailed — ignoring that 80% of comparable projects run 40% over schedule. The inside view is compelling but overconfident.\n\n**Outside view solution:**\n1. Identify the reference class: 'What kind of project is this most similar to?'\n2. Find the base rate: 'How long do projects like this typically take?'\n3. Adjust for specific factors: 'Our team is above average — adjust 10% faster'\n4. Produce a forecast centered on the base rate with meaningful uncertainty range\n\n**Kahneman's law:** 'The inside view is almost always too optimistic. The outside view is almost always more accurate.'\n\n**Building Behavioral Alpha — Exploiting Others' Biases:**\nUnderstanding biases enables systematic strategies:\n- **PEAD**: Buy large positive earnings surprises within days, hold 60–90 days (exploits underreaction)\n- **Value + reversal**: Buy 52-week lows with fundamental support (exploits overreaction to bad news)\n- **Sell into euphoria**: Trim exposure when AAII bullishness > 65% (exploits herding)\n- **Pre-announcement drift**: Monitor options unusual activity before earnings — informed buying before news exploits anchoring of uninformed investors\n- **Systematic rules over intuition**: Rules based on documented biases outperform discretionary intuition-based decisions in backtests consistently\n\nBehavioral alpha is durable because biases are hardwired — they persist even among participants who understand them, including you.",
-          highlight: ["reference class forecasting", "outside view", "inside view", "base rate", "behavioral alpha", "Tetlock", "Kahneman"],
+            "**Rules-Based (Systematic) Investing:**\nThe most powerful debiasing strategy is removing discretion from the decision entirely — establishing rules in advance that govern behavior regardless of emotions in the moment.\n\n**Effective rules-based approaches:**\n- **Automatic rebalancing**: Rebalance to target allocations quarterly, regardless of market conditions. This mechanically forces buying low and selling high.\n- **Position sizing rules**: Never allocate more than 5% (or your chosen limit) to a single position, regardless of conviction level.\n- **Stop-loss rules**: Exit any position that falls more than X% below your purchase price — decided before entry, not after.\n- **Dollar-cost averaging**: Invest a fixed dollar amount at fixed intervals, eliminating the temptation to time the market.\n- **Cooling-off periods**: Any trade idea must wait 48 hours before execution — eliminates impulsive trades.\n\n**The Investment Journal:**\nThe journal is the most underused tool in individual investors' arsenals. It creates accountability to your past self.\n\n**What to record:**\n- Date and price of every trade\n- The specific thesis: what must be true for this investment to succeed?\n- The key risks you identified at the time of purchase\n- Your emotional state when making the decision\n- The planned exit conditions (both profit and loss)\n\n**What to review:**\n- Quarterly: Compare thesis to current reality. Has the thesis changed?\n- Annually: Attribution analysis — which decisions added value and why?\n- On every sale: Was the original thesis correct? Did I exit for the right reasons?\n\n**The power of the journal:**\nIt prevents the 'I knew it all along' hindsight bias, forces you to own your reasoning, and creates a data set for genuine self-improvement over time.",
+          highlight: ["rules-based investing", "systematic", "rebalancing", "investment journal", "dollar-cost averaging"],
         },
         {
           type: "quiz-mc",
           question:
-            "Two funds both delivered 15% annualized returns over 3 years. Fund A holds 40 diversified positions; Fund B holds 5 concentrated positions. How should an investor use reference class forecasting to evaluate which manager demonstrated more skill?",
+            "An investor implements a rule: 'I will not execute any trade until 48 hours after I first decide I want to make it.' Which biases does this rule most directly counteract?",
           options: [
-            "Fund A more likely demonstrates skill — 40 positions give a larger statistical sample of decisions; a 3-year run with 5 positions has a high probability of being lucky (base rate: ~12% chance of 15% annual return with 5 random picks)",
-            "Fund B demonstrates more skill — concentrated conviction requires deeper research and signals higher confidence",
-            "Both demonstrate equal skill — identical returns mean identical skill levels regardless of portfolio construction",
-            "Reference class forecasting cannot be applied to manager evaluation — each manager is unique",
+            "Overconfidence and availability bias — the delay allows System 2 thinking to override impulsive System 1 reactions to recent news or price movements",
+            "Loss aversion and anchoring — the delay allows the investor to forget the purchase price and recalibrate emotionally",
+            "Representativeness bias and herd behavior — the delay allows the investor to check whether others are also making similar trades",
+            "Mental accounting — the delay ensures that windfall money is treated the same as regular savings",
           ],
           correctIndex: 0,
           explanation:
-            "Reference class forecasting applied to manager evaluation requires asking: 'Given the number of independent bets made, what is the base rate of achieving this return by chance?' Fund B made roughly 15 independent bets over 3 years (5 positions × 3 years), while Fund A made roughly 120. The probability of a 15% annual return from 15 random bets is meaningfully higher than from 120, simply by luck. Skill attribution requires sufficient 'sample size' of decisions — which is why short-track-record, concentrated managers are statistically more likely to be lucky than skilled, even with identical raw returns.",
-          difficulty: 3,
+            "A 48-hour cooling-off period directly targets the impulsive, emotionally-driven trades that System 1 generates in response to recent news (availability bias), excitement about momentum, or overconfident conviction. By inserting a mandatory delay, the investor allows System 2 (slow, deliberate reasoning) time to evaluate the thesis critically before capital is committed. Most impulsive trades that felt compelling in the moment look much less attractive 48 hours later when the emotional charge has dissipated. This is a classic pre-commitment device — using structural rules to protect future decision-making from present-moment biases.",
+          difficulty: 2,
+        },
+        {
+          type: "quiz-mc",
+          question:
+            "Which of the following best describes why keeping an investment journal — recording thesis, risks, and exit conditions at the time of purchase — improves long-term investment performance?",
+          options: [
+            "It creates accountability to past reasoning, prevents hindsight bias, and generates data for accurate self-assessment of what actually drives returns",
+            "It forces investors to consider more information before buying, which reduces the number of trades and therefore transaction costs",
+            "The act of writing clarifies thinking and eliminates emotional decision-making at the point of trade execution",
+            "Journals create legal documentation of investment decisions, which motivates more careful analysis to avoid liability",
+          ],
+          correctIndex: 0,
+          explanation:
+            "The investment journal's primary value operates over time, not just at the point of entry. By recording the specific thesis, key risks, and exit conditions, the investor creates a written record that cannot be revised retroactively. This defeats hindsight bias, prevents gradual thesis drift (continuing to hold a position after the original thesis has failed), and builds a genuine performance database for attribution analysis. Over years, a disciplined investor can determine whether their thesis quality is improving, which analytical frameworks actually predict returns, and which emotional patterns consistently hurt performance — information that is simply unavailable without systematic records.",
+          difficulty: 2,
         },
         {
           type: "quiz-tf",
           statement:
-            "Debiasing techniques, such as pre-mortem analysis and checklists, can fully eliminate cognitive biases in investment decision-making with enough practice.",
+            "Research shows that simply educating investors about cognitive biases — explaining what anchoring, loss aversion, and overconfidence are — is sufficient to substantially reduce those biases in their subsequent investment decisions.",
           correct: false,
           explanation:
-            "Cognitive biases are largely hardwired neurological tendencies — they cannot be fully eliminated, even among experts who understand them deeply. Kahneman himself acknowledges he still falls prey to biases he has studied for 50 years. What debiasing techniques do is reduce the *impact* of biases by creating structural safeguards that catch errors before they translate into action. Checklists, pre-mortems, written predictions, and rule-based systems reduce the frequency and magnitude of bias-driven errors — they do not eliminate the biases themselves. This is why systematic, rules-based approaches consistently outperform purely discretionary judgment in repeated decision environments.",
-          difficulty: 2,
-        },
-        {
-          type: "quiz-scenario",
-          scenario:
-            "An investor is evaluating two fund managers, both with exactly 8% annualized returns over 3 years (vs. 7% benchmark). Manager X runs a quantitative momentum strategy with 500+ trades per year. Manager Y is a macro discretionary manager who made 6 major calls over 3 years. The investor wants to assess true skill vs. luck.",
-          question: "Applying reference class and probabilistic thinking, which manager's track record is more statistically meaningful?",
-          options: [
-            "Manager X — 500+ trades per year generates a large sample of independent decisions, making the 1% outperformance statistically more likely to reflect skill than luck",
-            "Manager Y — 6 macro calls require deeper expertise and therefore demonstrate greater skill per trade",
-            "Both are equally meaningful — 3 years is always sufficient to distinguish skill from luck",
-            "Neither — 3 years is too short to evaluate any strategy",
-          ],
-          correctIndex: 0,
-          explanation:
-            "Statistical significance of alpha requires sufficient observations. Manager X with 1,500+ trades over 3 years provides a meaningful sample — 1% consistent outperformance across that many independent trades has very low probability of occurring by chance alone. Manager Y made 6 calls — a coin-flipper has a 1/64 chance of calling 6 consecutive outcomes correctly. With only 6 data points, even a skilled manager's track record is statistically indistinguishable from luck. Reference class: of macro managers with similar 3-year returns on 6 calls, what fraction are genuinely skilled vs. fortunate? The answer is 'we cannot know with 6 observations.'",
-          difficulty: 3,
+            "Research consistently shows that cognitive awareness of biases does not reliably reduce them. Daniel Kahneman, who discovered many of these biases, acknowledges that he still falls prey to them despite decades of study. Biases often operate below conscious awareness through System 1 processes that fire before deliberate analysis. Effective debiasing requires procedural interventions that change the decision-making process — checklists, pre-mortems, rules-based investing, cooling-off periods, and investment journals — rather than simply improving knowledge. The goal is to design a system that constrains biased behavior structurally, rather than relying on in-the-moment willpower to override deeply embedded psychological tendencies.",
+          difficulty: 1,
         },
       ],
     },

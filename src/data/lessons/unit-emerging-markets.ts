@@ -1,305 +1,364 @@
 import type { Unit } from "./types";
 
 export const UNIT_EMERGING_MARKETS: Unit = {
-  id: "emerging-markets",
+  id: "emerging-markets-investing",
   title: "Emerging Markets Investing",
   description:
-    "Master EM investing: country risk, currency exposure, political risk, EM equity/debt strategies, and frontier markets",
-  icon: "MapPin",
-  color: "#ec4899",
+    "Navigate the high-growth, high-risk world of emerging markets — from BRICS and MSCI indices to currency hedging, political risk, sovereign bonds, and portfolio construction across 50+ developing economies",
+  icon: "🌏",
+  color: "#0f766e",
   lessons: [
-    // ─── Lesson 1: EM Framework & Classification ────────────────────────────────
+    // ─── Lesson 1: What Are Emerging Markets? ─────────────────────────────────
     {
-      id: "em-1",
-      title: "EM Framework & Classification",
+      id: "emerging-markets-investing-1",
+      title: "🌍 What Are Emerging Markets?",
       description:
-        "MSCI EM universe, DM vs EM vs Frontier differences, the equity premium, and current EM themes",
+        "Understand the BRICS nations, MSCI EM index composition, and why developing economies offer higher growth potential alongside unique risks",
       icon: "Globe",
-      xpReward: 70,
-      difficulty: "intermediate",
+      xpReward: 80,
+      difficulty: "beginner",
       steps: [
         {
           type: "teach",
-          title: "The MSCI EM Universe",
+          title: "Defining Emerging Markets",
           content:
-            "The **MSCI Emerging Markets Index** is the global benchmark for EM investing, covering **24 countries** and approximately **$7 trillion** in market capitalization.\n\n**Country Weights (approximate 2024):**\n- **China**: ~31% — the dominant EM weight; includes A-shares, H-shares, and some ADRs\n- **India**: ~17% — fast-rising weight as India's economy and market grow\n- **Taiwan**: ~15% — heavily concentrated in semiconductors (TSMC alone is ~10% of EM)\n- **South Korea**: ~12% — tech and industrials (Samsung, SK Hynix, Hyundai)\n- **Brazil, Saudi Arabia, South Africa, Mexico, Indonesia**: ~25% combined\n\n**EM vs Global Context:**\nEM represents roughly 12–13% of global equity market cap, yet EM economies produce ~40% of global GDP. This gap reflects:\n1. Many large EM companies remain state-owned and unlisted\n2. Private companies in EM often don't access public markets\n3. Lower valuations and less equity culture in some markets\n\n**Key MSCI classification criteria:**\n- Economic development level (per capita income)\n- Market size and liquidity (minimum market cap and turnover requirements)\n- Market accessibility (capital controls, foreign ownership limits, settlement reliability)",
-          highlight: ["MSCI Emerging Markets", "24 countries", "$7 trillion", "China", "India", "Taiwan", "South Korea", "classification criteria"],
+            "**Emerging markets (EM)** are economies transitioning from developing to developed status — characterized by rapid industrialization, growing middle classes, and expanding capital markets. They sit between frontier markets (less developed, less liquid) and developed markets (stable, mature economies like the US, Germany, or Japan).\n\n**Key characteristics of emerging markets:**\n- **GDP per capita**: Typically $1,000–$20,000 per year (developed markets exceed $25,000)\n- **Market capitalization**: Smaller relative to GDP but growing rapidly\n- **Institutional quality**: Less robust regulatory frameworks, legal systems, and property rights\n- **Capital flows**: More sensitive to global risk appetite — capital rushes in when investors seek yield and flees during crises\n- **Demographics**: Often younger populations with expanding labor forces\n\n**Why they matter:**\n- EM countries represent roughly 60% of global GDP (purchasing power parity)\n- They are responsible for the majority of incremental global economic growth\n- They offer diversification benefits as their economic cycles differ from developed markets\n\n**Common examples:** China, India, Brazil, South Korea, Taiwan, South Africa, Mexico, Indonesia, Russia (pre-2022 sanctions), Saudi Arabia, Poland, Turkey\n\n**Classification nuance:** Different providers disagree — South Korea is a \"developed\" market by FTSE Russell but still classified as \"emerging\" by MSCI, costing Korean exchanges billions in benchmark flows. These classification decisions have enormous real-world capital allocation consequences.",
+          highlight: ["emerging markets", "frontier markets", "GDP per capita", "capital flows", "demographics"],
         },
         {
           type: "teach",
-          title: "DM vs EM vs Frontier: A Risk Spectrum",
+          title: "BRICS and the EM Landscape",
           content:
-            "Markets are classified along a spectrum from most to least developed:\n\n**Developed Markets (DM) — 23 countries:**\nUS, UK, Germany, Japan, Canada, Australia, Singapore, etc.\n- Deep, liquid markets with tight spreads\n- Strong rule of law, independent central banks\n- Low political risk, reliable settlement\n- Typical P/E: 18–24×\n\n**Emerging Markets (EM) — 24 countries:**\nChina, India, Brazil, Taiwan, South Korea, Mexico, etc.\n- Larger, more liquid than frontier — adequate for institutional capital\n- Growing economies but weaker institutions\n- Currency volatility, moderate political risk\n- Typical P/E: 11–16×\n\n**Frontier Markets (FM) — ~30 countries:**\nVietnam, Nigeria, Bangladesh, Romania, Kazakhstan, Sri Lanka, etc.\n- Smaller market caps, lower liquidity\n- Often higher growth potential but harder to access\n- Potential diversification benefit (low correlation to global markets)\n- Very wide bid-ask spreads; exit can be difficult\n\n**The Risk-Return Tradeoff:**\nMoving from DM → EM → Frontier: higher expected returns, higher volatility, lower liquidity, and less institutional protection. Each step up in risk should be accompanied by larger position sizing discipline and longer investment horizons.",
-          highlight: ["developed markets", "emerging markets", "frontier markets", "DM", "EM", "FM", "liquidity", "risk spectrum"],
+            "**BRICS** — originally coined by Goldman Sachs economist Jim O'Neill in 2001 — grouped Brazil, Russia, India, China, and South Africa as the dominant emerging economies expected to reshape the global order.\n\n**Original BRICS thesis:**\nO'Neill projected that by 2050, the BRICS economies would collectively exceed the G7 in economic size. The core driver: enormous populations combined with liberalizing economic policies, improving education, and technology adoption.\n\n**How the BRICS story unfolded:**\n- **China**: Exceeded all expectations — now the world's 2nd largest economy by nominal GDP, largest by PPP\n- **India**: Grew into the 5th largest economy, on track to be 3rd by 2030\n- **Brazil**: Slowed significantly; commodity dependence and political instability constrained growth\n- **Russia**: Sanctions following the 2022 Ukraine invasion effectively excluded Russia from Western capital markets\n- **South Africa**: Persistent structural issues — unemployment ~32%, infrastructure decay, energy crisis\n\n**BRICS expansion (2024):** Egypt, Ethiopia, Iran, Saudi Arabia, and UAE joined the bloc, reflecting growing EM political ambitions to create alternatives to USD-dominated financial systems.\n\n**Beyond BRICS — the broader EM universe:**\n- **MINT countries**: Mexico, Indonesia, Nigeria, Turkey — next tier of large EM economies\n- **Asian tigers**: South Korea, Taiwan, Singapore, Hong Kong (now often classified as developed)\n- **Southeast Asia**: Vietnam, Thailand, Philippines — beneficiaries of supply chain diversification from China\n\n**Key takeaway:** BRICS is a political and economic concept, not an investment strategy. The divergent trajectories of its members illustrate why country-level analysis matters enormously in EM investing.",
+          highlight: ["BRICS", "Jim O'Neill", "MINT", "supply chain diversification", "country-level analysis"],
         },
         {
           type: "teach",
-          title: "The EM Equity Premium & Current Themes",
+          title: "The MSCI Emerging Markets Index",
           content:
-            "**EM Equity Risk Premium:**\nHistorically, EM equities have offered approximately **2–3% annual excess return** over DM equities (measured over long cycles). This premium compensates investors for:\n- **Political risk**: Policy reversals, expropriation, elections\n- **Liquidity risk**: Smaller free floats, capital controls, harder exit\n- **Currency risk**: EM currencies have a long-term tendency to depreciate vs USD\n- **Governance risk**: Weaker shareholder protections, related-party transactions\n\nImportant caveat: the EM premium is highly variable. In some decades (2000s), EM dramatically outperformed. In others (2010s), EM dramatically underperformed. Timing EM exposure is notoriously difficult.\n\n**Current EM Investment Themes (2024–2026):**\n\n**India Growth Story**: Demographics, digital infrastructure (UPI payments, Aadhaar ID), manufacturing shift away from China, growing middle class. India is now the 5th-largest equity market globally.\n\n**Latin America Commodities**: Brazil (iron ore, soybeans, oil), Chile (copper, lithium for EV batteries), Mexico (nearshoring from US companies). Commodity-linked economies benefit from energy transition.\n\n**EM Tech Ecosystem**: Taiwan's semiconductor dominance (TSMC), South Korea's memory chips and displays (Samsung, SK Hynix, LG), India's IT services (Infosys, TCS, Wipro).",
-          highlight: ["EM equity premium", "2–3%", "political risk", "liquidity risk", "currency risk", "India", "Latin America", "EM tech"],
+            "The **MSCI Emerging Markets Index** is the most widely tracked benchmark for EM equity investing, with over $2 trillion in assets benchmarked to it. Understanding its composition is essential for any EM investor.\n\n**MSCI EM composition (approximate, as of 2025):**\n- China: ~25–30% (varies significantly with regulatory environment)\n- India: ~18–20%\n- Taiwan: ~15–17%\n- South Korea: ~12–13%\n- Brazil: ~5–6%\n- Saudi Arabia: ~4–5%\n- Mexico, South Africa, Indonesia: ~2–3% each\n- Remaining ~24 countries: balance\n\n**What the index reveals:**\n- The index is heavily concentrated — the top 3 countries (China, India, Taiwan) often exceed 55–60% of total weight\n- Technology dominates: TSMC (Taiwan Semiconductor) and Samsung are among the largest holdings\n- \"Emerging\" is a misnomer for Taiwan and Korea — these are highly sophisticated economies; their inclusion reflects historical precedent and MSCI's conservative reclassification process\n\n**EM Growth vs Developed Markets:**\n- EM economies grew at an average of 4–6% real GDP annually in the 2000s–2010s vs. 1.5–2.5% for developed markets\n- This growth premium does NOT automatically translate to equity returns — dilution, governance, and valuation matter\n- A famous academic puzzle: countries with higher GDP growth have historically shown no systematic equity outperformance vs. lower-growth countries\n\n**Practical implication:** When buying an EM index fund, you are primarily buying China, India, and Taiwanese semiconductor exposure — know what you own.",
+          highlight: ["MSCI EM Index", "benchmark", "China", "India", "TSMC", "growth premium"],
         },
         {
           type: "quiz-mc",
           question:
-            "South Korea is classified as an Emerging Market by MSCI but as a Developed Market by FTSE. Why does this classification difference matter to investors?",
+            "An investor purchases an MSCI Emerging Markets index fund. Approximately what combined weight do China, India, and Taiwan typically represent in the index?",
           options: [
-            "Index funds tracking MSCI EM include South Korea with a ~12% weight, while FTSE EM funds exclude it — creating different sector/country exposures for seemingly similar 'EM' products",
-            "It only matters to Korean domestic investors and has no practical effect on foreign portfolios",
-            "MSCI and FTSE classifications are always identical and any difference is a data error",
-            "South Korea is classified as DM by both MSCI and FTSE",
+            "55–60% of total index weight",
+            "20–25% of total index weight",
+            "75–80% of total index weight",
+            "30–35% of total index weight",
           ],
           correctIndex: 0,
           explanation:
-            "This classification gap has real portfolio implications. MSCI EM-tracking funds (like EEM, VWO) include South Korea at ~12% weight, while FTSE EM-tracking funds (like Vanguard's international products outside the US) exclude it. An investor comparing 'EM exposure' between two funds may unknowingly hold very different country allocations. South Korea is well-developed economically but its market accessibility features (foreign ownership limits, currency hedging mechanics) historically kept MSCI from upgrading it to DM.",
-          difficulty: 2,
-        },
-        {
-          type: "quiz-tf",
-          statement:
-            "Because emerging market economies produce approximately 40% of global GDP, EM equities represent roughly 40% of global stock market capitalization.",
-          correct: false,
-          explanation:
-            "False. Despite contributing ~40% of global GDP, EM equities represent only about 12–13% of global market cap. The gap exists because many large EM companies are state-owned and not publicly listed, equity culture is less developed in some EM countries, and lower P/E multiples applied to EM earnings compress market cap. This gap between economic weight and market weight is itself an argument for why EM may offer long-run growth opportunities.",
+            "China (~25–30%), India (~18–20%), and Taiwan (~15–17%) together often represent 55–60% of the MSCI EM index. This heavy concentration means an \"emerging markets\" fund is primarily a bet on a handful of large Asian economies — particularly on Chinese regulatory/economic conditions, Indian growth, and Taiwanese semiconductor dominance. Investors expecting broad diversification across 25+ countries are often surprised by this concentration.",
           difficulty: 1,
         },
-      ],
-    },
-
-    // ─── Lesson 2: Political & Country Risk ─────────────────────────────────────
-    {
-      id: "em-2",
-      title: "Political & Country Risk",
-      description:
-        "Regime stability, nationalization, sanctions, capital controls, political risk insurance, and the Turkey 2018 crisis",
-      icon: "Shield",
-      xpReward: 80,
-      difficulty: "intermediate",
-      steps: [
-        {
-          type: "teach",
-          title: "Political Risk Factors",
-          content:
-            "**Political risk** is the probability that government actions or instability will negatively affect investment returns. Key dimensions:\n\n**Rule of Law (0–100 scale, World Bank):**\nMeasures confidence in contract enforcement, property rights, police, and courts. Low scores signal that contracts may not be enforced and investors have limited legal recourse.\n- Norway: 99/100 | US: 88/100 | Brazil: 46/100 | Nigeria: 20/100\n\n**Property Rights & Expropriation:**\nCan the government seize your assets? Many EM constitutions allow nationalization 'in the public interest.' The question is whether compensation is fair and timely.\n\n**Corruption (Transparency International CPI):**\nHigh corruption increases operating costs (bribes, regulatory delays) and unpredictability. It also often signals weak rule of law.\n- Denmark: 90/100 | South Korea: 63/100 | India: 39/100 | Venezuela: 13/100\n\n**Election Risk:**\nPolicy reversals after elections are common in EM. A pro-business government replaced by a populist government can trigger multiple compression overnight.\n\n**Regime Stability:**\nMilitary coups, constitutional crises, and civil unrest are tail risks in some EM countries. Portfolio positions should be sized to survive a sudden regime change event.",
-          highlight: ["political risk", "rule of law", "property rights", "expropriation", "corruption", "election risk", "regime stability"],
-        },
-        {
-          type: "teach",
-          title: "Nationalization, Sanctions & Capital Controls",
-          content:
-            "**Nationalization Risk:**\nResource-rich EM countries have historically expropriated foreign assets in oil, gas, and mining.\n- **Venezuela**: Hugo Chávez nationalized Exxon, ConocoPhillips, and local utilities (2007–2008). Compensation was minimal; international arbitration took years.\n- **Bolivia**: Evo Morales nationalized the natural gas sector in 2006 ('May Day Nationalizations'), forcing foreign operators to renegotiate contracts under unfavorable terms.\n- **Pattern**: Nationalization risk spikes when commodity prices are high (government wants more revenue) or during political transitions to left-wing populist governments.\n\n**Sanctions Risk:**\nThe most extreme form of political risk — can cause total loss of investment.\n- **Russia 2022**: After the Ukraine invasion, SWIFT disconnection and asset freezes made Russian equities worthless to Western holders. No selling, no dividends, no repatriation.\n\n**Capital Controls:**\nGovernments restrict money flowing in or out.\n- **Argentina**: Multiple currency crises saw the official exchange rate diverge by 100%+ from the black market rate. Investors trapped at artificially unfavorable rates.\n- **China**: The RMB is not fully convertible. Foreign investors must use approved channels (Stock Connect, QFII) with daily quota limits.\n- **Iceland 2008**: Post-banking crisis capital controls froze foreign investors in Icelandic assets for years.",
-          highlight: ["nationalization", "Venezuela", "Bolivia", "sanctions", "Russia 2022", "capital controls", "Argentina", "China"],
-        },
-        {
-          type: "teach",
-          title: "Political Risk Insurance & Case Study: Turkey 2018",
-          content:
-            "**Political Risk Insurance:**\nInstitutional investors and multinationals can insure against political risk through:\n- **MIGA (Multilateral Investment Guarantee Agency)**: World Bank affiliate providing guarantees against expropriation, breach of contract, currency inconvertibility, and war/civil disturbance.\n- **DFC (US Development Finance Corporation)**: Formerly OPIC — provides political risk insurance for US investors in developing countries.\n- **Private insurers**: Lloyd's of London syndicates, AIG, Zurich offer political risk policies for specific project or country exposures.\nCoverage is expensive (1–3% of insured value per year) and does not cover market losses — only political events.\n\n**Case Study — Turkey 2018 Currency & Rate Crisis:**\nTurkey's lira lost over **40% of its value** against the USD in a matter of months in 2018. Here's what triggered the collapse:\n1. **High inflation** (>15%) demanded higher interest rates to cool the economy\n2. **President Erdogan** publicly stated that high interest rates cause inflation — the opposite of mainstream economics — and pressured the central bank NOT to hike\n3. **Central bank independence eroded**: The market interpreted rate hike refusal as the central bank losing credibility\n4. **Confidence collapse**: Foreign investors fled Turkish assets; every lira sold pushed the exchange rate lower\n5. **Debt spiral**: Turkish companies with USD debt saw their debt burden soar in lira terms as the currency fell\n\n**Lesson**: Central bank independence is a critical institutional factor for EM investors. When it is undermined, currency crises follow quickly.",
-          highlight: ["MIGA", "DFC", "political risk insurance", "Turkey 2018", "central bank independence", "lira collapse", "Erdogan"],
-        },
-        {
-          type: "quiz-mc",
-          question:
-            "An EM country has a World Bank Rule of Law score of 25/100. How should this affect the discount rate used to value companies in that country?",
-          options: [
-            "Add a country risk premium of 3–5%+ to the discount rate — weak rule of law signals higher expropriation, contract breach, and regulatory risk that demand higher expected returns",
-            "Use a lower discount rate because weak institutions mean companies face less regulatory oversight and lower compliance costs",
-            "The Rule of Law score is irrelevant — only GDP growth rate matters for discount rates",
-            "Apply a 10% discount to book value but do not change the discount rate",
-          ],
-          correctIndex: 0,
-          explanation:
-            "A Rule of Law score of 25/100 indicates very weak contract enforcement, property rights, and institutional predictability. This translates directly into a higher country risk premium (CRP) added to the cost of equity. Using Damodaran's approach: CRP = Country Default Spread × (Equity Volatility / Bond Volatility). For a country with such weak institutions, total equity risk premium could easily be 10–15% — nearly double a DM rate — resulting in much lower P/E multiples even for companies with identical earnings growth.",
-          difficulty: 3,
-        },
-        {
-          type: "quiz-scenario",
-          scenario:
-            "Turkey in mid-2018: CPI inflation is running at 16%, the Turkish lira has been weakening, and Turkish companies have large USD-denominated debt. The President announces he will not allow the central bank to raise interest rates because he believes 'high rates cause inflation.'",
-          question: "What chain of events is most likely to follow this announcement for foreign equity investors in Turkey?",
-          options: [
-            "Investors lose confidence in central bank independence → lira sells off sharply → USD debt burden explodes in lira terms → equity market crashes",
-            "Low interest rates stimulate growth, boosting corporate earnings and lifting equity prices",
-            "The lira strengthens because low rates encourage domestic borrowing and investment",
-            "Foreign investors increase their Turkey allocation because low rates boost equity valuations",
-          ],
-          correctIndex: 0,
-          explanation:
-            "This is exactly what unfolded in Turkey in 2018. When a president signals they will override the central bank's mandate to fight inflation, markets interpret it as a loss of monetary credibility. Investors sell Turkish assets (lira, bonds, equities). The lira depreciates sharply. Turkish companies with USD debt — which many had borrowed cheaply — now see their debt balloon in lira terms, risking insolvency. The equity market falls both from earnings pressure and multiple compression as investors demand a higher risk premium.",
-          difficulty: 3,
-        },
-      ],
-    },
-
-    // ─── Lesson 3: EM Currency & Fixed Income ────────────────────────────────────
-    {
-      id: "em-3",
-      title: "EM Currency & Fixed Income",
-      description:
-        "Hard vs local currency EM debt, sovereign spreads, EMBI index, duration risk, and historical EM debt crises",
-      icon: "Banknote",
-      xpReward: 85,
-      difficulty: "advanced",
-      steps: [
-        {
-          type: "teach",
-          title: "Hard Currency EM Debt",
-          content:
-            "**Hard currency EM debt** is issued by EM sovereigns or corporations in a stable foreign currency — almost always **USD**, occasionally EUR.\n\n**Key characteristics:**\n- No direct currency risk for USD-based investors (the bond pays USD regardless of local FX)\n- Does carry **sovereign credit risk** — the government may default even on its own dollar bonds\n- Benchmarked against the **JPMorgan EMBI (Emerging Markets Bond Index)** family\n  - EMBI Global: ~70+ countries, sovereign and quasi-sovereign USD bonds\n  - EMBI spread: yield spread over US Treasuries — the premium investors demand for EM credit risk\n\n**Current EMBI Spreads (illustrative ranges):**\n- Investment-grade EM (Chile, Poland, Czech Republic): 80–150 bps over UST\n- High-yield EM (Brazil, Indonesia, South Africa): 200–350 bps over UST\n- Distressed EM (Argentina, Pakistan, Egypt): 700–2,000+ bps over UST\n\n**Sovereign spread drivers:**\n- Debt/GDP ratio and external debt profile\n- Foreign exchange reserves (months of import coverage)\n- Current account balance\n- Political stability and institutional quality\n- Commodity export dependence\n\n**USD debt trap**: Borrowing in USD is cheaper initially, but if the local currency depreciates, the burden of repayment grows in local currency terms — the classic EM debt spiral.",
-          highlight: ["hard currency", "USD-denominated", "EMBI", "sovereign spread", "basis points", "credit risk", "USD debt trap"],
-        },
-        {
-          type: "teach",
-          title: "Local Currency EM Debt & Currency Risk",
-          content:
-            "**Local currency EM debt** is issued and repaid in the borrower's own currency (BRL, CNY, IDR, ZAR, INR, TRY, etc.).\n\n**Key indices:**\n- **JPMorgan GBI-EM (Government Bond Index – Emerging Markets)**: Benchmark for local currency sovereign bonds\n- Major markets: China (~10%), Brazil (~9%), India (~8%), Indonesia (~7%), Mexico (~7%)\n\n**The yield advantage:**\nLocal EM bond yields are typically much higher than USD bonds:\n- Brazilian 10-year local bond: ~11–13%\n- Indonesian 10-year: ~6–7%\n- Indian 10-year: ~7–8%\n- vs US 10-year: ~4–4.5%\n\nHowever, the additional yield must compensate for **FX risk** — if the BRL depreciates 10%, a 13% Brazilian bond delivers only ~3% in USD terms.\n\n**Duration considerations in EM:**\nShorter duration is generally more appropriate in EM fixed income because:\n1. **Higher political risk** — policy reversals hit longer bonds harder (greater price sensitivity)\n2. **Higher inflation risk** — EM central banks often face credibility challenges\n3. **Liquidity risk** — long-dated EM bonds can be very illiquid in crisis periods\n\n**EM central bank dynamics:**\nEM central banks that raise rates aggressively tend to attract capital inflows → stronger local currency but slower GDP growth. This creates a difficult tradeoff that investors must monitor.",
-          highlight: ["local currency", "GBI-EM", "BRL", "CNY", "IDR", "yield advantage", "FX risk", "duration", "EM central banks"],
-        },
-        {
-          type: "teach",
-          title: "EM Debt Crises: Historical Lessons",
-          content:
-            "EM debt crises follow recurring patterns. Understanding history helps identify vulnerabilities:\n\n**1980s Latin America Debt Crisis:**\n- Countries borrowed heavily in USD during the 1970s petrodollar recycling boom\n- US Fed under Volcker raised rates sharply to 20%+ in 1981\n- USD strengthened dramatically; EM debt servicing costs exploded\n- Mexico defaulted in 1982; Brazil, Argentina, Chile followed\n- Result: 'Lost decade' of EM growth; Brady Bond restructuring in late 1980s\n\n**1997 Asian Financial Crisis:**\n- Thailand, Indonesia, South Korea had large current account deficits financed by short-term USD debt\n- Thailand broke its USD peg in July 1997; contagion spread across Asia rapidly\n- Indonesian rupiah lost ~80% of value; Korean won fell ~50%\n- IMF bailouts came with harsh austerity conditions\n- Key lesson: Currency pegs + foreign currency debt = extreme fragility\n\n**2022 Sri Lanka Crisis:**\n- Aggressive tax cuts + COVID tourism collapse depleted foreign exchange reserves\n- Could not service USD debt or import fuel/food\n- First sovereign default in Sri Lanka's history; political revolution followed\n- IMF bailout secured only after 18 months of severe economic collapse\n\n**Common EM Crisis Triggers:**\n1. Large current account deficit + short-term USD debt\n2. Falling FX reserves below 3 months of imports\n3. Loss of central bank credibility (rate suppression)\n4. External shocks (commodity price collapse, global rate hike cycles)",
-          highlight: ["1980s debt crisis", "1997 Asian crisis", "Sri Lanka 2022", "USD peg", "current account deficit", "FX reserves", "contagion"],
-        },
-        {
-          type: "quiz-mc",
-          question:
-            "A Brazilian 10-year government bond yields 11%, while the US 10-year Treasury yields 4.5%. What does this 6.5% spread primarily reflect?",
-          options: [
-            "Compensation for Brazil's sovereign credit risk, currency risk (BRL/USD), inflation risk, and political/institutional uncertainty — all priced into the yield premium",
-            "Brazilian bond markets are less efficient and regularly misprice bonds by 6–7%",
-            "Brazil has higher GDP growth, and higher growth always produces higher bond yields",
-            "The spread is driven entirely by Brazil's larger debt-to-GDP ratio, with no other factors",
-          ],
-          correctIndex: 0,
-          explanation:
-            "The 6.5% spread over US Treasuries is a composite risk premium. For a local currency bond, it includes: (1) expected BRL depreciation vs USD (historically BRL depreciates over time), (2) Brazil's sovereign credit risk (if inflation or politics deteriorate, default risk rises), (3) inflation risk premium (Brazil's CPI is structurally higher), and (4) liquidity risk premium. A USD-based investor buying Brazilian local bonds needs the BRL to not depreciate by more than ~6.5% per year just to break even vs US Treasuries.",
-          difficulty: 2,
-        },
         {
           type: "quiz-tf",
           statement:
-            "Hard currency EM bonds (USD-denominated) eliminate all investment risk for USD-based investors because there is no currency exposure.",
+            "Countries with faster GDP growth rates consistently produce higher stock market returns for equity investors compared to slower-growing countries.",
           correct: false,
           explanation:
-            "False. While hard currency EM bonds eliminate direct FX risk for USD investors, significant risks remain: (1) Sovereign credit risk — the government may default even on USD bonds (Argentina has done this multiple times). (2) Spread widening risk — even without default, rising risk premiums compress bond prices. (3) Liquidity risk — in crises, EM USD bonds can become very illiquid with wide bid-ask spreads. (4) Indirect political risk — sanctions or capital controls can prevent coupon payments or principal repayment.",
+            "This is one of the most important — and counterintuitive — findings in global finance. High GDP growth does NOT reliably translate to superior equity returns. Several reasons explain this: (1) Growth is often funded by new share issuance, diluting existing shareholders; (2) High-growth opportunities attract capital quickly, bidding up valuations before the growth materializes; (3) Much EM growth accrues to private companies, not listed ones; (4) Governance issues mean public shareholders capture less of the value created. Historical data across many decades shows little positive correlation between national GDP growth and stock returns.",
           difficulty: 2,
         },
       ],
     },
 
-    // ─── Lesson 4: China Investing ───────────────────────────────────────────────
+    // ─── Lesson 2: Currency Risk in EM ────────────────────────────────────────
     {
-      id: "em-4",
-      title: "China Investing",
+      id: "emerging-markets-investing-2",
+      title: "💱 Currency Risk in Emerging Markets",
       description:
-        "A-shares vs H-shares vs ADRs, VIE structure risk, regulatory crackdowns, China macro, and Taiwan tension premium",
-      icon: "Building2",
-      xpReward: 85,
-      difficulty: "advanced",
-      steps: [
-        {
-          type: "teach",
-          title: "China Market Structure: A-Shares, H-Shares & ADRs",
-          content:
-            "China has a uniquely fragmented market structure with three main share classes accessible to foreign investors:\n\n**A-Shares (onshore, Shanghai/Shenzhen):**\n- Traded in CNY on China's domestic exchanges (SSE and SZSE)\n- Historically restricted to domestic investors; now accessible via Stock Connect program (Shanghai-HK and Shenzhen-HK links) with daily quota limits\n- Includes all major domestic Chinese companies: Kweichow Moutai, BYD, CATL, Industrial and Commercial Bank\n- MSCI partially includes A-shares in EM index (~5% inclusion factor vs full weight)\n\n**H-Shares (Hong Kong listed):**\n- Chinese mainland companies listed on the Hong Kong Stock Exchange, traded in HKD\n- No foreign ownership restrictions — accessible to any investor\n- Examples: HSBC, Tencent (actually a Red Chip), China Mobile, CNOOC, Ping An\n- Hang Seng China Enterprises Index (HSCEI) tracks H-shares\n\n**ADRs (US-listed):**\n- Chinese companies listed on NYSE or NASDAQ, traded in USD\n- Examples: Alibaba (BABA), JD.com (JD), Baidu (BIDU), NIO, Pinduoduo (PDD)\n- Additional risk layer: VIE (Variable Interest Entity) structure\n\n**H-share/A-share premium (AH premium):**\nThe same company's H-shares often trade at a discount to its A-shares because:\n- A-share market has more domestic retail investors (less sophisticated, more momentum-driven)\n- Foreign investors cannot freely access A-shares, reducing arbitrage",
-          highlight: ["A-shares", "H-shares", "ADR", "Stock Connect", "MSCI inclusion", "Hang Seng", "VIE", "AH premium"],
-        },
-        {
-          type: "teach",
-          title: "VIE Structure Risk & Regulatory Crackdowns",
-          content:
-            "**VIE (Variable Interest Entity) Structure:**\nChina prohibits foreign ownership of companies in many sectors (internet, media, education, telecom). To access US capital markets, Chinese tech companies use a workaround:\n1. A Chinese company creates an offshore Cayman Islands holding company\n2. The Cayman entity lists shares in the US (ADRs)\n3. US investors own shares in the Cayman entity, not the actual Chinese operating company\n4. The Cayman entity has contractual arrangements (VIE agreements) to receive profits from the Chinese operating company\n\n**The risk**: VIE agreements are NOT legally tested in Chinese courts. If the Chinese government decided to invalidate VIE structures, US shareholders would own a shell Cayman company with no real assets. This is a known, material risk that is currently unresolved.\n\n**Regulatory Crackdowns (2020–2022):**\n- **Alibaba**: Ant Group IPO cancelled in November 2020; Alibaba fined $18B by SAMR (antitrust); Jack Ma disappeared from public view. Alibaba stock fell ~75% from peak.\n- **Didi**: Forced to delist from NYSE in 2022 after regulators ordered app removal citing data security concerns; launched IPO investigation post-listing.\n- **Education sector**: July 2021 — Chinese government banned for-profit tutoring for school-age students overnight. TAL Education and New Oriental lost 90%+ of value in weeks.\n- **Tech sector broadly**: Beijing pushed through 'platform economy' regulations targeting Tencent, Meituan, and others.\n\n**Lesson**: Regulatory risk in China is not incremental — it can be sudden, severe, and target entire sectors.",
-          highlight: ["VIE structure", "Cayman entity", "Alibaba", "Didi", "education crackdown", "regulatory risk", "platform economy"],
-        },
-        {
-          type: "teach",
-          title: "China Macro & Taiwan Risk Premium",
-          content:
-            "**China Macroeconomic Challenges:**\n\n**Property Sector Debt Crisis:**\nChina's property sector (historically ~25% of GDP including construction) accumulated unsustainable debt levels. Evergrande defaulted on ~$300B in liabilities in 2021. Country Garden, Sunac, and others followed. Property investment and consumer confidence fell sharply — a significant drag on China's growth model.\n\n**Demographic Headwind:**\nChina's working-age population peaked and is now declining. The one-child policy legacy means an aging population with an inadequate pension system. Workforce decline structurally reduces potential GDP growth.\n\n**China Growth Slowdown:**\nAfter decades of 8–10% GDP growth, China is now growing at 4–5%. The era of hypergrowth driven by urbanization, infrastructure, and export manufacturing is largely over.\n\n**US-China Decoupling:**\nOngoing trade war (tariffs up to 145% on some goods), tech export restrictions (CHIPS Act, Huawei restrictions), and supply chain reshoring create structural headwinds for China-exposed investments.\n\n**Taiwan Risk (Cross-Strait Tension Premium):**\nTaiwan produces ~90% of the world's most advanced semiconductors (TSMC). Military tension between China and Taiwan creates a geopolitical risk premium:\n- TSMC and Taiwan-listed companies trade at a discount to reflect invasion risk\n- US defense commitments to Taiwan are ambiguous ('strategic ambiguity')\n- A Taiwan conflict would be catastrophic for global semiconductor supply — priced into risk premiums of all Taiwan-exposed companies globally",
-          highlight: ["Evergrande", "property crisis", "aging population", "growth slowdown", "decoupling", "Taiwan", "TSMC", "cross-strait tension"],
-        },
-        {
-          type: "quiz-mc",
-          question:
-            "An investor holds Chinese ADRs (e.g., BABA, BIDU) listed on US exchanges. A major regulatory crackdown is announced targeting the platform economy. What options does the investor realistically have?",
-          options: [
-            "Sell the ADRs on the US exchange at market price, accept the loss, or hold and await regulatory clarity — but cannot easily convert to H-shares or A-shares without a separate account",
-            "Automatically convert ADRs to H-shares at the same price through their US broker",
-            "File a claim with MIGA insurance for regulatory losses",
-            "The US SEC will suspend the crackdown to protect US investor interests",
-          ],
-          correctIndex: 0,
-          explanation:
-            "US investors in Chinese ADRs have limited options. They can sell on the US market (accepting whatever price the market offers) or hold and wait. Converting to Hong Kong H-shares requires a Hong Kong brokerage account and involves a separate conversion process. MIGA insurance covers expropriation and war risk, not regulatory actions affecting stock prices. The US SEC has no authority over Chinese domestic regulatory decisions. This illustrates why position sizing in high-regulatory-risk countries is critical.",
-          difficulty: 3,
-        },
-        {
-          type: "quiz-tf",
-          statement:
-            "When a US investor buys Alibaba's US-listed ADRs, they are acquiring direct legal ownership of Alibaba's Chinese operating businesses.",
-          correct: false,
-          explanation:
-            "False. Due to the VIE (Variable Interest Entity) structure, US investors buying BABA ADRs own shares in a Cayman Islands holding company, not in Alibaba's actual Chinese operating businesses. The Cayman entity has contractual rights to receive profits from the Chinese operations — but these contracts have never been fully tested in Chinese courts. If the Chinese government invalidated VIE agreements, US shareholders would own a shell entity. This is a disclosed but unresolved structural risk for all Chinese tech ADRs.",
-          difficulty: 2,
-        },
-      ],
-    },
-
-    // ─── Lesson 5: India & ASEAN Growth Stories ──────────────────────────────────
-    {
-      id: "em-5",
-      title: "India & ASEAN Growth Stories",
-      description:
-        "India demographics and digital infrastructure, Nifty50/Sensex, ASEAN nations, RCEP, and EM investment vehicles",
-      icon: "TrendingUp",
+        "Understand how exchange rate volatility affects EM returns, the difference between local and USD-denominated bonds, and key hedging approaches",
+      icon: "DollarSign",
       xpReward: 90,
       difficulty: "intermediate",
       steps: [
         {
           type: "teach",
-          title: "India: The Demographic & Digital Story",
+          title: "Exchange Rate Volatility in EM",
           content:
-            "India has emerged as one of the most compelling structural growth stories in global markets:\n\n**Demographic Advantage:**\n- **Largest working-age population in the world** (surpassed China in 2023)\n- Median age ~28 years vs China's ~39 and Germany's ~47\n- A younger workforce means higher labor force growth, more consumers entering peak spending years, and longer runway for productivity gains\n- Unlike China, India's demographic dividend is still ahead, not behind\n\n**Digital Public Infrastructure (DPI):**\nIndia built a world-class digital stack that is enabling financial inclusion at scale:\n- **Aadhaar**: Biometric national ID covering 1.4+ billion people — eliminates fake identities, enables KYC in seconds\n- **UPI (Unified Payments Interface)**: Real-time interbank payment system processing ~10 billion transactions/month — the most-used digital payment system in the world\n- **DigiLocker**: Government document storage — tax returns, licenses, certificates all digital\n- **ONDC (Open Network for Digital Commerce)**: Open e-commerce protocol challenging Amazon/Flipkart monopoly\n\nThis infrastructure dramatically lowers the cost of delivering financial services, healthcare, and commerce to hundreds of millions of previously underserved Indians — creating massive investable opportunities.",
-          highlight: ["demographics", "working-age population", "Aadhaar", "UPI", "digital infrastructure", "financial inclusion", "India growth story"],
+            "Currency risk is one of the most significant — and frequently underestimated — components of emerging market investing. When you invest in EM assets, your total return has two components: (1) the local-currency asset return and (2) the currency return relative to your home currency.\n\n**Why EM currencies are more volatile:**\n- **Smaller, less liquid markets**: EM currency markets have lower trading volumes; large capital flows cause larger price moves\n- **Commodity dependence**: Many EM currencies (Brazilian Real, Russian Ruble, South African Rand) are heavily tied to commodity prices\n- **Current account imbalances**: Countries running large trade deficits depend on foreign capital inflows; when sentiment shifts, currencies can collapse rapidly\n- **Interest rate differentials**: High EM interest rates attract \"carry trade\" inflows, which can reverse violently during global risk-off episodes\n- **Political events**: Elections, policy changes, or geopolitical crises create sharp currency moves\n\n**Historical examples of EM currency crises:**\n- **1997 Asian Financial Crisis**: Thai Baht devalued 50%+; Indonesian Rupiah fell 80%+ against USD\n- **2018 Argentine Peso**: Lost 50% of value in one year amid IMF debt crisis\n- **2021 Turkish Lira**: Lost ~80% over 5 years as central bank kept rates low despite 80%+ inflation\n- **2022 Sri Lankan Rupee**: Collapsed 80%+ amid sovereign debt crisis\n\n**The currency math:**\nIf a Brazilian stock rises 20% in Reais but the Real depreciates 15% against USD, a USD-based investor earns approximately only 3% (20% × 0.85 ≈ 17%, minus the currency drag makes it roughly 3%). Currency effects can eliminate or even reverse positive local-currency returns.",
+          highlight: ["currency risk", "carry trade", "current account", "currency crisis", "local-currency return"],
         },
         {
           type: "teach",
-          title: "India Equity Markets & Sectoral Opportunities",
+          title: "Local vs USD-Denominated EM Bonds",
           content:
-            "**Indian Equity Markets:**\n- **BSE (Bombay Stock Exchange)**: Asia's oldest exchange (1875); home to the **Sensex** (30-stock index)\n- **NSE (National Stock Exchange)**: Larger by volume; home to the **Nifty 50** (50-stock index) — the primary institutional benchmark\n- India is now the **4th-largest equity market globally** by market cap (~$4.5T), overtaking Hong Kong\n- Foreign Portfolio Investors (FPIs) face ownership limits by sector; insurance capped at 49%, defense at 26% for foreign entities\n\n**Key Sectoral Opportunities:**\n\n**Financials (Largest sector, ~30% of Nifty):**\nIndia's banking penetration is still growing — rural India is significantly underbanked. HDFC Bank, ICICI Bank, and Kotak Mahindra have multi-decade runway. NBFCs (Non-Bank Financial Companies) serve segments too small for traditional banks.\n\n**IT Services (~15% of Nifty):**\nInfosys, TCS, Wipro, HCL Tech — global delivery of software engineering. India's IT sector benefits from English proficiency, STEM graduates (1.5M engineering graduates/year), and a 30–40% cost advantage vs US talent.\n\n**Consumer (~12%):**\nHindustan Unilever, ITC, Asian Paints — playing the rising middle class. India's consumer market is projected to become the 3rd-largest globally by 2027.\n\n**Valuation note**: India's premium P/E (~22× forward) vs peers like Brazil (~9×) reflects higher growth expectations and stronger institutional quality — investors pay up for the better growth + governance combination.",
-          highlight: ["Sensex", "Nifty 50", "BSE", "NSE", "HDFC Bank", "Infosys", "TCS", "financial inclusion", "IT services", "consumer"],
+            "EM fixed income investors must choose between two fundamentally different types of bonds — a choice that determines which risks they are taking on.\n\n**Hard currency bonds (USD-denominated):**\n- Also called \"external debt\" — issued in USD, EUR, or other major currencies\n- **No currency risk for USD investors**: You buy and receive principal/interest in USD\n- **Credit risk remains**: The issuing government or company can still default\n- **Benchmark**: JP Morgan EMBI (Emerging Market Bond Index)\n- **Typical buyers**: Global institutional investors, pension funds wanting EM yield without currency complexity\n- **Examples**: Brazil 10-year USD sovereign bond, Mexico corporate bonds in USD\n\n**Local currency bonds:**\n- Issued in the country's own currency (Brazilian Real, Indian Rupee, South African Rand, etc.)\n- **Full currency exposure**: Returns depend heavily on exchange rate movements\n- **Benchmark**: JP Morgan GBI-EM (Government Bond Index - Emerging Markets)\n- **Potential advantages**: Higher nominal yields, potential currency appreciation, exposure to local monetary policy\n- **Risks**: Currency depreciation, capital controls that prevent repatriation of funds\n\n**The yield premium:**\nLocal currency bonds typically offer significantly higher nominal yields than hard currency equivalents — but this premium often simply reflects expected currency depreciation. A 12% yield in Turkish lira bonds sounds attractive, but if the Lira depreciates 15% that year, your USD return is -3%.\n\n**Rule of thumb:** The yield differential between local-currency and USD bonds provides the market's implicit forecast of expected currency depreciation (uncovered interest parity).",
+          highlight: ["hard currency bonds", "local currency bonds", "EMBI", "GBI-EM", "capital controls", "yield premium"],
         },
         {
           type: "teach",
-          title: "ASEAN: Southeast Asia's Growth Engines",
+          title: "Hedging Currency Exposure",
           content:
-            "**ASEAN (Association of Southeast Asian Nations)** — 10 countries, ~680 million people, ~$3.6T combined GDP — is one of the world's most dynamic regional blocs.\n\n**Key Markets:**\n\n**Indonesia (~280M people):**\nLargest ASEAN economy; abundant natural resources (nickel, coal, palm oil). Jakarta Stock Exchange (IDX) dominated by banks, commodities, and consumer staples. Nickel reserves critical for EV batteries make Indonesia a strategic economy.\n\n**Vietnam (Manufacturing Hub):**\nBeneficiary of US-China decoupling — factories relocated from China to Vietnam (Nike, Samsung, Apple supply chain). Strong GDP growth (6–7%/year), young workforce, improving infrastructure. HOSE (Ho Chi Minh Stock Exchange) is frontier market-classified; upgrade to EM status pending.\n\n**Philippines (~115M people):**\nLarge remittance economy (overseas workers), English-speaking BPO hub, growing consumer market. PSEi index heavily weighted toward conglomerates (Ayala Corp, SM Investments, JG Summit).\n\n**Thailand:**\nMature ASEAN market; strong manufacturing (auto parts, electronics), tourism. SET index — one of ASEAN's most liquid markets.\n\n**ASEAN Integration:**\n- **RCEP (Regional Comprehensive Economic Partnership)**: World's largest free trade agreement by population and GDP — covers ASEAN+6 (China, Japan, South Korea, Australia, New Zealand). Reduces tariffs and harmonizes trade rules across 15 countries.\n- **ASEAN+3 (China, Japan, South Korea)**: Financial cooperation frameworks including Chiang Mai Initiative (currency swap agreements to prevent 1997-style crises)",
-          highlight: ["ASEAN", "Indonesia", "Vietnam", "Philippines", "Thailand", "RCEP", "ASEAN+3", "manufacturing hub", "decoupling beneficiary"],
+            "Investors can reduce or eliminate EM currency risk through hedging, but it comes at a cost. Understanding the mechanics and economics of currency hedging is essential.\n\n**Currency forward contracts:**\nThe most common hedging tool. You agree today to sell a foreign currency at a predetermined exchange rate at a future date.\n- **Example**: You hold Brazilian stocks worth 1 million BRL. You sell BRL forward for USD. If BRL depreciates, your forward contract profits offset stock losses.\n- **Cost**: The forward rate reflects interest rate differentials. High-interest-rate EM currencies have a forward discount, meaning you pay a significant hedging cost — often 5–10% per year for currencies like the Turkish Lira or Brazilian Real.\n\n**Currency ETF options:**\n- **Unhedged EM ETFs** (e.g., EEM): Full currency exposure, no additional cost\n- **Currency-hedged EM ETFs** (e.g., DBEM): Currency risk removed, but hedging cost embedded in expenses and drag\n\n**Should you hedge?**\n- **Short-term horizons**: Currency volatility dominates returns over 1–2 years; hedging reduces noise\n- **Long-term horizons**: Over 10+ years, valuation and economic fundamentals tend to dominate; currency effects partially revert\n- **High-yield EM currencies**: Hedging cost often exceeds the diversification benefit — paying 8% per year to hedge Turkish Lira exposure is rarely economic\n- **Low-yield EM currencies** (Chinese Yuan, South Korean Won): Cheaper to hedge, sometimes worth it\n\n**The practical reality:** Most long-term EM equity investors accept currency risk as part of the return stream, viewing EM currency exposure as a diversifying asset within a global portfolio.",
+          highlight: ["forward contracts", "hedging cost", "interest rate differential", "unhedged", "currency-hedged"],
         },
         {
-          type: "teach",
-          title: "EM Investment Vehicles: ETFs, Active Funds & ADRs",
-          content:
-            "**Broad EM ETFs:**\n- **VWO** (Vanguard FTSE Emerging Markets ETF): Largest EM ETF by AUM; ~0.08% expense ratio; tracks FTSE EM (excludes South Korea)\n- **EEM** (iShares MSCI Emerging Markets ETF): Tracks MSCI EM (includes South Korea); older, more liquid options market for hedging\n- **IEMG** (iShares Core MSCI Emerging Markets): Broader coverage than EEM; lower expense ratio\n\n**Single-Country ETFs:**\n- **INDA** (iShares MSCI India ETF): Pure India exposure; Nifty 50 and large-cap Indian stocks\n- **EWZ** (iShares MSCI Brazil ETF): Brazil; heavily weighted to commodities and financials\n- **FXI** (iShares China Large-Cap ETF): Top 50 Chinese H-shares; dominated by financials and tech\n- **MCHI** (iShares MSCI China ETF): Broader China coverage including A-shares\n- **EWT** (iShares MSCI Taiwan ETF): Taiwan; ~60% TSMC and semiconductor sector\n\n**Active EM Funds:**\nArgument for active management is stronger in EM than DM because:\n- Less efficient price discovery in smaller EM markets\n- Country allocation matters enormously (India vs Brazil can differ by 50%+ in a year)\n- Stock-level due diligence uncovers governance issues that indices don't screen for\n\n**Direct ADRs:**\nFor individual stock exposure: BABA (Alibaba), INFY (Infosys), VALE (Vale), PBR (Petrobras), ITUB (Itaú Unibanco). Higher conviction, higher concentration risk.",
-          highlight: ["VWO", "EEM", "IEMG", "INDA", "EWZ", "FXI", "EWT", "active management", "ADR", "single-country ETF"],
+          type: "quiz-mc",
+          question:
+            "An Indian equity fund returns +25% in Indian Rupee terms over one year. The Indian Rupee depreciates 8% against the US Dollar over the same period. What is the approximate USD return for a US-based investor?",
+          options: [
+            "Approximately +15%",
+            "Approximately +25%",
+            "Approximately +33%",
+            "Approximately +17%",
+          ],
+          correctIndex: 0,
+          explanation:
+            "The USD return = (1 + local return) × (1 + currency return) − 1. Here: (1.25) × (0.92) − 1 = 1.15 − 1 = +15%. The 8% currency depreciation significantly reduces the 25% local return. This illustrates why currency risk is a critical component of EM investing — even strong local-currency performance can be substantially eroded by exchange rate moves.",
+          difficulty: 2,
         },
         {
           type: "quiz-scenario",
           scenario:
-            "An investor compares two EM opportunities: India's Nifty 50 index trades at a forward P/E of 22×, with GDP growth of 7%/year and a Rule of Law score of 55/100. Brazil's Bovespa index trades at a forward P/E of 9×, with GDP growth of 2.5%/year and a Rule of Law score of 45/100.",
-          question: "Which market is likely the better value opportunity, and what is the strongest argument?",
+            "Maria is a USD-based investor holding Turkish government bonds denominated in Turkish Lira. The bonds pay a 20% annual yield. Over the year, the Turkish Lira depreciates 25% against the US Dollar. Turkey's inflation rate is 60%.",
+          question: "What is the approximate USD return on Maria's investment, and how should she interpret the high yield?",
           options: [
-            "India at 22× is arguably better value despite the higher P/E — faster growth, better governance, digital infrastructure, and a stronger structural growth story justify the premium",
-            "Brazil at 9× is definitively better value — lower P/E always means better value regardless of growth",
-            "Both are identical in value because P/E × growth rate is equal for both",
-            "Neither is investable because both have Rule of Law scores below 75/100",
+            "USD return ≈ −10%; the high yield reflected expected currency depreciation, not real purchasing power gain",
+            "USD return ≈ +20%; the yield is pure profit regardless of currency moves",
+            "USD return ≈ +45%; combining yield and some currency appreciation",
+            "USD return ≈ −5%; the bond is risk-free since it is a government bond",
           ],
           correctIndex: 0,
           explanation:
-            "This is the classic growth vs valuation debate. A 9× P/E sounds cheap, but if Brazil grows at 2.5% with weaker institutions, the intrinsic value may not be higher than India at 22× with 7% growth and improving governance. Using a PEG ratio: India = 22/7 = 3.1×; Brazil = 9/2.5 = 3.6× — India actually appears cheaper on a growth-adjusted basis. Additionally, India's superior Rule of Law, digital infrastructure advantages, and demographic tailwinds suggest the growth rate is more sustainable. However, Brazil's commodity exposure (iron ore, oil, soybeans, lithium) provides a different kind of value — a portfolio might hold both for diversification.",
+            "USD return = (1.20) × (0.75) − 1 = 0.90 − 1 = −10%. Despite a 20% nominal yield, the 25% currency depreciation produces a negative USD return. This illustrates the \"yield illusion\" in high-EM currencies: extremely high nominal yields typically reflect high inflation and expected currency depreciation, not genuine return. The uncovered interest parity theory predicts exactly this — high-yield currencies tend to depreciate, eliminating the nominal yield advantage for foreign investors.",
+          difficulty: 2,
+        },
+      ],
+    },
+
+    // ─── Lesson 3: Political & Regulatory Risk ─────────────────────────────────
+    {
+      id: "emerging-markets-investing-3",
+      title: "⚖️ Political & Regulatory Risk",
+      description:
+        "Navigate capital controls, expropriation threats, governance scores, and how to assess the rule of law before investing in a country",
+      icon: "Shield",
+      xpReward: 85,
+      difficulty: "intermediate",
+      steps: [
+        {
+          type: "teach",
+          title: "Capital Controls and Expropriation",
+          content:
+            "Political risk encompasses the range of government actions that can impair the value of foreign investments. Two of the most severe forms are capital controls and expropriation.\n\n**Capital controls:**\nGovernments restrict the movement of money across their borders to defend currencies, prevent capital flight, or manage financial crises.\n\n**Types of capital controls:**\n- **Inflow controls**: Taxes or restrictions on foreign money entering (e.g., Brazil's IOF tax on foreign bond purchases)\n- **Outflow controls**: Limits on money leaving — the most dangerous for investors\n- **Repatriation restrictions**: Profits can be earned in local currency but converting to USD requires government approval\n- **Exchange rate controls**: Multiple official exchange rates; the \"official\" rate differs greatly from the market rate\n\n**Real examples:**\n- **Argentina (2019)**: Strict capital controls imposed overnight; investors holding Argentine assets could not easily exit\n- **Russia (2022)**: Complete asset freeze; Western investors holding Russian stocks saw them become effectively worthless after sanctions\n- **China**: The RMB has a managed exchange rate; foreign investors access Chinese equities through restricted channels\n\n**Expropriation:**\nGovernment seizure of private assets — with or without compensation. Forms include:\n- **Direct nationalization**: Government takes 100% ownership (Venezuela nationalized oil, steel, and banking sectors)\n- **Creeping expropriation**: Regulations progressively squeeze foreign investors (high taxes, price controls, forced local partnerships)\n- **Regulatory taking**: New laws make a business uneconomical without formal seizure\n\n**Protection mechanisms:**\n- Bilateral Investment Treaties (BITs): Legal agreements between countries providing minimum investor protections\n- ICSID arbitration: International Centre for Settlement of Investment Disputes — foreign investors can sue governments\n- Political risk insurance: Products from MIGA (World Bank) or private insurers",
+          highlight: ["capital controls", "expropriation", "repatriation", "nationalization", "bilateral investment treaties"],
+        },
+        {
+          type: "teach",
+          title: "Governance Scores and Rule of Law",
+          content:
+            "Quantifying political risk is challenging but essential. Several frameworks help investors assess country-level governance quality.\n\n**World Bank Worldwide Governance Indicators (WGI):**\nSix dimensions scored from −2.5 (weakest) to +2.5 (strongest):\n1. **Voice and Accountability**: Political freedoms, civil liberties, free press\n2. **Political Stability**: Likelihood of government overthrow or political violence\n3. **Government Effectiveness**: Quality of public services and bureaucracy\n4. **Regulatory Quality**: Ability to formulate sound policies for private sector development\n5. **Rule of Law**: Contract enforcement, property rights, courts, police\n6. **Control of Corruption**: Extent to which public power is exercised for private gain\n\n**Why rule of law matters most for investors:**\n- Without enforceable contracts, business agreements are meaningless\n- Without property rights protection, minority shareholders can be expropriated by controlling shareholders\n- Without independent courts, disputes with the government cannot be fairly resolved\n\n**Transparency International Corruption Perceptions Index:**\nAnnual ranking of 180+ countries. Chronic high corruption in countries like Venezuela (#177), Yemen (#176), and Syria (#180) correlates with poor investor outcomes.\n\n**Practical use of governance scores:**\n- Countries with improving governance scores tend to attract capital inflows and see equity reratings\n- Countries with deteriorating governance trigger capital flight\n- Governance trajectories matter as much as current levels — a corrupt country improving is often investable; a well-governed country regressing can be a trap\n\n**The governance discount:**\nEM equities often trade at 30–60% lower valuations than equivalent developed-market stocks — partly reflecting genuine governance risk and partly reflecting investor psychology.",
+          highlight: ["World Bank WGI", "rule of law", "corruption", "governance score", "governance discount"],
+        },
+        {
+          type: "quiz-tf",
+          statement:
+            "A country with high nominal interest rates and improving GDP growth is always a safe investment destination, regardless of its governance scores.",
+          correct: false,
+          explanation:
+            "High interest rates and GDP growth are insufficient safeguards against investment losses in poorly governed countries. Governance risks — including sudden capital controls, expropriation, corruption-driven contract disputes, or political instability — can cause total loss of invested capital regardless of economic performance metrics. Venezuela and Zimbabwe demonstrated strong nominal GDP growth during certain periods while simultaneously destroying investor wealth through expropriation and hyperinflation. Governance quality is a prerequisite for sustainable investment returns.",
+          difficulty: 1,
+        },
+        {
+          type: "quiz-mc",
+          question:
+            "Argentina imposes overnight capital controls, preventing foreign investors from converting Argentine Pesos to US Dollars. What risk category does this event represent, and what is its primary impact on investors?",
+          options: [
+            "Political risk — capital controls trap investors in local currency, preventing repatriation of funds",
+            "Credit risk — the government is defaulting on its bonds",
+            "Liquidity risk — the stock exchange has temporarily suspended trading",
+            "Market risk — equity valuations have declined due to macroeconomic conditions",
+          ],
+          correctIndex: 0,
+          explanation:
+            "Capital controls are a form of political risk — a government action that impairs investor rights. The primary impact is the inability to repatriate funds: investors may hold profitable local-currency positions but cannot convert those profits back to their home currency. This creates a \"trapped\" situation where accounting gains do not translate to real returns. Capital controls have historically been implemented by Argentina, Russia, Venezuela, Malaysia (1998), Iceland (2008), and Cyprus (2013) during periods of balance of payments stress.",
+          difficulty: 2,
+        },
+      ],
+    },
+
+    // ─── Lesson 4: EM Equity Strategies ──────────────────────────────────────
+    {
+      id: "emerging-markets-investing-4",
+      title: "📈 EM Equity Strategies",
+      description:
+        "Explore country allocation approaches, sector tilts in EM, and whether the small-cap premium exists in emerging markets",
+      icon: "BarChart2",
+      xpReward: 95,
+      difficulty: "intermediate",
+      steps: [
+        {
+          type: "teach",
+          title: "Country Allocation in EM Portfolios",
+          content:
+            "Country selection is the dominant driver of EM equity returns — far more so than stock selection within a country. Getting the country allocation right is the single most important EM investment decision.\n\n**Why country matters more than stock selection in EM:**\n- Within a country, stocks tend to rise and fall together during currency crises, recessions, or political upheaval\n- A brilliant stock pick in Venezuela returned nothing when the country collapsed; mediocre stocks in Vietnam returned 5× over a decade\n- Country-specific factors (interest rate policy, regulatory environment, currency strength) create correlation among all domestic stocks\n\n**Frameworks for country allocation:**\n\n**1. Valuation-based (cyclically adjusted P/E — CAPE):**\n- Buy countries with low CAPE ratios relative to history and global peers\n- Historically, buying the 10 cheapest EM countries by CAPE has outperformed buying the 10 most expensive\n- Risk: cheap countries are often cheap for good reasons (governance, political instability)\n\n**2. Macro momentum:**\n- Overweight countries with improving current account balances, falling inflation, and rising earnings revisions\n- Underweight deteriorating macro fundamentals\n\n**3. Political risk calendar:**\n- EM elections often cause volatility followed by recovery; reducing exposure before uncertain elections and adding after can add value\n- Policy pivots (new central bank governor, trade agreements) create re-rating opportunities\n\n**4. Benchmark-relative:**\n- Passive investors accept MSCI EM weights\n- Active managers express conviction by over/underweighting countries vs. the benchmark\n\n**Concentration vs. diversification tradeoff:**\nA fully diversified 25-country EM portfolio reduces country risk but also dilutes the impact of correct country calls. Most successful EM active managers maintain meaningful concentration: 4–8 countries comprising 70%+ of the portfolio.",
+          highlight: ["country allocation", "CAPE", "macro momentum", "political risk", "benchmark-relative"],
+        },
+        {
+          type: "teach",
+          title: "Sector Tilts and EM Growth Themes",
+          content:
+            "EM equity markets have a distinctive sector structure that differs significantly from developed markets, creating both opportunities and concentration risks.\n\n**EM sector composition vs. developed markets:**\n- **Technology**: Large weight due to Taiwan (TSMC, MediaTek) and South Korea (Samsung, SK Hynix) — semiconductor dominance\n- **Financials**: Large weight in countries like India, Brazil, China — banking sectors still expanding to serve unbanked populations\n- **Energy & Materials**: Significant in commodity-exporting EM (Brazil, Saudi Arabia, South Africa, Russia)\n- **Consumer Discretionary**: Growing rapidly as middle-class expands — e-commerce, autos, leisure\n- **Healthcare**: Underpenetrated sector growing with rising incomes and aging populations\n- **Technology underrepresentation**: Innovative EM tech companies often list in the US (Alibaba, Pinduoduo) rather than locally, reducing local market exposure\n\n**Structural EM growth themes:**\n1. **Middle class expansion**: 1.4 billion people expected to join the middle class by 2030, predominantly in Asia and Africa — driving consumer spending on branded goods, financial services, travel\n2. **Financial inclusion**: Smartphone-enabled banking, microfinance, insurance penetration — massive addressable market in Southeast Asia, Africa, India\n3. **Infrastructure buildout**: Roads, ports, power grids, digital infrastructure still being built — decades of capex ahead in Africa and South Asia\n4. **Nearshoring beneficiaries**: Mexico, Vietnam, Indonesia benefit as companies diversify supply chains away from China\n5. **Energy transition**: EM countries like Chile (lithium), Congo (cobalt), Indonesia (nickel) control critical battery materials\n\n**Sector tilt considerations:**\n- EM financials carry additional political risk (government directed lending, state ownership)\n- EM commodity stocks correlate highly with global commodity prices — adding China-correlated cyclicality",
+          highlight: ["semiconductor", "middle class", "financial inclusion", "nearshoring", "energy transition"],
+        },
+        {
+          type: "teach",
+          title: "The Small-Cap EM Premium",
+          content:
+            "Academic research documents a **small-cap premium** in developed markets — smaller companies have historically outperformed large caps over long periods. Does this premium exist in emerging markets? The evidence is nuanced.\n\n**Evidence for the EM small-cap premium:**\n- The MSCI EM Small Cap Index has outperformed the MSCI EM (large/mid cap) index over many long-term periods\n- Structural reasons for outperformance: less analyst coverage means more pricing inefficiencies, local companies can exploit domestic growth opportunities not accessible to multinationals\n- Better alignment with domestic consumption themes — local brands, regional banks, domestic infrastructure\n\n**Evidence against / complications:**\n- **Liquidity risk**: EM small caps are thinly traded; bid-ask spreads can be enormous; exiting positions in a crisis can be impossible\n- **Governance premium**: Small EM companies often have weaker corporate governance, higher expropriation risk, less transparent financial reporting\n- **Survivorship bias**: Many small EM companies that went bankrupt or were delisted are excluded from historical return databases, overstating true performance\n- **Transaction costs**: High trading costs in small EM stocks erode theoretical premium substantially\n\n**Frontier markets vs. EM small caps:**\nSome investors access early-stage growth through **frontier markets** — the next tier below EM (Vietnam, Nigeria, Kenya, Morocco, Bangladesh). Frontier markets can offer:\n- Lower correlation with developed and EM markets (genuine diversification)\n- Access to early-stage economic development\n- Extremely illiquid, high-risk — currency crises, governance failures are common\n\n**Practical framework:**\nThe EM small-cap premium is real but only capturable by investors with long time horizons, high risk tolerance, and the operational capability to trade in illiquid markets. For most investors, a core large-cap EM position with selective small-cap satellite positions is appropriate.",
+          highlight: ["small-cap premium", "liquidity risk", "governance premium", "frontier markets", "analyst coverage"],
+        },
+        {
+          type: "quiz-mc",
+          question:
+            "Which single factor has historically been the most important driver of returns for an emerging market equity portfolio?",
+          options: [
+            "Country allocation — which countries are owned and at what weights",
+            "Individual stock selection within each country",
+            "Sector tilts between technology and consumer stocks",
+            "Timing of purchases relative to the global economic cycle",
+          ],
+          correctIndex: 0,
+          explanation:
+            "Country allocation dominates EM equity returns. Within any given country, stocks tend to be highly correlated with each other — they rise and fall together in response to currency moves, political events, interest rate changes, and macro conditions. The decision of how much to allocate to China vs. India vs. Brazil vs. Vietnam has historically explained far more return variation than stock selection within those countries. This is why top EM investors spend the majority of their research on country-level macro analysis.",
+          difficulty: 1,
+        },
+        {
+          type: "quiz-tf",
+          statement:
+            "Investors should always prefer EM small-cap stocks over large-cap EM stocks because academic research proves small caps consistently outperform with minimal additional risk.",
+          correct: false,
+          explanation:
+            "The small-cap EM premium exists in academic studies but comes with substantial practical complications. EM small caps carry significant additional risks: extreme illiquidity making exits in crises nearly impossible, weaker governance and financial transparency, higher transaction costs that erode theoretical returns, and survivorship bias in historical data. The premium is not \"minimal risk\" — it is compensation for taking on very real liquidity and governance risks. For most investors without specialized EM small-cap infrastructure, the premium is difficult or impossible to capture in practice.",
+          difficulty: 2,
+        },
+      ],
+    },
+
+    // ─── Lesson 5: EM Fixed Income ─────────────────────────────────────────────
+    {
+      id: "emerging-markets-investing-5",
+      title: "🏦 Emerging Market Fixed Income",
+      description:
+        "Master sovereign bonds, local currency debt, EM corporate credit, and how to assess default risk in developing economies",
+      icon: "FileText",
+      xpReward: 100,
+      difficulty: "advanced",
+      steps: [
+        {
+          type: "teach",
+          title: "Sovereign Bonds and Default Risk",
+          content:
+            "**EM sovereign bonds** are debt instruments issued by national governments of developing countries. They offer higher yields than developed-market government bonds but carry default risk that DM sovereigns typically do not.\n\n**Why EM sovereigns default:**\n- **Revenue shocks**: Commodity-dependent economies (oil, copper, coffee) face volatile revenues when commodity prices fall\n- **Currency mismatch**: Debt in USD, revenue in local currency — if the currency depreciates sharply, the debt burden becomes unserviceable\n- **Rollover risk**: Short-term debt that cannot be refinanced as creditors lose confidence\n- **Political decisions**: Some sovereigns can repay but choose not to — selective defaults driven by political calculations\n\n**Historical sovereign defaults:**\n- **Argentina (2001, 2014, 2020)**: Serial defaulter; $100 billion 2001 default was the largest in history at the time\n- **Russia (1998)**: Default on domestic ruble-denominated debt shocked global markets\n- **Ecuador (2008)**: First \"strategic\" default — the government could pay but chose not to\n- **Zambia (2020), Sri Lanka (2022)**: Covid/commodity shock defaults\n\n**Credit ratings and spreads:**\n- Rating agencies (Moody's, S&P, Fitch) assess sovereign creditworthiness — from investment grade (BBB− and above) to high yield (\"junk\")\n- **Spread**: The yield premium over US Treasuries reflects default risk. A 500bp spread on a 10-year bond means investors demand 5% additional annual yield as default compensation\n- **EMBI spread**: JP Morgan's index spread over US Treasuries is the key barometer of EM debt market stress — rising spreads signal deteriorating conditions\n\n**IMF as lender of last resort:**\nThe International Monetary Fund provides emergency financing to sovereigns, typically with economic reform conditions attached. An IMF program often signals serious distress but also provides a potential floor for recovery.",
+          highlight: ["sovereign default", "currency mismatch", "EMBI spread", "credit rating", "IMF", "rollover risk"],
+        },
+        {
+          type: "teach",
+          title: "Local Currency Bonds and the GBI-EM",
+          content:
+            "**Local currency EM bonds** (government bonds issued in the country's own currency) represent a distinct asset class with different risk/return characteristics from hard currency bonds.\n\n**JP Morgan GBI-EM Index:**\nThe benchmark for local currency EM government bonds. As of 2025, it includes bonds from ~18–20 countries including Brazil, Mexico, Indonesia, Poland, South Africa, Thailand, and others. China was added to the GBI-EM in 2020, now representing ~10% of the index.\n\n**Key features of local currency bonds:**\n- **Higher nominal yields**: Reflect local inflation and exchange rate expectations\n- **Full currency exposure**: The dominant risk factor over most time horizons\n- **Duration risk**: Longer-maturity local bonds carry interest rate sensitivity\n- **Inflation linkage**: Some countries issue inflation-linked local bonds (Brazil's NTN-Bs, Mexico's Udibonos) providing inflation protection in local terms\n\n**Why hold local currency bonds?**\n1. **Yield advantage**: Even after expected depreciation, some investors find local bonds offer positive risk-adjusted returns vs. Treasuries\n2. **Currency appreciation potential**: If EM currencies appreciate (driven by commodity booms, improving current accounts), the currency gain amplifies already attractive yields\n3. **Monetary policy divergence**: When EM central banks cut rates ahead of developed markets, local bond prices rise\n4. **Correlation benefits**: Local EM bond returns have historically shown low correlation with US Treasuries and investment-grade bonds\n\n**Inclusion dynamics:**\nWhen a country's bonds are added to major indices (GBI-EM, Bloomberg EM indices), passive funds are mechanically forced to buy — this index inclusion process can be a positive catalyst for local bond prices.",
+          highlight: ["GBI-EM", "local currency", "inflation-linked", "duration risk", "index inclusion", "currency appreciation"],
+        },
+        {
+          type: "teach",
+          title: "EM Corporate Credit",
+          content:
+            "**EM corporate bonds** — debt issued by companies in emerging market countries — represent the fastest-growing segment of the EM fixed income universe, with the market exceeding $2 trillion in outstanding hard-currency debt.\n\n**Characteristics of EM corporate credit:**\n- Most EM corporate bonds are issued in USD (hard currency) — this is a deliberate choice to access deeper investor pools\n- The market spans investment grade (e.g., Saudi Aramco, PEMEX, Petrobras when in favor) through high yield and distressed names\n- **Sectors**: Energy, metals/mining, banks, real estate, and utilities dominate\n- **Benchmark**: JP Morgan CEMBI (Corporate Emerging Market Bond Index)\n\n**Double subordination risk:**\nEM corporate bonds carry TWO layers of credit risk:\n1. **Company-specific credit risk**: The company's ability to service its debt\n2. **Sovereign ceiling risk**: If the sovereign defaults, the company may face capital controls making it impossible to transfer USD to bondholders even if the company itself remains solvent\n\nThis is why EM corporates are rarely rated above their sovereign ceiling — a Mexican company cannot sustainably be AAA if Mexico is BBB.\n\n**The EM corporate opportunity set:**\n- **Investment grade EM corps**: Often offer 50–150bp yield premium over US IG for the same rating — reflects EM discount rather than higher fundamental risk for large, well-known issuers\n- **EM high yield**: Mix of leveraged buyouts (rare in EM), commodity companies, real estate developers (Chinese property sector 2021–2023 crisis was a notable example)\n\n**Chinese real estate crisis (2021–2023) case study:**\nEvergrande, Country Garden, and dozens of Chinese property developers defaulted on $500B+ in bonds — the largest EM credit event in decades. This showed how sector concentration and regulatory risk (China's \"three red lines\" policy) can create systemic EM credit crises.",
+          highlight: ["EM corporate bonds", "CEMBI", "sovereign ceiling", "double subordination", "Evergrande", "investment grade"],
+        },
+        {
+          type: "quiz-mc",
+          question:
+            "A Mexican corporation with strong financials wants to issue bonds. Mexico's sovereign credit rating is BBB. Which statement best describes the likely rating and yield of the Mexican corporate bond?",
+          options: [
+            "The corporate bond will likely be rated at or below BBB due to sovereign ceiling constraints, with a yield spread above comparable US BBB corporates",
+            "The corporate bond can receive any rating regardless of the sovereign, based solely on the company's financials",
+            "The corporate bond will be rated AAA if the company has no debt and strong cash flows",
+            "The corporate bond will have a lower yield than US Treasury bonds if the company is highly profitable",
+          ],
+          correctIndex: 0,
+          explanation:
+            "The sovereign ceiling principle means that a company operating in a country generally cannot be rated higher than its sovereign — a Mexican company is unlikely to be rated above BBB (Mexico's sovereign rating) because sovereign default would likely impair the company's ability to service foreign currency debt (capital controls, economic disruption). Additionally, EM corporates typically carry a yield premium of 50–150 basis points over developed-market peers at the same rating, reflecting the EM discount.",
+          difficulty: 2,
+        },
+        {
+          type: "quiz-tf",
+          statement:
+            "An emerging market country that has previously defaulted on its sovereign debt cannot access international bond markets again and is permanently excluded from the EMBI index.",
+          correct: false,
+          explanation:
+            "Serial defaulters can and do return to international capital markets. Argentina has defaulted multiple times (1989, 2001, 2014, 2020) yet continues to issue international bonds and remains tracked in EM indices. The key mechanism is debt restructuring: creditors accept losses in exchange for new bonds with more sustainable terms, and the country eventually regains market access. Investors in post-default bonds sometimes earn exceptional returns if recovery values exceed the distressed prices. The IMF program, creditor negotiations, and demonstrated fiscal reform are the typical pathway back to market access.",
+          difficulty: 2,
+        },
+      ],
+    },
+
+    // ─── Lesson 6: Building an EM Portfolio ───────────────────────────────────
+    {
+      id: "emerging-markets-investing-6",
+      title: "🗺️ Building an EM Portfolio",
+      description:
+        "Put it all together — portfolio construction principles, benchmark vs. active approaches, frontier market access, and sizing EM within a global allocation",
+      icon: "PieChart",
+      xpReward: 110,
+      difficulty: "advanced",
+      steps: [
+        {
+          type: "teach",
+          title: "Diversification Principles in EM Portfolios",
+          content:
+            "Building an EM portfolio requires applying diversification principles that differ from developed-market portfolio construction — correlations are higher, risks are more systemic, and liquidity can evaporate suddenly.\n\n**Sources of return and risk in EM portfolios:**\n1. **Beta to global equities**: EM equities correlate ~0.7–0.8 with global developed equities in normal markets, rising toward 1.0 in crises (\"correlation goes to 1 in a crash\")\n2. **EM-specific risk premium**: The additional return demanded for EM's higher volatility, governance risk, and currency risk\n3. **Country-specific alpha**: Returns from correct country allocation vs. benchmark\n4. **Stock selection alpha**: Rarer — requires deep local market knowledge\n\n**Diversification across EM dimensions:**\n- **Geographical diversification**: Spread across Asia, Latin America, EMEA (Europe, Middle East, Africa) — these regions have different economic drivers and crisis sensitivities\n- **Asset class diversification**: Combining EM equities, hard currency bonds, and local currency bonds creates a more resilient EM portfolio\n- **Sector diversification**: Avoid concentration in one sector (e.g., China tech, Brazilian banks, Gulf energy)\n- **Currency diversification**: A mix of commodity currencies (BRL, ZAR), growth currencies (INR, IDR), and relatively stable currencies (CNY, KRW) creates balance\n\n**Correlation traps in EM:**\n- During the 2008 Global Financial Crisis, virtually all EM assets fell simultaneously, regardless of fundamentals\n- During the 2013 \"Taper Tantrum\" (Fed signaling rate increases), all EM currencies fell together despite divergent economies\n- EM diversification benefits are greatest in calm markets; they diminish precisely when you need them most\n\n**Position sizing:**\n- Country concentration should reflect conviction and liquidity — allocating more than 15–20% to a single country in a diversified EM fund creates excessive single-country risk\n- Frontier market positions should be sized at 2–5% maximum due to liquidity constraints",
+          highlight: ["beta", "EM-specific premium", "geographical diversification", "correlation trap", "position sizing"],
+        },
+        {
+          type: "teach",
+          title: "Benchmark vs. Active EM Management",
+          content:
+            "One of the most consequential decisions for EM investors is whether to invest passively (track the MSCI EM index) or actively (pay higher fees for a manager attempting to beat the benchmark).\n\n**The case for passive EM investing:**\n- **Lower costs**: Passive EM ETFs charge 0.10–0.25% expense ratios; active EM funds charge 0.75–1.5%+\n- **Broad diversification**: Automatic exposure to all index countries and sectors\n- **Difficult to beat**: Over 10-year periods, the majority of active EM managers underperform net of fees\n- **Simplicity**: No manager selection risk — a persistent source of return destruction\n\n**The case for active EM management:**\n- **Market inefficiency**: EM markets are less researched, information asymmetry is greater — skill has more opportunity to add value\n- **Country allocation flexibility**: Passive funds cannot avoid poorly governed countries or reduce China when regulatory risk is high; active managers can\n- **Benchmark construction issues**: The MSCI EM is backward-looking (adding countries after they have already run up) and includes state-owned enterprises with poor governance\n- **Liquidity management**: Active managers can avoid the most illiquid names that passive funds must hold\n- **Factor tilts**: Systematic value, momentum, or quality tilts within EM can add return with modest cost increase (\"smart beta\")\n\n**Evidence on active EM performance:**\nActive EM managers have historically had better relative performance vs. passive than active developed-market managers — but \"better\" means approximately 40–45% beat their benchmark over 10 years vs. 20–25% in US large caps. Most still underperform.\n\n**Hybrid approach:**\n- Core position (60–70%): Low-cost passive EM ETF\n- Satellite positions (30–40%): Active fund with conviction country tilts, or direct single-country ETFs for targeted expression",
+          highlight: ["passive investing", "active management", "expense ratio", "benchmark construction", "smart beta", "hybrid approach"],
+        },
+        {
+          type: "teach",
+          title: "Sizing EM in a Global Portfolio",
+          content:
+            "How much of a global equity portfolio should be allocated to emerging markets? This decision involves balancing growth potential, risk management, and investor circumstances.\n\n**Market-cap weight baseline:**\nEM equities represent approximately 10–12% of global market capitalization (MSCI ACWI benchmark). A pure market-cap-weighted investor holds this proportion automatically.\n\n**Arguments for overweighting EM (15–30%):**\n- Superior long-term GDP growth prospects\n- Younger demographics providing economic tailwinds\n- Attractive valuations: EM often trades at 40–60% discount to US equities on CAPE/P/E basis\n- Underweighting EM means missing the majority of the world's economic growth\n- Currency diversification benefit for USD-heavy investors\n\n**Arguments for underweighting EM (5–10%):**\n- Higher volatility: EM equities have historically shown 25–30% annualized volatility vs. 15–20% for US equities\n- Currency drag: USD-based investors have historically faced negative currency returns from EM exposure\n- Governance and political risk requiring constant monitoring\n- The growth paradox: high EM GDP growth has not reliably produced high EM equity returns\n\n**Practical allocation guidelines:**\n- **Conservative investor** (short horizon, low risk tolerance): 5–8% EM, primarily large-cap hard currency denominated\n- **Balanced investor** (10+ year horizon): 10–15% EM, split between equity and hard currency bonds\n- **Growth-oriented investor** (long horizon, high risk tolerance): 15–25% EM, including local currency bonds and small cap\n- **Specialist EM investor**: 50%+ with single-country and frontier market positions\n\n**The rebalancing benefit:**\nEM's higher volatility creates rebalancing opportunities — systematically buying more EM after large drawdowns (sell-offs of 30–50% are common in EM crises) and trimming after strong runs has added meaningful return in historical simulations.",
+          highlight: ["market-cap weight", "overweighting", "underweighting", "rebalancing", "CAPE discount", "volatility"],
+        },
+        {
+          type: "quiz-scenario",
+          scenario:
+            "David is a 35-year-old investor with a 30-year investment horizon, moderate risk tolerance, and a globally diversified portfolio. He currently holds 70% US equities, 20% international developed equities, and 10% US bonds. He has no EM exposure. Global EM equities trade at a 50% discount to US equities on a CAPE basis.",
+          question: "What EM allocation strategy best suits David's situation, and what are the key implementation considerations?",
+          options: [
+            "Add 10–15% EM equity via a low-cost passive ETF as a core position, with a small satellite in an active EM fund; rebalance annually; accept currency volatility given the 30-year horizon",
+            "Allocate 50% of his portfolio to EM immediately to maximize exposure to the cheapest asset class by CAPE",
+            "Avoid EM entirely because the valuation discount proves these markets have permanently inferior governance",
+            "Only buy EM bonds instead of equities to avoid currency risk while gaining EM exposure",
+          ],
+          correctIndex: 0,
+          explanation:
+            "For a 35-year-old with a 30-year horizon and moderate risk tolerance, a 10–15% EM equity allocation is appropriate — meaningful enough to capture the growth premium and CAPE discount, but not so concentrated as to dominate risk. A passive core (low cost, broad diversification) with an active satellite (flexibility on country allocation) is a sensible hybrid. Currency volatility matters less over 30 years as shorter-term fluctuations tend to revert. Annual rebalancing ensures he systematically buys more EM after drawdowns. Allocating 50% would be too aggressive for \"moderate\" risk tolerance; avoiding EM entirely would miss significant potential return from the valuation discount.",
           difficulty: 3,
+        },
+        {
+          type: "quiz-mc",
+          question:
+            "An investor compares two options: (A) a passive MSCI EM ETF with 0.15% expense ratio and (B) an active EM fund with 1.20% expense ratio. The active fund's manager has beaten the benchmark by an average of 0.90% per year over the past 10 years. Which option has delivered higher net-of-fee returns to investors?",
+          options: [
+            "The passive ETF — the active fund's 0.90% gross outperformance is more than offset by the 1.05% fee difference (1.20% − 0.15%), resulting in net underperformance of 0.15%/year",
+            "The active fund — 0.90% outperformance proves skill and will continue compounding",
+            "Both deliver identical returns since the active fund's alpha exactly offsets its higher fees",
+            "The active fund because past outperformance is the best predictor of future performance",
+          ],
+          correctIndex: 0,
+          explanation:
+            "The fee difference is 1.05% per year (1.20% − 0.15%). The active fund's 0.90% gross outperformance does not overcome this 1.05% cost gap — resulting in net underperformance of approximately 0.15% per year. Over 30 years, 0.15%/year compounded represents a meaningful wealth gap. This illustrates why fee minimization is critical: past outperformance does not predict future outperformance (studies show minimal persistence in active manager alpha), and the fee gap compounds relentlessly. Most investors are better served by the lower-cost passive option unless they have strong evidence of a manager's sustained edge.",
+          difficulty: 2,
         },
       ],
     },
