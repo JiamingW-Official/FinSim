@@ -209,45 +209,9 @@ function calcOBV(bars: Bar[]): number[] {
   return obv;
 }
 
-// ── SVG scale helpers ──────────────────────────────────────────────────────────
-
-function scaleX(i: number, n: number, W: number, padL: number, padR: number) {
-  return padL + (i / (n - 1)) * (W - padL - padR);
-}
-
-function scaleY(val: number, minV: number, maxV: number, H: number, padT: number, padB: number) {
-  return padT + ((maxV - val) / (maxV - minV || 1)) * (H - padT - padB);
-}
-
-function polylinePts(
-  values: number[],
-  W: number,
-  H: number,
-  padL: number,
-  padR: number,
-  padT: number,
-  padB: number
-): string {
-  const valid = values.filter((v) => !isNaN(v));
-  const minV = Math.min(...valid);
-  const maxV = Math.max(...valid);
-  const pts: string[] = [];
-  let idx = 0;
-  values.forEach((v) => {
-    if (!isNaN(v)) {
-      const x = scaleX(idx, valid.length, W, padL, padR);
-      const y = scaleY(v, minV, maxV, H, padT, padB);
-      pts.push(`${x.toFixed(1)},${y.toFixed(1)}`);
-      idx++;
-    }
-  });
-  return pts.join(" ");
-}
-
 // ── Shared synthetic data (seed=7531) ─────────────────────────────────────────
 
 const BARS_60 = generateBars(60, 7531, 150);
-const CLOSES_60 = BARS_60.map((b) => b.close);
 const BARS_100 = generateBars(100, 7531, 150);
 
 // ── Pattern definitions ───────────────────────────────────────────────────────

@@ -975,22 +975,31 @@ export default function DividendsPage() {
 
       {/* Tabs */}
       <Tabs defaultValue="stocks">
-        <TabsList className="grid w-full grid-cols-4">
+        <TabsList className="grid w-full grid-cols-5">
           <TabsTrigger value="stocks" className="flex items-center gap-1.5 text-xs sm:text-sm">
             <TrendingUp className="w-3.5 h-3.5" />
-            <span>Dividend Stocks</span>
+            <span className="hidden sm:inline">Dividend Stocks</span>
+            <span className="sm:hidden">Stocks</span>
           </TabsTrigger>
           <TabsTrigger value="calculator" className="flex items-center gap-1.5 text-xs sm:text-sm">
             <DollarSign className="w-3.5 h-3.5" />
-            <span>Income Calculator</span>
+            <span className="hidden sm:inline">Income Calculator</span>
+            <span className="sm:hidden">Calc</span>
           </TabsTrigger>
           <TabsTrigger value="calendar" className="flex items-center gap-1.5 text-xs sm:text-sm">
             <Calendar className="w-3.5 h-3.5" />
-            <span>Ex-Div Calendar</span>
+            <span className="hidden sm:inline">Ex-Div Calendar</span>
+            <span className="sm:hidden">Calendar</span>
           </TabsTrigger>
           <TabsTrigger value="analysis" className="flex items-center gap-1.5 text-xs sm:text-sm">
             <BarChart3 className="w-3.5 h-3.5" />
-            <span>Growth Analysis</span>
+            <span className="hidden sm:inline">Growth Analysis</span>
+            <span className="sm:hidden">Growth</span>
+          </TabsTrigger>
+          <TabsTrigger value="tracker" className="flex items-center gap-1.5 text-xs sm:text-sm">
+            <Activity className="w-3.5 h-3.5" />
+            <span className="hidden sm:inline">Income Tracker</span>
+            <span className="sm:hidden">Tracker</span>
           </TabsTrigger>
         </TabsList>
 
@@ -1005,6 +1014,9 @@ export default function DividendsPage() {
         </TabsContent>
         <TabsContent value="analysis" className="mt-4">
           <DividendGrowthTab />
+        </TabsContent>
+        <TabsContent value="tracker" className="mt-4">
+          <DividendIncomeTracker />
         </TabsContent>
       </Tabs>
     </div>
