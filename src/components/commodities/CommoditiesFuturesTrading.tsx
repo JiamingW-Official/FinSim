@@ -4,7 +4,6 @@ import { useState, useMemo } from "react";
 import {
   TrendingUp,
   TrendingDown,
-  ChevronDown,
   BarChart3,
   Layers,
   Calculator,
@@ -112,7 +111,6 @@ const SECTOR_COLORS: Record<Sector, string> = {
 
 // ── Data generation ────────────────────────────────────────────────────────────
 
-const GLOBAL_RNG = mulberry32(6543);
 // Pre-warm to generate deterministic per-contract data
 const PRE_GENERATED = (() => {
   const rng = mulberry32(6543);

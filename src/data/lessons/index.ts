@@ -43,6 +43,7 @@ import { UNIT_STRUCTURED_PRODUCTS } from "./unit-structured-products";
 import { UNIT_CREDIT_ANALYSIS } from "./unit-credit-analysis";
 import { UNIT_MARKET_INTELLIGENCE } from "./unit-market-intelligence";
 import { UNIT_QUANT_STRATEGIES } from "./unit-quant-strategies";
+import { UNIT_FINANCIAL_HISTORY } from "./unit-financial-history";
 
 export const UNITS: Unit[] = [
   UNIT_BASICS,
@@ -89,6 +90,7 @@ export const UNITS: Unit[] = [
   UNIT_CREDIT_ANALYSIS,
   UNIT_MARKET_INTELLIGENCE,
   UNIT_QUANT_STRATEGIES,
+  UNIT_FINANCIAL_HISTORY,
 ];
 
 export function getLessonById(lessonId: string): Lesson | undefined {

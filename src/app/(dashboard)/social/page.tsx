@@ -9,6 +9,7 @@ import {
   CheckCircle2, Settings2, RefreshCw,
 } from "lucide-react";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import SocialTradingHub from "@/components/social/SocialTradingHub";
 import {
   Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger,
 } from "@/components/ui/dialog";
@@ -1412,6 +1413,10 @@ export default function SocialPage() {
                 <BarChart2 className="h-3.5 w-3.5" />
                 <span>Community</span>
               </TabsTrigger>
+              <TabsTrigger value="hub" className="flex items-center gap-1.5">
+                <Zap className="h-3.5 w-3.5" />
+                <span>Hub</span>
+              </TabsTrigger>
             </TabsList>
 
             <TabsContent value="leaderboard" className="data-[state=inactive]:hidden">
@@ -1425,6 +1430,9 @@ export default function SocialPage() {
             </TabsContent>
             <TabsContent value="stats" className="data-[state=inactive]:hidden">
               <CommunityStatsTab />
+            </TabsContent>
+            <TabsContent value="hub" className="data-[state=inactive]:hidden">
+              <SocialTradingHub />
             </TabsContent>
           </Tabs>
         </div>
