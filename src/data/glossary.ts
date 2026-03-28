@@ -835,6 +835,95 @@ export const GLOSSARY: GlossaryEntry[] = [
     example:
       "An airline hedges fuel costs by buying oil futures, but jet fuel prices (the actual cost) and crude oil futures don't move in lockstep — basis risk means the hedge is imperfect and residual exposure remains.",
   },
+
+  // --- New Quant / Performance Terms ---
+  {
+    term: "Alpha",
+    definition:
+      "The excess return a portfolio or strategy generates above a benchmark index (like the S&P 500) after adjusting for market risk. Positive alpha means the manager added value beyond what the market gave; negative alpha means they underperformed.",
+    category: "risk",
+    formula: "Alpha = Portfolio Return - (Risk-Free Rate + Beta × (Market Return - Risk-Free Rate))",
+    example:
+      "A fund returns 15% while the S&P 500 returns 10% and its beta is 1.0. Alpha = 15% - 10% = +5%. The manager genuinely added 5% of value beyond market exposure.",
+  },
+  {
+    term: "Beta",
+    definition:
+      "A measure of a stock or portfolio's sensitivity to overall market movements. Beta of 1.0 means the asset moves in line with the market. Above 1.0 = amplified market moves (more volatile). Below 1.0 = dampened moves (less volatile). Negative beta = moves opposite to the market.",
+    category: "fundamental",
+    formula: "Beta = Cov(Asset Returns, Market Returns) / Var(Market Returns)",
+    example:
+      "A tech stock with beta 1.8 tends to rise 18% when the market rises 10%, but also falls 18% when the market falls 10%. Higher beta = higher risk and higher potential reward.",
+  },
+  {
+    term: "Sharpe Ratio",
+    definition:
+      "The most widely used risk-adjusted return metric. Measures how much excess return you earn per unit of total risk (standard deviation). A higher Sharpe means better risk-adjusted performance. Above 1.0 is good; above 2.0 is excellent; above 3.0 is rare and exceptional.",
+    category: "risk",
+    formula: "Sharpe Ratio = (Portfolio Return - Risk-Free Rate) / Standard Deviation of Returns",
+    example:
+      "Portfolio A returns 20% with 15% volatility. Portfolio B returns 15% with 5% volatility. With a 5% risk-free rate: Sharpe A = 1.0, Sharpe B = 2.0. B is the better risk-adjusted choice despite lower returns.",
+  },
+  {
+    term: "Sortino Ratio",
+    definition:
+      "A variant of the Sharpe Ratio that only penalizes downside volatility — upside volatility is not considered 'risk.' More appropriate for strategies with positive return skew where large upside is desirable. A Sortino above 2.0 is considered strong.",
+    category: "risk",
+    formula: "Sortino Ratio = (Portfolio Return - Target Return) / Downside Deviation",
+    example:
+      "A momentum strategy with Sharpe 1.2 but Sortino 2.8 tells you most of its volatility is on the upside — it makes big gains and has controlled drawdowns. The Sortino better captures its true quality.",
+  },
+  {
+    term: "Maximum Drawdown",
+    definition:
+      "The largest peak-to-trough decline a portfolio experiences over a given period, expressed as a percentage. Represents the worst-case loss an investor would have suffered if they bought at the peak and sold at the bottom. Critical for assessing real-world risk tolerance.",
+    category: "risk",
+    formula: "Max Drawdown = (Trough Value - Peak Value) / Peak Value × 100%",
+    example:
+      "A portfolio grew from $100K to $150K (peak), then fell to $90K (trough). Max Drawdown = ($90K - $150K) / $150K = -40%. Can you emotionally handle seeing your portfolio down 40% from its high?",
+  },
+  {
+    term: "VWAP",
+    definition:
+      "Volume-Weighted Average Price — the average price of a security weighted by volume traded at each price level throughout the session. Institutional traders benchmark their execution quality against VWAP. Buying below VWAP is considered a 'good fill'; above VWAP is unfavorable for buys.",
+    category: "indicators",
+    formula: "VWAP = Cumulative(Price × Volume) / Cumulative(Volume)",
+    example:
+      "AAPL VWAP is $186.40 by noon. An institution's average buy price of $185.90 beats VWAP by $0.50/share — on 500,000 shares, that is a $250,000 execution advantage.",
+  },
+  {
+    term: "ATR",
+    definition:
+      "Average True Range — a volatility indicator measuring the average range of price movement over a set period (typically 14 bars). Used to set rational stop-loss distances and position sizes. ATR expands in volatile markets and contracts in calm ones.",
+    category: "indicators",
+    formula: "True Range = max(High-Low, |High-PrevClose|, |Low-PrevClose|); ATR = 14-period Wilder average of True Range",
+    example:
+      "AAPL has ATR of $4.20. Setting a stop at 2× ATR below entry ($8.40) keeps you outside normal daily noise. Using fixed $2 stops on this stock would get you stopped out constantly by normal fluctuations.",
+  },
+  {
+    term: "Ichimoku Cloud",
+    definition:
+      "A comprehensive Japanese trend indicator that shows support/resistance, momentum, and trend direction simultaneously. Five components: Tenkan-sen (fast average), Kijun-sen (base line), Senkou Span A and B (forming the 'cloud' or Kumo), and Chikou Span (lagging line). Price above the cloud = bullish; below = bearish.",
+    category: "indicators",
+    example:
+      "Price breaks above the Ichimoku Cloud (Kumo) for the first time in 3 months, with the cloud turning green (bullish Kumo twist) ahead — this is a strong multi-timeframe bullish signal used by professional traders.",
+  },
+  {
+    term: "Order Flow",
+    definition:
+      "The real-time stream of buy and sell orders entering the market, showing how much aggressive buying versus selling is occurring at each price level. Positive order flow (buyers initiating) drives prices up; negative flow (sellers initiating) drives prices down. Analyzed via DOM (Depth of Market) and footprint charts.",
+    category: "technical",
+    example:
+      "During a key support test, order flow shows 80% of trades are buyer-initiated at $185, absorbing all sell orders — the level is likely to hold. Order flow confirms what price action only hints at.",
+  },
+  {
+    term: "Market Profile",
+    definition:
+      "A charting method developed by J. Peter Steidlmayer that displays price distribution as a rotated bell curve. Shows where the most trading activity occurred (Point of Control / POC) and defines the Value Area — the 70% of volume zone. Prices gravitate toward the POC and reject from Value Area High/Low extremes.",
+    category: "technical",
+    example:
+      "Market Profile reveals the POC for the week at $188. After a brief rally to $196, price returns to $188 — the value area acts as a magnet pulling price back to where the most business was transacted.",
+  },
 ];
 
 const glossaryMap = new Map<string, GlossaryEntry>();

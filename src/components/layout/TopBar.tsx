@@ -26,6 +26,7 @@ import { StreakBadge } from "@/components/game/StreakBadge";
 import { useGameStore } from "@/stores/game-store";
 import { getXPForNextLevel, LEVEL_THRESHOLDS } from "@/types/game";
 import { NotificationCenter } from "@/components/notifications/NotificationCenter";
+import { ErrorBoundary } from "@/components/ui/ErrorBoundary";
 import { SearchTrigger } from "@/components/search/GlobalSearch";
 import { HeartsDisplay } from "@/components/learn/HeartsDisplay";
 import { usePathname } from "next/navigation";
@@ -404,7 +405,7 @@ export function TopBar() {
 
         {/* Actions cluster */}
         <SearchTrigger />
-        <NotificationCenter />
+        <ErrorBoundary name="NotificationCenter"><NotificationCenter /></ErrorBoundary>
         <SoundToggle />
         <QuickActionsMenu />
 

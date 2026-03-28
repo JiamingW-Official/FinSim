@@ -1,7 +1,8 @@
 "use client";
 
-import { useState, useEffect, useRef, useCallback } from "react";
+import { useState, useEffect, useRef, useCallback, Suspense } from "react";
 import dynamic from "next/dynamic";
+import { ErrorBoundary } from "@/components/ui/ErrorBoundary";
 import { useMarketData } from "@/hooks/useMarketData";
 import { ChartToolbar } from "@/components/chart/ChartToolbar";
 import { TimeTravelControls } from "@/components/chart/TimeTravelControls";
@@ -177,20 +178,28 @@ export default function TradePage() {
           <ChartToolbar data-tutorial="indicators" />
           <IndicatorInfoPanel />
 
-          <div className={cn("relative flex-1", flashClass)} data-tutorial="chart">
-            {isLoading && (
-              <div className="absolute inset-0 z-10 flex items-center justify-center bg-background/80">
-                <Loader2 className="h-6 w-6 animate-spin text-primary" />
-              </div>
-            )}
-            {error && (
-              <div className="absolute inset-0 z-10 flex items-center justify-center bg-background/80">
-                <p className="text-sm text-destructive">
-                  Failed to load data. Please try again.
-                </p>
-              </div>
-            )}
-            <CandlestickChart />
+          {/* Chart row: DrawingToolbar (left strip) + chart area */}
+          <div className="flex flex-1 overflow-hidden">
+            <DrawingToolbar />
+            <ChartWithDrawing flashClass={flashClass}>
+              {isLoading && (
+                <div className="absolute inset-0 z-10 flex items-center justify-center bg-background/80">
+                  <Loader2 className="h-6 w-6 animate-spin text-primary" />
+                </div>
+              )}
+              {error && (
+                <div className="absolute inset-0 z-10 flex items-center justify-center bg-background/80">
+                  <p className="text-sm text-destructive">
+                    Failed to load data. Please try again.
+                  </p>
+                </div>
+              )}
+              <ErrorBoundary name="Chart">
+                <Suspense fallback={<div className="animate-pulse h-8 bg-muted rounded" />}>
+                  <CandlestickChart />
+                </Suspense>
+              </ErrorBoundary>
+            </ChartWithDrawing>
           </div>
 
           <div className="relative" data-tutorial="time-travel">
@@ -287,7 +296,9 @@ export default function TradePage() {
               className="flex-1 flex flex-col overflow-hidden mt-0 data-[state=inactive]:hidden"
             >
               <div className="flex-1 min-h-0 overflow-y-auto">
-                <OrderEntry />
+                <ErrorBoundary name="OrderEntry">
+                  <OrderEntry />
+                </ErrorBoundary>
                 {showOrderEntry && (
                   <OnboardingHint
                     title="Place Orders"
@@ -299,7 +310,9 @@ export default function TradePage() {
                   />
                 )}
               </div>
-              <AICoachPanel />
+              <ErrorBoundary name="AICoachPanel">
+                <AICoachPanel />
+              </ErrorBoundary>
             </TabsContent>
 
             {/* Positions tab */}
@@ -347,23 +360,23 @@ export default function TradePage() {
         <IndicatorInfoPanel />
 
         {/* Chart — fixed height on mobile */}
-        <div
-          className={cn("relative h-[300px] shrink-0", flashClass)}
-          data-tutorial="chart"
-        >
-          {isLoading && (
-            <div className="absolute inset-0 z-10 flex items-center justify-center bg-background/80">
-              <Loader2 className="h-6 w-6 animate-spin text-primary" />
-            </div>
-          )}
-          {error && (
-            <div className="absolute inset-0 z-10 flex items-center justify-center bg-background/80">
-              <p className="text-sm text-destructive">
-                Failed to load data. Please try again.
-              </p>
-            </div>
-          )}
-          <CandlestickChart />
+        <div className="relative h-[300px] shrink-0 flex" data-tutorial="chart">
+          <DrawingToolbar />
+          <ChartWithDrawing flashClass={flashClass}>
+            {isLoading && (
+              <div className="absolute inset-0 z-10 flex items-center justify-center bg-background/80">
+                <Loader2 className="h-6 w-6 animate-spin text-primary" />
+              </div>
+            )}
+            {error && (
+              <div className="absolute inset-0 z-10 flex items-center justify-center bg-background/80">
+                <p className="text-sm text-destructive">
+                  Failed to load data. Please try again.
+                </p>
+              </div>
+            )}
+            <CandlestickChart />
+          </ChartWithDrawing>
         </div>
 
         <div className="relative" data-tutorial="time-travel">
