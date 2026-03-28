@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useMemo, useCallback } from "react";
+import { useState, useMemo } from "react";
 import {
   TrendingUp,
   TrendingDown,
@@ -10,14 +10,10 @@ import {
   Target,
   Zap,
   BookOpen,
-  ChevronDown,
-  ChevronUp,
   Eye,
   EyeOff,
   ArrowRight,
-  AlertCircle,
   CheckCircle,
-  Info,
 } from "lucide-react";
 import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";

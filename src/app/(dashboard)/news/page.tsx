@@ -1020,6 +1020,10 @@ export default function NewsPage() {
             <Calendar className="mr-1.5 h-3.5 w-3.5" />
             Event Calendar
           </TabsTrigger>
+          <TabsTrigger value="sentiment-ai">
+            <Activity className="mr-1.5 h-3.5 w-3.5" />
+            AI Sentiment
+          </TabsTrigger>
         </TabsList>
 
         {/* ── Tab 1: News Feed ─────────────────────────────────────────── */}
@@ -1673,6 +1677,16 @@ export default function NewsPage() {
                 </div>
               </CardContent>
             </Card>
+          </div>
+        </TabsContent>
+
+        {/* ── Tab 5: AI Sentiment Analyzer ─────────────────────────────── */}
+        <TabsContent
+          value="sentiment-ai"
+          className="flex-1 overflow-y-auto px-6 pb-6 data-[state=inactive]:hidden"
+        >
+          <div className="mt-4">
+            <NewsSentimentAnalyzer />
           </div>
         </TabsContent>
       </Tabs>

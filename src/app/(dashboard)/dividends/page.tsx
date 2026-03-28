@@ -14,11 +14,13 @@ import {
   Info,
   AlertTriangle,
   CheckCircle2,
+  Activity,
 } from "lucide-react";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Switch } from "@/components/ui/switch";
 import { Slider } from "@/components/ui/slider";
 import { cn } from "@/lib/utils";
+import { DividendIncomeTracker } from "@/components/dividends/DividendIncomeTracker";
 
 // ── Seeded PRNG ───────────────────────────────────────────────────────────────
 

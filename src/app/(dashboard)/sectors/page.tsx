@@ -1185,6 +1185,7 @@ export default function SectorsPage() {
               { value: "rotation",    label: "Rotation Model" },
               { value: "factors",     label: "Factor Exposure" },
               { value: "etfs",        label: "Sector ETFs" },
+              { value: "strategy",    label: "Rotation" },
             ].map((t) => (
               <TabsTrigger
                 key={t.value}
@@ -1379,6 +1380,12 @@ export default function SectorsPage() {
                 </div>
               </div>
             )}
+          </div>
+        </TabsContent>
+        {/* ── Tab 5: Rotation Strategy ──────────────────────────────────────── */}
+        <TabsContent value="strategy" className="flex-1 overflow-y-auto p-6 data-[state=inactive]:hidden">
+          <div className="mx-auto max-w-5xl">
+            <SectorRotationStrategy />
           </div>
         </TabsContent>
       </Tabs>
