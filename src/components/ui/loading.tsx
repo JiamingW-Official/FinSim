@@ -1,15 +1,17 @@
+import React from "react";
 import { cn } from "@/lib/utils";
 
 // ---------------------------------------------------------------------------
 // Primitive shimmer skeleton
 // ---------------------------------------------------------------------------
-function Skeleton({ className }: { className?: string }) {
+function Skeleton({ className, style }: { className?: string; style?: React.CSSProperties }) {
   return (
     <div
       className={cn(
         "animate-pulse rounded-md bg-muted/60",
         className
       )}
+      style={style}
     />
   );
 }
