@@ -320,6 +320,57 @@ function generateMiniCandles(ticker: string, seed: number): { o: number; h: numb
   });
 }
 
+function generateNftCollections(seed: number): NftCollection[] {
+  return NFT_COLLECTIONS_DEF.map((c) => {
+    const rng = mulberry32(hashStr(c.symbol) ^ seed);
+    const baseFloor: Record<string, number> = { BAYC: 18, PUNK: 42, AZUK: 7, PUDG: 11, DOOD: 3 };
+    const base = baseFloor[c.symbol] ?? 5;
+    const change24h = (rng() - 0.48) * 20;
+    const floor = base * (1 + change24h / 100);
+    return {
+      ...c,
+      floorPrice:  Math.max(0.1, floor),
+      volume24h:   20 + rng() * 480,
+      holderCount: Math.floor(2000 + rng() * 8000),
+      change24h,
+    };
+  });
+}
+
+interface CryptoRiskMetric {
+  symbol: string;
+  realizedVol30d: number; // %
+  maxDrawdown: number;    // % from ATH
+  sharpe: number;         // vs risk-free 4.5%
+  ath: number;
+  currentPrice: number;
+}
+
+function generateRiskMetrics(rows: CryptoRow[], seed: number): CryptoRiskMetric[] {
+  const ath: Record<string, number> = {
+    BTC: 73750, ETH: 4800, BNB: 720, SOL: 260, ADA: 3.10,
+    AVAX: 145, DOT: 55, LINK: 52, UNI: 45, AAVE: 660, MATIC: 2.92,
+    ATOM: 44, NEAR: 20, ARB: 8.67, OP: 4.84,
+  };
+  return rows.map((r) => {
+    const rng = mulberry32(hashStr(r.symbol + "risk") ^ seed);
+    const vol = 40 + rng() * 80;
+    const athPrice = ath[r.symbol] ?? r.basePrice * 3;
+    const drawdown = ((r.price - athPrice) / athPrice) * 100;
+    const annReturn = r.change7d * 52; // proxy
+    const riskFree = 4.5;
+    const sharpe = (annReturn - riskFree) / vol;
+    return {
+      symbol:        r.symbol,
+      realizedVol30d: vol,
+      maxDrawdown:   drawdown,
+      sharpe,
+      ath:           athPrice,
+      currentPrice:  r.price,
+    };
+  });
+}
+
 // ── Helpers ───────────────────────────────────────────────────────────────────
 
 function fmtPrice(n: number): string {

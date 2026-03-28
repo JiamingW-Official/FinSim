@@ -349,6 +349,11 @@ export default function TradePage() {
               className="flex-1 overflow-auto mt-0 data-[state=inactive]:hidden"
             >
               <PositionsTable />
+              <div className="border-t border-border/50 mt-2 pt-2">
+                <ErrorBoundary name="PortfolioHeatmap">
+                  <PortfolioHeatmap />
+                </ErrorBoundary>
+              </div>
               <div className="px-3 pb-3 space-y-2 mt-2">
                 <ErrorBoundary name="MarginPanelPositions">
                   <MarginPanel />
@@ -387,6 +392,7 @@ export default function TradePage() {
       <div className="flex flex-col h-full md:hidden overflow-y-auto">
         <TradeShareCard />
         <AlphaBotAlerts />
+        <PositionAlerts />
 
         {/* Chart toolbar */}
         <ChartToolbar data-tutorial="indicators" />
