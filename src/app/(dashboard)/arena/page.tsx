@@ -10,6 +10,7 @@ import { ArenaResults } from "@/components/arena/ArenaResults";
 import { ArenaRankBadge } from "@/components/arena/ArenaRankBadge";
 import { DuelsTab } from "@/components/arena/DuelsTab";
 import { BlackSwanTab } from "@/components/arena/BlackSwanTab";
+import { TournamentTab } from "@/components/arena/TournamentTab";
 import { useArenaStore } from "@/stores/arena-store";
 import { useQuestStore } from "@/stores/quest-store";
 import { useSeasonStore } from "@/stores/season-store";
@@ -19,12 +20,13 @@ import { cn } from "@/lib/utils";
 import type { ArenaTypeConfig, ArenaNPC, ArenaMatchResult } from "@/types/arena";
 
 type Phase = "lobby" | "matchmaking" | "playing" | "results";
-type ActiveTab = "modes" | "duels" | "blackswan";
+type ActiveTab = "modes" | "duels" | "blackswan" | "tournament";
 
 const TABS: { id: ActiveTab; label: string; icon: React.ReactNode }[] = [
-  { id: "modes",     label: "Arena Modes", icon: <LayoutGrid className="h-3.5 w-3.5" /> },
-  { id: "duels",     label: "1v1 Duels",   icon: <Swords className="h-3.5 w-3.5" /> },
-  { id: "blackswan", label: "Black Swan",  icon: <AlertTriangle className="h-3.5 w-3.5" /> },
+  { id: "modes",      label: "Arena Modes", icon: <LayoutGrid className="h-3.5 w-3.5" /> },
+  { id: "duels",      label: "1v1 Duels",   icon: <Swords className="h-3.5 w-3.5" /> },
+  { id: "blackswan",  label: "Black Swan",  icon: <AlertTriangle className="h-3.5 w-3.5" /> },
+  { id: "tournament", label: "Tournament",  icon: <Crosshair className="h-3.5 w-3.5" /> },
 ];
 
 export default function ArenaPage() {
@@ -204,6 +206,8 @@ export default function ArenaPage() {
         {activeTab === "duels" && <DuelsTab />}
 
         {activeTab === "blackswan" && <BlackSwanTab />}
+
+        {activeTab === "tournament" && <TournamentTab />}
       </div>
     </div>
   );

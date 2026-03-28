@@ -19,6 +19,7 @@ import {
   ChevronDown,
   Search,
   X,
+  Keyboard,
 } from "lucide-react";
 import { useSettingsStore } from "@/stores/settings-store";
 import { useLearnStore } from "@/stores/learn-store";
@@ -31,6 +32,7 @@ import { SearchTrigger } from "@/components/search/GlobalSearch";
 import { HeartsDisplay } from "@/components/learn/HeartsDisplay";
 import { usePathname } from "next/navigation";
 import { INITIAL_CAPITAL } from "@/types/trading";
+import { useShortcutsModal } from "@/components/ui/KeyboardShortcutsModal";
 
 // ── Market status ─────────────────────────────────────────────────────────────
 
@@ -193,6 +195,23 @@ function XPProgressBar() {
         {xpInLevel}/{xpNeeded}
       </span>
     </div>
+  );
+}
+
+// ── Keyboard shortcuts button ─────────────────────────────────────────────────
+
+function ShortcutsButton() {
+  const { openModal } = useShortcutsModal();
+  return (
+    <button
+      type="button"
+      onClick={openModal}
+      className="rounded p-1 text-muted-foreground transition-colors hover:text-foreground"
+      title="Keyboard shortcuts (?)"
+      aria-label="Open keyboard shortcuts guide"
+    >
+      <Keyboard className="h-3.5 w-3.5" />
+    </button>
   );
 }
 
@@ -405,6 +424,7 @@ export function TopBar() {
 
         {/* Actions cluster */}
         <SearchTrigger />
+        <ShortcutsButton />
         <ErrorBoundary name="NotificationCenter"><NotificationCenter /></ErrorBoundary>
         <SoundToggle />
         <QuickActionsMenu />

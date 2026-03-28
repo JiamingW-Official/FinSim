@@ -19,6 +19,8 @@ import { TradeConfetti } from "@/components/game/TradeConfetti";
 import { FloatingEmojis } from "@/components/game/FloatingEmojis";
 import { OnboardingModal } from "@/components/onboarding/OnboardingModal";
 import { GlobalSearchProvider } from "@/components/search/GlobalSearch";
+import { GlobalKeyboardShortcuts } from "@/hooks/useGlobalKeyboardShortcuts";
+import { ShortcutsModalProvider } from "@/components/ui/KeyboardShortcutsModal";
 import { usePreferencesStore } from "@/stores/preferences-store";
 import { useOnboardingStore } from "@/stores/onboarding-store";
 import { cn } from "@/lib/utils";
@@ -34,41 +36,45 @@ export default function DashboardLayout({
   return (
     <Providers>
       <GlobalSearchProvider>
-        {/* Skip to main content — visible on focus for keyboard/screen reader users */}
-        <a
-          href="#main-content"
-          className="sr-only focus:not-sr-only focus:fixed focus:left-2 focus:top-2 focus:z-[9999] focus:rounded-md focus:bg-primary focus:px-3 focus:py-1.5 focus:text-xs focus:font-medium focus:text-primary-foreground focus:shadow-md"
-        >
-          Skip to content
-        </a>
+        <ShortcutsModalProvider>
+          {/* Skip to main content — visible on focus for keyboard/screen reader users */}
+          <a
+            href="#main-content"
+            className="sr-only focus:not-sr-only focus:fixed focus:left-2 focus:top-2 focus:z-[9999] focus:rounded-md focus:bg-primary focus:px-3 focus:py-1.5 focus:text-xs focus:font-medium focus:text-primary-foreground focus:shadow-md"
+          >
+            Skip to content
+          </a>
 
-        <div className={cn("flex h-screen flex-col overflow-hidden", colorblindMode && "colorblind-mode")}>
-          <TopBar />
-          <div className="flex flex-1 overflow-hidden">
-            <Sidebar />
-            <main
-              id="main-content"
-              className="relative flex-1 overflow-hidden bg-[radial-gradient(ellipse_80%_30%_at_50%_0%,rgba(16,185,129,0.04),transparent)] pb-16 md:pb-0"
-            >
-              <PageTransition>{children}</PageTransition>
-            </main>
+          <div className={cn("flex h-screen flex-col overflow-hidden", colorblindMode && "colorblind-mode")}>
+            <TopBar />
+            <div className="flex flex-1 overflow-hidden">
+              <Sidebar />
+              <main
+                id="main-content"
+                className="relative flex-1 overflow-hidden bg-[radial-gradient(ellipse_80%_30%_at_50%_0%,rgba(16,185,129,0.04),transparent)] pb-16 md:pb-0"
+              >
+                <PageTransition>{children}</PageTransition>
+              </main>
+            </div>
+            <StatusBar />
+            {/* Mobile bottom navigation — only visible below md breakpoint */}
+            <MobileNav />
+            <AchievementPopup />
+            <LevelUpOverlay />
+            <ComboIndicator />
+            <ComboMeter />
+            <TutorialOverlay />
+            <DailyRewardsPopup />
+            <SeasonXPToast />
+            <KeyboardShortcutGuide />
+            <StreakCelebration />
+            <TradeConfetti />
+            <FloatingEmojis />
+            {!hasCompletedOnboarding && <OnboardingModal />}
+            {/* Global keyboard shortcuts handler */}
+            <GlobalKeyboardShortcuts />
           </div>
-          <StatusBar />
-          {/* Mobile bottom navigation — only visible below md breakpoint */}
-          <MobileNav />
-          <AchievementPopup />
-          <LevelUpOverlay />
-          <ComboIndicator />
-          <ComboMeter />
-          <TutorialOverlay />
-          <DailyRewardsPopup />
-          <SeasonXPToast />
-          <KeyboardShortcutGuide />
-          <StreakCelebration />
-          <TradeConfetti />
-          <FloatingEmojis />
-          {!hasCompletedOnboarding && <OnboardingModal />}
-        </div>
+        </ShortcutsModalProvider>
       </GlobalSearchProvider>
     </Providers>
   );

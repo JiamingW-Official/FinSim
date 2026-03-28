@@ -51,7 +51,12 @@ interface GameState {
   // New: Trade milestones claimed
   milestonesClaimed: string[];
 
+  // Tournament ELO
+  eloRating: number;
+  eloHistory: number[];
+
   awardXP: (amount: number) => void;
+  updateELO: (newRating: number) => void;
   setXpMultiplier: (mult: number) => void;
   recordDailyLogin: () => void;
   updateAchievementProgress: (id: string, value: number) => void;
@@ -200,6 +205,8 @@ export const useGameStore = create<GameState>()(
       dailyXP: 0,
       dailyXPDate: "",
       milestonesClaimed: [],
+      eloRating: 1200,
+      eloHistory: [1200],
 
       awardXP: (amount) => {
         const state = get();
@@ -787,6 +794,13 @@ export const useGameStore = create<GameState>()(
         }));
       },
 
+      updateELO: (newRating) => {
+        set((state) => ({
+          eloRating: newRating,
+          eloHistory: [...state.eloHistory, newRating].slice(-20),
+        }));
+      },
+
       clearXPGain: () => set({ lastXPGain: null }),
       clearLevelUp: () => set({ lastLevelUp: null }),
       clearCombo: () => set({ lastCombo: null }),
@@ -812,6 +826,8 @@ export const useGameStore = create<GameState>()(
           dailyXP: 0,
           dailyXPDate: "",
           milestonesClaimed: [],
+          eloRating: 1200,
+          eloHistory: [1200],
         }),
     }),
     {
@@ -829,6 +845,8 @@ export const useGameStore = create<GameState>()(
         dailyXP: state.dailyXP,
         dailyXPDate: state.dailyXPDate,
         milestonesClaimed: state.milestonesClaimed,
+        eloRating: state.eloRating,
+        eloHistory: state.eloHistory,
       }),
     },
   ),
