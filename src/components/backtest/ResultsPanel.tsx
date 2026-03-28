@@ -19,6 +19,7 @@ import {
   LineChart,
   Dice5,
   List,
+  GitCompare,
 } from "lucide-react";
 import {
   createChart,
@@ -31,6 +32,10 @@ import {
 import type { BacktestResult, MonteCarloResult } from "@/types/backtest";
 import AnalyticsPanel from "./AnalyticsPanel";
 import MonteCarloPanel from "./MonteCarloPanel";
+import TradeDistributionChart from "./TradeDistributionChart";
+import AnnualReturnsChart from "./AnnualReturnsChart";
+import StrategyComparison from "./StrategyComparison";
+import RiskReturnScatter from "./RiskReturnScatter";
 
 const GRADE_CONFIG = {
   S: { color: "text-amber-400", bg: "bg-amber-400/10", border: "border-amber-400/30", glow: "shadow-[0_0_40px_rgba(251,191,36,0.3)]", icon: Trophy, label: "Outstanding!" },
@@ -39,7 +44,7 @@ const GRADE_CONFIG = {
   C: { color: "text-zinc-400", bg: "bg-zinc-400/10", border: "border-zinc-400/30", glow: "", icon: Dumbbell, label: "Keep trying!" },
 } as const;
 
-type Tab = "overview" | "analytics" | "montecarlo" | "trades";
+type Tab = "overview" | "analytics" | "montecarlo" | "trades" | "compare";
 
 interface ResultsPanelProps {
   result: BacktestResult;

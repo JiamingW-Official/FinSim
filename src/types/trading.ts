@@ -68,6 +68,8 @@ export interface Position {
   unrealizedPnLPercent: number;
   /** Bar index (revealedCount) when position was opened */
   openedAtBar?: number;
+  /** Simulation timestamp of the bar when position was opened */
+  openedAtTimestamp?: number;
   /** AI analysis reason captured at entry */
   entryReason?: string;
 }
