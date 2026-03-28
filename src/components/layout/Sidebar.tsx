@@ -79,6 +79,7 @@ const NAV_GROUPS: NavGroup[] = [
       { icon: Globe,        label: "Macro",        href: "/macro" },
       { icon: LayoutGrid,   label: "Sectors",      href: "/sectors" },
       { icon: Bitcoin,      label: "Crypto",       href: "/crypto" },
+      { icon: Landmark,     label: "Central Banks", href: "/centralbank" },
       { icon: Landmark,     label: "Bonds",        href: "/bonds" },
       { icon: Landmark,     label: "Wealth Plan",  href: "/wealth" },
       { icon: Target,       label: "Retirement",   href: "/retirement" },
