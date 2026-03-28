@@ -58,6 +58,7 @@ import { UNIT_FINANCIAL_REGULATIONS } from "./unit-financial-regulations";
 import { UNIT_GLOBAL_MACRO_STRATEGIES } from "./unit-global-macro-strategies";
 import { UNIT_ECONOMIC_CYCLES } from "./unit-economic-cycles";
 import { UNIT_SUPPLY_CHAIN_FINANCE } from "./unit-supply-chain-finance";
+import { UNIT_MERGERS_ACQUISITIONS } from "./unit-mergers-acquisitions";
 
 export const UNITS: Unit[] = [
   UNIT_BASICS,
@@ -119,6 +120,7 @@ export const UNITS: Unit[] = [
   UNIT_GLOBAL_MACRO_STRATEGIES,
   UNIT_ECONOMIC_CYCLES,
   UNIT_SUPPLY_CHAIN_FINANCE,
+  UNIT_MERGERS_ACQUISITIONS,
 ];
 
 export function getLessonById(lessonId: string): Lesson | undefined {
