@@ -21,6 +21,7 @@ import {
 } from "lucide-react";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { cn } from "@/lib/utils";
+import CryptoMarketIntelligence from "@/components/crypto/CryptoMarketIntelligence";
 
 // ── Seeded PRNG (seed=3333) ───────────────────────────────────────────────────
 
@@ -1181,7 +1182,7 @@ export default function CryptoTradingPage() {
 
         {/* Tabs */}
         <Tabs defaultValue="technical" className="mt-6">
-          <TabsList className="grid grid-cols-4 mb-6 bg-slate-800/60 border border-slate-700/50 p-1 rounded-xl h-auto">
+          <TabsList className="grid grid-cols-5 mb-6 bg-slate-800/60 border border-slate-700/50 p-1 rounded-xl h-auto">
             <TabsTrigger value="technical" className="text-xs py-2 rounded-lg data-[state=active]:bg-slate-700 data-[state=active]:text-slate-100">
               <Activity className="w-3.5 h-3.5 mr-1.5" />
               Tech Analysis
@@ -1198,12 +1199,17 @@ export default function CryptoTradingPage() {
               <PieChart className="w-3.5 h-3.5 mr-1.5" />
               Strategies
             </TabsTrigger>
+            <TabsTrigger value="marketintel" className="text-xs py-2 rounded-lg data-[state=active]:bg-slate-700 data-[state=active]:text-slate-100">
+              <BarChart2 className="w-3.5 h-3.5 mr-1.5" />
+              Market Intel
+            </TabsTrigger>
           </TabsList>
 
           <TabsContent value="technical">{renderTechAnalysis()}</TabsContent>
           <TabsContent value="onchain">{renderOnChain()}</TabsContent>
           <TabsContent value="derivatives">{renderDerivatives()}</TabsContent>
           <TabsContent value="strategies">{renderPortfolioStrategies()}</TabsContent>
+          <TabsContent value="marketintel"><CryptoMarketIntelligence /></TabsContent>
         </Tabs>
       </div>
     </div>
