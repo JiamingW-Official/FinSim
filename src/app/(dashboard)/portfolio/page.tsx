@@ -173,6 +173,9 @@ export default function PortfolioPage() {
                 <TabsTrigger value="optimize" className="flex-1 rounded-md text-[11px] h-7 whitespace-nowrap">
                   Optimize
                 </TabsTrigger>
+                <TabsTrigger value="frontier" className="flex-1 rounded-md text-[11px] h-7 whitespace-nowrap">
+                  Frontier
+                </TabsTrigger>
                 <TabsTrigger value="income" className="flex-1 rounded-md text-[11px] h-7 whitespace-nowrap">
                   Income
                 </TabsTrigger>
@@ -287,6 +290,17 @@ export default function PortfolioPage() {
                   Efficient Frontier &amp; MPT Optimizer
                 </div>
                 <PortfolioOptimizer />
+              </div>
+            </TabsContent>
+
+            {/* ── Frontier tab ── */}
+            <TabsContent value="frontier" className="space-y-4">
+              <div>
+                <div className="mb-2 flex items-center gap-1.5 text-xs font-medium text-muted-foreground">
+                  <LineChart className="h-3.5 w-3.5 text-cyan-400" />
+                  Efficient Frontier &amp; Portfolio Optimizer
+                </div>
+                <EfficientFrontier />
               </div>
             </TabsContent>
 

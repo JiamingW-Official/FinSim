@@ -185,5 +185,111 @@ export function AlphaBotAlerts() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [positions]);
 
+  // ── Setup forming: 3+ signals align in same direction ────────────────────
+  useEffect(() => {
+    if (revealedCount < 20) return;
+    const visibleData = allData.slice(0, revealedCount);
+    const currentBar = visibleData[visibleData.length - 1];
+    if (!currentBar) return;
+
+    const snap = {
+      close: currentBar.close,
+      open: currentBar.open,
+      high: currentBar.high,
+      low: currentBar.low,
+      volume: currentBar.volume,
+    };
+
+    const { signals } = detectSignals(
+      snap,
+      visibleData.length >= 2
+        ? {
+            close: visibleData[visibleData.length - 2].close,
+            open: visibleData[visibleData.length - 2].open,
+            high: visibleData[visibleData.length - 2].high,
+            low: visibleData[visibleData.length - 2].low,
+            volume: visibleData[visibleData.length - 2].volume,
+          }
+        : null,
+      activeIndicators as Parameters<typeof detectSignals>[2],
+    );
+
+    const bullishCount = signals.filter((s) => s.direction === "bullish").length;
+    const bearishCount = signals.filter((s) => s.direction === "bearish").length;
+    const dominantDir = bullishCount >= 3 ? "bullish" : bearishCount >= 3 ? "bearish" : null;
+
+    if (dominantDir) {
+      const dominantCount = dominantDir === "bullish" ? bullishCount : bearishCount;
+      // Bucket key: fires once per 5-bar window per direction
+      const bucket = Math.floor(revealedCount / 5);
+      const key = `setup-${dominantDir}-${bucket}`;
+      if (!alertedSetups.current.has(key)) {
+        alertedSetups.current.add(key);
+        const isBull = dominantDir === "bullish";
+        const borderColor = isBull ? "border-emerald-500/30" : "border-red-500/30";
+        const textColor = isBull ? "text-emerald-400" : "text-red-400";
+        toast.custom(
+          () => (
+            <div
+              className={`flex items-center gap-2 rounded-lg border ${borderColor} bg-zinc-900 px-3 py-2 shadow-lg text-[11px] max-w-64`}
+            >
+              <span className="text-base shrink-0">{isBull ? "🔥" : "❄️"}</span>
+              <div className="min-w-0">
+                <div className={`font-bold ${textColor} leading-tight`}>Setup Forming</div>
+                <div className="text-zinc-400 leading-tight mt-0.5">
+                  {dominantCount} {dominantDir} signals aligning — high-probability {isBull ? "long" : "short"} setup developing
+                </div>
+              </div>
+            </div>
+          ),
+          { duration: 5000, position: "top-right" },
+        );
+      }
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [revealedCount]);
+
+  // ── Volume surge: current bar volume >2.5x 20-bar average ────────────────
+  useEffect(() => {
+    if (revealedCount < 21) return;
+    const visibleData = allData.slice(0, revealedCount);
+    const currentBar = visibleData[visibleData.length - 1];
+    if (!currentBar) return;
+
+    // Compute 20-bar average volume (excluding current bar)
+    const lookback = visibleData.slice(-21, -1);
+    if (lookback.length < 10) return;
+    const avgVol = lookback.reduce((sum, b) => sum + b.volume, 0) / lookback.length;
+    if (avgVol <= 0) return;
+
+    const ratio = currentBar.volume / avgVol;
+    if (ratio >= 2.5) {
+      const key = `volsurge-${revealedCount}`;
+      if (!alertedVolumeSurges.current.has(key)) {
+        alertedVolumeSurges.current.add(key);
+        const isBullCandle = currentBar.close > currentBar.open;
+        const borderColor = isBullCandle ? "border-blue-500/30" : "border-orange-500/30";
+        const textColor = isBullCandle ? "text-blue-400" : "text-orange-400";
+        toast.custom(
+          () => (
+            <div
+              className={`flex items-center gap-2 rounded-lg border ${borderColor} bg-zinc-900 px-3 py-2 shadow-lg text-[11px] max-w-64`}
+            >
+              <span className="text-base shrink-0">📊</span>
+              <div className="min-w-0">
+                <div className={`font-bold ${textColor} leading-tight`}>Volume Surge</div>
+                <div className="text-zinc-400 leading-tight mt-0.5">
+                  {ratio.toFixed(1)}× avg volume — {isBullCandle ? "strong buying" : "heavy selling"} pressure. Breakout or breakdown likely
+                </div>
+              </div>
+            </div>
+          ),
+          { duration: 5000, position: "top-right" },
+        );
+      }
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [revealedCount]);
+
   return null;
 }

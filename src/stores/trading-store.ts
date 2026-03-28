@@ -33,6 +33,23 @@ function computePnL(
   return { pnl, pnlPercent };
 }
 
+// Seeded borrow rates per ticker (0.5–5% annualized)
+// Uses a simple hash of the ticker string for determinism
+function seedBorrowRate(ticker: string): number {
+  let h = 0;
+  for (let i = 0; i < ticker.length; i++) {
+    h = (h * 31 + ticker.charCodeAt(i)) & 0xffffffff;
+  }
+  const norm = Math.abs(h) / 0x7fffffff;
+  // Range: 0.5% to 5%
+  return Math.round((0.5 + norm * 4.5) * 100) / 100;
+}
+
+const KNOWN_TICKERS = ["AAPL", "TSLA", "MSFT", "GOOGL", "AMZN", "META", "NVDA", "SPY", "QQQ", "BTC"];
+const BORROW_RATES: Record<string, number> = Object.fromEntries(
+  KNOWN_TICKERS.map((t) => [t, seedBorrowRate(t)]),
+);
+
 interface TradingState {
   cash: number;
   positions: Position[];
@@ -42,6 +59,9 @@ interface TradingState {
   portfolioValue: number;
   equityHistory: EquitySnapshot[];
   lastTradeFlash: { side: "buy" | "sell"; timestamp: number } | null;
+  marginUsed: number;
+  marginLimit: number;
+  borrowRates: Record<string, number>;
 
   placeBuyOrder: (
     ticker: string,
@@ -134,17 +154,28 @@ interface TradingState {
   resetPortfolio: () => void;
   deductCash: (amount: number) => boolean;
   addCash: (amount: number) => void;
+  accrueMarginInterest: () => void;
+  updateMarginMetrics: () => void;
 }
 
 function recalcPortfolioValue(
   cash: number,
   positions: Position[],
 ): number {
-  const posValue = positions.reduce(
-    (sum, p) => sum + p.quantity * p.currentPrice,
-    0,
-  );
+  // Long positions add value; short positions add unrealized P&L to equity
+  const posValue = positions.reduce((sum, p) => {
+    if (p.side === "long") return sum + p.quantity * p.currentPrice;
+    // For short: equity contribution = unrealized P&L (entry - current) * qty
+    return sum + p.unrealizedPnL;
+  }, 0);
   return cash + posValue;
+}
+
+function computeMarginUsed(positions: Position[]): number {
+  // Margin used = sum of short position current value (borrowed notional)
+  return positions
+    .filter((p) => p.side === "short")
+    .reduce((sum, p) => sum + p.quantity * p.currentPrice, 0);
 }
 
 export const useTradingStore = create<TradingState>()(
@@ -158,6 +189,9 @@ export const useTradingStore = create<TradingState>()(
       portfolioValue: INITIAL_CAPITAL,
       equityHistory: [],
       lastTradeFlash: null,
+      marginUsed: 0,
+      marginLimit: INITIAL_CAPITAL * 2, // 2× equity = 50% margin requirement
+      borrowRates: BORROW_RATES,
 
       placeBuyOrder: (ticker, quantity, price, simulationDate) => {
         const state = get();
@@ -997,6 +1031,34 @@ export const useTradingStore = create<TradingState>()(
           };
         }),
 
+      accrueMarginInterest: () => {
+        const state = get();
+        // Daily interest = annual rate / 365 on borrowed notional
+        const dailyInterest = state.positions
+          .filter((p) => p.side === "short")
+          .reduce((sum, p) => {
+            const rate = state.borrowRates[p.ticker] ?? 1.0;
+            return sum + p.quantity * p.currentPrice * (rate / 100 / 365);
+          }, 0);
+        if (dailyInterest <= 0) return;
+        const newCash = state.cash - dailyInterest;
+        set({
+          cash: newCash,
+          portfolioValue: recalcPortfolioValue(newCash, state.positions),
+        });
+      },
+
+      updateMarginMetrics: () => {
+        const state = get();
+        const used = computeMarginUsed(state.positions);
+        // marginLimit = 2× portfolio equity
+        const equity = recalcPortfolioValue(state.cash, state.positions);
+        set({
+          marginUsed: used,
+          marginLimit: equity * 2,
+        });
+      },
+
       clearTradeFlash: () => set({ lastTradeFlash: null }),
 
       resetPortfolio: () =>
@@ -1009,6 +1071,8 @@ export const useTradingStore = create<TradingState>()(
           portfolioValue: INITIAL_CAPITAL,
           equityHistory: [],
           lastTradeFlash: null,
+          marginUsed: 0,
+          marginLimit: INITIAL_CAPITAL * 2,
         }),
 
       deductCash: (amount: number) => {

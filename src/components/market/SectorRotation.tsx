@@ -39,6 +39,7 @@ interface SectorData {
   abbr: string;
   color: string;
   tickers: readonly string[];
+  seed: number;
   perf1W: number;
   perf1M: number;
   perf3M: number;
@@ -103,6 +104,7 @@ function generateSectorData(): { sectors: SectorData[]; cycleStage: CycleStage }
       abbr: s.abbr,
       color: s.color,
       tickers: s.tickers,
+      seed: s.seed,
       perf1W,
       perf1M,
       perf3M,
