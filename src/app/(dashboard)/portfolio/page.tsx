@@ -45,6 +45,7 @@ import { RollingSharpeChart, RollingWinRateChart } from "@/components/analytics/
 import { RebalancingPanel } from "@/components/quant/RebalancingPanel";
 import { TaxHarvestingPanel } from "@/components/quant/TaxHarvestingPanel";
 import { PortfolioOptimizer } from "@/components/portfolio/PortfolioOptimizer";
+import { EfficientFrontier } from "@/components/portfolio/EfficientFrontier";
 import { DividendTracker } from "@/components/portfolio/DividendTracker";
 import { PortfolioAttribution } from "@/components/portfolio/PortfolioAttribution";
 

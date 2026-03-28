@@ -25,16 +25,21 @@ export function AlphaBotAlerts() {
   const revealedCount = useMarketDataStore((s) => s.revealedCount);
   const allData = useMarketDataStore((s) => s.allData);
   const currentTicker = useChartStore((s) => s.currentTicker);
+  const activeIndicators = useChartStore((s) => s.activeIndicators);
   const positions = useTradingStore((s) => s.positions);
 
   const alertedLevels = useRef<Set<string>>(new Set());
   const alertedPatterns = useRef<Set<string>>(new Set());
   const alertedPnLMilestones = useRef<Set<string>>(new Set());
+  const alertedSetups = useRef<Set<string>>(new Set());
+  const alertedVolumeSurges = useRef<Set<string>>(new Set());
 
   // Reset deduplication caches on ticker change
   useEffect(() => {
     alertedLevels.current.clear();
     alertedPatterns.current.clear();
+    alertedSetups.current.clear();
+    alertedVolumeSurges.current.clear();
   }, [currentTicker]);
 
   // ── Level breach detection (throttled: every 3 bar advances) ────────────
