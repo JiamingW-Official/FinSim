@@ -74,6 +74,8 @@ const NAV_GROUPS: NavGroup[] = [
       { icon: BarChart3,    label: "Futures",      href: "/futures" },
       { icon: DollarSign,   label: "Forex",        href: "/forex" },
       { icon: Calculator,   label: "Tax",          href: "/tax" },
+      { icon: Building2,    label: "IPO Tracker",  href: "/ipo" },
+      { icon: Zap,          label: "SPACs",        href: "/spacs" },
     ],
   },
   {
