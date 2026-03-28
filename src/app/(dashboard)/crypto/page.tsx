@@ -618,6 +618,7 @@ function MarketsTab({ rows, seed }: { rows: CryptoRow[]; seed: number; }) {
   const totalVol  = rows.reduce((s, r) => s + r.volume24h, 0);
   const rng       = mulberry32(seed ^ 0xfeed);
   const fearGreed = Math.floor(20 + rng() * 60);
+  const riskMetrics = useMemo(() => generateRiskMetrics(rows, seed), [rows, seed]);
 
   return (
     <div className="flex flex-col gap-4">
