@@ -1,17 +1,34 @@
 "use client";
 
 import { useState, useMemo, useCallback } from "react";
-import { Landmark, TrendingUp, TrendingDown, AlertTriangle, Info, BookOpen, Calculator, ShoppingCart, GraduationCap, DollarSign, Shield, BarChart3, Percent } from "lucide-react";
+import { motion, AnimatePresence } from "framer-motion";
+import {
+  Landmark,
+  TrendingUp,
+  TrendingDown,
+  AlertTriangle,
+  Info,
+  Calculator,
+  ShieldCheck,
+  BarChart3,
+  PlusCircle,
+  Trash2,
+  ChevronDown,
+  ChevronUp,
+  AlertCircle,
+} from "lucide-react";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { cn } from "@/lib/utils";
 
-// ── Seeded PRNG ───────────────────────────────────────────────────────────────
+// ── Seeded PRNG (mulberry32) ───────────────────────────────────────────────────
 
-function seededRandom(seed: number): () => number {
-  let s = seed >>> 0;
-  return () => {
-    s = (s * 1103515245 + 12345) & 0x7fffffff;
-    return s / 0x7fffffff;
+function mulberry32(seed: number) {
+  return function () {
+    seed |= 0;
+    seed = (seed + 0x6d2b79f5) | 0;
+    let t = Math.imul(seed ^ (seed >>> 15), 1 | seed);
+    t = (t + Math.imul(t ^ (t >>> 7), 61 | t)) ^ t;
+    return ((t ^ (t >>> 14)) >>> 0) / 4294967296;
   };
 }
 
@@ -22,7 +39,6 @@ function dateSeed(): number {
 
 // ── Bond math helpers ─────────────────────────────────────────────────────────
 
-/** Price a bond given coupon rate (%), face value, maturity years, YTM %, frequency */
 function bondPrice(
   faceValue: number,
   couponRate: number,
@@ -34,11 +50,12 @@ function bondPrice(
   const coupon = (faceValue * (couponRate / 100)) / freq;
   const r = ytm / 100 / freq;
   if (r === 0) return faceValue + coupon * periods;
-  const pv = coupon * (1 - Math.pow(1 + r, -periods)) / r + faceValue / Math.pow(1 + r, periods);
-  return pv;
+  return (
+    (coupon * (1 - Math.pow(1 + r, -periods))) / r +
+    faceValue / Math.pow(1 + r, periods)
+  );
 }
 
-/** Macaulay duration in years */
 function macaulayDuration(
   faceValue: number,
   couponRate: number,
@@ -60,13 +77,11 @@ function macaulayDuration(
   return price > 0 ? weightedSum / price : 0;
 }
 
-/** Modified duration */
 function modifiedDuration(mac: number, ytm: number, freq: number = 2): number {
   return mac / (1 + ytm / 100 / freq);
 }
 
-/** Convexity */
-function convexity(
+function convexityCalc(
   faceValue: number,
   couponRate: number,
   maturityYears: number,
@@ -87,160 +102,113 @@ function convexity(
   return price > 0 ? cvx / (price * freq * freq) : 0;
 }
 
-/** DV01: dollar value of 1 basis point */
-function dv01(modDur: number, price: number): number {
-  return modDur * price * 0.0001;
-}
+// ── Bond universe (12 bonds) ──────────────────────────────────────────────────
 
-// ── Bond data ─────────────────────────────────────────────────────────────────
-
-interface BondDefinition {
+interface BondDef {
   id: string;
   name: string;
-  coupon: number; // %
+  ticker: string;
+  coupon: number;
   maturityYears: number;
-  baseYtm: number; // %
+  baseYtm: number;
   creditRating: string;
-  type: "treasury" | "corporate" | "high-yield" | "municipal";
+  sector: string;
+  type: "treasury" | "corporate-ig" | "high-yield";
+  maturityDate: string;
 }
 
-const BOND_DEFS: BondDefinition[] = [
-  { id: "us2y",   name: "US Treasury 2Y",   coupon: 4.75, maturityYears: 2,  baseYtm: 4.82, creditRating: "AAA", type: "treasury" },
-  { id: "us5y",   name: "US Treasury 5Y",   coupon: 4.25, maturityYears: 5,  baseYtm: 4.45, creditRating: "AAA", type: "treasury" },
-  { id: "us10y",  name: "US Treasury 10Y",  coupon: 4.00, maturityYears: 10, baseYtm: 4.30, creditRating: "AAA", type: "treasury" },
-  { id: "us30y",  name: "US Treasury 30Y",  coupon: 4.50, maturityYears: 30, baseYtm: 4.65, creditRating: "AAA", type: "treasury" },
-  { id: "aapl",   name: "AAPL Corp 2031",   coupon: 3.85, maturityYears: 7,  baseYtm: 4.20, creditRating: "AA+", type: "corporate" },
-  { id: "msft",   name: "MSFT Corp 2033",   coupon: 3.45, maturityYears: 9,  baseYtm: 3.98, creditRating: "AAA", type: "corporate" },
-  { id: "hy",     name: "HY Corp Bond",     coupon: 7.50, maturityYears: 8,  baseYtm: 8.25, creditRating: "BB",  type: "high-yield" },
-  { id: "muni",   name: "Muni Bond CA",     coupon: 3.20, maturityYears: 15, baseYtm: 3.40, creditRating: "AA",  type: "municipal" },
+const BOND_UNIVERSE: BondDef[] = [
+  // US Treasuries
+  { id: "us2y",  ticker: "UST2Y",  name: "US Treasury 2Y",        coupon: 4.75, maturityYears: 2,  baseYtm: 4.82, creditRating: "AAA", sector: "Government",   type: "treasury",     maturityDate: "2026-03-15" },
+  { id: "us5y",  ticker: "UST5Y",  name: "US Treasury 5Y",        coupon: 4.25, maturityYears: 5,  baseYtm: 4.50, creditRating: "AAA", sector: "Government",   type: "treasury",     maturityDate: "2029-03-15" },
+  { id: "us10y", ticker: "UST10Y", name: "US Treasury 10Y",       coupon: 4.00, maturityYears: 10, baseYtm: 4.20, creditRating: "AAA", sector: "Government",   type: "treasury",     maturityDate: "2034-03-15" },
+  { id: "us30y", ticker: "UST30Y", name: "US Treasury 30Y",       coupon: 4.50, maturityYears: 30, baseYtm: 4.40, creditRating: "AAA", sector: "Government",   type: "treasury",     maturityDate: "2054-03-15" },
+  // Investment grade corporates
+  { id: "aapl",  ticker: "AAPL31", name: "Apple Inc 2031",        coupon: 3.85, maturityYears: 7,  baseYtm: 4.35, creditRating: "AA+", sector: "Technology",   type: "corporate-ig", maturityDate: "2031-08-05" },
+  { id: "msft",  ticker: "MSFT33", name: "Microsoft Corp 2033",   coupon: 3.45, maturityYears: 9,  baseYtm: 4.15, creditRating: "AAA", sector: "Technology",   type: "corporate-ig", maturityDate: "2033-11-15" },
+  { id: "jpm",   ticker: "JPM32",  name: "JPMorgan Chase 2032",   coupon: 4.20, maturityYears: 8,  baseYtm: 4.60, creditRating: "A+",  sector: "Financials",   type: "corporate-ig", maturityDate: "2032-06-01" },
+  { id: "xom",   ticker: "XOM30",  name: "ExxonMobil Corp 2030",  coupon: 4.10, maturityYears: 6,  baseYtm: 4.45, creditRating: "AA-", sector: "Energy",       type: "corporate-ig", maturityDate: "2030-04-15" },
+  // High yield
+  { id: "hy1",   ticker: "HY-A",   name: "Frontier Comms 2029",   coupon: 8.75, maturityYears: 5,  baseYtm: 9.20, creditRating: "B+",  sector: "Telecom",      type: "high-yield",   maturityDate: "2029-09-15" },
+  { id: "hy2",   ticker: "HY-B",   name: "Carnival Corp 2031",    coupon: 7.625,maturityYears: 7,  baseYtm: 8.10, creditRating: "BB-", sector: "Consumer Disc",type: "high-yield",   maturityDate: "2031-03-01" },
+  { id: "hy3",   ticker: "HY-C",   name: "Cheesecake Factory 2028",coupon:9.50, maturityYears: 4,  baseYtm:10.25, creditRating: "B",   sector: "Restaurants",  type: "high-yield",   maturityDate: "2028-12-15" },
+  { id: "hy4",   ticker: "HY-D",   name: "Bed Bath Holdings 2027", coupon:12.00,maturityYears: 3,  baseYtm:13.80, creditRating: "CCC", sector: "Retail",       type: "high-yield",   maturityDate: "2027-06-15" },
 ];
 
-interface BondRow extends BondDefinition {
+interface BondRow extends BondDef {
   ytm: number;
   price: number;
   duration: number;
+  modDur: number;
   yieldChange1d: number;
 }
-
-// Yield curve points for SVG
-interface YieldPoint {
-  maturity: number; // years
-  label: string;
-  ytm: number;
-}
-
-// ── Bond portfolio types ──────────────────────────────────────────────────────
-
-interface BondHolding {
-  bondId: string;
-  face: number;
-  quantity: number; // number of bonds (face=$1000 each)
-  purchaseYtm: number;
-  purchasePrice: number;
-  purchaseDate: string;
-}
-
-interface BondPortfolio {
-  cash: number;
-  holdings: BondHolding[];
-}
-
-const INITIAL_PORTFOLIO: BondPortfolio = {
-  cash: 100_000,
-  holdings: [],
-};
-
-// ── Education cards ───────────────────────────────────────────────────────────
-
-const EDU_CARDS = [
-  {
-    id: "basics",
-    icon: BookOpen,
-    title: "Bond Basics",
-    color: "text-blue-400",
-    bg: "bg-blue-500/10",
-    points: [
-      "A bond is a loan from investor to issuer (government/corporation).",
-      "The issuer pays periodic coupon payments and returns face value at maturity.",
-      "Bond prices move inversely to yields: when rates rise, prices fall.",
-      "Face value (par) is typically $1,000 per bond.",
-      "Yield to maturity (YTM) is the total return if held to maturity.",
-    ],
-  },
-  {
-    id: "duration",
-    icon: BarChart3,
-    title: "Duration & Convexity",
-    color: "text-purple-400",
-    bg: "bg-purple-500/10",
-    points: [
-      "Duration measures how sensitive a bond's price is to rate changes.",
-      "A duration of 5 means a 1% rate rise causes ~5% price decline.",
-      "Modified duration = Macaulay duration / (1 + YTM/freq).",
-      "Convexity measures the curvature of the price-yield relationship.",
-      "Higher convexity = more price gain when rates fall, less loss when rates rise.",
-    ],
-  },
-  {
-    id: "yield-curve",
-    icon: TrendingUp,
-    title: "Yield Curve",
-    color: "text-green-400",
-    bg: "bg-green-500/10",
-    points: [
-      "Normal: long-term yields > short-term yields (upward sloping).",
-      "Inverted: short-term yields > long-term yields (recession signal).",
-      "Flat: similar yields across all maturities (transition period).",
-      "The 10Y-2Y spread is closely watched by economists and the Fed.",
-      "An inverted yield curve has preceded most U.S. recessions.",
-    ],
-  },
-  {
-    id: "credit",
-    icon: Shield,
-    title: "Credit Risk",
-    color: "text-amber-400",
-    bg: "bg-amber-500/10",
-    points: [
-      "Credit rating reflects the issuer's ability to repay debt.",
-      "AAA is highest (US Treasury, top corporations), D is default.",
-      "Investment grade: BBB-/Baa3 and above.",
-      "High yield ('junk') bonds: BB+/Ba1 and below — higher risk and reward.",
-      "Credit spread = yield difference vs equivalent Treasury bond.",
-    ],
-  },
-  {
-    id: "etf",
-    icon: DollarSign,
-    title: "Bond ETFs vs Individual Bonds",
-    color: "text-teal-400",
-    bg: "bg-teal-500/10",
-    points: [
-      "Bond ETFs offer instant diversification and daily liquidity.",
-      "ETFs have no fixed maturity date — price fluctuates indefinitely.",
-      "Individual bonds give predictable cash flows and principal return at maturity.",
-      "ETFs suit smaller investors; individual bonds suit larger portfolios.",
-      "Popular ETFs: TLT (long-term Treasury), AGG (aggregate bond), HYG (high yield).",
-    ],
-  },
-];
-
-// ── Rating badge helper ───────────────────────────────────────────────────────
 
 function ratingColor(rating: string): string {
   if (["AAA", "AA+", "AA", "AA-"].includes(rating)) return "text-green-400 bg-green-500/10";
   if (["A+", "A", "A-", "BBB+", "BBB", "BBB-"].includes(rating)) return "text-blue-400 bg-blue-500/10";
-  if (["BB+", "BB", "BB-"].includes(rating)) return "text-amber-400 bg-amber-500/10";
+  if (["BB+", "BB", "BB-", "B+"].includes(rating)) return "text-amber-400 bg-amber-500/10";
   return "text-red-400 bg-red-500/10";
 }
 
-// ── Main page ─────────────────────────────────────────────────────────────────
+function typeLabel(type: BondDef["type"]) {
+  if (type === "treasury") return { label: "GOVT", cls: "bg-blue-500/10 text-blue-400" };
+  if (type === "corporate-ig") return { label: "IG", cls: "bg-purple-500/10 text-purple-400" };
+  return { label: "HY", cls: "bg-red-500/10 text-red-400" };
+}
+
+// ── Credit analysis data ──────────────────────────────────────────────────────
+
+interface CreditMetrics {
+  bondId: string;
+  revenue: number;      // $B
+  ebitda: number;       // $B
+  totalDebt: number;    // $B
+  fcf: number;          // $B
+  interestCoverage: number; // EBITDA/Interest
+  debtEbitda: number;       // Debt/EBITDA
+  equityBuffer: number;  // 0-100 score input
+}
+
+const CREDIT_DATA: CreditMetrics[] = [
+  { bondId: "aapl",  revenue: 394, ebitda: 130, totalDebt: 109, fcf: 112, interestCoverage: 28.4, debtEbitda: 0.84, equityBuffer: 92 },
+  { bondId: "msft",  revenue: 227, ebitda: 103, totalDebt: 47,  fcf: 74,  interestCoverage: 44.1, debtEbitda: 0.46, equityBuffer: 96 },
+  { bondId: "jpm",   revenue: 162, ebitda: 55,  totalDebt: 310, fcf: 38,  interestCoverage: 6.2,  debtEbitda: 5.64, equityBuffer: 71 },
+  { bondId: "xom",   revenue: 398, ebitda: 68,  totalDebt: 41,  fcf: 18,  interestCoverage: 14.8, debtEbitda: 0.60, equityBuffer: 78 },
+  { bondId: "hy1",   revenue: 5.8, ebitda: 2.1, totalDebt: 12,  fcf: 0.4, interestCoverage: 2.8,  debtEbitda: 5.71, equityBuffer: 32 },
+  { bondId: "hy2",   revenue: 21,  ebitda: 4.2, totalDebt: 16,  fcf: 1.1, interestCoverage: 3.4,  debtEbitda: 3.81, equityBuffer: 45 },
+];
+
+// Simplified Altman Z-score (Z = 1.2*X1 + 1.4*X2 + 3.3*X3 + 0.6*X4 + 1.0*X5)
+// We approximate with the data we have
+function altmanZScore(cm: CreditMetrics): number {
+  const x1 = 0.15; // working capital / total assets (approximate)
+  const x2 = cm.fcf / (cm.totalDebt * 3 + cm.revenue * 0.5); // retained earnings proxy
+  const x3 = cm.ebitda / (cm.totalDebt * 3 + cm.revenue * 0.5); // EBIT / assets
+  const x4 = cm.ebitda * 8 / cm.totalDebt; // market value equity / debt
+  const x5 = cm.revenue / (cm.totalDebt * 3 + cm.revenue * 0.5); // revenue / assets
+  return Math.min(10, Math.max(0, 1.2 * x1 + 1.4 * x2 + 3.3 * x3 + 0.6 * x4 + x5));
+}
+
+function creditScore(cm: CreditMetrics, zScore: number): number {
+  // 0-100 scale
+  const icScore = Math.min(40, cm.interestCoverage * 2); // max 40 pts
+  const levScore = Math.max(0, 30 - cm.debtEbitda * 4); // max 30 pts (lower leverage better)
+  const fcfScore = Math.min(20, (cm.fcf / cm.ebitda) * 100 * 0.2); // FCF/EBITDA * 20pts
+  const zScore_n = Math.min(10, zScore * 1.2); // up to 10 pts
+  return Math.round(Math.min(100, icScore + levScore + fcfScore + zScore_n));
+}
+
+// ── Portfolio builder types ───────────────────────────────────────────────────
+
+interface PortfolioHolding {
+  bondId: string;
+  weight: number; // 0-100 %
+}
+
+// ── Main Page ─────────────────────────────────────────────────────────────────
 
 export default function BondsPage() {
-  const [activeTab, setActiveTab] = useState("market");
-  const [portfolio, setPortfolio] = useState<BondPortfolio>(INITIAL_PORTFOLIO);
-  const [tradeQty, setTradeQty] = useState<Record<string, number>>({});
-  const [tradeSide, setTradeSide] = useState<"buy" | "sell">("buy");
+  const [activeTab, setActiveTab] = useState("overview");
 
   // Calculator state
   const [calcFace, setCalcFace] = useState(1000);
@@ -249,790 +217,1169 @@ export default function BondsPage() {
   const [calcYtm, setCalcYtm] = useState(4.5);
   const [calcFreq, setCalcFreq] = useState<1 | 2>(2);
 
-  // ── Generate bond rows with seeded daily variation ──────────────────────────
+  // Portfolio builder state
+  const [targetDuration, setTargetDuration] = useState(5);
+  const [portfolio, setPortfolio] = useState<PortfolioHolding[]>([]);
+
+  // ── Generate bond rows ────────────────────────────────────────────────────
   const bonds: BondRow[] = useMemo(() => {
-    const rng = seededRandom(dateSeed());
-    return BOND_DEFS.map((def) => {
-      // daily yield change: ±15bps
+    const rng = mulberry32(dateSeed());
+    return BOND_UNIVERSE.map((def) => {
       const dailyChange = (rng() - 0.5) * 0.3;
       const ytm = Math.max(0.1, def.baseYtm + dailyChange);
       const price = bondPrice(1000, def.coupon, def.maturityYears, ytm);
       const mac = macaulayDuration(1000, def.coupon, def.maturityYears, ytm);
-      return {
-        ...def,
-        ytm,
-        price,
-        duration: mac,
-        yieldChange1d: dailyChange,
-      };
+      const modDur = modifiedDuration(mac, ytm);
+      return { ...def, ytm, price, duration: mac, modDur, yieldChange1d: dailyChange };
     });
   }, []);
 
-  // ── Yield curve data ────────────────────────────────────────────────────────
-  const yieldCurve: YieldPoint[] = useMemo(() => {
-    const rng = seededRandom(dateSeed() + 1);
-    return [
-      { maturity: 0.5, label: "6M", ytm: Math.max(0.1, 5.05 + (rng() - 0.5) * 0.2) },
-      { maturity: 1,   label: "1Y", ytm: Math.max(0.1, 4.95 + (rng() - 0.5) * 0.2) },
-      { maturity: 2,   label: "2Y", ytm: bonds[0].ytm },
-      { maturity: 5,   label: "5Y", ytm: bonds[1].ytm },
-      { maturity: 10,  label: "10Y", ytm: bonds[2].ytm },
-      { maturity: 30,  label: "30Y", ytm: bonds[3].ytm },
+  // ── Yield curve points ────────────────────────────────────────────────────
+  const yieldCurve = useMemo(() => {
+    const rng = mulberry32(dateSeed() + 77);
+    const base = [
+      { mat: 0.25, label: "3M", ytm: 5.28 },
+      { mat: 0.5,  label: "6M", ytm: 5.10 },
+      { mat: 1,    label: "1Y", ytm: 4.95 },
+      { mat: 2,    label: "2Y", ytm: bonds.find(b => b.id === "us2y")!.ytm },
+      { mat: 5,    label: "5Y", ytm: bonds.find(b => b.id === "us5y")!.ytm },
+      { mat: 10,   label: "10Y",ytm: bonds.find(b => b.id === "us10y")!.ytm },
+      { mat: 30,   label: "30Y",ytm: bonds.find(b => b.id === "us30y")!.ytm },
     ];
+    // Historical curves
+    const ago6m = base.map(p => ({ ...p, ytm: Math.max(0.1, p.ytm + (rng() - 0.5) * 0.6 + 0.3) }));
+    const ago1y  = base.map(p => ({ ...p, ytm: Math.max(0.1, p.ytm + (rng() - 0.5) * 0.5 + 0.7) }));
+    return { current: base, ago6m, ago1y };
   }, [bonds]);
 
-  const spread10y2y = yieldCurve[4].ytm - yieldCurve[2].ytm;
-  const isInverted = spread10y2y < 0;
+  const spread10y2y = yieldCurve.current[5].ytm - yieldCurve.current[3].ytm;
+  const isInverted = spread10y2y < -0.05;
+  const isFlat = Math.abs(spread10y2y) <= 0.05;
 
-  // ── Calculator outputs ──────────────────────────────────────────────────────
+  const curveRegime = isInverted ? "Inverted" : isFlat ? "Flat" : "Normal";
+
+  // ── Calculator outputs ────────────────────────────────────────────────────
   const calcOutputs = useMemo(() => {
     const price = bondPrice(calcFace, calcCoupon, calcMaturity, calcYtm, calcFreq);
     const mac = macaulayDuration(calcFace, calcCoupon, calcMaturity, calcYtm, calcFreq);
     const modDur = modifiedDuration(mac, calcYtm, calcFreq);
-    const cvx = convexity(calcFace, calcCoupon, calcMaturity, calcYtm, calcFreq);
-    const dv = dv01(modDur, price);
-    const pricePlus1pct = bondPrice(calcFace, calcCoupon, calcMaturity, calcYtm + 1, calcFreq);
-    const lossPer1pct = pricePlus1pct - price;
-    return { price, mac, modDur, cvx, dv01: dv, lossPer1pct };
+    const cvx = convexityCalc(calcFace, calcCoupon, calcMaturity, calcYtm, calcFreq);
+    const dv = modDur * price * 0.0001;
+    const accruedInterest = (calcFace * (calcCoupon / 100)) / 365 * 30;
+    const pricePlus1 = bondPrice(calcFace, calcCoupon, calcMaturity, calcYtm + 1, calcFreq);
+    const priceMinus1 = bondPrice(calcFace, calcCoupon, calcMaturity, Math.max(0.01, calcYtm - 1), calcFreq);
+    return { price, mac, modDur, cvx, dv01: dv, accruedInterest, pricePlus1, priceMinus1 };
   }, [calcFace, calcCoupon, calcMaturity, calcYtm, calcFreq]);
 
-  // Price-yield curve: ±300bps from current yield
-  const priceYieldCurve = useMemo(() => {
-    const points: { ytm: number; price: number }[] = [];
-    for (let delta = -300; delta <= 300; delta += 25) {
-      const y = Math.max(0.01, calcYtm + delta / 100);
-      points.push({ ytm: y, price: bondPrice(calcFace, calcCoupon, calcMaturity, y, calcFreq) });
+  // Price-yield curve (1% to 15%)
+  const priceYieldPoints = useMemo(() => {
+    const pts: { ytm: number; price: number }[] = [];
+    for (let i = 0; i <= 20; i++) {
+      const y = 1 + i * 0.7;
+      pts.push({ ytm: y, price: bondPrice(calcFace, calcCoupon, calcMaturity, y, calcFreq) });
     }
-    return points;
-  }, [calcFace, calcCoupon, calcMaturity, calcYtm, calcFreq]);
+    return pts;
+  }, [calcFace, calcCoupon, calcMaturity, calcFreq]);
 
-  // ── Portfolio helpers ───────────────────────────────────────────────────────
-  const portfolioRows = useMemo(() => {
-    return portfolio.holdings.map((h) => {
-      const def = bonds.find((b) => b.id === h.bondId)!;
-      if (!def) return null;
-      const currentPrice = def.price;
-      const marketValue = currentPrice * h.quantity;
-      const costBasis = h.purchasePrice * h.quantity;
-      const pnl = marketValue - costBasis;
-      const pnlPct = costBasis > 0 ? (pnl / costBasis) * 100 : 0;
-      const accruedInterest = (def.coupon / 100 * h.face * h.quantity) / 365 * 30; // approx 30d accrued
-      const modDur = modifiedDuration(
-        macaulayDuration(h.face, def.coupon, def.maturityYears, def.ytm),
-        def.ytm,
-      );
-      return { ...h, def, currentPrice, marketValue, costBasis, pnl, pnlPct, accruedInterest, modDur };
-    }).filter(Boolean);
+  // ── Spread data ───────────────────────────────────────────────────────────
+  const spreads = useMemo(() => {
+    const rng = mulberry32(dateSeed() + 99);
+    const igBonds = bonds.filter(b => b.type === "corporate-ig");
+    const hyBonds = bonds.filter(b => b.type === "high-yield");
+    const avgIgYtm = igBonds.reduce((s, b) => s + b.ytm, 0) / igBonds.length;
+    const avgHyYtm = hyBonds.reduce((s, b) => s + b.ytm, 0) / hyBonds.length;
+    const treasuryAvg = (yieldCurve.current[3].ytm + yieldCurve.current[5].ytm) / 2;
+    return {
+      spread10y2y: spread10y2y * 100, // bps
+      igCreditSpread: (avgIgYtm - treasuryAvg) * 100,
+      hyCreditSpread: (avgHyYtm - treasuryAvg) * 100,
+      tedSpread: Math.abs(5.28 - 5.18) * 100 + (rng() - 0.5) * 5,
+      oasIg: 85 + (rng() - 0.5) * 30,
+      oasHy: 380 + (rng() - 0.5) * 80,
+    };
+  }, [bonds, yieldCurve, spread10y2y]);
+
+  // ── Portfolio builder ─────────────────────────────────────────────────────
+  const addBondToPortfolio = useCallback((bondId: string) => {
+    setPortfolio(prev => {
+      if (prev.find(h => h.bondId === bondId)) return prev;
+      const n = prev.length + 1;
+      const equalWeight = Math.round(100 / n);
+      const updated = prev.map(h => ({ ...h, weight: equalWeight }));
+      return [...updated, { bondId, weight: equalWeight }];
+    });
+  }, []);
+
+  const removeBondFromPortfolio = useCallback((bondId: string) => {
+    setPortfolio(prev => {
+      const filtered = prev.filter(h => h.bondId !== bondId);
+      if (filtered.length === 0) return [];
+      const equalWeight = Math.round(100 / filtered.length);
+      return filtered.map(h => ({ ...h, weight: equalWeight }));
+    });
+  }, []);
+
+  const updateWeight = useCallback((bondId: string, weight: number) => {
+    setPortfolio(prev => prev.map(h => h.bondId === bondId ? { ...h, weight } : h));
+  }, []);
+
+  const portfolioMetrics = useMemo(() => {
+    const totalWeight = portfolio.reduce((s, h) => s + h.weight, 0);
+    if (totalWeight === 0 || portfolio.length === 0) return null;
+    let wAvgYtm = 0;
+    let wAvgDuration = 0;
+    let totalCouponPer100k = 0;
+    for (const h of portfolio) {
+      const bond = bonds.find(b => b.id === h.bondId);
+      if (!bond) continue;
+      const w = h.weight / totalWeight;
+      wAvgYtm += bond.ytm * w;
+      wAvgDuration += bond.modDur * w;
+      totalCouponPer100k += (bond.coupon / 100) * 1000 * (h.weight / 100) * (100_000 / 1000);
+    }
+    return { wAvgYtm, wAvgDuration, totalCouponPer100k, totalWeight };
   }, [portfolio, bonds]);
 
-  const portfolioMktValue = portfolioRows.reduce((s, r) => s + (r?.marketValue ?? 0), 0);
-  const totalEquity = portfolio.cash + portfolioMktValue;
-  const weightedDuration = portfolioRows.reduce((s, r) => {
-    if (!r) return s;
-    const w = portfolioMktValue > 0 ? r.marketValue / portfolioMktValue : 0;
-    return s + r.modDur * w;
-  }, 0);
-
-  const handleBuy = useCallback((bond: BondRow) => {
-    const qty = tradeQty[bond.id] || 1;
-    const cost = bond.price * qty;
-    if (cost > portfolio.cash) return;
-    setPortfolio((prev) => {
-      const existing = prev.holdings.find((h) => h.bondId === bond.id);
-      if (existing) {
-        return {
-          ...prev,
-          cash: prev.cash - cost,
-          holdings: prev.holdings.map((h) =>
-            h.bondId === bond.id
-              ? {
-                  ...h,
-                  quantity: h.quantity + qty,
-                  purchasePrice: (h.purchasePrice * h.quantity + cost) / (h.quantity + qty),
-                }
-              : h,
-          ),
-        };
-      }
-      return {
-        ...prev,
-        cash: prev.cash - cost,
-        holdings: [
-          ...prev.holdings,
-          {
-            bondId: bond.id,
-            face: 1000,
-            quantity: qty,
-            purchaseYtm: bond.ytm,
-            purchasePrice: bond.price,
-            purchaseDate: new Date().toISOString().split("T")[0],
-          },
-        ],
-      };
+  // ── Credit analysis ───────────────────────────────────────────────────────
+  const creditAnalysis = useMemo(() => {
+    return CREDIT_DATA.map(cm => {
+      const bond = bonds.find(b => b.id === cm.bondId);
+      const zScore = altmanZScore(cm);
+      const score = creditScore(cm, zScore);
+      const isFallenAngel = bond && bond.type === "corporate-ig" && bond.creditRating.startsWith("BB");
+      const atRisk = score < 50;
+      return { ...cm, bond, zScore, score, isFallenAngel, atRisk };
     });
-  }, [tradeQty, portfolio.cash]);
+  }, [bonds]);
 
-  const handleSell = useCallback((bond: BondRow) => {
-    const qty = tradeQty[bond.id] || 1;
-    const holding = portfolio.holdings.find((h) => h.bondId === bond.id);
-    if (!holding || holding.quantity < qty) return;
-    const proceeds = bond.price * qty;
-    setPortfolio((prev) => ({
-      ...prev,
-      cash: prev.cash + proceeds,
-      holdings: prev.holdings
-        .map((h) => h.bondId === bond.id ? { ...h, quantity: h.quantity - qty } : h)
-        .filter((h) => h.quantity > 0),
-    }));
-  }, [tradeQty, portfolio.holdings]);
+  // ── SVG helpers ───────────────────────────────────────────────────────────
 
-  // ── Yield curve SVG ─────────────────────────────────────────────────────────
-  function YieldCurveSVG() {
-    const W = 500, H = 180, padL = 48, padR = 16, padT = 16, padB = 32;
-    const maturities = yieldCurve.map((p) => p.maturity);
-    const yields = yieldCurve.map((p) => p.ytm);
-    const minY = Math.min(...yields) - 0.3;
-    const maxY = Math.max(...yields) + 0.3;
+  function YieldCurveSVG({ showHistorical = false }: { showHistorical?: boolean }) {
+    const W = 560, H = 200, padL = 48, padR = 20, padT = 20, padB = 36;
+    const allYtms = [
+      ...yieldCurve.current.map(p => p.ytm),
+      ...(showHistorical ? [...yieldCurve.ago6m.map(p => p.ytm), ...yieldCurve.ago1y.map(p => p.ytm)] : []),
+    ];
+    const minY = Math.min(...allYtms) - 0.2;
+    const maxY = Math.max(...allYtms) + 0.2;
+    const mats = yieldCurve.current.map(p => p.mat);
+    const minM = 0; const maxM = 30;
 
-    const toX = (m: number) => padL + ((m - 0) / (30 - 0)) * (W - padL - padR);
+    const toX = (m: number) => padL + ((m - minM) / (maxM - minM)) * (W - padL - padR);
     const toY = (y: number) => padT + ((maxY - y) / (maxY - minY)) * (H - padT - padB);
 
-    const pts = yieldCurve.map((p) => `${toX(p.maturity)},${toY(p.ytm)}`).join(" ");
+    const curvePts = (data: { mat: number; ytm: number }[]) =>
+      data.map(p => `${toX(p.mat)},${toY(p.ytm)}`).join(" ");
 
-    // Y-axis ticks
-    const yTicks: number[] = [];
-    const step = 0.25;
-    for (let y = Math.ceil(minY / step) * step; y <= maxY; y = Math.round((y + step) * 100) / 100) {
-      yTicks.push(y);
-    }
+    const yTicks = [Math.ceil(minY * 4) / 4];
+    while (yTicks[yTicks.length - 1] + 0.25 <= maxY) yTicks.push(Math.round((yTicks[yTicks.length - 1] + 0.25) * 100) / 100);
 
     return (
-      <svg viewBox={`0 0 ${W} ${H}`} className="w-full" style={{ height: 180 }}>
-        {/* Grid lines */}
-        {yTicks.map((y) => (
-          <line
-            key={y}
-            x1={padL} y1={toY(y)} x2={W - padR} y2={toY(y)}
-            stroke="currentColor" strokeOpacity={0.08} strokeWidth={1}
-          />
+      <svg viewBox={`0 0 ${W} ${H}`} className="w-full" style={{ height: H }}>
+        {yTicks.map(y => (
+          <line key={y} x1={padL} y1={toY(y)} x2={W - padR} y2={toY(y)}
+            stroke="currentColor" strokeOpacity={0.07} strokeWidth={1} />
         ))}
-        {/* Y-axis labels */}
-        {yTicks.map((y) => (
-          <text
-            key={y}
-            x={padL - 6} y={toY(y) + 4}
-            fontSize={9} fill="currentColor" fillOpacity={0.5} textAnchor="end"
-          >
+        {yTicks.map(y => (
+          <text key={y} x={padL - 6} y={toY(y) + 4} fontSize={9} fill="currentColor" fillOpacity={0.45} textAnchor="end">
             {y.toFixed(2)}%
           </text>
         ))}
-        {/* X-axis labels */}
-        {yieldCurve.map((p) => (
-          <text
-            key={p.label}
-            x={toX(p.maturity)} y={H - 4}
-            fontSize={9} fill="currentColor" fillOpacity={0.5} textAnchor="middle"
-          >
+        {yieldCurve.current.map(p => (
+          <text key={p.label} x={toX(p.mat)} y={H - 8} fontSize={9} fill="currentColor" fillOpacity={0.45} textAnchor="middle">
             {p.label}
           </text>
         ))}
-        {/* Curve fill */}
+        {/* Area fill */}
         <polygon
-          points={`${padL},${toY(minY)} ${pts} ${W - padR},${toY(minY)}`}
-          fill={isInverted ? "rgba(239,68,68,0.08)" : "rgba(34,197,94,0.08)"}
+          points={`${toX(mats[0])},${toY(minY)} ${curvePts(yieldCurve.current)} ${toX(mats[mats.length - 1])},${toY(minY)}`}
+          fill={isInverted ? "rgba(239,68,68,0.06)" : "rgba(34,197,94,0.06)"}
         />
-        {/* Curve line */}
-        <polyline
-          points={pts}
-          fill="none"
-          stroke={isInverted ? "#ef4444" : "#22c55e"}
-          strokeWidth={2}
-          strokeLinejoin="round"
-        />
-        {/* Points */}
-        {yieldCurve.map((p) => (
-          <circle
-            key={p.label}
-            cx={toX(p.maturity)} cy={toY(p.ytm)} r={3.5}
-            fill={isInverted ? "#ef4444" : "#22c55e"}
-          />
+        {/* Historical curves */}
+        {showHistorical && (
+          <>
+            <polyline points={curvePts(yieldCurve.ago1y)} fill="none"
+              stroke="#6366f1" strokeWidth={1.5} strokeDasharray="4,3" strokeOpacity={0.5} strokeLinejoin="round" />
+            <polyline points={curvePts(yieldCurve.ago6m)} fill="none"
+              stroke="#f59e0b" strokeWidth={1.5} strokeDasharray="4,3" strokeOpacity={0.6} strokeLinejoin="round" />
+          </>
+        )}
+        {/* Current curve */}
+        <polyline points={curvePts(yieldCurve.current)} fill="none"
+          stroke={isInverted ? "#ef4444" : "#22c55e"} strokeWidth={2.5} strokeLinejoin="round" />
+        {yieldCurve.current.map(p => (
+          <circle key={p.label} cx={toX(p.mat)} cy={toY(p.ytm)} r={3.5}
+            fill={isInverted ? "#ef4444" : "#22c55e"} />
         ))}
+        {/* Legend for historical */}
+        {showHistorical && (
+          <g>
+            <line x1={W - 130} y1={padT + 8} x2={W - 115} y2={padT + 8} stroke="#22c55e" strokeWidth={2.5} />
+            <text x={W - 112} y={padT + 12} fontSize={8} fill="currentColor" fillOpacity={0.6}>Current</text>
+            <line x1={W - 130} y1={padT + 20} x2={W - 115} y2={padT + 20} stroke="#f59e0b" strokeWidth={1.5} strokeDasharray="4,3" />
+            <text x={W - 112} y={padT + 24} fontSize={8} fill="currentColor" fillOpacity={0.6}>6M ago</text>
+            <line x1={W - 130} y1={padT + 32} x2={W - 115} y2={padT + 32} stroke="#6366f1" strokeWidth={1.5} strokeDasharray="4,3" />
+            <text x={W - 112} y={padT + 36} fontSize={8} fill="currentColor" fillOpacity={0.6}>1Y ago</text>
+          </g>
+        )}
       </svg>
     );
   }
 
-  // ── Price-yield SVG ─────────────────────────────────────────────────────────
   function PriceYieldSVG() {
-    const W = 500, H = 200, padL = 60, padR = 16, padT = 16, padB = 32;
-    const prices = priceYieldCurve.map((p) => p.price);
-    const ytms = priceYieldCurve.map((p) => p.ytm);
-    const minP = Math.min(...prices);
-    const maxP = Math.max(...prices);
-    const minY = Math.min(...ytms);
-    const maxY = Math.max(...ytms);
+    const W = 560, H = 220, padL = 64, padR = 20, padT = 16, padB = 36;
+    const prices = priceYieldPoints.map(p => p.price);
+    const ytms = priceYieldPoints.map(p => p.ytm);
+    const minP = Math.min(...prices), maxP = Math.max(...prices);
+    const minYtm = Math.min(...ytms), maxYtm = Math.max(...ytms);
 
-    const toX = (y: number) => padL + ((y - minY) / (maxY - minY)) * (W - padL - padR);
+    const toX = (y: number) => padL + ((y - minYtm) / (maxYtm - minYtm)) * (W - padL - padR);
     const toY = (p: number) => padT + ((maxP - p) / (maxP - minP)) * (H - padT - padB);
+    const pts = priceYieldPoints.map(p => `${toX(p.ytm)},${toY(p.price)}`).join(" ");
 
-    const pts = priceYieldCurve.map((p) => `${toX(p.ytm)},${toY(p.price)}`).join(" ");
+    const pStep = Math.ceil((maxP - minP) / 5 / 50) * 50;
+    const pTicks: number[] = [];
+    for (let p = Math.ceil(minP / pStep) * pStep; p <= maxP + pStep; p += pStep) pTicks.push(p);
 
-    // Current yield vertical line
     const cx = toX(calcYtm);
 
-    // Y-axis ticks (price)
-    const pStep = Math.ceil((maxP - minP) / 5 / 10) * 10;
-    const pTicks: number[] = [];
-    for (let p = Math.ceil(minP / pStep) * pStep; p <= maxP; p += pStep) pTicks.push(p);
-
     return (
-      <svg viewBox={`0 0 ${W} ${H}`} className="w-full" style={{ height: 200 }}>
-        {/* Grid */}
-        {pTicks.map((p) => (
-          <line
-            key={p}
-            x1={padL} y1={toY(p)} x2={W - padR} y2={toY(p)}
-            stroke="currentColor" strokeOpacity={0.08} strokeWidth={1}
-          />
+      <svg viewBox={`0 0 ${W} ${H}`} className="w-full" style={{ height: H }}>
+        {pTicks.map(p => (
+          <line key={p} x1={padL} y1={toY(p)} x2={W - padR} y2={toY(p)}
+            stroke="currentColor" strokeOpacity={0.07} strokeWidth={1} />
         ))}
-        {/* Y labels */}
-        {pTicks.map((p) => (
-          <text
-            key={p}
-            x={padL - 6} y={toY(p) + 4}
-            fontSize={9} fill="currentColor" fillOpacity={0.5} textAnchor="end"
-          >
+        {pTicks.map(p => (
+          <text key={p} x={padL - 6} y={toY(p) + 4} fontSize={9} fill="currentColor" fillOpacity={0.45} textAnchor="end">
             ${p.toFixed(0)}
           </text>
         ))}
-        {/* X labels */}
-        {priceYieldCurve.filter((_, i) => i % 4 === 0).map((p) => (
-          <text
-            key={p.ytm}
-            x={toX(p.ytm)} y={H - 4}
-            fontSize={9} fill="currentColor" fillOpacity={0.5} textAnchor="middle"
-          >
+        {priceYieldPoints.filter((_, i) => i % 4 === 0).map(p => (
+          <text key={p.ytm} x={toX(p.ytm)} y={H - 8} fontSize={9} fill="currentColor" fillOpacity={0.45} textAnchor="middle">
             {p.ytm.toFixed(1)}%
           </text>
         ))}
-        {/* Current yield vertical */}
-        <line
-          x1={cx} y1={padT} x2={cx} y2={H - padB}
-          stroke="#f59e0b" strokeWidth={1.5} strokeDasharray="4,3"
-        />
+        {/* Axis label */}
+        <text x={padL - 4} y={padT - 6} fontSize={8} fill="currentColor" fillOpacity={0.4}>Price ($)</text>
+        <text x={W / 2} y={H} fontSize={8} fill="currentColor" fillOpacity={0.4} textAnchor="middle">Yield to Maturity (%)</text>
+        {/* Curve fill */}
+        <polygon points={`${padL},${toY(minP)} ${pts} ${W - padR},${toY(minP)}`} fill="rgba(99,102,241,0.06)" />
         {/* Curve */}
-        <polyline
-          points={pts}
-          fill="none"
-          stroke="#6366f1"
-          strokeWidth={2}
-          strokeLinejoin="round"
-        />
-        {/* Current point */}
-        <circle
-          cx={toX(calcYtm)} cy={toY(calcOutputs.price)} r={4}
-          fill="#f59e0b" stroke="#1e1e2e" strokeWidth={1.5}
-        />
-        <text
-          x={toX(calcYtm) + 6} y={toY(calcOutputs.price) - 4}
-          fontSize={9} fill="#f59e0b"
-        >
+        <polyline points={pts} fill="none" stroke="#6366f1" strokeWidth={2.5} strokeLinejoin="round" />
+        {/* Current yield marker */}
+        <line x1={cx} y1={padT} x2={cx} y2={H - padB} stroke="#f59e0b" strokeWidth={1.5} strokeDasharray="4,3" />
+        <circle cx={toX(calcYtm)} cy={toY(calcOutputs.price)} r={5}
+          fill="#f59e0b" stroke="#000" strokeWidth={1.5} />
+        <text x={toX(calcYtm) + 8} y={toY(calcOutputs.price) - 6} fontSize={9} fill="#f59e0b">
           ${calcOutputs.price.toFixed(2)}
         </text>
       </svg>
     );
   }
 
-  // ── Render ──────────────────────────────────────────────────────────────────
+  function SpreadBarSVG() {
+    const W = 440, H = 130, padL = 120, padR = 60, padT = 12, padB = 12;
+    const bars = [
+      { label: "10Y-2Y Spread", value: spreads.spread10y2y, color: spreads.spread10y2y < 0 ? "#ef4444" : "#22c55e" },
+      { label: "IG Credit Spread", value: spreads.igCreditSpread, color: "#6366f1" },
+      { label: "HY Credit Spread", value: spreads.hyCreditSpread, color: "#f59e0b" },
+      { label: "TED Spread", value: spreads.tedSpread, color: "#06b6d4" },
+    ];
+    const maxVal = Math.max(...bars.map(b => Math.abs(b.value)), 10);
+    const barH = (H - padT - padB) / bars.length - 4;
+
+    return (
+      <svg viewBox={`0 0 ${W} ${H}`} className="w-full" style={{ height: H }}>
+        {bars.map((bar, i) => {
+          const y = padT + i * ((H - padT - padB) / bars.length);
+          const barW = (Math.abs(bar.value) / maxVal) * (W - padL - padR);
+          return (
+            <g key={bar.label}>
+              <text x={padL - 6} y={y + barH / 2 + 4} fontSize={9} fill="currentColor" fillOpacity={0.6} textAnchor="end">
+                {bar.label}
+              </text>
+              <rect x={padL} y={y} width={barW} height={barH} rx={2} fill={bar.color} fillOpacity={0.7} />
+              <text x={padL + barW + 5} y={y + barH / 2 + 4} fontSize={9} fill={bar.color}>
+                {bar.value >= 0 ? "+" : ""}{bar.value.toFixed(1)} bps
+              </text>
+            </g>
+          );
+        })}
+      </svg>
+    );
+  }
+
+  function MaturityLadderSVG() {
+    if (portfolio.length === 0) return null;
+    const W = 480, H = 140, padL = 16, padR = 16, padT = 16, padB = 28;
+    const items = portfolio
+      .map(h => {
+        const bond = bonds.find(b => b.id === h.bondId);
+        return bond ? { mat: bond.maturityYears, label: bond.ticker, weight: h.weight, type: bond.type } : null;
+      })
+      .filter(Boolean) as { mat: number; label: string; weight: number; type: BondDef["type"] }[];
+
+    if (items.length === 0) return null;
+    const maxW = Math.max(...items.map(i => i.weight));
+    const barW = (W - padL - padR) / items.length - 6;
+
+    const typeColor = (t: BondDef["type"]) =>
+      t === "treasury" ? "#60a5fa" : t === "corporate-ig" ? "#a78bfa" : "#f87171";
+
+    return (
+      <svg viewBox={`0 0 ${W} ${H}`} className="w-full" style={{ height: H }}>
+        {items.map((item, i) => {
+          const barH = ((item.weight / maxW) * (H - padT - padB)) || 2;
+          const x = padL + i * (barW + 6);
+          const y = H - padB - barH;
+          return (
+            <g key={item.label}>
+              <rect x={x} y={y} width={barW} height={barH} rx={2} fill={typeColor(item.type)} fillOpacity={0.7} />
+              <text x={x + barW / 2} y={H - padB + 10} fontSize={8} fill="currentColor" fillOpacity={0.6} textAnchor="middle">
+                {item.mat}Y
+              </text>
+              <text x={x + barW / 2} y={H - padB + 20} fontSize={7} fill="currentColor" fillOpacity={0.4} textAnchor="middle">
+                {item.label}
+              </text>
+              <text x={x + barW / 2} y={y - 3} fontSize={8} fill={typeColor(item.type)} textAnchor="middle">
+                {item.weight}%
+              </text>
+            </g>
+          );
+        })}
+      </svg>
+    );
+  }
+
+  function CreditGaugeSVG({ score }: { score: number }) {
+    const r = 36, cx = 50, cy = 50;
+    const startAngle = Math.PI * 0.75;
+    const endAngle = Math.PI * 2.25;
+    const angle = startAngle + ((score / 100) * (endAngle - startAngle));
+    const arcX = cx + r * Math.cos(angle);
+    const arcY = cy + r * Math.sin(angle);
+    const color = score >= 70 ? "#22c55e" : score >= 50 ? "#f59e0b" : "#ef4444";
+
+    // Background arc
+    const bgX1 = cx + r * Math.cos(startAngle);
+    const bgY1 = cy + r * Math.sin(startAngle);
+    const bgX2 = cx + r * Math.cos(endAngle);
+    const bgY2 = cy + r * Math.sin(endAngle);
+
+    return (
+      <svg viewBox="0 0 100 70" width={80} height={56}>
+        <path
+          d={`M ${bgX1} ${bgY1} A ${r} ${r} 0 1 1 ${bgX2} ${bgY2}`}
+          fill="none" stroke="currentColor" strokeOpacity={0.15} strokeWidth={6} strokeLinecap="round"
+        />
+        <path
+          d={`M ${bgX1} ${bgY1} A ${r} ${r} 0 ${score > 66 ? 1 : 0} 1 ${arcX} ${arcY}`}
+          fill="none" stroke={color} strokeWidth={6} strokeLinecap="round"
+        />
+        <text x={cx} y={cy + 12} textAnchor="middle" fontSize={14} fontWeight="bold" fill={color}>
+          {score}
+        </text>
+      </svg>
+    );
+  }
+
+  // ── Render ────────────────────────────────────────────────────────────────
+
   return (
     <div className="flex h-full flex-col overflow-hidden">
       {/* Header */}
       <div className="flex items-center gap-3 border-b border-border/50 px-6 py-4">
         <Landmark className="h-5 w-5 text-primary" />
         <div>
-          <h1 className="text-base font-semibold leading-none">Bond Market</h1>
-          <p className="mt-1 text-xs text-muted-foreground">Fixed income simulator — Treasuries, corporates, high yield & munis</p>
+          <h1 className="text-base font-semibold leading-none">Fixed Income Simulator</h1>
+          <p className="mt-1 text-xs text-muted-foreground">
+            Bonds, yield curves, credit analysis &amp; portfolio construction
+          </p>
+        </div>
+        <div className="ml-auto flex items-center gap-2">
+          <span className={cn(
+            "rounded-full px-2.5 py-1 text-[10px] font-semibold",
+            isInverted ? "bg-red-500/15 text-red-400" :
+            isFlat ? "bg-amber-500/15 text-amber-400" :
+            "bg-green-500/15 text-green-400",
+          )}>
+            {curveRegime} Yield Curve
+          </span>
+          <span className="text-[10px] text-muted-foreground/50">
+            10Y-2Y: {spread10y2y >= 0 ? "+" : ""}{(spread10y2y * 100).toFixed(0)} bps
+          </span>
         </div>
       </div>
 
       <Tabs value={activeTab} onValueChange={setActiveTab} className="flex flex-1 flex-col min-h-0">
         <TabsList className="shrink-0 mx-6 mt-3 w-fit">
-          <TabsTrigger value="market" className="text-xs gap-1.5">
+          <TabsTrigger value="overview" className="text-xs gap-1.5">
             <TrendingUp className="h-3.5 w-3.5" />
             Bond Market
           </TabsTrigger>
           <TabsTrigger value="calculator" className="text-xs gap-1.5">
             <Calculator className="h-3.5 w-3.5" />
-            Calculator
+            Pricing Calculator
           </TabsTrigger>
-          <TabsTrigger value="trade" className="text-xs gap-1.5">
-            <ShoppingCart className="h-3.5 w-3.5" />
-            Trade Bonds
+          <TabsTrigger value="yieldcurve" className="text-xs gap-1.5">
+            <BarChart3 className="h-3.5 w-3.5" />
+            Yield Curve
           </TabsTrigger>
-          <TabsTrigger value="education" className="text-xs gap-1.5">
-            <GraduationCap className="h-3.5 w-3.5" />
-            Education
+          <TabsTrigger value="portfolio" className="text-xs gap-1.5">
+            <ShieldCheck className="h-3.5 w-3.5" />
+            Portfolio Builder
+          </TabsTrigger>
+          <TabsTrigger value="credit" className="text-xs gap-1.5">
+            <AlertCircle className="h-3.5 w-3.5" />
+            Credit Analysis
           </TabsTrigger>
         </TabsList>
 
-        {/* ── Tab 1: Bond Market ─────────────────────────────────────────────── */}
-        <TabsContent
-          value="market"
-          className="flex-1 overflow-y-auto px-6 pb-6 pt-4 data-[state=inactive]:hidden"
-        >
-          {/* Yield curve + spread info */}
-          <div className="mb-5 grid grid-cols-1 gap-4 lg:grid-cols-3">
-            {/* Yield Curve SVG */}
-            <div className="col-span-2 rounded-lg border border-border/50 bg-card p-4">
-              <div className="mb-3 flex items-center justify-between">
-                <span className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">US Treasury Yield Curve</span>
-                <span className={cn("rounded-full px-2 py-0.5 text-[10px] font-semibold", isInverted ? "bg-red-500/15 text-red-400" : "bg-green-500/15 text-green-400")}>
-                  {isInverted ? "Inverted" : "Normal"}
-                </span>
-              </div>
-              <YieldCurveSVG />
-            </div>
-
-            {/* Spread + indicators */}
-            <div className="flex flex-col gap-3">
-              <div className={cn("rounded-lg border p-4", isInverted ? "border-red-500/30 bg-red-500/5" : "border-green-500/30 bg-green-500/5")}>
-                <div className="text-[10px] font-semibold uppercase tracking-wider text-muted-foreground mb-1">10Y – 2Y Spread</div>
-                <div className={cn("text-2xl font-bold tabular-nums", isInverted ? "text-red-400" : "text-green-400")}>
-                  {spread10y2y >= 0 ? "+" : ""}{(spread10y2y * 100).toFixed(1)}bps
-                </div>
-                {isInverted && (
-                  <div className="mt-2 flex items-start gap-1.5 text-[10px] text-red-400">
-                    <AlertTriangle className="h-3 w-3 mt-0.5 shrink-0" />
-                    Yield curve inverted — historically precedes recession by 12–18 months.
-                  </div>
-                )}
-              </div>
-
-              {yieldCurve.map((p) => (
-                <div key={p.label} className="flex items-center justify-between rounded-md border border-border/40 bg-card px-3 py-2">
-                  <span className="text-xs font-medium text-muted-foreground">{p.label} Treasury</span>
-                  <span className="text-xs font-semibold tabular-nums text-foreground">{p.ytm.toFixed(3)}%</span>
-                </div>
-              ))}
-            </div>
-          </div>
-
-          {/* Bond table */}
-          <div className="rounded-lg border border-border/50 bg-card overflow-hidden">
-            <div className="overflow-x-auto">
-              <table className="w-full text-xs">
-                <thead>
-                  <tr className="border-b border-border/50 bg-muted/30">
-                    {["Name", "Coupon", "Maturity", "YTM", "Price", "Duration", "Rating", "Yield Chg (1d)"].map((h) => (
-                      <th key={h} className="px-3 py-2.5 text-left text-[10px] font-semibold uppercase tracking-wider text-muted-foreground whitespace-nowrap">
-                        {h}
-                      </th>
-                    ))}
-                  </tr>
-                </thead>
-                <tbody>
-                  {bonds.map((b, i) => (
-                    <tr
-                      key={b.id}
-                      className={cn("border-b border-border/30 transition-colors hover:bg-accent/30", i % 2 === 0 ? "" : "bg-muted/10")}
-                    >
-                      <td className="px-3 py-2.5 font-medium text-foreground whitespace-nowrap">
-                        <div className="flex items-center gap-2">
-                          <span className={cn("rounded px-1.5 py-0.5 text-[9px] font-semibold uppercase", {
-                            "bg-blue-500/10 text-blue-400": b.type === "treasury",
-                            "bg-purple-500/10 text-purple-400": b.type === "corporate",
-                            "bg-red-500/10 text-red-400": b.type === "high-yield",
-                            "bg-teal-500/10 text-teal-400": b.type === "municipal",
-                          })}>
-                            {b.type === "treasury" ? "GOVT" : b.type === "corporate" ? "CORP" : b.type === "high-yield" ? "HY" : "MUNI"}
-                          </span>
-                          {b.name}
-                        </div>
-                      </td>
-                      <td className="px-3 py-2.5 tabular-nums text-muted-foreground">{b.coupon.toFixed(2)}%</td>
-                      <td className="px-3 py-2.5 tabular-nums text-muted-foreground">{b.maturityYears}Y</td>
-                      <td className="px-3 py-2.5 tabular-nums font-semibold text-foreground">{b.ytm.toFixed(3)}%</td>
-                      <td className="px-3 py-2.5 tabular-nums text-foreground">${b.price.toFixed(2)}</td>
-                      <td className="px-3 py-2.5 tabular-nums text-muted-foreground">{b.duration.toFixed(2)}yr</td>
-                      <td className="px-3 py-2.5">
-                        <span className={cn("rounded px-1.5 py-0.5 text-[10px] font-bold", ratingColor(b.creditRating))}>
-                          {b.creditRating}
-                        </span>
-                      </td>
-                      <td className={cn("px-3 py-2.5 tabular-nums font-medium", b.yieldChange1d >= 0 ? "text-red-400" : "text-green-400")}>
-                        {b.yieldChange1d >= 0 ? "+" : ""}{(b.yieldChange1d * 100).toFixed(1)}bps
-                      </td>
-                    </tr>
-                  ))}
-                </tbody>
-              </table>
-            </div>
-          </div>
-
-          <p className="mt-2 text-[10px] text-muted-foreground/50">
-            Yield change note: yield rise = price falls (inverse relationship). Prices shown per $1,000 face value.
-          </p>
-        </TabsContent>
-
-        {/* ── Tab 2: Calculator ──────────────────────────────────────────────── */}
-        <TabsContent
-          value="calculator"
-          className="flex-1 overflow-y-auto px-6 pb-6 pt-4 data-[state=inactive]:hidden"
-        >
-          <div className="grid grid-cols-1 gap-6 lg:grid-cols-2">
-            {/* Inputs */}
-            <div className="rounded-lg border border-border/50 bg-card p-5">
-              <h3 className="mb-4 text-sm font-semibold text-foreground">Bond Parameters</h3>
-              <div className="space-y-4">
-                {/* Face value */}
-                <div>
-                  <label className="mb-1.5 block text-xs font-medium text-muted-foreground">Face Value ($)</label>
-                  <input
-                    type="number"
-                    value={calcFace}
-                    onChange={(e) => setCalcFace(Math.max(100, Number(e.target.value)))}
-                    className="w-full rounded-md border border-border/60 bg-background px-3 py-1.5 text-sm text-foreground focus:border-primary focus:outline-none"
-                  />
-                </div>
-                {/* Coupon rate */}
-                <div>
-                  <label className="mb-1.5 block text-xs font-medium text-muted-foreground">Annual Coupon Rate (%)</label>
-                  <input
-                    type="number"
-                    step="0.01"
-                    value={calcCoupon}
-                    onChange={(e) => setCalcCoupon(Math.max(0, Number(e.target.value)))}
-                    className="w-full rounded-md border border-border/60 bg-background px-3 py-1.5 text-sm text-foreground focus:border-primary focus:outline-none"
-                  />
-                </div>
-                {/* Maturity */}
-                <div>
-                  <label className="mb-1.5 block text-xs font-medium text-muted-foreground">Maturity (years)</label>
-                  <input
-                    type="number"
-                    value={calcMaturity}
-                    onChange={(e) => setCalcMaturity(Math.max(0.5, Number(e.target.value)))}
-                    className="w-full rounded-md border border-border/60 bg-background px-3 py-1.5 text-sm text-foreground focus:border-primary focus:outline-none"
-                  />
-                </div>
-                {/* YTM */}
-                <div>
-                  <label className="mb-1.5 block text-xs font-medium text-muted-foreground">Current Yield / YTM (%)</label>
-                  <input
-                    type="number"
-                    step="0.01"
-                    value={calcYtm}
-                    onChange={(e) => setCalcYtm(Math.max(0.01, Number(e.target.value)))}
-                    className="w-full rounded-md border border-border/60 bg-background px-3 py-1.5 text-sm text-foreground focus:border-primary focus:outline-none"
-                  />
-                </div>
-                {/* Payment frequency */}
-                <div>
-                  <label className="mb-1.5 block text-xs font-medium text-muted-foreground">Payment Frequency</label>
-                  <div className="flex gap-2">
-                    {([1, 2] as const).map((f) => (
-                      <button
-                        key={f}
-                        onClick={() => setCalcFreq(f)}
-                        className={cn(
-                          "flex-1 rounded-md border px-3 py-1.5 text-xs font-medium transition-colors",
-                          calcFreq === f
-                            ? "border-primary bg-primary/10 text-primary"
-                            : "border-border/60 text-muted-foreground hover:border-primary/40",
-                        )}
-                      >
-                        {f === 1 ? "Annual" : "Semi-Annual"}
-                      </button>
-                    ))}
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            {/* Outputs */}
-            <div className="flex flex-col gap-4">
-              <div className="rounded-lg border border-border/50 bg-card p-5">
-                <h3 className="mb-4 text-sm font-semibold text-foreground">Calculated Metrics</h3>
-                <div className="grid grid-cols-2 gap-3">
-                  {[
-                    { label: "Bond Price", value: `$${calcOutputs.price.toFixed(4)}`, highlight: true },
-                    { label: "Macaulay Duration", value: `${calcOutputs.mac.toFixed(4)} yrs` },
-                    { label: "Modified Duration", value: `${calcOutputs.modDur.toFixed(4)} yrs` },
-                    { label: "DV01 (per $)", value: `$${calcOutputs.dv01.toFixed(4)}` },
-                    { label: "Convexity", value: calcOutputs.cvx.toFixed(4) },
-                    { label: "Price vs Par", value: `${((calcOutputs.price / calcFace - 1) * 100).toFixed(2)}%` },
-                  ].map(({ label, value, highlight }) => (
-                    <div key={label} className={cn("rounded-md border p-3", highlight ? "border-primary/30 bg-primary/5" : "border-border/40 bg-muted/20")}>
-                      <div className="text-[10px] font-medium uppercase tracking-wider text-muted-foreground">{label}</div>
-                      <div className={cn("mt-1 text-base font-bold tabular-nums", highlight ? "text-primary" : "text-foreground")}>
-                        {value}
-                      </div>
-                    </div>
-                  ))}
-                </div>
-              </div>
-
-              {/* Rate rise scenario */}
-              <div className="rounded-lg border border-amber-500/30 bg-amber-500/5 p-4">
-                <div className="flex items-start gap-2">
-                  <AlertTriangle className="h-4 w-4 text-amber-400 mt-0.5 shrink-0" />
-                  <div>
-                    <div className="text-xs font-semibold text-amber-400">If rates rise 1%:</div>
-                    <div className="mt-1 text-sm font-bold text-foreground">
-                      Bond {calcOutputs.lossPer1pct < 0 ? "loses" : "gains"} ${Math.abs(calcOutputs.lossPer1pct).toFixed(2)} per bond
-                    </div>
-                    <div className="mt-0.5 text-[10px] text-muted-foreground">
-                      ({((calcOutputs.lossPer1pct / calcOutputs.price) * 100).toFixed(2)}% change in price)
-                      — approx: modified duration × price × 1%
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          {/* Price-yield chart */}
-          <div className="mt-5 rounded-lg border border-border/50 bg-card p-5">
-            <div className="mb-3 flex items-center justify-between">
-              <span className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">Price–Yield Relationship (±300 bps)</span>
-              <span className="text-[10px] text-muted-foreground">Amber dashed = current yield</span>
-            </div>
-            <PriceYieldSVG />
-          </div>
-        </TabsContent>
-
-        {/* ── Tab 3: Trade Bonds ─────────────────────────────────────────────── */}
-        <TabsContent
-          value="trade"
-          className="flex-1 overflow-y-auto px-6 pb-6 pt-4 data-[state=inactive]:hidden"
-        >
-          {/* Portfolio summary */}
-          <div className="mb-4 grid grid-cols-2 gap-3 sm:grid-cols-4">
-            {[
-              { label: "Cash", value: `$${portfolio.cash.toLocaleString("en-US", { minimumFractionDigits: 2, maximumFractionDigits: 2 })}` },
-              { label: "Market Value", value: `$${portfolioMktValue.toLocaleString("en-US", { minimumFractionDigits: 2, maximumFractionDigits: 2 })}` },
-              { label: "Total Equity", value: `$${totalEquity.toLocaleString("en-US", { minimumFractionDigits: 2, maximumFractionDigits: 2 })}` },
-              { label: "Portfolio Duration", value: `${weightedDuration.toFixed(2)} yrs` },
-            ].map(({ label, value }) => (
-              <div key={label} className="rounded-lg border border-border/50 bg-card px-4 py-3">
-                <div className="text-[10px] font-semibold uppercase tracking-wider text-muted-foreground">{label}</div>
-                <div className="mt-1 text-sm font-bold tabular-nums text-foreground">{value}</div>
-              </div>
-            ))}
-          </div>
-
-          {/* Trade panel */}
-          <div className="mb-5 rounded-lg border border-border/50 bg-card p-5">
-            <div className="mb-3 flex items-center gap-3">
-              <h3 className="text-sm font-semibold">Place Order</h3>
-              <div className="flex gap-1">
-                {(["buy", "sell"] as const).map((side) => (
-                  <button
-                    key={side}
-                    onClick={() => setTradeSide(side)}
-                    className={cn(
-                      "rounded px-3 py-1 text-xs font-semibold transition-colors",
-                      tradeSide === side
-                        ? side === "buy"
-                          ? "bg-green-500/20 text-green-400"
-                          : "bg-red-500/20 text-red-400"
-                        : "text-muted-foreground hover:text-foreground",
+        {/* ── Tab 1: Bond Market Overview ──────────────────────────────────────── */}
+        <TabsContent value="overview" className="flex-1 overflow-y-auto px-6 pb-6 pt-4 data-[state=inactive]:hidden">
+          <motion.div initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.3 }}>
+            {/* Yield curve card */}
+            <div className="mb-5 grid grid-cols-1 gap-4 lg:grid-cols-3">
+              <div className="col-span-2 rounded-lg border border-border/50 bg-card p-4">
+                <div className="mb-3 flex items-center justify-between">
+                  <span className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">
+                    US Treasury Yield Curve
+                  </span>
+                  <div className="flex items-center gap-2">
+                    {isInverted && (
+                      <span className="flex items-center gap-1 text-[10px] text-red-400">
+                        <AlertTriangle className="h-3 w-3" />
+                        Inverted — recession signal
+                      </span>
                     )}
-                  >
-                    {side.toUpperCase()}
-                  </button>
+                  </div>
+                </div>
+                <YieldCurveSVG />
+              </div>
+              <div className="flex flex-col gap-2">
+                <div className={cn(
+                  "rounded-lg border p-4",
+                  isInverted ? "border-red-500/30 bg-red-500/5" :
+                  isFlat ? "border-amber-500/30 bg-amber-500/5" :
+                  "border-green-500/30 bg-green-500/5",
+                )}>
+                  <div className="text-[10px] font-semibold uppercase tracking-wider text-muted-foreground mb-1">
+                    10Y – 2Y Spread
+                  </div>
+                  <div className={cn("text-2xl font-bold tabular-nums",
+                    isInverted ? "text-red-400" : isFlat ? "text-amber-400" : "text-green-400")}>
+                    {spread10y2y >= 0 ? "+" : ""}{(spread10y2y * 100).toFixed(1)} bps
+                  </div>
+                  <div className="mt-1.5 text-[10px] text-muted-foreground">
+                    {isInverted ? "Historically precedes recession by 12-18 months." :
+                     isFlat ? "Transition — watch for further inversion." :
+                     "Healthy growth expectation embedded."}
+                  </div>
+                </div>
+                {yieldCurve.current.map(p => (
+                  <div key={p.label} className="flex items-center justify-between rounded-md border border-border/40 bg-card px-3 py-1.5">
+                    <span className="text-xs text-muted-foreground">{p.label} Treasury</span>
+                    <span className="text-xs font-semibold tabular-nums text-foreground">{p.ytm.toFixed(3)}%</span>
+                  </div>
                 ))}
               </div>
             </div>
 
-            <div className="overflow-x-auto">
-              <table className="w-full text-xs">
-                <thead>
-                  <tr className="border-b border-border/50">
-                    {["Bond", "YTM", "Price (per $1k)", "Qty", "Total Cost", "Action"].map((h) => (
-                      <th key={h} className="px-2 py-2 text-left text-[10px] font-semibold uppercase tracking-wider text-muted-foreground">
-                        {h}
-                      </th>
-                    ))}
-                  </tr>
-                </thead>
-                <tbody>
-                  {bonds.map((b) => {
-                    const qty = tradeQty[b.id] || 1;
-                    const totalCost = b.price * qty;
-                    const holding = portfolio.holdings.find((h) => h.bondId === b.id);
-                    const canSell = holding && holding.quantity >= qty;
-                    const canBuy = portfolio.cash >= totalCost;
-                    return (
-                      <tr key={b.id} className="border-b border-border/20 hover:bg-accent/20">
-                        <td className="px-2 py-2.5 font-medium text-foreground">{b.name}</td>
-                        <td className="px-2 py-2.5 tabular-nums text-muted-foreground">{b.ytm.toFixed(3)}%</td>
-                        <td className="px-2 py-2.5 tabular-nums text-foreground">${b.price.toFixed(2)}</td>
-                        <td className="px-2 py-2.5">
-                          <input
-                            type="number"
-                            min={1}
-                            value={qty}
-                            onChange={(e) => setTradeQty((prev) => ({ ...prev, [b.id]: Math.max(1, Number(e.target.value)) }))}
-                            className="w-14 rounded border border-border/50 bg-background px-1.5 py-0.5 text-xs text-foreground focus:border-primary focus:outline-none"
-                          />
-                        </td>
-                        <td className="px-2 py-2.5 tabular-nums font-medium text-foreground">
-                          ${totalCost.toFixed(2)}
-                        </td>
-                        <td className="px-2 py-2.5">
-                          {tradeSide === "buy" ? (
-                            <button
-                              onClick={() => handleBuy(b)}
-                              disabled={!canBuy}
-                              className={cn(
-                                "rounded px-2.5 py-1 text-[10px] font-bold transition-colors",
-                                canBuy
-                                  ? "bg-green-500/20 text-green-400 hover:bg-green-500/30"
-                                  : "cursor-not-allowed opacity-40 bg-muted text-muted-foreground",
-                              )}
-                            >
-                              BUY
-                            </button>
-                          ) : (
-                            <button
-                              onClick={() => handleSell(b)}
-                              disabled={!canSell}
-                              className={cn(
-                                "rounded px-2.5 py-1 text-[10px] font-bold transition-colors",
-                                canSell
-                                  ? "bg-red-500/20 text-red-400 hover:bg-red-500/30"
-                                  : "cursor-not-allowed opacity-40 bg-muted text-muted-foreground",
-                              )}
-                            >
-                              SELL {holding ? `(${holding.quantity})` : ""}
-                            </button>
-                          )}
-                        </td>
-                      </tr>
-                    );
-                  })}
-                </tbody>
-              </table>
-            </div>
-          </div>
-
-          {/* Holdings */}
-          {portfolioRows.length > 0 ? (
-            <div className="rounded-lg border border-border/50 bg-card p-5">
-              <h3 className="mb-3 text-sm font-semibold">Current Holdings</h3>
-              <div className="overflow-x-auto">
-                <table className="w-full text-xs">
-                  <thead>
-                    <tr className="border-b border-border/50">
-                      {["Bond", "Qty", "Avg Price", "Current", "Mkt Value", "P&L", "P&L %", "~Accrued Int.", "Mod. Dur"].map((h) => (
-                        <th key={h} className="px-2 py-2 text-left text-[10px] font-semibold uppercase tracking-wider text-muted-foreground whitespace-nowrap">
-                          {h}
-                        </th>
-                      ))}
-                    </tr>
-                  </thead>
-                  <tbody>
-                    {portfolioRows.map((r) => {
-                      if (!r) return null;
+            {/* Bond grid — 3 sections */}
+            {(["treasury", "corporate-ig", "high-yield"] as const).map(type => {
+              const sectionBonds = bonds.filter(b => b.type === type);
+              const sectionTitle =
+                type === "treasury" ? "US Treasuries" :
+                type === "corporate-ig" ? "Investment Grade Corporates" :
+                "High Yield Bonds";
+              return (
+                <div key={type} className="mb-5">
+                  <h3 className={cn("mb-3 text-xs font-semibold uppercase tracking-wider",
+                    type === "treasury" ? "text-blue-400" :
+                    type === "corporate-ig" ? "text-purple-400" :
+                    "text-red-400"
+                  )}>
+                    {sectionTitle}
+                  </h3>
+                  <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 xl:grid-cols-4">
+                    {sectionBonds.map(b => {
+                      const tl = typeLabel(b.type);
+                      const rc = ratingColor(b.creditRating);
+                      const isRising = b.yieldChange1d > 0;
                       return (
-                        <tr key={r.bondId} className="border-b border-border/20 hover:bg-accent/20">
-                          <td className="px-2 py-2.5 font-medium text-foreground">{r.def.name}</td>
-                          <td className="px-2 py-2.5 tabular-nums text-muted-foreground">{r.quantity}</td>
-                          <td className="px-2 py-2.5 tabular-nums text-muted-foreground">${r.purchasePrice.toFixed(2)}</td>
-                          <td className="px-2 py-2.5 tabular-nums text-foreground">${r.currentPrice.toFixed(2)}</td>
-                          <td className="px-2 py-2.5 tabular-nums font-medium text-foreground">${r.marketValue.toFixed(2)}</td>
-                          <td className={cn("px-2 py-2.5 tabular-nums font-semibold", r.pnl >= 0 ? "text-green-400" : "text-red-400")}>
-                            {r.pnl >= 0 ? "+" : ""}${r.pnl.toFixed(2)}
-                          </td>
-                          <td className={cn("px-2 py-2.5 tabular-nums font-semibold", r.pnlPct >= 0 ? "text-green-400" : "text-red-400")}>
-                            {r.pnlPct >= 0 ? "+" : ""}{r.pnlPct.toFixed(2)}%
-                          </td>
-                          <td className="px-2 py-2.5 tabular-nums text-muted-foreground">${r.accruedInterest.toFixed(2)}</td>
-                          <td className="px-2 py-2.5 tabular-nums text-muted-foreground">{r.modDur.toFixed(2)}</td>
-                        </tr>
+                        <motion.div
+                          key={b.id}
+                          initial={{ opacity: 0, scale: 0.97 }}
+                          animate={{ opacity: 1, scale: 1 }}
+                          transition={{ duration: 0.25 }}
+                          className="rounded-lg border border-border/50 bg-card p-4"
+                        >
+                          <div className="mb-2 flex items-start justify-between">
+                            <div>
+                              <div className="text-[10px] font-semibold text-muted-foreground">{b.ticker}</div>
+                              <div className="mt-0.5 text-xs font-semibold text-foreground leading-tight">{b.name}</div>
+                            </div>
+                            <span className={cn("rounded px-1.5 py-0.5 text-[9px] font-bold", rc)}>
+                              {b.creditRating}
+                            </span>
+                          </div>
+                          <div className="grid grid-cols-2 gap-1.5 text-[10px]">
+                            <div className="flex flex-col">
+                              <span className="text-muted-foreground">Coupon</span>
+                              <span className="font-semibold text-foreground">{b.coupon.toFixed(2)}%</span>
+                            </div>
+                            <div className="flex flex-col">
+                              <span className="text-muted-foreground">YTM</span>
+                              <span className="font-semibold text-primary">{b.ytm.toFixed(3)}%</span>
+                            </div>
+                            <div className="flex flex-col">
+                              <span className="text-muted-foreground">Price</span>
+                              <span className="font-semibold text-foreground">${b.price.toFixed(2)}</span>
+                            </div>
+                            <div className="flex flex-col">
+                              <span className="text-muted-foreground">Duration</span>
+                              <span className="font-semibold text-foreground">{b.duration.toFixed(2)}yr</span>
+                            </div>
+                            <div className="flex flex-col">
+                              <span className="text-muted-foreground">Maturity</span>
+                              <span className="font-semibold text-foreground">{b.maturityDate.slice(0, 7)}</span>
+                            </div>
+                            <div className="flex flex-col">
+                              <span className="text-muted-foreground">Yield Chg</span>
+                              <span className={cn("font-semibold tabular-nums flex items-center gap-0.5",
+                                isRising ? "text-red-400" : "text-green-400")}>
+                                {isRising ? <TrendingUp className="h-2.5 w-2.5" /> : <TrendingDown className="h-2.5 w-2.5" />}
+                                {b.yieldChange1d >= 0 ? "+" : ""}{(b.yieldChange1d * 100).toFixed(1)} bps
+                              </span>
+                            </div>
+                          </div>
+                        </motion.div>
                       );
                     })}
-                  </tbody>
-                </table>
-              </div>
-              <p className="mt-2 text-[10px] text-muted-foreground/50">
-                P&L is mark-to-market based on yield changes. Accrued interest is approximate (30-day estimate).
-              </p>
-            </div>
-          ) : (
-            <div className="rounded-lg border border-dashed border-border/50 bg-card/50 p-10 text-center">
-              <Landmark className="mx-auto h-8 w-8 text-muted-foreground/30" />
-              <p className="mt-3 text-sm font-medium text-muted-foreground">No holdings yet</p>
-              <p className="mt-1 text-xs text-muted-foreground/60">Buy bonds above to start your fixed income portfolio.</p>
-            </div>
-          )}
-        </TabsContent>
-
-        {/* ── Tab 4: Education ───────────────────────────────────────────────── */}
-        <TabsContent
-          value="education"
-          className="flex-1 overflow-y-auto px-6 pb-6 pt-4 data-[state=inactive]:hidden"
-        >
-          <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 xl:grid-cols-3">
-            {EDU_CARDS.map((card) => {
-              const Icon = card.icon;
-              return (
-                <div key={card.id} className="rounded-lg border border-border/50 bg-card p-5">
-                  <div className="mb-3 flex items-center gap-3">
-                    <div className={cn("rounded-md p-2", card.bg)}>
-                      <Icon className={cn("h-4 w-4", card.color)} />
-                    </div>
-                    <h3 className="text-sm font-semibold text-foreground">{card.title}</h3>
                   </div>
-                  <ul className="space-y-2">
-                    {card.points.map((point, i) => (
-                      <li key={i} className="flex items-start gap-2 text-xs text-muted-foreground">
-                        <span className={cn("mt-1.5 h-1 w-1 shrink-0 rounded-full", card.color.replace("text-", "bg-"))} />
-                        {point}
-                      </li>
-                    ))}
-                  </ul>
                 </div>
               );
             })}
-          </div>
 
-          {/* Quick reference table */}
-          <div className="mt-5 rounded-lg border border-border/50 bg-card p-5">
-            <h3 className="mb-3 text-sm font-semibold">Credit Rating Quick Reference</h3>
-            <div className="overflow-x-auto">
-              <table className="w-full text-xs">
-                <thead>
-                  <tr className="border-b border-border/40">
-                    {["Category", "S&P / Fitch", "Moody's", "Risk Level", "Typical Spread over Treasury"].map((h) => (
-                      <th key={h} className="px-3 py-2 text-left text-[10px] font-semibold uppercase tracking-wider text-muted-foreground">
-                        {h}
-                      </th>
+            <p className="mt-1 text-[10px] text-muted-foreground/40">
+              Prices per $1,000 face value. Yield change (bps): yield rise = price falls. Synthetic data for educational purposes.
+            </p>
+          </motion.div>
+        </TabsContent>
+
+        {/* ── Tab 2: Bond Pricing Calculator ───────────────────────────────────── */}
+        <TabsContent value="calculator" className="flex-1 overflow-y-auto px-6 pb-6 pt-4 data-[state=inactive]:hidden">
+          <motion.div initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.3 }}>
+            <div className="grid grid-cols-1 gap-5 lg:grid-cols-2">
+              {/* Inputs */}
+              <div className="rounded-lg border border-border/50 bg-card p-5">
+                <h3 className="mb-4 text-sm font-semibold">Bond Parameters</h3>
+                <div className="space-y-4">
+                  <div>
+                    <label className="mb-1.5 block text-xs font-medium text-muted-foreground">Face Value ($)</label>
+                    <input type="number" value={calcFace}
+                      onChange={e => setCalcFace(Math.max(100, Number(e.target.value)))}
+                      className="w-full rounded-md border border-border/60 bg-background px-3 py-1.5 text-sm text-foreground focus:border-primary focus:outline-none" />
+                  </div>
+                  <div>
+                    <label className="mb-1.5 block text-xs font-medium text-muted-foreground">Annual Coupon Rate (%)</label>
+                    <input type="number" step="0.01" value={calcCoupon}
+                      onChange={e => setCalcCoupon(Math.max(0, Number(e.target.value)))}
+                      className="w-full rounded-md border border-border/60 bg-background px-3 py-1.5 text-sm text-foreground focus:border-primary focus:outline-none" />
+                  </div>
+                  <div>
+                    <label className="mb-1.5 block text-xs font-medium text-muted-foreground">Years to Maturity</label>
+                    <input type="number" value={calcMaturity}
+                      onChange={e => setCalcMaturity(Math.max(0.5, Number(e.target.value)))}
+                      className="w-full rounded-md border border-border/60 bg-background px-3 py-1.5 text-sm text-foreground focus:border-primary focus:outline-none" />
+                  </div>
+                  <div>
+                    <label className="mb-1.5 block text-xs font-medium text-muted-foreground">Current Market Yield / YTM (%)</label>
+                    <input type="number" step="0.01" value={calcYtm}
+                      onChange={e => setCalcYtm(Math.max(0.01, Number(e.target.value)))}
+                      className="w-full rounded-md border border-border/60 bg-background px-3 py-1.5 text-sm text-foreground focus:border-primary focus:outline-none" />
+                  </div>
+                  <div>
+                    <label className="mb-1.5 block text-xs font-medium text-muted-foreground">Payment Frequency</label>
+                    <div className="flex gap-2">
+                      {([1, 2] as const).map(f => (
+                        <button key={f} onClick={() => setCalcFreq(f)} className={cn(
+                          "flex-1 rounded-md border px-3 py-1.5 text-xs font-medium transition-colors",
+                          calcFreq === f
+                            ? "border-primary bg-primary/10 text-primary"
+                            : "border-border/60 text-muted-foreground hover:border-primary/40",
+                        )}>
+                          {f === 1 ? "Annual" : "Semi-Annual"}
+                        </button>
+                      ))}
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              {/* Outputs */}
+              <div className="flex flex-col gap-4">
+                <div className="rounded-lg border border-border/50 bg-card p-5">
+                  <h3 className="mb-4 text-sm font-semibold">Calculated Metrics</h3>
+                  <div className="grid grid-cols-2 gap-3">
+                    {[
+                      { label: "Bond Price", value: `$${calcOutputs.price.toFixed(4)}`, highlight: true, sub: `${calcOutputs.price > calcFace ? "Premium" : calcOutputs.price < calcFace ? "Discount" : "At Par"}` },
+                      { label: "Accrued Interest", value: `$${calcOutputs.accruedInterest.toFixed(2)}`, sub: "~30d accrued" },
+                      { label: "Macaulay Duration", value: `${calcOutputs.mac.toFixed(4)} yrs`, sub: "Weighted avg CF timing" },
+                      { label: "Modified Duration", value: `${calcOutputs.modDur.toFixed(4)} yrs`, sub: "Price sensitivity" },
+                      { label: "Convexity", value: calcOutputs.cvx.toFixed(4), sub: "Curvature of P/Y" },
+                      { label: "DV01", value: `$${calcOutputs.dv01.toFixed(4)}`, sub: "$ value of 1 bp" },
+                    ].map(({ label, value, highlight, sub }) => (
+                      <div key={label} className={cn("rounded-md border p-3",
+                        highlight ? "border-primary/30 bg-primary/5" : "border-border/40 bg-muted/20")}>
+                        <div className="text-[9px] font-medium uppercase tracking-wider text-muted-foreground">{label}</div>
+                        <div className={cn("mt-1 text-sm font-bold tabular-nums", highlight ? "text-primary" : "text-foreground")}>
+                          {value}
+                        </div>
+                        {sub && <div className="mt-0.5 text-[9px] text-muted-foreground/60">{sub}</div>}
+                      </div>
                     ))}
-                  </tr>
-                </thead>
-                <tbody>
-                  {[
-                    { cat: "Prime",       sp: "AAA",         m: "Aaa",     risk: "Minimal",    spread: "0–30 bps",   color: "text-green-400" },
-                    { cat: "High Grade",  sp: "AA+/AA/AA-",  m: "Aa",      risk: "Very Low",   spread: "30–80 bps",  color: "text-green-400" },
-                    { cat: "Upper Medium",sp: "A+/A/A-",     m: "A",       risk: "Low",        spread: "80–150 bps", color: "text-blue-400"  },
-                    { cat: "Lower Medium",sp: "BBB+/BBB/BBB-",m: "Baa",   risk: "Moderate",   spread: "150–300 bps",color: "text-blue-400"  },
-                    { cat: "Speculative", sp: "BB",          m: "Ba",      risk: "High",       spread: "300–500 bps",color: "text-amber-400" },
-                    { cat: "Highly Spec.",sp: "B/CCC",       m: "B/Caa",   risk: "Very High",  spread: "500–1000bps",color: "text-red-400"   },
-                    { cat: "Default",     sp: "D",           m: "C",       risk: "In Default", spread: "N/A",        color: "text-red-500"   },
-                  ].map((row) => (
-                    <tr key={row.cat} className="border-b border-border/20 hover:bg-accent/20">
-                      <td className={cn("px-3 py-2 font-semibold", row.color)}>{row.cat}</td>
-                      <td className="px-3 py-2 tabular-nums text-muted-foreground">{row.sp}</td>
-                      <td className="px-3 py-2 tabular-nums text-muted-foreground">{row.m}</td>
-                      <td className="px-3 py-2 text-muted-foreground">{row.risk}</td>
-                      <td className="px-3 py-2 tabular-nums text-muted-foreground">{row.spread}</td>
-                    </tr>
-                  ))}
-                </tbody>
-              </table>
+                  </div>
+                </div>
+
+                {/* Duration visual explainer */}
+                <div className="rounded-lg border border-border/50 bg-card p-4">
+                  <h4 className="mb-3 text-xs font-semibold text-muted-foreground uppercase tracking-wider">
+                    Duration Impact — Rate Scenarios
+                  </h4>
+                  <div className="space-y-2">
+                    {[
+                      { delta: -1, label: "Rates fall 1%", price: calcOutputs.priceMinus1 },
+                      { delta: 0, label: "Current", price: calcOutputs.price },
+                      { delta: +1, label: "Rates rise 1%", price: calcOutputs.pricePlus1 },
+                    ].map(({ delta, label, price }) => {
+                      const chg = ((price - calcOutputs.price) / calcOutputs.price) * 100;
+                      const barW = Math.abs(chg) * 3;
+                      return (
+                        <div key={delta} className="flex items-center gap-3">
+                          <div className="w-28 text-[10px] text-muted-foreground">{label}</div>
+                          <div className="flex flex-1 items-center gap-1.5">
+                            <div className="h-4 rounded-sm" style={{
+                              width: `${Math.min(barW, 100)}%`,
+                              background: delta < 0 ? "rgba(34,197,94,0.4)" : delta > 0 ? "rgba(239,68,68,0.4)" : "rgba(99,102,241,0.4)",
+                            }} />
+                          </div>
+                          <div className={cn("w-24 text-right text-[10px] font-semibold tabular-nums",
+                            chg > 0 ? "text-green-400" : chg < 0 ? "text-red-400" : "text-primary")}>
+                            ${price.toFixed(2)} ({chg >= 0 ? "+" : ""}{chg.toFixed(2)}%)
+                          </div>
+                        </div>
+                      );
+                    })}
+                  </div>
+                  <p className="mt-3 text-[9px] text-muted-foreground/50">
+                    Price change ≈ −ModDuration × ΔYield × Price. Convexity provides a second-order correction.
+                  </p>
+                </div>
+              </div>
             </div>
-          </div>
+
+            {/* Price-yield chart */}
+            <div className="mt-5 rounded-lg border border-border/50 bg-card p-5">
+              <div className="mb-3 flex items-center justify-between">
+                <span className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">
+                  Price–Yield Relationship (Convex Curve, 1%–15%)
+                </span>
+                <span className="text-[10px] text-muted-foreground/60">
+                  Amber dot = current yield | Convexity = bond outperforms linear estimate
+                </span>
+              </div>
+              <PriceYieldSVG />
+            </div>
+          </motion.div>
+        </TabsContent>
+
+        {/* ── Tab 3: Yield Curve Analysis ───────────────────────────────────────── */}
+        <TabsContent value="yieldcurve" className="flex-1 overflow-y-auto px-6 pb-6 pt-4 data-[state=inactive]:hidden">
+          <motion.div initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.3 }}>
+            {/* Historical curves */}
+            <div className="mb-5 grid grid-cols-1 gap-5 lg:grid-cols-3">
+              <div className="col-span-2 rounded-lg border border-border/50 bg-card p-5">
+                <div className="mb-3 flex items-center justify-between">
+                  <span className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">
+                    Yield Curve — Historical Comparison
+                  </span>
+                  <div className="flex items-center gap-3 text-[9px] text-muted-foreground/60">
+                    <span className="flex items-center gap-1">
+                      <span className="inline-block h-0.5 w-5 bg-green-400" /> Current
+                    </span>
+                    <span className="flex items-center gap-1">
+                      <span className="inline-block h-0.5 w-5 border-t border-dashed border-amber-400" /> 6M ago
+                    </span>
+                    <span className="flex items-center gap-1">
+                      <span className="inline-block h-0.5 w-5 border-t border-dashed border-indigo-400" /> 1Y ago
+                    </span>
+                  </div>
+                </div>
+                <YieldCurveSVG showHistorical />
+              </div>
+
+              {/* Regime indicator */}
+              <div className="flex flex-col gap-3">
+                <div className={cn("rounded-lg border p-4",
+                  isInverted ? "border-red-500/30 bg-red-500/5" :
+                  isFlat ? "border-amber-500/30 bg-amber-500/5" :
+                  "border-green-500/30 bg-green-500/5")}>
+                  <div className="text-[10px] font-semibold uppercase tracking-wider text-muted-foreground mb-1">
+                    Current Regime
+                  </div>
+                  <div className={cn("text-xl font-bold",
+                    isInverted ? "text-red-400" : isFlat ? "text-amber-400" : "text-green-400")}>
+                    {curveRegime}
+                  </div>
+                  <div className="mt-2 text-[10px] text-muted-foreground leading-relaxed">
+                    {isInverted
+                      ? "Short-term rates exceed long-term rates. Historically predicts recession within 12-18 months. Fed policy likely too tight."
+                      : isFlat
+                      ? "Similar yields across maturities. Transition phase — market is uncertain about growth outlook."
+                      : "Upward-sloping curve. Normal growth environment. Borrowers pay premium for longer duration."}
+                  </div>
+                </div>
+
+                {/* Curve shape guide */}
+                <div className="rounded-lg border border-border/50 bg-card p-4">
+                  <div className="text-[10px] font-semibold uppercase tracking-wider text-muted-foreground mb-3">Shape Guide</div>
+                  <div className="space-y-2.5">
+                    {[
+                      { shape: "Normal", color: "text-green-400", bg: "bg-green-500", desc: "Long > Short — growth & inflation expected" },
+                      { shape: "Flat", color: "text-amber-400", bg: "bg-amber-500", desc: "Equal yields — uncertainty or transition" },
+                      { shape: "Inverted", color: "text-red-400", bg: "bg-red-500", desc: "Short > Long — recession risk signal" },
+                      { shape: "Humped", color: "text-blue-400", bg: "bg-blue-500", desc: "Mid-term peak — complex growth dynamics" },
+                    ].map(s => (
+                      <div key={s.shape} className="flex items-start gap-2">
+                        <div className={cn("mt-1 h-1.5 w-1.5 shrink-0 rounded-full", s.bg)} />
+                        <div>
+                          <span className={cn("text-[10px] font-semibold", s.color)}>{s.shape}</span>
+                          <span className="ml-1.5 text-[9px] text-muted-foreground">{s.desc}</span>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* Spread analysis */}
+            <div className="mb-5 grid grid-cols-1 gap-5 lg:grid-cols-2">
+              <div className="rounded-lg border border-border/50 bg-card p-5">
+                <h3 className="mb-4 text-sm font-semibold">Spread Analysis (bps)</h3>
+                <SpreadBarSVG />
+                <div className="mt-4 grid grid-cols-2 gap-2 text-[10px]">
+                  {[
+                    { label: "10Y–2Y Spread", value: `${spreads.spread10y2y >= 0 ? "+" : ""}${spreads.spread10y2y.toFixed(1)} bps`, color: spreads.spread10y2y < 0 ? "text-red-400" : "text-green-400" },
+                    { label: "IG Credit Spread", value: `+${spreads.igCreditSpread.toFixed(1)} bps`, color: "text-purple-400" },
+                    { label: "HY Credit Spread", value: `+${spreads.hyCreditSpread.toFixed(1)} bps`, color: "text-amber-400" },
+                    { label: "TED Spread", value: `${spreads.tedSpread.toFixed(1)} bps`, color: "text-cyan-400" },
+                    { label: "OAS (IG)", value: `${spreads.oasIg.toFixed(0)} bps`, color: "text-purple-400" },
+                    { label: "OAS (HY)", value: `${spreads.oasHy.toFixed(0)} bps`, color: "text-amber-400" },
+                  ].map(s => (
+                    <div key={s.label} className="rounded-md border border-border/40 bg-muted/20 px-3 py-2">
+                      <div className="text-muted-foreground">{s.label}</div>
+                      <div className={cn("mt-0.5 font-bold tabular-nums", s.color)}>{s.value}</div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+
+              <div className="rounded-lg border border-border/50 bg-card p-5">
+                <h3 className="mb-4 text-sm font-semibold">Spread Interpretation</h3>
+                <div className="space-y-3">
+                  {[
+                    {
+                      title: "10Y–2Y Spread",
+                      icon: TrendingUp,
+                      desc: "The most-watched recession indicator. Negative (inverted) = short rates exceed long rates, signaling tight monetary conditions and near-term recession risk. Each post-WWII recession was preceded by inversion.",
+                      color: "text-green-400",
+                    },
+                    {
+                      title: "Credit Spread",
+                      icon: AlertTriangle,
+                      desc: "Yield premium over equivalent Treasury. Widening spreads = risk aversion rising, credit stress. IG < 200 bps is healthy; > 300 bps = stress. HY > 700 bps = distress.",
+                      color: "text-amber-400",
+                    },
+                    {
+                      title: "TED Spread",
+                      icon: Info,
+                      desc: "Difference between 3M LIBOR (or SOFR) and 3M Treasury. Measures interbank credit risk. Spike = banking stress (2008 TED reached 465 bps). Normal: 10–50 bps.",
+                      color: "text-cyan-400",
+                    },
+                    {
+                      title: "OAS (Option-Adjusted Spread)",
+                      icon: BarChart3,
+                      desc: "Spread after stripping embedded option value from callable bonds. Cleaner measure of credit premium. IG OAS < 150 bps healthy; HY OAS > 500 bps = elevated risk.",
+                      color: "text-blue-400",
+                    },
+                  ].map(item => {
+                    const Icon = item.icon;
+                    return (
+                      <div key={item.title} className="flex items-start gap-2.5">
+                        <Icon className={cn("h-3.5 w-3.5 mt-0.5 shrink-0", item.color)} />
+                        <div>
+                          <div className={cn("text-[10px] font-semibold", item.color)}>{item.title}</div>
+                          <div className="mt-0.5 text-[9px] text-muted-foreground leading-relaxed">{item.desc}</div>
+                        </div>
+                      </div>
+                    );
+                  })}
+                </div>
+              </div>
+            </div>
+          </motion.div>
+        </TabsContent>
+
+        {/* ── Tab 4: Portfolio Builder ──────────────────────────────────────────── */}
+        <TabsContent value="portfolio" className="flex-1 overflow-y-auto px-6 pb-6 pt-4 data-[state=inactive]:hidden">
+          <motion.div initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.3 }}>
+            <div className="grid grid-cols-1 gap-5 lg:grid-cols-3">
+              {/* Bond selector */}
+              <div className="rounded-lg border border-border/50 bg-card p-5">
+                <h3 className="mb-3 text-sm font-semibold">Bond Universe</h3>
+
+                {/* Target duration slider */}
+                <div className="mb-4 rounded-md border border-border/40 bg-muted/20 p-3">
+                  <div className="mb-2 flex items-center justify-between text-[10px]">
+                    <span className="text-muted-foreground">Target Portfolio Duration</span>
+                    <span className="font-bold text-primary">{targetDuration.toFixed(1)} yrs</span>
+                  </div>
+                  <input
+                    type="range" min={1} max={15} step={0.5} value={targetDuration}
+                    onChange={e => setTargetDuration(Number(e.target.value))}
+                    className="w-full accent-primary"
+                  />
+                  <div className="mt-1 flex justify-between text-[9px] text-muted-foreground/50">
+                    <span>1yr (short)</span><span>8yr (mid)</span><span>15yr (long)</span>
+                  </div>
+                </div>
+
+                <div className="space-y-1.5">
+                  {bonds.map(b => {
+                    const inPortfolio = portfolio.some(h => h.bondId === b.id);
+                    const tl = typeLabel(b.type);
+                    return (
+                      <div key={b.id} className={cn(
+                        "flex items-center justify-between rounded-md border px-3 py-2 transition-colors",
+                        inPortfolio ? "border-primary/40 bg-primary/5" : "border-border/40 bg-card hover:bg-accent/30",
+                      )}>
+                        <div className="flex items-center gap-2">
+                          <span className={cn("rounded px-1 py-0.5 text-[8px] font-bold", tl.cls)}>{tl.label}</span>
+                          <div>
+                            <div className="text-[10px] font-semibold text-foreground">{b.ticker}</div>
+                            <div className="text-[9px] text-muted-foreground">{b.maturityYears}yr · {b.ytm.toFixed(2)}% YTM</div>
+                          </div>
+                        </div>
+                        <button
+                          onClick={() => inPortfolio ? removeBondFromPortfolio(b.id) : addBondToPortfolio(b.id)}
+                          className={cn(
+                            "rounded p-1 transition-colors",
+                            inPortfolio
+                              ? "text-red-400 hover:bg-red-500/10"
+                              : "text-primary hover:bg-primary/10",
+                          )}
+                        >
+                          {inPortfolio ? <Trash2 className="h-3.5 w-3.5" /> : <PlusCircle className="h-3.5 w-3.5" />}
+                        </button>
+                      </div>
+                    );
+                  })}
+                </div>
+              </div>
+
+              {/* Portfolio table + metrics */}
+              <div className="col-span-2 flex flex-col gap-4">
+                {/* Metrics */}
+                {portfolioMetrics ? (
+                  <div className="grid grid-cols-3 gap-3">
+                    {[
+                      { label: "Weighted Avg Yield", value: `${portfolioMetrics.wAvgYtm.toFixed(3)}%`, color: "text-primary" },
+                      { label: "Portfolio Duration", value: `${portfolioMetrics.wAvgDuration.toFixed(2)} yrs`,
+                        color: Math.abs(portfolioMetrics.wAvgDuration - targetDuration) < 1 ? "text-green-400" : "text-amber-400" },
+                      { label: "Annual Coupon / $100k", value: `$${portfolioMetrics.totalCouponPer100k.toLocaleString("en-US", { maximumFractionDigits: 0 })}`, color: "text-foreground" },
+                    ].map(m => (
+                      <div key={m.label} className="rounded-lg border border-border/50 bg-card px-4 py-3">
+                        <div className="text-[9px] font-semibold uppercase tracking-wider text-muted-foreground">{m.label}</div>
+                        <div className={cn("mt-1 text-base font-bold tabular-nums", m.color)}>{m.value}</div>
+                      </div>
+                    ))}
+                  </div>
+                ) : (
+                  <div className="rounded-lg border border-dashed border-border/50 bg-card/50 p-6 text-center">
+                    <Landmark className="mx-auto h-7 w-7 text-muted-foreground/30" />
+                    <p className="mt-2 text-sm font-medium text-muted-foreground">Add bonds to build your portfolio</p>
+                    <p className="mt-1 text-xs text-muted-foreground/60">Click the + icon on any bond in the universe.</p>
+                  </div>
+                )}
+
+                {/* Portfolio table */}
+                {portfolio.length > 0 && (
+                  <div className="rounded-lg border border-border/50 bg-card overflow-hidden">
+                    <div className="overflow-x-auto">
+                      <table className="w-full text-xs">
+                        <thead>
+                          <tr className="border-b border-border/50 bg-muted/30">
+                            {["Bond", "Weight %", "Dur Contrib", "Yield Contrib", "Remove"].map(h => (
+                              <th key={h} className="px-3 py-2.5 text-left text-[9px] font-semibold uppercase tracking-wider text-muted-foreground whitespace-nowrap">
+                                {h}
+                              </th>
+                            ))}
+                          </tr>
+                        </thead>
+                        <tbody>
+                          {portfolio.map(h => {
+                            const bond = bonds.find(b => b.id === h.bondId);
+                            if (!bond) return null;
+                            const totalW = portfolio.reduce((s, x) => s + x.weight, 0);
+                            const w = totalW > 0 ? h.weight / totalW : 0;
+                            const durContrib = bond.modDur * w;
+                            const yldContrib = bond.ytm * w;
+                            return (
+                              <tr key={h.bondId} className="border-b border-border/20 hover:bg-accent/20">
+                                <td className="px-3 py-2.5">
+                                  <div className="font-semibold text-foreground">{bond.ticker}</div>
+                                  <div className="text-[9px] text-muted-foreground">{bond.name}</div>
+                                </td>
+                                <td className="px-3 py-2.5">
+                                  <input
+                                    type="number" min={0} max={100} value={h.weight}
+                                    onChange={e => updateWeight(h.bondId, Math.max(0, Math.min(100, Number(e.target.value))))}
+                                    className="w-16 rounded border border-border/50 bg-background px-1.5 py-0.5 text-xs text-foreground focus:border-primary focus:outline-none"
+                                  />
+                                </td>
+                                <td className="px-3 py-2.5 tabular-nums text-purple-400">{durContrib.toFixed(3)}</td>
+                                <td className="px-3 py-2.5 tabular-nums text-green-400">{(yldContrib * 100).toFixed(3)}%</td>
+                                <td className="px-3 py-2.5">
+                                  <button onClick={() => removeBondFromPortfolio(h.bondId)}
+                                    className="rounded p-1 text-muted-foreground hover:bg-red-500/10 hover:text-red-400 transition-colors">
+                                    <Trash2 className="h-3 w-3" />
+                                  </button>
+                                </td>
+                              </tr>
+                            );
+                          })}
+                        </tbody>
+                      </table>
+                    </div>
+                  </div>
+                )}
+
+                {/* Maturity ladder SVG */}
+                {portfolio.length > 0 && (
+                  <div className="rounded-lg border border-border/50 bg-card p-5">
+                    <h4 className="mb-3 text-xs font-semibold uppercase tracking-wider text-muted-foreground">
+                      Bond Maturity Ladder
+                    </h4>
+                    <MaturityLadderSVG />
+                    <div className="mt-2 flex items-center gap-4 text-[9px] text-muted-foreground/60">
+                      <span className="flex items-center gap-1"><span className="inline-block h-2 w-2 rounded-sm bg-blue-400" /> Treasury</span>
+                      <span className="flex items-center gap-1"><span className="inline-block h-2 w-2 rounded-sm bg-violet-400" /> IG Corp</span>
+                      <span className="flex items-center gap-1"><span className="inline-block h-2 w-2 rounded-sm bg-red-400" /> High Yield</span>
+                    </div>
+                  </div>
+                )}
+
+                {/* Target duration indicator */}
+                {portfolioMetrics && (
+                  <div className={cn("rounded-lg border p-4",
+                    Math.abs(portfolioMetrics.wAvgDuration - targetDuration) < 0.5
+                      ? "border-green-500/30 bg-green-500/5"
+                      : Math.abs(portfolioMetrics.wAvgDuration - targetDuration) < 2
+                      ? "border-amber-500/30 bg-amber-500/5"
+                      : "border-red-500/30 bg-red-500/5",
+                  )}>
+                    <div className="flex items-center gap-2">
+                      {Math.abs(portfolioMetrics.wAvgDuration - targetDuration) < 0.5
+                        ? <ShieldCheck className="h-4 w-4 text-green-400" />
+                        : <AlertTriangle className="h-4 w-4 text-amber-400" />}
+                      <div>
+                        <div className="text-xs font-semibold text-foreground">
+                          Duration Gap: {(portfolioMetrics.wAvgDuration - targetDuration).toFixed(2)} yrs
+                        </div>
+                        <div className="mt-0.5 text-[10px] text-muted-foreground">
+                          Portfolio duration {portfolioMetrics.wAvgDuration.toFixed(2)}yr vs target {targetDuration.toFixed(1)}yr.
+                          {Math.abs(portfolioMetrics.wAvgDuration - targetDuration) < 0.5
+                            ? " On target."
+                            : portfolioMetrics.wAvgDuration > targetDuration
+                            ? " Add shorter-duration bonds to reduce duration."
+                            : " Add longer-duration bonds to increase duration."}
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                )}
+              </div>
+            </div>
+          </motion.div>
+        </TabsContent>
+
+        {/* ── Tab 5: Credit Analysis ────────────────────────────────────────────── */}
+        <TabsContent value="credit" className="flex-1 overflow-y-auto px-6 pb-6 pt-4 data-[state=inactive]:hidden">
+          <motion.div initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.3 }}>
+            {/* Fallen angel alert */}
+            {creditAnalysis.some(c => c.atRisk && c.bond?.type === "corporate-ig") && (
+              <div className="mb-4 flex items-start gap-2.5 rounded-lg border border-amber-500/30 bg-amber-500/5 p-4">
+                <AlertTriangle className="h-4 w-4 text-amber-400 mt-0.5 shrink-0" />
+                <div>
+                  <div className="text-xs font-semibold text-amber-400">Fallen Angel Risk Detected</div>
+                  <div className="mt-0.5 text-[10px] text-muted-foreground">
+                    One or more investment-grade bonds have deteriorating credit metrics and may be at risk of downgrade to high yield.
+                    "Fallen angels" can trigger forced selling by index funds, causing price dislocation.
+                  </div>
+                </div>
+              </div>
+            )}
+
+            <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 xl:grid-cols-3">
+              {creditAnalysis.map(ca => {
+                const bond = ca.bond;
+                if (!bond) return null;
+                const rc = ratingColor(bond.creditRating);
+                const tl = typeLabel(bond.type);
+                const zColor = ca.zScore >= 2.99 ? "text-green-400" : ca.zScore >= 1.23 ? "text-amber-400" : "text-red-400";
+                const zLabel = ca.zScore >= 2.99 ? "Safe Zone" : ca.zScore >= 1.23 ? "Gray Zone" : "Distress Zone";
+
+                return (
+                  <motion.div
+                    key={ca.bondId}
+                    initial={{ opacity: 0, y: 8 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    className={cn(
+                      "rounded-lg border bg-card p-4",
+                      ca.atRisk ? "border-red-500/30" : "border-border/50",
+                    )}
+                  >
+                    {/* Header */}
+                    <div className="mb-3 flex items-start justify-between">
+                      <div className="flex items-center gap-2">
+                        <CreditGaugeSVG score={ca.score} />
+                        <div>
+                          <div className="flex items-center gap-1.5">
+                            <span className={cn("rounded px-1 py-0.5 text-[8px] font-bold", tl.cls)}>{tl.label}</span>
+                            <span className={cn("rounded px-1 py-0.5 text-[8px] font-bold", rc)}>{bond.creditRating}</span>
+                          </div>
+                          <div className="mt-0.5 text-xs font-semibold text-foreground leading-tight">{bond.name}</div>
+                          <div className="text-[9px] text-muted-foreground">{bond.sector}</div>
+                        </div>
+                      </div>
+                      {ca.atRisk && (
+                        <span className="rounded-full bg-red-500/15 px-2 py-0.5 text-[9px] font-semibold text-red-400">
+                          AT RISK
+                        </span>
+                      )}
+                    </div>
+
+                    {/* Financials */}
+                    <div className="grid grid-cols-2 gap-1.5 text-[9px]">
+                      {[
+                        { label: "Revenue", value: `$${ca.revenue}B` },
+                        { label: "EBITDA", value: `$${ca.ebitda}B` },
+                        { label: "Total Debt", value: `$${ca.totalDebt}B` },
+                        { label: "Free Cash Flow", value: `$${ca.fcf}B`, color: ca.fcf < 0 ? "text-red-400" : "text-green-400" },
+                        {
+                          label: "Interest Coverage",
+                          value: `${ca.interestCoverage.toFixed(1)}x`,
+                          color: ca.interestCoverage > 5 ? "text-green-400" : ca.interestCoverage > 2 ? "text-amber-400" : "text-red-400",
+                        },
+                        {
+                          label: "Debt/EBITDA",
+                          value: `${ca.debtEbitda.toFixed(2)}x`,
+                          color: ca.debtEbitda < 2 ? "text-green-400" : ca.debtEbitda < 4 ? "text-amber-400" : "text-red-400",
+                        },
+                      ].map(m => (
+                        <div key={m.label} className="rounded border border-border/30 bg-muted/20 px-2 py-1.5">
+                          <div className="text-muted-foreground">{m.label}</div>
+                          <div className={cn("mt-0.5 font-semibold tabular-nums", m.color || "text-foreground")}>{m.value}</div>
+                        </div>
+                      ))}
+                    </div>
+
+                    {/* Altman Z-score */}
+                    <div className="mt-3 rounded border border-border/30 bg-muted/20 px-3 py-2">
+                      <div className="flex items-center justify-between">
+                        <span className="text-[9px] text-muted-foreground">Altman Z-Score</span>
+                        <span className={cn("text-[10px] font-bold tabular-nums", zColor)}>
+                          {ca.zScore.toFixed(2)} — {zLabel}
+                        </span>
+                      </div>
+                      <div className="mt-1.5 h-1.5 w-full rounded-full bg-muted/40 overflow-hidden">
+                        <div
+                          className={cn("h-full rounded-full transition-all", zColor.replace("text-", "bg-"))}
+                          style={{ width: `${Math.min(100, (ca.zScore / 5) * 100)}%` }}
+                        />
+                      </div>
+                      <div className="mt-0.5 flex justify-between text-[8px] text-muted-foreground/50">
+                        <span>0 (Distress)</span><span>1.23</span><span>2.99</span><span>5+</span>
+                      </div>
+                    </div>
+
+                    {/* Credit score bar */}
+                    <div className="mt-2">
+                      <div className="mb-1 flex justify-between text-[9px]">
+                        <span className="text-muted-foreground">Credit Score</span>
+                        <span className={cn("font-bold", ca.score >= 70 ? "text-green-400" : ca.score >= 50 ? "text-amber-400" : "text-red-400")}>
+                          {ca.score}/100
+                        </span>
+                      </div>
+                      <div className="h-1.5 w-full rounded-full bg-muted/40 overflow-hidden">
+                        <div
+                          className={cn("h-full rounded-full", ca.score >= 70 ? "bg-green-500" : ca.score >= 50 ? "bg-amber-500" : "bg-red-500")}
+                          style={{ width: `${ca.score}%` }}
+                        />
+                      </div>
+                    </div>
+                  </motion.div>
+                );
+              })}
+            </div>
+
+            {/* Credit metric legend */}
+            <div className="mt-5 rounded-lg border border-border/50 bg-card p-5">
+              <h3 className="mb-3 text-sm font-semibold">Credit Metric Benchmarks</h3>
+              <div className="grid grid-cols-1 gap-3 sm:grid-cols-3">
+                {[
+                  {
+                    metric: "Interest Coverage (EBITDA/Interest)",
+                    thresholds: [
+                      { label: "> 5x", color: "text-green-400", desc: "Strong — comfortably covers interest" },
+                      { label: "2–5x", color: "text-amber-400", desc: "Moderate — watch for earnings compression" },
+                      { label: "< 2x", color: "text-red-400", desc: "Weak — potential distress if earnings fall" },
+                    ],
+                  },
+                  {
+                    metric: "Leverage (Debt/EBITDA)",
+                    thresholds: [
+                      { label: "< 2x", color: "text-green-400", desc: "Conservative — lots of deleveraging capacity" },
+                      { label: "2–4x", color: "text-amber-400", desc: "Moderate — common for IG corporates" },
+                      { label: "> 4x", color: "text-red-400", desc: "High — HY territory, refinancing risk" },
+                    ],
+                  },
+                  {
+                    metric: "Altman Z-Score",
+                    thresholds: [
+                      { label: "> 2.99", color: "text-green-400", desc: "Safe Zone — low bankruptcy probability" },
+                      { label: "1.23–2.99", color: "text-amber-400", desc: "Gray Zone — monitor closely" },
+                      { label: "< 1.23", color: "text-red-400", desc: "Distress Zone — high default risk" },
+                    ],
+                  },
+                ].map(g => (
+                  <div key={g.metric}>
+                    <div className="mb-2 text-[10px] font-semibold text-muted-foreground uppercase tracking-wider">{g.metric}</div>
+                    <div className="space-y-1.5">
+                      {g.thresholds.map(t => (
+                        <div key={t.label} className="flex items-start gap-2">
+                          <span className={cn("mt-0.5 text-[10px] font-bold w-14 shrink-0 tabular-nums", t.color)}>{t.label}</span>
+                          <span className="text-[9px] text-muted-foreground">{t.desc}</span>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </motion.div>
         </TabsContent>
       </Tabs>
     </div>
