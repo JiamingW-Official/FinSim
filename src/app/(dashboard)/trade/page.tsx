@@ -36,6 +36,7 @@ import { PositionAlerts } from "@/components/trading/PositionAlerts";
 import { PortfolioHeatmap } from "@/components/trading/PortfolioHeatmap";
 import { TradeShareCard } from "@/components/trading/TradeShareCard";
 import { TradeReplay } from "@/components/trading/TradeReplay";
+import { MarginDashboard } from "@/components/trading/MarginDashboard";
 import { cn } from "@/lib/utils";
 import { Loader2, RefreshCw } from "lucide-react";
 
@@ -349,6 +350,12 @@ export default function TradePage() {
               >
                 Exec
               </TabsTrigger>
+              <TabsTrigger
+                value="margin"
+                className="h-6 rounded-none border-b-2 border-transparent px-2 text-[10px] data-[state=active]:border-primary data-[state=active]:bg-transparent"
+              >
+                Margin
+              </TabsTrigger>
             </TabsList>
 
             {/* Order tab: OrderEntry + AI Coach stacked */}
@@ -424,6 +431,14 @@ export default function TradePage() {
               className="flex-1 overflow-auto mt-0 data-[state=inactive]:hidden"
             >
               <ExecutionQuality />
+            </TabsContent>
+
+            {/* Margin Dashboard tab */}
+            <TabsContent
+              value="margin"
+              className="flex-1 overflow-auto mt-0 data-[state=inactive]:hidden p-2"
+            >
+              <MarginDashboard />
             </TabsContent>
           </Tabs>
         </div>
