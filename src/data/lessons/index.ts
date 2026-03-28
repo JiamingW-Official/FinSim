@@ -107,6 +107,8 @@ import { UNIT_MARKET_BUBBLES } from "./unit-market-bubbles";
 import { UNIT_CRYPTO_CYCLES } from "./unit-crypto-cycles";
 import { UNIT_MONETARY_SYSTEM } from "./unit-monetary-system";
 import { UNIT_COMMODITY_TRADING } from "./unit-commodity-trading";
+import { UNIT_CAPITAL_MARKETS_HISTORY } from "./unit-capital-markets-history";
+import { UNIT_FINANCIAL_DERIVATIVES } from "./unit-financial-derivatives";
 
 export const UNITS: Unit[] = [
   UNIT_BASICS,
@@ -217,6 +219,8 @@ export const UNITS: Unit[] = [
   UNIT_CRYPTO_CYCLES,
   UNIT_MONETARY_SYSTEM,
   UNIT_COMMODITY_TRADING,
+  UNIT_CAPITAL_MARKETS_HISTORY,
+  UNIT_FINANCIAL_DERIVATIVES,
 ];
 
 export function getLessonById(lessonId: string): Lesson | undefined {
