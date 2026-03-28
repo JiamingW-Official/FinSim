@@ -55,6 +55,7 @@ import { AdvancedAnalytics } from "@/components/portfolio/AdvancedAnalytics";
 import { StressTester } from "@/components/portfolio/StressTester";
 import { BlackLitterman } from "@/components/portfolio/BlackLitterman";
 import { RebalancingTool } from "@/components/portfolio/RebalancingTool";
+import { AttributionAnalysis } from "@/components/portfolio/AttributionAnalysis";
 
 const EquityCurve = dynamic(
   () =>
@@ -209,6 +210,9 @@ export default function PortfolioPage() {
                 </TabsTrigger>
                 <TabsTrigger value="rebalance-tool" className="flex-1 rounded-md text-[11px] h-7 whitespace-nowrap">
                   Rebalance+
+                </TabsTrigger>
+                <TabsTrigger value="attribution-plus" className="flex-1 rounded-md text-[11px] h-7 whitespace-nowrap">
+                  Attribution+
                 </TabsTrigger>
               </TabsList>
             </div>
@@ -415,6 +419,11 @@ export default function PortfolioPage() {
                 Comprehensive Rebalancing Tool
               </div>
               <RebalancingTool />
+            </TabsContent>
+
+            {/* ── Attribution+ tab ── */}
+            <TabsContent value="attribution-plus" className="space-y-4">
+              <AttributionAnalysis />
             </TabsContent>
 
             {/* ── Deep Analytics tab ── */}

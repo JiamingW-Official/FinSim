@@ -8,6 +8,7 @@ import {
   TrendingUp, Globe, ChevronLeft, ChevronRight, BookOpen, Bitcoin,
   ScanLine, GitCompare, Users, Landmark, BookMarked, DollarSign, Calculator, PieChart,
   Brain, Building2, Zap, Wallet, Calendar, Newspaper, Bot, LayoutGrid, Package, Search,
+  Target,
 } from "lucide-react";
 import { Tooltip, TooltipTrigger, TooltipContent } from "@/components/ui/tooltip";
 import { SearchTrigger } from "@/components/search/GlobalSearch";
@@ -80,6 +81,7 @@ const NAV_GROUPS: NavGroup[] = [
       { icon: Bitcoin,      label: "Crypto",       href: "/crypto" },
       { icon: Landmark,     label: "Bonds",        href: "/bonds" },
       { icon: Landmark,     label: "Wealth Plan",  href: "/wealth" },
+      { icon: Target,       label: "Retirement",   href: "/retirement" },
       { icon: PieChart,     label: "ETFs",         href: "/etf" },
       { icon: BarChart3,    label: "Futures",      href: "/futures" },
       { icon: Package,      label: "Commodities",  href: "/commodities" },
