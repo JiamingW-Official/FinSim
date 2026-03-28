@@ -11,6 +11,7 @@ import {
 } from "lucide-react";
 import { Tooltip, TooltipTrigger, TooltipContent } from "@/components/ui/tooltip";
 import { SearchTrigger } from "@/components/search/GlobalSearch";
+import { ThemeCustomizerTrigger } from "@/components/ui/ThemeCustomizer";
 import { useUIStore } from "@/stores/ui-store";
 import { useNotificationStore } from "@/stores/notification-store";
 import { cn } from "@/lib/utils";
@@ -24,6 +25,7 @@ const SHORTCUTS: Record<string, string> = {
   "/portfolio":   "G P",
   "/backtest":    "G B",
   "/predictions": "G D",
+  "/performance": "G F",
   "/scanner":     "G N",
   "/market":      "G M",
   "/crypto":      "G Y",
@@ -65,6 +67,7 @@ const NAV_GROUPS: NavGroup[] = [
       { icon: FlaskConical, label: "Backtest",     href: "/backtest" },
       { icon: BookMarked,   label: "Strategies",   href: "/strategies" },
       { icon: TrendingUp,   label: "Predictions",  href: "/predictions" },
+      { icon: TrendingUp,   label: "Performance",  href: "/performance" },
       { icon: ScanLine,     label: "Scanner",      href: "/scanner" },
       { icon: GitCompare,   label: "Pairs",        href: "/pairs" },
       { icon: Globe,        label: "Market Intel", href: "/market" },
@@ -294,10 +297,33 @@ export function Sidebar() {
         ))}
       </div>
 
+      {/* Theme customizer trigger */}
+      <div
+        className={cn(
+          "mt-1 shrink-0",
+          collapsed ? "flex w-full justify-center" : "px-2",
+        )}
+      >
+        {collapsed ? (
+          <Tooltip>
+            <TooltipTrigger asChild>
+              <span>
+                <ThemeCustomizerTrigger collapsed={collapsed} />
+              </span>
+            </TooltipTrigger>
+            <TooltipContent side="right" sideOffset={10} className="text-xs font-medium">
+              Customize theme
+            </TooltipContent>
+          </Tooltip>
+        ) : (
+          <ThemeCustomizerTrigger collapsed={collapsed} />
+        )}
+      </div>
+
       {/* Collapse toggle */}
       <div
         className={cn(
-          "mt-2 shrink-0",
+          "mt-1 shrink-0",
           collapsed ? "flex w-full justify-center" : "px-2",
         )}
       >

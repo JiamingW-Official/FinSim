@@ -145,6 +145,9 @@ export default function TradePage() {
     return () => clearTimeout(timer);
   }, [lastTradeFlash, clearTradeFlash]);
 
+  // Main view: "trade" or "replay"
+  const [mainView, setMainView] = useState<"trade" | "replay">("trade");
+
   // Determine which onboarding hint to show (sequential)
   const showTimeTravel = shouldShow("time-travel");
   const showOrderEntry = !showTimeTravel && shouldShow("order-entry");
@@ -153,10 +156,47 @@ export default function TradePage() {
   return (
     <>
       {/* ── Desktop layout (md+): 3-panel columns ── */}
-      <div className="hidden md:flex h-full">
+      <div className="hidden md:flex h-full flex-col">
         <TradeShareCard />
         <AlphaBotAlerts />
         <PositionAlerts />
+
+        {/* ── Top view switcher ── */}
+        <div className="flex items-center gap-1 border-b border-border bg-card px-3 py-1 shrink-0">
+          <button
+            onClick={() => setMainView("trade")}
+            className={cn(
+              "flex items-center gap-1.5 rounded px-2.5 py-1 text-xs font-medium transition-colors",
+              mainView === "trade"
+                ? "bg-primary/15 text-primary"
+                : "text-muted-foreground hover:text-foreground hover:bg-accent/50",
+            )}
+          >
+            Trade
+          </button>
+          <button
+            onClick={() => setMainView("replay")}
+            className={cn(
+              "flex items-center gap-1.5 rounded px-2.5 py-1 text-xs font-medium transition-colors",
+              mainView === "replay"
+                ? "bg-primary/15 text-primary"
+                : "text-muted-foreground hover:text-foreground hover:bg-accent/50",
+            )}
+          >
+            <RefreshCw className="h-3 w-3" />
+            Replay
+          </button>
+        </div>
+
+        {/* ── Replay view ── */}
+        {mainView === "replay" && (
+          <div className="flex-1 overflow-hidden">
+            <TradeReplay />
+          </div>
+        )}
+
+        {/* ── Trade view ── */}
+        <div className={cn("flex flex-1 overflow-hidden", mainView !== "trade" && "hidden")}>
 
         {/* ── Left sidebar (220px): Watchlist + PriceAlerts ── */}
         <div
@@ -387,6 +427,7 @@ export default function TradePage() {
             </TabsContent>
           </Tabs>
         </div>
+        </div>{/* end trade view wrapper */}
       </div>
 
       {/* ── Mobile layout (< md): vertical stack ── */}
@@ -466,6 +507,12 @@ export default function TradePage() {
               >
                 AI Coach
               </TabsTrigger>
+              <TabsTrigger
+                value="replay"
+                className="h-7 shrink-0 rounded-none border-b-2 border-transparent px-3 text-xs data-[state=active]:border-primary data-[state=active]:bg-transparent"
+              >
+                Replay
+              </TabsTrigger>
             </TabsList>
             <TabsContent value="order" className="mt-0">
               <OrderEntry />
@@ -484,6 +531,9 @@ export default function TradePage() {
             </TabsContent>
             <TabsContent value="ai" className="mt-0">
               <AICoachPanel />
+            </TabsContent>
+            <TabsContent value="replay" className="mt-0 h-[600px]">
+              <TradeReplay />
             </TabsContent>
           </Tabs>
         </div>
