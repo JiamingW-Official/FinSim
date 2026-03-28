@@ -1955,6 +1955,7 @@ export default function CryptoPage() {
   void ArrowDownRight;
   void Zap;
   void Bitcoin;
+  void ShieldAlert;
 
   return (
     <div className="flex flex-col h-full overflow-hidden">
@@ -1992,6 +1993,8 @@ export default function CryptoPage() {
         {activeTab === "trade"     && <TradeTab rows={cryptoRows} seed={seed} />}
         {activeTab === "defi"      && <DeFiTab seed={seed} />}
         {activeTab === "onchain"   && <OnChainTab seed={seed} />}
+        {activeTab === "nft"       && <NftTab seed={seed} />}
+        {activeTab === "portfolio" && <CryptoPortfolioTab rows={cryptoRows} />}
         {activeTab === "education" && <EducationTab />}
       </div>
     </div>
