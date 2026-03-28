@@ -533,6 +533,11 @@ export default function JournalPageClient() {
           </div>
         )}
 
+        {/* Weekly Review */}
+        {pageTab === "review" && (
+          <WeeklyReview />
+        )}
+
       </div>
     </div>
   );
