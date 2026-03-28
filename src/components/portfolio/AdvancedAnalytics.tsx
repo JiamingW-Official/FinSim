@@ -1,439 +1,621 @@
 "use client";
 
 import { useState, useMemo } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 import { cn } from "@/lib/utils";
-import { AlertTriangle } from "lucide-react";
+import { AlertTriangle, TrendingUp, TrendingDown, Target, Shield, BarChart2, Users } from "lucide-react";
 
-// ── mulberry32 PRNG ──────────────────────────────────────────────────────────
-function mulberry32(seed: number) {
+// ── Seeded PRNG ───────────────────────────────────────────────────────────────
+function makeRng(seed: number) {
   let s = seed;
   return function () {
-    s |= 0;
-    s = (s + 0x6d2b79f5) | 0;
-    let t = Math.imul(s ^ (s >>> 15), 1 | s);
-    t = (t + Math.imul(t ^ (t >>> 7), 61 | t)) ^ t;
-    return ((t ^ (t >>> 14)) >>> 0) / 4294967296;
+    s = (s * 1103515245 + 12345) & 0x7fffffff;
+    return s / 0x7fffffff;
   };
 }
 
-// ── TypeScript interfaces ─────────────────────────────────────────────────────
-
-interface MonthlyReturn {
-  month: string;
-  portfolio: number;
-  sp500: number;
-  balanced: number;
-  riskFree: number;
+// ── Helpers ───────────────────────────────────────────────────────────────────
+function mean(arr: number[]): number {
+  return arr.reduce((a, b) => a + b, 0) / arr.length;
 }
 
-interface BenchmarkStats {
-  alpha: number;
-  beta: number;
-  r2: number;
-  trackingError: number;
-  informationRatio: number;
+function stddev(arr: number[]): number {
+  const m = mean(arr);
+  return Math.sqrt(arr.reduce((a, b) => a + (b - m) ** 2, 0) / arr.length);
 }
 
-interface FactorExposure {
+function normalCDF(z: number): number {
+  const t = 1 / (1 + 0.2316419 * Math.abs(z));
+  const d = 0.3989423 * Math.exp(-0.5 * z * z);
+  const p = d * t * (0.3193815 + t * (-0.3565638 + t * (1.7814779 + t * (-1.8212560 + t * 1.3302744))));
+  return z < 0 ? p : 1 - p;
+}
+
+// ── Types ─────────────────────────────────────────────────────────────────────
+interface AttributionRow {
+  name: string;
+  weight: number;
+  allocation: number;
+  selection: number;
+  interaction: number;
+  total: number;
+}
+
+interface RiskAdjustedMetrics {
+  sharpe: number;
+  sortino: number;
+  calmar: number;
+  omega: number;
+  upsideCapture: number;
+  downsideCapture: number;
+  benchmarkSharpe: number;
+  benchmarkSortino: number;
+  benchmarkCalmar: number;
+}
+
+interface FactorLoading {
   name: string;
   label: string;
-  beta: number;
+  loading: number;
   tStat: number;
-  contribution: number; // % of total return
+  crowded: boolean;
+  beneficial: boolean;
 }
 
-interface DrawdownPoint {
-  index: number;
-  drawdown: number; // negative number, fraction
-}
-
-interface WorstDrawdown {
-  startMonth: string;
-  endMonth: string;
-  depth: number; // negative fraction
+interface DrawdownEpisode {
+  peak: string;
+  trough: string;
+  recovery: string;
+  depth: number;
+  durationDays: number;
   recoveryDays: number;
 }
 
-interface DrawdownStats {
-  maxDrawdown: number;
-  avgDrawdown: number;
-  recoveryDate: string;
-  worstDrawdowns: WorstDrawdown[];
+interface TailRiskData {
+  histogram: { bin: number; actual: number; normal: number }[];
+  cvar95: number;
+  excessKurtosis: number;
+  skewness: number;
+  tailRatio: number;
+  crisisPerf: { name: string; portfolio: number; market: number }[];
 }
 
-interface RollingPoint {
-  index: number;
-  value: number;
+interface PeerMetric {
+  label: string;
+  value: string;
+  quartile: number; // 1-4
+  rawVal: number;
 }
 
-interface RollingStats {
-  volatility: RollingPoint[];
-  sharpe: RollingPoint[];
-  beta: RollingPoint[];
-}
+// ── Data generation ───────────────────────────────────────────────────────────
 
-interface CorrelationData {
-  tickers: string[];
-  matrix: number[][];
-  diversificationScore: number;
-  highCorrelationPairs: string[];
-}
+function generateAttributionData(): { rows: AttributionRow[]; alpha12m: number[]; icScatter: { x: number; y: number }[]; hitRate: number } {
+  const rand = makeRng(27);
 
-// ── Data generation helpers ──────────────────────────────────────────────────
+  const sectors = ["Technology", "Healthcare", "Financials", "Energy", "Consumer Disc.", "Industrials", "Materials", "Utilities", "Real Estate", "Communication"];
+  const rows: AttributionRow[] = sectors.map((name) => {
+    const weight = 0.05 + rand() * 0.15;
+    const alloc = (rand() - 0.45) * 0.8;
+    const sel = (rand() - 0.42) * 1.2;
+    const inter = (rand() - 0.5) * 0.3;
+    return {
+      name,
+      weight: parseFloat(weight.toFixed(3)),
+      allocation: parseFloat(alloc.toFixed(3)),
+      selection: parseFloat(sel.toFixed(3)),
+      interaction: parseFloat(inter.toFixed(3)),
+      total: parseFloat((alloc + sel + inter).toFixed(3)),
+    };
+  });
 
-const MONTHS = [
-  "Apr", "May", "Jun", "Jul", "Aug", "Sep",
-  "Oct", "Nov", "Dec", "Jan", "Feb", "Mar",
-];
+  const alpha12m: number[] = [];
+  let cum = 0;
+  for (let i = 0; i < 36; i++) {
+    cum += (rand() - 0.46) * 0.8;
+    alpha12m.push(parseFloat(cum.toFixed(3)));
+  }
 
-function generateBenchmarkData(): MonthlyReturn[] {
-  const rng = mulberry32(6543);
-  return MONTHS.map((month) => ({
-    month,
-    portfolio: (rng() - 0.42) * 0.12,
-    sp500: (rng() - 0.43) * 0.09,
-    balanced: (rng() - 0.44) * 0.06,
-    riskFree: 0.0043 + rng() * 0.001,
+  const icScatter = Array.from({ length: 40 }, () => ({
+    x: parseFloat(((rand() - 0.5) * 4).toFixed(3)),
+    y: parseFloat(((rand() - 0.48) * 4 + (rand() - 0.5) * 0.5).toFixed(3)),
   }));
+
+  const positiveContrib = rows.filter((r) => r.total > 0).length;
+  const hitRate = positiveContrib / rows.length;
+
+  return { rows, alpha12m, icScatter, hitRate };
 }
 
-function computeBenchmarkStats(data: MonthlyReturn[]): BenchmarkStats {
-  const portfolio = data.map((d) => d.portfolio);
-  const sp500 = data.map((d) => d.sp500);
+function generateRiskAdjusted(): { metrics: RiskAdjustedMetrics; sharpeTimeSeries: number[]; } {
+  const rand = makeRng(28);
 
-  const mean = (arr: number[]) => arr.reduce((a, b) => a + b, 0) / arr.length;
-  const variance = (arr: number[]) => {
-    const m = mean(arr);
-    return arr.reduce((a, b) => a + (b - m) ** 2, 0) / arr.length;
-  };
-  const covariance = (a: number[], b: number[]) => {
-    const ma = mean(a);
-    const mb = mean(b);
-    return a.reduce((s, ai, i) => s + (ai - ma) * (b[i] - mb), 0) / a.length;
-  };
+  const monthlyReturns = Array.from({ length: 36 }, () => (rand() - 0.44) * 0.06);
+  const benchReturns = Array.from({ length: 36 }, () => (rand() - 0.45) * 0.055);
+  const rf = 0.0043;
 
-  const beta = covariance(portfolio, sp500) / variance(sp500);
-  const alpha = (mean(portfolio) - beta * mean(sp500)) * 12; // annualised
-  const diffReturns = portfolio.map((p, i) => p - sp500[i]);
-  const trackingError = Math.sqrt(variance(diffReturns) * 12);
+  const portMean = mean(monthlyReturns) * 12;
+  const portStd = stddev(monthlyReturns) * Math.sqrt(12);
+  const sharpe = (portMean - rf * 12) / portStd;
 
-  // R² = corr²
-  const corr =
-    covariance(portfolio, sp500) /
-    Math.sqrt(variance(portfolio) * variance(sp500));
-  const r2 = corr ** 2;
+  const downside = monthlyReturns.filter((r) => r < rf / 12);
+  const downsideDev = downside.length > 0 ? stddev(downside) * Math.sqrt(12) : portStd;
+  const sortino = (portMean - rf * 12) / downsideDev;
 
-  const informationRatio = alpha / trackingError;
+  let peak = 1;
+  let maxDD = 0;
+  let equity = 1;
+  for (const r of monthlyReturns) {
+    equity *= 1 + r;
+    if (equity > peak) peak = equity;
+    const dd = (peak - equity) / peak;
+    if (dd > maxDD) maxDD = dd;
+  }
+  const calmar = portMean / (maxDD || 0.01);
+
+  const gains = monthlyReturns.filter((r) => r > rf / 12);
+  const losses = monthlyReturns.filter((r) => r <= rf / 12);
+  const omega = gains.length && losses.length
+    ? gains.reduce((a, b) => a + (b - rf / 12), 0) / Math.abs(losses.reduce((a, b) => a + (b - rf / 12), 0))
+    : 1;
+
+  const upMonths = benchReturns.map((b, i) => ({ b, p: monthlyReturns[i] })).filter((d) => d.b > 0);
+  const downMonths = benchReturns.map((b, i) => ({ b, p: monthlyReturns[i] })).filter((d) => d.b < 0);
+  const upsideCapture = upMonths.length ? (mean(upMonths.map((d) => d.p)) / mean(upMonths.map((d) => d.b))) * 100 : 100;
+  const downsideCapture = downMonths.length ? (mean(downMonths.map((d) => d.p)) / mean(downMonths.map((d) => d.b))) * 100 : 100;
+
+  const bMean = mean(benchReturns) * 12;
+  const bStd = stddev(benchReturns) * Math.sqrt(12);
+  const bDownside = benchReturns.filter((r) => r < rf / 12);
+  const bDDev = bDownside.length > 0 ? stddev(bDownside) * Math.sqrt(12) : bStd;
+  let bPeak = 1; let bMaxDD = 0; let bEq = 1;
+  for (const r of benchReturns) {
+    bEq *= 1 + r;
+    if (bEq > bPeak) bPeak = bEq;
+    const dd = (bPeak - bEq) / bPeak;
+    if (dd > bMaxDD) bMaxDD = dd;
+  }
+
+  // Rolling 12-month Sharpe
+  const sharpeTimeSeries: number[] = [];
+  for (let i = 11; i < monthlyReturns.length; i++) {
+    const window = monthlyReturns.slice(i - 11, i + 1);
+    const m = mean(window) * 12;
+    const s = stddev(window) * Math.sqrt(12);
+    sharpeTimeSeries.push(parseFloat(((m - rf * 12) / s).toFixed(3)));
+  }
 
   return {
-    alpha: parseFloat((alpha * 100).toFixed(2)),
-    beta: parseFloat(beta.toFixed(2)),
-    r2: parseFloat(r2.toFixed(3)),
-    trackingError: parseFloat((trackingError * 100).toFixed(2)),
-    informationRatio: parseFloat(informationRatio.toFixed(2)),
+    metrics: {
+      sharpe: parseFloat(sharpe.toFixed(2)),
+      sortino: parseFloat(sortino.toFixed(2)),
+      calmar: parseFloat(calmar.toFixed(2)),
+      omega: parseFloat(omega.toFixed(2)),
+      upsideCapture: parseFloat(upsideCapture.toFixed(1)),
+      downsideCapture: parseFloat(downsideCapture.toFixed(1)),
+      benchmarkSharpe: parseFloat(((bMean - rf * 12) / bStd).toFixed(2)),
+      benchmarkSortino: parseFloat(((bMean - rf * 12) / bDDev).toFixed(2)),
+      benchmarkCalmar: parseFloat(((bMean) / (bMaxDD || 0.01)).toFixed(2)),
+    },
+    sharpeTimeSeries,
   };
 }
 
-function generateFactorExposures(): FactorExposure[] {
-  const rng = mulberry32(6544);
+function generateFactorAnalysis(): { loadings: FactorLoading[]; rSquared: number; jensensAlpha: number } {
+  const rand = makeRng(29);
   const factors: { name: string; label: string }[] = [
     { name: "Market (Rm-Rf)", label: "MKT" },
     { name: "Size (SMB)", label: "SMB" },
     { name: "Value (HML)", label: "HML" },
     { name: "Profitability (RMW)", label: "RMW" },
     { name: "Investment (CMA)", label: "CMA" },
-    { name: "Momentum (MOM)", label: "MOM" },
   ];
-  const rawContribs = factors.map(() => (rng() - 0.4) * 20);
-  const total = rawContribs.reduce((a, b) => a + Math.abs(b), 0);
-  return factors.map((f, i) => ({
-    ...f,
-    beta: parseFloat(((rng() - 0.3) * 2).toFixed(2)),
-    tStat: parseFloat(((rng() - 0.3) * 4).toFixed(2)),
-    contribution: parseFloat(((rawContribs[i] / total) * 100).toFixed(1)),
-  }));
+  const loadings: FactorLoading[] = factors.map((f) => {
+    const loading = parseFloat(((rand() - 0.35) * 2).toFixed(3));
+    const tStat = parseFloat(((rand() - 0.3) * 4.5).toFixed(2));
+    return {
+      ...f,
+      loading,
+      tStat,
+      crowded: rand() > 0.65,
+      beneficial: rand() > 0.45,
+    };
+  });
+  const rSquared = parseFloat((0.55 + rand() * 0.35).toFixed(3));
+  const jensensAlpha = parseFloat(((rand() - 0.42) * 6).toFixed(2));
+  return { loadings, rSquared, jensensAlpha };
 }
 
-function generateDrawdownData(): { points: DrawdownPoint[]; stats: DrawdownStats } {
-  const rng = mulberry32(6545);
-  const n = 50;
+function generateDrawdownData(): { underwaterSeries: number[]; episodes: DrawdownEpisode[]; painIndex: number; ddCorrelation: number } {
+  const rand = makeRng(30);
+  const n = 36;
   const prices: number[] = [100];
   for (let i = 1; i < n; i++) {
-    prices.push(prices[i - 1] * (1 + (rng() - 0.46) * 0.05));
+    prices.push(prices[i - 1] * (1 + (rand() - 0.47) * 0.05));
   }
 
   let peak = prices[0];
-  const points: DrawdownPoint[] = prices.map((p, index) => {
+  const underwaterSeries = prices.map((p) => {
     if (p > peak) peak = p;
-    return { index, drawdown: (p - peak) / peak };
+    return parseFloat(((p - peak) / peak * 100).toFixed(3));
   });
 
-  const maxDrawdown = Math.min(...points.map((p) => p.drawdown));
-
-  const avgDrawdown =
-    points.filter((p) => p.drawdown < 0).reduce((a, b) => a + b.drawdown, 0) /
-    Math.max(1, points.filter((p) => p.drawdown < 0).length);
-
-  const worstDrawdowns: WorstDrawdown[] = Array.from({ length: 5 }, (_, i) => {
-    const depth = maxDrawdown * (1 - i * 0.15);
-    const startIdx = Math.floor(rng() * 8);
-    const endIdx = startIdx + 3 + Math.floor(rng() * 5);
+  const DATES = ["Jan 25", "Feb 25", "Mar 25", "Apr 25", "May 25", "Jun 25", "Jul 25", "Aug 25", "Sep 25", "Oct 25", "Nov 25", "Dec 25", "Jan 26", "Feb 26", "Mar 26"];
+  const episodes: DrawdownEpisode[] = Array.from({ length: 5 }, (_, i) => {
+    const di = Math.floor(rand() * (DATES.length - 3));
+    const dur = Math.floor(30 + rand() * 60);
+    const rec = Math.floor(20 + rand() * 80);
     return {
-      startMonth: MONTHS[startIdx % 12],
-      endMonth: MONTHS[endIdx % 12],
-      depth: parseFloat(depth.toFixed(4)),
-      recoveryDays: Math.floor(30 + rng() * 90),
+      peak: DATES[di % DATES.length],
+      trough: DATES[(di + 1) % DATES.length],
+      recovery: DATES[(di + 2) % DATES.length],
+      depth: parseFloat((-(rand() * 0.2 + i * 0.01 + 0.03)).toFixed(4)),
+      durationDays: dur,
+      recoveryDays: rec,
     };
   });
 
-  return {
-    points,
-    stats: {
-      maxDrawdown,
-      avgDrawdown,
-      recoveryDate: MONTHS[8],
-      worstDrawdowns,
-    },
-  };
+  const negValues = underwaterSeries.filter((v) => v < 0);
+  const painIndex = negValues.length > 0 ? parseFloat((Math.abs(mean(negValues)) * (negValues.length / n)).toFixed(3)) : 0;
+  const ddCorrelation = parseFloat((0.4 + rand() * 0.4).toFixed(3));
+
+  return { underwaterSeries, episodes, painIndex, ddCorrelation };
 }
 
-function generateRollingStats(window: number): RollingStats {
-  const rng = mulberry32(6546 + window);
-  const n = 50;
-  const mk = (scale: number, offset: number): RollingPoint[] =>
-    Array.from({ length: n }, (_, index) => ({
-      index,
-      value: offset + (rng() - 0.5) * scale,
-    }));
-
-  return {
-    volatility: mk(0.06, 0.18),
-    sharpe: mk(1.2, 1.1),
-    beta: mk(0.4, 0.9),
-  };
-}
-
-function generateCorrelationData(): CorrelationData {
-  const tickers = ["AAPL", "MSFT", "TSLA", "SPY", "QQQ"];
-  const rng = mulberry32(6547);
-  const n = tickers.length;
-
-  // Build a symmetric matrix with 1s on diagonal
-  const matrix: number[][] = Array.from({ length: n }, (_, i) =>
-    Array.from({ length: n }, (_, j) => {
-      if (i === j) return 1;
-      if (j < i) return 0; // fill from upper triangle
-      return parseFloat((rng() * 1.6 - 0.3).toFixed(2));
-    })
-  );
-
-  // Mirror upper triangle to lower
+function generateTailRisk(): TailRiskData {
+  const rand = makeRng(31);
+  const n = 100;
+  const returns: number[] = [];
   for (let i = 0; i < n; i++) {
-    for (let j = 0; j < i; j++) {
-      matrix[i][j] = matrix[j][i];
-    }
+    // Box-Muller for approximate normal, then add fat tails
+    const u1 = rand(); const u2 = rand();
+    const normal = Math.sqrt(-2 * Math.log(u1 + 0.0001)) * Math.cos(2 * Math.PI * u2);
+    const fatTail = rand() > 0.92 ? (rand() - 0.5) * 6 : 0;
+    returns.push(normal * 0.012 + fatTail * 0.008 - 0.0005);
   }
 
-  // Clamp to [-1, 1]
-  for (let i = 0; i < n; i++) {
-    for (let j = 0; j < n; j++) {
-      matrix[i][j] = Math.max(-1, Math.min(1, matrix[i][j]));
-    }
-  }
+  const sorted = [...returns].sort((a, b) => a - b);
+  const worst5pct = sorted.slice(0, Math.floor(n * 0.05));
+  const best5pct = sorted.slice(Math.floor(n * 0.95));
+  const cvar95 = parseFloat((mean(worst5pct) * 100).toFixed(3));
+  const tailRatio = parseFloat((Math.abs(mean(best5pct)) / Math.abs(mean(worst5pct))).toFixed(3));
 
-  // Diversification score
-  let pairSum = 0;
-  let pairCount = 0;
-  const highCorrelationPairs: string[] = [];
-  for (let i = 0; i < n; i++) {
-    for (let j = i + 1; j < n; j++) {
-      pairSum += matrix[i][j];
-      pairCount++;
-      if (matrix[i][j] > 0.8) {
-        highCorrelationPairs.push(`${tickers[i]}-${tickers[j]}`);
-      }
-    }
-  }
-  const avgCorr = pairSum / pairCount;
-  const diversificationScore = parseFloat((1 - avgCorr).toFixed(3));
+  const m = mean(returns);
+  const s = stddev(returns);
+  const excessKurtosis = parseFloat((returns.reduce((a, r) => a + ((r - m) / s) ** 4, 0) / n - 3).toFixed(3));
+  const skewness = parseFloat((returns.reduce((a, r) => a + ((r - m) / s) ** 3, 0) / n).toFixed(3));
 
-  return { tickers, matrix, diversificationScore, highCorrelationPairs };
+  // Histogram: 20 bins from -4 to +4 percent
+  const bins = Array.from({ length: 16 }, (_, i) => -4 + i * 0.5);
+  const histogram = bins.map((bin) => {
+    const actual = returns.filter((r) => r * 100 >= bin && r * 100 < bin + 0.5).length / n;
+    const z1 = (bin / 100 - m) / (s || 0.001);
+    const z2 = ((bin + 0.5) / 100 - m) / (s || 0.001);
+    const normal = Math.abs(normalCDF(z2) - normalCDF(z1));
+    return { bin, actual: parseFloat(actual.toFixed(4)), normal: parseFloat(normal.toFixed(4)) };
+  });
+
+  const crisisNames = ["COVID-19 Crash (Mar 2020)", "Rate Shock (2022)", "SVB Crisis (Mar 2023)", "AI Bubble Correction (2024)", "Global Recession (2025)"];
+  const crisisPerf = crisisNames.map((name) => ({
+    name,
+    portfolio: parseFloat(((rand() - 0.55) * 20).toFixed(2)),
+    market: parseFloat(((rand() - 0.62) * 22).toFixed(2)),
+  }));
+
+  return { histogram, cvar95, excessKurtosis, skewness, tailRatio, crisisPerf };
 }
 
-// ── Colour helpers ────────────────────────────────────────────────────────────
+function generatePeerData(): { metrics: PeerMetric[]; styleBox: number; activeShare: number; trackingError: number; informationRatio: number } {
+  const rand = makeRng(32);
 
-function corrColor(v: number): string {
-  // -1 → red, 0 → neutral, 1 → green
-  const r = v < 0 ? 255 : Math.round(255 * (1 - v));
-  const g = v > 0 ? 255 : Math.round(255 * (1 + v));
-  const b = Math.round(255 * (1 - Math.abs(v)));
-  return `rgb(${r},${g},${b})`;
-}
-
-// ── SVG Chart helpers ─────────────────────────────────────────────────────────
-
-function normaliseSeries(
-  values: number[],
-  minY: number,
-  maxY: number,
-  height: number,
-  padY = 10
-) {
-  const range = maxY - minY || 1;
-  return values.map(
-    (v) => padY + ((maxY - v) / range) * (height - padY * 2)
-  );
-}
-
-function polyline(
-  xs: number[],
-  ys: number[]
-): string {
-  return xs.map((x, i) => `${x},${ys[i]}`).join(" ");
-}
-
-// ── Section 1: Performance Benchmarking ──────────────────────────────────────
-
-function BenchmarkChart({ data }: { data: MonthlyReturn[] }) {
-  const W = 600;
-  const H = 200;
-  const padX = 40;
-  const padY = 16;
-  const innerW = W - padX * 2;
-  const innerH = H - padY * 2;
-
-  // Convert to cumulative returns
-  function cumulative(returns: number[]): number[] {
-    const result: number[] = [];
-    let cum = 1;
-    for (const r of returns) {
-      cum *= 1 + r;
-      result.push(cum);
-    }
-    return result;
-  }
-
-  const portfolio = cumulative(data.map((d) => d.portfolio));
-  const sp500 = cumulative(data.map((d) => d.sp500));
-  const balanced = cumulative(data.map((d) => d.balanced));
-  const riskFree = cumulative(data.map((d) => d.riskFree));
-
-  const allValues = [...portfolio, ...sp500, ...balanced, ...riskFree];
-  const minY = Math.min(...allValues) - 0.02;
-  const maxY = Math.max(...allValues) + 0.02;
-
-  const xs = data.map((_, i) => padX + (i / (data.length - 1)) * innerW);
-  const toY = (v: number) =>
-    padY + ((maxY - v) / (maxY - minY)) * innerH;
-
-  const lines = [
-    { values: portfolio, color: "#3b82f6", label: "Portfolio", dash: "" },
-    { values: sp500, color: "#10b981", label: "S&P 500", dash: "" },
-    { values: balanced, color: "#f59e0b", label: "60/40", dash: "4 2" },
-    { values: riskFree, color: "#6b7280", label: "Risk-free", dash: "2 3" },
+  const metrics: PeerMetric[] = [
+    { label: "1Y Return", value: `${((rand() - 0.3) * 30).toFixed(1)}%`, quartile: Math.ceil(rand() * 4), rawVal: rand() },
+    { label: "Sharpe Ratio", value: (0.5 + rand() * 1.5).toFixed(2), quartile: Math.ceil(rand() * 4), rawVal: rand() },
+    { label: "Max Drawdown", value: `${-(rand() * 15 + 5).toFixed(1)}%`, quartile: Math.ceil(rand() * 4), rawVal: rand() },
+    { label: "Volatility", value: `${(8 + rand() * 12).toFixed(1)}%`, quartile: Math.ceil(rand() * 4), rawVal: rand() },
+    { label: "Alpha", value: `${((rand() - 0.4) * 8).toFixed(2)}%`, quartile: Math.ceil(rand() * 4), rawVal: rand() },
+    { label: "Info Ratio", value: (0.2 + rand() * 0.9).toFixed(2), quartile: Math.ceil(rand() * 4), rawVal: rand() },
   ];
 
-  const yTicks = 4;
+  const styleBox = Math.floor(rand() * 9); // 0-8 (3x3 grid: value/blend/growth × small/mid/large)
+  const activeShare = parseFloat((40 + rand() * 45).toFixed(1));
+  const trackingError = parseFloat((3 + rand() * 8).toFixed(2));
+  const informationRatio = parseFloat((0.1 + rand() * 0.9).toFixed(2));
+
+  return { metrics, styleBox, activeShare, trackingError, informationRatio };
+}
+
+// ── SVG helpers ───────────────────────────────────────────────────────────────
+
+function SvgSparkline({ values, color, height = 60, showArea = true }: { values: number[]; color: string; height?: number; showArea?: boolean }) {
+  const W = 300;
+  const H = height;
+  const padX = 4; const padY = 6;
+  const innerW = W - padX * 2; const innerH = H - padY * 2;
+  const minV = Math.min(...values); const maxV = Math.max(...values);
+  const range = maxV - minV || 1;
+  const xs = values.map((_, i) => padX + (i / (values.length - 1)) * innerW);
+  const toY = (v: number) => padY + ((maxV - v) / range) * innerH;
+  const pts = values.map((v, i) => `${xs[i]},${toY(v)}`).join(" L ");
+  const areaD = `M ${xs[0]},${padY + innerH} L ${pts} L ${xs[xs.length - 1]},${padY + innerH} Z`;
 
   return (
-    <div className="w-full overflow-x-auto">
-      <svg viewBox={`0 0 ${W} ${H}`} className="w-full" style={{ minWidth: 320 }}>
-        {/* Grid lines */}
-        {Array.from({ length: yTicks + 1 }, (_, i) => {
-          const v = minY + ((maxY - minY) * i) / yTicks;
-          const y = toY(v);
-          return (
-            <g key={i}>
-              <line x1={padX} y1={y} x2={W - padX} y2={y} stroke="#374151" strokeWidth={0.5} />
-              <text x={padX - 4} y={y + 3} textAnchor="end" fontSize={9} fill="#6b7280">
-                {((v - 1) * 100).toFixed(0)}%
-              </text>
-            </g>
-          );
-        })}
+    <svg viewBox={`0 0 ${W} ${H}`} className="w-full">
+      {showArea && <path d={areaD} fill={color} opacity={0.15} />}
+      <polyline points={pts} fill="none" stroke={color} strokeWidth={1.8} />
+      <circle cx={xs[xs.length - 1]} cy={toY(values[values.length - 1])} r={2.5} fill={color} />
+    </svg>
+  );
+}
 
-        {/* X-axis labels */}
-        {data.map((d, i) =>
-          i % 2 === 0 ? (
-            <text key={i} x={xs[i]} y={H - 2} textAnchor="middle" fontSize={9} fill="#6b7280">
-              {d.month}
-            </text>
-          ) : null
-        )}
+// ── Section 1: Performance Attribution ───────────────────────────────────────
 
-        {/* Lines */}
-        {lines.map((l) => (
-          <polyline
-            key={l.label}
-            points={polyline(xs, l.values.map(toY))}
-            fill="none"
-            stroke={l.color}
-            strokeWidth={1.8}
-            strokeDasharray={l.dash}
-          />
+function PerformanceAttribution() {
+  const { rows, alpha12m, icScatter, hitRate } = useMemo(() => generateAttributionData(), []);
+
+  const W = 560; const H = 180;
+  const padX = 36; const padY = 14; const innerW = W - padX * 2; const innerH = H - padY * 2;
+  const minA = Math.min(...alpha12m); const maxA = Math.max(...alpha12m);
+  const rangeA = maxA - minA || 1;
+  const alphaXs = alpha12m.map((_, i) => padX + (i / (alpha12m.length - 1)) * innerW);
+  const toYA = (v: number) => padY + ((maxA - v) / rangeA) * innerH;
+  const alphaPath = "M " + alpha12m.map((v, i) => `${alphaXs[i]},${toYA(v)}`).join(" L ");
+  const zeroY = toYA(0);
+
+  const icW = 200; const icH = 160; const icPad = 20;
+  const icInnerW = icW - icPad * 2; const icInnerH = icH - icPad * 2;
+  const icMinX = Math.min(...icScatter.map((p) => p.x)); const icMaxX = Math.max(...icScatter.map((p) => p.x));
+  const icMinY = Math.min(...icScatter.map((p) => p.y)); const icMaxY = Math.max(...icScatter.map((p) => p.y));
+  const icToX = (v: number) => icPad + ((v - icMinX) / (icMaxX - icMinX || 1)) * icInnerW;
+  const icToY = (v: number) => icPad + ((icMaxY - v) / (icMaxY - icMinY || 1)) * icInnerH;
+
+  const totalAlpha = rows.reduce((a, r) => a + r.total, 0);
+  const positiveRows = rows.filter((r) => r.total > 0).length;
+
+  return (
+    <div className="space-y-4">
+      <div className="grid grid-cols-3 gap-2">
+        {[
+          { label: "Total Alpha", value: `${totalAlpha > 0 ? "+" : ""}${(totalAlpha).toFixed(2)}%`, color: totalAlpha >= 0 ? "text-emerald-400" : "text-red-400" },
+          { label: "Hit Rate", value: `${(hitRate * 100).toFixed(0)}%`, color: hitRate >= 0.5 ? "text-emerald-400" : "text-amber-400" },
+          { label: "Positive Contributors", value: `${positiveRows}/10`, color: "text-blue-400" },
+        ].map((s) => (
+          <div key={s.label} className="rounded-md border border-border/50 bg-background/60 px-3 py-2">
+            <div className="text-[9px] text-muted-foreground">{s.label}</div>
+            <div className={cn("text-sm font-semibold tabular-nums mt-0.5", s.color)}>{s.value}</div>
+          </div>
         ))}
+      </div>
 
-        {/* Legend */}
-        {lines.map((l, i) => (
-          <g key={l.label} transform={`translate(${padX + i * 130}, 8)`}>
-            <line x1={0} y1={4} x2={16} y2={4} stroke={l.color} strokeWidth={2} strokeDasharray={l.dash} />
-            <text x={20} y={8} fontSize={9} fill="#9ca3af">{l.label}</text>
-          </g>
-        ))}
-      </svg>
+      {/* Attribution table */}
+      <div className="overflow-x-auto rounded-md border border-border/50">
+        <table className="w-full text-[10px]">
+          <thead>
+            <tr className="border-b border-border/40 bg-muted/30">
+              {["Sector", "Wt %", "Allocation", "Selection", "Interaction", "Total"].map((h) => (
+                <th key={h} className={cn("px-3 py-2 font-medium text-muted-foreground", h === "Sector" ? "text-left" : "text-right")}>{h}</th>
+              ))}
+            </tr>
+          </thead>
+          <tbody>
+            {rows.map((r) => (
+              <tr key={r.name} className="border-b border-border/20 hover:bg-muted/10 transition-colors">
+                <td className="px-3 py-1.5 text-muted-foreground">{r.name}</td>
+                <td className="px-3 py-1.5 text-right tabular-nums">{(r.weight * 100).toFixed(1)}%</td>
+                {[r.allocation, r.selection, r.interaction, r.total].map((v, i) => (
+                  <td key={i} className={cn("px-3 py-1.5 text-right tabular-nums font-medium", v > 0 ? "text-emerald-400" : v < 0 ? "text-red-400" : "text-muted-foreground")}>
+                    {v > 0 ? "+" : ""}{(v * 100).toFixed(2)}%
+                  </td>
+                ))}
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+
+      {/* Rolling 12m alpha chart */}
+      <div>
+        <div className="text-[10px] text-muted-foreground mb-2">Rolling 36-Month Active Return vs Benchmark</div>
+        <div className="w-full overflow-x-auto">
+          <svg viewBox={`0 0 ${W} ${H}`} className="w-full" style={{ minWidth: 300 }}>
+            {[0.25, 0.5, 0.75].map((t) => {
+              const v = minA + (maxA - minA) * t;
+              return <line key={t} x1={padX} y1={toYA(v)} x2={W - padX} y2={toYA(v)} stroke="#374151" strokeWidth={0.5} />;
+            })}
+            {/* Zero line */}
+            <line x1={padX} y1={zeroY} x2={W - padX} y2={zeroY} stroke="#6b7280" strokeWidth={0.8} strokeDasharray="4 3" />
+            {/* Fill above/below zero */}
+            <clipPath id="above-zero"><rect x={padX} y={padY} width={innerW} height={zeroY - padY} /></clipPath>
+            <clipPath id="below-zero"><rect x={padX} y={zeroY} width={innerW} height={innerH - (zeroY - padY)} /></clipPath>
+            <path d={`M ${alphaXs[0]},${zeroY} L ${alphaPath.slice(2)} L ${alphaXs[alphaXs.length - 1]},${zeroY} Z`} fill="#10b981" opacity={0.2} clipPath="url(#above-zero)" />
+            <path d={`M ${alphaXs[0]},${zeroY} L ${alphaPath.slice(2)} L ${alphaXs[alphaXs.length - 1]},${zeroY} Z`} fill="#ef4444" opacity={0.2} clipPath="url(#below-zero)" />
+            <path d={alphaPath} fill="none" stroke="#3b82f6" strokeWidth={1.8} />
+            {[0, 11, 23, 35].map((idx) => (
+              <text key={idx} x={alphaXs[idx]} y={H - 2} textAnchor="middle" fontSize={8} fill="#6b7280">M{idx + 1}</text>
+            ))}
+            {[minA, 0, maxA].map((v) => (
+              <text key={v} x={padX - 4} y={toYA(v) + 3} textAnchor="end" fontSize={8} fill="#6b7280">{(v * 100).toFixed(1)}%</text>
+            ))}
+          </svg>
+        </div>
+      </div>
+
+      {/* IC Scatter */}
+      <div className="grid grid-cols-2 gap-4">
+        <div>
+          <div className="text-[10px] text-muted-foreground mb-2">Information Coefficient (Predicted vs Actual)</div>
+          <svg viewBox={`0 0 ${icW} ${icH}`} className="w-full max-w-[200px]">
+            <line x1={icPad} y1={icH - icPad} x2={icW - icPad} y2={icH - icPad} stroke="#374151" strokeWidth={0.5} />
+            <line x1={icPad} y1={icPad} x2={icPad} y2={icH - icPad} stroke="#374151" strokeWidth={0.5} />
+            {icScatter.map((pt, i) => (
+              <circle key={i} cx={icToX(pt.x)} cy={icToY(pt.y)} r={2} fill="#3b82f6" opacity={0.7} />
+            ))}
+            {/* Trend line hint */}
+            <line x1={icPad} y1={icH - icPad - 10} x2={icW - icPad} y2={icPad + 10} stroke="#3b82f6" strokeWidth={1} strokeDasharray="3 2" opacity={0.5} />
+            <text x={icW / 2} y={icH - 3} textAnchor="middle" fontSize={8} fill="#6b7280">Predicted Return</text>
+          </svg>
+        </div>
+        <div className="flex flex-col justify-center gap-2">
+          <div className="text-[10px] text-muted-foreground">IC measures correlation between predicted and actual returns. Target &gt; 0.05 is considered skilled.</div>
+          <div className="rounded-md border border-border/50 bg-background/60 px-3 py-2">
+            <div className="text-[9px] text-muted-foreground">Estimated IC</div>
+            <div className="text-sm font-semibold text-blue-400 tabular-nums">0.12</div>
+          </div>
+        </div>
+      </div>
     </div>
   );
 }
 
-// ── Section 2: Factor bar chart ───────────────────────────────────────────────
+// ── Section 2: Risk-Adjusted Returns ─────────────────────────────────────────
 
-function FactorBarChart({ factors }: { factors: FactorExposure[] }) {
-  const W = 520;
-  const H = 180;
-  const labelW = 140;
-  const barMaxW = W - labelW - 60;
-  const rowH = H / factors.length;
-  const maxAbs = Math.max(...factors.map((f) => Math.abs(f.contribution)));
+function CalmarGauge({ value }: { value: number }) {
+  const max = 3; const min = -1;
+  const clamp = Math.max(min, Math.min(max, value));
+  const angle = ((clamp - min) / (max - min)) * 180 - 90;
+  const toRad = (deg: number) => (deg * Math.PI) / 180;
+  const cx = 80; const cy = 70; const r = 55;
+  const arcX = (deg: number) => cx + r * Math.cos(toRad(deg - 90));
+  const arcY = (deg: number) => cy + r * Math.sin(toRad(deg - 90));
+
+  return (
+    <svg viewBox="0 0 160 90" className="w-full max-w-[180px]">
+      {/* Background arc */}
+      <path d={`M ${arcX(-90)} ${arcY(-90)} A ${r} ${r} 0 0 1 ${arcX(90)} ${arcY(90)}`} fill="none" stroke="#374151" strokeWidth={10} />
+      {/* Color zones */}
+      {[
+        { start: -90, end: -30, color: "#ef4444" },
+        { start: -30, end: 30, color: "#f59e0b" },
+        { start: 30, end: 90, color: "#10b981" },
+      ].map((zone) => (
+        <path
+          key={zone.color}
+          d={`M ${arcX(zone.start)} ${arcY(zone.start)} A ${r} ${r} 0 0 1 ${arcX(zone.end)} ${arcY(zone.end)}`}
+          fill="none"
+          stroke={zone.color}
+          strokeWidth={10}
+          opacity={0.6}
+        />
+      ))}
+      {/* Needle */}
+      <line
+        x1={cx}
+        y1={cy}
+        x2={cx + (r - 10) * Math.cos(toRad(angle - 90))}
+        y2={cy + (r - 10) * Math.sin(toRad(angle - 90))}
+        stroke="#f1f5f9"
+        strokeWidth={2}
+        strokeLinecap="round"
+      />
+      <circle cx={cx} cy={cy} r={4} fill="#f1f5f9" />
+      <text x={cx} y={cy + 16} textAnchor="middle" fontSize={12} fill="#f1f5f9" fontWeight="700">{value.toFixed(2)}</text>
+      <text x={cx} y={cy + 26} textAnchor="middle" fontSize={8} fill="#6b7280">Calmar Ratio</text>
+    </svg>
+  );
+}
+
+function RiskAdjustedSection() {
+  const { metrics, sharpeTimeSeries } = useMemo(() => generateRiskAdjusted(), []);
+
+  const rows: { label: string; port: string; bench: string; portColor: string }[] = [
+    { label: "Sharpe Ratio", port: metrics.sharpe.toFixed(2), bench: metrics.benchmarkSharpe.toFixed(2), portColor: metrics.sharpe > metrics.benchmarkSharpe ? "text-emerald-400" : "text-red-400" },
+    { label: "Sortino Ratio", port: metrics.sortino.toFixed(2), bench: metrics.benchmarkSortino.toFixed(2), portColor: metrics.sortino > metrics.benchmarkSortino ? "text-emerald-400" : "text-red-400" },
+    { label: "Calmar Ratio", port: metrics.calmar.toFixed(2), bench: metrics.benchmarkCalmar.toFixed(2), portColor: metrics.calmar > metrics.benchmarkCalmar ? "text-emerald-400" : "text-red-400" },
+    { label: "Omega Ratio", port: metrics.omega.toFixed(2), bench: "1.00", portColor: metrics.omega > 1 ? "text-emerald-400" : "text-red-400" },
+    { label: "Upside Capture", port: `${metrics.upsideCapture.toFixed(1)}%`, bench: "100.0%", portColor: metrics.upsideCapture > 100 ? "text-emerald-400" : "text-amber-400" },
+    { label: "Downside Capture", port: `${metrics.downsideCapture.toFixed(1)}%`, bench: "100.0%", portColor: metrics.downsideCapture < 100 ? "text-emerald-400" : "text-red-400" },
+  ];
+
+  return (
+    <div className="space-y-4">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+        {/* Metrics table */}
+        <div className="overflow-x-auto rounded-md border border-border/50">
+          <table className="w-full text-[10px]">
+            <thead>
+              <tr className="border-b border-border/40 bg-muted/30">
+                <th className="px-3 py-2 text-left font-medium text-muted-foreground">Metric</th>
+                <th className="px-3 py-2 text-right font-medium text-muted-foreground">Portfolio</th>
+                <th className="px-3 py-2 text-right font-medium text-muted-foreground">Benchmark</th>
+              </tr>
+            </thead>
+            <tbody>
+              {rows.map((r) => (
+                <tr key={r.label} className="border-b border-border/20 hover:bg-muted/10 transition-colors">
+                  <td className="px-3 py-2 text-muted-foreground">{r.label}</td>
+                  <td className={cn("px-3 py-2 text-right tabular-nums font-semibold", r.portColor)}>{r.port}</td>
+                  <td className="px-3 py-2 text-right tabular-nums text-muted-foreground">{r.bench}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+
+        {/* Calmar gauge + capture */}
+        <div className="flex flex-col gap-3 items-center justify-center">
+          <CalmarGauge value={metrics.calmar} />
+          <div className="grid grid-cols-2 gap-2 w-full">
+            <div className="rounded-md border border-border/50 bg-background/60 px-2.5 py-2 text-center">
+              <div className="text-[9px] text-muted-foreground">Up Capture</div>
+              <div className={cn("text-sm font-semibold tabular-nums", metrics.upsideCapture > 100 ? "text-emerald-400" : "text-amber-400")}>{metrics.upsideCapture.toFixed(1)}%</div>
+            </div>
+            <div className="rounded-md border border-border/50 bg-background/60 px-2.5 py-2 text-center">
+              <div className="text-[9px] text-muted-foreground">Down Capture</div>
+              <div className={cn("text-sm font-semibold tabular-nums", metrics.downsideCapture < 100 ? "text-emerald-400" : "text-red-400")}>{metrics.downsideCapture.toFixed(1)}%</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* Rolling 12m Sharpe */}
+      <div>
+        <div className="text-[10px] text-muted-foreground mb-2">Rolling 12-Month Sharpe Ratio</div>
+        <SvgSparkline values={sharpeTimeSeries} color="#3b82f6" height={70} />
+      </div>
+    </div>
+  );
+}
+
+// ── Section 3: Factor Analysis ────────────────────────────────────────────────
+
+function FactorLoadingChart({ loadings }: { loadings: FactorLoading[] }) {
+  const W = 520; const H = 160;
+  const labelW = 150; const barMaxW = W - labelW - 60;
+  const rowH = H / loadings.length;
+  const maxAbs = Math.max(...loadings.map((f) => Math.abs(f.loading)));
 
   return (
     <div className="w-full overflow-x-auto">
       <svg viewBox={`0 0 ${W} ${H}`} className="w-full" style={{ minWidth: 280 }}>
-        {/* Zero line */}
-        <line
-          x1={labelW}
-          y1={0}
-          x2={labelW}
-          y2={H}
-          stroke="#374151"
-          strokeWidth={1}
-        />
-        {factors.map((f, i) => {
+        <line x1={labelW} y1={0} x2={labelW} y2={H} stroke="#374151" strokeWidth={1} />
+        {loadings.map((f, i) => {
           const y = i * rowH;
-          const w = (Math.abs(f.contribution) / maxAbs) * barMaxW * 0.9;
-          const positive = f.contribution >= 0;
+          const w = (Math.abs(f.loading) / (maxAbs || 1)) * barMaxW * 0.88;
+          const positive = f.loading >= 0;
           return (
             <g key={f.label}>
-              <text x={labelW - 6} y={y + rowH / 2 + 4} textAnchor="end" fontSize={9} fill="#9ca3af">
-                {f.label}
-              </text>
+              <text x={labelW - 6} y={y + rowH / 2 + 3} textAnchor="end" fontSize={9} fill="#9ca3af">{f.name}</text>
               <rect
                 x={positive ? labelW + 2 : labelW - w - 2}
                 y={y + rowH * 0.2}
-                width={w}
+                width={Math.max(w, 1)}
                 height={rowH * 0.6}
-                fill={positive ? "#10b981" : "#ef4444"}
+                fill={positive ? "#3b82f6" : "#8b5cf6"}
                 rx={2}
                 opacity={0.85}
               />
               <text
                 x={positive ? labelW + w + 6 : labelW - w - 6}
-                y={y + rowH / 2 + 4}
+                y={y + rowH / 2 + 3}
                 textAnchor={positive ? "start" : "end"}
                 fontSize={9}
-                fill={positive ? "#10b981" : "#ef4444"}
+                fill={positive ? "#3b82f6" : "#8b5cf6"}
               >
-                {f.contribution > 0 ? "+" : ""}{f.contribution}%
+                {f.loading > 0 ? "+" : ""}{f.loading.toFixed(2)}
               </text>
+              {/* Crowded badge */}
+              {f.crowded && (
+                <text x={W - 4} y={y + rowH / 2 + 3} textAnchor="end" fontSize={8} fill="#ef4444">CROWDED</text>
+              )}
             </g>
           );
         })}
@@ -442,480 +624,400 @@ function FactorBarChart({ factors }: { factors: FactorExposure[] }) {
   );
 }
 
-// ── Section 3: Underwater / drawdown chart ────────────────────────────────────
+function FactorAnalysisSection() {
+  const { loadings, rSquared, jensensAlpha } = useMemo(() => generateFactorAnalysis(), []);
 
-function DrawdownChart({ points }: { points: DrawdownPoint[] }) {
-  const W = 400;
-  const H = 160;
-  const padX = 30;
-  const padY = 12;
-  const innerW = W - padX * 2;
-  const innerH = H - padY * 2 - 14;
+  return (
+    <div className="space-y-4">
+      <div className="grid grid-cols-3 gap-2">
+        {[
+          { label: "R-Squared", value: (rSquared * 100).toFixed(1) + "%", color: "text-violet-400", desc: "Explained by factors" },
+          { label: "Jensen's Alpha", value: `${jensensAlpha > 0 ? "+" : ""}${jensensAlpha.toFixed(2)}%`, color: jensensAlpha >= 0 ? "text-emerald-400" : "text-red-400", desc: "Factor-adj. excess return" },
+          { label: "Active Factors", value: `${loadings.filter((f) => Math.abs(f.tStat) > 2).length}/5`, color: "text-amber-400", desc: "|t-stat| > 2" },
+        ].map((s) => (
+          <div key={s.label} className="rounded-md border border-border/50 bg-background/60 px-3 py-2">
+            <div className="text-[9px] text-muted-foreground">{s.label}</div>
+            <div className={cn("text-sm font-semibold tabular-nums mt-0.5", s.color)}>{s.value}</div>
+            <div className="text-[9px] text-muted-foreground/70 mt-0.5">{s.desc}</div>
+          </div>
+        ))}
+      </div>
 
-  const minDD = Math.min(...points.map((p) => p.drawdown));
-  const xs = points.map((p) => padX + (p.index / (points.length - 1)) * innerW);
-  const toY = (v: number) => padY + (v / (minDD || -0.01)) * innerH;
+      <FactorLoadingChart loadings={loadings} />
 
-  const pathPoints = points
-    .map((p, i) => `${xs[i]},${toY(p.drawdown)}`)
-    .join(" ");
+      <div className="overflow-x-auto rounded-md border border-border/50">
+        <table className="w-full text-[10px]">
+          <thead>
+            <tr className="border-b border-border/40 bg-muted/30">
+              <th className="px-3 py-2 text-left font-medium text-muted-foreground">Factor</th>
+              <th className="px-3 py-2 text-right font-medium text-muted-foreground">Loading</th>
+              <th className="px-3 py-2 text-right font-medium text-muted-foreground">t-stat</th>
+              <th className="px-3 py-2 text-right font-medium text-muted-foreground">Timing</th>
+              <th className="px-3 py-2 text-right font-medium text-muted-foreground">Crowding</th>
+            </tr>
+          </thead>
+          <tbody>
+            {loadings.map((f) => (
+              <tr key={f.label} className="border-b border-border/20 hover:bg-muted/10 transition-colors">
+                <td className="px-3 py-2 text-muted-foreground">{f.name}</td>
+                <td className={cn("px-3 py-2 text-right tabular-nums font-semibold", f.loading >= 0 ? "text-blue-400" : "text-violet-400")}>
+                  {f.loading > 0 ? "+" : ""}{f.loading.toFixed(3)}
+                </td>
+                <td className={cn("px-3 py-2 text-right tabular-nums", Math.abs(f.tStat) > 2 ? "text-amber-400" : "text-muted-foreground")}>
+                  {f.tStat.toFixed(2)}
+                </td>
+                <td className="px-3 py-2 text-right">
+                  <span className={cn("rounded px-1.5 py-0.5 text-[9px] font-medium", f.beneficial ? "bg-emerald-500/15 text-emerald-400" : "bg-red-500/15 text-red-400")}>
+                    {f.beneficial ? "Beneficial" : "Detrimental"}
+                  </span>
+                </td>
+                <td className="px-3 py-2 text-right">
+                  <span className={cn("rounded px-1.5 py-0.5 text-[9px] font-medium", f.crowded ? "bg-red-500/15 text-red-400" : "bg-emerald-500/15 text-emerald-400")}>
+                    {f.crowded ? "Crowded" : "Uncrowded"}
+                  </span>
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  );
+}
 
-  const areaPath =
-    `M ${xs[0]},${toY(0)} ` +
-    points.map((p, i) => `L ${xs[i]},${toY(p.drawdown)}`).join(" ") +
-    ` L ${xs[xs.length - 1]},${toY(0)} Z`;
+// ── Section 4: Drawdown Deep Dive ─────────────────────────────────────────────
+
+function UnderwaterChart({ series }: { series: number[] }) {
+  const W = 580; const H = 180;
+  const padX = 40; const padY = 14;
+  const innerW = W - padX * 2; const innerH = H - padY * 2 - 16;
+  const minV = Math.min(...series);
+  const xs = series.map((_, i) => padX + (i / (series.length - 1)) * innerW);
+  const toY = (v: number) => padY + (v / (minV || -0.01)) * innerH;
+  const zeroY = toY(0);
+  const areaPath = `M ${xs[0]},${zeroY} ` + series.map((v, i) => `L ${xs[i]},${toY(v)}`).join(" ") + ` L ${xs[xs.length - 1]},${zeroY} Z`;
+  const linePts = series.map((v, i) => `${xs[i]},${toY(v)}`).join(" ");
+  const gridVals = [0, 0.33, 0.67, 1].map((t) => minV * t);
 
   return (
     <div className="w-full overflow-x-auto">
-      <svg viewBox={`0 0 ${W} ${H}`} className="w-full" style={{ minWidth: 260 }}>
-        {/* Grid */}
-        {[0, 0.25, 0.5, 0.75, 1].map((t) => {
-          const v = minDD * t;
-          const y = toY(v);
-          return (
-            <g key={t}>
-              <line x1={padX} y1={y} x2={W - padX} y2={y} stroke="#374151" strokeWidth={0.5} />
-              <text x={padX - 4} y={y + 3} textAnchor="end" fontSize={8} fill="#6b7280">
-                {(v * 100).toFixed(0)}%
-              </text>
-            </g>
-          );
-        })}
-
-        {/* Filled area */}
-        <path d={areaPath} fill="#ef4444" opacity={0.2} />
-        {/* Line */}
-        <polyline points={pathPoints} fill="none" stroke="#ef4444" strokeWidth={1.5} />
-
+      <svg viewBox={`0 0 ${W} ${H}`} className="w-full" style={{ minWidth: 300 }}>
+        {gridVals.map((v, idx) => (
+          <g key={idx}>
+            <line x1={padX} y1={toY(v)} x2={W - padX} y2={toY(v)} stroke="#374151" strokeWidth={0.5} />
+            <text x={padX - 4} y={toY(v) + 3} textAnchor="end" fontSize={8} fill="#6b7280">{v.toFixed(1)}%</text>
+          </g>
+        ))}
+        <line x1={padX} y1={zeroY} x2={W - padX} y2={zeroY} stroke="#6b7280" strokeWidth={0.8} />
+        <path d={areaPath} fill="#ef4444" opacity={0.25} />
+        <polyline points={linePts} fill="none" stroke="#ef4444" strokeWidth={1.5} />
         {/* Max drawdown marker */}
         {(() => {
-          const maxIdx = points.reduce(
-            (mi, p, i) => (p.drawdown < points[mi].drawdown ? i : mi),
-            0
-          );
-          const mx = xs[maxIdx];
-          const my = toY(points[maxIdx].drawdown);
+          const mi = series.reduce((best, v, i) => v < series[best] ? i : best, 0);
           return (
             <g>
-              <line x1={mx} y1={my} x2={mx} y2={toY(0)} stroke="#f59e0b" strokeWidth={1} strokeDasharray="3 2" />
-              <circle cx={mx} cy={my} r={3} fill="#f59e0b" />
-              <text x={mx + 4} y={my - 3} fontSize={8} fill="#f59e0b">Max DD</text>
+              <line x1={xs[mi]} y1={toY(series[mi])} x2={xs[mi]} y2={zeroY} stroke="#f59e0b" strokeWidth={1} strokeDasharray="3 2" />
+              <circle cx={xs[mi]} cy={toY(series[mi])} r={3} fill="#f59e0b" />
+              <text x={xs[mi] + 4} y={toY(series[mi]) - 3} fontSize={8} fill="#f59e0b">Max DD {series[mi].toFixed(1)}%</text>
             </g>
           );
         })()}
-
-        {/* X-axis */}
-        <line x1={padX} y1={toY(0)} x2={W - padX} y2={toY(0)} stroke="#6b7280" strokeWidth={0.8} />
+        {[0, 8, 17, 26, 35].map((idx) => (
+          <text key={idx} x={xs[Math.min(idx, xs.length - 1)]} y={H - 2} textAnchor="middle" fontSize={8} fill="#6b7280">M{idx + 1}</text>
+        ))}
       </svg>
     </div>
   );
 }
 
-// ── Section 4: Rolling sparkline ──────────────────────────────────────────────
-
-function RollingSparkline({
-  data,
-  color,
-  label,
-  unit,
-}: {
-  data: RollingPoint[];
-  color: string;
-  label: string;
-  unit: string;
-}) {
-  const W = 200;
-  const H = 80;
-  const padX = 4;
-  const padY = 8;
-  const innerW = W - padX * 2;
-  const innerH = H - padY * 2 - 14;
-
-  const vals = data.map((d) => d.value);
-  const minV = Math.min(...vals);
-  const maxV = Math.max(...vals);
-  const range = maxV - minV || 1;
-  const xs = data.map((_, i) => padX + (i / (data.length - 1)) * innerW);
-  const toY = (v: number) => padY + ((maxV - v) / range) * innerH;
-
-  const pathD =
-    "M " + data.map((d, i) => `${xs[i]},${toY(d.value)}`).join(" L ");
-  const areaD =
-    `M ${xs[0]},${padY + innerH} ` +
-    data.map((d, i) => `L ${xs[i]},${toY(d.value)}`).join(" ") +
-    ` L ${xs[xs.length - 1]},${padY + innerH} Z`;
-
-  const last = vals[vals.length - 1];
+function DrawdownSection() {
+  const { underwaterSeries, episodes, painIndex, ddCorrelation } = useMemo(() => generateDrawdownData(), []);
+  const maxDD = Math.min(...underwaterSeries);
 
   return (
-    <div className="rounded-lg border border-border/60 bg-card/40 p-2 flex flex-col gap-1">
-      <div className="flex items-center justify-between">
-        <span className="text-[10px] text-muted-foreground">{label}</span>
-        <span className="text-[11px] font-semibold tabular-nums" style={{ color }}>
-          {last.toFixed(2)}{unit}
-        </span>
+    <div className="space-y-4">
+      <div className="grid grid-cols-4 gap-2">
+        {[
+          { label: "Max Drawdown", value: `${maxDD.toFixed(2)}%`, color: "text-red-400" },
+          { label: "Pain Index", value: painIndex.toFixed(3), color: "text-orange-400" },
+          { label: "DD Correlation", value: ddCorrelation.toFixed(3), color: "text-amber-400" },
+          { label: "Current Drawdown", value: `${underwaterSeries[underwaterSeries.length - 1].toFixed(2)}%`, color: underwaterSeries[underwaterSeries.length - 1] < -5 ? "text-red-400" : "text-emerald-400" },
+        ].map((s) => (
+          <div key={s.label} className="rounded-md border border-border/50 bg-background/60 px-2.5 py-2">
+            <div className="text-[9px] text-muted-foreground">{s.label}</div>
+            <div className={cn("text-sm font-semibold tabular-nums mt-0.5", s.color)}>{s.value}</div>
+          </div>
+        ))}
       </div>
-      <svg viewBox={`0 0 ${W} ${H}`} className="w-full">
-        <path d={areaD} fill={color} opacity={0.12} />
-        <path d={pathD} fill="none" stroke={color} strokeWidth={1.5} />
-        {/* Last point dot */}
-        <circle cx={xs[xs.length - 1]} cy={toY(last)} r={2.5} fill={color} />
-      </svg>
+
+      <UnderwaterChart series={underwaterSeries} />
+
+      <div className="overflow-x-auto rounded-md border border-border/50">
+        <table className="w-full text-[10px]">
+          <thead>
+            <tr className="border-b border-border/40 bg-muted/30">
+              {["#", "Peak", "Trough", "Recovery", "Depth", "Duration", "Recovery Time"].map((h, i) => (
+                <th key={i} className={cn("px-3 py-2 font-medium text-muted-foreground", i <= 3 ? "text-left" : "text-right")}>{h}</th>
+              ))}
+            </tr>
+          </thead>
+          <tbody>
+            {episodes.map((ep, i) => (
+              <tr key={i} className="border-b border-border/20 hover:bg-muted/10 transition-colors">
+                <td className="px-3 py-2 text-muted-foreground/60">{i + 1}</td>
+                <td className="px-3 py-2 text-muted-foreground">{ep.peak}</td>
+                <td className="px-3 py-2 text-muted-foreground">{ep.trough}</td>
+                <td className="px-3 py-2 text-emerald-400">{ep.recovery}</td>
+                <td className="px-3 py-2 text-right tabular-nums font-semibold text-red-400">{(ep.depth * 100).toFixed(2)}%</td>
+                <td className="px-3 py-2 text-right tabular-nums text-muted-foreground">{ep.durationDays}d</td>
+                <td className="px-3 py-2 text-right tabular-nums text-muted-foreground">{ep.recoveryDays}d</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+
+      <div className="flex items-start gap-1.5 rounded-md border border-blue-500/30 bg-blue-500/8 px-3 py-2 text-[10px] text-muted-foreground">
+        <span className="text-blue-400 font-medium shrink-0">DD Correlation {ddCorrelation.toFixed(2)}:</span>
+        <span>{ddCorrelation > 0.6 ? "Portfolio drawdowns are highly correlated with market drawdowns — limited diversification benefit in crises." : "Portfolio shows some independence from market drawdowns — provides diversification in stress."}</span>
+      </div>
     </div>
   );
 }
 
-// ── Section 5: Correlation heatmap ────────────────────────────────────────────
+// ── Section 5: Tail Risk ──────────────────────────────────────────────────────
 
-function CorrelationHeatmap({ data }: { data: CorrelationData }) {
-  const { tickers, matrix } = data;
-  const n = tickers.length;
-  const cellSize = 44;
-  const labelSize = 36;
-  const W = labelSize + n * cellSize;
-  const H = labelSize + n * cellSize;
+function ReturnDistribution({ data }: { data: TailRiskData }) {
+  const { histogram } = data;
+  const W = 520; const H = 180;
+  const padX = 36; const padY = 12;
+  const innerW = W - padX * 2; const innerH = H - padY * 2 - 18;
+  const maxVal = Math.max(...histogram.map((b) => Math.max(b.actual, b.normal)));
+  const barW = innerW / histogram.length;
 
   return (
     <div className="w-full overflow-x-auto">
-      <svg viewBox={`0 0 ${W} ${H}`} className="w-full" style={{ minWidth: 240 }}>
-        {/* Column labels */}
-        {tickers.map((t, j) => (
-          <text
-            key={`col-${j}`}
-            x={labelSize + j * cellSize + cellSize / 2}
-            y={labelSize - 4}
-            textAnchor="middle"
-            fontSize={9}
-            fill="#9ca3af"
-          >
-            {t}
-          </text>
+      <svg viewBox={`0 0 ${W} ${H}`} className="w-full" style={{ minWidth: 300 }}>
+        {/* Grid lines */}
+        {[0.25, 0.5, 0.75, 1].map((t) => {
+          const y = padY + (1 - t) * innerH;
+          return <line key={t} x1={padX} y1={y} x2={W - padX} y2={y} stroke="#374151" strokeWidth={0.5} />;
+        })}
+
+        {/* Bars */}
+        {histogram.map((b, i) => {
+          const x = padX + i * barW;
+          const barH = (b.actual / (maxVal || 1)) * innerH;
+          const y = padY + innerH - barH;
+          const isLeftTail = b.bin < -1.5;
+          return (
+            <rect key={i} x={x + 0.5} y={y} width={barW - 1} height={barH} fill={isLeftTail ? "#ef4444" : "#3b82f6"} opacity={0.7} rx={1} />
+          );
+        })}
+
+        {/* Normal distribution overlay line */}
+        {(() => {
+          const pts = histogram.map((b, i) => {
+            const x = padX + i * barW + barW / 2;
+            const y = padY + (1 - b.normal / (maxVal || 1)) * innerH;
+            return `${x},${y}`;
+          }).join(" ");
+          return <polyline points={pts} fill="none" stroke="#f59e0b" strokeWidth={1.5} strokeDasharray="4 2" />;
+        })()}
+
+        {/* X-axis labels */}
+        {histogram.filter((_, i) => i % 4 === 0).map((b, i) => (
+          <text key={i} x={padX + (i * 4 + 0.5) * barW} y={H - 2} textAnchor="middle" fontSize={8} fill="#6b7280">{b.bin.toFixed(1)}%</text>
         ))}
-        {/* Row labels */}
-        {tickers.map((t, i) => (
-          <text
-            key={`row-${i}`}
-            x={labelSize - 4}
-            y={labelSize + i * cellSize + cellSize / 2 + 4}
-            textAnchor="end"
-            fontSize={9}
-            fill="#9ca3af"
-          >
-            {t}
-          </text>
-        ))}
-        {/* Cells */}
-        {matrix.map((row, i) =>
-          row.map((val, j) => {
-            const x = labelSize + j * cellSize;
-            const y = labelSize + i * cellSize;
-            const bg = corrColor(val);
-            const textDark = Math.abs(val) > 0.5;
-            return (
-              <g key={`${i}-${j}`}>
-                <rect
-                  x={x + 1}
-                  y={y + 1}
-                  width={cellSize - 2}
-                  height={cellSize - 2}
-                  fill={bg}
-                  rx={2}
-                  opacity={0.85}
-                />
-                <text
-                  x={x + cellSize / 2}
-                  y={y + cellSize / 2 + 4}
-                  textAnchor="middle"
-                  fontSize={9}
-                  fill={textDark ? "#111827" : "#e5e7eb"}
-                  fontWeight={i === j ? "700" : "400"}
-                >
-                  {val.toFixed(2)}
-                </text>
-              </g>
-            );
-          })
-        )}
+
+        {/* Legend */}
+        <rect x={padX + 4} y={padY + 2} width={10} height={7} fill="#3b82f6" opacity={0.7} rx={1} />
+        <text x={padX + 18} y={padY + 9} fontSize={8} fill="#9ca3af">Actual</text>
+        <line x1={padX + 55} y1={padY + 5} x2={padX + 68} y2={padY + 5} stroke="#f59e0b" strokeWidth={1.5} strokeDasharray="4 2" />
+        <text x={padX + 72} y={padY + 9} fontSize={8} fill="#9ca3af">Normal</text>
+        <rect x={padX + 110} y={padY + 2} width={10} height={7} fill="#ef4444" opacity={0.7} rx={1} />
+        <text x={padX + 124} y={padY + 9} fontSize={8} fill="#9ca3af">Left tail</text>
       </svg>
     </div>
   );
 }
 
-// ── Main component ────────────────────────────────────────────────────────────
-
-export function AdvancedAnalytics() {
-  const [rollingWindow, setRollingWindow] = useState<30 | 60 | 90>(30);
-
-  const benchmarkData = useMemo(() => generateBenchmarkData(), []);
-  const benchmarkStats = useMemo(() => computeBenchmarkStats(benchmarkData), [benchmarkData]);
-  const factorExposures = useMemo(() => generateFactorExposures(), []);
-  const { points: drawdownPoints, stats: drawdownStats } = useMemo(() => generateDrawdownData(), []);
-  const rollingStats = useMemo(() => generateRollingStats(rollingWindow), [rollingWindow]);
-  const correlationData = useMemo(() => generateCorrelationData(), []);
-
-  // Regime detection — compare last 10 vol points to average
-  const volValues = rollingStats.volatility.map((p) => p.value);
-  const avgVol = volValues.reduce((a, b) => a + b, 0) / volValues.length;
-  const recentVol =
-    volValues.slice(-10).reduce((a, b) => a + b, 0) / 10;
-  const isHighVol = recentVol > avgVol * 1.1;
-
-  const statChips: { label: string; value: string; color: string }[] = [
-    {
-      label: "Alpha (ann.)",
-      value: `${benchmarkStats.alpha > 0 ? "+" : ""}${benchmarkStats.alpha}%`,
-      color: benchmarkStats.alpha >= 0 ? "text-emerald-400" : "text-red-400",
-    },
-    {
-      label: "Beta",
-      value: benchmarkStats.beta.toString(),
-      color: "text-blue-400",
-    },
-    {
-      label: "R²",
-      value: benchmarkStats.r2.toString(),
-      color: "text-violet-400",
-    },
-    {
-      label: "Tracking Error",
-      value: `${benchmarkStats.trackingError}%`,
-      color: "text-amber-400",
-    },
-    {
-      label: "Info Ratio",
-      value: benchmarkStats.informationRatio.toString(),
-      color: benchmarkStats.informationRatio >= 0 ? "text-emerald-400" : "text-red-400",
-    },
-  ];
+function TailRiskSection() {
+  const data = useMemo(() => generateTailRisk(), []);
 
   return (
-    <div className="space-y-6">
-
-      {/* ── Section 1: Performance Benchmarking ── */}
-      <div className="rounded-lg border border-border bg-card p-4 space-y-4">
-        <h3 className="text-xs font-semibold text-foreground flex items-center gap-2">
-          <span className="h-1.5 w-1.5 rounded-full bg-blue-400 inline-block" />
-          Performance Benchmarking
-        </h3>
-        <BenchmarkChart data={benchmarkData} />
-        <div className="flex flex-wrap gap-2">
-          {statChips.map((chip) => (
-            <div
-              key={chip.label}
-              className="rounded-md border border-border/50 bg-background/60 px-2.5 py-1.5 flex flex-col gap-0.5"
-            >
-              <span className="text-[9px] text-muted-foreground">{chip.label}</span>
-              <span className={cn("text-[11px] font-semibold tabular-nums", chip.color)}>
-                {chip.value}
-              </span>
-            </div>
-          ))}
-        </div>
+    <div className="space-y-4">
+      <div className="grid grid-cols-4 gap-2">
+        {[
+          { label: "CVaR (95%)", value: `${data.cvar95.toFixed(2)}%`, color: "text-red-400", desc: "Avg worst 5% days" },
+          { label: "Tail Ratio", value: data.tailRatio.toFixed(2), color: data.tailRatio > 1 ? "text-emerald-400" : "text-red-400", desc: "95th / 5th pct gain/loss" },
+          { label: "Excess Kurtosis", value: data.excessKurtosis.toFixed(2), color: data.excessKurtosis > 1 ? "text-amber-400" : "text-muted-foreground", desc: "Fat tail indicator" },
+          { label: "Skewness", value: data.skewness.toFixed(2), color: data.skewness < 0 ? "text-red-400" : "text-emerald-400", desc: "Left skew = more bad days" },
+        ].map((s) => (
+          <div key={s.label} className="rounded-md border border-border/50 bg-background/60 px-2.5 py-2">
+            <div className="text-[9px] text-muted-foreground">{s.label}</div>
+            <div className={cn("text-sm font-semibold tabular-nums mt-0.5", s.color)}>{s.value}</div>
+            <div className="text-[9px] text-muted-foreground/70 mt-0.5">{s.desc}</div>
+          </div>
+        ))}
       </div>
 
-      {/* ── Section 2: Risk Factor Decomposition ── */}
-      <div className="rounded-lg border border-border bg-card p-4 space-y-4">
-        <h3 className="text-xs font-semibold text-foreground flex items-center gap-2">
-          <span className="h-1.5 w-1.5 rounded-full bg-violet-400 inline-block" />
-          Risk Factor Decomposition (Fama-French 5 + Momentum)
-        </h3>
-        <FactorBarChart factors={factorExposures} />
+      <ReturnDistribution data={data} />
+
+      {data.excessKurtosis > 1 && (
+        <div className="flex items-start gap-1.5 rounded-md border border-amber-500/30 bg-amber-500/8 px-3 py-2">
+          <AlertTriangle className="h-3 w-3 text-amber-400 mt-0.5 shrink-0" />
+          <div className="text-[10px] text-muted-foreground">
+            <span className="text-amber-400 font-medium">Fat tails detected.</span> Excess kurtosis of {data.excessKurtosis.toFixed(2)} indicates the portfolio has more extreme return events than a normal distribution predicts. Standard VaR may underestimate true risk.
+          </div>
+        </div>
+      )}
+
+      <div>
+        <div className="text-[10px] text-muted-foreground mb-2">Black Swan Resilience — Crisis Period Performance</div>
         <div className="overflow-x-auto rounded-md border border-border/50">
           <table className="w-full text-[10px]">
             <thead>
               <tr className="border-b border-border/40 bg-muted/30">
-                <th className="px-3 py-2 text-left font-medium text-muted-foreground">Factor</th>
-                <th className="px-3 py-2 text-right font-medium text-muted-foreground">Beta</th>
-                <th className="px-3 py-2 text-right font-medium text-muted-foreground">t-stat</th>
-                <th className="px-3 py-2 text-right font-medium text-muted-foreground">Contribution</th>
+                <th className="px-3 py-2 text-left font-medium text-muted-foreground">Crisis Period</th>
+                <th className="px-3 py-2 text-right font-medium text-muted-foreground">Portfolio</th>
+                <th className="px-3 py-2 text-right font-medium text-muted-foreground">Market</th>
+                <th className="px-3 py-2 text-right font-medium text-muted-foreground">Relative</th>
               </tr>
             </thead>
             <tbody>
-              {factorExposures.map((f) => (
-                <tr key={f.label} className="border-b border-border/20 hover:bg-muted/10">
-                  <td className="px-3 py-2 text-muted-foreground">{f.name}</td>
-                  <td className="px-3 py-2 text-right tabular-nums font-medium">{f.beta}</td>
-                  <td className={cn(
-                    "px-3 py-2 text-right tabular-nums",
-                    Math.abs(f.tStat) > 2 ? "text-yellow-400" : "text-muted-foreground"
-                  )}>
-                    {f.tStat}
-                  </td>
-                  <td className={cn(
-                    "px-3 py-2 text-right tabular-nums font-semibold",
-                    f.contribution >= 0 ? "text-emerald-400" : "text-red-400"
-                  )}>
-                    {f.contribution > 0 ? "+" : ""}{f.contribution}%
-                  </td>
-                </tr>
-              ))}
+              {data.crisisPerf.map((c) => {
+                const rel = c.portfolio - c.market;
+                return (
+                  <tr key={c.name} className="border-b border-border/20 hover:bg-muted/10 transition-colors">
+                    <td className="px-3 py-2 text-muted-foreground">{c.name}</td>
+                    <td className={cn("px-3 py-2 text-right tabular-nums font-semibold", c.portfolio >= 0 ? "text-emerald-400" : "text-red-400")}>
+                      {c.portfolio > 0 ? "+" : ""}{c.portfolio.toFixed(1)}%
+                    </td>
+                    <td className={cn("px-3 py-2 text-right tabular-nums", c.market >= 0 ? "text-emerald-400" : "text-red-400")}>
+                      {c.market > 0 ? "+" : ""}{c.market.toFixed(1)}%
+                    </td>
+                    <td className={cn("px-3 py-2 text-right tabular-nums font-semibold", rel >= 0 ? "text-emerald-400" : "text-red-400")}>
+                      {rel > 0 ? "+" : ""}{rel.toFixed(1)}%
+                    </td>
+                  </tr>
+                );
+              })}
             </tbody>
           </table>
         </div>
       </div>
+    </div>
+  );
+}
 
-      {/* ── Section 3: Drawdown Analysis ── */}
-      <div className="rounded-lg border border-border bg-card p-4 space-y-4">
-        <h3 className="text-xs font-semibold text-foreground flex items-center gap-2">
-          <span className="h-1.5 w-1.5 rounded-full bg-red-400 inline-block" />
-          Drawdown Analysis
-        </h3>
+// ── Section 6: Peer Comparison ────────────────────────────────────────────────
 
-        <div className="grid grid-cols-3 gap-2">
-          {[
-            { label: "Max Drawdown", value: `${(drawdownStats.maxDrawdown * 100).toFixed(2)}%`, color: "text-red-400" },
-            { label: "Avg Drawdown", value: `${(drawdownStats.avgDrawdown * 100).toFixed(2)}%`, color: "text-orange-400" },
-            { label: "Recovery", value: drawdownStats.recoveryDate, color: "text-emerald-400" },
-          ].map((s) => (
-            <div key={s.label} className="rounded-md border border-border/50 bg-background/60 px-2.5 py-2">
-              <div className="text-[9px] text-muted-foreground mb-0.5">{s.label}</div>
-              <div className={cn("text-[13px] font-semibold tabular-nums", s.color)}>{s.value}</div>
-            </div>
-          ))}
-        </div>
+function StyleBox({ styleIndex }: { styleIndex: number }) {
+  const cols = ["Value", "Blend", "Growth"];
+  const rows = ["Large", "Mid", "Small"];
+  const row = Math.floor(styleIndex / 3);
+  const col = styleIndex % 3;
 
-        <DrawdownChart points={drawdownPoints} />
-
-        <div className="overflow-x-auto rounded-md border border-border/50">
-          <table className="w-full text-[10px]">
-            <thead>
-              <tr className="border-b border-border/40 bg-muted/30">
-                <th className="px-3 py-2 text-left font-medium text-muted-foreground">#</th>
-                <th className="px-3 py-2 text-left font-medium text-muted-foreground">Start</th>
-                <th className="px-3 py-2 text-left font-medium text-muted-foreground">End</th>
-                <th className="px-3 py-2 text-right font-medium text-muted-foreground">Depth</th>
-                <th className="px-3 py-2 text-right font-medium text-muted-foreground">Recovery (d)</th>
-              </tr>
-            </thead>
-            <tbody>
-              {drawdownStats.worstDrawdowns.map((dd, i) => (
-                <tr key={i} className="border-b border-border/20 hover:bg-muted/10">
-                  <td className="px-3 py-2 text-muted-foreground/60">{i + 1}</td>
-                  <td className="px-3 py-2 text-muted-foreground">{dd.startMonth}</td>
-                  <td className="px-3 py-2 text-muted-foreground">{dd.endMonth}</td>
-                  <td className="px-3 py-2 text-right tabular-nums font-semibold text-red-400">
-                    {(dd.depth * 100).toFixed(2)}%
-                  </td>
-                  <td className="px-3 py-2 text-right tabular-nums text-muted-foreground">
-                    {dd.recoveryDays}d
-                  </td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
-        </div>
-      </div>
-
-      {/* ── Section 4: Rolling Statistics ── */}
-      <div className="rounded-lg border border-border bg-card p-4 space-y-4">
-        <div className="flex items-center justify-between flex-wrap gap-2">
-          <h3 className="text-xs font-semibold text-foreground flex items-center gap-2">
-            <span className="h-1.5 w-1.5 rounded-full bg-amber-400 inline-block" />
-            Rolling Statistics
-          </h3>
-          <div className="flex gap-1">
-            {([30, 60, 90] as const).map((w) => (
-              <button
-                key={w}
-                type="button"
-                onClick={() => setRollingWindow(w)}
+  return (
+    <div>
+      <div className="text-[9px] text-muted-foreground mb-1 text-center">Morningstar Style Box</div>
+      <div className="inline-grid grid-cols-3 gap-0.5">
+        {rows.map((r, ri) =>
+          cols.map((c, ci) => {
+            const isActive = ri === row && ci === col;
+            return (
+              <div
+                key={`${ri}-${ci}`}
                 className={cn(
-                  "rounded px-2 py-0.5 text-[10px] font-medium transition-colors",
-                  rollingWindow === w
-                    ? "bg-primary/20 text-primary"
-                    : "text-muted-foreground hover:text-foreground"
+                  "h-8 w-8 rounded-sm border text-[8px] flex items-center justify-center text-center leading-none",
+                  isActive ? "bg-blue-500/30 border-blue-500/60 text-blue-300 font-bold" : "border-border/40 bg-muted/10 text-muted-foreground/40"
                 )}
+                title={`${r} / ${c}`}
               >
-                {w}d
-              </button>
-            ))}
-          </div>
-        </div>
-
-        {/* Regime badge */}
-        <div className={cn(
-          "inline-flex items-center gap-1.5 rounded-full px-3 py-1 text-[10px] font-medium",
-          isHighVol
-            ? "bg-red-500/10 text-red-400 border border-red-500/20"
-            : "bg-emerald-500/10 text-emerald-400 border border-emerald-500/20"
-        )}>
-          <span className={cn(
-            "h-1.5 w-1.5 rounded-full",
-            isHighVol ? "bg-red-400" : "bg-emerald-400"
-          )} />
-          Regime: {isHighVol ? "High-Volatility" : "Low-Volatility"}
-          <span className="text-muted-foreground ml-1">
-            (recent {(recentVol * 100).toFixed(1)}% vs avg {(avgVol * 100).toFixed(1)}%)
-          </span>
-        </div>
-
-        <div className="grid grid-cols-3 gap-3">
-          <RollingSparkline
-            data={rollingStats.volatility}
-            color="#f59e0b"
-            label={`Rolling ${rollingWindow}d Volatility`}
-            unit="%"
-          />
-          <RollingSparkline
-            data={rollingStats.sharpe}
-            color="#3b82f6"
-            label={`Rolling ${rollingWindow}d Sharpe`}
-            unit=""
-          />
-          <RollingSparkline
-            data={rollingStats.beta}
-            color="#8b5cf6"
-            label={`Rolling ${rollingWindow}d Beta`}
-            unit=""
-          />
-        </div>
+                {isActive ? `${r[0]}/${c[0]}` : ""}
+              </div>
+            );
+          })
+        )}
       </div>
+      <div className="flex justify-between mt-0.5 text-[8px] text-muted-foreground/50 w-24">
+        <span>Val</span><span>Blnd</span><span>Grw</span>
+      </div>
+    </div>
+  );
+}
 
-      {/* ── Section 5: Correlation Breakdown ── */}
-      <div className="rounded-lg border border-border bg-card p-4 space-y-4">
-        <h3 className="text-xs font-semibold text-foreground flex items-center gap-2">
-          <span className="h-1.5 w-1.5 rounded-full bg-cyan-400 inline-block" />
-          Correlation Breakdown — Top 5 Holdings
-        </h3>
+function QuartileBar({ quartile }: { quartile: number }) {
+  const colors = ["", "bg-emerald-500", "bg-blue-500", "bg-amber-500", "bg-red-500"];
+  const labels = ["", "Q1 (Top)", "Q2", "Q3", "Q4 (Bot)"];
+  return (
+    <div className="flex items-center gap-1.5">
+      <div className="flex gap-0.5 w-16">
+        {[1, 2, 3, 4].map((q) => (
+          <div key={q} className={cn("h-3 flex-1 rounded-sm", q === quartile ? colors[q] : "bg-muted/30")} />
+        ))}
+      </div>
+      <span className="text-[9px] text-muted-foreground">{labels[quartile]}</span>
+    </div>
+  );
+}
 
-        {/* Legend */}
-        <div className="flex items-center gap-4 text-[9px] text-muted-foreground">
-          <div className="flex items-center gap-1">
-            <span className="inline-block h-3 w-6 rounded-sm" style={{ background: "rgb(255,0,128)" }} />
-            -1 (Strong negative)
-          </div>
-          <div className="flex items-center gap-1">
-            <span className="inline-block h-3 w-6 rounded-sm" style={{ background: "rgb(255,255,255)" }} />
-            0 (Neutral)
-          </div>
-          <div className="flex items-center gap-1">
-            <span className="inline-block h-3 w-6 rounded-sm" style={{ background: "rgb(0,255,0)" }} />
-            +1 (Strong positive)
-          </div>
+function PeerComparisonSection() {
+  const { metrics, styleBox, activeShare, trackingError, informationRatio } = useMemo(() => generatePeerData(), []);
+
+  return (
+    <div className="space-y-4">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+        {/* Peer metrics table */}
+        <div className="overflow-x-auto rounded-md border border-border/50">
+          <table className="w-full text-[10px]">
+            <thead>
+              <tr className="border-b border-border/40 bg-muted/30">
+                <th className="px-3 py-2 text-left font-medium text-muted-foreground">Metric</th>
+                <th className="px-3 py-2 text-right font-medium text-muted-foreground">Value</th>
+                <th className="px-3 py-2 text-left font-medium text-muted-foreground pl-3">Quartile Rank</th>
+              </tr>
+            </thead>
+            <tbody>
+              {metrics.map((m) => (
+                <tr key={m.label} className="border-b border-border/20 hover:bg-muted/10 transition-colors">
+                  <td className="px-3 py-2 text-muted-foreground">{m.label}</td>
+                  <td className="px-3 py-2 text-right tabular-nums font-semibold text-foreground">{m.value}</td>
+                  <td className="px-3 py-2">
+                    <QuartileBar quartile={m.quartile} />
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
         </div>
 
-        <CorrelationHeatmap data={correlationData} />
-
-        <div className="flex flex-wrap items-center gap-3">
-          <div className="rounded-md border border-border/50 bg-background/60 px-3 py-2">
-            <div className="text-[9px] text-muted-foreground mb-0.5">Diversification Score</div>
-            <div className={cn(
-              "text-[13px] font-semibold tabular-nums",
-              correlationData.diversificationScore > 0.5 ? "text-emerald-400" : "text-amber-400"
-            )}>
-              {correlationData.diversificationScore.toFixed(3)}
+        {/* Style box + conviction metrics */}
+        <div className="space-y-3">
+          <div className="flex items-start gap-6 p-3 rounded-md border border-border/50 bg-background/60">
+            <StyleBox styleIndex={styleBox} />
+            <div className="space-y-1.5 text-[10px]">
+              <div className="text-muted-foreground font-medium">Style Classification</div>
+              {[
+                { label: "Active Share", value: `${activeShare.toFixed(1)}%`, color: activeShare > 60 ? "text-emerald-400" : "text-amber-400", note: activeShare > 60 ? "High conviction" : "Closet indexer risk" },
+                { label: "Tracking Error", value: `${trackingError.toFixed(2)}%`, color: "text-blue-400", note: "Ann. excess return std dev" },
+                { label: "Info Ratio", value: informationRatio.toFixed(2), color: informationRatio > 0.5 ? "text-emerald-400" : "text-amber-400", note: informationRatio > 0.5 ? "Above target" : "Target: > 0.5" },
+              ].map((s) => (
+                <div key={s.label} className="flex items-center gap-2">
+                  <span className="text-muted-foreground/70 w-24">{s.label}</span>
+                  <span className={cn("font-semibold tabular-nums", s.color)}>{s.value}</span>
+                  <span className="text-muted-foreground/50 text-[9px]">{s.note}</span>
+                </div>
+              ))}
             </div>
-            <div className="text-[9px] text-muted-foreground">1 - avg pairwise corr</div>
           </div>
 
-          {correlationData.highCorrelationPairs.length > 0 && (
+          {activeShare < 50 && (
             <div className="flex items-start gap-1.5 rounded-md border border-amber-500/30 bg-amber-500/8 px-3 py-2">
               <AlertTriangle className="h-3 w-3 text-amber-400 mt-0.5 shrink-0" />
-              <div>
-                <div className="text-[9px] font-medium text-amber-400">Concentration Risk</div>
-                <div className="text-[9px] text-muted-foreground mt-0.5">
-                  {correlationData.highCorrelationPairs.join(", ")} &gt; 0.8 correlation
-                </div>
+              <div className="text-[10px] text-muted-foreground">
+                <span className="text-amber-400 font-medium">Closet indexer risk.</span> Active share below 50% suggests the portfolio closely mirrors the benchmark. Consider whether management fees are justified.
               </div>
             </div>
           )}
@@ -924,3 +1026,85 @@ export function AdvancedAnalytics() {
     </div>
   );
 }
+
+// ── Tab definitions ───────────────────────────────────────────────────────────
+
+const TABS: { id: string; label: string; icon: React.ReactNode; color: string }[] = [
+  { id: "attribution", label: "Performance Attribution", icon: <TrendingUp className="h-3 w-3" />, color: "text-blue-400" },
+  { id: "risk", label: "Risk-Adjusted Returns", icon: <Shield className="h-3 w-3" />, color: "text-emerald-400" },
+  { id: "factors", label: "Factor Analysis", icon: <BarChart2 className="h-3 w-3" />, color: "text-violet-400" },
+  { id: "drawdown", label: "Drawdown Deep Dive", icon: <TrendingDown className="h-3 w-3" />, color: "text-red-400" },
+  { id: "tail", label: "Tail Risk", icon: <AlertTriangle className="h-3 w-3" />, color: "text-amber-400" },
+  { id: "peers", label: "Peer Comparison", icon: <Users className="h-3 w-3" />, color: "text-cyan-400" },
+];
+
+// ── Main component ────────────────────────────────────────────────────────────
+
+export default function AdvancedAnalytics() {
+  const [activeTab, setActiveTab] = useState("attribution");
+
+  const sectionContent: Record<string, React.ReactNode> = {
+    attribution: <PerformanceAttribution />,
+    risk: <RiskAdjustedSection />,
+    factors: <FactorAnalysisSection />,
+    drawdown: <DrawdownSection />,
+    tail: <TailRiskSection />,
+    peers: <PeerComparisonSection />,
+  };
+
+  const activeTabMeta = TABS.find((t) => t.id === activeTab)!;
+
+  return (
+    <div className="space-y-4">
+      {/* Header */}
+      <div className="flex items-center gap-2">
+        <Target className="h-4 w-4 text-primary" />
+        <h2 className="text-sm font-semibold text-foreground">Advanced Portfolio Analytics</h2>
+        <span className="ml-auto text-[10px] text-muted-foreground">Professional-grade metrics</span>
+      </div>
+
+      {/* Tab nav */}
+      <div className="flex flex-wrap gap-1.5">
+        {TABS.map((tab) => (
+          <button
+            key={tab.id}
+            type="button"
+            onClick={() => setActiveTab(tab.id)}
+            className={cn(
+              "flex items-center gap-1.5 rounded-md px-2.5 py-1.5 text-[10px] font-medium transition-all",
+              activeTab === tab.id
+                ? cn("bg-card border border-border shadow-sm", tab.color)
+                : "text-muted-foreground hover:text-foreground hover:bg-muted/30"
+            )}
+          >
+            <span className={activeTab === tab.id ? tab.color : "text-muted-foreground"}>
+              {tab.icon}
+            </span>
+            {tab.label}
+          </button>
+        ))}
+      </div>
+
+      {/* Content panel */}
+      <AnimatePresence mode="wait">
+        <motion.div
+          key={activeTab}
+          initial={{ opacity: 0, y: 8 }}
+          animate={{ opacity: 1, y: 0 }}
+          exit={{ opacity: 0, y: -8 }}
+          transition={{ duration: 0.2, ease: "easeOut" }}
+          className="rounded-lg border border-border bg-card p-4"
+        >
+          <div className="flex items-center gap-2 mb-4">
+            <span className={cn("h-1.5 w-1.5 rounded-full inline-block", activeTabMeta.color.replace("text-", "bg-"))} />
+            <h3 className={cn("text-xs font-semibold", activeTabMeta.color)}>{activeTabMeta.label}</h3>
+          </div>
+          {sectionContent[activeTab]}
+        </motion.div>
+      </AnimatePresence>
+    </div>
+  );
+}
+
+// Named export alias for backward compatibility
+export { AdvancedAnalytics };

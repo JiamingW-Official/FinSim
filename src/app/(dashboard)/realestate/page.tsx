@@ -1,1394 +1,1638 @@
 "use client";
 
-import { useState, useMemo, useCallback } from "react";
+import { useState, useMemo } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 import {
   Home,
   Building2,
   BarChart3,
-  BookOpen,
   TrendingUp,
   TrendingDown,
-  Plus,
-  Trash2,
   Info,
-  CheckCircle,
-  XCircle,
   DollarSign,
   Percent,
-  Calendar,
-  Shield,
+  Calculator,
+  MapPin,
+  Layers,
   AlertTriangle,
+  CheckCircle,
+  ArrowRight,
+  RefreshCw,
 } from "lucide-react";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Badge } from "@/components/ui/badge";
 import { cn } from "@/lib/utils";
 
-// ── Types ─────────────────────────────────────────────────────────────────────
+// ── Seeded PRNG ───────────────────────────────────────────────────────────────
 
-interface PropertyInputs {
-  price: number;
-  downPayment: number;
-  interestRate: number;
-  loanTerm: number;
-  monthlyRent: number;
-  vacancyRate: number;
-  propertyTaxRate: number;
-  insurance: number;
-  maintenance: number;
-  hoa: number;
-  appreciationRate: number;
-}
+let s = 7;
+const rand = () => {
+  s = (s * 1103515245 + 12345) & 0x7fffffff;
+  return s / 0x7fffffff;
+};
 
-interface PropertyMetrics {
-  monthlyMortgage: number;
-  monthlyPropertyTax: number;
-  monthlyInsurance: number;
-  monthlyMaintenance: number;
-  monthlyHOA: number;
-  totalMonthlyExpenses: number;
-  effectiveMonthlyRent: number;
-  monthlyCashFlow: number;
-  annualCashFlow: number;
-  noi: number;
-  capRate: number;
-  cashOnCashReturn: number;
-  grm: number;
-  dscr: number;
-  breakEvenOccupancy: number;
-  loanAmount: number;
-  annualDebtService: number;
-  ruleOf1Pct: boolean;
-}
+// ── Formatting helpers ────────────────────────────────────────────────────────
 
-interface SavedProperty {
-  id: string;
-  name: string;
-  inputs: PropertyInputs;
-  metrics: PropertyMetrics;
-}
-
-interface Market {
-  city: string;
-  state: string;
-  medianPrice: number;
-  priceRentRatio: number;
-  yoyAppreciation: number;
-  jobGrowth: number;
-  populationGrowth: number;
-  capRate: number;
-  inventory: number;
-  investorScore: number;
-  cashFlowScore: number;
-  appreciationScore: number;
-}
-
-// ── Seeded PRNG (mulberry32) ───────────────────────────────────────────────────
-
-function mulberry32(seed: number): () => number {
-  let s = seed >>> 0;
-  return () => {
-    s |= 0; s = s + 0x6d2b79f5 | 0;
-    let t = Math.imul(s ^ s >>> 15, 1 | s);
-    t = t + Math.imul(t ^ t >>> 7, 61 | t) ^ t;
-    return ((t ^ t >>> 14) >>> 0) / 4294967296;
-  };
-}
-
-// ── Formatting ─────────────────────────────────────────────────────────────────
-
-function fmtCurrency(n: number, compact = false): string {
-  if (compact) {
-    if (Math.abs(n) >= 1_000_000) return `$${(n / 1_000_000).toFixed(2)}M`;
-    if (Math.abs(n) >= 1_000) return `$${(n / 1_000).toFixed(0)}K`;
-  }
-  return n.toLocaleString("en-US", { style: "currency", currency: "USD", maximumFractionDigits: 0 });
-}
-
-function fmtPct(n: number, d = 2): string {
-  return `${n.toFixed(d)}%`;
-}
-
-function fmtNum(n: number, d = 2): string {
-  return n.toLocaleString("en-US", { minimumFractionDigits: d, maximumFractionDigits: d });
-}
-
-// ── Mortgage calculator ────────────────────────────────────────────────────────
-
-function monthlyMortgagePayment(principal: number, annualRate: number, termYears: number): number {
-  if (annualRate === 0) return principal / (termYears * 12);
-  const r = annualRate / 100 / 12;
-  const n = termYears * 12;
-  return principal * (r * Math.pow(1 + r, n)) / (Math.pow(1 + r, n) - 1);
-}
-
-// ── Compute metrics ────────────────────────────────────────────────────────────
-
-function computeMetrics(inp: PropertyInputs): PropertyMetrics {
-  const loanAmount = inp.price - inp.downPayment;
-  const monthlyMortgage = monthlyMortgagePayment(loanAmount, inp.interestRate, inp.loanTerm);
-  const monthlyPropertyTax = (inp.price * inp.propertyTaxRate / 100) / 12;
-  const monthlyInsurance = inp.insurance / 12;
-  const monthlyMaintenance = (inp.price * inp.maintenance / 100) / 12;
-  const monthlyHOA = inp.hoa;
-
-  const effectiveMonthlyRent = inp.monthlyRent * (1 - inp.vacancyRate / 100);
-
-  const annualNOI = (effectiveMonthlyRent * 12)
-    - (monthlyPropertyTax * 12)
-    - inp.insurance
-    - (inp.price * inp.maintenance / 100)
-    - (inp.hoa * 12);
-  const noi = annualNOI;
-
-  const totalMonthlyExpenses = monthlyMortgage + monthlyPropertyTax + monthlyInsurance + monthlyMaintenance + monthlyHOA;
-  const monthlyCashFlow = effectiveMonthlyRent - totalMonthlyExpenses;
-  const annualCashFlow = monthlyCashFlow * 12;
-
-  const capRate = inp.price > 0 ? (noi / inp.price) * 100 : 0;
-  const cashOnCashReturn = inp.downPayment > 0 ? (annualCashFlow / inp.downPayment) * 100 : 0;
-  const grm = effectiveMonthlyRent > 0 ? inp.price / (effectiveMonthlyRent * 12) : 0;
-
-  const annualDebtService = monthlyMortgage * 12;
-  const dscr = annualDebtService > 0 ? noi / annualDebtService : 0;
-
-  // Break-even: what occupancy rate makes cash flow = 0
-  // effectiveRent * occ - expenses = 0 => occ = expenses / grossRent
-  const grossMonthlyExpenses = totalMonthlyExpenses;
-  const breakEvenOccupancy = inp.monthlyRent > 0 ? (grossMonthlyExpenses / inp.monthlyRent) * 100 : 0;
-
-  const ruleOf1Pct = inp.monthlyRent >= inp.price * 0.01;
-
-  return {
-    monthlyMortgage,
-    monthlyPropertyTax,
-    monthlyInsurance,
-    monthlyMaintenance,
-    monthlyHOA,
-    totalMonthlyExpenses,
-    effectiveMonthlyRent,
-    monthlyCashFlow,
-    annualCashFlow,
-    noi,
-    capRate,
-    cashOnCashReturn,
-    grm,
-    dscr,
-    breakEvenOccupancy,
-    loanAmount,
-    annualDebtService,
-    ruleOf1Pct,
-  };
-}
-
-// ── 10-year projection ────────────────────────────────────────────────────────
-
-function compute10YearProjection(inp: PropertyInputs, metrics: PropertyMetrics) {
-  const rows = [];
-  let propertyValue = inp.price;
-  let loanBalance = metrics.loanAmount;
-  const r = inp.interestRate / 100 / 12;
-  const n = inp.loanTerm * 12;
-
-  for (let yr = 1; yr <= 10; yr++) {
-    propertyValue = inp.price * Math.pow(1 + inp.appreciationRate / 100, yr);
-    // Loan balance after yr*12 payments
-    const paid = yr * 12;
-    if (r > 0) {
-      loanBalance = metrics.loanAmount * (Math.pow(1 + r, n) - Math.pow(1 + r, paid))
-        / (Math.pow(1 + r, n) - 1);
-    } else {
-      loanBalance = metrics.loanAmount - (metrics.loanAmount / (inp.loanTerm * 12)) * paid;
-    }
-    const equity = propertyValue - loanBalance;
-    const annualRent = metrics.effectiveMonthlyRent * 12 * Math.pow(1 + 0.03, yr - 1);
-    const annualCF = (annualRent - metrics.totalMonthlyExpenses * 12);
-    rows.push({ yr, propertyValue, equity, annualCashFlow: annualCF, totalReturn: equity - inp.downPayment + (annualCF * yr) });
-  }
-  return rows;
-}
-
-// ── Generate synthetic markets ────────────────────────────────────────────────
-
-function generateMarkets(): Market[] {
-  const rng = mulberry32(4444);
-  const cities = [
-    { city: "Austin",    state: "TX" },
-    { city: "Miami",     state: "FL" },
-    { city: "Phoenix",   state: "AZ" },
-    { city: "Dallas",    state: "TX" },
-    { city: "Nashville", state: "TN" },
-    { city: "Charlotte", state: "NC" },
-    { city: "Denver",    state: "CO" },
-    { city: "Tampa",     state: "FL" },
-    { city: "Raleigh",   state: "NC" },
-    { city: "Atlanta",   state: "GA" },
-  ];
-
-  return cities.map(({ city, state }) => {
-    const medianPrice = 280000 + rng() * 520000;
-    const capRate = 4 + rng() * 4;
-    // Inverse relationship: high price/rent = low cap rate
-    const priceRentRatio = 15 + (10 - capRate) * 4 + rng() * 5;
-    const yoyAppreciation = 2 + rng() * 8;
-    const jobGrowth = 1 + rng() * 4;
-    const populationGrowth = 0.5 + rng() * 3;
-    const inventory = 1 + rng() * 5;
-
-    // Investor friendly: low price/rent + high job growth + high population growth + low inventory
-    const investorScore = Math.round(
-      ((20 - Math.min(priceRentRatio, 20)) / 20) * 30
-      + (jobGrowth / 5) * 25
-      + (populationGrowth / 3.5) * 25
-      + ((6 - Math.min(inventory, 6)) / 6) * 20
-    );
-
-    const cashFlowScore = Math.round(
-      ((20 - Math.min(priceRentRatio, 20)) / 20) * 50
-      + (capRate / 8) * 50
-    );
-
-    const appreciationScore = Math.round(
-      (yoyAppreciation / 10) * 60
-      + (populationGrowth / 3.5) * 40
-    );
-
-    return {
-      city, state,
-      medianPrice, priceRentRatio, yoyAppreciation, jobGrowth,
-      populationGrowth, capRate, inventory, investorScore, cashFlowScore, appreciationScore,
-    };
+function fmtUSD(n: number, decimals = 0): string {
+  return n.toLocaleString("en-US", {
+    style: "currency",
+    currency: "USD",
+    minimumFractionDigits: decimals,
+    maximumFractionDigits: decimals,
   });
 }
 
-// ── Number Input ───────────────────────────────────────────────────────────────
+function fmtPct(n: number, d = 1): string {
+  return `${n.toFixed(d)}%`;
+}
 
-function NumInput({
-  label, value, onChange, prefix = "", suffix = "", min = 0, max, step = 1, hint,
+function fmtM(n: number): string {
+  if (Math.abs(n) >= 1_000_000) return `$${(n / 1_000_000).toFixed(2)}M`;
+  if (Math.abs(n) >= 1_000) return `$${(n / 1_000).toFixed(1)}K`;
+  return fmtUSD(n);
+}
+
+// ── Color helpers ─────────────────────────────────────────────────────────────
+
+function posNegClass(v: number): string {
+  return v >= 0 ? "text-emerald-400" : "text-rose-400";
+}
+
+// ── Stat Card ─────────────────────────────────────────────────────────────────
+
+function StatCard({
+  label,
+  value,
+  sub,
+  highlight,
 }: {
-  label: string; value: number; onChange: (v: number) => void;
-  prefix?: string; suffix?: string; min?: number; max?: number; step?: number; hint?: string;
+  label: string;
+  value: string;
+  sub?: string;
+  highlight?: "pos" | "neg" | "neutral";
 }) {
+  const valClass =
+    highlight === "pos"
+      ? "text-emerald-400"
+      : highlight === "neg"
+      ? "text-rose-400"
+      : "text-white";
   return (
-    <div className="space-y-1">
-      <div className="flex items-center justify-between">
-        <label className="text-xs font-medium text-muted-foreground">{label}</label>
-        {hint && <span className="text-xs text-muted-foreground/60">{hint}</span>}
-      </div>
-      <div className="flex items-center gap-1 rounded-md border border-border bg-muted/30 px-2 py-1.5 focus-within:border-primary/50">
-        {prefix && <span className="text-xs text-muted-foreground">{prefix}</span>}
-        <input
-          type="number"
-          value={value}
-          min={min}
-          max={max}
-          step={step}
-          onChange={(e) => onChange(Number(e.target.value))}
-          className="flex-1 bg-transparent text-sm text-foreground outline-none [appearance:textfield] [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none min-w-0"
-        />
-        {suffix && <span className="text-xs text-muted-foreground">{suffix}</span>}
-      </div>
+    <div className="rounded-xl border border-white/10 bg-white/5 p-4 flex flex-col gap-1">
+      <span className="text-xs text-zinc-400">{label}</span>
+      <span className={cn("text-xl font-bold", valClass)}>{value}</span>
+      {sub && <span className="text-xs text-zinc-500">{sub}</span>}
     </div>
   );
 }
 
-// ── Metric Card ────────────────────────────────────────────────────────────────
+// ── Section Title ─────────────────────────────────────────────────────────────
 
-function MetricCard({
-  label, value, sub, color, icon: Icon, size = "default",
-}: {
-  label: string; value: string; sub?: string; color?: string; icon?: React.ElementType; size?: "sm" | "default" | "lg";
-}) {
+function SectionTitle({ children }: { children: React.ReactNode }) {
   return (
-    <div className="rounded-lg border border-border bg-card p-3 space-y-1">
-      <div className="flex items-center gap-1.5">
-        {Icon && <Icon className="size-3.5 text-muted-foreground" />}
-        <span className="text-xs text-muted-foreground font-medium">{label}</span>
-      </div>
-      <div className={cn(
-        "font-bold tabular-nums",
-        size === "lg" ? "text-2xl" : size === "sm" ? "text-sm" : "text-xl",
-        color,
-      )}>
-        {value}
-      </div>
-      {sub && <div className="text-xs text-muted-foreground">{sub}</div>}
+    <h3 className="text-sm font-semibold text-zinc-300 uppercase tracking-wider mb-3 flex items-center gap-2">
+      {children}
+    </h3>
+  );
+}
+
+// ── Info Box ──────────────────────────────────────────────────────────────────
+
+function InfoBox({
+  children,
+  variant = "blue",
+}: {
+  children: React.ReactNode;
+  variant?: "blue" | "amber" | "emerald";
+}) {
+  const colors = {
+    blue: "bg-blue-500/10 border-blue-500/30 text-blue-200",
+    amber: "bg-amber-500/10 border-amber-500/30 text-amber-200",
+    emerald: "bg-emerald-500/10 border-emerald-500/30 text-emerald-200",
+  };
+  return (
+    <div className={cn("rounded-lg border p-3 text-xs leading-relaxed", colors[variant])}>
+      {children}
     </div>
   );
 }
 
-// ── DEFAULT INPUTS ────────────────────────────────────────────────────────────
+// ══════════════════════════════════════════════════════════════════════════════
+// TAB 1 — Property Analyzer
+// ══════════════════════════════════════════════════════════════════════════════
 
-const DEFAULT_INPUTS: PropertyInputs = {
-  price: 500000,
-  downPayment: 100000,
-  interestRate: 7,
-  loanTerm: 30,
-  monthlyRent: 3000,
-  vacancyRate: 5,
-  propertyTaxRate: 1.2,
-  insurance: 2400,
-  maintenance: 1,
-  hoa: 0,
-  appreciationRate: 3,
-};
+interface PropInputs {
+  price: number;
+  grossRent: number;
+  propertyTax: number;
+  insurance: number;
+  maintenance: number;
+  management: number;
+  vacancy: number;
+  downPct: number;
+}
 
-// ── Tab 1: Property Analyzer ──────────────────────────────────────────────────
+function calcMortgage(principal: number, annualRate: number, years: number) {
+  const r = annualRate / 12;
+  const n = years * 12;
+  const payment = (principal * r * Math.pow(1 + r, n)) / (Math.pow(1 + r, n) - 1);
+  return payment;
+}
 
-function PropertyAnalyzer({
-  inputs,
-  setInputs,
-  onSave,
-}: {
-  inputs: PropertyInputs;
-  setInputs: (i: PropertyInputs) => void;
-  onSave: () => void;
-}) {
-  const metrics = useMemo(() => computeMetrics(inputs), [inputs]);
+function buildAmortization(principal: number, annualRate: number, years: number) {
+  const r = annualRate / 12;
+  const n = years * 12;
+  const pmt = (principal * r * Math.pow(1 + r, n)) / (Math.pow(1 + r, n) - 1);
+  let balance = principal;
+  const rows: { yr: number; interest: number; principal: number; balance: number }[] = [];
+  for (let m = 1; m <= n; m++) {
+    const interest = balance * r;
+    const princ = pmt - interest;
+    balance -= princ;
+    if (m % 12 === 0) {
+      const yr = m / 12;
+      rows.push({ yr, interest, principal: princ, balance: Math.max(0, balance) });
+    }
+  }
+  return { pmt, rows };
+}
 
-  const set = useCallback(
-    (key: keyof PropertyInputs) => (v: number) => setInputs({ ...inputs, [key]: v }),
-    [inputs, setInputs],
-  );
+function PropertyAnalyzer() {
+  const [inputs, setInputs] = useState<PropInputs>({
+    price: 450000,
+    grossRent: 2800,
+    propertyTax: 5400,
+    insurance: 1200,
+    maintenance: 2700,
+    management: 2016,
+    vacancy: 5,
+    downPct: 20,
+  });
 
-  const cashFlowColor = metrics.monthlyCashFlow >= 0 ? "text-emerald-400" : "text-red-400";
+  const set = (key: keyof PropInputs, val: number) =>
+    setInputs((p) => ({ ...p, [key]: val }));
+
+  const calc = useMemo(() => {
+    const {
+      price,
+      grossRent,
+      propertyTax,
+      insurance,
+      maintenance,
+      management,
+      vacancy,
+      downPct,
+    } = inputs;
+    const annualGross = grossRent * 12;
+    const vacancyLoss = annualGross * (vacancy / 100);
+    const effectiveGross = annualGross - vacancyLoss;
+    const opEx = propertyTax + insurance + maintenance + management;
+    const noi = effectiveGross - opEx;
+    const capRate = (noi / price) * 100;
+
+    const downPayment = price * (downPct / 100);
+    const loanAmount = price - downPayment;
+    const { pmt, rows } = buildAmortization(loanAmount, 0.07, 30);
+    const annualDebtService = pmt * 12;
+    const cashFlow = noi - annualDebtService;
+    const cashOnCash = (cashFlow / downPayment) * 100;
+
+    const breakEvenRent = (opEx + annualDebtService) / 12 / (1 - vacancy / 100);
+    const dscr = noi / annualDebtService;
+
+    // 10-year appreciation
+    const appreciation = 0.04; // 4% annually
+    const years = Array.from({ length: 11 }, (_, i) => i);
+    const appreciation10 = years.map((yr) => ({
+      yr,
+      propValue: price * Math.pow(1 + appreciation, yr),
+      equity: downPayment + (rows[yr - 1]?.balance !== undefined ? loanAmount - rows[yr - 1].balance : 0),
+      loanBalance: yr === 0 ? loanAmount : rows[yr - 1]?.balance ?? 0,
+    }));
+
+    return {
+      annualGross,
+      vacancyLoss,
+      effectiveGross,
+      opEx,
+      noi,
+      capRate,
+      downPayment,
+      loanAmount,
+      pmt,
+      annualDebtService,
+      cashFlow,
+      cashOnCash,
+      breakEvenRent,
+      dscr,
+      appreciation10,
+      rows,
+    };
+  }, [inputs]);
+
+  // SVG appreciation chart
+  const chartData = calc.appreciation10;
+  const maxVal = chartData[chartData.length - 1].propValue;
+  const W = 480;
+  const H = 180;
+  const PAD = { t: 10, r: 20, b: 30, l: 60 };
+  const cw = W - PAD.l - PAD.r;
+  const ch = H - PAD.t - PAD.b;
+
+  const xScale = (i: number) => PAD.l + (i / 10) * cw;
+  const yScale = (v: number) => PAD.t + ch - (v / maxVal) * ch;
+
+  const propPath = chartData.map((d, i) => `${i === 0 ? "M" : "L"}${xScale(i)},${yScale(d.propValue)}`).join(" ");
+  const equityPath = chartData.map((d, i) => `${i === 0 ? "M" : "L"}${xScale(i)},${yScale(d.equity)}`).join(" ");
 
   return (
-    <div className="flex gap-4 h-full">
-      {/* Left: Inputs */}
-      <div className="w-[300px] shrink-0 overflow-y-auto space-y-3 pr-1">
-        <div className="rounded-lg border border-border bg-card p-4 space-y-3">
-          <h3 className="text-sm font-semibold flex items-center gap-2">
-            <Home className="size-4 text-primary" />
-            Property Details
-          </h3>
-          <NumInput label="Property Price" value={inputs.price} onChange={set("price")} prefix="$" step={5000} />
-          <NumInput label="Down Payment" value={inputs.downPayment} onChange={set("downPayment")} prefix="$" step={5000} />
-          <NumInput label="Interest Rate" value={inputs.interestRate} onChange={set("interestRate")} suffix="%" step={0.125} min={0} max={20} />
-          <NumInput label="Loan Term" value={inputs.loanTerm} onChange={set("loanTerm")} suffix="yr" step={5} min={5} max={30} />
-        </div>
-
-        <div className="rounded-lg border border-border bg-card p-4 space-y-3">
-          <h3 className="text-sm font-semibold flex items-center gap-2">
-            <DollarSign className="size-4 text-primary" />
-            Income
-          </h3>
-          <NumInput label="Monthly Rent" value={inputs.monthlyRent} onChange={set("monthlyRent")} prefix="$" step={50} />
-          <NumInput label="Vacancy Rate" value={inputs.vacancyRate} onChange={set("vacancyRate")} suffix="%" step={0.5} min={0} max={30} />
-        </div>
-
-        <div className="rounded-lg border border-border bg-card p-4 space-y-3">
-          <h3 className="text-sm font-semibold flex items-center gap-2">
-            <Shield className="size-4 text-primary" />
-            Expenses
-          </h3>
-          <NumInput label="Property Tax Rate" value={inputs.propertyTaxRate} onChange={set("propertyTaxRate")} suffix="%" step={0.1} min={0} max={5} />
-          <NumInput label="Insurance" value={inputs.insurance} onChange={set("insurance")} prefix="$" suffix="/yr" step={100} />
-          <NumInput label="Maintenance" value={inputs.maintenance} onChange={set("maintenance")} suffix="% of value/yr" step={0.1} min={0} max={5} />
-          <NumInput label="HOA" value={inputs.hoa} onChange={set("hoa")} prefix="$" suffix="/mo" step={50} />
-        </div>
-
-        <div className="rounded-lg border border-border bg-card p-4 space-y-3">
-          <h3 className="text-sm font-semibold flex items-center gap-2">
-            <TrendingUp className="size-4 text-primary" />
-            Growth
-          </h3>
-          <NumInput label="Appreciation Rate" value={inputs.appreciationRate} onChange={set("appreciationRate")} suffix="% /yr" step={0.5} min={0} max={15} />
-        </div>
-
-        <button
-          onClick={onSave}
-          className="w-full rounded-lg border border-primary/40 bg-primary/10 hover:bg-primary/20 text-primary text-sm font-medium py-2 flex items-center justify-center gap-2 transition-colors"
-        >
-          <Plus className="size-4" />
-          Save to Comparison
-        </button>
-      </div>
-
-      {/* Right: Metrics */}
-      <div className="flex-1 overflow-y-auto space-y-4">
-        {/* Rule of 1% badge */}
-        <div className="flex items-center gap-3">
-          <div className={cn(
-            "flex items-center gap-2 rounded-full border px-3 py-1.5 text-sm font-medium",
-            metrics.ruleOf1Pct
-              ? "border-emerald-500/40 bg-emerald-500/10 text-emerald-400"
-              : "border-red-500/40 bg-red-500/10 text-red-400",
-          )}>
-            {metrics.ruleOf1Pct
-              ? <CheckCircle className="size-4" />
-              : <XCircle className="size-4" />}
-            Rule of 1%: {fmtPct((inputs.monthlyRent / inputs.price) * 100, 2)} of purchase price
-          </div>
-          <span className="text-xs text-muted-foreground">
-            (Need {fmtCurrency(inputs.price * 0.01)}/mo for 1%)
-          </span>
-        </div>
-
-        {/* Main cash flow */}
-        <div className="grid grid-cols-2 gap-3">
-          <div className="rounded-xl border border-border bg-card p-4 col-span-2">
-            <div className="flex items-center justify-between">
-              <div>
-                <div className="text-xs text-muted-foreground font-medium mb-1">Monthly Cash Flow</div>
-                <div className={cn("text-4xl font-bold tabular-nums", cashFlowColor)}>
-                  {metrics.monthlyCashFlow >= 0 ? "+" : ""}{fmtCurrency(metrics.monthlyCashFlow)}
-                </div>
-              </div>
-              <div className="text-right">
-                <div className="text-xs text-muted-foreground font-medium mb-1">Annual Cash Flow</div>
-                <div className={cn("text-2xl font-bold tabular-nums", cashFlowColor)}>
-                  {metrics.annualCashFlow >= 0 ? "+" : ""}{fmtCurrency(metrics.annualCashFlow)}
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <MetricCard
-            label="Cash-on-Cash Return"
-            value={fmtPct(metrics.cashOnCashReturn)}
-            sub="Annual cash flow / total cash invested"
-            color={metrics.cashOnCashReturn >= 8 ? "text-emerald-400" : metrics.cashOnCashReturn >= 4 ? "text-amber-400" : "text-red-400"}
-            icon={Percent}
-          />
-          <MetricCard
-            label="Cap Rate"
-            value={fmtPct(metrics.capRate)}
-            sub="NOI / property value"
-            color={metrics.capRate >= 6 ? "text-emerald-400" : metrics.capRate >= 4 ? "text-amber-400" : "text-red-400"}
-            icon={BarChart3}
-          />
-          <MetricCard
-            label="GRM"
-            value={fmtNum(metrics.grm, 1) + "x"}
-            sub="Price / annual gross rent"
-            icon={Calendar}
-          />
-          <MetricCard
-            label="NOI"
-            value={fmtCurrency(metrics.noi)}
-            sub="Net Operating Income / year"
-            icon={DollarSign}
-          />
-          <MetricCard
-            label="DSCR"
-            value={fmtNum(metrics.dscr, 2) + "x"}
-            sub="NOI / annual debt service"
-            color={metrics.dscr >= 1.25 ? "text-emerald-400" : metrics.dscr >= 1 ? "text-amber-400" : "text-red-400"}
-            icon={Shield}
-          />
-          <MetricCard
-            label="Break-Even Occupancy"
-            value={fmtPct(Math.min(metrics.breakEvenOccupancy, 100))}
-            sub="Occupancy needed to cover all costs"
-            color={metrics.breakEvenOccupancy <= 80 ? "text-emerald-400" : metrics.breakEvenOccupancy <= 95 ? "text-amber-400" : "text-red-400"}
-            icon={Percent}
-          />
-        </div>
-
-        {/* Monthly expense breakdown */}
-        <div className="rounded-lg border border-border bg-card p-4 space-y-3">
-          <h3 className="text-sm font-semibold text-muted-foreground">Monthly Breakdown</h3>
-          {[
-            { label: "Effective Rent (after vacancy)", value: metrics.effectiveMonthlyRent, positive: true },
-            { label: "Mortgage (P&I)", value: -metrics.monthlyMortgage },
-            { label: "Property Tax", value: -metrics.monthlyPropertyTax },
-            { label: "Insurance", value: -metrics.monthlyInsurance },
-            { label: "Maintenance", value: -metrics.monthlyMaintenance },
-            { label: "HOA", value: -metrics.monthlyHOA },
-          ].map(({ label, value, positive }) => (
-            <div key={label} className="flex items-center justify-between text-sm">
-              <span className="text-muted-foreground">{label}</span>
-              <span className={cn(
-                "font-medium tabular-nums",
-                positive ? "text-emerald-400" : "text-foreground",
-              )}>
-                {positive ? "+" : ""}{fmtCurrency(value)}
-              </span>
+    <div className="space-y-6">
+      {/* Inputs */}
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+        <div className="rounded-xl border border-white/10 bg-white/5 p-5 space-y-4">
+          <SectionTitle><Calculator className="w-4 h-4" />Property Inputs</SectionTitle>
+          {(
+            [
+              { key: "price" as const, label: "Purchase Price ($)", step: 10000, min: 50000 },
+              { key: "grossRent" as const, label: "Monthly Gross Rent ($)", step: 50, min: 500 },
+              { key: "propertyTax" as const, label: "Annual Property Tax ($)", step: 100, min: 0 },
+              { key: "insurance" as const, label: "Annual Insurance ($)", step: 100, min: 0 },
+              { key: "maintenance" as const, label: "Annual Maintenance ($)", step: 100, min: 0 },
+              { key: "management" as const, label: "Annual Mgmt Fees ($)", step: 100, min: 0 },
+            ] as { key: keyof PropInputs; label: string; step: number; min: number }[]
+          ).map(({ key, label, step, min }) => (
+            <div key={key} className="flex items-center justify-between gap-4">
+              <label className="text-xs text-zinc-400 w-40 shrink-0">{label}</label>
+              <input
+                type="number"
+                value={inputs[key]}
+                step={step}
+                min={min}
+                onChange={(e) => set(key, parseFloat(e.target.value) || 0)}
+                className="w-32 rounded-lg border border-white/10 bg-zinc-900 px-3 py-1.5 text-sm text-white text-right focus:outline-none focus:ring-1 focus:ring-blue-500"
+              />
             </div>
           ))}
-          <div className="border-t border-border pt-2 flex items-center justify-between font-semibold">
-            <span>Net Cash Flow</span>
-            <span className={cashFlowColor}>{metrics.monthlyCashFlow >= 0 ? "+" : ""}{fmtCurrency(metrics.monthlyCashFlow)}</span>
+          <div className="flex items-center justify-between gap-4">
+            <label className="text-xs text-zinc-400 w-40 shrink-0">Vacancy Rate (%)</label>
+            <input
+              type="number"
+              value={inputs.vacancy}
+              step={0.5}
+              min={0}
+              max={30}
+              onChange={(e) => set("vacancy", parseFloat(e.target.value) || 0)}
+              className="w-32 rounded-lg border border-white/10 bg-zinc-900 px-3 py-1.5 text-sm text-white text-right focus:outline-none focus:ring-1 focus:ring-blue-500"
+            />
+          </div>
+          <div className="flex items-center justify-between gap-4">
+            <label className="text-xs text-zinc-400 w-40 shrink-0">Down Payment (%)</label>
+            <input
+              type="number"
+              value={inputs.downPct}
+              step={5}
+              min={5}
+              max={100}
+              onChange={(e) => set("downPct", parseFloat(e.target.value) || 20)}
+              className="w-32 rounded-lg border border-white/10 bg-zinc-900 px-3 py-1.5 text-sm text-white text-right focus:outline-none focus:ring-1 focus:ring-blue-500"
+            />
+          </div>
+        </div>
+
+        {/* Results */}
+        <div className="space-y-4">
+          <div className="grid grid-cols-2 gap-3">
+            <StatCard label="Cap Rate" value={fmtPct(calc.capRate)} highlight={calc.capRate >= 5 ? "pos" : calc.capRate >= 3 ? "neutral" : "neg"} sub="NOI / Property Value" />
+            <StatCard label="Cash-on-Cash" value={fmtPct(calc.cashOnCash)} highlight={calc.cashOnCash >= 6 ? "pos" : calc.cashOnCash >= 0 ? "neutral" : "neg"} sub="Annual Cash Flow / Cash Invested" />
+            <StatCard label="Monthly Cash Flow" value={fmtUSD(calc.cashFlow / 12)} highlight={calc.cashFlow >= 0 ? "pos" : "neg"} sub="After debt service" />
+            <StatCard label="DSCR" value={calc.dscr.toFixed(2) + "x"} highlight={calc.dscr >= 1.25 ? "pos" : calc.dscr >= 1.0 ? "neutral" : "neg"} sub="NOI / Debt Service" />
+          </div>
+
+          <div className="rounded-xl border border-white/10 bg-white/5 p-4 space-y-2">
+            <SectionTitle><DollarSign className="w-4 h-4" />Income Statement</SectionTitle>
+            {[
+              { label: "Gross Rent (annual)", val: calc.annualGross, sign: 1 },
+              { label: `Vacancy (${fmtPct(inputs.vacancy)})`, val: -calc.vacancyLoss, sign: -1 },
+              { label: "Effective Gross Income", val: calc.effectiveGross, sign: 1, bold: true },
+              { label: "Operating Expenses", val: -calc.opEx, sign: -1 },
+              { label: "Net Operating Income", val: calc.noi, sign: 1, bold: true },
+              { label: "Debt Service (annual)", val: -calc.annualDebtService, sign: -1 },
+              { label: "Cash Flow After Debt", val: calc.cashFlow, sign: 1, bold: true },
+            ].map(({ label, val, bold }) => (
+              <div key={label} className={cn("flex justify-between text-sm", bold ? "font-semibold border-t border-white/10 pt-1 mt-1" : "")}>
+                <span className="text-zinc-400">{label}</span>
+                <span className={posNegClass(val)}>{fmtM(val)}</span>
+              </div>
+            ))}
+          </div>
+
+          <div className="rounded-xl border border-white/10 bg-white/5 p-4 space-y-1">
+            <div className="flex justify-between text-sm">
+              <span className="text-zinc-400">Loan Amount (80% LTV)</span>
+              <span className="text-white">{fmtM(calc.loanAmount)}</span>
+            </div>
+            <div className="flex justify-between text-sm">
+              <span className="text-zinc-400">Monthly Mortgage (7%, 30yr)</span>
+              <span className="text-white">{fmtUSD(calc.pmt)}</span>
+            </div>
+            <div className="flex justify-between text-sm">
+              <span className="text-zinc-400">Break-Even Rent</span>
+              <span className="text-amber-400">{fmtUSD(calc.breakEvenRent)}/mo</span>
+            </div>
+            <div className="flex justify-between text-sm">
+              <span className="text-zinc-400">Down Payment</span>
+              <span className="text-white">{fmtM(calc.downPayment)}</span>
+            </div>
           </div>
         </div>
       </div>
+
+      {/* Appreciation SVG */}
+      <div className="rounded-xl border border-white/10 bg-white/5 p-5">
+        <SectionTitle><TrendingUp className="w-4 h-4" />10-Year Appreciation & Equity Build-Up (4% annual growth)</SectionTitle>
+        <svg viewBox={`0 0 ${W} ${H}`} className="w-full" preserveAspectRatio="xMidYMid meet">
+          {/* Grid lines */}
+          {[0, 0.25, 0.5, 0.75, 1].map((t) => (
+            <line
+              key={t}
+              x1={PAD.l}
+              y1={PAD.t + ch * (1 - t)}
+              x2={W - PAD.r}
+              y2={PAD.t + ch * (1 - t)}
+              stroke="#ffffff15"
+              strokeDasharray="4,4"
+            />
+          ))}
+          {/* Y labels */}
+          {[0, 0.25, 0.5, 0.75, 1].map((t) => (
+            <text
+              key={t}
+              x={PAD.l - 4}
+              y={PAD.t + ch * (1 - t) + 4}
+              fontSize={9}
+              fill="#6b7280"
+              textAnchor="end"
+            >
+              {fmtM(maxVal * t)}
+            </text>
+          ))}
+          {/* X labels */}
+          {[0, 2, 4, 6, 8, 10].map((yr) => (
+            <text key={yr} x={xScale(yr)} y={H - 6} fontSize={9} fill="#6b7280" textAnchor="middle">
+              Yr {yr}
+            </text>
+          ))}
+          {/* Property value area */}
+          <path
+            d={propPath + ` L${xScale(10)},${yScale(0)} L${xScale(0)},${yScale(0)} Z`}
+            fill="#3b82f620"
+          />
+          <path d={propPath} fill="none" stroke="#3b82f6" strokeWidth={2} />
+          {/* Equity area */}
+          <path
+            d={equityPath + ` L${xScale(10)},${yScale(0)} L${xScale(0)},${yScale(0)} Z`}
+            fill="#10b98130"
+          />
+          <path d={equityPath} fill="none" stroke="#10b981" strokeWidth={2} strokeDasharray="6,3" />
+          {/* Legend */}
+          <rect x={PAD.l + 10} y={PAD.t + 6} width={10} height={3} fill="#3b82f6" rx={1} />
+          <text x={PAD.l + 24} y={PAD.t + 10} fontSize={9} fill="#93c5fd">Property Value</text>
+          <rect x={PAD.l + 105} y={PAD.t + 6} width={10} height={3} fill="#10b981" rx={1} />
+          <text x={PAD.l + 119} y={PAD.t + 10} fontSize={9} fill="#6ee7b7">Equity</text>
+        </svg>
+        <div className="grid grid-cols-4 gap-3 mt-3">
+          {[0, 3, 7, 10].map((yr) => {
+            const d = chartData[yr];
+            return (
+              <div key={yr} className="text-center">
+                <div className="text-xs text-zinc-500">Year {yr}</div>
+                <div className="text-sm font-semibold text-blue-400">{fmtM(d.propValue)}</div>
+                <div className="text-xs text-emerald-400">{fmtM(d.equity)} equity</div>
+              </div>
+            );
+          })}
+        </div>
+      </div>
+
+      <InfoBox variant="blue">
+        <strong>Cap Rate</strong> = NOI / Property Value. A higher cap rate means more income relative to price — but also higher risk. {" "}
+        <strong>Cash-on-Cash</strong> measures your annual cash return on the actual cash you invested (down payment + closing costs). {" "}
+        <strong>DSCR &gt; 1.25x</strong> is typically required for commercial lending.
+      </InfoBox>
     </div>
   );
 }
 
-// ── Radar Chart (SVG Hexagon) ──────────────────────────────────────────────────
+// ══════════════════════════════════════════════════════════════════════════════
+// TAB 2 — Market Comparisons
+// ══════════════════════════════════════════════════════════════════════════════
 
-const RADAR_AXES = ["Cash Flow", "Cap Rate", "CoC Return", "Appreciation", "DSCR", "Equity Build"];
-const RADAR_COLORS = ["#3b82f6", "#10b981", "#f59e0b"];
-
-function computeRadarValues(prop: SavedProperty): number[] {
-  const m = prop.metrics;
-  const inp = prop.inputs;
-  // Each axis normalized 0–1
-  return [
-    Math.max(0, Math.min(1, (m.monthlyCashFlow + 500) / 1500)),          // Cash Flow (-500 to +1000 mapped 0–1)
-    Math.max(0, Math.min(1, m.capRate / 10)),                             // Cap Rate (0–10%)
-    Math.max(0, Math.min(1, (m.cashOnCashReturn + 5) / 20)),              // CoC Return (-5 to +15)
-    Math.max(0, Math.min(1, inp.appreciationRate / 8)),                   // Appreciation (0–8%)
-    Math.max(0, Math.min(1, (m.dscr - 0.5) / 2)),                        // DSCR (0.5–2.5)
-    Math.max(0, Math.min(1, (inp.price - inp.downPayment) / inp.price)),  // Equity Build (LTV)
-  ];
+interface Metro {
+  city: string;
+  state: string;
+  medianPrice: number;
+  medianIncome: number;
+  priceToRent: number;
+  capRate: number;
+  rentGrowth: number;
+  priceGrowth: number;
 }
 
-function RadarChart({ properties }: { properties: SavedProperty[] }) {
-  const cx = 160, cy = 150, r = 110;
-  const n = RADAR_AXES.length;
-  const angles = RADAR_AXES.map((_, i) => (i * 2 * Math.PI) / n - Math.PI / 2);
+const METROS: Metro[] = [
+  { city: "San Francisco", state: "CA", medianPrice: 1_380_000, medianIncome: 128_000, priceToRent: 38, capRate: 3.1, rentGrowth: 2.1, priceGrowth: 3.2 },
+  { city: "New York", state: "NY", medianPrice: 980_000, medianIncome: 98_000, priceToRent: 32, capRate: 3.6, rentGrowth: 4.2, priceGrowth: 2.8 },
+  { city: "Los Angeles", state: "CA", medianPrice: 850_000, medianIncome: 82_000, priceToRent: 36, capRate: 3.3, rentGrowth: 3.1, priceGrowth: 3.5 },
+  { city: "Seattle", state: "WA", medianPrice: 720_000, medianIncome: 105_000, priceToRent: 28, capRate: 4.0, rentGrowth: 3.8, priceGrowth: 4.1 },
+  { city: "Boston", state: "MA", medianPrice: 680_000, medianIncome: 89_000, priceToRent: 29, capRate: 3.9, rentGrowth: 3.3, priceGrowth: 3.8 },
+  { city: "Denver", state: "CO", medianPrice: 560_000, medianIncome: 78_000, priceToRent: 24, capRate: 4.8, rentGrowth: 4.5, priceGrowth: 5.2 },
+  { city: "Austin", state: "TX", medianPrice: 540_000, medianIncome: 82_000, priceToRent: 22, capRate: 5.1, rentGrowth: 5.2, priceGrowth: 6.8 },
+  { city: "Nashville", state: "TN", medianPrice: 490_000, medianIncome: 72_000, priceToRent: 21, capRate: 5.3, rentGrowth: 5.8, priceGrowth: 7.1 },
+  { city: "Charlotte", state: "NC", medianPrice: 420_000, medianIncome: 68_000, priceToRent: 19, capRate: 5.7, rentGrowth: 6.1, priceGrowth: 7.4 },
+  { city: "Phoenix", state: "AZ", medianPrice: 410_000, medianIncome: 65_000, priceToRent: 18, capRate: 5.9, rentGrowth: 5.9, priceGrowth: 6.2 },
+  { city: "Dallas", state: "TX", medianPrice: 395_000, medianIncome: 71_000, priceToRent: 17, capRate: 6.1, rentGrowth: 5.5, priceGrowth: 5.8 },
+  { city: "Atlanta", state: "GA", medianPrice: 380_000, medianIncome: 70_000, priceToRent: 17, capRate: 6.2, rentGrowth: 6.3, priceGrowth: 6.5 },
+  { city: "Tampa", state: "FL", medianPrice: 370_000, medianIncome: 64_000, priceToRent: 16, capRate: 6.4, rentGrowth: 6.8, priceGrowth: 7.8 },
+  { city: "Jacksonville", state: "FL", medianPrice: 330_000, medianIncome: 60_000, priceToRent: 15, capRate: 6.8, rentGrowth: 6.9, priceGrowth: 7.2 },
+  { city: "Columbus", state: "OH", medianPrice: 290_000, medianIncome: 62_000, priceToRent: 14, capRate: 7.1, rentGrowth: 5.5, priceGrowth: 5.1 },
+  { city: "Indianapolis", state: "IN", medianPrice: 265_000, medianIncome: 58_000, priceToRent: 13, capRate: 7.4, rentGrowth: 5.3, priceGrowth: 5.0 },
+  { city: "Memphis", state: "TN", medianPrice: 210_000, medianIncome: 50_000, priceToRent: 11, capRate: 8.2, rentGrowth: 5.1, priceGrowth: 4.2 },
+  { city: "Detroit", state: "MI", medianPrice: 185_000, medianIncome: 48_000, priceToRent: 10, capRate: 8.8, rentGrowth: 4.8, priceGrowth: 3.6 },
+  { city: "Kansas City", state: "MO", medianPrice: 240_000, medianIncome: 60_000, priceToRent: 13, capRate: 7.2, rentGrowth: 5.0, priceGrowth: 4.8 },
+  { city: "St. Louis", state: "MO", medianPrice: 220_000, medianIncome: 57_000, priceToRent: 12, capRate: 7.6, rentGrowth: 4.6, priceGrowth: 4.0 },
+];
 
-  const gridLevels = [0.25, 0.5, 0.75, 1.0];
+type MarketSort = "price" | "capRate" | "priceToRent" | "affordability" | "score";
 
-  function polarToXY(angle: number, radius: number): [number, number] {
-    return [cx + radius * Math.cos(angle), cy + radius * Math.sin(angle)];
-  }
+function MarketComparisons() {
+  const [sort, setSort] = useState<MarketSort>("capRate");
+  const [rentVsBuy, setRentVsBuy] = useState({ price: 450000, rent: 2800, appreciation: 4, investReturn: 7 });
 
-  function polygonPoints(values: number[]): string {
-    return values.map((v, i) => {
-      const [x, y] = polarToXY(angles[i], v * r);
-      return `${x},${y}`;
-    }).join(" ");
-  }
+  const metros = useMemo(() => {
+    return [...METROS]
+      .map((m) => ({
+        ...m,
+        affordability: m.medianPrice / m.medianIncome,
+        score: m.capRate * 0.5 + m.priceGrowth * 0.3 + m.rentGrowth * 0.2,
+      }))
+      .sort((a, b) => {
+        if (sort === "price") return a.medianPrice - b.medianPrice;
+        if (sort === "capRate") return b.capRate - a.capRate;
+        if (sort === "priceToRent") return a.priceToRent - b.priceToRent;
+        if (sort === "affordability") return a.affordability - b.affordability;
+        return b.score - a.score;
+      });
+  }, [sort]);
 
-  return (
-    <svg width="320" height="300" className="overflow-visible">
-      {/* Grid */}
-      {gridLevels.map((lvl) => (
-        <polygon
-          key={lvl}
-          points={angles.map((a) => polarToXY(a, lvl * r).join(",")).join(" ")}
-          fill="none"
-          stroke="rgba(255,255,255,0.08)"
-          strokeWidth="1"
-        />
-      ))}
-      {/* Axis lines */}
-      {angles.map((a, i) => {
-        const [x, y] = polarToXY(a, r);
-        return <line key={i} x1={cx} y1={cy} x2={x} y2={y} stroke="rgba(255,255,255,0.1)" strokeWidth="1" />;
-      })}
-      {/* Axis labels */}
-      {angles.map((a, i) => {
-        const [x, y] = polarToXY(a, r + 20);
-        return (
-          <text
-            key={i}
-            x={x}
-            y={y}
-            textAnchor="middle"
-            dominantBaseline="middle"
-            className="fill-muted-foreground text-[9px]"
-            fontSize="9"
-            fill="rgb(148,163,184)"
-          >
-            {RADAR_AXES[i]}
-          </text>
-        );
-      })}
-      {/* Data polygons */}
-      {properties.map((prop, pi) => {
-        const values = computeRadarValues(prop);
-        const color = RADAR_COLORS[pi % RADAR_COLORS.length];
-        return (
-          <polygon
-            key={prop.id}
-            points={polygonPoints(values)}
-            fill={color}
-            fillOpacity={0.15}
-            stroke={color}
-            strokeWidth={1.5}
-          />
-        );
-      })}
-      {/* Legend */}
-      {properties.map((prop, pi) => {
-        const color = RADAR_COLORS[pi % RADAR_COLORS.length];
-        return (
-          <g key={prop.id}>
-            <rect x={10} y={270 + pi * 14 - properties.length * 7} width={10} height={10} fill={color} fillOpacity={0.6} rx={2} />
-            <text x={24} y={279 + pi * 14 - properties.length * 7} fontSize="9" fill="rgb(148,163,184)">{prop.name}</text>
-          </g>
-        );
-      })}
-    </svg>
-  );
-}
+  // Rent vs Buy 10yr NPV
+  const rvb = useMemo(() => {
+    const { price, rent, appreciation, investReturn } = rentVsBuy;
+    const down = price * 0.2;
+    const loan = price * 0.8;
+    const r = 0.07 / 12;
+    const n = 360;
+    const pmt = (loan * r * Math.pow(1 + r, n)) / (Math.pow(1 + r, n) - 1);
 
-// ── Tab 2: Deal Comparison ────────────────────────────────────────────────────
+    let buyCost = down; // opportunity cost of down
+    let rentCost = 0;
+    let buyEquity = 0;
+    let balance = loan;
 
-function DealComparison({
-  properties,
-  onRemove,
-}: {
-  properties: SavedProperty[];
-  onRemove: (id: string) => void;
-}) {
-  const [strategy, setStrategy] = useState<"cashflow" | "appreciation" | "balanced">("balanced");
+    const yvBuy: number[] = [];
+    const yvRent: number[] = [];
 
-  const bestDeal = useMemo(() => {
-    if (properties.length === 0) return null;
-    const scored = properties.map((p) => {
-      let score = 0;
-      if (strategy === "cashflow") {
-        score = p.metrics.cashOnCashReturn * 0.5 + p.metrics.capRate * 0.3 + p.metrics.dscr * 0.2;
-      } else if (strategy === "appreciation") {
-        score = p.inputs.appreciationRate * 0.6 + p.metrics.capRate * 0.2 + p.inputs.downPayment / p.inputs.price * 0.2;
-      } else {
-        score = p.metrics.cashOnCashReturn * 0.3 + p.metrics.capRate * 0.25 + p.inputs.appreciationRate * 0.25 + p.metrics.dscr * 0.2;
+    for (let yr = 1; yr <= 10; yr++) {
+      // Buy costs: 12*pmt per year + taxes/ins ~1.5%
+      buyCost += pmt * 12 + price * 0.015;
+      // Rent cost: monthly rent * 12 (3% rent growth)
+      rentCost += rent * 12 * Math.pow(1.03, yr - 1);
+      // Down payment opportunity cost at investReturn%
+      const oppCost = down * (Math.pow(1 + investReturn / 100, yr) - 1);
+      // Home value
+      const homeVal = price * Math.pow(1 + appreciation / 100, yr);
+      // Equity
+      for (let m = 0; m < 12; m++) {
+        const interest = balance * r;
+        const princ = pmt - interest;
+        balance = Math.max(0, balance - princ);
       }
-      return { ...p, score };
-    });
-    return scored.reduce((a, b) => a.score > b.score ? a : b).id;
-  }, [properties, strategy]);
+      buyEquity = homeVal - balance;
+      yvBuy.push(buyCost - buyEquity + oppCost);
+      yvRent.push(rentCost);
+    }
 
-  const projections = useMemo(() =>
-    properties.map((p) => compute10YearProjection(p.inputs, p.metrics)),
-    [properties],
-  );
+    return { yvBuy, yvRent };
+  }, [rentVsBuy]);
 
-  const COMPARE_ROWS: { label: string; fmt: (p: SavedProperty) => string; color?: (p: SavedProperty) => string }[] = [
-    { label: "Property Price", fmt: (p) => fmtCurrency(p.inputs.price) },
-    { label: "Down Payment", fmt: (p) => fmtCurrency(p.inputs.downPayment) },
-    { label: "Loan Amount", fmt: (p) => fmtCurrency(p.metrics.loanAmount) },
-    { label: "Monthly Mortgage", fmt: (p) => fmtCurrency(p.metrics.monthlyMortgage) },
-    { label: "Monthly Rent", fmt: (p) => fmtCurrency(p.inputs.monthlyRent) },
-    { label: "Vacancy Rate", fmt: (p) => fmtPct(p.inputs.vacancyRate) },
-    {
-      label: "Monthly Cash Flow",
-      fmt: (p) => (p.metrics.monthlyCashFlow >= 0 ? "+" : "") + fmtCurrency(p.metrics.monthlyCashFlow),
-      color: (p) => p.metrics.monthlyCashFlow >= 0 ? "text-emerald-400" : "text-red-400",
-    },
-    {
-      label: "Annual Cash Flow",
-      fmt: (p) => (p.metrics.annualCashFlow >= 0 ? "+" : "") + fmtCurrency(p.metrics.annualCashFlow),
-      color: (p) => p.metrics.annualCashFlow >= 0 ? "text-emerald-400" : "text-red-400",
-    },
-    { label: "NOI", fmt: (p) => fmtCurrency(p.metrics.noi) },
-    {
-      label: "Cap Rate",
-      fmt: (p) => fmtPct(p.metrics.capRate),
-      color: (p) => p.metrics.capRate >= 6 ? "text-emerald-400" : p.metrics.capRate >= 4 ? "text-amber-400" : "text-red-400",
-    },
-    {
-      label: "Cash-on-Cash Return",
-      fmt: (p) => fmtPct(p.metrics.cashOnCashReturn),
-      color: (p) => p.metrics.cashOnCashReturn >= 8 ? "text-emerald-400" : p.metrics.cashOnCashReturn >= 4 ? "text-amber-400" : "text-red-400",
-    },
-    { label: "GRM", fmt: (p) => fmtNum(p.metrics.grm, 1) + "x" },
-    {
-      label: "DSCR",
-      fmt: (p) => fmtNum(p.metrics.dscr, 2) + "x",
-      color: (p) => p.metrics.dscr >= 1.25 ? "text-emerald-400" : p.metrics.dscr >= 1 ? "text-amber-400" : "text-red-400",
-    },
-    { label: "Break-Even Occupancy", fmt: (p) => fmtPct(Math.min(p.metrics.breakEvenOccupancy, 100)) },
-    { label: "Appreciation Rate", fmt: (p) => fmtPct(p.inputs.appreciationRate) },
-    { label: "Interest Rate", fmt: (p) => fmtPct(p.inputs.interestRate) },
-    { label: "Rule of 1%", fmt: (p) => p.metrics.ruleOf1Pct ? "Yes" : "No", color: (p) => p.metrics.ruleOf1Pct ? "text-emerald-400" : "text-red-400" },
-  ];
+  const rvbMax = Math.max(...rvb.yvBuy, ...rvb.yvRent);
+  const W2 = 460;
+  const H2 = 160;
+  const P2 = { t: 10, r: 20, b: 30, l: 60 };
+  const cw2 = W2 - P2.l - P2.r;
+  const ch2 = H2 - P2.t - P2.b;
 
-  if (properties.length === 0) {
-    return (
-      <div className="flex flex-col items-center justify-center h-64 text-muted-foreground gap-3">
-        <Building2 className="size-12 opacity-20" />
-        <p className="text-sm">No properties saved yet. Go to Property Analyzer and click "Save to Comparison".</p>
-      </div>
-    );
-  }
+  const buyPath = rvb.yvBuy
+    .map((v, i) => `${i === 0 ? "M" : "L"}${P2.l + ((i + 1) / 10) * cw2},${P2.t + ch2 - (v / rvbMax) * ch2}`)
+    .join(" ");
+  const rentPath = rvb.yvRent
+    .map((v, i) => `${i === 0 ? "M" : "L"}${P2.l + ((i + 1) / 10) * cw2},${P2.t + ch2 - (v / rvbMax) * ch2}`)
+    .join(" ");
+
+  const winner10 = rvb.yvBuy[9] < rvb.yvRent[9] ? "buying" : "renting";
 
   return (
     <div className="space-y-6">
-      {/* Strategy selector */}
-      <div className="flex items-center gap-4">
-        <span className="text-sm font-medium text-muted-foreground">Investment Strategy:</span>
-        {(["cashflow", "appreciation", "balanced"] as const).map((s) => (
+      {/* Sort controls */}
+      <div className="flex flex-wrap gap-2 items-center">
+        <span className="text-xs text-zinc-400">Sort by:</span>
+        {(
+          [
+            { key: "score" as const, label: "Investor Score" },
+            { key: "capRate" as const, label: "Cap Rate" },
+            { key: "price" as const, label: "Price (Low)" },
+            { key: "priceToRent" as const, label: "Price/Rent" },
+            { key: "affordability" as const, label: "Affordability" },
+          ] as { key: MarketSort; label: string }[]
+        ).map(({ key, label }) => (
           <button
-            key={s}
-            onClick={() => setStrategy(s)}
+            key={key}
+            onClick={() => setSort(key)}
             className={cn(
-              "rounded-full border px-3 py-1 text-xs font-medium capitalize transition-colors",
-              strategy === s
-                ? "border-primary bg-primary/20 text-primary"
-                : "border-border text-muted-foreground hover:border-primary/40",
+              "rounded-lg px-3 py-1.5 text-xs font-medium transition-colors",
+              sort === key ? "bg-blue-600 text-white" : "bg-white/5 text-zinc-400 hover:bg-white/10"
             )}
           >
-            {s === "cashflow" ? "Cash Flow" : s === "appreciation" ? "Appreciation" : "Balanced"}
+            {label}
           </button>
         ))}
       </div>
 
-      {/* Best deal highlight */}
-      {bestDeal && (
-        <div className="rounded-lg border border-emerald-500/30 bg-emerald-500/5 p-3 flex items-center gap-2">
-          <CheckCircle className="size-4 text-emerald-400 shrink-0" />
-          <span className="text-sm text-emerald-400 font-medium">
-            Best deal for {strategy === "cashflow" ? "Cash Flow" : strategy === "appreciation" ? "Appreciation" : "Balanced"} strategy:{" "}
-            {properties.find((p) => p.id === bestDeal)?.name}
-          </span>
-        </div>
-      )}
-
-      <div className="flex gap-6">
-        {/* Comparison table */}
-        <div className="flex-1 overflow-x-auto">
+      {/* Table */}
+      <div className="rounded-xl border border-white/10 bg-white/5 overflow-hidden">
+        <div className="overflow-x-auto">
           <table className="w-full text-sm">
             <thead>
-              <tr className="border-b border-border">
-                <th className="text-left py-2 pr-4 text-muted-foreground font-medium text-xs">Metric</th>
-                {properties.map((p, pi) => (
-                  <th key={p.id} className="text-right py-2 px-3 min-w-[120px]">
-                    <div className="flex items-center justify-end gap-2">
-                      <span
-                        className="text-xs font-semibold truncate max-w-[80px]"
-                        style={{ color: RADAR_COLORS[pi % RADAR_COLORS.length] }}
-                      >
-                        {p.name}
-                      </span>
-                      {p.id === bestDeal && (
-                        <Badge className="text-[9px] py-0 px-1 bg-emerald-500/20 text-emerald-400 border-emerald-500/30">
-                          Best
-                        </Badge>
-                      )}
-                      <button onClick={() => onRemove(p.id)} className="text-muted-foreground hover:text-red-400">
-                        <Trash2 className="size-3" />
-                      </button>
-                    </div>
-                  </th>
-                ))}
+              <tr className="bg-white/5 text-xs text-zinc-500 uppercase">
+                <th className="px-3 py-2 text-left">Metro</th>
+                <th className="px-3 py-2 text-right">Median Price</th>
+                <th className="px-3 py-2 text-right">P/Rent</th>
+                <th className="px-3 py-2 text-right">Cap Rate</th>
+                <th className="px-3 py-2 text-right">Rent Grwth</th>
+                <th className="px-3 py-2 text-right">Price Grwth</th>
+                <th className="px-3 py-2 text-right">Price/Income</th>
+                <th className="px-3 py-2 text-right">Score</th>
               </tr>
             </thead>
             <tbody>
-              {COMPARE_ROWS.map((row) => (
-                <tr key={row.label} className="border-b border-border/40 hover:bg-muted/20">
-                  <td className="py-1.5 pr-4 text-xs text-muted-foreground">{row.label}</td>
-                  {properties.map((p) => (
-                    <td key={p.id} className={cn("text-right py-1.5 px-3 text-xs font-medium tabular-nums", row.color?.(p))}>
-                      {row.fmt(p)}
+              {metros.map((m, i) => {
+                const afford = m.medianPrice / m.medianIncome;
+                const score = m.capRate * 0.5 + m.priceGrowth * 0.3 + m.rentGrowth * 0.2;
+                return (
+                  <motion.tr
+                    key={m.city}
+                    initial={{ opacity: 0, x: -10 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    transition={{ delay: i * 0.02 }}
+                    className="border-t border-white/5 hover:bg-white/5 transition-colors"
+                  >
+                    <td className="px-3 py-2 font-medium text-white">
+                      {m.city}, {m.state}
                     </td>
-                  ))}
-                </tr>
-              ))}
-            </tbody>
-          </table>
-        </div>
-
-        {/* Radar chart */}
-        <div className="shrink-0">
-          <h4 className="text-xs font-medium text-muted-foreground mb-2 text-center">Radar Comparison</h4>
-          <RadarChart properties={properties} />
-        </div>
-      </div>
-
-      {/* 10-year projection table */}
-      <div>
-        <h3 className="text-sm font-semibold mb-3">10-Year Projected Returns</h3>
-        <div className="overflow-x-auto">
-          <table className="w-full text-xs">
-            <thead>
-              <tr className="border-b border-border">
-                <th className="text-left py-2 pr-3 text-muted-foreground">Year</th>
-                {properties.flatMap((p, pi) => [
-                  <th key={`${p.id}-v`} className="text-right py-2 px-2 text-muted-foreground">
-                    <span style={{ color: RADAR_COLORS[pi] }}>{p.name}</span> Value
-                  </th>,
-                  <th key={`${p.id}-e`} className="text-right py-2 px-2 text-muted-foreground">
-                    <span style={{ color: RADAR_COLORS[pi] }}>{p.name}</span> Equity
-                  </th>,
-                ])}
-              </tr>
-            </thead>
-            <tbody>
-              {[1, 2, 3, 5, 7, 10].map((yr) => (
-                <tr key={yr} className="border-b border-border/30 hover:bg-muted/20">
-                  <td className="py-1.5 pr-3 font-medium">Year {yr}</td>
-                  {projections.flatMap((proj, pi) => {
-                    const row = proj.find((r) => r.yr === yr);
-                    return [
-                      <td key={`${pi}-v`} className="text-right py-1.5 px-2 tabular-nums">
-                        {row ? fmtCurrency(row.propertyValue, true) : "—"}
-                      </td>,
-                      <td key={`${pi}-e`} className="text-right py-1.5 px-2 tabular-nums text-emerald-400">
-                        {row ? fmtCurrency(row.equity, true) : "—"}
-                      </td>,
-                    ];
-                  })}
-                </tr>
-              ))}
+                    <td className="px-3 py-2 text-right text-zinc-300">{fmtM(m.medianPrice)}</td>
+                    <td className="px-3 py-2 text-right">
+                      <span className={m.priceToRent < 15 ? "text-emerald-400" : m.priceToRent < 25 ? "text-amber-400" : "text-rose-400"}>
+                        {m.priceToRent}x
+                      </span>
+                    </td>
+                    <td className="px-3 py-2 text-right">
+                      <span className={m.capRate >= 6 ? "text-emerald-400" : m.capRate >= 4.5 ? "text-amber-400" : "text-rose-400"}>
+                        {fmtPct(m.capRate)}
+                      </span>
+                    </td>
+                    <td className="px-3 py-2 text-right text-blue-300">{fmtPct(m.rentGrowth)}</td>
+                    <td className="px-3 py-2 text-right text-purple-300">{fmtPct(m.priceGrowth)}</td>
+                    <td className="px-3 py-2 text-right">
+                      <span className={afford < 5 ? "text-emerald-400" : afford < 8 ? "text-amber-400" : "text-rose-400"}>
+                        {afford.toFixed(1)}x
+                      </span>
+                    </td>
+                    <td className="px-3 py-2 text-right">
+                      <div className="flex items-center justify-end gap-1.5">
+                        <div className="h-1.5 rounded-full bg-blue-600/30 w-16 overflow-hidden">
+                          <div className="h-full bg-blue-500 rounded-full" style={{ width: `${(score / 10) * 100}%` }} />
+                        </div>
+                        <span className="text-xs text-zinc-400">{score.toFixed(1)}</span>
+                      </div>
+                    </td>
+                  </motion.tr>
+                );
+              })}
             </tbody>
           </table>
         </div>
       </div>
+
+      {/* Rent vs Buy */}
+      <div className="rounded-xl border border-white/10 bg-white/5 p-5">
+        <SectionTitle><Calculator className="w-4 h-4" />Rent vs. Buy Calculator (10-Year Net Cost)</SectionTitle>
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-4">
+          {[
+            { key: "price" as const, label: "Purchase Price ($)", step: 10000 },
+            { key: "rent" as const, label: "Monthly Rent ($)", step: 100 },
+            { key: "appreciation" as const, label: "Home Appreciation (%)", step: 0.5 },
+            { key: "investReturn" as const, label: "Investment Return (%)", step: 0.5 },
+          ].map(({ key, label, step }) => (
+            <div key={key}>
+              <label className="text-xs text-zinc-500 block mb-1">{label}</label>
+              <input
+                type="number"
+                value={rentVsBuy[key]}
+                step={step}
+                onChange={(e) =>
+                  setRentVsBuy((p) => ({ ...p, [key]: parseFloat(e.target.value) || 0 }))
+                }
+                className="w-full rounded-lg border border-white/10 bg-zinc-900 px-3 py-1.5 text-sm text-white focus:outline-none focus:ring-1 focus:ring-blue-500"
+              />
+            </div>
+          ))}
+        </div>
+
+        <svg viewBox={`0 0 ${W2} ${H2}`} className="w-full" preserveAspectRatio="xMidYMid meet">
+          {[0, 0.25, 0.5, 0.75, 1].map((t) => (
+            <line key={t} x1={P2.l} y1={P2.t + ch2 * (1 - t)} x2={W2 - P2.r} y2={P2.t + ch2 * (1 - t)} stroke="#ffffff10" strokeDasharray="4,4" />
+          ))}
+          {[0, 0.5, 1].map((t) => (
+            <text key={t} x={P2.l - 4} y={P2.t + ch2 * (1 - t) + 4} fontSize={9} fill="#6b7280" textAnchor="end">
+              {fmtM(rvbMax * t)}
+            </text>
+          ))}
+          {[2, 4, 6, 8, 10].map((yr) => (
+            <text key={yr} x={P2.l + (yr / 10) * cw2} y={H2 - 6} fontSize={9} fill="#6b7280" textAnchor="middle">
+              Yr {yr}
+            </text>
+          ))}
+          <path d={buyPath} fill="none" stroke="#3b82f6" strokeWidth={2} />
+          <path d={rentPath} fill="none" stroke="#f59e0b" strokeWidth={2} />
+          <rect x={P2.l + 10} y={P2.t + 6} width={10} height={2} fill="#3b82f6" />
+          <text x={P2.l + 24} y={P2.t + 10} fontSize={9} fill="#93c5fd">Buy (net cost)</text>
+          <rect x={P2.l + 110} y={P2.t + 6} width={10} height={2} fill="#f59e0b" />
+          <text x={P2.l + 124} y={P2.t + 10} fontSize={9} fill="#fcd34d">Rent</text>
+        </svg>
+
+        <div className={cn("mt-3 rounded-lg p-3 text-sm font-medium text-center", winner10 === "buying" ? "bg-emerald-500/20 text-emerald-300" : "bg-amber-500/20 text-amber-300")}>
+          Over 10 years, <strong>{winner10}</strong> is cheaper given these assumptions.
+          Net cost difference: {fmtM(Math.abs(rvb.yvBuy[9] - rvb.yvRent[9]))}
+        </div>
+      </div>
+
+      <InfoBox variant="amber">
+        <strong>Price-to-Rent Ratio</strong>: Below 15 = strongly favors buying. 15–20 = neutral. Above 25 = renting likely cheaper. {" "}
+        <strong>Investor Score</strong> weights cap rate (50%), price growth (30%), rent growth (20%).
+      </InfoBox>
     </div>
   );
 }
 
-// ── Scatter Plot ───────────────────────────────────────────────────────────────
+// ══════════════════════════════════════════════════════════════════════════════
+// TAB 3 — REIT Analysis
+// ══════════════════════════════════════════════════════════════════════════════
 
-function ScatterPlot({ markets }: { markets: Market[] }) {
-  const W = 420, H = 280;
-  const PAD = { l: 50, r: 20, t: 20, b: 40 };
-
-  const prList = markets.map((m) => m.priceRentRatio);
-  const crList = markets.map((m) => m.capRate);
-  const prMin = Math.min(...prList) - 1, prMax = Math.max(...prList) + 1;
-  const crMin = Math.min(...crList) - 0.5, crMax = Math.max(...crList) + 0.5;
-
-  function toX(pr: number) { return PAD.l + ((pr - prMin) / (prMax - prMin)) * (W - PAD.l - PAD.r); }
-  function toY(cr: number) { return H - PAD.b - ((cr - crMin) / (crMax - crMin)) * (H - PAD.t - PAD.b); }
-
-  const xTicks = [15, 18, 21, 24, 27, 30];
-  const yTicks = [4, 5, 6, 7, 8];
-
-  return (
-    <svg width={W} height={H}>
-      {/* Grid */}
-      {yTicks.map((v) => (
-        <line key={v} x1={PAD.l} y1={toY(v)} x2={W - PAD.r} y2={toY(v)}
-          stroke="rgba(255,255,255,0.05)" strokeWidth={1} />
-      ))}
-      {/* Y axis */}
-      <line x1={PAD.l} y1={PAD.t} x2={PAD.l} y2={H - PAD.b} stroke="rgba(255,255,255,0.2)" strokeWidth={1} />
-      {/* X axis */}
-      <line x1={PAD.l} y1={H - PAD.b} x2={W - PAD.r} y2={H - PAD.b} stroke="rgba(255,255,255,0.2)" strokeWidth={1} />
-      {/* Y ticks */}
-      {yTicks.map((v) => (
-        <text key={v} x={PAD.l - 6} y={toY(v)} textAnchor="end" dominantBaseline="middle" fontSize={9} fill="rgb(148,163,184)">
-          {v}%
-        </text>
-      ))}
-      {/* X ticks */}
-      {xTicks.map((v) => (
-        <text key={v} x={toX(v)} y={H - PAD.b + 14} textAnchor="middle" fontSize={9} fill="rgb(148,163,184)">
-          {v}x
-        </text>
-      ))}
-      {/* Axis labels */}
-      <text x={W / 2} y={H - 4} textAnchor="middle" fontSize={10} fill="rgb(148,163,184)">Price/Rent Ratio</text>
-      <text transform={`translate(12,${H / 2}) rotate(-90)`} textAnchor="middle" fontSize={10} fill="rgb(148,163,184)">Cap Rate</text>
-      {/* Points */}
-      {markets.map((m, i) => (
-        <g key={m.city}>
-          <circle cx={toX(m.priceRentRatio)} cy={toY(m.capRate)} r={6}
-            fill="#3b82f6" fillOpacity={0.7} stroke="#60a5fa" strokeWidth={1} />
-          <text x={toX(m.priceRentRatio)} y={toY(m.capRate) - 9}
-            textAnchor="middle" fontSize={8} fill="rgb(148,163,184)">
-            {m.city}
-          </text>
-        </g>
-      ))}
-    </svg>
-  );
+interface REITDef {
+  ticker: string;
+  name: string;
+  sector: string;
+  divYield: number;
+  ffoPerShare: number;
+  pFfo: number;
+  debtEbitda: number;
+  occupancy: number;
+  leaseType: string;
 }
 
-// ── Tab 3: Market Analysis ────────────────────────────────────────────────────
+const REITS: REITDef[] = [
+  { ticker: "AVB", name: "AvalonBay Communities", sector: "Residential", divYield: 3.4, ffoPerShare: 10.8, pFfo: 18.2, debtEbitda: 5.2, occupancy: 96.1, leaseType: "Gross" },
+  { ticker: "EQR", name: "Equity Residential", sector: "Residential", divYield: 3.8, ffoPerShare: 3.9, pFfo: 17.5, debtEbitda: 5.8, occupancy: 95.8, leaseType: "Gross" },
+  { ticker: "SPG", name: "Simon Property Group", sector: "Retail (Mall)", divYield: 5.1, ffoPerShare: 12.4, pFfo: 12.2, debtEbitda: 7.1, occupancy: 94.7, leaseType: "Triple Net" },
+  { ticker: "O", name: "Realty Income", sector: "Retail (NNN)", divYield: 5.8, ffoPerShare: 4.2, pFfo: 13.1, debtEbitda: 5.9, occupancy: 98.8, leaseType: "Triple Net" },
+  { ticker: "VNO", name: "Vornado Realty", sector: "Office", divYield: 4.2, ffoPerShare: 2.8, pFfo: 11.8, debtEbitda: 9.2, occupancy: 89.2, leaseType: "Gross" },
+  { ticker: "PLD", name: "Prologis", sector: "Industrial", divYield: 2.8, ffoPerShare: 5.6, pFfo: 24.1, debtEbitda: 4.1, occupancy: 97.6, leaseType: "Triple Net" },
+  { ticker: "WELL", name: "Welltower", sector: "Healthcare", divYield: 2.1, ffoPerShare: 4.1, pFfo: 28.6, debtEbitda: 6.2, occupancy: 84.3, leaseType: "Triple Net" },
+  { ticker: "DLR", name: "Digital Realty", sector: "Data Center", divYield: 3.1, ffoPerShare: 6.8, pFfo: 22.4, debtEbitda: 6.8, occupancy: 98.2, leaseType: "Gross" },
+  { ticker: "MAR", name: "Marriott REIT", sector: "Hospitality", divYield: 4.6, ffoPerShare: 3.2, pFfo: 15.8, debtEbitda: 8.4, occupancy: 72.8, leaseType: "Gross" },
+  { ticker: "WPC", name: "W. P. Carey", sector: "Diversified", divYield: 6.2, ffoPerShare: 4.8, pFfo: 11.9, debtEbitda: 6.1, occupancy: 98.4, leaseType: "Triple Net" },
+  { ticker: "PSA", name: "Public Storage", sector: "Self-Storage", divYield: 3.2, ffoPerShare: 16.8, pFfo: 19.4, debtEbitda: 3.8, occupancy: 93.5, leaseType: "Month-to-Month" },
+  { ticker: "EXR", name: "Extra Space Storage", sector: "Self-Storage", divYield: 4.1, ffoPerShare: 8.4, pFfo: 17.2, debtEbitda: 4.2, occupancy: 92.8, leaseType: "Month-to-Month" },
+];
 
-function MarketAnalysis({ markets }: { markets: Market[] }) {
-  const cashFlowTop = [...markets].sort((a, b) => b.cashFlowScore - a.cashFlowScore).slice(0, 5);
-  const appreciationTop = [...markets].sort((a, b) => b.appreciationScore - a.appreciationScore).slice(0, 5);
+const SECTOR_COLORS: Record<string, string> = {
+  Residential: "#3b82f6",
+  "Retail (Mall)": "#f59e0b",
+  "Retail (NNN)": "#f97316",
+  Office: "#ef4444",
+  Industrial: "#10b981",
+  Healthcare: "#a78bfa",
+  "Data Center": "#06b6d4",
+  Hospitality: "#ec4899",
+  Diversified: "#8b5cf6",
+  "Self-Storage": "#84cc16",
+};
+
+function REITAnalysis() {
+  const [selected, setSelected] = useState<string | null>(null);
+  const sel = REITS.find((r) => r.ticker === selected);
+
+  const avgDivYield = REITS.reduce((a, b) => a + b.divYield, 0) / REITS.length;
+  const avgPFfo = REITS.reduce((a, b) => a + b.pFfo, 0) / REITS.length;
+
+  // Bar chart: FFO by ticker
+  const maxFfo = Math.max(...REITS.map((r) => r.ffoPerShare));
+  const W3 = 480;
+  const H3 = 140;
+  const P3 = { t: 10, r: 10, b: 30, l: 40 };
+  const barW = (W3 - P3.l - P3.r) / REITS.length - 2;
 
   return (
     <div className="space-y-6">
-      {/* Market cards */}
-      <div className="grid grid-cols-2 lg:grid-cols-5 gap-3">
-        {markets.map((m) => (
-          <div key={m.city} className="rounded-lg border border-border bg-card p-3 space-y-2">
-            <div className="flex items-center justify-between">
+      {/* Summary stats */}
+      <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
+        <StatCard label="REITs Covered" value="12" sub="Across 8 sectors" />
+        <StatCard label="Avg Div Yield" value={fmtPct(avgDivYield)} highlight="pos" sub="vs S&P ~1.5%" />
+        <StatCard label="Avg P/FFO" value={avgPFfo.toFixed(1) + "x"} sub="Industry median" />
+        <StatCard label="Highest Yield" value={fmtPct(Math.max(...REITS.map((r) => r.divYield)))} highlight="pos" sub="WPC — Diversified" />
+      </div>
+
+      {/* REIT table */}
+      <div className="rounded-xl border border-white/10 bg-white/5 overflow-hidden">
+        <div className="overflow-x-auto">
+          <table className="w-full text-sm">
+            <thead>
+              <tr className="bg-white/5 text-xs text-zinc-500 uppercase">
+                <th className="px-3 py-2 text-left">Ticker</th>
+                <th className="px-3 py-2 text-left">Sector</th>
+                <th className="px-3 py-2 text-right">Div Yield</th>
+                <th className="px-3 py-2 text-right">FFO/Share</th>
+                <th className="px-3 py-2 text-right">P/FFO</th>
+                <th className="px-3 py-2 text-right">Debt/EBITDA</th>
+                <th className="px-3 py-2 text-right">Occupancy</th>
+                <th className="px-3 py-2 text-left">Lease</th>
+              </tr>
+            </thead>
+            <tbody>
+              {REITS.map((r) => (
+                <tr
+                  key={r.ticker}
+                  onClick={() => setSelected(r.ticker === selected ? null : r.ticker)}
+                  className={cn("border-t border-white/5 cursor-pointer transition-colors", selected === r.ticker ? "bg-blue-600/20" : "hover:bg-white/5")}
+                >
+                  <td className="px-3 py-2 font-mono font-bold text-white">{r.ticker}</td>
+                  <td className="px-3 py-2">
+                    <span className="rounded px-1.5 py-0.5 text-xs" style={{ backgroundColor: (SECTOR_COLORS[r.sector] ?? "#6b7280") + "30", color: SECTOR_COLORS[r.sector] ?? "#9ca3af" }}>
+                      {r.sector}
+                    </span>
+                  </td>
+                  <td className="px-3 py-2 text-right text-emerald-400">{fmtPct(r.divYield)}</td>
+                  <td className="px-3 py-2 text-right text-zinc-300">${r.ffoPerShare.toFixed(2)}</td>
+                  <td className="px-3 py-2 text-right">
+                    <span className={r.pFfo < 15 ? "text-emerald-400" : r.pFfo < 22 ? "text-amber-400" : "text-rose-400"}>{r.pFfo.toFixed(1)}x</span>
+                  </td>
+                  <td className="px-3 py-2 text-right">
+                    <span className={r.debtEbitda < 5 ? "text-emerald-400" : r.debtEbitda < 7 ? "text-amber-400" : "text-rose-400"}>{r.debtEbitda.toFixed(1)}x</span>
+                  </td>
+                  <td className="px-3 py-2 text-right">
+                    <span className={r.occupancy >= 95 ? "text-emerald-400" : r.occupancy >= 88 ? "text-amber-400" : "text-rose-400"}>{r.occupancy.toFixed(1)}%</span>
+                  </td>
+                  <td className="px-3 py-2 text-xs text-zinc-400">{r.leaseType}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      {/* Selected detail */}
+      <AnimatePresence>
+        {sel && (
+          <motion.div
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -10 }}
+            className="rounded-xl border border-blue-500/30 bg-blue-500/10 p-5"
+          >
+            <div className="flex justify-between items-start mb-3">
               <div>
-                <div className="text-sm font-semibold">{m.city}</div>
-                <div className="text-xs text-muted-foreground">{m.state}</div>
+                <span className="font-mono font-bold text-xl text-white">{sel.ticker}</span>
+                <span className="ml-2 text-zinc-400">{sel.name}</span>
               </div>
-              <div className={cn(
-                "text-xs font-bold rounded-full px-2 py-0.5",
-                m.investorScore >= 65 ? "bg-emerald-500/20 text-emerald-400"
-                  : m.investorScore >= 45 ? "bg-amber-500/20 text-amber-400"
-                  : "bg-red-500/20 text-red-400",
-              )}>
-                {m.investorScore}
+              <span className="rounded px-2 py-0.5 text-xs font-medium" style={{ backgroundColor: (SECTOR_COLORS[sel.sector] ?? "#6b7280") + "30", color: SECTOR_COLORS[sel.sector] ?? "#9ca3af" }}>
+                {sel.sector}
+              </span>
+            </div>
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-3 mb-3">
+              <StatCard label="Dividend Yield" value={fmtPct(sel.divYield)} highlight="pos" />
+              <StatCard label="FFO/Share" value={`$${sel.ffoPerShare.toFixed(2)}`} />
+              <StatCard label="P/FFO Multiple" value={`${sel.pFfo.toFixed(1)}x`} highlight={sel.pFfo < avgPFfo ? "pos" : "neutral"} sub={sel.pFfo < avgPFfo ? "Below avg (cheap)" : "Above avg"} />
+              <StatCard label="Occupancy" value={fmtPct(sel.occupancy)} highlight={sel.occupancy >= 95 ? "pos" : sel.occupancy >= 88 ? "neutral" : "neg"} />
+            </div>
+            <InfoBox variant="blue">
+              <strong>Lease type: {sel.leaseType}</strong>
+              {sel.leaseType === "Triple Net" && " — Tenant pays property taxes, insurance, and maintenance. Very predictable income for the REIT."}
+              {sel.leaseType === "Gross" && " — Landlord pays operating expenses. Requires active management but gives full control over cost structure."}
+              {sel.leaseType === "Month-to-Month" && " — Short-term leases with frequent rent resets. Allows quick adjustments to market rates but less income predictability."}
+            </InfoBox>
+          </motion.div>
+        )}
+      </AnimatePresence>
+
+      {/* FFO bar chart */}
+      <div className="rounded-xl border border-white/10 bg-white/5 p-5">
+        <SectionTitle><BarChart3 className="w-4 h-4" />FFO per Share by REIT</SectionTitle>
+        <svg viewBox={`0 0 ${W3} ${H3}`} className="w-full" preserveAspectRatio="xMidYMid meet">
+          {[0, 0.5, 1].map((t) => (
+            <line key={t} x1={P3.l} y1={P3.t + (H3 - P3.t - P3.b) * (1 - t)} x2={W3 - P3.r} y2={P3.t + (H3 - P3.t - P3.b) * (1 - t)} stroke="#ffffff10" strokeDasharray="3,3" />
+          ))}
+          {REITS.map((r, i) => {
+            const barH = (r.ffoPerShare / maxFfo) * (H3 - P3.t - P3.b);
+            const x = P3.l + i * ((W3 - P3.l - P3.r) / REITS.length) + 1;
+            const color = SECTOR_COLORS[r.sector] ?? "#6b7280";
+            return (
+              <g key={r.ticker}>
+                <rect x={x} y={P3.t + (H3 - P3.t - P3.b) - barH} width={barW} height={barH} fill={color + "80"} rx={2} />
+                <text x={x + barW / 2} y={H3 - P3.b + 10} fontSize={7} fill="#6b7280" textAnchor="middle">{r.ticker}</text>
+              </g>
+            );
+          })}
+        </svg>
+      </div>
+
+      {/* Education: FFO vs Earnings */}
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <div className="rounded-xl border border-white/10 bg-white/5 p-4 space-y-2">
+          <SectionTitle><Info className="w-4 h-4" />Why FFO Instead of EPS?</SectionTitle>
+          <p className="text-xs text-zinc-400 leading-relaxed">
+            REITs own depreciating assets on paper — GAAP requires large depreciation charges that reduce net income, but real estate often <em>appreciates</em> in value.
+          </p>
+          <p className="text-xs text-zinc-400 leading-relaxed">
+            <strong className="text-white">FFO = Net Income + Depreciation − Gains on Property Sales</strong>. This gives a more accurate picture of cash generated from operations.
+          </p>
+          <p className="text-xs text-zinc-400 leading-relaxed">
+            <strong className="text-white">AFFO</strong> (Adjusted FFO) further subtracts recurring capex — the gold standard for dividend sustainability analysis.
+          </p>
+        </div>
+        <div className="rounded-xl border border-white/10 bg-white/5 p-4 space-y-2">
+          <SectionTitle><Building2 className="w-4 h-4" />REIT vs Direct Real Estate</SectionTitle>
+          {[
+            { factor: "Liquidity", reit: "High — stock exchange", direct: "Low — months to sell" },
+            { factor: "Diversification", reit: "100s of properties", direct: "Concentrated" },
+            { factor: "Leverage", reit: "Moderate, institutional", direct: "High, personal loan" },
+            { factor: "Tax (US)", reit: "Ordinary income", direct: "Cap gains + depreciation" },
+            { factor: "Control", reit: "None", direct: "Full" },
+            { factor: "Min. Investment", reit: "~$50 per share", direct: "$50K+ down payment" },
+          ].map(({ factor, reit, direct }) => (
+            <div key={factor} className="grid grid-cols-3 text-xs gap-1">
+              <span className="text-zinc-500 font-medium">{factor}</span>
+              <span className="text-blue-300">{reit}</span>
+              <span className="text-amber-300">{direct}</span>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  );
+}
+
+// ══════════════════════════════════════════════════════════════════════════════
+// TAB 4 — Commercial Real Estate
+// ══════════════════════════════════════════════════════════════════════════════
+
+interface CREProperty {
+  type: string;
+  icon: string;
+  nyCapRate: number;
+  sunBeltCapRate: number;
+  vacancyRate: number;
+  avgLeaseTerm: string;
+  trend: "up" | "down" | "flat";
+  note: string;
+}
+
+const CRE_SECTORS: CREProperty[] = [
+  { type: "Industrial", icon: "🏭", nyCapRate: 4.2, sunBeltCapRate: 4.8, vacancyRate: 4.2, avgLeaseTerm: "5-10 yr", trend: "up", note: "E-commerce tailwind; last-mile demand surging" },
+  { type: "Multifamily", icon: "🏢", nyCapRate: 3.8, sunBeltCapRate: 5.2, vacancyRate: 6.8, avgLeaseTerm: "1 yr", trend: "up", note: "Strong Sun Belt demand; rent growth moderating" },
+  { type: "Data Center", icon: "🖥️", nyCapRate: 4.5, sunBeltCapRate: 5.5, vacancyRate: 2.8, avgLeaseTerm: "10-15 yr", trend: "up", note: "AI demand driving explosive leasing activity" },
+  { type: "Retail (Strip)", icon: "🏪", nyCapRate: 5.5, sunBeltCapRate: 6.2, vacancyRate: 5.8, avgLeaseTerm: "5-10 yr", trend: "flat", note: "Grocery-anchored centers most resilient" },
+  { type: "Office (CBD)", icon: "🏙️", nyCapRate: 3.5, sunBeltCapRate: 6.5, vacancyRate: 19.2, avgLeaseTerm: "7-10 yr", trend: "down", note: "Remote work structural headwind; record vacancy" },
+  { type: "Hospitality", icon: "🏨", nyCapRate: 6.2, sunBeltCapRate: 8.1, vacancyRate: 28.4, avgLeaseTerm: "N/A", trend: "flat", note: "Leisure recovery strong; business travel lagging" },
+  { type: "Healthcare (MOB)", icon: "🏥", nyCapRate: 5.2, sunBeltCapRate: 6.1, vacancyRate: 8.1, avgLeaseTerm: "10-20 yr", trend: "up", note: "Aging population; sticky tenants" },
+];
+
+function CommercialRE() {
+  const [dscrInputs, setDscrInputs] = useState({ noi: 480000, debtService: 360000 });
+  const [mortInputs, setMortInputs] = useState({ loanAmount: 5000000, rate: 6.5, amort: 25 });
+
+  const dscr = dscrInputs.noi / dscrInputs.debtService;
+
+  const { pmt: commercialPmt } = useMemo(() => {
+    const { loanAmount, rate, amort } = mortInputs;
+    const r = rate / 100 / 12;
+    const n = amort * 12;
+    const pmt = (loanAmount * r * Math.pow(1 + r, n)) / (Math.pow(1 + r, n) - 1);
+    // 5yr balloon: remaining balance after 5 years
+    let balance = loanAmount;
+    for (let m = 0; m < 60; m++) {
+      const interest = balance * r;
+      const princ = pmt - interest;
+      balance -= princ;
+    }
+    return { pmt, balloon: balance };
+  }, [mortInputs]);
+
+  return (
+    <div className="space-y-6">
+      {/* Sector grid */}
+      <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-3">
+        {CRE_SECTORS.map((s) => (
+          <motion.div
+            key={s.type}
+            initial={{ opacity: 0, y: 8 }}
+            animate={{ opacity: 1, y: 0 }}
+            className="rounded-xl border border-white/10 bg-white/5 p-4 space-y-2"
+          >
+            <div className="flex items-center justify-between">
+              <div className="flex items-center gap-2">
+                <span className="text-xl">{s.icon}</span>
+                <span className="font-semibold text-white text-sm">{s.type}</span>
+              </div>
+              {s.trend === "up" ? <TrendingUp className="w-4 h-4 text-emerald-400" /> : s.trend === "down" ? <TrendingDown className="w-4 h-4 text-rose-400" /> : <ArrowRight className="w-4 h-4 text-amber-400" />}
+            </div>
+            <div className="grid grid-cols-2 gap-x-4 gap-y-1 text-xs">
+              <div className="flex justify-between">
+                <span className="text-zinc-500">NYC Cap Rate</span>
+                <span className="text-zinc-300">{fmtPct(s.nyCapRate)}</span>
+              </div>
+              <div className="flex justify-between">
+                <span className="text-zinc-500">Sun Belt</span>
+                <span className="text-zinc-300">{fmtPct(s.sunBeltCapRate)}</span>
+              </div>
+              <div className="flex justify-between">
+                <span className="text-zinc-500">Vacancy</span>
+                <span className={s.vacancyRate > 15 ? "text-rose-400" : s.vacancyRate > 8 ? "text-amber-400" : "text-emerald-400"}>{fmtPct(s.vacancyRate)}</span>
+              </div>
+              <div className="flex justify-between">
+                <span className="text-zinc-500">Lease Term</span>
+                <span className="text-zinc-300">{s.avgLeaseTerm}</span>
               </div>
             </div>
-            <div className="space-y-1 text-xs">
-              <div className="flex justify-between">
-                <span className="text-muted-foreground">Median Price</span>
-                <span className="font-medium tabular-nums">{fmtCurrency(m.medianPrice, true)}</span>
-              </div>
-              <div className="flex justify-between">
-                <span className="text-muted-foreground">P/R Ratio</span>
-                <span className="font-medium tabular-nums">{fmtNum(m.priceRentRatio, 1)}x</span>
-              </div>
-              <div className="flex justify-between">
-                <span className="text-muted-foreground">YoY Apprec.</span>
-                <span className="font-medium tabular-nums text-emerald-400">{fmtPct(m.yoyAppreciation)}</span>
-              </div>
-              <div className="flex justify-between">
-                <span className="text-muted-foreground">Cap Rate</span>
-                <span className={cn("font-medium tabular-nums", m.capRate >= 6 ? "text-emerald-400" : "text-amber-400")}>
-                  {fmtPct(m.capRate)}
-                </span>
-              </div>
-              <div className="flex justify-between">
-                <span className="text-muted-foreground">Job Growth</span>
-                <span className="font-medium tabular-nums">{fmtPct(m.jobGrowth)}</span>
-              </div>
-              <div className="flex justify-between">
-                <span className="text-muted-foreground">Inventory</span>
-                <span className="font-medium tabular-nums">{fmtNum(m.inventory, 1)} mo</span>
-              </div>
-            </div>
-            {/* Score bar */}
-            <div className="space-y-1">
-              <div className="flex justify-between text-[9px] text-muted-foreground">
-                <span>Investor Score</span>
-                <span>{m.investorScore}/100</span>
-              </div>
-              <div className="h-1 rounded-full bg-muted overflow-hidden">
-                <div
-                  className={cn("h-full rounded-full", m.investorScore >= 65 ? "bg-emerald-500" : m.investorScore >= 45 ? "bg-amber-500" : "bg-red-500")}
-                  style={{ width: `${m.investorScore}%` }}
-                />
-              </div>
-            </div>
-          </div>
+            <p className="text-xs text-zinc-500 leading-relaxed">{s.note}</p>
+          </motion.div>
         ))}
       </div>
 
-      {/* Scatter plot + Rankings */}
-      <div className="flex gap-6 flex-wrap">
-        <div className="rounded-lg border border-border bg-card p-4">
-          <h3 className="text-sm font-semibold mb-3">Price/Rent Ratio vs Cap Rate</h3>
-          <p className="text-xs text-muted-foreground mb-3">Higher P/R ratio generally means lower cap rate — inverse relationship</p>
-          <ScatterPlot markets={markets} />
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+        {/* DSCR Calculator */}
+        <div className="rounded-xl border border-white/10 bg-white/5 p-5 space-y-4">
+          <SectionTitle><Calculator className="w-4 h-4" />DSCR Calculator</SectionTitle>
+          {[
+            { key: "noi" as const, label: "Annual NOI ($)" },
+            { key: "debtService" as const, label: "Annual Debt Service ($)" },
+          ].map(({ key, label }) => (
+            <div key={key} className="flex items-center justify-between gap-4">
+              <label className="text-xs text-zinc-400 w-40">{label}</label>
+              <input
+                type="number"
+                value={dscrInputs[key]}
+                step={10000}
+                onChange={(e) => setDscrInputs((p) => ({ ...p, [key]: parseFloat(e.target.value) || 0 }))}
+                className="w-32 rounded-lg border border-white/10 bg-zinc-900 px-3 py-1.5 text-sm text-white text-right focus:outline-none focus:ring-1 focus:ring-blue-500"
+              />
+            </div>
+          ))}
+          <div className={cn("rounded-lg p-4 text-center", dscr >= 1.25 ? "bg-emerald-500/15 border border-emerald-500/30" : dscr >= 1.0 ? "bg-amber-500/15 border border-amber-500/30" : "bg-rose-500/15 border border-rose-500/30")}>
+            <div className={cn("text-3xl font-bold", dscr >= 1.25 ? "text-emerald-400" : dscr >= 1.0 ? "text-amber-400" : "text-rose-400")}>
+              {dscr.toFixed(2)}x
+            </div>
+            <div className="text-xs text-zinc-400 mt-1">DSCR — {dscr >= 1.25 ? "Lender approved (>1.25x)" : dscr >= 1.0 ? "Borderline — may require more equity" : "Below 1.0x — property cash flow negative"}</div>
+          </div>
+          <InfoBox variant="blue">
+            Most commercial lenders require <strong>DSCR ≥ 1.25x</strong>. Bridge lenders may go to 1.10x with higher rates. SBA loans often require 1.15x.
+          </InfoBox>
         </div>
 
-        <div className="flex-1 min-w-[200px] space-y-4">
-          <div className="rounded-lg border border-border bg-card p-4">
-            <h3 className="text-sm font-semibold text-emerald-400 mb-3">Best for Cash Flow</h3>
-            {cashFlowTop.map((m, i) => (
-              <div key={m.city} className="flex items-center gap-2 py-1.5 border-b border-border/40 last:border-0">
-                <span className="text-xs font-bold text-muted-foreground w-4">{i + 1}</span>
-                <div className="flex-1">
-                  <div className="text-xs font-medium">{m.city}, {m.state}</div>
-                  <div className="text-[10px] text-muted-foreground">Cap Rate {fmtPct(m.capRate)} · P/R {fmtNum(m.priceRentRatio, 1)}x</div>
-                </div>
-                <div className="text-xs font-bold text-emerald-400">{m.cashFlowScore}</div>
-              </div>
-            ))}
+        {/* 5/25 Commercial Mortgage */}
+        <div className="rounded-xl border border-white/10 bg-white/5 p-5 space-y-4">
+          <SectionTitle><Building2 className="w-4 h-4" />Commercial Mortgage (5/25 Structure)</SectionTitle>
+          {[
+            { key: "loanAmount" as const, label: "Loan Amount ($)", step: 100000 },
+            { key: "rate" as const, label: "Interest Rate (%)", step: 0.25 },
+            { key: "amort" as const, label: "Amortization (years)", step: 5 },
+          ].map(({ key, label, step }) => (
+            <div key={key} className="flex items-center justify-between gap-4">
+              <label className="text-xs text-zinc-400 w-40">{label}</label>
+              <input
+                type="number"
+                value={mortInputs[key]}
+                step={step}
+                onChange={(e) => setMortInputs((p) => ({ ...p, [key]: parseFloat(e.target.value) || 0 }))}
+                className="w-32 rounded-lg border border-white/10 bg-zinc-900 px-3 py-1.5 text-sm text-white text-right focus:outline-none focus:ring-1 focus:ring-blue-500"
+              />
+            </div>
+          ))}
+          <div className="grid grid-cols-2 gap-3">
+            <StatCard label="Monthly Payment" value={fmtUSD(commercialPmt)} sub={`${mortInputs.amort}-yr amortization`} />
+            <StatCard label="Annual Debt Service" value={fmtM(commercialPmt * 12)} sub="Used for DSCR calc" />
           </div>
-
-          <div className="rounded-lg border border-border bg-card p-4">
-            <h3 className="text-sm font-semibold text-blue-400 mb-3">Best for Appreciation</h3>
-            {appreciationTop.map((m, i) => (
-              <div key={m.city} className="flex items-center gap-2 py-1.5 border-b border-border/40 last:border-0">
-                <span className="text-xs font-bold text-muted-foreground w-4">{i + 1}</span>
-                <div className="flex-1">
-                  <div className="text-xs font-medium">{m.city}, {m.state}</div>
-                  <div className="text-[10px] text-muted-foreground">YoY {fmtPct(m.yoyAppreciation)} · Pop {fmtPct(m.populationGrowth)}</div>
-                </div>
-                <div className="text-xs font-bold text-blue-400">{m.appreciationScore}</div>
-              </div>
-            ))}
-          </div>
+          <InfoBox variant="amber">
+            Commercial mortgages are typically <strong>5-year fixed</strong> with 25-year amortization. At year 5, a <strong>balloon payment</strong> is due — borrowers must refinance at prevailing rates, creating significant refinancing risk.
+          </InfoBox>
         </div>
+      </div>
+
+      {/* CRE Distress Panel */}
+      <div className="rounded-xl border border-rose-500/30 bg-rose-500/10 p-5">
+        <SectionTitle><AlertTriangle className="w-4 h-4 text-rose-400" /><span className="text-rose-400">Office Sector Distress — Post-COVID</span></SectionTitle>
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+          {[
+            { metric: "Avg Office Vacancy (US)", val: "19.2%", note: "vs 8.5% pre-COVID" },
+            { metric: "Value Decline (Class B)", val: "35-50%", note: "From 2022 peaks in major CBDs" },
+            { metric: "Loans Due 2024-2026", val: "$450B+", note: "Commercial RE loan maturity wall" },
+          ].map(({ metric, val, note }) => (
+            <div key={metric} className="text-center">
+              <div className="text-2xl font-bold text-rose-400">{val}</div>
+              <div className="text-xs font-medium text-rose-300 mt-1">{metric}</div>
+              <div className="text-xs text-zinc-500 mt-0.5">{note}</div>
+            </div>
+          ))}
+        </div>
+        <p className="text-xs text-zinc-400 mt-3 leading-relaxed">
+          Remote/hybrid work structurally reduced office demand. Many owners cannot refinance maturing loans at current values, creating distressed sale opportunities — but also significant credit risk for banks with concentrated office exposure.
+        </p>
       </div>
     </div>
   );
 }
 
-// ── BRRRR Flowchart ────────────────────────────────────────────────────────────
+// ══════════════════════════════════════════════════════════════════════════════
+// TAB 5 — Development & Value-Add
+// ══════════════════════════════════════════════════════════════════════════════
 
-function BRRRRChart() {
-  const steps = [
-    { label: "Buy", desc: "Below market value", color: "#3b82f6", x: 30 },
-    { label: "Rehab", desc: "Force appreciation", color: "#f59e0b", x: 160 },
-    { label: "Rent", desc: "Generate cash flow", color: "#10b981", x: 290 },
-    { label: "Refinance", desc: "Pull equity out", color: "#8b5cf6", x: 420 },
-    { label: "Repeat", desc: "Do it again", color: "#ec4899", x: 550 },
-  ];
+function DevelopmentTab() {
+  const [devInputs, setDevInputs] = useState({
+    landCost: 500000,
+    hardCosts: 1800000,
+    softCosts: 360000,
+    financingCosts: 180000,
+  });
 
-  return (
-    <svg width="640" height="100" className="overflow-visible">
-      {steps.map((step, i) => (
-        <g key={step.label}>
-          {/* Arrow */}
-          {i < steps.length - 1 && (
-            <g>
-              <line
-                x1={step.x + 60} y1={40}
-                x2={steps[i + 1].x + 10} y2={40}
-                stroke="rgba(255,255,255,0.2)" strokeWidth={1.5}
-                strokeDasharray="4,3"
-              />
-              <polygon
-                points={`${steps[i + 1].x + 10},36 ${steps[i + 1].x + 10},44 ${steps[i + 1].x + 16},40`}
-                fill="rgba(255,255,255,0.3)"
-              />
-            </g>
-          )}
-          {/* Box */}
-          <rect x={step.x} y={18} width={68} height={44} rx={8}
-            fill={step.color} fillOpacity={0.15} stroke={step.color} strokeWidth={1.5} />
-          <text x={step.x + 34} y={37} textAnchor="middle" fontSize={12} fontWeight="bold" fill={step.color}>
-            {step.label}
-          </text>
-          <text x={step.x + 34} y={52} textAnchor="middle" fontSize={8} fill="rgb(148,163,184)">
-            {step.desc}
-          </text>
-        </g>
-      ))}
-      {/* Repeat arrow back */}
-      <path
-        d={`M ${steps[4].x + 34} 62 Q ${steps[2].x + 34} 100 ${steps[0].x + 34} 62`}
-        fill="none" stroke="rgba(236,72,153,0.4)" strokeWidth={1.5} strokeDasharray="6,4"
-      />
-      <polygon
-        points={`${steps[0].x + 28},62 ${steps[0].x + 34},54 ${steps[0].x + 40},62`}
-        fill="rgba(236,72,153,0.4)"
-      />
-    </svg>
-  );
-}
+  const [brrrrInputs, setBrrrrInputs] = useState({
+    purchasePrice: 220000,
+    rehabCost: 45000,
+    arv: 320000,
+    newLoanLtv: 75,
+    newLoanRate: 7.0,
+  });
 
-// ── Tab 4: Education ──────────────────────────────────────────────────────────
+  const totalDevCost = Object.values(devInputs).reduce((a, b) => a + b, 0);
+  const devProfit10 = totalDevCost * 0.15;
+  const devProfit20 = totalDevCost * 0.2;
 
-function Education() {
-  const [expanded, setExpanded] = useState<string | null>("brrrr");
+  const brrrrCalc = useMemo(() => {
+    const { purchasePrice, rehabCost, arv, newLoanLtv, newLoanRate } = brrrrInputs;
+    const totalInvested = purchasePrice + rehabCost;
+    const newLoanAmount = arv * (newLoanLtv / 100);
+    const cashOut = newLoanAmount - totalInvested;
+    const equity = arv - newLoanAmount;
+    const monthlyPmt = calcMortgage(newLoanAmount, newLoanRate / 100, 30);
+    return { totalInvested, newLoanAmount, cashOut, equity, monthlyPmt };
+  }, [brrrrInputs]);
 
-  const sections = [
-    {
-      id: "brrrr",
-      title: "BRRRR Strategy",
-      icon: TrendingUp,
-      color: "text-blue-400",
-    },
-    {
-      id: "caprate",
-      title: "Cap Rate Formula",
-      icon: Percent,
-      color: "text-emerald-400",
-    },
-    {
-      id: "1031",
-      title: "1031 Exchange",
-      icon: Calendar,
-      color: "text-amber-400",
-    },
-    {
-      id: "reits",
-      title: "REITs vs Direct Ownership",
-      icon: Building2,
-      color: "text-purple-400",
-    },
-    {
-      id: "tax",
-      title: "Tax Benefits",
-      icon: Shield,
-      color: "text-pink-400",
-    },
-  ];
-
-  return (
-    <div className="space-y-3 max-w-3xl">
-      {sections.map((sec) => (
-        <div key={sec.id} className="rounded-lg border border-border bg-card overflow-hidden">
-          <button
-            className="w-full flex items-center gap-3 px-4 py-3 hover:bg-muted/20 transition-colors"
-            onClick={() => setExpanded(expanded === sec.id ? null : sec.id)}
-          >
-            <sec.icon className={cn("size-4 shrink-0", sec.color)} />
-            <span className="font-semibold text-sm">{sec.title}</span>
-            <span className="ml-auto text-muted-foreground text-xs">{expanded === sec.id ? "▲" : "▼"}</span>
-          </button>
-
-          {expanded === sec.id && (
-            <div className="px-4 pb-4 border-t border-border/40 pt-4 space-y-4">
-              {sec.id === "brrrr" && (
-                <div className="space-y-4">
-                  <p className="text-sm text-muted-foreground">
-                    BRRRR is a real estate investment strategy that allows investors to recycle capital by pulling equity out of renovated properties.
-                  </p>
-                  <div className="overflow-x-auto">
-                    <BRRRRChart />
-                  </div>
-                  <div className="grid grid-cols-1 gap-2 mt-4">
-                    {[
-                      { step: "Buy", detail: "Purchase a distressed property below market value — typically 60–80% of ARV (After Repair Value). Look for motivated sellers, foreclosures, or off-market deals." },
-                      { step: "Rehab", detail: "Force appreciation through strategic renovations. Focus on kitchen, bathrooms, and curb appeal. Track costs carefully — your profit is made at the buy." },
-                      { step: "Rent", detail: "Place qualified tenants to generate steady cash flow. Aim for DSCR > 1.2 and cash-on-cash return > 8% after stabilization." },
-                      { step: "Refinance", detail: "Pull out equity via a cash-out refinance at the new appraised value. This recycles your initial capital to deploy in the next deal." },
-                      { step: "Repeat", detail: "Use the extracted equity as a down payment on the next property. Done correctly, you can scale a portfolio with minimal additional capital." },
-                    ].map(({ step, detail }) => (
-                      <div key={step} className="flex gap-3">
-                        <span className="text-xs font-bold text-primary w-16 shrink-0">{step}</span>
-                        <span className="text-xs text-muted-foreground">{detail}</span>
-                      </div>
-                    ))}
-                  </div>
-                </div>
-              )}
-
-              {sec.id === "caprate" && (
-                <div className="space-y-4">
-                  <div className="rounded-lg border border-border bg-muted/20 p-4">
-                    <div className="text-center space-y-2">
-                      <div className="text-2xl font-bold text-foreground">Cap Rate = NOI / Property Value</div>
-                      <div className="text-muted-foreground text-sm">Net Operating Income ÷ Current Market Value × 100</div>
-                    </div>
-                  </div>
-                  <div className="rounded-lg border border-emerald-500/20 bg-emerald-500/5 p-4">
-                    <h4 className="text-sm font-semibold text-emerald-400 mb-2">Worked Example</h4>
-                    <div className="space-y-2 text-sm">
-                      <div className="flex justify-between"><span className="text-muted-foreground">Annual Gross Rent</span><span className="font-medium">$36,000</span></div>
-                      <div className="flex justify-between"><span className="text-muted-foreground">Vacancy (5%)</span><span className="font-medium text-red-400">-$1,800</span></div>
-                      <div className="flex justify-between"><span className="text-muted-foreground">Property Tax</span><span className="font-medium text-red-400">-$2,400</span></div>
-                      <div className="flex justify-between"><span className="text-muted-foreground">Insurance</span><span className="font-medium text-red-400">-$1,200</span></div>
-                      <div className="flex justify-between"><span className="text-muted-foreground">Maintenance</span><span className="font-medium text-red-400">-$600</span></div>
-                      <div className="border-t border-border pt-2 flex justify-between font-bold">
-                        <span>NOI</span><span className="text-emerald-400">$30,000</span>
-                      </div>
-                      <div className="flex justify-between"><span className="text-muted-foreground">Property Value</span><span className="font-medium">$500,000</span></div>
-                      <div className="border-t border-border pt-2 flex justify-between font-bold text-primary">
-                        <span>Cap Rate</span><span>$30,000 / $500,000 = 6.0%</span>
-                      </div>
-                    </div>
-                  </div>
-                  <div className="grid grid-cols-3 gap-3 text-xs">
-                    {[
-                      { range: "< 4%", label: "Premium Markets", desc: "NYC, SF, LA — appreciation play, negative cash flow likely", color: "text-red-400" },
-                      { range: "4–6%", label: "Balanced Markets", desc: "Major metros — moderate cash flow + appreciation", color: "text-amber-400" },
-                      { range: "> 6%", label: "Cash Flow Markets", desc: "Midwest, Southeast — strong cash flow, slower appreciation", color: "text-emerald-400" },
-                    ].map(({ range, label, desc, color }) => (
-                      <div key={range} className="rounded-lg border border-border p-3 space-y-1">
-                        <div className={cn("font-bold text-sm", color)}>{range}</div>
-                        <div className="font-medium">{label}</div>
-                        <div className="text-muted-foreground">{desc}</div>
-                      </div>
-                    ))}
-                  </div>
-                </div>
-              )}
-
-              {sec.id === "1031" && (
-                <div className="space-y-4">
-                  <p className="text-sm text-muted-foreground">
-                    A 1031 Exchange (named after IRC Section 1031) allows real estate investors to defer capital gains taxes by rolling proceeds from a sold property into a like-kind replacement property.
-                  </p>
-                  <div className="grid grid-cols-2 gap-3">
-                    {[
-                      { label: "45-Day Rule", detail: "You must identify potential replacement properties within 45 days of closing the relinquished property sale." },
-                      { label: "180-Day Rule", detail: "You must close on the replacement property within 180 days of the sale of the relinquished property." },
-                      { label: "Like-Kind Requirement", detail: "Properties must be of 'like-kind' — any real property held for investment qualifies. Does not have to be same type." },
-                      { label: "Qualified Intermediary", detail: "A QI must hold the sale proceeds during the exchange. You cannot take constructive receipt of the funds." },
-                      { label: "Equal or Greater Value", detail: "To defer all capital gains, the replacement property must be equal to or greater in value than what was sold." },
-                      { label: "Boot Avoidance", detail: "'Boot' is cash or non-like-kind property received in an exchange — it is taxable. Must reinvest all equity to fully defer." },
-                    ].map(({ label, detail }) => (
-                      <div key={label} className="rounded-lg border border-border p-3 space-y-1">
-                        <div className="text-xs font-semibold text-amber-400">{label}</div>
-                        <div className="text-xs text-muted-foreground">{detail}</div>
-                      </div>
-                    ))}
-                  </div>
-                  <div className="rounded-lg border border-amber-500/20 bg-amber-500/5 p-3 flex gap-2">
-                    <AlertTriangle className="size-4 text-amber-400 shrink-0 mt-0.5" />
-                    <p className="text-xs text-amber-300">Primary residences do not qualify. Dealer property (inventory) does not qualify. Always consult a qualified tax professional before executing a 1031 exchange.</p>
-                  </div>
-                </div>
-              )}
-
-              {sec.id === "reits" && (
-                <div className="space-y-4">
-                  <p className="text-sm text-muted-foreground">
-                    REITs (Real Estate Investment Trusts) offer exposure to real estate without direct property ownership. Here is how they compare:
-                  </p>
-                  <div className="overflow-x-auto">
-                    <table className="w-full text-xs">
-                      <thead>
-                        <tr className="border-b border-border">
-                          <th className="text-left py-2 pr-4 text-muted-foreground">Dimension</th>
-                          <th className="text-center py-2 px-3 text-purple-400">REITs</th>
-                          <th className="text-center py-2 px-3 text-blue-400">Direct Ownership</th>
-                        </tr>
-                      </thead>
-                      <tbody>
-                        {[
-                          { dim: "Liquidity", reit: "High — trade on exchanges daily", direct: "Low — takes months to sell" },
-                          { dim: "Diversification", reit: "Instant — across hundreds of properties", direct: "Concentrated — few properties" },
-                          { dim: "Management", reit: "None — passive income", direct: "Active — tenants, repairs, vacancies" },
-                          { dim: "Leverage", reit: "Built-in but not controlled", direct: "Full control — choose LTV" },
-                          { dim: "Tax Benefits", reit: "QBI deduction (20%), 1099-DIV", direct: "Depreciation, mortgage interest, 1031" },
-                          { dim: "Minimum Investment", reit: "$1 — single share", direct: "$10K–$100K+ down payment" },
-                          { dim: "Return Profile", reit: "Dividend yield + price appreciation", direct: "Cash flow + appreciation + equity build" },
-                          { dim: "Inflation Hedge", reit: "Moderate (lease escalations)", direct: "Strong (rent increases + asset appreciation)" },
-                        ].map(({ dim, reit, direct }) => (
-                          <tr key={dim} className="border-b border-border/40 hover:bg-muted/20">
-                            <td className="py-2 pr-4 font-medium text-muted-foreground">{dim}</td>
-                            <td className="text-center py-2 px-3 text-purple-300">{reit}</td>
-                            <td className="text-center py-2 px-3 text-blue-300">{direct}</td>
-                          </tr>
-                        ))}
-                      </tbody>
-                    </table>
-                  </div>
-                </div>
-              )}
-
-              {sec.id === "tax" && (
-                <div className="space-y-4">
-                  <p className="text-sm text-muted-foreground">
-                    Real estate offers some of the most powerful tax benefits available to individual investors. These can dramatically improve after-tax returns.
-                  </p>
-                  <div className="space-y-3">
-                    {[
-                      {
-                        title: "Depreciation (Cost Recovery)",
-                        badge: "27.5 years",
-                        detail: "Residential rental property can be depreciated over 27.5 years (commercial: 39 years). This creates a paper loss that offsets rental income — even if the property is appreciating in value. A $500K property yields ~$18,182/year in depreciation deductions.",
-                        color: "border-blue-500/30 bg-blue-500/5",
-                        badgeColor: "bg-blue-500/20 text-blue-400",
-                      },
-                      {
-                        title: "Mortgage Interest Deduction",
-                        badge: "Schedule E",
-                        detail: "All mortgage interest paid on rental properties is fully deductible as a business expense on Schedule E. Unlike primary residences (capped at $750K), rental properties have no cap on deductible interest.",
-                        color: "border-emerald-500/30 bg-emerald-500/5",
-                        badgeColor: "bg-emerald-500/20 text-emerald-400",
-                      },
-                      {
-                        title: "Property Tax Deduction",
-                        badge: "Unlimited",
-                        detail: "Property taxes on rental properties are fully deductible as business expenses. The $10,000 SALT cap does NOT apply to rental properties — only to personal property taxes.",
-                        color: "border-amber-500/30 bg-amber-500/5",
-                        badgeColor: "bg-amber-500/20 text-amber-400",
-                      },
-                      {
-                        title: "1031 Exchange",
-                        badge: "Tax Deferral",
-                        detail: "Defer capital gains taxes indefinitely by rolling proceeds into a like-kind property. Used strategically over a lifetime, you can build a portfolio and pass it to heirs with a stepped-up basis — potentially eliminating the deferred tax entirely.",
-                        color: "border-purple-500/30 bg-purple-500/5",
-                        badgeColor: "bg-purple-500/20 text-purple-400",
-                      },
-                      {
-                        title: "Opportunity Zones",
-                        badge: "IRC §1400Z",
-                        detail: "Invest capital gains in Qualified Opportunity Zones. Hold for 10+ years and gains on the QOZ investment become completely tax-free. Defers the original gain until 2026 (or when sold). Available in 8,700+ census tracts nationwide.",
-                        color: "border-pink-500/30 bg-pink-500/5",
-                        badgeColor: "bg-pink-500/20 text-pink-400",
-                      },
-                    ].map(({ title, badge, detail, color, badgeColor }) => (
-                      <div key={title} className={cn("rounded-lg border p-4 space-y-2", color)}>
-                        <div className="flex items-center gap-2">
-                          <span className="text-sm font-semibold">{title}</span>
-                          <span className={cn("text-[10px] font-bold rounded-full px-2 py-0.5", badgeColor)}>{badge}</span>
-                        </div>
-                        <p className="text-xs text-muted-foreground leading-relaxed">{detail}</p>
-                      </div>
-                    ))}
-                  </div>
-                  <div className="rounded-lg border border-muted bg-muted/20 p-3 flex gap-2">
-                    <Info className="size-4 text-muted-foreground shrink-0 mt-0.5" />
-                    <p className="text-xs text-muted-foreground">
-                      Tax laws change frequently. The information above is for educational purposes only. Consult a CPA or tax attorney for advice specific to your situation.
-                    </p>
-                  </div>
-                </div>
-              )}
-            </div>
-          )}
-        </div>
-      ))}
-    </div>
-  );
-}
-
-// ── Main Page ─────────────────────────────────────────────────────────────────
-
-export default function RealEstatePage() {
-  const [inputs, setInputs] = useState<PropertyInputs>(DEFAULT_INPUTS);
-  const [savedProperties, setSavedProperties] = useState<SavedProperty[]>([]);
-  const [saveCount, setSaveCount] = useState(0);
-
-  const markets = useMemo(() => generateMarkets(), []);
-
-  const handleSave = useCallback(() => {
-    if (savedProperties.length >= 3) {
-      alert("Maximum 3 properties for comparison. Remove one first.");
-      return;
+  // IRR model for a value-add deal
+  const irrFlows = useMemo(() => {
+    const equity = 200000;
+    const cashFlows = [-equity, 15000, 18000, 22000, 25000, 320000]; // Yr 0–5 (exit yr 5)
+    // Simple IRR approximation via Newton-Raphson
+    let rate = 0.15;
+    for (let iter = 0; iter < 50; iter++) {
+      let npv = 0;
+      let dnpv = 0;
+      for (let i = 0; i < cashFlows.length; i++) {
+        npv += cashFlows[i] / Math.pow(1 + rate, i);
+        dnpv += (-i * cashFlows[i]) / Math.pow(1 + rate, i + 1);
+      }
+      rate -= npv / dnpv;
     }
-    const metrics = computeMetrics(inputs);
-    const id = `prop-${Date.now()}`;
-    setSaveCount((c) => c + 1);
-    setSavedProperties((prev) => [
-      ...prev,
-      { id, name: `Property ${saveCount + 1}`, inputs: { ...inputs }, metrics },
-    ]);
-  }, [inputs, savedProperties.length, saveCount]);
-
-  const handleRemove = useCallback((id: string) => {
-    setSavedProperties((prev) => prev.filter((p) => p.id !== id));
+    return { cashFlows, irr: rate * 100 };
   }, []);
 
+  // SVG for dev cost breakdown
+  const costBreakdown = [
+    { label: "Land", val: devInputs.landCost, color: "#3b82f6" },
+    { label: "Hard Costs", val: devInputs.hardCosts, color: "#10b981" },
+    { label: "Soft Costs", val: devInputs.softCosts, color: "#f59e0b" },
+    { label: "Financing", val: devInputs.financingCosts, color: "#a78bfa" },
+  ];
+  const totalCost = costBreakdown.reduce((a, b) => a + b.val, 0);
+  let cumPct = 0;
+  const BAR_W = 400;
+  const BAR_H = 28;
+
+  const renos = [
+    { item: "Kitchen Remodel", cost: 35000, roi: 80, addedVal: 28000 },
+    { item: "Bathroom Remodel", cost: 18000, roi: 75, addedVal: 13500 },
+    { item: "New Roof", cost: 12000, roi: 60, addedVal: 7200 },
+    { item: "Hardwood Floors", cost: 8000, roi: 85, addedVal: 6800 },
+    { item: "Paint (Exterior)", cost: 4500, roi: 110, addedVal: 4950 },
+    { item: "Landscaping", cost: 5000, roi: 100, addedVal: 5000 },
+    { item: "Garage Door", cost: 2000, roi: 95, addedVal: 1900 },
+    { item: "New Windows", cost: 15000, roi: 68, addedVal: 10200 },
+    { item: "HVAC Update", cost: 10000, roi: 55, addedVal: 5500 },
+    { item: "Cosmetic (Paint/Fixtures)", cost: 6000, roi: 150, addedVal: 9000 },
+  ];
+
   return (
-    <div className="flex flex-col h-full bg-background p-4 gap-4">
-      {/* Header */}
-      <div className="flex items-center gap-3 shrink-0">
-        <div className="rounded-lg bg-primary/10 border border-primary/20 p-2">
-          <Home className="size-5 text-primary" />
+    <div className="space-y-6">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+        {/* Ground-up Development */}
+        <div className="rounded-xl border border-white/10 bg-white/5 p-5 space-y-4">
+          <SectionTitle><Building2 className="w-4 h-4" />Ground-Up Development Costs</SectionTitle>
+          {[
+            { key: "landCost" as const, label: "Land Cost ($)" },
+            { key: "hardCosts" as const, label: "Hard Costs (Construction) ($)" },
+            { key: "softCosts" as const, label: "Soft Costs (Arch/Permits) ($)" },
+            { key: "financingCosts" as const, label: "Financing Costs ($)" },
+          ].map(({ key, label }) => (
+            <div key={key} className="flex items-center justify-between gap-4">
+              <label className="text-xs text-zinc-400 flex-1">{label}</label>
+              <input
+                type="number"
+                value={devInputs[key]}
+                step={10000}
+                onChange={(e) => setDevInputs((p) => ({ ...p, [key]: parseFloat(e.target.value) || 0 }))}
+                className="w-32 rounded-lg border border-white/10 bg-zinc-900 px-3 py-1.5 text-sm text-white text-right focus:outline-none focus:ring-1 focus:ring-blue-500"
+              />
+            </div>
+          ))}
+
+          {/* Cost bar */}
+          <div>
+            <div className="flex justify-between text-xs text-zinc-400 mb-1">
+              <span>Total Development Cost</span>
+              <span className="text-white font-semibold">{fmtM(totalCost)}</span>
+            </div>
+            <svg viewBox={`0 0 ${BAR_W} ${BAR_H + 20}`} className="w-full">
+              {costBreakdown.map((c) => {
+                const pct = c.val / totalCost;
+                const x = cumPct * BAR_W;
+                const w = pct * BAR_W;
+                const midX = x + w / 2;
+                cumPct += pct;
+                return (
+                  <g key={c.label}>
+                    <rect x={x} y={0} width={w} height={BAR_H} fill={c.color + "cc"} />
+                    {w > 40 && <text x={midX} y={BAR_H / 2 + 4} fontSize={8} fill="white" textAnchor="middle">{c.label}</text>}
+                    <text x={midX} y={BAR_H + 12} fontSize={7} fill="#9ca3af" textAnchor="middle">{(pct * 100).toFixed(0)}%</text>
+                  </g>
+                );
+              })}
+            </svg>
+          </div>
+
+          <div className="grid grid-cols-2 gap-3">
+            <StatCard label="10% Developer Profit" value={fmtM(devProfit10)} highlight="pos" />
+            <StatCard label="20% Developer Profit" value={fmtM(devProfit20)} highlight="pos" />
+          </div>
+          <InfoBox variant="blue">
+            <strong>Timeline</strong>: Permitting (6-18 months) → Construction (12-24 months) → Lease-Up (6-12 months). Total 3-5 year cycle. Soft costs typically 15-20% of hard costs.
+          </InfoBox>
         </div>
-        <div>
-          <h1 className="text-lg font-bold">Real Estate Investment Analyzer</h1>
-          <p className="text-xs text-muted-foreground">Analyze properties, compare deals, explore markets, and learn strategies</p>
+
+        {/* BRRRR */}
+        <div className="rounded-xl border border-white/10 bg-white/5 p-5 space-y-4">
+          <SectionTitle><RefreshCw className="w-4 h-4" />BRRRR Strategy</SectionTitle>
+          <p className="text-xs text-zinc-500">Buy → Rehab → Rent → Refinance → Repeat</p>
+          {[
+            { key: "purchasePrice" as const, label: "Purchase Price ($)", step: 5000 },
+            { key: "rehabCost" as const, label: "Rehab Cost ($)", step: 5000 },
+            { key: "arv" as const, label: "After-Repair Value ($)", step: 5000 },
+            { key: "newLoanLtv" as const, label: "Refi LTV (%)", step: 5 },
+            { key: "newLoanRate" as const, label: "Refi Rate (%)", step: 0.25 },
+          ].map(({ key, label, step }) => (
+            <div key={key} className="flex items-center justify-between gap-4">
+              <label className="text-xs text-zinc-400 flex-1">{label}</label>
+              <input
+                type="number"
+                value={brrrrInputs[key]}
+                step={step}
+                onChange={(e) => setBrrrrInputs((p) => ({ ...p, [key]: parseFloat(e.target.value) || 0 }))}
+                className="w-32 rounded-lg border border-white/10 bg-zinc-900 px-3 py-1.5 text-sm text-white text-right focus:outline-none focus:ring-1 focus:ring-blue-500"
+              />
+            </div>
+          ))}
+          <div className="grid grid-cols-2 gap-3">
+            <StatCard label="Total Cash Invested" value={fmtM(brrrrCalc.totalInvested)} />
+            <StatCard label="New Loan Amount" value={fmtM(brrrrCalc.newLoanAmount)} sub={`${brrrrInputs.newLoanLtv}% of ARV`} />
+            <StatCard
+              label="Cash Out on Refi"
+              value={fmtM(brrrrCalc.cashOut)}
+              highlight={brrrrCalc.cashOut > 0 ? "pos" : "neg"}
+              sub={brrrrCalc.cashOut > 0 ? "Capital recycled!" : "Short — add equity"}
+            />
+            <StatCard label="Remaining Equity" value={fmtM(brrrrCalc.equity)} highlight="pos" />
+          </div>
+          <div className="flex justify-between text-sm">
+            <span className="text-zinc-400">Monthly Mortgage Payment</span>
+            <span className="text-white">{fmtUSD(brrrrCalc.monthlyPmt)}</span>
+          </div>
         </div>
-        {savedProperties.length > 0 && (
-          <Badge variant="outline" className="ml-auto text-xs">
-            {savedProperties.length} / 3 properties saved
-          </Badge>
-        )}
       </div>
 
-      {/* Tabs */}
-      <Tabs defaultValue="analyzer" className="flex-1 flex flex-col min-h-0">
-        <TabsList className="shrink-0 w-fit">
-          <TabsTrigger value="analyzer" className="gap-2">
-            <Home className="size-3.5" />
-            Property Analyzer
-          </TabsTrigger>
-          <TabsTrigger value="comparison" className="gap-2">
-            <Building2 className="size-3.5" />
-            Deal Comparison
-            {savedProperties.length > 0 && (
-              <span className="rounded-full bg-primary/20 text-primary text-[10px] font-bold px-1.5 py-0.5">
-                {savedProperties.length}
-              </span>
-            )}
-          </TabsTrigger>
-          <TabsTrigger value="markets" className="gap-2">
-            <BarChart3 className="size-3.5" />
-            Market Analysis
-          </TabsTrigger>
-          <TabsTrigger value="education" className="gap-2">
-            <BookOpen className="size-3.5" />
-            Education
-          </TabsTrigger>
-        </TabsList>
+      {/* Renovation ROI */}
+      <div className="rounded-xl border border-white/10 bg-white/5 p-5">
+        <SectionTitle><TrendingUp className="w-4 h-4" />Renovation ROI — Which Improvements Add the Most Value</SectionTitle>
+        <div className="overflow-x-auto">
+          <table className="w-full text-sm">
+            <thead>
+              <tr className="text-xs text-zinc-500 uppercase border-b border-white/10">
+                <th className="px-3 py-2 text-left">Improvement</th>
+                <th className="px-3 py-2 text-right">Cost</th>
+                <th className="px-3 py-2 text-right">Value Added</th>
+                <th className="px-3 py-2 text-right">ROI</th>
+                <th className="px-3 py-2 text-left w-40">Return Bar</th>
+              </tr>
+            </thead>
+            <tbody>
+              {renos
+                .sort((a, b) => b.roi - a.roi)
+                .map((r) => (
+                  <tr key={r.item} className="border-t border-white/5 hover:bg-white/5 transition-colors">
+                    <td className="px-3 py-2 text-zinc-300">{r.item}</td>
+                    <td className="px-3 py-2 text-right text-zinc-400">{fmtUSD(r.cost)}</td>
+                    <td className="px-3 py-2 text-right text-emerald-400">{fmtUSD(r.addedVal)}</td>
+                    <td className="px-3 py-2 text-right">
+                      <span className={r.roi >= 100 ? "text-emerald-400 font-semibold" : r.roi >= 75 ? "text-amber-400" : "text-rose-400"}>
+                        {r.roi}%
+                      </span>
+                    </td>
+                    <td className="px-3 py-2">
+                      <div className="h-2 rounded-full bg-white/10 w-32 overflow-hidden">
+                        <div className={cn("h-full rounded-full", r.roi >= 100 ? "bg-emerald-500" : r.roi >= 75 ? "bg-amber-500" : "bg-rose-500")} style={{ width: `${Math.min(100, r.roi)}%` }} />
+                      </div>
+                    </td>
+                  </tr>
+                ))}
+            </tbody>
+          </table>
+        </div>
+      </div>
 
-        <TabsContent value="analyzer" className="flex-1 min-h-0 mt-4 data-[state=inactive]:hidden">
-          <div className="h-full overflow-y-auto">
-            <PropertyAnalyzer inputs={inputs} setInputs={setInputs} onSave={handleSave} />
+      {/* IRR Model */}
+      <div className="rounded-xl border border-white/10 bg-white/5 p-5">
+        <SectionTitle><BarChart3 className="w-4 h-4" />Value-Add IRR Model</SectionTitle>
+        <div className="grid grid-cols-6 gap-2 mb-3">
+          {irrFlows.cashFlows.map((cf, i) => (
+            <div key={i} className="text-center">
+              <div className="text-xs text-zinc-500 mb-1">Yr {i}</div>
+              <div className={cn("text-sm font-semibold", cf < 0 ? "text-rose-400" : "text-emerald-400")}>{fmtM(cf)}</div>
+              <div className="text-xs text-zinc-600">{i === 0 ? "Equity In" : i === 5 ? "Exit + CF" : "Cash Flow"}</div>
+            </div>
+          ))}
+        </div>
+        <div className="rounded-lg bg-emerald-500/15 border border-emerald-500/30 p-3 text-center">
+          <span className="text-emerald-400 text-2xl font-bold">{irrFlows.irr.toFixed(1)}% IRR</span>
+          <span className="text-zinc-400 text-sm ml-2">on $200K equity with 5-year hold</span>
+        </div>
+        <InfoBox variant="blue">
+          <strong>IRR</strong> (Internal Rate of Return) is the annualized return that makes NPV = 0. Value-add targets: 12-18% IRR. Opportunistic: 18%+ IRR. Core: 7-10% IRR.
+        </InfoBox>
+      </div>
+    </div>
+  );
+}
+
+// ══════════════════════════════════════════════════════════════════════════════
+// TAB 6 — Portfolio Strategy
+// ══════════════════════════════════════════════════════════════════════════════
+
+interface RiskReturnPoint {
+  strategy: string;
+  expectedReturn: number;
+  risk: number;
+  color: string;
+  description: string;
+}
+
+const STRATEGIES: RiskReturnPoint[] = [
+  { strategy: "Core", expectedReturn: 7, risk: 10, color: "#3b82f6", description: "Trophy assets, low vacancy, stable income. Pension fund grade." },
+  { strategy: "Core-Plus", expectedReturn: 10, risk: 14, color: "#10b981", description: "Quality assets with minor lease-up or renovation upside." },
+  { strategy: "Value-Add", expectedReturn: 14, risk: 20, color: "#f59e0b", description: "Below-market rents, deferred maintenance. 12-18% IRR target." },
+  { strategy: "Opportunistic", expectedReturn: 20, risk: 28, color: "#ef4444", description: "Development, distressed, complex. 18%+ IRR. High leverage." },
+  { strategy: "Debt/Mezz", expectedReturn: 9, risk: 8, color: "#a78bfa", description: "Real estate lending. Senior debt 6-8%, mezz 10-14%." },
+];
+
+const SECTORS_ALLOC = [
+  { name: "Residential", pct: 35, color: "#3b82f6" },
+  { name: "Industrial", pct: 25, color: "#10b981" },
+  { name: "Commercial", pct: 15, color: "#f59e0b" },
+  { name: "Retail", pct: 10, color: "#f97316" },
+  { name: "Healthcare", pct: 8, color: "#a78bfa" },
+  { name: "Specialty", pct: 7, color: "#06b6d4" },
+];
+
+function PortfolioStrategy() {
+  const [ltv, setLtv] = useState(60);
+
+  const leverageCalc = useMemo(() => {
+    const propertyVal = 1_000_000;
+    const equity = propertyVal * (1 - ltv / 100);
+    const loan = propertyVal * (ltv / 100);
+    const noi = 55_000;
+    const mortgageRate = 0.07;
+    const interestCost = loan * mortgageRate;
+    const cashFlow = noi - interestCost;
+    const coc = (cashFlow / equity) * 100;
+    const capRate = (noi / propertyVal) * 100;
+    return { equity, loan, noi, interestCost, cashFlow, coc, capRate };
+  }, [ltv]);
+
+  // Risk-return scatter
+  const W4 = 380;
+  const H4 = 200;
+  const P4 = { t: 20, r: 20, b: 30, l: 50 };
+  const cw4 = W4 - P4.l - P4.r;
+  const ch4 = H4 - P4.t - P4.b;
+  const maxRisk = 32;
+  const maxRet = 24;
+
+  const xS = (risk: number) => P4.l + (risk / maxRisk) * cw4;
+  const yS = (ret: number) => P4.t + ch4 - (ret / maxRet) * ch4;
+
+  // Donut chart for sector alloc
+  const DONUT_R = 55;
+  const DONUT_IR = 35;
+  const DONUT_CX = 80;
+  const DONUT_CY = 80;
+  let angle = -Math.PI / 2;
+  const slices = SECTORS_ALLOC.map((s) => {
+    const startA = angle;
+    const sweep = (s.pct / 100) * 2 * Math.PI;
+    angle += sweep;
+    const endA = angle;
+    const x1 = DONUT_CX + DONUT_R * Math.cos(startA);
+    const y1 = DONUT_CY + DONUT_R * Math.sin(startA);
+    const x2 = DONUT_CX + DONUT_R * Math.cos(endA);
+    const y2 = DONUT_CY + DONUT_R * Math.sin(endA);
+    const xi1 = DONUT_CX + DONUT_IR * Math.cos(startA);
+    const yi1 = DONUT_CY + DONUT_IR * Math.sin(startA);
+    const xi2 = DONUT_CX + DONUT_IR * Math.cos(endA);
+    const yi2 = DONUT_CY + DONUT_IR * Math.sin(endA);
+    const largeArc = sweep > Math.PI ? 1 : 0;
+    return { ...s, path: `M${xi1},${yi1} L${x1},${y1} A${DONUT_R},${DONUT_R} 0 ${largeArc},1 ${x2},${y2} L${xi2},${yi2} A${DONUT_IR},${DONUT_IR} 0 ${largeArc},0 ${xi1},${yi1} Z` };
+  });
+
+  return (
+    <div className="space-y-6">
+      {/* Risk-return + allocation */}
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+        {/* Risk-return scatter */}
+        <div className="rounded-xl border border-white/10 bg-white/5 p-5">
+          <SectionTitle><BarChart3 className="w-4 h-4" />Core → Opportunistic Risk/Return</SectionTitle>
+          <svg viewBox={`0 0 ${W4} ${H4}`} className="w-full">
+            {[0, 5, 10, 15, 20].map((r) => (
+              <line key={r} x1={P4.l} y1={yS(r)} x2={W4 - P4.r} y2={yS(r)} stroke="#ffffff10" strokeDasharray="3,3" />
+            ))}
+            {[0, 8, 16, 24, 32].map((r) => (
+              <line key={r} x1={xS(r)} y1={P4.t} x2={xS(r)} y2={H4 - P4.b} stroke="#ffffff10" strokeDasharray="3,3" />
+            ))}
+            {[0, 10, 20].map((r) => (
+              <text key={r} x={P4.l - 4} y={yS(r) + 4} fontSize={8} fill="#6b7280" textAnchor="end">{r}%</text>
+            ))}
+            {[0, 16, 32].map((r) => (
+              <text key={r} x={xS(r)} y={H4 - 4} fontSize={8} fill="#6b7280" textAnchor="middle">{r}%</text>
+            ))}
+            <text x={P4.l - 28} y={P4.t + ch4 / 2} fontSize={8} fill="#6b7280" textAnchor="middle" transform={`rotate(-90, ${P4.l - 28}, ${P4.t + ch4 / 2})`}>Return</text>
+            <text x={P4.l + cw4 / 2} y={H4 + 2} fontSize={8} fill="#6b7280" textAnchor="middle">Risk (Std Dev)</text>
+            {/* Efficient frontier hint */}
+            <path d={`M${xS(8)},${yS(9)} Q${xS(18)},${yS(13)} ${xS(28)},${yS(20)}`} fill="none" stroke="#ffffff15" strokeWidth={1.5} strokeDasharray="4,4" />
+            {STRATEGIES.map((pt) => (
+              <g key={pt.strategy}>
+                <circle cx={xS(pt.risk)} cy={yS(pt.expectedReturn)} r={7} fill={pt.color + "90"} stroke={pt.color} strokeWidth={1.5} />
+                <text x={xS(pt.risk)} y={yS(pt.expectedReturn) - 10} fontSize={8} fill={pt.color} textAnchor="middle">{pt.strategy}</text>
+              </g>
+            ))}
+          </svg>
+          <div className="mt-2 space-y-1">
+            {STRATEGIES.map((s) => (
+              <div key={s.strategy} className="text-xs flex gap-2">
+                <span className="font-semibold w-24 shrink-0" style={{ color: s.color }}>{s.strategy}</span>
+                <span className="text-zinc-500">{s.description}</span>
+              </div>
+            ))}
           </div>
-        </TabsContent>
+        </div>
 
-        <TabsContent value="comparison" className="flex-1 min-h-0 mt-4 data-[state=inactive]:hidden overflow-y-auto">
-          <DealComparison properties={savedProperties} onRemove={handleRemove} />
-        </TabsContent>
+        {/* Sector allocation donut */}
+        <div className="rounded-xl border border-white/10 bg-white/5 p-5">
+          <SectionTitle><Layers className="w-4 h-4" />Recommended Sector Allocation</SectionTitle>
+          <div className="flex items-center gap-4">
+            <svg viewBox="0 0 160 160" className="w-36 h-36 shrink-0">
+              {slices.map((s) => (
+                <path key={s.name} d={s.path} fill={s.color} opacity={0.85} />
+              ))}
+              <text x={DONUT_CX} y={DONUT_CY - 4} fontSize={9} fill="#9ca3af" textAnchor="middle">Allocation</text>
+              <text x={DONUT_CX} y={DONUT_CY + 8} fontSize={8} fill="#6b7280" textAnchor="middle">by Sector</text>
+            </svg>
+            <div className="space-y-1.5 flex-1">
+              {SECTORS_ALLOC.map((s) => (
+                <div key={s.name} className="flex items-center gap-2">
+                  <div className="w-2.5 h-2.5 rounded-full shrink-0" style={{ backgroundColor: s.color }} />
+                  <span className="text-xs text-zinc-300 flex-1">{s.name}</span>
+                  <div className="h-1.5 rounded-full bg-white/10 w-20 overflow-hidden">
+                    <div className="h-full rounded-full" style={{ width: `${s.pct}%`, backgroundColor: s.color }} />
+                  </div>
+                  <span className="text-xs text-zinc-400 w-8 text-right">{s.pct}%</span>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </div>
 
-        <TabsContent value="markets" className="flex-1 min-h-0 mt-4 data-[state=inactive]:hidden overflow-y-auto">
-          <MarketAnalysis markets={markets} />
-        </TabsContent>
+      {/* Leverage effects */}
+      <div className="rounded-xl border border-white/10 bg-white/5 p-5 space-y-4">
+        <SectionTitle><Percent className="w-4 h-4" />Leverage Effects on Returns</SectionTitle>
+        <div className="flex items-center gap-4 mb-2">
+          <label className="text-xs text-zinc-400 w-24">LTV: {ltv}%</label>
+          <input type="range" min={0} max={90} step={5} value={ltv} onChange={(e) => setLtv(parseInt(e.target.value))} className="flex-1 accent-blue-500" />
+        </div>
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
+          <StatCard label="Equity Required" value={fmtM(leverageCalc.equity)} sub={`${100 - ltv}% of $1M property`} />
+          <StatCard label="Cap Rate" value={fmtPct(leverageCalc.capRate)} sub="Unlevered" />
+          <StatCard label="Cash-on-Cash" value={fmtPct(leverageCalc.coc)} highlight={leverageCalc.coc > leverageCalc.capRate ? "pos" : "neg"} sub="Levered return" />
+          <StatCard label="Annual Cash Flow" value={fmtM(leverageCalc.cashFlow)} highlight={leverageCalc.cashFlow >= 0 ? "pos" : "neg"} />
+        </div>
+        <InfoBox variant={ltv > 75 ? "amber" : "blue"}>
+          {ltv === 0
+            ? "No leverage — pure equity play. Cash-on-cash equals cap rate. Lowest risk, lowest return amplification."
+            : ltv <= 60
+            ? `At ${ltv}% LTV, leverage is working positively — cash-on-cash (${fmtPct(leverageCalc.coc)}) exceeds cap rate (${fmtPct(leverageCalc.capRate)}). Conservative and lender-friendly.`
+            : ltv <= 75
+            ? `At ${ltv}% LTV, leverage is significant. Cash-on-cash amplified but DSCR may be thin at current cap rates. Monitor interest coverage.`
+            : `WARNING: At ${ltv}% LTV, you are highly leveraged. A small NOI decline or rate increase can turn cash flow negative. Refinancing risk is elevated.`}
+        </InfoBox>
 
-        <TabsContent value="education" className="flex-1 min-h-0 mt-4 data-[state=inactive]:hidden overflow-y-auto">
-          <Education />
-        </TabsContent>
-      </Tabs>
+        {/* LTV comparison bars */}
+        <div className="space-y-2">
+          {[0, 30, 50, 70, 80].map((ltvTest) => {
+            const eq = 1_000_000 * (1 - ltvTest / 100);
+            const int = 1_000_000 * (ltvTest / 100) * 0.07;
+            const cf = 55_000 - int;
+            const coc = eq > 0 ? (cf / eq) * 100 : 0;
+            return (
+              <div key={ltvTest} className="flex items-center gap-3 text-xs">
+                <span className="text-zinc-500 w-14">{ltvTest}% LTV</span>
+                <div className="flex-1 h-4 rounded-full bg-white/10 overflow-hidden relative">
+                  <div className={cn("absolute inset-y-0 left-0 rounded-full transition-all", coc > 5.5 ? "bg-emerald-500/60" : coc >= 0 ? "bg-amber-500/60" : "bg-rose-500/60")} style={{ width: `${Math.max(0, Math.min(100, coc * 5))}%` }} />
+                </div>
+                <span className={cn("w-16 text-right font-medium", coc > 5.5 ? "text-emerald-400" : coc >= 0 ? "text-amber-400" : "text-rose-400")}>{fmtPct(coc)} CoC</span>
+              </div>
+            );
+          })}
+        </div>
+      </div>
+
+      {/* 1031 + Portfolio diversification */}
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <div className="rounded-xl border border-white/10 bg-white/5 p-4 space-y-2">
+          <SectionTitle><RefreshCw className="w-4 h-4" />1031 Exchange</SectionTitle>
+          {[
+            { rule: "45 Days", desc: "To identify replacement properties after closing" },
+            { rule: "180 Days", desc: "To close on replacement property" },
+            { rule: "Like-Kind", desc: "Any US real property for any US real property" },
+            { rule: "Boot", desc: "Cash received in exchange is taxable" },
+            { rule: "Qualified Intermediary", desc: "Must hold funds; seller cannot touch proceeds" },
+            { rule: "Tax Deferred", desc: "Not tax-free — basis carries over to new property" },
+          ].map(({ rule, desc }) => (
+            <div key={rule} className="flex gap-3 text-xs">
+              <span className="font-semibold text-blue-400 w-28 shrink-0">{rule}</span>
+              <span className="text-zinc-400">{desc}</span>
+            </div>
+          ))}
+        </div>
+        <div className="rounded-xl border border-white/10 bg-white/5 p-4 space-y-2">
+          <SectionTitle><MapPin className="w-4 h-4" />Geographic Diversification</SectionTitle>
+          {[
+            { pct: "1 Market", risk: "Extreme concentration risk — local recession wipes portfolio" },
+            { pct: "3-5 Markets", risk: "Moderate concentration — some protection from local shocks" },
+            { pct: "10+ Markets", risk: "Well diversified — national economic sensitivity dominates" },
+          ].map(({ pct, risk }) => (
+            <div key={pct} className="flex gap-3 text-xs">
+              <span className="font-semibold text-amber-400 w-24 shrink-0">{pct}</span>
+              <span className="text-zinc-400">{risk}</span>
+            </div>
+          ))}
+          <div className="pt-2 border-t border-white/10 space-y-1 text-xs text-zinc-400">
+            <p><strong className="text-white">Portfolio allocation target:</strong> Real estate 10-20% of total portfolio for most investors.</p>
+            <p>Real estate correlation with equities is low (~0.15) over long periods, providing genuine diversification benefit.</p>
+            <p><strong className="text-white">Concentration risk:</strong> Single-family investors often have 80%+ of net worth in one property — opposite of diversification.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+// ══════════════════════════════════════════════════════════════════════════════
+// PAGE
+// ══════════════════════════════════════════════════════════════════════════════
+
+const TABS = [
+  { id: "analyzer", label: "Property Analyzer", icon: <Calculator className="w-4 h-4" /> },
+  { id: "markets", label: "Market Comparisons", icon: <MapPin className="w-4 h-4" /> },
+  { id: "reits", label: "REIT Analysis", icon: <Building2 className="w-4 h-4" /> },
+  { id: "commercial", label: "Commercial RE", icon: <Layers className="w-4 h-4" /> },
+  { id: "development", label: "Development", icon: <TrendingUp className="w-4 h-4" /> },
+  { id: "portfolio", label: "Portfolio Strategy", icon: <BarChart3 className="w-4 h-4" /> },
+];
+
+export default function RealEstatePage() {
+  return (
+    <div className="min-h-screen bg-zinc-950 text-white">
+      <div className="max-w-7xl mx-auto px-4 py-6 space-y-6">
+        {/* Header */}
+        <motion.div initial={{ opacity: 0, y: -16 }} animate={{ opacity: 1, y: 0 }} className="flex items-start justify-between flex-wrap gap-4">
+          <div>
+            <div className="flex items-center gap-3 mb-1">
+              <div className="rounded-xl bg-blue-600/20 p-2.5">
+                <Home className="w-6 h-6 text-blue-400" />
+              </div>
+              <h1 className="text-2xl font-bold text-white">Real Estate Investment Analysis</h1>
+            </div>
+            <p className="text-sm text-zinc-400 ml-14">
+              Property analyzer, market comparisons, REITs, commercial RE, development, and portfolio strategy.
+            </p>
+          </div>
+          <div className="flex gap-2 flex-wrap">
+            {[
+              { label: "Residential", color: "bg-blue-600/20 text-blue-400" },
+              { label: "Commercial", color: "bg-emerald-600/20 text-emerald-400" },
+              { label: "REITs", color: "bg-purple-600/20 text-purple-400" },
+            ].map(({ label, color }) => (
+              <Badge key={label} className={cn("text-xs font-medium border-0", color)}>
+                {label}
+              </Badge>
+            ))}
+          </div>
+        </motion.div>
+
+        {/* Tabs */}
+        <Tabs defaultValue="analyzer" className="space-y-6">
+          <TabsList className="flex flex-wrap gap-1 h-auto bg-white/5 p-1 rounded-xl border border-white/10">
+            {TABS.map(({ id, label, icon }) => (
+              <TabsTrigger
+                key={id}
+                value={id}
+                className="flex items-center gap-1.5 rounded-lg px-3 py-2 text-xs font-medium data-[state=active]:bg-blue-600 data-[state=active]:text-white text-zinc-400 hover:text-white transition-colors"
+              >
+                {icon}
+                <span className="hidden sm:inline">{label}</span>
+              </TabsTrigger>
+            ))}
+          </TabsList>
+
+          <TabsContent value="analyzer" className="data-[state=inactive]:hidden">
+            <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.25 }}>
+              <PropertyAnalyzer />
+            </motion.div>
+          </TabsContent>
+
+          <TabsContent value="markets" className="data-[state=inactive]:hidden">
+            <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.25 }}>
+              <MarketComparisons />
+            </motion.div>
+          </TabsContent>
+
+          <TabsContent value="reits" className="data-[state=inactive]:hidden">
+            <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.25 }}>
+              <REITAnalysis />
+            </motion.div>
+          </TabsContent>
+
+          <TabsContent value="commercial" className="data-[state=inactive]:hidden">
+            <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.25 }}>
+              <CommercialRE />
+            </motion.div>
+          </TabsContent>
+
+          <TabsContent value="development" className="data-[state=inactive]:hidden">
+            <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.25 }}>
+              <DevelopmentTab />
+            </motion.div>
+          </TabsContent>
+
+          <TabsContent value="portfolio" className="data-[state=inactive]:hidden">
+            <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.25 }}>
+              <PortfolioStrategy />
+            </motion.div>
+          </TabsContent>
+        </Tabs>
+      </div>
     </div>
   );
 }

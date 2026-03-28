@@ -62,6 +62,7 @@ import { UNIT_MERGERS_ACQUISITIONS } from "./unit-mergers-acquisitions";
 import { UNIT_GLOBAL_ECONOMICS } from "./unit-global-economics";
 import { UNIT_SOVEREIGN_DEBT } from "./unit-sovereign-debt";
 import { UNIT_ALTERNATIVE_ASSETS } from "./unit-alternative-assets";
+import { UNIT_BANKING_SYSTEM } from "./unit-banking-system";
 
 export const UNITS: Unit[] = [
   UNIT_BASICS,
