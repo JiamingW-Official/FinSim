@@ -4,7 +4,7 @@ export const UNIT_PORTFOLIO_THEORY: Unit = {
   id: "portfolio-theory",
   title: "Portfolio Theory",
   description:
-    "Master MPT, CAPM, factor models, asset allocation frameworks, and advanced portfolio risk management",
+    "Master MPT, CAPM, factor models, risk parity, Black-Litterman, and practical portfolio construction",
   icon: "PieChart",
   color: "#3b82f6",
   lessons: [
@@ -13,487 +13,558 @@ export const UNIT_PORTFOLIO_THEORY: Unit = {
       id: "portfolio-theory-1",
       title: "Modern Portfolio Theory",
       description:
-        "Efficient frontier, CAPM, Sharpe ratio, and the mathematics of diversification",
+        "Markowitz mean-variance optimization, the efficient frontier, the two-fund separation theorem, and MPT's assumptions and limitations",
       icon: "PieChart",
       xpReward: 85,
       difficulty: "advanced",
+      duration: 20,
       steps: [
         {
           type: "teach",
           title: "Markowitz Mean-Variance Optimization",
           content:
-            "Harry Markowitz's 1952 paper revolutionized investing by showing that risk and return cannot be evaluated in isolation — only in the context of the whole portfolio.\n\n**Portfolio return** is simply the weighted average of individual asset returns:\n\nRp = Σ wi × Ri\n\nwhere wi is the weight of asset i and Ri is its expected return.\n\n**Portfolio variance** is where diversification gets interesting. It depends on the full **covariance matrix**:\n\nσp² = Σi Σj wi × wj × Cov(Ri, Rj)\n\nWhen assets are not perfectly correlated (correlation < 1), combining them produces a portfolio whose variance is **less than the weighted average variance** of its components. This is the mathematical foundation of diversification.\n\n**Efficient Frontier**: By varying portfolio weights, you trace a curve of portfolios that maximize expected return for each level of risk. Portfolios on this frontier are called **mean-variance efficient**.\n\n**Types of risk**:\n- **Idiosyncratic (specific) risk**: company- or sector-level risk, fully diversifiable\n- **Systematic (market) risk**: economy-wide risk, cannot be diversified away\n\nAs you add more assets, idiosyncratic risk averages out. With ~20–30 uncorrelated assets, most idiosyncratic risk is eliminated. But systematic risk persists no matter how many assets you hold.",
+            "Harry Markowitz's 1952 paper revolutionized investing by showing that risk and return cannot be evaluated in isolation — only in the context of the whole portfolio.\n\n**Portfolio return** is the weighted average of individual asset returns:\n\nRp = Σ wi × Ri\n\nwhere wi is the weight of asset i and Ri is its expected return.\n\n**Portfolio variance** is where diversification gets interesting. It depends on the full covariance matrix:\n\nσp² = Σi Σj wi × wj × Cov(Ri, Rj)\n\nWhen assets are not perfectly correlated (correlation < 1), combining them produces a portfolio whose variance is less than the weighted average variance of its components. This is the mathematical foundation of diversification.\n\n**Covariance matrix**: For N assets, the matrix has N² entries. With 500 assets that is 250,000 parameters to estimate — estimation error is a fundamental challenge in practice.\n\n**Minimum variance portfolio**: The portfolio on the efficient frontier with the lowest possible standard deviation regardless of return. A useful anchor point.\n\n**Types of risk**:\n- Idiosyncratic (specific) risk: company- or sector-level risk, fully diversifiable\n- Systematic (market) risk: economy-wide risk, cannot be diversified away\n\nWith roughly 20-30 randomly selected stocks, idiosyncratic risk averages out to near zero. Systematic risk persists regardless of how many assets are held.",
           highlight: [
-            "efficient frontier",
+            "mean-variance optimization",
             "covariance matrix",
-            "diversification",
+            "efficient frontier",
             "idiosyncratic risk",
             "systematic risk",
-            "mean-variance",
-            "portfolio variance",
+            "minimum variance portfolio",
+            "diversification",
           ],
         },
         {
           type: "teach",
-          title: "Capital Market Line and the Tangency Portfolio",
+          title: "The Efficient Frontier and Two-Fund Separation Theorem",
           content:
-            "When you introduce a **risk-free asset** (e.g., T-bills) into the universe, the efficient frontier transforms into the **Capital Market Line (CML)**.\n\nThe CML is a straight line from the risk-free rate through the **tangency portfolio** — the single risky portfolio that maximizes the Sharpe ratio:\n\n**Sharpe Ratio** = (Rp − Rf) / σp\n\nwhere Rp = portfolio return, Rf = risk-free rate, σp = portfolio standard deviation.\n\nThe tangency portfolio is also called the **market portfolio** in theory — under CAPM assumptions, it represents all risky assets weighted by their market capitalization.\n\n**Key insight**: Any combination of the risk-free asset and the tangency portfolio lies on the CML and **dominates** every other portfolio on the efficient frontier (same return, lower risk — or higher return, same risk).\n\nInvestors with different risk tolerances don't need different risky portfolios — they just vary their allocation between the risk-free asset and the same tangency portfolio. This is the **separation theorem**.\n\nThe slope of the CML equals the maximum attainable Sharpe ratio.",
+            "**Efficient frontier**: By varying portfolio weights across all possible combinations, you trace a curve of portfolios that maximize expected return for each level of risk. Only portfolios on this curve are mean-variance efficient.\n\n**Key insight**: Any portfolio not on the efficient frontier is dominated — there exists another portfolio with the same return and lower risk, or the same risk and higher return. Rational mean-variance investors should hold only efficient portfolios.\n\n**Adding the risk-free asset**: When you introduce a risk-free asset (T-bills), the efficient frontier transforms. Investors can now combine any risky portfolio with the risk-free rate. The optimal combination is a straight line from the risk-free rate through the risky portfolio that maximizes the Sharpe ratio:\n\nSharpe Ratio = (Rp - Rf) / σp\n\nThis tangent portfolio is the market portfolio under CAPM assumptions.\n\n**Two-fund separation theorem**: Every investor, regardless of risk tolerance, should hold the same two funds:\n1. The risk-free asset\n2. The tangency (market) portfolio\n\nThey differ only in the proportions held. A conservative investor holds mostly the risk-free asset; an aggressive investor holds mostly (or leveraged) the market portfolio. This is the theoretical basis for passive index investing.",
           highlight: [
-            "Capital Market Line",
+            "efficient frontier",
+            "dominated portfolio",
             "risk-free asset",
             "tangency portfolio",
             "Sharpe ratio",
+            "two-fund separation theorem",
             "market portfolio",
-            "separation theorem",
           ],
         },
         {
           type: "teach",
-          title: "CAPM: Pricing Risk with Beta",
+          title: "MPT Assumptions and Limitations",
           content:
-            "The **Capital Asset Pricing Model (CAPM)** extends MPT to price individual securities:\n\n**E(Ri) = Rf + βi × (Rm − Rf)**\n\nwhere:\n- E(Ri) = expected return of asset i\n- Rf = risk-free rate\n- βi = asset's beta (sensitivity to market)\n- (Rm − Rf) = market risk premium (historically ~5–6% for US equities)\n\n**Beta** measures systematic risk:\n\nβi = Cov(Ri, Rm) / Var(Rm)\n\n- β = 1: moves with the market\n- β > 1: amplifies market moves (e.g., tech growth stocks)\n- β < 1: dampens market moves (e.g., utilities)\n- β < 0: moves opposite to market (e.g., gold in some periods)\n\n**Security Market Line (SML)** plots expected return vs beta for all assets. Assets above the SML are undervalued (positive alpha), below are overvalued.\n\n**Jensen's alpha** = Actual Return − CAPM Expected Return\n\nPositive alpha implies a manager added value beyond what beta exposure would predict.\n\n**CAPM assumptions and violations**: single period, no taxes or transaction costs, all investors hold the same mean-variance efficient portfolio, normally distributed returns. Real markets violate every assumption — yet beta remains a useful risk decomposition tool.",
+            "MPT is mathematically elegant but rests on assumptions that frequently fail in practice.\n\n**Key assumptions of MPT**:\n1. Investors are rational and maximize expected utility\n2. Returns are normally distributed\n3. Correlations and expected returns are stable and known\n4. Markets are frictionless (no taxes, transaction costs, or short-sale constraints)\n5. All investors share the same information and return estimates\n\n**Where assumptions break down**:\n\n**Non-normal returns**: Real asset returns have fat tails and negative skewness. Extreme losses occur far more often than a normal distribution predicts. The 2008 crisis was a supposed 25-sigma event — essentially impossible under normality.\n\n**Estimation error**: Expected returns are notoriously difficult to estimate. Small changes in return assumptions produce wildly different optimal portfolios. The model is hypersensitive to inputs — garbage in, garbage out.\n\n**Changing correlations**: Correlations are not stable. In crises they spike toward 1 across all risk assets — precisely when low correlation is needed most. Diversification benefits disappear when they matter most.\n\n**Behavioral violations**: Real investors are not rational mean-variance optimizers. Loss aversion, overconfidence, and herding systematically violate MPT's behavioral assumptions.\n\n**Practical responses**: Black-Litterman (input stabilization), robust optimization (uncertainty sets), resampled efficiency (Monte Carlo averaging), and factor models all attempt to address MPT's fragility.",
           highlight: [
-            "CAPM",
-            "beta",
-            "Security Market Line",
-            "alpha",
-            "Jensen's alpha",
-            "market risk premium",
-            "systematic risk",
+            "estimation error",
+            "fat tails",
+            "non-normal returns",
+            "changing correlations",
+            "robust optimization",
+            "Black-Litterman",
           ],
         },
         {
           type: "quiz-mc",
           question:
-            "A portfolio has an annual return of 12%, a risk-free rate of 5%, and a standard deviation of 8%. What is its Sharpe ratio?",
+            "In Markowitz mean-variance optimization, what mathematical relationship between asset returns allows combining two assets to produce a portfolio with lower variance than either individual asset?",
           options: [
-            "0.875",
-            "1.50",
-            "0.625",
-            "1.20",
+            "A correlation coefficient strictly less than +1.0 between the two asset returns",
+            "Both assets must have returns higher than the risk-free rate",
+            "The assets must have equal volatility so they cancel each other out",
+            "One asset must have negative expected return for diversification to work",
           ],
           correctIndex: 0,
           explanation:
-            "Sharpe ratio = (Rp − Rf) / σp = (12% − 5%) / 8% = 7% / 8% = 0.875. This represents the excess return earned per unit of total volatility. A Sharpe above 1.0 is considered good in live investing — 0.875 is solid but not exceptional.",
+            "Portfolio variance = w1²σ1² + w2²σ2² + 2·w1·w2·σ1·σ2·ρ12. When correlation ρ < 1, the cross-term is less than its maximum possible value, making total portfolio variance lower than the weighted average of individual variances. When ρ = +1 (perfect positive correlation), there is no diversification benefit. When ρ = -1, it is theoretically possible to construct a zero-variance portfolio. Any real-world correlation below +1 provides some diversification benefit.",
           difficulty: 2,
         },
         {
           type: "quiz-tf",
           statement:
-            "Diversification eliminates all portfolio risk if you hold enough assets.",
-          correct: false,
+            "The two-fund separation theorem implies that all rational mean-variance investors should hold the exact same portfolio of risky assets, differing only in how much of that portfolio they hold versus the risk-free asset.",
+          correct: true,
           explanation:
-            "FALSE. Diversification only eliminates idiosyncratic (company-specific) risk. Systematic risk — caused by broad economic forces (recessions, rate changes, panics) — affects all assets and cannot be diversified away. Even a perfectly diversified global portfolio still has systematic risk exposure. This is a fundamental insight of CAPM: investors are only compensated for bearing systematic risk, not idiosyncratic risk.",
-          difficulty: 1,
+            "TRUE. The two-fund separation theorem states that the optimal risky portfolio (the tangency portfolio) is the same for all investors regardless of risk tolerance, assuming the same expectations about returns and covariances. A risk-averse investor places a larger fraction in the risk-free asset and a smaller fraction in the tangency portfolio. An aggressive investor might use leverage (borrowing at the risk-free rate) to hold more than 100% in the tangency portfolio. This theoretical result underpins passive investing: if everyone holds the same risky portfolio, it must be the capitalization-weighted market portfolio.",
+          difficulty: 2,
         },
         {
           type: "quiz-scenario",
           scenario:
-            "You are analyzing two stocks. Stock A has a beta of 1.8 and Stock B has a beta of 0.4. The risk-free rate is 4% and the market risk premium is 6%.",
+            "A portfolio manager constructs the efficient frontier for a universe of global equities. She then finds the tangency portfolio (maximum Sharpe ratio portfolio). A conservative client wants a 5% annualized volatility target, while an aggressive client wants 20% volatility. The tangency portfolio has 12% volatility.",
           question:
-            "According to CAPM, what are the expected returns for Stock A and Stock B respectively?",
+            "According to the two-fund separation theorem, what should each client hold?",
           options: [
-            "Stock A: 14.8%, Stock B: 6.4%",
-            "Stock A: 10.8%, Stock B: 2.4%",
-            "Stock A: 12.4%, Stock B: 8.2%",
-            "Stock A: 18.8%, Stock B: 4.4%",
+            "Both clients hold the tangency portfolio mixed with either the risk-free asset (conservative) or leveraged tangency portfolio (aggressive), not different risky portfolios",
+            "Conservative: bonds only. Aggressive: equities only",
+            "Each client should hold a different point on the efficient frontier matched to their volatility tolerance",
+            "Conservative: 50% tangency + 50% cash. Aggressive: 100% tangency, accepting 12% volatility",
           ],
           correctIndex: 0,
           explanation:
-            "Using E(Ri) = Rf + βi × market risk premium: Stock A = 4% + 1.8 × 6% = 4% + 10.8% = 14.8%. Stock B = 4% + 0.4 × 6% = 4% + 2.4% = 6.4%. High-beta assets demand higher expected returns as compensation for greater systematic risk. Stock A's high beta makes it a poor defensive holding — it will amplify both market rallies and crashes.",
-          difficulty: 2,
+            "The two-fund theorem says both clients hold the same tangency portfolio, varying only the leverage/cash mix. Conservative (5% vol target): holds 5/12 = ~42% in tangency portfolio, 58% in risk-free asset. Aggressive (20% vol target): holds 20/12 = ~167% in tangency portfolio, borrowing 67% at the risk-free rate. This is more efficient than moving to a different point on the risky efficient frontier, because the Sharpe ratio of any combination of the risk-free asset and tangency portfolio equals the Sharpe of the tangency portfolio itself.",
+          difficulty: 3,
         },
       ],
     },
 
-    // ─── Lesson 2: Factor Models ─────────────────────────────────────────────────
+    // ─── Lesson 2: CAPM ──────────────────────────────────────────────────────────
     {
       id: "portfolio-theory-2",
-      title: "Factor Models",
+      title: "CAPM",
       description:
-        "From CAPM to Fama-French 5-factor, factor premia, and smart beta implementation",
-      icon: "BarChart2",
-      xpReward: 90,
+        "Capital market line, security market line, beta, systematic vs idiosyncratic risk, and CAPM empirical tests",
+      icon: "TrendingUp",
+      xpReward: 85,
       difficulty: "advanced",
+      duration: 20,
       steps: [
         {
           type: "teach",
-          title: "From Single-Factor to Multi-Factor Models",
+          title: "Capital Market Line and the Market Portfolio",
           content:
-            "CAPM explains returns with a single factor: the market. But empirical tests showed systematic anomalies CAPM couldn't explain — small stocks outperformed large stocks, and cheap stocks outperformed expensive ones.\n\n**Arbitrage Pricing Theory (APT)**: Stephen Ross proposed that returns are driven by multiple risk factors, not just the market:\n\nRi = Rf + β1F1 + β2F2 + ... + βkFk + εi\n\n**Fama-French 3-Factor Model (1993)**:\n1. **Market factor (Rm − Rf)**: excess market return\n2. **SMB (Small Minus Big)**: long small-cap, short large-cap — size premium\n3. **HML (High Minus Low)**: long high book-to-market (value), short low (growth) — value premium\n\nAdded ~15% more return variance explained vs CAPM alone.\n\n**Carhart 4-Factor Model**: adds **MOM (Momentum)** — long 12-month winners, short 12-month losers.\n\n**Fama-French 5-Factor Model (2015)**: adds two more:\n4. **RMW (Robust Minus Weak)**: profitability factor — high operating profit vs low\n5. **CMA (Conservative Minus Aggressive)**: investment factor — low asset growth (conservative) vs high (aggressive)\n\nToday's best factor models explain 80–90% of cross-sectional return variation. The remaining unexplained return is true alpha — increasingly rare.",
+            "The **Capital Asset Pricing Model (CAPM)** was developed independently by Sharpe, Lintner, and Mossin in the 1960s, building directly on Markowitz's work.\n\n**Capital Market Line (CML)**: The set of all efficient portfolios formed by combining the risk-free asset with the tangency (market) portfolio. Points on the CML have:\n\nE(Rp) = Rf + [(E(Rm) - Rf) / σm] × σp\n\nThe slope of the CML equals the market Sharpe ratio — the maximum return per unit of risk achievable in the entire economy.\n\n**The market portfolio**: Under CAPM, in equilibrium the tangency portfolio is the market portfolio — a capitalization-weighted portfolio of all risky assets in the economy. Every investor holds it; supply equals demand.\n\n**Market risk premium**: E(Rm) - Rf. Historically ~5-7% annualized for US equities above T-bills. Compensation for bearing systematic (undiversifiable) risk across the full business cycle.\n\n**CML applies only to efficient portfolios**: The CML describes the risk-return tradeoff for fully diversified portfolios. Individual stocks and inefficient portfolios lie below the CML — they have idiosyncratic risk that is not compensated. For individual assets, the relevant measure is the Security Market Line (SML), not the CML.",
           highlight: [
-            "APT",
-            "Fama-French",
-            "SMB",
-            "HML",
-            "momentum",
-            "RMW",
-            "CMA",
-            "multi-factor",
+            "CAPM",
+            "Capital Market Line",
+            "market portfolio",
+            "market risk premium",
+            "systematic risk",
+            "security market line",
           ],
         },
         {
           type: "teach",
-          title: "Factor Premia: Why Do They Persist?",
+          title: "Security Market Line, Beta, and Alpha",
           content:
-            "Factor premia are the excess returns earned by systematic exposure to certain characteristics. Understanding their source helps predict whether they will persist.\n\n**Value premium**: Cheap stocks (high book/price) outperform on average. Explanations: (1) risk-based — distressed companies are riskier in bad times, requiring higher compensation; (2) behavioral — investors extrapolate past earnings trends, overpaying for growth and abandoning value stocks.\n\n**Size premium**: Small-caps outperform large-caps on average. Possibly compensation for illiquidity, higher uncertainty, and lower analyst coverage. Has weakened significantly since the 1980s publication of the research.\n\n**Momentum**: Past 12-month winners outperform 3–12 months forward. Behavioral explanation dominates: herding, slow information diffusion, anchoring. No strong risk-based story.\n\n**Quality/Profitability**: High-profit companies earn higher returns than CAPM predicts. Fama-French RMW captures this. Theoretically puzzling — high-quality, less risky firms should earn lower returns under standard theory.\n\n**Low Volatility Anomaly**: Low-volatility stocks outperform high-volatility stocks on a risk-adjusted basis — directly contradicting CAPM. Explained by institutional leverage constraints, lottery-seeking behavior, and benchmarking pressure.\n\n**Factor crowding risk**: When too much capital chases the same factor, valuations stretch and subsequent returns disappoint. Momentum is especially prone to sudden crowding unwinds.",
+            "The **Security Market Line (SML)** prices individual assets based on their contribution to systematic risk:\n\n**CAPM equation**: E(Ri) = Rf + βi × (E(Rm) - Rf)\n\n**Beta (β)**: The sensitivity of an asset's return to the market's return:\n\nβi = Cov(Ri, Rm) / Var(Rm)\n\n- β = 1.0: moves exactly with the market (e.g., broad index)\n- β > 1.0: amplifies market moves (e.g., tech growth stocks, leveraged ETFs)\n- β < 1.0: dampens market moves (e.g., utilities, consumer staples)\n- β < 0: moves opposite to the market (e.g., some bonds, inverse ETFs)\n\n**Systematic vs idiosyncratic risk**: Under CAPM, only systematic risk is priced — investors are not compensated for idiosyncratic risk because it can be diversified away for free. Beta measures exactly the systematic portion.\n\n**Alpha (Jensen's alpha)**: Actual Return - CAPM Expected Return\n- Positive alpha: outperformed relative to beta exposure (asset plots above SML)\n- Negative alpha: underperformed (asset plots below SML)\n- In equilibrium, all assets lie on the SML and alpha = 0\n\n**Practical interpretation**: A manager with beta = 0.8 and 12% return vs a market that returned 10% with risk-free at 3%: CAPM predicts 3% + 0.8 × (10%-3%) = 8.6%. Alpha = 12% - 8.6% = 3.4%. That 3.4% is the genuine value added beyond market exposure.",
+          highlight: [
+            "Security Market Line",
+            "beta",
+            "alpha",
+            "Jensen's alpha",
+            "systematic risk",
+            "idiosyncratic risk",
+            "CAPM equation",
+          ],
+        },
+        {
+          type: "teach",
+          title: "CAPM Empirical Tests and the Flat SML Puzzle",
+          content:
+            "CAPM makes clear predictions that empirical research has tested extensively — and often found wanting.\n\n**Predictions of CAPM**:\n1. Expected return is linear in beta\n2. The market portfolio is mean-variance efficient\n3. No other factor should explain returns beyond beta\n\n**Empirical failures**:\n\n**The flat SML**: Black, Jensen, and Scholes (1972) found the SML is much flatter in data than CAPM predicts. High-beta stocks underperform their CAPM prediction; low-beta stocks outperform. This gave rise to the low-volatility/low-beta anomaly.\n\n**Size effect**: Banz (1981) showed small-cap stocks earn higher returns than CAPM predicts. Beta alone doesn't explain it.\n\n**Value effect**: Fama and French (1992) showed book-to-market ratio predicts returns beyond beta, directly motivating the Fama-French 3-factor model.\n\n**Roll's critique (1977)**: The true market portfolio includes all assets (private businesses, human capital, real estate) and is unobservable. Empirical tests using a stock index as a proxy for the market portfolio are therefore fundamentally flawed.\n\n**Conditional CAPM**: Beta varies over time with economic conditions. Recession betas differ from expansion betas. This time-varying nature partly reconciles CAPM with empirical anomalies.\n\n**CAPM's legacy despite failures**: Beta remains a foundational risk decomposition tool. Even if CAPM is imprecise, the principle that undiversifiable systematic risk deserves compensation while diversifiable risk does not remains central to modern finance.",
+          highlight: [
+            "flat SML",
+            "low-beta anomaly",
+            "size effect",
+            "value effect",
+            "Roll's critique",
+            "conditional CAPM",
+            "empirical tests",
+          ],
+        },
+        {
+          type: "quiz-mc",
+          question:
+            "A stock has a beta of 1.5, the risk-free rate is 4%, and the expected market return is 10%. According to CAPM, what is the stock's expected return, and what does it mean if the stock actually returns 15% on average?",
+          options: [
+            "CAPM expected return = 13%. Actual 15% implies alpha = +2%, suggesting mispricing or an unmodeled risk factor",
+            "CAPM expected return = 19%. Actual 15% implies negative alpha of -4%",
+            "CAPM expected return = 10%. Any return above 10% is pure alpha",
+            "CAPM expected return = 15%. The stock is exactly fairly priced",
+          ],
+          correctIndex: 0,
+          explanation:
+            "CAPM: E(R) = 4% + 1.5 × (10%-4%) = 4% + 9% = 13%. If the stock actually earns 15%, Jensen's alpha = 15% - 13% = +2%. This means the stock plots above the Security Market Line and earns 2% more than its beta justifies. Under strict CAPM this should be arbitraged away. In practice, persistent positive alpha suggests either genuine manager skill, additional unpriced risk factors (which factor models attempt to capture), or data-mining bias in the backtest.",
+          difficulty: 2,
+        },
+        {
+          type: "quiz-tf",
+          statement:
+            "According to CAPM, a diversified portfolio with very high idiosyncratic risk should earn higher expected returns than a portfolio with the same beta but lower idiosyncratic risk.",
+          correct: false,
+          explanation:
+            "FALSE. CAPM explicitly states that only systematic risk (beta) is compensated with higher expected returns. Idiosyncratic risk can be eliminated through diversification at zero cost, so rational investors would not pay a premium for bearing it. Under CAPM, E(Ri) depends solely on Rf + β × (E(Rm) - Rf). Two portfolios with identical betas have identical CAPM expected returns regardless of their idiosyncratic risk levels. This is one of CAPM's core and most controversial predictions — in practice, high idiosyncratic volatility stocks often underperform, not outperform.",
+          difficulty: 2,
+        },
+        {
+          type: "quiz-scenario",
+          scenario:
+            "Empirical tests consistently find that portfolios of low-beta stocks earn higher risk-adjusted returns than CAPM predicts, while portfolios of high-beta stocks earn lower risk-adjusted returns than CAPM predicts. This is known as the 'flat SML' finding.",
+          question:
+            "Which explanation best accounts for why the SML is empirically flatter than CAPM predicts?",
+          options: [
+            "Institutional investors constrained against using leverage bid up high-beta stocks to reach return targets, compressing their future returns and creating the low-beta anomaly",
+            "Arbitrageurs immediately correct any mispricing, so the flat SML cannot persist",
+            "CAPM's predictions are perfectly accurate — the flat SML results from statistical noise",
+            "High-beta stocks are riskier and therefore should always underperform on a risk-adjusted basis",
+          ],
+          correctIndex: 0,
+          explanation:
+            "The leading explanation for the flat SML is the leverage constraint / benchmarking story: many institutional investors (mutual funds, pension funds) cannot use explicit leverage. To boost returns they tilt toward high-beta stocks as a 'natural leverage' substitute. This excess demand for high-beta stocks drives up their prices and compresses forward returns below CAPM predictions. Simultaneously, low-beta stocks are undervalued and earn returns above CAPM predictions. This generates the low-volatility anomaly and is the basis for low-beta / minimum variance smart beta strategies.",
+          difficulty: 3,
+        },
+      ],
+    },
+
+    // ─── Lesson 3: Factor Models ─────────────────────────────────────────────────
+    {
+      id: "portfolio-theory-3",
+      title: "Factor Models",
+      description:
+        "APT, Fama-French 3-factor and 5-factor models, Carhart 4-factor, and the nature of factor risk premia",
+      icon: "BarChart2",
+      xpReward: 90,
+      difficulty: "advanced",
+      duration: 22,
+      steps: [
+        {
+          type: "teach",
+          title: "Arbitrage Pricing Theory",
+          content:
+            "Stephen Ross developed **Arbitrage Pricing Theory (APT)** in 1976 as an alternative to CAPM that requires far weaker assumptions.\n\n**APT model**:\nRi = E(Ri) + β1F1 + β2F2 + ... + βkFk + εi\n\nwhere Fk are unexpected changes in macroeconomic factors and εi is idiosyncratic noise.\n\n**Key assumptions of APT**:\n1. Returns are driven by a linear factor model\n2. There are many assets relative to factors (so idiosyncratic risk diversifies away)\n3. There are no arbitrage opportunities\n\nNotably, APT does NOT require a mean-variance efficient market portfolio or quadratic utility — it is based purely on no-arbitrage.\n\n**APT pricing equation**: In equilibrium, risk premia equal the factor betas times the factor risk premium:\n\nE(Ri) = Rf + βi1 × λ1 + βi2 × λ2 + ... + βik × λk\n\nwhere λk is the risk premium for factor k.\n\n**APT's limitation**: APT does not specify which factors matter. It is a theoretical framework — empirical researchers must identify the relevant factors. This gave rise to the empirical factor model literature.\n\n**APT vs CAPM**: CAPM is a special case of APT with a single factor (the market). APT is more general but less specific — it provides no guidance on what λk should be without additional assumptions.",
+          highlight: [
+            "Arbitrage Pricing Theory",
+            "APT",
+            "factor model",
+            "no-arbitrage",
+            "factor risk premium",
+            "factor betas",
+          ],
+        },
+        {
+          type: "teach",
+          title: "Fama-French Factor Models",
+          content:
+            "Eugene Fama and Kenneth French translated APT from theory into empirical practice by identifying specific factors that explain cross-sectional stock returns.\n\n**Fama-French 3-Factor Model (1993)**:\n\nRi - Rf = αi + βMKT(Rm-Rf) + βSMB × SMB + βHML × HML + εi\n\n1. **Market factor (MKT)**: Excess market return — systematic risk\n2. **SMB (Small Minus Big)**: Long small-cap, short large-cap — size premium (historically +3% per year)\n3. **HML (High Minus Low)**: Long high book-to-market (value), short low (growth) — value premium (historically +4% per year)\n\nAdded ~15% more cross-sectional return variation explained vs CAPM alone.\n\n**Carhart 4-Factor Model (1997)**: Added momentum:\n4. **MOM**: Long 12-1 month winners, short 12-1 month losers — momentum premium (historically +8% per year, but crash-prone)\n\n**Fama-French 5-Factor Model (2015)**: Added two quality factors:\n4. **RMW (Robust Minus Weak)**: Long high operating profit, short low operating profit — profitability factor\n5. **CMA (Conservative Minus Aggressive)**: Long low asset growth, short high asset growth — investment factor\n\nThe 5-factor model explains approximately 80-90% of cross-sectional return variation. The remaining unexplained alpha is true manager skill — increasingly rare to find consistently.",
+          highlight: [
+            "Fama-French",
+            "SMB",
+            "HML",
+            "MOM",
+            "RMW",
+            "CMA",
+            "size premium",
+            "value premium",
+            "momentum",
+            "profitability factor",
+          ],
+        },
+        {
+          type: "teach",
+          title: "Why Do Factor Risk Premia Exist?",
+          content:
+            "Factor premia are the excess returns earned by systematic exposure to certain characteristics. Understanding their source determines whether they will persist.\n\n**Value premium (HML)**:\n- Risk-based: Value stocks are distressed companies trading at low multiples. They have higher default risk, greater earnings volatility, and perform worst in recessions — justifying higher expected returns as compensation.\n- Behavioral: Investors extrapolate recent earnings trends, overpaying for glamour/growth and abandoning value stocks. Reversion to the mean generates value alpha.\n- Post-publication: Value underperformed growth significantly from 2007 to 2020 as risk-based justification weakened and interest rates fell.\n\n**Size premium (SMB)**:\n- Compensation for illiquidity, lower analyst coverage, higher transaction costs, and greater default risk for small firms.\n- Has weakened substantially since publication in the 1980s.\n\n**Momentum (MOM)**:\n- Primarily behavioral: herding, slow information diffusion, anchoring, and underreaction to earnings news.\n- Subject to sharp crashes (momentum unwind): when market sentiment reverses, momentum portfolios suffer severe drawdowns (2009: momentum factor lost ~80%).\n\n**Low volatility anomaly**:\n- Low-beta/low-volatility stocks earn higher Sharpe ratios than high-beta stocks — directly contradicting CAPM.\n- Explained by leverage constraints, lottery-seeking behavior among individual investors, and benchmarking pressure on institutions.\n\n**Factor crowding risk**: When too much capital chases the same factor, valuations stretch and subsequent returns disappoint. Monitoring factor valuation (e.g., value spread, momentum concentration) is essential for institutional factor investors.",
           highlight: [
             "value premium",
             "size premium",
             "momentum",
-            "quality",
             "low volatility anomaly",
             "factor crowding",
-          ],
-        },
-        {
-          type: "teach",
-          title: "Factor Investing in Practice",
-          content:
-            "Understanding factors academically is one thing — implementing them in a portfolio is another.\n\n**Pure factor ETFs** provide low-cost, systematic factor exposure:\n- **VLUE** (iShares Edge MSCI Value): HML-style value factor\n- **MTUM** (iShares Edge MSCI Momentum): 12-month momentum\n- **QUAL** (iShares Edge MSCI Quality): profitability and balance sheet strength\n- **SIZE** (iShares Edge MSCI Size): small-cap tilt\n\n**Factor timing** — trying to predict which factor will outperform — is notoriously difficult. Factors can underperform for years (value underperformed growth 2007–2020). Most evidence suggests strategic (passive) factor allocation beats tactical timing.\n\n**Factor cyclicality**: Value tends to outperform in early economic recoveries. Momentum tends to work in trending markets and crash in reversals. Low volatility shines in late-cycle defensive periods.\n\n**Smart beta vs active factor investing**:\n- Smart beta: rules-based, transparent, low-cost factor exposure\n- Active factor: discretionary tilts, timing, proprietary signals — higher fees, potentially higher alpha\n\n**Key risks**: factor crowding (too many investors in the same trade), factor decay (premia disappear after publication), and look-ahead bias in backtesting (inflate paper returns).",
-          highlight: [
-            "VLUE",
-            "MTUM",
-            "QUAL",
-            "smart beta",
-            "factor timing",
-            "factor cyclicality",
-            "look-ahead bias",
+            "risk-based",
+            "behavioral",
+            "momentum crash",
           ],
         },
         {
           type: "quiz-mc",
           question:
-            "In the Fama-French 3-factor model, what does the SMB factor represent?",
+            "A portfolio manager regresses her fund's monthly excess returns against Fama-French 5 factors and finds: MKT beta = 0.90, SMB = +0.50, HML = -0.40, RMW = +0.30, CMA = -0.20, alpha = +0.10%/month. How should this be interpreted?",
           options: [
-            "A long small-cap, short large-cap portfolio capturing the size premium",
-            "A measure of stock momentum over the past 6 months",
-            "The spread between sovereign bond yields and corporate yields",
-            "A factor measuring short interest versus market breadth",
+            "The fund has near-market equity exposure, tilts toward small-cap and growth stocks, holds high-quality profitable companies, invests aggressively, and generates about 1.2% per year in alpha beyond these five factor exposures",
+            "The fund is market-neutral and all returns derive from unique stock selection skill",
+            "Negative HML means the fund loses money on value stocks, making it a net loser on the value factor",
+            "CMA = -0.20 means the fund shorts 20% of its portfolio in conservative companies",
           ],
           correctIndex: 0,
           explanation:
-            "SMB stands for 'Small Minus Big' — it is constructed by going long a diversified portfolio of small-cap stocks and short a portfolio of large-cap stocks. The positive return to this factor historically has been interpreted as a size premium: compensation for the additional risks of investing in smaller, less liquid companies. SMB is one of the three original Fama-French factors alongside the market factor and HML (value).",
-          difficulty: 2,
-        },
-        {
-          type: "quiz-tf",
-          statement:
-            "Stocks that have performed well over the past 12 months tend, on average, to continue outperforming over the next 3 to 12 months.",
-          correct: true,
-          explanation:
-            "TRUE. This is the momentum factor, documented by Jegadeesh and Titman (1993) and added to Fama-French as the Carhart 4th factor. Stocks in the top decile of 12-month returns (excluding the most recent month to avoid short-term reversal) tend to outperform the bottom decile over subsequent 3–12 months. The effect is strongest in mid-cap stocks and weakest in micro-caps. Momentum is primarily explained by behavioral factors: herding, slow information diffusion, and investor anchoring.",
-          difficulty: 2,
-        },
-        {
-          type: "quiz-scenario",
-          scenario:
-            "A portfolio manager runs a regression of her fund's monthly returns against the Fama-French 3 factors. The results show: market beta = 0.95, SMB loading = 0.45, HML loading = −0.30, alpha = 0.12% per month.",
-          question:
-            "How should you interpret the factor loadings and alpha of this fund?",
-          options: [
-            "The fund has near-market equity risk, tilts toward small-cap and growth stocks, and generates 1.44% excess annual return beyond factor compensation",
-            "The fund is market-neutral, avoids small-caps, and loses money net of fees",
-            "The SMB and HML loadings indicate the fund uses derivatives to hedge equity risk",
-            "Positive alpha of 0.12% per month always means the manager has genuine skill",
-          ],
-          correctIndex: 0,
-          explanation:
-            "Market beta of 0.95 means near-full equity market exposure. SMB = +0.45 means a positive size tilt (small-cap overweight). HML = −0.30 means a negative value loading — the fund tilts toward growth stocks (low book-to-market). Alpha of 0.12%/month = ~1.44% annualized above what the three factors would predict. However, alpha should be interpreted cautiously: it may reflect omitted factors (e.g., momentum), survivorship bias, or genuine skill. Statistical significance (t-stat > 2) is required before concluding real skill.",
+            "MKT = 0.90 means near-full equity market exposure. SMB = +0.50 means a positive tilt toward small-cap stocks. HML = -0.40 means a growth tilt (negative value loading). RMW = +0.30 means the fund holds higher-quality, more profitable companies. CMA = -0.20 means the fund tilts toward more aggressively investing companies (high asset growth). Alpha of +0.10%/month = ~1.2% annualized above all five factors — this is a good signal of skill, though statistical significance (t-stat > 2) is needed before claiming genuine edge.",
           difficulty: 3,
         },
-      ],
-    },
-
-    // ─── Lesson 3: Asset Allocation ──────────────────────────────────────────────
-    {
-      id: "portfolio-theory-3",
-      title: "Asset Allocation",
-      description:
-        "Strategic vs tactical allocation, classic portfolio frameworks, and rebalancing strategies",
-      icon: "Layers",
-      xpReward: 80,
-      difficulty: "intermediate",
-      steps: [
-        {
-          type: "teach",
-          title: "Strategic, Tactical, and Dynamic Allocation",
-          content:
-            "Asset allocation — how you divide capital across asset classes — explains more than 90% of portfolio return variation over time. Getting it right matters far more than individual security selection.\n\n**Strategic Asset Allocation (SAA)**: The long-term anchor. Based on investor goals, time horizon, and risk tolerance. Reviewed and **rebalanced annually**. Example: 60% global equities, 30% bonds, 10% alternatives. SAA ignores short-term market conditions and stays consistent through cycles.\n\n**Tactical Asset Allocation (TAA)**: Active tilts away from SAA based on medium-term market views. Typically operates within a **10–20% band** around SAA targets. Example: Underweighting equities to 45% during elevated valuations while keeping SAA at 60%. TAA requires skill — evidence that it consistently adds value is mixed.\n\n**Dynamic Asset Allocation (DAA)**: More aggressive regime switching. Moves from 'risk-on' (high equities, commodities, credit) to 'risk-off' (government bonds, cash, gold) based on macro signals or quantitative triggers. Used by risk parity and managed futures strategies.\n\n**Key trade-off**: SAA → lowest cost, highest predictability. DAA → highest potential upside, highest risk of being wrong at the wrong time. Most individual investors are best served by SAA with disciplined rebalancing.",
-          highlight: [
-            "Strategic Asset Allocation",
-            "Tactical Asset Allocation",
-            "Dynamic Asset Allocation",
-            "rebalancing",
-            "risk-on",
-            "risk-off",
-          ],
-        },
-        {
-          type: "teach",
-          title: "Classic Portfolio Frameworks",
-          content:
-            "Decades of institutional practice have produced several canonical portfolio blueprints:\n\n**60/40 Portfolio** (stocks/bonds):\nThe default institutional framework. Historically generated ~8–10% annual returns with moderate volatility. Works because stocks and bonds are negatively correlated in most inflationary environments — but this breaks down when inflation and growth both fall simultaneously (2022: both assets lost money).\n\n**Ray Dalio's All-Weather Portfolio**:\nDesigned to perform in any economic regime (growth up/down × inflation up/down):\n- 30% stocks (growth rising)\n- 40% long-term bonds (growth falling)\n- 15% intermediate bonds\n- 7.5% gold (inflation rising)\n- 7.5% commodities\nLower volatility than 60/40, better crisis performance, but lower long-run returns.\n\n**Permanent Portfolio** (Harry Browne):\n25% each: stocks, long-term bonds, gold, cash\nEach asset thrives in one of four economic seasons: prosperity (stocks), deflation/recession (bonds), inflation (gold), tight money/crisis (cash). Ultra-simple, well-diversified.\n\n**Risk Parity**:\nInstead of equal capital allocation, each asset contributes **equal risk** to the portfolio. Because bonds have much lower volatility than stocks, they get higher capital weight (often using leverage). Bridgewater's All-Weather is a risk parity strategy.",
-          highlight: [
-            "60/40",
-            "All-Weather",
-            "Permanent Portfolio",
-            "risk parity",
-            "equal risk contribution",
-          ],
-        },
-        {
-          type: "teach",
-          title: "Rebalancing Strategies",
-          content:
-            "Rebalancing — returning the portfolio to target weights after drift — is where long-term discipline translates to actual returns.\n\n**Calendar rebalancing**: Rebalance at fixed intervals (annual, quarterly). Simple and low-cost. Annual rebalancing is often sufficient — more frequent rebalancing increases transaction costs with marginal benefit.\n\n**Threshold rebalancing**: Rebalance when any asset drifts beyond a set band (e.g., ±5% from target). Responds to large market moves without unnecessary activity in calm periods. More efficient than calendar rebalancing in turbulent markets.\n\n**Volatility-targeted rebalancing**: Scale positions down automatically when volatility spikes (e.g., VIX > 30). Acts as a systematic de-risking mechanism and reduces drawdowns.\n\n**Tax-efficient rebalancing**:\n- Use **new contributions** to buy underweighted assets (no tax event)\n- **Harvest losses** in taxable accounts to offset gains\n- Rebalance in tax-deferred accounts (IRA, 401k) where possible\n- Avoid rebalancing frequently in taxable accounts — short-term gains are taxed at ordinary rates\n\n**Rebalancing premium**: Systematic rebalancing can earn a small return premium by forcing 'buy low, sell high' behavior — buying assets after they fall and trimming after they rise. The premium is real but modest (0.3–0.5% annually in simulations).",
-          highlight: [
-            "calendar rebalancing",
-            "threshold rebalancing",
-            "volatility targeting",
-            "tax-loss harvesting",
-            "rebalancing premium",
-          ],
-        },
-        {
-          type: "quiz-mc",
-          question:
-            "A risk parity portfolio differs from a traditional 60/40 portfolio primarily because it:",
-          options: [
-            "Allocates capital so that each asset class contributes equally to total portfolio risk",
-            "Invests 50% in equities and 50% in bonds regardless of market conditions",
-            "Only invests in assets with positive momentum",
-            "Concentrates in a single asset class during favourable regimes",
-          ],
-          correctIndex: 0,
-          explanation:
-            "Risk parity targets equal risk contribution from each asset class, not equal capital allocation. Because bonds are much less volatile than equities (typically 3–4× less), bonds receive a much larger capital weight (often leveraged) to match equity's risk contribution. This produces a more balanced exposure to different economic scenarios compared to 60/40, which is dominated by equity risk despite appearing balanced by capital weight.",
-          difficulty: 2,
-        },
         {
           type: "quiz-tf",
           statement:
-            "The 60/40 stock-bond portfolio is considered a safe all-weather strategy because stocks and bonds are always negatively correlated.",
+            "Arbitrage Pricing Theory (APT) is more restrictive than CAPM because it requires identifying a specific list of macroeconomic risk factors.",
           correct: false,
           explanation:
-            "FALSE. While stocks and bonds have been negatively correlated during most of the post-2000 period (a disinflationary environment), this is not guaranteed. In 2022, both US equities and bonds posted significant losses simultaneously as inflation surged and the Fed hiked aggressively. The stock-bond correlation turned positive — a regime historically seen in high-inflation periods (like the 1970s). The 60/40 portfolio works well in many environments but is NOT a guaranteed all-weather strategy.",
-          difficulty: 2,
-        },
-        {
-          type: "quiz-scenario",
-          scenario:
-            "Your portfolio target is 60% equities and 40% bonds. After a strong equity rally, your portfolio has drifted to 72% equities and 28% bonds. Your rebalancing policy has a ±5% threshold. You are in a taxable account.",
-          question:
-            "What is the most tax-efficient way to rebalance back toward target?",
-          options: [
-            "Redirect all new contributions and dividends to bond purchases before selling equities",
-            "Immediately sell equities to trigger gains and use proceeds to buy bonds",
-            "Do nothing — wait for equities to fall naturally back to 60%",
-            "Switch to a 70/30 target permanently to reflect the new market reality",
-          ],
-          correctIndex: 0,
-          explanation:
-            "The most tax-efficient rebalancing approach is to use new cash flows (contributions, dividends, coupons) to buy the underweighted asset (bonds) before selling any equities. Selling equities that have appreciated would trigger a capital gains tax event. Only if contributions are insufficient to close the gap should you sell equities — and if you must sell, prefer tax-lots with losses or long-term gains (lower rate) over short-term gains.",
+            "FALSE. APT is actually less restrictive than CAPM. CAPM requires: (1) all investors have mean-variance preferences, (2) homogeneous expectations, and (3) the market portfolio is mean-variance efficient. APT only requires: (1) returns follow a linear factor structure, (2) many assets exist relative to factors (so idiosyncratic risk diversifies away), and (3) no arbitrage opportunities persist. APT is silent on which specific factors matter — this is both a strength (greater generality) and a weakness (less empirical guidance). CAPM is a special single-factor case of APT.",
           difficulty: 2,
         },
       ],
     },
 
-    // ─── Lesson 4: Alternative Investments ──────────────────────────────────────
+    // ─── Lesson 4: Risk Parity ────────────────────────────────────────────────────
     {
       id: "portfolio-theory-4",
-      title: "Alternative Investments",
+      title: "Risk Parity",
       description:
-        "Private equity, hedge funds, and real assets in a portfolio context",
-      icon: "TrendingUp",
+        "Equal risk contribution, volatility targeting, the Bridgewater All-Weather concept, and critiques of risk parity",
+      icon: "Scale",
       xpReward: 85,
       difficulty: "advanced",
+      duration: 18,
       steps: [
         {
           type: "teach",
-          title: "Private Equity in a Portfolio",
+          title: "Equal Risk Contribution",
           content:
-            "Private equity (PE) offers access to returns unavailable in public markets — at the cost of locking up capital for years.\n\n**Illiquidity premium**: PE historically outperforms public equities by 3–5% annually (on a PME basis). Part of this is genuine illiquidity compensation; part reflects leverage, selection, and reporting lag.\n\n**J-curve**: PE funds draw capital slowly over 3–5 years (investment period), generate negative returns early (management fees + no exits), and then deliver returns in years 5–10 as portfolio companies are sold. The early negative period shaped like the letter 'J' is expected behavior, not failure.\n\n**Vintage year diversification**: Committing to PE funds across multiple years smooths out the J-curve and reduces dependence on a single economic cycle at exit time. Institutional investors typically commit to 3–5 vintage years concurrently.\n\n**Over-commitment strategy**: Because PE draws capital slowly, institutions can commit more than their target allocation knowing not all commitments will be called simultaneously. Typical over-commitment ratio: 1.2–1.5×.\n\n**NAV reporting lag**: PE net asset values are reported quarterly with a 90-day lag and use appraisal-based (not mark-to-market) valuations. This artificially smooths returns and understates true volatility — creating an illusion of lower correlation with public markets.\n\n**PME (Public Market Equivalent)**: Benchmarks PE returns against what a hypothetical investment in a public index (e.g., S&P 500) would have returned with the same cash flow timing.",
+            "Risk parity is a portfolio construction approach where each asset contributes equally to the portfolio's total risk — rather than allocating equal capital.\n\n**The problem with capital-equal allocations**: A 60/40 stock-bond portfolio allocates capital 60/40 but allocates RISK roughly 90/10 because equities are ~3-4x more volatile than bonds. The portfolio is effectively 90% an equity bet.\n\n**Risk contribution of asset i**:\n\nRC_i = wi × (∂σp / ∂wi) = wi × [Σ_j wj × Cov(Ri, Rj)] / σp\n\nIn a risk parity portfolio: RC_1 = RC_2 = ... = RC_N = σp / N\n\n**Practical result**: Because bonds have lower volatility than stocks, bonds get higher capital allocations. A simple two-asset example with 15% equity vol and 5% bond vol and zero correlation yields approximately 75% bond weight and 25% equity weight to achieve equal risk contribution.\n\n**Volatility targeting**: Risk parity funds typically also apply a volatility target (e.g., 10% annualized portfolio volatility). Leverage is applied uniformly when the target cannot be reached with unlevered positions — which is common because low-risk assets like bonds are heavily weighted.\n\n**Diversification benefit**: By equalizing risk contributions across diverse asset classes (equities, bonds, commodities, inflation-linked bonds), risk parity maximizes the Sharpe ratio under the assumption that all assets have equal Sharpe ratios — an assumption that is controversial but not unreasonable as a starting point.",
           highlight: [
-            "illiquidity premium",
-            "J-curve",
-            "vintage year diversification",
-            "over-commitment",
-            "NAV",
-            "PME",
+            "risk parity",
+            "equal risk contribution",
+            "risk contribution",
+            "volatility targeting",
+            "leverage",
+            "diversification",
           ],
         },
         {
           type: "teach",
-          title: "Hedge Funds in a Portfolio",
+          title: "Bridgewater All-Weather and Four Quadrants",
           content:
-            "Hedge funds pursue **absolute return** — positive returns regardless of market direction. In theory, they offer diversification benefits unavailable from long-only assets.\n\n**Correlation potential**: Market-neutral strategies (long/short equity with zero net exposure) have low theoretical correlation to equities. However, during crises, correlations spike across all risk assets — hedge funds often disappoint precisely when diversification is most needed.\n\n**Fee drag**: The traditional '2 and 20' (2% management fee, 20% performance fee) is a severe headwind. Even a skilled manager generating 10% gross returns leaves investors with only 6–7% net in a good year. Industry average fees have compressed to roughly 1.5% management + 17% performance, but remain high relative to passive alternatives.\n\n**Strategies that add genuine diversification**:\n- **Market neutral**: long/short with near-zero beta — low equity correlation\n- **Global macro**: trade currencies, rates, commodities on macro views — different risk factor set\n- **Managed futures (CTAs)**: trend-following across futures markets; historically provides **crisis alpha** — positive returns during equity drawdowns when momentum works across asset classes\n\n**Due diligence considerations**: Lock-up periods, redemption gates, side pockets (illiquid holdings segregated), and operational risk (Madoff) are unique to hedge funds. Audited financials and independent fund administrators are minimum standards.",
+            "Ray Dalio of Bridgewater Associates developed the All-Weather concept as an application of risk parity designed to perform in any economic environment.\n\n**The four economic quadrants**:\n1. Growth rising / Inflation rising: commodities, TIPS, equities outperform\n2. Growth rising / Inflation falling: equities, corporate bonds outperform\n3. Growth falling / Inflation rising: gold, commodities, TIPS outperform (stagflation scenario)\n4. Growth falling / Inflation falling: long-term nominal government bonds outperform\n\n**All-Weather allocation** (approximate):\n- 30% equities (growth quadrants)\n- 40% long-term bonds (deflation/falling growth)\n- 15% intermediate-term bonds\n- 7.5% gold (inflation rising)\n- 7.5% commodities\n\nThis is risk parity across four economic regimes, not equal capital parity.\n\n**Key features**:\n- Low equity concentration: equities are a smaller capital weight but their higher risk brings them to roughly equal risk contribution\n- Inflation protection: gold and commodities explicitly hedge inflation scenarios that destroy nominal bonds\n- Crisis performance: All-Weather lost only ~4% in 2008 vs -38% for the S&P 500\n\n**Leverage application**: Because bonds are heavily weighted and have low volatility, All-Weather strategies often employ leverage (bonds are borrowed) to hit a target overall volatility. This leverage is a key source of risk when interest rates rise rapidly — as seen in 2022 when All-Weather strategies lost ~25% as rates spiked globally.",
           highlight: [
-            "absolute return",
-            "market neutral",
-            "global macro",
-            "managed futures",
-            "crisis alpha",
-            "fee drag",
-            "2 and 20",
+            "All-Weather",
+            "four quadrants",
+            "economic regimes",
+            "Bridgewater",
+            "inflation protection",
+            "stagflation",
+            "crisis performance",
           ],
         },
         {
           type: "teach",
-          title: "Real Assets: Commodities, REITs, and Infrastructure",
+          title: "Risk Parity Critiques and Practical Considerations",
           content:
-            "Real assets — physical or claims on physical assets — provide inflation protection and diversification beyond financial assets.\n\n**Commodities**:\n- **Inflation hedge**: commodity prices tend to rise with inflation, unlike nominal bonds\n- **Positive skew during crises**: oil and agricultural commodities spike during supply shocks, providing portfolio insurance\n- **Negative carry**: futures-based commodity investing suffers from contango (futures above spot) — a constant roll cost. Direct commodity ownership avoids this but is impractical.\n- Diversified commodity indices (Bloomberg Commodity, S&P GSCI) reduce single-commodity concentration risk\n\n**REITs (Real Estate Investment Trusts)**:\n- Listed REITs provide liquid real estate exposure with mandatory 90% dividend distribution\n- Long-run return profile similar to equities but with higher income yield\n- Inflation sensitivity: property values and rents tend to adjust with inflation over time\n- Correlation with equities is high in short-term (listed markets), lower over longer horizons\n\n**Infrastructure**:\n- Regulated utilities, toll roads, airports, pipelines — characterized by **long-duration, stable cash flows**\n- Often **inflation-linked** (regulated returns tied to CPI)\n- Low correlation to equity cycle\n- Primarily accessed via unlisted funds or listed infrastructure ETFs (IFRA, PAVE)\n\n**Timberland and Farmland**: Institutional alternatives with genuine low correlation to financial assets, inflation protection, and biological growth returns — accessible only at institutional scale.",
+            "Risk parity has attracted both institutional adoption and significant criticism.\n\n**The leverage critique**: Risk parity requires substantial leverage on bonds to equalize risk contributions. This leverage is:  \n- Costly: borrowing costs (repo rates) reduce net returns  \n- Procyclical: when volatility rises, many risk parity funds delever simultaneously, amplifying market moves (August 2015, March 2020)  \n- Dangerous in rising rate environments: long-duration bonds suffer large capital losses when rates rise sharply (2022)\n\n**The equal Sharpe ratio assumption**: Risk parity implicitly assumes all asset classes have similar long-run Sharpe ratios. If equities have structurally higher Sharpe ratios than bonds (which some evidence suggests), underweighting equities on a capital basis generates long-run return drag.\n\n**Crowded deleveraging**: Large amounts of capital following similar risk parity models creates a systemic coordination risk — when one fund delevels, others are forced to do the same, creating flash crashes in normally liquid markets.\n\n**Performance across regimes**:\n- Works well: Disinflationary environment with falling rates (1982-2021 mostly)\n- Works poorly: Rising inflation + rising rates simultaneously (1970s, 2022) — both bonds and equities lose simultaneously, eliminating the diversification benefit\n\n**Practical implementations**: Bridgewater Pure Alpha, AQR Risk Parity, Invesco All-Weather Strategy. Fees range from high (hedge fund structure) to low (ETFs like RPAR). Accessible versions for retail investors exist but often without full leverage.",
           highlight: [
-            "inflation hedge",
-            "commodities",
-            "REITs",
-            "infrastructure",
-            "contango",
-            "crisis alpha",
-            "inflation-linked",
+            "leverage critique",
+            "equal Sharpe assumption",
+            "crowded deleveraging",
+            "procyclical",
+            "rising rates",
+            "risk parity critique",
           ],
         },
         {
           type: "quiz-mc",
           question:
-            "What is the 'illiquidity premium' in the context of private equity investments?",
+            "In a simple two-asset risk parity portfolio (equities and bonds), equities have 16% annualized volatility and bonds have 4% annualized volatility. Assuming zero correlation, approximately what weight should bonds receive to achieve equal risk contribution?",
           options: [
-            "The additional return investors earn as compensation for tying up capital in illiquid investments for years",
-            "A fee charged by private equity managers for early redemptions",
-            "The discount applied to PE valuations to reflect their lack of daily pricing",
-            "The spread between PE fund returns and venture capital fund returns",
+            "80% bonds, 20% equities",
+            "50% bonds, 50% equities",
+            "40% bonds, 60% equities",
+            "25% bonds, 75% equities",
           ],
           correctIndex: 0,
           explanation:
-            "The illiquidity premium is the additional return investors expect to earn for accepting that they cannot easily sell their investment. PE investors cannot exit for 7–12 years and must commit capital for the fund's full life. Historically this has translated to 3–5% annualized outperformance vs equivalent public equity exposure (measured by PME). However, part of apparent PE outperformance reflects leverage, survivorship bias, and smoothed NAV reporting — not purely the illiquidity premium.",
+            "For equal risk contribution with zero correlation, weights are inversely proportional to volatility. Bond weight = 1/σ_bonds / (1/σ_bonds + 1/σ_equities) = (1/4) / (1/4 + 1/16) = 0.25 / (0.25 + 0.0625) = 0.25 / 0.3125 = 80%. Equity weight = 20%. Intuition: since bonds are 4× less volatile than equities, bonds need 4× more capital to contribute the same dollar of risk. This dramatic overweight to bonds is why risk parity strategies often require leverage to achieve a meaningful total portfolio return.",
+          difficulty: 3,
+        },
+        {
+          type: "quiz-tf",
+          statement:
+            "Risk parity portfolios performed poorly in 2022 primarily because the normally negative correlation between stocks and bonds broke down as inflation surged, eliminating the diversification benefit that risk parity depends on.",
+          correct: true,
+          explanation:
+            "TRUE. Risk parity's core assumption is that bonds provide diversification against equity drawdowns — this held throughout the 2000-2021 period. In 2022, the Fed's aggressive rate hikes in response to 40-year-high inflation caused both stocks and bonds to fall sharply simultaneously. The stock-bond correlation turned decisively positive (as it historically was in high-inflation regimes like the 1970s). Long-duration bonds suffered their worst calendar year returns in over a century. Risk parity strategies, which hold large bond positions often with leverage, experienced drawdowns of 20-30% — among their worst performances on record.",
+          difficulty: 2,
+        },
+      ],
+    },
+
+    // ─── Lesson 5: Black-Litterman ───────────────────────────────────────────────
+    {
+      id: "portfolio-theory-5",
+      title: "Black-Litterman Model",
+      description:
+        "Overcoming estimation error in MPT, incorporating views, the tau parameter, and posterior expected returns",
+      icon: "Brain",
+      xpReward: 90,
+      difficulty: "advanced",
+      duration: 20,
+      steps: [
+        {
+          type: "teach",
+          title: "The Problem Black-Litterman Solves",
+          content:
+            "The Black-Litterman (BL) model, developed by Fischer Black and Robert Litterman at Goldman Sachs in 1990, solves the most vexing practical problem in MPT: **extreme sensitivity to input estimates**.\n\n**The core problem with standard mean-variance optimization**:\n\n1. Small changes in expected return estimates produce wildly different optimal portfolios\n2. The optimizer produces extreme, concentrated positions that no practitioner would trust\n3. Expected returns are nearly impossible to estimate accurately from historical data\n4. The result: mean-variance optimization is rarely used as-is in practice\n\n**The Black-Litterman insight**: Instead of trying to estimate expected returns directly from historical data, start from a **neutral baseline** derived from market equilibrium — what returns must be to justify current market prices — then adjust for investor views.\n\n**Implied equilibrium returns**: Working backward from the current market capitalization weights using reverse optimization:\n\nπ = δ × Σ × w_mkt\n\nwhere δ is the risk aversion coefficient, Σ is the covariance matrix, and w_mkt are the market capitalization weights.\n\nThis gives the set of expected returns that would make the current market portfolio mean-variance optimal. These are the **equilibrium implied returns** — a neutral starting point that incorporates all information embedded in current prices.",
+          highlight: [
+            "Black-Litterman",
+            "estimation error",
+            "implied equilibrium returns",
+            "reverse optimization",
+            "market equilibrium",
+            "neutral baseline",
+          ],
+        },
+        {
+          type: "teach",
+          title: "Incorporating Views and Bayesian Updating",
+          content:
+            "Black-Litterman uses Bayesian statistics to blend equilibrium returns with investor views, producing a posterior expected return vector.\n\n**Views in BL**: An investor can express views on absolute or relative returns:\n- Absolute view: 'I expect Apple to return 15% per year'\n- Relative view: 'I expect US equities to outperform European equities by 3%'\n\nViews are expressed as:\n- P: a matrix mapping views to assets\n- Q: the vector of expected returns implied by each view\n- Ω: the uncertainty (variance) around each view\n\n**BL posterior expected returns**:\n\nE(R)_BL = [(τΣ)⁻¹ + P'Ω⁻¹P]⁻¹ × [(τΣ)⁻¹π + P'Ω⁻¹Q]\n\nThis blends equilibrium returns (π) with investor views (P, Q) weighted by their respective confidence (τΣ and Ω).\n\n**Tau (τ) parameter**: Controls the weight given to equilibrium returns vs views. τ = 0: pure equilibrium, no views incorporated. τ → ∞: pure view, ignore equilibrium. In practice, τ is often set to 1/T where T is the number of observations, reflecting the uncertainty in equilibrium return estimates.\n\n**Intuitive result**: If you have high confidence in a view, BL tilts portfolios significantly toward it. If confidence is low, BL stays close to market-cap weights. This produces **sensible, balanced portfolios** unlike standard MVO.",
+          highlight: [
+            "Bayesian updating",
+            "posterior expected returns",
+            "views",
+            "tau parameter",
+            "confidence",
+            "absolute view",
+            "relative view",
+          ],
+        },
+        {
+          type: "teach",
+          title: "BL in Practice and Portfolio Construction Benefits",
+          content:
+            "Understanding BL theoretically is one thing — seeing how it transforms portfolio construction in practice is another.\n\n**Before BL (standard MVO)**: A typical MVO portfolio with 10 assets might show:\n- 40% in one emerging market stock (tiny return advantage, large position)\n- Negative weights in half the assets (short selling)\n- Wildly unstable weights across small input changes\n- Portfolios unrecognizable to the portfolio manager\n\n**After BL**: Starting from market-cap weights and incorporating 2-3 views:\n- The portfolio looks like a reasonable tilt away from market weights\n- Views are expressed proportionally to their confidence\n- The optimizer no longer overwhelms the signal with noise\n- The portfolio manager recognizes and can explain every position\n\n**Practical BL workflow**:\n1. Compute implied equilibrium returns from market-cap weights and covariance matrix\n2. Express views with explicit confidence levels\n3. Run BL posterior return computation\n4. Feed posterior returns and covariance matrix into standard MVO\n5. Apply constraints (long-only, sector limits, turnover budget)\n\n**Key advantage**: BL separates the estimation problem from the optimization problem. The equilibrium prior handles assets about which you have no view — they stay near market weight. Views are expressed only where you have genuine conviction, keeping the portfolio from being dominated by statistical noise.\n\n**Limitations**: BL still requires a covariance matrix (which has its own estimation error), and τ and Ω are subjective parameters that significantly influence results.",
+          highlight: [
+            "market-cap weights",
+            "portfolio tilt",
+            "equilibrium prior",
+            "conviction",
+            "estimation error reduction",
+            "constraints",
+          ],
+        },
+        {
+          type: "quiz-mc",
+          question:
+            "What is the primary purpose of starting from 'implied equilibrium returns' in the Black-Litterman model, rather than using historical average returns as inputs to mean-variance optimization?",
+          options: [
+            "Implied equilibrium returns represent what expected returns must be to justify current market prices, providing a neutral baseline that produces diversified portfolios without extreme positions",
+            "Historical returns always have downward bias and need to be corrected upward to reflect future expected returns",
+            "Implied equilibrium returns are easier to compute than historical averages, reducing computational cost",
+            "The equilibrium approach ensures all assets in the portfolio will have positive expected returns",
+          ],
+          correctIndex: 0,
+          explanation:
+            "The key insight is that market prices already reflect the collective wisdom of all investors. By reverse-engineering what expected returns must be to justify current market-cap weights (the implied equilibrium returns), Black-Litterman obtains a neutral starting point that produces sensible, diversified portfolios. Historical returns are noisy, heavily influenced by specific sample periods, and cause MVO to generate extreme, unstable portfolios. The equilibrium prior anchors the optimization, preventing individual views from generating positions that overwhelm the rest of the portfolio.",
           difficulty: 2,
         },
         {
           type: "quiz-tf",
           statement:
-            "Adding alternative investments to a portfolio always reduces overall portfolio risk.",
-          correct: false,
+            "In the Black-Litterman model, if an investor expresses zero views (provides no P, Q, or Ω inputs), the optimal portfolio will equal the market-capitalization weighted portfolio.",
+          correct: true,
           explanation:
-            "FALSE. Whether alternatives reduce portfolio risk depends entirely on their strategy, fees, and actual realized correlation. High-fee hedge funds with opaque strategies can add idiosyncratic risk or even blow up (Long-Term Capital Management, Archegos). Some alternatives are highly leveraged and can amplify losses. Managed futures genuinely tend to provide diversification; long-short equity hedge funds often end up highly correlated to equities after leverage is stripped out. Alternatives are tools — their risk impact must be assessed individually, not assumed to be beneficial.",
+            "TRUE. This is an elegant property of Black-Litterman. When no views are expressed, the posterior expected returns equal the equilibrium implied returns (π), and optimizing on these implied returns with the same covariance matrix from which they were derived produces exactly the market-capitalization weighted portfolio. This makes intuitive sense: with no private information or views, the best portfolio is the market portfolio. This property ensures BL degrades gracefully — the less conviction you have, the closer your portfolio is to the market, avoiding overconfident bets.",
           difficulty: 2,
         },
         {
           type: "quiz-scenario",
           scenario:
-            "A university endowment with a 30-year investment horizon is considering adding a 15% allocation to private equity. They currently have 60% equities and 40% fixed income. The PE allocation would come from equities.",
+            "A portfolio manager uses Black-Litterman and expresses one view: 'I believe US technology stocks will outperform US financials by 4% annually.' She sets her confidence in this view (Ω) to a moderate level. The market-cap weight in tech is 28% and in financials is 13%.",
           question:
-            "Which consideration is MOST important for this specific investor when evaluating this allocation?",
+            "What portfolio adjustment would the BL model most likely produce relative to market-cap weights?",
           options: [
-            "Whether the endowment can manage the J-curve and illiquidity across its annual spending needs",
-            "Whether PE has ever underperformed the S&P 500 in any single year",
-            "Whether the PE manager charges exactly 2% management fee and 20% performance fee",
-            "Whether short-term NAV reporting shows negative returns in year one",
+            "An overweight in tech stocks and underweight in financials, with the magnitude proportional to confidence in the view — not an extreme concentrated bet",
+            "A 100% allocation to tech stocks to maximize the expected return from the view",
+            "No change from market-cap weights because BL only uses historical data",
+            "Selling all financials and buying an equivalent weight in government bonds as a defensive hedge",
           ],
           correctIndex: 0,
           explanation:
-            "For an endowment with a long horizon, the most critical PE consideration is liquidity management: the J-curve means negative returns and no capital distributions for 3–5 years. The endowment must ensure its annual spending (typically 4–5% of assets) can be met from liquid assets even as PE draws down capital and before distributions begin. Vintage year diversification and sizing the PE allocation against the liquid portfolio are the core structural issues. Fee structures and year-one NAV are less critical than liquidity matching.",
+            "BL blends the view (tech outperforms financials by 4%) with the equilibrium prior (market weights) in proportion to the confidence level. At moderate confidence, the result is a modest overweight in tech and underweight in financials relative to market-cap weights — a sensible tilt, not an extreme concentrated bet. The higher the confidence (smaller Ω), the larger the deviation from market weights. This is the core benefit of BL: it translates views into portfolio tilts that are proportional to conviction, preventing the optimizer from amplifying uncertainty into extreme positions.",
           difficulty: 3,
         },
       ],
     },
 
-    // ─── Lesson 5: Portfolio Risk Management ────────────────────────────────────
+    // ─── Lesson 6: Practical Portfolio Construction ──────────────────────────────
     {
-      id: "portfolio-theory-5",
-      title: "Portfolio Risk Management",
+      id: "portfolio-theory-6",
+      title: "Practical Portfolio Construction",
       description:
-        "Tail risk hedging, drawdown control, CPPI, and practical portfolio construction",
-      icon: "Shield",
-      xpReward: 90,
+        "Goal-based portfolios, liability matching, ESG/regulatory/tax constraints, and rebalancing rules",
+      icon: "Briefcase",
+      xpReward: 85,
       difficulty: "advanced",
+      duration: 20,
       steps: [
         {
           type: "teach",
-          title: "Tail Risk Hedging",
+          title: "Goal-Based Portfolio Construction",
           content:
-            "Standard diversification fails precisely when it is needed most — during market crises, correlations converge toward 1. Tail risk hedging explicitly addresses this by paying for insurance against extreme outcomes.\n\n**Long put options on the portfolio**: Buying put options on an equity index provides direct insurance — profits rise as the market falls. The challenge is cost: out-of-the-money puts in normal markets carry negative carry (theta decay). A 1% OTM S&P put expiring in 3 months costs roughly 1–2% of notional per year in calm conditions.\n\n**Variance swaps**: Pay fixed volatility, receive realized volatility. Profit when realized volatility exceeds implied — which happens sharply during crises. More efficient than options for pure volatility exposure but accessible only to institutional investors.\n\n**VIX call options**: Buy calls on the CBOE Volatility Index. VIX spikes during equity crashes (2020: VIX hit 85; 2008: 80+). VIX calls can produce large payoffs during crashes. Negative carry in normal times.\n\n**Safe haven allocation**: Instead of derivatives, allocate 5–15% to assets that appreciate or hold value during crises: gold, US Treasuries, Swiss franc (CHF), Japanese yen. Lower crisis alpha than derivatives but no explicit cost structure.\n\n**Cost-benefit analysis**: A tail hedge that costs 1% per year but prevents a −30% drawdown once per decade produces a net benefit. Calculate break-even frequency: if the hedge costs C% annually and prevents a loss of L%, the hedge pays if crises occur more often than C/L per year.",
+            "Goal-based investing rejects the single mean-variance framework in favor of multiple sub-portfolios, each matched to a specific financial goal.\n\n**The mental accounting insight**: Behavioral finance shows investors naturally bucket money by purpose. Goal-based portfolios formalize this intuition into a coherent framework.\n\n**Typical goal hierarchy**:\n1. **Safety bucket (floor)**: Capital preservation, emergency fund, near-term liabilities. Invested in cash, short-duration bonds, CDs. Cannot afford volatility.\n2. **Market bucket**: Core growth, retirement savings, medium-to-long horizon. Standard diversified portfolio (60/40 or all-equity depending on horizon).\n3. **Aspirational bucket**: Discretionary wealth, legacy goals, high-risk/reward opportunities. Can tolerate total loss.\n\n**Liability-relative optimization**: Rather than maximizing Sharpe ratio in absolute terms, measure portfolio risk relative to liabilities. A pension fund's risk is not absolute volatility but volatility relative to its liability stream — falling interest rates raise both bond values and pension liabilities simultaneously.\n\n**Horizon matching**: Match investment horizon to goal horizon. 10-year retirement savings can tolerate equity volatility and ride out bear markets. 3-year home down payment cannot — short-term volatility is permanent capital impairment relative to the goal.\n\n**Funded ratio**: For pension and endowment contexts, monitor funded ratio = Assets / PV(Liabilities). Funded ratio falling below 100% means the portfolio cannot meet obligations — a critical risk threshold.",
           highlight: [
-            "tail risk",
-            "put options",
-            "variance swaps",
-            "VIX",
-            "safe haven",
-            "gold",
-            "crisis alpha",
-            "negative carry",
+            "goal-based investing",
+            "safety bucket",
+            "mental accounting",
+            "liability-relative optimization",
+            "horizon matching",
+            "funded ratio",
           ],
         },
         {
           type: "teach",
-          title: "Drawdown Control: CPPI and Volatility Targeting",
+          title: "Liability Matching and Duration Management",
           content:
-            "Beyond tail hedging, systematic drawdown control strategies provide ongoing portfolio protection.\n\n**CPPI (Constant Proportion Portfolio Insurance)**:\nThe most widely used floor-based protection mechanism:\n1. Set a **floor** = minimum acceptable portfolio value (e.g., 80% of initial capital)\n2. **Cushion** = Current Portfolio Value − Floor\n3. **Risky asset investment** = m × Cushion (where m is the multiplier, typically 3–5)\n\nAs markets fall, cushion shrinks → reduce risky exposure. As markets rise, cushion grows → increase exposure. The floor is never breached (in theory) as long as the risky asset doesn't gap below the floor in a single period.\n\nLimitation: CPPI can get 'trapped in cash' after sharp market falls when cushion → 0, missing subsequent recoveries.\n\n**Volatility Targeting**:\nMaintain a constant target volatility (e.g., 10% annualized) by scaling position sizes:\n- When realized volatility rises (VIX spikes) → reduce position sizes\n- When realized volatility falls → increase position sizes\n\nUsed by risk parity funds and systematic CTAs. Reduces drawdowns by deleveraging during turbulent periods.\n\n**Crisis alpha via managed futures**: Trend-following CTA funds have historically generated positive returns during sustained equity bear markets (2000–2002: +24%, 2008: +18%) by shorting equities and riding falling trends. They diversify in a way traditional bonds cannot during inflationary environments.",
+            "Liability matching is the cornerstone of institutional portfolio management for pension funds, insurance companies, and endowments.\n\n**Immunization**: The technique of structuring a bond portfolio so that its value and cash flows match specific liability payments, regardless of interest rate movements.\n\n**Duration matching**: Match the Macaulay duration of assets to the duration of liabilities. When rates change, both asset and liability values move proportionally — the portfolio is immunized against small parallel rate shifts.\n\n**Cash flow matching (dedication)**: Match each liability payment with a specific bond coupon or principal payment. More precise than duration matching but requires more capital.\n\n**Liability-driven investing (LDI)**: A framework widely used by UK and European pension funds:\n- Hedge interest rate risk: Use long-duration bonds (or interest rate swaps/swaptions) to match liability duration\n- Hedge inflation risk: Use inflation-linked bonds (TIPS, UK linkers) to match real liability growth\n- Growth portfolio: With liabilities hedged, deploy residual risk budget in return-seeking assets\n\n**LDI in practice**: A pension fund with £1 billion in liabilities, 15-year duration, and 60% funded ratio might:\n- Hold £400M in long-dated gilts and TIPS (liability hedge)\n- Hold £600M in diversified growth assets\n- Use interest rate swaps to achieve full duration match on the liability side\n\n**Convexity matching**: Duration match only works for small rate changes. For larger shifts, assets and liabilities diverge unless convexity is also matched — bonds with higher convexity rise more (and fall less) for the same duration as rates change.",
           highlight: [
-            "CPPI",
-            "floor",
-            "cushion",
-            "volatility targeting",
-            "managed futures",
-            "crisis alpha",
-            "deleveraging",
+            "immunization",
+            "duration matching",
+            "cash flow matching",
+            "liability-driven investing",
+            "LDI",
+            "inflation-linked bonds",
+            "convexity matching",
           ],
         },
         {
           type: "teach",
-          title: "Portfolio Construction in Practice",
+          title: "Constraints and Rebalancing Rules",
           content:
-            "Real-world portfolio construction involves constraints, costs, and evaluation that theory ignores.\n\n**Portfolio constraints**:\n- **Concentration limits**: maximum weight per stock (e.g., 5%), sector (20%), or country\n- **ESG/SRI screens**: exclusion lists, best-in-class selection, engagement — can affect factor exposure\n- **Tracking error budget**: active managers operate within a permitted deviation from benchmark (e.g., ±3% annual TE)\n\n**Transaction costs** erode returns significantly at scale: brokerage, market impact (large orders move prices), spread, and taxes. A strategy with 1% theoretical alpha and 0.8% annual transaction costs has marginal value.\n\n**Investment Policy Statement (IPS)**: The governing document for institutional portfolios. Specifies return objective, risk tolerance, liquidity needs, time horizon, tax status, legal constraints, and unique considerations. Every allocation decision should trace back to the IPS.\n\n**Performance evaluation metrics**:\n- **Sharpe ratio**: return per unit of total risk\n- **Sortino ratio**: return per unit of downside risk\n- **Calmar ratio**: annualized return / maximum drawdown — relevant for investors with drawdown constraints\n- **Maximum Drawdown**: peak-to-trough decline — intuitive measure of worst-case experience\n- **Information Ratio**: active return / tracking error — measures skill of an active manager relative to benchmark\n\nNo single metric tells the full story. Evaluate performance across multiple regimes and market environments before drawing conclusions about manager skill.",
+            "Real-world portfolio construction operates under constraints that theory ignores — managing them efficiently is where implementation skill separates good from great portfolio managers.\n\n**ESG/SRI constraints**:\n- Exclusion screens: Remove sectors (tobacco, weapons, fossil fuels) — reduces opportunity set, potential tracking error vs benchmark\n- Best-in-class: Hold the least bad companies in each sector rather than excluding entirely\n- Active ownership/engagement: Retain holdings to use shareholder voting rights\n- Impact on factor exposure: ESG screens can inadvertently tilt toward growth (tech tends to score high ESG) or away from value (energy, financials often score low)\n\n**Regulatory constraints**: Pension funds (ERISA), insurance companies (Solvency II), and bank trading books (Basel III) operate under regulatory capital requirements that constrain allocation to risky or illiquid assets.\n\n**Tax constraints**:\n- Minimize turnover in taxable accounts to avoid realizing short-term gains (taxed at ordinary income rates)\n- Tax-loss harvesting: Sell losers to realize losses that offset gains elsewhere\n- Asset location: Hold tax-inefficient assets (bonds, REITs, alternatives) in tax-deferred accounts; hold tax-efficient assets (index funds, ETFs) in taxable accounts\n- Wash sale rule: Cannot immediately repurchase a substantially identical security after harvesting a loss\n\n**Rebalancing rules**:\n- Bandwidth-based: Rebalance when an asset drifts ±5% from target (e.g., equity target 60% → rebalance if above 65% or below 55%)\n- Calendar-based: Rebalance annually or semi-annually — simple, predictable\n- Hybrid: Calendar check + bandwidth trigger — rebalance at scheduled review only if drift exceeds threshold\n- Cost consideration: Rebalancing has transaction costs, market impact, and potential tax consequences — over-rebalancing is a real risk",
           highlight: [
-            "concentration limits",
-            "ESG",
-            "tracking error",
-            "Investment Policy Statement",
-            "Sharpe ratio",
-            "Sortino ratio",
-            "Calmar ratio",
-            "maximum drawdown",
-            "Information Ratio",
+            "ESG constraints",
+            "exclusion screens",
+            "regulatory constraints",
+            "tax-loss harvesting",
+            "asset location",
+            "bandwidth-based rebalancing",
+            "wash sale rule",
           ],
         },
         {
           type: "quiz-mc",
           question:
-            "In a CPPI strategy, the 'cushion' is defined as:",
+            "A corporate pension fund has liabilities with an average duration of 18 years. Its current bond portfolio has duration of 7 years and is 80% funded. The finance team is concerned about rising rates. What is the immediate risk if rates rise by 1%?",
           options: [
-            "The current portfolio value minus the floor (minimum acceptable value)",
-            "The amount held in cash reserves outside the main portfolio",
-            "The difference between the Sharpe ratio and the risk-free rate",
-            "The maximum permitted drawdown before the strategy is terminated",
+            "Liabilities fall more than assets — the duration mismatch means a 1% rate rise shrinks liabilities by roughly 18% but only assets by roughly 7%, improving the funding ratio",
+            "Assets fall more than liabilities — the 11-year duration gap means the fund loses money on the mismatch as rates rise",
+            "Both assets and liabilities fall by exactly the same amount because duration matching is automatic",
+            "Rising rates only affect the bond portfolio; pension liabilities are unaffected by interest rates",
           ],
           correctIndex: 0,
           explanation:
-            "In CPPI, the cushion = Current Portfolio Value − Floor. The floor represents the minimum acceptable value the investor never wants to breach. The risky asset allocation is then m × Cushion, where m is the multiplier (commonly 3–5). As the portfolio value falls toward the floor, the cushion shrinks and the strategy automatically reduces risky exposure. If markets move continuously, the floor is theoretically protected — but gap risk (e.g., an overnight -20% move) can breach the floor before the portfolio can be rebalanced.",
-          difficulty: 2,
+            "When interest rates rise, the present value of fixed future liability cash flows falls — and since liabilities have longer duration (18 years) than assets (7 years), they fall more. A 1% rate rise decreases liability PV by approximately 18% but asset value by approximately 7%. Net effect: the funding ratio improves when rates rise with this mismatch. However, if rates fall, the fund becomes worse funded (liabilities rise more than assets). Most pension funds actually want to close this duration gap (LDI approach) to eliminate the interest rate sensitivity on the funded ratio and focus purely on generating returns in the growth portfolio.",
+          difficulty: 3,
         },
         {
           type: "quiz-tf",
           statement:
-            "A volatility targeting strategy — which reduces position size when market volatility is high — always improves risk-adjusted returns compared to a static buy-and-hold allocation.",
-          correct: false,
+            "In a taxable account, holding an asset that has declined significantly in value and selling it to realize a capital loss — even if you still believe in the long-term investment thesis — can be a rational portfolio management decision.",
+          correct: true,
           explanation:
-            "FALSE. While volatility targeting can reduce drawdowns and improve the Sharpe ratio over many historical periods, it does not always improve risk-adjusted returns. Key limitations: (1) Transaction costs from frequent rebalancing can erode gains; (2) Volatility targeting often cuts exposure after a sharp initial drop — missing the recovery rally and 'selling low'; (3) The benefit depends heavily on serial correlation in volatility (volatility clustering must persist predictably); (4) In whipsaw markets with alternating high/low volatility regimes, the strategy suffers from timing lag. Evidence is empirically mixed and path-dependent.",
-          difficulty: 3,
+            "TRUE. Tax-loss harvesting — selling securities at a loss to realize tax losses — is a rational strategy even when you maintain conviction in the position. The realized loss creates a tax asset (offsets capital gains or, with limits, ordinary income), generating real economic value. After selling, you can immediately repurchase a similar but not 'substantially identical' security to maintain economic exposure (e.g., sell one S&P 500 ETF and immediately buy a different S&P 500 ETF). The 30-day wash sale rule prohibits repurchasing the exact same security, but does not prevent maintaining similar market exposure. Properly executed, tax-loss harvesting can add 0.5-1.5% per year in after-tax returns.",
+          difficulty: 2,
         },
         {
           type: "quiz-scenario",
           scenario:
-            "A 45-year-old investor with $500,000 in savings, 20 years to retirement, moderate risk tolerance, and no pension is building a long-term portfolio. She wants to grow capital but cannot tolerate a permanent loss of more than 30% of her portfolio.",
+            "A $10 million family office portfolio has three goals: (1) $2M set aside for a house purchase in 2 years, (2) $5M for retirement in 20 years, (3) $3M for philanthropy with no specific timeline, willing to accept high risk. The family has no pension income and has a 37% marginal tax rate.",
           question:
-            "Which portfolio construction approach best fits her situation?",
+            "Which portfolio construction approach best serves this family?",
           options: [
-            "A diversified SAA of roughly 65% global equities, 25% bonds, 10% real assets with annual threshold rebalancing and a maximum drawdown constraint",
-            "100% managed futures for maximum crisis alpha and absolute return",
-            "100% equities with a full CPPI floor set at 70% of peak value",
-            "60% gold and 40% cash for capital preservation given the drawdown constraint",
+            "Segment into three goal-based sub-portfolios: near-zero-risk for the house goal, diversified equity-led portfolio for retirement, and high-risk growth assets for philanthropy — with tax-efficient placement of bonds and REITs in tax-deferred accounts",
+            "Invest all $10M in a single 60/40 portfolio with annual rebalancing to simplify management",
+            "Keep all $10M in cash equivalents to protect the 2-year house purchase goal, since any equity exposure is too risky",
+            "Invest 100% in equities for maximum long-run return since the philanthropic and retirement goals have long horizons",
           ],
           correctIndex: 0,
           explanation:
-            "With a 20-year horizon and moderate risk tolerance, a diversified SAA centered on equities is appropriate — time allows recovery from drawdowns. The 65/25/10 split with real assets provides inflation protection while bonds provide stability. Annual threshold rebalancing maintains the target allocation without excessive trading. A drawdown rule (e.g., reduce equity if the portfolio falls 25% from peak) can implement a soft floor. Full CPPI would require leverage in bonds, 100% equities ignores the drawdown constraint, managed futures alone are too concentrated, and a gold/cash portfolio is likely to underperform over 20 years with high inflation risk.",
+            "Goal-based construction is clearly superior here. The 2-year house goal demands capital preservation — short-duration bonds or CDs are appropriate; equity volatility over 2 years creates real risk of missing the goal. The 20-year retirement goal can accommodate equity risk — time allows recovery. The philanthropic bucket has the highest risk tolerance and longest horizon. Segmenting prevents the house goal from being jeopardized by equity volatility while allowing growth in the longer-horizon buckets. Tax efficiency (asset location) matters at a 37% rate — placing tax-inefficient assets (bonds) in IRAs and tax-efficient assets (index ETFs) in taxable accounts improves after-tax returns meaningfully.",
           difficulty: 3,
         },
       ],

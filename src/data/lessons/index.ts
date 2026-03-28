@@ -93,6 +93,8 @@ import { UNIT_WEALTH_INEQUALITY } from "./unit-wealth-inequality";
 import { UNIT_REAL_ESTATE_ANALYSIS } from "./unit-real-estate-analysis";
 import { UNIT_CRYPTO_REGULATION } from "./unit-crypto-regulation";
 import { UNIT_IMPACT_INVESTING } from "./unit-impact-investing";
+import { UNIT_FINANCIAL_STATEMENTS } from "./unit-financial-statements";
+import { UNIT_BEHAVIORAL_ECONOMICS } from "./unit-behavioral-economics";
 
 export const UNITS: Unit[] = [
   UNIT_BASICS,
@@ -189,6 +191,7 @@ export const UNITS: Unit[] = [
   UNIT_REAL_ESTATE_ANALYSIS,
   UNIT_CRYPTO_REGULATION,
   UNIT_IMPACT_INVESTING,
+  UNIT_FINANCIAL_STATEMENTS,
 ];
 
 export function getLessonById(lessonId: string): Lesson | undefined {
