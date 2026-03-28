@@ -71,6 +71,7 @@ const NAV_GROUPS: NavGroup[] = [
       { icon: ScanLine,     label: "Scanner",      href: "/scanner" },
       { icon: GitCompare,   label: "Pairs",        href: "/pairs" },
       { icon: Globe,        label: "Market Intel", href: "/market" },
+      { icon: Globe,        label: "Macro",        href: "/macro" },
       { icon: Bitcoin,      label: "Crypto",       href: "/crypto" },
       { icon: Landmark,     label: "Bonds",        href: "/bonds" },
       { icon: PieChart,     label: "ETFs",         href: "/etf" },
