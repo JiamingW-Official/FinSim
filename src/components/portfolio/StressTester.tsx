@@ -943,7 +943,7 @@ function CustomBuilder({
     <div className="space-y-4">
       {sliders.map((slider) => {
         const val = params[slider.key];
-        const colorClass = typeof slider.color === "function" ? slider.color(val) : slider.color;
+        const colorClass = slider.color(val);
         return (
           <div key={slider.key}>
             <div className="mb-1.5 flex items-center justify-between">
