@@ -6,6 +6,7 @@ import type {
   Position,
   TradeRecord,
   EquitySnapshot,
+  ConditionalTrigger,
 } from "@/types/trading";
 import { INITIAL_CAPITAL } from "@/types/trading";
 import type { OHLCVBar } from "@/types/market";
@@ -83,6 +84,38 @@ interface TradingState {
     ticker: string,
     quantity: number,
     takeProfitPrice: number,
+    simulationDate: number,
+  ) => Order | null;
+  placeBracketOrder: (
+    ticker: string,
+    side: OrderSide,
+    quantity: number,
+    entryPrice: number,
+    stopPrice: number,
+    takeProfitPrice: number,
+    simulationDate: number,
+  ) => Order | null;
+  placeOCOOrder: (
+    ticker: string,
+    quantity: number,
+    priceA: number,
+    priceB: number,
+    simulationDate: number,
+  ) => Order | null;
+  placeTrailingStopOrder: (
+    ticker: string,
+    quantity: number,
+    trailAmount: number,
+    trailPercent: number | undefined,
+    currentPrice: number,
+    simulationDate: number,
+  ) => Order | null;
+  placeConditionalOrder: (
+    ticker: string,
+    side: OrderSide,
+    quantity: number,
+    limitPrice: number,
+    condition: ConditionalTrigger,
     simulationDate: number,
   ) => Order | null;
   cancelPendingOrder: (orderId: string) => void;
@@ -584,6 +617,93 @@ export const useTradingStore = create<TradingState>()(
           createdAt: simulationDate,
         };
 
+        set((state) => ({
+          pendingOrders: [...state.pendingOrders, order],
+        }));
+        return order;
+      },
+
+      placeBracketOrder: (ticker, side, quantity, entryPrice, stopPrice, takeProfitPrice, simulationDate) => {
+        const groupId = generateId();
+        // Entry order (limit at entryPrice)
+        const entryOrder: Order = {
+          id: generateId(),
+          ticker,
+          side,
+          type: "bracket",
+          quantity,
+          status: "pending",
+          filledQty: 0,
+          avgFillPrice: 0,
+          limitPrice: entryPrice,
+          bracketStopPrice: stopPrice,
+          bracketTakeProfitPrice: takeProfitPrice,
+          bracketGroupId: groupId,
+          createdAt: simulationDate,
+        };
+        set((state) => ({
+          pendingOrders: [...state.pendingOrders, entryOrder],
+        }));
+        return entryOrder;
+      },
+
+      placeOCOOrder: (ticker, quantity, priceA, priceB, simulationDate) => {
+        const groupId = generateId();
+        const ocoOrder: Order = {
+          id: generateId(),
+          ticker,
+          side: "buy",
+          type: "oco",
+          quantity,
+          status: "pending",
+          filledQty: 0,
+          avgFillPrice: 0,
+          ocoPriceA: priceA,
+          ocoPriceB: priceB,
+          ocoGroupId: groupId,
+          createdAt: simulationDate,
+        };
+        set((state) => ({
+          pendingOrders: [...state.pendingOrders, ocoOrder],
+        }));
+        return ocoOrder;
+      },
+
+      placeTrailingStopOrder: (ticker, quantity, trailAmount, trailPercent, currentPrice, simulationDate) => {
+        const order: Order = {
+          id: generateId(),
+          ticker,
+          side: "sell",
+          type: "trailing_stop",
+          quantity,
+          status: "pending",
+          filledQty: 0,
+          avgFillPrice: 0,
+          trailAmount,
+          trailPercent,
+          trailHighWater: currentPrice,
+          createdAt: simulationDate,
+        };
+        set((state) => ({
+          pendingOrders: [...state.pendingOrders, order],
+        }));
+        return order;
+      },
+
+      placeConditionalOrder: (ticker, side, quantity, limitPrice, condition, simulationDate) => {
+        const order: Order = {
+          id: generateId(),
+          ticker,
+          side,
+          type: "conditional",
+          quantity,
+          status: "pending",
+          filledQty: 0,
+          avgFillPrice: 0,
+          limitPrice,
+          condition,
+          createdAt: simulationDate,
+        };
         set((state) => ({
           pendingOrders: [...state.pendingOrders, order],
         }));

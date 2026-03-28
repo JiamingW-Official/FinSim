@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useCallback } from "react";
 import { cn } from "@/lib/utils";
 import type { UnusualActivityItem, OptionContract, OptionChainExpiry } from "@/types/options";
 
@@ -63,9 +63,7 @@ function relTime(ts: number): string {
 
 // ── Filter state types ────────────────────────────────────────────────────────
 
-type TypeFilter = "both" | "call" | "put";
-type SentimentFilter = "all" | "bullish" | "bearish";
-type OrderTypeFilter = "all" | "floor" | "sweep" | "normal";
+type ComboFilter = "all" | "calls" | "puts" | "sweeps" | "blocks" | "bullish" | "bearish";
 
 // ── Toggle button (matches ChainFiltersBar style) ─────────────────────────────
 
@@ -112,72 +110,120 @@ function ActivityIcon({ className }: { className?: string }) {
   );
 }
 
+// ── Copy icon ─────────────────────────────────────────────────────────────────
+
+function CopyIcon({ className }: { className?: string }) {
+  return (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth={2}
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      className={className}
+    >
+      <rect x="9" y="9" width="13" height="13" rx="2" ry="2" />
+      <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1" />
+    </svg>
+  );
+}
+
+// ── Order type badge ──────────────────────────────────────────────────────────
+
+function OrderTypeBadge({ orderType }: { orderType: UnusualActivityItem["orderType"] }) {
+  if (orderType === "floor") {
+    return (
+      <span className="rounded bg-amber-500/15 px-1 py-0.5 text-[9px] font-semibold text-amber-400">
+        FLOOR
+      </span>
+    );
+  }
+  if (orderType === "sweep") {
+    // SWEEP = split across exchanges (orange)
+    return (
+      <span className="rounded bg-orange-500/15 px-1 py-0.5 text-[9px] font-semibold text-orange-400">
+        SWEEP
+      </span>
+    );
+  }
+  // Normal → check if large single-venue (BLOCK = purple)
+  return (
+    <span className="rounded bg-purple-500/15 px-1 py-0.5 text-[9px] font-semibold text-purple-400">
+      BLOCK
+    </span>
+  );
+}
+
+// ── Row color class based on sentiment ───────────────────────────────────────
+
+function rowColorClass(item: UnusualActivityItem): string {
+  if (item.sentiment === "bullish") return "border-l-2 border-l-emerald-500/40 hover:bg-emerald-500/5";
+  if (item.sentiment === "bearish") return "border-l-2 border-l-red-500/40 hover:bg-red-500/5";
+  return "border-l-2 border-l-transparent hover:bg-accent/20";
+}
+
 // ── Main Component ────────────────────────────────────────────────────────────
 
 export function UnusualActivityFeed({
   items,
   onSelectContract,
 }: UnusualActivityFeedProps) {
-  const [typeFilter, setTypeFilter] = useState<TypeFilter>("both");
-  const [sentimentFilter, setSentimentFilter] = useState<SentimentFilter>("all");
-  const [orderTypeFilter, setOrderTypeFilter] = useState<OrderTypeFilter>("all");
+  const [comboFilter, setComboFilter] = useState<ComboFilter>("all");
+  const [copiedId, setCopiedId] = useState<string | null>(null);
 
-  // Apply filters
+  // Apply combined filter
   const filtered = items.filter((item) => {
-    if (typeFilter !== "both" && item.type !== typeFilter) return false;
-    if (sentimentFilter !== "all" && item.sentiment !== sentimentFilter) return false;
-    if (orderTypeFilter !== "all" && item.orderType !== orderTypeFilter) return false;
+    if (comboFilter === "calls") return item.type === "call";
+    if (comboFilter === "puts") return item.type === "put";
+    if (comboFilter === "sweeps") return item.orderType === "sweep";
+    if (comboFilter === "blocks") return item.orderType === "normal"; // normal = block (large single-venue)
+    if (comboFilter === "bullish") return item.sentiment === "bullish";
+    if (comboFilter === "bearish") return item.sentiment === "bearish";
     return true;
   });
+
+  const handleCopyAlert = useCallback(
+    (e: React.MouseEvent, item: UnusualActivityItem) => {
+      e.stopPropagation();
+      const text = `${item.ticker} $${item.strike}${item.type === "call" ? "C" : "P"} ${item.expiry} — ${formatPremium(item.premium)} ${item.sentiment.toUpperCase()} ${item.orderType.toUpperCase()}`;
+      navigator.clipboard.writeText(text).then(() => {
+        setCopiedId(item.id);
+        setTimeout(() => setCopiedId(null), 1500);
+      });
+    },
+    [],
+  );
+
+  const filterOptions: { value: ComboFilter; label: string }[] = [
+    { value: "all", label: "All" },
+    { value: "calls", label: "Calls" },
+    { value: "puts", label: "Puts" },
+    { value: "sweeps", label: "Sweeps" },
+    { value: "blocks", label: "Blocks" },
+    { value: "bullish", label: "Bullish" },
+    { value: "bearish", label: "Bearish" },
+  ];
 
   return (
     <div className="flex h-full flex-col">
       {/* Filter bar */}
-      <div className="flex shrink-0 flex-wrap items-center gap-2 border-b border-border/50 px-3 py-1.5">
-        {/* Type filter */}
+      <div className="flex shrink-0 flex-wrap items-center gap-1.5 border-b border-border/50 px-3 py-1.5">
         <div className="flex items-center gap-0.5 rounded-md border border-border/50 bg-card p-0.5">
-          {(["both", "call", "put"] as TypeFilter[]).map((v) => (
+          {filterOptions.map(({ value, label }) => (
             <ToggleButton
-              key={v}
-              active={typeFilter === v}
-              onClick={() => setTypeFilter(v)}
+              key={value}
+              active={comboFilter === value}
+              onClick={() => setComboFilter(value)}
             >
-              {v === "both" ? "Both" : v === "call" ? "Call" : "Put"}
+              {label}
             </ToggleButton>
           ))}
         </div>
-
-        {/* Sentiment filter */}
-        <div className="flex items-center gap-0.5 rounded-md border border-border/50 bg-card p-0.5">
-          {(["all", "bullish", "bearish"] as SentimentFilter[]).map((v) => (
-            <ToggleButton
-              key={v}
-              active={sentimentFilter === v}
-              onClick={() => setSentimentFilter(v)}
-            >
-              {v === "all" ? "All Sentiment" : v === "bullish" ? "Bullish" : "Bearish"}
-            </ToggleButton>
-          ))}
-        </div>
-
-        {/* Order type filter */}
-        <div className="flex items-center gap-0.5 rounded-md border border-border/50 bg-card p-0.5">
-          {(["all", "floor", "sweep", "normal"] as OrderTypeFilter[]).map((v) => (
-            <ToggleButton
-              key={v}
-              active={orderTypeFilter === v}
-              onClick={() => setOrderTypeFilter(v)}
-            >
-              {v === "all"
-                ? "All Types"
-                : v === "floor"
-                ? "Floor"
-                : v === "sweep"
-                ? "Sweep"
-                : "Normal"}
-            </ToggleButton>
-          ))}
-        </div>
+        <span className="ml-auto text-[10px] text-muted-foreground">
+          {filtered.length} alerts
+        </span>
       </div>
 
       {/* Table */}
@@ -193,6 +239,7 @@ export function UnusualActivityFeed({
               <tr className="border-b border-border/50">
                 {[
                   "Time",
+                  "Ticker",
                   "Exp",
                   "DTE",
                   "Strike",
@@ -203,11 +250,13 @@ export function UnusualActivityFeed({
                   "Size",
                   "Price",
                   "Premium",
+                  "Prem/OI",
                   "Bid",
                   "Ask",
-                ].map((col) => (
+                  "",
+                ].map((col, i) => (
                   <th
-                    key={col}
+                    key={`${col}-${i}`}
                     className="px-2 py-1.5 text-left text-[9px] font-semibold text-muted-foreground/70"
                   >
                     {col}
@@ -216,23 +265,32 @@ export function UnusualActivityFeed({
               </tr>
             </thead>
             <tbody>
-              {filtered.map((item, rowIdx) => {
-                const isEven = rowIdx % 2 === 0;
+              {filtered.map((item) => {
                 const isBullish = item.sentiment === "bullish";
                 const isBearish = item.sentiment === "bearish";
+                // Prem/OI ratio: total premium / (openInterest * contract_size * price)
+                const openInterest = item.size * 3; // synthetic OI matches itemToContract
+                const oiValue = openInterest * 100 * item.price;
+                const premOIRatio = oiValue > 0 ? item.premium / oiValue : 0;
+                const premOIHigh = premOIRatio > 0.5;
 
                 return (
                   <tr
                     key={item.id}
                     onClick={() => onSelectContract(itemToContract(item))}
                     className={cn(
-                      "cursor-pointer transition-colors hover:bg-accent/20",
-                      isEven ? "bg-card/30" : "",
+                      "cursor-pointer transition-colors",
+                      rowColorClass(item),
                     )}
                   >
                     {/* Time */}
                     <td className="px-2 py-1.5 text-[10px] text-muted-foreground">
                       {relTime(item.timestamp)}
+                    </td>
+
+                    {/* Ticker */}
+                    <td className="px-2 py-1.5 text-[10px] font-semibold">
+                      {item.ticker}
                     </td>
 
                     {/* Exp */}
@@ -287,21 +345,9 @@ export function UnusualActivityFeed({
                       )}
                     </td>
 
-                    {/* Order type badge */}
+                    {/* Order type badge (SWEEP / BLOCK / FLOOR) */}
                     <td className="px-2 py-1.5 text-[10px]">
-                      {item.orderType === "floor" ? (
-                        <span className="rounded bg-amber-500/15 px-1 py-0.5 text-[9px] font-medium text-amber-400">
-                          Floor
-                        </span>
-                      ) : item.orderType === "sweep" ? (
-                        <span className="rounded bg-blue-500/15 px-1 py-0.5 text-[9px] font-medium text-blue-400">
-                          Sweep
-                        </span>
-                      ) : (
-                        <span className="rounded bg-muted/30 px-1 py-0.5 text-[9px] font-medium text-muted-foreground">
-                          Normal
-                        </span>
-                      )}
+                      <OrderTypeBadge orderType={item.orderType} />
                     </td>
 
                     {/* Size */}
@@ -328,6 +374,21 @@ export function UnusualActivityFeed({
                       {formatPremium(item.premium)}
                     </td>
 
+                    {/* Prem/OI ratio */}
+                    <td className="px-2 py-1.5 text-[10px] tabular-nums">
+                      <span
+                        className={cn(
+                          "font-medium",
+                          premOIHigh ? "text-amber-400" : "text-muted-foreground",
+                        )}
+                      >
+                        {premOIRatio.toFixed(2)}
+                        {premOIHigh && (
+                          <span className="ml-0.5 text-[8px]">!</span>
+                        )}
+                      </span>
+                    </td>
+
                     {/* Bid */}
                     <td className="px-2 py-1.5 text-[10px] tabular-nums text-muted-foreground">
                       {item.bid.toFixed(2)}
@@ -336,6 +397,23 @@ export function UnusualActivityFeed({
                     {/* Ask */}
                     <td className="px-2 py-1.5 text-[10px] tabular-nums text-muted-foreground">
                       {item.ask.toFixed(2)}
+                    </td>
+
+                    {/* Copy Alert button */}
+                    <td className="px-2 py-1.5 text-[10px]">
+                      <button
+                        onClick={(e) => handleCopyAlert(e, item)}
+                        title="Copy alert to clipboard"
+                        className={cn(
+                          "flex items-center gap-1 rounded px-1.5 py-0.5 text-[9px] font-medium transition-colors",
+                          copiedId === item.id
+                            ? "bg-emerald-500/20 text-emerald-400"
+                            : "bg-muted/30 text-muted-foreground hover:bg-muted/60 hover:text-foreground",
+                        )}
+                      >
+                        <CopyIcon className="h-2.5 w-2.5" />
+                        {copiedId === item.id ? "Copied" : "Copy"}
+                      </button>
                     </td>
                   </tr>
                 );

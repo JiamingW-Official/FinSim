@@ -1,6 +1,26 @@
 export type OrderSide = "buy" | "sell";
-export type OrderType = "market" | "limit" | "stop_loss" | "take_profit";
+export type OrderType =
+  | "market"
+  | "limit"
+  | "stop_loss"
+  | "take_profit"
+  | "bracket"
+  | "oco"
+  | "trailing_stop"
+  | "conditional";
 export type OrderStatus = "filled" | "cancelled" | "rejected" | "pending";
+
+export type ConditionalTriggerType =
+  | "price_above"
+  | "price_below"
+  | "rsi_above"
+  | "rsi_below"
+  | "volume_spike";
+
+export interface ConditionalTrigger {
+  type: ConditionalTriggerType;
+  value: number;
+}
 
 export interface Order {
   id: string;
@@ -18,6 +38,24 @@ export interface Order {
   slippage?: number;
   createdAt: number;
   filledAt?: number;
+
+  // Bracket order fields
+  bracketStopPrice?: number;
+  bracketTakeProfitPrice?: number;
+  bracketGroupId?: string;
+
+  // OCO fields
+  ocoGroupId?: string;
+  ocoPriceA?: number;  // buy-stop above resistance
+  ocoPriceB?: number;  // buy-limit below support
+
+  // Trailing stop fields
+  trailAmount?: number;   // absolute trail distance
+  trailPercent?: number;  // % trail distance (used instead of trailAmount when set)
+  trailHighWater?: number; // highest price seen since activation
+
+  // Conditional / GTC fields
+  condition?: ConditionalTrigger;
 }
 
 export interface Position {
