@@ -402,7 +402,7 @@ function FlowChart({ activities }: { activities: WhaleActivity[] }) {
 
   // Count flows
   const flows: { from: string; to: string; value: number }[] = [];
-  const rng = mulberry32(SEED ^ 0xf10w);
+  const rng = mulberry32(SEED ^ 0xf10a);
   PROTOCOLS.forEach((src) => {
     PROTOCOLS.forEach((dst) => {
       if (src === dst) return;

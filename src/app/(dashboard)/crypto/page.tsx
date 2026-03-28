@@ -1942,8 +1942,9 @@ const PAGE_TABS: { id: PageTab; label: string; icon: React.ReactNode }[] = [
   { id: "defi",      label: "DeFi Simulator",icon: <Droplets className="h-3.5 w-3.5" /> },
   { id: "onchain",   label: "On-Chain",      icon: <Cpu className="h-3.5 w-3.5" /> },
   { id: "nft",       label: "NFT Market",    icon: <ImageIcon className="h-3.5 w-3.5" /> },
-  { id: "portfolio", label: "Portfolio",     icon: <PieChart className="h-3.5 w-3.5" /> },
-  { id: "education", label: "Education",     icon: <BookOpen className="h-3.5 w-3.5" /> },
+  { id: "portfolio",      label: "Portfolio",      icon: <PieChart className="h-3.5 w-3.5" /> },
+  { id: "education",     label: "Education",      icon: <BookOpen className="h-3.5 w-3.5" /> },
+  { id: "defianalytics", label: "DeFi Analytics", icon: <Activity className="h-3.5 w-3.5" /> },
 ];
 
 // ── Main Page ─────────────────────────────────────────────────────────────────
@@ -1996,8 +1997,9 @@ export default function CryptoPage() {
         {activeTab === "defi"      && <DeFiTab seed={seed} />}
         {activeTab === "onchain"   && <OnChainTab seed={seed} />}
         {activeTab === "nft"       && <NftTab seed={seed} />}
-        {activeTab === "portfolio" && <CryptoPortfolioTab rows={cryptoRows} />}
-        {activeTab === "education" && <EducationTab />}
+        {activeTab === "portfolio"      && <CryptoPortfolioTab rows={cryptoRows} />}
+        {activeTab === "education"      && <EducationTab />}
+        {activeTab === "defianalytics"  && <DeFiAnalytics />}
       </div>
     </div>
   );
