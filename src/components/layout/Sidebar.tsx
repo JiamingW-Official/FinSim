@@ -7,6 +7,7 @@ import {
   Swords, ScrollText, Crosshair, Trophy, User, Settings, Activity,
   TrendingUp, Globe, ChevronLeft, ChevronRight, BookOpen, Bitcoin,
   ScanLine, GitCompare, Users, Landmark, BookMarked, DollarSign, Calculator, PieChart,
+  Brain,
 } from "lucide-react";
 import { Tooltip, TooltipTrigger, TooltipContent } from "@/components/ui/tooltip";
 import { SearchTrigger } from "@/components/search/GlobalSearch";
@@ -79,6 +80,7 @@ const NAV_GROUPS: NavGroup[] = [
     section: "Learn",
     items: [
       { icon: GraduationCap, label: "Learn",      href: "/learn" },
+      { icon: Brain,         label: "Quiz",       href: "/quiz" },
       { icon: BookOpen,      label: "Glossary",   href: "/glossary" },
       { icon: Swords,        label: "Challenges", href: "/challenges" },
       { icon: ScrollText,    label: "Quests",     href: "/quests",      badgeKey: "quests" },

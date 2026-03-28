@@ -2196,7 +2196,7 @@ export default function ToolsPage() {
           <p className="text-xs text-muted-foreground">Personal finance simulators and calculators</p>
         </div>
         <Badge variant="secondary" className="ml-auto text-xs">
-          5 Tools
+          6 Tools
         </Badge>
       </div>
 
@@ -2231,6 +2231,9 @@ export default function ToolsPage() {
           </TabsContent>
           <TabsContent value="loan" className="mt-0 data-[state=inactive]:hidden">
             <LoanCalculatorTab />
+          </TabsContent>
+          <TabsContent value="macro" className="mt-0 data-[state=inactive]:hidden">
+            <MacroSimulatorTab />
           </TabsContent>
         </div>
       </Tabs>

@@ -145,12 +145,16 @@ interface WatchlistState {
   getActiveWatchlist: () => WatchlistItem[];
 }
 
-// ─── Default list constant ────────────────────────────────────────────────────
+// ─── Default lists ────────────────────────────────────────────────────────────
 
-const DEFAULT_LIST_ID = "default";
+const DEFAULT_LIST_ID = "main";
 
-function makeDefaultList(): WatchlistList {
-  return { id: DEFAULT_LIST_ID, name: "My Watchlist", tickers: [] };
+function makeDefaultLists(): WatchlistList[] {
+  return [
+    { id: "main", name: "Main", tickers: [] },
+    { id: "options-plays", name: "Options Plays", tickers: [] },
+    { id: "swing-trades", name: "Swing Trades", tickers: [] },
+  ];
 }
 
 function generateId(): string {
@@ -163,7 +167,7 @@ export const useWatchlistStore = create<WatchlistState>()(
   persist(
     (set, get) => ({
       watchlist: [],
-      lists: [makeDefaultList()],
+      lists: makeDefaultLists(),
       activeListId: DEFAULT_LIST_ID,
       columns: DEFAULT_COLUMNS,
       alertHistory: [],

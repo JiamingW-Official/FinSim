@@ -190,6 +190,9 @@ export default function PortfolioPage() {
                 <TabsTrigger value="deep" className="flex-1 rounded-md text-[11px] h-7 whitespace-nowrap">
                   Deep
                 </TabsTrigger>
+                <TabsTrigger value="attribution" className="flex-1 rounded-md text-[11px] h-7 whitespace-nowrap">
+                  Attribution
+                </TabsTrigger>
               </TabsList>
             </div>
 
@@ -358,6 +361,11 @@ export default function PortfolioPage() {
                 </div>
                 <AchievementGallery />
               </div>
+            </TabsContent>
+
+            {/* ── Attribution tab ── */}
+            <TabsContent value="attribution" className="space-y-4">
+              <PortfolioAttribution />
             </TabsContent>
 
             {/* ── Deep Analytics tab ── */}
