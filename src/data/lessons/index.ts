@@ -38,6 +38,7 @@ import { UNIT_CORPORATE_FINANCE } from "./unit-corporate-finance";
 import { UNIT_DEFI_WEB3 } from "./unit-defi-web3";
 import { UNIT_MACROECONOMICS } from "./unit-macroeconomics";
 import { UNIT_REAL_ESTATE_INVESTING } from "./unit-real-estate-investing";
+import { UNIT_PORTFOLIO_THEORY } from "./unit-portfolio-theory";
 
 export const UNITS: Unit[] = [
   UNIT_BASICS,
@@ -79,6 +80,7 @@ export const UNITS: Unit[] = [
   UNIT_DEFI_WEB3,
   UNIT_MACROECONOMICS,
   UNIT_REAL_ESTATE_INVESTING,
+  UNIT_PORTFOLIO_THEORY,
 ];
 
 export function getLessonById(lessonId: string): Lesson | undefined {

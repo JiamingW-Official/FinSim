@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect, useRef, useMemo, useCallback } from "react";
+import { useState, useEffect, useMemo } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
@@ -17,12 +17,9 @@ import {
   Zap,
   Calendar,
   Radio,
-  ChevronDown,
-  ChevronUp,
   ArrowUpRight,
   ArrowDownRight,
   Minus,
-  AlertCircle,
   CheckCircle2,
   XCircle,
   Globe,
