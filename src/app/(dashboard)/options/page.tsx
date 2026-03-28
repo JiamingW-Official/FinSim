@@ -21,6 +21,7 @@ import { FlowHeatmap } from "@/components/options/FlowHeatmap";
 import { DarkPoolFlow } from "@/components/options/DarkPoolFlow";
 import { GreeksLab } from "@/components/options/GreeksLab";
 import { GreeksMonitor } from "@/components/options/GreeksMonitor";
+import { PortfolioMarginCalc } from "@/components/options/PortfolioMarginCalc";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Activity, Loader2 } from "lucide-react";
 import type { OptionContract, ChainFilters } from "@/types/options";
@@ -143,6 +144,12 @@ export default function OptionsPage() {
             className="h-7 rounded-none border-b-2 border-transparent px-4 text-xs data-[state=active]:border-orange-400 data-[state=active]:bg-transparent data-[state=active]:text-orange-400"
           >
             Greeks Monitor
+          </TabsTrigger>
+          <TabsTrigger
+            value="margin-calc"
+            className="h-7 rounded-none border-b-2 border-transparent px-4 text-xs data-[state=active]:border-orange-400 data-[state=active]:bg-transparent data-[state=active]:text-orange-400"
+          >
+            Margin Calc
           </TabsTrigger>
         </TabsList>
 
