@@ -35,8 +35,9 @@ import { AlphaBotAlerts } from "@/components/ai/AlphaBotAlerts";
 import { PositionAlerts } from "@/components/trading/PositionAlerts";
 import { PortfolioHeatmap } from "@/components/trading/PortfolioHeatmap";
 import { TradeShareCard } from "@/components/trading/TradeShareCard";
+import { TradeReplay } from "@/components/trading/TradeReplay";
 import { cn } from "@/lib/utils";
-import { Loader2 } from "lucide-react";
+import { Loader2, RefreshCw } from "lucide-react";
 
 // ── Chart area wrapper with DrawingOverlay ────────────────────────────────────
 
