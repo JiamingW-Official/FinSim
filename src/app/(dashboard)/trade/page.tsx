@@ -10,6 +10,8 @@ import { DrawingToolbar } from "@/components/chart/DrawingToolbar";
 import { DrawingOverlay } from "@/components/chart/DrawingOverlay";
 import { OrderEntry } from "@/components/trading/OrderEntry";
 import { PositionsTable } from "@/components/trading/PositionsTable";
+import { MarginPanel } from "@/components/trading/MarginPanel";
+import { ShortSqueezeAlert } from "@/components/trading/ShortSqueezeAlert";
 import { TradeHistory } from "@/components/trading/TradeHistory";
 import { PendingOrders } from "@/components/trading/PendingOrders";
 import { ExecutionQuality } from "@/components/trading/ExecutionQuality";

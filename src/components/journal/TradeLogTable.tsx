@@ -19,6 +19,12 @@ import {
 } from "lucide-react";
 import type { TradeRow } from "@/app/(dashboard)/journal/JournalPageClient";
 import { formatDuration } from "@/app/(dashboard)/journal/JournalPageClient";
+import {
+  EmotionPicker,
+  NarrativeButton,
+  loadEmotions,
+  type TradeEmotion,
+} from "./JournalAIAnalysis";
 
 // ── Types ───────────────────────────────────────────────────────────────────
 type SortKey =
@@ -52,6 +58,7 @@ const DEFAULT_FILTERS: Filters = {
 
 const NOTES_STORAGE_KEY = "finsim-journal-notes";
 const TAGS_STORAGE_KEY = "finsim-trade-tags-v1";
+const EMOTIONS_STORAGE_KEY = "finsim-trade-emotions-v1";
 
 // ── Common tags ──────────────────────────────────────────────────────────────
 export const COMMON_TAGS = [
@@ -113,6 +120,15 @@ function saveTradeTags(tags: Record<string, string[]>): void {
   if (typeof window === "undefined") return;
   try {
     localStorage.setItem(TAGS_STORAGE_KEY, JSON.stringify(tags));
+  } catch {
+    // ignore
+  }
+}
+
+function saveEmotionsLocal(emotions: Record<string, TradeEmotion>): void {
+  if (typeof window === "undefined") return;
+  try {
+    localStorage.setItem(EMOTIONS_STORAGE_KEY, JSON.stringify(emotions));
   } catch {
     // ignore
   }

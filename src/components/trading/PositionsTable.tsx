@@ -94,85 +94,106 @@ export function PositionsTable() {
             <th scope="col" className="px-2 py-1.5 text-right font-medium whitespace-nowrap">Avg</th>
             <th scope="col" className="px-2 py-1.5 text-right font-medium whitespace-nowrap">Price</th>
             <th scope="col" className="px-2 py-1.5 text-right font-medium whitespace-nowrap">P&amp;L</th>
+            <th scope="col" className="px-2 py-1.5 text-right font-medium whitespace-nowrap">Borrow</th>
             <th scope="col" className="w-8 px-1 py-1.5"><span className="sr-only">Actions</span></th>
           </tr>
         </thead>
         <tbody>
-          {positions.map((pos, index) => (
-            <motion.tr
-              key={`${pos.ticker}-${pos.side}`}
-              initial={{ opacity: 0, x: -8 }}
-              animate={{ opacity: 1, x: 0 }}
-              exit={{ opacity: 0, x: 8 }}
-              transition={{ delay: index * 0.05, duration: 0.2 }}
-              className={cn(
-                "border-b border-border/50 hover:bg-accent/30",
-                pos.side === "long"
-                  ? "border-l-2 border-l-[#10b981]/40"
-                  : "border-l-2 border-l-[#ef4444]/40",
-              )}
-            >
-              <td className="px-2 py-1.5 font-semibold">{pos.ticker}</td>
-              <td className="px-2 py-1.5 text-center">
-                <Badge
-                  variant="outline"
-                  className={cn(
-                    "px-1.5 py-0 text-[10px]",
-                    pos.side === "long"
-                      ? "border-[#10b981]/30 text-[#10b981]"
-                      : "border-[#ef4444]/30 text-[#ef4444]",
-                  )}
-                >
-                  {pos.side.toUpperCase()}
-                </Badge>
-              </td>
-              <td className="px-2 py-1.5 text-right tabular-nums">
-                {pos.quantity}
-              </td>
-              <td className="px-2 py-1.5 text-right tabular-nums text-muted-foreground">
-                {formatCurrency(pos.avgPrice)}
-              </td>
-              <td className="px-2 py-1.5 text-right tabular-nums">
-                {formatCurrency(pos.currentPrice)}
-              </td>
-              <td
+          {positions.map((pos, index) => {
+            const rate = borrowRates[pos.ticker] ?? 1.0;
+            const dailyBorrowCost =
+              pos.side === "short"
+                ? pos.quantity * pos.currentPrice * (rate / 100 / 365)
+                : 0;
+
+            return (
+              <motion.tr
+                key={`${pos.ticker}-${pos.side}`}
+                initial={{ opacity: 0, x: -8 }}
+                animate={{ opacity: 1, x: 0 }}
+                exit={{ opacity: 0, x: 8 }}
+                transition={{ delay: index * 0.05, duration: 0.2 }}
                 className={cn(
-                  "px-2 py-1.5 text-right tabular-nums",
-                  pos.unrealizedPnL >= 0 ? "text-[#10b981]" : "text-[#ef4444]",
+                  "border-b border-border/50 hover:bg-accent/30",
+                  pos.side === "long"
+                    ? "border-l-2 border-l-[#10b981]/40"
+                    : "border-l-2 border-l-[#a855f7]/40",
                 )}
               >
-                <div className="flex items-center justify-end gap-0.5">
-                  <AnimatedNumber
-                    value={pos.unrealizedPnL}
-                    format={(n) => formatCurrency(n)}
-                  />
-                  <PnLMilestoneBadge pct={pos.unrealizedPnLPercent} />
-                </div>
-                <div className="text-[10px]">
-                  {formatPercent(pos.unrealizedPnLPercent)}
-                </div>
-              </td>
-              <td className="px-1 py-1.5">
-                <motion.button
-                  type="button"
-                  onClick={() =>
-                    handleClose(
-                      pos.ticker,
-                      pos.quantity,
-                      pos.currentPrice,
-                      pos.side,
-                    )
-                  }
-                  whileTap={{ rotate: 90, scale: 0.8 }}
-                  transition={{ type: "spring", stiffness: 500, damping: 20 }}
-                  className="rounded p-0.5 text-muted-foreground hover:bg-destructive/10 hover:text-destructive"
-                  title="Close position"
+                <td className="px-2 py-1.5 font-semibold">{pos.ticker}</td>
+                <td className="px-2 py-1.5 text-center">
+                  <Badge
+                    variant="outline"
+                    className={cn(
+                      "px-1.5 py-0 text-[10px] inline-flex items-center gap-0.5",
+                      pos.side === "long"
+                        ? "border-[#10b981]/30 text-[#10b981]"
+                        : "border-[#a855f7]/30 text-[#a855f7]",
+                    )}
+                  >
+                    {pos.side === "short" && (
+                      <ArrowDownLeft className="h-2 w-2" />
+                    )}
+                    {pos.side.toUpperCase()}
+                  </Badge>
+                </td>
+                <td className="px-2 py-1.5 text-right tabular-nums">
+                  {pos.quantity}
+                </td>
+                <td className="px-2 py-1.5 text-right tabular-nums text-muted-foreground">
+                  {formatCurrency(pos.avgPrice)}
+                </td>
+                <td className="px-2 py-1.5 text-right tabular-nums">
+                  {formatCurrency(pos.currentPrice)}
+                </td>
+                <td
+                  className={cn(
+                    "px-2 py-1.5 text-right tabular-nums",
+                    pos.unrealizedPnL >= 0 ? "text-[#10b981]" : "text-[#ef4444]",
+                  )}
                 >
-                  <X className="h-3 w-3" />
-                </motion.button>
-              </td>
-            </motion.tr>
-          ))}
+                  <div className="flex items-center justify-end gap-0.5">
+                    <AnimatedNumber
+                      value={pos.unrealizedPnL}
+                      format={(n) => formatCurrency(n)}
+                    />
+                    <PnLMilestoneBadge pct={pos.unrealizedPnLPercent} />
+                  </div>
+                  <div className="text-[10px]">
+                    {formatPercent(pos.unrealizedPnLPercent)}
+                  </div>
+                </td>
+                <td className="px-2 py-1.5 text-right tabular-nums">
+                  {pos.side === "short" ? (
+                    <span className="text-[10px] text-[#f59e0b]" title={`${rate.toFixed(2)}%/yr borrow rate`}>
+                      {formatCurrency(dailyBorrowCost)}/d
+                    </span>
+                  ) : (
+                    <span className="text-[10px] text-muted-foreground/40">—</span>
+                  )}
+                </td>
+                <td className="px-1 py-1.5">
+                  <motion.button
+                    type="button"
+                    onClick={() =>
+                      handleClose(
+                        pos.ticker,
+                        pos.quantity,
+                        pos.currentPrice,
+                        pos.side,
+                      )
+                    }
+                    whileTap={{ rotate: 90, scale: 0.8 }}
+                    transition={{ type: "spring", stiffness: 500, damping: 20 }}
+                    className="rounded p-0.5 text-muted-foreground hover:bg-destructive/10 hover:text-destructive"
+                    title={pos.side === "short" ? "Cover short" : "Close position"}
+                  >
+                    <X className="h-3 w-3" />
+                  </motion.button>
+                </td>
+              </motion.tr>
+            );
+          })}
         </tbody>
       </table>
     </div>

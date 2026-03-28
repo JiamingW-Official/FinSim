@@ -119,15 +119,86 @@ export default function ResultsPanel({ result, monteCarloResult, xpEarned, onSav
               <MetricCard icon={<DollarSign className="h-3.5 w-3.5" />} label="Avg Loss" value={`$${metrics.avgLoss.toFixed(0)}`} positive={false} />
             </div>
 
+            {/* Enhanced Metrics */}
+            <div>
+              <h3 className="mb-2 text-[10px] font-semibold uppercase tracking-wider text-zinc-500">Deep Metrics</h3>
+              <div className="grid grid-cols-2 gap-2">
+                <MetricCard
+                  icon={<BarChart3 className="h-3.5 w-3.5" />}
+                  label="Calmar Ratio"
+                  value={metrics.calmarRatio.toFixed(2)}
+                  sub="Ann.Return / MaxDD"
+                  positive={metrics.calmarRatio > 0.5}
+                />
+                <MetricCard
+                  icon={<LineChart className="h-3.5 w-3.5" />}
+                  label="Omega Ratio"
+                  value={computeOmegaRatio(trades).toFixed(2)}
+                  sub="Gains / Losses"
+                  positive={computeOmegaRatio(trades) > 1}
+                />
+                <MetricCard
+                  icon={<ShieldAlert className="h-3.5 w-3.5" />}
+                  label="Ulcer Index"
+                  value={metrics.ulcerIndex.toFixed(2)}
+                  sub="RMS drawdown depth"
+                  positive={metrics.ulcerIndex < 5}
+                />
+                <MetricCard
+                  icon={<Clock className="h-3.5 w-3.5" />}
+                  label="Avg Win Dur."
+                  value={`${computeAvgWinDuration(trades).toFixed(1)} bars`}
+                  sub="Winning trades"
+                  positive
+                />
+                <MetricCard
+                  icon={<Clock className="h-3.5 w-3.5" />}
+                  label="Avg Loss Dur."
+                  value={`${computeAvgLossDuration(trades).toFixed(1)} bars`}
+                  sub="Losing trades"
+                  positive={false}
+                />
+                <MetricCard
+                  icon={<TrendingDown className="h-3.5 w-3.5" />}
+                  label="Max Loss Streak"
+                  value={`${metrics.consecutiveLosses} trades`}
+                  sub="Consecutive losses"
+                  positive={metrics.consecutiveLosses < 4}
+                />
+              </div>
+            </div>
+
             {/* Equity Curve */}
             <div className="space-y-1">
               <h3 className="text-[10px] font-semibold uppercase tracking-wider text-zinc-500">Equity Curve</h3>
               <MiniEquityCurve equityCurve={equityCurve} startingCapital={result.config.startingCapital} />
             </div>
+
+            {/* Annual Returns */}
+            <div className="space-y-1">
+              <h3 className="text-[10px] font-semibold uppercase tracking-wider text-zinc-500">Annual Returns vs SPY</h3>
+              <AnnualReturnsChart result={result} />
+            </div>
           </div>
         )}
 
-        {tab === "analytics" && <AnalyticsPanel result={result} />}
+        {tab === "analytics" && (
+          <div className="space-y-4 p-4">
+            <AnalyticsPanel result={result} />
+            <div>
+              <h3 className="mb-2 text-[10px] font-semibold uppercase tracking-wider text-zinc-500">
+                Trade Return Distribution
+              </h3>
+              <TradeDistributionChart trades={result.trades} />
+            </div>
+            <div>
+              <h3 className="mb-2 text-[10px] font-semibold uppercase tracking-wider text-zinc-500">
+                Risk-Adjusted Scatter
+              </h3>
+              <RiskReturnScatter baseConfig={result.config} />
+            </div>
+          </div>
+        )}
 
         {tab === "montecarlo" && monteCarloResult && (
           <MonteCarloPanel result={monteCarloResult} startingCapital={result.config.startingCapital} />
@@ -165,6 +236,16 @@ export default function ResultsPanel({ result, monteCarloResult, xpEarned, onSav
             </div>
           </div>
         )}
+
+        {tab === "compare" && (
+          <div className="space-y-4 p-4">
+            <div>
+              <h3 className="mb-0.5 text-xs font-semibold text-zinc-200">Strategy Comparison</h3>
+              <p className="mb-3 text-[10px] text-zinc-500">RSI-7 / RSI-14 / RSI-21 on identical market data</p>
+              <StrategyComparison baseConfig={result.config} />
+            </div>
+          </div>
+        )}
       </div>
 
       {/* Actions (always visible) */}
@@ -179,6 +260,26 @@ export default function ResultsPanel({ result, monteCarloResult, xpEarned, onSav
     </div>
   );
 }
+
+// ── Derived metric helpers ──────────────────────────────────────────────────
+
+function computeOmegaRatio(trades: { pnl: number }[]): number {
+  const gains = trades.filter((t) => t.pnl > 0).reduce((s, t) => s + t.pnl, 0);
+  const losses = Math.abs(trades.filter((t) => t.pnl <= 0).reduce((s, t) => s + t.pnl, 0));
+  return losses > 0 ? gains / losses : gains > 0 ? 999 : 0;
+}
+
+function computeAvgWinDuration(trades: { pnl: number; holdingBars: number }[]): number {
+  const wins = trades.filter((t) => t.pnl > 0);
+  return wins.length > 0 ? wins.reduce((s, t) => s + t.holdingBars, 0) / wins.length : 0;
+}
+
+function computeAvgLossDuration(trades: { pnl: number; holdingBars: number }[]): number {
+  const losses = trades.filter((t) => t.pnl <= 0);
+  return losses.length > 0 ? losses.reduce((s, t) => s + t.holdingBars, 0) / losses.length : 0;
+}
+
+// ── MetricCard ──────────────────────────────────────────────────────────────
 
 function MetricCard({ icon, label, value, sub, positive }: { icon: React.ReactNode; label: string; value: string; sub?: string; positive?: boolean }) {
   return (

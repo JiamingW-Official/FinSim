@@ -13,6 +13,8 @@ import { UNIT_ADVANCED_TECHNICAL_ANALYSIS } from "./unit-advanced-technical-anal
 import { UNIT_PORTFOLIO_CONSTRUCTION } from "./unit-portfolio-construction";
 import { UNIT_PERSONAL_FINANCE_MASTERY } from "./unit-personal-finance-mastery";
 import { UNIT_BEHAVIORAL_FINANCE } from "./unit-behavioral-finance";
+import { UNIT_OPTIONS_PRICING_THEORY } from "./unit-options-pricing-theory";
+import { UNIT_QUANTITATIVE_FINANCE } from "./unit-quantitative-finance";
 
 export const UNITS: Unit[] = [
   UNIT_BASICS,
@@ -29,6 +31,8 @@ export const UNITS: Unit[] = [
   UNIT_PORTFOLIO_CONSTRUCTION,
   UNIT_PERSONAL_FINANCE_MASTERY,
   UNIT_BEHAVIORAL_FINANCE,
+  UNIT_OPTIONS_PRICING_THEORY,
+  UNIT_QUANTITATIVE_FINANCE,
 ];
 
 export function getLessonById(lessonId: string): Lesson | undefined {
