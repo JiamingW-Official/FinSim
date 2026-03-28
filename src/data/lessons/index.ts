@@ -61,6 +61,7 @@ import { UNIT_SUPPLY_CHAIN_FINANCE } from "./unit-supply-chain-finance";
 import { UNIT_MERGERS_ACQUISITIONS } from "./unit-mergers-acquisitions";
 import { UNIT_GLOBAL_ECONOMICS } from "./unit-global-economics";
 import { UNIT_SOVEREIGN_DEBT } from "./unit-sovereign-debt";
+import { UNIT_ALTERNATIVE_ASSETS } from "./unit-alternative-assets";
 
 export const UNITS: Unit[] = [
   UNIT_BASICS,
@@ -125,6 +126,7 @@ export const UNITS: Unit[] = [
   UNIT_MERGERS_ACQUISITIONS,
   UNIT_GLOBAL_ECONOMICS,
   UNIT_SOVEREIGN_DEBT,
+  UNIT_ALTERNATIVE_ASSETS,
 ];
 
 export function getLessonById(lessonId: string): Lesson | undefined {
