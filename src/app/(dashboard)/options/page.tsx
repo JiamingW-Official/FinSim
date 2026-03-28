@@ -152,6 +152,12 @@ export default function OptionsPage() {
           >
             Margin Calc
           </TabsTrigger>
+          <TabsTrigger
+            value="vol-surface"
+            className="h-7 rounded-none border-b-2 border-transparent px-4 text-xs data-[state=active]:border-orange-400 data-[state=active]:bg-transparent data-[state=active]:text-orange-400"
+          >
+            Vol Surface
+          </TabsTrigger>
         </TabsList>
 
         <div className="flex flex-1 overflow-hidden">
@@ -304,6 +310,15 @@ export default function OptionsPage() {
                 {/* Margin Calc tab */}
                 <TabsContent value="margin-calc" className="mt-0 flex-1 overflow-auto data-[state=inactive]:hidden">
                   <PortfolioMarginCalc />
+                </TabsContent>
+
+                {/* Vol Surface tab */}
+                <TabsContent value="vol-surface" className="mt-0 flex-1 overflow-hidden data-[state=inactive]:hidden">
+                  <VolSurface
+                    spotPrice={spotPrice}
+                    hv={hv}
+                    ivRank={analytics.ivRank}
+                  />
                 </TabsContent>
               </>
             )}
