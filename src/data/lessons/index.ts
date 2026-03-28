@@ -27,6 +27,7 @@ import { UNIT_FIXED_INCOME } from "./unit-fixed-income";
 import { UNIT_DERIVATIVES_ADVANCED } from "./unit-derivatives-advanced";
 import { UNIT_MACRO_INVESTING } from "./unit-macro-investing";
 import { UNIT_PRIVATE_EQUITY } from "./unit-private-equity";
+import { UNIT_HEDGE_FUNDS } from "./unit-hedge-funds";
 
 export const UNITS: Unit[] = [
   UNIT_BASICS,
