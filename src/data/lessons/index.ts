@@ -53,6 +53,7 @@ import { UNIT_DERIVATIVES_PRICING } from "./unit-derivatives-pricing";
 import { UNIT_PERSONAL_FINANCE_ADVANCED } from "./unit-personal-finance-advanced";
 import { UNIT_STARTUP_EQUITY } from "./unit-startup-equity";
 import { UNIT_CORPORATE_GOVERNANCE } from "./unit-corporate-governance";
+import { UNIT_QUANT_FINANCE_ML } from "./unit-quant-finance-ml";
 
 export const UNITS: Unit[] = [
   UNIT_BASICS,
@@ -109,6 +110,7 @@ export const UNITS: Unit[] = [
   UNIT_PERSONAL_FINANCE_ADVANCED,
   UNIT_STARTUP_EQUITY,
   UNIT_CORPORATE_GOVERNANCE,
+  UNIT_QUANT_FINANCE_ML,
 ];
 
 export function getLessonById(lessonId: string): Lesson | undefined {
