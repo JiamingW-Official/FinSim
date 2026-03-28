@@ -87,6 +87,8 @@ import { UNIT_CRYPTO_YIELD } from "./unit-crypto-yield";
 import { UNIT_FIRE_MOVEMENT } from "./unit-fire-movement";
 import { UNIT_VALUE_INVESTING } from "./unit-value-investing";
 import { UNIT_GLOBAL_TRADE } from "./unit-global-trade";
+import { UNIT_MONETARY_POLICY } from "./unit-monetary-policy";
+import { UNIT_SYSTEMATIC_TRADING } from "./unit-systematic-trading";
 
 export const UNITS: Unit[] = [
   UNIT_BASICS,
@@ -177,6 +179,8 @@ export const UNITS: Unit[] = [
   UNIT_FIRE_MOVEMENT,
   UNIT_VALUE_INVESTING,
   UNIT_GLOBAL_TRADE,
+  UNIT_MONETARY_POLICY,
+  UNIT_SYSTEMATIC_TRADING,
 ];
 
 export function getLessonById(lessonId: string): Lesson | undefined {

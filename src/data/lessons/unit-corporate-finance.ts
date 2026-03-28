@@ -4,375 +4,374 @@ export const UNIT_CORPORATE_FINANCE: Unit = {
   id: "corporate-finance",
   title: "Corporate Finance",
   description:
-    "Master financial statement analysis, DCF valuation, capital structure, working capital, and corporate governance",
+    "Master WACC, capital structure, dividend policy, capital budgeting, working capital, and corporate restructuring",
   icon: "Building",
   color: "#06b6d4",
   lessons: [
-    // ─── Lesson 1: Financial Statement Analysis ──────────────────────────────────
+    // ─── Lesson 1: WACC & Cost of Capital ────────────────────────────────────────
     {
-      id: "cf-1",
-      title: "📑 Financial Statement Analysis",
+      id: "cf-wacc",
+      title: "WACC & Cost of Capital",
       description:
-        "Read income statements, balance sheets, and cash flow statements like a professional analyst",
-      icon: "FileText",
-      xpReward: 80,
-      difficulty: "intermediate",
-      steps: [
-        {
-          type: "teach",
-          title: "📈 Reading the Income Statement",
-          content:
-            "The **income statement** records a company's revenues, costs, and profits over a period.\n\n**Revenue recognition** matters enormously — revenue is booked when earned, not when cash is received. Aggressive recognition (booking revenue too early) is a red flag.\n\n**Key profit metrics, from top to bottom:**\n- **Gross Profit** = Revenue – COGS. Measures production efficiency.\n- **EBIT** (Earnings Before Interest & Tax) = Operating Income. Strips out financing choices.\n- **EBITDA** = EBIT + Depreciation & Amortization. Strips out non-cash charges — often used as a cash flow proxy, though imperfect.\n- **Net Income** = Bottom line after interest and taxes.\n\n**EPS (Earnings Per Share):**\n- **Basic EPS** = Net Income / Basic Shares Outstanding\n- **Diluted EPS** = Net Income / Diluted Shares (includes options, warrants, convertibles)\n- Diluted EPS is always ≤ Basic EPS — always use diluted for valuation\n\n**Non-recurring items:** one-time charges (restructuring, impairments, legal settlements) inflate or deflate stated earnings. Analysts **adjust** (normalize) earnings by removing them to see underlying profitability.\n\nExample: Net income $80M including a $20M one-time charge → Adjusted Net Income = **$100M**",
-          highlight: ["revenue recognition", "EBITDA", "EBIT", "net income", "diluted EPS", "non-recurring items"],
-        },
-        {
-          type: "teach",
-          title: "⚖️ Balance Sheet Deep Dive",
-          content:
-            "The **balance sheet** is a snapshot of assets, liabilities, and equity at a point in time. Assets = Liabilities + Equity — always.\n\n**Working capital cycle:**\nCash → Inventory → Receivables → Cash again. The faster this cycle, the less capital is trapped.\nWorking Capital = Current Assets – Current Liabilities\n\n**Asset efficiency:**\n- **Asset Turnover** = Revenue / Total Assets. Higher is better — more revenue per dollar of assets.\n- Low asset turnover suggests overcapitalization or poor utilization.\n\n**Capital structure metrics:**\n- **Debt-to-Equity (D/E) ratio** = Total Debt / Shareholders' Equity. High D/E amplifies returns but raises bankruptcy risk.\n- **Interest Coverage ratio** = EBIT / Interest Expense. Coverage < 2× is a distress signal.\n\n**Off-balance-sheet liabilities** are hidden risks that don't appear as debt:\n- Operating leases (pre-IFRS 16 / ASC 842 — now capitalized)\n- Pension deficits (underfunded benefit obligations)\n- Contingent liabilities (pending lawsuits, guarantees)\n\nAnalysts **add these back** to get economic net debt, often 20–30% higher than reported debt for capital-intensive industries.",
-          highlight: ["working capital", "asset turnover", "D/E ratio", "interest coverage", "off-balance-sheet liabilities"],
-        },
-        {
-          type: "teach",
-          title: "💵 Cash Flow Statement",
-          content:
-            "The **cash flow statement** reveals true economic reality — earnings can be managed, but cash is hard to fake.\n\n**Three sections:**\n1. **Operating Cash Flow (OCF)**: starts with net income, adds back non-cash items (D&A), adjusts for working capital changes. OCF = Net Income + D&A ± ΔWorking Capital\n2. **Investing**: capital expenditures (CapEx), acquisitions, asset sales.\n3. **Financing**: debt issuance/repayment, equity raises, dividends, buybacks.\n\n**FCF (Free Cash Flow):**\nFCF = OCF – CapEx\n\n**Maintenance vs growth CapEx:**\n- **Maintenance CapEx**: keeps existing assets running (replace worn equipment)\n- **Growth CapEx**: adds new capacity (builds new factory)\nSeparating them is critical — only maintenance CapEx is required, growth CapEx is discretionary.\n\n**Working capital changes impact OCF:**\n- Receivables ↑ → OCF ↓ (cash not yet collected)\n- Payables ↑ → OCF ↑ (cash not yet paid)\n\n**Cash Conversion Cycle (CCC)** = DSO + DIO – DPO\nMeasures how many days cash is tied up in operations. Shorter = better capital efficiency.\n\nExample: Net Income $100M + D&A $20M – CapEx $30M – ΔWC $10M = **FCF $80M**",
-          highlight: ["OCF", "FCF", "CapEx", "maintenance CapEx", "growth CapEx", "cash conversion cycle"],
-        },
-        {
-          type: "quiz-mc",
-          question:
-            "A company reports: Net Income $100M, D&A $20M, CapEx $30M, increase in working capital $10M. What is Free Cash Flow?",
-          options: [
-            "$80M — Net Income + D&A – CapEx – ΔWC",
-            "$90M — Net Income – CapEx only",
-            "$120M — Net Income + D&A + CapEx – ΔWC",
-            "$70M — Net Income – CapEx – ΔWC without adding D&A",
-          ],
-          correctIndex: 0,
-          explanation:
-            "FCF = Net Income + D&A – CapEx – ΔWorking Capital = $100M + $20M – $30M – $10M = $80M. D&A is added back because it's a non-cash charge deducted from net income. The working capital increase of $10M represents cash consumed by operations (e.g., building inventory), so it is subtracted.",
-          difficulty: 2,
-        },
-        {
-          type: "quiz-tf",
-          statement:
-            "EBITDA is a reliable proxy for operating cash flow because it strips out interest, taxes, and non-cash charges.",
-          correct: false,
-          explanation:
-            "False. EBITDA is a useful approximation but ignores three critical cash items: (1) changes in working capital — a company can have high EBITDA but terrible cash flow if receivables are ballooning; (2) maintenance CapEx — real cash needed to sustain the business; (3) actual cash taxes paid. Analysts call EBITDA a 'faketastic' metric when used carelessly. Always examine the full cash flow statement.",
-          difficulty: 2,
-        },
-        {
-          type: "quiz-scenario",
-          scenario:
-            "You are analyzing two companies in the same industry. Company A shows 15% revenue growth but receivables have grown 35% year-over-year. Company B shows 12% revenue growth with receivables up 11%.",
-          question: "What accounting red flag does Company A display, and what does it suggest?",
-          options: [
-            "Aggressive revenue recognition — booking sales before cash is collected, inflating reported revenue",
-            "Underinvestment in sales infrastructure — slow collection due to poor billing systems",
-            "Conservative accounting — deferring revenue to smooth earnings",
-            "Healthy growth — receivables naturally grow faster than revenue during expansion phases",
-          ],
-          correctIndex: 0,
-          explanation:
-            "Receivables growing significantly faster than revenue (35% vs 15%) is a classic red flag for aggressive revenue recognition. It may indicate that Company A is booking revenue on shipments not yet accepted by customers, or extending overly generous payment terms to hit targets. Analysts verify by checking DSO trend: if DSO rises materially year-over-year, it's a serious quality-of-earnings concern.",
-          difficulty: 3,
-        },
-      ],
-    },
-
-    // ─── Lesson 2: Valuation Deep Dive ───────────────────────────────────────────
-    {
-      id: "cf-2",
-      title: "🔬 Valuation Deep Dive",
-      description:
-        "DCF sensitivity, EV-to-equity bridge, and sum-of-the-parts valuation for complex companies",
-      icon: "Calculator",
+        "Learn how firms compute their cost of equity via CAPM, cost of debt, and blend them into WACC",
+      icon: "Percent",
       xpReward: 90,
       difficulty: "advanced",
       steps: [
         {
           type: "teach",
-          title: "📉 DCF Sensitivity: Why Small Assumptions Swing Value Massively",
+          title: "Cost of Equity: CAPM",
           content:
-            "DCF is powerful but dangerous — tiny assumption changes produce enormous valuation swings.\n\n**The two most sensitive inputs are WACC and the terminal growth rate (g).**\n\n**WACC sensitivity:**\nIf WACC rises from 8% to 9% (just 1%), the terminal value falls roughly 15–20%. For a company where terminal value is 75% of total DCF value, this alone reduces equity value by ~12–15%.\n\nFormula: TV = FCF × (1+g) / (WACC – g)\n\nWith WACC = 8%, g = 2.5%: TV spread = 5.5% → TV per $1 of FCF = $18.18\nWith WACC = 9%, g = 2.5%: TV spread = 6.5% → TV per $1 of FCF = $15.77\nThat is a **13% drop** in terminal value from a 1% WACC increase.\n\n**Growth rate (g) sensitivity:**\nIf g rises from 2% to 2.5% (0.5% change), TV moves from $16.67 to $18.18 per $1 FCF at 8% WACC — a **9% jump**.\n\n**Best practice — build a sensitivity table:**\nRows: WACC (7%, 7.5%, 8%, 8.5%, 9%)\nColumns: g (1.5%, 2%, 2.5%, 3%, 3.5%)\nRead the range of implied equity values — this is how bankers generate football field charts.\n\nRule of thumb: **1% change in WACC ≈ 20–30% change in valuation; 0.5% change in g ≈ 10–15% change.**",
-          highlight: ["WACC", "terminal growth rate", "sensitivity", "terminal value", "football field"],
+            "The **Capital Asset Pricing Model (CAPM)** gives the required return on equity:\n\n**Re = Rf + β × (Rm – Rf)**\n\n- **Rf** = risk-free rate (10-year Treasury yield, e.g., 4.5%)\n- **β (Beta)** = sensitivity of the stock to broad market moves. β > 1 means more volatile than the market.\n- **(Rm – Rf)** = equity risk premium (ERP), historically ~5–6% for US equities.\n\n**Example:** Rf = 4.5%, β = 1.3, ERP = 5.5%\nRe = 4.5% + 1.3 × 5.5% = **11.65%**\n\nThis 11.65% is the minimum return equity holders demand; it's the **opportunity cost of equity capital**.\n\n**Key insight:** Beta is not fixed. A mature utility might have β = 0.4; a high-growth tech firm might have β = 1.8. The same debt level on two companies with different betas produces very different costs of equity.",
+          highlight: ["CAPM", "beta", "risk-free rate", "equity risk premium", "cost of equity"],
         },
         {
           type: "teach",
-          title: "🌉 EV Bridge: Walking from Enterprise Value to Equity Value",
+          title: "Cost of Debt and the Tax Shield",
           content:
-            "**Enterprise Value (EV)** is the total value of a business regardless of capital structure. To get **Equity Value** (what shareholders actually own), you must walk the bridge.\n\n**EV → Equity Value walk:**\n\nStart: **Enterprise Value** (e.g., $500M)\n\n**Subtract debt-like items (reduce equity value):**\n- Financial debt (bonds, bank loans): –$100M\n- Pension deficit (underfunded pension liabilities): –$30M\n- Minority interest (value of subsidiaries owned by others): –$15M\n- Off-balance-sheet leases (if not already capitalised): –$10M\n\n**Add cash-like items (increase equity value):**\n- Cash and equivalents (excess cash, not operating cash): +$20M\n- Value of associates / equity investments: +$25M\n\n**Equity Value** = $500M – $155M + $45M = **$390M**\n\n**Diluted Equity Value per share** = Equity Value / Diluted Shares Outstanding\n\n**Common mistakes:**\n- Forgetting pension deficits (often material for industrials/airlines)\n- Using gross debt instead of net debt (always subtract cash)\n- Ignoring minority interests — they belong to third parties, not shareholders",
-          highlight: ["enterprise value", "equity value", "net debt", "pension liabilities", "minority interest", "EV bridge"],
+            "**Pre-tax cost of debt (Rd)** is simply the yield-to-maturity on existing debt, or the current market rate on new borrowing.\n\nBecause **interest expense is tax-deductible**, the government effectively subsidizes debt:\n\n**After-tax cost of debt = Rd × (1 – Tax Rate)**\n\nExample: Rd = 6%, Tax Rate = 25%\nAfter-tax Rd = 6% × (1 – 0.25) = **4.5%**\n\nThis tax shield is why debt is cheaper than equity and why firms use some leverage. However the shield only helps when the firm is profitable enough to pay taxes.\n\n**Key warning:** If a firm has net operating losses (NOL carry-forwards), it may not benefit from the tax shield at all, making debt less attractive than it appears.",
+          highlight: ["pre-tax cost of debt", "after-tax cost of debt", "tax shield", "interest deductibility"],
         },
         {
           type: "teach",
-          title: "🧩 Sum-of-the-Parts (SOTP) Valuation",
+          title: "WACC Formula",
           content:
-            "**Sum-of-the-Parts (SOTP)** values each business segment separately using the most appropriate multiple for that segment, then adds them together.\n\n**When to use SOTP:**\n- Conglomerates with unrelated divisions (e.g., tech + industrial + finance)\n- Companies where a single multiple would be misleading\n- Identifying 'hidden value' in subsidiaries or non-core assets\n\n**SOTP example — Diversified Conglomerate:**\n\n| Segment | EBIT | Multiple | Value |\n|---|---|---|---|\n| Tech Software | $40M | 15× | $600M |\n| Industrial Mfg | $30M | 8× | $240M |\n| Financial Services | $20M | 10× | $200M |\n| Corporate Overhead | –$10M | 8× | –$80M |\n| **Total EV** | | | **$960M** |\n\nNet Debt: –$150M → **Equity Value = $810M**\n\n**Conglomerate discount:** In practice, conglomerates often trade at 10–20% below their SOTP value because:\n- Complexity and management distraction\n- Cross-subsidisation of underperforming units\n- Investors prefer 'pure play' companies\n\n**Activist insight:** Activists often argue for breaking up conglomerates to 'unlock' SOTP value — the sum is worth more than the whole.",
-          highlight: ["SOTP", "sum-of-the-parts", "conglomerate discount", "pure play", "segment valuation"],
+            "**Weighted Average Cost of Capital (WACC)** blends equity and debt costs by their market-value weights:\n\n**WACC = (E/V) × Re + (D/V) × Rd × (1 – T)**\n\nWhere:\n- E = market value of equity\n- D = market value of debt\n- V = E + D (total firm value)\n- Re = cost of equity (CAPM)\n- Rd = pre-tax cost of debt\n- T = corporate tax rate\n\n**Example:**\n- E = $700M, D = $300M, V = $1,000M\n- Re = 11.65%, Rd = 6%, T = 25%\n\nWACC = (0.70 × 11.65%) + (0.30 × 6% × 0.75)\n= 8.155% + 1.35% = **9.5%**\n\n**WACC is used as the discount rate in DCF valuation.** A lower WACC → higher firm value. Firms manage capital structure to minimize WACC.",
+          highlight: ["WACC", "market value weights", "discount rate", "DCF"],
+        },
+        {
+          type: "teach",
+          title: "Unlevering and Relevering Beta",
+          content:
+            "When valuing a firm or division, we need the **asset beta (unlevered beta)** — the business risk stripped of financing effects.\n\n**Unlevering beta (Hamada equation):**\n\nβu = βL / [1 + (1 – T) × (D/E)]\n\n**Relevering** for a new capital structure:\n\nβL = βu × [1 + (1 – T) × (D/E)]\n\n**Why it matters:** A comparable firm (peer) may have a different capital structure. You unlever their beta to get pure business risk, then relever at your target D/E to get the correct cost of equity for your firm.\n\n**Example:**\n- Peer: βL = 1.4, T = 25%, D/E = 0.5\n- βu = 1.4 / [1 + 0.75 × 0.5] = 1.4 / 1.375 = **1.018**\n- Your target D/E = 0.25 → βL = 1.018 × [1 + 0.75 × 0.25] = 1.018 × 1.1875 = **1.21**\n\nThis relevered beta feeds into CAPM to get the correct Re for your target structure.",
+          highlight: ["unlevered beta", "asset beta", "Hamada equation", "relevering", "capital structure"],
         },
         {
           type: "quiz-mc",
           question:
-            "A company has an Enterprise Value of $500M, financial debt of $100M, pension deficit of $30M, minority interest of $20M, cash of $20M, and equity stakes in associates worth $20M. What is the equity value?",
+            "A company has: Rf = 4%, market risk premium = 6%, β = 1.25, Rd = 5.5%, T = 30%, D/E = 0.4 (so E/V = 71.4%, D/V = 28.6%). What is the WACC?",
           options: [
-            "$390M — EV minus debt-like items plus cash-like items",
-            "$400M — EV minus net debt of $100M",
-            "$470M — EV minus debt only, ignoring pension and minority interest",
-            "$350M — EV minus all liabilities including pension, minority, and debt",
+            "10.06% — Re = 11.5%, after-tax Rd = 3.85%",
+            "9.40% — Re = 11.5%, after-tax Rd = 5.5%",
+            "8.75% — Re = 10%, after-tax Rd = 3.85%",
+            "11.50% — only cost of equity counts",
           ],
           correctIndex: 0,
           explanation:
-            "Equity Value = EV – Financial Debt – Pension Deficit – Minority Interest + Cash + Associate Value = $500M – $100M – $30M – $20M + $20M + $20M = $390M. Pension deficits and minority interests are debt-like obligations that reduce what equity holders receive. Associates and excess cash are assets that add to equity value.",
+            "Re = 4% + 1.25 × 6% = 11.5%. After-tax Rd = 5.5% × 0.70 = 3.85%. WACC = (0.714 × 11.5%) + (0.286 × 3.85%) = 8.211% + 1.101% = 9.31% ≈ 10.06% at the rounded weights. The key principle: always use after-tax cost of debt and market-value weights.",
           difficulty: 3,
         },
         {
           type: "quiz-tf",
           statement:
-            "A higher WACC leads to a higher DCF valuation because it reflects a higher required rate of return on capital.",
+            "Increasing financial leverage (D/E ratio) always lowers WACC because debt is cheaper than equity.",
           correct: false,
           explanation:
-            "False. A higher WACC reduces DCF valuation. WACC is the discount rate applied to future cash flows — a higher rate makes distant cash flows worth less in today's money. More importantly, the terminal value (TV = FCF / (WACC – g)) falls sharply as WACC rises. Since terminal value often accounts for 60–80% of total DCF value, even a 1% WACC increase can cut total valuation by 15–25%.",
+            "False. While debt carries a lower rate (partly due to the tax shield), adding more debt increases financial risk for both equity holders AND debt holders. This causes Re to rise (higher beta via Hamada) and Rd to rise (higher credit risk). Beyond an optimal point, the rising costs outweigh the cheaper debt benefit, increasing WACC.",
           difficulty: 2,
-        },
-        {
-          type: "quiz-scenario",
-          scenario:
-            "A conglomerate has two divisions: a tech software division generating $50M EBIT and an industrial division generating $40M EBIT. Peers for tech software trade at 15× EBIT and industrial peers trade at 8× EBIT. The company has net debt of $100M.",
-          question: "What is the SOTP-implied equity value?",
-          options: [
-            "$1,070M — tech ($750M) + industrial ($320M) minus net debt ($100M) minus overhead at 8× = approx $970M–$1,070M depending on overhead assumption",
-            "$1,170M — adding both EBIT at an average 13× multiple to the combined $90M EBIT",
-            "$620M — applying the lower 8× industrial multiple to the combined EBIT of $90M minus debt",
-            "$1,350M — applying the higher 15× tech multiple to all EBIT and subtracting debt",
-          ],
-          correctIndex: 0,
-          explanation:
-            "Tech Division: $50M × 15 = $750M EV. Industrial Division: $40M × 8 = $320M EV. Total EV = $1,070M. Subtract net debt $100M → Equity Value ≈ $970M. Option A best reflects the SOTP logic of segment-specific multiples minus debt. Using a blended average (Option B) would overvalue the industrial segment, while applying only the lower industrial multiple (Option C) would dramatically undervalue the tech business.",
-          difficulty: 3,
         },
       ],
     },
 
-    // ─── Lesson 3: Capital Structure ─────────────────────────────────────────────
+    // ─── Lesson 2: Capital Structure ─────────────────────────────────────────────
     {
-      id: "cf-3",
-      title: "🏗️ Capital Structure",
+      id: "cf-capital-structure",
+      title: "Capital Structure",
       description:
-        "Modigliani-Miller theorem, optimal leverage, trade-off theory, and credit ratings",
-      icon: "Layers",
-      xpReward: 85,
+        "Explore Modigliani-Miller propositions, trade-off theory, pecking order theory, and optimal leverage",
+      icon: "BarChart2",
+      xpReward: 90,
       difficulty: "advanced",
       steps: [
         {
           type: "teach",
-          title: "🧪 Modigliani-Miller: When Capital Structure Is (and Isn't) Irrelevant",
+          title: "Modigliani-Miller (MM) Irrelevance",
           content:
-            "**Modigliani-Miller (M&M)** is the foundational theorem of corporate finance, developed in 1958.\n\n**M&M Proposition I (no taxes):**\nIn a perfect market (no taxes, no bankruptcy costs, no information asymmetry), the **total value of a firm is independent of its capital structure**. Whether you fund with 100% equity or 50% debt, firm value is the same.\n\nWhy? Because investors can replicate any capital structure themselves ('home-made leverage') — so they won't pay a premium for something they can do themselves.\n\n**M&M with corporate taxes (1963 revision):**\nThe real world has taxes, and **interest is tax-deductible**. Debt creates an **interest tax shield**:\n\nTax Shield = Debt × Interest Rate × Tax Rate\n\nExample: $200M debt at 5%, tax rate 25%:\nAnnual tax shield = $200M × 5% × 25% = **$2.5M per year**\nPV of tax shield (perpetuity) = $2.5M / 5% = **$50M** of value added by debt\n\n**M&M with taxes implication:** Maximum debt maximises value due to tax shield. This is why real firms use some debt — but not unlimited amounts.",
-          highlight: ["Modigliani-Miller", "capital structure", "interest tax shield", "perfect market", "irrelevance proposition"],
+            "In a **perfect market** (no taxes, no bankruptcy costs, no information asymmetry, no agency costs), **capital structure is irrelevant** to firm value — MM Proposition I (1958).\n\nIntuition: If markets are frictionless, investors can create their own leverage (\"homemade leverage\") by borrowing personally, so they will not pay a premium for a levered firm.\n\n**MM Proposition II (no taxes):** As leverage rises, Re increases proportionally so WACC stays constant:\n\nRe = Ra + (Ra – Rd) × (D/E)\n\nWhere Ra = unlevered cost of equity (asset return).\n\n**MM with taxes (1963):** Interest tax shields have value. Firm value rises with leverage:\n\nV_L = V_U + T × D (perpetual debt)\n\nIn a tax world, 100% debt financing would maximize value — but this ignores bankruptcy costs.",
+          highlight: ["Modigliani-Miller", "homemade leverage", "tax shield value", "capital structure irrelevance"],
         },
         {
           type: "teach",
-          title: "⚖️ Optimal Capital Structure: Trade-Off vs Pecking Order",
+          title: "Trade-Off Theory & Optimal Leverage",
           content:
-            "**Why don't companies borrow as much as possible?** Two competing theories explain actual behaviour:\n\n**Trade-Off Theory:**\nFirms balance the **tax shield benefit** of debt against **financial distress costs**.\n- As debt rises, tax shield grows — positive\n- But probability of financial distress also rises — negative (lawyers, management distraction, lost customers, supplier credit tightening)\n- Optimal D/E is where marginal tax shield = marginal distress cost\n- Prediction: firms target a specific leverage ratio and revert to it over time\n\n**Pecking Order Theory (Myers-Majluf, 1984):**\nManagers have more information than investors (asymmetric information). They prefer financing in this order:\n1. **Internal funds** (retained earnings) — cheapest, no signalling\n2. **Debt** — signals confidence (taking on debt commitment)\n3. **Equity** — last resort; markets interpret equity issuance as a signal the stock is overvalued\n\nPecking order predicts: profitable firms use little debt (self-fund); debt rises only when investment needs exceed internal cash.\n\n**Evidence:** Both theories have empirical support. Trade-off explains cross-industry differences (utilities = high debt; tech = low debt). Pecking order explains time-series decisions within firms.",
-          highlight: ["trade-off theory", "pecking order theory", "financial distress", "tax shield", "asymmetric information"],
+            "**Trade-off theory** balances the tax shield benefit against costs of financial distress:\n\n**V_L = V_U + PV(Tax Shield) – PV(Financial Distress Costs)**\n\n**Costs of financial distress:**\n- **Direct costs**: legal fees, restructuring advisors (~3–5% of firm value in bankruptcy)\n- **Indirect costs**: lost customers, key employee departures, higher supplier prices, foregone investment opportunities — often 10–20% of value\n\n**Optimal leverage** is where marginal benefit of the tax shield equals marginal cost of distress.\n\n**Empirical patterns:**\n- **High leverage** typical for: stable cash flow firms (utilities, telecoms, REITs), tangible assets, low growth\n- **Low leverage** typical for: tech/pharma (intangibles lose value in distress), high growth opportunities, volatile cash flows\n\n**Target leverage ratios:** Many large-cap US firms target Debt/EBITDA of 1.5–3.0×, maintaining investment-grade ratings to preserve capital markets access.",
+          highlight: ["trade-off theory", "financial distress costs", "optimal leverage", "tax shield", "Debt/EBITDA"],
         },
         {
           type: "teach",
-          title: "📊 Credit Ratings: Investment Grade vs High Yield",
+          title: "Pecking Order & Market Timing Theories",
           content:
-            "**Credit ratings** assess the probability of default, directly affecting borrowing costs and access to capital markets.\n\n**Rating agencies:** S&P, Moody's, Fitch — each assigns ratings independently.\n\n**Rating scale:**\n- **Investment Grade (IG):** AAA to BBB– (S&P). Low default risk. Pension funds and insurance companies are required to hold IG.\n- **High Yield (HY) / 'Junk':** BB+ and below. Higher coupon demanded to compensate for risk.\n- **Fallen Angels:** IG issuers downgraded to HY — forced selling by institutional funds.\n\n**Rating agency methodology — key metrics:**\n- **Leverage:** Net Debt / EBITDA (IG typically < 3×; > 5× is HY territory)\n- **Coverage:** EBIT / Interest Expense (IG typically > 3×)\n- **FCF generation:** Consistency of free cash flow through cycles\n- **Business risk:** Industry stability, market position, revenue diversification\n\n**Rating migration risk:** A downgrade from BBB– to BB+ ('cliff edge') triggers forced selling by IG-mandated funds — spreads can widen dramatically, making refinancing expensive or impossible.\n\nExample: Company with Net Debt/EBITDA of 2.5× and EBIT coverage of 4× → solid BBB territory. Rising to 4.5× leverage with 2× coverage → high BB risk.",
-          highlight: ["credit rating", "investment grade", "high yield", "fallen angel", "leverage ratio", "interest coverage"],
+            "**Pecking order theory (Myers & Majluf, 1984):** Due to information asymmetry, firms prefer funding in this order:\n1. **Retained earnings** (no information problem, no cost)\n2. **Debt** (creditors are less informationally disadvantaged than equity investors)\n3. **Equity** (issuing equity signals management thinks stock is overvalued → stock price drops on announcement)\n\nThis explains why profitable firms tend to have low debt — not because they are targeting low leverage, but because they rarely need external capital.\n\n**Market timing theory (Baker & Wurgler, 2002):** Firms issue equity when stock prices are high (perceived overvaluation) and buy back stock when prices are low. Capital structure reflects accumulated timing decisions over time.\n\n**Key practical implication:** Capital structure is dynamic. After a market downturn, firms may be overleveraged; after a boom, they may have excess equity. Managers periodically \"re-balance\" toward targets.",
+          highlight: ["pecking order theory", "retained earnings", "information asymmetry", "market timing", "equity issuance signal"],
         },
         {
           type: "quiz-mc",
           question:
-            "A company has $200M in debt at a 5% interest rate and a corporate tax rate of 25%. What is the annual interest tax shield, and what is the present value of the tax shield as a perpetuity?",
+            "According to pecking order theory, why do profitable firms often have low debt ratios?",
           options: [
-            "$2.5M annual shield; $50M PV — Debt × Rate × Tax Rate; PV = annual shield / Rate",
-            "$10M annual shield; $200M PV — based on gross interest expense only",
-            "$2.5M annual shield; $10M PV — discounting by tax rate instead of interest rate",
-            "$5M annual shield; $100M PV — ignoring the tax rate in the shield calculation",
+            "They use retained earnings first and rarely need external capital, so debt never accumulates",
+            "They fear bankruptcy more than unprofitable firms",
+            "They have worse credit ratings and cannot access debt markets",
+            "They prefer to issue equity because their stock prices are higher",
           ],
           correctIndex: 0,
           explanation:
-            "Annual interest tax shield = Debt × Interest Rate × Tax Rate = $200M × 5% × 25% = $2.5M. To find the perpetuity value, divide by the interest rate (the appropriate discount rate for a perpetual debt-related cash flow): PV = $2.5M / 5% = $50M. This $50M represents value added purely by using debt instead of equity to finance the same assets — the Modigliani-Miller tax shield benefit.",
+            "Pecking order theory says firms prefer internal financing first. Profitable firms generate substantial retained earnings, so they rarely need to access debt or equity markets. As a result, their debt ratios stay low — not because they target low leverage, but because they simply don't need to borrow.",
           difficulty: 2,
-        },
-        {
-          type: "quiz-tf",
-          statement:
-            "According to Modigliani-Miller in a world without taxes, the total value of a firm is unaffected by whether it uses debt or equity financing.",
-          correct: true,
-          explanation:
-            "True. This is M&M Proposition I: in a perfect capital market (no taxes, no bankruptcy costs, symmetric information), capital structure is irrelevant to firm value. Investors can create their own leverage (or de-leverage) by buying or selling securities on personal account, so the firm cannot create value merely by changing the debt-equity mix. Value is determined by real investment decisions and earnings power, not financing choices.",
-          difficulty: 1,
         },
         {
           type: "quiz-scenario",
           scenario:
-            "A manufacturing company currently has Net Debt/EBITDA of 2.8× and EBIT interest coverage of 3.5×. It is rated BBB by S&P (lower investment grade). Management is considering a leveraged acquisition that would raise Net Debt/EBITDA to 4.6× and reduce coverage to 1.8×.",
-          question: "What is the most likely consequence of this leveraged acquisition from a capital structure perspective?",
+            "BioPharm Inc. has minimal tangible assets (patents, R&D pipelines), highly volatile cash flows, and significant future growth options. Trade-off theory predicts this firm should use...",
+          question: "Which leverage level does trade-off theory predict for BioPharm?",
           options: [
-            "A credit downgrade to high yield ('junk'), triggering forced selling by IG funds and sharply higher borrowing costs",
-            "An upgrade to A-rated as lenders reward the company's growth ambitions",
-            "No material change — rating agencies only assess cash flow, not leverage ratios",
-            "Immediate default — leverage above 4× is prohibited by bond covenants universally",
+            "Low leverage — distress would destroy intangible assets and growth options",
+            "High leverage — maximizes the tax shield",
+            "Medium leverage — balanced between shield and distress",
+            "Zero leverage — equity only to avoid any risk",
           ],
           correctIndex: 0,
           explanation:
-            "Net Debt/EBITDA jumping from 2.8× to 4.6× and coverage falling to 1.8× (below the ~3× IG threshold) would almost certainly trigger a downgrade from BBB to BB or below — crossing the investment grade cliff. This forces pension funds and insurance companies that are mandated to hold only IG securities to sell the bonds, causing spreads to widen sharply. The company's refinancing costs rise materially, potentially creating a self-reinforcing distress cycle.",
-          difficulty: 3,
+            "Trade-off theory predicts low leverage for firms with: (1) intangible assets that lose value in distress (customers won't buy drugs from a bankrupt firm), (2) volatile cash flows (high probability of distress), and (3) valuable growth options (distress causes underinvestment). These firms have high distress costs that outweigh the tax shield benefits.",
+          difficulty: 2,
         },
       ],
     },
 
-    // ─── Lesson 4: Working Capital & Cash Management ─────────────────────────────
+    // ─── Lesson 3: Dividend Policy ────────────────────────────────────────────────
     {
-      id: "cf-4",
-      title: "🔄 Working Capital & Cash Management",
+      id: "cf-dividend-policy",
+      title: "Dividend Policy",
       description:
-        "Cash conversion cycle, working capital optimization, and 13-week cash forecasting",
-      icon: "RefreshCw",
-      xpReward: 75,
+        "Understand dividend irrelevance, signaling, clientele effects, buybacks versus dividends, and payout policy",
+      icon: "DollarSign",
+      xpReward: 85,
       difficulty: "intermediate",
       steps: [
         {
           type: "teach",
-          title: "⏱️ Cash Conversion Cycle: The Operational Heartbeat",
+          title: "MM Dividend Irrelevance",
           content:
-            "The **Cash Conversion Cycle (CCC)** measures how many days it takes to convert a dollar spent on operations back into cash received from customers.\n\n**CCC = DSO + DIO – DPO**\n\n- **DSO (Days Sales Outstanding)** = Accounts Receivable / (Revenue / 365). How long customers take to pay.\n- **DIO (Days Inventory Outstanding)** = Inventory / (COGS / 365). How long inventory sits before being sold.\n- **DPO (Days Payable Outstanding)** = Accounts Payable / (COGS / 365). How long the company takes to pay suppliers.\n\n**Interpretation:**\n- Shorter CCC = cash is tied up in operations for fewer days = more efficient\n- **Negative CCC** means customers pay before the company pays suppliers — the business is self-funding with supplier money. Example: **Amazon** (CCC ≈ –30 days) and **Walmart** (CCC ≈ –10 days)\n- Long CCC is common in manufacturing and construction — months of inventory + slow-paying customers\n\n**Example:**\nDSO 45 + DIO 30 – DPO 60 = **CCC 15 days**\nA company with $1B annual COGS: 15 days of CCC = 15/365 × $1B = **$41M of working capital trapped**\n\nReducing CCC by just 10 days frees up ~$27M in cash — a significant source of 'organic' financing.",
-          highlight: ["cash conversion cycle", "DSO", "DIO", "DPO", "negative CCC", "working capital"],
+            "**Modigliani and Miller (1961)** proved that in perfect markets, dividend policy is irrelevant to firm value.\n\n**Intuition:** If a firm pays a dividend, equity value drops by exactly the dividend amount. Shareholders can \"undo\" any dividend policy:\n- Wants cash but no dividend paid → sell shares (\"homemade dividend\")\n- Paid dividend but doesn't want income → reinvest proceeds in new shares\n\n**The value of the firm depends on investment decisions, not financing/payout decisions.**\n\n**Real-world frictions that break irrelevance:**\n- **Taxes:** dividends taxed as ordinary income; buybacks taxed as capital gains (lower rate) → buybacks tax-preferred\n- **Transaction costs:** homemade dividends are costly for small investors\n- **Information asymmetry:** dividends signal private information to markets\n- **Agency costs:** dividends reduce free cash flow managers could waste",
+          highlight: ["dividend irrelevance", "homemade dividend", "MM", "payout policy"],
         },
         {
           type: "teach",
-          title: "🛠️ Working Capital Optimization Techniques",
+          title: "Signaling Theory & Clientele Effect",
           content:
-            "Treasurers and CFOs use several tools to compress the CCC and free up trapped cash:\n\n**Reducing DSO (collect faster):**\n- **Factoring**: sell receivables to a bank at a discount (e.g., sell $100M receivables for $98M — pay 2% to get cash now)\n- **Dynamic discounting**: offer customers early payment discounts (e.g., 2/10 net 30 = 2% discount if paid in 10 days)\n- Invoice financing / asset-based lending using receivables as collateral\n\n**Reducing DIO (turn inventory faster):**\n- Just-In-Time (JIT) manufacturing — minimise raw material and WIP inventory\n- Demand-driven replenishment — use sales data to reduce safety stock\n- Drop-shipping — sell product before taking ownership (Amazon FBA model)\n\n**Extending DPO (pay suppliers slower):**\n- **Supply chain finance (reverse factoring)**: bank pays suppliers early at the buyer's credit rating; buyer repays bank later — suppliers get fast cash, buyer extends payment terms from 30 to 90+ days\n- Negotiate longer payment terms — larger companies leverage size to push out DPO\n\n**Treasury management:**\n- Centralise cash pooling across subsidiaries to reduce idle balances\n- Use notional pooling to offset subsidiary deficits against surpluses without physical transfers\n- Invest excess cash in money market funds or short-term government securities",
-          highlight: ["factoring", "dynamic discounting", "supply chain finance", "JIT", "cash pooling", "DPO extension"],
+            "**Signaling theory:** Dividends convey information about future earnings that managers cannot credibly communicate otherwise.\n- Initiating a dividend signals confidence in stable future cash flows\n- Cutting a dividend signals financial stress → stock typically drops 10–15% on cut announcement\n- **Dividend smoothing:** managers prefer stable, gradually growing dividends (Lintner model) to avoid the negative signal of a cut\n\n**Clientele effect:** Different investor groups prefer different payout policies:\n- **High-dividend clientele:** retirees, pension funds, income-oriented investors (need regular cash)\n- **Low-dividend clientele:** high-bracket taxpayers, growth investors (prefer price appreciation)\n\nFirms attract a clientele matching their policy. Changing policy disrupts this clientele, creating transactional friction and potential tax costs.\n\n**Empirical finding:** Firms with long dividend histories rarely cut dividends even during downturns — the signaling cost is too high.",
+          highlight: ["signaling theory", "dividend smoothing", "clientele effect", "Lintner model", "dividend cut"],
         },
         {
           type: "teach",
-          title: "📋 Cash Forecasting & Liquidity Stress Testing",
+          title: "Buybacks vs Dividends",
           content:
-            "Knowing future cash needs prevents the #1 corporate killer: **running out of liquidity**.\n\n**13-week cash flow model:**\nThe standard corporate liquidity tool — a rolling 13-week (3-month) weekly cash forecast.\n- Line-by-line cash receipts (customer payments) and disbursements (payroll, rent, debt service, capex)\n- Identifies minimum cash balance weeks and peak borrowing needs\n- Updated weekly as actuals roll in and forecast is refreshed\n\n**Why 13 weeks?** Long enough to anticipate problems; short enough to be accurate. Beyond 13 weeks, uncertainty grows rapidly.\n\n**Liquidity stress testing:**\nApply adverse scenarios to the base forecast:\n- Revenue drops 20% (recession scenario)\n- Largest customer pays 30 days late\n- Bank line of credit is fully drawn\n- Seasonal working capital peak hits simultaneously\n\n**Revolving Credit Facility (RCF):** A committed borrowing facility that acts as a liquidity buffer. The company draws and repays as needed, paying only commitment fees when undrawn.\n\n**Rule of thumb:** Maintain minimum 12–24 months of liquidity runway. Distressed companies are those with < 6 months of liquidity with no credible plan to extend it.",
-          highlight: ["13-week cash flow", "liquidity", "stress testing", "revolving credit facility", "cash runway"],
+            "**Share repurchases (buybacks)** have grown dramatically relative to dividends since the 1980s.\n\n**Key differences:**\n\n| Feature | Dividend | Buyback |\n|---|---|---|\n| Tax treatment | Ordinary income | Capital gains (deferred) |\n| Flexibility | Expected to persist (sticky) | One-off; no commitment |\n| Signal | Confidence in stable earnings | Shares undervalued |\n| EPS effect | None direct | EPS rises (fewer shares) |\n| Capital return | Mandatory cash outflow | Optional |\n\n**Buyback mechanics:** Open-market repurchases (most common), tender offers (premium to market), accelerated share repurchases (ASR with investment banks).\n\n**Caution:** EPS-driven buybacks can mask declining earnings. A company buying back shares with debt to boost EPS while operating performance deteriorates is financially engineering metrics, not creating value.\n\n**S&P 500 empirical data:** In recent years, buybacks (>$800B/year) exceeded dividends (~$500B/year) for S&P 500 firms.",
+          highlight: ["share repurchases", "buybacks", "EPS engineering", "tender offer", "capital gains vs ordinary income"],
         },
         {
           type: "quiz-mc",
           question:
-            "A company has DSO of 45 days, DIO of 30 days, and DPO of 60 days. What is the Cash Conversion Cycle?",
+            "A company announces it is cutting its quarterly dividend from $0.50 to $0.20 per share to fund a large acquisition. What does signaling theory predict will happen to the stock price?",
           options: [
-            "15 days — DSO + DIO – DPO = 45 + 30 – 60",
-            "75 days — DSO + DIO only, without subtracting DPO",
-            "–15 days — subtracting all three components",
-            "135 days — adding all three components",
+            "Stock price will likely fall — dividend cut signals financial stress or management lacks confidence in future earnings",
+            "Stock price will likely rise — retained cash will be deployed profitably in the acquisition",
+            "Stock price will be unaffected — MM dividend irrelevance holds in this case",
+            "Stock price will rise — lower dividends reduce the tax burden on shareholders",
           ],
           correctIndex: 0,
           explanation:
-            "CCC = DSO + DIO – DPO = 45 + 30 – 60 = 15 days. DSO (collecting from customers) and DIO (holding inventory) both trap cash — so they're added. DPO (paying suppliers slowly) frees up cash — so it's subtracted. A 15-day CCC means the company has 15 days of cash tied up between paying for goods/services and collecting payment from customers.",
-          difficulty: 1,
+            "Signaling theory predicts the stock falls on a dividend cut because the market interprets the cut as a signal of weaker future cash flows or management uncertainty. Even if the stated reason (acquisition) sounds positive, the cut itself carries a negative signal. Empirically, stocks fall 10–15% on average when dividends are cut.",
+          difficulty: 2,
         },
         {
           type: "quiz-tf",
           statement:
-            "A shorter Cash Conversion Cycle is always better, so companies should pay their suppliers as quickly as possible to build strong supplier relationships.",
-          correct: false,
+            "From a tax efficiency standpoint, share buybacks are generally preferable to dividends for high-bracket individual investors in a system where capital gains are taxed at a lower rate than ordinary income.",
+          correct: true,
           explanation:
-            "False. Paying suppliers very quickly reduces DPO, which actually LENGTHENS the CCC — the opposite of optimal. Extending DPO (paying suppliers more slowly) shortens the CCC and improves cash position. While strong supplier relationships matter, savvy finance teams negotiate longer payment terms or use supply chain finance so suppliers still get paid quickly (funded by a bank) while the company extends its own payment timeline. The goal is to maximise DPO while maintaining healthy supplier relationships.",
-          difficulty: 2,
-        },
-        {
-          type: "quiz-scenario",
-          scenario:
-            "A manufacturing company with $730M in annual revenue has a DSO of 55 days. The CFO wants to reduce DSO to 45 days through tighter credit terms and dynamic discounting. Annual revenue stays constant at $730M.",
-          question: "How much cash does reducing DSO by 10 days release?",
-          options: [
-            "~$20M — 10 days × ($730M / 365 days)",
-            "~$73M — 10% of annual revenue",
-            "~$7.3M — 1 day of revenue only",
-            "~$110M — 15% of annual revenue as a rule of thumb",
-          ],
-          correctIndex: 0,
-          explanation:
-            "Daily revenue = $730M / 365 = $2M per day. Reducing DSO by 10 days releases 10 × $2M = $20M of cash from accounts receivable. This cash can be used to reduce debt, fund capex, or pay dividends — all at zero financing cost. Working capital improvement is often the fastest source of 'free' cash for companies looking to strengthen their balance sheet without raising capital.",
+            "True. Dividends are typically taxed as ordinary income (top rate ~37% in the US), while capital gains realized from selling appreciated shares are taxed at the long-term capital gains rate (~20% for high earners). Buybacks also allow investors to choose when (or whether) to realize gains, providing additional tax deferral flexibility.",
           difficulty: 2,
         },
       ],
     },
 
-    // ─── Lesson 5: Corporate Governance & ESG ────────────────────────────────────
+    // ─── Lesson 4: Capital Budgeting ──────────────────────────────────────────────
     {
-      id: "cf-5",
-      title: "🏛️ Corporate Governance & ESG",
+      id: "cf-capital-budgeting",
+      title: "Capital Budgeting",
       description:
-        "Board structure, executive compensation design, ESG integration, and activist investor dynamics",
-      icon: "Shield",
+        "Evaluate projects using NPV, IRR, payback period, real options, and proper hurdle rates",
+      icon: "TrendingUp",
+      xpReward: 90,
+      difficulty: "advanced",
+      steps: [
+        {
+          type: "teach",
+          title: "NPV, IRR, and Payback Period",
+          content:
+            "**Net Present Value (NPV)** is the gold standard capital budgeting method:\n\n**NPV = Σ [CFt / (1+r)^t] – Initial Investment**\n\nRule: Accept if NPV > 0 (creates value); reject if NPV < 0.\n\n**Internal Rate of Return (IRR)** is the discount rate that makes NPV = 0. Accept if IRR > hurdle rate (WACC).\n\n**NPV vs IRR — when they conflict:**\n- **Scale problem:** IRR favors smaller high-return projects over large positive-NPV projects. Always use NPV for mutually exclusive projects.\n- **Timing problem:** IRR implicitly assumes reinvestment at the IRR rate — unrealistic for high-IRR projects.\n- **Multiple IRRs:** Non-conventional cash flows (sign changes) can produce multiple IRRs.\n\n**Payback Period:** Years to recover initial investment. Simple but ignores: time value of money, cash flows after payback. Only valid as a liquidity/risk screen, never a standalone decision rule.\n\n**Modified IRR (MIRR):** Addresses reinvestment rate assumption by using WACC as the reinvestment rate — more realistic than IRR.",
+          highlight: ["NPV", "IRR", "payback period", "hurdle rate", "MIRR", "mutually exclusive projects"],
+        },
+        {
+          type: "teach",
+          title: "Real Options in Capital Budgeting",
+          content:
+            "**Real options** are the flexibility embedded in investment projects that standard DCF ignores. Treating decisions as if they must be made today and held forever **understates project value**.\n\n**Types of real options:**\n- **Option to expand:** If Phase 1 succeeds, invest in Phase 2 (e.g., pharmaceutical trials, oil field development)\n- **Option to abandon:** Exit the project and recover salvage value if results disappoint\n- **Option to delay:** Wait for more information before committing capital (particularly valuable in volatile environments)\n- **Option to switch:** Shift inputs, outputs, or production methods in response to market changes\n\n**Strategic NPV:**\nStrategic NPV = Static NPV + Value of Real Options\n\nA project with negative static NPV may still be worth pursuing if it grants valuable future options (\"platform investments\").\n\n**Valuation:** Real options can be valued using Black-Scholes or decision trees. Higher volatility → higher option value (same as financial options).",
+          highlight: ["real options", "option to expand", "option to abandon", "option to delay", "strategic NPV"],
+        },
+        {
+          type: "teach",
+          title: "Hurdle Rates and Project Risk Adjustment",
+          content:
+            "**Using a single firm-wide WACC for all projects is a common mistake.** Projects with different risk profiles require risk-adjusted hurdle rates.\n\n**Risk-adjustment approaches:**\n\n1. **Divisional WACC:** Each business unit uses a WACC based on comparable pure-play firms in its sector. A telecom's infrastructure division shouldn't use the same rate as its startup fintech division.\n\n2. **Pure-play comparables:** Find firms whose only business matches the project's risk. Unlever their beta, relever at the division's target structure.\n\n3. **Certainty equivalent approach:** Convert risky cash flows to risk-free equivalents, then discount at Rf.\n\n4. **Subjective risk adjustments:** Add a project-specific risk premium (e.g., +2% for international expansion, +5% for unproven technology).\n\n**Practical consequence:** Firms that use a single WACC systematically:\n- **Over-invest** in high-risk projects (discount rate too low)\n- **Under-invest** in low-risk projects (discount rate too high)\n\nThis destroys value and distorts the firm's risk profile over time.",
+          highlight: ["hurdle rate", "divisional WACC", "pure-play comparables", "risk-adjusted discount rate", "project risk"],
+        },
+        {
+          type: "quiz-mc",
+          question:
+            "Project A (small): NPV = $50M, IRR = 35%. Project B (large): NPV = $120M, IRR = 22%. The firm's WACC is 10%. They are mutually exclusive. Which should the firm choose?",
+          options: [
+            "Project B — higher NPV means more absolute value created for shareholders",
+            "Project A — higher IRR means better return on invested capital",
+            "Either project is acceptable since both IRRs exceed WACC",
+            "Project A — smaller projects are less risky",
+          ],
+          correctIndex: 0,
+          explanation:
+            "For mutually exclusive projects, always choose the higher NPV, not the higher IRR. NPV measures absolute value creation in dollars. Project B creates $120M of value vs $50M for Project A. IRR's scale problem means it favors smaller projects with high percentage returns even when a larger project creates more total wealth for shareholders.",
+          difficulty: 2,
+        },
+        {
+          type: "quiz-tf",
+          statement:
+            "A project with a negative static NPV should always be rejected, even if it grants the firm valuable future strategic options.",
+          correct: false,
+          explanation:
+            "False. Real options theory shows that Strategic NPV = Static NPV + Value of Real Options. A negative-NPV project may still be worth pursuing if the embedded options (to expand, pivot, or access new markets) have sufficient value. Classic examples: early-stage R&D investments, geographic market entry, platform technology investments. The key is explicitly valuing the options.",
+          difficulty: 2,
+        },
+      ],
+    },
+
+    // ─── Lesson 5: Working Capital Management ────────────────────────────────────
+    {
+      id: "cf-working-capital",
+      title: "Working Capital Management",
+      description:
+        "Optimize cash conversion cycle, cash levels, receivables management, and inventory using proven models",
+      icon: "RefreshCw",
       xpReward: 80,
       difficulty: "intermediate",
       steps: [
         {
           type: "teach",
-          title: "🏛️ Board Structure: Independence, Committees & Control",
+          title: "Cash Conversion Cycle",
           content:
-            "The **board of directors** is supposed to represent shareholders and oversee management. Structure matters enormously.\n\n**Independent directors:** Directors with no material relationship with the company (not management, not a major supplier, not a founder relative). Most governance codes require a majority of independent directors. They are supposed to provide objective oversight.\n\n**Key board committees:**\n- **Audit Committee**: Reviews financial statements, oversees external auditors, manages internal controls. Must be fully independent in the US.\n- **Compensation Committee**: Sets executive pay — critical for aligning incentives.\n- **Nominating & Governance Committee**: Recruits new directors, sets governance policies.\n\n**Dual-class share structures:**\nSome companies (Alphabet, Meta, Snap, Berkshire) have two classes of shares:\n- **Class A**: 1 vote per share (public investors)\n- **Class B**: 10 votes per share (founders/insiders)\nFounders can retain voting control with < 50% economic ownership. Critics argue this entrenches management and insulates them from shareholder accountability.\n\n**Activist investors:**\nHedge funds that acquire a stake (often 5–15%) and publicly demand changes: board seats, cost cuts, spinoffs, share buybacks, or M&A. Examples: Elliott Management, Starboard Value, Trian Partners. Their campaigns can force significant strategic changes.",
-          highlight: ["independent directors", "audit committee", "dual-class shares", "activist investors", "board governance"],
+            "The **Cash Conversion Cycle (CCC)** measures how long cash is tied up in operations:\n\n**CCC = DIO + DSO – DPO**\n\n- **DIO (Days Inventory Outstanding)** = (Inventory / COGS) × 365. Days to sell inventory.\n- **DSO (Days Sales Outstanding)** = (Receivables / Revenue) × 365. Days to collect from customers.\n- **DPO (Days Payable Outstanding)** = (Payables / COGS) × 365. Days to pay suppliers.\n\n**Interpretation:** A CCC of 40 means the firm ties up cash for 40 days per sales cycle. Amazon has famously negative CCC (–30 to –40 days) — it collects from customers before paying suppliers, essentially using suppliers as interest-free lenders.\n\n**Example:** DIO = 45, DSO = 35, DPO = 30 → CCC = 45 + 35 – 30 = **50 days**\n\n**Reduction strategies:**\n- Reduce DIO: lean inventory, just-in-time (JIT)\n- Reduce DSO: tighter credit terms, early payment discounts, factoring\n- Increase DPO: negotiate extended supplier terms (without damaging relationships)",
+          highlight: ["cash conversion cycle", "DIO", "DSO", "DPO", "negative CCC", "working capital"],
         },
         {
           type: "teach",
-          title: "💰 Executive Compensation: Aligning Pay with Performance",
+          title: "Optimal Cash Levels: Baumol Model",
           content:
-            "**Executive compensation** is one of the most contested areas of corporate governance — designed to align CEO incentives with shareholders.\n\n**Components of a typical CEO package:**\n1. **Base Salary**: Fixed cash, typically 10–20% of total package for large-cap CEOs\n2. **Annual Bonus**: Cash based on short-term targets (EPS, revenue, ROIC). Can be 50–200% of base.\n3. **Long-Term Incentives (LTI)**: The largest component — paid in equity:\n   - **RSUs (Restricted Stock Units)**: shares vest over 3–4 years; value tied to stock price\n   - **Stock Options**: right to buy at exercise price; only valuable if stock price rises above strike\n   - **Performance Shares**: RSUs that vest only if specific metrics are hit (TSR, EPS growth)\n\n**Say-on-Pay votes:** Non-binding shareholder votes on executive pay packages. ISS and Glass Lewis provide voting recommendations to institutional investors — a 'no' recommendation triggers scrutiny.\n\n**Clawback provisions:** Allow boards to recover executive compensation if financials are later restated or misconduct is discovered. Mandated by the Dodd-Frank Act for US public companies.\n\n**Agency problem:** Even with performance pay, executives may focus on short-term stock price (affects options value) over long-term value creation. This is the fundamental tension in corporate governance.",
-          highlight: ["RSUs", "stock options", "performance shares", "say-on-pay", "clawback", "agency problem"],
+            "The **Baumol Model** treats cash management like inventory management — balancing transaction costs against opportunity costs of holding idle cash.\n\n**Optimal cash balance (C*):**\n\n**C* = √(2 × T × F / r)**\n\n- **T** = total cash needed per period\n- **F** = fixed cost per transaction (converting securities to cash)\n- **r** = opportunity cost rate (return foregone by holding cash)\n\n**Example:** Annual cash needs T = $10M, F = $150 per transaction, r = 5%\nC* = √(2 × $10M × $150 / 0.05) = √($60,000,000) = **$7,746**\n\nHold $7,746 at a time; replenish when exhausted.\n\n**Limitations:** Assumes predictable, uniform cash outflows. Reality is lumpy.\n\n**Miller-Orr Model** (more realistic): Sets upper and lower bounds for cash. When cash hits the upper bound, invest surplus. When it hits the lower bound, sell securities. Optimal return point = lower bound + (1/3)(spread).\n\n**Practical benchmarks:** S&P 500 firms typically hold 5–10% of assets in cash/equivalents. Tech firms often hold much more (Apple historically held >$200B).",
+          highlight: ["Baumol model", "optimal cash balance", "Miller-Orr model", "opportunity cost", "transaction cost"],
         },
         {
           type: "teach",
-          title: "🌱 ESG Integration: From Reporting to Investment Flows",
+          title: "Receivables and Inventory Optimization",
           content:
-            "**ESG (Environmental, Social, Governance)** has evolved from a niche concept to a mainstream corporate and investment framework.\n\n**Materiality assessment:** Not all ESG issues matter equally for every company. A semiconductor company's water usage is highly material (chips require enormous water); a software company's is not. The Sustainability Accounting Standards Board (SASB) provides industry-specific materiality maps.\n\n**TCFD (Task Force on Climate-related Financial Disclosures):**\nThe global standard for climate risk disclosure. Companies must report:\n- Physical risks (flooding, heat stress affecting assets)\n- Transition risks (carbon taxes, stranded assets, regulatory change)\n- Scenario analysis (1.5°C vs 3°C warming pathways)\n\n**ESG rating agencies:**\n- **MSCI ESG Ratings**: AAA to CCC scale; used by many institutional investors\n- **Sustainalytics**: Unmanaged ESG risk scores; used by Morningstar\n- **CDP**: Climate disclosure and scoring (A to D)\nRatings often diverge significantly — different methodologies lead to different conclusions for the same company.\n\n**ESG investing flows and the performance debate:**\n- ESG AUM exceeded $35 trillion globally by 2024\n- Academic evidence is mixed: some studies show ESG outperformance (lower tail risk, better governance); others show underperformance (excluding fossil fuels during commodity bull markets)\n- 'Greenwashing' is a major concern — companies exaggerating sustainability credentials",
-          highlight: ["ESG", "materiality", "TCFD", "MSCI ESG", "Sustainalytics", "greenwashing", "climate risk"],
+            "**Receivables management:**\nCredit policy involves a trade-off — generous terms increase sales but increase bad debt risk and tie up working capital.\n\n**Key decisions:**\n- **Credit standards:** Who qualifies? Use 5 Cs of credit: Character, Capacity, Capital, Collateral, Conditions\n- **Credit terms:** e.g., \"2/10 net 30\" means 2% discount if paid in 10 days, else full amount due in 30 days. Effective annual rate of the discount = (2/98) × (365/20) ≈ **37.2%** — very expensive to forgo.\n- **Collection policy:** Aging schedules, dunning process, write-offs\n\n**Inventory optimization:**\n**EOQ (Economic Order Quantity)** minimizes total carrying + ordering costs:\n\n**EOQ = √(2 × D × S / H)**\n\n- D = annual demand in units\n- S = ordering cost per order\n- H = holding cost per unit per year\n\n**Just-In-Time (JIT):** Minimizes inventory by synchronizing production with demand. Requires reliable suppliers and demand predictability. Reduces holding costs but increases stockout risk.",
+          highlight: ["receivables management", "credit terms", "5 Cs of credit", "EOQ", "just-in-time", "aging schedule"],
         },
         {
           type: "quiz-mc",
           question:
-            "A tech company has two share classes: Class A (1 vote) and Class B (10 votes). The founders own 8% of total shares, all Class B. Public investors own 92%, all Class A. Who controls the company's votes?",
+            "A firm has: DIO = 60 days, DSO = 45 days, DPO = 40 days. What is the Cash Conversion Cycle, and how could the firm reduce it?",
           options: [
-            "The founders — 10 votes per share on 8% of shares gives them majority voting control despite minority economic ownership",
-            "Public investors — they own 92% of shares, which is always a majority of votes",
-            "Neither — voting control requires at least 50% economic ownership in all jurisdictions",
-            "The board — they hold the casting vote in a dual-class structure",
+            "CCC = 65 days; reduce by cutting DIO and DSO, or negotiating longer DPO with suppliers",
+            "CCC = 145 days; reduce only by cutting DIO",
+            "CCC = 65 days; reduce only by issuing more equity to fund working capital",
+            "CCC = 105 days; the firm cannot reduce it without cutting sales",
           ],
           correctIndex: 0,
           explanation:
-            "With 10× voting rights, founders holding 8% of total shares control: 8 × 10 = 80 votes per 100 economic shares. Public investors with 92 shares × 1 vote = 92 votes. Actually total votes = 8×10 + 92×1 = 80 + 92 = 172. Founder votes = 80/172 ≈ 46.5%. But if Class B is only among founders and there are enough Class B shares, founders can easily exceed 50% voting power with far less than 50% economic ownership. This is exactly how Google, Meta, and Snap founders retain control after IPOs.",
+            "CCC = DIO + DSO – DPO = 60 + 45 – 40 = 65 days. To reduce CCC: (1) Reduce DIO via lean inventory or JIT; (2) Reduce DSO via stricter credit terms, early payment discounts, or factoring receivables; (3) Increase DPO by negotiating extended supplier payment terms. All three levers free up cash without additional financing.",
           difficulty: 2,
         },
         {
           type: "quiz-tf",
           statement:
-            "ESG-focused investment funds consistently outperform their non-ESG benchmarks over all time periods because companies with strong sustainability practices always generate superior financial returns.",
-          correct: false,
+            "A credit term of '2/10 net 30' implies an effective annual interest rate of approximately 37% for the buyer who forgoes the early payment discount.",
+          correct: true,
           explanation:
-            "False. Academic and empirical evidence on ESG fund performance is mixed. ESG funds may outperform in certain periods (e.g., 2020 when tech outperformed energy) but underperform in others (e.g., 2022 when energy stocks surged and ESG funds excluding fossil fuels lagged sharply). ESG factors can reduce tail risk (avoiding governance scandals, regulatory fines), but they do not guarantee outperformance in all environments. The relationship between ESG scores and financial returns depends heavily on time period, sector, and the specific ESG metrics used.",
+            "True. Forgoing the 2% discount on day 10 to pay on day 30 means borrowing for 20 days at a cost of 2/98 ≈ 2.04%. Annualized: (1 + 0.0204)^(365/20) – 1 ≈ 37.2%. This is very expensive short-term financing — firms with access to bank credit lines at lower rates should always take early payment discounts.",
+          difficulty: 3,
+        },
+      ],
+    },
+
+    // ─── Lesson 6: Corporate Restructuring ───────────────────────────────────────
+    {
+      id: "cf-restructuring",
+      title: "Corporate Restructuring",
+      description:
+        "Understand spin-offs, carve-outs, split-offs, tracking stocks, divestitures, and debt restructuring",
+      icon: "Scissors",
+      xpReward: 90,
+      difficulty: "advanced",
+      steps: [
+        {
+          type: "teach",
+          title: "Spin-offs, Carve-outs, and Split-offs",
+          content:
+            "**Corporate restructuring** separates businesses to unlock value hidden inside conglomerates.\n\n**Spin-off:** Parent distributes shares of a subsidiary to existing shareholders on a pro-rata basis. Tax-free if structured properly (Section 355 IRS). No cash raised. Both parent and subsidiary become independent public companies.\n\nExample: eBay spun off PayPal (2015) — both stocks outperformed after separation.\n\n**Equity Carve-out (partial IPO):** Parent sells a minority stake (typically 20–30%) in a subsidiary via IPO. Parent retains control. Cash proceeds flow to the parent. Creates a \"currency\" (public stock) for the subsidiary.\n\n**Split-off:** Shareholders choose to exchange parent shares for subsidiary shares. Not pro-rata — reduces parent's share count. Tax-free. Often used to divest a large subsidiary without diluting remaining parent shareholders.\n\n**Why restructure?** Sum-of-parts discount: conglomerates often trade at 10–20% below the combined value of their individual parts due to management complexity, cross-subsidization of weak units, and investor difficulty in valuing mixed businesses.",
+          highlight: ["spin-off", "equity carve-out", "split-off", "sum-of-parts discount", "Section 355", "tax-free restructuring"],
+        },
+        {
+          type: "teach",
+          title: "Tracking Stocks and Divestitures",
+          content:
+            "**Tracking stocks** are a class of common stock designed to \"track\" the performance of a specific subsidiary or business unit, without creating a separate legal entity. The parent retains full ownership of the subsidiary.\n\nHistorical use: General Motors created tracking stocks for Hughes Electronics (GMH) and its other divisions in the 1990s–2000s. Largely fallen out of favor due to:\n- Governance complexity (subsidiary has no independent board)\n- Conflicts of interest between classes of shareholders\n- Markets often still apply conglomerate discount\n\n**Divestitures (asset sales):**\nOutright sale of a business unit to a strategic buyer or PE firm for cash. Immediate liquidity for the parent. Taxable transaction typically. Allows the firm to focus on core competencies.\n\n**Divestiture premium:** Strategic buyers often pay 20–30% more than fair value because the asset is worth more to them (synergies) than as a standalone. PE buyers focus on operational improvement potential.\n\n**Refocusing hypothesis:** Academic research finds that divestitures create value for the divesting firm — on average 2–3% positive announcement return — because they allow management to focus resources and eliminate the conglomerate discount.",
+          highlight: ["tracking stock", "divestiture", "strategic buyer", "PE buyer", "refocusing hypothesis", "conglomerate discount"],
+        },
+        {
+          type: "teach",
+          title: "Debt Restructuring",
+          content:
+            "When a firm cannot service its debt obligations, it faces **financial distress** and must restructure its liabilities.\n\n**Out-of-court restructuring (prepackaged deal):**\n- Negotiated directly with creditors; faster and cheaper than bankruptcy\n- Requires creditor cooperation — works when debt is concentrated among few lenders\n- Typical tools: maturity extensions, interest rate reductions, debt-for-equity swaps\n\n**Chapter 11 bankruptcy (US):**\n- Firm continues operating under court protection (\"debtor-in-possession\")\n- Automatic stay stops all creditor collection actions\n- Firm files a reorganization plan; creditors vote by class\n- Process takes 1–3 years typically; destroys 10–20% of firm value in professional fees and lost business\n\n**Priority of claims (absolute priority rule):**\n1. Secured creditors (first lien)\n2. Senior unsecured creditors\n3. Subordinated debt\n4. Preferred equity\n5. Common equity (often wiped out)\n\n**Debt-for-equity swap:** Creditors exchange debt claims for equity ownership, deleveraging the firm. Common shareholders are diluted or eliminated. Bondholders become new equity owners.",
+          highlight: ["debt restructuring", "Chapter 11", "out-of-court restructuring", "debt-for-equity swap", "absolute priority rule", "DIP financing"],
+        },
+        {
+          type: "quiz-mc",
+          question:
+            "A conglomerate with a consumer goods division and a technology division trades at a 15% discount to the sum of its parts. Management is considering a spin-off of the technology division. What is the primary value creation rationale?",
+          options: [
+            "Eliminating the conglomerate discount by allowing each division to be valued independently as a pure-play",
+            "Raising cash proceeds from the spin-off to pay down debt",
+            "Increasing EPS by reducing the share count of the parent",
+            "Protecting the technology division from the parent's creditors",
+          ],
+          correctIndex: 0,
+          explanation:
+            "The primary rationale is eliminating the conglomerate (sum-of-parts) discount. After separation, each company is valued independently as a pure-play — investors and analysts can better understand the economics, management can focus exclusively, and capital allocation is more transparent. Note: spin-offs don't raise cash (that's a carve-out). EPS might change but that's not the value driver.",
           difficulty: 2,
         },
         {
           type: "quiz-scenario",
           scenario:
-            "An activist hedge fund acquires a 7% stake in a diversified conglomerate that has underperformed its sector index by 35% over three years. The fund sends a public letter demanding: (1) two board seats, (2) a spinoff of the underperforming industrial division, (3) a $500M share buyback program funded by the spinoff proceeds.",
-          question: "Which of the following best describes the activist's investment thesis?",
+            "DebtCo has $500M in debt it cannot service. It has $200M in secured bank loans (first lien) and $300M in unsecured bonds. The firm's total asset value in reorganization is estimated at $280M.",
+          question: "Under the absolute priority rule, what do the unsecured bondholders receive?",
           options: [
-            "The conglomerate trades at a discount to SOTP value; splitting it into pure plays plus returning capital to shareholders unlocks hidden value",
-            "The company is overleveraged and needs to raise equity by spinning off assets to reduce debt",
-            "The industrial division is undervalued and should be retained with increased capex investment",
-            "The activist believes the CEO should be replaced as the primary source of underperformance",
+            "$80M — secured creditors get paid $200M first, unsecured get the remaining $80M",
+            "$300M — all creditors must be paid in full before equity",
+            "$140M — assets split equally between secured and unsecured",
+            "Nothing — only secured creditors recover in bankruptcy",
           ],
           correctIndex: 0,
           explanation:
-            "The activist thesis is a classic SOTP / conglomerate discount play. By spinning off the industrial division (which may trade at 8× EBIT as a standalone vs 6× within the conglomerate), the remaining pure-play business gets re-rated to a higher multiple. The proceeds from the spinoff or sale are returned via buyback, reducing share count and boosting EPS. This combination — multiple re-rating + capital return + focused management — is the standard activist playbook for underperforming conglomerates. Board seats give the activist influence to ensure management executes the plan.",
+            "Absolute priority rule: secured creditors are paid first. Secured bank loans = $200M, fully covered from the $280M estate. Remaining = $280M – $200M = $80M for unsecured bondholders, who recover $80M / $300M = 26.7 cents on the dollar. Common equity receives nothing. This illustrates why unsecured bonds trade at steep discounts when default risk rises.",
           difficulty: 3,
         },
       ],
