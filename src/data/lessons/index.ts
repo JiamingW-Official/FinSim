@@ -106,6 +106,7 @@ import { UNIT_INTERNATIONAL_INVESTING } from "./unit-international-investing";
 import { UNIT_MARKET_BUBBLES } from "./unit-market-bubbles";
 import { UNIT_CRYPTO_CYCLES } from "./unit-crypto-cycles";
 import { UNIT_MONETARY_SYSTEM } from "./unit-monetary-system";
+import { UNIT_COMMODITY_TRADING } from "./unit-commodity-trading";
 
 export const UNITS: Unit[] = [
   UNIT_BASICS,
@@ -215,6 +216,7 @@ export const UNITS: Unit[] = [
   UNIT_MARKET_BUBBLES,
   UNIT_CRYPTO_CYCLES,
   UNIT_MONETARY_SYSTEM,
+  UNIT_COMMODITY_TRADING,
 ];
 
 export function getLessonById(lessonId: string): Lesson | undefined {
