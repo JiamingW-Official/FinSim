@@ -49,7 +49,7 @@ function fmtK(n: number): string {
 
 // ── Dividend Stock Data ───────────────────────────────────────────────────────
 
-type SortKey = "yield" | "growthRate" | "score" | "divPerShare" | "payoutRatio" | "consecutiveYears";
+type SortKey = "yield" | "growthRate" | "score" | "baseDivPerShare" | "payoutRatio" | "consecutiveYears";
 
 interface DivStockDef {
   ticker: string;
@@ -141,8 +141,8 @@ function DividendStocksTab() {
   const sorted = useMemo(() => {
     const copy = [...rows];
     copy.sort((a, b) => {
-      const av = a[sortKey] as number;
-      const bv = b[sortKey] as number;
+      const av = a[sortKey as keyof DivStockRow] as number;
+      const bv = b[sortKey as keyof DivStockRow] as number;
       return sortDir === "desc" ? bv - av : av - bv;
     });
     return copy;
@@ -189,7 +189,7 @@ function DividendStocksTab() {
       {/* Sort shortcuts */}
       <div className="flex flex-wrap gap-2 items-center text-xs text-muted-foreground">
         <span>Sort by:</span>
-        {(["yield", "growthRate", "score"] as SortKey[]).map((k) => (
+        {(["yield", "growthRate", "score"] as const).map((k) => (
           <button
             key={k}
             onClick={() => toggleSort(k)}
@@ -214,7 +214,7 @@ function DividendStocksTab() {
                 <th className="px-3 py-2 text-left text-xs font-medium text-muted-foreground">Ticker / Name</th>
                 <th className="px-3 py-2 text-left text-xs font-medium text-muted-foreground">Sector</th>
                 <SortHdr label="Yield" k="yield" />
-                <SortHdr label="Div/Share" k="divPerShare" />
+                <SortHdr label="Div/Share" k="baseDivPerShare" />
                 <th className="px-3 py-2 text-right text-xs font-medium text-muted-foreground whitespace-nowrap">Ex-Div Date</th>
                 <th className="px-3 py-2 text-right text-xs font-medium text-muted-foreground whitespace-nowrap">Pay Date</th>
                 <SortHdr label="Payout" k="payoutRatio" />
