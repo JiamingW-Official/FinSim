@@ -111,6 +111,7 @@ import { UNIT_CAPITAL_MARKETS_HISTORY } from "./unit-capital-markets-history";
 import { UNIT_FINANCIAL_DERIVATIVES } from "./unit-financial-derivatives";
 import { UNIT_SUPPLY_DEMAND } from "./unit-supply-demand";
 import { UNIT_CRYPTO_FUNDAMENTALS } from "./unit-crypto-fundamentals";
+import { UNIT_TRADE_FINANCE } from "./unit-trade-finance";
 
 export const UNITS: Unit[] = [
   UNIT_BASICS,
@@ -225,6 +226,7 @@ export const UNITS: Unit[] = [
   UNIT_FINANCIAL_DERIVATIVES,
   UNIT_SUPPLY_DEMAND,
   UNIT_CRYPTO_FUNDAMENTALS,
+  UNIT_TRADE_FINANCE,
 ];
 
 export function getLessonById(lessonId: string): Lesson | undefined {
