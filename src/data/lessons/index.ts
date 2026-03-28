@@ -115,6 +115,8 @@ import { UNIT_TRADE_FINANCE } from "./unit-trade-finance";
 import { UNIT_DCF_VALUATION } from "./unit-dcf-valuation";
 import { UNIT_POSITION_SIZING } from "./unit-position-sizing";
 import { UNIT_SECTOR_ANALYSIS } from "./unit-sector-analysis";
+import { UNIT_COMPETITIVE_MOATS } from "./unit-competitive-moats";
+import { UNIT_BOND_MATH } from "./unit-bond-math";
 
 export const UNITS: Unit[] = [
   UNIT_BASICS,
@@ -233,6 +235,8 @@ export const UNITS: Unit[] = [
   UNIT_DCF_VALUATION,
   UNIT_POSITION_SIZING,
   UNIT_SECTOR_ANALYSIS,
+  UNIT_COMPETITIVE_MOATS,
+  UNIT_BOND_MATH,
 ];
 
 export function getLessonById(lessonId: string): Lesson | undefined {
