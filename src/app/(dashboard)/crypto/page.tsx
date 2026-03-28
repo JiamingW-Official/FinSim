@@ -548,9 +548,72 @@ function FearGreedGauge({ value }: { value: number }) {
   );
 }
 
+function DonutChart({ slices }: { slices: { label: string; value: number; color: string }[] }) {
+  const total = slices.reduce((s, x) => s + x.value, 0);
+  const CX = 70, CY = 70, R = 55, RI = 30;
+  let angle = -Math.PI / 2;
+  const arcs = slices.map((s) => {
+    const sweep = (s.value / total) * 2 * Math.PI;
+    const a1 = angle; angle += sweep; const a2 = angle;
+    const lf = sweep > Math.PI ? 1 : 0;
+    const x1 = CX + R * Math.cos(a1), y1 = CY + R * Math.sin(a1);
+    const x2 = CX + R * Math.cos(a2), y2 = CY + R * Math.sin(a2);
+    const xi1 = CX + RI * Math.cos(a2), yi1 = CY + RI * Math.sin(a2);
+    const xi2 = CX + RI * Math.cos(a1), yi2 = CY + RI * Math.sin(a1);
+    const d = `M ${x1} ${y1} A ${R} ${R} 0 ${lf} 1 ${x2} ${y2} L ${xi1} ${yi1} A ${RI} ${RI} 0 ${lf} 0 ${xi2} ${yi2} Z`;
+    return { ...s, d, pct: (s.value / total) * 100 };
+  });
+  return (
+    <div className="flex items-center gap-4 flex-wrap">
+      <svg width={140} height={140}>
+        {arcs.map((a) => <path key={a.label} d={a.d} fill={a.color} opacity={0.9} />)}
+      </svg>
+      <div className="flex flex-col gap-1.5">
+        {arcs.map((a) => (
+          <div key={a.label} className="flex items-center gap-2 text-xs">
+            <span className="h-2.5 w-2.5 rounded-full shrink-0" style={{ background: a.color }} />
+            <span className="text-muted-foreground font-medium w-14 truncate">{a.label}</span>
+            <span className="tabular-nums font-semibold">{a.pct.toFixed(1)}%</span>
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+}
+
+function BarChart({ bars, maxVal, colorFn }: {
+  bars: { label: string; value: number }[];
+  maxVal: number;
+  colorFn?: (val: number) => string;
+}) {
+  const W = 240, H = 120, PAD_L = 40, PAD_B = 20, INNER_H = H - PAD_B - 8;
+  const barW = (W - PAD_L - 8) / bars.length;
+  return (
+    <svg width={W} height={H} className="block">
+      {bars.map((b, i) => {
+        const barH = Math.max(2, (b.value / maxVal) * INNER_H);
+        const x = PAD_L + i * barW + barW * 0.1;
+        const bw = barW * 0.8;
+        const y = H - PAD_B - barH;
+        const color = colorFn ? colorFn(b.value) : "#6366f1";
+        return (
+          <g key={b.label}>
+            <rect x={x} y={y} width={bw} height={barH} fill={color} rx={2} opacity={0.85} />
+            <text x={x + bw / 2} y={H - 4} textAnchor="middle" fontSize={8} fill="#6b7280">
+              {b.label}
+            </text>
+          </g>
+        );
+      })}
+      {/* baseline */}
+      <line x1={PAD_L} y1={H - PAD_B} x2={W - 4} y2={H - PAD_B} stroke="#374151" strokeWidth={1} />
+    </svg>
+  );
+}
+
 // ── Tab: Markets ──────────────────────────────────────────────────────────────
 
-function MarketsTab({ rows, seed }: { rows: CryptoRow[]; seed: number }) {
+function MarketsTab({ rows, seed }: { rows: CryptoRow[]; seed: number; }) {
   const totalMcap = rows.reduce((s, r) => s + r.marketCap, 0);
   const totalVol  = rows.reduce((s, r) => s + r.volume24h, 0);
   const rng       = mulberry32(seed ^ 0xfeed);
