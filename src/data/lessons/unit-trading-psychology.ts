@@ -4,14 +4,14 @@ export const UNIT_TRADING_PSYCHOLOGY: Unit = {
   id: "trading-psychology",
   title: "Trading Psychology",
   description:
-    "Master the mental game of trading — emotions, discipline, consistency, and peak performance",
+    "Develop mental edge with emotional discipline, bias recognition, process thinking, and elite trader mindset",
   icon: "Brain",
-  color: "#0ea5e9",
+  color: "#ec4899",
   lessons: [
-    // ─── Lesson 1: The Trader's Mindset ───────────────────────────────────────
+    // ─── Lesson 1: The Trading Mind ──────────────────────────────────────────
     {
-      id: "psych-1",
-      title: "The Trader's Mindset",
+      id: "tp-1",
+      title: "🧠 The Trading Mind",
       description:
         "Professional vs amateur mindset, process over outcomes, handling uncertainty, accountability",
       icon: "Lightbulb",
