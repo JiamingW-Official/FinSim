@@ -78,6 +78,9 @@ import { UNIT_INTEREST_RATE_RISK } from "./unit-interest-rate-risk";
 import { UNIT_LBO_MODELING } from "./unit-lbo-modeling";
 import { UNIT_DIVIDEND_INVESTING } from "./unit-dividend-investing";
 import { UNIT_GEOPOLITICAL_RISK } from "./unit-geopolitical-risk";
+import { UNIT_CREDIT_RISK } from "./unit-credit-risk";
+import { UNIT_ACCOUNTING_EARNINGS } from "./unit-accounting-earnings";
+import { UNIT_INFLATION_INVESTING } from "./unit-inflation-investing";
 
 export const UNITS: Unit[] = [
   UNIT_BASICS,
@@ -159,6 +162,9 @@ export const UNITS: Unit[] = [
   UNIT_LBO_MODELING,
   UNIT_DIVIDEND_INVESTING,
   UNIT_GEOPOLITICAL_RISK,
+  UNIT_CREDIT_RISK,
+  UNIT_ACCOUNTING_EARNINGS,
+  UNIT_INFLATION_INVESTING,
 ];
 
 export function getLessonById(lessonId: string): Lesson | undefined {
