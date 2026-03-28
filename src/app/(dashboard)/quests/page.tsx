@@ -11,6 +11,7 @@ import {
   Trophy,
   Flame,
   Star,
+  GitBranch,
 } from "lucide-react";
 
 // Existing quest system tabs
@@ -20,6 +21,7 @@ import { MonthlyChallenges } from "@/components/quests/MonthlyChallenges";
 import { SeasonPreview } from "@/components/quests/SeasonPreview";
 import { QuestMap } from "@/components/quests/QuestMap";
 import { QuestMilestoneTab } from "@/components/quests/QuestMilestoneTab";
+import { QuestTree } from "@/components/quests/QuestTree";
 
 // New simple quests data
 import {
@@ -38,11 +40,12 @@ import { useBacktestStore } from "@/stores/backtest-store";
 
 // ── Tabs ──────────────────────────────────────────────────────
 
-type Tab = "active" | "map" | "monthly" | "season";
+type Tab = "active" | "map" | "tree" | "monthly" | "season";
 
 const TABS: Array<{ id: Tab; label: string; icon: React.ReactNode }> = [
   { id: "active", label: "Active Quests", icon: <ScrollText className="h-3.5 w-3.5" /> },
   { id: "map", label: "Quest Map", icon: <Map className="h-3.5 w-3.5" /> },
+  { id: "tree", label: "Skill Tree", icon: <GitBranch className="h-3.5 w-3.5" /> },
   { id: "monthly", label: "Monthly", icon: <CalendarDays className="h-3.5 w-3.5" /> },
   { id: "season", label: "Season", icon: <Star className="h-3.5 w-3.5" /> },
 ];
@@ -630,6 +633,7 @@ export default function QuestsPage() {
             >
               {tab === "active" && <ActiveQuestsTab />}
               {tab === "map" && <QuestMapTab />}
+              {tab === "tree" && <QuestTree />}
               {tab === "monthly" && <MonthlyChallenges />}
               {tab === "season" && <SeasonPreview />}
             </motion.div>
