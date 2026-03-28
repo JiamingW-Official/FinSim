@@ -4,6 +4,7 @@ import { useState, useMemo } from "react";
 import { Calendar, TrendingUp, Star, BookOpen, ChevronDown, ChevronUp, AlertTriangle, CheckCircle2, XCircle, Clock } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import EarningsDeepDive from "@/components/earnings/EarningsDeepDive";
 
 // ── mulberry32 seeded PRNG (seed=7654) ────────────────────────────────────────
 
@@ -1233,6 +1234,10 @@ export default function EarningsPage() {
               <BookOpen className="h-3 w-3" />
               Strategies
             </TabsTrigger>
+            <TabsTrigger value="deepdive" className="text-xs gap-1.5">
+              <TrendingUp className="h-3 w-3" />
+              Deep Dive
+            </TabsTrigger>
           </TabsList>
 
           <TabsContent value="calendar" className="flex-1 overflow-y-auto px-4 py-4 data-[state=inactive]:hidden">
@@ -1246,6 +1251,9 @@ export default function EarningsPage() {
           </TabsContent>
           <TabsContent value="strategies" className="flex-1 overflow-y-auto px-4 py-4 data-[state=inactive]:hidden">
             <EarningsStrategiesTab />
+          </TabsContent>
+          <TabsContent value="deepdive" className="flex-1 overflow-y-auto px-4 py-4 data-[state=inactive]:hidden">
+            <EarningsDeepDive />
           </TabsContent>
         </Tabs>
       </div>
