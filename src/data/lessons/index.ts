@@ -48,6 +48,7 @@ import { UNIT_WEALTH_MANAGEMENT } from "./unit-wealth-management";
 import { UNIT_ESG_ADVANCED } from "./unit-esg-advanced";
 import { UNIT_TRADING_SYSTEMS } from "./unit-trading-systems";
 import { UNIT_FIXED_INCOME_ADVANCED } from "./unit-fixed-income-advanced";
+import { UNIT_CRYPTO_PROTOCOLS } from "./unit-crypto-protocols";
 
 export const UNITS: Unit[] = [
   UNIT_BASICS,
@@ -99,6 +100,7 @@ export const UNITS: Unit[] = [
   UNIT_ESG_ADVANCED,
   UNIT_TRADING_SYSTEMS,
   UNIT_FIXED_INCOME_ADVANCED,
+  UNIT_CRYPTO_PROTOCOLS,
 ];
 
 export function getLessonById(lessonId: string): Lesson | undefined {

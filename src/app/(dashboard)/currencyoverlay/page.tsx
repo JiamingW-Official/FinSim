@@ -1732,34 +1732,60 @@ export default function CurrencyOverlayPage() {
             ))}
           </TabsList>
 
-          <AnimatePresence mode="wait">
-            <motion.div
-              key={activeTab}
-              initial={{ opacity: 0, y: 8 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -8 }}
-              transition={{ duration: 0.18 }}
-            >
-              <TabsContent value="exposure" data-[state=inactive]:hidden>
-                <FXExposureMonitor />
-              </TabsContent>
-              <TabsContent value="hedging" data-[state=inactive]:hidden>
-                <HedgingStrategyBuilder />
-              </TabsContent>
-              <TabsContent value="carry" data-[state=inactive]:hidden>
-                <CarryTradeAnalyzer />
-              </TabsContent>
-              <TabsContent value="valuation" data-[state=inactive]:hidden>
-                <FXValuationModels />
-              </TabsContent>
-              <TabsContent value="options" data-[state=inactive]:hidden>
-                <OptionsFXHedging />
-              </TabsContent>
-              <TabsContent value="ccs" data-[state=inactive]:hidden>
-                <CrossCurrencySwapAnalytics />
-              </TabsContent>
-            </motion.div>
-          </AnimatePresence>
+          <TabsContent value="exposure">
+            <AnimatePresence mode="wait">
+              {activeTab === "exposure" && (
+                <motion.div key="exposure" initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -8 }} transition={{ duration: 0.18 }}>
+                  <FXExposureMonitor />
+                </motion.div>
+              )}
+            </AnimatePresence>
+          </TabsContent>
+          <TabsContent value="hedging">
+            <AnimatePresence mode="wait">
+              {activeTab === "hedging" && (
+                <motion.div key="hedging" initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -8 }} transition={{ duration: 0.18 }}>
+                  <HedgingStrategyBuilder />
+                </motion.div>
+              )}
+            </AnimatePresence>
+          </TabsContent>
+          <TabsContent value="carry">
+            <AnimatePresence mode="wait">
+              {activeTab === "carry" && (
+                <motion.div key="carry" initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -8 }} transition={{ duration: 0.18 }}>
+                  <CarryTradeAnalyzer />
+                </motion.div>
+              )}
+            </AnimatePresence>
+          </TabsContent>
+          <TabsContent value="valuation">
+            <AnimatePresence mode="wait">
+              {activeTab === "valuation" && (
+                <motion.div key="valuation" initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -8 }} transition={{ duration: 0.18 }}>
+                  <FXValuationModels />
+                </motion.div>
+              )}
+            </AnimatePresence>
+          </TabsContent>
+          <TabsContent value="options">
+            <AnimatePresence mode="wait">
+              {activeTab === "options" && (
+                <motion.div key="options" initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -8 }} transition={{ duration: 0.18 }}>
+                  <OptionsFXHedging />
+                </motion.div>
+              )}
+            </AnimatePresence>
+          </TabsContent>
+          <TabsContent value="ccs">
+            <AnimatePresence mode="wait">
+              {activeTab === "ccs" && (
+                <motion.div key="ccs" initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -8 }} transition={{ duration: 0.18 }}>
+                  <CrossCurrencySwapAnalytics />
+                </motion.div>
+              )}
+            </AnimatePresence>
+          </TabsContent>
         </Tabs>
       </div>
     </div>
