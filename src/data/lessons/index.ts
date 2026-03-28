@@ -117,6 +117,8 @@ import { UNIT_POSITION_SIZING } from "./unit-position-sizing";
 import { UNIT_SECTOR_ANALYSIS } from "./unit-sector-analysis";
 import { UNIT_COMPETITIVE_MOATS } from "./unit-competitive-moats";
 import { UNIT_BOND_MATH } from "./unit-bond-math";
+import { UNIT_FINANCIAL_RATIOS } from "./unit-financial-ratios";
+import { UNIT_OPTIONS_BASICS } from "./unit-options-basics";
 
 export const UNITS: Unit[] = [
   UNIT_BASICS,
@@ -237,6 +239,8 @@ export const UNITS: Unit[] = [
   UNIT_SECTOR_ANALYSIS,
   UNIT_COMPETITIVE_MOATS,
   UNIT_BOND_MATH,
+  UNIT_FINANCIAL_RATIOS,
+  UNIT_OPTIONS_BASICS,
 ];
 
 export function getLessonById(lessonId: string): Lesson | undefined {
