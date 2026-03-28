@@ -103,6 +103,9 @@ import { UNIT_HEDGE_FUND_DD } from "./unit-hedge-fund-dd";
 import { UNIT_FINTECH_LENDING } from "./unit-fintech-lending";
 import { UNIT_WEB3_INFRASTRUCTURE } from "./unit-web3-infrastructure";
 import { UNIT_INTERNATIONAL_INVESTING } from "./unit-international-investing";
+import { UNIT_MARKET_BUBBLES } from "./unit-market-bubbles";
+import { UNIT_CRYPTO_CYCLES } from "./unit-crypto-cycles";
+import { UNIT_MONETARY_SYSTEM } from "./unit-monetary-system";
 
 export const UNITS: Unit[] = [
   UNIT_BASICS,
@@ -209,6 +212,9 @@ export const UNITS: Unit[] = [
   UNIT_FINTECH_LENDING,
   UNIT_WEB3_INFRASTRUCTURE,
   UNIT_INTERNATIONAL_INVESTING,
+  UNIT_MARKET_BUBBLES,
+  UNIT_CRYPTO_CYCLES,
+  UNIT_MONETARY_SYSTEM,
 ];
 
 export function getLessonById(lessonId: string): Lesson | undefined {

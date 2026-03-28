@@ -412,7 +412,7 @@ export default function VolatilityArbPage() {
         </TabsList>
 
         {/* ── Tab 1: Vol Spread Dashboard ───────────────────────────────────── */}
-        <TabsContent value="vol-spread" data-[state=inactive]:hidden>
+        <TabsContent value="vol-spread" className="data-[state=inactive]:hidden">
           <AnimatePresence mode="wait">
             <motion.div
               key="vol-spread"
@@ -583,7 +583,7 @@ export default function VolatilityArbPage() {
         </TabsContent>
 
         {/* ── Tab 2: Delta-Neutral P&L ───────────────────────────────────────── */}
-        <TabsContent value="delta-neutral" data-[state=inactive]:hidden>
+        <TabsContent value="delta-neutral" className="data-[state=inactive]:hidden">
           <AnimatePresence mode="wait">
             <motion.div
               key="delta-neutral"
@@ -766,7 +766,7 @@ export default function VolatilityArbPage() {
         </TabsContent>
 
         {/* ── Tab 3: Dispersion Trading ──────────────────────────────────────── */}
-        <TabsContent value="dispersion" data-[state=inactive]:hidden>
+        <TabsContent value="dispersion" className="data-[state=inactive]:hidden">
           <AnimatePresence mode="wait">
             <motion.div
               key="dispersion"
@@ -915,7 +915,7 @@ export default function VolatilityArbPage() {
         </TabsContent>
 
         {/* ── Tab 4: Vol Surface Arb ─────────────────────────────────────────── */}
-        <TabsContent value="vol-surface" data-[state=inactive]:hidden>
+        <TabsContent value="vol-surface" className="data-[state=inactive]:hidden">
           <AnimatePresence mode="wait">
             <motion.div
               key="vol-surface"
@@ -1096,7 +1096,7 @@ export default function VolatilityArbPage() {
         </TabsContent>
 
         {/* ── Tab 5: Statistical Edge ────────────────────────────────────────── */}
-        <TabsContent value="stat-edge" data-[state=inactive]:hidden>
+        <TabsContent value="stat-edge" className="data-[state=inactive]:hidden">
           <AnimatePresence mode="wait">
             <motion.div
               key="stat-edge"
