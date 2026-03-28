@@ -89,6 +89,10 @@ import { UNIT_VALUE_INVESTING } from "./unit-value-investing";
 import { UNIT_GLOBAL_TRADE } from "./unit-global-trade";
 import { UNIT_MONETARY_POLICY } from "./unit-monetary-policy";
 import { UNIT_SYSTEMATIC_TRADING } from "./unit-systematic-trading";
+import { UNIT_WEALTH_INEQUALITY } from "./unit-wealth-inequality";
+import { UNIT_REAL_ESTATE_ANALYSIS } from "./unit-real-estate-analysis";
+import { UNIT_CRYPTO_REGULATION } from "./unit-crypto-regulation";
+import { UNIT_IMPACT_INVESTING } from "./unit-impact-investing";
 
 export const UNITS: Unit[] = [
   UNIT_BASICS,
@@ -181,6 +185,10 @@ export const UNITS: Unit[] = [
   UNIT_GLOBAL_TRADE,
   UNIT_MONETARY_POLICY,
   UNIT_SYSTEMATIC_TRADING,
+  UNIT_WEALTH_INEQUALITY,
+  UNIT_REAL_ESTATE_ANALYSIS,
+  UNIT_CRYPTO_REGULATION,
+  UNIT_IMPACT_INVESTING,
 ];
 
 export function getLessonById(lessonId: string): Lesson | undefined {
