@@ -50,6 +50,7 @@ import { DividendTracker } from "@/components/portfolio/DividendTracker";
 import { PortfolioAttribution } from "@/components/portfolio/PortfolioAttribution";
 import { LivePnLDashboard } from "@/components/portfolio/LivePnLDashboard";
 import { WeeklyReview } from "@/components/analytics/WeeklyReview";
+import { AdvancedAnalytics } from "@/components/portfolio/AdvancedAnalytics";
 
 const EquityCurve = dynamic(
   () =>

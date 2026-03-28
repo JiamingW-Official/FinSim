@@ -299,6 +299,11 @@ export default function OptionsPage() {
                     chain={chain}
                   />
                 </TabsContent>
+
+                {/* Margin Calc tab */}
+                <TabsContent value="margin-calc" className="mt-0 flex-1 overflow-auto data-[state=inactive]:hidden">
+                  <PortfolioMarginCalc />
+                </TabsContent>
               </>
             )}
           </div>
