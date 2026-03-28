@@ -20,6 +20,7 @@ import { UNIT_RISK_MANAGEMENT_MASTERY } from "./unit-risk-management-mastery";
 import { UNIT_TRADING_PSYCHOLOGY } from "./unit-trading-psychology";
 import { UNIT_TECHNICAL_ANALYSIS_MASTERY } from "./unit-technical-analysis-mastery";
 import { UNIT_ADVANCED_OPTIONS } from "./unit-advanced-options";
+import { UNIT_INTERNATIONAL_MARKETS } from "./unit-international-markets";
 
 export const UNITS: Unit[] = [
   UNIT_BASICS,
@@ -43,6 +44,7 @@ export const UNITS: Unit[] = [
   UNIT_TRADING_PSYCHOLOGY,
   UNIT_TECHNICAL_ANALYSIS_MASTERY,
   UNIT_ADVANCED_OPTIONS,
+  UNIT_INTERNATIONAL_MARKETS,
 ];
 
 export function getLessonById(lessonId: string): Lesson | undefined {
