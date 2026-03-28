@@ -95,6 +95,9 @@ import { UNIT_CRYPTO_REGULATION } from "./unit-crypto-regulation";
 import { UNIT_IMPACT_INVESTING } from "./unit-impact-investing";
 import { UNIT_FINANCIAL_STATEMENTS } from "./unit-financial-statements";
 import { UNIT_BEHAVIORAL_ECONOMICS } from "./unit-behavioral-economics";
+import { UNIT_INVESTMENT_MATH } from "./unit-investment-math";
+import { UNIT_SECURITIES_LAW } from "./unit-securities-law";
+import { UNIT_ECONOMIC_HISTORY } from "./unit-economic-history";
 
 export const UNITS: Unit[] = [
   UNIT_BASICS,
@@ -192,6 +195,10 @@ export const UNITS: Unit[] = [
   UNIT_CRYPTO_REGULATION,
   UNIT_IMPACT_INVESTING,
   UNIT_FINANCIAL_STATEMENTS,
+  UNIT_BEHAVIORAL_ECONOMICS,
+  UNIT_INVESTMENT_MATH,
+  UNIT_SECURITIES_LAW,
+  UNIT_ECONOMIC_HISTORY,
 ];
 
 export function getLessonById(lessonId: string): Lesson | undefined {
