@@ -75,6 +75,7 @@ import { UNIT_OPTIONS_GREEKS } from "./unit-options-greeks";
 import { UNIT_TA_PATTERNS } from "./unit-ta-patterns";
 import { UNIT_PERSONAL_BUDGETING } from "./unit-personal-budgeting";
 import { UNIT_INTEREST_RATE_RISK } from "./unit-interest-rate-risk";
+import { UNIT_LBO_MODELING } from "./unit-lbo-modeling";
 
 export const UNITS: Unit[] = [
   UNIT_BASICS,
@@ -153,6 +154,7 @@ export const UNITS: Unit[] = [
   UNIT_TA_PATTERNS,
   UNIT_PERSONAL_BUDGETING,
   UNIT_INTEREST_RATE_RISK,
+  UNIT_LBO_MODELING,
 ];
 
 export function getLessonById(lessonId: string): Lesson | undefined {

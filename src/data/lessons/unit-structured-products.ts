@@ -2,507 +2,473 @@ import type { Unit } from "./types";
 
 export const UNIT_STRUCTURED_PRODUCTS: Unit = {
   id: "structured-products",
-  title: "Structured Products",
+  title: "Structured Products & Exotic Derivatives",
   description:
-    "Master interest rate swaps, credit derivatives, equity-linked products, commodity/FX exotics, and volatility instruments",
+    "Principal protection, barrier options, autocallables, variance swaps, and credit-linked notes — the complex instruments sold to institutional and retail investors",
   icon: "Layers",
   color: "#7c3aed",
   lessons: [
-    // ─── Lesson 1: Interest Rate Derivatives ──────────────────────────────────────
+    // ─── Lesson 1: Structured Product Basics ─────────────────────────────────
     {
-      id: "struct-prod-1",
-      title: "Interest Rate Derivatives",
+      id: "struct-prod-basics",
+      title: "Structured Product Basics",
       description:
-        "Swaps, caps, floors, swaptions, and FRAs — the instruments that govern global borrowing costs",
-      icon: "TrendingUp",
-      xpReward: 90,
-      difficulty: "advanced",
-      steps: [
-        {
-          type: "teach",
-          title: "Interest Rate Swaps: Fixed-for-Floating Mechanics",
-          content:
-            "An **interest rate swap (IRS)** is a bilateral agreement to exchange interest payments on a **notional principal** — one leg pays a fixed rate, the other pays a floating rate referenced to a benchmark such as **SOFR** (Secured Overnight Financing Rate), which replaced LIBOR after the 2012 rate-manipulation scandal.\n\n**Critical rule: the notional principal is NEVER exchanged.** Only the net interest difference is settled on each payment date — this dramatically reduces counterparty credit risk.\n\n**Net Settlement Example:**\nCompany A pays fixed 4.5%; Bank pays SOFR = 3.8%. Net: Company A pays 0.7% on notional.\n\n**LIBOR → SOFR Transition:**\nLIBOR was a forward-looking term rate set by panel banks. SOFR is an overnight rate derived from actual Treasury repo transactions — more robust but requires different conventions (compounding in arrears vs. simple interest for LIBOR).\n\n**Swap Curve Bootstrapping:**\nThe swap curve is constructed from short-term instruments (Eurodollar/SOFR futures) and longer-term par swap rates. From overlapping market quotes, bootstrap extracts zero-coupon discount factors step by step — each maturity's zero rate is solved so that the par swap's NPV = 0.\n\nSwap valuation: PV(fixed leg) – PV(floating leg). At inception NPV = 0 by construction. As rates move, the swap gains or loses mark-to-market value.",
-          highlight: [
-            "interest rate swap",
-            "notional",
-            "SOFR",
-            "LIBOR",
-            "net settlement",
-            "swap curve",
-            "bootstrapping",
-          ],
-        },
-        {
-          type: "teach",
-          title: "Interest Rate Options: Caps, Floors & Swaptions",
-          content:
-            "**Interest Rate Cap:**\nA cap is a portfolio of **caplets** — each caplet is a call option on a reference rate (SOFR) for one reset period. If SOFR exceeds the cap strike on a reset date, the caplet pays: (SOFR – Cap Strike) × Notional × Day Count.\n\nCorporate use case: A company borrowed at SOFR + 150bp and fears rising rates. Buying a 5% cap guarantees its all-in rate never exceeds 5% + 150bp = 6.50%, regardless of how high SOFR goes.\n\n**Interest Rate Floor:**\nA floor is a series of **floorlets** paying when the reference rate falls below the floor strike. Lenders with floating-rate loan books buy floors to guarantee minimum interest income.\n\n**Cap – Floor Parity:**\nBuying a cap and selling a floor at the same strike = paying fixed in an interest rate swap. This is the put-call parity equivalent for rates.\n\n**Swaptions:**\nA swaption is an option to enter an interest rate swap at a pre-agreed fixed rate on a future date.\n\n- **Payer swaption:** right to pay fixed (receive floating) — profits if rates rise\n- **Receiver swaption:** right to receive fixed (pay floating) — profits if rates fall\n\nReceiver swaptions are widely used by insurance companies and pension funds to hedge against declining yields on their fixed-income liabilities. Banks use payer swaptions to hedge mortgage pipeline commitments.\n\n**Interest Rate Collar:**\nCombining a purchased cap with a sold floor creates a collar — caps the maximum rate while providing a floor on the minimum, with the floor premium partially offsetting the cap cost.",
-          highlight: [
-            "cap",
-            "floor",
-            "caplet",
-            "floorlet",
-            "swaption",
-            "payer swaption",
-            "receiver swaption",
-            "collar",
-            "cap-floor parity",
-          ],
-        },
-        {
-          type: "teach",
-          title: "Forward Rate Agreements (FRAs): Locking In Future Rates",
-          content:
-            "A **Forward Rate Agreement (FRA)** is an OTC contract that locks in a borrowing or lending rate for a future period. It is the simplest interest rate derivative — essentially a single caplet or floorlet.\n\n**Mechanics:**\n- Buyer of FRA: agrees to pay fixed rate R on notional N for period D/360\n- Seller: agrees to pay floating rate L (SOFR/reference rate)\n- Settlement occurs at the start of the reference period (in advance), not at the end\n\n**FRA Settlement Formula:**\n\nPayment = (L – R) × N × D/360 ÷ (1 + L × D/360)\n\nThe denominator discounts the payment back to the settlement date (since the interest would normally be paid at the end of the period, but FRAs settle in advance).\n\n**Example:**\nA bank locked in a 3×6 FRA (3 months from now, for a 3-month period) at 5.2%. If 3-month SOFR at settlement is 5.8%:\nPayment = (0.058 – 0.052) × $10M × 90/360 ÷ (1 + 0.058 × 90/360)\n= $15,000 ÷ 1.0145 ≈ **$14,786** received by FRA buyer\n\n**Primary users:** Banks hedging short-term rate risk on their loan books and funding gaps; corporations locking in future funding costs on rolling commercial paper programs.",
-          highlight: [
-            "FRA",
-            "forward rate agreement",
-            "settlement formula",
-            "SOFR",
-            "in advance",
-            "3×6",
-          ],
-        },
-        {
-          type: "quiz-mc",
-          question:
-            "A bank enters a swap as the fixed-rate payer at 5.0%, receiving SOFR. SOFR on the next payment date is 4.5%. What is the bank's net payment on $100M notional (quarterly, 90/360 day count)?",
-          options: [
-            "Bank pays $125,000 net (pay 5% – receive 4.5% = net 0.5% × $100M × 90/360)",
-            "Bank receives $125,000 net because it receives the higher fixed rate",
-            "No payment — the swap only settles at maturity",
-            "Bank pays $1,125,000 (the full 4.5% floating leg, fixed leg nets to zero)",
-          ],
-          correctIndex: 0,
-          explanation:
-            "As fixed-rate payer, the bank pays 5% and receives 4.5% SOFR. Net outflow = (5.0% – 4.5%) × $100M × 90/360 = 0.5% × $100M × 0.25 = $125,000. Only the net difference is exchanged — the notional is never transferred.",
-          difficulty: 2,
-        },
-        {
-          type: "quiz-tf",
-          statement:
-            "A receiver swaption gives its holder the right to receive the fixed rate in an interest rate swap.",
-          correct: true,
-          explanation:
-            "True. A receiver swaption grants the right (but not the obligation) to enter a swap as the fixed-rate receiver — meaning you pay floating and receive fixed. This is valuable when you expect rates to fall, as the fixed rate you locked in will be above market rates at expiry, making the swap immediately in-the-money.",
-          difficulty: 2,
-        },
-        {
-          type: "quiz-scenario",
-          scenario:
-            "A mid-size manufacturing firm has $50M of floating-rate bank debt priced at SOFR + 200bp. The CFO is forecasting strong revenues but is worried that a 2% rate rise over the next 3 years could add $1M/year to interest costs. The firm wants a ceiling on its borrowing cost but does not want to eliminate the benefit if rates fall.",
-          question:
-            "Which interest rate derivative best addresses this need?",
-          options: [
-            "Buy a 3-year interest rate cap — limits the maximum SOFR component while preserving benefit if rates stay low or fall",
-            "Enter a pay-fixed interest rate swap — converts all floating exposure to a fixed rate",
-            "Sell a 3-year interest rate floor — generates premium income to offset potential rate rises",
-            "Buy a payer swaption — gives the right to pay fixed if rates rise above a threshold",
-          ],
-          correctIndex: 0,
-          explanation:
-            "An interest rate cap provides exactly what the CFO wants: a guaranteed maximum rate (cap strike + 200bp spread) while retaining the benefit of lower rates if SOFR stays flat or falls. A pay-fixed swap would eliminate downside rate risk but also eliminate the upside from falling rates. Selling a floor generates premium but actually increases exposure to falling rates (opposite of the concern). A payer swaption provides protection only if exercised — but once exercised it becomes a full swap with no downside benefit.",
-          difficulty: 3,
-        },
-      ],
-    },
-
-    // ─── Lesson 2: Credit Derivatives ────────────────────────────────────────────
-    {
-      id: "struct-prod-2",
-      title: "Credit Derivatives",
-      description:
-        "CDS mechanics, CDO tranching, credit indices, and the instruments that defined the 2008 crisis",
-      icon: "Shield",
+        "Principal protection, participation rates, barrier features, autocall structures, and issuer credit risk",
+      icon: "Package",
       xpReward: 85,
-      difficulty: "advanced",
+      difficulty: "intermediate",
+      duration: 12,
       steps: [
         {
           type: "teach",
-          title: "Credit Default Swaps: The Credit Insurance Market",
+          title: "What Is a Structured Product?",
           content:
-            "A **Credit Default Swap (CDS)** transfers the credit risk of a **reference entity** from one party to another.\n\n**Mechanics:**\n- **Protection buyer** pays a periodic premium — the **CDS spread** — quoted in basis points per annum on the notional\n- **Protection seller** receives the spread and, upon a **credit event**, pays the buyer (par – recovery value) × notional\n- Credit events: bankruptcy, failure to pay, restructuring, obligation acceleration\n- **Deliverable obligations:** the protection buyer delivers defaulted bonds; the seller pays par in exchange (physical settlement) — or cash settled at (1 – recovery rate)\n\n**Example:**\nYou buy 5-year CDS protection on Company X at 150bp on $10M notional.\nAnnual premium = $10M × 1.50% = **$150,000/year**\nIf X defaults with 40% recovery rate:\nCDS pays $10M × (1 – 0.40) = **$6,000,000**\n\n**CDS Spread as Credit Risk Indicator:**\nThe CDS market provides a real-time, transparent signal of market-perceived default risk — much faster than credit rating changes. Widening CDS spreads signal deteriorating creditworthiness.\n\nApproximate default probability: P(default/year) ≈ CDS Spread ÷ (1 – Recovery Rate)\nAt 300bp spread, 40% recovery: P ≈ 0.03 ÷ 0.60 = **5% per year**\n\n**Naked CDS:** Buying CDS without owning the underlying bond is equivalent to a short position on the reference entity's credit — providing price discovery but also speculative leverage.",
+            "A **structured product** is a pre-packaged investment that combines a **fixed-income instrument** (usually a bond or deposit) with one or more **derivative contracts** to create a customised risk/return profile.\n\nThey are typically issued as **medium-term notes (MTNs)** or certificates by a bank and sold to retail or institutional investors. The bank is both manufacturer and distributor.\n\n**Core design variables:**\n- **Principal protection level** — what percentage of the investor's capital is returned at maturity regardless of market performance? Common levels: 90%, 95%, or 100%.\n- **Participation rate** — what fraction of the underlying's upside does the investor capture? A 70% participation in the S&P 500 means: if the index rises 30%, the investor earns 21%.\n- **Barrier features** — conditions that alter the payoff (e.g., if the index falls below 60% of its initial level, principal protection is lost).\n- **Tenor** — typical range is 3–7 years; illiquid before maturity.\n- **Underlying** — equity index, single stock, basket, FX rate, commodity, or inflation index.\n\n**Why are participation rates less than 100%?**\nThe issuer uses part of the capital to buy a zero-coupon bond (guaranteeing principal) and spends the remainder on call options. Longer tenors, lower rates, and higher volatility all reduce how much option can be purchased per dollar invested.",
           highlight: [
-            "CDS",
-            "credit default swap",
-            "protection buyer",
-            "CDS spread",
-            "credit event",
-            "recovery rate",
-            "reference entity",
-            "deliverable obligations",
-          ],
-        },
-        {
-          type: "teach",
-          title: "CDO & CLO Structures: Tranching Credit Risk",
-          content:
-            "**Collateralized Debt Obligation (CDO):**\nA CDO pools hundreds of bonds or loans and issues **tranched** securities that absorb losses in a waterfall structure.\n\n| Tranche | Rating | First loss? | Yield |\n|---------|--------|-------------|-------|\n| Equity (0–3%) | NR | Yes — absorbs first losses | Highest (~20%+) |\n| Mezzanine (3–10%) | BBB–BB | After equity exhausted | Medium |\n| Senior (10–100%) | AAA | Last — requires 10%+ losses | Lowest |\n\n**Correlation risk:** The tranching model assumes defaults are *independent*. When correlations spike (2008: all mortgages defaulted together), even AAA tranches face losses. This is the critical flaw that brought down the CDO market.\n\n**Synthetic CDO:** Instead of owning actual bonds, a synthetic CDO uses CDS contracts as the reference portfolio. This allows unlimited notional exposure — the same mortgage risk could be sold and resold through multiple synthetic CDOs, amplifying systemic risk.\n\n**CLO (Collateralized Loan Obligation):**\nA modern CLO securitizes **leveraged loans** (floating-rate, below-investment-grade corporate loans). The CLO manager actively manages the loan pool within defined guidelines. CLOs today are the primary buyers of leveraged loans — funding the private equity buyout market. Unlike 2008 CDOs, CLOs have performed well through defaults because leveraged loans have higher recovery rates and the structures are more robust.",
-          highlight: [
-            "CDO",
-            "CLO",
-            "tranche",
-            "senior",
-            "mezzanine",
-            "equity tranche",
-            "correlation risk",
-            "synthetic CDO",
-            "leveraged loans",
-          ],
-        },
-        {
-          type: "teach",
-          title: "Credit Indices: CDX, iTraxx & Index Options",
-          content:
-            "**Credit Indices** allow investors to trade a diversified basket of CDS in a single transaction — providing efficient credit market access and hedging.\n\n**CDX (North America):**\n- CDX.NA.IG: 125 investment-grade North American corporate names, 5-year standard maturity\n- CDX.NA.HY: 100 high-yield names — more volatile, wider spreads\n- New series rolls every 6 months (March and September) with updated constituent lists\n\n**iTraxx (Europe):**\n- iTraxx Europe: 125 European IG names\n- iTraxx Crossover: 75 European HY and sub-IG names — the most actively traded HY credit index in Europe\n\n**On-the-run vs. Off-the-run:**\nThe most recent series is \"on-the-run\" — most liquid, tightest bid/ask. Prior series become \"off-the-run\" after the next roll, with lower liquidity.\n\n**Credit Index Options:**\nOptions on CDX/iTraxx indices (index swaptions) allow hedging or expressing views on direction and volatility of credit spreads.\n- **Credit skew:** OTM put options on credit indices (protection against spread widening) typically trade at a premium vs. OTM calls — similar to equity put skew, reflecting asymmetric tail risk perception\n- Index options are used by hedge funds for macro credit bets and by banks to hedge structured credit book volatility",
-          highlight: [
-            "CDX",
-            "iTraxx",
-            "credit index",
-            "on-the-run",
-            "off-the-run",
-            "series roll",
-            "credit skew",
-          ],
-        },
-        {
-          type: "quiz-mc",
-          question:
-            "An investor buys $10M notional of CDS protection on Company ABC at 100bp per annum. What is the annual premium payment?",
-          options: [
-            "$100,000 per year (100bp = 1.00% × $10M)",
-            "$1,000,000 per year (100bp × $10M, no conversion needed)",
-            "$10,000 per year (100bp = 0.10% × $10M)",
-            "$500,000 per year (premium paid semi-annually × 2)",
-          ],
-          correctIndex: 0,
-          explanation:
-            "100 basis points = 1.00% per annum. Annual CDS premium = 1.00% × $10,000,000 = $100,000 per year. CDS spreads are quoted in basis points per annum; 1bp = 0.01%. So 100bp = 1%, giving a $100,000 annual premium on a $10M notional.",
-          difficulty: 1,
-        },
-        {
-          type: "quiz-tf",
-          statement:
-            "The buyer of CDS protection is effectively short the reference credit — benefiting if the reference entity's creditworthiness deteriorates.",
-          correct: true,
-          explanation:
-            "True. A CDS protection buyer profits if the reference entity's credit quality worsens (spreads widen) or if it defaults (the seller pays out). This is economically equivalent to being short the credit — similar to shorting a bond. The protection seller is long credit risk, profiting from stability and tightening spreads.",
-          difficulty: 2,
-        },
-        {
-          type: "quiz-scenario",
-          scenario:
-            "A structured finance deal issues a $500M CDO backed by corporate bonds. The deal is tranched: $350M senior (AAA, absorbs losses only after 30% of the pool defaults), $100M mezzanine (BBB, absorbs losses after equity is exhausted), and $50M equity (first-loss tranche). The underlying loan pool experiences 8% defaults with 40% recovery rate, meaning 4.8% net losses on the pool ($24M).",
-          question:
-            "Which tranches absorb losses and how much does each absorb?",
-          options: [
-            "Equity tranche absorbs all $24M — senior and mezzanine are unaffected since losses are below the 10% mezzanine attachment point",
-            "Losses are distributed pro-rata: senior absorbs $16.8M, mezzanine $4.8M, equity $2.4M",
-            "Mezzanine absorbs all $24M because the equity tranche was over-collateralized",
-            "Senior absorbs $24M first since it has the largest face value",
-          ],
-          correctIndex: 0,
-          explanation:
-            "In a CDO waterfall, the equity tranche absorbs all first losses. The equity tranche is $50M (10% of $500M pool). Net losses are $500M × 4.8% = $24M, which is less than the $50M equity cushion. Therefore, the equity tranche absorbs the full $24M, while the mezzanine and senior tranches suffer zero losses. Senior is protected until total losses exceed 30% — far above the 4.8% actual losses.",
-          difficulty: 3,
-        },
-      ],
-    },
-
-    // ─── Lesson 3: Equity-Linked Structured Products ──────────────────────────────
-    {
-      id: "struct-prod-3",
-      title: "Equity-Linked Structured Products",
-      description:
-        "Principal protected notes, autocallables, reverse convertibles, and leveraged certificates",
-      icon: "BarChart2",
-      xpReward: 80,
-      difficulty: "advanced",
-      steps: [
-        {
-          type: "teach",
-          title: "Principal Protected Notes: Zero Coupon + Call Option",
-          content:
-            "A **Principal Protected Note (PPN)** guarantees the return of invested capital at maturity while offering participation in equity upside — constructed by splitting the investment into two components.\n\n**Construction example (5-year PPN, 5% interest rate environment):**\n1. Invest **$952** today in a zero-coupon bond — it grows to $1,000 at maturity (5% discount)\n2. Use the remaining **$48** to buy a 5-year at-the-money call option on the S&P 500\n3. If S&P 500 rises 60%: investor receives $1,000 + participation in the gain\n4. If S&P 500 falls 50%: investor receives $1,000 — option expires worthless, bond redeems\n\n**Participation Rate:**\nDetermined by how much call option the remaining capital can buy.\nIf the call costs 8% of notional: $48 / $80 = **60% participation rate**\n(Only 60% of the S&P gain is passed through, not 100%)\n\n**Why banks create PPNs:**\n- Banks issue the note cheaply (below their funding cost)\n- They hedge the call option by delta-hedging their own position\n- The spread between note yield and actual borrowing cost is the bank's profit\n\n**Key risks for investors:**\n- **Issuer credit risk:** If the bank fails, principal protection is lost\n- **Illiquidity:** PPNs trade in thin secondary markets — selling early means haircuts\n- **Participation rate below 100%:** In low-rate environments, zero-coupon bonds are cheap but call options are expensive, squeezing participation\n- **Opportunity cost:** Money locked for 5+ years with capped upside",
-          highlight: [
-            "PPN",
-            "zero-coupon bond",
-            "call option",
-            "participation rate",
+            "structured product",
+            "medium-term notes",
             "principal protection",
+            "participation rate",
+            "barrier",
+            "zero-coupon bond",
+          ],
+        },
+        {
+          type: "teach",
+          title: "Autocall & Phoenix Structures",
+          content:
+            "**Autocallable notes** are among the most popular structured products sold in Europe and Asia. They automatically redeem early if the underlying asset closes above a pre-set **observation level** (typically 100% of initial price) on a periodic observation date.\n\n**Standard autocall payoff:**\n1. On each annual observation date, if the index ≥ call trigger (e.g., 100%), the note redeems at 100% + coupon (e.g., 10% per year elapsed × number of years held).\n2. If the note survives all observation dates without calling, the investor faces the **barrier outcome** at maturity:\n   - If the index is above the **barrier level** (e.g., 60% of initial) → return 100% of principal.\n   - If the index is **below the barrier** → investor suffers 1-for-1 loss on the downside (same as holding the index from 60% level downward).\n\n**Phoenix structure** adds a **conditional coupon**: the coupon is only paid on an observation date if the index is above a (lower) coupon barrier (e.g., 70%), even if the autocall trigger (100%) hasn't been breached. This creates income even in moderate downturns.\n\n**Memory feature**: In some phoenix notes, unpaid coupons accumulate — if the index eventually rises above the coupon barrier, all previously missed coupons are paid in a lump sum.\n\n**Investor perspective:** Attractive yield in sideways markets; risk is a sharp sustained drawdown piercing the capital barrier.",
+          highlight: [
+            "autocallable",
+            "observation level",
+            "call trigger",
+            "barrier level",
+            "phoenix",
+            "conditional coupon",
+            "memory feature",
+          ],
+        },
+        {
+          type: "teach",
+          title: "Issuer Credit Risk — The Hidden Risk",
+          content:
+            "A **structured note is an unsecured obligation of the issuing bank**. If the issuer defaults before maturity, the investor loses both the derivative gain AND the principal, even if the product was 100% capital-protected.\n\n**Lehman Brothers example (2008):**\nLehman issued ~$7 billion in structured notes sold to retail investors as 'protected' products. When Lehman filed for bankruptcy in September 2008, note holders received cents on the dollar in the bankruptcy estate — the protection was worthless.\n\n**Measuring issuer credit risk:**\n- **Credit Default Swap (CDS) spread** on the issuer — the market's real-time price for insuring against default. A CDS spread of 200bp means 2% annual premium to insure against default.\n- **Credit rating** — investment-grade issuers (BBB– and above) are standard for structured products.\n\n**Mitigants:**\n- **Collateralised structured products** — assets placed in a Special Purpose Vehicle (SPV), ring-fenced from issuer insolvency.\n- **Exchange-traded structures** — some markets (Germany, Switzerland) have exchange-traded certificates with tighter custody rules.\n- **Third-party guarantees** — a parent bank or government entity guarantees repayment.\n\n**Key takeaway:** Always read the issuer's credit rating and CDS spread. A 100%-protected note from a BBB-rated bank with a 300bp CDS spread carries meaningful credit risk that should be priced into the return.",
+          highlight: [
+            "unsecured obligation",
+            "Lehman Brothers",
+            "CDS spread",
+            "credit rating",
+            "SPV",
+            "collateralised",
             "issuer credit risk",
           ],
         },
         {
-          type: "teach",
-          title: "Autocallables: Conditional Coupons & Barrier Knock-In",
-          content:
-            "An **autocallable** structured note is automatically redeemed early (\"called\") if the underlying index is at or above a trigger level on periodic observation dates — paying a coupon premium for the early redemption.\n\n**Typical autocallable structure (3-year, quarterly observations):**\n- Initial level: 100% (e.g., EURO STOXX 50 at 4,000)\n- Autocall barrier: 100% (index must be ≥ starting level)\n- Coupon if called: 8% per year (paid pro-rata to call date)\n- Barrier knock-in: 70% (if index falls below 2,800 at maturity, investor suffers losses)\n\n**Observation outcomes:**\n- Quarter 4 (1 year): Index at 102% → **Called** at par + 8% coupon\n- If not called all 12 quarters: If index above 70% at maturity → principal returned; if below 70% → investor participates in full loss from 100% down\n\n**Step-up coupons:** More sophisticated structures offer increasing coupons for each observation date the note survives without being called — compensating for longer exposure time.\n\n**Why issuers create autocallables:**\n- The embedded barrier structure lets the issuer sell a knock-in put option — collecting substantial premium to fund the attractive coupon\n- The autocall feature limits the issuer's coupon liability when markets perform well\n\n**Investor risks:** The barrier knock-in creates **asymmetric risk** — limited upside (capped at coupon) but potentially full downside below barrier. Autocallables perform poorly in bear markets with high volatility.",
-          highlight: [
-            "autocallable",
-            "observation date",
-            "autocall barrier",
-            "barrier knock-in",
-            "conditional coupon",
-            "step-up coupon",
-          ],
-        },
-        {
-          type: "teach",
-          title: "Certificates, Warrants & Reverse Convertibles",
-          content:
-            "**Leveraged Certificates (Mini Futures):**\nProvide leveraged long or short exposure to an underlying asset without an expiry date — using a stop-loss level instead of a knockout barrier on a specific date. If the underlying hits the stop-loss, the certificate terminates and returns residual value.\n\n**Discount Certificates:**\nEquivalent to a **bull put spread** — the investor buys the underlying at a discount to spot in exchange for capping the maximum gain at a pre-set level.\nPayoff: min(S_T, Cap Level) — maximum gain is the cap; maximum loss is discounted purchase price.\nUsed in sideways or mildly bullish markets to enhance yield.\n\n**Reverse Convertibles:**\nThe investor receives an above-market coupon (e.g., 12%/year) and effectively **sells a put option** on the underlying stock.\n- At maturity: if stock above barrier → receive principal + coupon (ideal outcome)\n- At maturity: if stock below barrier → receive depreciated **shares** instead of cash, plus the coupon\n- The high coupon compensates for writing the put, but rarely covers a severe stock decline\n\n**Key risks for all structured products:**\n1. **Counterparty risk:** If the issuing bank defaults, investors may lose everything regardless of barrier protection\n2. **Barrier breach:** A single intraday print below the barrier (continuous monitoring) can trigger the worst outcome\n3. **Early redemption:** Autocall shortens duration unpredictably — reinvestment risk at lower yields\n4. **Complexity:** Retail investors frequently misunderstand the downside scenarios",
-          highlight: [
-            "leveraged certificate",
-            "discount certificate",
-            "reverse convertible",
-            "bull put spread",
-            "counterparty risk",
-            "continuous barrier",
-          ],
-        },
-        {
           type: "quiz-mc",
           question:
-            "A 5-year PPN is constructed with a zero-coupon bond using 75% of the $1,000 investment ($750 grows to $1,000 at maturity). The remaining $250 is used to buy call options priced at 5% of notional ($50 each). What is the effective participation rate?",
+            "A 5-year structured note offers 100% principal protection and 80% participation in the S&P 500. At maturity the S&P 500 has risen 40% from the initial level. What does the investor receive on a $100,000 investment?",
           options: [
-            "500% — $250 buys 5 call options, each covering 100% of notional",
-            "25% — only $250 of the $1,000 is in calls, so only 25% participates",
-            "125% — $250 buys 5 call options × 25% coverage = 125% participation",
-            "100% — the standard participation rate for all PPNs",
-          ],
-          correctIndex: 2,
-          explanation:
-            "With $250 remaining after the zero-coupon bond and call options costing $50 each (5% of $1,000 notional), the investor buys $250 ÷ $50 = 5 call options. Each call option covers 100% of the $1,000 notional. Effective participation = 5 calls × (notional/$1,000) = 500%... but these calls are on 5× the notional relative to the investment amount. Net participation = $250/$1,000 × (100%/5%) = 25% × 5 = 125%. The investor captures 125% of the S&P upside.",
-          difficulty: 3,
-        },
-        {
-          type: "quiz-tf",
-          statement:
-            "In an autocallable structured note with a 70% knock-in barrier, the investor faces full downside participation below 70% only if the underlying is at or below 70% on any observation date during the product's life.",
-          correct: false,
-          explanation:
-            "False. For most autocallable structures, the knock-in barrier is typically observed at maturity only (European barrier), not on each quarterly observation date (which tests only the autocall trigger). If the barrier is breached intraday during the product's life on a continuous monitoring basis, that is a different (stricter) structure — but the standard autocallable uses a maturity-only barrier for the knock-in, while observation dates test only whether to call the note early.",
-          difficulty: 3,
-        },
-        {
-          type: "quiz-scenario",
-          scenario:
-            "A retail investor with moderate risk tolerance is considering two products linked to a single blue-chip stock: (A) a 1-year reverse convertible paying 14% coupon with a 75% barrier, and (B) a 2-year principal protected note with 70% participation in the stock's upside. The investor's primary goal is capital preservation, but they would like some equity upside.",
-          question:
-            "Which product better matches the investor's stated goal and why?",
-          options: [
-            "Product B (PPN) — principal is fully protected at maturity; reverse convertible can result in partial principal loss if stock falls below the 75% barrier",
-            "Product A (reverse convertible) — the 14% coupon provides a larger buffer against losses than the PPN's 70% participation rate",
-            "Product A (reverse convertible) — shorter duration means less risk exposure, better for a conservative investor",
-            "Both are equally suitable — the barrier in the reverse convertible is equivalent to the PPN's capital protection",
+            "$132,000 (100% principal + 80% × 40% gain = $100,000 + $32,000)",
+            "$140,000 (100% principal + 40% full gain)",
+            "$100,000 (principal protection means no upside participation)",
+            "$120,000 (50% participation in 40% gain = $20,000)",
           ],
           correctIndex: 0,
           explanation:
-            "For a capital preservation-focused investor, the PPN is clearly superior: it guarantees return of the $1,000 principal at maturity regardless of stock performance. The reverse convertible is far riskier for capital preservation — if the stock falls 30% (below the 75% barrier), the investor receives depreciated shares worth perhaps $700 plus the $140 coupon = $840 total, a net loss of $160. A 14% coupon sounds attractive but does not fully compensate for severe stock declines.",
-          difficulty: 2,
-        },
-      ],
-    },
-
-    // ─── Lesson 4: Commodity & FX Derivatives ─────────────────────────────────────
-    {
-      id: "struct-prod-4",
-      title: "Commodity & FX Derivatives",
-      description:
-        "Asian options, FX risk reversals, barrier options, accumulators, and weather derivatives",
-      icon: "Globe",
-      xpReward: 85,
-      difficulty: "advanced",
-      steps: [
-        {
-          type: "teach",
-          title: "Commodity Options: Asian, Barrier & Spread Options",
-          content:
-            "**Asian Options (Average Price Options):**\nThe payoff references the **average price** of the commodity over the option's life, not the final spot price.\n\n- Asian call payoff: max(Avg_Price – K, 0)\n- Asian put payoff: max(K – Avg_Price, 0)\n\n**Why Asian options dominate commodity markets:**\n1. **Manipulation resistance:** No single settlement price can be artificially pushed on expiry day — averaging over months makes it prohibitively expensive to manipulate\n2. **Lower premium:** Averaging reduces effective volatility, making Asian options 20–40% cheaper than vanilla options\n3. **Matches corporate cash flows:** A refinery that continuously buys oil throughout a month wants protection against the *average* monthly price, not a single day's price\n\n**Barrier Options in Commodities:**\nKnock-out calls are popular in commodity hedging — a copper producer might buy a down-and-out put that provides downside protection but is cancelled if copper prices rise (above the knock-out) — they no longer need the put if prices are already high.\n\n**Spread Options:**\n- **Crack spread option:** Call on the spread between refined products (gasoline, heating oil) and crude oil — critical for refineries. Payoff = max(Gasoline_price – Crude_price – K, 0)\n- **Spark spread option:** Call on the spread between power prices and natural gas (fuel cost) — used by power generators. If spark spread is negative (gas cost exceeds power revenue), the generator's margin is squeezed.",
-          highlight: [
-            "Asian option",
-            "average price",
-            "manipulation resistance",
-            "knock-out",
-            "crack spread",
-            "spark spread",
-            "barrier option",
-          ],
-        },
-        {
-          type: "teach",
-          title: "FX Options: Vanilla, Barriers & Risk Reversals",
-          content:
-            "**FX Option Equivalences:**\nA **USD call / EUR put** (right to buy USD by paying EUR) is *identical* to a **EUR put / USD call** — they are two names for the same instrument, viewed from each currency's perspective.\n\n**Vanilla FX Options:**\n- American-style FX options (early exercise possible) are common in retail and corporate markets\n- European-style preferred for institutional use (easier to price and hedge)\n- FX options quoted in implied volatility — the vol directly prices in the forward and discount curve\n\n**FX Risk Reversals (25-delta):**\nThe risk reversal (RR) measures the difference in implied volatility between 25-delta calls and 25-delta puts:\n\nRR = IV(25Δ call) – IV(25Δ put)\n\n- RR > 0: calls are more expensive (market prices in more upside risk than downside)\n- RR < 0: puts are more expensive (market prices in downside tail risk — common in USDJPY, where JPY tends to strengthen in crises)\n\nRisk reversals reveal **implied skew** — the directional bet embedded in the vol surface.\n\n**FX Barrier Options:**\nExtremely common in institutional FX:\n- **EURUSD knock-out call:** European exporter buys a EURUSD call (right to sell USD at 1.10) that expires worthless if EURUSD ever trades below 1.05 — cheaper than vanilla since the protection is automatically removed in favorable territory for the exporter\n- **Double no-touch:** Pays a fixed amount if EURUSD stays within a corridor (e.g., 1.05–1.15) for 3 months — used by range-expecting traders to collect premium",
-          highlight: [
-            "USD call",
-            "EUR put",
-            "risk reversal",
-            "25-delta",
-            "implied skew",
-            "knock-out",
-            "double no-touch",
-            "vol surface",
-          ],
-        },
-        {
-          type: "teach",
-          title: "Accumulators, Commodity Bonds & Weather Derivatives",
-          content:
-            "**FX/Equity Accumulators:**\nAn accumulator forces the buyer to purchase a fixed amount of an asset at a discounted forward price on each fixing date — regardless of where the spot price is.\n\n- The buyer receives the asset at a 5–10% discount to today's spot each week\n- If the asset drops sharply, the buyer is **forced to accumulate** losses week after week with no exit\n- Popular in Asia pre-2008 for FX hedging; nicknamed \"I'll kill you later\" by traders\n- A knock-out feature terminates the accumulator if the asset rises above an upper barrier (limiting the seller's risk)\n\n**Commodity-Linked Bonds:**\nBonds where the coupon or principal redemption is tied to a commodity price:\n- Oil-linked bonds: principal is repaid at par × (oil price at maturity / oil price at issuance)\n- Used by commodity-producing countries (Venezuela, Gulf states) to align debt service with their natural resource revenues\n\n**Weather Derivatives:**\nContracts whose payoffs are based on weather measurements, not financial prices.\n- **HDD (Heating Degree Days):** measures cold weather — each day where average temperature is below 65°F adds HDDs\n- **CDD (Cooling Degree Days):** measures hot weather demand for cooling\n- A utility company that loses revenue when winter is warm buys an HDD swap — if total winter HDDs fall below 2,000, the counterparty pays the utility for lost heating demand\n- Weather derivatives are actively traded by energy companies, agricultural firms, and insurers",
-          highlight: [
-            "accumulator",
-            "commodity-linked bond",
-            "weather derivative",
-            "HDD",
-            "CDD",
-            "knock-out",
-            "unlimited downside",
-          ],
-        },
-        {
-          type: "quiz-mc",
-          question:
-            "Why are Asian (average price) options typically used in commodity markets rather than vanilla options?",
-          options: [
-            "Averaging reduces the effective volatility and prevents settlement price manipulation, making them cheaper and more suitable for continuous commodity hedgers",
-            "Asian options can only be exercised early, which matches commodity delivery schedules better than European options",
-            "Asian options are more expensive than vanilla options, providing better protection for commodity producers",
-            "Averaging removes the need for a strike price, simplifying the hedging process",
-          ],
-          correctIndex: 0,
-          explanation:
-            "Asian options are preferred in commodity markets for two reasons: (1) averaging over the period reduces the effective volatility input, making the premium 20–40% cheaper than a vanilla with the same strike, and (2) the settlement price cannot be manipulated on a single day since it represents the average of many fixing dates. Commodity companies that buy or sell continuously throughout the month also find that average-price protection better matches their actual economic exposure.",
+            "The participation rate of 80% is applied to the underlying's gain of 40%. Investor gain = 80% × 40% × $100,000 = $32,000. Total return = $100,000 principal + $32,000 = $132,000. The 100% protection means the floor is $100,000; the 80% participation determines the upside capture.",
           difficulty: 2,
         },
         {
           type: "quiz-tf",
           statement:
-            "A USD/EUR call option and an EUR/USD put option are different instruments representing opposite market views.",
+            "A 100% principal-protected structured note issued by a bank guarantees that investors will receive their full principal back regardless of what happens to the issuer.",
           correct: false,
           explanation:
-            "False. A USD call / EUR put (right to buy USD by paying EUR) and an EUR put / USD call are the exact same instrument — simply described from each currency's perspective. Both give the holder the right to buy USD and sell EUR at the agreed strike rate. In FX, every option is simultaneously a call on one currency and a put on the other because currencies trade in pairs.",
+            "False. 'Principal protection' only refers to the payoff formula — it assumes the issuer remains solvent. The note is an unsecured liability of the issuing bank. If the issuer defaults (as Lehman Brothers did in 2008), investors can lose their principal even on 'protected' products.",
           difficulty: 2,
-        },
-        {
-          type: "quiz-scenario",
-          scenario:
-            "An international airline has significant USD revenues (ticket sales) but incurs costs in EUR (European operations) and pays for jet fuel priced in USD. The finance team wants to hedge two risks for the next 12 months: (1) EUR strengthening against USD eroding the USD value of EUR costs, and (2) jet fuel prices spiking above $90/barrel.",
-          question:
-            "Which combination of derivatives best addresses both hedging needs?",
-          options: [
-            "Buy EUR/USD call options (protecting against EUR strength) + Buy crude oil Asian call options (capping average fuel cost) — both targeted and cost-efficient",
-            "Enter EUR/USD forward contracts (fixing the exchange rate completely) + Buy crude oil vanilla put options (protecting against oil falling)",
-            "Sell EUR/USD put options (collect premium since EUR weakening helps the airline) + Buy crack spread options on jet fuel",
-            "Buy USD/EUR puts (equivalent to EUR calls) for the FX risk, and enter crude oil futures for full price fixation on fuel",
-          ],
-          correctIndex: 0,
-          explanation:
-            "The airline needs call options on EUR (EUR/USD calls protect against EUR strengthening, which increases the USD cost of EUR expenses) and needs call options on crude oil (capping the average purchase price of jet fuel over the year). Asian oil calls are ideal — the airline buys fuel continuously, so average-price protection is most economical. Forward contracts would eliminate all FX flexibility; vanilla oil puts would protect against falling prices (not the airline's concern). Selling EUR puts would add risk, not hedge it.",
-          difficulty: 3,
         },
       ],
     },
 
-    // ─── Lesson 5: Volatility Products ───────────────────────────────────────────
+    // ─── Lesson 2: Capital Protected Notes ───────────────────────────────────
     {
-      id: "struct-prod-5",
-      title: "Volatility Products",
+      id: "struct-prod-capital-protected",
+      title: "Capital Protected Notes",
       description:
-        "VIX mechanics, variance swaps, dispersion trading, and the full spectrum of volatility instruments",
-      icon: "Activity",
+        "Zero-coupon bond + call option decomposition, participation calculation, and break-even analysis",
+      icon: "Shield",
       xpReward: 90,
       difficulty: "advanced",
+      duration: 14,
       steps: [
         {
           type: "teach",
-          title: "VIX & Volatility Indices: Measuring Market Fear",
+          title: "The Zero-Coupon + Call Option Framework",
           content:
-            "The **VIX** (CBOE Volatility Index) is a real-time measure of the market's expectation for **30-day implied volatility** on the S&P 500, derived from a model-free formula using the entire option chain.\n\n**VIX Calculation (simplified):**\nVIX² = (2/T) × Σ [ΔK/K²] × e^(rT) × Q(K) — integrated over all strikes K with non-zero open interest, where Q(K) is the mid-price of the call (above F) or put (below F) at strike K.\n\nThis is **model-free implied volatility** — it makes no assumption about the return distribution and captures the full vol surface, including skew and kurtosis.\n\n**VIX Futures Term Structure:**\n- In calm markets: **contango** (front-month VIX futures < back-month) — market prices in mean-reversion from calm today to higher future vol\n- In crises: **backwardation** (spot VIX spikes far above futures) — market expects current panic to subside\n\n**VIX ETPs (Exchange-Traded Products):**\n\n| Product | Strategy | Contango Impact |\n|---------|----------|-----------------|\n| VXX | Long 1st+2nd month VIX futures (30-day constant maturity) | Loses 5–10%/month in normal contango |\n| UVXY | 1.5× leveraged VXX | Magnified losses + vol decay |\n| SVXY | Short VIX futures (0.5× inverse) | Profits steadily in contango; catastrophic in vol spikes |\n| VIXM | Mid-term VIX futures (4–7 months) | Lower contango drag than VXX |\n\n**Roll Yield Drag:** Long VIX ETP holders continuously buy high (next month) and sell low (expiring front month) in contango — a structural headwind that erodes value even when spot VIX is stable.",
+            "Every capital-protected note can be decomposed into two building blocks:\n\n**1. Zero-coupon bond (ZCB)**\nBuys certainty that a known amount is returned at maturity. Cost today:\n\nZCB Price = Protection Level ÷ (1 + r)^T\n\nFor 100% protection, a 5-year note with a 4% risk-free rate:\nZCB cost = $100 ÷ (1.04)^5 = **$82.19** per $100 face\n\n**2. Call option on the underlying**\nThe remaining $17.81 is used to purchase an at-the-money call option on the chosen index.\n\n**Participation rate calculation:**\nParticipation = Option Budget ÷ ATM Call Option Price\n\nIf the S&P 500 5-year ATM call costs $25 per $100 of notional (due to 20% implied volatility), then:\nParticipation = $17.81 ÷ $25 = **71.2%**\n\n**Key levers:**\n- Lower interest rates → ZCB costs more → less budget for options → lower participation\n- Higher implied volatility → options cost more → lower participation\n- Longer tenor → ZCB costs less → more option budget (but higher vega too)\n- Lower protection level (e.g., 90%) → more budget → higher participation\n\n**Bank's margin:** In practice the bank uses its internal funding rate (typically higher than the risk-free rate) and marks up the option premium — the participation offered to investors is always below what a direct replication would provide.",
           highlight: [
-            "VIX",
-            "model-free implied volatility",
-            "contango",
-            "backwardation",
-            "VXX",
-            "UVXY",
-            "SVXY",
-            "roll yield",
-            "VIX futures",
+            "zero-coupon bond",
+            "ZCB",
+            "call option",
+            "participation rate",
+            "option budget",
+            "implied volatility",
+            "ATM",
           ],
         },
         {
           type: "teach",
-          title: "Variance Swaps: Pure Volatility Exposure",
+          title: "Break-Even Analysis and Opportunity Cost",
           content:
-            "A **variance swap** exchanges **realized variance** over a period for a fixed variance strike — providing clean volatility exposure without delta hedging.\n\n**Payoff:**\nVariance Swap Payoff = N_var × (σ²_realized – K²_var)\n\nWhere:\n- N_var = variance notional (in dollars per variance point)\n- σ²_realized = annualized realized variance = (252/T) × Σ ln²(S_t/S_{t-1})\n- K²_var = strike variance (agreed at inception, typically ≈ ATM implied vol²)\n\n**Vega notional conversion:**\nVega notional = Variance notional × 2 × K_var\n(Since a $100K vega notional variance swap has variance notional = $100K / (2 × K_var))\n\n**Variance vs Volatility Swaps:**\n- Variance swaps: payoff in variance points — convex in volatility (buyer benefits from vol-of-vol)\n- Volatility swaps: payoff linear in realized vol — require additional convexity adjustment to price\n- Variance swaps are more liquid and easier to replicate via a log contract (static strip of options)\n\n**Variance Risk Premium (VRP):**\nImplied volatility consistently exceeds realized volatility on average — the VRP is the compensation earned by variance sellers for bearing tail risk. Empirically 1–3 vol points on average for S&P 500, but can reverse dramatically in crises. Short variance strategies (selling realized vol through variance swaps) generate steady carry but face catastrophic loss in vol spikes.",
+            "**Break-even return** is the underlying return at which the structured note equals what the investor would have earned in a risk-free investment (e.g., a government bond).\n\n**Example setup:**\n- 5-year note, 100% protection, 75% participation in S&P 500\n- Risk-free alternative: 5-year government bond at 4% p.a.\n- Compound return of risk-free alternative over 5 years: (1.04)^5 – 1 = **21.67%**\n\n**Break-even calculation:**\nTo match the government bond, the structured note must return 21.67%. Since participation is 75%:\n\nRequired S&P return = 21.67% ÷ 75% = **28.89%**\n\nThe S&P 500 must rise at least 28.89% over 5 years (≈ 5.2% per year) just to match a plain government bond.\n\n**Dividend drag:**\nStructured notes typically reference the **price return** index (not total return). The S&P 500 has paid ~1.5–2% in annual dividends. Over 5 years this is ~8–10% of foregone income. The true break-even including dividends is therefore roughly 38–39% gross return on the index.\n\n**When do capital-protected notes make sense?**\n- Investors who would otherwise hold cash (no opportunity cost vs. bonds)\n- Markets where deposit rates are near zero (ZCB is cheap → high participation)\n- Tax environments where capital gains are taxed more favourably than interest income\n- Investors needing a defined outcome for liability-matching purposes\n\n**When do they destroy value?**\n- When the bank's margin is large (opaque pricing)\n- In rising-rate environments (ZCB costs surge mid-product life)\n- When the investor gives up dividends on a high-yield underlying",
+          highlight: [
+            "break-even",
+            "opportunity cost",
+            "price return index",
+            "dividend drag",
+            "total return",
+            "risk-free alternative",
+          ],
+        },
+        {
+          type: "quiz-mc",
+          question:
+            "Risk-free rates rise from 3% to 6% while the bank is structuring a new 5-year, 100%-protected note linked to an equity index. Holding all other factors equal, what happens to the participation rate offered to investors?",
+          options: [
+            "Participation rate increases because the ZCB costs less at higher rates, leaving more budget for options",
+            "Participation rate decreases because options become more expensive when rates rise",
+            "Participation rate is unchanged; it only depends on implied volatility",
+            "Participation rate decreases because the ZCB now requires a higher coupon",
+          ],
+          correctIndex: 0,
+          explanation:
+            "At 3% the ZCB costs $100/(1.03)^5 ≈ $86.26; at 6% it costs $100/(1.06)^5 ≈ $74.73. The higher rate frees up $86.26 – $74.73 = $11.53 more per $100 for purchasing options, directly increasing the participation rate. Higher rates benefit capital-protected note buyers through a bigger option budget.",
+          difficulty: 3,
+        },
+        {
+          type: "quiz-scenario",
+          scenario:
+            "An investor buys a 3-year capital-protected note for $100,000 with 100% principal protection and 60% participation in a gold index. At maturity, gold has risen 50% from the initial level. An alternative 3-year government bond would have returned 3.5% per year compounded.",
+          question:
+            "How much does the investor receive, and did the structured note outperform the bond alternative?",
+          options: [
+            "Receives $130,000 (60% × 50% = 30% gain). Bond alternative: $110,872. Structured note outperforms by ~$19,128.",
+            "Receives $150,000 (50% full gain + 100% protection). Bond underperforms.",
+            "Receives $130,000 but underperforms bond because dividends were foregone.",
+            "Receives $100,000 because principal protection means no upside participation.",
+          ],
+          correctIndex: 0,
+          explanation:
+            "Payoff = $100,000 × (1 + 60% × 50%) = $100,000 × 1.30 = $130,000. Bond alternative: $100,000 × (1.035)^3 = $110,872. The note outperforms by approximately $19,128. In this scenario, a strong gold move combined with reasonable participation makes the note compelling. Note that if the question included dividend foregone on gold (gold pays no dividend), the comparison remains the same.",
+          difficulty: 2,
+        },
+      ],
+    },
+
+    // ─── Lesson 3: Barrier Options ────────────────────────────────────────────
+    {
+      id: "struct-prod-barrier-options",
+      title: "Barrier Options",
+      description:
+        "Knock-in/knock-out mechanics, up-and-out calls, down-and-in puts, delta discontinuity, and pricing intuition",
+      icon: "AlertTriangle",
+      xpReward: 95,
+      difficulty: "advanced",
+      duration: 15,
+      steps: [
+        {
+          type: "teach",
+          title: "Barrier Option Taxonomy",
+          content:
+            "A **barrier option** is a path-dependent option that either activates or extinguishes if the underlying price touches a pre-defined barrier level during the option's life.\n\n**Four basic types:**\n\n| Type | Description |\n|------|-------------|\n| **Up-and-Out** | Standard option that ceases to exist if price rises above the barrier |\n| **Up-and-In** | Dormant until price rises above the barrier, then becomes a standard option |\n| **Down-and-Out** | Standard option that ceases to exist if price falls below the barrier |\n| **Down-and-In** | Dormant until price falls below the barrier, then becomes a standard option |\n\n**In-Out parity:**\nKnock-In option + Knock-Out option = Standard (vanilla) option (same strike, same expiry, same barrier). This is the fundamental no-arbitrage relationship.\n\n**Rebates:**\nSome barrier options pay a small cash **rebate** if the barrier is touched and the option knocks out. This partially compensates the holder for losing the option.\n\n**Common real-world uses:**\n- **Up-and-out call:** Cheaper than vanilla call; used when investor believes the stock will rise but not too far. A bank sells it to reduce hedge cost.\n- **Down-and-in put (DIP):** Cornerstone of autocallable notes — the investor implicitly sells a DIP to fund the enhanced coupon. The DIP activates only if the index falls sharply (e.g., below 60%), creating downside exposure at maturity.\n- **Turbo certificates:** Leveraged products in European retail markets that knock out if the underlying touches the barrier.",
+          highlight: [
+            "barrier option",
+            "knock-in",
+            "knock-out",
+            "up-and-out",
+            "down-and-in",
+            "in-out parity",
+            "rebate",
+            "DIP",
+          ],
+        },
+        {
+          type: "teach",
+          title: "Up-and-Out Call: Pricing and Hedge Mechanics",
+          content:
+            "**Example:**\nS&P 500 spot = 4,000. Vanilla 1-year call, strike 4,000, value = $300.\nUp-and-out call, strike 4,000, barrier 4,800 (20% above spot), value = ~$210.\n\nThe knock-out is cheaper because the barrier eliminates payoff scenarios where the index rises above 4,800 — but those are also the most profitable scenarios for the holder! This makes up-and-out calls **counterintuitively risky** for buyers.\n\n**Delta behaviour near the barrier:**\nFor a standard call, delta (sensitivity to spot price) rises smoothly from 0 to 1. For an up-and-out call near the barrier:\n- **Delta becomes NEGATIVE near the barrier**: every $1 rise in the underlying brings the option closer to extinguishing, reducing its value.\n- This **delta discontinuity** (sometimes called **gamma explosion**) makes hedging extremely difficult for dealers.\n- At the barrier itself, delta jumps discontinuously — a tiny price move either knocks the option out (value = 0) or leaves it active (value > 0).\n\n**Dealer hedging problem:**\nA dealer who sold the barrier option must dynamically hedge. Near the barrier they must sell the underlying aggressively as price rises (negative delta), then reverse if price retreats. This whipsaw is costly and explains the higher bid-ask spreads on barrier options.\n\n**Barrier monitoring conventions:**\n- **Continuous barrier**: knocked out if price touches barrier even intraday.\n- **Daily close barrier**: only the closing price counts — less exposure to intraday spikes, cheaper.",
+          highlight: [
+            "up-and-out call",
+            "delta",
+            "delta discontinuity",
+            "gamma explosion",
+            "negative delta",
+            "continuous barrier",
+            "daily close barrier",
+          ],
+        },
+        {
+          type: "teach",
+          title: "Down-and-In Put: The Autocall's Hidden Risk",
+          content:
+            "A **down-and-in put (DIP)** starts worthless and becomes a standard put option only once the underlying falls through the barrier level.\n\n**Example:**\nEuro Stoxx 50 at 4,000, barrier at 60% = 2,400. DIP strike = 4,000. Premium = $80 vs. vanilla put at $300.\n\nThe DIP is cheap because it only activates after a 40% crash — but once it activates, the put is deep in-the-money, giving the holder (or more precisely, the investor who sold it embedded in a structured note) significant exposure.\n\n**Role in autocallables:**\nThe investor in an autocallable note has implicitly:\n1. Lent money to the bank (receives bond coupon)\n2. Sold a series of autocall options (enables early redemption with enhanced coupon)\n3. **Sold a down-and-in put** (provides the downside tail risk that funds the attractive coupon)\n\nAt maturity, if the barrier has been breached at any point, the investor receives:\nRedemption = Principal × (Final Index Level ÷ Initial Index Level)\n\nThis is equivalent to holding the index from the point of the original investment — a potentially severe loss.\n\n**Barrier breach dynamics:**\nOnce the barrier is breached (even briefly), the note switches from 'capital protected at maturity' to 'fully equity-linked.' Investors who hold European-style notes may not know the note's capital protection is gone mid-life.",
+          highlight: [
+            "down-and-in put",
+            "DIP",
+            "barrier breach",
+            "autocallable",
+            "capital protection lost",
+            "tail risk",
+            "deep in-the-money",
+          ],
+        },
+        {
+          type: "quiz-mc",
+          question:
+            "An investor holds an up-and-out call option on a stock with strike $100 and knock-out barrier $130. The stock is currently trading at $128 — just below the barrier. What happens to the option's delta compared to a standard vanilla call at the same price?",
+          options: [
+            "The delta is negative or near zero: the option loses value as the stock rises toward $130 because it will knock out",
+            "The delta equals 1.0 because the option is very near the barrier and will expire with maximum intrinsic value",
+            "The delta is identical to the vanilla call — barriers do not affect delta",
+            "The delta spikes to 5 or higher due to gamma acceleration near the barrier",
+          ],
+          correctIndex: 0,
+          explanation:
+            "Near the up barrier, an up-and-out call exhibits negative delta. As the stock rises toward $130, the option approaches extinguishment (value → 0), so each additional dollar of stock price DECREASES the option's value. This is the opposite of a vanilla call and creates the delta discontinuity that makes barrier options difficult to hedge.",
+          difficulty: 3,
+        },
+      ],
+    },
+
+    // ─── Lesson 4: Autocallable Notes ─────────────────────────────────────────
+    {
+      id: "struct-prod-autocallables",
+      title: "Autocallable Notes",
+      description:
+        "Step-up coupons, early redemption triggers, memory feature, worst-of payoffs, and return scenarios",
+      icon: "RefreshCw",
+      xpReward: 95,
+      difficulty: "advanced",
+      duration: 15,
+      steps: [
+        {
+          type: "teach",
+          title: "Autocall Mechanics: Step-Up Coupon and Memory",
+          content:
+            "An **autocallable note** combines a bond-like coupon stream with embedded optionality. Its defining feature is automatic early redemption if a trigger condition is met.\n\n**Step-up coupon structure:**\n| Observation Year | Call Trigger | Coupon if Called |\n|-----------------|-------------|------------------|\n| Year 1          | Index ≥ 100%| 10%              |\n| Year 2          | Index ≥ 100%| 20%              |\n| Year 3          | Index ≥ 100%| 30%              |\n| Maturity (Y3)   | Below barrier| Capital at risk  |\n\nThe coupon grows by 10% per year — this is the **step-up**: investors who wait longer are compensated for the additional time at risk.\n\n**Memory (Accumulator) Feature:**\nIn standard autocalls, coupon is only paid when the note is called. The memory feature changes this: even if no call occurs in Year 1 (index below trigger), the Year 1 coupon is stored. In Year 2, if the note is called, the investor receives BOTH Year 1 and Year 2 coupons simultaneously.\n\n**Why the memory feature matters:**\nWithout memory, if the index falls to 95% in Year 1 and then recovers to 102% in Year 2, the investor receives only the Year 2 coupon (20%). With memory, they receive 10% + 20% = 30%.\n\n**Issuer perspective on memory:**\nMemory increases the note's value to investors but also increases the issuer's hedging cost. It requires more complex exotic option hedges (compound options, cliquets).",
+          highlight: [
+            "step-up coupon",
+            "autocall trigger",
+            "memory feature",
+            "accumulator",
+            "observation date",
+            "early redemption",
+          ],
+        },
+        {
+          type: "teach",
+          title: "Worst-of Payoff: Multi-Asset Autocallables",
+          content:
+            "**Worst-of autocallables** reference a basket of 2–5 underlying assets, but the payoff at maturity (or the barrier test) is determined by the **worst-performing** asset in the basket.\n\n**Why worst-of?**\nUsing the worst-performing asset dramatically increases the probability of barrier breach and reduces the autocall probability — this makes the product cheaper to structure, allowing the bank to offer a much higher coupon.\n\n**Example:**\nA worst-of autocall on [MSFT, AMZN, NVDA] with 70% barrier and 25% annual coupon.\n- If ALL three stocks are above 100% on an observation date → note called, coupon paid\n- At maturity: if the WORST performer is above the 70% barrier → full principal returned\n- At maturity: if the worst performer is below 70% → investor loses capital equal to worst-of decline\n\n**Correlation impact:**\nThe value of the embedded down-and-in put increases as **correlation between underlyings decreases**. With low correlation, there's a higher probability that at least one stock suffers a large decline, making the worst-of outcome worse.\n\n**Three key return scenarios:**\n1. **Bull scenario** (all stocks rise): Called in Year 1, investor earns 25% in one year (25% IRR).\n2. **Sideways scenario** (stocks oscillate near 100%): Note survives all dates, called at maturity if above trigger, higher cumulative coupon.\n3. **Bear scenario** (one stock crashes through barrier): At maturity, investor holds the fallen stock at its depressed level — worst-of delivers a severe loss.",
+          highlight: [
+            "worst-of",
+            "basket",
+            "worst-performing",
+            "correlation",
+            "barrier breach",
+            "multi-asset autocallable",
+          ],
+        },
+        {
+          type: "quiz-mc",
+          question:
+            "A worst-of autocall references three stocks: Stock A (+15%), Stock B (+5%), Stock C (–45% from initial, breaching the 60% barrier). At maturity, what does the investor receive on a $100,000 investment?",
+          options: [
+            "$55,000 — the investor receives principal × worst-of performance = $100,000 × 55% because Stock C fell to 55% of initial",
+            "$115,000 — the best performer determines the payoff in a worst-of structure",
+            "$100,000 — the 60% barrier was designed to protect principal even if one stock falls",
+            "$105,000 — coupons accumulated over the life offset Stock C's loss",
+          ],
+          correctIndex: 0,
+          explanation:
+            "In a worst-of structure at maturity with barrier breached, the investor receives capital × worst-of final performance. Stock C is at 55% of initial (fell 45%), which is below the 60% barrier. The investor receives $100,000 × 55% = $55,000 — a $45,000 loss. The 60% barrier determines whether protection is triggered, but once breached, the investor bears full downside of the worst performer.",
+          difficulty: 3,
+        },
+        {
+          type: "quiz-tf",
+          statement:
+            "In a worst-of autocallable, lower correlation between the basket components is beneficial for investors because it increases the chance that at least one stock will perform well enough to trigger the autocall.",
+          correct: false,
+          explanation:
+            "False. Lower correlation increases the dispersion of returns in the basket. While it may improve the chance that one stock does well, it simultaneously increases the risk that one stock suffers a large decline — and in a worst-of structure, the worst performer determines the payoff. Lower correlation is actually HARMFUL for worst-of investors because it raises the tail risk of the worst-of outcome being very bad. That is exactly why issuers can offer higher coupons on low-correlation worst-of notes.",
+          difficulty: 3,
+        },
+      ],
+    },
+
+    // ─── Lesson 5: Variance & Volatility Swaps ────────────────────────────────
+    {
+      id: "struct-prod-variance-swaps",
+      title: "Variance & Volatility Swaps",
+      description:
+        "Realized vs implied variance, variance notional vs vega notional, convexity, and mark-to-market",
+      icon: "Activity",
+      xpReward: 100,
+      difficulty: "advanced",
+      duration: 16,
+      steps: [
+        {
+          type: "teach",
+          title: "Variance Swap Mechanics",
+          content:
+            "A **variance swap** is an OTC contract that pays the difference between **realized variance** and a pre-agreed **variance strike** (the price of the swap).\n\n**Payoff formula:**\nPayoff = Variance Notional × (σ²_realized – K_var)\n\nWhere:\n- σ²_realized = annualised realized variance over the life of the swap\n- K_var = variance strike agreed at inception (quoted in vol² units, e.g., 20² = 400)\n- Variance Notional is in dollar terms per variance unit\n\n**Variance vs Vega Notional:**\nTraders more intuitively think in terms of **vega** (sensitivity to a 1-vol-point change). The conversion:\n\nVega Notional = Variance Notional × 2 × K_vol\n\nWhere K_vol = √K_var (the vol strike). So a $100,000 vega notional on a 20-vol swap has:\nVariance Notional = $100,000 ÷ (2 × 20) = **$2,500 per variance point**\n\nIf realized vol comes in at 25 (not 20):\nRealized variance = 625, Strike variance = 400\nProfit = $2,500 × (625 – 400) = **$562,500**\n\n**Realized variance calculation:**\nσ²_daily = (252/n) × Σ[ln(S_i / S_{i-1})]²\n\nVariance is the sum of squared daily log returns, annualised. Note: mean daily return is assumed to be zero (standard market convention) since over short intervals the drift term is negligible.\n\n**Who trades variance swaps?**\n- Volatility hedge funds (long variance when implied vol is cheap)\n- Dealers (short variance to hedge structured product vega books)\n- Event-driven traders (long variance around earnings or macro events)",
           highlight: [
             "variance swap",
             "realized variance",
             "variance strike",
+            "variance notional",
             "vega notional",
-            "log contract",
-            "variance risk premium",
-            "volatility swap",
+            "K_var",
+            "log returns",
+            "annualised",
           ],
         },
         {
           type: "teach",
-          title: "Volatility Arbitrage: Dispersion, Correlation & Vol Surface Trading",
+          title: "Volatility Swaps, Convexity, and Mark-to-Market",
           content:
-            "**Dispersion Trading:**\nSells index volatility and buys single-stock volatility simultaneously.\n\nRationale: Index implied vol includes a **correlation premium** — the market systematically overestimates how correlated stocks will be during stress. Single-stock vols are often underpriced relative to index vol after adjusting for correlation.\n\nP&L = Long single-stock realized vol – Short index realized vol\nProfits when stocks move a lot independently but not together (low realized correlation).\n\n**Correlation Trading:**\nDirectly trade the difference between implied and realized correlation.\n- Buy correlation: profits in crises when all stocks crash together (realized corr spikes)\n- Sell correlation: profits in calm markets when stocks diverge on fundamentals\n\n**Vol Surface Arbitrage:**\n- **Calendar spread:** Buy near-term vol, sell far-term vol (or vice versa) — exploits mispricing in the term structure\n- **Butterfly:** Buy ATM vol, sell wings — profits from non-linear pricing in the vol surface\n- **Skew trade:** If 25Δ put vol is too expensive relative to ATM vol, sell skew (risk reversal)\n\n**Realized vs Implied Vol Trading:**\nThe classic options P&L formula:\nDaily P&L ≈ (1/2) × Γ × S² × (σ²_realized – σ²_implied)\n\nIf you continuously delta-hedge a long option position and realized vol exceeds implied vol, you profit — this is the fundamental basis of volatility trading.",
+            "A **volatility swap** pays the difference between realized volatility (the standard deviation, not variance) and a vol strike:\n\nPayoff = Vega Notional × (σ_realized – K_vol)\n\n**Convexity difference — variance vs volatility swaps:**\nVariance is the square of volatility. Because variance is a convex function of vol, a variance swap is worth MORE than a vol swap to a long-vol buyer when large vol moves occur.\n\n- If you're long a variance swap and vol jumps from 20 to 40 (doubles), realized variance quadruples (400 → 1600).\n- If you're long a vol swap and vol doubles, your payoff only doubles.\n\nThis convexity makes variance swaps more attractive than vol swaps in tail risk scenarios — and explains why variance swap strikes trade at a **convexity adjustment** above vol swap strikes on the same underlying.\n\n**Mark-to-Market (MTM) of a variance swap mid-life:**\nAt time t during a T-day swap life:\n\nMTM = Variance Notional × [t/T × σ²_realized_so_far + (T-t)/T × K_var_implied_new – K_var_original]\n\nIn words: the MTM blends the already-realized variance (for t elapsed days) with the new fair market variance for the remaining (T–t) days, then subtracts the original strike.\n\n**Volatility surface and skew impact:**\nVariance swap fair value equals the **integral of weighted implied variances across all strikes** (a key result from the Carr-Madan replication). This means variance swap pricing incorporates the entire volatility surface — not just ATM vol. Higher skew (puts more expensive than calls) lifts the fair variance above the ATM implied variance.",
           highlight: [
-            "dispersion trading",
-            "correlation premium",
-            "realized correlation",
-            "vol surface arbitrage",
-            "calendar spread",
-            "butterfly",
-            "skew trade",
-            "delta hedge",
+            "volatility swap",
+            "convexity",
+            "convexity adjustment",
+            "mark-to-market",
+            "variance convexity",
+            "vol surface",
+            "Carr-Madan",
+            "skew",
           ],
         },
         {
           type: "quiz-mc",
           question:
-            "A trader holds a long position in VXX (a long VIX futures ETP) for 6 months during which the VIX index remains steady at 15. Why does the trader likely lose money despite VIX not falling?",
+            "A hedge fund enters a 3-month variance swap on the S&P 500 as the long side. The variance strike is K_var = 400 (vol strike = 20). Variance notional is $5,000 per point. Realized variance over the period turns out to be 625 (realized vol = 25). What is the fund's profit/loss?",
           options: [
-            "VIX futures are in contango — rolling the position each month means buying the next-month contract at a higher price, creating a persistent drag",
-            "VXX pays monthly dividends to short sellers that reduce the NAV proportionally",
-            "The CBOE adjusts the VIX index downward monthly to normalize for seasonal patterns",
-            "Long VXX positions decay exponentially at the risk-free rate like any leveraged product",
+            "Profit of $1,125,000 — realized variance (625) minus strike (400) = 225 variance points × $5,000",
+            "Loss of $1,125,000 — the fund is short variance so gains when variance is below strike",
+            "Profit of $25,000 — 5 vol points difference × vega notional",
+            "Profit of $625,000 — realized variance of 625 × $1,000 per unit",
           ],
           correctIndex: 0,
           explanation:
-            "When VIX futures are in contango (a normal market condition), the front-month futures price is below the next month's price. Rolling a long VIX futures position requires selling the cheaper expiring contract and buying the more expensive next-month contract. Even if spot VIX stays at 15, the roll creates a consistent monthly loss — typically 5–10% of position value per month in calm markets. This contango drag is the primary structural headwind for all long-VIX ETPs.",
-          difficulty: 2,
+            "Long variance swap profit = Variance Notional × (Realized Variance – Strike Variance) = $5,000 × (625 – 400) = $5,000 × 225 = $1,125,000. The fund is long variance, so it profits when realized variance exceeds the strike. Realized vol of 25 vs strike of 20 means realized variance of 625 vs strike of 400 — a difference of 225 variance points.",
+          difficulty: 3,
         },
         {
           type: "quiz-tf",
           statement:
-            "The payoff of a variance swap is calculated as: Notional × (realized variance – variance strike), where a positive payoff goes to the variance buyer.",
+            "A variance swap buyer receives more profit than a volatility swap buyer (same vega notional, same initial vol strike) when realized volatility turns out to be significantly higher than the strike, due to variance convexity.",
           correct: true,
           explanation:
-            "True. The variance buyer (long variance) profits when realized variance exceeds the variance strike — i.e., when actual market volatility is higher than expected. The payoff is: N_var × (σ²_realized – K²_var). If σ²_realized = 0.04 (20% vol) and K²_var = 0.0225 (15% vol strike), the buyer receives N_var × (0.04 – 0.0225) = N_var × 0.0175. The buyer effectively bought realized volatility cheaply.",
+            "True. Variance is a convex function of volatility (σ² grows faster than σ). For a long position, this convexity benefits the variance swap buyer: if vol jumps from 20 to 40, realized variance goes from 400 to 1600 (an increase of 1200), while a vol swap buyer only gains 20 vol points. This convexity premium is why variance swap strikes trade slightly above equivalent vol swap strikes — the buyer pays for the convexity benefit.",
+          difficulty: 3,
+        },
+      ],
+    },
+
+    // ─── Lesson 6: CLN & Credit Structures ────────────────────────────────────
+    {
+      id: "struct-prod-credit-structures",
+      title: "CLN & Credit Structures",
+      description:
+        "Credit-linked notes, total return swaps, synthetic CDO basics, and counterparty risk",
+      icon: "Link",
+      xpReward: 100,
+      difficulty: "advanced",
+      duration: 17,
+      steps: [
+        {
+          type: "teach",
+          title: "Credit-Linked Notes (CLN) Mechanics",
+          content:
+            "A **Credit-Linked Note (CLN)** is a funded credit derivative — the issuing bank packages a bond with an embedded Credit Default Swap (CDS) to transfer credit risk of a **reference entity** to the note investor.\n\n**How it works:**\n1. Investor pays $100 to bank (funds the position)\n2. Bank invests proceeds in risk-free collateral (T-bills)\n3. Bank pays investor: LIBOR/SOFR + CDS spread (e.g., SOFR + 150bp for a BBB reference entity)\n4. If the reference entity suffers a **credit event** (default, restructuring, failure to pay), the note redeems early at recovery value (e.g., 40 cents on the dollar)\n5. If no credit event, investor receives 100% principal at maturity\n\n**CLN vs direct bond investment:**\n- CLN investor bears BOTH the reference entity credit risk AND the issuing bank's credit risk\n- If the bank defaults, the investor loses even if the reference entity is fine\n- CLN allows exposure to entities where bonds are illiquid or unavailable (e.g., private companies, foreign sovereigns)\n\n**Credit events (ISDA definitions):**\n- Bankruptcy\n- Failure to pay (grace period expiry)\n- Obligation acceleration\n- Restructuring (controversial — often excluded in North American CDS)\n- Repudiation/moratorium (sovereign-specific)\n\n**First-to-default baskets:**\nA CLN referencing a basket of 5 companies that triggers on the first default — offering higher spread than any individual CDS because the investor bears the default risk of whichever is the weakest link.",
+          highlight: [
+            "credit-linked note",
+            "CLN",
+            "CDS",
+            "credit default swap",
+            "reference entity",
+            "credit event",
+            "recovery value",
+            "ISDA",
+            "first-to-default",
+          ],
+        },
+        {
+          type: "teach",
+          title: "Total Return Swap (TRS) and Counterparty Risk",
+          content:
+            "A **Total Return Swap (TRS)** transfers the total economic exposure of a reference asset from one party to another without the asset changing hands.\n\n**Structure:**\n- **Total Return Receiver (TRR):** Receives all coupons/dividends + capital gains of the reference asset; pays SOFR + spread\n- **Total Return Payer (TRP):** Pays coupons + gains; receives SOFR + spread (protected against falls and receives funding)\n\n**Why use a TRS?**\n- Hedge funds gain leveraged exposure without owning the asset (balance sheet efficiency)\n- Banks finance their bond inventory off balance sheet\n- Investors access restricted markets (e.g., emerging market loans)\n\n**Archegos Capital (2021) — TRS disaster:**\nBill Hwang's family office used TRS with multiple prime brokers simultaneously to build massive concentrated positions in media stocks. Because TRS do not require position reporting (only the bank owns the shares), regulators and other counterparties could not see the full exposure. When the positions soured, losses exceeded $100 billion across prime brokers.\n\n**Counterparty risk in credit structures:**\n- **Bilateral OTC risk**: If the counterparty defaults mid-contract, replacement cost can be substantial\n- **CVA (Credit Valuation Adjustment)**: The market value adjustment to account for counterparty default risk; banks must hold capital against CVA\n- **Central clearing (CCPs)**: Post-2008, regulators mandated clearing of standardised CDS/IRS through Central Counterparties (CCPs) like LCH and ICE, introducing daily margining to mitigate bilateral risk",
+          highlight: [
+            "total return swap",
+            "TRS",
+            "total return receiver",
+            "counterparty risk",
+            "CVA",
+            "Archegos",
+            "central clearing",
+            "CCP",
+            "off balance sheet",
+          ],
+        },
+        {
+          type: "teach",
+          title: "Synthetic CDO: Tranching Credit Risk",
+          content:
+            "A **Collateralised Debt Obligation (CDO)** repackages a pool of credit exposures into tranches with different risk/return profiles. A **synthetic CDO** achieves this using CDS rather than physical bonds.\n\n**Tranche structure (example $1 billion notional):**\n| Tranche       | Attachment | Detachment | Absorbs Losses | Coupon     |\n|---------------|-----------|-----------|----------------|------------|\n| Super Senior  | 12%       | 100%      | 12th–100th     | SOFR+5bp   |\n| Senior        | 7%        | 12%       | 7th–12th       | SOFR+25bp  |\n| Mezzanine     | 3%        | 7%        | 3rd–7th        | SOFR+200bp |\n| Equity        | 0%        | 3%        | First 3%       | SOFR+1000bp|\n\nThe equity tranche absorbs the first 3% of portfolio losses (first loss position). Only after losses exceed 12% does the super senior tranche suffer.\n\n**Correlation risk — the CDO Achilles heel:**\nTraditional CDO models used the **Gaussian copula** (Li model, 2000) to model joint defaults. When default correlation was low, equity tranches were risky but senior tranches were safe. In 2007–2008, the model's correlation assumptions proved disastrously wrong: subprime mortgage defaults were highly correlated because they shared the same underlying cause (falling house prices).\n\n**Delta of a CDO tranche:**\nThe sensitivity of a mezzanine tranche to the overall credit spread level is non-linear — similar to gamma effects in options. Near the attachment point, a small increase in portfolio spread causes disproportionate tranche losses.\n\n**Post-GFC landscape:**\nSynthetic CDOs are now rarely sold to retail investors. The Basel III framework imposes higher capital charges on re-securitisations. However, CLOs (Collateralised Loan Obligations) backed by leveraged loans remain a large and active market.",
+          highlight: [
+            "CDO",
+            "synthetic CDO",
+            "tranche",
+            "attachment point",
+            "detachment point",
+            "equity tranche",
+            "super senior",
+            "Gaussian copula",
+            "correlation risk",
+            "CLO",
+          ],
+        },
+        {
+          type: "quiz-mc",
+          question:
+            "An investor buys a 5-year Credit-Linked Note referencing Company X's debt at SOFR + 200bp. Eighteen months later, Company X files for bankruptcy. Recovery on Company X's bonds is assessed at 35 cents on the dollar. The issuing bank remains solvent. What does the investor receive?",
+          options: [
+            "35% of principal — the CLN redeems at recovery value when the credit event occurs",
+            "100% of principal — principal protection is embedded in all CLNs",
+            "0% — a credit event means total loss for CLN investors",
+            "100% principal plus 18 months of coupon accrued, then 35% recovery on top",
+          ],
+          correctIndex: 0,
+          explanation:
+            "When a credit event occurs, a CLN redeems early at the recovery rate on the reference entity's obligations — in this case 35%. The investor receives $35 per $100 of face value (35% recovery). There is no additional principal protection. The 18 months of accrued coupon that has already been paid is retained, but no additional payments are made after the credit event. The key risk the investor accepted was the reference entity's default risk in exchange for the higher SOFR + 200bp coupon.",
           difficulty: 2,
         },
         {
           type: "quiz-scenario",
           scenario:
-            "A volatility hedge fund manager observes that S&P 500 3-month implied volatility is at 22%, while single-stock implied vols for the S&P 500 constituents average 28%. The fund's models suggest that the implied correlation priced into the index vol (≈50%) is significantly higher than the average realized correlation over the past year (≈32%). The manager wants to exploit this discrepancy.",
+            "A synthetic CDO has a $500 million reference portfolio. The equity tranche covers the first 3% of losses ($15M), the mezzanine tranche covers 3%–8% ($25M), and the senior tranche covers 8%–100% ($460M). Portfolio defaults accumulate to $22 million in total losses.",
           question:
-            "Which volatility strategy is most directly designed to profit from this observation?",
+            "How much of the losses are absorbed by each tranche?",
           options: [
-            "Dispersion trade: sell S&P 500 variance swaps (short index vol) and buy variance swaps on the largest individual constituents (long single-stock vol) — profits when realized correlation stays low",
-            "Buy S&P 500 VIX futures to profit from the elevated 22% implied vol",
-            "Buy long-dated S&P 500 calls and sell short-dated calls (calendar spread) to exploit the term structure",
-            "Sell 25-delta S&P 500 put options to collect the high implied vol premium above realized vol",
+            "Equity tranche absorbs $15M (wiped out); mezzanine absorbs $7M of its $25M; senior tranche absorbs $0",
+            "Each tranche absorbs $7.3M pro-rata (losses split equally across three tranches)",
+            "Senior tranche absorbs all $22M because it is the largest tranche",
+            "Mezzanine absorbs all $22M because it is the middle tranche designed to buffer both extremes",
           ],
           correctIndex: 0,
           explanation:
-            "This is a textbook dispersion trade setup. The key observation is that index implied vol (22%) embeds a correlation assumption (~50%) that is significantly higher than historical realized correlation (~32%). By selling index variance (short index vol) and buying single-stock variance on constituents (long single-stock vol), the fund profits when stocks move a lot individually but not in lockstep — i.e., when realized correlation stays low. The P&L is driven by the correlation premium returning to reality. Simply buying VIX futures would be long volatility — the opposite direction for most of the position.",
+            "Losses are absorbed sequentially from the bottom up. First, the equity tranche (0%–3%) absorbs the first $15M of losses — it is completely wiped out. The remaining $7M ($22M – $15M) flows to the mezzanine tranche (3%–8%), which had $25M of capacity. So mezzanine absorbs $7M and retains $18M. The senior tranche (8%–100%) is unaffected because total losses ($22M = 4.4% of $500M) never reached its attachment point of 8%.",
           difficulty: 3,
         },
       ],
