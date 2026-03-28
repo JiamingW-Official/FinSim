@@ -641,6 +641,7 @@ export default function CommoditiesPage() {
           <TabsTrigger value="analysis">Commodity Analysis</TabsTrigger>
           <TabsTrigger value="portfolio">Portfolio Allocation</TabsTrigger>
           <TabsTrigger value="education">Education</TabsTrigger>
+          <TabsTrigger value="futures">Futures Trading</TabsTrigger>
         </TabsList>
 
         {/* ── Tab 1: Markets ── */}
@@ -1077,6 +1078,11 @@ export default function CommoditiesPage() {
             </div>
 
           </div>
+        </TabsContent>
+
+        {/* ── Tab 5: Futures Trading ── */}
+        <TabsContent value="futures" className="flex-1 overflow-y-auto px-6 pb-6 mt-3 data-[state=inactive]:hidden">
+          <CommoditiesFuturesTrading />
         </TabsContent>
       </Tabs>
     </div>
