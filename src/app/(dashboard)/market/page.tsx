@@ -15,6 +15,7 @@ import { MacroDashboard } from "@/components/market/MacroDashboard";
 import { OptionsFlowPanel } from "@/components/market/OptionsFlowPanel";
 import { WatchlistPanel } from "@/components/trading/WatchlistPanel";
 import { EarningsPanel } from "@/components/market/EarningsPanel";
+import { EarningsCalendar } from "@/components/market/EarningsCalendar";
 import { generateInsiderTrades } from "@/services/market/insider-trading";
 import { generateInstitutionalHoldings } from "@/services/market/institutional-holdings";
 import { generateOptionsFlow } from "@/services/market/options-flow";
@@ -1333,7 +1334,7 @@ export default function MarketIntelligencePage() {
         )}
         {activeTab === "news" && <NewsTab ticker={currentTicker} />}
         {activeTab === "screener" && <ScreenerTab onSelectTicker={handleSelectTicker} />}
-        {activeTab === "calendar" && <CalendarTab />}
+        {activeTab === "calendar" && <EarningsCalendar />}
         {activeTab === "insider" && <InsiderTab ticker={currentTicker} />}
         {activeTab === "institutional" && <InstitutionalTab ticker={currentTicker} />}
         {activeTab === "options-flow" && (

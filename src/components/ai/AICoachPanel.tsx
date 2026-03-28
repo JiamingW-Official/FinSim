@@ -416,7 +416,229 @@ const CONVICTION_CLASSES: Record<string, { bg: string; text: string; border: str
   low:    { bg: "bg-muted",         text: "text-muted-foreground", border: "border-border" },
 };
 
-function TradePlanCard({ plan }: { plan: TradePlan }) {
+// ─── Multi-Timeframe Confluence Panel ────────────────────────────────────────
+
+// Seeded PRNG (same as project convention)
+function seededRand(seed: number): number {
+  const s = (seed * 1103515245 + 12345) & 0x7fffffff;
+  return s / 0x7fffffff;
+}
+
+interface TFRow {
+  label: string;
+  direction: "bullish" | "bearish" | "neutral";
+  strength: number; // 1–5
+  topSignal: string;
+}
+
+function buildTimeframeRows(barIndex: number, baseBias: string): TFRow[] {
+  const seeds = [barIndex * 31 + 7, barIndex * 53 + 13, barIndex * 97 + 41];
+  const labels = ["Daily", "4H", "1H"];
+  const bullSignals = ["RSI Uptrend", "MACD Cross", "Above SMA50", "BB Bounce", "OBV Rising"];
+  const bearSignals = ["RSI Declining", "MACD Bear", "Below SMA20", "BB Squeeze", "ADX Strong"];
+  const neutSignals = ["Ranging", "Low ADX", "Coiling", "Mixed Vol"];
+
+  return labels.map((label, i) => {
+    const r1 = seededRand(seeds[i]);
+    const r2 = seededRand(seeds[i] * 7 + 3);
+    const r3 = seededRand(seeds[i] * 13 + 11);
+
+    // Bias alignment: daily most likely to agree with base, 1H least
+    const alignProb = i === 0 ? 0.72 : i === 1 ? 0.58 : 0.45;
+    let direction: "bullish" | "bearish" | "neutral";
+    if (r1 < alignProb) {
+      direction = baseBias === "bullish" ? "bullish" : baseBias === "bearish" ? "bearish" : "neutral";
+    } else if (r1 < alignProb + 0.15) {
+      direction = "neutral";
+    } else {
+      direction = baseBias === "bullish" ? "bearish" : "bullish";
+    }
+
+    const strength = Math.max(1, Math.min(5, Math.round(r2 * 4 + 1)));
+    const sigPool = direction === "bullish" ? bullSignals : direction === "bearish" ? bearSignals : neutSignals;
+    const topSignal = sigPool[Math.floor(r3 * sigPool.length)];
+
+    return { label, direction, strength, topSignal };
+  });
+}
+
+function StrengthBars({ value, color }: { value: number; color: string }) {
+  return (
+    <div className="flex gap-px">
+      {Array.from({ length: 5 }).map((_, i) => (
+        <div
+          key={i}
+          className={cn("h-2 w-1 rounded-sm transition-colors", i < value ? color : "bg-border/30")}
+        />
+      ))}
+    </div>
+  );
+}
+
+function MultiTimeframePanel({ barIndex, bias }: { barIndex: number; bias: string }) {
+  const rows = buildTimeframeRows(barIndex, bias);
+  const agreeing = rows.filter((r) => r.direction !== "neutral" && r.direction === (bias === "neutral" ? r.direction : bias)).length;
+  const confluenceColor = agreeing === 3 ? "text-emerald-400" : agreeing === 2 ? "text-amber-400" : "text-red-400";
+
+  return (
+    <motion.div
+      initial={{ opacity: 0, y: 4 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ delay: 0.2 }}
+      className="rounded-md border border-border/40 bg-background/30 px-2 py-2 space-y-1.5"
+    >
+      <div className="flex items-center justify-between">
+        <div className="text-[9px] font-black uppercase tracking-wider text-foreground/50">
+          Multi-TF Confluence
+        </div>
+        <span className={cn("text-[9px] font-black", confluenceColor)}>
+          {agreeing}/3 aligned
+        </span>
+      </div>
+
+      {rows.map((row) => {
+        const dirColor =
+          row.direction === "bullish"
+            ? "text-emerald-400"
+            : row.direction === "bearish"
+            ? "text-red-400"
+            : "text-amber-400";
+        const barColor =
+          row.direction === "bullish"
+            ? "bg-emerald-400"
+            : row.direction === "bearish"
+            ? "bg-red-400"
+            : "bg-amber-400";
+        const arrow =
+          row.direction === "bullish" ? "↑" : row.direction === "bearish" ? "↓" : "→";
+
+        return (
+          <div key={row.label} className="flex items-center gap-2 text-[9px]">
+            <span className="w-9 text-muted-foreground font-bold shrink-0">{row.label}</span>
+            <span className={cn("w-3 font-black shrink-0", dirColor)}>{arrow}</span>
+            <StrengthBars value={row.strength} color={barColor} />
+            <span className="text-muted-foreground/70 truncate min-w-0">{row.topSignal}</span>
+          </div>
+        );
+      })}
+    </motion.div>
+  );
+}
+
+// ─── Strategy Confidence Meter ────────────────────────────────────────────────
+
+interface ConfidenceFactor {
+  label: string;
+  met: boolean;
+}
+
+function buildConfidenceFactors(result: AnalysisResult, currentPrice: number): ConfidenceFactor[] {
+  const { signals, divergences, levels, regime } = result;
+
+  // 1. Trend alignment: regime is bull/bear (not ranging) and bias matches
+  const trendAligned =
+    (regime.regime === "bull" || regime.regime === "strong_bull") && result.bias === "bullish" ||
+    (regime.regime === "bear" || regime.regime === "strong_bear") && result.bias === "bearish";
+
+  // 2. Volume confirmation: OBV or volume signal present
+  const volumeConfirmed = signals.some(
+    (s) => s.category === "volume" && s.direction === result.bias,
+  );
+
+  // 3. Pattern detected
+  const patternDetected = signals.some((s) => s.category === "pattern" && s.direction !== "neutral");
+
+  // 4. S/R level nearby (within 1.5%)
+  const nearLevel =
+    levels.supports.some((l) => Math.abs(l.price - currentPrice) / currentPrice < 0.015) ||
+    levels.resistances.some((l) => Math.abs(l.price - currentPrice) / currentPrice < 0.015);
+
+  // 5. Divergence absent (no conflicting divergence)
+  const noConflictingDivergence = !divergences.some(
+    (d) =>
+      (d.type === "bearish" && result.bias === "bullish") ||
+      (d.type === "bullish" && result.bias === "bearish"),
+  );
+
+  return [
+    { label: "Trend alignment", met: trendAligned },
+    { label: "Volume confirm", met: volumeConfirmed },
+    { label: "Pattern detected", met: patternDetected },
+    { label: "S/R level nearby", met: nearLevel },
+    { label: "Divergence absent", met: noConflictingDivergence },
+  ];
+}
+
+function StrategyConfidenceMeter({ result, currentPrice }: { result: AnalysisResult; currentPrice: number }) {
+  const factors = buildConfidenceFactors(result, currentPrice);
+  const metCount = factors.filter((f) => f.met).length;
+  const badgeColor =
+    metCount >= 4
+      ? "bg-emerald-500/15 text-emerald-400 border-emerald-500/30"
+      : metCount >= 3
+      ? "bg-amber-500/15 text-amber-400 border-amber-500/30"
+      : "bg-red-500/15 text-red-400 border-red-500/30";
+  const badgeLabel =
+    metCount >= 4 ? "HIGH" : metCount >= 3 ? "MED" : "LOW";
+
+  return (
+    <motion.div
+      initial={{ opacity: 0, y: 4 }}
+      animate={{ opacity: 1, y: 0 }}
+      className="rounded-md border border-border/40 bg-background/30 px-2 py-2 space-y-1"
+    >
+      <div className="flex items-center justify-between">
+        <div className="text-[9px] font-black uppercase tracking-wider text-foreground/50">
+          Confidence Check
+        </div>
+        <span className={cn("rounded border px-1.5 py-0.5 text-[8px] font-black leading-none", badgeColor)}>
+          {metCount}/5 {badgeLabel}
+        </span>
+      </div>
+      <div className="grid grid-cols-1 gap-0.5">
+        {factors.map((f) => (
+          <div key={f.label} className="flex items-center gap-1.5 text-[8.5px]">
+            <span className={f.met ? "text-emerald-400" : "text-muted-foreground/40"}>
+              {f.met ? "✓" : "✗"}
+            </span>
+            <span className={f.met ? "text-foreground/70" : "text-muted-foreground/50"}>
+              {f.label}
+            </span>
+          </div>
+        ))}
+      </div>
+    </motion.div>
+  );
+}
+
+// ─── TradePlanCard with R:R calculator and position sizing ───────────────────
+
+function TradePlanCard({ plan, conviction }: { plan: TradePlan; conviction: string }) {
+  const entry = (plan.entryZone[0] + plan.entryZone[1]) / 2;
+  const risk = Math.abs(entry - plan.stopLoss);
+  const reward = Math.abs(plan.target1 - entry);
+  const rrRatio = risk > 0 ? reward / risk : 0;
+
+  // Probability of hitting target from conviction
+  const winProb =
+    conviction === "high" ? 0.62 : conviction === "medium" ? 0.50 : 0.38;
+  const lossProb = 1 - winProb;
+  const expectedValue = winProb * reward - lossProb * risk;
+
+  const rrColor =
+    rrRatio >= 2.0
+      ? "bg-emerald-500/15 text-emerald-400 border-emerald-500/30"
+      : rrRatio >= 1.5
+      ? "bg-amber-500/15 text-amber-400 border-amber-500/30"
+      : "bg-red-500/15 text-red-400 border-red-500/30";
+
+  // Position sizing variants (2% account risk default, 1% conservative, 3% aggressive)
+  const ACCOUNT = 100_000;
+  const conservativeSize = risk > 0 ? Math.max(1, Math.min(100, Math.floor((ACCOUNT * 0.01) / risk))) : 1;
+  const aggressiveSize = risk > 0 ? Math.max(1, Math.min(150, Math.floor((ACCOUNT * 0.03) / risk))) : 1;
+  const conservativeVal = conservativeSize * entry;
+  const aggressiveVal = aggressiveSize * entry;
+
   return (
     <motion.div
       initial={{ opacity: 0, y: 4 }}
@@ -445,12 +667,46 @@ function TradePlanCard({ plan }: { plan: TradePlan }) {
         <span className="text-emerald-400/50">Target 2</span>
         <span className="font-mono text-emerald-400/60">${plan.target2.toFixed(2)}</span>
       </div>
-      <div className="flex justify-between text-[9px]">
-        <span className="text-muted-foreground">Size / R:R</span>
-        <span className="font-mono text-foreground">
-          {plan.positionSize} sh&nbsp;•&nbsp;{plan.riskRewardRatio.toFixed(1)}:1
-        </span>
+
+      {/* R:R Calculator */}
+      <div className="border-t border-border/30 pt-1 space-y-0.5">
+        <div className="flex items-center justify-between text-[9px]">
+          <span className="text-muted-foreground">R:R Ratio</span>
+          <span className={cn("rounded border px-1.5 py-0.5 text-[8px] font-black leading-none", rrColor)}>
+            {rrRatio.toFixed(1)}:1
+          </span>
+        </div>
+        <div className="flex justify-between text-[9px]">
+          <span className="text-muted-foreground">Win prob</span>
+          <span className="font-mono text-foreground/70">{(winProb * 100).toFixed(0)}%</span>
+        </div>
+        <div className="flex justify-between text-[9px]">
+          <span className="text-muted-foreground">Expected value</span>
+          <span className={cn("font-mono", expectedValue >= 0 ? "text-emerald-400" : "text-red-400")}>
+            {expectedValue >= 0 ? "+" : ""}${expectedValue.toFixed(2)}/sh
+          </span>
+        </div>
       </div>
+
+      {/* Position Sizing */}
+      <div className="border-t border-border/30 pt-1 space-y-0.5">
+        <div className="text-[8px] font-black uppercase tracking-wider text-foreground/40">
+          AlphaBot Sizing (2% risk)
+        </div>
+        <div className="flex justify-between text-[9px]">
+          <span className="text-muted-foreground/70">Conservative (1%)</span>
+          <span className="font-mono text-foreground/60">{conservativeSize} sh · ${conservativeVal.toFixed(0)}</span>
+        </div>
+        <div className="flex justify-between text-[9px]">
+          <span className="text-foreground/70 font-bold">Standard (2%)</span>
+          <span className="font-mono text-primary font-bold">{plan.positionSize} sh · ${(plan.positionSize * entry).toFixed(0)}</span>
+        </div>
+        <div className="flex justify-between text-[9px]">
+          <span className="text-muted-foreground/70">Aggressive (3%)</span>
+          <span className="font-mono text-foreground/60">{aggressiveSize} sh · ${aggressiveVal.toFixed(0)}</span>
+        </div>
+      </div>
+
       <p className="text-[8.5px] text-muted-foreground/60 leading-tight border-t border-border/30 pt-1">
         {plan.rationale}
       </p>

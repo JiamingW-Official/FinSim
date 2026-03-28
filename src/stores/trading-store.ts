@@ -726,11 +726,24 @@ export const useTradingStore = create<TradingState>()(
       checkPendingOrders: (bar, simulationDate) => {
         const state = get();
         const filled: Order[] = [];
+        // Track OCO / bracket group IDs to cancel after first fill
+        const cancelledGroupIds = new Set<string>();
+        // Updated trailing stop orders (high-water update)
+        const updatedTrailingOrders: Order[] = [];
+
         const remaining: Order[] = [];
 
         for (const order of state.pendingOrders) {
           if (order.ticker !== bar.ticker) {
             remaining.push(order);
+            continue;
+          }
+
+          // Skip orders whose OCO/bracket group already filled
+          if (order.ocoGroupId && cancelledGroupIds.has(order.ocoGroupId)) {
+            continue; // effectively cancelled
+          }
+          if (order.bracketGroupId && cancelledGroupIds.has(order.bracketGroupId)) {
             continue;
           }
 
@@ -775,49 +788,111 @@ export const useTradingStore = create<TradingState>()(
               shouldFill = true;
               fillPrice = order.takeProfitPrice ?? 0;
             }
+          } else if (order.type === "bracket") {
+            // Entry leg: treat as a buy limit when price hits limitPrice
+            if (order.side === "buy" && bar.low <= (order.limitPrice ?? 0)) {
+              shouldFill = true;
+              fillPrice = order.limitPrice ?? 0;
+            } else if (order.side === "sell" && bar.high >= (order.limitPrice ?? 0)) {
+              shouldFill = true;
+              fillPrice = order.limitPrice ?? 0;
+            }
+          } else if (order.type === "oco") {
+            // Fires on whichever leg is hit first
+            const priceA = order.ocoPriceA ?? 0;
+            const priceB = order.ocoPriceB ?? 0;
+            // priceA = buy-stop (above resistance): triggers when bar crosses up
+            if (bar.high >= priceA) {
+              shouldFill = true;
+              fillPrice = priceA;
+            // priceB = buy-limit (below support): triggers when bar drops to level
+            } else if (bar.low <= priceB) {
+              shouldFill = true;
+              fillPrice = priceB;
+            }
+          } else if (order.type === "trailing_stop") {
+            const barClose = bar.close;
+            const highWater = Math.max(order.trailHighWater ?? barClose, bar.high);
+            // Compute current stop level
+            let trailStop: number;
+            if (order.trailPercent != null && order.trailPercent > 0) {
+              trailStop = highWater * (1 - order.trailPercent / 100);
+            } else {
+              trailStop = highWater - (order.trailAmount ?? 0);
+            }
+            if (bar.low <= trailStop) {
+              shouldFill = true;
+              fillPrice = trailStop;
+            } else {
+              // Update high-water mark in place for next bar
+              updatedTrailingOrders.push({ ...order, trailHighWater: highWater });
+            }
+          } else if (order.type === "conditional") {
+            const cond = order.condition;
+            if (cond) {
+              if (cond.type === "price_above" && bar.high >= cond.value) {
+                shouldFill = true;
+                fillPrice = order.limitPrice ?? bar.close;
+              } else if (cond.type === "price_below" && bar.low <= cond.value) {
+                shouldFill = true;
+                fillPrice = order.limitPrice ?? bar.close;
+              } else if (cond.type === "volume_spike" && bar.volume >= cond.value) {
+                shouldFill = true;
+                fillPrice = order.limitPrice ?? bar.close;
+              }
+              // rsi_above / rsi_below: these need computed RSI; skip fill for now
+              // (would require passing indicator data to checkPendingOrders)
+            }
           }
 
           if (shouldFill) {
             // Execute the fill
-            if (order.type === "limit") {
+            if (order.type === "limit" || order.type === "conditional") {
               if (order.side === "buy") {
-                get().placeBuyOrder(
-                  order.ticker,
-                  order.quantity,
-                  fillPrice,
-                  simulationDate,
-                );
+                get().placeBuyOrder(order.ticker, order.quantity, fillPrice, simulationDate);
               } else {
-                get().placeSellOrder(
-                  order.ticker,
-                  order.quantity,
-                  fillPrice,
-                  simulationDate,
-                );
+                get().placeSellOrder(order.ticker, order.quantity, fillPrice, simulationDate);
               }
             } else if (
               order.type === "stop_loss" ||
               order.type === "take_profit"
             ) {
-              const pos = get().positions.find(
-                (p) => p.ticker === order.ticker,
-              );
+              const pos = get().positions.find((p) => p.ticker === order.ticker);
               if (pos) {
                 const qty = Math.min(order.quantity, pos.quantity);
                 if (pos.side === "long") {
-                  get().placeSellOrder(
-                    order.ticker,
-                    qty,
-                    fillPrice,
-                    simulationDate,
-                  );
+                  get().placeSellOrder(order.ticker, qty, fillPrice, simulationDate);
                 } else {
-                  get().coverShortOrder(
-                    order.ticker,
-                    qty,
-                    fillPrice,
-                    simulationDate,
-                  );
+                  get().coverShortOrder(order.ticker, qty, fillPrice, simulationDate);
+                }
+              }
+            } else if (order.type === "bracket") {
+              // Entry fills → place SL + TP child orders
+              if (order.side === "buy") {
+                get().placeBuyOrder(order.ticker, order.quantity, fillPrice, simulationDate);
+              } else {
+                get().placeSellOrder(order.ticker, order.quantity, fillPrice, simulationDate);
+              }
+              // Add child stop-loss and take-profit
+              if (order.bracketStopPrice) {
+                get().placeStopLossOrder(order.ticker, order.quantity, order.bracketStopPrice, simulationDate);
+              }
+              if (order.bracketTakeProfitPrice) {
+                get().placeTakeProfitOrder(order.ticker, order.quantity, order.bracketTakeProfitPrice, simulationDate);
+              }
+              if (order.bracketGroupId) cancelledGroupIds.add(order.bracketGroupId);
+            } else if (order.type === "oco") {
+              // Whichever leg hits: fill as a buy order, cancel other leg via group
+              get().placeBuyOrder(order.ticker, order.quantity, fillPrice, simulationDate);
+              if (order.ocoGroupId) cancelledGroupIds.add(order.ocoGroupId);
+            } else if (order.type === "trailing_stop") {
+              const pos = get().positions.find((p) => p.ticker === order.ticker);
+              if (pos) {
+                const qty = Math.min(order.quantity, pos.quantity);
+                if (pos.side === "long") {
+                  get().placeSellOrder(order.ticker, qty, fillPrice, simulationDate);
+                } else {
+                  get().coverShortOrder(order.ticker, qty, fillPrice, simulationDate);
                 }
               }
             }
@@ -831,11 +906,13 @@ export const useTradingStore = create<TradingState>()(
             };
             filled.push(filledOrder);
           } else {
-            remaining.push(order);
+            // For trailing stops we may have updated high-water
+            const updated = updatedTrailingOrders.find((o) => o.id === order.id);
+            remaining.push(updated ?? order);
           }
         }
 
-        if (filled.length > 0) {
+        if (filled.length > 0 || updatedTrailingOrders.length > 0) {
           set((state) => ({
             pendingOrders: remaining,
             orders: [...state.orders, ...filled],

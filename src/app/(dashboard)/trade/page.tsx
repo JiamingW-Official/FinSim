@@ -26,6 +26,7 @@ import { ContextualTip } from "@/components/game/ContextualTip";
 import { IndicatorInfoPanel } from "@/components/education/IndicatorInfoPanel";
 import { FundamentalsPanel } from "@/components/trading/FundamentalsPanel";
 import { OrderBookDisplay } from "@/components/trading/OrderBookDisplay";
+import { ComparisonChart } from "@/components/chart/ComparisonChart";
 import { NewsTicker } from "@/components/layout/NewsTicker";
 import { AICoachPanel } from "@/components/ai/AICoachPanel";
 import { AlphaBotAlerts } from "@/components/ai/AlphaBotAlerts";
@@ -93,6 +94,11 @@ const CandlestickChart = dynamic(
     ),
   { ssr: false },
 );
+
+function ComparePanel() {
+  const ticker = useChartStore((s) => s.currentTicker);
+  return <ComparisonChart defaultTicker={ticker} />;
+}
 
 function OrderBookPanel() {
   const ticker = useChartStore((s) => s.currentTicker);
@@ -219,7 +225,7 @@ export default function TradePage() {
           <ContextualTip />
           <NewsTicker />
 
-          {/* Bottom panel: Fundamentals / Order Book tabs */}
+          {/* Bottom panel: Fundamentals / Order Book / Compare tabs */}
           <div
             className="h-40 shrink-0 overflow-hidden border-t border-border"
             data-tutorial="positions"
@@ -238,12 +244,21 @@ export default function TradePage() {
                 >
                   Order Book
                 </TabsTrigger>
+                <TabsTrigger
+                  value="compare"
+                  className="h-6 rounded-none border-b-2 border-transparent px-3 text-xs data-[state=active]:border-primary data-[state=active]:bg-transparent"
+                >
+                  Compare
+                </TabsTrigger>
               </TabsList>
               <TabsContent value="fundamentals" className="flex-1 overflow-auto mt-0">
                 <FundamentalsPanel />
               </TabsContent>
               <TabsContent value="orderbook" className="flex-1 overflow-auto mt-0">
                 <OrderBookPanel />
+              </TabsContent>
+              <TabsContent value="compare" className="flex-1 overflow-auto mt-0 data-[state=inactive]:hidden">
+                <ComparePanel />
               </TabsContent>
             </Tabs>
           </div>

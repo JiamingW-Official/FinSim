@@ -17,6 +17,8 @@ import { ContractDetail } from "@/components/options/ContractDetail";
 import { StrategyBuilderV2 } from "@/components/options/StrategyBuilderV2";
 import { AnalysisPanel } from "@/components/options/AnalysisPanel";
 import { UnusualActivityFeed } from "@/components/options/UnusualActivityFeed";
+import { FlowHeatmap } from "@/components/options/FlowHeatmap";
+import { DarkPoolFlow } from "@/components/options/DarkPoolFlow";
 import { GreeksLab } from "@/components/options/GreeksLab";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Activity, Loader2 } from "lucide-react";
@@ -47,6 +49,11 @@ export default function OptionsPage() {
     hv,
     selectedExpiry,
   );
+
+  // Derive same seed used by analytics hook for dark pool prints consistency
+  const darkPoolSeed = chain.length > 0 && chain[0].calls.length > 0
+    ? chain[0].calls[0].ticker.split("").reduce((s: number, c: string) => s + c.charCodeAt(0), 0) * 7 + chain.length
+    : 42;
 
   // Sync chain data to store and auto-select first expiry
   useEffect(() => {
@@ -224,11 +231,38 @@ export default function OptionsPage() {
                 </TabsContent>
 
                 {/* Unusual Activity tab */}
-                <TabsContent value="unusual" className="mt-0 flex-1 overflow-hidden data-[state=inactive]:hidden">
-                  <UnusualActivityFeed
-                    items={unusualActivity}
-                    onSelectContract={handleSelectContract}
-                  />
+                <TabsContent value="unusual" className="mt-0 flex-1 overflow-auto data-[state=inactive]:hidden">
+                  <div className="flex flex-col gap-0">
+                    {/* Feed takes natural height */}
+                    <div className="min-h-[260px]">
+                      <UnusualActivityFeed
+                        items={unusualActivity}
+                        onSelectContract={handleSelectContract}
+                      />
+                    </div>
+
+                    {/* Flow Heatmap section */}
+                    <div className="border-t border-border/50 px-3 py-3">
+                      <h3 className="mb-2 text-[11px] font-semibold text-foreground/80">
+                        Options Flow Heatmap
+                      </h3>
+                      <p className="mb-3 text-[10px] text-muted-foreground">
+                        Net call/put dollar flow per ticker and expiry. Green = net call buying, Red = net put buying. Cell size proportional to volume.
+                      </p>
+                      <FlowHeatmap items={unusualActivity} />
+                    </div>
+
+                    {/* Dark Pool Flow section */}
+                    <div className="border-t border-border/50 px-3 py-3">
+                      <h3 className="mb-2 text-[11px] font-semibold text-foreground/80">
+                        Dark Pool Prints
+                      </h3>
+                      <p className="mb-3 text-[10px] text-muted-foreground">
+                        Simulated institutional dark pool executions. Above Ask = aggressive buyer. Below Bid = aggressive seller.
+                      </p>
+                      <DarkPoolFlow seed={darkPoolSeed} />
+                    </div>
+                  </div>
                 </TabsContent>
 
                 {/* Greeks Lab tab */}
