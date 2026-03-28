@@ -372,6 +372,11 @@ export default function PortfolioPage() {
               <PortfolioAttribution />
             </TabsContent>
 
+            {/* ── Analytics+ tab ── */}
+            <TabsContent value="advanced" className="space-y-4">
+              <AdvancedAnalytics />
+            </TabsContent>
+
             {/* ── Deep Analytics tab ── */}
             <TabsContent value="deep" className="space-y-4">
               {/* Trade Distribution */}
