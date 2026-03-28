@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useMemo } from "react";
+import { DeFiAnalytics } from "@/components/crypto/DeFiAnalytics";
 import {
   Bitcoin,
   TrendingUp,
