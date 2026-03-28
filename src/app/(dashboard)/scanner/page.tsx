@@ -17,6 +17,7 @@ import {
 import { cn } from "@/lib/utils";
 import { useChartStore } from "@/stores/chart-store";
 import { WATCHLIST_STOCKS } from "@/types/market";
+import { PatternLibrary } from "@/components/scanner/PatternLibrary";
 import type { OHLCVBar } from "@/types/market";
 import { detectCandlePatterns } from "@/services/ai/patterns";
 import { analyzeTradeSetup } from "@/services/ai/engine";
@@ -993,6 +994,7 @@ const TABS = [
   { id: "patterns",   label: "Pattern Scanner" },
   { id: "technical",  label: "Technical Scanner" },
   { id: "setups",     label: "Setup Finder" },
+  { id: "library",    label: "Pattern Library" },
 ] as const;
 
 type TabId = (typeof TABS)[number]["id"];
@@ -1041,6 +1043,7 @@ export default function ScannerPage() {
         {activeTab === "patterns" && <PatternScannerTab />}
         {activeTab === "technical" && <TechnicalScannerTab />}
         {activeTab === "setups" && <SetupFinderTab />}
+        {activeTab === "library" && <PatternLibrary />}
       </div>
     </div>
   );

@@ -27,8 +27,9 @@ import {
 import { TradeIdeaFeed } from "@/components/ai/TradeIdeaFeed";
 import { OpportunityScanner } from "@/components/ai/OpportunityScanner";
 import { SentimentGauge } from "@/components/ai/SentimentGauge";
+import { PersonalizedCoach } from "@/components/ai/PersonalizedCoach";
 
-type Mode = "trade" | "review" | "brief" | "ideas" | "scan";
+type Mode = "trade" | "review" | "brief" | "ideas" | "scan" | "personalized";
 
 const MODES: { value: Mode; label: string; desc: string }[] = [
   { value: "trade", label: "Analyze", desc: "Analyze current chart setup" },
@@ -36,6 +37,7 @@ const MODES: { value: Mode; label: string; desc: string }[] = [
   { value: "brief", label: "Brief", desc: "Market context for current ticker" },
   { value: "ideas", label: "Ideas", desc: "Top trade ideas across all tickers" },
   { value: "scan", label: "Scan", desc: "Opportunity scanner — top 5 by score" },
+  { value: "personalized", label: "Coach", desc: "Personalized coaching with adaptive learning" },
 ];
 
 // ─── Inline Sub-Components ───────────────────────────────────────────────────
@@ -1155,15 +1157,15 @@ export function AICoachPanel() {
                     onClick={() => {
                       const prevMode = mode;
                       setMode(m.value);
-                      // Ideas and Scan tabs are self-contained — don't clear analysis state.
-                      // When returning from ideas/scan back to an analysis mode, restore
+                      // Ideas, Scan, and Personalized tabs are self-contained — don't clear analysis state.
+                      // When returning from these tabs back to an analysis mode, restore
                       // the persisted result so it doesn't appear blank.
-                      if (m.value === "ideas" || m.value === "scan") {
+                      if (m.value === "ideas" || m.value === "scan" || m.value === "personalized") {
                         stopTyping();
                         return;
                       }
                       if (
-                        (prevMode === "ideas" || prevMode === "scan") &&
+                        (prevMode === "ideas" || prevMode === "scan" || prevMode === "personalized") &&
                         m.value === "trade" &&
                         lastResultRef.current
                       ) {
@@ -1377,15 +1379,20 @@ export function AICoachPanel() {
                 </div>
               )}
 
+              {/* ── Personalized Coach tab ──────────────────────────────────── */}
+              {mode === "personalized" && (
+                <PersonalizedCoach />
+              )}
+
               {/* Loading state (before result) */}
-              {loading && !result && mode !== "ideas" && mode !== "scan" && (
+              {loading && !result && mode !== "ideas" && mode !== "scan" && mode !== "personalized" && (
                 <div className="text-[10px] text-muted-foreground animate-pulse text-center py-2">
                   AlphaBot is analyzing…
                 </div>
               )}
 
               {/* Error state */}
-              {error && mode !== "ideas" && mode !== "scan" && (
+              {error && mode !== "ideas" && mode !== "scan" && mode !== "personalized" && (
                 <div className="flex items-start gap-1.5 text-[10px] text-red-400 rounded bg-red-500/10 border border-red-500/20 px-2 py-1.5">
                   <AlertCircle className="h-3 w-3 mt-0.5 shrink-0" />
                   <span>{error}</span>
@@ -1393,7 +1400,7 @@ export function AICoachPanel() {
               )}
 
               {/* Action buttons — hidden on Ideas and Scan tabs */}
-              {mode !== "ideas" && mode !== "scan" && (
+              {mode !== "ideas" && mode !== "scan" && mode !== "personalized" && (
               <div className="flex gap-1.5">
                 <button
                   type="button"

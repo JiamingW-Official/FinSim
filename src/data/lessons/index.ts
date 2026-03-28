@@ -58,6 +58,7 @@ export const UNITS: Unit[] = [
   UNIT_DERIVATIVES_ADVANCED,
   UNIT_MACRO_INVESTING,
   UNIT_PRIVATE_EQUITY,
+  UNIT_HEDGE_FUNDS,
 ];
 
 export function getLessonById(lessonId: string): Lesson | undefined {
