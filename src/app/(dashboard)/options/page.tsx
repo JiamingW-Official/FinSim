@@ -138,6 +138,12 @@ export default function OptionsPage() {
           >
             Greeks Lab
           </TabsTrigger>
+          <TabsTrigger
+            value="greeks-monitor"
+            className="h-7 rounded-none border-b-2 border-transparent px-4 text-xs data-[state=active]:border-orange-400 data-[state=active]:bg-transparent data-[state=active]:text-orange-400"
+          >
+            Greeks Monitor
+          </TabsTrigger>
         </TabsList>
 
         <div className="flex flex-1 overflow-hidden">
