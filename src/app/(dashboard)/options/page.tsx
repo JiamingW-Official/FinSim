@@ -327,6 +327,11 @@ export default function OptionsPage() {
                     ivRank={analytics.ivRank}
                   />
                 </TabsContent>
+
+                {/* Flow Analysis tab */}
+                <TabsContent value="flow-analysis" className="mt-0 flex-1 overflow-auto data-[state=inactive]:hidden">
+                  <FlowAnalysis />
+                </TabsContent>
               </>
             )}
           </div>
