@@ -22,6 +22,7 @@ import {
   RefreshCw,
   Plus,
   Trash2,
+  Activity,
 } from "lucide-react";
 import { cn } from "@/lib/utils";
 
@@ -1933,7 +1934,7 @@ function CryptoPortfolioTab({ rows }: { rows: CryptoRow[] }) {
 
 // ── Page tabs ─────────────────────────────────────────────────────────────────
 
-type PageTab = "markets" | "trade" | "defi" | "onchain" | "nft" | "portfolio" | "education";
+type PageTab = "markets" | "trade" | "defi" | "onchain" | "nft" | "portfolio" | "education" | "defianalytics";
 
 const PAGE_TABS: { id: PageTab; label: string; icon: React.ReactNode }[] = [
   { id: "markets",   label: "Markets",       icon: <TrendingUp className="h-3.5 w-3.5" /> },
