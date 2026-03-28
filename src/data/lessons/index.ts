@@ -54,6 +54,7 @@ import { UNIT_PERSONAL_FINANCE_ADVANCED } from "./unit-personal-finance-advanced
 import { UNIT_STARTUP_EQUITY } from "./unit-startup-equity";
 import { UNIT_CORPORATE_GOVERNANCE } from "./unit-corporate-governance";
 import { UNIT_QUANT_FINANCE_ML } from "./unit-quant-finance-ml";
+import { UNIT_FINANCIAL_REGULATIONS } from "./unit-financial-regulations";
 
 export const UNITS: Unit[] = [
   UNIT_BASICS,
@@ -111,6 +112,7 @@ export const UNITS: Unit[] = [
   UNIT_STARTUP_EQUITY,
   UNIT_CORPORATE_GOVERNANCE,
   UNIT_QUANT_FINANCE_ML,
+  UNIT_FINANCIAL_REGULATIONS,
 ];
 
 export function getLessonById(lessonId: string): Lesson | undefined {
