@@ -46,6 +46,7 @@ export const UNITS: Unit[] = [
   UNIT_TECHNICAL_ANALYSIS_MASTERY,
   UNIT_ADVANCED_OPTIONS,
   UNIT_INTERNATIONAL_MARKETS,
+  UNIT_ESG_INVESTING,
 ];
 
 export function getLessonById(lessonId: string): Lesson | undefined {
