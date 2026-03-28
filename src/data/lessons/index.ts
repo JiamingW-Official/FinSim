@@ -40,6 +40,7 @@ import { UNIT_MACROECONOMICS } from "./unit-macroeconomics";
 import { UNIT_REAL_ESTATE_INVESTING } from "./unit-real-estate-investing";
 import { UNIT_PORTFOLIO_THEORY } from "./unit-portfolio-theory";
 import { UNIT_STRUCTURED_PRODUCTS } from "./unit-structured-products";
+import { UNIT_CREDIT_ANALYSIS } from "./unit-credit-analysis";
 
 export const UNITS: Unit[] = [
   UNIT_BASICS,
@@ -83,6 +84,7 @@ export const UNITS: Unit[] = [
   UNIT_REAL_ESTATE_INVESTING,
   UNIT_PORTFOLIO_THEORY,
   UNIT_STRUCTURED_PRODUCTS,
+  UNIT_CREDIT_ANALYSIS,
 ];
 
 export function getLessonById(lessonId: string): Lesson | undefined {
