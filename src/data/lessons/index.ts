@@ -63,6 +63,7 @@ import { UNIT_GLOBAL_ECONOMICS } from "./unit-global-economics";
 import { UNIT_SOVEREIGN_DEBT } from "./unit-sovereign-debt";
 import { UNIT_ALTERNATIVE_ASSETS } from "./unit-alternative-assets";
 import { UNIT_BANKING_SYSTEM } from "./unit-banking-system";
+import { UNIT_RETIREMENT_PLANNING } from "./unit-retirement-planning";
 
 export const UNITS: Unit[] = [
   UNIT_BASICS,
@@ -128,6 +129,8 @@ export const UNITS: Unit[] = [
   UNIT_GLOBAL_ECONOMICS,
   UNIT_SOVEREIGN_DEBT,
   UNIT_ALTERNATIVE_ASSETS,
+  UNIT_BANKING_SYSTEM,
+  UNIT_RETIREMENT_PLANNING,
 ];
 
 export function getLessonById(lessonId: string): Lesson | undefined {
