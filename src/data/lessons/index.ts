@@ -123,6 +123,8 @@ import { UNIT_STARTUP_ECONOMICS } from "./unit-startup-economics";
 import { UNIT_CENTRAL_BANKING } from "./unit-central-banking";
 import { UNIT_FINTECH_REGULATION } from "./unit-fintech-regulation";
 import { UNIT_REAL_ESTATE_ADVANCED } from "./unit-real-estate-advanced";
+import { UNIT_SYSTEMATIC_MACRO } from "./unit-systematic-macro";
+import { UNIT_BEHAVIORAL_FINANCE_ADVANCED } from "./unit-behavioral-finance-advanced";
 
 export const UNITS: Unit[] = [
   UNIT_BASICS,
@@ -249,6 +251,8 @@ export const UNITS: Unit[] = [
   UNIT_CENTRAL_BANKING,
   UNIT_FINTECH_REGULATION,
   UNIT_REAL_ESTATE_ADVANCED,
+  UNIT_SYSTEMATIC_MACRO,
+  UNIT_BEHAVIORAL_FINANCE_ADVANCED,
 ];
 
 export function getLessonById(lessonId: string): Lesson | undefined {
