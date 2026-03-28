@@ -45,6 +45,7 @@ export function PositionsTable() {
   const positions = useTradingStore((s) => s.positions);
   const placeSellOrder = useTradingStore((s) => s.placeSellOrder);
   const coverShortOrder = useTradingStore((s) => s.coverShortOrder);
+  const borrowRates = useTradingStore((s) => s.borrowRates);
   const allData = useMarketDataStore((s) => s.allData);
   const revealedCount = useMarketDataStore((s) => s.revealedCount);
   const currentBar =
