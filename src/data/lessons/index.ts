@@ -81,6 +81,8 @@ import { UNIT_GEOPOLITICAL_RISK } from "./unit-geopolitical-risk";
 import { UNIT_CREDIT_RISK } from "./unit-credit-risk";
 import { UNIT_ACCOUNTING_EARNINGS } from "./unit-accounting-earnings";
 import { UNIT_INFLATION_INVESTING } from "./unit-inflation-investing";
+import { UNIT_INSURANCE_RISK } from "./unit-insurance-risk";
+import { UNIT_MOMENTUM_TREND } from "./unit-momentum-trend";
 
 export const UNITS: Unit[] = [
   UNIT_BASICS,
@@ -165,6 +167,8 @@ export const UNITS: Unit[] = [
   UNIT_CREDIT_RISK,
   UNIT_ACCOUNTING_EARNINGS,
   UNIT_INFLATION_INVESTING,
+  UNIT_INSURANCE_RISK,
+  UNIT_MOMENTUM_TREND,
 ];
 
 export function getLessonById(lessonId: string): Lesson | undefined {
