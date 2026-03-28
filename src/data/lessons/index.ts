@@ -25,6 +25,7 @@ import { UNIT_ESG_INVESTING } from "./unit-esg-investing";
 import { UNIT_CRYPTO_DEFI } from "./unit-crypto-defi";
 import { UNIT_FIXED_INCOME } from "./unit-fixed-income";
 import { UNIT_DERIVATIVES_ADVANCED } from "./unit-derivatives-advanced";
+import { UNIT_MACRO_INVESTING } from "./unit-macro-investing";
 
 export const UNITS: Unit[] = [
   UNIT_BASICS,
@@ -53,6 +54,7 @@ export const UNITS: Unit[] = [
   UNIT_CRYPTO_DEFI,
   UNIT_FIXED_INCOME,
   UNIT_DERIVATIVES_ADVANCED,
+  UNIT_MACRO_INVESTING,
 ];
 
 export function getLessonById(lessonId: string): Lesson | undefined {
