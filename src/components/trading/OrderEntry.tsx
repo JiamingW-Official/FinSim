@@ -27,6 +27,8 @@ import {
   Activity,
   Clock,
   AlertCircle,
+  AlertTriangle,
+  ArrowDownLeft,
 } from "lucide-react";
 import type { OrderSide, OrderType, ConditionalTriggerType } from "@/types/trading";
 import { TradeConfirmDialog } from "./TradeConfirmDialog";

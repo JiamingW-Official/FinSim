@@ -11,6 +11,8 @@ import { UNIT_MACRO_TRADING } from "./unit-macro-trading";
 import { UNIT_CRYPTO_TRADING } from "./unit-crypto-trading";
 import { UNIT_ADVANCED_TECHNICAL_ANALYSIS } from "./unit-advanced-technical-analysis";
 import { UNIT_PORTFOLIO_CONSTRUCTION } from "./unit-portfolio-construction";
+import { UNIT_PERSONAL_FINANCE_MASTERY } from "./unit-personal-finance-mastery";
+import { UNIT_BEHAVIORAL_FINANCE } from "./unit-behavioral-finance";
 
 export const UNITS: Unit[] = [
   UNIT_BASICS,
@@ -25,6 +27,8 @@ export const UNITS: Unit[] = [
   UNIT_CRYPTO_TRADING,
   UNIT_ADVANCED_TECHNICAL_ANALYSIS,
   UNIT_PORTFOLIO_CONSTRUCTION,
+  UNIT_PERSONAL_FINANCE_MASTERY,
+  UNIT_BEHAVIORAL_FINANCE,
 ];
 
 export function getLessonById(lessonId: string): Lesson | undefined {
