@@ -159,7 +159,7 @@ function generateTradeLesson(pnlPct: number, tags: string[], emotion: TradeEmoti
   } else if (pnlPct > 0) {
     return "Small win. Check if profit was limited by early exit or position sizing — there may be room to let winners run.";
   } else if (pnlPct > -2) {
-    if (emotion === "fomo" || emotion === "revenge") {
+    if (emotion === "greedy" || emotion === "frustrated") {
       return "Emotional entry led to a scratch trade. Pre-define entry criteria before placing orders.";
     }
     return "Tight loss — good risk management. Review entry timing and see if the setup was fully confirmed.";
