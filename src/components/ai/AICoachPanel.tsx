@@ -1313,9 +1313,25 @@ export function AICoachPanel() {
                         </div>
                       )}
 
+                      {/* Multi-Timeframe Confluence Panel */}
+                      {mode === "trade" && !loading && visibleData.length > 0 && (
+                        <MultiTimeframePanel
+                          barIndex={visibleData.length}
+                          bias={result.bias}
+                        />
+                      )}
+
+                      {/* Strategy Confidence Meter */}
+                      {mode === "trade" && !loading && currentPrice > 0 && (
+                        <StrategyConfidenceMeter
+                          result={result}
+                          currentPrice={currentPrice}
+                        />
+                      )}
+
                       {/* Trade Plan */}
                       {result.tradePlan && mode === "trade" && !loading && (
-                        <TradePlanCard plan={result.tradePlan} />
+                        <TradePlanCard plan={result.tradePlan} conviction={result.conviction} />
                       )}
                     </>
                   )}

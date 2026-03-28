@@ -7,6 +7,7 @@ import { useChartStore } from "@/stores/chart-store";
 import { useTradingStore } from "@/stores/trading-store";
 import { detectLevels } from "@/services/ai/levels";
 import { detectCandlePatterns } from "@/services/ai/patterns";
+import { detectSignals } from "@/services/ai/signals";
 
 const PATTERN_EMOJI: Record<string, string> = {
   Hammer: "🔨",

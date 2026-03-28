@@ -6,6 +6,7 @@ import {
   Home, BarChart3, Briefcase, FlaskConical, GraduationCap,
   Swords, ScrollText, Crosshair, Trophy, User, Settings, Activity,
   TrendingUp, Globe, ChevronLeft, ChevronRight, BookOpen, Bitcoin,
+  ScanLine,
 } from "lucide-react";
 import { Tooltip, TooltipTrigger, TooltipContent } from "@/components/ui/tooltip";
 import { SearchTrigger } from "@/components/search/GlobalSearch";
