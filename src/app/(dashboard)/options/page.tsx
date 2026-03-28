@@ -20,6 +20,7 @@ import { UnusualActivityFeed } from "@/components/options/UnusualActivityFeed";
 import { FlowHeatmap } from "@/components/options/FlowHeatmap";
 import { DarkPoolFlow } from "@/components/options/DarkPoolFlow";
 import { GreeksLab } from "@/components/options/GreeksLab";
+import { GreeksMonitor } from "@/components/options/GreeksMonitor";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Activity, Loader2 } from "lucide-react";
 import type { OptionContract, ChainFilters } from "@/types/options";
