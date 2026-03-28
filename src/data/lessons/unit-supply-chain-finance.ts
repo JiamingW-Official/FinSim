@@ -2,378 +2,298 @@ import type { Unit } from "./types";
 
 export const UNIT_SUPPLY_CHAIN_FINANCE: Unit = {
   id: "supply-chain-finance",
-  title: "Supply Chain & Operations Finance",
+  title: "Supply Chain Finance",
   description:
-    "Understand working capital, inventory management, procurement finance, trade finance, and supply chain risk",
-  icon: "Truck",
-  color: "#f97316",
+    "Explore how modern supply chain finance programs unlock working capital, accelerate supplier payments, and create value across global trade networks — from reverse factoring and dynamic discounting to securitization and sustainability-linked financing",
+  icon: "🔗",
+  color: "#0f766e",
   lessons: [
-    // ─── Lesson 1: Working Capital Management ────────────────────────────────────
+    // ─── Lesson 1: What is Supply Chain Finance? ────────────────────────────────
     {
-      id: "scf-1",
-      title: "💰 Working Capital Management",
+      id: "supply-chain-finance-1",
+      title: "🏭 What is Supply Chain Finance?",
       description:
-        "Master cash conversion cycles, EOQ, JIT inventory, and supply chain financing techniques",
-      icon: "RefreshCw",
+        "Working capital optimization, buyer/supplier dynamics, reverse factoring, and why SCF programs benefit the entire supply chain ecosystem",
+      icon: "BookOpen",
       xpReward: 80,
-      difficulty: "intermediate",
+      difficulty: "beginner",
       steps: [
         {
           type: "teach",
-          title: "🔄 The Cash Conversion Cycle",
+          title: "The Working Capital Gap",
           content:
-            "The **Cash Conversion Cycle (CCC)** measures how long cash is tied up in day-to-day operations before it is converted back into cash.\n\n**Formula:**\nCCC = DIO + DSO – DPO\n\n- **DIO (Days Inventory Outstanding)** = (Inventory / COGS) × 365. How long goods sit in the warehouse.\n- **DSO (Days Sales Outstanding)** = (Receivables / Revenue) × 365. How long before customers pay.\n- **DPO (Days Payable Outstanding)** = (Payables / COGS) × 365. How long before the company pays its own suppliers.\n\n**Interpretation:**\n- A **shorter CCC** means cash is recycled faster — the company needs less working capital financing.\n- A **negative CCC** (e.g., Amazon, Walmart) means the company collects cash from customers before it pays its suppliers — a powerful competitive advantage.\n- A **long CCC** is a cash trap: the business must fund the gap with credit lines or equity.\n\n**Example:**\n- DIO = 30 days, DSO = 45 days, DPO = 50 days\n- CCC = 30 + 45 – 50 = **25 days** of cash tied up in operations",
-          highlight: ["cash conversion cycle", "DIO", "DSO", "DPO", "CCC", "negative CCC"],
+            "Every trade transaction creates a **working capital tension**: buyers want to pay later, suppliers need to get paid sooner. This gap is the engine behind supply chain finance.\n\n**The basic dynamics:**\n- A large retailer orders $5 million of goods from a supplier\n- The retailer's payment terms are Net 90 — they will pay in 90 days\n- The supplier must fund raw materials, labor, and production today\n- The supplier borrows at 8% per year to bridge that 90-day gap — costing $100,000\n\n**The structural imbalance:**\nLarge buyers have significant bargaining power and routinely extend payment terms to conserve their own cash. In industries like retail and automotive, 60–120 day payment terms are standard. For small and mid-sized suppliers, waiting 90 days is expensive and sometimes dangerous.\n\n**Working capital optimization:**\nSupply chain finance (SCF) programs aim to optimize the working capital position of ALL parties simultaneously:\n- **Buyers** preserve or extend their Days Payable Outstanding (DPO) — keeping cash longer\n- **Suppliers** receive early payment and reduce their Days Sales Outstanding (DSO)\n- **Financiers** (banks, fintechs) earn a spread for providing the bridging capital\n\n**Why this is possible:**\nThe buyer's credit rating is typically far stronger than the supplier's. A supplier borrowing on its own credit might pay 8%. But an SCF program backed by the buyer's credit quality might offer that same supplier 3–4% — saving everyone money and reducing systemic supply chain risk.",
+          highlight: ["working capital", "Days Payable Outstanding", "Days Sales Outstanding", "payment terms", "credit rating"],
         },
         {
           type: "teach",
-          title: "📦 Economic Order Quantity & Just-in-Time",
+          title: "Reverse Factoring — The Anchor Buyer Model",
           content:
-            "**Economic Order Quantity (EOQ)** is the optimal reorder quantity that minimizes total inventory costs (ordering costs + holding costs).\n\n**EOQ formula:**\nEOQ = √(2DS / H)\n\n- **D** = Annual demand (units)\n- **S** = Cost per order (setup/shipping cost)\n- **H** = Annual holding cost per unit (storage, insurance, spoilage)\n\nExample: D = 10,000 units, S = $200/order, H = $4/unit\nEOQ = √(2 × 10,000 × 200 / 4) = √1,000,000 = **1,000 units per order**\n\n**Just-in-Time (JIT)** takes a different philosophy — order only when needed, keeping near-zero inventory.\n\n**JIT benefits:**\n- Eliminates holding costs (warehouse, spoilage, obsolescence)\n- Reduces cash tied up in inventory\n- Forces supplier quality improvement\n\n**JIT risks:**\n- Zero buffer for supply disruptions (COVID-19 exposed this catastrophically)\n- Highly dependent on supplier reliability and geographic proximity\n- Any disruption halts production immediately\n\n**Post-pandemic shift:** Many manufacturers moved from 'just-in-time' to **'just-in-case'** — holding strategic buffer stock for critical components despite the cost.",
-          highlight: ["EOQ", "just-in-time", "holding costs", "ordering costs", "just-in-case"],
+            "**Reverse factoring** (also called approved payables financing) is the most common SCF structure. Unlike traditional factoring where the supplier initiates financing, reverse factoring is driven by the buyer.\n\n**How reverse factoring works:**\n1. Buyer places an order and receives goods/services from a supplier\n2. Buyer approves the invoice — confirming the amount is correct and will be paid\n3. Buyer notifies the SCF platform and financing bank of the approved invoice\n4. Supplier logs into the platform and can request early payment at a discount\n5. Bank pays the supplier immediately (e.g., 99.5% of invoice value on Day 5)\n6. Buyer pays the bank the full invoice amount on the original due date (Day 90)\n\n**The key insight — buyer-driven credit:**\nThe financing is priced off the **buyer's** credit quality, not the supplier's. A Fortune 500 buyer (AA-rated) can get financing at 2.5%. That rate is passed to the supplier as an alternative to waiting.\n\n**Who benefits and how:**\n- **Supplier**: Gets paid in 5 days instead of 90, improving cash flow dramatically. Accesses credit much cheaper than their own borrowing rate.\n- **Buyer**: Can extend payment terms from 60 to 90+ days without harming supplier relationships. Sometimes earns a platform fee or rebate.\n- **Bank**: Earns a spread (0.5–1.5% annualized) on high-quality, short-duration assets with minimal credit risk.\n\n**Program scale:** Global reverse factoring volumes exceed $500 billion annually and are growing 15–20% per year as more large corporations launch SCF programs.",
+          highlight: ["reverse factoring", "approved payables", "buyer's credit", "early payment", "discount rate"],
         },
         {
           type: "teach",
-          title: "🏦 Supply Chain Financing & Dynamic Discounting",
+          title: "Buyer-Supplier Dynamics and Program Design",
           content:
-            "**Supply Chain Finance (SCF)** is a set of technology-based financing solutions that lower financing costs for buyers and sellers.\n\n**Reverse factoring (most common SCF structure):**\n1. Buyer approves invoice from supplier\n2. Buyer's bank pays supplier early (at a small discount)\n3. Buyer pays the bank on the original due date (often 60–90 days)\n\n**Benefits:**\n- Supplier gets cash quickly at the buyer's (lower) credit rate — not at the smaller supplier's rate\n- Buyer extends DPO without harming the supplier relationship\n- Bank earns a spread on the financing\n\n**Dynamic discounting** is a buyer-funded variation:\n- The buyer offers the supplier a sliding scale: pay early and get a discount\n- Example: pay 10 days early → 0.5% discount; pay 30 days early → 1.5% discount\n- The buyer earns a return on excess cash; the supplier gets liquidity\n\n**Key distinction:**\n- **Reverse factoring**: bank-funded; buyer extends DPO\n- **Dynamic discounting**: buyer-funded; buyer reduces DPO but earns a return\n\n**Accounting controversy:** Regulators debate whether reverse factoring should be reclassified as debt — Carillion's collapse revealed £500M of hidden reverse factoring obligations.",
-          highlight: ["supply chain finance", "reverse factoring", "dynamic discounting", "DPO extension", "early payment"],
+            "Successful SCF programs require careful attention to relationship dynamics, incentive alignment, and program structure.\n\n**Voluntary vs mandated participation:**\nMost SCF programs are voluntary for suppliers — they can choose to take early payment when they need liquidity, or wait for the original payment date when they don't. This flexibility is a key selling point.\n\n**Supplier segmentation:**\nNot all suppliers benefit equally:\n- **Large Tier 1 suppliers**: May have strong balance sheets and prefer standard terms. SCF offers marginal benefit.\n- **Mid-size suppliers**: Often the sweet spot — meaningful cash flow needs but not at crisis level. Most active users.\n- **Small suppliers**: Highest need but sometimes lack the technical sophistication to onboard platforms.\n\n**Onboarding and platform technology:**\nModern SCF runs on digital platforms (C2FO, Taulia, Greensill, HSBC ConnectedMoney). Suppliers access a dashboard showing approved invoices, current early payment rates, and cash advance options. Integration with buyer ERP systems (SAP, Oracle) enables automated invoice approval.\n\n**Pricing mechanics:**\nEarly payment discount = Invoice Amount x Annual Rate x (Days Remaining / 365)\n\nExample: $1,000,000 invoice with 80 days remaining, 3% annual rate:\n= $1,000,000 x 0.03 x (80/365) = $6,575 discount\nSupplier receives $993,425 immediately instead of $1,000,000 in 80 days.\n\n**Accounting treatment for buyers:**\nSupply chain payables are generally classified as trade payables (not financial debt), which helps buyers preserve their debt capacity and credit ratios — a significant structural incentive.",
+          highlight: ["voluntary participation", "supplier segmentation", "pricing mechanics", "ERP integration", "trade payables"],
         },
         {
           type: "quiz-mc",
           question:
-            "Company A has CCC = 35 days. Company B has CCC = 8 days, in the same industry. What does this imply?",
+            "A supplier has an approved invoice for $500,000 with 60 days remaining. The SCF platform offers early payment at a 2.4% annual discount rate. How much will the supplier receive if they take early payment today?",
           options: [
-            "Company B has far superior working capital efficiency — it recycles cash much faster and needs less operating capital to support the same revenue",
-            "Company A is more conservative and has a safer balance sheet due to higher inventory buffers",
-            "Company B's shorter CCC suggests it has weaker supplier relationships because it pays too quickly",
-            "The CCC difference is irrelevant — only the absolute levels of receivables and payables matter",
+            "$498,027",
+            "$488,000",
+            "$496,000",
+            "$495,000",
           ],
           correctIndex: 0,
           explanation:
-            "A CCC of 8 days vs 35 days means Company B recycles cash ~4× faster. For every $1M of revenue, Company B needs dramatically less working capital financing. Over time, Company B can grow faster with less external funding, pay higher dividends, or invest more. CCC is a core efficiency metric — Amazon runs a negative CCC, collecting from customers before paying suppliers, which is a massive structural advantage.",
+            "Discount = $500,000 x 0.024 x (60/365) = $500,000 x 0.024 x 0.1644 = $1,973. Supplier receives $500,000 - $1,973 = $498,027. The formula is: Discount = Invoice x Annual Rate x (Days / 365). This small discount gives the supplier immediate cash at a rate far below typical small-business borrowing costs.",
           difficulty: 2,
         },
         {
           type: "quiz-tf",
           statement:
-            "Just-in-time inventory management always reduces total costs and is universally optimal for manufacturers.",
+            "In a reverse factoring program, the financing rate offered to suppliers is based primarily on the supplier's own credit rating.",
           correct: false,
           explanation:
-            "False. JIT minimizes holding costs but eliminates safety buffers. The COVID-19 pandemic exposed the fragility of JIT: auto manufacturers with zero semiconductor inventory had to idle factories for months while waiting for chips, costing billions. The optimal strategy depends on supply chain reliability, component criticality, and cost of disruption. Many companies now deliberately hold strategic inventory for critical inputs despite the holding cost, a shift called 'just-in-case' inventory management.",
-          difficulty: 2,
-        },
-        {
-          type: "quiz-scenario",
-          scenario:
-            "A manufacturer has: DIO = 40 days, DSO = 50 days, DPO = 30 days. A competitor in the same industry has: DIO = 20 days, DSO = 35 days, DPO = 55 days. Both have the same revenue.",
-          question: "Which company needs more external working capital financing, and by approximately how many days?",
-          options: [
-            "The first company — its CCC is 60 days vs the competitor's 0 days, meaning it needs to finance 60 extra days of operating costs",
-            "The competitor — lower DIO means it runs out of stock and needs emergency financing",
-            "Both need the same financing — they have equal revenue",
-            "The first company — by exactly 30 days (the DPO difference only)",
-          ],
-          correctIndex: 0,
-          explanation:
-            "First company CCC = 40 + 50 – 30 = 60 days. Competitor CCC = 20 + 35 – 55 = 0 days. The competitor has perfectly self-financing operations — it collects from customers and delays payments to suppliers such that no external financing gap exists. The first company must fund 60 days of COGS through credit lines or equity, which is a real financing cost. Reducing CCC from 60 to 0 on $100M of COGS would free roughly $16.4M of working capital.",
-          difficulty: 3,
+            "In reverse factoring, financing is priced off the BUYER's credit rating, not the supplier's. This is the defining feature of the structure. Because the buyer has approved the invoice and committed to pay, the credit risk is effectively the buyer's. A small supplier with a weak balance sheet can access financing at near-investment-grade rates simply because their large buyer has excellent credit. This is why SCF programs are so valuable to small and mid-sized suppliers.",
+          difficulty: 1,
         },
       ],
     },
 
-    // ─── Lesson 2: Trade Finance ──────────────────────────────────────────────────
+    // ─── Lesson 2: Invoice Financing & Factoring ──────────────────────────────
     {
-      id: "scf-2",
-      title: "🌍 Trade Finance",
+      id: "supply-chain-finance-2",
+      title: "🧾 Invoice Financing & Factoring",
       description:
-        "Letters of credit, documentary collections, bank guarantees, export credit agencies, and international payment instruments",
-      icon: "Globe",
+        "Accounts receivable mechanics, advance rates, the factoring lifecycle, recourse vs non-recourse structures, and how forfaiting differs from factoring",
+      icon: "TrendingUp",
       xpReward: 85,
       difficulty: "intermediate",
       steps: [
         {
           type: "teach",
-          title: "📜 Letters of Credit",
+          title: "Accounts Receivable as a Financial Asset",
           content:
-            "A **Letter of Credit (LC)** is the gold standard of international trade finance. It is a bank's irrevocable promise to pay the exporter, provided the exporter presents compliant shipping documents.\n\n**How it works:**\n1. Buyer and seller agree on an LC as payment method\n2. Buyer's bank (issuing bank) issues the LC\n3. Seller's bank (advising/confirming bank) authenticates it\n4. Exporter ships goods and presents documents (bill of lading, invoice, packing list, certificate of origin)\n5. If documents comply exactly with LC terms, the issuing bank pays — regardless of buyer's financial condition\n\n**Types of LC:**\n- **Irrevocable LC**: cannot be amended without all parties' consent — standard today\n- **Confirmed LC**: seller's bank adds its own guarantee (double protection — useful in politically risky countries)\n- **Standby LC**: used as a guarantee/fallback if buyer defaults, not as the primary payment mechanism\n- **Transferable LC**: exporter can transfer rights to a sub-supplier (useful for trading companies)\n\n**Key risk mitigation:**\nAn LC protects the exporter from **buyer credit risk** and **country risk** — the bank pays even if the buyer goes bankrupt, as long as documents comply.\n\n**Cost:** typically 0.5–1.5% of transaction value as LC issuance fees.",
-          highlight: ["letter of credit", "irrevocable LC", "confirmed LC", "standby LC", "issuing bank", "compliant documents"],
+            "When a business delivers goods or services on credit, it creates an **account receivable** — a legally enforceable right to collect payment. This asset has economic value that can be monetized immediately rather than waiting for the payment date.\n\n**The receivables lifecycle:**\n1. Seller ships goods, invoice issued for $200,000, Net 60\n2. Buyer receives goods and confirms they are acceptable\n3. Invoice sits on seller's balance sheet as accounts receivable\n4. On Day 60, buyer pays — receivable is extinguished\n\n**Why sellers want early cash:**\n- Growth requires inventory and payroll funding today\n- Seasonal businesses face mismatch between when they sell and when customers pay\n- Credit constraints make bank borrowing difficult or expensive\n- Cash is worth more today than 60 days from now (time value of money)\n\n**The receivable as collateral:**\nReceivables have several properties that make them attractive to financiers:\n- **Self-liquidating**: They mature into cash on a predictable schedule\n- **Diversifiable**: A pool of many receivables has lower risk than any single one\n- **Observable**: Invoice amounts and due dates are documented\n- **Separable**: Receivables can be legally assigned or sold to third parties\n\n**Advance rate:**\nFinanciers do not advance 100% of face value. The **advance rate** is typically 70-95%, reflecting:\n- Potential buyer disputes or returns\n- Dilution from credit notes and discounts\n- Time value over the collection period\n- Credit risk of the underlying buyer population",
+          highlight: ["accounts receivable", "advance rate", "self-liquidating", "invoice", "time value"],
         },
         {
           type: "teach",
-          title: "📋 Documentary Collections & Bank Guarantees",
+          title: "Factoring — Structure and Mechanics",
           content:
-            "**Documentary Collection** is cheaper than an LC but offers less protection. The bank acts as an intermediary for documents only — it does not guarantee payment.\n\n**Two types:**\n- **D/P (Documents Against Payment)**: bank releases shipping documents to buyer only when buyer pays immediately. Exporter retains control of goods until payment.\n- **D/A (Documents Against Acceptance)**: bank releases documents when buyer signs a draft (promise to pay at a future date). Exporter loses control of goods before receiving payment — higher risk.\n\n**Documentary collection risks:**\n- Buyer can refuse documents and abandon the goods (less risk with D/P)\n- No bank payment guarantee — if buyer defaults, exporter must sue\n- Goods stranded at port, incurring demurrage charges\n\n**Bank Guarantee vs Standby LC:**\n| Feature | Bank Guarantee | Standby LC |\n|---|---|---|\n| Governed by | Local law | UCP 600 / ISP98 |\n| Payment trigger | On demand (sometimes conditional) | Documentary — needs compliant claim |\n| Common use | Construction, contracts | Trade credit, financial obligations |\n| Recovery for seller | Often unconditional | Documentary evidence required |\n\n**On-demand guarantees** (common in construction) allow the beneficiary to call payment without proving default — highly controversial in some jurisdictions.",
-          highlight: ["documentary collection", "D/P", "D/A", "bank guarantee", "standby LC", "on-demand guarantee"],
+            "**Factoring** is the sale of accounts receivable to a third-party financier (the factor) at a discount. It is one of the oldest forms of trade finance, dating back to ancient Mesopotamia.\n\n**The factoring transaction:**\n1. Seller (client) delivers goods and issues invoices\n2. Seller sells (assigns) invoices to the factor\n3. Factor advances 80–90% of invoice face value immediately\n4. Factor takes over collection — contacts buyers directly\n5. When buyer pays, factor remits the reserve (10–20%) minus fees to the seller\n\n**Recourse vs non-recourse factoring:**\n- **Recourse factoring**: If the buyer does not pay, the seller must buy back the invoice. The factor only covers credit risk up to the advance. Lower cost — factor does not bear buyer default risk.\n- **Non-recourse factoring**: If the buyer defaults (not disputes), the factor absorbs the loss. Higher cost — the factor's fee includes credit risk insurance. Seller gets genuine balance sheet relief.\n\n**Key costs in factoring:**\n- **Discount fee**: 1–5% of invoice value, covering time cost and profit\n- **Service fee**: 0.5–2% for collection services, credit checks, administration\n- **Reserve**: 10–20% held back until buyer pays\n\n**Who uses factoring:**\nFactoring is most common among small and mid-sized businesses that:\n- Lack access to bank credit lines\n- Need immediate cash rather than waiting 30–90 days\n- Want to outsource collections to a specialist\n- Are growing faster than their balance sheet can support\n\n**The notification question:**\nIn **disclosed factoring**, buyers know their invoices have been sold to a factor. In **undisclosed (confidential) factoring**, buyers pay the seller as normal — the seller remits to the factor behind the scenes.",
+          highlight: ["factoring", "advance rate", "recourse", "non-recourse", "discount fee", "reserve"],
         },
         {
           type: "teach",
-          title: "🏛️ Export Credit Agencies & Reverse Factoring",
+          title: "Forfaiting — Long-Tenor Trade Finance",
           content:
-            "**Export Credit Agencies (ECAs)** are government-backed institutions that support exporters by providing financing, guarantees, and insurance for international transactions.\n\n**Examples:** US Ex-Im Bank, UK Export Finance (UKEF), Germany's Euler Hermes, China's Sinosure.\n\n**ECA instruments:**\n- **Export credit loans**: ECA funds or guarantees a loan to the foreign buyer so they can purchase the exporter's goods — common for large infrastructure projects\n- **Export credit insurance**: covers the exporter against buyer default or country/political risk\n- **Supplier credit**: ECA guarantees payment to exporter if buyer defaults\n\n**Why ECAs matter:**\n- Enable large-scale trade (aircraft, power plants, defence equipment) that private banks won't finance alone\n- Create competitive financing terms — Airbus customers often get ECA-backed loans at sovereign-like rates\n- Geopolitical tool: China's Sinosure heavily subsidised Belt & Road project financing\n\n**Supply Chain Finance (Reverse Factoring) recap:**\n- Anchor buyer's bank pays approved invoices early\n- Supplier gets liquidity at buyer's credit rating (usually investment grade)\n- Buyer pays bank on extended terms — a hidden source of leverage\n- Major players: Citi, JPMorgan, HSBC, Greensill (collapsed 2021 — warning: SCF programs can obscure true debt levels)",
-          highlight: ["export credit agency", "ECA", "export credit insurance", "reverse factoring", "supply chain finance", "Greensill"],
+            "**Forfaiting** is a specialized form of trade receivable financing for medium-to-long-term export transactions, typically involving capital goods (machinery, infrastructure, technology).\n\n**How forfaiting differs from factoring:**\nFactoring is typically short-term (30–180 days), for domestic or export transactions, often with recourse, and covers many small invoices. Forfaiting is medium-to-long term (1–7 years), primarily for exports, always without recourse, and covers individual large transactions backed by bank guarantees or letters of credit.\n\n**The forfaiting mechanics:**\nIn a typical forfaiting deal:\n1. Exporter in Germany sells $10 million of equipment to a buyer in Brazil\n2. Brazilian buyer's bank issues a **letter of credit** (LC) or **avalised bill** guaranteeing payment in installments over 5 years\n3. German exporter sells these guaranteed payment obligations to a forfaiter (bank or specialist firm) at a discount\n4. Forfaiter pays the exporter cash immediately — without recourse\n5. Forfaiter holds the instruments until maturity (or sells them in the forfaiting secondary market)\n\n**The discount rate in forfaiting:**\nDiscount = Face Value x [r x T / (1 + r x T)]\nWhere r = discount rate (based on SOFR + country risk premium) and T = time to maturity in years\n\n**Why forfaiting matters:**\nFor exporters entering emerging markets, forfaiting eliminates political risk, transfer risk, and buyer credit risk in a single transaction. It converts a multi-year receivable into immediate cash, enabling the exporter to pursue the next deal.",
+          highlight: ["forfaiting", "letter of credit", "without recourse", "export", "avalised bill", "secondary market"],
         },
         {
           type: "quiz-mc",
           question:
-            "An exporter is selling goods to a buyer in a country with political instability. The exporter is worried about not receiving payment. Which instrument gives the strongest protection?",
+            "A company sells $300,000 of invoices to a factor with an 85% advance rate, a 2% discount fee, and a 1% service fee. How much does the company receive immediately at funding?",
           options: [
-            "A confirmed irrevocable LC — the seller's own bank guarantees payment if documents comply, regardless of the foreign bank or buyer's condition",
-            "A D/P documentary collection — the bank controls the documents until payment",
-            "An open account with 30-day terms — standard international practice and cheapest",
-            "A D/A documentary collection — buyer acceptance creates a legal obligation to pay",
+            "$255,000",
+            "$291,000",
+            "$246,000",
+            "$285,000",
           ],
           correctIndex: 0,
           explanation:
-            "A confirmed irrevocable LC provides double protection: the issuing bank (in the buyer's country) AND the seller's confirming bank both guarantee payment upon compliant document presentation. Even if the issuing bank or the buyer's country defaults, the seller's own bank pays. This is the strongest payment mechanism available in international trade, particularly valuable when country risk is high. D/P offers document control but no payment guarantee; D/A provides the weakest protection as goods are released before payment.",
+            "The advance rate determines the initial payment: $300,000 x 85% = $255,000 advanced immediately. The fees (2% discount + 1% service = $9,000 total) are typically deducted from the reserve when the buyer pays, not from the initial advance. So the company receives $255,000 now. When buyers pay the full $300,000, the factor remits the $45,000 reserve minus $9,000 in fees = $36,000 back to the company. Total received: $291,000 out of $300,000 invoiced.",
           difficulty: 2,
         },
         {
           type: "quiz-tf",
           statement:
-            "An Export Credit Agency (ECA) loan is primarily a subsidy for the importing country's buyer, with no strategic benefit to the exporting country.",
+            "In non-recourse factoring, if the buyer goes bankrupt and cannot pay, the seller (original invoice owner) must repurchase the invoice from the factor.",
           correct: false,
           explanation:
-            "False. ECA financing primarily benefits the exporting country by making its exporters more competitive. By offering the buyer cheaper financing (backed by government guarantees), the exporter wins contracts that might otherwise go to competitors. The US Ex-Im Bank supports American exporters like Boeing; UKEF supports British defence and infrastructure exports. ECAs are as much tools of industrial policy and geopolitical influence as they are trade finance instruments.",
+            "This describes recourse factoring, not non-recourse. In non-recourse factoring, the factor absorbs the loss if the buyer defaults due to insolvency. The seller has no obligation to buy back the invoice. This is the key distinction and the main reason non-recourse factoring is more expensive — the factor is taking on genuine credit risk and charges a premium for it. Note: non-recourse typically only covers buyer DEFAULT (bankruptcy), not buyer DISPUTES (claims the goods were defective), which usually remain the seller's responsibility.",
           difficulty: 2,
-        },
-        {
-          type: "quiz-scenario",
-          scenario:
-            "A UK machinery exporter has won a contract to sell £50M of equipment to a government agency in an emerging market. Payment is due 18 months after delivery. The buyer's credit rating is BB-. The exporter's cost of capital is 8% and the buyer's local borrowing rate is 14%.",
-          question: "Which approach best structures this transaction to manage risk and improve competitiveness?",
-          options: [
-            "ECA-backed supplier credit: UK Export Finance guarantees 85% of the loan, allowing the exporter to offer financing at near-sovereign rates while eliminating most credit and country risk",
-            "Open account with credit insurance: cheapest option, insures against default at low premium cost",
-            "Confirmed LC: standard instrument that eliminates all credit risk at minimal cost",
-            "Forfaiting: sell the receivable at a discount to a forfaiter, accepting a large haircut on face value",
-          ],
-          correctIndex: 0,
-          explanation:
-            "An ECA-backed structure is optimal here. UKEF guarantee allows the buyer to access capital markets at near-UK-sovereign rates (far below 14%), making the exporter's financing offer a competitive advantage over rivals. The 85% ECA guarantee eliminates most of the credit and political risk for any participating bank. A confirmed LC is impractical for an 18-month deferred payment of this size. Forfaiting works but the discount on a BB- 18-month receivable would be punitive. Credit insurance on open account leaves the exporter exposed to the full receivable for 18 months.",
-          difficulty: 3,
         },
       ],
     },
 
-    // ─── Lesson 3: Inventory Valuation & COGS ────────────────────────────────────
+    // ─── Lesson 3: Dynamic Discounting ────────────────────────────────────────
     {
-      id: "scf-3",
-      title: "📊 Inventory Valuation & COGS",
+      id: "supply-chain-finance-3",
+      title: "⚡ Dynamic Discounting",
       description:
-        "FIFO, LIFO, weighted average cost methods — and their impact on profits, taxes, and comparability",
-      icon: "BarChart2",
-      xpReward: 75,
-      difficulty: "intermediate",
-      steps: [
-        {
-          type: "teach",
-          title: "📈 FIFO vs LIFO: The Inflation Impact",
-          content:
-            "How a company values its inventory directly affects reported COGS, profits, and taxes. The choice matters enormously in inflationary environments.\n\n**FIFO (First In, First Out):**\n- Assumes oldest inventory is sold first\n- In **inflation**: oldest (cheaper) units are expensed as COGS first\n- Result: **lower COGS → higher gross profit → higher taxable income → higher taxes**\n- Inventory on balance sheet reflects more recent (higher) costs\n- Used globally under IFRS and US GAAP\n\n**LIFO (Last In, First Out):**\n- Assumes newest inventory is sold first\n- In **inflation**: newest (more expensive) units are expensed as COGS first\n- Result: **higher COGS → lower gross profit → lower taxable income → lower taxes**\n- Inventory on balance sheet reflects older (lower) costs — often severely understated\n- **Allowed only under US GAAP** — prohibited under IFRS\n- Many US companies use LIFO specifically for the tax deferral benefit\n\n**Numerical example (cost of widgets rising from $10 → $12):**\n\n| Method | COGS per unit | Gross Profit (sell at $15) | Tax (25%) |\n|---|---|---|---|\n| FIFO | $10 | $5 | $1.25 |\n| LIFO | $12 | $3 | $0.75 |\n\nLIFO saves $0.50 per unit in taxes — significant at scale.",
-          highlight: ["FIFO", "LIFO", "COGS", "inflation", "tax deferral", "gross profit"],
-        },
-        {
-          type: "teach",
-          title: "📐 Weighted Average Cost & LIFO Reserve",
-          content:
-            "**Weighted Average Cost (WAC)** method blends all inventory costs into a single average, providing results between FIFO and LIFO extremes.\n\nFormula: WAC = Total Cost of Available Inventory / Total Units Available\n\nWAC is common in industries with homogeneous, interchangeable goods (grain, chemicals, petroleum).\n\n**LIFO Reserve:** Companies using LIFO must disclose the **LIFO reserve** — the cumulative difference between LIFO inventory value and FIFO inventory value on the balance sheet.\n\nConversion formula:\n- FIFO Inventory = LIFO Inventory + LIFO Reserve\n- FIFO COGS = LIFO COGS – Increase in LIFO Reserve during the period\n\n**Why analysts adjust for LIFO reserve:**\n- Comparing a LIFO company to a FIFO company without adjustment is misleading\n- Analysts add the LIFO reserve to equity to get economic book value\n- Adding the LIFO reserve × (1 – tax rate) to net income restates to FIFO profit\n\n**Inventory write-downs:** When the **Net Realizable Value (NRV)** of inventory falls below cost, companies must write down inventory to NRV.\n- NRV = Estimated selling price – Estimated completion costs – Selling costs\n- Write-downs are permanent under IFRS (cannot be reversed if NRV recovers under US GAAP once written down)\n- Sudden large write-downs signal obsolete products or a deteriorating business",
-          highlight: ["weighted average cost", "LIFO reserve", "NRV", "inventory write-down", "FIFO conversion", "net realizable value"],
-        },
-        {
-          type: "teach",
-          title: "🔍 Inventory Quality Analysis",
-          content:
-            "Analysts scrutinize inventory for signs of deteriorating business health.\n\n**Key ratios:**\n- **Inventory Turnover** = COGS / Average Inventory. Higher = faster selling. Industry benchmarks vary widely (grocery: 20×+; aerospace: 2–4×).\n- **Days Inventory Outstanding (DIO)** = 365 / Inventory Turnover\n\n**Red flags:**\n- Inventory growing faster than revenue (potential demand weakness or obsolescence)\n- Sudden shift in inventory mix (raw materials spiking while WIP falls = production stoppage)\n- Rising finished goods as % of total (goods piling up unsold)\n\n**Channel stuffing:** Companies sometimes ship excess product to distributors near quarter-end to boost revenue recognition. Symptoms: receivables and inventory at distributors spike; subsequent quarter shows returns or revenue reversals.\n\n**Commodity inventory and hedging:**\nManufacturers holding commodity inputs (copper, steel, aluminum) face inventory value risk from price swings. They often hedge via futures contracts to lock in the cost of raw materials, converting variable raw material costs into more predictable COGS. However, if the hedge is not designated as an accounting hedge (under IFRS 9 / ASC 815), mark-to-market gains/losses flow through P&L, creating earnings volatility.",
-          highlight: ["inventory turnover", "DIO", "channel stuffing", "inventory write-down", "commodity hedging", "inventory quality"],
-        },
-        {
-          type: "quiz-mc",
-          question:
-            "In an inflationary environment, which inventory accounting method maximizes reported net income?",
-          options: [
-            "FIFO — it expenses the oldest (cheapest) units first, leaving lower COGS and higher reported profit",
-            "LIFO — it expenses the newest (most expensive) units, maximizing cost recognition",
-            "Weighted average cost — it blends costs, always producing the highest profit",
-            "Specific identification — always produces the highest income by choosing low-cost units to sell",
-          ],
-          correctIndex: 0,
-          explanation:
-            "Under FIFO during inflation, the oldest (cheapest) inventory units are expensed as COGS first. This results in lower COGS, higher gross profit, and higher reported net income — but also higher tax liability. LIFO does the opposite: higher COGS, lower profit, lower taxes. This is why US companies with large inventories (ExxonMobil, Caterpillar) historically used LIFO for tax savings. IFRS prohibits LIFO, so European companies all use FIFO or WAC, making cross-border comparisons tricky.",
-          difficulty: 2,
-        },
-        {
-          type: "quiz-tf",
-          statement:
-            "Under LIFO, the inventory figure on the balance sheet reflects current market replacement costs more accurately than under FIFO.",
-          correct: false,
-          explanation:
-            "False. Under LIFO, the most recent (higher-cost) purchases are expensed immediately as COGS, leaving only the oldest (cheapest) layers of inventory on the balance sheet. In a company that has used LIFO for decades during inflationary periods, the balance sheet inventory can be drastically understated relative to current replacement costs. The LIFO reserve disclosure exists precisely to allow analysts to convert these stale carrying values back to current-cost equivalents. FIFO actually leaves more recent (closer to current) cost layers on the balance sheet.",
-          difficulty: 3,
-        },
-        {
-          type: "quiz-scenario",
-          scenario:
-            "An analyst is comparing two US retailers: RetailA uses FIFO with inventory of $500M; RetailB uses LIFO with inventory of $400M and a disclosed LIFO reserve of $120M. Both have similar revenues and COGS. The corporate tax rate is 25%.",
-          question: "To make the balance sheets comparable, what is RetailB's FIFO-equivalent inventory, and how should the analyst adjust equity?",
-          options: [
-            "FIFO inventory = $520M; add $90M (LIFO reserve × 75% after-tax) to equity to reflect the understated asset value",
-            "FIFO inventory = $400M; no adjustment needed since LIFO and FIFO give the same total assets",
-            "FIFO inventory = $520M; add the full $120M to equity without tax adjustment",
-            "FIFO inventory = $280M; subtract the LIFO reserve to conservatively understate assets",
-          ],
-          correctIndex: 0,
-          explanation:
-            "FIFO Inventory = LIFO Inventory + LIFO Reserve = $400M + $120M = $520M. The $120M LIFO reserve represents cumulative cost that was expensed under LIFO but would still be in inventory under FIFO. To adjust equity: add LIFO Reserve × (1 – tax rate) = $120M × 0.75 = $90M — because if those costs hadn't been expensed, after-tax retained earnings would have been $90M higher. This is a standard analyst adjustment when comparing LIFO and FIFO companies in the same industry.",
-          difficulty: 3,
-        },
-      ],
-    },
-
-    // ─── Lesson 4: Supply Chain Risk & Resilience ─────────────────────────────────
-    {
-      id: "scf-4",
-      title: "⚠️ Supply Chain Risk & Resilience",
-      description:
-        "Concentration risk, bullwhip effect, safety stock, nearshoring, and building resilient supply chains",
-      icon: "Shield",
+        "Early payment programs, how buyers deploy excess cash, supplier cost of capital arbitrage, and the key differences between dynamic discounting and reverse factoring",
+      icon: "Zap",
       xpReward: 80,
       difficulty: "intermediate",
       steps: [
         {
           type: "teach",
-          title: "🌐 Concentration Risk & Geographic Risk",
+          title: "The Early Payment Opportunity",
           content:
-            "**Concentration risk** in supply chains arises when a company sources critical components from a single supplier or region.\n\n**Single-source supplier risk:**\n- Any disruption — fire, bankruptcy, strike, quality failure — halts production entirely\n- Counterparty has pricing power at contract renewal\n- COVID-19 semiconductor shortage: Apple, Ford, Toyota all relied heavily on TSMC (Taiwan) for advanced chips; factory closures and shipping delays caused billions in lost production\n\n**Geographic concentration risk:**\n- **Natural disasters**: Tohoku earthquake (2011) disrupted global auto production for months; Thailand floods (2011) destroyed hard drive supply for 2 years\n- **Geopolitical risk**: US-China trade war (2018–) forced companies to evaluate alternatives to Chinese manufacturing\n- **Country risk factors**: political instability, sanctions, export controls, currency inconvertibility\n\n**Resilience strategies:**\n- **Dual/multi-sourcing**: qualify at least two suppliers for critical components, even if the second is more expensive\n- **Geographic diversification**: spread production across regions (China + Vietnam + Mexico)\n- **Strategic stockpiling**: maintain 3–6 months of inventory for sole-sourced critical parts\n- **Supplier financial monitoring**: watch for deteriorating supplier credit ratings — a bankrupt supplier is worse than no supplier at all\n\n**Risk quantification:** Scenario analysis: 'If our primary chip supplier goes offline for 90 days, what is the revenue at risk?' — leading companies model this explicitly.",
-          highlight: ["concentration risk", "single-source supplier", "geographic risk", "dual-sourcing", "strategic stockpiling", "geopolitical risk"],
+            "**Dynamic discounting** is an early payment program where the BUYER funds early payments from its own cash — rather than using a third-party bank. The earlier the supplier requests payment, the larger the discount they offer.\n\n**The core concept — sliding scale pricing:**\nUnlike static early payment terms (e.g., 2/10 Net 30 — 2% discount if paid in 10 days), dynamic discounting allows the discount rate to vary based on when payment is requested:\n\n- Day 5: Supplier offers 3.0% annualized discount — 5-day advance\n- Day 20: Supplier offers 2.8% annualized discount — 20-day advance\n- Day 45: Supplier offers 2.5% annualized discount — 45-day advance\n- Day 75 (original due date): No discount needed\n\n**The buyer's perspective:**\nFor a cash-rich buyer, dynamic discounting is a deployment mechanism for idle cash:\n- Money sitting in a corporate treasury account earns near-zero (or negative real) returns\n- Deploying that cash through dynamic discounting earns 2–4% annualized — risk-free, because the obligation to pay already exists\n- The buyer is simply accelerating a payment they were going to make anyway\n- Return on cash = spread between cash yield and early payment discount rate\n\n**Why this is not a loan:**\nFrom an accounting perspective, dynamic discounting is simply an early payment of a trade payable — not a financing transaction. The buyer's Days Payable Outstanding (DPO) decreases, but no debt appears on the balance sheet.",
+          highlight: ["dynamic discounting", "sliding scale", "early payment", "Days Payable Outstanding", "idle cash"],
         },
         {
           type: "teach",
-          title: "📊 The Bullwhip Effect",
+          title: "How Buyers Benefit — The Cash Deployment Calculus",
           content:
-            "The **Bullwhip Effect** describes how small fluctuations in consumer demand create increasingly large swings in orders as you move upstream in the supply chain.\n\n**How it works:**\n- Consumer demand increases by 5% → retailer orders 10% more (buffer stock)\n- Distributor sees 10% increase → orders 20% from manufacturer\n- Manufacturer sees 20% → orders 40% more raw materials\n- Raw material supplier faces 40% demand spike from a 5% consumer move\n\n**Root causes:**\n- **Demand signal distortion**: each tier forecasts independently without sharing POS data\n- **Batch ordering**: companies place orders weekly/monthly rather than continuously\n- **Price fluctuations**: promotions trigger panic buying then demand drought\n- **Shortage gaming**: buyers over-order during scarcity (everyone orders 2× knowing they'll get half)\n\n**Bullwhip amplification** is most extreme in industries with long lead times (semiconductors: 12–52 week lead times create massive order swings)\n\n**Mitigation strategies:**\n- **Vendor-managed inventory (VMI)**: supplier monitors buyer's inventory levels and replenishes automatically\n- **POS data sharing**: real-time point-of-sale data passed upstream\n- **Collaborative planning (CPFR)**: buyers and suppliers jointly forecast\n- **Everyday low pricing (EDLP)**: Walmart's strategy — eliminate promotional spikes\n- **Order smoothing**: smaller, more frequent orders rather than large batches",
-          highlight: ["bullwhip effect", "demand amplification", "vendor-managed inventory", "POS data sharing", "batch ordering", "shortage gaming"],
+            "A cash-rich corporate treasury can earn attractive risk-adjusted returns through dynamic discounting programs. Understanding the math helps explain why Fortune 500 companies invest millions in platform technology to run these programs.\n\n**The opportunity cost calculation:**\nBuyer has $200 million in cash earning 0.5% in a money market fund.\nUsing $50 million for dynamic discounting at an average 3% annualized rate:\n\n- Opportunity cost of cash: 0.5% on $50M = $250,000 per year\n- Dynamic discounting return: 3.0% on $50M = $1,500,000 per year\n- Net benefit: $1,250,000 per year — essentially risk-free\n\n**Strategic benefits beyond return:**\n1. **Supply chain resilience**: Financially healthy suppliers are less likely to fail, cut quality, or seek other customers. Early payment programs literally fund supplier stability.\n2. **Negotiating leverage**: Offering a well-designed program can justify requesting longer standard payment terms (e.g., extending from Net 60 to Net 90), improving the buyer's own working capital.\n3. **Supplier loyalty**: Suppliers who participate in a buyer's SCF program are more deeply integrated and less likely to defect to competitors.\n4. **ESG metrics**: Many sustainability frameworks track supply chain financial health. Programs that help small suppliers can improve ESG scores.\n\n**Dynamic discounting vs reverse factoring:**\n- **Dynamic discounting**: Buyer funds payments. No bank involved. Buyer earns discount.\n- **Reverse factoring**: Bank funds payments. Buyer pays bank at original terms. Bank earns spread.\n\nBuyers choose dynamic discounting when they have excess cash and want to earn a return. They choose reverse factoring when they want to extend payment terms without disrupting supplier cash flow.",
+          highlight: ["cash deployment", "risk-adjusted return", "supply chain resilience", "dynamic discounting", "reverse factoring"],
         },
         {
           type: "teach",
-          title: "🛡️ Safety Stock & Nearshoring",
+          title: "Supplier Cost of Capital Arbitrage",
           content:
-            "**Safety stock** is inventory held to buffer against demand uncertainty and supply variability.\n\n**Safety stock formula:**\nSafety Stock = z × σ_d × √L\n\n- **z** = service level factor (e.g., z = 1.65 for 95% service level; z = 2.33 for 99%)\n- **σ_d** = standard deviation of daily demand\n- **L** = lead time in days\n\nExample: z = 1.65, σ_d = 20 units/day, L = 9 days\nSafety Stock = 1.65 × 20 × √9 = 1.65 × 20 × 3 = **99 units**\n\n**Reorder point** = (Average Daily Demand × Lead Time) + Safety Stock\n\n**Nearshoring and friendshoring:**\n\n**Nearshoring**: moving production to geographically close countries (US companies moving from China to Mexico; European companies to Poland/Morocco)\n- Reduces lead times dramatically (Mexico to US: days vs China: weeks)\n- Lower transportation costs and tariff risk\n- Cultural/time-zone proximity aids coordination\n\n**Friendshoring**: sourcing from geopolitically aligned countries (US allies), reducing exposure to adversarial nation supply chains\n- Accelerated by CHIPS Act (semiconductors), Inflation Reduction Act (EVs/batteries)\n- Creates new supply chain clusters: India electronics, Vietnam textiles, Mexico auto parts\n\n**Total cost of reshoring** is often underestimated: labor cost savings disappear, but resilience, speed, and tariff avoidance have quantifiable value.",
-          highlight: ["safety stock", "service level", "lead time", "nearshoring", "friendshoring", "reshoring", "reorder point"],
+            "The economic engine behind supply chain finance programs is a **cost of capital arbitrage**: large buyers can access capital cheaply, while their suppliers often cannot.\n\n**The arbitrage in numbers:**\nAssume:\n- Buyer's cost of capital: 3% (AA-rated investment grade)\n- Small supplier's cost of capital: 9% (small business borrowing rate)\n- Invoice: $1,000,000, due in 90 days\n\nFor the SUPPLIER:\n- Without SCF: Wait 90 days, or borrow $1M at 9% for 90 days = $22,192 in interest cost\n- With SCF at 3% annualized: Pay $7,397 discount to receive cash 90 days early\n- Supplier saves $14,795 — a 67% reduction in financing cost\n\nFor the BUYER (reverse factoring model):\n- Bank advances $1M to supplier at 3%\n- Bank earns $7,397 over 90 days\n- Buyer keeps $1M in its treasury for 90 days — earns return on that cash\n- Buyer's DPO extends, improving working capital metrics\n\n**The value creation is REAL:**\nThis is not a zero-sum transaction. The cost of capital arbitrage generates genuine economic value:\n- The financial system intermediates between cheap and expensive credit\n- Suppliers grow more efficiently by reducing borrowing costs\n- Supply chains become more resilient\n- Banks earn a spread on high-quality, short-duration assets\n\n**Platform technology as enabler:**\nWithout digital platforms, the transaction costs of matching individual buyer invoices to supplier funding requests would make small transactions uneconomical. Platforms like Taulia, C2FO, and SAP Ariba automate invoice approval, rate setting, and settlement — making millions of micro-transactions commercially viable.",
+          highlight: ["cost of capital arbitrage", "borrowing rate", "DPO", "platform technology", "value creation"],
         },
         {
           type: "quiz-mc",
           question:
-            "A company sources 100% of a critical electronic component from a single manufacturer in one country. What is the most cost-effective risk mitigation strategy?",
+            "A buyer has $100 million in cash earning 0.8% in a money market fund. They deploy $30 million in a dynamic discounting program, earning an average discount of 3.6% annualized. What is the net annual benefit of the program on the deployed cash?",
           options: [
-            "Qualify a second supplier in a different region and place at least 20–30% of orders with them regularly to maintain the relationship and production capability",
-            "Hold 24 months of safety stock to buffer against any possible disruption",
-            "Vertically integrate by acquiring the supplier to control production directly",
-            "Take out supply disruption insurance and rely on the policy to compensate for losses",
+            "$840,000",
+            "$1,080,000",
+            "$240,000",
+            "$360,000",
           ],
           correctIndex: 0,
           explanation:
-            "Dual-sourcing with regular split orders is the most practical risk mitigation. Holding 24 months of safety stock ties up enormous capital, creates obsolescence risk, and doesn't address the root single-source problem. Vertical integration (acquisition) is expensive, operationally complex, and diverts management focus. Insurance compensates financially but doesn't prevent production stoppages or customer losses. Qualifying and regularly using a second supplier ensures the backup supplier maintains production capability — a supplier rarely used is a supplier who cannot reliably ramp up in a crisis.",
+            "Return from dynamic discounting: $30M x 3.6% = $1,080,000. Opportunity cost of that cash (what it would have earned in money market): $30M x 0.8% = $240,000. Net benefit = $1,080,000 - $240,000 = $840,000 per year. This is essentially risk-free incremental return because the buyer was already going to pay these invoices — they are simply paying earlier in exchange for a discount.",
           difficulty: 2,
         },
         {
           type: "quiz-tf",
           statement:
-            "The bullwhip effect is only observed in consumer goods industries and does not affect industrial or B2B supply chains.",
+            "Dynamic discounting increases a buyer's debt obligations because the buyer is effectively lending money to its suppliers.",
           correct: false,
           explanation:
-            "False. The bullwhip effect is actually most severe in B2B and industrial supply chains where lead times are longest. The 2021–2023 semiconductor shortage is the definitive example: a modest increase in consumer electronics demand led to massive over-ordering by automakers and industrial companies (everyone ordered 2× fearing shortages), which led chipmakers to massively expand capacity, which then flooded the market in 2023 leading to a severe oversupply correction. Consumer goods supply chains often benefit from POS data sharing that partially mitigates the bullwhip effect.",
+            "Dynamic discounting does NOT create debt for the buyer. It is simply an early payment of a trade payable — an obligation that already existed. The buyer's balance sheet shows a reduction in cash and a corresponding reduction in accounts payable (both decrease). No new liability is created. This accounting treatment is one reason dynamic discounting is attractive versus other financing structures: it keeps the buyer's balance sheet clean and preserves debt capacity.",
           difficulty: 2,
-        },
-        {
-          type: "quiz-scenario",
-          scenario:
-            "An electronics manufacturer has daily demand with σ = 50 units. Lead time from their sole supplier is 16 days. They want 99% service level (z = 2.33). Average daily demand is 200 units.",
-          question: "What is the safety stock required and the reorder point?",
-          options: [
-            "Safety stock = 466 units; reorder point = 3,666 units",
-            "Safety stock = 200 units; reorder point = 3,400 units",
-            "Safety stock = 800 units; reorder point = 4,000 units",
-            "Safety stock = 233 units; reorder point = 3,433 units",
-          ],
-          correctIndex: 0,
-          explanation:
-            "Safety Stock = z × σ × √L = 2.33 × 50 × √16 = 2.33 × 50 × 4 = 466 units. Reorder Point = (Average Daily Demand × Lead Time) + Safety Stock = (200 × 16) + 466 = 3,200 + 466 = 3,666 units. When inventory drops to 3,666 units, place a new order — the 466 units of safety stock buffer handles demand spikes during the 16-day lead time. Higher service levels (99% vs 95%) require more safety stock (466 vs 330 units), representing a direct cost vs service trade-off.",
-          difficulty: 3,
         },
       ],
     },
 
-    // ─── Lesson 5: Procurement & Cost Management ─────────────────────────────────
+    // ─── Lesson 4: Trade Receivables Securitization ───────────────────────────
     {
-      id: "scf-5",
-      title: "🎯 Procurement & Cost Management",
+      id: "supply-chain-finance-4",
+      title: "📦 Trade Receivables Securitization",
       description:
-        "Strategic sourcing, Kraljic matrix, total cost of ownership, should-cost analysis, and commodity hedging",
-      icon: "Target",
-      xpReward: 85,
+        "Pooling receivables into ABS structures, credit enhancement techniques, off-balance sheet treatment, rating agency considerations, and how large corporates access capital markets through their receivables",
+      icon: "Database",
+      xpReward: 90,
       difficulty: "advanced",
       steps: [
         {
           type: "teach",
-          title: "📋 Strategic Sourcing & Total Cost of Ownership",
+          title: "From Individual Receivables to a Securitized Pool",
           content:
-            "**Strategic sourcing** is a disciplined approach to procurement that focuses on **Total Cost of Ownership (TCO)** rather than just purchase price.\n\n**TCO components:**\n- **Acquisition cost**: purchase price, shipping, customs/duties, insurance\n- **Operating cost**: installation, training, energy consumption, consumables\n- **Maintenance cost**: repairs, spare parts, scheduled maintenance\n- **End-of-life cost**: disposal, decommissioning, environmental remediation\n\nExample: Supplier A offers a machine at $100,000. Supplier B offers $80,000 but maintenance costs are $8,000/year vs $3,000/year.\nOver 10 years: A = $100,000 + $30,000 = **$130,000**; B = $80,000 + $80,000 = **$160,000**.\nSupplier A is actually cheaper by $30,000 despite the higher sticker price.\n\n**Should-cost analysis** is a bottom-up cost model estimating what something *should* cost based on:\n- Raw material prices (commodity spot prices)\n- Labor rates (country-specific)\n- Manufacturing overhead (equipment, energy)\n- Tooling amortization\n- Logistics costs\n- Target supplier margin\n\nShould-cost gives the buyer a negotiating target grounded in economics — not just market price. Used extensively in aerospace, automotive, and defense procurement.\n\n**Cost transparency** tools (commodity cost trackers, labor rate databases) let procurement teams update should-cost models in real time as input costs change.",
-          highlight: ["total cost of ownership", "TCO", "strategic sourcing", "should-cost analysis", "cost modeling", "procurement"],
+            "**Trade receivables securitization** transforms a portfolio of individual invoices into a capital markets instrument — allowing corporations to access institutional investor capital at scale.\n\n**Why securitize instead of factoring?**\nFor a small business, individual invoice factoring is adequate. But a large corporation with $2 billion in annual receivables needs a more efficient structure:\n- Factoring a single $2B pool to one bank creates concentration risk\n- Capital markets securitization allows selling to hundreds of investors\n- Securitization typically offers lower financing costs than bank credit facilities\n- The structure can be self-replenishing (revolving) — as old invoices are collected, new ones are added\n\n**The basic securitization structure:**\n1. **Originator** (the company) generates trade receivables from selling goods/services\n2. A **Special Purpose Vehicle (SPV)** is created — a legally separate entity\n3. The Originator sells receivables to the SPV (true sale analysis)\n4. The SPV issues **Asset-Backed Commercial Paper (ABCP)** or notes to capital markets investors\n5. Investors receive principal + interest from collections on the receivables\n6. The SPV replenishes by buying new receivables as old ones are collected\n\n**The revolving feature:**\nMost trade receivables ABS structures are revolving — the proceeds from maturing receivables are used to purchase new receivables, maintaining the pool size. This continues until the revolving period ends and the structure moves into amortization.\n\n**Eligible receivables criteria:**\nNot all receivables qualify for securitization pools. Common eligibility filters:\n- Aged within 90–180 days\n- No buyer disputes or credit notes outstanding\n- Diversified by buyer, geography, and industry\n- Buyer meets minimum credit quality thresholds",
+          highlight: ["securitization", "Special Purpose Vehicle", "ABCP", "revolving", "eligible receivables"],
         },
         {
           type: "teach",
-          title: "🔲 The Kraljic Matrix",
+          title: "Credit Enhancement and Tranching",
           content:
-            "The **Kraljic Matrix** (Peter Kraljic, 1983 — still the dominant framework) segments suppliers into four categories based on two dimensions:\n\n**Axes:**\n- **Supply risk** (horizontal): How hard is this item to source? (concentration, lead time, substitutability)\n- **Profit impact** (vertical): How much does this item affect profitability? (spend level, quality impact, production criticality)\n\n**Four quadrants:**\n\n**Strategic (high impact, high risk):**\n- Critical components from sole-source suppliers\n- Strategy: deep partnerships, long-term contracts, co-development, risk-sharing\n- Example: TSMC advanced chips for Apple\n\n**Leverage (high impact, low risk):**\n- High-spend but many alternatives available\n- Strategy: competitive bidding, volume consolidation, push for maximum cost reduction\n- Example: office supplies for a large corporation\n\n**Bottleneck (low impact, high risk):**\n- Small spend but sole-source or long lead time\n- Strategy: maintain safety stock, qualify backup suppliers, lock in supply\n- Example: obscure sensor chip in critical medical equipment\n\n**Non-critical (low impact, low risk):**\n- Standard commodity items, many suppliers\n- Strategy: automate purchasing, reduce transaction costs, use purchasing cards\n- Example: stationery, janitorial supplies\n\n**Key insight:** Many companies over-invest in non-critical sourcing and under-invest in strategic and bottleneck categories — misallocating procurement resources.",
-          highlight: ["Kraljic matrix", "strategic suppliers", "leverage suppliers", "bottleneck suppliers", "supply risk", "profit impact"],
+            "**Credit enhancement** is the set of structural features that protect investors from losses and enable the securitization to achieve a high credit rating despite the mixed quality of underlying receivables.\n\n**Types of credit enhancement:**\n\n**1. Overcollateralization:**\nThe SPV holds more receivables than the value of notes issued. If $100M in notes is outstanding, the SPV might hold $115M in receivables. The extra $15M (the haircut) absorbs the first losses from defaults or dilution.\n\n**2. Reserve accounts:**\nCash reserves funded by the originator or retained from collections. Acts as a liquid buffer against short-term shortfalls in collections.\n\n**3. Excess spread:**\nThe receivables earn a higher yield (from buyer payment obligations) than the interest owed to investors. This positive spread provides ongoing loss absorption.\n\n**4. Subordination / tranching:**\nThe pool is divided into senior and subordinate tranches:\n- **Senior tranche (AAA)**: Paid first from collections. Extremely low risk. 70–85% of the pool.\n- **Mezzanine tranche (A/BBB)**: Paid after senior. Moderate risk. 5–15%.\n- **First-loss tranche / equity**: Absorbs first losses. Highest risk, highest return. 10–20%. Often retained by the originator.\n\n**5. Originator representations and warranties:**\nThe originator warrants that receivables are genuine, properly documented, and meet eligibility criteria. Breaches require originator to repurchase ineligible assets.\n\n**Rating agency analysis:**\nMoody's, S&P, and Fitch analyze historical default rates and dilution in the receivables pool, obligor (buyer) concentration risk, originator operational risk (servicing capabilities), and structural features and legal isolation of the SPV.",
+          highlight: ["credit enhancement", "overcollateralization", "tranching", "senior tranche", "rating agency", "excess spread"],
         },
         {
           type: "teach",
-          title: "📈 Commodity Hedging Strategies",
+          title: "Off-Balance Sheet Treatment and IFRS/GAAP Considerations",
           content:
-            "Manufacturers with significant commodity input costs (airlines: jet fuel; automakers: steel/aluminum; food producers: wheat/corn) use derivatives to hedge price risk.\n\n**Common hedging instruments:**\n\n**Futures contracts:**\n- Exchange-traded, standardized contracts to buy/sell a commodity at a fixed price on a future date\n- Airline buys jet fuel futures: locks in price today for fuel needed in 6 months\n- Highly liquid, easy to enter/exit; but may require cash margin calls if prices move against you\n\n**Options (call options):**\n- Airline buys a call option on jet fuel: caps the price paid but retains benefit if prices fall\n- Cost: option premium (insurance premium analogy)\n- More flexible than futures — hedges the downside without sacrificing upside\n\n**Swaps:**\n- OTC agreement to exchange fixed vs. floating commodity prices over a period\n- Airline enters fuel swap: pays fixed price monthly, receives market price — net payment is fixed regardless of spot moves\n- Less exchange-traded flexibility but can be highly customized\n\n**Zero-cost collar:**\n- Buy a call option (cap upside cost) + Sell a put option (give up some downside benefit)\n- Net premium ≈ zero — popular when option premiums are expensive\n\n**Hedging accounting:**\n- Under IFRS 9 / ASC 815, designated hedges get **hedge accounting**: gains/losses deferred in OCI, recognized when hedged item affects P&L — eliminates accounting mismatch\n- Without hedge designation: mark-to-market through P&L every quarter — creates earnings volatility even for economically sound hedges",
-          highlight: ["commodity hedging", "futures", "call options", "swap", "zero-cost collar", "hedge accounting", "OCI"],
+            "One of the most valued features of receivables securitization is the potential to move assets **off the originator's balance sheet**, reducing leverage ratios and improving financial metrics.\n\n**Why off-balance sheet treatment matters:**\n- Reduces reported debt and leverage ratios\n- Improves Return on Assets (ROA) — fewer assets for the same earnings\n- May reduce bond covenant pressure\n- Can improve credit ratings and reduce borrowing costs across ALL debt\n\n**The true sale requirement:**\nFor off-balance sheet treatment, the transfer of receivables to the SPV must constitute a **true sale** — not merely a pledge of collateral:\n- Legal title must transfer from originator to SPV\n- SPV must have sufficient insulation from originator bankruptcy\n- Originator cannot maintain effective control over the assets\n- The SPV must be structured as a bankruptcy remote entity\n\n**IFRS 9 derecognition criteria:**\nUnder IFRS 9, an originator can derecognize (remove from balance sheet) transferred receivables when:\n1. The contractual rights to cash flows expire or are transferred, AND\n2. Substantially all the risks and rewards of ownership are transferred\n\n**The retained interest problem:**\nWhen originators retain first-loss tranches, service the receivables, or provide significant credit support, they may fail the derecognition test — keeping assets on-balance sheet despite the securitization. Accounting firms scrutinize these structures carefully.\n\n**GAAP (ASC 860) approach:**\nUS GAAP uses a control-based approach rather than risks and rewards. An entity surrenders control when:\n- Transferred assets are legally isolated\n- Transferee has the right to pledge or exchange assets\n- Transferor does not maintain effective control through repurchase agreements or call options\n\n**Practical takeaway:** Sophisticated securitization counsel, auditors, and rating agencies collaborate to ensure the structure achieves its intended accounting and legal objectives.",
+          highlight: ["off-balance sheet", "true sale", "derecognition", "IFRS 9", "ASC 860", "bankruptcy remote"],
         },
         {
           type: "quiz-mc",
           question:
-            "An airline wants to hedge jet fuel costs for the next 12 months. Which combination of instruments best protects against fuel price spikes while retaining some upside if prices fall?",
+            "A company securitizes $500M of trade receivables into a SPV. The SPV issues $400M of notes to investors and the company retains a $100M first-loss tranche. What type of credit enhancement is the $100M first-loss tranche providing?",
           options: [
-            "Buy call options on jet fuel — caps the maximum price paid but profits if fuel prices fall below the strike",
-            "Short futures on jet fuel — receives profit when prices fall, exactly offsetting the cost reduction",
-            "Enter a fixed-price swap — pays fixed rate every month regardless of spot prices, eliminating all price uncertainty",
-            "Use a zero-cost collar — buy a call to cap upside costs, sell a put to offset premium cost, but give up the benefit if prices fall significantly",
+            "Subordination and overcollateralization",
+            "Excess spread",
+            "Reserve account",
+            "Originator warranty",
           ],
           correctIndex: 0,
           explanation:
-            "Call options give the airline the right (not obligation) to buy fuel at the strike price. If fuel prices spike, the option pays off, limiting the airline's cost. If fuel prices fall, the airline simply lets the option expire and buys at the lower spot price — benefiting fully from the decline (minus the premium paid). Short futures lock in a price but forgo any benefit from falling prices. Fixed swaps eliminate all uncertainty (good for budget planning but no upside). The zero-cost collar is a reasonable compromise but gives away downside benefit — the question asks for retaining upside, so calls are optimal.",
+            "The $100M first-loss tranche retained by the originator provides credit enhancement through SUBORDINATION (also called overcollateralization). The SPV holds $500M in receivables but only issues $400M in notes — the extra $100M (20% of pool) is the equity/first-loss piece that absorbs the first $100M of any defaults or losses. This protects the AAA-rated senior noteholders. Subordination/first-loss retention is the most powerful form of credit enhancement and is required in most securitization structures.",
+          difficulty: 3,
+        },
+        {
+          type: "quiz-tf",
+          statement:
+            "Under IFRS 9, a company can always remove securitized receivables from its balance sheet as long as it has legally transferred ownership to a Special Purpose Vehicle.",
+          correct: false,
+          explanation:
+            "Legal transfer alone is NOT sufficient for balance sheet derecognition under IFRS 9. The company must also transfer substantially all the risks and rewards of ownership. If the company retains significant exposure — for example by holding a large first-loss tranche, providing credit guarantees, or having rights to repurchase assets — it has not transferred the risks and rewards, so the assets must remain on the balance sheet. This is why many securitization structures that appear to move assets off-balance sheet are challenged by auditors under IFRS 9's derecognition criteria.",
+          difficulty: 3,
+        },
+      ],
+    },
+
+    // ─── Lesson 5: ESG & Supply Chain Finance ─────────────────────────────────
+    {
+      id: "supply-chain-finance-5",
+      title: "🌱 ESG & Supply Chain Finance",
+      description:
+        "Green supply chain programs, sustainability-linked pricing incentives, social impact through supplier financial inclusion, and how ESG integration is reshaping global trade finance",
+      icon: "Leaf",
+      xpReward: 85,
+      difficulty: "intermediate",
+      steps: [
+        {
+          type: "teach",
+          title: "Sustainability-Linked Supply Chain Finance",
+          content:
+            "**Sustainability-linked supply chain finance (SL-SCF)** integrates environmental, social, and governance (ESG) performance into the pricing of trade finance programs — rewarding suppliers for improving their sustainability metrics.\n\n**How it works — the pricing mechanism:**\nInstead of a fixed discount rate, suppliers receive pricing tiers based on their ESG score or specific sustainability KPIs:\n\n- Tier 1 (High ESG score, 80 and above): Early payment at 2.2% annualized\n- Tier 2 (Mid ESG score, 60-79): Early payment at 2.8% annualized\n- Tier 3 (Low ESG score, below 60): Early payment at 3.5% annualized\n\nSuppliers who improve their ESG performance unlock better pricing — a direct financial incentive for sustainability improvement.\n\n**ESG KPIs commonly used:**\n- **Environmental**: Carbon emissions intensity (Scope 1 and 2), renewable energy share, water intensity, waste recycling rate\n- **Social**: Worker safety record, living wage compliance, gender diversity in management, no child/forced labor certifications\n- **Governance**: Ethics certifications, anti-corruption programs, board diversity, transparent reporting\n\n**Third-party verification:**\nESG scores must be independently verified to prevent greenwashing. Common certifiers:\n- EcoVadis (most widely used in procurement ESG ratings)\n- CDP (Carbon Disclosure Project) scores\n- B Corp certification\n- ISO 14001 (environmental management) certification\n- Sedex/SMETA social audit\n\n**Scale and growth:**\nSL-SCF programs are growing rapidly. Major banks (HSBC, BNP Paribas, Citi, JPMorgan) and large buyers (Unilever, Walmart, BMW, Inditex/Zara) have launched programs linking supplier financing costs to sustainability performance.",
+          highlight: ["sustainability-linked", "ESG score", "pricing tiers", "EcoVadis", "greenwashing", "KPIs"],
+        },
+        {
+          type: "teach",
+          title: "Green Supply Chain Programs",
+          content:
+            "**Green supply chain finance** specifically targets environmental improvements — using the financial incentive of cheaper credit to drive decarbonization and resource efficiency throughout the supply chain.\n\n**Why supply chains matter for ESG:**\nFor most large companies, supply chain emissions (Scope 3) account for 70–90% of total carbon footprint. A manufacturer's own factory may be clean, but its suppliers' operations may be highly polluting. Green SCF programs give buyers a financial lever to influence supplier environmental behavior.\n\n**Green SCF program structures:**\n\n**1. Carbon-reduction SCF:**\nSuppliers who commit to and demonstrate carbon reduction targets receive improved financing rates. Measurements typically use established frameworks (SBTi — Science Based Targets initiative).\n\n**2. Green procurement incentives:**\nBuyers offer better payment terms specifically for invoices related to green products or sustainable raw materials (recycled content, organic materials, renewable energy equipment).\n\n**3. Transition finance:**\nSuppliers transitioning to more sustainable operations (switching from coal to renewable energy, upgrading to energy-efficient equipment) receive preferential financing terms during the transition period.\n\n**Case study — Walmart's Project Gigaton:**\nWalmart launched a program to avoid 1 billion metric tons of GHG emissions from its global supply chain by 2030. Supply chain financing incentives are a key tool — suppliers with verified emissions reductions qualify for better payment terms.\n\n**Case study — BMW's Green Finance:**\nBMW uses EcoVadis scores to tier its supplier financing rates. Suppliers with top EcoVadis sustainability ratings (top 5%) access financing at prime rates; others pay progressively higher rates. BMW also gives lower-rated suppliers free access to EcoVadis improvement tools.\n\n**The flywheel effect:**\nLower-cost financing leads to supplier investment in sustainability improvements, which generates a better ESG score, which qualifies the supplier for even lower financing costs, which enables further sustainability investment. The financial incentive creates a self-reinforcing cycle.",
+          highlight: ["Scope 3", "carbon reduction", "Science Based Targets", "EcoVadis", "greenwashing", "flywheel effect"],
+        },
+        {
+          type: "teach",
+          title: "Social Impact — Financial Inclusion for Suppliers",
+          content:
+            "Beyond environmental goals, supply chain finance plays a crucial role in **financial inclusion** — providing access to affordable credit for small businesses in developing economies that are systematically excluded from traditional banking.\n\n**The financial exclusion problem:**\nIn many emerging markets:\n- Small suppliers cannot access bank credit at all\n- When credit is available, interest rates of 20–40% are common in markets like Sub-Saharan Africa, Southeast Asia, and Latin America\n- Invoice financing requires collateral — which small businesses often lack\n- Cultural barriers, language, and bureaucracy exclude many micro-enterprises\n\n**How SCF programs address financial inclusion:**\nBy attaching small supplier financing to a large anchor buyer's credit quality:\n- Suppliers in India, Kenya, or Indonesia can access finance at rates resembling developed market rates\n- No collateral required — the approved invoice is the credit support\n- Digital platforms remove geography barriers — financing via mobile phone\n- First formal credit access often helps suppliers build a credit history\n\n**Impact measurement:**\nSocial impact in SCF is measured through:\n- Number of small/medium suppliers accessing financing for the first time\n- Average reduction in financing cost compared to alternative sources\n- Jobs supported through improved supplier financial health\n- Women-owned business participation rates\n- Rural and agricultural supplier inclusion\n\n**UN SDG alignment:**\nSCF financial inclusion programs directly support:\n- **SDG 8**: Decent work and economic growth\n- **SDG 10**: Reduced inequalities\n- **SDG 17**: Partnerships for the goals\n\n**The business case:**\nBuyers who help their small suppliers survive and grow benefit from more resilient supply chains, supplier loyalty and relationship depth, emerging market growth opportunity (as suppliers grow they can supply more), and enhanced brand reputation and ESG reporting metrics.",
+          highlight: ["financial inclusion", "emerging markets", "anchor buyer", "SDG", "mobile finance", "credit history"],
+        },
+        {
+          type: "quiz-mc",
+          question:
+            "A large buyer implements a sustainability-linked SCF program with two tiers: scores 80+ earn 2.2% annualized; scores 60–79 earn 2.8%. Supplier A improves from a score of 72 to 84. On a $2,000,000 invoice portfolio per year, what is the annual financing cost saving from moving to Tier 1?",
+          options: [
+            "$12,000",
+            "$6,000",
+            "$18,000",
+            "$24,000",
+          ],
+          correctIndex: 0,
+          explanation:
+            "The annual rate improvement is 2.8% - 2.2% = 0.6% per year. On a $2,000,000 invoice portfolio, the annual saving is $2,000,000 x 0.006 = $12,000 per year. This financial incentive directly rewards suppliers for investing in sustainability improvements — moving from Tier 2 to Tier 1 puts $12,000 back in the supplier's pocket each year, which can be reinvested in further ESG initiatives.",
           difficulty: 2,
         },
         {
           type: "quiz-tf",
           statement:
-            "Volume discounts from a single supplier are always preferable to maintaining multiple suppliers at higher unit costs.",
+            "Supply chain sustainability-linked finance programs primarily benefit large, well-resourced suppliers in developed markets, as smaller suppliers lack the infrastructure to track and report ESG metrics.",
           correct: false,
           explanation:
-            "False. Volume discounts reduce unit costs but concentrate supply risk — the Kraljic matrix would classify such a sole-source critical supplier as 'strategic,' requiring a partnership approach and risk mitigation, not pure cost optimization. The COVID-19 pandemic demonstrated that production stoppages from sole-source disruptions can cost far more than any volume discount saves. For strategic and bottleneck items, supply continuity and risk diversification often outweigh the cost savings from concentration. Leverage-category items (multiple suppliers, low supply risk) are where aggressive volume consolidation and discounting is appropriate.",
+            "While there are valid concerns about ESG reporting burdens on small suppliers, the premise is incorrect. Many SL-SCF programs specifically TARGET small and medium suppliers in emerging markets, and major buyers like Walmart, Unilever, and BMW provide free access to sustainability assessment tools (like EcoVadis) to help smaller suppliers participate. Additionally, digital platforms enable ESG metric tracking via mobile devices, reducing infrastructure barriers. Financial inclusion for small suppliers is explicitly one of the social impact goals of SCF programs, aligned with UN Sustainable Development Goals SDG 8, SDG 10, and SDG 17.",
           difficulty: 2,
-        },
-        {
-          type: "quiz-scenario",
-          scenario:
-            "A global automaker spends $2B annually on steel (many suppliers globally), $500M on proprietary battery management chips (single supplier), $50M on custom seals (two suppliers, 18-week lead time), and $10M on office supplies (hundreds of suppliers).",
-          question: "Using the Kraljic matrix, how should the automaker prioritize procurement strategy?",
-          options: [
-            "Steel = Leverage (competitive bidding for cost); Chips = Strategic (deep partnership, dual-source program); Seals = Bottleneck (safety stock, qualify second supplier urgently); Office = Non-critical (automate/delegate)",
-            "Steel = Strategic (highest spend, critical); Chips = Leverage (electronics commodity); Seals = Non-critical (small spend); Office = Bottleneck (many suppliers needed)",
-            "All four categories should use competitive bidding to minimize costs across the board",
-            "Chips = Non-critical (small spend relative to steel); Steel = Strategic (largest spend drives most profit impact)",
-          ],
-          correctIndex: 0,
-          explanation:
-            "The Kraljic classification: Steel ($2B, many suppliers) = Leverage — high profit impact, low supply risk → compete aggressively for savings. Chips ($500M, sole-source) = Strategic — high impact AND high risk → long-term partnership, co-development, urgently qualify a second source. Seals ($50M, two suppliers, 18-week lead time) = Bottleneck — low spend but high supply risk → build safety stock, qualify a third supplier. Office supplies = Non-critical — automate with purchasing cards. The automaker's most urgent action is the Bottleneck seals: a $50M spend could stop $2B+ of production if a supplier fails.",
-          difficulty: 3,
         },
       ],
     },
