@@ -114,6 +114,34 @@ interface WhaleRow {
   timeAgo: string;
 }
 
+interface YieldFarmOpportunity {
+  id: string;
+  protocol: string;
+  pool: string;
+  apy: number; // annual %
+  isLP: boolean; // liquidity pool (has IL risk)
+  token0?: string;
+  token1?: string;
+}
+
+interface NftCollection {
+  name: string;
+  symbol: string;
+  floorPrice: number; // ETH
+  volume24h: number; // ETH
+  holderCount: number;
+  change24h: number; // %
+}
+
+interface CryptoPortfolioAsset {
+  symbol: string;
+  name: string;
+  qty: number;
+  avgPrice: number;
+  currentPrice: number;
+  targetWeight: number; // 0-100
+}
+
 // ── Static asset definitions ──────────────────────────────────────────────────
 
 const ASSETS: CryptoAsset[] = [
@@ -150,6 +178,22 @@ const STAKING_DEF: Omit<StakingPool, "apy">[] = [
   { id: "bnb-stake",  name: "BNB Earn",          asset: "BNB",   minStake: 0.1,   lockDays: 30  },
   { id: "aave-stake", name: "Aave Safety Module", asset: "AAVE", minStake: 0.1,   lockDays: 10  },
   { id: "atom-stake", name: "Cosmos Staking",    asset: "ATOM",  minStake: 1,     lockDays: 21  },
+];
+
+const YIELD_FARM_OPPORTUNITIES: YieldFarmOpportunity[] = [
+  { id: "aave-usdc",    protocol: "AAVE",     pool: "USDC Lending",       apy: 4.2,  isLP: false },
+  { id: "uni-eth-usdc", protocol: "Uniswap",  pool: "ETH/USDC LP",        apy: 12.0, isLP: true, token0: "ETH", token1: "USDC" },
+  { id: "curve-3pool",  protocol: "Curve",    pool: "3pool (DAI/USDC/USDT)", apy: 5.8, isLP: true, token0: "USDC", token1: "DAI" },
+  { id: "comp-dai",     protocol: "Compound", pool: "DAI Lending",        apy: 3.5,  isLP: false },
+  { id: "bal-8020",     protocol: "Balancer", pool: "80/20 BAL/WETH",     apy: 18.0, isLP: true, token0: "BAL", token1: "WETH" },
+];
+
+const NFT_COLLECTIONS_DEF: Omit<NftCollection, "floorPrice" | "volume24h" | "holderCount" | "change24h">[] = [
+  { name: "Bored Ape Yacht Club", symbol: "BAYC" },
+  { name: "CryptoPunks",          symbol: "PUNK" },
+  { name: "Azuki",                symbol: "AZUK" },
+  { name: "Pudgy Penguins",       symbol: "PUDG" },
+  { name: "Doodles",              symbol: "DOOD" },
 ];
 
 const DEFI_GLOSSARY = [

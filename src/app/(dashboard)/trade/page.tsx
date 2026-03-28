@@ -155,6 +155,7 @@ export default function TradePage() {
       <div className="hidden md:flex h-full">
         <TradeShareCard />
         <AlphaBotAlerts />
+        <PositionAlerts />
 
         {/* ── Left sidebar (220px): Watchlist + PriceAlerts ── */}
         <div
