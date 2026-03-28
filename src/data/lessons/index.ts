@@ -28,6 +28,9 @@ import { UNIT_DERIVATIVES_ADVANCED } from "./unit-derivatives-advanced";
 import { UNIT_MACRO_INVESTING } from "./unit-macro-investing";
 import { UNIT_PRIVATE_EQUITY } from "./unit-private-equity";
 import { UNIT_HEDGE_FUNDS } from "./unit-hedge-funds";
+import { UNIT_MARKET_MICROSTRUCTURE } from "./unit-market-microstructure";
+import { UNIT_MARKET_HISTORY } from "./unit-market-history";
+import { UNIT_INFLATION_ECONOMICS } from "./unit-inflation-economics";
 
 export const UNITS: Unit[] = [
   UNIT_BASICS,
@@ -59,6 +62,9 @@ export const UNITS: Unit[] = [
   UNIT_MACRO_INVESTING,
   UNIT_PRIVATE_EQUITY,
   UNIT_HEDGE_FUNDS,
+  UNIT_MARKET_MICROSTRUCTURE,
+  UNIT_MARKET_HISTORY,
+  UNIT_INFLATION_ECONOMICS,
 ];
 
 export function getLessonById(lessonId: string): Lesson | undefined {

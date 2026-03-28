@@ -53,6 +53,7 @@ import { LivePnLDashboard } from "@/components/portfolio/LivePnLDashboard";
 import { WeeklyReview } from "@/components/analytics/WeeklyReview";
 import { AdvancedAnalytics } from "@/components/portfolio/AdvancedAnalytics";
 import { StressTester } from "@/components/portfolio/StressTester";
+import { BlackLitterman } from "@/components/portfolio/BlackLitterman";
 
 const EquityCurve = dynamic(
   () =>
@@ -201,6 +202,9 @@ export default function PortfolioPage() {
                 </TabsTrigger>
                 <TabsTrigger value="stress" className="flex-1 rounded-md text-[11px] h-7 whitespace-nowrap">
                   Stress Test
+                </TabsTrigger>
+                <TabsTrigger value="bl-optimizer" className="flex-1 rounded-md text-[11px] h-7 whitespace-nowrap">
+                  BL Optimizer
                 </TabsTrigger>
               </TabsList>
             </div>
@@ -389,6 +393,15 @@ export default function PortfolioPage() {
                 Portfolio Stress Testing &amp; Scenario Analysis
               </div>
               <StressTester />
+            </TabsContent>
+
+            {/* ── BL Optimizer tab ── */}
+            <TabsContent value="bl-optimizer" className="space-y-4">
+              <div className="flex items-center gap-1.5 text-xs font-medium text-muted-foreground mb-2">
+                <Target className="h-3.5 w-3.5 text-indigo-400" />
+                Black-Litterman Portfolio Optimizer
+              </div>
+              <BlackLitterman />
             </TabsContent>
 
             {/* ── Deep Analytics tab ── */}

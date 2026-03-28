@@ -11,6 +11,8 @@ import { Progress } from "@/components/ui/progress";
 import { useTradingStore } from "@/stores/trading-store";
 import { INITIAL_CAPITAL } from "@/types/trading";
 import RiskScenariosTimeline from "@/components/education/RiskScenariosTimeline";
+import VaRCalculator from "@/components/risk/VaRCalculator";
+import CorrelationAnalysis from "@/components/risk/CorrelationAnalysis";
 
 // ---------------------------------------------------------------------------
 // Demo / synthetic fallback data
@@ -1162,6 +1164,36 @@ function StressTestsTab() {
 }
 
 // ---------------------------------------------------------------------------
+// Tab 6: VaR Calculator
+// ---------------------------------------------------------------------------
+
+function VaRCalculatorTab() {
+  const { portfolioValue } = useTradingStore();
+  const pv = portfolioValue > 0 ? portfolioValue : INITIAL_CAPITAL;
+  return <VaRCalculator portfolioValue={pv} />;
+}
+
+// ---------------------------------------------------------------------------
+// Tab 7: Correlation Analysis
+// ---------------------------------------------------------------------------
+
+function CorrelationAnalysisTab() {
+  const { portfolioValue, positions: rawPositions } = useTradingStore();
+  const pv = portfolioValue > 0 ? portfolioValue : INITIAL_CAPITAL;
+
+  const positions =
+    rawPositions.length >= 2
+      ? rawPositions.map((p) => ({
+          ticker: p.ticker,
+          weight: (p.currentPrice * p.quantity) / (pv || 1),
+          sigma: 0.25, // annualized vol placeholder
+        }))
+      : undefined;
+
+  return <CorrelationAnalysis positions={positions} portfolioValue={pv} />;
+}
+
+// ---------------------------------------------------------------------------
 // Page root
 // ---------------------------------------------------------------------------
 
@@ -1185,6 +1217,8 @@ export default function RiskPage() {
             { value: "sizing", label: "Position Sizing" },
             { value: "drawdown", label: "Drawdown" },
             { value: "stress", label: "Stress Tests" },
+            { value: "var", label: "VaR Calculator" },
+            { value: "correlation", label: "Correlation" },
           ].map((t) => (
             <TabsTrigger
               key={t.value}
@@ -1201,6 +1235,8 @@ export default function RiskPage() {
         <TabsContent value="sizing"><PositionSizingTab /></TabsContent>
         <TabsContent value="drawdown"><DrawdownTab /></TabsContent>
         <TabsContent value="stress"><StressTestsTab /></TabsContent>
+        <TabsContent value="var"><VaRCalculatorTab /></TabsContent>
+        <TabsContent value="correlation"><CorrelationAnalysisTab /></TabsContent>
       </Tabs>
     </div>
   );
