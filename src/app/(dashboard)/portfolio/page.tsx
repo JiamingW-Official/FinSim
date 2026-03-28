@@ -194,6 +194,9 @@ export default function PortfolioPage() {
                 <TabsTrigger value="attribution" className="flex-1 rounded-md text-[11px] h-7 whitespace-nowrap">
                   Attribution
                 </TabsTrigger>
+                <TabsTrigger value="advanced" className="flex-1 rounded-md text-[11px] h-7 whitespace-nowrap">
+                  Analytics+
+                </TabsTrigger>
               </TabsList>
             </div>
 
