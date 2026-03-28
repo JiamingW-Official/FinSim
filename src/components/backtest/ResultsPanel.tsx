@@ -23,8 +23,6 @@ import {
 } from "lucide-react";
 import {
   createChart,
-  type IChartApi,
-  type ISeriesApi,
   type UTCTimestamp,
   AreaSeries,
   ColorType,

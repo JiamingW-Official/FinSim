@@ -242,14 +242,27 @@ export function TradeLogTable({ rows }: Props) {
   const [expandedId, setExpandedId] = useState<string | null>(null);
   const [notes, setNotes] = useState<Record<string, string>>({});
   const [tradeTags, setTradeTags] = useState<Record<string, string[]>>({});
+  const [emotions, setEmotions] = useState<Record<string, TradeEmotion>>({});
   const [editingNote, setEditingNote] = useState<string>("");
   const noteRef = useRef<HTMLTextAreaElement>(null);
 
-  // Load notes + tags from localStorage on mount
+  // Load notes + tags + emotions from localStorage on mount
   useEffect(() => {
     setNotes(loadNotes());
     setTradeTags(loadTradeTags());
+    setEmotions(loadEmotions());
   }, []);
+
+  const handleSetEmotion = useCallback(
+    (tradeId: string, emotion: TradeEmotion) => {
+      setEmotions((prev) => {
+        const updated = { ...prev, [tradeId]: emotion };
+        saveEmotionsLocal(updated);
+        return updated;
+      });
+    },
+    [],
+  );
 
   // Focus textarea when row expands
   useEffect(() => {
@@ -720,6 +733,19 @@ export function TradeLogTable({ rows }: Props) {
                                 })}
                               </div>
                             </div>
+
+                            {/* Emotion picker */}
+                            <EmotionPicker
+                              tradeId={row.id}
+                              currentEmotion={emotions[row.id]}
+                              onSelect={handleSetEmotion}
+                            />
+
+                            {/* AI Narrative */}
+                            <NarrativeButton
+                              row={row}
+                              tags={tradeTags[row.id] ?? t.tags ?? []}
+                            />
 
                             <label className="text-[10px] font-medium uppercase tracking-wider text-muted-foreground">
                               Trade Notes

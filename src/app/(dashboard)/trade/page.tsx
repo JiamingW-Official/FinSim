@@ -316,6 +316,14 @@ export default function TradePage() {
                 <ErrorBoundary name="OrderEntry">
                   <OrderEntry />
                 </ErrorBoundary>
+                <div className="px-3 pb-3 space-y-2">
+                  <ErrorBoundary name="ShortSqueezeAlert">
+                    <ShortSqueezeAlert />
+                  </ErrorBoundary>
+                  <ErrorBoundary name="MarginPanel">
+                    <MarginPanel />
+                  </ErrorBoundary>
+                </div>
                 {showOrderEntry && (
                   <OnboardingHint
                     title="Place Orders"
@@ -338,6 +346,11 @@ export default function TradePage() {
               className="flex-1 overflow-auto mt-0 data-[state=inactive]:hidden"
             >
               <PositionsTable />
+              <div className="px-3 pb-3 space-y-2 mt-2">
+                <ErrorBoundary name="MarginPanelPositions">
+                  <MarginPanel />
+                </ErrorBoundary>
+              </div>
             </TabsContent>
 
             {/* Pending Orders tab */}
