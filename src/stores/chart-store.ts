@@ -18,15 +18,29 @@ export type IndicatorType =
   | "williams_r"
   | "psar";
 
+export type ChartType = "candlestick" | "heikin_ashi" | "line" | "area";
+
 interface ChartState {
   currentTicker: string;
   currentTimeframe: Timeframe;
   activeIndicators: IndicatorType[];
   lastToggledIndicator: IndicatorType | null;
+  chartType: ChartType;
+  showVolume: boolean;
+  showGrid: boolean;
+  useLog: boolean;
+  showEarnings: boolean;
+  showDividends: boolean;
   setTicker: (ticker: string) => void;
   setTimeframe: (tf: Timeframe) => void;
   toggleIndicator: (ind: IndicatorType) => void;
   clearLastToggled: () => void;
+  setChartType: (type: ChartType) => void;
+  setShowVolume: (show: boolean) => void;
+  setShowGrid: (show: boolean) => void;
+  setUseLog: (useLog: boolean) => void;
+  setShowEarnings: (show: boolean) => void;
+  setShowDividends: (show: boolean) => void;
 }
 
 export const useChartStore = create<ChartState>((set) => ({
@@ -34,6 +48,12 @@ export const useChartStore = create<ChartState>((set) => ({
   currentTimeframe: "15m",
   activeIndicators: [],
   lastToggledIndicator: null,
+  chartType: "candlestick",
+  showVolume: true,
+  showGrid: true,
+  useLog: false,
+  showEarnings: false,
+  showDividends: false,
   setTicker: (ticker) => set({ currentTicker: ticker }),
   setTimeframe: (tf) => set({ currentTimeframe: tf }),
   toggleIndicator: (ind) =>
@@ -47,4 +67,10 @@ export const useChartStore = create<ChartState>((set) => ({
       };
     }),
   clearLastToggled: () => set({ lastToggledIndicator: null }),
+  setChartType: (type) => set({ chartType: type }),
+  setShowVolume: (show) => set({ showVolume: show }),
+  setShowGrid: (show) => set({ showGrid: show }),
+  setUseLog: (useLog) => set({ useLog }),
+  setShowEarnings: (show) => set({ showEarnings: show }),
+  setShowDividends: (show) => set({ showDividends: show }),
 }));

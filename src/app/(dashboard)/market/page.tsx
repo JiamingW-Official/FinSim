@@ -20,6 +20,7 @@ import { generateInsiderTrades } from "@/services/market/insider-trading";
 import { generateInstitutionalHoldings } from "@/services/market/institutional-holdings";
 import { generateOptionsFlow } from "@/services/market/options-flow";
 import { SectorRotation } from "@/components/market/SectorRotation";
+import { SentimentAggregator } from "@/components/market/SentimentAggregator";
 
 // ─── Seeded PRNG ─────────────────────────────────────────────────────────────
 
@@ -45,6 +46,7 @@ const TABS = [
   { id: "crypto", label: "Crypto" },
   { id: "macro", label: "Macro" },
   { id: "sector-rotation", label: "Sector Rotation" },
+  { id: "sentiment", label: "Sentiment" },
 ] as const;
 
 type TabId = (typeof TABS)[number]["id"];
@@ -1345,6 +1347,7 @@ export default function MarketIntelligencePage() {
         {activeTab === "crypto" && <CryptoTab />}
         {activeTab === "macro" && <MacroTab />}
         {activeTab === "sector-rotation" && <SectorRotation />}
+        {activeTab === "sentiment" && <SentimentAggregator />}
       </div>
     </div>
   );

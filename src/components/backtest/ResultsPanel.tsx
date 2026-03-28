@@ -181,19 +181,21 @@ export default function ResultsPanel({ result, monteCarloResult, xpEarned, onSav
         )}
 
         {tab === "analytics" && (
-          <div className="space-y-4 p-4">
+          <div>
             <AnalyticsPanel result={result} />
-            <div>
-              <h3 className="mb-2 text-[10px] font-semibold uppercase tracking-wider text-zinc-500">
-                Trade Return Distribution
-              </h3>
-              <TradeDistributionChart trades={result.trades} />
-            </div>
-            <div>
-              <h3 className="mb-2 text-[10px] font-semibold uppercase tracking-wider text-zinc-500">
-                Risk-Adjusted Scatter
-              </h3>
-              <RiskReturnScatter baseConfig={result.config} />
+            <div className="space-y-4 px-4 pb-4">
+              <div>
+                <h3 className="mb-2 text-[10px] font-semibold uppercase tracking-wider text-zinc-500">
+                  Trade Return Distribution
+                </h3>
+                <TradeDistributionChart trades={result.trades} />
+              </div>
+              <div>
+                <h3 className="mb-2 text-[10px] font-semibold uppercase tracking-wider text-zinc-500">
+                  Risk-Adjusted Scatter
+                </h3>
+                <RiskReturnScatter baseConfig={result.config} />
+              </div>
             </div>
           </div>
         )}

@@ -6,7 +6,7 @@ import {
   Home, BarChart3, Briefcase, FlaskConical, GraduationCap,
   Swords, ScrollText, Crosshair, Trophy, User, Settings, Activity,
   TrendingUp, Globe, ChevronLeft, ChevronRight, BookOpen, Bitcoin,
-  ScanLine, GitCompare, Users,
+  ScanLine, GitCompare, Users, Landmark, BookMarked, DollarSign,
 } from "lucide-react";
 import { Tooltip, TooltipTrigger, TooltipContent } from "@/components/ui/tooltip";
 import { SearchTrigger } from "@/components/search/GlobalSearch";
@@ -62,11 +62,15 @@ const NAV_GROUPS: NavGroup[] = [
       { icon: Activity,     label: "Options",      href: "/options" },
       { icon: Briefcase,    label: "Portfolio",    href: "/portfolio" },
       { icon: FlaskConical, label: "Backtest",     href: "/backtest" },
+      { icon: BookMarked,   label: "Strategies",   href: "/strategies" },
       { icon: TrendingUp,   label: "Predictions",  href: "/predictions" },
       { icon: ScanLine,     label: "Scanner",      href: "/scanner" },
       { icon: GitCompare,   label: "Pairs",        href: "/pairs" },
       { icon: Globe,        label: "Market Intel", href: "/market" },
       { icon: Bitcoin,      label: "Crypto",       href: "/crypto" },
+      { icon: Landmark,     label: "Bonds",        href: "/bonds" },
+      { icon: BarChart3,    label: "Futures",      href: "/futures" },
+      { icon: DollarSign,   label: "Forex",        href: "/forex" },
     ],
   },
   {

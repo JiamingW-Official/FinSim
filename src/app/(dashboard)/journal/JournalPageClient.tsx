@@ -5,12 +5,13 @@ import dynamic from "next/dynamic";
 import { useTradingStore } from "@/stores/trading-store";
 import { INITIAL_CAPITAL } from "@/types/trading";
 import { formatCurrency, cn } from "@/lib/utils";
-import { BookOpen, BarChart3, Calendar, FileText, Lightbulb, Loader2, ClipboardList } from "lucide-react";
+import { BookOpen, BarChart3, Calendar, FileText, Lightbulb, Brain, Loader2, ClipboardList } from "lucide-react";
 import { PnLCalendar } from "@/components/journal/PnLCalendar";
 import { TradeLogTable, TagStatsChart, loadTradeTags } from "@/components/journal/TradeLogTable";
 import { JournalNotes } from "@/components/journal/JournalNotes";
 import { PerformanceInsights } from "@/components/journal/PerformanceInsights";
 import { WeeklyReview } from "@/components/analytics/WeeklyReview";
+import { JournalAIAnalysis } from "@/components/journal/JournalAIAnalysis";
 
 const JournalEquityCurve = dynamic(
   () => import("@/components/journal/EquityCurve").then((m) => m.JournalEquityCurve),
@@ -157,7 +158,7 @@ function computeAnalytics(rows: TradeRow[]) {
 }
 
 // ── Page tabs ────────────────────────────────────────────────────────────────
-type PageTab = "log" | "analytics" | "calendar" | "notes" | "insights" | "review";
+type PageTab = "log" | "analytics" | "calendar" | "notes" | "insights" | "review" | "ai";
 
 const PAGE_TABS: { value: PageTab; label: string; icon: React.ReactNode }[] = [
   { value: "log",       label: "Log",       icon: <BookOpen className="h-3 w-3" /> },
@@ -166,6 +167,7 @@ const PAGE_TABS: { value: PageTab; label: string; icon: React.ReactNode }[] = [
   { value: "notes",     label: "Notes",     icon: <FileText className="h-3 w-3" /> },
   { value: "insights",  label: "Insights",  icon: <Lightbulb className="h-3 w-3" /> },
   { value: "review",    label: "Review",    icon: <ClipboardList className="h-3 w-3" /> },
+  { value: "ai",        label: "AI",        icon: <Brain className="h-3 w-3" /> },
 ];
 
 // ── Main Component ───────────────────────────────────────────────────────────
@@ -536,6 +538,11 @@ export default function JournalPageClient() {
         {/* Weekly Review */}
         {pageTab === "review" && (
           <WeeklyReview />
+        )}
+
+        {/* AI Analysis */}
+        {pageTab === "ai" && (
+          <JournalAIAnalysis rows={rows} />
         )}
 
       </div>
