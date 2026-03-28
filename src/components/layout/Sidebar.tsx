@@ -101,6 +101,7 @@ const NAV_GROUPS: NavGroup[] = [
   {
     section: "Social",
     items: [
+      { icon: Users,  label: "Social",      href: "/social" },
       { icon: Users,  label: "Community",   href: "/community" },
       { icon: Trophy, label: "Leaderboard", href: "/leaderboard", badgeKey: "achievements" },
       { icon: User,   label: "Profile",     href: "/profile" },
