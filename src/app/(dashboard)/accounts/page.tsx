@@ -962,7 +962,7 @@ export default function AccountsPage() {
       volatility: parseFloat((rng() * 15 + 5).toFixed(2)),
       winRate: parseFloat((rng() * 40 + 40).toFixed(1)),
       numTrades: Math.floor(rng() * 80 + 10),
-      maxDrawdown: parseFloat(-(rng() * 12 + 2).toFixed(2)),
+      maxDrawdown: -parseFloat((rng() * 12 + 2).toFixed(2)),
     }));
   }, [accounts]);
 

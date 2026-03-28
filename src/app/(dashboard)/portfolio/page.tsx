@@ -25,6 +25,7 @@ import {
   Calendar,
   Activity,
   FlaskConical,
+  Flame,
   ChevronDown,
   MessageSquare,
   RefreshCw,
@@ -51,6 +52,7 @@ import { PortfolioAttribution } from "@/components/portfolio/PortfolioAttributio
 import { LivePnLDashboard } from "@/components/portfolio/LivePnLDashboard";
 import { WeeklyReview } from "@/components/analytics/WeeklyReview";
 import { AdvancedAnalytics } from "@/components/portfolio/AdvancedAnalytics";
+import { StressTester } from "@/components/portfolio/StressTester";
 
 const EquityCurve = dynamic(
   () =>
@@ -196,6 +198,9 @@ export default function PortfolioPage() {
                 </TabsTrigger>
                 <TabsTrigger value="advanced" className="flex-1 rounded-md text-[11px] h-7 whitespace-nowrap">
                   Analytics+
+                </TabsTrigger>
+                <TabsTrigger value="stress" className="flex-1 rounded-md text-[11px] h-7 whitespace-nowrap">
+                  Stress Test
                 </TabsTrigger>
               </TabsList>
             </div>
@@ -375,6 +380,15 @@ export default function PortfolioPage() {
             {/* ── Analytics+ tab ── */}
             <TabsContent value="advanced" className="space-y-4">
               <AdvancedAnalytics />
+            </TabsContent>
+
+            {/* ── Stress Test tab ── */}
+            <TabsContent value="stress" className="space-y-4">
+              <div className="flex items-center gap-1.5 text-xs font-medium text-muted-foreground">
+                <Flame className="h-3.5 w-3.5 text-rose-400" />
+                Portfolio Stress Testing &amp; Scenario Analysis
+              </div>
+              <StressTester />
             </TabsContent>
 
             {/* ── Deep Analytics tab ── */}

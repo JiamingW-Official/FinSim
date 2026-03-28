@@ -899,7 +899,7 @@ function CustomBuilder({
     max: number;
     step: number;
     format: (v: number) => string;
-    color: string;
+    color: (v: number) => string;
   }[] = [
     {
       key: "marketShock",
@@ -908,7 +908,7 @@ function CustomBuilder({
       max: 30,
       step: 1,
       format: (v) => `${v >= 0 ? "+" : ""}${v}%`,
-      color: v => v < 0 ? "text-red-400" : "text-emerald-400",
+      color: (v) => v < 0 ? "text-red-400" : "text-emerald-400",
     },
     {
       key: "rateShock",
@@ -917,7 +917,7 @@ function CustomBuilder({
       max: 500,
       step: 25,
       format: (v) => `${v >= 0 ? "+" : ""}${v}bp`,
-      color: v => v > 200 ? "text-red-400" : v < -100 ? "text-amber-400" : "text-muted-foreground",
+      color: (v) => v > 200 ? "text-red-400" : v < -100 ? "text-amber-400" : "text-muted-foreground",
     },
     {
       key: "vixShock",
@@ -926,7 +926,7 @@ function CustomBuilder({
       max: 80,
       step: 1,
       format: (v) => `${v}`,
-      color: v => v > 40 ? "text-red-400" : v > 25 ? "text-amber-400" : "text-emerald-400",
+      color: (v) => v > 40 ? "text-red-400" : v > 25 ? "text-amber-400" : "text-emerald-400",
     },
     {
       key: "usdShock",
@@ -935,9 +935,9 @@ function CustomBuilder({
       max: 20,
       step: 1,
       format: (v) => `${v >= 0 ? "+" : ""}${v}%`,
-      color: () => "text-muted-foreground",
+      color: (_v) => "text-muted-foreground",
     },
-  ] as const;
+  ];
 
   return (
     <div className="space-y-4">
