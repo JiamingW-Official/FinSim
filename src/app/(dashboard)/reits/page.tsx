@@ -1,1329 +1,1115 @@
 "use client";
 
 import { useState, useMemo } from "react";
+import { motion } from "framer-motion";
 import {
   Building2,
-  Calculator,
-  BookOpen,
-  Home,
   TrendingUp,
   TrendingDown,
-  Info,
   DollarSign,
   Percent,
   BarChart3,
+  PieChart,
+  Activity,
+  Info,
+  Calculator,
+  Home,
+  Briefcase,
+  Server,
+  Heart,
+  Hotel,
+  Warehouse,
+  ChevronUp,
+  ChevronDown,
 } from "lucide-react";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { Switch } from "@/components/ui/switch";
-import { Slider } from "@/components/ui/slider";
-import { cn } from "@/lib/utils";
+import {
+  Tabs,
+  TabsContent,
+  TabsList,
+  TabsTrigger,
+} from "@/components/ui/tabs";
+import {
+  Card,
+  CardContent,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
+import { Badge } from "@/components/ui/badge";
+import { Button } from "@/components/ui/button";
+import { Progress } from "@/components/ui/progress";
 
 // ── Seeded PRNG ───────────────────────────────────────────────────────────────
+let s = 822;
+const rand = () => {
+  s = (s * 1103515245 + 12345) & 0x7fffffff;
+  return s / 0x7fffffff;
+};
 
-function seededRandom(seed: number): () => number {
-  let s = seed >>> 0;
-  return () => {
-    s = (s * 1103515245 + 12345) & 0x7fffffff;
-    return s / 0x7fffffff;
+// ── Interfaces ────────────────────────────────────────────────────────────────
+
+type Sector =
+  | "Office"
+  | "Retail"
+  | "Residential"
+  | "Industrial"
+  | "Healthcare"
+  | "Data Center"
+  | "Hotel"
+  | "Diversified";
+
+interface REITEntry {
+  ticker: string;
+  name: string;
+  sector: Sector;
+  price: number;
+  divYield: number;
+  ffoPerShare: number;
+  pFfo: number;
+  navPremDisc: number; // % — negative = discount
+  marketCap: number; // $B
+  occupancy: number; // %
+}
+
+interface QuarterlyDividend {
+  quarter: string;
+  amount: number;
+}
+
+interface PortfolioHolding {
+  ticker: string;
+  name: string;
+  sector: Sector;
+  weight: number; // %
+  divYield: number;
+  beta: number;
+}
+
+// ── Static Data (seeded) ──────────────────────────────────────────────────────
+
+const SECTOR_COLORS: Record<Sector, string> = {
+  Office: "#6366f1",
+  Retail: "#f59e0b",
+  Residential: "#10b981",
+  Industrial: "#3b82f6",
+  Healthcare: "#ec4899",
+  "Data Center": "#8b5cf6",
+  Hotel: "#f97316",
+  Diversified: "#64748b",
+};
+
+const SECTOR_ICONS: Record<Sector, React.ReactNode> = {
+  Office: <Briefcase className="w-3.5 h-3.5" />,
+  Retail: <Home className="w-3.5 h-3.5" />,
+  Residential: <Building2 className="w-3.5 h-3.5" />,
+  Industrial: <Warehouse className="w-3.5 h-3.5" />,
+  Healthcare: <Heart className="w-3.5 h-3.5" />,
+  "Data Center": <Server className="w-3.5 h-3.5" />,
+  Hotel: <Hotel className="w-3.5 h-3.5" />,
+  Diversified: <PieChart className="w-3.5 h-3.5" />,
+};
+
+function buildREITs(): REITEntry[] {
+  const base: Array<Omit<REITEntry, "price" | "divYield" | "ffoPerShare" | "pFfo" | "navPremDisc" | "occupancy">> = [
+    { ticker: "BXP",  name: "Boston Properties",    sector: "Office",       marketCap: 12.4 },
+    { ticker: "SPG",  name: "Simon Property Group", sector: "Retail",       marketCap: 42.1 },
+    { ticker: "AVB",  name: "AvalonBay Communities", sector: "Residential", marketCap: 28.6 },
+    { ticker: "PLD",  name: "Prologis",             sector: "Industrial",   marketCap: 96.3 },
+    { ticker: "WELL", name: "Welltower",             sector: "Healthcare",   marketCap: 58.7 },
+    { ticker: "EQIX", name: "Equinix",               sector: "Data Center",  marketCap: 72.5 },
+    { ticker: "PK",   name: "Park Hotels & Resorts", sector: "Hotel",        marketCap: 3.8  },
+    { ticker: "O",    name: "Realty Income",         sector: "Diversified",  marketCap: 44.9 },
+  ];
+
+  const yieldRanges: Record<Sector, [number, number]> = {
+    Office:        [4.8, 7.2],
+    Retail:        [4.5, 6.5],
+    Residential:   [2.8, 4.2],
+    Industrial:    [2.2, 3.8],
+    Healthcare:    [2.0, 3.5],
+    "Data Center": [1.8, 2.8],
+    Hotel:         [3.5, 6.0],
+    Diversified:   [4.2, 6.0],
   };
+
+  const pFfoRanges: Record<Sector, [number, number]> = {
+    Office:        [8,  13],
+    Retail:        [10, 16],
+    Residential:   [18, 26],
+    Industrial:    [20, 30],
+    Healthcare:    [22, 32],
+    "Data Center": [28, 42],
+    Hotel:         [9,  16],
+    Diversified:   [12, 18],
+  };
+
+  return base.map((b) => {
+    const [yLo, yHi] = yieldRanges[b.sector];
+    const [pLo, pHi] = pFfoRanges[b.sector];
+    const divYield = yLo + rand() * (yHi - yLo);
+    const pFfo = pLo + rand() * (pHi - pLo);
+    const ffoPerShare = 1.5 + rand() * 14;
+    const price = ffoPerShare * pFfo;
+    const navPremDisc = (rand() - 0.45) * 30;
+    const occupancy = 78 + rand() * 20;
+    return { ...b, price, divYield, ffoPerShare, pFfo, navPremDisc, occupancy };
+  });
 }
 
-function dateSeed(): number {
-  const d = new Date();
-  return d.getFullYear() * 10000 + (d.getMonth() + 1) * 100 + d.getDate();
+function buildDividendHistory(): QuarterlyDividend[] {
+  const quarters: string[] = [];
+  const now = new Date(2026, 2, 1);
+  for (let i = 11; i >= 0; i--) {
+    const d = new Date(now.getFullYear(), now.getMonth() - i * 3, 1);
+    quarters.push(`Q${Math.floor(d.getMonth() / 3) + 1} ${d.getFullYear()}`);
+  }
+  let base = 0.52;
+  return quarters.map((q) => {
+    base = base * (1 + (rand() - 0.35) * 0.04);
+    return { quarter: q, amount: Math.max(0.3, base) };
+  });
 }
 
-// ── Formatting helpers ────────────────────────────────────────────────────────
+function buildPortfolio(): PortfolioHolding[] {
+  const holdings: Array<Omit<PortfolioHolding, "weight" | "divYield" | "beta">> = [
+    { ticker: "PLD",  name: "Prologis",             sector: "Industrial"  },
+    { ticker: "WELL", name: "Welltower",             sector: "Healthcare"  },
+    { ticker: "EQIX", name: "Equinix",               sector: "Data Center" },
+    { ticker: "O",    name: "Realty Income",         sector: "Diversified" },
+    { ticker: "AVB",  name: "AvalonBay Communities", sector: "Residential" },
+  ];
+  const rawWeights = holdings.map(() => 0.1 + rand() * 0.9);
+  const total = rawWeights.reduce((a, b) => a + b, 0);
+  return holdings.map((h, i) => ({
+    ...h,
+    weight: (rawWeights[i] / total) * 100,
+    divYield: 2.0 + rand() * 4.0,
+    beta: 0.5 + rand() * 0.8,
+  }));
+}
+
+// ── Pre-compute all data at module level (seeded, stable) ─────────────────────
+const REITS = buildREITs();
+const DIVIDEND_HISTORY = buildDividendHistory();
+const PORTFOLIO = buildPortfolio();
+
+// ── Helpers ───────────────────────────────────────────────────────────────────
 
 function fmt(n: number, d = 2): string {
   return n.toLocaleString("en-US", { minimumFractionDigits: d, maximumFractionDigits: d });
 }
 
-function fmtCurrency(n: number): string {
-  if (Math.abs(n) >= 1_000_000) return `$${(n / 1_000_000).toFixed(2)}M`;
-  if (Math.abs(n) >= 1_000) return `$${(n / 1_000).toFixed(1)}K`;
-  return `$${fmt(n, 0)}`;
+function fmtB(n: number): string {
+  return `$${n.toFixed(1)}B`;
 }
 
-// ── REIT Data ─────────────────────────────────────────────────────────────────
+// ── Tab 1: REIT Universe ──────────────────────────────────────────────────────
 
-type REITSubtype = "Diversified" | "Retail" | "Industrial" | "Data Center" | "Healthcare" | "Residential" | "Office";
-
-interface REITDef {
-  symbol: string;
-  name: string;
-  subtype: REITSubtype;
-  basePrice: number;
-  baseDivYield: number; // %
-  baseFfoPerShare: number;
-  basePFfo: number;
-  baseOccupancy: number; // %
-  baseDebtEquity: number;
-}
-
-const REIT_DEFS: REITDef[] = [
-  { symbol: "VNQ",  name: "Vanguard Real Estate ETF",  subtype: "Diversified",  basePrice: 87.40,  baseDivYield: 4.1,  baseFfoPerShare: 0,     basePFfo: 0,     baseOccupancy: 0,    baseDebtEquity: 0 },
-  { symbol: "O",    name: "Realty Income",              subtype: "Retail",       basePrice: 54.20,  baseDivYield: 5.8,  baseFfoPerShare: 4.12,  basePFfo: 13.2,  baseOccupancy: 98.9, baseDebtEquity: 0.82 },
-  { symbol: "AMT",  name: "American Tower",             subtype: "Data Center",  basePrice: 192.30, baseDivYield: 3.1,  baseFfoPerShare: 9.84,  basePFfo: 19.5,  baseOccupancy: 97.2, baseDebtEquity: 3.45 },
-  { symbol: "PLD",  name: "Prologis",                   subtype: "Industrial",   basePrice: 113.80, baseDivYield: 3.4,  baseFfoPerShare: 5.51,  basePFfo: 20.7,  baseOccupancy: 96.4, baseDebtEquity: 0.67 },
-  { symbol: "SPG",  name: "Simon Property Group",       subtype: "Retail",       basePrice: 158.90, baseDivYield: 5.2,  baseFfoPerShare: 12.40, basePFfo: 12.8,  baseOccupancy: 95.8, baseDebtEquity: 2.12 },
-  { symbol: "DLR",  name: "Digital Realty",             subtype: "Data Center",  basePrice: 145.60, baseDivYield: 3.3,  baseFfoPerShare: 6.82,  basePFfo: 21.4,  baseOccupancy: 83.5, baseDebtEquity: 1.24 },
-  { symbol: "WELL", name: "Welltower",                  subtype: "Healthcare",   basePrice: 128.40, baseDivYield: 2.2,  baseFfoPerShare: 4.03,  basePFfo: 31.9,  baseOccupancy: 85.2, baseDebtEquity: 0.91 },
-  { symbol: "PSA",  name: "Public Storage",             subtype: "Industrial",   basePrice: 293.20, baseDivYield: 4.0,  baseFfoPerShare: 16.80, basePFfo: 17.5,  baseOccupancy: 92.1, baseDebtEquity: 0.55 },
-  { symbol: "EQR",  name: "Equity Residential",         subtype: "Residential",  basePrice: 68.90,  baseDivYield: 4.1,  baseFfoPerShare: 3.68,  basePFfo: 18.7,  baseOccupancy: 96.2, baseDebtEquity: 0.79 },
-  { symbol: "BXP",  name: "Boston Properties",          subtype: "Office",       basePrice: 67.40,  baseDivYield: 5.6,  baseFfoPerShare: 7.12,  basePFfo: 9.5,   baseOccupancy: 89.4, baseDebtEquity: 1.86 },
-];
-
-const SUBTYPE_COLORS: Record<REITSubtype, { text: string; bg: string; border: string }> = {
-  Diversified:  { text: "text-slate-300",  bg: "bg-slate-500/10",  border: "border-slate-500/30" },
-  Retail:       { text: "text-blue-400",   bg: "bg-blue-500/10",   border: "border-blue-500/30" },
-  Industrial:   { text: "text-amber-400",  bg: "bg-amber-500/10",  border: "border-amber-500/30" },
-  "Data Center":{ text: "text-purple-400", bg: "bg-purple-500/10", border: "border-purple-500/30" },
-  Healthcare:   { text: "text-green-400",  bg: "bg-green-500/10",  border: "border-green-500/30" },
-  Residential:  { text: "text-cyan-400",   bg: "bg-cyan-500/10",   border: "border-cyan-500/30" },
-  Office:       { text: "text-rose-400",   bg: "bg-rose-500/10",   border: "border-rose-500/30" },
-};
-
-interface REITRow extends REITDef {
-  price: number;
-  change1d: number;
-  divYield: number;
-  ffoPerShare: number;
-  pFfo: number;
-  occupancy: number;
-  debtEquity: number;
-}
-
-function buildREITRows(): REITRow[] {
-  const rng = seededRandom(dateSeed() + 9999);
-  return REIT_DEFS.map((def) => {
-    const jitter = 1 + (rng() - 0.5) * 0.04;
-    const change = (rng() - 0.48) * 3.5;
-    return {
-      ...def,
-      price: def.basePrice * jitter,
-      change1d: change,
-      divYield: def.baseDivYield + (rng() - 0.5) * 0.2,
-      ffoPerShare: def.baseFfoPerShare,
-      pFfo: def.basePFfo,
-      occupancy: def.baseOccupancy > 0 ? Math.min(99.9, def.baseOccupancy + (rng() - 0.5) * 0.8) : 0,
-      debtEquity: def.baseDebtEquity > 0 ? def.baseDebtEquity + (rng() - 0.5) * 0.05 : 0,
-    };
-  });
-}
-
-// ── Tab 1: REIT Market ────────────────────────────────────────────────────────
-
-function REITMarketTab() {
-  const rows = useMemo(() => buildREITRows(), []);
-  const [sortKey, setSortKey] = useState<keyof REITRow>("divYield");
+function REITUniverseTab() {
+  const [sortKey, setSortKey] = useState<keyof REITEntry>("divYield");
   const [sortDir, setSortDir] = useState<"asc" | "desc">("desc");
-  const [filterSubtype, setFilterSubtype] = useState<REITSubtype | "All">("All");
-
-  const subtypes: Array<REITSubtype | "All"> = ["All", "Diversified", "Retail", "Industrial", "Data Center", "Healthcare", "Residential", "Office"];
 
   const sorted = useMemo(() => {
-    let filtered = rows.filter((r) => filterSubtype === "All" || r.subtype === filterSubtype);
-    filtered.sort((a, b) => {
+    return [...REITS].sort((a, b) => {
       const av = a[sortKey] as number;
       const bv = b[sortKey] as number;
       return sortDir === "desc" ? bv - av : av - bv;
     });
-    return filtered;
-  }, [rows, sortKey, sortDir, filterSubtype]);
+  }, [sortKey, sortDir]);
 
-  function toggleSort(k: keyof REITRow) {
-    if (k === sortKey) setSortDir((d: "asc" | "desc") => (d === "desc" ? "asc" : "desc"));
+  function toggleSort(k: keyof REITEntry) {
+    if (k === sortKey) setSortDir((d) => (d === "desc" ? "asc" : "desc"));
     else { setSortKey(k); setSortDir("desc"); }
   }
 
-  const SortHdr = ({ label, k }: { label: string; k: keyof REITRow }) => (
+  const SortHdr = ({ label, k }: { label: string; k: keyof REITEntry }) => (
     <th
-      className="px-3 py-2 text-right text-xs font-medium text-muted-foreground cursor-pointer select-none hover:text-foreground transition-colors"
       onClick={() => toggleSort(k)}
+      className="px-3 py-2 text-right text-xs font-medium text-muted-foreground cursor-pointer select-none hover:text-foreground transition-colors whitespace-nowrap"
     >
       {label}
-      {sortKey === k ? (sortDir === "desc" ? " ↓" : " ↑") : ""}
+      {sortKey === k ? (sortDir === "desc" ? <ChevronDown className="inline w-3 h-3 ml-0.5" /> : <ChevronUp className="inline w-3 h-3 ml-0.5" />) : ""}
     </th>
   );
 
   return (
     <div className="space-y-4">
-      {/* Subtype filter pills */}
-      <div className="flex flex-wrap gap-2">
-        {subtypes.map((s) => {
-          const active = filterSubtype === s;
-          const colors = s !== "All" ? SUBTYPE_COLORS[s as REITSubtype] : null;
-          return (
-            <button
-              key={s}
-              onClick={() => setFilterSubtype(s)}
-              className={cn(
-                "px-3 py-1 rounded-full text-xs font-medium border transition-all",
-                active
-                  ? s === "All"
-                    ? "bg-primary/20 border-primary/50 text-primary"
-                    : cn(colors?.bg, colors?.border, colors?.text)
-                  : "border-border/40 text-muted-foreground hover:border-border hover:text-foreground"
-              )}
-            >
-              {s}
-            </button>
-          );
-        })}
-      </div>
-
-      {/* Summary chips */}
-      <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
+      {/* Summary stats */}
+      <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
         {[
-          { label: "Avg Div Yield", value: `${fmt(rows.filter(r => r.baseOccupancy > 0).reduce((s, r) => s + r.divYield, 0) / rows.filter(r => r.baseOccupancy > 0).length, 1)}%`, color: "text-green-400" },
-          { label: "Avg P/FFO",     value: fmt(rows.filter(r => r.pFfo > 0).reduce((s, r) => s + r.pFfo, 0) / rows.filter(r => r.pFfo > 0).length, 1), color: "text-blue-400" },
-          { label: "Avg Occupancy", value: `${fmt(rows.filter(r => r.baseOccupancy > 0).reduce((s, r) => s + r.occupancy, 0) / rows.filter(r => r.baseOccupancy > 0).length, 1)}%`, color: "text-amber-400" },
-          { label: "REITs Listed",  value: String(rows.length), color: "text-purple-400" },
-        ].map((chip) => (
-          <div key={chip.label} className="bg-muted/30 border border-border/40 rounded-lg p-3">
-            <p className="text-xs text-muted-foreground">{chip.label}</p>
-            <p className={cn("text-lg font-semibold mt-0.5", chip.color)}>{chip.value}</p>
-          </div>
+          { label: "Avg Div Yield", value: `${fmt(REITS.reduce((a, r) => a + r.divYield, 0) / REITS.length, 1)}%`, icon: <Percent className="w-4 h-4 text-emerald-400" /> },
+          { label: "Avg P/FFO",     value: fmt(REITS.reduce((a, r) => a + r.pFfo, 0) / REITS.length, 1) + "x",     icon: <Calculator className="w-4 h-4 text-blue-400" /> },
+          { label: "Avg Occupancy", value: `${fmt(REITS.reduce((a, r) => a + r.occupancy, 0) / REITS.length, 1)}%`, icon: <Building2 className="w-4 h-4 text-purple-400" /> },
+          { label: "Total Mkt Cap", value: fmtB(REITS.reduce((a, r) => a + r.marketCap, 0)),                        icon: <DollarSign className="w-4 h-4 text-amber-400" /> },
+        ].map((s) => (
+          <Card key={s.label} className="bg-card/60 border-border/50">
+            <CardContent className="p-3 flex items-center gap-2">
+              <div className="p-1.5 rounded-md bg-muted/50">{s.icon}</div>
+              <div>
+                <p className="text-xs text-muted-foreground">{s.label}</p>
+                <p className="text-sm font-semibold">{s.value}</p>
+              </div>
+            </CardContent>
+          </Card>
         ))}
       </div>
 
       {/* Table */}
-      <div className="rounded-lg border border-border/40 overflow-hidden">
-        <div className="overflow-x-auto">
-          <table className="w-full text-sm">
-            <thead className="bg-muted/30">
-              <tr>
-                <th className="px-3 py-2 text-left text-xs font-medium text-muted-foreground">Name</th>
-                <th className="px-3 py-2 text-left text-xs font-medium text-muted-foreground">Type</th>
-                <SortHdr label="Price" k="price" />
-                <SortHdr label="1D Chg" k="change1d" />
-                <SortHdr label="Div Yield" k="divYield" />
-                <SortHdr label="FFO/sh" k="ffoPerShare" />
-                <SortHdr label="P/FFO" k="pFfo" />
-                <SortHdr label="Occupancy" k="occupancy" />
-                <SortHdr label="D/E" k="debtEquity" />
-              </tr>
-            </thead>
-            <tbody className="divide-y divide-border/30">
-              {sorted.map((r) => {
-                const sc = SUBTYPE_COLORS[r.subtype];
-                const isEtf = r.symbol === "VNQ";
-                return (
-                  <tr key={r.symbol} className="hover:bg-muted/20 transition-colors">
-                    <td className="px-3 py-2.5">
-                      <div className="font-semibold text-foreground">{r.symbol}</div>
-                      <div className="text-xs text-muted-foreground truncate max-w-[140px]">{r.name}</div>
-                    </td>
-                    <td className="px-3 py-2.5">
-                      <span className={cn("px-2 py-0.5 rounded text-xs font-medium border", sc.bg, sc.text, sc.border)}>
-                        {r.subtype}
-                      </span>
-                    </td>
-                    <td className="px-3 py-2.5 text-right font-mono font-medium">${fmt(r.price)}</td>
-                    <td className={cn("px-3 py-2.5 text-right font-mono text-xs", r.change1d >= 0 ? "text-green-400" : "text-red-400")}>
-                      {r.change1d >= 0 ? "+" : ""}{fmt(r.change1d, 2)}%
-                    </td>
-                    <td className="px-3 py-2.5 text-right font-mono text-green-400">{fmt(r.divYield, 2)}%</td>
-                    <td className="px-3 py-2.5 text-right font-mono text-muted-foreground">
-                      {isEtf ? "—" : `$${fmt(r.ffoPerShare)}`}
-                    </td>
-                    <td className="px-3 py-2.5 text-right font-mono text-muted-foreground">
-                      {isEtf ? "—" : fmt(r.pFfo, 1) + "x"}
-                    </td>
-                    <td className="px-3 py-2.5 text-right">
-                      {isEtf ? <span className="text-muted-foreground">—</span> : (
-                        <div className="flex items-center justify-end gap-1.5">
-                          <div className="h-1.5 w-16 bg-muted rounded-full overflow-hidden">
-                            <div
-                              className={cn("h-full rounded-full", r.occupancy > 95 ? "bg-green-500" : r.occupancy > 88 ? "bg-amber-500" : "bg-red-500")}
-                              style={{ width: `${r.occupancy}%` }}
-                            />
-                          </div>
-                          <span className="text-xs font-mono text-muted-foreground">{fmt(r.occupancy, 1)}%</span>
-                        </div>
-                      )}
-                    </td>
-                    <td className={cn("px-3 py-2.5 text-right font-mono text-xs", isEtf ? "text-muted-foreground" : r.debtEquity > 1.5 ? "text-red-400" : r.debtEquity > 0.8 ? "text-amber-400" : "text-green-400")}>
-                      {isEtf ? "—" : fmt(r.debtEquity, 2) + "x"}
-                    </td>
-                  </tr>
-                );
-              })}
-            </tbody>
-          </table>
-        </div>
-      </div>
-
-      {/* Legend */}
-      <div className="flex flex-wrap gap-x-4 gap-y-1 text-xs text-muted-foreground">
-        <span>D/E: <span className="text-green-400">&lt;0.8 Low</span> / <span className="text-amber-400">0.8–1.5 Mod</span> / <span className="text-red-400">&gt;1.5 High</span></span>
-        <span>Occupancy: <span className="text-green-400">&gt;95% Excellent</span> / <span className="text-amber-400">88–95% Good</span> / <span className="text-red-400">&lt;88% Watch</span></span>
-        <span>FFO = Funds From Operations (REIT earnings metric)</span>
-      </div>
-    </div>
-  );
-}
-
-// ── Tab 2: REIT Calculator ────────────────────────────────────────────────────
-
-const CALC_REITS = REIT_DEFS.filter((r) => r.symbol !== "VNQ");
-
-interface CalcResult {
-  totalWithDrip: number[];
-  totalNoDrip: number[];
-  divIncomeNoDrip: number[];
-  divIncomeWithDrip: number[];
-  dripShares: number[];
-  finalTotalWithDrip: number;
-  finalTotalNoDrip: number;
-  totalDivNoDrip: number;
-  totalDivWithDrip: number;
-  dripSharesAccum: number;
-  portfolio6040Return: number[];
-}
-
-function computeREITCalc(
-  investment: number,
-  reit: REITDef,
-  years: number,
-  drip: boolean
-): CalcResult {
-  const annualDivRate = reit.baseDivYield / 100;
-  const priceAppreciation = 0.04; // assumed 4% annual price appreciation
-  const portfolio6040Rate = 0.07; // assumed 7% annual return for 60/40
-
-  const totalWithDrip: number[] = [investment];
-  const totalNoDrip: number[] = [investment];
-  const divIncomeNoDrip: number[] = [0];
-  const divIncomeWithDrip: number[] = [0];
-  const dripShares: number[] = [investment / reit.basePrice];
-  const portfolio6040Return: number[] = [investment];
-
-  let sharesHeld = investment / reit.basePrice;
-  let currentPrice = reit.basePrice;
-  let cashDivAccum = 0;
-  let reinvestedDiv = 0;
-
-  for (let y = 1; y <= years; y++) {
-    currentPrice *= 1 + priceAppreciation;
-    const divPerShare = currentPrice * annualDivRate;
-
-    // No DRIP: dividends paid as cash
-    const divCashYear = sharesHeld * divPerShare;
-    cashDivAccum += divCashYear;
-    divIncomeNoDrip.push(divCashYear);
-    totalNoDrip.push(sharesHeld * currentPrice + cashDivAccum);
-
-    // DRIP: dividends reinvested into new shares
-    const dripDivYear = (sharesHeld + reinvestedDiv / currentPrice) * divPerShare;
-    reinvestedDiv += dripDivYear;
-    const dripSharesTotal = sharesHeld + reinvestedDiv / currentPrice;
-    dripShares.push(dripSharesTotal);
-    divIncomeWithDrip.push(dripDivYear);
-    totalWithDrip.push(dripSharesTotal * currentPrice);
-
-    // 60/40 comparison
-    portfolio6040Return.push(investment * Math.pow(1 + portfolio6040Rate, y));
-  }
-
-  return {
-    totalWithDrip,
-    totalNoDrip,
-    divIncomeNoDrip,
-    divIncomeWithDrip,
-    dripShares,
-    finalTotalWithDrip: totalWithDrip[years],
-    finalTotalNoDrip: totalNoDrip[years],
-    totalDivNoDrip: cashDivAccum,
-    totalDivWithDrip: reinvestedDiv,
-    dripSharesAccum: dripShares[years] - investment / reit.basePrice,
-    portfolio6040Return,
-  };
-}
-
-function REITCalculatorTab() {
-  const [investment, setInvestment] = useState(10000);
-  const [selectedSymbol, setSelectedSymbol] = useState("O");
-  const [years, setYears] = useState(10);
-  const [drip, setDrip] = useState(true);
-
-  const reit = useMemo(() => CALC_REITS.find((r) => r.symbol === selectedSymbol)!, [selectedSymbol]);
-  const result = useMemo(() => computeREITCalc(investment, reit, years, drip), [investment, reit, years, drip]);
-
-  // SVG chart dimensions
-  const W = 560;
-  const H = 200;
-  const PAD = { top: 16, right: 16, bottom: 32, left: 60 };
-  const cW = W - PAD.left - PAD.right;
-  const cH = H - PAD.top - PAD.bottom;
-
-  const allValues = [...result.totalWithDrip, ...result.totalNoDrip, ...result.portfolio6040Return];
-  const maxVal = Math.max(...allValues);
-  const minVal = Math.min(investment * 0.9, ...allValues);
-
-  function toX(i: number) { return PAD.left + (i / years) * cW; }
-  function toY(v: number) { return PAD.top + cH - ((v - minVal) / (maxVal - minVal)) * cH; }
-
-  function makePath(data: number[]) {
-    return data.map((v, i) => `${i === 0 ? "M" : "L"}${toX(i).toFixed(1)},${toY(v).toFixed(1)}`).join(" ");
-  }
-
-  const yTicks = 4;
-  const yTickValues = Array.from({ length: yTicks + 1 }, (_, i) => minVal + ((maxVal - minVal) * i) / yTicks);
-
-  return (
-    <div className="space-y-5">
-      {/* Controls */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-        {/* Investment Amount */}
-        <div className="space-y-2">
-          <label className="text-xs font-medium text-muted-foreground">Investment Amount</label>
-          <div className="flex items-center gap-2">
-            <span className="text-muted-foreground text-sm">$</span>
-            <input
-              type="number"
-              value={investment}
-              onChange={(e) => setInvestment(Math.max(100, Number(e.target.value)))}
-              className="flex-1 bg-muted/40 border border-border/40 rounded px-2 py-1.5 text-sm font-mono focus:outline-none focus:border-primary/50"
-            />
-          </div>
-          <Slider value={[investment]} onValueChange={([v]) => setInvestment(v)} min={1000} max={500000} step={1000} />
-          <div className="flex justify-between text-xs text-muted-foreground">
-            <span>$1K</span><span>$500K</span>
-          </div>
-        </div>
-
-        {/* REIT Selection */}
-        <div className="space-y-2">
-          <label className="text-xs font-medium text-muted-foreground">Select REIT</label>
-          <select
-            value={selectedSymbol}
-            onChange={(e) => setSelectedSymbol(e.target.value)}
-            className="w-full bg-muted/40 border border-border/40 rounded px-2 py-1.5 text-sm focus:outline-none focus:border-primary/50"
-          >
-            {CALC_REITS.map((r) => (
-              <option key={r.symbol} value={r.symbol}>{r.symbol} — {r.name}</option>
-            ))}
-          </select>
-          <div className="flex gap-2 flex-wrap">
-            <span className={cn("px-2 py-0.5 rounded text-xs border", SUBTYPE_COLORS[reit.subtype].bg, SUBTYPE_COLORS[reit.subtype].text, SUBTYPE_COLORS[reit.subtype].border)}>{reit.subtype}</span>
-            <span className="px-2 py-0.5 rounded text-xs border border-green-500/30 bg-green-500/10 text-green-400">{fmt(reit.baseDivYield, 1)}% yield</span>
-          </div>
-        </div>
-
-        {/* Hold Years */}
-        <div className="space-y-2">
-          <label className="text-xs font-medium text-muted-foreground">Hold Period: <span className="text-foreground">{years} years</span></label>
-          <Slider value={[years]} onValueChange={([v]) => setYears(v)} min={1} max={30} step={1} />
-          <div className="flex justify-between text-xs text-muted-foreground">
-            <span>1 yr</span><span>30 yrs</span>
-          </div>
-        </div>
-
-        {/* DRIP Toggle */}
-        <div className="space-y-2">
-          <label className="text-xs font-medium text-muted-foreground">Dividend Reinvestment (DRIP)</label>
-          <div className="flex items-center gap-3 mt-2">
-            <Switch checked={drip} onCheckedChange={setDrip} />
-            <span className={cn("text-sm font-medium", drip ? "text-green-400" : "text-muted-foreground")}>
-              {drip ? "DRIP On" : "DRIP Off"}
-            </span>
-          </div>
-          <p className="text-xs text-muted-foreground">
-            {drip ? "Dividends automatically reinvested into more shares" : "Dividends paid as cash income"}
-          </p>
-        </div>
-      </div>
-
-      {/* Output metrics */}
-      <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
-        {[
-          { label: "Final Value (DRIP)", value: fmtCurrency(result.finalTotalWithDrip), color: "text-green-400", sub: `+${fmt((result.finalTotalWithDrip / investment - 1) * 100, 1)}%` },
-          { label: "Final Value (No DRIP)", value: fmtCurrency(result.finalTotalNoDrip), color: "text-blue-400", sub: `+${fmt((result.finalTotalNoDrip / investment - 1) * 100, 1)}%` },
-          { label: "Total Dividends (DRIP)", value: fmtCurrency(result.totalDivWithDrip), color: "text-amber-400", sub: "Reinvested" },
-          { label: "DRIP Shares Gained", value: fmt(result.dripSharesAccum, 1), color: "text-purple-400", sub: `@ ~$${fmt(reit.basePrice * Math.pow(1.04, years), 0)}` },
-        ].map((m) => (
-          <div key={m.label} className="bg-muted/30 border border-border/40 rounded-lg p-3">
-            <p className="text-xs text-muted-foreground">{m.label}</p>
-            <p className={cn("text-base font-semibold mt-0.5", m.color)}>{m.value}</p>
-            <p className="text-xs text-muted-foreground">{m.sub}</p>
-          </div>
-        ))}
-      </div>
-
-      {/* SVG Chart */}
-      <div className="bg-muted/20 border border-border/40 rounded-lg p-4">
-        <h3 className="text-sm font-medium text-foreground mb-3">Growth Over Time vs 60/40 Portfolio</h3>
-        <div className="overflow-x-auto">
-          <svg viewBox={`0 0 ${W} ${H}`} className="w-full max-w-[560px]" style={{ minWidth: 320 }}>
-            {/* Grid lines */}
-            {yTickValues.map((v, i) => (
-              <g key={i}>
-                <line
-                  x1={PAD.left} x2={W - PAD.right}
-                  y1={toY(v)} y2={toY(v)}
-                  stroke="currentColor" strokeOpacity={0.08} strokeWidth={1}
-                />
-                <text
-                  x={PAD.left - 4} y={toY(v) + 4}
-                  textAnchor="end" fontSize={9} fill="currentColor" fillOpacity={0.5}
-                >
-                  {v >= 1000 ? `$${(v / 1000).toFixed(0)}K` : `$${v.toFixed(0)}`}
-                </text>
-              </g>
-            ))}
-
-            {/* X axis labels */}
-            {Array.from({ length: Math.min(years, 10) + 1 }, (_, i) => Math.round((i * years) / Math.min(years, 10))).map((yr, i) => (
-              <text key={i} x={toX(yr)} y={H - 4} textAnchor="middle" fontSize={9} fill="currentColor" fillOpacity={0.5}>
-                Yr {yr}
-              </text>
-            ))}
-
-            {/* 60/40 portfolio line */}
-            <path d={makePath(result.portfolio6040Return)} fill="none" stroke="#6b7280" strokeWidth={1.5} strokeDasharray="4 3" />
-
-            {/* No DRIP line */}
-            <path d={makePath(result.totalNoDrip)} fill="none" stroke="#60a5fa" strokeWidth={2} />
-
-            {/* DRIP line */}
-            <path d={makePath(result.totalWithDrip)} fill="none" stroke="#34d399" strokeWidth={2.5} />
-
-            {/* Area under DRIP */}
-            <path
-              d={`${makePath(result.totalWithDrip)} L${toX(years)},${PAD.top + cH} L${PAD.left},${PAD.top + cH} Z`}
-              fill="#34d399" fillOpacity={0.06}
-            />
-          </svg>
-        </div>
-        {/* Legend */}
-        <div className="flex flex-wrap gap-4 mt-2 text-xs">
-          {[
-            { color: "#34d399", label: `REIT with DRIP: ${fmtCurrency(result.finalTotalWithDrip)}`, dash: false },
-            { color: "#60a5fa", label: `REIT no DRIP: ${fmtCurrency(result.finalTotalNoDrip)}`, dash: false },
-            { color: "#6b7280", label: `60/40 Portfolio: ${fmtCurrency(result.portfolio6040Return[years])}`, dash: true },
-          ].map((l) => (
-            <div key={l.label} className="flex items-center gap-1.5">
-              <svg width={24} height={8}>
-                <line x1={0} y1={4} x2={24} y2={4} stroke={l.color} strokeWidth={2} strokeDasharray={l.dash ? "4 3" : undefined} />
-              </svg>
-              <span className="text-muted-foreground">{l.label}</span>
-            </div>
-          ))}
-        </div>
-      </div>
-
-      {/* Dividend income bars */}
-      <div className="bg-muted/20 border border-border/40 rounded-lg p-4">
-        <h3 className="text-sm font-medium text-foreground mb-3">Annual Dividend Income by Year</h3>
-        <div className="overflow-x-auto">
-          {(() => {
-            const maxDiv = Math.max(...result.divIncomeWithDrip, ...result.divIncomeNoDrip, 1);
-            const barW = Math.max(8, Math.min(24, Math.floor(480 / (years + 1) / 2) - 2));
-            const svgW = Math.max(400, (years + 1) * (barW * 2 + 6) + 60);
-            const svgH = 140;
-            const bPad = { top: 10, right: 10, bottom: 24, left: 50 };
-            const bH = svgH - bPad.top - bPad.bottom;
-            return (
-              <svg viewBox={`0 0 ${svgW} ${svgH}`} className="w-full" style={{ minWidth: 300 }}>
-                {[0, 0.25, 0.5, 0.75, 1].map((t, i) => (
-                  <g key={i}>
-                    <line x1={bPad.left} x2={svgW - bPad.right} y1={bPad.top + bH * (1 - t)} y2={bPad.top + bH * (1 - t)} stroke="currentColor" strokeOpacity={0.08} strokeWidth={1} />
-                    <text x={bPad.left - 4} y={bPad.top + bH * (1 - t) + 4} textAnchor="end" fontSize={8} fill="currentColor" fillOpacity={0.5}>
-                      {fmtCurrency(maxDiv * t)}
-                    </text>
-                  </g>
-                ))}
-                {result.divIncomeWithDrip.slice(1).map((vDrip, i) => {
-                  const vNo = result.divIncomeNoDrip[i + 1];
-                  const x = bPad.left + i * (barW * 2 + 6) + 3;
-                  const hDrip = (vDrip / maxDiv) * bH;
-                  const hNo = (vNo / maxDiv) * bH;
-                  return (
-                    <g key={i}>
-                      <rect x={x} y={bPad.top + bH - hNo} width={barW} height={hNo} fill="#60a5fa" fillOpacity={0.7} rx={2} />
-                      <rect x={x + barW + 1} y={bPad.top + bH - hDrip} width={barW} height={hDrip} fill="#34d399" fillOpacity={0.7} rx={2} />
-                      {i % Math.max(1, Math.floor(years / 8)) === 0 && (
-                        <text x={x + barW} y={svgH - 6} textAnchor="middle" fontSize={8} fill="currentColor" fillOpacity={0.5}>
-                          Yr{i + 1}
-                        </text>
-                      )}
-                    </g>
-                  );
-                })}
-              </svg>
-            );
-          })()}
-        </div>
-        <div className="flex gap-4 text-xs mt-1">
-          <div className="flex items-center gap-1.5"><div className="w-3 h-3 rounded-sm bg-blue-400/70" /><span className="text-muted-foreground">Without DRIP</span></div>
-          <div className="flex items-center gap-1.5"><div className="w-3 h-3 rounded-sm bg-green-400/70" /><span className="text-muted-foreground">With DRIP</span></div>
-        </div>
-      </div>
-    </div>
-  );
-}
-
-// ── Tab 3: Real Estate 101 ────────────────────────────────────────────────────
-
-const EDU_CARDS = [
-  {
-    id: "what-reits",
-    icon: Building2,
-    title: "What are REITs?",
-    color: "text-blue-400",
-    bg: "bg-blue-500/10",
-    border: "border-blue-500/20",
-    points: [
-      "Real Estate Investment Trusts own income-producing real estate or mortgages.",
-      "Must distribute at least 90% of taxable income as dividends to shareholders.",
-      "Trade on major exchanges like stocks — liquid unlike direct real estate.",
-      "Give retail investors access to institutional-quality real estate.",
-      "No corporate income tax at REIT level when distribution requirement met.",
-    ],
-  },
-  {
-    id: "ffo-vs-eps",
-    icon: DollarSign,
-    title: "FFO vs EPS",
-    color: "text-green-400",
-    bg: "bg-green-500/10",
-    border: "border-green-500/20",
-    points: [
-      "Earnings Per Share (EPS) deducts depreciation — misleading for real estate.",
-      "Buildings rarely depreciate in value; GAAP EPS understates REIT earnings.",
-      "Funds From Operations (FFO) = Net Income + Depreciation − Gains on Sales.",
-      "Adjusted FFO (AFFO) further subtracts capital expenditures for maintenance.",
-      "P/FFO is the primary valuation metric — equivalent to P/E for regular stocks.",
-    ],
-  },
-  {
-    id: "sectors",
-    icon: BarChart3,
-    title: "REIT Sectors",
-    color: "text-purple-400",
-    bg: "bg-purple-500/10",
-    border: "border-purple-500/20",
-    points: [
-      "Office: premium depends on work-from-home trends; under pressure post-2020.",
-      "Industrial/Logistics: booming from e-commerce growth (Prologis, PSA).",
-      "Data Centers: highest growth; AI infrastructure demand (AMT, DLR).",
-      "Healthcare: senior living and medical facilities; demographic tailwind.",
-      "Retail: malls (SPG) face headwinds; net-lease (O) more defensive.",
-      "Residential: apartment REITs benefit from housing unaffordability.",
-    ],
-  },
-  {
-    id: "rate-sensitivity",
-    icon: Percent,
-    title: "Interest Rate Sensitivity",
-    color: "text-amber-400",
-    bg: "bg-amber-500/10",
-    border: "border-amber-500/20",
-    points: [
-      "REITs are rate-sensitive: higher rates raise borrowing costs, compress valuations.",
-      "When 10Y Treasury yield rises, REIT dividend yields look less attractive.",
-      "Long-duration assets (data centers, net lease) are most rate-sensitive.",
-      "Rate sensitivity cuts both ways: falling rates are a powerful tailwind.",
-      "Net Lease REITs often have CPI-linked rent escalators for inflation protection.",
-    ],
-  },
-  {
-    id: "evaluation",
-    icon: TrendingUp,
-    title: "How to Evaluate REITs",
-    color: "text-cyan-400",
-    bg: "bg-cyan-500/10",
-    border: "border-cyan-500/20",
-    points: [
-      "P/FFO: lower = potentially undervalued vs sector peers.",
-      "Dividend Yield: high yield can signal distress — check payout ratio vs AFFO.",
-      "Occupancy Rate: >95% is excellent; declining trend is a warning sign.",
-      "Debt/Equity: REITs use leverage; compare to sector norms.",
-      "Same-store NOI growth: organic growth excluding acquisitions.",
-      "Cap Rate spread: property cap rate minus cost of debt = value creation margin.",
-    ],
-  },
-];
-
-function CapRateCalc() {
-  const [noi, setNoi] = useState(120000);
-  const [capRate, setCapRate] = useState(5.5);
-  const propertyValue = noi / (capRate / 100);
-  const noiRange = [50000, 100000, 150000, 200000, 250000, 300000];
-  const capRange = [3, 4, 5, 6, 7, 8];
-
-  return (
-    <div className="bg-muted/20 border border-border/40 rounded-lg p-4 space-y-4">
-      <h3 className="text-sm font-semibold text-foreground flex items-center gap-2">
-        <Calculator className="w-4 h-4 text-amber-400" />
-        Cap Rate Calculator
-      </h3>
-      <p className="text-xs text-muted-foreground">Property Value = NOI / Cap Rate</p>
-      <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-        <div className="space-y-2">
-          <label className="text-xs text-muted-foreground">Net Operating Income (NOI): <span className="text-foreground font-mono">{fmtCurrency(noi)}</span></label>
-          <Slider value={[noi]} onValueChange={([v]) => setNoi(v)} min={10000} max={1000000} step={5000} />
-          <div className="flex justify-between text-xs text-muted-foreground"><span>$10K</span><span>$1M</span></div>
-        </div>
-        <div className="space-y-2">
-          <label className="text-xs text-muted-foreground">Cap Rate: <span className="text-foreground font-mono">{fmt(capRate, 1)}%</span></label>
-          <Slider value={[capRate]} onValueChange={([v]) => setCapRate(v)} min={2} max={12} step={0.1} />
-          <div className="flex justify-between text-xs text-muted-foreground"><span>2%</span><span>12%</span></div>
-        </div>
-      </div>
-      <div className="bg-amber-500/10 border border-amber-500/20 rounded-lg p-3 text-center">
-        <p className="text-xs text-muted-foreground">Implied Property Value</p>
-        <p className="text-2xl font-bold text-amber-400 font-mono">{fmtCurrency(propertyValue)}</p>
-        <p className="text-xs text-muted-foreground mt-1">
-          ${fmtCurrency(noi)} NOI @ {fmt(capRate, 1)}% cap rate
-        </p>
-      </div>
-
-      {/* Cap Rate sensitivity table */}
-      <div>
-        <p className="text-xs text-muted-foreground mb-2">Property Value Sensitivity Table</p>
-        <div className="overflow-x-auto">
-          <table className="text-xs w-full">
-            <thead>
-              <tr>
-                <th className="text-left text-muted-foreground px-2 py-1">NOI \ Cap Rate</th>
-                {capRange.map((c) => (
-                  <th key={c} className={cn("text-center px-2 py-1 text-muted-foreground", c === Math.round(capRate) && "text-amber-400 font-bold")}>{c}%</th>
-                ))}
-              </tr>
-            </thead>
-            <tbody>
-              {noiRange.map((n) => (
-                <tr key={n} className={cn("border-t border-border/20", n === Math.round(noi / 50000) * 50000 && "bg-amber-500/5")}>
-                  <td className="px-2 py-1 text-muted-foreground">{fmtCurrency(n)}</td>
-                  {capRange.map((c) => {
-                    const v = n / (c / 100);
-                    const isHighlight = Math.abs(n - noi) < 30000 && Math.abs(c - capRate) < 0.75;
-                    return (
-                      <td key={c} className={cn("text-center px-2 py-1 font-mono", isHighlight ? "text-amber-400 font-bold" : "text-muted-foreground")}>
-                        {v >= 1000000 ? `$${(v / 1000000).toFixed(1)}M` : `$${(v / 1000).toFixed(0)}K`}
-                      </td>
-                    );
-                  })}
-                </tr>
-              ))}
-            </tbody>
-          </table>
-        </div>
-      </div>
-    </div>
-  );
-}
-
-function DCFCalc() {
-  const [noi, setNoi] = useState(200000);
-  const [growthRate, setGrowthRate] = useState(3);
-  const [discountRate, setDiscountRate] = useState(8);
-  const [terminalCapRate, setTerminalCapRate] = useState(5.5);
-  const [holdYears, setHoldYears] = useState(10);
-
-  const cashFlows = useMemo(() => {
-    const cfs: number[] = [];
-    for (let y = 1; y <= holdYears; y++) {
-      cfs.push(noi * Math.pow(1 + growthRate / 100, y));
-    }
-    return cfs;
-  }, [noi, growthRate, holdYears]);
-
-  const terminalNOI = noi * Math.pow(1 + growthRate / 100, holdYears + 1);
-  const terminalValue = terminalNOI / (terminalCapRate / 100);
-  const pvCFs = cashFlows.reduce((sum, cf, i) => sum + cf / Math.pow(1 + discountRate / 100, i + 1), 0);
-  const pvTerminal = terminalValue / Math.pow(1 + discountRate / 100, holdYears);
-  const totalPV = pvCFs + pvTerminal;
-
-  const maxCF = Math.max(...cashFlows, pvTerminal / holdYears);
-  const barH = 80;
-
-  return (
-    <div className="bg-muted/20 border border-border/40 rounded-lg p-4 space-y-4">
-      <h3 className="text-sm font-semibold text-foreground flex items-center gap-2">
-        <TrendingUp className="w-4 h-4 text-purple-400" />
-        DCF for Real Estate
-      </h3>
-      <div className="grid grid-cols-2 sm:grid-cols-3 gap-3">
-        {[
-          { label: "Starting NOI", value: noi, setter: setNoi, min: 10000, max: 2000000, step: 10000, fmt: (v: number) => fmtCurrency(v) },
-          { label: "NOI Growth Rate", value: growthRate, setter: setGrowthRate, min: 0, max: 10, step: 0.5, fmt: (v: number) => `${fmt(v, 1)}%` },
-          { label: "Discount Rate", value: discountRate, setter: setDiscountRate, min: 3, max: 15, step: 0.5, fmt: (v: number) => `${fmt(v, 1)}%` },
-          { label: "Terminal Cap Rate", value: terminalCapRate, setter: setTerminalCapRate, min: 3, max: 10, step: 0.25, fmt: (v: number) => `${fmt(v, 2)}%` },
-          { label: "Hold Years", value: holdYears, setter: setHoldYears, min: 3, max: 20, step: 1, fmt: (v: number) => `${v} yrs` },
-        ].map((ctrl) => (
-          <div key={ctrl.label} className="space-y-1.5">
-            <label className="text-xs text-muted-foreground">{ctrl.label}: <span className="text-foreground font-mono">{ctrl.fmt(ctrl.value)}</span></label>
-            <Slider value={[ctrl.value]} onValueChange={([v]) => ctrl.setter(v)} min={ctrl.min} max={ctrl.max} step={ctrl.step} />
-          </div>
-        ))}
-      </div>
-
-      {/* Mini bar chart of cash flows */}
-      <svg viewBox={`0 0 ${Math.max(300, holdYears * 28 + 40)} ${barH + 24}`} className="w-full">
-        {cashFlows.map((cf, i) => {
-          const bH = (cf / maxCF) * barH;
-          const x = 20 + i * 28;
-          return (
-            <g key={i}>
-              <rect x={x} y={barH - bH} width={20} height={bH} fill="#a78bfa" fillOpacity={0.6} rx={2} />
-              {i === holdYears - 1 && (
-                <rect x={x} y={0} width={20} height={barH} fill="#a78bfa" fillOpacity={0.15} rx={2} />
-              )}
-              <text x={x + 10} y={barH + 14} textAnchor="middle" fontSize={8} fill="currentColor" fillOpacity={0.5}>
-                {i + 1}
-              </text>
-            </g>
-          );
-        })}
-        <line x1={20} x2={20 + holdYears * 28} y1={barH} y2={barH} stroke="currentColor" strokeOpacity={0.2} />
-      </svg>
-
-      {/* Results */}
-      <div className="grid grid-cols-3 gap-3">
-        {[
-          { label: "PV of Cash Flows", value: fmtCurrency(pvCFs), color: "text-purple-400" },
-          { label: "PV of Terminal Value", value: fmtCurrency(pvTerminal), color: "text-blue-400" },
-          { label: "Total DCF Value", value: fmtCurrency(totalPV), color: "text-green-400" },
-        ].map((m) => (
-          <div key={m.label} className="bg-muted/30 rounded-lg p-2.5 text-center">
-            <p className="text-xs text-muted-foreground">{m.label}</p>
-            <p className={cn("text-sm font-bold font-mono mt-0.5", m.color)}>{m.value}</p>
-          </div>
-        ))}
-      </div>
-    </div>
-  );
-}
-
-function RealEstate101Tab() {
-  const [expandedCard, setExpandedCard] = useState<string | null>("what-reits");
-
-  return (
-    <div className="space-y-4">
-      {/* Educational cards */}
-      <div className="grid grid-cols-1 gap-3">
-        {EDU_CARDS.map((card) => {
-          const Icon = card.icon;
-          const expanded = expandedCard === card.id;
-          return (
-            <div
-              key={card.id}
-              className={cn("border rounded-lg overflow-hidden transition-all cursor-pointer", card.border, expanded ? card.bg : "border-border/40 bg-muted/10 hover:bg-muted/20")}
-              onClick={() => setExpandedCard(expanded ? null : card.id)}
-            >
-              <div className="flex items-center gap-3 px-4 py-3">
-                <div className={cn("p-1.5 rounded-md", card.bg)}>
-                  <Icon className={cn("w-4 h-4", card.color)} />
-                </div>
-                <h3 className={cn("text-sm font-semibold flex-1", expanded ? card.color : "text-foreground")}>{card.title}</h3>
-                <span className="text-muted-foreground text-xs">{expanded ? "▲" : "▼"}</span>
-              </div>
-              {expanded && (
-                <div className="px-4 pb-3 space-y-1.5">
-                  {card.points.map((pt, i) => (
-                    <div key={i} className="flex items-start gap-2 text-xs text-muted-foreground">
-                      <span className={cn("mt-0.5 flex-shrink-0", card.color)}>•</span>
-                      <span>{pt}</span>
-                    </div>
-                  ))}
-                </div>
-              )}
-            </div>
-          );
-        })}
-      </div>
-
-      {/* Cap Rate Calculator */}
-      <CapRateCalc />
-
-      {/* DCF Calculator */}
-      <DCFCalc />
-    </div>
-  );
-}
-
-// ── Tab 4: Mortgage Calculator ────────────────────────────────────────────────
-
-interface MortgageInputs {
-  homePrice: number;
-  downPctg: number;
-  rate: number;
-  termYears: number;
-  propTaxRate: number;
-  insuranceRate: number;
-  monthlyRent: number;
-  annualRentGrowth: number;
-  investReturnRate: number;
-}
-
-interface MortgageResult {
-  loanAmount: number;
-  monthlyPrincipalInterest: number;
-  monthlyTax: number;
-  monthlyInsurance: number;
-  monthlyPmi: number;
-  totalMonthly: number;
-  amortization: Array<{ month: number; principal: number; interest: number; balance: number; cumPrincipal: number; cumInterest: number }>;
-  breakEvenMonth: number | null;
-  buyTotalCost: number[];
-  rentTotalCost: number[];
-}
-
-function computeMortgage(inp: MortgageInputs): MortgageResult {
-  const { homePrice, downPctg, rate, termYears, propTaxRate, insuranceRate, monthlyRent, annualRentGrowth, investReturnRate } = inp;
-  const downAmt = homePrice * (downPctg / 100);
-  const loanAmount = homePrice - downAmt;
-  const monthlyRate = rate / 100 / 12;
-  const n = termYears * 12;
-
-  // Monthly P&I
-  const monthlyPI = loanAmount > 0 && monthlyRate > 0
-    ? loanAmount * (monthlyRate * Math.pow(1 + monthlyRate, n)) / (Math.pow(1 + monthlyRate, n) - 1)
-    : loanAmount / n;
-
-  const monthlyTax = (homePrice * (propTaxRate / 100)) / 12;
-  const monthlyIns = (homePrice * (insuranceRate / 100)) / 12;
-  const monthlyPmi = downPctg < 20 ? loanAmount * 0.008 / 12 : 0;
-  const totalMonthly = monthlyPI + monthlyTax + monthlyIns + monthlyPmi;
-
-  // Amortization (first n months)
-  const amortization: MortgageResult["amortization"] = [];
-  let balance = loanAmount;
-  let cumPrincipal = 0;
-  let cumInterest = 0;
-  for (let m = 1; m <= Math.min(n, 360); m++) {
-    const interestPayment = balance * monthlyRate;
-    const principalPayment = monthlyPI - interestPayment;
-    balance = Math.max(0, balance - principalPayment);
-    cumPrincipal += principalPayment;
-    cumInterest += interestPayment;
-    amortization.push({ month: m, principal: principalPayment, interest: interestPayment, balance, cumPrincipal, cumInterest });
-  }
-
-  // Rent vs Buy comparison (year-by-year total outlay)
-  const buyTotalCost: number[] = [downAmt]; // upfront costs
-  const rentTotalCost: number[] = [0];
-  let buyRunning = downAmt;
-  let rentRunning = 0;
-  let currentRent = monthlyRent;
-  let downPaymentInvestment = downAmt;
-  let breakEvenMonth: number | null = null;
-
-  for (let y = 1; y <= 30; y++) {
-    // Buy side: mortgage + tax + insurance - equity buildup
-    const yearMortgageCost = totalMonthly * 12;
-    const equityBuilt = (amortization[Math.min(y * 12 - 1, amortization.length - 1)]?.cumPrincipal ?? 0);
-    buyRunning += yearMortgageCost - equityBuilt / y; // rough yearly cost
-    buyTotalCost.push(buyRunning);
-
-    // Rent side: rent + opportunity cost of down payment
-    const yearRentCost = currentRent * 12;
-    downPaymentInvestment *= 1 + investReturnRate / 100;
-    rentRunning += yearRentCost - (downPaymentInvestment - downAmt) / y;
-    rentTotalCost.push(rentRunning);
-    currentRent *= 1 + annualRentGrowth / 100;
-
-    if (breakEvenMonth === null && buyRunning < rentRunning) {
-      breakEvenMonth = y;
-    }
-  }
-
-  return {
-    loanAmount,
-    monthlyPrincipalInterest: monthlyPI,
-    monthlyTax,
-    monthlyInsurance: monthlyIns,
-    monthlyPmi,
-    totalMonthly,
-    amortization,
-    breakEvenMonth,
-    buyTotalCost,
-    rentTotalCost,
-  };
-}
-
-function MortgageCalculatorTab() {
-  const [homePrice, setHomePrice] = useState(450000);
-  const [downPctg, setDownPctg] = useState(20);
-  const [rate, setRate] = useState(6.75);
-  const [termYears, setTermYears] = useState(30);
-  const [propTaxRate, setPropTaxRate] = useState(1.2);
-  const [insuranceRate, setInsuranceRate] = useState(0.5);
-  const [monthlyRent, setMonthlyRent] = useState(2500);
-  const [annualRentGrowth, setAnnualRentGrowth] = useState(3);
-  const [investReturnRate, setInvestReturnRate] = useState(7);
-  const [showAmort, setShowAmort] = useState(false);
-
-  const result = useMemo(() => computeMortgage({
-    homePrice, downPctg, rate, termYears, propTaxRate, insuranceRate,
-    monthlyRent, annualRentGrowth, investReturnRate
-  }), [homePrice, downPctg, rate, termYears, propTaxRate, insuranceRate, monthlyRent, annualRentGrowth, investReturnRate]);
-
-  // SVG amortization chart (full term, year summaries)
-  const W = 540;
-  const H = 180;
-  const PAD = { top: 12, right: 12, bottom: 28, left: 60 };
-  const cW = W - PAD.left - PAD.right;
-  const cH = H - PAD.top - PAD.bottom;
-
-  const yearlyData = useMemo(() => {
-    const years: Array<{ year: number; principal: number; interest: number; balance: number }> = [];
-    for (let y = 0; y < termYears; y++) {
-      const startIdx = y * 12;
-      const endIdx = Math.min((y + 1) * 12 - 1, result.amortization.length - 1);
-      if (startIdx >= result.amortization.length) break;
-      const principal = result.amortization[endIdx].cumPrincipal - (startIdx > 0 ? result.amortization[startIdx - 1].cumPrincipal : 0);
-      const interest = result.amortization[endIdx].cumInterest - (startIdx > 0 ? result.amortization[startIdx - 1].cumInterest : 0);
-      years.push({ year: y + 1, principal, interest, balance: result.amortization[endIdx].balance });
-    }
-    return years;
-  }, [result.amortization, termYears]);
-
-  const maxStacked = Math.max(...yearlyData.map((d) => d.principal + d.interest));
-  const maxBalance = result.loanAmount;
-
-  function xPos(i: number) { return PAD.left + (i / (yearlyData.length - 1)) * cW; }
-  function yBalance(v: number) { return PAD.top + cH - (v / maxBalance) * cH; }
-
-  const balancePath = yearlyData.map((d, i) => `${i === 0 ? "M" : "L"}${xPos(i).toFixed(1)},${yBalance(d.balance).toFixed(1)}`).join(" ");
-
-  // Rent vs Buy chart
-  const maxRvB = Math.max(...result.buyTotalCost, ...result.rentTotalCost);
-
-  return (
-    <div className="space-y-5">
-      {/* Inputs */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-        {[
-          { label: "Home Price", value: homePrice, setter: setHomePrice, min: 100000, max: 5000000, step: 5000, display: fmtCurrency(homePrice) },
-          { label: `Down Payment (${downPctg}%)`, value: downPctg, setter: setDownPctg, min: 3, max: 50, step: 1, display: `${downPctg}% = ${fmtCurrency(homePrice * downPctg / 100)}` },
-          { label: "Interest Rate", value: rate, setter: setRate, min: 2, max: 12, step: 0.125, display: `${fmt(rate, 3)}%` },
-          { label: "Loan Term", value: termYears, setter: setTermYears, min: 10, max: 30, step: 5, display: `${termYears} years` },
-          { label: "Property Tax Rate", value: propTaxRate, setter: setPropTaxRate, min: 0.3, max: 3, step: 0.1, display: `${fmt(propTaxRate, 1)}%/yr` },
-          { label: "Insurance Rate", value: insuranceRate, setter: setInsuranceRate, min: 0.2, max: 1.5, step: 0.1, display: `${fmt(insuranceRate, 1)}%/yr` },
-        ].map((ctrl) => (
-          <div key={ctrl.label} className="space-y-2">
-            <label className="text-xs text-muted-foreground">{ctrl.label}: <span className="text-foreground font-mono text-xs">{ctrl.display}</span></label>
-            <Slider value={[ctrl.value]} onValueChange={([v]) => ctrl.setter(v)} min={ctrl.min} max={ctrl.max} step={ctrl.step} />
-          </div>
-        ))}
-      </div>
-
-      {/* Monthly breakdown */}
-      <div className="bg-muted/20 border border-border/40 rounded-lg p-4">
-        <h3 className="text-sm font-semibold text-foreground mb-3">Monthly Payment Breakdown</h3>
-        <div className="flex flex-col sm:flex-row gap-4 items-start">
-          {/* Donut chart SVG */}
-          {(() => {
-            const segments = [
-              { label: "Principal & Interest", value: result.monthlyPrincipalInterest, color: "#60a5fa" },
-              { label: "Property Tax", value: result.monthlyTax, color: "#f59e0b" },
-              { label: "Insurance", value: result.monthlyInsurance, color: "#34d399" },
-              ...(result.monthlyPmi > 0 ? [{ label: "PMI", value: result.monthlyPmi, color: "#f87171" }] : []),
-            ];
-            const total = segments.reduce((s, sg) => s + sg.value, 0);
-            const R = 52;
-            const r = 32;
-            const cx = 64;
-            const cy = 64;
-            let angle = -Math.PI / 2;
-            const arcs = segments.map((sg) => {
-              const slice = (sg.value / total) * 2 * Math.PI;
-              const x1 = cx + R * Math.cos(angle);
-              const y1 = cy + R * Math.sin(angle);
-              angle += slice;
-              const x2 = cx + R * Math.cos(angle);
-              const y2 = cy + R * Math.sin(angle);
-              const x1i = cx + r * Math.cos(angle - slice);
-              const y1i = cy + r * Math.sin(angle - slice);
-              const x2i = cx + r * Math.cos(angle);
-              const y2i = cy + r * Math.sin(angle);
-              const large = slice > Math.PI ? 1 : 0;
-              return {
-                ...sg,
-                d: `M${x1.toFixed(1)},${y1.toFixed(1)} A${R},${R} 0 ${large},1 ${x2.toFixed(1)},${y2.toFixed(1)} L${x2i.toFixed(1)},${y2i.toFixed(1)} A${r},${r} 0 ${large},0 ${x1i.toFixed(1)},${y1i.toFixed(1)} Z`,
-              };
-            });
-            return (
-              <div className="flex items-start gap-4">
-                <svg viewBox="0 0 128 128" className="w-24 h-24 flex-shrink-0">
-                  {arcs.map((arc) => (
-                    <path key={arc.label} d={arc.d} fill={arc.color} fillOpacity={0.85} />
-                  ))}
-                  <text x={cx} y={cy - 4} textAnchor="middle" fontSize={9} fill="currentColor" fillOpacity={0.7}>Total</text>
-                  <text x={cx} y={cy + 8} textAnchor="middle" fontSize={10} fontWeight="bold" fill="currentColor">{fmtCurrency(total)}</text>
-                  <text x={cx} y={cy + 19} textAnchor="middle" fontSize={7} fill="currentColor" fillOpacity={0.5}>/month</text>
-                </svg>
-                <div className="space-y-2 flex-1">
-                  {segments.map((sg) => (
-                    <div key={sg.label} className="flex items-center justify-between text-xs">
-                      <div className="flex items-center gap-2">
-                        <div className="w-2.5 h-2.5 rounded-full flex-shrink-0" style={{ backgroundColor: sg.color }} />
-                        <span className="text-muted-foreground">{sg.label}</span>
-                      </div>
-                      <span className="font-mono text-foreground">{fmtCurrency(sg.value)}/mo</span>
-                    </div>
-                  ))}
-                  <div className="border-t border-border/30 pt-1 flex justify-between text-xs font-semibold">
-                    <span className="text-muted-foreground">Total Monthly</span>
-                    <span className="text-blue-400 font-mono">{fmtCurrency(result.totalMonthly)}/mo</span>
-                  </div>
-                  {result.monthlyPmi > 0 && (
-                    <p className="text-xs text-amber-400">PMI required (down &lt; 20%). Drops when equity reaches 20%.</p>
-                  )}
-                </div>
-              </div>
-            );
-          })()}
-        </div>
-      </div>
-
-      {/* Amortization chart */}
-      <div className="bg-muted/20 border border-border/40 rounded-lg p-4">
-        <div className="flex items-center justify-between mb-3">
-          <h3 className="text-sm font-semibold text-foreground">Amortization Schedule</h3>
-          <button
-            onClick={() => setShowAmort((s) => !s)}
-            className="text-xs text-muted-foreground hover:text-foreground border border-border/40 rounded px-2 py-0.5 transition-colors"
-          >
-            {showAmort ? "Hide table" : "Show first 12 months"}
-          </button>
-        </div>
-
-        {/* Full amortization SVG (stacked bar by year) */}
-        <div className="overflow-x-auto">
-          <svg viewBox={`0 0 ${W} ${H}`} className="w-full" style={{ minWidth: 320 }}>
-            {[0, 0.25, 0.5, 0.75, 1].map((t, i) => (
-              <g key={i}>
-                <line x1={PAD.left} x2={W - PAD.right} y1={PAD.top + cH * (1 - t)} y2={PAD.top + cH * (1 - t)} stroke="currentColor" strokeOpacity={0.08} strokeWidth={1} />
-                <text x={PAD.left - 4} y={PAD.top + cH * (1 - t) + 4} textAnchor="end" fontSize={8} fill="currentColor" fillOpacity={0.5}>
-                  {fmtCurrency(maxStacked * t)}
-                </text>
-              </g>
-            ))}
-
-            {yearlyData.map((d, i) => {
-              const x = PAD.left + (i / yearlyData.length) * cW;
-              const bW = Math.max(2, cW / yearlyData.length - 1);
-              const hPrincipal = (d.principal / maxStacked) * cH;
-              const hInterest = (d.interest / maxStacked) * cH;
-              const showLabel = i === 0 || i === yearlyData.length - 1 || (i + 1) % 5 === 0;
-              return (
-                <g key={d.year}>
-                  <rect x={x} y={PAD.top + cH - hPrincipal - hInterest} width={bW} height={hInterest} fill="#f87171" fillOpacity={0.7} />
-                  <rect x={x} y={PAD.top + cH - hPrincipal} width={bW} height={hPrincipal} fill="#60a5fa" fillOpacity={0.7} />
-                  {showLabel && (
-                    <text x={x + bW / 2} y={H - 6} textAnchor="middle" fontSize={8} fill="currentColor" fillOpacity={0.5}>
-                      Y{d.year}
-                    </text>
-                  )}
-                </g>
-              );
-            })}
-
-            {/* Balance line overlay */}
-            <path d={balancePath} fill="none" stroke="#34d399" strokeWidth={1.5} strokeDasharray="3 2" />
-          </svg>
-        </div>
-        <div className="flex flex-wrap gap-4 text-xs mt-1">
-          <div className="flex items-center gap-1.5"><div className="w-3 h-3 rounded-sm bg-red-400/70" /><span className="text-muted-foreground">Interest</span></div>
-          <div className="flex items-center gap-1.5"><div className="w-3 h-3 rounded-sm bg-blue-400/70" /><span className="text-muted-foreground">Principal</span></div>
-          <div className="flex items-center gap-1.5">
-            <svg width={20} height={8}><line x1={0} y1={4} x2={20} y2={4} stroke="#34d399" strokeWidth={1.5} strokeDasharray="3 2" /></svg>
-            <span className="text-muted-foreground">Remaining Balance</span>
-          </div>
-        </div>
-
-        {/* First 12 months table */}
-        {showAmort && (
-          <div className="mt-4 overflow-x-auto">
-            <table className="w-full text-xs">
+      <Card className="bg-card/60 border-border/50">
+        <CardHeader className="pb-2">
+          <CardTitle className="text-sm font-medium flex items-center gap-2">
+            <Building2 className="w-4 h-4 text-primary" />
+            REIT Universe — 8 REITs across 8 Sectors
+          </CardTitle>
+        </CardHeader>
+        <CardContent className="p-0">
+          <div className="overflow-x-auto">
+            <table className="w-full text-sm">
               <thead>
-                <tr className="border-b border-border/30">
-                  {["Month", "Payment", "Principal", "Interest", "Balance"].map((h) => (
-                    <th key={h} className="text-right px-2 py-1.5 text-muted-foreground font-medium first:text-left">{h}</th>
-                  ))}
+                <tr className="border-b border-border/50">
+                  <th className="px-3 py-2 text-left text-xs font-medium text-muted-foreground">Ticker / Name</th>
+                  <th className="px-3 py-2 text-left text-xs font-medium text-muted-foreground">Sector</th>
+                  <SortHdr label="Price"     k="price" />
+                  <SortHdr label="Div Yield" k="divYield" />
+                  <SortHdr label="FFO/Share" k="ffoPerShare" />
+                  <SortHdr label="P/FFO"     k="pFfo" />
+                  <SortHdr label="NAV Prem/Disc" k="navPremDisc" />
+                  <SortHdr label="Mkt Cap"   k="marketCap" />
+                  <SortHdr label="Occupancy" k="occupancy" />
                 </tr>
               </thead>
-              <tbody className="divide-y divide-border/20">
-                {result.amortization.slice(0, 12).map((row) => (
-                  <tr key={row.month} className="hover:bg-muted/20">
-                    <td className="px-2 py-1.5 text-muted-foreground">{row.month}</td>
-                    <td className="px-2 py-1.5 text-right font-mono">{fmtCurrency(result.monthlyPrincipalInterest)}</td>
-                    <td className="px-2 py-1.5 text-right font-mono text-blue-400">{fmtCurrency(row.principal)}</td>
-                    <td className="px-2 py-1.5 text-right font-mono text-red-400">{fmtCurrency(row.interest)}</td>
-                    <td className="px-2 py-1.5 text-right font-mono text-muted-foreground">{fmtCurrency(row.balance)}</td>
-                  </tr>
-                ))}
+              <tbody>
+                {sorted.map((r) => {
+                  const color = SECTOR_COLORS[r.sector];
+                  const isPrem = r.navPremDisc >= 0;
+                  return (
+                    <motion.tr
+                      key={r.ticker}
+                      initial={{ opacity: 0, y: 4 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      className="border-b border-border/30 hover:bg-muted/20 transition-colors"
+                    >
+                      <td className="px-3 py-2.5">
+                        <div className="font-semibold text-foreground">{r.ticker}</div>
+                        <div className="text-xs text-muted-foreground truncate max-w-[160px]">{r.name}</div>
+                      </td>
+                      <td className="px-3 py-2.5">
+                        <Badge
+                          className="text-xs font-medium gap-1"
+                          style={{ backgroundColor: `${color}22`, color, borderColor: `${color}44`, border: "1px solid" }}
+                        >
+                          {SECTOR_ICONS[r.sector]}
+                          {r.sector}
+                        </Badge>
+                      </td>
+                      <td className="px-3 py-2.5 text-right font-mono">${fmt(r.price, 2)}</td>
+                      <td className="px-3 py-2.5 text-right text-emerald-400 font-semibold">{fmt(r.divYield, 2)}%</td>
+                      <td className="px-3 py-2.5 text-right font-mono">${fmt(r.ffoPerShare, 2)}</td>
+                      <td className="px-3 py-2.5 text-right font-mono">{fmt(r.pFfo, 1)}x</td>
+                      <td className="px-3 py-2.5 text-right">
+                        <span className={isPrem ? "text-rose-400" : "text-emerald-400"}>
+                          {isPrem ? "+" : ""}{fmt(r.navPremDisc, 1)}%
+                        </span>
+                      </td>
+                      <td className="px-3 py-2.5 text-right text-muted-foreground">{fmtB(r.marketCap)}</td>
+                      <td className="px-3 py-2.5 text-right">
+                        <div className="flex items-center justify-end gap-1.5">
+                          <span>{fmt(r.occupancy, 1)}%</span>
+                          <div className="w-12">
+                            <Progress value={r.occupancy} className="h-1" />
+                          </div>
+                        </div>
+                      </td>
+                    </motion.tr>
+                  );
+                })}
               </tbody>
             </table>
           </div>
-        )}
-      </div>
+        </CardContent>
+      </Card>
 
-      {/* Rent vs Buy */}
-      <div className="bg-muted/20 border border-border/40 rounded-lg p-4 space-y-4">
-        <h3 className="text-sm font-semibold text-foreground">Rent vs Buy Comparison</h3>
-        <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
-          {[
-            { label: "Monthly Rent", value: monthlyRent, setter: setMonthlyRent, min: 500, max: 10000, step: 100, display: fmtCurrency(monthlyRent) },
-            { label: "Annual Rent Growth", value: annualRentGrowth, setter: setAnnualRentGrowth, min: 0, max: 8, step: 0.5, display: `${fmt(annualRentGrowth, 1)}%/yr` },
-            { label: "Investment Return (if renting)", value: investReturnRate, setter: setInvestReturnRate, min: 2, max: 12, step: 0.5, display: `${fmt(investReturnRate, 1)}%/yr` },
-          ].map((ctrl) => (
-            <div key={ctrl.label} className="space-y-1.5">
-              <label className="text-xs text-muted-foreground">{ctrl.label}: <span className="text-foreground font-mono">{ctrl.display}</span></label>
-              <Slider value={[ctrl.value]} onValueChange={([v]) => ctrl.setter(v)} min={ctrl.min} max={ctrl.max} step={ctrl.step} />
+      {/* Sector Legend */}
+      <Card className="bg-card/60 border-border/50">
+        <CardContent className="p-3">
+          <p className="text-xs text-muted-foreground mb-2 flex items-center gap-1">
+            <Info className="w-3 h-3" /> NAV Premium/Discount = (Market Price − NAV per share) / NAV per share × 100
+          </p>
+          <div className="flex flex-wrap gap-2">
+            {(Object.keys(SECTOR_COLORS) as Sector[]).map((sec) => (
+              <div key={sec} className="flex items-center gap-1 text-xs text-muted-foreground">
+                <div className="w-2 h-2 rounded-full" style={{ backgroundColor: SECTOR_COLORS[sec] }} />
+                {sec}
+              </div>
+            ))}
+          </div>
+        </CardContent>
+      </Card>
+    </div>
+  );
+}
+
+// ── Tab 2: Valuation ──────────────────────────────────────────────────────────
+
+function ValuationTab() {
+  const [capRate, setCapRate] = useState(5.5);
+  const [noi, setNoi] = useState(12_500_000);
+
+  const nav = useMemo(() => noi / (capRate / 100), [noi, capRate]);
+  const sharesOut = 50_000_000;
+  const navPerShare = nav / sharesOut;
+
+  // FFO vs AFFO waterfall data (static seeded values)
+  const ffoItems = useMemo(() => [
+    { label: "Net Income",          value: 3.82,  isBase: true },
+    { label: "+ Depreciation",      value: 4.12,  isBase: false },
+    { label: "+ Amortization",      value: 0.68,  isBase: false },
+    { label: "= FFO/Share",         value: 8.62,  isBase: true },
+    { label: "− Recurring CapEx",   value: -0.74, isBase: false },
+    { label: "− Straight-line Rent",value: -0.38, isBase: false },
+    { label: "+ Stock Comp",        value: 0.22,  isBase: false },
+    { label: "= AFFO/Share",        value: 7.72,  isBase: true },
+  ], []);
+
+  // P/FFO historical comparison (12 data points)
+  const pFfoHistory = useMemo(() => {
+    const pts: Array<{ label: string; current: number; avg: number }> = [];
+    const sectors: Sector[] = ["Office", "Retail", "Residential", "Industrial", "Healthcare", "Data Center", "Hotel", "Diversified"];
+    const avgBase = [11, 14, 22, 24, 27, 34, 12, 15];
+    sectors.forEach((sec, i) => {
+      const reit = REITS.find((r) => r.sector === sec);
+      pts.push({
+        label: sec,
+        current: reit ? reit.pFfo : avgBase[i] * (0.9 + rand() * 0.2),
+        avg: avgBase[i],
+      });
+    });
+    return pts;
+  }, []);
+
+  const maxPFfo = Math.max(...pFfoHistory.map((p) => Math.max(p.current, p.avg)));
+  const svgW = 560;
+  const svgH = 200;
+  const barW = 28;
+  const gap = 12;
+  const groupW = barW * 2 + gap;
+  const leftPad = 40;
+  const topPad = 16;
+  const bottomPad = 60;
+  const chartH = svgH - topPad - bottomPad;
+
+  return (
+    <div className="space-y-4">
+      {/* NAV Calculator */}
+      <Card className="bg-card/60 border-border/50">
+        <CardHeader className="pb-2">
+          <CardTitle className="text-sm font-medium flex items-center gap-2">
+            <Calculator className="w-4 h-4 text-primary" />
+            NAV Calculator — Cap Rate Method
+          </CardTitle>
+        </CardHeader>
+        <CardContent className="space-y-4">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div className="space-y-4">
+              <div>
+                <div className="flex justify-between mb-1">
+                  <label className="text-xs text-muted-foreground">Cap Rate</label>
+                  <span className="text-xs font-semibold text-primary">{capRate.toFixed(1)}%</span>
+                </div>
+                <input
+                  type="range"
+                  min={3} max={12} step={0.1}
+                  value={capRate}
+                  onChange={(e) => setCapRate(parseFloat(e.target.value))}
+                  className="w-full accent-primary"
+                />
+                <div className="flex justify-between text-[10px] text-muted-foreground mt-0.5">
+                  <span>3% (Premium)</span><span>12% (Distressed)</span>
+                </div>
+              </div>
+              <div>
+                <label className="text-xs text-muted-foreground block mb-1">Annual NOI ($)</label>
+                <input
+                  type="number"
+                  value={noi}
+                  onChange={(e) => setNoi(Number(e.target.value))}
+                  className="w-full bg-muted/40 border border-border/50 rounded-md px-3 py-1.5 text-sm font-mono"
+                />
+              </div>
             </div>
-          ))}
-        </div>
-
-        {result.breakEvenMonth !== null ? (
-          <div className="bg-green-500/10 border border-green-500/20 rounded-lg p-3">
-            <p className="text-xs text-muted-foreground">Buying becomes cheaper than renting after</p>
-            <p className="text-xl font-bold text-green-400">Year {result.breakEvenMonth}</p>
-            <p className="text-xs text-muted-foreground">Based on current assumptions (simplified model)</p>
+            <div className="grid grid-cols-2 gap-3">
+              {[
+                { label: "Property Value (NAV)", value: `$${(nav / 1e6).toFixed(2)}M`,   highlight: true },
+                { label: "NAV per Share",         value: `$${navPerShare.toFixed(2)}`,    highlight: false },
+                { label: "Implied Yield",         value: `${capRate.toFixed(1)}%`,         highlight: false },
+                { label: "Shares Outstanding",   value: "50,000,000",                     highlight: false },
+              ].map((s) => (
+                <Card key={s.label} className={`border-border/40 ${s.highlight ? "bg-primary/10 border-primary/30" : "bg-muted/30"}`}>
+                  <CardContent className="p-3">
+                    <p className="text-xs text-muted-foreground">{s.label}</p>
+                    <p className={`text-base font-bold font-mono ${s.highlight ? "text-primary" : ""}`}>{s.value}</p>
+                  </CardContent>
+                </Card>
+              ))}
+            </div>
           </div>
-        ) : (
-          <div className="bg-amber-500/10 border border-amber-500/20 rounded-lg p-3">
-            <p className="text-xs text-amber-400">Renting may be more cost-effective under these assumptions over 30 years. Consider adjusting inputs.</p>
+          <p className="text-xs text-muted-foreground flex items-start gap-1">
+            <Info className="w-3 h-3 mt-0.5 shrink-0" />
+            NAV = NOI ÷ Cap Rate. A lower cap rate reflects higher property values in prime markets; higher cap rates indicate more distressed or secondary markets.
+          </p>
+        </CardContent>
+      </Card>
+
+      {/* FFO vs AFFO Waterfall */}
+      <Card className="bg-card/60 border-border/50">
+        <CardHeader className="pb-2">
+          <CardTitle className="text-sm font-medium flex items-center gap-2">
+            <BarChart3 className="w-4 h-4 text-blue-400" />
+            FFO vs AFFO Waterfall (per share)
+          </CardTitle>
+        </CardHeader>
+        <CardContent>
+          <div className="overflow-x-auto">
+            <div className="space-y-1.5 min-w-[320px]">
+              {ffoItems.map((item, i) => {
+                const isNeg = item.value < 0;
+                const abs = Math.abs(item.value);
+                const maxVal = 8.62;
+                const pct = (abs / maxVal) * 100;
+                return (
+                  <div key={i} className="flex items-center gap-3 text-xs">
+                    <div className="w-44 shrink-0 text-right text-muted-foreground">{item.label}</div>
+                    <div className="flex-1 h-5 bg-muted/20 rounded overflow-hidden relative">
+                      <motion.div
+                        initial={{ width: 0 }}
+                        animate={{ width: `${pct}%` }}
+                        transition={{ delay: i * 0.06, duration: 0.4 }}
+                        className={`h-full rounded ${
+                          item.isBase
+                            ? "bg-primary/70"
+                            : isNeg
+                            ? "bg-rose-500/60"
+                            : "bg-emerald-500/60"
+                        }`}
+                      />
+                    </div>
+                    <div className={`w-14 text-right font-mono font-semibold shrink-0 ${
+                      item.isBase ? "text-primary" : isNeg ? "text-rose-400" : "text-emerald-400"
+                    }`}>
+                      {isNeg ? "-" : item.isBase ? "" : "+"}{fmt(abs, 2)}
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
           </div>
-        )}
+          <p className="text-xs text-muted-foreground mt-3 flex items-start gap-1">
+            <Info className="w-3 h-3 mt-0.5 shrink-0" />
+            AFFO (Adjusted FFO) is a cleaner measure of cash available for dividends — it adjusts for recurring capital expenditures and non-cash items.
+          </p>
+        </CardContent>
+      </Card>
 
-        {/* Rent vs Buy line chart */}
-        <div className="overflow-x-auto">
-          {(() => {
-            const RvBW = 540;
-            const RvBH = 160;
-            const rPad = { top: 12, right: 12, bottom: 28, left: 60 };
-            const rcW = RvBW - rPad.left - rPad.right;
-            const rcH = RvBH - rPad.top - rPad.bottom;
-            const years30 = 30;
-            const rMaxVal = Math.max(...result.buyTotalCost.slice(0, 31), ...result.rentTotalCost.slice(0, 31));
-            const rMinVal = 0;
-
-            function rX(i: number) { return rPad.left + (i / years30) * rcW; }
-            function rY(v: number) { return rPad.top + rcH - ((v - rMinVal) / (rMaxVal - rMinVal)) * rcH; }
-
-            const buyPath = result.buyTotalCost.slice(0, 31).map((v, i) => `${i === 0 ? "M" : "L"}${rX(i).toFixed(1)},${rY(v).toFixed(1)}`).join(" ");
-            const rentPath = result.rentTotalCost.slice(0, 31).map((v, i) => `${i === 0 ? "M" : "L"}${rX(i).toFixed(1)},${rY(v).toFixed(1)}`).join(" ");
-
-            const yTickVals = [0, 0.25, 0.5, 0.75, 1].map((t) => rMaxVal * t);
-
-            return (
-              <svg viewBox={`0 0 ${RvBW} ${RvBH}`} className="w-full" style={{ minWidth: 300 }}>
-                {yTickVals.map((v, i) => (
-                  <g key={i}>
-                    <line x1={rPad.left} x2={RvBW - rPad.right} y1={rY(v)} y2={rY(v)} stroke="currentColor" strokeOpacity={0.08} strokeWidth={1} />
-                    <text x={rPad.left - 4} y={rY(v) + 4} textAnchor="end" fontSize={8} fill="currentColor" fillOpacity={0.5}>
-                      {fmtCurrency(v)}
+      {/* P/FFO vs Historical Average */}
+      <Card className="bg-card/60 border-border/50">
+        <CardHeader className="pb-2">
+          <CardTitle className="text-sm font-medium flex items-center gap-2">
+            <Activity className="w-4 h-4 text-purple-400" />
+            P/FFO vs Historical Average by Sector
+          </CardTitle>
+        </CardHeader>
+        <CardContent>
+          <div className="overflow-x-auto">
+            <svg viewBox={`0 0 ${svgW} ${svgH}`} className="w-full min-w-[420px]">
+              {/* Y grid */}
+              {[0, 10, 20, 30, 40].map((v) => {
+                const y = topPad + chartH - (v / maxPFfo) * chartH;
+                if (v > maxPFfo) return null;
+                return (
+                  <g key={v}>
+                    <line x1={leftPad} x2={svgW - 8} y1={y} y2={y} stroke="#334155" strokeWidth={0.5} strokeDasharray="3,3" />
+                    <text x={leftPad - 4} y={y + 3} textAnchor="end" fontSize={8} fill="#64748b">{v}x</text>
+                  </g>
+                );
+              })}
+              {pFfoHistory.map((d, i) => {
+                const x = leftPad + i * (groupW + 16) + 8;
+                const curH = (d.current / maxPFfo) * chartH;
+                const avgH = (d.avg / maxPFfo) * chartH;
+                const curY = topPad + chartH - curH;
+                const avgY = topPad + chartH - avgH;
+                const overvalued = d.current > d.avg;
+                return (
+                  <g key={d.label}>
+                    {/* Current bar */}
+                    <rect
+                      x={x} y={curY} width={barW} height={curH}
+                      fill={overvalued ? "#f59e0b88" : "#6366f188"}
+                      rx={2}
+                    />
+                    {/* Avg bar */}
+                    <rect
+                      x={x + barW + 4} y={avgY} width={barW} height={avgH}
+                      fill="#475569aa"
+                      rx={2}
+                    />
+                    {/* Values */}
+                    <text x={x + barW / 2} y={curY - 3} textAnchor="middle" fontSize={7.5} fill={overvalued ? "#f59e0b" : "#818cf8"}>
+                      {d.current.toFixed(1)}x
+                    </text>
+                    <text x={x + barW + 4 + barW / 2} y={avgY - 3} textAnchor="middle" fontSize={7.5} fill="#94a3b8">
+                      {d.avg.toFixed(1)}x
+                    </text>
+                    {/* X label */}
+                    <text x={x + groupW / 2 + 2} y={svgH - bottomPad + 14} textAnchor="middle" fontSize={7} fill="#94a3b8"
+                      transform={`rotate(-35 ${x + groupW / 2 + 2} ${svgH - bottomPad + 14})`}
+                    >
+                      {d.label}
                     </text>
                   </g>
-                ))}
-                {[0, 5, 10, 15, 20, 25, 30].map((yr) => (
-                  <text key={yr} x={rX(yr)} y={RvBH - 6} textAnchor="middle" fontSize={8} fill="currentColor" fillOpacity={0.5}>Yr{yr}</text>
-                ))}
-                <path d={rentPath} fill="none" stroke="#f59e0b" strokeWidth={2} />
-                <path d={buyPath} fill="none" stroke="#60a5fa" strokeWidth={2} />
-                {result.breakEvenMonth !== null && (
-                  <line
-                    x1={rX(result.breakEvenMonth)} x2={rX(result.breakEvenMonth)}
-                    y1={rPad.top} y2={rPad.top + rcH}
-                    stroke="#34d399" strokeWidth={1} strokeDasharray="3 2"
-                  />
-                )}
-              </svg>
-            );
-          })()}
-        </div>
-        <div className="flex flex-wrap gap-4 text-xs">
-          <div className="flex items-center gap-1.5">
-            <svg width={20} height={8}><line x1={0} y1={4} x2={20} y2={4} stroke="#60a5fa" strokeWidth={2} /></svg>
-            <span className="text-muted-foreground">Buying</span>
+                );
+              })}
+              {/* Legend */}
+              <rect x={svgW - 130} y={topPad} width={10} height={8} fill="#f59e0b88" rx={1} />
+              <text x={svgW - 116} y={topPad + 7} fontSize={8} fill="#94a3b8">Current (above avg)</text>
+              <rect x={svgW - 130} y={topPad + 14} width={10} height={8} fill="#6366f188" rx={1} />
+              <text x={svgW - 116} y={topPad + 21} fontSize={8} fill="#94a3b8">Current (below avg)</text>
+              <rect x={svgW - 130} y={topPad + 28} width={10} height={8} fill="#475569aa" rx={1} />
+              <text x={svgW - 116} y={topPad + 35} fontSize={8} fill="#94a3b8">Historical Avg</text>
+            </svg>
           </div>
-          <div className="flex items-center gap-1.5">
-            <svg width={20} height={8}><line x1={0} y1={4} x2={20} y2={4} stroke="#f59e0b" strokeWidth={2} /></svg>
-            <span className="text-muted-foreground">Renting (net of investment gains)</span>
-          </div>
-          {result.breakEvenMonth !== null && (
-            <div className="flex items-center gap-1.5">
-              <svg width={20} height={8}><line x1={0} y1={4} x2={20} y2={4} stroke="#34d399" strokeWidth={1} strokeDasharray="3 2" /></svg>
-              <span className="text-muted-foreground">Break-even (Yr {result.breakEvenMonth})</span>
-            </div>
-          )}
-        </div>
+        </CardContent>
+      </Card>
+    </div>
+  );
+}
 
-        {/* Key stats */}
-        <div className="grid grid-cols-2 sm:grid-cols-3 gap-3 text-xs">
-          {[
-            { label: "Total Interest Paid", value: fmtCurrency(result.amortization[result.amortization.length - 1]?.cumInterest ?? 0), color: "text-red-400" },
-            { label: "Total Cost of Home", value: fmtCurrency((result.amortization[result.amortization.length - 1]?.cumInterest ?? 0) + homePrice), color: "text-foreground" },
-            { label: "Down Payment", value: fmtCurrency(homePrice * downPctg / 100), color: "text-amber-400" },
-          ].map((m) => (
-            <div key={m.label} className="bg-muted/30 rounded-lg p-2.5">
-              <p className="text-muted-foreground">{m.label}</p>
-              <p className={cn("font-mono font-semibold text-sm mt-0.5", m.color)}>{m.value}</p>
-            </div>
+// ── Tab 3: Dividends ──────────────────────────────────────────────────────────
+
+function DividendsTab() {
+  const [selected, setSelected] = useState<string | null>(null);
+
+  // Pick one REIT for detail view (default: Realty Income)
+  const focusReit = REITS.find((r) => r.ticker === "O") ?? REITS[0];
+
+  const divHistory = DIVIDEND_HISTORY;
+  const maxAmt = Math.max(...divHistory.map((d) => d.amount));
+  const latestAmt = divHistory[divHistory.length - 1].amount;
+  const firstAmt = divHistory[0].amount;
+  const totalGrowth = ((latestAmt - firstAmt) / firstAmt) * 100;
+  const cagr = (Math.pow(latestAmt / firstAmt, 4 / 11) - 1) * 100; // 11 quarters ≈ 2.75y → annualize
+  const payoutRatio = (focusReit.divYield / 100 * focusReit.price) / focusReit.ffoPerShare * 100;
+  const affoPayout = payoutRatio * 0.88; // AFFO ≈ 88% of FFO
+  const sustainScore = Math.min(100, Math.max(0, 120 - affoPayout));
+
+  const svgW = 520;
+  const svgH = 160;
+  const leftPad = 36;
+  const topPad = 12;
+  const bottomPad = 32;
+  const chartH = svgH - topPad - bottomPad;
+  const barW = (svgW - leftPad - 8) / divHistory.length - 3;
+
+  return (
+    <div className="space-y-4">
+      {/* REIT selector chips */}
+      <Card className="bg-card/60 border-border/50">
+        <CardContent className="p-3 flex flex-wrap gap-2">
+          <span className="text-xs text-muted-foreground my-auto">Viewing:</span>
+          {REITS.map((r) => (
+            <Button
+              key={r.ticker}
+              size="sm"
+              variant={selected === r.ticker ? "default" : "outline"}
+              className="h-6 text-xs px-2"
+              onClick={() => setSelected(r.ticker === selected ? null : r.ticker)}
+            >
+              {r.ticker}
+            </Button>
           ))}
-        </div>
+          <span className="text-xs text-muted-foreground my-auto ml-1">(using {focusReit.ticker} data for illustration)</span>
+        </CardContent>
+      </Card>
+
+      {/* Key metrics */}
+      <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
+        {[
+          { label: "Latest Quarterly Div", value: `$${fmt(latestAmt, 3)}`,           icon: <DollarSign className="w-4 h-4 text-emerald-400" /> },
+          { label: "3Y Div CAGR",          value: `${cagr.toFixed(1)}%`,             icon: <TrendingUp className="w-4 h-4 text-blue-400" /> },
+          { label: "AFFO Payout Ratio",    value: `${fmt(affoPayout, 1)}%`,          icon: <Percent className="w-4 h-4 text-amber-400" /> },
+          { label: "Sustainability Score", value: `${sustainScore.toFixed(0)} / 100`, icon: <Activity className="w-4 h-4 text-purple-400" /> },
+        ].map((s) => (
+          <Card key={s.label} className="bg-card/60 border-border/50">
+            <CardContent className="p-3 flex items-center gap-2">
+              <div className="p-1.5 rounded-md bg-muted/50">{s.icon}</div>
+              <div>
+                <p className="text-xs text-muted-foreground">{s.label}</p>
+                <p className="text-sm font-semibold">{s.value}</p>
+              </div>
+            </CardContent>
+          </Card>
+        ))}
+      </div>
+
+      {/* Dividend history bar chart */}
+      <Card className="bg-card/60 border-border/50">
+        <CardHeader className="pb-2">
+          <CardTitle className="text-sm font-medium flex items-center gap-2">
+            <BarChart3 className="w-4 h-4 text-emerald-400" />
+            Dividend History — 12 Quarters ({focusReit.ticker})
+          </CardTitle>
+        </CardHeader>
+        <CardContent>
+          <div className="overflow-x-auto">
+            <svg viewBox={`0 0 ${svgW} ${svgH}`} className="w-full min-w-[380px]">
+              {/* Y grid */}
+              {[0, 0.2, 0.4, 0.6, 0.8].map((v) => {
+                const scaleV = v * (maxAmt / 0.8);
+                if (scaleV > maxAmt * 1.05) return null;
+                const y = topPad + chartH - (scaleV / maxAmt) * chartH;
+                return (
+                  <g key={v}>
+                    <line x1={leftPad} x2={svgW - 4} y1={y} y2={y} stroke="#1e293b" strokeWidth={0.6} />
+                    <text x={leftPad - 3} y={y + 3} textAnchor="end" fontSize={7.5} fill="#64748b">${scaleV.toFixed(2)}</text>
+                  </g>
+                );
+              })}
+              {/* Bars */}
+              {divHistory.map((d, i) => {
+                const x = leftPad + i * (barW + 3);
+                const h = (d.amount / maxAmt) * chartH;
+                const y = topPad + chartH - h;
+                const isLast = i === divHistory.length - 1;
+                return (
+                  <g key={d.quarter}>
+                    <rect
+                      x={x} y={y} width={barW} height={h}
+                      fill={isLast ? "#10b981" : "#10b98160"}
+                      rx={1.5}
+                    />
+                    <text
+                      x={x + barW / 2}
+                      y={svgH - bottomPad + 12}
+                      textAnchor="middle"
+                      fontSize={6.5}
+                      fill="#64748b"
+                      transform={`rotate(-40 ${x + barW / 2} ${svgH - bottomPad + 12})`}
+                    >
+                      {d.quarter}
+                    </text>
+                  </g>
+                );
+              })}
+              {/* Growth trend line */}
+              {(() => {
+                const pts = divHistory.map((d, i) => {
+                  const x = leftPad + i * (barW + 3) + barW / 2;
+                  const y = topPad + chartH - (d.amount / maxAmt) * chartH;
+                  return `${x},${y}`;
+                });
+                return <polyline points={pts.join(" ")} fill="none" stroke="#10b981" strokeWidth={1.5} strokeDasharray="3,2" opacity={0.7} />;
+              })()}
+            </svg>
+          </div>
+          <div className="flex gap-4 mt-1 text-xs text-muted-foreground">
+            <span>Total growth over period: <span className={totalGrowth >= 0 ? "text-emerald-400" : "text-rose-400"}>{totalGrowth >= 0 ? "+" : ""}{totalGrowth.toFixed(1)}%</span></span>
+            <span>Annualized CAGR: <span className="text-blue-400">{cagr.toFixed(2)}%</span></span>
+          </div>
+        </CardContent>
+      </Card>
+
+      {/* Sustainability Gauge */}
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <Card className="bg-card/60 border-border/50">
+          <CardHeader className="pb-2">
+            <CardTitle className="text-sm font-medium flex items-center gap-2">
+              <Activity className="w-4 h-4 text-purple-400" />
+              Dividend Sustainability Gauge
+            </CardTitle>
+          </CardHeader>
+          <CardContent>
+            <div className="flex justify-center">
+              <svg viewBox="0 0 200 130" className="w-full max-w-xs">
+                {/* Arc background */}
+                {[
+                  { color: "#ef4444", from: 180, to: 240 },
+                  { color: "#f59e0b", from: 120, to: 180 },
+                  { color: "#10b981", from: 60, to: 120 },
+                ].map((arc, i) => {
+                  const toRad = (deg: number) => (deg * Math.PI) / 180;
+                  const cx = 100; const cy = 100; const r = 70;
+                  const x1 = cx + r * Math.cos(toRad(arc.from));
+                  const y1 = cy + r * Math.sin(toRad(arc.from));
+                  const x2 = cx + r * Math.cos(toRad(arc.to));
+                  const y2 = cy + r * Math.sin(toRad(arc.to));
+                  return (
+                    <path
+                      key={i}
+                      d={`M ${x1} ${y1} A ${r} ${r} 0 0 1 ${x2} ${y2}`}
+                      fill="none" stroke={arc.color} strokeWidth={14} strokeLinecap="round" opacity={0.25}
+                    />
+                  );
+                })}
+                {/* Needle arc (score 0-100 maps to 180→0 degrees) */}
+                {(() => {
+                  const toRad = (deg: number) => (deg * Math.PI) / 180;
+                  const cx = 100; const cy = 100; const r = 70;
+                  const angleDeg = 180 - (sustainScore / 100) * 120;
+                  const nx = cx + 58 * Math.cos(toRad(angleDeg));
+                  const ny = cy + 58 * Math.sin(toRad(angleDeg));
+                  const needleColor = sustainScore >= 67 ? "#10b981" : sustainScore >= 33 ? "#f59e0b" : "#ef4444";
+                  return (
+                    <>
+                      <line x1={cx} y1={cy} x2={nx} y2={ny} stroke={needleColor} strokeWidth={2.5} strokeLinecap="round" />
+                      <circle cx={cx} cy={cy} r={5} fill={needleColor} />
+                      <text x={cx} y={cy - 20} textAnchor="middle" fontSize={22} fontWeight="bold" fill={needleColor}>
+                        {sustainScore.toFixed(0)}
+                      </text>
+                      <text x={cx} y={cy - 6} textAnchor="middle" fontSize={8} fill="#94a3b8">/ 100</text>
+                    </>
+                  );
+                })()}
+                {/* Labels */}
+                <text x={28} y={108} fontSize={8} fill="#ef4444">Risky</text>
+                <text x={82} y={35} fontSize={8} fill="#f59e0b">Caution</text>
+                <text x={150} y={108} fontSize={8} fill="#10b981">Safe</text>
+              </svg>
+            </div>
+            <div className="space-y-2 text-xs">
+              <div className="flex justify-between">
+                <span className="text-muted-foreground">AFFO Payout Ratio</span>
+                <span className={affoPayout > 90 ? "text-rose-400" : affoPayout > 75 ? "text-amber-400" : "text-emerald-400"}>
+                  {fmt(affoPayout, 1)}%
+                </span>
+              </div>
+              <Progress value={affoPayout} className="h-1.5" />
+              <p className="text-muted-foreground">
+                Payout ratios below 80% AFFO are generally considered sustainable for REITs. Above 90% signals risk.
+              </p>
+            </div>
+          </CardContent>
+        </Card>
+
+        <Card className="bg-card/60 border-border/50">
+          <CardHeader className="pb-2">
+            <CardTitle className="text-sm font-medium flex items-center gap-2">
+              <Info className="w-4 h-4 text-blue-400" />
+              Dividend Analysis — Key Concepts
+            </CardTitle>
+          </CardHeader>
+          <CardContent className="space-y-3 text-xs">
+            {[
+              { term: "FFO Payout Ratio", desc: "Dividends paid as % of FFO. REITs must distribute 90%+ of taxable income to maintain REIT status.", value: `${fmt(payoutRatio, 1)}%` },
+              { term: "AFFO Payout Ratio", desc: "More conservative; uses AFFO (after maintenance CapEx). Better indicator of long-term sustainability.", value: `${fmt(affoPayout, 1)}%` },
+              { term: "Dividend CAGR",     desc: "Compound annual growth rate of dividends over the trailing period.", value: `${cagr.toFixed(2)}%/yr` },
+              { term: "Coverage Ratio",    desc: "AFFO per share ÷ Annual dividend per share. >1.0x means dividend is covered.", value: `${fmt(100 / affoPayout, 2)}x` },
+            ].map((item) => (
+              <div key={item.term} className="p-2 bg-muted/20 rounded-md">
+                <div className="flex justify-between mb-0.5">
+                  <span className="font-medium text-foreground">{item.term}</span>
+                  <span className="font-mono text-primary">{item.value}</span>
+                </div>
+                <p className="text-muted-foreground">{item.desc}</p>
+              </div>
+            ))}
+          </CardContent>
+        </Card>
       </div>
     </div>
   );
 }
 
-// ── Page ──────────────────────────────────────────────────────────────────────
+// ── Tab 4: Portfolio ──────────────────────────────────────────────────────────
+
+function PortfolioTab() {
+  const portfolio = PORTFOLIO;
+  const blendedYield = portfolio.reduce((a, h) => a + (h.weight / 100) * h.divYield, 0);
+  const blendedBeta  = portfolio.reduce((a, h) => a + (h.weight / 100) * h.beta, 0);
+
+  // Donut SVG
+  const donutCx = 80;
+  const donutCy = 80;
+  const donutR = 62;
+  const donutInner = 38;
+
+  function sectorArc(startAngle: number, endAngle: number, cx: number, cy: number, ro: number, ri: number) {
+    const toRad = (d: number) => (d * Math.PI) / 180;
+    const x1 = cx + ro * Math.cos(toRad(startAngle));
+    const y1 = cy + ro * Math.sin(toRad(startAngle));
+    const x2 = cx + ro * Math.cos(toRad(endAngle));
+    const y2 = cy + ro * Math.sin(toRad(endAngle));
+    const x3 = cx + ri * Math.cos(toRad(endAngle));
+    const y3 = cy + ri * Math.sin(toRad(endAngle));
+    const x4 = cx + ri * Math.cos(toRad(startAngle));
+    const y4 = cy + ri * Math.sin(toRad(startAngle));
+    const large = endAngle - startAngle > 180 ? 1 : 0;
+    return `M ${x1} ${y1} A ${ro} ${ro} 0 ${large} 1 ${x2} ${y2} L ${x3} ${y3} A ${ri} ${ri} 0 ${large} 0 ${x4} ${y4} Z`;
+  }
+
+  let cumAngle = -90;
+  const arcs = portfolio.map((h) => {
+    const span = (h.weight / 100) * 360;
+    const start = cumAngle;
+    const end = cumAngle + span;
+    cumAngle = end;
+    return { ...h, start, end };
+  });
+
+  // Correlation / sensitivity table
+  const corrData = [
+    { factor: "S&P 500 (Equity)",     corr: 0.62,  note: "Moderate positive — REITs are equities" },
+    { factor: "Agg Bond Index",        corr: -0.18, note: "Slight negative — interest rate sensitivity" },
+    { factor: "Inflation (CPI)",       corr: 0.41,  note: "Positive — leases often include CPI escalators" },
+    { factor: "10Y Treasury Yield",    corr: -0.55, note: "Negative — higher rates compress valuations" },
+  ];
+
+  const rateSensData = [
+    { label: "−200 bps", impact: +18.4 },
+    { label: "−100 bps", impact: +9.1 },
+    { label: "Flat",     impact: 0 },
+    { label: "+100 bps", impact: -8.6 },
+    { label: "+200 bps", impact: -16.3 },
+    { label: "+300 bps", impact: -23.1 },
+  ];
+
+  const maxRateImpact = Math.max(...rateSensData.map((d) => Math.abs(d.impact)));
+
+  return (
+    <div className="space-y-4">
+      {/* Portfolio summary */}
+      <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
+        {[
+          { label: "Holdings",        value: `${portfolio.length} REITs`,     icon: <Building2 className="w-4 h-4 text-primary" /> },
+          { label: "Blended Yield",   value: `${blendedYield.toFixed(2)}%`,  icon: <Percent className="w-4 h-4 text-emerald-400" /> },
+          { label: "Portfolio Beta",  value: blendedBeta.toFixed(2),          icon: <Activity className="w-4 h-4 text-amber-400" /> },
+          { label: "Sector Spread",   value: `${portfolio.length} Sectors`,  icon: <PieChart className="w-4 h-4 text-purple-400" /> },
+        ].map((s) => (
+          <Card key={s.label} className="bg-card/60 border-border/50">
+            <CardContent className="p-3 flex items-center gap-2">
+              <div className="p-1.5 rounded-md bg-muted/50">{s.icon}</div>
+              <div>
+                <p className="text-xs text-muted-foreground">{s.label}</p>
+                <p className="text-sm font-semibold">{s.value}</p>
+              </div>
+            </CardContent>
+          </Card>
+        ))}
+      </div>
+
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+        {/* Sector allocation donut */}
+        <Card className="bg-card/60 border-border/50">
+          <CardHeader className="pb-2">
+            <CardTitle className="text-sm font-medium flex items-center gap-2">
+              <PieChart className="w-4 h-4 text-primary" />
+              Sector Allocation
+            </CardTitle>
+          </CardHeader>
+          <CardContent>
+            <div className="flex items-center gap-4">
+              <svg viewBox="0 0 160 160" className="w-40 h-40 shrink-0">
+                {arcs.map((arc) => (
+                  <path
+                    key={arc.ticker}
+                    d={sectorArc(arc.start, arc.end, donutCx, donutCy, donutR, donutInner)}
+                    fill={SECTOR_COLORS[arc.sector]}
+                    opacity={0.85}
+                    stroke="#0f172a"
+                    strokeWidth={1.5}
+                  />
+                ))}
+                <text x={donutCx} y={donutCy - 5} textAnchor="middle" fontSize={9} fill="#94a3b8">Blended</text>
+                <text x={donutCx} y={donutCy + 8} textAnchor="middle" fontSize={13} fontWeight="bold" fill="#f1f5f9">
+                  {blendedYield.toFixed(1)}%
+                </text>
+                <text x={donutCx} y={donutCy + 19} textAnchor="middle" fontSize={8} fill="#64748b">yield</text>
+              </svg>
+              <div className="space-y-1.5 flex-1">
+                {portfolio.map((h) => (
+                  <div key={h.ticker} className="flex items-center gap-2 text-xs">
+                    <div className="w-2 h-2 rounded-full shrink-0" style={{ backgroundColor: SECTOR_COLORS[h.sector] }} />
+                    <span className="font-medium w-10">{h.ticker}</span>
+                    <div className="flex-1 h-1.5 bg-muted/30 rounded overflow-hidden">
+                      <div
+                        className="h-full rounded"
+                        style={{ width: `${h.weight}%`, backgroundColor: SECTOR_COLORS[h.sector] }}
+                      />
+                    </div>
+                    <span className="text-muted-foreground w-10 text-right">{h.weight.toFixed(1)}%</span>
+                    <span className="text-emerald-400 w-10 text-right">{h.divYield.toFixed(1)}%</span>
+                  </div>
+                ))}
+                <div className="pt-1 flex gap-3 text-[10px] text-muted-foreground">
+                  <span className="flex items-center gap-1"><div className="w-2 h-1.5 bg-muted/50 rounded" /> Weight</span>
+                  <span className="text-emerald-400">% = Div Yield</span>
+                </div>
+              </div>
+            </div>
+          </CardContent>
+        </Card>
+
+        {/* Correlation table */}
+        <Card className="bg-card/60 border-border/50">
+          <CardHeader className="pb-2">
+            <CardTitle className="text-sm font-medium flex items-center gap-2">
+              <BarChart3 className="w-4 h-4 text-blue-400" />
+              Portfolio Correlations
+            </CardTitle>
+          </CardHeader>
+          <CardContent>
+            <div className="space-y-3">
+              {corrData.map((c) => {
+                const isPos = c.corr >= 0;
+                const pct = Math.abs(c.corr) * 100;
+                return (
+                  <div key={c.factor} className="space-y-0.5">
+                    <div className="flex justify-between text-xs">
+                      <span className="text-muted-foreground">{c.factor}</span>
+                      <span className={isPos ? "text-emerald-400 font-mono" : "text-rose-400 font-mono"}>
+                        {isPos ? "+" : ""}{c.corr.toFixed(2)}
+                      </span>
+                    </div>
+                    <div className="h-1.5 bg-muted/20 rounded overflow-hidden">
+                      <motion.div
+                        initial={{ width: 0 }}
+                        animate={{ width: `${pct}%` }}
+                        transition={{ duration: 0.6 }}
+                        className={`h-full rounded ${isPos ? "bg-emerald-500/60" : "bg-rose-500/60"}`}
+                      />
+                    </div>
+                    <p className="text-[10px] text-muted-foreground">{c.note}</p>
+                  </div>
+                );
+              })}
+            </div>
+          </CardContent>
+        </Card>
+      </div>
+
+      {/* Interest rate sensitivity */}
+      <Card className="bg-card/60 border-border/50">
+        <CardHeader className="pb-2">
+          <CardTitle className="text-sm font-medium flex items-center gap-2">
+            <TrendingDown className="w-4 h-4 text-rose-400" />
+            Interest Rate Sensitivity Analysis
+          </CardTitle>
+        </CardHeader>
+        <CardContent>
+          <div className="overflow-x-auto">
+            <svg viewBox="0 0 520 120" className="w-full min-w-[380px]">
+              {/* Zero line */}
+              <line x1={40} x2={512} y1={60} y2={60} stroke="#334155" strokeWidth={0.8} />
+              <text x={36} y={63} textAnchor="end" fontSize={8} fill="#64748b">0</text>
+
+              {/* Y grid */}
+              {[-20, -10, 10, 20].map((v) => {
+                const y = 60 - (v / maxRateImpact) * 50;
+                return (
+                  <g key={v}>
+                    <line x1={40} x2={512} y1={y} y2={y} stroke="#1e293b" strokeWidth={0.5} strokeDasharray="2,3" />
+                    <text x={36} y={y + 3} textAnchor="end" fontSize={7.5} fill="#64748b">{v > 0 ? "+" : ""}{v}%</text>
+                  </g>
+                );
+              })}
+
+              {/* Bars */}
+              {rateSensData.map((d, i) => {
+                const bw = 52;
+                const x = 48 + i * (bw + 14);
+                const isPos = d.impact >= 0;
+                const h = Math.abs(d.impact / maxRateImpact) * 50;
+                const y = isPos ? 60 - h : 60;
+                return (
+                  <g key={d.label}>
+                    <motion.rect
+                      initial={{ height: 0, y: 60 }}
+                      animate={{ height: h, y }}
+                      transition={{ delay: i * 0.08, duration: 0.4 }}
+                      x={x} width={bw} rx={2}
+                      fill={isPos ? "#10b98180" : "#ef444480"}
+                    />
+                    <text x={x + bw / 2} y={isPos ? y - 3 : y + h + 10} textAnchor="middle" fontSize={8}
+                      fill={isPos ? "#10b981" : "#ef4444"}>
+                      {d.impact > 0 ? "+" : ""}{d.impact.toFixed(1)}%
+                    </text>
+                    <text x={x + bw / 2} y={108} textAnchor="middle" fontSize={8} fill="#94a3b8">{d.label}</text>
+                  </g>
+                );
+              })}
+            </svg>
+          </div>
+          <p className="text-xs text-muted-foreground mt-1 flex items-start gap-1">
+            <Info className="w-3 h-3 mt-0.5 shrink-0" />
+            Estimated portfolio NAV impact based on duration-adjusted rate sensitivity. REITs with long-term fixed-rate debt are less sensitive to rate moves than those with floating-rate obligations.
+          </p>
+        </CardContent>
+      </Card>
+    </div>
+  );
+}
+
+// ── Page Component ─────────────────────────────────────────────────────────────
 
 export default function REITsPage() {
   return (
-    <div className="p-4 sm:p-6 space-y-5 max-w-6xl mx-auto">
+    <div className="p-4 md:p-6 space-y-5 max-w-7xl mx-auto">
       {/* Header */}
-      <div className="flex items-start gap-3">
-        <div className="p-2 rounded-lg bg-emerald-500/10 border border-emerald-500/20">
-          <Building2 className="w-5 h-5 text-emerald-400" />
-        </div>
+      <motion.div
+        initial={{ opacity: 0, y: -8 }}
+        animate={{ opacity: 1, y: 0 }}
+        className="flex items-start justify-between gap-4"
+      >
         <div>
-          <h1 className="text-xl font-semibold text-foreground">Real Estate & REITs</h1>
+          <h1 className="text-xl font-bold flex items-center gap-2">
+            <Building2 className="w-5 h-5 text-primary" />
+            REIT Analysis & Portfolio
+          </h1>
           <p className="text-sm text-muted-foreground mt-0.5">
-            Explore REITs, calculate mortgage payments, and learn real estate investing fundamentals
+            Real Estate Investment Trust valuation, sector analysis, dividend sustainability, and portfolio construction
           </p>
         </div>
-      </div>
+        <div className="flex gap-2 shrink-0">
+          <Badge variant="outline" className="text-xs text-emerald-400 border-emerald-400/30">
+            <TrendingUp className="w-3 h-3 mr-1" />
+            Live Sim
+          </Badge>
+          <Badge variant="outline" className="text-xs text-blue-400 border-blue-400/30">
+            8 REITs
+          </Badge>
+        </div>
+      </motion.div>
 
       {/* Tabs */}
-      <Tabs defaultValue="market">
-        <TabsList className="w-full sm:w-auto">
-          <TabsTrigger value="market" className="flex items-center gap-1.5">
-            <BarChart3 className="w-3.5 h-3.5" />
-            REIT Market
+      <Tabs defaultValue="universe">
+        <TabsList className="grid grid-cols-4 w-full max-w-xl">
+          <TabsTrigger value="universe" className="text-xs gap-1.5">
+            <Building2 className="w-3.5 h-3.5" />
+            REIT Universe
           </TabsTrigger>
-          <TabsTrigger value="calculator" className="flex items-center gap-1.5">
+          <TabsTrigger value="valuation" className="text-xs gap-1.5">
             <Calculator className="w-3.5 h-3.5" />
-            REIT Calculator
+            Valuation
           </TabsTrigger>
-          <TabsTrigger value="education" className="flex items-center gap-1.5">
-            <BookOpen className="w-3.5 h-3.5" />
-            Real Estate 101
+          <TabsTrigger value="dividends" className="text-xs gap-1.5">
+            <DollarSign className="w-3.5 h-3.5" />
+            Dividends
           </TabsTrigger>
-          <TabsTrigger value="mortgage" className="flex items-center gap-1.5">
-            <Home className="w-3.5 h-3.5" />
-            Mortgage
+          <TabsTrigger value="portfolio" className="text-xs gap-1.5">
+            <PieChart className="w-3.5 h-3.5" />
+            Portfolio
           </TabsTrigger>
         </TabsList>
 
-        <TabsContent value="market" className="mt-4 data-[state=inactive]:hidden">
-          <REITMarketTab />
+        <TabsContent value="universe" className="mt-4 data-[state=inactive]:hidden">
+          <REITUniverseTab />
         </TabsContent>
-        <TabsContent value="calculator" className="mt-4 data-[state=inactive]:hidden">
-          <REITCalculatorTab />
+        <TabsContent value="valuation" className="mt-4 data-[state=inactive]:hidden">
+          <ValuationTab />
         </TabsContent>
-        <TabsContent value="education" className="mt-4 data-[state=inactive]:hidden">
-          <RealEstate101Tab />
+        <TabsContent value="dividends" className="mt-4 data-[state=inactive]:hidden">
+          <DividendsTab />
         </TabsContent>
-        <TabsContent value="mortgage" className="mt-4 data-[state=inactive]:hidden">
-          <MortgageCalculatorTab />
+        <TabsContent value="portfolio" className="mt-4 data-[state=inactive]:hidden">
+          <PortfolioTab />
         </TabsContent>
       </Tabs>
     </div>
