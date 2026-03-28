@@ -1561,6 +1561,375 @@ function EducationTab() {
   );
 }
 
+// ── Tab: NFT Market Overview ───────────────────────────────────────────────────
+
+function NftTab({ seed }: { seed: number }) {
+  const collections = useMemo(() => generateNftCollections(seed), [seed]);
+  const maxFloor = Math.max(...collections.map((c) => c.floorPrice));
+
+  const COMPARISON = [
+    { asset: "NFTs (blue chip)", risk: 9, reward: 9, liquidity: 3, desc: "High speculative value, illiquid, price driven by hype and community." },
+    { asset: "Growth Stocks",    risk: 6, reward: 7, liquidity: 9, desc: "High growth potential, regulated markets, daily liquidity on exchanges." },
+    { asset: "Blue Chip Stocks", risk: 3, reward: 5, liquidity: 9, desc: "Stable dividends, mature companies, lower volatility." },
+    { asset: "Crypto (BTC/ETH)", risk: 7, reward: 8, liquidity: 8, desc: "24/7 markets, high volatility, improving institutional adoption." },
+    { asset: "Government Bonds", risk: 1, reward: 3, liquidity: 8, desc: "Near risk-free, low returns, best for capital preservation." },
+  ];
+
+  const WHAT_DETERMINES_VALUE = [
+    { title: "Rarity & Traits",    desc: "Rarer attributes (1-of-1 traits) command premium prices. Rarity tools rank NFTs within a collection." },
+    { title: "Community & Brand",  desc: "Strong Discord communities, celebrity holders, and brand collaborations elevate floor prices." },
+    { title: "Utility",            desc: "NFTs granting access to events, games, or token airdrops have intrinsic utility beyond speculation." },
+    { title: "Creator Reputation", desc: "Established artists or teams with track records attract collectors and reduce rug pull risk." },
+    { title: "Market Sentiment",   desc: "NFT prices are highly correlated with broader crypto market cycles — bear markets crush floors." },
+  ];
+
+  return (
+    <div className="flex flex-col gap-4">
+      {/* Top collections table */}
+      <div className="rounded-lg border border-border/50 bg-card overflow-hidden">
+        <div className="px-4 py-3 border-b border-border/40">
+          <div className="text-xs font-semibold text-muted-foreground uppercase tracking-wide">Top NFT Collections</div>
+          <div className="text-xs text-muted-foreground mt-0.5">Floor price in ETH · 24h volume</div>
+        </div>
+        <div className="overflow-x-auto">
+          <table className="w-full text-xs">
+            <thead>
+              <tr className="border-b border-border/30 bg-muted/20">
+                <th className="py-2 px-3 text-left text-muted-foreground font-semibold">Collection</th>
+                <th className="py-2 px-3 text-right text-muted-foreground font-semibold">Floor (ETH)</th>
+                <th className="py-2 px-3 text-right text-muted-foreground font-semibold">24h Vol (ETH)</th>
+                <th className="py-2 px-3 text-right text-muted-foreground font-semibold">Holders</th>
+                <th className="py-2 px-3 text-right text-muted-foreground font-semibold">24h %</th>
+              </tr>
+            </thead>
+            <tbody>
+              {collections.map((c) => (
+                <tr key={c.symbol} className="border-b border-border/20 last:border-0 hover:bg-muted/20 transition-colors">
+                  <td className="py-2.5 px-3">
+                    <div className="font-semibold text-primary">{c.name}</div>
+                    <div className="text-muted-foreground">{c.symbol}</div>
+                  </td>
+                  <td className="py-2.5 px-3 text-right tabular-nums font-semibold">
+                    {c.floorPrice.toFixed(2)} ETH
+                  </td>
+                  <td className="py-2.5 px-3 text-right tabular-nums text-muted-foreground">
+                    {c.volume24h.toFixed(0)} ETH
+                  </td>
+                  <td className="py-2.5 px-3 text-right tabular-nums text-muted-foreground">
+                    {c.holderCount.toLocaleString()}
+                  </td>
+                  <td className="py-2.5 px-3 text-right">
+                    <span className={cn("tabular-nums font-medium", c.change24h >= 0 ? "text-green-500" : "text-red-500")}>
+                      {fmtPct(c.change24h)}
+                    </span>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      {/* Floor price bar chart */}
+      <div className="rounded-lg border border-border/50 bg-card p-4">
+        <div className="text-xs font-semibold text-muted-foreground uppercase tracking-wide mb-3">Floor Price Comparison (ETH)</div>
+        <BarChart
+          bars={collections.map((c) => ({ label: c.symbol, value: c.floorPrice }))}
+          maxVal={maxFloor * 1.15}
+          colorFn={() => "#6366f1"}
+        />
+      </div>
+
+      {/* NFT vs Stocks comparison */}
+      <div className="rounded-lg border border-border/50 bg-card p-4">
+        <div className="text-xs font-semibold text-muted-foreground uppercase tracking-wide mb-3">NFT vs Other Assets — Risk/Reward Profile</div>
+        <div className="flex flex-col gap-2">
+          {COMPARISON.map((a) => (
+            <div key={a.asset} className="rounded-md border border-border/30 p-3 text-xs">
+              <div className="flex items-center justify-between mb-2">
+                <span className="font-semibold">{a.asset}</span>
+                <div className="flex gap-3">
+                  <span className="text-muted-foreground">Risk <span className={cn("font-bold", a.risk >= 8 ? "text-red-500" : a.risk >= 5 ? "text-amber-500" : "text-green-500")}>{a.risk}/10</span></span>
+                  <span className="text-muted-foreground">Return <span className={cn("font-bold", a.reward >= 8 ? "text-green-500" : a.reward >= 5 ? "text-amber-500" : "text-muted-foreground")}>{a.reward}/10</span></span>
+                  <span className="text-muted-foreground">Liquidity <span className="font-bold">{a.liquidity}/10</span></span>
+                </div>
+              </div>
+              <p className="text-muted-foreground leading-relaxed">{a.desc}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      {/* What determines NFT value */}
+      <div className="rounded-lg border border-border/50 bg-card p-4">
+        <div className="text-xs font-semibold text-muted-foreground uppercase tracking-wide mb-3">What Determines NFT Value?</div>
+        <div className="flex flex-col gap-2">
+          {WHAT_DETERMINES_VALUE.map((w, i) => (
+            <div key={w.title} className="flex gap-3 text-xs">
+              <div className="flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-primary/20 text-xs font-bold text-primary">
+                {i + 1}
+              </div>
+              <div>
+                <div className="font-semibold">{w.title}</div>
+                <div className="text-muted-foreground mt-0.5 leading-relaxed">{w.desc}</div>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      {/* Speculative asset warning */}
+      <div className="rounded-lg border border-red-500/30 bg-red-500/5 p-4">
+        <div className="flex items-start gap-3">
+          <AlertTriangle className="h-4 w-4 text-red-500 shrink-0 mt-0.5" />
+          <div className="text-xs text-muted-foreground leading-relaxed">
+            <span className="font-semibold text-foreground">Speculative Asset Warning:</span> NFTs are highly speculative with no guaranteed intrinsic value.
+            Floor prices can collapse 90%+ in bear markets. Wash trading inflates volume. Most NFT projects fail within 12 months.
+            Never invest more than you can afford to lose entirely. NFTs are not regulated financial instruments.
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+// ── Tab: Crypto Portfolio Tracker ─────────────────────────────────────────────
+
+const DEFAULT_PORTFOLIO: CryptoPortfolioAsset[] = [
+  { symbol: "BTC",  name: "Bitcoin",  qty: 0.5,   avgPrice: 60000, currentPrice: 68420,  targetWeight: 40 },
+  { symbol: "ETH",  name: "Ethereum", qty: 5,     avgPrice: 3000,  currentPrice: 3580,   targetWeight: 35 },
+  { symbol: "SOL",  name: "Solana",   qty: 50,    avgPrice: 150,   currentPrice: 178,    targetWeight: 15 },
+];
+
+const ADDABLE_ASSETS = [
+  { symbol: "BNB",  name: "BNB",         price: 412  },
+  { symbol: "ADA",  name: "Cardano",     price: 0.612 },
+  { symbol: "AVAX", name: "Avalanche",   price: 42.8  },
+  { symbol: "LINK", name: "Chainlink",   price: 18.72 },
+  { symbol: "DOT",  name: "Polkadot",    price: 9.14  },
+];
+
+function PortfolioDonut({ assets }: { assets: CryptoPortfolioAsset[] }) {
+  const COLORS = ["#f59e0b", "#6366f1", "#22c55e", "#ec4899", "#06b6d4", "#84cc16", "#f97316", "#a855f7"];
+  const totalVal = assets.reduce((s, a) => s + a.qty * a.currentPrice, 0);
+  const slices = assets.map((a, i) => ({
+    label: a.symbol,
+    value: a.qty * a.currentPrice,
+    color: COLORS[i % COLORS.length],
+  }));
+  return (
+    <div>
+      <DonutChart slices={slices} />
+      <div className="mt-2 text-xs text-muted-foreground text-center">
+        Total value: <span className="font-semibold text-foreground">${totalVal.toLocaleString("en-US", { maximumFractionDigits: 0 })}</span>
+      </div>
+    </div>
+  );
+}
+
+function CryptoPortfolioTab({ rows }: { rows: CryptoRow[] }) {
+  const [portfolio, setPortfolio] = useState<CryptoPortfolioAsset[]>(DEFAULT_PORTFOLIO);
+  const [addSymbol, setAddSymbol] = useState(ADDABLE_ASSETS[0].symbol);
+  const [addQty, setAddQty]       = useState("");
+
+  // Sync prices from live rows
+  const syncedPortfolio = useMemo(() =>
+    portfolio.map((a) => ({
+      ...a,
+      currentPrice: rows.find((r) => r.symbol === a.symbol)?.price ?? a.currentPrice,
+    })),
+    [portfolio, rows]
+  );
+
+  const totalValue   = syncedPortfolio.reduce((s, a) => s + a.qty * a.currentPrice, 0);
+  const totalCost    = syncedPortfolio.reduce((s, a) => s + a.qty * a.avgPrice, 0);
+  const totalPnl     = totalValue - totalCost;
+  const totalPnlPct  = totalCost > 0 ? (totalPnl / totalCost) * 100 : 0;
+
+  // 24h change proxy
+  const change24h = syncedPortfolio.reduce((s, a) => {
+    const row = rows.find((r) => r.symbol === a.symbol);
+    return s + a.qty * a.currentPrice * (row?.change24h ?? 0) / 100;
+  }, 0);
+
+  // Diversification score: 0-100 based on how many assets and weight spread
+  const weights = syncedPortfolio.map((a) => (a.qty * a.currentPrice) / totalValue);
+  const hhi = weights.reduce((s, w) => s + w * w, 0); // Herfindahl–Hirschman Index
+  const divScore = Math.max(0, Math.round((1 - hhi) * 100));
+
+  function addAsset() {
+    const parsedQty = parseFloat(addQty);
+    if (!parsedQty || parsedQty <= 0) return;
+    const assetDef = ADDABLE_ASSETS.find((a) => a.symbol === addSymbol);
+    if (!assetDef) return;
+    if (portfolio.find((a) => a.symbol === addSymbol)) return; // already in portfolio
+
+    const livePrice = rows.find((r) => r.symbol === addSymbol)?.price ?? assetDef.price;
+    setPortfolio((prev) => [
+      ...prev,
+      { symbol: addSymbol, name: assetDef.name, qty: parsedQty, avgPrice: livePrice, currentPrice: livePrice, targetWeight: 10 },
+    ]);
+    setAddQty("");
+  }
+
+  function removeAsset(symbol: string) {
+    setPortfolio((prev) => prev.filter((a) => a.symbol !== symbol));
+  }
+
+  // Rebalancing suggestions
+  const rebalanceSuggestions = syncedPortfolio
+    .map((a) => {
+      const actualWeight = (a.qty * a.currentPrice) / totalValue * 100;
+      const diff = actualWeight - a.targetWeight;
+      return { symbol: a.symbol, actualWeight, targetWeight: a.targetWeight, diff };
+    })
+    .filter((s) => Math.abs(s.diff) >= 3);
+
+  return (
+    <div className="flex flex-col gap-4">
+      {/* Summary cards */}
+      <div className="grid grid-cols-2 gap-3 sm:grid-cols-4">
+        {[
+          { label: "Total Value",    val: `$${totalValue.toLocaleString("en-US", { maximumFractionDigits: 0 })}`,
+            color: "text-foreground" },
+          { label: "Total P&L",     val: `${totalPnl >= 0 ? "+" : ""}$${totalPnl.toLocaleString("en-US", { maximumFractionDigits: 0 })}`,
+            color: totalPnl >= 0 ? "text-green-500" : "text-red-500" },
+          { label: "24h Change",    val: `${change24h >= 0 ? "+" : ""}$${change24h.toFixed(0)}`,
+            color: change24h >= 0 ? "text-green-500" : "text-red-500" },
+          { label: "Diversification", val: `${divScore}/100`,
+            color: divScore >= 60 ? "text-green-500" : divScore >= 40 ? "text-amber-500" : "text-red-500" },
+        ].map((c) => (
+          <div key={c.label} className="rounded-lg border border-border/50 bg-card p-3">
+            <div className="text-xs text-muted-foreground mb-1">{c.label}</div>
+            <div className={cn("text-lg font-bold tabular-nums", c.color)}>{c.val}</div>
+          </div>
+        ))}
+      </div>
+
+      {/* Donut + Holdings */}
+      <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
+        <div className="rounded-lg border border-border/50 bg-card p-4">
+          <div className="text-xs font-semibold text-muted-foreground uppercase tracking-wide mb-3">Portfolio Weights</div>
+          {syncedPortfolio.length > 0 && <PortfolioDonut assets={syncedPortfolio} />}
+        </div>
+
+        <div className="rounded-lg border border-border/50 bg-card p-4 flex flex-col gap-2">
+          <div className="text-xs font-semibold text-muted-foreground uppercase tracking-wide mb-1">Holdings</div>
+          {syncedPortfolio.map((a) => {
+            const val  = a.qty * a.currentPrice;
+            const pnl  = (a.currentPrice - a.avgPrice) * a.qty;
+            const pnlPct = ((a.currentPrice - a.avgPrice) / a.avgPrice) * 100;
+            return (
+              <div key={a.symbol} className="rounded-md border border-border/30 p-2.5 text-xs flex items-start gap-2">
+                <div className="flex-1">
+                  <div className="flex justify-between">
+                    <span className="font-semibold text-primary">{a.symbol}</span>
+                    <span className="tabular-nums font-medium">${val.toLocaleString("en-US", { maximumFractionDigits: 0 })}</span>
+                  </div>
+                  <div className="flex justify-between text-muted-foreground mt-0.5">
+                    <span>{a.qty} @ {fmtPrice(a.avgPrice)}</span>
+                    <span className={cn("tabular-nums", pnlPct >= 0 ? "text-green-500" : "text-red-500")}>
+                      {pnl >= 0 ? "+" : ""}${pnl.toFixed(0)} ({fmtPct(pnlPct)})
+                    </span>
+                  </div>
+                </div>
+                <button
+                  type="button"
+                  onClick={() => removeAsset(a.symbol)}
+                  className="text-muted-foreground hover:text-red-500 transition-colors mt-0.5"
+                >
+                  <Trash2 className="h-3 w-3" />
+                </button>
+              </div>
+            );
+          })}
+        </div>
+      </div>
+
+      {/* Add asset */}
+      <div className="rounded-lg border border-border/50 bg-card p-4 flex flex-col gap-3">
+        <div className="text-xs font-semibold text-muted-foreground uppercase tracking-wide">Add Asset</div>
+        <div className="flex gap-2 flex-wrap">
+          <select
+            value={addSymbol}
+            onChange={(e) => setAddSymbol(e.target.value)}
+            className="rounded-md border border-border/60 bg-background px-3 py-2 text-sm focus:outline-none focus:ring-1 focus:ring-primary"
+          >
+            {ADDABLE_ASSETS.filter((a) => !portfolio.find((p) => p.symbol === a.symbol)).map((a) => (
+              <option key={a.symbol} value={a.symbol}>{a.symbol} — {a.name}</option>
+            ))}
+          </select>
+          <input
+            type="number" min="0" step="0.001" placeholder="Qty" value={addQty}
+            onChange={(e) => setAddQty(e.target.value)}
+            className="w-28 rounded-md border border-border/60 bg-background px-3 py-2 text-sm tabular-nums focus:outline-none focus:ring-1 focus:ring-primary"
+          />
+          <button
+            type="button"
+            onClick={addAsset}
+            disabled={!addQty || parseFloat(addQty) <= 0}
+            className="flex items-center gap-1.5 rounded-md bg-primary px-3 py-2 text-sm font-semibold text-primary-foreground hover:bg-primary/90 disabled:opacity-50 transition-colors"
+          >
+            <Plus className="h-3.5 w-3.5" /> Add
+          </button>
+        </div>
+      </div>
+
+      {/* Rebalancing suggestions */}
+      {rebalanceSuggestions.length > 0 && (
+        <div className="rounded-lg border border-amber-500/30 bg-amber-500/5 p-4">
+          <div className="text-xs font-semibold text-amber-500 uppercase tracking-wide mb-2">Rebalancing Suggestions</div>
+          <div className="flex flex-col gap-1.5">
+            {rebalanceSuggestions.map((s) => (
+              <div key={s.symbol} className="flex items-center gap-2 text-xs">
+                <span className="font-semibold text-primary w-10">{s.symbol}</span>
+                <span className="text-muted-foreground">
+                  is {s.diff > 0 ? "over" : "under"}-weight by{" "}
+                  <span className={cn("font-medium", s.diff > 0 ? "text-amber-500" : "text-blue-400")}>
+                    {Math.abs(s.diff).toFixed(1)}%
+                  </span>
+                  {" "}(actual {s.actualWeight.toFixed(1)}% vs target {s.targetWeight}%)
+                </span>
+              </div>
+            ))}
+          </div>
+        </div>
+      )}
+
+      {/* 24h P&L breakdown */}
+      <div className="rounded-lg border border-border/50 bg-card p-4">
+        <div className="text-xs font-semibold text-muted-foreground uppercase tracking-wide mb-2">24h P&amp;L Breakdown</div>
+        <div className="flex flex-col gap-1.5">
+          {syncedPortfolio.map((a) => {
+            const row = rows.find((r) => r.symbol === a.symbol);
+            const dailyPnl = a.qty * a.currentPrice * (row?.change24h ?? 0) / 100;
+            return (
+              <div key={a.symbol} className="flex items-center gap-2 text-xs">
+                <span className="font-semibold text-primary w-10">{a.symbol}</span>
+                <div className="flex-1 h-1.5 rounded-full bg-muted/40 overflow-hidden">
+                  <div
+                    className={cn("h-full rounded-full", dailyPnl >= 0 ? "bg-green-500" : "bg-red-500")}
+                    style={{ width: `${Math.min(100, Math.abs(row?.change24h ?? 0) * 10)}%` }}
+                  />
+                </div>
+                <span className={cn("tabular-nums font-medium w-16 text-right", dailyPnl >= 0 ? "text-green-500" : "text-red-500")}>
+                  {dailyPnl >= 0 ? "+" : ""}${dailyPnl.toFixed(0)}
+                </span>
+              </div>
+            );
+          })}
+        </div>
+      </div>
+
+      <div className="rounded-md bg-muted/10 border border-border/30 px-3 py-2 text-xs text-muted-foreground leading-relaxed">
+        <span className="font-semibold text-foreground">Diversification Score:</span> Calculated using the Herfindahl-Hirschman Index (HHI).
+        A score near 100 means equal distribution; near 0 means concentration risk.
+        Target weights are illustrative — adjust based on your risk tolerance.
+      </div>
+    </div>
+  );
+}
+
 // ── Page tabs ─────────────────────────────────────────────────────────────────
 
 type PageTab = "markets" | "trade" | "defi" | "onchain" | "education";
