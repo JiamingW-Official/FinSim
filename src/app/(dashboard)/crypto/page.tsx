@@ -1932,13 +1932,15 @@ function CryptoPortfolioTab({ rows }: { rows: CryptoRow[] }) {
 
 // ── Page tabs ─────────────────────────────────────────────────────────────────
 
-type PageTab = "markets" | "trade" | "defi" | "onchain" | "education";
+type PageTab = "markets" | "trade" | "defi" | "onchain" | "nft" | "portfolio" | "education";
 
 const PAGE_TABS: { id: PageTab; label: string; icon: React.ReactNode }[] = [
   { id: "markets",   label: "Markets",       icon: <TrendingUp className="h-3.5 w-3.5" /> },
   { id: "trade",     label: "Trade",         icon: <ArrowUpRight className="h-3.5 w-3.5" /> },
   { id: "defi",      label: "DeFi Simulator",icon: <Droplets className="h-3.5 w-3.5" /> },
   { id: "onchain",   label: "On-Chain",      icon: <Cpu className="h-3.5 w-3.5" /> },
+  { id: "nft",       label: "NFT Market",    icon: <ImageIcon className="h-3.5 w-3.5" /> },
+  { id: "portfolio", label: "Portfolio",     icon: <PieChart className="h-3.5 w-3.5" /> },
   { id: "education", label: "Education",     icon: <BookOpen className="h-3.5 w-3.5" /> },
 ];
 
