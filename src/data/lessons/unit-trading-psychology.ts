@@ -13,366 +13,366 @@ export const UNIT_TRADING_PSYCHOLOGY: Unit = {
       id: "tp-1",
       title: "🧠 The Trading Mind",
       description:
-        "Professional vs amateur mindset, process over outcomes, handling uncertainty, accountability",
-      icon: "Lightbulb",
+        "System 1 vs System 2 thinking, the emotional P&L cycle, and building self-awareness as your edge",
+      icon: "Brain",
+      xpReward: 70,
+      difficulty: "beginner",
+      steps: [
+        {
+          type: "teach",
+          title: "⚡ The Two-System Brain",
+          content:
+            "Psychologist Daniel Kahneman identified two modes of thinking that shape every decision you make in the market:\n\n**System 1 — Fast, Emotional, Pattern-Seeking:**\n- Operates automatically and instantly, with no conscious effort\n- Excellent at pattern recognition — evolved to spot predators in milliseconds\n- Triggered by flashing prices, red/green candles, breaking news\n- Prone to emotional reactions: panic sells, FOMO buys, revenge trades\n- Cannot distinguish genuine patterns from random noise\n\n**System 2 — Slow, Analytical, Deliberate:**\n- Requires conscious effort and focused attention\n- Performs complex calculations, weighs probabilities, evaluates trade-offs\n- Easily fatigued — decision fatigue degrades System 2 by the afternoon session\n- Markets are specifically designed to overwhelm System 2 with information overload\n\n**How to activate System 2:**\n- Pause before any trade entry — even 60 seconds helps\n- Use a written checklist (forces deliberate processing)\n- Trade only pre-identified setups (reduces in-the-moment cognitive load)\n- Limit screen time to reduce System 1 triggers\n\nMastering trading is largely about building systems that constrain System 1 and protect the conditions for System 2 to operate.",
+          highlight: ["System 1", "System 2", "pattern recognition", "emotional reactions", "checklist"],
+        },
+        {
+          type: "teach",
+          title: "📈 The Emotional P&L Cycle",
+          content:
+            "Most retail traders unknowingly cycle through the same destructive emotional loop:\n\n**1. Hope** — Enter a position with optimism. 'This is the one.'\n**2. Greed** — Position moves in your favor. Add size beyond your plan. 'I should ride this harder.'\n**3. Fear** — Position reverses. Paralysis sets in. 'It'll come back. I'll wait.'\n**4. Panic** — Loss deepens. Sell at the worst possible moment — the exact bottom.\n**5. Regret** — Watch the stock recover without you. 'I knew I should have held.'\n**6. Repeat** — Revenge trade to get even. Cycle restarts.\n\n**Breaking the cycle with rules:**\n- Define position size BEFORE entry — greed cannot enlarge what is pre-committed\n- Set a stop-loss BEFORE entry — fear cannot freeze a pre-set exit\n- Define your thesis invalidation — 'I exit if X happens,' not 'if it feels right'\n- Take mandatory breaks after two consecutive losses — prevents panic escalation\n- Keep a trade log rating your emotions 1–10 at entry and exit — patterns emerge within weeks\n\nThe cycle is not eliminated by experience. It is interrupted by rules.",
+          highlight: ["hope", "greed", "fear", "panic", "regret", "stop-loss", "rules"],
+        },
+        {
+          type: "teach",
+          title: "🪞 Self-Awareness as Your Edge",
+          content:
+            "Elite traders treat self-knowledge as a competitive advantage — perhaps the most durable one, since it cannot be copied by algorithms.\n\n**Journaling to identify emotional patterns:**\n- Log your emotional state at entry: calm, confident, anxious, FOMO-driven? (scale 1–10)\n- Record your emotional state at exit: relieved, regretful, frustrated?\n- After 30 trades, patterns emerge: 'I consistently over-trade on Fridays' or 'My worst trades are FOMO entries after missing the first move'\n\n**Recognizing your 'tells':**\n- Checking your phone every minute = anxiety (you don't trust the position)\n- Refreshing news obsessively = confirmation bias seeking (you doubt your thesis)\n- Increasing position size after a loss = revenge trading impulse\n- Feeling invincible after a win streak = overconfidence signal\n\n**Peak performance states:**\n- Best trading happens when: well-rested, no major life stress, clear setup, small risk\n- Worst trading happens when: tired, after a loss, bored, distracted, rushed\n- Track your P&L by day-of-week and time-of-day — you will find performance clusters\n- 'Not ready to trade today' is the most profitable decision many days\n\nSelf-awareness transforms reactive trading into deliberate practice.",
+          highlight: ["journaling", "emotional patterns", "tells", "peak performance", "self-awareness"],
+        },
+        {
+          type: "quiz-mc",
+          question:
+            "A trader suffers a $500 loss and immediately opens three new, unplanned positions to 'win it back.' Which system is driving this behavior?",
+          options: [
+            "System 1 — emotional, reactive, bypassing deliberate analysis",
+            "System 2 — slow analytical thinking identifying recovery opportunities",
+            "Both systems in balance, which is ideal for decision-making",
+            "Neither — this is a rational response to a temporary setback",
+          ],
+          correctIndex: 0,
+          explanation:
+            "Revenge trading is a textbook System 1 response. The emotional pain of the loss triggers an automatic, reactive impulse to immediately recover — bypassing the deliberate setup analysis that System 2 would require. System 2 is fatigued by the stress of the loss, leaving System 1 in control. Pre-committed rules (e.g., 'stop trading after 2 losses') are the only reliable countermeasure.",
+          difficulty: 1,
+        },
+        {
+          type: "quiz-tf",
+          statement:
+            "Experienced, professional traders eliminate their emotions entirely and feel nothing when positions move against them.",
+          correct: false,
+          explanation:
+            "No trader — however experienced — eliminates emotion. Neuroscience shows that even expert traders experience the same emotional brain activations as novices. The difference is that experienced traders have built robust rules and systems that prevent emotion from overriding their process. Mark Douglas, Paul Tudor Jones, and other trading legends all discuss managing emotions, not eliminating them. The goal is emotional awareness and structural constraints, not emotional suppression.",
+          difficulty: 1,
+        },
+        {
+          type: "quiz-scenario",
+          scenario:
+            "Sarah enters a long position in NVDA. It rallies 4%, and she's up $800 — double her usual target. She decides not to take profit because 'it feels like it wants to go higher.' An hour later, the stock reverses and she exits for a $200 loss, feeling devastated.",
+          question: "Which emotional trading mistake best describes what happened?",
+          options: [
+            "Greed overriding a pre-set profit target — System 1 expanded the goal, causing a winning trade to turn into a loss",
+            "Loss aversion — fear of missing further gains",
+            "Confirmation bias — seeking data confirming the bullish thesis",
+            "Anchoring — fixating on the $800 high-water mark",
+          ],
+          correctIndex: 0,
+          explanation:
+            "Sarah's mistake is classic greed — a System 1 impulse to capture more than was originally planned. When a position 'feels like it wants to go higher,' that feeling is System 1 pattern-seeking, not analysis. The fix is a pre-committed profit target, set before entry, executed mechanically. Once the target is moved in real-time, emotion has replaced process.",
+          difficulty: 2,
+        },
+      ],
+    },
+
+    // ─── Lesson 2: Cognitive Biases in Trading ────────────────────────────────
+    {
+      id: "tp-2",
+      title: "🔍 Cognitive Biases in Trading",
+      description:
+        "Loss aversion, disposition effect, confirmation bias, recency bias, overconfidence, and how to measure your own biases",
+      icon: "Search",
+      xpReward: 75,
+      difficulty: "intermediate",
+      steps: [
+        {
+          type: "teach",
+          title: "📉 Loss Aversion & The Disposition Effect",
+          content:
+            "In 1979, Daniel Kahneman and Amos Tversky published Prospect Theory — one of the most important findings in behavioral economics:\n\n**Losses feel approximately 2× worse than equivalent gains feel good.**\n\nA $1,000 loss creates roughly twice the emotional pain as a $1,000 gain creates pleasure. This asymmetry has profound consequences for trading:\n\n**The Disposition Effect** (Shefrin & Statman, 1985): Investors systematically:\n- Sell winners too early (lock in the 'sure' pleasure of a gain)\n- Hold losers too long (avoid the pain of realizing a loss)\n\nThis is the exact opposite of the classic advice: 'cut your losers and let your winners run.'\n\nData from 10,000+ brokerage accounts: investors were **1.5× more likely** to sell a winning stock than a losing one on any given day.\n\n**Measuring your personal disposition ratio:**\n- Count trades where you exited a winner before your target vs. held a loser past your stop\n- A ratio > 1.0 means you exhibit the disposition effect\n- Tracking this metric over 50+ trades creates accountability\n\nAwareness alone reduces the disposition effect by 15–20% in studies — simply knowing the bias helps.",
+          highlight: ["loss aversion", "Prospect Theory", "disposition effect", "sell winners", "hold losers"],
+        },
+        {
+          type: "teach",
+          title: "🔎 Confirmation Bias & Recency Bias",
+          content:
+            "**Confirmation Bias:**\nOnce you have a thesis on a stock or market, your brain filters incoming information — unconsciously amplifying evidence that confirms your view and dismissing evidence that contradicts it.\n\nTrading consequences:\n- You research a long idea, then only find bullish articles\n- You skip reading bear cases or short reports\n- You interpret ambiguous news as supportive of your position\n- You hold a losing position because you only see evidence for recovery\n\n**Building a 'bear case' habit:**\n- Before entering any trade, write down three reasons the thesis could be WRONG\n- Seek out the strongest bearish argument (read short-seller reports)\n- Ask: 'What would I have to see to exit this position?'\n- Devil's advocate review: assume the position loses 20%, then explain why\n\n**Recency Bias:**\nOverweighting recent events when estimating future probabilities.\n\n- After a 12-month bull market: 'Stocks always go up' (overweight recent positive data)\n- After a crash: 'The market will never recover' (overweight recent negative data)\n- Extrapolating recent trends indefinitely — mean reversion is ignored\n\nFix: Review 5-year and 10-year historical data. Zoom out when recent events feel overwhelming.",
+          highlight: ["confirmation bias", "recency bias", "bear case", "mean reversion", "thesis"],
+        },
+        {
+          type: "teach",
+          title: "🏆 Overconfidence & The Illusion of Control",
+          content:
+            "**Overconfidence Bias:**\nStudies consistently show that 80% of traders believe they are above-average performers — a statistical impossibility.\n\nForms of overconfidence in trading:\n- **Overprecision**: Excessive certainty about your predictions ('This will definitely hit $150')\n- **Overplacement**: Believing you're better than other market participants\n- **Overestimation**: Overestimating the quality of your information and analysis\n\n**Tracking accuracy vs. outcome:**\n- Keep a prediction log: 'I think AAPL will be up in 2 weeks' → then record the outcome\n- Most traders discover their stated confidence is 20–30 percentage points higher than their actual accuracy\n- 60% accuracy on 2:1 R:R trades is profitable; 80% stated confidence with 60% actual accuracy is the gap\n\n**Hot Hand Fallacy in Streaks:**\n- After 3 winning trades, traders often increase size dramatically — believing they are 'on a roll'\n- Win streaks are largely random in markets (unlike sports where skill genuinely streaks)\n- The correct response to a win streak: maintain process, maintain sizing\n\n**Illusion of control:**\n- Constantly watching positions does not improve outcomes\n- Trading more frequently does not generate more skill\n- Checking P&L every 5 minutes increases emotional volatility without adding information",
+          highlight: ["overconfidence", "hot hand fallacy", "illusion of control", "prediction log", "accuracy"],
+        },
+        {
+          type: "quiz-mc",
+          question:
+            "The disposition effect refers to which specific behavioral pattern in traders and investors?",
+          options: [
+            "Selling winning positions too early and holding losing positions too long",
+            "Holding winning positions too long and selling losing positions too quickly",
+            "Overtrading during volatile periods to maximize opportunities",
+            "Refusing to open new positions after a losing streak",
+          ],
+          correctIndex: 0,
+          explanation:
+            "The disposition effect — documented by Shefrin and Statman in 10,000+ brokerage accounts — is the systematic tendency to sell winners too early (lock in gain pleasure) and hold losers too long (avoid loss pain). It is driven by loss aversion: the pain of realizing a loss feels worse than the pleasure of realizing an equivalent gain. This pattern is the direct opposite of what profitable trend-following requires.",
+          difficulty: 1,
+        },
+        {
+          type: "quiz-tf",
+          statement:
+            "Confirmation bias means you actively seek out information that disagrees with your trading thesis to stress-test your position.",
+          correct: false,
+          explanation:
+            "Confirmation bias is the opposite — it causes you to unconsciously seek, favor, and amplify information that CONFIRMS your existing thesis while dismissing contradicting evidence. It is an involuntary filtering process. The deliberate habit of seeking bear cases and devil's advocate arguments is the prescribed antidote to confirmation bias, not a description of what the bias itself produces.",
+          difficulty: 1,
+        },
+        {
+          type: "quiz-scenario",
+          scenario:
+            "A trader holds a position in a retail stock down 18%. He has read three bullish analyst upgrades this week and feels confident in the thesis. When a friend mentions a bearish research report showing deteriorating fundamentals, he dismisses it: 'Those analysts don't understand the turnaround story.' He adds to the position.",
+          question: "Which cognitive bias is most prominently driving his decision to add to the position?",
+          options: [
+            "Confirmation bias — selectively absorbing bullish data and dismissing contradicting evidence",
+            "Loss aversion — refusing to sell because realizing the loss is too painful",
+            "Recency bias — overweighting the three recent upgrades",
+            "Overconfidence — believing his thesis is superior to other analysts",
+          ],
+          correctIndex: 0,
+          explanation:
+            "Confirmation bias is the primary driver here — he has actively dismissed a credible bearish argument without engagement, simply because it contradicts his thesis. While loss aversion is also present (he won't sell), the specific behavior of seeking only bullish information and dismissing bearish information is the defining signature of confirmation bias. The antidote: read the bearish report and write down the strongest point against your position.",
+          difficulty: 2,
+        },
+      ],
+    },
+
+    // ─── Lesson 3: Process Over Outcomes ─────────────────────────────────────
+    {
+      id: "tp-3",
+      title: "⚙️ Process Over Outcomes",
+      description:
+        "Good process vs. good outcomes, expected value thinking, Kelly criterion, and structuring deliberate practice",
+      icon: "Settings",
+      xpReward: 80,
+      difficulty: "intermediate",
+      steps: [
+        {
+          type: "teach",
+          title: "🎯 Outcome vs. Process Thinking",
+          content:
+            "One of the most important — and counterintuitive — insights in professional trading:\n\n**A losing trade following a good process is still a GOOD trade.**\n**A winning trade from gambling is still a BAD trade.**\n\nWhy? Because over hundreds of trades, process determines results. Any individual trade is dominated by randomness — even a terrible entry can be profitable by luck. Evaluating individual trades by outcome creates the wrong incentives.\n\n**Process metrics** (what you control):\n- Did you follow your entry criteria?\n- Was the stop pre-set and honored?\n- Was position size within your risk rules?\n- Did you enter due to a genuine setup or FOMO?\n- Was the R:R ratio at least your minimum threshold?\n\n**Outcome metrics** (what randomness influences):\n- Was the trade profitable?\n- Did the stock hit your target?\n- How much did you make/lose?\n\nProfessional approach: Grade every trade A/B/C on process BEFORE looking at the P&L result. Over time, A-grade process trades should outperform B/C grade trades. If they don't, the process needs revision — not abandonment.\n\nThe best process produces the best results over time — but any individual result is noise.",
+          highlight: ["process metrics", "outcome metrics", "good process", "randomness", "grade trades"],
+        },
+        {
+          type: "teach",
+          title: "📊 Expected Value Thinking",
+          content:
+            "Professional traders and poker players do not think in terms of 'will this trade win?' — they think in terms of **Expected Value (EV)**.\n\n**Expected Value formula:**\n`EV = (Win Probability × Average Win) - (Loss Probability × Average Loss)`\n\n**Example:**\n- Win rate: 40%\n- Average win: $300\n- Average loss: $100\n- EV = (0.40 × $300) - (0.60 × $100) = $120 - $60 = **+$60 per trade**\n\nThis system is highly profitable despite losing 60% of the time. A trader who abandons it after 5 consecutive losses is making a catastrophic error — they are abandoning a positive-EV process because of short-term variance.\n\n**Kelly Criterion for position sizing:**\n`Kelly % = W - (1-W)/R`\nWhere W = win rate, R = win/loss ratio\n\nFor 40% win rate, 3:1 R:R: Kelly = 0.40 - (0.60/3) = 0.40 - 0.20 = **20% of bankroll**\n\nMost professionals use half-Kelly (10%) to reduce volatility. The key insight: Kelly maximizes long-run geometric growth — it mathematically proves that position sizing according to edge is optimal.",
+          highlight: ["expected value", "EV", "win rate", "Kelly criterion", "positive EV", "position sizing"],
+        },
+        {
+          type: "teach",
+          title: "🏋️ Deliberate Practice",
+          content:
+            "Anders Ericsson's research on expert performance shows that elite skill comes from **deliberate practice** — not just experience. Deliberate practice is structured, specific, and focused on identified weaknesses.\n\n**Structuring a trading review session:**\n\n**Preparation phase (before market open):**\n- Review yesterday's trades: what worked, what didn't\n- Identify one specific skill to focus on today (e.g., 'honor stops without hesitation')\n- Set intention: only trade A-grade setups\n\n**Execution phase (during session):**\n- Follow the process — no improvisations\n- After each trade, write one sentence about how it felt and whether the process was followed\n\n**Review phase (after close):**\n- Grade each trade on process (A/B/C), independent of outcome\n- Identify the single best trade and single worst trade\n- Ask: 'What is the one skill that, if improved, would most benefit my performance?'\n- Update your statistics (win rate, avg R:R, process grade distribution)\n\nTraders who review deliberately for 20 minutes per day improve faster than those who trade for 10 extra hours without structured review.",
+          highlight: ["deliberate practice", "preparation", "execution", "review", "process grade", "skill"],
+        },
+        {
+          type: "quiz-mc",
+          question:
+            "A strategy has a 40% win rate with an average win of $300 and an average loss of $100. What is the Expected Value per trade?",
+          options: [
+            "+$60 — the strategy is profitable despite losing 60% of the time",
+            "-$60 — a 40% win rate means the strategy loses money on average",
+            "$0 — the wins and losses cancel out",
+            "+$120 — only the winning trades contribute to expected value",
+          ],
+          correctIndex: 0,
+          explanation:
+            "EV = (0.40 × $300) - (0.60 × $100) = $120 - $60 = +$60 per trade. This illustrates why win rate alone is meaningless — what matters is the combination of win rate AND win/loss ratio. A 40% win rate with a 3:1 reward-to-risk ratio generates $60 of expected profit per trade. Abandoning this strategy after a losing streak is a process error, not a rational response.",
+          difficulty: 2,
+        },
+        {
+          type: "quiz-tf",
+          statement:
+            "A trader with a consistently high win rate (above 70%) is guaranteed to be profitable over the long run.",
+          correct: false,
+          explanation:
+            "Win rate alone does not determine profitability — the size of wins relative to losses is equally critical. A 70% win rate with an average win of $50 and average loss of $200 produces EV = (0.70 × $50) - (0.30 × $200) = $35 - $60 = -$25 per trade. Many 'high win rate' strategies generated by averaging down or never cutting losses are deeply unprofitable despite appearing to win most of the time. Expected value is what matters.",
+          difficulty: 2,
+        },
+        {
+          type: "quiz-scenario",
+          scenario:
+            "A trader has a clearly defined strategy with 45% win rate and 2.5:1 R:R (EV = +$87.50 per trade). After following the strategy perfectly for 20 trades and hitting an 8-trade losing streak (within normal statistical variance), he abandons the strategy: 'It clearly doesn't work.' He switches to a new strategy based on recent tips.",
+          question: "How should this situation be evaluated using process thinking?",
+          options: [
+            "The process was sound — an 8-trade losing streak is statistically normal for a 45% win rate strategy and abandoning a positive-EV process is a mistake",
+            "The abandonment was correct — 8 consecutive losses proves the strategy is broken",
+            "The new tip-based strategy is better because recent information is more relevant",
+            "Win rate should be above 50% before any strategy is considered reliable",
+          ],
+          correctIndex: 0,
+          explanation:
+            "For a 45% win rate strategy, an 8-trade losing streak has roughly a 1.7% probability — unusual but not extraordinary over many trades. The process was followed correctly, which is all a trader controls. Abandoning a positive-EV process due to normal variance is one of the most common and costly mistakes in trading. Professional traders pre-calculate the maximum expected losing streak for their strategy and mentally prepare for it before it occurs.",
+          difficulty: 3,
+        },
+      ],
+    },
+
+    // ─── Lesson 4: Building a Trading Routine ────────────────────────────────
+    {
+      id: "tp-4",
+      title: "📋 Building a Trading Routine",
+      description:
+        "Pre-market prep, session rules, max daily loss, the B-trade trap, and post-session review",
+      icon: "ClipboardList",
+      xpReward: 75,
+      difficulty: "intermediate",
+      steps: [
+        {
+          type: "teach",
+          title: "🌅 Pre-Market Routine",
+          content:
+            "Elite traders treat pre-market preparation like pilots treat pre-flight checklists — non-negotiable and systematic.\n\n**Economic calendar review:**\n- Check for high-impact releases: Fed announcements, CPI, NFP, earnings\n- Wider spreads and erratic moves occur around these events\n- Decide before open: 'Will I trade through this announcement or step aside?'\n\n**Market structure analysis:**\n- Overnight gap: Did futures gap significantly? Above/below key levels?\n- Sector strength: Which sectors are leading/lagging pre-market?\n- Relative strength: Is your watchlist holding up vs. the broader index?\n\n**Mental readiness checklist (as important as market data):**\n□ Am I well-rested? (Sleep deprivation degrades executive function by 20–30%)\n□ Are there major personal stressors today? (Emotional bandwidth is finite)\n□ Am I distracted or in a hurry?\n□ Did I follow my process correctly yesterday, or am I carrying frustration?\n□ Do I feel calm and clear, or anxious to 'make money'?\n\nIf the mental checklist has more than one 'no' — consider paper trading or not trading at all. **'Not ready to trade today' is the most underused profitable decision in retail trading.**",
+          highlight: ["economic calendar", "pre-market", "mental readiness", "checklist", "not ready to trade"],
+        },
+        {
+          type: "teach",
+          title: "⚔️ During-Session Rules",
+          content:
+            "Structure during the session is the difference between trading and gambling. Rules must be defined before the day begins — not improvised in real-time.\n\n**Max daily loss rule (hard stop):**\n- Define a maximum daily loss (typical range: 1.5–3% of account)\n- When hit: close all positions, close the platform, stop trading for the day\n- This rule exists to prevent the emotional spiral that follows a large loss\n- After a large loss, System 1 takes over — every subsequent trade is revenge-driven\n- Even the best process produces losing days; the max loss rule keeps them survivable\n\n**Max trades per day:**\n- Define a maximum number of trades (e.g., 4–6 per day)\n- Forces selectivity — only the best setups make the cut\n- Eliminates boredom trading and overtrading\n\n**Only A+ setups:**\n- Define specific, pre-written criteria for what constitutes your highest-conviction setup\n- Rate each potential trade before entry: A (meets all criteria), B (partially), C (gut feel)\n- Execute only A-grade setups\n\n**The 'B' trade trap (FOMO forcing mediocre setups):**\n- B trades happen when there are no A setups and you feel compelled to trade anyway\n- 'There's some action in TSLA, maybe I'll take a small position' = B trade\n- B trades have lower EV by definition, and they consume capital and mental energy needed for A trades\n- The correct response to no A setups: do nothing and wait",
+          highlight: ["max daily loss", "hard stop", "A+ setups", "B trade trap", "FOMO", "overtrading"],
+        },
+        {
+          type: "teach",
+          title: "📖 Post-Session Review",
+          content:
+            "The post-session review is where improvement actually happens — during the session you are executing; after the session you are learning.\n\n**Structured review process:**\n\n**Grade each trade on setup quality (independent of outcome):**\n- A: Met all entry criteria, correct sizing, stop pre-set, thesis clear\n- B: Partially met criteria, minor process deviation\n- C: Did not meet criteria, emotional entry, undefined stop\n\n**Identify one lesson learned:**\n- Not 'I lost money' — that's an outcome, not a lesson\n- 'I entered before the setup confirmed because I was impatient' — that's a lesson\n- Write one concrete improvement to implement tomorrow\n\n**Update your statistics:**\n- Win/loss ratio for A vs. B vs. C grade trades (A trades should outperform)\n- Emotional self-assessment: average emotional state 1–10 for winning vs. losing days\n- Average holding time: are you exiting too early on winners?\n\n**Weekly patterns to track:**\n- Best and worst time of day\n- Best and worst day of week\n- Performance in trending vs. choppy market conditions\n- P&L by setup type\n\nThis data compounds — after 3 months, you have a quantitative profile of your own trading edge and weaknesses.",
+          highlight: ["post-session review", "setup quality", "A grade", "lesson learned", "statistics"],
+        },
+        {
+          type: "quiz-mc",
+          question:
+            "What is the primary purpose of a daily maximum loss rule (hard stop at -2% of account)?",
+          options: [
+            "To prevent an emotional spiral after a large loss that causes increasingly poor decisions",
+            "To limit overall annual losses to an acceptable level",
+            "To force the trader to find better setups the following day",
+            "To comply with broker margin requirements",
+          ],
+          correctIndex: 0,
+          explanation:
+            "The daily max loss rule's primary function is to cut off the feedback loop of emotional deterioration. After a large loss, System 1 takes control — subsequent trades are driven by loss aversion, revenge-trading impulses, and reduced executive function. Each additional loss in this state compounds the emotional damage. Stopping when the max loss is hit preserves both capital and psychological state for the following day. Annual loss limits are a secondary benefit.",
+          difficulty: 1,
+        },
+        {
+          type: "quiz-tf",
+          statement:
+            "Taking more trades per day gives a trader more opportunities to be profitable, so increasing daily trade count generally improves returns.",
+          correct: false,
+          explanation:
+            "More trades mean lower average quality per trade — the best setup of the day has higher EV than the fifth-best setup. Overtrading also increases transaction costs, decision fatigue (degrading System 2), and emotional wear. Research on retail traders shows a strong negative correlation between trade frequency and profitability after costs. The most profitable traders are typically selective, not prolific. Quality of trades, not quantity, drives returns.",
+          difficulty: 1,
+        },
+        {
+          type: "quiz-scenario",
+          scenario:
+            "A trader starts the day with a plan: trade only confirmed breakouts with 2:1 R:R minimum. By 11am, there are no qualifying setups. He's bored. He notices AAPL has moved slightly and there's some 'buzz' in a chatroom. It doesn't meet his criteria, but he enters anyway — a B trade. The trade loses. Now down on the day, he takes two more B trades to recover. He ends the day down 3× his normal loss.",
+          question: "What routine violation is the root cause of this sequence?",
+          options: [
+            "Breaking the 'A-setups only' rule — the B trade triggered the spiral by violating pre-committed criteria",
+            "Having a daily max loss rule that was set too tight",
+            "Using chatroom tips instead of technical analysis",
+            "Not having enough trades in the session to find a good setup",
+          ],
+          correctIndex: 0,
+          explanation:
+            "The entire spiral began with the first B trade — FOMO driving an entry that violated the pre-committed criteria. This is the B-trade trap: once a below-criteria trade is taken, the psychological pressure of recovering from it generates more B trades. The daily max loss rule would have stopped the spiral, but only if it hadn't been ignored alongside the setup criteria. The root fix is maintaining the 'A-setups only' rule absolutely — including on boring days.",
+          difficulty: 3,
+        },
+      ],
+    },
+
+    // ─── Lesson 5: Peak Performance Psychology ────────────────────────────────
+    {
+      id: "tp-5",
+      title: "🏆 Peak Performance Psychology",
+      description:
+        "Flow state trading, resilience after drawdowns, and the universal principles of elite trader mindset",
+      icon: "Award",
       xpReward: 85,
-      difficulty: "intermediate",
-      steps: [
-        {
-          type: "teach",
-          title: "Professional vs Amateur Mindset",
-          content:
-            "The gap between profitable and losing traders is rarely about intelligence or stock picks — it is about **mindset**.\n\n**Amateur mindset**:\n- Focuses on how much money can be made this week\n- Treats trading like gambling — big wins, big thrills\n- Blames the market, the broker, or bad luck for losses\n- Chases hot tips and social media calls\n\n**Professional mindset**:\n- Focuses on executing the process correctly, every single time\n- Treats each trade as one of thousands — no single trade matters much\n- Takes full accountability for every outcome\n- Follows a written plan, not impulses\n\nThe professional knows that if the process is right, the profits follow over time. Amateurs skip the process and chase the profits directly — and lose.",
-          highlight: ["professional mindset", "process", "accountability", "plan"],
-        },
-        {
-          type: "teach",
-          title: "Process Over Outcomes",
-          content:
-            "In trading, a good process can produce a losing trade. A reckless process can produce a winning trade. **Randomness is real** — individual outcomes tell you almost nothing.\n\nWhat separates elite traders:\n- They measure success by **did I follow my rules?** not by P&L on any single trade\n- They understand that expected value (EV) plays out over hundreds of trades, not one\n- They can take a loss calmly, knowing the process was correct\n\nPractical test: If you took 100 identical trades using your exact process, would you expect to make money on average? If yes, the process is sound. Trust it. Do not abandon it after a losing streak.\n\n**Outcome bias** — judging a decision by its result rather than its quality at the time — is what destroys process-driven thinking.",
-          highlight: ["process over outcomes", "expected value", "outcome bias", "rules"],
-        },
-        {
-          type: "teach",
-          title: "Handling Uncertainty and Accountability",
-          content:
-            "Trading is a **probability game** played under radical uncertainty. You never know which trade will win. Accept this fully.\n\nHandling uncertainty:\n- Define your risk before every trade — the maximum loss is your certainty\n- Accept losses as the cost of doing business, like a retailer accepts inventory costs\n- Never confuse a losing trade with a bad trade — they are different things\n\nAccountability framework:\n1. After every trade, ask: 'Did I follow my plan?'\n2. If yes — outcome was beyond your control. Log it and move on.\n3. If no — identify the deviation and understand why it happened\n4. Never blame external forces for internal decisions\n\nAccountability is not self-punishment. It is honest data collection that makes you better.",
-          highlight: ["uncertainty", "accountability", "probability", "risk before entry"],
-        },
-        {
-          type: "quiz-mc",
-          question:
-            "A trader followed her plan perfectly — entry, stop, size — but lost money on the trade. What does the professional mindset say about this?",
-          options: [
-            "The trade was a success — process was correct; individual outcomes involve randomness",
-            "The plan needs to be changed immediately — losing trades mean a broken strategy",
-            "She should have exited earlier to avoid the loss",
-            "She needs to increase position size next time to recover",
-          ],
-          correctIndex: 0,
-          explanation:
-            "A loss on a well-executed trade is not a failure — it is the cost of operating under uncertainty. Strategy quality is assessed over many trades, not one. Changing a plan after a single loss based on outcome rather than process is called outcome bias, and it destroys edge.",
-          difficulty: 1,
-        },
-        {
-          type: "quiz-tf",
-          statement:
-            "Professionals focus on maximizing profit on every individual trade, while amateurs focus too much on process.",
-          correct: false,
-          explanation:
-            "It is the opposite. Professionals obsess over process (following rules, correct sizing, clean entries) and let profits take care of themselves over time. Amateurs fixate on individual trade profits, which leads to rule-breaking, oversizing, and emotional decisions.",
-          difficulty: 1,
-        },
-        {
-          type: "quiz-scenario",
-          scenario:
-            "Marco has a clear trading plan. On Monday he follows it and loses $200. On Tuesday he deviates from the plan — takes a tip from a friend — and makes $400. He concludes his plan is flawed and his friend's tips are better.",
-          question: "What error in thinking is Marco making?",
-          options: [
-            "Outcome bias — judging the plan by one random result instead of the process quality",
-            "Anchoring — anchoring to the $200 loss",
-            "Availability heuristic — Tuesday's win is more vivid",
-            "Herding — following his friend's tip",
-          ],
-          correctIndex: 0,
-          explanation:
-            "Marco is committing outcome bias. One losing plan-trade vs one winning tip-trade is statistically meaningless. His friend's tip could easily lose next time. The plan's quality can only be judged over many trades. Abandoning a sound process after one loss is one of the most common and costly mistakes traders make.",
-          difficulty: 2,
-        },
-      ],
-    },
-
-    // ─── Lesson 2: Managing Emotions in Real Time ─────────────────────────────
-    {
-      id: "psych-2",
-      title: "Managing Emotions in Real Time",
-      description:
-        "Pre-market routine, recognizing emotional states, circuit breakers, pause-and-breathe, journaling",
-      icon: "Activity",
-      xpReward: 90,
-      difficulty: "intermediate",
-      steps: [
-        {
-          type: "teach",
-          title: "The Pre-Market Routine",
-          content:
-            "Elite traders treat their morning routine with the same seriousness that athletes treat pre-game warmups. Your **emotional state before the open** directly impacts decision quality.\n\nA proven pre-market routine:\n1. **Review your plan** (watchlist, setups, risk parameters for the day)\n2. **Check your emotional baseline** — rate your calmness 1–10. If below 6, reduce position sizes or sit out.\n3. **Review yesterday's trades** — briefly, to carry lessons forward\n4. **Set daily maximum loss** — the hard stop where you close the platform\n5. **Physical preparation** — sleep, nutrition, brief exercise all measurably affect decision-making\n\nTraders who have consistent pre-market routines show higher discipline during the session because they have already mentally 'started' before prices move.",
-          highlight: ["pre-market routine", "emotional baseline", "daily maximum loss", "physical preparation"],
-        },
-        {
-          type: "teach",
-          title: "Recognizing Your Emotional States",
-          content:
-            "You cannot manage emotions you cannot identify. Learn to recognize these states **in real time**:\n\n**Hot states** (dangerous):\n- Excitement after a big win — 'I'm on a roll'\n- Anger or frustration after a loss — 'I need to make this back'\n- Anxiety during a live position — 'Should I exit now?'\n\n**Cold states** (safe):\n- Calm and focused — analyzing setups clearly\n- Mildly curious — interested but not attached to outcome\n- Slightly bored — no compelling setup; willing to sit out\n\nPractical tool: Before any trade entry, pause and consciously ask 'Am I in a hot or cold state right now?' If hot — do not trade until you return to baseline. Even 10 minutes away from the screen can reset the emotional state.",
-          highlight: ["hot state", "cold state", "emotional recognition", "pause", "baseline"],
-        },
-        {
-          type: "teach",
-          title: "Circuit Breakers and Journaling as Therapy",
-          content:
-            "**Circuit breakers** are pre-committed rules that stop trading when conditions become unfavorable:\n\n- **Daily loss limit**: If you lose X% today, you are done for the day. Non-negotiable.\n- **Trade limit**: No more than N trades per day (prevents overtrading)\n- **Time limit**: No trading after 2pm (or whenever your edge deteriorates)\n- **Cooldown rule**: After any stop-loss hit, minimum 15-minute break before next entry\n\n**Journaling as emotional therapy**: Writing about a trade immediately after — including how you felt — creates powerful distance between the event and your memory of it. This prevents emotional distortion in memory.\n\nPrompts to journal:\n- What was I feeling when I entered?\n- What was I feeling when I exited?\n- Would I take this trade again with the same information?\n- What would I tell a friend who described this trade to me?",
-          highlight: ["circuit breakers", "daily loss limit", "journaling", "cooldown rule"],
-        },
-        {
-          type: "quiz-mc",
-          question:
-            "A trader sets a daily loss limit of 2% of his account. At 11am he hits that limit. His rule says stop trading. He sees what looks like a great setup at 11:15am. What should he do?",
-          options: [
-            "Respect the limit and skip the trade — the rule exists for days exactly like this",
-            "Take the trade — it looks like a high-quality setup",
-            "Take half his normal size as a compromise",
-            "Wait 5 minutes, then enter if it still looks good",
-          ],
-          correctIndex: 0,
-          explanation:
-            "Circuit breakers have no meaning if they can be overridden when 'the setup looks good.' After a daily loss, emotional state is compromised — even if you feel calm. The rule protects against the second and third losses that often follow the first. Respect the limit unconditionally.",
-          difficulty: 2,
-        },
-        {
-          type: "quiz-tf",
-          statement:
-            "Feeling excited after a winning trade is a safe emotional state for making the next trading decision.",
-          correct: false,
-          explanation:
-            "Excitement is a 'hot' emotional state. After a win, overconfidence rises and risk perception drops — exactly when traders take the next trade too soon, size up without proper analysis, or ignore their checklist. The correct response after a win is to pause, reset to baseline, and evaluate the next setup as if the win had never happened.",
-          difficulty: 2,
-        },
-        {
-          type: "quiz-scenario",
-          scenario:
-            "Sarah loses her first two trades of the day. She is frustrated. She sees a stock moving fast and feels an urge to enter quickly before missing the move. She has not checked her pre-trade checklist.",
-          question: "What is the most important action Sarah should take?",
-          options: [
-            "Stop, check her emotional state, run the checklist before any entry",
-            "Enter quickly — she needs to make back the losses before the move ends",
-            "Enter with double her normal size to recover losses faster",
-            "Switch to a different stock to avoid bad luck on this one",
-          ],
-          correctIndex: 0,
-          explanation:
-            "Sarah is in a 'hot' state after two losses. The urgency she feels is driven by emotion, not analysis. The correct move is to pause, identify the emotional state (frustration + urgency = danger), and only proceed after running her checklist. Moving fast and skipping the checklist under emotional pressure is how small losses become large ones.",
-          difficulty: 2,
-        },
-      ],
-    },
-
-    // ─── Lesson 3: Overcoming Fear and Greed ─────────────────────────────────
-    {
-      id: "psych-3",
-      title: "Overcoming Fear and Greed",
-      description:
-        "FOMO anatomy, fear of losing cycle, greed manifestations, using rules to override emotions",
-      icon: "AlertTriangle",
-      xpReward: 90,
-      difficulty: "intermediate",
-      steps: [
-        {
-          type: "teach",
-          title: "Anatomy of FOMO and the Fear of Missing Out",
-          content:
-            "**Fear of Missing Out (FOMO)** is one of the most expensive emotions in trading. It is the anxious feeling that others are profiting from a move you are not in.\n\nThe FOMO cycle:\n1. Stock makes a sharp move — you were not positioned\n2. Social media and news confirm the move is 'real'\n3. You feel anxiety: 'This could keep going'\n4. Urgency takes over: 'I have to get in NOW'\n5. You buy near the top, often without a plan\n6. Stock reverses — you hold hoping for a bounce\n7. You exit at a larger loss than your entry edge ever justified\n\nFOMO is structurally unavoidable — you will always miss moves. **Accepting that you cannot catch every move is a prerequisite for disciplined trading.** Your job is not to trade every move. Your job is to trade your setups profitably.",
-          highlight: ["FOMO", "fear of missing out", "urgency", "setups"],
-        },
-        {
-          type: "teach",
-          title: "The Fear of Loss Cycle",
-          content:
-            "**Fear of loss** is the other side of the coin — and equally destructive.\n\nThe fear of loss cycle:\n1. You are in a trade that has a small profit\n2. Price pulls back slightly — fear activates: 'I might lose my gain'\n3. You exit too early to 'protect' the profit\n4. Stock resumes upward — you miss the main move\n\nOr, in a losing trade:\n1. Price moves against you — your stop is close\n2. Fear activates: 'If I move my stop, maybe it comes back'\n3. You move the stop lower — extending your potential loss\n4. Trade continues against you — loss is now twice the planned amount\n\nBoth patterns share the same root: **letting fear override a pre-set rule**. The fix is identical in both cases — execute the rule, not the feeling.",
-          highlight: ["fear of loss", "stop-loss", "exit too early", "move the stop"],
-        },
-        {
-          type: "teach",
-          title: "Greed Manifestations and Rules as Override",
-          content:
-            "**Greed** in trading shows up subtly:\n- Holding a winner past your target because 'it might go higher'\n- Adding to a position that is already too large because it is working\n- Taking a trade with poor R:R because the potential gain sounds exciting\n- Skipping a stop-loss because the gain feels 'so close'\n\n**How rules override emotions**:\nEmotions are fast, automatic, and powerful. You cannot outthink them in the moment. What you CAN do is make decisions before the emotional event and commit to following them.\n\nRule-based safeguards:\n- Written take-profit levels set at entry — not adjusted upward during the trade\n- Hard stop-loss — never moved against you, only trailed in your favor\n- Maximum daily gain target — close the platform when you hit it\n- Maximum position size rule — never exceeded regardless of conviction\n\nWhen the rule and the feeling conflict, **always follow the rule**. The rule was made by your rational self. The feeling is made by your emotional self in a heated moment.",
-          highlight: ["greed", "rules override emotions", "take-profit", "hard stop-loss", "rational self"],
-        },
-        {
-          type: "quiz-mc",
-          question:
-            "A stock reaches a trader's pre-set target of +8%. He feels it will go to +15% and holds. It reverses and he exits at +1%. Which psychological force was primarily responsible?",
-          options: [
-            "Greed — overriding the planned target hoping for more",
-            "FOMO — afraid of missing the +15% move",
-            "Loss aversion — afraid of giving back the gain",
-            "Anchoring — anchored to the +15% possibility",
-          ],
-          correctIndex: 0,
-          explanation:
-            "Classic greed pattern: abandoning a pre-set rule (exit at +8%) because of desire for a bigger gain. The result — exiting at +1% — is what greed costs. Pre-set targets exist precisely for this moment. Taking the planned +8% and exiting clean is disciplined; holding for +15% on emotion is gambling.",
-          difficulty: 2,
-        },
-        {
-          type: "quiz-tf",
-          statement:
-            "Moving your stop-loss further from your entry to 'give the trade more room' is a sound risk management practice when the trade is going against you.",
-          correct: false,
-          explanation:
-            "Moving a stop further from entry when losing is driven by fear of loss, not analysis. It increases your potential loss beyond what you originally accepted. The stop was set at entry based on technical analysis — moving it is almost always emotional. The rare exception is a well-reasoned thesis update, documented in your journal before the move.",
-          difficulty: 1,
-        },
-        {
-          type: "quiz-scenario",
-          scenario:
-            "A highly anticipated earnings report causes a stock to jump 20% at open. Alex did not hold the stock before earnings. He sees the jump, reads bullish commentary everywhere, and feels intense pressure to buy before 'it goes even higher.'",
-          question: "What should Alex do to overcome FOMO in this moment?",
-          options: [
-            "Pause, check if a valid setup now exists within his strategy rules, only enter if checklist passes",
-            "Buy immediately — the momentum is real and he can ride it",
-            "Buy half size now and add more if it continues rising",
-            "Wait 5 minutes then buy if it has not reversed",
-          ],
-          correctIndex: 0,
-          explanation:
-            "FOMO demands immediate action. The antidote is a structured pause: does a valid setup exist right now according to my written strategy? If the answer requires bypassing the checklist, it is FOMO. A 20% gap-up is not automatically a buying opportunity — it may also be an overextended entry with high reversal risk. Only rules can determine this, not urgency.",
-          difficulty: 3,
-        },
-      ],
-    },
-
-    // ─── Lesson 4: Building Consistency and Discipline ────────────────────────
-    {
-      id: "psych-4",
-      title: "Building Consistency and Discipline",
-      description:
-        "Creating a trading plan, rule-based systems, measuring process adherence, recovery from drawdowns",
-      icon: "CheckSquare",
-      xpReward: 95,
       difficulty: "advanced",
       steps: [
         {
           type: "teach",
-          title: "Creating a Written Trading Plan",
+          title: "🌊 Flow State Trading",
           content:
-            "A **trading plan** is a written document that defines every major decision before the market opens. It prevents in-the-moment improvisation — the source of most losses.\n\nA complete trading plan includes:\n1. **Universe**: What instruments do you trade? (e.g., top-50 US stocks only)\n2. **Setups**: Exactly what patterns/signals trigger a trade\n3. **Entry rules**: How do you enter? Market order? Limit? What price?\n4. **Stop-loss rules**: Where is the stop? How is it calculated? (e.g., below 20-day low)\n5. **Target rules**: Where do you take profit? Fixed % or technical level?\n6. **Position sizing**: How many shares based on risk amount?\n7. **Maximum daily/weekly loss**: When do you stop for the day/week?\n8. **What setups you will NOT take**: Negative rules are as important as positive ones\n\nA plan not written down is not a plan — it is a preference, easily overridden.",
-          highlight: ["trading plan", "entry rules", "stop-loss rules", "position sizing", "negative rules"],
+            "Psychologist Mihaly Csikszentmihalyi defined **flow** — the state of optimal experience where a person is fully immersed in an activity with effortless concentration and intrinsic motivation.\n\n**Conditions for flow in trading (all must be present):**\n- **Clear goals**: Specific setup criteria, defined entry/exit rules\n- **Immediate feedback**: P&L, price action, pattern confirmation\n- **Challenge-skill balance**: The market provides enough challenge to engage System 2 without overwhelming it\n- **Perceived control**: Not certainty of outcome, but confidence in the process\n\n**Signs you are in a flow trading state:**\n- Time passes quickly; hours feel like minutes\n- Decisions feel clear and unhurried\n- You are observing setups without forcing them\n- Losses do not generate emotional reaction — they are information\n- You feel no need to check P&L repeatedly\n\n**Signs you are NOT in flow (stop trading):**\n- Every tick feels urgent\n- You are refreshing news or chatrooms constantly\n- Small moves trigger strong emotional reactions\n- You are 'trying harder' rather than observing clearly\n- You feel compelled to be in a position\n\nFlow cannot be forced — it emerges from proper preparation, appropriate challenge level, and emotional neutrality. Most traders experience it occasionally; elite traders learn to recognize and cultivate its conditions.",
+          highlight: ["flow state", "clear goals", "immediate feedback", "challenge-skill balance", "emotional neutrality"],
         },
         {
           type: "teach",
-          title: "Rule-Based Systems and Process Metrics",
+          title: "🛡️ Resilience After Drawdowns",
           content:
-            "**Rule-based systems** replace discretion with defined criteria. This is not about being a robot — it is about ensuring your edge is applied consistently.\n\nBuilding your system:\n- Backtest your core setup on historical data (even informally — review 50 past examples)\n- Define minimum criteria that must ALL be met (confluence requirement)\n- Grade each trade against criteria: did I check all boxes?\n\n**Process metrics** — what you should actually track:\n- **Plan adherence rate**: % of trades where all rules were followed\n- **Deviation trades**: trades where you broke a rule — and their P&L vs plan trades\n- **Setup accuracy**: Which setups perform best? Which should be cut?\n- **Emotional state vs outcome**: Do hot-state trades underperform?\n\nMost traders track P&L obsessively and process not at all. Flip this. Process quality predicts long-term results; P&L in any given week is mostly noise.",
-          highlight: ["rule-based system", "plan adherence rate", "process metrics", "confluence", "backtest"],
+            "Every trader — without exception — experiences drawdowns. The difference between traders who survive long-term and those who don't is not whether they have drawdowns, but how they respond to them.\n\n**Normalizing drawdowns:**\n- Paul Tudor Jones, one of history's greatest traders, has had losing months\n- Renaissance Technologies Medallion Fund — the most successful quant fund ever — has experienced drawdowns of 10–20%\n- A 10-trade losing streak on a 50% win rate strategy has a 0.1% probability — it will happen to you over a career\n\n**The 3-step recovery protocol:**\n\n**Step 1: Reduce size**\n- Immediately cut position size to 50% of normal (or less)\n- Lower risk reduces emotional volatility, which allows clearer thinking\n- 'You can't think clearly when you're fighting for survival'\n\n**Step 2: Review process (not outcomes)**\n- Were trades taken within your criteria, or was there process breakdown?\n- Process breakdown: identify and fix the specific deviation\n- Normal variance: remind yourself this is mathematically expected\n\n**Step 3: Rebuild confidence with small wins**\n- Trade smaller size with high-conviction setups only\n- Small wins restore the feedback loop between good process and positive outcomes\n- Gradually restore normal size as confidence and process stability return\n\nDrawdowns are not signals to abandon strategies — they are tests of process discipline.",
+          highlight: ["drawdowns", "normalizing", "reduce size", "review process", "small wins", "resilience"],
         },
         {
           type: "teach",
-          title: "Recovering from Drawdowns",
+          title: "📚 Mental Models of Elite Traders",
           content:
-            "Every trader — including the greatest in history — experiences drawdowns. The difference is how they respond.\n\n**Drawdown protocol**:\n1. When account drops 5%: Review journal for rule violations. Reduce size by 25%.\n2. When account drops 10%: Halt live trading. Review every trade from the drawdown period. Identify the pattern causing losses.\n3. When account drops 15%: Mandatory paper-trading period (minimum 2 weeks) before returning with live capital.\n\n**Psychological recovery**:\n- A drawdown is information, not a verdict\n- Separate self-worth from account equity — your value as a person is not your balance\n- Return to basics: smaller size, only the highest-conviction setups\n- Read your trading plan aloud each morning to reinforce rules\n\nThe traders who survive and eventually thrive are those who **respond to drawdowns with discipline, not desperation**.",
-          highlight: ["drawdown", "drawdown protocol", "paper trading", "reduce size", "discipline"],
+            "The greatest traders in history converged on remarkably similar psychological principles, despite different instruments and eras:\n\n**Jesse Livermore** (1877–1940): 'The market is never wrong — opinions often are.'\n- Accept that the market's current price is reality; your opinion of value is just an opinion\n- The tape (price action) overrides analysis\n\n**Paul Tudor Jones**: 'The most important rule of trading is to play great defense, not great offense.'\n- Capital preservation is the primary objective\n- Asymmetric bets: risk small, win big, never the reverse\n\n**Mark Douglas — The Disciplined Trader (1990):**\nThe most influential book on trading psychology. Douglas's core framework:\n\n1. **Think in probabilities, not certainties**: No trade is a 'sure thing' — every trade is one instance of a probability distribution\n2. **Accept uncertainty**: The market can do anything at any moment; accepting this removes the emotional reaction to unexpected moves\n3. **You don't need to know what happens next**: A positive-EV system produces results over many trades, not individual trades\n4. **Each trade is unique**: Past trades — wins or losses — are statistically independent of the next trade\n\n**Universal principles across all elite traders:**\n- Risk management comes before return optimization\n- Process consistency matters more than any individual insight\n- The market does not owe you a living — discipline is the price of admission",
+          highlight: ["Jesse Livermore", "Paul Tudor Jones", "Mark Douglas", "think in probabilities", "accept uncertainty", "capital preservation"],
         },
         {
           type: "quiz-mc",
           question:
-            "A trader's journal shows that 80% of his losses came from trades that violated at least one rule in his plan. What is the most effective first step?",
+            "Mark Douglas's most cited concept in 'The Disciplined Trader' involves which fundamental shift in how traders think about outcomes?",
           options: [
-            "Focus on improving rule adherence — the strategy may be fine; the execution is the problem",
-            "Replace the strategy entirely with a new one",
-            "Increase position size on rule-following trades to compensate",
-            "Reduce the number of rules to make them easier to follow",
+            "Thinking in probabilities across many trades rather than seeking certainty in individual trades",
+            "Eliminating all emotion to trade purely mechanically without any human judgment",
+            "Focusing only on fundamentals and ignoring price action entirely",
+            "Using position sizing to guarantee profitability regardless of market conditions",
           ],
           correctIndex: 0,
           explanation:
-            "If 80% of losses come from rule violations, the strategy may actually be profitable when executed correctly. The problem is execution discipline. Fixing adherence first gives an accurate picture of the strategy's true performance. Changing the strategy without fixing discipline means the same violations will occur with the new strategy.",
+            "Mark Douglas's central insight is that trading requires a probabilistic mindset: no single trade can be predicted with certainty, and trying to 'know' what will happen generates the emotional reactions that destroy discipline. By accepting that each trade is one instance of a probability distribution — and that positive results emerge over many trades, not individual ones — traders can follow their process without emotional attachment to any single outcome. This shift from certainty-seeking to probability-thinking is the foundation of trading psychology.",
           difficulty: 2,
         },
         {
           type: "quiz-tf",
           statement:
-            "The best response to a 10% account drawdown is to increase position sizes to recover the losses more quickly.",
+            "If a trader experiences a significant drawdown, it is usually a signal that their strategy is fundamentally broken and they should switch to a different approach immediately.",
           correct: false,
           explanation:
-            "Increasing size during a drawdown is one of the fastest ways to turn a 10% loss into a 30% loss. During a drawdown, something is wrong — either strategy, execution, or market conditions. The correct response is to reduce size, review trades, identify the problem, and only increase size again once the issue is resolved and confidence is rebuilt on smaller positions.",
-          difficulty: 1,
-        },
-        {
-          type: "quiz-scenario",
-          scenario:
-            "Priya has a detailed written trading plan. After 3 losing weeks, she feels her plan is 'broken' and wants to completely overhaul it. Her journal shows she followed the plan only 40% of the time during those weeks.",
-          question: "What does the data suggest Priya should do?",
-          options: [
-            "Fix her adherence first — she cannot evaluate the plan when she only follows it 40% of the time",
-            "Overhaul the plan immediately — 3 losing weeks prove it does not work",
-            "Take a complete break from trading for a month",
-            "Follow the plan 60% of the time and use her judgment for the rest",
-          ],
-          correctIndex: 0,
-          explanation:
-            "With only 40% adherence, Priya is not actually trading her plan — she is trading something undefined half the time. She cannot evaluate the plan's performance under these conditions. Improving adherence to 90%+ and tracking results for 4–6 more weeks gives real data about the plan's quality. Overhauling a plan that was barely tested is premature.",
-          difficulty: 3,
-        },
-      ],
-    },
-
-    // ─── Lesson 5: The Peak Performance Trading State ─────────────────────────
-    {
-      id: "psych-5",
-      title: "The Peak Performance Trading State",
-      description:
-        "Flow state in trading, pre-trade rituals of top traders, post-session review, continuous improvement",
-      icon: "Zap",
-      xpReward: 100,
-      difficulty: "advanced",
-      steps: [
-        {
-          type: "teach",
-          title: "Flow State in Trading",
-          content:
-            "Psychologist Mihaly Csikszentmihalyi described **flow** as a state of complete absorption where performance peaks and time distorts. Elite traders describe their best sessions this way.\n\nFlow state characteristics in trading:\n- Decisions feel clear and effortless, not forced\n- No internal debate about entries or exits — rules feel natural\n- Losses are processed quickly with no emotional residue\n- You are fully present on the chart, not distracted by P&L\n\nConditions that enable trading flow:\n- **Challenge–skill balance**: Setups should stretch your skill but not overwhelm it\n- **Clear goals**: The plan is written and internalized\n- **Immediate feedback**: You know instantly if a rule was followed\n- **Reduced distraction**: Phone away, notifications off, environment controlled\n\nFlow cannot be forced, but it can be cultivated through routine, preparation, and practice.",
-          highlight: ["flow state", "peak performance", "challenge-skill balance", "immediate feedback", "Csikszentmihalyi"],
-        },
-        {
-          type: "teach",
-          title: "Pre-Trade Rituals of Top Traders",
-          content:
-            "Top performers in every field use rituals to shift into optimal performance states. Traders are no different.\n\n**Pre-session ritual structure** (customize to your own):\n\n**Morning (before market open)**:\n- 10 minutes: Physical activation (walk, stretch, brief exercise)\n- 10 minutes: Market context review (overnight gaps, key levels, macro events)\n- 10 minutes: Read your trading plan and rules aloud\n- 5 minutes: Mental priming — visualize executing your setups perfectly\n\n**Intra-session ritual** (before each trade entry):\n- 30-second pause\n- Run pre-trade checklist\n- State entry, stop, target aloud or in writing\n- Check emotional state (1–10 scale)\n\nThe purpose is not superstition — it is **state management**. Rituals create neural anchors that signal 'it is time to perform at my best.'",
-          highlight: ["pre-trade ritual", "state management", "mental priming", "pre-trade checklist", "neural anchor"],
-        },
-        {
-          type: "teach",
-          title: "Post-Session Review and Continuous Improvement",
-          content:
-            "The trading session is not finished when the market closes. **Post-session review** is where improvement happens.\n\n**Daily post-session review (20 minutes)**:\n1. Log all trades with full details in your journal\n2. Review each entry: Was the setup valid per your plan?\n3. Review each exit: Was it planned or emotional?\n4. Rate your emotional state during the session (1–10)\n5. Identify the single best trade and single worst trade — what was different?\n6. Write one specific improvement for tomorrow\n\n**Weekly review (60 minutes)**:\n- Calculate key metrics: plan adherence, win rate, avg win:loss, expectancy\n- Categorize trades by setup type — which setups are profitable?\n- Identify your edge — what works — and your leaks — what costs money\n\n**Continuous improvement mindset**: Every session is data. Every loss is tuition paid. The trader who reviews honestly and adjusts systematically will improve. The trader who ignores the data will repeat the same mistakes indefinitely.",
-          highlight: ["post-session review", "continuous improvement", "expectancy", "setup categories", "data"],
-        },
-        {
-          type: "quiz-mc",
-          question:
-            "A trader reports that on her best trading days she feels 'completely absorbed, not watching P&L, just reacting to the chart.' This describes which state?",
-          options: [
-            "Flow state — optimal performance with clear, effortless decisions",
-            "Dissociation — a dangerous lack of awareness",
-            "Overconfidence — she is not monitoring risk",
-            "Emotional numbness — a sign of burnout",
-          ],
-          correctIndex: 0,
-          explanation:
-            "She is describing the flow state — the peak performance zone where skills and challenge align, decisions feel natural, and P&L attachment dissolves. This is associated with best trading outcomes. It is healthy, not dangerous. The danger would be if she were also ignoring her stop-losses, which is not implied here.",
-          difficulty: 2,
-        },
-        {
-          type: "quiz-tf",
-          statement:
-            "Post-session reviews are only worth doing after losing days, to identify what went wrong.",
-          correct: false,
-          explanation:
-            "Winning days are equally important to review. Understanding WHY a session was profitable — which setups worked, what emotional state you were in, what the market conditions were — helps you replicate success. Reviewing only losses creates a biased, negative picture and misses learning opportunities from your best performances.",
+            "Drawdowns are mathematically inevitable for any strategy with less than 100% win rate. Even the most successful strategies — including those of legendary traders and top quant funds — experience periodic drawdowns. The correct response is to first examine whether the drawdown resulted from process breakdown (fixable) or normal statistical variance (expected). Abandoning a sound, positive-EV strategy during a normal drawdown destroys its long-run benefits. The 3-step protocol — reduce size, review process, rebuild with small wins — is the evidence-based response.",
           difficulty: 2,
         },
         {
           type: "quiz-scenario",
           scenario:
-            "Trader Ben reviews his last 3 months of data. His 'A-setup' trades (highest confluence, all checklist boxes checked) show a 68% win rate and 2:1 average win:loss. His 'impulse' trades (entered without checklist) show a 31% win rate and 0.8:1 average win:loss.",
-          question: "What is the most important insight from this data and what should Ben do?",
+            "After a 12% portfolio drawdown over 6 weeks, a trader completes a process review and finds all trades were taken within her defined criteria, risk per trade was maintained at 1%, and no emotional deviations occurred. Her win rate temporarily fell to 38% vs. the historical 47%, consistent with a normal variance period. She is considering cutting her position size in half and switching to paper trading for 2 weeks.",
+          question: "Which element of the 3-step recovery protocol is she applying correctly, and what should she also remember?",
           options: [
-            "His edge lives entirely in A-setups; he should eliminate impulse trades and only take A-setups",
-            "His A-setup win rate is too low; he needs a new strategy",
-            "He should balance between both types to diversify his approach",
-            "The impulse trades have potential; he needs to refine them with more practice",
+            "Reducing size (Step 1) is correct; she should remember the process was sound — this is normal variance, not strategy failure, so she can gradually return to full size as confidence stabilizes",
+            "She should switch strategies since a 12% drawdown proves this strategy doesn't work",
+            "Paper trading for 2 weeks will restore performance because it removes emotional pressure",
+            "Her process review is unnecessary since outcomes are the only reliable measure of strategy quality",
           ],
           correctIndex: 0,
           explanation:
-            "The data is unambiguous: A-setups are profitable (68% win rate, 2:1 R:R = strong positive expectancy). Impulse trades are unprofitable (31% win rate, 0.8:1 R:R = strongly negative expectancy). Eliminating impulse trades and only taking A-setups would dramatically improve Ben's results without changing his strategy at all — just his filter.",
+            "Reducing position size after a drawdown (Step 1) is correct and appropriate regardless of cause. Her process review (Step 2) revealed no process breakdown — this is normal variance. The key insight: because the process was sound, she should not abandon the strategy. Paper trading is not recommended here — small real-money wins on reduced size (Step 3) rebuild the confidence feedback loop more effectively than simulated trading. She can gradually restore full size as her win rate normalizes.",
           difficulty: 3,
         },
       ],
