@@ -119,6 +119,8 @@ import { UNIT_COMPETITIVE_MOATS } from "./unit-competitive-moats";
 import { UNIT_BOND_MATH } from "./unit-bond-math";
 import { UNIT_FINANCIAL_RATIOS } from "./unit-financial-ratios";
 import { UNIT_OPTIONS_BASICS } from "./unit-options-basics";
+import { UNIT_STARTUP_ECONOMICS } from "./unit-startup-economics";
+import { UNIT_CENTRAL_BANKING } from "./unit-central-banking";
 
 export const UNITS: Unit[] = [
   UNIT_BASICS,
@@ -241,6 +243,8 @@ export const UNITS: Unit[] = [
   UNIT_BOND_MATH,
   UNIT_FINANCIAL_RATIOS,
   UNIT_OPTIONS_BASICS,
+  UNIT_STARTUP_ECONOMICS,
+  UNIT_CENTRAL_BANKING,
 ];
 
 export function getLessonById(lessonId: string): Lesson | undefined {
