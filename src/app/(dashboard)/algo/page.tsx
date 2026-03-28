@@ -1,11 +1,12 @@
 "use client";
 
 import { useState, useMemo, useCallback } from "react";
-import { Bot, Plus, X, Play, ChevronRight, AlertTriangle, Info } from "lucide-react";
+import { Bot, Plus, X, Play, ChevronRight, AlertTriangle, Info, FlaskConical } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
+import StrategyLab from "@/components/backtest/StrategyLab";
 
 // ── Types ──────────────────────────────────────────────────────────────────────
 
@@ -838,13 +839,14 @@ function MetricChip({
 
 // ── Main page ──────────────────────────────────────────────────────────────────
 
-type Tab = "builder" | "results" | "library" | "optimization";
+type Tab = "builder" | "results" | "library" | "optimization" | "strategy_lab";
 
-const TABS: { id: Tab; label: string }[] = [
+const TABS: { id: Tab; label: string; hasIcon?: boolean }[] = [
   { id: "builder", label: "Strategy Builder" },
   { id: "results", label: "Backtest Results" },
   { id: "library", label: "Strategy Library" },
   { id: "optimization", label: "Optimization" },
+  { id: "strategy_lab", label: "Strategy Lab", hasIcon: true },
 ];
 
 const DEFAULT_STRATEGY: Strategy = {
@@ -1014,7 +1016,9 @@ export default function AlgoPage() {
                 : "text-zinc-500 hover:text-zinc-300"
             )}
           >
-            {tab.label}
+            {tab.hasIcon
+              ? <span className="flex items-center gap-1.5"><FlaskConical className="h-3 w-3" />{tab.label}</span>
+              : tab.label}
           </button>
         ))}
       </div>
@@ -1559,6 +1563,11 @@ export default function AlgoPage() {
               </Card>
             </div>
           </div>
+        )}
+
+        {/* ── Tab 5: Strategy Lab ── */}
+        {activeTab === "strategy_lab" && (
+          <StrategyLab />
         )}
       </div>
     </div>
