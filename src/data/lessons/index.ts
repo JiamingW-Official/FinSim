@@ -21,6 +21,7 @@ import { UNIT_TRADING_PSYCHOLOGY } from "./unit-trading-psychology";
 import { UNIT_TECHNICAL_ANALYSIS_MASTERY } from "./unit-technical-analysis-mastery";
 import { UNIT_ADVANCED_OPTIONS } from "./unit-advanced-options";
 import { UNIT_INTERNATIONAL_MARKETS } from "./unit-international-markets";
+import { UNIT_ESG_INVESTING } from "./unit-esg-investing";
 
 export const UNITS: Unit[] = [
   UNIT_BASICS,
