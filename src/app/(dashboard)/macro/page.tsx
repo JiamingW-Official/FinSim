@@ -1,1417 +1,1323 @@
 "use client";
 
-import { useState, useMemo, useCallback } from "react";
+import { useState, useMemo } from "react";
+import { motion } from "framer-motion";
 import {
-  Globe,
   TrendingUp,
   TrendingDown,
   Minus,
-  ChevronDown,
-  ChevronUp,
-  Info,
+  Activity,
+  Globe,
+  AlertTriangle,
+  BarChart2,
+  Users,
+  DollarSign,
+  Layers,
 } from "lucide-react";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { cn } from "@/lib/utils";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Badge } from "@/components/ui/badge";
+import { Progress } from "@/components/ui/progress";
 
-// ── mulberry32 seeded PRNG ────────────────────────────────────────────────────
-
-function mulberry32(seed: number) {
-  let s = seed >>> 0;
-  return () => {
-    s += 0x6d2b79f5;
-    let t = s;
-    t = Math.imul(t ^ (t >>> 15), t | 1);
-    t ^= t + Math.imul(t ^ (t >>> 7), t | 61);
-    return ((t ^ (t >>> 14)) >>> 0) / 4294967296;
-  };
+// ── Seeded PRNG ───────────────────────────────────────────────────────────────
+let s = 622007;
+const rand = () => {
+  s = (s * 1103515245 + 12345) & 0x7fffffff;
+  return s / 0x7fffffff;
+};
+function resetSeed() {
+  s = 622007;
 }
-
-// ── Data generation ───────────────────────────────────────────────────────────
-
-interface MonthlyPoint {
-  month: string;
-  value: number;
-}
-
-function generateMonthlyData(
-  baseValue: number,
-  months: number,
-  volatility: number,
-  rng: () => number,
-): MonthlyPoint[] {
-  const data: MonthlyPoint[] = [];
-  let v = baseValue;
-  const now = new Date(2026, 2, 1); // March 2026
-  for (let i = months - 1; i >= 0; i--) {
-    const d = new Date(now);
-    d.setMonth(d.getMonth() - i);
-    v = v + (rng() - 0.5) * volatility;
-    data.push({
-      month: d.toLocaleDateString("en-US", { month: "short", year: "2-digit" }),
-      value: Math.round(v * 100) / 100,
-    });
-  }
-  return data;
-}
-
-function generateQuarterlyData(
-  baseValue: number,
-  quarters: number,
-  volatility: number,
-  rng: () => number,
-): MonthlyPoint[] {
-  const data: MonthlyPoint[] = [];
-  let v = baseValue;
-  const now = new Date(2026, 2, 1);
-  for (let i = quarters - 1; i >= 0; i--) {
-    const d = new Date(now);
-    d.setMonth(d.getMonth() - i * 3);
-    v = v + (rng() - 0.5) * volatility;
-    data.push({
-      month: `Q${Math.ceil((d.getMonth() + 1) / 3)} '${String(d.getFullYear()).slice(2)}`,
-      value: Math.round(v * 100) / 100,
-    });
-  }
-  return data;
+function rb(min: number, max: number) {
+  return min + rand() * (max - min);
 }
 
 // ── Types ─────────────────────────────────────────────────────────────────────
-
-interface KPICard {
+interface TimeSeriesPoint {
   label: string;
-  unit: string;
-  current: number;
-  previous: number;
-  weight: number; // for health score
-  healthDir: "up" | "down"; // "up" = higher is better
-  sparkline: MonthlyPoint[];
-  color: string;
-  description: string;
+  value: number;
 }
 
-// ── Sparkline SVG ─────────────────────────────────────────────────────────────
-
-function Sparkline({
-  data,
-  color,
-  width = 96,
-  height = 32,
-}: {
-  data: number[];
+interface LineSeries {
+  name: string;
   color: string;
-  width?: number;
-  height?: number;
-}) {
-  const min = Math.min(...data);
-  const max = Math.max(...data);
-  const range = max - min || 1;
-  const pts = data.map((v, i) => {
-    const x = (i / (data.length - 1)) * width;
-    const y = height - ((v - min) / range) * height;
-    return `${x},${y}`;
-  });
-  const polyline = pts.join(" ");
-  // Fill path
-  const fillPath = `M ${pts[0]} L ${pts.join(" L ")} L ${width},${height} L 0,${height} Z`;
-
-  return (
-    <svg width={width} height={height} className="overflow-visible">
-      <defs>
-        <linearGradient id={`sg-${color.replace("#", "")}`} x1="0" y1="0" x2="0" y2="1">
-          <stop offset="0%" stopColor={color} stopOpacity="0.3" />
-          <stop offset="100%" stopColor={color} stopOpacity="0" />
-        </linearGradient>
-      </defs>
-      <path d={fillPath} fill={`url(#sg-${color.replace("#", "")})`} />
-      <polyline
-        points={polyline}
-        fill="none"
-        stroke={color}
-        strokeWidth="1.5"
-        strokeLinejoin="round"
-        strokeLinecap="round"
-      />
-    </svg>
-  );
+  points: TimeSeriesPoint[];
 }
 
-// ── Line chart SVG ────────────────────────────────────────────────────────────
-
-interface LineData {
+interface HeatmapCell {
+  country: string;
+  value: number;
   label: string;
-  color: string;
-  values: number[];
 }
 
+// ── Data Generation ───────────────────────────────────────────────────────────
+function makeQuarters(n: number, start: [number, number]): string[] {
+  const labels: string[] = [];
+  let [year, q] = start;
+  for (let i = 0; i < n; i++) {
+    labels.push(`Q${q} ${year}`);
+    q++;
+    if (q > 4) { q = 1; year++; }
+  }
+  return labels;
+}
+
+function makeMonths(n: number): string[] {
+  const months = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
+  const labels: string[] = [];
+  let y = 2022; let m = 0;
+  for (let i = 0; i < n; i++) {
+    labels.push(`${months[m]} ${y}`);
+    m++;
+    if (m >= 12) { m = 0; y++; }
+  }
+  return labels.slice(0, n);
+}
+
+resetSeed();
+
+// ── Growth Indicators data ────────────────────────────────────────────────────
+const quarters = makeQuarters(16, [2022, 1]);
+
+const gdpSeries: LineSeries = {
+  name: "Real GDP Growth (YoY %)",
+  color: "#6366f1",
+  points: quarters.map((label, i) => {
+    const base = [2.1, 1.9, 2.3, 2.5, 2.0, 1.7, 1.5, 1.8, 2.2, 2.4, 2.6, 2.8, 2.5, 2.3, 2.1, 1.9][i];
+    return { label, value: parseFloat((base + rb(-0.15, 0.15)).toFixed(2)) };
+  }),
+};
+
+const pmiSeries: LineSeries = {
+  name: "Manufacturing PMI",
+  color: "#10b981",
+  points: quarters.map((label, i) => {
+    const base = [52.4, 51.8, 50.2, 49.5, 48.9, 49.2, 50.1, 51.3, 52.0, 52.8, 53.1, 52.6, 52.2, 51.9, 51.4, 50.8][i];
+    return { label, value: parseFloat((base + rb(-0.3, 0.3)).toFixed(1)) };
+  }),
+};
+
+const indProdSeries: LineSeries = {
+  name: "Industrial Production (YoY %)",
+  color: "#f59e0b",
+  points: quarters.map((label, i) => {
+    const base = [3.2, 2.8, 2.1, 1.6, 0.9, 0.4, 0.7, 1.2, 1.8, 2.3, 2.7, 3.0, 2.8, 2.5, 2.2, 1.9][i];
+    return { label, value: parseFloat((base + rb(-0.2, 0.2)).toFixed(2)) };
+  }),
+};
+
+const retailSalesSeries: LineSeries = {
+  name: "Retail Sales (YoY %)",
+  color: "#ec4899",
+  points: quarters.map((label, i) => {
+    const base = [7.8, 6.2, 4.9, 3.4, 2.1, 1.8, 2.4, 3.1, 3.8, 4.2, 4.7, 5.1, 4.8, 4.3, 3.9, 3.5][i];
+    return { label, value: parseFloat((base + rb(-0.3, 0.3)).toFixed(2)) };
+  }),
+};
+
+// ── Inflation data ─────────────────────────────────────────────────────────────
+const months = makeMonths(24);
+
+const cpiSeries: LineSeries = {
+  name: "CPI (YoY %)",
+  color: "#ef4444",
+  points: months.map((label, i) => {
+    const base = [7.5,7.9,8.5,8.3,8.6,9.1,8.5,8.3,8.2,7.7,7.1,6.5,6.4,6.0,5.0,4.9,4.0,3.7,3.7,3.2,3.1,2.9,2.8,2.6][i] ?? rb(2.5, 3.5);
+    return { label, value: parseFloat((base + rb(-0.05, 0.05)).toFixed(1)) };
+  }),
+};
+
+const pceSeries: LineSeries = {
+  name: "Core PCE (YoY %)",
+  color: "#f97316",
+  points: months.map((label, i) => {
+    const base = [5.2,5.3,5.6,5.2,4.9,4.8,4.7,4.6,4.9,5.0,4.7,4.4,4.7,4.6,4.6,4.4,3.8,3.7,3.7,3.4,3.5,3.2,3.1,2.8][i] ?? rb(2.5, 3.5);
+    return { label, value: parseFloat((base + rb(-0.05, 0.05)).toFixed(1)) };
+  }),
+};
+
+const tipsBeSeries: LineSeries = {
+  name: "5Y TIPS Breakeven (%)",
+  color: "#8b5cf6",
+  points: months.map((label, i) => {
+    const base = [2.9,3.0,3.1,3.0,2.9,2.8,2.6,2.5,2.4,2.3,2.3,2.4,2.3,2.3,2.4,2.3,2.4,2.4,2.5,2.4,2.4,2.3,2.3,2.3][i] ?? rb(2.2, 2.6);
+    return { label, value: parseFloat((base + rb(-0.03, 0.03)).toFixed(2)) };
+  }),
+};
+
+const wageSeries: LineSeries = {
+  name: "Wage Growth (YoY %)",
+  color: "#14b8a6",
+  points: months.map((label, i) => {
+    const base = [5.7,5.6,5.6,5.5,5.2,5.1,5.2,5.2,5.0,4.7,4.6,4.6,4.4,4.4,4.3,4.4,4.2,4.2,4.0,4.0,4.1,4.0,3.9,3.9][i] ?? rb(3.5, 4.5);
+    return { label, value: parseFloat((base + rb(-0.05, 0.05)).toFixed(1)) };
+  }),
+};
+
+// ── Labor Market data ──────────────────────────────────────────────────────────
+const unemploymentSeries: LineSeries = {
+  name: "Unemployment Rate (%)",
+  color: "#6366f1",
+  points: months.map((label, i) => {
+    const base = [4.0,3.8,3.6,3.6,3.6,3.6,3.5,3.7,3.5,3.7,3.7,3.5,3.4,3.6,3.5,3.4,3.6,3.8,3.9,3.9,3.7,3.7,3.7,3.9][i] ?? rb(3.5, 4.2);
+    return { label, value: parseFloat((base + rb(-0.05, 0.05)).toFixed(1)) };
+  }),
+};
+
+const joltsSeries: LineSeries = {
+  name: "JOLTS Openings (millions)",
+  color: "#10b981",
+  points: months.map((label, i) => {
+    const base = [11.2,11.3,11.8,11.9,11.7,10.7,10.3,10.1,10.3,10.4,10.4,10.5,10.6,10.0,9.7,9.6,9.8,9.6,9.6,8.8,8.7,8.9,8.7,8.6][i] ?? rb(8.0, 9.5);
+    return { label, value: parseFloat((base + rb(-0.1, 0.1)).toFixed(1)) };
+  }),
+};
+
+const lfpSeries: LineSeries = {
+  name: "Labor Force Participation (%)",
+  color: "#f59e0b",
+  points: months.map((label, i) => {
+    const base = [62.2,62.3,62.4,62.2,62.3,62.2,62.1,62.1,62.1,62.2,62.1,62.3,62.4,62.5,62.6,62.6,62.6,62.8,62.8,62.8,62.7,62.5,62.5,62.5][i] ?? rb(62.3, 62.8);
+    return { label, value: parseFloat((base + rb(-0.05, 0.05)).toFixed(1)) };
+  }),
+};
+
+// ── Global Comparison data ─────────────────────────────────────────────────────
+const g7Countries = ["USA","CAN","GBR","DEU","FRA","ITA","JPN"];
+const g20Extra = ["CHN","IND","BRA","AUS","KOR","MEX","IDN","SAU"];
+const allCountries = [...g7Countries, ...g20Extra];
+
+const gdpGrowthMatrix: HeatmapCell[] = allCountries.map((c) => {
+  const vals: Record<string, number> = {
+    USA:2.5,CAN:1.2,GBR:0.3,DEU:-0.2,FRA:0.9,ITA:0.7,JPN:1.9,
+    CHN:5.2,IND:7.0,BRA:2.9,AUS:2.0,KOR:1.4,MEX:3.2,IDN:5.0,SAU:3.6,
+  };
+  const base = vals[c] ?? 2.0;
+  return { country: c, value: parseFloat((base + rb(-0.1, 0.1)).toFixed(1)), label: `${(base + rb(-0.1, 0.1)).toFixed(1)}%` };
+});
+
+const inflationMatrix: HeatmapCell[] = allCountries.map((c) => {
+  const vals: Record<string, number> = {
+    USA:3.1,CAN:3.4,GBR:4.0,DEU:2.9,FRA:2.6,ITA:0.9,JPN:2.8,
+    CHN:0.2,IND:5.1,BRA:4.6,AUS:3.8,KOR:3.2,MEX:4.7,IDN:2.6,SAU:1.7,
+  };
+  const base = vals[c] ?? 3.0;
+  return { country: c, value: parseFloat((base + rb(-0.05, 0.05)).toFixed(1)), label: `${(base + rb(-0.05, 0.05)).toFixed(1)}%` };
+});
+
+const currentAccountMatrix: HeatmapCell[] = allCountries.map((c) => {
+  const vals: Record<string, number> = {
+    USA:-3.1,CAN:-1.2,GBR:-3.5,DEU:5.8,FRA:-1.5,ITA:0.2,JPN:3.5,
+    CHN:1.5,IND:-1.3,BRA:-2.2,AUS:-1.0,KOR:2.2,MEX:-1.1,IDN:-0.5,SAU:3.7,
+  };
+  const base = vals[c] ?? 0.5;
+  return { country: c, value: parseFloat((base + rb(-0.1, 0.1)).toFixed(1)), label: `${(base + rb(-0.1, 0.1)).toFixed(1)}%` };
+});
+
+// ── Regime Tracker data ────────────────────────────────────────────────────────
+const leadingIndicators = [
+  { name: "ISM Manufacturing", value: 50.1, threshold: 50, direction: "above", weight: 2 },
+  { name: "Building Permits (MoM%)", value: 2.3, threshold: 0, direction: "above", weight: 1 },
+  { name: "Consumer Confidence", value: 104.2, threshold: 100, direction: "above", weight: 2 },
+  { name: "S&P 500 (6m trend)", value: 1.8, threshold: 0, direction: "above", weight: 2 },
+  { name: "Yield Curve (10Y-2Y, bps)", value: 18, threshold: 0, direction: "above", weight: 3 },
+  { name: "Credit Spreads (IG, bps)", value: 112, threshold: 130, direction: "below", weight: 2 },
+  { name: "Initial Jobless Claims (k)", value: 212, threshold: 250, direction: "below", weight: 2 },
+  { name: "New Orders (PMI sub-idx)", value: 52.4, threshold: 50, direction: "above", weight: 1 },
+  { name: "Avg Weekly Hours Mfg", value: 40.4, threshold: 40, direction: "above", weight: 1 },
+  { name: "M2 Money Supply (YoY%)", value: 0.6, threshold: 0, direction: "above", weight: 1 },
+];
+
+// ── SVG Line Chart ─────────────────────────────────────────────────────────────
 function LineChart({
   series,
-  labels,
-  width = 400,
-  height = 180,
-  showRecession = false,
-  dottedRef,
-  yLabel,
+  height = 200,
+  showGrid = true,
+  referenceLines,
 }: {
-  series: LineData[];
-  labels: string[];
-  width?: number;
+  series: LineSeries[];
   height?: number;
-  showRecession?: boolean;
-  dottedRef?: number; // horizontal dashed line
-  yLabel?: string;
+  showGrid?: boolean;
+  referenceLines?: { value: number; color: string; label: string }[];
 }) {
-  const padL = 48;
-  const padR = 12;
-  const padT = 12;
-  const padB = 28;
-  const W = width - padL - padR;
-  const H = height - padT - padB;
-
-  const allVals = series.flatMap((s) => s.values);
-  if (dottedRef !== undefined) allVals.push(dottedRef);
+  const allValues = series.flatMap((s) => s.points.map((p) => p.value));
+  const refVals = referenceLines?.map((r) => r.value) ?? [];
+  const allVals = [...allValues, ...refVals];
   const minV = Math.min(...allVals);
   const maxV = Math.max(...allVals);
-  const rangeV = maxV - minV || 1;
+  const pad = (maxV - minV) * 0.08 || 0.5;
+  const lo = minV - pad;
+  const hi = maxV + pad;
+  const range = hi - lo;
 
-  const n = labels.length;
-  const toX = (i: number) => padL + (i / (n - 1)) * W;
-  const toY = (v: number) => padT + H - ((v - minV) / rangeV) * H;
+  const W = 700;
+  const H = height;
+  const PADL = 52;
+  const PADR = 16;
+  const PADT = 12;
+  const PADB = 36;
+  const plotW = W - PADL - PADR;
+  const plotH = H - PADT - PADB;
 
-  // Y-axis ticks
-  const yTicks = 4;
-  const yTickVals = Array.from({ length: yTicks + 1 }, (_, i) =>
-    minV + (i / yTicks) * rangeV,
-  );
+  const px = (i: number, total: number) => PADL + (i / (total - 1)) * plotW;
+  const py = (v: number) => PADT + plotH - ((v - lo) / range) * plotH;
 
-  // X-axis labels — show every Nth
-  const xStep = Math.ceil(n / 6);
-  const xLabels = labels.filter((_, i) => i % xStep === 0 || i === n - 1);
-  const xLabelIndices = labels
-    .map((_, i) => i)
-    .filter((i) => i % xStep === 0 || i === n - 1);
+  const nLabels = series[0]?.points.length ?? 0;
+  const labelStep = Math.max(1, Math.floor(nLabels / 6));
 
-  // Recession band: approximate 2020 region (20% from left for 5y monthly chart)
-  const recessionStart = Math.floor(n * 0.07);
-  const recessionEnd = Math.floor(n * 0.17);
+  const yTicks = 5;
 
   return (
-    <svg width={width} height={height} className="overflow-visible">
-      {/* Recession shading */}
-      {showRecession && (
-        <rect
-          x={toX(recessionStart)}
-          y={padT}
-          width={toX(recessionEnd) - toX(recessionStart)}
-          height={H}
-          fill="rgba(156,163,175,0.12)"
-        />
-      )}
+    <svg viewBox={`0 0 ${W} ${H}`} className="w-full" style={{ height }}>
+      {showGrid &&
+        Array.from({ length: yTicks + 1 }, (_, i) => {
+          const v = lo + (range * i) / yTicks;
+          const y = py(v);
+          return (
+            <g key={i}>
+              <line x1={PADL} x2={W - PADR} y1={y} y2={y} stroke="#1f2937" strokeWidth={1} />
+              <text x={PADL - 6} y={y + 4} textAnchor="end" fill="#6b7280" fontSize={9}>
+                {v.toFixed(1)}
+              </text>
+            </g>
+          );
+        })}
 
-      {/* Grid lines */}
-      {yTickVals.map((v, i) => (
-        <line
-          key={i}
-          x1={padL}
-          y1={toY(v)}
-          x2={padL + W}
-          y2={toY(v)}
-          stroke="rgba(255,255,255,0.06)"
-          strokeWidth="1"
-        />
-      ))}
-
-      {/* Y-axis labels */}
-      {yTickVals.map((v, i) => (
-        <text
-          key={i}
-          x={padL - 6}
-          y={toY(v) + 4}
-          textAnchor="end"
-          fontSize="9"
-          fill="rgba(255,255,255,0.35)"
-        >
-          {v.toFixed(1)}
-        </text>
-      ))}
-
-      {/* Y-axis label */}
-      {yLabel && (
-        <text
-          x={8}
-          y={padT + H / 2}
-          textAnchor="middle"
-          fontSize="8"
-          fill="rgba(255,255,255,0.3)"
-          transform={`rotate(-90,8,${padT + H / 2})`}
-        >
-          {yLabel}
-        </text>
-      )}
-
-      {/* X-axis labels */}
-      {xLabelIndices.map((idx, i) => (
-        <text
-          key={i}
-          x={toX(idx)}
-          y={padT + H + 14}
-          textAnchor="middle"
-          fontSize="8"
-          fill="rgba(255,255,255,0.3)"
-        >
-          {labels[idx]}
-        </text>
-      ))}
-
-      {/* Dotted reference line */}
-      {dottedRef !== undefined && (
-        <line
-          x1={padL}
-          y1={toY(dottedRef)}
-          x2={padL + W}
-          y2={toY(dottedRef)}
-          stroke="rgba(255,255,255,0.3)"
-          strokeWidth="1"
-          strokeDasharray="4,3"
-        />
-      )}
-
-      {/* Spread fill (between first two series) */}
-      {series.length >= 2 && (
-        <path
-          d={(() => {
-            const s0 = series[0].values;
-            const s1 = series[1].values;
-            const fwd = s0.map((v, i) => `${toX(i)},${toY(v)}`).join(" L ");
-            const rev = s1
-              .map((v, i) => `${toX(i)},${toY(v)}`)
-              .reverse()
-              .join(" L ");
-            return `M ${fwd} L ${rev} Z`;
-          })()}
-          fill="rgba(99,102,241,0.08)"
-        />
-      )}
-
-      {/* Lines */}
-      {series.map((s, si) => {
-        const pts = s.values.map((v, i) => `${toX(i)},${toY(v)}`).join(" L ");
+      {referenceLines?.map((rl, ri) => {
+        const y = py(rl.value);
         return (
-          <polyline
-            key={si}
-            points={s.values.map((v, i) => `${toX(i)},${toY(v)}`).join(" ")}
-            fill="none"
-            stroke={s.color}
-            strokeWidth="2"
-            strokeLinejoin="round"
-            strokeLinecap="round"
-            strokeDasharray={si === 1 ? "none" : "none"}
-          />
+          <g key={ri}>
+            <line x1={PADL} x2={W - PADR} y1={y} y2={y} stroke={rl.color} strokeWidth={1} strokeDasharray="4 3" />
+            <text x={W - PADR + 2} y={y + 4} fill={rl.color} fontSize={8}>{rl.label}</text>
+          </g>
         );
       })}
 
-      {/* Legend */}
-      {series.map((s, si) => (
-        <g key={si} transform={`translate(${padL + si * 80}, ${height - 8})`}>
-          <rect x={0} y={-5} width={14} height={3} rx="1" fill={s.color} />
-          <text x={18} y={0} fontSize="8" fill="rgba(255,255,255,0.4)">
-            {s.label}
+      {series[0]?.points.map((pt, i) => {
+        if (i % labelStep !== 0) return null;
+        return (
+          <text key={i} x={px(i, nLabels)} y={H - 4} textAnchor="middle" fill="#6b7280" fontSize={8}>
+            {pt.label.split(" ").slice(-1)[0]}
           </text>
-        </g>
-      ))}
+        );
+      })}
+
+      {series.map((ser) => {
+        const pts = ser.points.map((p, i) => `${px(i, ser.points.length)},${py(p.value)}`).join(" ");
+        return (
+          <g key={ser.name}>
+            <polyline points={pts} fill="none" stroke={ser.color} strokeWidth={2} strokeLinejoin="round" />
+            {ser.points.map((p, i) => (
+              <circle key={i} cx={px(i, ser.points.length)} cy={py(p.value)} r={2.5} fill={ser.color} />
+            ))}
+          </g>
+        );
+      })}
     </svg>
   );
 }
 
-// ── Scatter plot SVG ─────────────────────────────────────────────────────────
-
-interface ScatterPoint {
-  x: number;
-  y: number;
-}
-
-function ScatterPlot({
-  points,
-  xLabel,
-  yLabel,
-  color,
-  width = 180,
-  height = 160,
+// ── Heatmap ────────────────────────────────────────────────────────────────────
+function HeatmapGrid({
+  cells,
+  title,
+  minColor,
+  midColor,
+  maxColor,
+  domain,
 }: {
-  points: ScatterPoint[];
-  xLabel: string;
-  yLabel: string;
-  color: string;
-  width?: number;
-  height?: number;
+  cells: HeatmapCell[];
+  title: string;
+  minColor: string;
+  midColor: string;
+  maxColor: string;
+  domain: [number, number];
 }) {
-  const padL = 36;
-  const padR = 10;
-  const padT = 10;
-  const padB = 28;
-  const W = width - padL - padR;
-  const H = height - padT - padB;
+  const [lo, hi] = domain;
+  const mid = (lo + hi) / 2;
 
-  const xs = points.map((p) => p.x);
-  const ys = points.map((p) => p.y);
-  const minX = Math.min(...xs);
-  const maxX = Math.max(...xs);
-  const minY = Math.min(...ys);
-  const maxY = Math.max(...ys);
-  const rx = maxX - minX || 1;
-  const ry = maxY - minY || 1;
-
-  const toX = (v: number) => padL + ((v - minX) / rx) * W;
-  const toY = (v: number) => padT + H - ((v - minY) / ry) * H;
-
-  // Simple linear regression for trendline
-  const n = points.length;
-  const meanX = xs.reduce((a, b) => a + b, 0) / n;
-  const meanY = ys.reduce((a, b) => a + b, 0) / n;
-  const slope =
-    xs.reduce((s, x, i) => s + (x - meanX) * (ys[i] - meanY), 0) /
-    (xs.reduce((s, x) => s + (x - meanX) ** 2, 0) || 1);
-  const intercept = meanY - slope * meanX;
-  const x1 = minX;
-  const x2 = maxX;
-  const y1 = slope * x1 + intercept;
-  const y2 = slope * x2 + intercept;
-
-  return (
-    <svg width={width} height={height} className="overflow-visible">
-      {/* Axes */}
-      <line x1={padL} y1={padT} x2={padL} y2={padT + H} stroke="rgba(255,255,255,0.15)" strokeWidth="1" />
-      <line x1={padL} y1={padT + H} x2={padL + W} y2={padT + H} stroke="rgba(255,255,255,0.15)" strokeWidth="1" />
-
-      {/* Trendline */}
-      <line
-        x1={toX(x1)}
-        y1={toY(y1)}
-        x2={toX(x2)}
-        y2={toY(y2)}
-        stroke={color}
-        strokeWidth="1"
-        strokeOpacity="0.4"
-        strokeDasharray="3,2"
-      />
-
-      {/* Points */}
-      {points.map((p, i) => (
-        <circle key={i} cx={toX(p.x)} cy={toY(p.y)} r="3" fill={color} fillOpacity="0.7" />
-      ))}
-
-      {/* Labels */}
-      <text x={padL + W / 2} y={height - 4} textAnchor="middle" fontSize="8" fill="rgba(255,255,255,0.35)">
-        {xLabel}
-      </text>
-      <text
-        x={8}
-        y={padT + H / 2}
-        textAnchor="middle"
-        fontSize="8"
-        fill="rgba(255,255,255,0.35)"
-        transform={`rotate(-90,8,${padT + H / 2})`}
-      >
-        {yLabel}
-      </text>
-    </svg>
-  );
-}
-
-// ── Dot plot SVG (Fed dot plot) ───────────────────────────────────────────────
-
-function DotPlot({
-  dots,
-  years,
-  actualRate,
-}: {
-  dots: number[][];
-  years: string[];
-  actualRate: number;
-}) {
-  const padL = 40;
-  const padR = 12;
-  const padT = 16;
-  const padB = 24;
-  const width = 560;
-  const height = 200;
-  const W = width - padL - padR;
-  const H = height - padT - padB;
-
-  const minV = 2.5;
-  const maxV = 6.5;
-  const rangeV = maxV - minV;
-  const colW = W / years.length;
-
-  const toY = (v: number) => padT + H - ((v - minV) / rangeV) * H;
-  const toX = (col: number) => padL + col * colW + colW / 2;
-
-  const yTicks = [3, 3.5, 4, 4.5, 5, 5.5, 6];
-
-  return (
-    <svg width={width} height={height} className="overflow-visible w-full">
-      {/* Grid */}
-      {yTicks.map((v) => (
-        <line
-          key={v}
-          x1={padL}
-          y1={toY(v)}
-          x2={padL + W}
-          y2={toY(v)}
-          stroke="rgba(255,255,255,0.06)"
-          strokeWidth="1"
-        />
-      ))}
-      {/* Y-axis ticks */}
-      {yTicks.map((v) => (
-        <text key={v} x={padL - 6} y={toY(v) + 4} textAnchor="end" fontSize="9" fill="rgba(255,255,255,0.35)">
-          {v.toFixed(1)}%
-        </text>
-      ))}
-      {/* Current rate line */}
-      <line
-        x1={padL}
-        y1={toY(actualRate)}
-        x2={padL + W}
-        y2={toY(actualRate)}
-        stroke="#f59e0b"
-        strokeWidth="1.5"
-        strokeDasharray="4,2"
-      />
-      <text x={padL + W + 4} y={toY(actualRate) + 4} fontSize="8" fill="#f59e0b">
-        Now
-      </text>
-      {/* Year labels */}
-      {years.map((y, i) => (
-        <text
-          key={i}
-          x={toX(i)}
-          y={height - 6}
-          textAnchor="middle"
-          fontSize="9"
-          fill="rgba(255,255,255,0.4)"
-        >
-          {y}
-        </text>
-      ))}
-      {/* Dots */}
-      {dots.map((col, ci) =>
-        col.map((v, di) => (
-          <circle key={`${ci}-${di}`} cx={toX(ci)} cy={toY(v)} r="4" fill="#6366f1" fillOpacity="0.8" />
-        )),
-      )}
-    </svg>
-  );
-}
-
-// ── Main Page ─────────────────────────────────────────────────────────────────
-
-export default function MacroPage() {
-  const [expandedChart, setExpandedChart] = useState<number | null>(null);
-  const [inflationTarget, setInflationTarget] = useState(2.0);
-  const [actualInflation, setActualInflation] = useState(3.1);
-  const [potentialGDP, setPotentialGDP] = useState(2.0);
-  const [actualGDP, setActualGDP] = useState(2.8);
-
-  // Generate all data once with seeded PRNG
-  const data = useMemo(() => {
-    const rng = mulberry32(5050);
-
-    // 12-bar sparklines (monthly)
-    const gdpSpark = generateMonthlyData(2.4, 12, 0.6, rng);
-    const cpiSpark = generateMonthlyData(3.2, 12, 0.25, rng);
-    const fedSpark = generateMonthlyData(5.25, 12, 0.15, rng);
-    const unempSpark = generateMonthlyData(3.9, 12, 0.12, rng);
-    const t10Spark = generateMonthlyData(4.45, 12, 0.18, rng);
-    const pmiSpark = generateMonthlyData(48.5, 12, 2.1, rng);
-
-    // Fix end values to current
-    gdpSpark[11].value = 2.8;
-    cpiSpark[11].value = 3.1;
-    fedSpark[11].value = 5.25;
-    unempSpark[11].value = 3.7;
-    t10Spark[11].value = 4.62;
-    pmiSpark[11].value = 49.2;
-
-    const kpis: KPICard[] = [
-      {
-        label: "GDP Growth",
-        unit: "%",
-        current: 2.8,
-        previous: 2.4,
-        weight: 0.25,
-        healthDir: "up",
-        sparkline: gdpSpark,
-        color: "#22c55e",
-        description: "Real GDP YoY growth rate",
-      },
-      {
-        label: "CPI Inflation",
-        unit: "%",
-        current: 3.1,
-        previous: 3.4,
-        weight: 0.2,
-        healthDir: "down",
-        sparkline: cpiSpark,
-        color: "#f59e0b",
-        description: "Consumer Price Index YoY",
-      },
-      {
-        label: "Fed Funds Rate",
-        unit: "%",
-        current: 5.25,
-        previous: 5.5,
-        weight: 0.15,
-        healthDir: "down",
-        sparkline: fedSpark,
-        color: "#6366f1",
-        description: "Target federal funds rate",
-      },
-      {
-        label: "Unemployment",
-        unit: "%",
-        current: 3.7,
-        previous: 3.9,
-        weight: 0.2,
-        healthDir: "down",
-        sparkline: unempSpark,
-        color: "#ec4899",
-        description: "U-3 unemployment rate",
-      },
-      {
-        label: "10Y Treasury",
-        unit: "%",
-        current: 4.62,
-        previous: 4.45,
-        weight: 0.1,
-        healthDir: "down",
-        sparkline: t10Spark,
-        color: "#14b8a6",
-        description: "10-year Treasury yield",
-      },
-      {
-        label: "ISM PMI",
-        unit: "",
-        current: 49.2,
-        previous: 50.3,
-        weight: 0.1,
-        healthDir: "up",
-        sparkline: pmiSpark,
-        color: "#f97316",
-        description: "ISM Manufacturing PMI (>50 = expansion)",
-      },
-    ];
-
-    // Economic Health Score (0–100)
-    // Each indicator contributes based on distance from "ideal"
-    // GDP: ideal ~2.5%, CPI: ideal ~2%, Fed: ideal ~2.5%, Unemp: ideal ~4%, T10: ideal ~3%, PMI: ideal ~55
-    function normalize(val: number, ideal: number, worst: number): number {
-      const dist = Math.abs(val - ideal);
-      const maxDist = Math.abs(worst - ideal);
-      return Math.max(0, 1 - dist / maxDist);
-    }
-    const scores = [
-      normalize(2.8, 2.5, 0) * 0.25,
-      normalize(3.1, 2.0, 8) * 0.2,
-      normalize(5.25, 2.5, 8) * 0.15,
-      normalize(3.7, 4.0, 10) * 0.2,
-      normalize(4.62, 3.0, 7) * 0.1,
-      normalize(49.2, 55, 30) * 0.1,
-    ];
-    const healthScore = Math.round(scores.reduce((a, b) => a + b, 0) * 100);
-
-    // Historical chart data
-    // GDP quarterly 5y = 20 quarters
-    const gdpRng = mulberry32(5051);
-    const gdpQuarterly = generateQuarterlyData(2.1, 20, 0.8, gdpRng);
-    gdpQuarterly[19].value = 2.8;
-
-    // CPI monthly 3y = 36 months
-    const cpiRng = mulberry32(5052);
-    const cpiMonthly = generateMonthlyData(7.9, 36, 0.5, cpiRng);
-    cpiMonthly[35].value = 3.1;
-    // Core CPI offset
-    const coreCpiRng = mulberry32(5053);
-    const coreCpiMonthly = generateMonthlyData(6.5, 36, 0.4, coreCpiRng);
-    coreCpiMonthly[35].value = 3.8;
-
-    // Fed rate + 10Y monthly 5y = 60 months
-    const fedRng = mulberry32(5054);
-    const fedMonthly = generateMonthlyData(0.08, 60, 0.25, fedRng);
-    fedMonthly.forEach((d, i) => {
-      if (i > 12 && i < 50) d.value = Math.max(0, d.value + (i - 12) * 0.08);
-    });
-    fedMonthly[59].value = 5.25;
-
-    const t10Rng = mulberry32(5055);
-    const t10Monthly = generateMonthlyData(1.5, 60, 0.18, t10Rng);
-    t10Monthly.forEach((d, i) => {
-      if (i > 10) d.value = Math.max(1, d.value + (i - 10) * 0.055);
-    });
-    t10Monthly[59].value = 4.62;
-
-    // Unemployment monthly 5y = 60 months
-    const unempRng = mulberry32(5056);
-    const unempMonthly = generateMonthlyData(14.7, 60, 0.6, unempRng);
-    unempMonthly.forEach((d, i) => {
-      d.value = Math.max(3.5, unempMonthly[0].value - (i / 59) * (14.7 - 3.7));
-    });
-    unempMonthly[59].value = 3.7;
-
-    // Scatter data (correlation analysis)
-    const scatterRng = mulberry32(5057);
-    const cpiVsSnp: { x: number; y: number }[] = [];
-    const rateVsPe: { x: number; y: number }[] = [];
-    const pmiVsEarnings: { x: number; y: number }[] = [];
-    const unempVsConsumer: { x: number; y: number }[] = [];
-    for (let i = 0; i < 36; i++) {
-      const cpi = 2 + scatterRng() * 6;
-      cpiVsSnp.push({ x: cpi, y: 12 - cpi * 1.5 + (scatterRng() - 0.5) * 8 });
-
-      const rate = scatterRng() * 5;
-      rateVsPe.push({ x: rate, y: 28 - rate * 2.8 + (scatterRng() - 0.5) * 4 });
-
-      const pmi = 44 + scatterRng() * 16;
-      pmiVsEarnings.push({ x: pmi, y: (pmi - 50) * 1.2 + (scatterRng() - 0.5) * 5 });
-
-      const unemp = 3.5 + scatterRng() * 8;
-      unempVsConsumer.push({ x: unemp, y: 70 - unemp * 3.5 + (scatterRng() - 0.5) * 6 });
-    }
-
-    // Fed Funds futures probabilities — next 6 FOMC meetings
-    const fomcDates = ["Mar 19", "May 7", "Jun 18", "Jul 30", "Sep 17", "Oct 29"];
-    const fomcProbs: { cut: number; hold: number; hike: number }[] = [];
-    const fomcRng = mulberry32(5058);
-    for (let i = 0; i < 6; i++) {
-      const cut = Math.round((0.15 + i * 0.08 + fomcRng() * 0.1) * 100);
-      const hike = Math.round((0.05 - i * 0.01 + fomcRng() * 0.03) * 100);
-      const hold = Math.max(0, 100 - cut - hike);
-      fomcProbs.push({ cut, hold, hike });
-    }
-
-    // Dot plot data — 19 participants, 4 years
-    const dotYears = ["2026", "2027", "2028", "Longer"];
-    const dotRng = mulberry32(5059);
-    const dotData: number[][] = dotYears.map((_, yi) => {
-      const center = [4.75, 4.0, 3.25, 2.75][yi];
-      return Array.from({ length: 19 }, () => {
-        const offset = (dotRng() - 0.5) * 1.0;
-        return Math.round((center + offset) * 4) / 4;
-      });
-    });
-
-    // Historical FOMC meetings last 12
-    const fomcHistory = [
-      { date: "Mar 2025", decision: "Hold" as const, rate: "5.25–5.50%", dissents: 0 },
-      { date: "Jan 2025", decision: "Hold" as const, rate: "5.25–5.50%", dissents: 1 },
-      { date: "Dec 2024", decision: "Cut" as const, rate: "5.25–5.50%", dissents: 0 },
-      { date: "Nov 2024", decision: "Cut" as const, rate: "5.50–5.75%", dissents: 0 },
-      { date: "Sep 2024", decision: "Cut" as const, rate: "5.75–6.00%", dissents: 1 },
-      { date: "Jul 2024", decision: "Hold" as const, rate: "6.00–6.25%", dissents: 0 },
-      { date: "Jun 2024", decision: "Hold" as const, rate: "6.00–6.25%", dissents: 2 },
-      { date: "May 2024", decision: "Hold" as const, rate: "6.00–6.25%", dissents: 0 },
-      { date: "Mar 2024", decision: "Hike" as const, rate: "5.75–6.00%", dissents: 0 },
-      { date: "Jan 2024", decision: "Hike" as const, rate: "5.50–5.75%", dissents: 1 },
-      { date: "Dec 2023", decision: "Hike" as const, rate: "5.25–5.50%", dissents: 0 },
-      { date: "Nov 2023", decision: "Hold" as const, rate: "5.25–5.50%", dissents: 0 },
-    ];
-
-    return {
-      kpis,
-      healthScore,
-      gdpQuarterly,
-      cpiMonthly,
-      coreCpiMonthly,
-      fedMonthly,
-      t10Monthly,
-      unempMonthly,
-      scatterCpiVsSnp: cpiVsSnp,
-      scatterRateVsPe: rateVsPe,
-      scatterPmiVsEarnings: pmiVsEarnings,
-      scatterUnempVsConsumer: unempVsConsumer,
-      fomcDates,
-      fomcProbs,
-      dotYears,
-      dotData,
-      fomcHistory,
+  function lerp(a: string, b: string, t: number): string {
+    const hexToRgb = (h: string) => {
+      const r = parseInt(h.slice(1, 3), 16);
+      const g = parseInt(h.slice(3, 5), 16);
+      const b2 = parseInt(h.slice(5, 7), 16);
+      return [r, g, b2];
     };
-  }, []);
+    const [r1, g1, b1] = hexToRgb(a);
+    const [r2, g2, b2] = hexToRgb(b);
+    const r = Math.round(r1 + (r2 - r1) * t);
+    const g = Math.round(g1 + (g2 - g1) * t);
+    const bv = Math.round(b1 + (b2 - b1) * t);
+    return `rgb(${r},${g},${bv})`;
+  }
 
-  // Taylor Rule: r = r* + π + 0.5(π - π*) + 0.5(y - y*)
-  // r* = neutral = 0.5%, π* = target inflation
-  const taylorRate = useMemo(() => {
-    const rStar = 0.5;
-    const outputGap = actualGDP - potentialGDP;
-    return rStar + actualInflation + 0.5 * (actualInflation - inflationTarget) + 0.5 * outputGap;
-  }, [inflationTarget, actualInflation, potentialGDP, actualGDP]);
+  function colorFor(v: number): string {
+    if (v <= mid) {
+      const t = Math.max(0, Math.min(1, (v - lo) / (mid - lo)));
+      return lerp(minColor, midColor, t);
+    } else {
+      const t = Math.max(0, Math.min(1, (v - mid) / (hi - mid)));
+      return lerp(midColor, maxColor, t);
+    }
+  }
 
-  // Macro signal decoder
-  const signals = useMemo(() => {
-    const gdp = 2.8;
-    const cpi = 3.1;
-    const rate = 5.25;
-    const pmi = 49.2;
-
-    const stockSignal =
-      gdp > 2.5 && cpi < 4 && pmi > 48
-        ? "bullish"
-        : gdp < 1 || cpi > 5 || pmi < 45
-          ? "bearish"
-          : "neutral";
-    const bondSignal =
-      rate > 4.5 && cpi > 3 ? "bearish" : rate < 3 && cpi < 2.5 ? "bullish" : "neutral";
-    const commSignal = cpi > 3.5 ? "bullish" : cpi < 2 ? "bearish" : "neutral";
-    const usdSignal =
-      rate > 4 ? "bullish" : rate < 2.5 ? "bearish" : "neutral";
-
-    return { stocks: stockSignal, bonds: bondSignal, commodities: commSignal, usd: usdSignal } as const;
-  }, []);
-
-  const signalColor = (s: string) =>
-    s === "bullish" ? "text-emerald-400 bg-emerald-400/10" : s === "bearish" ? "text-red-400 bg-red-400/10" : "text-amber-400 bg-amber-400/10";
-
-  const healthColor =
-    data.healthScore >= 70
-      ? "bg-emerald-500"
-      : data.healthScore >= 45
-        ? "bg-amber-500"
-        : "bg-red-500";
-
-  const CORRELATIONS = [
-    { indicator: "GDP Growth", corr: 0.62, direction: "positive" },
-    { indicator: "CPI Inflation", corr: -0.41, direction: "negative" },
-    { indicator: "Fed Funds Rate", corr: -0.38, direction: "negative" },
-    { indicator: "Unemployment", corr: -0.55, direction: "negative" },
-    { indicator: "10Y Treasury", corr: -0.29, direction: "negative" },
-    { indicator: "ISM PMI", corr: 0.57, direction: "positive" },
-    { indicator: "Consumer Confidence", corr: 0.48, direction: "positive" },
-    { indicator: "Retail Sales", corr: 0.44, direction: "positive" },
-  ];
-
-  const handleChartClick = useCallback(
-    (idx: number) => {
-      setExpandedChart(expandedChart === idx ? null : idx);
-    },
-    [expandedChart],
+  return (
+    <div>
+      <p className="text-xs text-muted-foreground mb-2 font-medium">{title}</p>
+      <div className="grid grid-cols-5 gap-1">
+        {cells.map((cell) => {
+          const bg = colorFor(cell.value);
+          const textDark = cell.value < mid ? cell.value > lo + (mid - lo) * 0.4 : cell.value < mid + (hi - mid) * 0.6;
+          return (
+            <div
+              key={cell.country}
+              className="rounded p-1.5 flex flex-col items-center justify-center text-center"
+              style={{ background: bg, minHeight: 44 }}
+            >
+              <span className={`text-[10px] font-bold ${textDark ? "text-gray-800" : "text-white"}`}>{cell.country}</span>
+              <span className={`text-[9px] ${textDark ? "text-gray-700" : "text-white/90"}`}>{cell.label}</span>
+            </div>
+          );
+        })}
+      </div>
+    </div>
   );
+}
 
-  const chartConfigs = useMemo(() => {
-    const gdpLabels = data.gdpQuarterly.map((d) => d.month);
-    const cpiLabels = data.cpiMonthly.map((d) => d.month);
-    const rateLabels = data.fedMonthly.map((d) => d.month);
-    const unempLabels = data.unempMonthly.map((d) => d.month);
+// ── Stat Card ──────────────────────────────────────────────────────────────────
+function StatChip({
+  label,
+  value,
+  delta,
+  unit = "",
+  icon,
+}: {
+  label: string;
+  value: number;
+  delta: number;
+  unit?: string;
+  icon?: React.ReactNode;
+}) {
+  const positive = delta >= 0;
+  return (
+    <Card className="bg-gray-900 border-gray-800">
+      <CardContent className="p-4">
+        <div className="flex items-start justify-between mb-1">
+          <span className="text-xs text-muted-foreground">{label}</span>
+          {icon && <span className="text-muted-foreground">{icon}</span>}
+        </div>
+        <div className="text-2xl font-bold text-white">
+          {value.toFixed(1)}{unit}
+        </div>
+        <div className={`flex items-center gap-1 text-xs mt-1 ${positive ? "text-emerald-400" : "text-red-400"}`}>
+          {positive ? <TrendingUp size={11} /> : <TrendingDown size={11} />}
+          <span>{positive ? "+" : ""}{delta.toFixed(1)}{unit} vs prev</span>
+        </div>
+      </CardContent>
+    </Card>
+  );
+}
 
-    return [
-      {
-        title: "GDP Growth (Quarterly)",
-        series: [{ label: "GDP %", color: "#22c55e", values: data.gdpQuarterly.map((d) => d.value) }],
-        labels: gdpLabels,
-        showRecession: true,
-        yLabel: "%",
-      },
-      {
-        title: "CPI vs Core CPI (Monthly)",
-        series: [
-          { label: "CPI", color: "#f59e0b", values: data.cpiMonthly.map((d) => d.value) },
-          { label: "Core CPI", color: "#fb923c", values: data.coreCpiMonthly.map((d) => d.value) },
-        ],
-        labels: cpiLabels,
-        showRecession: true,
-        yLabel: "%",
-      },
-      {
-        title: "Fed Rate vs 10Y Treasury",
-        series: [
-          { label: "Fed Rate", color: "#6366f1", values: data.fedMonthly.map((d) => d.value) },
-          { label: "10Y Yield", color: "#14b8a6", values: data.t10Monthly.map((d) => d.value) },
-        ],
-        labels: rateLabels,
-        showRecession: true,
-        yLabel: "%",
-      },
-      {
-        title: "Unemployment Rate",
-        series: [{ label: "Unemployment", color: "#ec4899", values: data.unempMonthly.map((d) => d.value) }],
-        labels: unempLabels,
-        showRecession: true,
-        dottedRef: 4.0,
-        yLabel: "%",
-      },
-    ];
-  }, [data]);
+// ── Legend ─────────────────────────────────────────────────────────────────────
+function ChartLegend({ series }: { series: LineSeries[] }) {
+  return (
+    <div className="flex flex-wrap gap-x-4 gap-y-1 mt-2">
+      {series.map((s) => (
+        <div key={s.name} className="flex items-center gap-1.5">
+          <div className="w-3 h-0.5 rounded" style={{ backgroundColor: s.color }} />
+          <span className="text-[10px] text-muted-foreground">{s.name}</span>
+        </div>
+      ))}
+    </div>
+  );
+}
 
-  // Next release countdowns (static since synthetic)
-  const RELEASES = [
-    { label: "FOMC Meeting", date: "Mar 19, 2026", daysLeft: -8 },
-    { label: "CPI Release", date: "Apr 10, 2026", daysLeft: 14 },
-    { label: "Jobs Report (NFP)", date: "Apr 3, 2026", daysLeft: 7 },
-    { label: "GDP Advance Est.", date: "Apr 30, 2026", daysLeft: 34 },
+// ── Regime Quadrant SVG ────────────────────────────────────────────────────────
+function RegimeQuadrant({
+  inflation,
+  growth,
+}: {
+  inflation: number;
+  growth: number;
+}) {
+  const W = 320;
+  const H = 280;
+  const PAD = 40;
+  const plotW = W - PAD * 2;
+  const plotH = H - PAD * 2;
+
+  // growth axis: -1 to 4 %; inflation axis: 0 to 7%
+  const growthMin = -1; const growthMax = 4;
+  const inflMin = 0; const inflMax = 7;
+  const inflMid = 2.5;
+  const growthMid = 1.5;
+
+  const gx = (g: number) => PAD + ((g - growthMin) / (growthMax - growthMin)) * plotW;
+  const iy = (inf: number) => PAD + plotH - ((inf - inflMin) / (inflMax - inflMin)) * plotH;
+
+  const cx = gx(growth);
+  const cy = iy(inflation);
+  const midX = gx(growthMid);
+  const midY = iy(inflMid);
+
+  const quadrants = [
+    { label: "Expansion", color: "#10b981", x: midX + 4, y: PAD + 16 },
+    { label: "Stagflation", color: "#f59e0b", x: PAD + 4, y: PAD + 16 },
+    { label: "Deflation", color: "#6366f1", x: PAD + 4, y: H - PAD - 6 },
+    { label: "Recovery", color: "#3b82f6", x: midX + 4, y: H - PAD - 6 },
   ];
 
   return (
-    <div className="flex h-full flex-col overflow-hidden bg-background">
-      {/* Header */}
-      <div className="shrink-0 border-b border-border/50 px-6 py-4">
-        <div className="flex items-center gap-3">
-          <Globe className="h-5 w-5 text-primary" />
-          <div>
-            <h1 className="text-lg font-semibold tracking-tight">Macro Economic Dashboard</h1>
-            <p className="text-xs text-muted-foreground">
-              Key indicators, historical trends, market correlations &amp; Fed policy
-            </p>
+    <svg viewBox={`0 0 ${W} ${H}`} className="w-full" style={{ height: H }}>
+      {/* Quadrant backgrounds */}
+      <rect x={PAD} y={PAD} width={midX - PAD} height={midY - PAD} fill="#f59e0b" opacity={0.07} />
+      <rect x={midX} y={PAD} width={W - PAD - midX} height={midY - PAD} fill="#10b981" opacity={0.07} />
+      <rect x={PAD} y={midY} width={midX - PAD} height={H - PAD - midY} fill="#6366f1" opacity={0.07} />
+      <rect x={midX} y={midY} width={W - PAD - midX} height={H - PAD - midY} fill="#3b82f6" opacity={0.07} />
+
+      {/* Grid lines */}
+      <line x1={PAD} x2={W - PAD} y1={midY} y2={midY} stroke="#374151" strokeWidth={1} strokeDasharray="4 3" />
+      <line x1={midX} x2={midX} y1={PAD} y2={H - PAD} stroke="#374151" strokeWidth={1} strokeDasharray="4 3" />
+
+      {/* Axes */}
+      <line x1={PAD} x2={W - PAD} y1={H - PAD} y2={H - PAD} stroke="#4b5563" strokeWidth={1} />
+      <line x1={PAD} x2={PAD} y1={PAD} y2={H - PAD} stroke="#4b5563" strokeWidth={1} />
+
+      {/* Axis labels */}
+      <text x={W / 2} y={H - 6} textAnchor="middle" fill="#9ca3af" fontSize={9}>GDP Growth (%)</text>
+      <text x={12} y={H / 2} textAnchor="middle" fill="#9ca3af" fontSize={9} transform={`rotate(-90, 12, ${H / 2})`}>Inflation (%)</text>
+
+      {/* Tick values */}
+      {[growthMin, 0, growthMid, growthMax].map((g, i) => (
+        <text key={i} x={gx(g)} y={H - PAD + 12} textAnchor="middle" fill="#6b7280" fontSize={8}>{g}%</text>
+      ))}
+      {[inflMin, inflMid, inflMax].map((inf, i) => (
+        <text key={i} x={PAD - 4} y={iy(inf) + 4} textAnchor="end" fill="#6b7280" fontSize={8}>{inf}%</text>
+      ))}
+
+      {/* Quadrant labels */}
+      {quadrants.map((q) => (
+        <text key={q.label} x={q.x} y={q.y} fill={q.color} fontSize={9} fontWeight="600" opacity={0.8}>{q.label}</text>
+      ))}
+
+      {/* Current position dot */}
+      <circle cx={cx} cy={cy} r={10} fill="#6366f1" opacity={0.2} />
+      <circle cx={cx} cy={cy} r={6} fill="#6366f1" />
+      <text x={cx} y={cy - 14} textAnchor="middle" fill="#a5b4fc" fontSize={9} fontWeight="600">NOW</text>
+    </svg>
+  );
+}
+
+// ── NBER Cycle Bar ─────────────────────────────────────────────────────────────
+function NBERCycleBar() {
+  const cycles = [
+    { label: "GFC Trough", year: "Jun '09", end: "Feb '20", type: "expansion", pct: 52 },
+    { label: "COVID Shock", year: "Feb '20", end: "Apr '20", type: "recession", pct: 1 },
+    { label: "Post-COVID", year: "Apr '20", end: "present", type: "expansion", pct: 47 },
+  ];
+  return (
+    <div>
+      <p className="text-xs text-muted-foreground mb-2 font-medium">NBER Business Cycle</p>
+      <div className="flex rounded-lg overflow-hidden h-8">
+        {cycles.map((c) => (
+          <div
+            key={c.label}
+            className="flex items-center justify-center text-[9px] font-semibold relative overflow-hidden"
+            style={{
+              width: `${c.pct}%`,
+              background: c.type === "expansion" ? "#10b981" : "#ef4444",
+              opacity: 0.85,
+            }}
+          >
+            <span className="text-white truncate px-1">{c.label}</span>
           </div>
-          <div className="ml-auto flex items-center gap-2 text-xs text-muted-foreground">
-            <span className="rounded-full bg-emerald-500/10 px-2 py-0.5 text-[10px] font-medium text-emerald-400">
-              Synthetic Data
-            </span>
-            <span>Updated Mar 2026</span>
-          </div>
-        </div>
+        ))}
       </div>
+      <div className="flex justify-between text-[9px] text-muted-foreground mt-1 px-0.5">
+        <span>Jun 2009</span>
+        <span>Feb 2020</span>
+        <span>Apr 2020</span>
+        <span>Present</span>
+      </div>
+    </div>
+  );
+}
+
+// ── Main Component ─────────────────────────────────────────────────────────────
+export default function MacroDashboardPage() {
+  const [activeTab, setActiveTab] = useState("growth");
+
+  // Compute leading indicator score
+  const liScore = useMemo(() => {
+    let totalWeight = 0;
+    let passedWeight = 0;
+    for (const li of leadingIndicators) {
+      totalWeight += li.weight;
+      const passed = li.direction === "above" ? li.value > li.threshold : li.value < li.threshold;
+      if (passed) passedWeight += li.weight;
+    }
+    return Math.round((passedWeight / totalWeight) * 100);
+  }, []);
+
+  // Current regime determination
+  const currentGrowth = 2.5;
+  const currentInflation = 3.1;
+  const regimeLabel =
+    currentGrowth > 1.5 && currentInflation > 2.5
+      ? "Expansion"
+      : currentGrowth > 1.5 && currentInflation <= 2.5
+      ? "Recovery"
+      : currentGrowth <= 1.5 && currentInflation > 2.5
+      ? "Stagflation"
+      : "Deflation";
+
+  const regimeColor =
+    regimeLabel === "Expansion"
+      ? "bg-emerald-500/20 text-emerald-400 border-emerald-500/30"
+      : regimeLabel === "Recovery"
+      ? "bg-blue-500/20 text-blue-400 border-blue-500/30"
+      : regimeLabel === "Stagflation"
+      ? "bg-amber-500/20 text-amber-400 border-amber-500/30"
+      : "bg-violet-500/20 text-violet-400 border-violet-500/30";
+
+  const fadeIn = { initial: { opacity: 0, y: 16 }, animate: { opacity: 1, y: 0 }, transition: { duration: 0.35 } };
+
+  return (
+    <div className="p-6 space-y-6 min-h-screen bg-gray-950 text-white">
+      {/* Header */}
+      <motion.div {...fadeIn} className="flex items-center justify-between">
+        <div>
+          <h1 className="text-2xl font-bold text-white flex items-center gap-2">
+            <Globe size={22} className="text-indigo-400" />
+            Macroeconomics Dashboard
+          </h1>
+          <p className="text-sm text-muted-foreground mt-0.5">
+            Real-time macro indicators for informed investment decisions
+          </p>
+        </div>
+        <div className="flex items-center gap-3">
+          <Badge className={`border ${regimeColor} font-semibold text-sm px-3 py-1`}>
+            {regimeLabel}
+          </Badge>
+          <Badge variant="outline" className="text-xs text-muted-foreground border-gray-700">
+            as of Q1 2026
+          </Badge>
+        </div>
+      </motion.div>
+
+      {/* Summary Row */}
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.4, delay: 0.1 }}
+        className="grid grid-cols-2 sm:grid-cols-4 gap-3"
+      >
+        <StatChip label="US Real GDP Growth" value={2.5} delta={0.2} unit="%" icon={<TrendingUp size={13} />} />
+        <StatChip label="CPI (YoY)" value={2.8} delta={-0.1} unit="%" icon={<Activity size={13} />} />
+        <StatChip label="Unemployment" value={3.9} delta={0.1} unit="%" icon={<Users size={13} />} />
+        <StatChip label="Fed Funds Rate" value={5.25} delta={0.0} unit="%" icon={<DollarSign size={13} />} />
+      </motion.div>
 
       {/* Tabs */}
-      <Tabs defaultValue="indicators" className="flex flex-1 flex-col overflow-hidden">
-        <TabsList className="mx-6 mt-3 shrink-0 justify-start gap-0 rounded-none border-b border-border/40 bg-transparent p-0">
-          {["indicators", "charts", "correlation", "fedwatch"].map((tab) => (
-            <TabsTrigger
-              key={tab}
-              value={tab}
-              className="rounded-none border-b-2 border-transparent px-4 py-2 text-sm data-[state=active]:border-primary data-[state=active]:bg-transparent data-[state=active]:text-foreground data-[state=inactive]:text-muted-foreground"
-            >
-              {tab === "indicators"
-                ? "Key Indicators"
-                : tab === "charts"
-                  ? "Historical Charts"
-                  : tab === "correlation"
-                    ? "Market Correlation"
-                    : "Fed Watch"}
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 0.4, delay: 0.2 }}
+      >
+        <Tabs value={activeTab} onValueChange={setActiveTab}>
+          <TabsList className="bg-gray-900 border border-gray-800 h-10 mb-4">
+            <TabsTrigger value="growth" className="text-xs data-[state=active]:bg-indigo-600 data-[state=active]:text-white">
+              <BarChart2 size={12} className="mr-1.5" /> Growth
             </TabsTrigger>
-          ))}
-        </TabsList>
+            <TabsTrigger value="inflation" className="text-xs data-[state=active]:bg-indigo-600 data-[state=active]:text-white">
+              <TrendingUp size={12} className="mr-1.5" /> Inflation
+            </TabsTrigger>
+            <TabsTrigger value="labor" className="text-xs data-[state=active]:bg-indigo-600 data-[state=active]:text-white">
+              <Users size={12} className="mr-1.5" /> Labor
+            </TabsTrigger>
+            <TabsTrigger value="global" className="text-xs data-[state=active]:bg-indigo-600 data-[state=active]:text-white">
+              <Globe size={12} className="mr-1.5" /> Global
+            </TabsTrigger>
+            <TabsTrigger value="regime" className="text-xs data-[state=active]:bg-indigo-600 data-[state=active]:text-white">
+              <Layers size={12} className="mr-1.5" /> Regime
+            </TabsTrigger>
+          </TabsList>
 
-        {/* ── Tab 1: Key Indicators ─────────────────────────────────────────── */}
-        <TabsContent
-          value="indicators"
-          className="mt-0 flex-1 overflow-y-auto p-6 data-[state=inactive]:hidden"
-        >
-          {/* KPI Grid */}
-          <div className="grid grid-cols-2 gap-4 sm:grid-cols-3 xl:grid-cols-6">
-            {data.kpis.map((kpi) => {
-              const change = kpi.current - kpi.previous;
-              const isUp = change > 0;
-              const goodChange = kpi.healthDir === "up" ? isUp : !isUp;
-              const changeColor = goodChange ? "text-emerald-400" : "text-red-400";
-              const Arrow = isUp ? TrendingUp : TrendingDown;
-              return (
-                <div
-                  key={kpi.label}
-                  className="rounded-xl border border-border/50 bg-card p-4 flex flex-col gap-2"
-                >
-                  <div className="text-xs font-medium text-muted-foreground">{kpi.label}</div>
-                  <div className="flex items-end gap-2">
-                    <span className="text-2xl font-bold tabular-nums" style={{ color: kpi.color }}>
-                      {kpi.current}
-                      {kpi.unit}
-                    </span>
-                  </div>
-                  <div className={cn("flex items-center gap-1 text-xs", changeColor)}>
-                    <Arrow className="h-3 w-3" />
-                    <span>
-                      {isUp ? "+" : ""}
-                      {change.toFixed(2)}
-                      {kpi.unit} vs prev
-                    </span>
-                  </div>
-                  <div className="mt-1">
-                    <Sparkline
-                      data={kpi.sparkline.map((d) => d.value)}
-                      color={kpi.color}
-                      width={88}
-                      height={28}
-                    />
-                  </div>
-                  <div className="text-[10px] text-muted-foreground/60">{kpi.description}</div>
-                </div>
-              );
-            })}
-          </div>
-
-          {/* Economic Health Score */}
-          <div className="mt-6 rounded-xl border border-border/50 bg-card p-5">
-            <div className="mb-3 flex items-center justify-between">
-              <div>
-                <div className="text-sm font-semibold">Economic Health Score</div>
-                <div className="text-xs text-muted-foreground">
-                  Weighted composite of 6 key macro indicators vs. ideal ranges
-                </div>
-              </div>
-              <div
-                className={cn(
-                  "text-2xl font-bold tabular-nums",
-                  data.healthScore >= 70
-                    ? "text-emerald-400"
-                    : data.healthScore >= 45
-                      ? "text-amber-400"
-                      : "text-red-400",
-                )}
-              >
-                {data.healthScore}/100
-              </div>
-            </div>
-            <div className="relative h-3 rounded-full bg-muted/30 overflow-hidden">
-              <div
-                className={cn("h-full rounded-full transition-all", healthColor)}
-                style={{ width: `${data.healthScore}%` }}
-              />
-            </div>
-            <div className="mt-2 flex justify-between text-[10px] text-muted-foreground/50">
-              <span>0 — Recession</span>
-              <span>50 — Neutral</span>
-              <span>100 — Optimal</span>
-            </div>
-          </div>
-
-          {/* Release countdown */}
-          <div className="mt-6">
-            <div className="mb-3 text-sm font-semibold text-muted-foreground uppercase tracking-wider text-[11px]">
-              Upcoming Data Releases
-            </div>
-            <div className="grid grid-cols-2 gap-3 sm:grid-cols-4">
-              {RELEASES.map((r) => (
-                <div
-                  key={r.label}
-                  className="rounded-xl border border-border/50 bg-card p-4 flex flex-col gap-1"
-                >
-                  <div className="text-xs font-medium text-muted-foreground">{r.label}</div>
-                  <div className="text-sm font-semibold">{r.date}</div>
-                  <div
-                    className={cn(
-                      "text-xs font-medium",
-                      r.daysLeft < 0
-                        ? "text-muted-foreground/50"
-                        : r.daysLeft <= 7
-                          ? "text-amber-400"
-                          : "text-primary/70",
-                    )}
-                  >
-                    {r.daysLeft < 0
-                      ? "Released"
-                      : r.daysLeft === 0
-                        ? "Today"
-                        : `In ${r.daysLeft} days`}
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
-        </TabsContent>
-
-        {/* ── Tab 2: Historical Charts ──────────────────────────────────────── */}
-        <TabsContent
-          value="charts"
-          className="mt-0 flex-1 overflow-y-auto p-6 data-[state=inactive]:hidden"
-        >
-          <div className="mb-3 flex items-center gap-2 text-xs text-muted-foreground">
-            <Info className="h-3 w-3" />
-            Click any chart to expand. Gray bands indicate 2020 recession period.
-          </div>
-          <div className={cn("grid gap-4", expandedChart === null ? "grid-cols-2" : "grid-cols-1")}>
-            {chartConfigs.map((cfg, idx) => {
-              const isExpanded = expandedChart === idx;
-              const isHidden = expandedChart !== null && !isExpanded;
-              if (isHidden) return null;
-              const chartW = isExpanded ? 760 : 400;
-              const chartH = isExpanded ? 280 : 180;
-              return (
-                <div
-                  key={idx}
-                  className="rounded-xl border border-border/50 bg-card p-4 cursor-pointer hover:border-primary/30 transition-colors"
-                  onClick={() => handleChartClick(idx)}
-                >
-                  <div className="flex items-center justify-between mb-3">
-                    <div className="text-sm font-semibold">{cfg.title}</div>
-                    <button className="text-muted-foreground/50 hover:text-foreground">
-                      {isExpanded ? (
-                        <ChevronUp className="h-4 w-4" />
-                      ) : (
-                        <ChevronDown className="h-4 w-4" />
-                      )}
-                    </button>
-                  </div>
-                  <div className="overflow-x-auto">
+          {/* ── TAB 1: Growth Indicators ────────────────────────────────────────── */}
+          <TabsContent value="growth" className="data-[state=inactive]:hidden">
+            <div className="space-y-4">
+              <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
+                {/* GDP Chart */}
+                <Card className="bg-gray-900 border-gray-800">
+                  <CardHeader className="pb-2">
+                    <CardTitle className="text-sm font-semibold text-white flex items-center gap-2">
+                      <TrendingUp size={14} className="text-indigo-400" />
+                      Real GDP Growth (YoY %)
+                    </CardTitle>
+                  </CardHeader>
+                  <CardContent>
                     <LineChart
-                      series={cfg.series}
-                      labels={cfg.labels}
-                      width={chartW}
-                      height={chartH}
-                      showRecession={cfg.showRecession}
-                      dottedRef={"dottedRef" in cfg ? cfg.dottedRef : undefined}
-                      yLabel={cfg.yLabel}
+                      series={[gdpSeries]}
+                      height={180}
+                      referenceLines={[{ value: 0, color: "#ef4444", label: "0%" }]}
                     />
-                  </div>
-                </div>
-              );
-            })}
-          </div>
-        </TabsContent>
+                    <ChartLegend series={[gdpSeries]} />
+                    <p className="text-xs text-muted-foreground mt-2">
+                      Current: <span className="text-white font-semibold">+2.5%</span> — Steady expansion above trend growth of ~1.8%. Driven by resilient consumer spending and services sector.
+                    </p>
+                  </CardContent>
+                </Card>
 
-        {/* ── Tab 3: Market Correlation ─────────────────────────────────────── */}
-        <TabsContent
-          value="correlation"
-          className="mt-0 flex-1 overflow-y-auto p-6 data-[state=inactive]:hidden"
-        >
-          <div className="grid grid-cols-1 gap-6 xl:grid-cols-2">
-            {/* Correlation table */}
-            <div className="rounded-xl border border-border/50 bg-card p-5">
-              <div className="mb-4 text-sm font-semibold">
-                Indicator vs. S&P 500 — Historical Correlations
+                {/* PMI Chart */}
+                <Card className="bg-gray-900 border-gray-800">
+                  <CardHeader className="pb-2">
+                    <CardTitle className="text-sm font-semibold text-white flex items-center gap-2">
+                      <Activity size={14} className="text-emerald-400" />
+                      Manufacturing PMI
+                    </CardTitle>
+                  </CardHeader>
+                  <CardContent>
+                    <LineChart
+                      series={[pmiSeries]}
+                      height={180}
+                      referenceLines={[{ value: 50, color: "#f59e0b", label: "50 (boom/bust)" }]}
+                    />
+                    <ChartLegend series={[pmiSeries]} />
+                    <p className="text-xs text-muted-foreground mt-2">
+                      Current: <span className="text-white font-semibold">50.8</span> — Barely in expansion territory. New orders sub-index at 52.4 signals modest improvement ahead.
+                    </p>
+                  </CardContent>
+                </Card>
+
+                {/* Industrial Production */}
+                <Card className="bg-gray-900 border-gray-800">
+                  <CardHeader className="pb-2">
+                    <CardTitle className="text-sm font-semibold text-white flex items-center gap-2">
+                      <BarChart2 size={14} className="text-amber-400" />
+                      Industrial Production (YoY %)
+                    </CardTitle>
+                  </CardHeader>
+                  <CardContent>
+                    <LineChart series={[indProdSeries]} height={180} />
+                    <ChartLegend series={[indProdSeries]} />
+                    <p className="text-xs text-muted-foreground mt-2">
+                      Current: <span className="text-white font-semibold">+1.9%</span> — Recovery from 2023 contraction. Semiconductor and auto sectors leading rebound.
+                    </p>
+                  </CardContent>
+                </Card>
+
+                {/* Retail Sales */}
+                <Card className="bg-gray-900 border-gray-800">
+                  <CardHeader className="pb-2">
+                    <CardTitle className="text-sm font-semibold text-white flex items-center gap-2">
+                      <DollarSign size={14} className="text-pink-400" />
+                      Retail Sales (YoY %)
+                    </CardTitle>
+                  </CardHeader>
+                  <CardContent>
+                    <LineChart series={[retailSalesSeries]} height={180} />
+                    <ChartLegend series={[retailSalesSeries]} />
+                    <p className="text-xs text-muted-foreground mt-2">
+                      Current: <span className="text-white font-semibold">+3.5%</span> — Normalizing from post-pandemic highs. Real (inflation-adjusted) growth near +0.7%.
+                    </p>
+                  </CardContent>
+                </Card>
               </div>
-              <table className="w-full text-xs">
-                <thead>
-                  <tr className="border-b border-border/30">
-                    <th className="pb-2 text-left font-medium text-muted-foreground">Indicator</th>
-                    <th className="pb-2 text-right font-medium text-muted-foreground">Correlation</th>
-                    <th className="pb-2 text-right font-medium text-muted-foreground">Bar</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {CORRELATIONS.map((c) => (
-                    <tr key={c.indicator} className="border-b border-border/20">
-                      <td className="py-2 pr-4">{c.indicator}</td>
-                      <td
-                        className={cn(
-                          "py-2 text-right tabular-nums font-semibold",
-                          c.corr > 0 ? "text-emerald-400" : "text-red-400",
-                        )}
-                      >
-                        {c.corr > 0 ? "+" : ""}
-                        {c.corr.toFixed(2)}
-                      </td>
-                      <td className="py-2 pl-3">
-                        <div className="flex items-center gap-1">
-                          <div className="relative h-2 w-24 rounded-full bg-muted/30 overflow-hidden">
-                            {c.corr > 0 ? (
-                              <div
-                                className="absolute left-1/2 h-full rounded-full bg-emerald-500"
-                                style={{ width: `${Math.abs(c.corr) * 50}%` }}
-                              />
+
+              {/* Combined overlay */}
+              <Card className="bg-gray-900 border-gray-800">
+                <CardHeader className="pb-2">
+                  <CardTitle className="text-sm font-semibold text-white">Growth Composite Overlay</CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <LineChart
+                    series={[gdpSeries, indProdSeries, retailSalesSeries]}
+                    height={200}
+                    referenceLines={[{ value: 0, color: "#6b7280", label: "0%" }]}
+                  />
+                  <ChartLegend series={[gdpSeries, indProdSeries, retailSalesSeries]} />
+                </CardContent>
+              </Card>
+            </div>
+          </TabsContent>
+
+          {/* ── TAB 2: Inflation ─────────────────────────────────────────────────── */}
+          <TabsContent value="inflation" className="data-[state=inactive]:hidden">
+            <div className="space-y-4">
+              <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
+                {/* CPI & PCE */}
+                <Card className="bg-gray-900 border-gray-800">
+                  <CardHeader className="pb-2">
+                    <CardTitle className="text-sm font-semibold text-white flex items-center gap-2">
+                      <TrendingDown size={14} className="text-red-400" />
+                      CPI vs Core PCE (YoY %)
+                    </CardTitle>
+                  </CardHeader>
+                  <CardContent>
+                    <LineChart
+                      series={[cpiSeries, pceSeries]}
+                      height={200}
+                      referenceLines={[{ value: 2.0, color: "#10b981", label: "Fed 2% target" }]}
+                    />
+                    <ChartLegend series={[cpiSeries, pceSeries]} />
+                    <div className="grid grid-cols-2 gap-2 mt-3">
+                      <div className="bg-gray-800 rounded p-2 text-center">
+                        <div className="text-xs text-muted-foreground">CPI (latest)</div>
+                        <div className="text-lg font-bold text-red-400">2.8%</div>
+                      </div>
+                      <div className="bg-gray-800 rounded p-2 text-center">
+                        <div className="text-xs text-muted-foreground">Core PCE (latest)</div>
+                        <div className="text-lg font-bold text-orange-400">2.8%</div>
+                      </div>
+                    </div>
+                  </CardContent>
+                </Card>
+
+                {/* TIPS Breakeven */}
+                <Card className="bg-gray-900 border-gray-800">
+                  <CardHeader className="pb-2">
+                    <CardTitle className="text-sm font-semibold text-white flex items-center gap-2">
+                      <Activity size={14} className="text-violet-400" />
+                      Inflation Expectations (TIPS Breakeven)
+                    </CardTitle>
+                  </CardHeader>
+                  <CardContent>
+                    <LineChart
+                      series={[tipsBeSeries]}
+                      height={200}
+                      referenceLines={[
+                        { value: 2.0, color: "#10b981", label: "2% target" },
+                        { value: 2.5, color: "#f59e0b", label: "2.5% alert" },
+                      ]}
+                    />
+                    <ChartLegend series={[tipsBeSeries]} />
+                    <p className="text-xs text-muted-foreground mt-2">
+                      5Y TIPS breakeven at <span className="text-white font-semibold">2.3%</span> — Market expects inflation slightly above Fed target over next 5 years, down from 3.1% peak in early 2022.
+                    </p>
+                  </CardContent>
+                </Card>
+
+                {/* Wage Growth */}
+                <Card className="bg-gray-900 border-gray-800">
+                  <CardHeader className="pb-2">
+                    <CardTitle className="text-sm font-semibold text-white flex items-center gap-2">
+                      <DollarSign size={14} className="text-teal-400" />
+                      Wage Growth (YoY %)
+                    </CardTitle>
+                  </CardHeader>
+                  <CardContent>
+                    <LineChart
+                      series={[wageSeries]}
+                      height={200}
+                      referenceLines={[{ value: 3.5, color: "#f59e0b", label: "~Sustainable" }]}
+                    />
+                    <ChartLegend series={[wageSeries]} />
+                    <p className="text-xs text-muted-foreground mt-2">
+                      Average hourly earnings at <span className="text-white font-semibold">+3.9%</span> — Wage growth decelerating from 5.7% peak but still above Fed's estimated ~3.5% sustainable rate.
+                    </p>
+                  </CardContent>
+                </Card>
+
+                {/* Inflation breakdown */}
+                <Card className="bg-gray-900 border-gray-800">
+                  <CardHeader className="pb-2">
+                    <CardTitle className="text-sm font-semibold text-white">CPI Component Breakdown</CardTitle>
+                  </CardHeader>
+                  <CardContent className="space-y-3">
+                    {[
+                      { name: "Shelter", contribution: 1.8, color: "bg-indigo-500" },
+                      { name: "Food at Home", contribution: 0.3, color: "bg-emerald-500" },
+                      { name: "Energy", contribution: -0.2, color: "bg-amber-500" },
+                      { name: "Core Services ex-Shelter", contribution: 0.6, color: "bg-red-500" },
+                      { name: "Core Goods", contribution: 0.1, color: "bg-blue-500" },
+                      { name: "Medical Care", contribution: 0.2, color: "bg-pink-500" },
+                    ].map((comp) => (
+                      <div key={comp.name}>
+                        <div className="flex justify-between text-xs mb-1">
+                          <span className="text-muted-foreground">{comp.name}</span>
+                          <span className={comp.contribution >= 0 ? "text-white" : "text-emerald-400"}>
+                            {comp.contribution >= 0 ? "+" : ""}{comp.contribution.toFixed(1)}pp
+                          </span>
+                        </div>
+                        <div className="h-1.5 bg-gray-800 rounded-full overflow-hidden">
+                          <div
+                            className={`h-full rounded-full ${comp.color}`}
+                            style={{ width: `${Math.abs(comp.contribution) / 2 * 100}%`, opacity: comp.contribution < 0 ? 0.5 : 1 }}
+                          />
+                        </div>
+                      </div>
+                    ))}
+                    <p className="text-xs text-muted-foreground pt-1">
+                      Shelter remains the largest contributor at +1.8pp. Energy is deflationary (-0.2pp), providing offset.
+                    </p>
+                  </CardContent>
+                </Card>
+              </div>
+
+              {/* Full overlay */}
+              <Card className="bg-gray-900 border-gray-800">
+                <CardHeader className="pb-2">
+                  <CardTitle className="text-sm font-semibold text-white">Inflation Overview (24-Month Trend)</CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <LineChart
+                    series={[cpiSeries, pceSeries, tipsBeSeries, wageSeries]}
+                    height={220}
+                    referenceLines={[{ value: 2.0, color: "#10b981", label: "2%" }]}
+                  />
+                  <ChartLegend series={[cpiSeries, pceSeries, tipsBeSeries, wageSeries]} />
+                </CardContent>
+              </Card>
+            </div>
+          </TabsContent>
+
+          {/* ── TAB 3: Labor Market ──────────────────────────────────────────────── */}
+          <TabsContent value="labor" className="data-[state=inactive]:hidden">
+            <div className="space-y-4">
+              <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
+                {/* Unemployment */}
+                <Card className="bg-gray-900 border-gray-800">
+                  <CardHeader className="pb-2">
+                    <CardTitle className="text-sm font-semibold text-white flex items-center gap-2">
+                      <Users size={14} className="text-indigo-400" />
+                      Unemployment Rate (U-3, %)
+                    </CardTitle>
+                  </CardHeader>
+                  <CardContent>
+                    <LineChart
+                      series={[unemploymentSeries]}
+                      height={200}
+                      referenceLines={[
+                        { value: 4.0, color: "#f59e0b", label: "NAIRU ~4%" },
+                        { value: 5.0, color: "#ef4444", label: "Recession alert" },
+                      ]}
+                    />
+                    <ChartLegend series={[unemploymentSeries]} />
+                    <div className="grid grid-cols-3 gap-2 mt-3">
+                      {[
+                        { label: "U-3 (headline)", value: "3.9%" },
+                        { label: "U-6 (broad)", value: "7.4%" },
+                        { label: "Long-term unemp", value: "1.2%" },
+                      ].map((m) => (
+                        <div key={m.label} className="bg-gray-800 rounded p-2 text-center">
+                          <div className="text-[10px] text-muted-foreground">{m.label}</div>
+                          <div className="text-sm font-bold text-white">{m.value}</div>
+                        </div>
+                      ))}
+                    </div>
+                  </CardContent>
+                </Card>
+
+                {/* JOLTS */}
+                <Card className="bg-gray-900 border-gray-800">
+                  <CardHeader className="pb-2">
+                    <CardTitle className="text-sm font-semibold text-white flex items-center gap-2">
+                      <BarChart2 size={14} className="text-emerald-400" />
+                      JOLTS Job Openings (millions)
+                    </CardTitle>
+                  </CardHeader>
+                  <CardContent>
+                    <LineChart
+                      series={[joltsSeries]}
+                      height={200}
+                      referenceLines={[{ value: 8.0, color: "#6366f1", label: "Pre-COVID avg" }]}
+                    />
+                    <ChartLegend series={[joltsSeries]} />
+                    <p className="text-xs text-muted-foreground mt-2">
+                      Job openings at <span className="text-white font-semibold">8.6M</span> — Down from 12M peak but still above pre-pandemic levels. Hires-to-openings ratio improving. Quits rate 2.1% (normalizing).
+                    </p>
+                  </CardContent>
+                </Card>
+
+                {/* LFP */}
+                <Card className="bg-gray-900 border-gray-800">
+                  <CardHeader className="pb-2">
+                    <CardTitle className="text-sm font-semibold text-white flex items-center gap-2">
+                      <Activity size={14} className="text-amber-400" />
+                      Labor Force Participation Rate (%)
+                    </CardTitle>
+                  </CardHeader>
+                  <CardContent>
+                    <LineChart
+                      series={[lfpSeries]}
+                      height={200}
+                      referenceLines={[{ value: 63.4, color: "#6b7280", label: "Pre-COVID peak" }]}
+                    />
+                    <ChartLegend series={[lfpSeries]} />
+                    <p className="text-xs text-muted-foreground mt-2">
+                      LFP at <span className="text-white font-semibold">62.5%</span> — Still ~0.9pp below Feb 2020 peak due to early retirements and demographic shifts among 55+ cohort.
+                    </p>
+                  </CardContent>
+                </Card>
+
+                {/* Wage pressure heatmap */}
+                <Card className="bg-gray-900 border-gray-800">
+                  <CardHeader className="pb-2">
+                    <CardTitle className="text-sm font-semibold text-white">Sector Wage Pressure</CardTitle>
+                  </CardHeader>
+                  <CardContent className="space-y-2.5">
+                    {[
+                      { sector: "Leisure & Hospitality", growth: 5.2, pressure: "High" },
+                      { sector: "Healthcare", growth: 4.8, pressure: "High" },
+                      { sector: "Construction", growth: 4.3, pressure: "Medium" },
+                      { sector: "Professional Services", growth: 3.9, pressure: "Medium" },
+                      { sector: "Retail Trade", growth: 3.4, pressure: "Medium" },
+                      { sector: "Financial Activities", growth: 3.1, pressure: "Low" },
+                      { sector: "Manufacturing", growth: 3.0, pressure: "Low" },
+                      { sector: "Information", growth: 2.6, pressure: "Low" },
+                    ].map((sec) => (
+                      <div key={sec.sector} className="flex items-center gap-3">
+                        <div className="w-36 text-xs text-muted-foreground truncate shrink-0">{sec.sector}</div>
+                        <div className="flex-1 h-2 bg-gray-800 rounded-full overflow-hidden">
+                          <div
+                            className="h-full rounded-full"
+                            style={{
+                              width: `${(sec.growth / 6) * 100}%`,
+                              background: sec.pressure === "High" ? "#ef4444" : sec.pressure === "Medium" ? "#f59e0b" : "#10b981",
+                            }}
+                          />
+                        </div>
+                        <div className="text-xs text-white font-semibold w-10 text-right">{sec.growth}%</div>
+                        <Badge
+                          className={`text-[10px] py-0 px-1.5 border ${
+                            sec.pressure === "High"
+                              ? "bg-red-500/10 text-red-400 border-red-500/30"
+                              : sec.pressure === "Medium"
+                              ? "bg-amber-500/10 text-amber-400 border-amber-500/30"
+                              : "bg-emerald-500/10 text-emerald-400 border-emerald-500/30"
+                          }`}
+                        >
+                          {sec.pressure}
+                        </Badge>
+                      </div>
+                    ))}
+                    <p className="text-xs text-muted-foreground pt-1">
+                      Leisure/Hospitality and Healthcare remain hotspots. Tech sector (Information) wage growth has compressed significantly from 2021-22 highs.
+                    </p>
+                  </CardContent>
+                </Card>
+              </div>
+
+              {/* All labor series */}
+              <Card className="bg-gray-900 border-gray-800">
+                <CardHeader className="pb-2">
+                  <CardTitle className="text-sm font-semibold text-white">Labor Market Composite (24-Month)</CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <LineChart
+                    series={[unemploymentSeries, lfpSeries]}
+                    height={200}
+                  />
+                  <ChartLegend series={[unemploymentSeries, lfpSeries]} />
+                </CardContent>
+              </Card>
+            </div>
+          </TabsContent>
+
+          {/* ── TAB 4: Global Comparison ─────────────────────────────────────────── */}
+          <TabsContent value="global" className="data-[state=inactive]:hidden">
+            <div className="space-y-4">
+              <div className="grid grid-cols-1 lg:grid-cols-3 gap-4">
+                {/* GDP Growth Heatmap */}
+                <Card className="bg-gray-900 border-gray-800 lg:col-span-1">
+                  <CardHeader className="pb-2">
+                    <CardTitle className="text-sm font-semibold text-white flex items-center gap-2">
+                      <Globe size={14} className="text-indigo-400" />
+                      GDP Growth (YoY %)
+                    </CardTitle>
+                  </CardHeader>
+                  <CardContent>
+                    <HeatmapGrid
+                      cells={gdpGrowthMatrix}
+                      title="G20 GDP Growth Rate"
+                      minColor="#7f1d1d"
+                      midColor="#374151"
+                      maxColor="#065f46"
+                      domain={[-0.5, 7.5]}
+                    />
+                    <div className="flex justify-between text-[9px] text-muted-foreground mt-2 px-1">
+                      <span className="text-red-400">Contraction</span>
+                      <span>Neutral</span>
+                      <span className="text-emerald-400">Strong Growth</span>
+                    </div>
+                    <p className="text-xs text-muted-foreground mt-2">
+                      India (+7.0%) and Indonesia (+5.0%) lead. Germany (-0.2%) in mild recession. USA (+2.5%) outperforms G7 peers.
+                    </p>
+                  </CardContent>
+                </Card>
+
+                {/* Inflation Heatmap */}
+                <Card className="bg-gray-900 border-gray-800 lg:col-span-1">
+                  <CardHeader className="pb-2">
+                    <CardTitle className="text-sm font-semibold text-white flex items-center gap-2">
+                      <AlertTriangle size={14} className="text-amber-400" />
+                      Inflation (CPI YoY %)
+                    </CardTitle>
+                  </CardHeader>
+                  <CardContent>
+                    <HeatmapGrid
+                      cells={inflationMatrix}
+                      title="G20 Consumer Price Inflation"
+                      minColor="#065f46"
+                      midColor="#374151"
+                      maxColor="#7f1d1d"
+                      domain={[0, 8]}
+                    />
+                    <div className="flex justify-between text-[9px] text-muted-foreground mt-2 px-1">
+                      <span className="text-emerald-400">Below Target</span>
+                      <span>At Target</span>
+                      <span className="text-red-400">Above Target</span>
+                    </div>
+                    <p className="text-xs text-muted-foreground mt-2">
+                      China (+0.2%) near deflation. UK (+4.0%) most persistent G7 inflation. Global disinflation trend intact.
+                    </p>
+                  </CardContent>
+                </Card>
+
+                {/* Current Account Heatmap */}
+                <Card className="bg-gray-900 border-gray-800 lg:col-span-1">
+                  <CardHeader className="pb-2">
+                    <CardTitle className="text-sm font-semibold text-white flex items-center gap-2">
+                      <DollarSign size={14} className="text-blue-400" />
+                      Current Account (% GDP)
+                    </CardTitle>
+                  </CardHeader>
+                  <CardContent>
+                    <HeatmapGrid
+                      cells={currentAccountMatrix}
+                      title="Current Account Balance"
+                      minColor="#7f1d1d"
+                      midColor="#374151"
+                      maxColor="#1e3a5f"
+                      domain={[-4, 6]}
+                    />
+                    <div className="flex justify-between text-[9px] text-muted-foreground mt-2 px-1">
+                      <span className="text-red-400">Deficit</span>
+                      <span>Balanced</span>
+                      <span className="text-blue-400">Surplus</span>
+                    </div>
+                    <p className="text-xs text-muted-foreground mt-2">
+                      Germany (+5.8%) and Japan (+3.5%) run large surpluses. USA (-3.1%) and UK (-3.5%) structural deficit nations.
+                    </p>
+                  </CardContent>
+                </Card>
+              </div>
+
+              {/* G7 comparison table */}
+              <Card className="bg-gray-900 border-gray-800">
+                <CardHeader className="pb-2">
+                  <CardTitle className="text-sm font-semibold text-white">G7 Macro Snapshot</CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <div className="overflow-x-auto">
+                    <table className="w-full text-xs">
+                      <thead>
+                        <tr className="border-b border-gray-800">
+                          <th className="text-left py-2 text-muted-foreground font-medium">Country</th>
+                          <th className="text-right py-2 text-muted-foreground font-medium">GDP Growth</th>
+                          <th className="text-right py-2 text-muted-foreground font-medium">Inflation</th>
+                          <th className="text-right py-2 text-muted-foreground font-medium">Unemployment</th>
+                          <th className="text-right py-2 text-muted-foreground font-medium">Policy Rate</th>
+                          <th className="text-right py-2 text-muted-foreground font-medium">Current Acct</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        {[
+                          { c: "USA", gdp: 2.5, cpi: 3.1, unemp: 3.9, rate: 5.25, ca: -3.1 },
+                          { c: "Canada", gdp: 1.2, cpi: 3.4, unemp: 5.8, rate: 5.00, ca: -1.2 },
+                          { c: "UK", gdp: 0.3, cpi: 4.0, unemp: 4.2, rate: 5.25, ca: -3.5 },
+                          { c: "Germany", gdp: -0.2, cpi: 2.9, unemp: 5.9, rate: 4.50, ca: 5.8 },
+                          { c: "France", gdp: 0.9, cpi: 2.6, unemp: 7.3, rate: 4.50, ca: -1.5 },
+                          { c: "Italy", gdp: 0.7, cpi: 0.9, unemp: 6.7, rate: 4.50, ca: 0.2 },
+                          { c: "Japan", gdp: 1.9, cpi: 2.8, unemp: 2.5, rate: 0.10, ca: 3.5 },
+                        ].map((row) => (
+                          <tr key={row.c} className="border-b border-gray-800/50 hover:bg-gray-800/30 transition-colors">
+                            <td className="py-2 font-semibold text-white">{row.c}</td>
+                            <td className={`text-right py-2 ${row.gdp < 0 ? "text-red-400" : row.gdp > 2 ? "text-emerald-400" : "text-amber-400"}`}>
+                              {row.gdp > 0 ? "+" : ""}{row.gdp.toFixed(1)}%
+                            </td>
+                            <td className={`text-right py-2 ${row.cpi > 3.5 ? "text-red-400" : row.cpi < 1.5 ? "text-blue-400" : "text-amber-400"}`}>
+                              {row.cpi.toFixed(1)}%
+                            </td>
+                            <td className="text-right py-2 text-white">{row.unemp.toFixed(1)}%</td>
+                            <td className="text-right py-2 text-indigo-400">{row.rate.toFixed(2)}%</td>
+                            <td className={`text-right py-2 ${row.ca > 0 ? "text-blue-400" : "text-red-400"}`}>
+                              {row.ca > 0 ? "+" : ""}{row.ca.toFixed(1)}%
+                            </td>
+                          </tr>
+                        ))}
+                      </tbody>
+                    </table>
+                  </div>
+                </CardContent>
+              </Card>
+            </div>
+          </TabsContent>
+
+          {/* ── TAB 5: Regime Tracker ────────────────────────────────────────────── */}
+          <TabsContent value="regime" className="data-[state=inactive]:hidden">
+            <div className="space-y-4">
+              <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
+                {/* Regime Quadrant */}
+                <Card className="bg-gray-900 border-gray-800">
+                  <CardHeader className="pb-2">
+                    <CardTitle className="text-sm font-semibold text-white flex items-center gap-2">
+                      <Layers size={14} className="text-indigo-400" />
+                      Macro Regime Quadrant
+                    </CardTitle>
+                  </CardHeader>
+                  <CardContent>
+                    <RegimeQuadrant inflation={currentInflation} growth={currentGrowth} />
+                    <div className="grid grid-cols-2 gap-2 mt-3">
+                      <div className="bg-emerald-500/10 border border-emerald-500/20 rounded p-2">
+                        <div className="text-[10px] text-emerald-400 font-semibold mb-1">Expansion Regime</div>
+                        <div className="text-xs text-muted-foreground">Growth above trend, inflation above target. Current US regime. Favor equities, commodities, real assets.</div>
+                      </div>
+                      <div className="bg-indigo-500/10 border border-indigo-500/20 rounded p-2">
+                        <div className="text-[10px] text-indigo-400 font-semibold mb-1">Asset Implications</div>
+                        <div className="text-xs text-muted-foreground">Overweight: cyclicals, energy. Neutral: IG bonds. Underweight: long-duration Treasuries, defensive sectors.</div>
+                      </div>
+                    </div>
+                  </CardContent>
+                </Card>
+
+                {/* Leading Indicators Scorecard */}
+                <Card className="bg-gray-900 border-gray-800">
+                  <CardHeader className="pb-2">
+                    <CardTitle className="text-sm font-semibold text-white flex items-center gap-2">
+                      <Activity size={14} className="text-emerald-400" />
+                      Leading Indicators Scorecard
+                    </CardTitle>
+                  </CardHeader>
+                  <CardContent className="space-y-2">
+                    <div className="flex items-center justify-between mb-3">
+                      <span className="text-xs text-muted-foreground">Composite Score</span>
+                      <div className="flex items-center gap-2">
+                        <Progress value={liScore} className="w-24 h-2" />
+                        <span className={`text-sm font-bold ${liScore >= 70 ? "text-emerald-400" : liScore >= 50 ? "text-amber-400" : "text-red-400"}`}>
+                          {liScore}/100
+                        </span>
+                      </div>
+                    </div>
+                    {leadingIndicators.map((li) => {
+                      const passed = li.direction === "above" ? li.value > li.threshold : li.value < li.threshold;
+                      return (
+                        <div key={li.name} className="flex items-center justify-between text-xs">
+                          <div className="flex items-center gap-2">
+                            {passed ? (
+                              <div className="w-2 h-2 rounded-full bg-emerald-400 shrink-0" />
                             ) : (
-                              <div
-                                className="absolute h-full rounded-full bg-red-500"
-                                style={{
-                                  right: "50%",
-                                  width: `${Math.abs(c.corr) * 50}%`,
-                                }}
-                              />
+                              <div className="w-2 h-2 rounded-full bg-red-400 shrink-0" />
                             )}
-                            <div className="absolute left-1/2 top-0 h-full w-px bg-border/60" />
+                            <span className="text-muted-foreground">{li.name}</span>
+                          </div>
+                          <div className="flex items-center gap-2">
+                            <span className={`font-semibold ${passed ? "text-white" : "text-red-400"}`}>
+                              {li.value}
+                            </span>
+                            <span className="text-muted-foreground text-[10px]">
+                              (thr: {li.threshold})
+                            </span>
+                            {passed ? (
+                              <TrendingUp size={10} className="text-emerald-400" />
+                            ) : (
+                              <TrendingDown size={10} className="text-red-400" />
+                            )}
                           </div>
                         </div>
-                      </td>
-                    </tr>
-                  ))}
-                </tbody>
-              </table>
-            </div>
-
-            {/* Scatter plots */}
-            <div className="rounded-xl border border-border/50 bg-card p-5">
-              <div className="mb-4 text-sm font-semibold">Scatter Analysis</div>
-              <div className="grid grid-cols-2 gap-4">
-                <div>
-                  <div className="text-[10px] text-muted-foreground mb-1">CPI vs S&P Returns</div>
-                  <ScatterPlot
-                    points={data.scatterCpiVsSnp}
-                    xLabel="CPI %"
-                    yLabel="S&P %"
-                    color="#f59e0b"
-                    width={190}
-                    height={150}
-                  />
-                </div>
-                <div>
-                  <div className="text-[10px] text-muted-foreground mb-1">Rate Hikes vs P/E</div>
-                  <ScatterPlot
-                    points={data.scatterRateVsPe}
-                    xLabel="Fed Rate %"
-                    yLabel="P/E ratio"
-                    color="#6366f1"
-                    width={190}
-                    height={150}
-                  />
-                </div>
-                <div>
-                  <div className="text-[10px] text-muted-foreground mb-1">PMI vs Earnings Growth</div>
-                  <ScatterPlot
-                    points={data.scatterPmiVsEarnings}
-                    xLabel="ISM PMI"
-                    yLabel="EPS Grwth %"
-                    color="#f97316"
-                    width={190}
-                    height={150}
-                  />
-                </div>
-                <div>
-                  <div className="text-[10px] text-muted-foreground mb-1">Unemp vs Consumer</div>
-                  <ScatterPlot
-                    points={data.scatterUnempVsConsumer}
-                    xLabel="Unemployment %"
-                    yLabel="Conf. Index"
-                    color="#ec4899"
-                    width={190}
-                    height={150}
-                  />
-                </div>
+                      );
+                    })}
+                  </CardContent>
+                </Card>
               </div>
-            </div>
-          </div>
 
-          {/* Macro Signal Decoder */}
-          <div className="mt-6 rounded-xl border border-border/50 bg-card p-5">
-            <div className="mb-1 text-sm font-semibold">Macro Signal Decoder</div>
-            <div className="mb-4 text-xs text-muted-foreground">
-              Current indicator readings interpreted for each asset class
-            </div>
-            <div className="grid grid-cols-2 gap-3 sm:grid-cols-4">
-              {(
-                [
-                  { label: "Stocks (S&P 500)", signal: signals.stocks, desc: "GDP+PMI supportive; inflation cooling" },
-                  { label: "Bonds (10Y)", signal: signals.bonds, desc: "High rates suppress prices" },
-                  { label: "Commodities", signal: signals.commodities, desc: "Elevated CPI supports hard assets" },
-                  { label: "USD Index", signal: signals.usd, desc: "High rates attract capital flows" },
-                ] as const
-              ).map((item) => (
-                <div
-                  key={item.label}
-                  className="rounded-lg border border-border/40 p-4 flex flex-col gap-2"
-                >
-                  <div className="text-xs font-medium text-muted-foreground">{item.label}</div>
-                  <span
-                    className={cn(
-                      "inline-flex w-fit items-center rounded-full px-2 py-0.5 text-[11px] font-semibold capitalize",
-                      signalColor(item.signal),
-                    )}
-                  >
-                    {item.signal === "bullish" ? (
-                      <TrendingUp className="mr-1 h-3 w-3" />
-                    ) : item.signal === "bearish" ? (
-                      <TrendingDown className="mr-1 h-3 w-3" />
-                    ) : (
-                      <Minus className="mr-1 h-3 w-3" />
-                    )}
-                    {item.signal}
-                  </span>
-                  <div className="text-[10px] text-muted-foreground/70">{item.desc}</div>
-                </div>
-              ))}
-            </div>
-          </div>
-        </TabsContent>
+              {/* NBER cycle tracker */}
+              <Card className="bg-gray-900 border-gray-800">
+                <CardHeader className="pb-2">
+                  <CardTitle className="text-sm font-semibold text-white flex items-center gap-2">
+                    <Layers size={14} className="text-blue-400" />
+                    NBER Business Cycle Tracker
+                  </CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <NBERCycleBar />
+                  <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 mt-4">
+                    {[
+                      { label: "Current Expansion", value: "71 months", sub: "Apr 2020 – present", color: "emerald" },
+                      { label: "Avg Post-WWII Expansion", value: "65 months", sub: "Historical average", color: "blue" },
+                      { label: "Longest Ever", value: "128 months", sub: "Jun 2009 – Feb 2020", color: "indigo" },
+                      { label: "Recession Probability", value: "18%", sub: "12-month ahead (NY Fed)", color: "amber" },
+                    ].map((stat) => (
+                      <div key={stat.label} className={`bg-${stat.color}-500/10 border border-${stat.color}-500/20 rounded-lg p-3`}>
+                        <div className={`text-xs text-${stat.color}-400 font-semibold mb-0.5`}>{stat.label}</div>
+                        <div className="text-lg font-bold text-white">{stat.value}</div>
+                        <div className="text-[10px] text-muted-foreground">{stat.sub}</div>
+                      </div>
+                    ))}
+                  </div>
+                </CardContent>
+              </Card>
 
-        {/* ── Tab 4: Fed Watch ──────────────────────────────────────────────── */}
-        <TabsContent
-          value="fedwatch"
-          className="mt-0 flex-1 overflow-y-auto p-6 data-[state=inactive]:hidden"
-        >
-          <div className="grid grid-cols-1 gap-6 xl:grid-cols-2">
-            {/* FOMC Futures Probabilities */}
-            <div className="rounded-xl border border-border/50 bg-card p-5">
-              <div className="mb-1 text-sm font-semibold">Fed Funds Futures — FOMC Meeting Probabilities</div>
-              <div className="mb-4 text-xs text-muted-foreground">
-                Market-implied probabilities for each upcoming FOMC decision
-              </div>
-              <div className="space-y-3">
-                {data.fomcDates.map((date, i) => {
-                  const p = data.fomcProbs[i];
-                  return (
-                    <div key={date} className="flex items-center gap-3">
-                      <div className="w-14 shrink-0 text-xs font-medium text-muted-foreground">{date}</div>
-                      <div className="flex-1 space-y-1">
-                        {/* Stacked bar */}
-                        <div className="flex h-5 overflow-hidden rounded-md">
-                          <div
-                            className="flex items-center justify-center text-[9px] font-bold text-white bg-emerald-500"
-                            style={{ width: `${p.cut}%` }}
-                          >
-                            {p.cut > 8 ? `Cut ${p.cut}%` : ""}
-                          </div>
-                          <div
-                            className="flex items-center justify-center text-[9px] font-bold text-white bg-blue-500"
-                            style={{ width: `${p.hold}%` }}
-                          >
-                            {p.hold > 12 ? `Hold ${p.hold}%` : ""}
-                          </div>
-                          <div
-                            className="flex items-center justify-center text-[9px] font-bold text-white bg-red-500"
-                            style={{ width: `${p.hike}%` }}
-                          >
-                            {p.hike > 5 ? `Hike ${p.hike}%` : ""}
-                          </div>
+              {/* Recession risk indicators */}
+              <Card className="bg-gray-900 border-gray-800">
+                <CardHeader className="pb-2">
+                  <CardTitle className="text-sm font-semibold text-white flex items-center gap-2">
+                    <AlertTriangle size={14} className="text-amber-400" />
+                    Recession Early Warning Signals
+                  </CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
+                    {[
+                      { signal: "Yield Curve (10Y-2Y)", value: "+18 bps", status: "neutral", detail: "Recently uninverted from -108bps; historically lags recession by 12-18m" },
+                      { signal: "Sahm Rule Indicator", value: "0.18", status: "safe", detail: "Below 0.5 threshold. Rule: 3m avg UE rate rise ≥ 0.5pp from 12m low." },
+                      { signal: "Conference Board LEI", value: "-0.3% MoM", status: "warn", detail: "12 consecutive monthly declines prior; recent stabilization encouraging." },
+                      { signal: "Real Retail Sales Trend", value: "+0.7% YoY", status: "safe", detail: "Positive real growth signals consumer still supporting GDP." },
+                      { signal: "ISM New Orders", value: "52.4", status: "safe", detail: "Above 50 = expansion. Consistent with 6-month growth runway." },
+                      { signal: "Credit Conditions (SLOOS)", value: "Tightening", status: "warn", detail: "Banks still reporting tighter lending standards; credit slowdown risk." },
+                    ].map((item) => (
+                      <div
+                        key={item.signal}
+                        className={`rounded-lg p-3 border ${
+                          item.status === "safe"
+                            ? "bg-emerald-500/5 border-emerald-500/20"
+                            : item.status === "warn"
+                            ? "bg-amber-500/5 border-amber-500/20"
+                            : "bg-gray-800/50 border-gray-700"
+                        }`}
+                      >
+                        <div className="flex items-center justify-between mb-1">
+                          <span className="text-xs font-semibold text-white">{item.signal}</span>
+                          {item.status === "safe" ? (
+                            <Minus size={12} className="text-emerald-400" />
+                          ) : item.status === "warn" ? (
+                            <AlertTriangle size={12} className="text-amber-400" />
+                          ) : (
+                            <Minus size={12} className="text-gray-400" />
+                          )}
                         </div>
+                        <div
+                          className={`text-sm font-bold mb-1 ${
+                            item.status === "safe" ? "text-emerald-400" : item.status === "warn" ? "text-amber-400" : "text-gray-300"
+                          }`}
+                        >
+                          {item.value}
+                        </div>
+                        <div className="text-[10px] text-muted-foreground leading-relaxed">{item.detail}</div>
                       </div>
-                      <div className="w-28 shrink-0 text-[10px] text-muted-foreground tabular-nums">
-                        C:{p.cut}% H:{p.hold}% R:{p.hike}%
-                      </div>
-                    </div>
-                  );
-                })}
-              </div>
-              <div className="mt-3 flex gap-4 text-[10px] text-muted-foreground">
-                <span className="flex items-center gap-1">
-                  <span className="h-2 w-3 rounded-sm bg-emerald-500 inline-block" /> Cut
-                </span>
-                <span className="flex items-center gap-1">
-                  <span className="h-2 w-3 rounded-sm bg-blue-500 inline-block" /> Hold
-                </span>
-                <span className="flex items-center gap-1">
-                  <span className="h-2 w-3 rounded-sm bg-red-500 inline-block" /> Hike
-                </span>
-              </div>
+                    ))}
+                  </div>
+                </CardContent>
+              </Card>
             </div>
+          </TabsContent>
+        </Tabs>
+      </motion.div>
 
-            {/* Taylor Rule Calculator */}
-            <div className="rounded-xl border border-border/50 bg-card p-5">
-              <div className="mb-1 text-sm font-semibold">Taylor Rule Calculator</div>
-              <div className="mb-4 text-xs text-muted-foreground">
-                r = r* + π + 0.5(π − π*) + 0.5(y − y*) where r* = 0.5%
-              </div>
-              <div className="space-y-4">
-                {(
-                  [
-                    {
-                      label: "Inflation Target (π*)",
-                      value: inflationTarget,
-                      set: setInflationTarget,
-                      min: 0.5,
-                      max: 4,
-                      step: 0.25,
-                      color: "#f59e0b",
-                    },
-                    {
-                      label: "Actual Inflation (π)",
-                      value: actualInflation,
-                      set: setActualInflation,
-                      min: 0,
-                      max: 10,
-                      step: 0.1,
-                      color: "#ec4899",
-                    },
-                    {
-                      label: "Potential GDP Growth (y*)",
-                      value: potentialGDP,
-                      set: setPotentialGDP,
-                      min: 0,
-                      max: 5,
-                      step: 0.1,
-                      color: "#22c55e",
-                    },
-                    {
-                      label: "Actual GDP Growth (y)",
-                      value: actualGDP,
-                      set: setActualGDP,
-                      min: -3,
-                      max: 8,
-                      step: 0.1,
-                      color: "#6366f1",
-                    },
-                  ] as const
-                ).map((s) => (
-                  <div key={s.label}>
-                    <div className="flex justify-between text-xs mb-1">
-                      <span className="text-muted-foreground">{s.label}</span>
-                      <span className="font-semibold tabular-nums" style={{ color: s.color }}>
-                        {s.value.toFixed(2)}%
-                      </span>
-                    </div>
-                    <input
-                      type="range"
-                      min={s.min}
-                      max={s.max}
-                      step={s.step}
-                      value={s.value}
-                      onChange={(e) => s.set(Number(e.target.value))}
-                      className="w-full accent-primary"
-                    />
-                  </div>
-                ))}
-              </div>
-              <div className="mt-5 rounded-lg bg-muted/20 p-4 flex items-center justify-between">
-                <div>
-                  <div className="text-xs text-muted-foreground">Taylor Rule Rate</div>
-                  <div className="text-2xl font-bold text-primary tabular-nums">
-                    {taylorRate.toFixed(2)}%
-                  </div>
-                </div>
-                <div className="text-right">
-                  <div className="text-xs text-muted-foreground">Actual Fed Rate</div>
-                  <div className="text-2xl font-bold text-amber-400 tabular-nums">5.25%</div>
-                </div>
-                <div className="text-right">
-                  <div className="text-xs text-muted-foreground">Gap</div>
-                  <div
-                    className={cn(
-                      "text-xl font-bold tabular-nums",
-                      taylorRate - 5.25 > 0.5
-                        ? "text-red-400"
-                        : taylorRate - 5.25 < -0.5
-                          ? "text-emerald-400"
-                          : "text-muted-foreground",
-                    )}
-                  >
-                    {taylorRate - 5.25 > 0 ? "+" : ""}
-                    {(taylorRate - 5.25).toFixed(2)}%
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          {/* FOMC Dot Plot */}
-          <div className="mt-6 rounded-xl border border-border/50 bg-card p-5">
-            <div className="mb-1 text-sm font-semibold">FOMC Dot Plot</div>
-            <div className="mb-4 text-xs text-muted-foreground">
-              Each dot = one participant&apos;s rate projection. Dashed amber = current rate (5.25%).
-            </div>
-            <div className="overflow-x-auto">
-              <DotPlot dots={data.dotData} years={data.dotYears} actualRate={5.25} />
-            </div>
-          </div>
-
-          {/* Historical FOMC Timeline */}
-          <div className="mt-6 rounded-xl border border-border/50 bg-card p-5">
-            <div className="mb-4 text-sm font-semibold">Historical FOMC Meeting Timeline</div>
-            <div className="space-y-2">
-              {data.fomcHistory.map((m, i) => (
-                <div
-                  key={i}
-                  className="flex items-center gap-4 rounded-lg border border-border/20 px-4 py-2.5 hover:bg-muted/10 transition-colors"
-                >
-                  <div className="w-20 shrink-0 text-xs text-muted-foreground">{m.date}</div>
-                  <span
-                    className={cn(
-                      "w-12 shrink-0 rounded-full px-2 py-0.5 text-center text-[10px] font-bold",
-                      m.decision === "Cut"
-                        ? "bg-emerald-500/15 text-emerald-400"
-                        : m.decision === "Hike"
-                          ? "bg-red-500/15 text-red-400"
-                          : "bg-blue-500/15 text-blue-400",
-                    )}
-                  >
-                    {m.decision}
-                  </span>
-                  <div className="flex-1 text-xs font-medium tabular-nums">{m.rate}</div>
-                  <div className="text-[10px] text-muted-foreground">
-                    {m.dissents > 0 ? (
-                      <span className="text-amber-400">{m.dissents} dissent{m.dissents > 1 ? "s" : ""}</span>
-                    ) : (
-                      <span className="text-muted-foreground/40">Unanimous</span>
-                    )}
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
-        </TabsContent>
-      </Tabs>
+      {/* Footer */}
+      <div className="text-[10px] text-muted-foreground border-t border-gray-800 pt-4">
+        Data shown is simulated for educational purposes. Sources modeled after BEA, BLS, Federal Reserve, ISM, Conference Board, NY Fed. Last updated: Q1 2026.
+      </div>
     </div>
   );
 }

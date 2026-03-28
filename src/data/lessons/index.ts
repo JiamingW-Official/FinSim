@@ -69,6 +69,9 @@ import { UNIT_EMERGING_MARKETS } from "./unit-emerging-markets";
 import { UNIT_RISK_ANALYTICS } from "./unit-risk-analytics";
 import { UNIT_CONSUMER_RETAIL } from "./unit-consumer-retail";
 import { UNIT_PORTFOLIO_STRESS } from "./unit-portfolio-stress";
+import { UNIT_FIXED_INCOME_CREDIT } from "./unit-fixed-income-credit";
+import { UNIT_MARKET_PSYCHOLOGY } from "./unit-market-psychology";
+import { UNIT_OPTIONS_GREEKS } from "./unit-options-greeks";
 
 export const UNITS: Unit[] = [
   UNIT_BASICS,
@@ -141,6 +144,9 @@ export const UNITS: Unit[] = [
   UNIT_RISK_ANALYTICS,
   UNIT_CONSUMER_RETAIL,
   UNIT_PORTFOLIO_STRESS,
+  UNIT_FIXED_INCOME_CREDIT,
+  UNIT_MARKET_PSYCHOLOGY,
+  UNIT_OPTIONS_GREEKS,
 ];
 
 export function getLessonById(lessonId: string): Lesson | undefined {
