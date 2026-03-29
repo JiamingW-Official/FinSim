@@ -734,8 +734,8 @@ export default function ChallengesPage() {
 
       {/* Content */}
       <div className="flex-1 overflow-y-auto px-4 py-4">
-        {/* Daily Challenge Hero */}
-        <DailyHeroCard countdown={dailyCountdown} />
+        {/* Daily Challenge Hero — only on daily tab */}
+        {tab === "daily" && <DailyHeroCard countdown={dailyCountdown} />}
 
         <AnimatePresence mode="wait">
           {tab === "daily" && (

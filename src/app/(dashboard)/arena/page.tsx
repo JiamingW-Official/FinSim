@@ -158,16 +158,26 @@ export default function ArenaPage() {
             </p>
           </div>
           <div className="flex-1" />
-          {totalMatches > 0 && (
-            <div className="flex items-center gap-2">
-              <ArenaRankBadge rank={rank} size="sm" />
-              <span className="text-xs tabular-nums text-muted-foreground">{elo} ELO</span>
-            </div>
-          )}
         </div>
 
-        {/* Educational framing — hero card (dominant, accent) */}
-        <div className="mt-3 border-l-4 border-primary bg-card p-6 rounded-lg">
+        {/* Hero — Current rank + educational framing */}
+        <div className="mt-4 border-l-4 border-l-primary bg-card rounded-lg p-6">
+          <div className="flex items-center gap-4 mb-3">
+            {totalMatches > 0 ? (
+              <>
+                <ArenaRankBadge rank={rank} size="sm" />
+                <div>
+                  <p className="text-lg font-bold tabular-nums">{elo} ELO</p>
+                  <p className="text-[11px] text-muted-foreground">{totalMatches} matches played</p>
+                </div>
+              </>
+            ) : (
+              <div>
+                <p className="text-sm font-bold text-foreground">Ready to compete?</p>
+                <p className="text-[11px] text-muted-foreground">Complete your first match to earn a rank</p>
+              </div>
+            )}
+          </div>
           <p className="text-[11px] text-muted-foreground leading-relaxed">
             Practice trading under pressure with simulated opponents. Arena matches help
             sharpen your decision-making, risk management, and timing -- all with zero
@@ -200,7 +210,7 @@ export default function ArenaPage() {
       </div>
 
       {/* Content */}
-      <div className="flex-1 overflow-y-auto px-4 py-6">
+      <div className="flex-1 overflow-y-auto px-4 py-4">
         {activeTab === "modes" && (
           <>
             <ArenaLobby onSelectType={handleSelectType} />
