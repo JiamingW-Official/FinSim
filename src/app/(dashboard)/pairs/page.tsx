@@ -564,19 +564,19 @@ export default function PairsPage() {
                         </div>
                         <div className="flex flex-col">
                           <span className="text-muted-foreground">Coint. p-val</span>
-                          <span className={cn("font-semibold", pair.cointegPValue < 0.05 ? "text-green-400" : "text-amber-400")}>
+                          <span className={cn("font-medium", pair.cointegPValue < 0.05 ? "text-green-400" : "text-amber-400")}>
                             {pair.cointegPValue.toFixed(3)}
                           </span>
                         </div>
                         <div className="flex flex-col">
                           <span className="text-muted-foreground">Current Z</span>
-                          <span className={cn("font-semibold tabular-nums", zColor(currentZ))}>
+                          <span className={cn("font-medium tabular-nums", zColor(currentZ))}>
                             {currentZ > 0 ? "+" : ""}{currentZ.toFixed(2)}
                           </span>
                         </div>
                         <div className="flex flex-col">
                           <span className="text-muted-foreground">Signal</span>
-                          <span className={cn("font-semibold", zColor(currentZ))}>{signalLabel}</span>
+                          <span className={cn("font-medium", zColor(currentZ))}>{signalLabel}</span>
                         </div>
                       </div>
 
@@ -627,21 +627,21 @@ export default function PairsPage() {
               <div className="flex gap-6 text-sm ml-4">
                 <div>
                   <div className="text-muted-foreground text-xs">Hedge Ratio (β)</div>
-                  <div className="font-mono font-semibold">{analysisData.beta.toFixed(4)}</div>
+                  <div className="font-mono font-medium">{analysisData.beta.toFixed(4)}</div>
                 </div>
                 <div>
                   <div className="text-muted-foreground text-xs">Intercept (α)</div>
-                  <div className="font-mono font-semibold">{analysisData.alpha.toFixed(2)}</div>
+                  <div className="font-mono font-medium">{analysisData.alpha.toFixed(2)}</div>
                 </div>
                 <div>
                   <div className="text-muted-foreground text-xs">252d Correlation</div>
-                  <div className={cn("font-mono font-semibold", analysisData.fullCorr >= 0.8 ? "text-green-400" : "text-amber-400")}>
+                  <div className={cn("font-mono font-medium", analysisData.fullCorr >= 0.8 ? "text-green-400" : "text-amber-400")}>
                     {analysisData.fullCorr.toFixed(3)}
                   </div>
                 </div>
                 <div>
                   <div className="text-muted-foreground text-xs">Current Z</div>
-                  <div className={cn("font-mono font-semibold tabular-nums", zColor(analysisData.currentZ))}>
+                  <div className={cn("font-mono font-medium tabular-nums", zColor(analysisData.currentZ))}>
                     {analysisData.currentZ > 0 ? "+" : ""}{analysisData.currentZ.toFixed(2)}
                   </div>
                 </div>
@@ -656,7 +656,7 @@ export default function PairsPage() {
                 <Minus className="h-4 w-4 text-muted-foreground" />
               )}
               <div>
-                <span className={cn("font-semibold text-sm", zColor(analysisData.currentZ))}>
+                <span className={cn("font-medium text-sm", zColor(analysisData.currentZ))}>
                   Current Signal: {analysisData.signal}
                 </span>
                 <span className="text-xs text-muted-foreground ml-3">
@@ -696,7 +696,7 @@ export default function PairsPage() {
             {/* Pair selector info */}
             <div className="flex items-center gap-4 flex-wrap">
               <div className="text-sm font-medium">
-                Trading: <span className="text-primary font-bold">{tickerA} / {tickerB}</span>
+                Trading: <span className="text-primary font-medium">{tickerA} / {tickerB}</span>
               </div>
               <button
                 onClick={() => setActiveTab("analysis")}
@@ -716,7 +716,7 @@ export default function PairsPage() {
               ].map(({ label, value, color }) => (
                 <div key={label} className="rounded-lg border border-border/50 bg-card/30 p-3">
                   <div className="text-xs text-muted-foreground">{label}</div>
-                  <div className={cn("text-lg font-bold tabular-nums mt-0.5", color)}>{value}</div>
+                  <div className={cn("text-lg font-medium tabular-nums mt-0.5", color)}>{value}</div>
                 </div>
               ))}
             </div>
@@ -728,7 +728,7 @@ export default function PairsPage() {
 
             {/* Position sizing */}
             <div className="rounded-lg border border-border/50 bg-card/30 p-4 space-y-3">
-              <h3 className="text-sm font-semibold">Position Sizing (Equal-Dollar)</h3>
+              <h3 className="text-sm font-medium">Position Sizing (Equal-Dollar)</h3>
               <div className="text-xs text-muted-foreground space-y-1">
                 <p>Account size: $10,000 | Risk per trade: 2% = $200</p>
                 <p>Long leg: Buy ${(5000).toFixed(0)} of {tickerA} | Short leg: Sell ${(5000).toFixed(0)} of {tickerB}</p>
@@ -742,7 +742,7 @@ export default function PairsPage() {
                 onClick={handleEnter}
                 disabled={!canEnter}
                 className={cn(
-                  "flex-1 rounded-lg py-2.5 text-sm font-semibold transition-colors",
+                  "flex-1 rounded-lg py-2.5 text-sm font-medium transition-colors",
                   canEnter
                     ? "bg-primary text-primary-foreground hover:bg-primary/90"
                     : "bg-muted text-muted-foreground cursor-not-allowed",
@@ -755,7 +755,7 @@ export default function PairsPage() {
                 onClick={handleExit}
                 disabled={!canExit}
                 className={cn(
-                  "flex-1 rounded-lg py-2.5 text-sm font-semibold transition-colors",
+                  "flex-1 rounded-lg py-2.5 text-sm font-medium transition-colors",
                   canExit
                     ? "bg-green-600 text-foreground hover:bg-green-500"
                     : "bg-muted text-muted-foreground cursor-not-allowed",
@@ -778,7 +778,7 @@ export default function PairsPage() {
             {/* Trade log */}
             {tradeLogs.length > 0 && (
               <div className="space-y-2">
-                <h3 className="text-sm font-semibold">Trade Log</h3>
+                <h3 className="text-sm font-medium">Trade Log</h3>
                 <div className="rounded-lg border border-border/50 overflow-hidden">
                   <table className="w-full text-xs">
                     <thead className="bg-muted/30">
@@ -803,7 +803,7 @@ export default function PairsPage() {
                           <td className="px-3 py-2 font-mono text-muted-foreground">
                             {t.exitZ != null ? (t.exitZ > 0 ? "+" : "") + t.exitZ.toFixed(2) : "—"}
                           </td>
-                          <td className={cn("px-3 py-2 font-mono font-semibold", t.pnl == null ? "text-muted-foreground" : t.pnl >= 0 ? "text-green-400" : "text-red-400")}>
+                          <td className={cn("px-3 py-2 font-mono font-medium", t.pnl == null ? "text-muted-foreground" : t.pnl >= 0 ? "text-green-400" : "text-red-400")}>
                             {t.pnl != null ? `$${t.pnl >= 0 ? "+" : ""}${t.pnl.toFixed(0)}` : "—"}
                           </td>
                           <td className="px-3 py-2">
@@ -826,7 +826,7 @@ export default function PairsPage() {
           <div className="p-6 max-w-3xl mx-auto space-y-6">
             <div className="flex items-center gap-2 mb-2">
               <BookOpen className="h-4 w-4 text-primary" />
-              <h2 className="text-base font-semibold">Pairs Trading Fundamentals</h2>
+              <h2 className="text-base font-medium">Pairs Trading Fundamentals</h2>
             </div>
 
             {[
@@ -880,7 +880,7 @@ S&P 500 ETF (SPY) / Nasdaq ETF (QQQ): One of the most traded institutional pairs
               },
             ].map(({ title, content }) => (
               <div key={title} className="rounded-lg border border-border/50 bg-card/30 p-5 space-y-2">
-                <h3 className="text-sm font-semibold text-foreground">{title}</h3>
+                <h3 className="text-sm font-medium text-foreground">{title}</h3>
                 <p className="text-sm text-muted-foreground leading-relaxed whitespace-pre-line">{content}</p>
               </div>
             ))}

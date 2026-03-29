@@ -536,7 +536,7 @@ function PipelineTracker() {
                   >
                     <td className="p-3 text-muted-foreground font-mono">{ev.date}</td>
                     <td className="p-3">
-                      <span className="font-mono font-bold text-foreground bg-muted px-1.5 py-0.5 rounded">
+                      <span className="font-mono font-medium text-foreground bg-muted px-1.5 py-0.5 rounded">
                         {ev.ticker}
                       </span>
                     </td>
@@ -545,7 +545,7 @@ function PipelineTracker() {
                     <td className="p-3 text-right">
                       <span
                         className={cn(
-                          "font-bold",
+                          "font-medium",
                           ev.impliedMove > 40
                             ? "text-rose-400"
                             : ev.impliedMove > 20
@@ -574,7 +574,7 @@ function PipelineTracker() {
           {STAGE_ORDER.map((stage) => (
             <div key={stage} className="bg-card border border-border rounded-lg p-3 text-center">
               <div
-                className="text-xl font-bold mb-1"
+                className="text-xl font-medium mb-1"
                 style={{ color: STAGE_COLORS[stage] }}
               >
                 {fmtPct(STAGE_POA[stage])}
@@ -771,13 +771,13 @@ function DrugEconomics() {
 
       {/* Development Timeline */}
       <div className="bg-card border border-border rounded-lg p-5">
-        <h3 className="text-sm font-semibold text-muted-foreground mb-4">Drug Development Timeline</h3>
+        <h3 className="text-sm font-medium text-muted-foreground mb-4">Drug Development Timeline</h3>
         <TimelineSVG />
       </div>
 
       {/* NPV Calculator */}
       <div className="bg-card border border-border rounded-lg p-5">
-        <h3 className="text-sm font-semibold text-muted-foreground mb-4 flex items-center gap-2">
+        <h3 className="text-sm font-medium text-muted-foreground mb-4 flex items-center gap-2">
           <DollarSign className="w-4 h-4 text-emerald-400" />
           Risk-Adjusted NPV Calculator
         </h3>
@@ -820,7 +820,7 @@ function DrugEconomics() {
 
       {/* Patent Cliff */}
       <div className="bg-card border border-border rounded-lg p-5">
-        <h3 className="text-sm font-semibold text-muted-foreground mb-4 flex items-center gap-2">
+        <h3 className="text-sm font-medium text-muted-foreground mb-4 flex items-center gap-2">
           <AlertTriangle className="w-4 h-4 text-amber-400" />
           Top Patent Cliffs (2023–2032)
         </h3>
@@ -981,7 +981,7 @@ function ValuationFramework() {
 
       {/* Sum-of-parts panel */}
       <div className="bg-card border border-border rounded-lg p-5">
-        <h3 className="text-sm font-semibold text-muted-foreground mb-1">
+        <h3 className="text-sm font-medium text-muted-foreground mb-1">
           {co.name} ({co.ticker}) — Sum-of-Parts rNPV
         </h3>
         <p className="text-xs text-muted-foreground mb-4">
@@ -1024,7 +1024,7 @@ function ValuationFramework() {
                   <div className="flex items-center gap-4">
                     <span className="text-muted-foreground">Gross NPV: <span className="text-muted-foreground">{fmtM(Math.round(grossNPV))}</span></span>
                     <span className="text-muted-foreground">PoA: <span className="text-muted-foreground">{fmtPct(STAGE_POA[drug.stage])}</span></span>
-                    <span className="text-emerald-400 font-bold">{fmtM(Math.round(riskAdjNPV))}</span>
+                    <span className="text-emerald-400 font-medium">{fmtM(Math.round(riskAdjNPV))}</span>
                   </div>
                 </div>
                 <div className="w-full bg-muted rounded-full h-1.5">
@@ -1042,7 +1042,7 @@ function ValuationFramework() {
         </div>
         <div className="mt-4 pt-3 border-t border-border flex items-center justify-between">
           <span className="text-sm text-muted-foreground">Total rNPV (pipeline)</span>
-          <span className="text-lg font-bold text-emerald-400">{fmtM(Math.round(rnpv))}</span>
+          <span className="text-lg font-medium text-emerald-400">{fmtM(Math.round(rnpv))}</span>
         </div>
         <div className="flex items-center justify-between mt-1">
           <span className="text-xs text-muted-foreground">Market Cap</span>
@@ -1063,7 +1063,7 @@ function ValuationFramework() {
 
       {/* Comparables */}
       <div className="bg-card border border-border rounded-lg p-5">
-        <h3 className="text-sm font-semibold text-muted-foreground mb-4">Valuation Multiples by Subsector</h3>
+        <h3 className="text-sm font-medium text-muted-foreground mb-4">Valuation Multiples by Subsector</h3>
         <div className="overflow-x-auto">
           <table className="w-full text-xs">
             <thead>
@@ -1090,7 +1090,7 @@ function ValuationFramework() {
 
       {/* M&A Case Studies */}
       <div className="bg-card border border-border rounded-lg p-5">
-        <h3 className="text-sm font-semibold text-muted-foreground mb-2 flex items-center gap-2">
+        <h3 className="text-sm font-medium text-muted-foreground mb-2 flex items-center gap-2">
           <Target className="w-4 h-4 text-rose-400" />
           M&A Premium Examples — Big Pharma Pipeline Replacement
         </h3>
@@ -1102,15 +1102,15 @@ function ValuationFramework() {
             <div key={i} className="flex items-start gap-3 bg-muted/40 rounded p-3">
               <div className="flex-1">
                 <div className="flex items-center gap-2 mb-0.5">
-                  <span className="text-xs font-bold text-foreground">{deal.acquirer}</span>
+                  <span className="text-xs font-medium text-foreground">{deal.acquirer}</span>
                   <span className="text-xs text-muted-foreground">acquires</span>
-                  <span className="text-xs font-bold text-primary">{deal.target}</span>
+                  <span className="text-xs font-medium text-primary">{deal.target}</span>
                   <span className="text-xs text-muted-foreground">({deal.year})</span>
                 </div>
                 <p className="text-xs text-muted-foreground">{deal.rationale}</p>
               </div>
               <div className="text-right shrink-0">
-                <div className="text-xs font-bold text-foreground">{deal.value}</div>
+                <div className="text-xs font-medium text-foreground">{deal.value}</div>
                 {deal.premium !== "N/A" && (
                   <div className="text-xs text-amber-400">+{deal.premium} premium</div>
                 )}
@@ -1165,7 +1165,7 @@ function SectorAnalysis() {
     <div className="space-y-6">
       {/* Subsector Comparison */}
       <div className="bg-card border border-border rounded-lg p-5">
-        <h3 className="text-sm font-semibold text-muted-foreground mb-4">Subsector Comparison</h3>
+        <h3 className="text-sm font-medium text-muted-foreground mb-4">Subsector Comparison</h3>
         <div className="overflow-x-auto">
           <table className="w-full text-xs">
             <thead>
@@ -1209,7 +1209,7 @@ function SectorAnalysis() {
 
       {/* Drug Categories */}
       <div className="bg-card border border-border rounded-lg p-5">
-        <h3 className="text-sm font-semibold text-muted-foreground mb-4">Drug Categories by Indication</h3>
+        <h3 className="text-sm font-medium text-muted-foreground mb-4">Drug Categories by Indication</h3>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
           {drugCategories.map((cat, i) => (
             <div key={i} className="bg-muted/40 rounded p-3 flex items-center justify-between">
@@ -1250,7 +1250,7 @@ function SectorAnalysis() {
 
       {/* Pricing Power: US vs International */}
       <div className="bg-card border border-border rounded-lg p-5">
-        <h3 className="text-sm font-semibold text-muted-foreground mb-4 flex items-center gap-2">
+        <h3 className="text-sm font-medium text-muted-foreground mb-4 flex items-center gap-2">
           <DollarSign className="w-4 h-4 text-amber-400" />
           US vs International Drug Pricing
         </h3>
@@ -1259,7 +1259,7 @@ function SectorAnalysis() {
 
       {/* FDA Approvals */}
       <div className="bg-card border border-border rounded-lg p-5">
-        <h3 className="text-sm font-semibold text-muted-foreground mb-4">FDA Approval Trends (NDA + BLA per Year)</h3>
+        <h3 className="text-sm font-medium text-muted-foreground mb-4">FDA Approval Trends (NDA + BLA per Year)</h3>
         <svg viewBox={`0 0 ${W} ${H + 30}`} className="w-full" style={{ height: H + 30 }}>
           {fdaApprovals.map((yr, i) => {
             const x = i * groupGap + groupGap / 2 - barW / 2;
@@ -1292,7 +1292,7 @@ function SectorAnalysis() {
             { label: "Accelerated Approval", desc: "Based on surrogate endpoint; post-market confirmation required", color: "text-emerald-400" },
           ].map((d) => (
             <div key={d.label} className="bg-muted/40 rounded p-3">
-              <div className={cn("text-xs font-semibold mb-1", d.color)}>{d.label}</div>
+              <div className={cn("text-xs font-medium mb-1", d.color)}>{d.label}</div>
               <div className="text-xs text-muted-foreground">{d.desc}</div>
             </div>
           ))}
@@ -1393,7 +1393,7 @@ function BinaryEventTrading() {
     <div className="space-y-6">
       {/* Straddle Calculator */}
       <div className="bg-card border border-border rounded-lg p-5">
-        <h3 className="text-sm font-semibold text-muted-foreground mb-2 flex items-center gap-2">
+        <h3 className="text-sm font-medium text-muted-foreground mb-2 flex items-center gap-2">
           <Activity className="w-4 h-4 text-primary" />
           ATM Straddle Calculator for Binary Events
         </h3>
@@ -1433,19 +1433,19 @@ function BinaryEventTrading() {
         <div className="grid grid-cols-3 gap-4 mt-4">
           <div className="bg-muted/60 rounded p-3">
             <div className="text-xs text-muted-foreground">Straddle Cost</div>
-            <div className="text-lg font-bold text-foreground">${straddleCost.toFixed(2)}</div>
+            <div className="text-lg font-medium text-foreground">${straddleCost.toFixed(2)}</div>
             <div className="text-xs text-muted-foreground">per share</div>
           </div>
           <div className="bg-muted/60 rounded p-3">
             <div className="text-xs text-muted-foreground">Breakeven Range</div>
-            <div className="text-lg font-bold text-amber-400">±{breakeven.toFixed(1)}%</div>
+            <div className="text-lg font-medium text-amber-400">±{breakeven.toFixed(1)}%</div>
             <div className="text-xs text-muted-foreground">
               ${(straddleUnderlying - straddleCost).toFixed(1)} – ${(straddleUnderlying + straddleCost).toFixed(1)}
             </div>
           </div>
           <div className="bg-muted/60 rounded p-3">
             <div className="text-xs text-muted-foreground">Max Loss</div>
-            <div className="text-lg font-bold text-rose-400">${straddleCost.toFixed(2)}</div>
+            <div className="text-lg font-medium text-rose-400">${straddleCost.toFixed(2)}</div>
             <div className="text-xs text-muted-foreground">if stock stays flat</div>
           </div>
         </div>
@@ -1453,7 +1453,7 @@ function BinaryEventTrading() {
 
       {/* Historical Reactions */}
       <div className="bg-card border border-border rounded-lg p-5">
-        <h3 className="text-sm font-semibold text-muted-foreground mb-4">Historical Stock Reactions to Binary Events</h3>
+        <h3 className="text-sm font-medium text-muted-foreground mb-4">Historical Stock Reactions to Binary Events</h3>
         <div className="space-y-2">
           {historicalReactions.map((ev, i) => (
             <div key={i} className="flex items-center justify-between bg-muted/40 rounded p-3">
@@ -1464,7 +1464,7 @@ function BinaryEventTrading() {
               <div className="flex items-center gap-4">
                 <div
                   className={cn(
-                    "text-sm font-bold",
+                    "text-sm font-medium",
                     ev.avgReturn >= 0 ? "text-emerald-400" : "text-rose-400"
                   )}
                 >
@@ -1479,7 +1479,7 @@ function BinaryEventTrading() {
 
       {/* Position Sizing */}
       <div className="bg-card border border-border rounded-lg p-5">
-        <h3 className="text-sm font-semibold text-muted-foreground mb-4 flex items-center gap-2">
+        <h3 className="text-sm font-medium text-muted-foreground mb-4 flex items-center gap-2">
           <Target className="w-4 h-4 text-primary" />
           Position Sizing for Binary Events
         </h3>
@@ -1492,7 +1492,7 @@ function BinaryEventTrading() {
           ].map((ps) => (
             <div key={ps.label} className="bg-muted/40 rounded p-3">
               <div className="text-xs font-medium text-muted-foreground">{ps.label}</div>
-              <div className={cn("text-lg font-bold mt-1", ps.color)}>{ps.maxSize}</div>
+              <div className={cn("text-lg font-medium mt-1", ps.color)}>{ps.maxSize}</div>
               <div className="text-xs text-muted-foreground mt-1">{ps.why}</div>
             </div>
           ))}
@@ -1501,7 +1501,7 @@ function BinaryEventTrading() {
 
       {/* Basket Approach */}
       <div className="bg-card border border-border rounded-lg p-5">
-        <h3 className="text-sm font-semibold text-muted-foreground mb-2 flex items-center gap-2">
+        <h3 className="text-sm font-medium text-muted-foreground mb-2 flex items-center gap-2">
           <Layers className="w-4 h-4 text-emerald-400" />
           Catalyst Basket Simulation ($100K Portfolio)
         </h3>
@@ -1527,7 +1527,7 @@ function BinaryEventTrading() {
                   : null;
                 return (
                   <tr key={i} className="border-b border-border/50 hover:bg-muted/30">
-                    <td className="p-2 font-mono font-bold text-foreground">{c.ticker}</td>
+                    <td className="p-2 font-mono font-medium text-foreground">{c.ticker}</td>
                     <td className="p-2 text-muted-foreground">{c.eventType}</td>
                     <td className="p-2 text-muted-foreground">{c.date}</td>
                     <td className="p-2 text-right text-primary">{c.positionPct.toFixed(1)}%</td>
@@ -1566,7 +1566,7 @@ function BinaryEventTrading() {
                 <td className="p-2 text-right">
                   <span
                     className={cn(
-                      "font-bold text-sm",
+                      "font-medium text-sm",
                       basketReturn >= 0 ? "text-emerald-400" : "text-rose-400"
                     )}
                   >
@@ -1581,7 +1581,7 @@ function BinaryEventTrading() {
 
       {/* FDA Designations */}
       <div className="bg-card border border-border rounded-lg p-5">
-        <h3 className="text-sm font-semibold text-muted-foreground mb-4 flex items-center gap-2">
+        <h3 className="text-sm font-medium text-muted-foreground mb-4 flex items-center gap-2">
           <Zap className="w-4 h-4 text-amber-400" />
           FDA Expedited Designations — Trading Implications
         </h3>
@@ -1622,7 +1622,7 @@ function BinaryEventTrading() {
           ].map((des) => (
             <div key={des.name} className={cn("border rounded-lg p-3 flex items-center justify-between", des.color)}>
               <div>
-                <div className={cn("text-xs font-bold", des.textColor)}>{des.name}</div>
+                <div className={cn("text-xs font-medium", des.textColor)}>{des.name}</div>
                 <div className="text-xs text-muted-foreground mt-0.5">{des.granted}</div>
               </div>
               <div className="text-right">
@@ -1752,15 +1752,15 @@ export default function BiotechPage() {
               <FlaskConical className="w-5 h-5 text-emerald-400" />
             </div>
             <div>
-              <h1 className="text-xl font-bold text-foreground">Biotech & Pharma Investing</h1>
+              <h1 className="text-xl font-medium text-foreground">Biotech & Pharma Investing</h1>
               <p className="text-xs text-muted-foreground">
                 Clinical pipeline tracker · Drug economics · Valuation · Binary events
               </p>
             </div>
           </div>
 
-          {/* Top KPIs */}
-          <div className="grid grid-cols-2 md:grid-cols-5 gap-3 mt-4">
+          {/* HERO — Top KPIs */}
+          <div className="grid grid-cols-2 md:grid-cols-5 gap-3 mt-4 border-l-4 border-l-primary rounded-xl bg-card p-6">
             {[
               { label: "Companies Tracked", value: "15", sub: "Across all subsectors", color: "text-primary" },
               { label: "Upcoming Catalysts", value: "12", sub: "Next 12 months", color: "text-amber-400" },
@@ -1768,14 +1768,15 @@ export default function BiotechPage() {
               { label: "Avg Dev Cost", value: "$2.6B", sub: "All-in incl. failures", color: "text-rose-400" },
               { label: "M&A Premium", value: "50–100%", sub: "Big pharma acquisitions", color: "text-primary" },
             ].map((kpi) => (
-              <div key={kpi.label} className="bg-card border border-border rounded-lg p-3">
-                <div className={cn("text-lg font-bold", kpi.color)}>{kpi.value}</div>
+              <div key={kpi.label} className="bg-muted/30 border border-border rounded-lg p-3">
+                <div className={cn("text-lg font-medium", kpi.color)}>{kpi.value}</div>
                 <div className="text-xs text-muted-foreground font-medium">{kpi.label}</div>
                 <div className="text-xs text-muted-foreground">{kpi.sub}</div>
               </div>
             ))}
           </div>
         </motion.div>
+        <div className="mt-8" />
 
         {/* Tabs */}
         <Tabs defaultValue="pipeline">

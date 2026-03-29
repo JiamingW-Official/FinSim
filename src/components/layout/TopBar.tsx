@@ -120,8 +120,8 @@ function TickerDropdown({
   return (
     <>
       <div className="fixed inset-0 z-40" onClick={onClose} />
-      <div className="absolute left-0 top-full z-50 mt-1 w-64 rounded-lg border border-border bg-popover shadow-sm">
-        <div className="flex items-center gap-2 border-b border-border px-3 py-2">
+      <div className="absolute left-0 top-full z-50 mt-1 w-64 rounded-lg border border-border/40 bg-popover shadow-sm">
+        <div className="flex items-center gap-2 border-b border-border/40 px-3 py-2">
           <Search className="h-3.5 w-3.5 shrink-0 text-muted-foreground" />
           <input
             ref={inputRef}
@@ -179,7 +179,7 @@ function XPProgressBar() {
 
   return (
     <div className="flex items-center gap-1.5" data-tutorial="xp-level">
-      <span className="text-xs font-bold tabular-nums text-primary">
+      <span className="text-xs font-medium tabular-nums text-primary">
         Lv.{level}
       </span>
       <div
@@ -251,7 +251,7 @@ function QuickActionsMenu() {
         <Plus className="h-3.5 w-3.5" />
       </button>
       {open && (
-        <div className="absolute right-0 top-full z-50 mt-1 w-44 rounded-lg border border-border bg-popover shadow-sm py-1">
+        <div className="absolute right-0 top-full z-50 mt-1 w-44 rounded-lg border border-border/40 bg-popover shadow-sm py-1">
           {actions.map((a) => (
             <button
               key={a.href}
@@ -302,7 +302,7 @@ function LearnStreakBadge() {
   return (
     <div className="flex items-center gap-0.5 rounded-full bg-primary/10 px-1.5 py-0.5">
       <BookOpen className="h-3 w-3 text-primary" />
-      <span className="text-xs font-bold tabular-nums text-primary">
+      <span className="text-xs font-medium tabular-nums text-primary">
         {learningStreak}
       </span>
     </div>
@@ -371,7 +371,7 @@ export function TopBar() {
             </span>
             <span
               className={cn(
-                "font-bold tabular-nums transition-colors duration-300",
+                "font-semibold tabular-nums transition-colors duration-300",
                 priceFlash === "up" && "price-flash-up",
                 priceFlash === "down" && "price-flash-down",
               )}

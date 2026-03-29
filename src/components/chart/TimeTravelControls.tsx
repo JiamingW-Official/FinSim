@@ -71,7 +71,7 @@ export function TimeTravelControls() {
   }, [allData, revealedCount]);
 
   return (
-    <div className="flex items-center gap-2 border-t border-border bg-card px-3 py-1.5">
+    <div className="flex items-center gap-2 border-t border-border/40 bg-card px-3 py-1.5">
       {/* Reset */}
       <motion.div whileTap={{ scale: 0.9 }}>
         <Button

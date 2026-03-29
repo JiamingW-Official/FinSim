@@ -635,12 +635,12 @@ function CarryTradeTab() {
                       <td className="px-4 py-3">
                         <div className="flex items-center gap-2">
                           <span>{pair.flag1}{pair.flag2}</span>
-                          <span className="font-semibold text-foreground">{pair.symbol}</span>
+                          <span className="font-medium text-foreground">{pair.symbol}</span>
                         </div>
                       </td>
                       <td className="px-4 py-3 text-right font-mono text-muted-foreground">{pair.baseRate.toFixed(2)}%</td>
                       <td className="px-4 py-3 text-right font-mono text-muted-foreground">{pair.quoteRate.toFixed(2)}%</td>
-                      <td className={cn("px-4 py-3 text-right font-mono font-semibold", isPositive ? "text-emerald-400" : "text-rose-400")}>
+                      <td className={cn("px-4 py-3 text-right font-mono font-medium", isPositive ? "text-emerald-400" : "text-rose-400")}>
                         {isPositive ? "+" : ""}{pair.differential.toFixed(2)}%
                       </td>
                       <td className="px-4 py-3 text-right font-mono text-muted-foreground">{pair.annualizedCarry.toFixed(2)}%</td>
@@ -735,7 +735,7 @@ function CarryTradeTab() {
                     <div className="text-muted-foreground font-medium">{item.label}</div>
                     <div className="text-muted-foreground text-xs">{item.note}</div>
                   </div>
-                  <span className="text-primary font-semibold ml-2">{item.value}</span>
+                  <span className="text-primary font-medium ml-2">{item.value}</span>
                 </div>
               ))}
             </div>
@@ -764,7 +764,7 @@ function CarryTradeTab() {
                     className={cn("h-full rounded", rate >= 5 ? "bg-emerald-500" : rate >= 3 ? "bg-amber-500" : "bg-muted-foreground")}
                   />
                 </div>
-                <span className="text-xs font-semibold text-foreground w-12 text-right">{rate.toFixed(2)}%</span>
+                <span className="text-xs font-medium text-foreground w-12 text-right">{rate.toFixed(2)}%</span>
               </div>
             ))}
           </div>
@@ -909,7 +909,7 @@ function TechnicalAnalysisTab() {
             {/* Pattern */}
             <div className="bg-muted rounded-lg p-3">
               <div className="text-xs text-muted-foreground mb-1">Detected Pattern</div>
-              <div className="text-sm font-semibold text-amber-300">{tech.pattern}</div>
+              <div className="text-sm font-medium text-amber-300">{tech.pattern}</div>
             </div>
             {/* RSI */}
             <div className="bg-muted rounded-lg p-3">
@@ -920,7 +920,7 @@ function TechnicalAnalysisTab() {
                 </span>
               </div>
               <Progress value={tech.rsi} className="h-2" />
-              <div className="text-sm font-semibold text-foreground mt-1">{tech.rsi}</div>
+              <div className="text-sm font-medium text-foreground mt-1">{tech.rsi}</div>
             </div>
             {/* MACD */}
             <div className="bg-muted rounded-lg p-3">
@@ -985,7 +985,7 @@ function TechnicalAnalysisTab() {
                   activePair === p.symbol && "ring-1 ring-primary"
                 )}
               >
-                <div className="text-xs font-semibold text-foreground mb-2">{p.symbol}</div>
+                <div className="text-xs font-medium text-foreground mb-2">{p.symbol}</div>
                 <div className="space-y-1 text-xs">
                   <div className="flex justify-between">
                     <span className="text-muted-foreground">Trend</span>
@@ -1063,10 +1063,10 @@ function MacroDriversTab() {
                       animate="visible"
                       className="border-b border-border/50"
                     >
-                      <td className="py-2 font-semibold text-foreground">{d.pair}</td>
+                      <td className="py-2 font-medium text-foreground">{d.pair}</td>
                       <td className="py-2 text-right font-mono text-muted-foreground">{d.currentSpot.toFixed(4)}</td>
                       <td className="py-2 text-right font-mono text-muted-foreground">{d.pppFair.toFixed(4)}</td>
-                      <td className={cn("py-2 text-right font-mono font-semibold", d.pppDeviation >= 0 ? "text-rose-400" : "text-emerald-400")}>
+                      <td className={cn("py-2 text-right font-mono font-medium", d.pppDeviation >= 0 ? "text-rose-400" : "text-emerald-400")}>
                         {d.pppDeviation >= 0 ? "+" : ""}{d.pppDeviation.toFixed(1)}%
                       </td>
                       <td className="py-2 text-right">
@@ -1143,7 +1143,7 @@ function MacroDriversTab() {
               <div className="text-xs text-muted-foreground font-medium mb-2">CB Policy Stance</div>
               {MACRO_DRIVERS.map((d) => (
                 <div key={d.pair} className="flex items-center justify-between bg-muted rounded-lg px-3 py-2">
-                  <span className="text-xs font-semibold text-foreground">{d.pair}</span>
+                  <span className="text-xs font-medium text-foreground">{d.pair}</span>
                   <div className="flex items-center gap-2">
                     <Badge
                       className={cn(
@@ -1169,7 +1169,7 @@ function MacroDriversTab() {
                   <div key={d.pair} className="space-y-1">
                     <div className="flex justify-between text-xs">
                       <span className="text-muted-foreground">{d.pair}</span>
-                      <span className={cn("font-semibold", isPositive ? "text-emerald-400" : "text-rose-400")}>
+                      <span className={cn("font-medium", isPositive ? "text-emerald-400" : "text-rose-400")}>
                         {isPositive ? "+" : ""}{d.currentAccount.toFixed(1)}%
                       </span>
                     </div>
@@ -1334,7 +1334,7 @@ function RiskManagementTab() {
               ].map((r) => (
                 <div key={r.label} className="bg-muted rounded-lg p-3">
                   <div className="text-xs text-muted-foreground">{r.label}</div>
-                  <div className={cn("text-sm font-semibold mt-0.5", r.color)}>{r.value}</div>
+                  <div className={cn("text-sm font-medium mt-0.5", r.color)}>{r.value}</div>
                 </div>
               ))}
             </div>
@@ -1385,7 +1385,7 @@ function RiskManagementTab() {
                         <td key={j} className="px-0.5 py-0.5">
                           <div
                             className={cn(
-                              "w-12 h-7 rounded flex items-center justify-center text-[11px] font-semibold",
+                              "w-12 h-7 rounded flex items-center justify-center text-[11px] font-medium",
                               corrColor(val),
                               Math.abs(val) >= 0.5 ? "text-foreground" : "text-muted-foreground"
                             )}
@@ -1452,7 +1452,7 @@ function RiskManagementTab() {
             ].map((strat, i) => (
               <motion.div key={strat.name} custom={i} variants={fadeUp} initial="hidden" animate="visible">
                 <div className="bg-muted rounded-lg p-4 h-full space-y-2">
-                  <div className={cn("text-sm font-semibold", strat.color)}>{strat.name}</div>
+                  <div className={cn("text-sm font-medium", strat.color)}>{strat.name}</div>
                   <p className="text-[11px] text-muted-foreground leading-relaxed">{strat.description}</p>
                   <div className="space-y-1 pt-1">
                     <div className="flex justify-between text-xs">
@@ -1500,7 +1500,7 @@ function RiskManagementTab() {
               <div key={r.rule} className="flex gap-3 bg-muted/50 rounded-lg p-3">
                 <div className="w-1 rounded-full bg-primary flex-shrink-0" />
                 <div>
-                  <div className="text-xs font-semibold text-foreground mb-0.5">{r.rule}</div>
+                  <div className="text-xs font-medium text-foreground mb-0.5">{r.rule}</div>
                   <div className="text-[11px] text-muted-foreground leading-relaxed">{r.detail}</div>
                 </div>
               </div>
@@ -1562,7 +1562,7 @@ export default function ForexPage() {
           >
             <span className={chip.color}>{chip.icon}</span>
             <span className="text-muted-foreground">{chip.label}</span>
-            <span className={cn("font-semibold", chip.color)}>{chip.value}</span>
+            <span className={cn("font-medium", chip.color)}>{chip.value}</span>
           </div>
         ))}
       </motion.div>

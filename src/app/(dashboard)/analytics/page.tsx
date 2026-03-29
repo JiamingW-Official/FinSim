@@ -901,15 +901,15 @@ export default function AnalyticsPage() {
 
   return (
     <div className="min-h-screen bg-background text-foreground">
-      {/* Header */}
-      <div className="border-b border-border bg-background/80 backdrop-blur sticky top-0 z-10">
+      {/* HERO Header */}
+      <div className="border-b border-border border-l-4 border-l-primary bg-background/80 backdrop-blur sticky top-0 z-10">
         <div className="px-6 py-4 flex items-center justify-between">
           <div className="flex items-center gap-3">
             <div className="w-8 h-8 rounded-lg bg-indigo-500/20 flex items-center justify-center">
               <Cpu className="w-4 h-4 text-indigo-400" />
             </div>
             <div>
-              <h1 className="text-base font-semibold text-foreground">Advanced Analytics</h1>
+              <h1 className="text-lg font-semibold text-foreground">Advanced Analytics</h1>
               <p className="text-xs text-muted-foreground">Institutional-grade portfolio intelligence</p>
             </div>
           </div>
@@ -972,7 +972,7 @@ export default function AnalyticsPage() {
               <Card className="bg-card border-border p-4">
                 <div className="flex items-center justify-between mb-3">
                   <div>
-                    <h3 className="text-sm font-semibold text-foreground">Return Decomposition Waterfall</h3>
+                    <h3 className="text-sm font-medium text-foreground">Return Decomposition Waterfall</h3>
                     <p className="text-xs text-muted-foreground mt-0.5">Total return broken into alpha sources and drags</p>
                   </div>
                   <Badge className="bg-green-500/15 text-green-400 border-0 text-xs">
@@ -1003,14 +1003,14 @@ export default function AnalyticsPage() {
             >
               <div className="lg:col-span-2">
                 <Card className="bg-card border-border p-4 h-full">
-                  <h3 className="text-sm font-semibold text-foreground mb-1">Rolling 12-Month Alpha</h3>
+                  <h3 className="text-sm font-medium text-foreground mb-1">Rolling 12-Month Alpha</h3>
                   <p className="text-xs text-muted-foreground mb-3">Annualized excess return vs benchmark (252 trading days)</p>
                   <RollingAlphaChart data={data.rollingAlpha} />
                 </Card>
               </div>
               <div>
                 <Card className="bg-card border-border p-4 h-full">
-                  <h3 className="text-sm font-semibold text-foreground mb-1">IC Analysis</h3>
+                  <h3 className="text-sm font-medium text-foreground mb-1">IC Analysis</h3>
                   <p className="text-xs text-muted-foreground mb-3">Predicted vs actual returns scatter</p>
                   <ICScatterPlot data={data.icScatter} />
                   <div className="mt-2 text-xs text-muted-foreground text-center">
@@ -1027,7 +1027,7 @@ export default function AnalyticsPage() {
               transition={{ duration: 0.3, delay: 0.15 }}
             >
               <Card className="bg-card border-border p-4">
-                <h3 className="text-sm font-semibold text-foreground mb-3">Baseball-Style Performance Metrics</h3>
+                <h3 className="text-sm font-medium text-foreground mb-3">Baseball-Style Performance Metrics</h3>
                 <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
                   {[
                     {
@@ -1105,7 +1105,7 @@ export default function AnalyticsPage() {
                 transition={{ duration: 0.3, delay: 0.05 }}
               >
                 <Card className="bg-card border-border p-4 h-full">
-                  <h3 className="text-sm font-semibold text-foreground mb-1">Portfolio Variance Decomposition</h3>
+                  <h3 className="text-sm font-medium text-foreground mb-1">Portfolio Variance Decomposition</h3>
                   <p className="text-xs text-muted-foreground mb-4">Sources of total portfolio risk</p>
                   <div className="flex items-center gap-6">
                     <div className="w-[200px] shrink-0">
@@ -1119,7 +1119,7 @@ export default function AnalyticsPage() {
                           <div className="flex-1 max-w-[80px]">
                             <Progress value={s.pct} className="h-1.5 bg-muted" />
                           </div>
-                          <span className="text-xs font-semibold text-foreground tabular-nums w-8 text-right">
+                          <span className="text-xs font-medium text-foreground tabular-nums w-8 text-right">
                             {s.pct}%
                           </span>
                         </div>
@@ -1136,7 +1136,7 @@ export default function AnalyticsPage() {
                 transition={{ duration: 0.3, delay: 0.1 }}
               >
                 <Card className="bg-card border-border p-4 h-full">
-                  <h3 className="text-sm font-semibold text-foreground mb-1">Factor Beta Loadings</h3>
+                  <h3 className="text-sm font-medium text-foreground mb-1">Factor Beta Loadings</h3>
                   <p className="text-xs text-muted-foreground mb-3">t-stat &gt; 2.0 indicates statistical significance</p>
                   <div className="overflow-x-auto">
                     <table className="w-full text-xs">
@@ -1191,7 +1191,7 @@ export default function AnalyticsPage() {
               transition={{ duration: 0.3, delay: 0.15 }}
             >
               <Card className="bg-card border-border p-4">
-                <h3 className="text-sm font-semibold text-foreground mb-1">Tracking Error Decomposition</h3>
+                <h3 className="text-sm font-medium text-foreground mb-1">Tracking Error Decomposition</h3>
                 <p className="text-xs text-muted-foreground mb-4">
                   Active risk (TE = 4.2% annualized) broken into sources vs benchmark
                 </p>
@@ -1229,12 +1229,12 @@ export default function AnalyticsPage() {
               <Card className="bg-card border-border p-4">
                 <div className="flex items-center justify-between mb-4">
                   <div>
-                    <h3 className="text-sm font-semibold text-foreground">Trading Behavior Scorecards</h3>
+                    <h3 className="text-sm font-medium text-foreground">Trading Behavior Scorecards</h3>
                     <p className="text-xs text-muted-foreground mt-0.5">Derived from simulated trade history analysis</p>
                   </div>
                   <div className="text-right">
                     <div className="text-xs text-muted-foreground">Behavioral Alpha Lost</div>
-                    <div className="text-lg font-bold text-red-400 tabular-nums">
+                    <div className="text-lg font-medium text-red-400 tabular-nums">
                       {data.behavioralAlphaLost.toFixed(1)}%
                     </div>
                   </div>
@@ -1303,7 +1303,7 @@ export default function AnalyticsPage() {
               <Card className="bg-card border-border p-4">
                 <div className="flex items-center gap-2 mb-4">
                   <AlertTriangle className="w-4 h-4 text-amber-400" />
-                  <h3 className="text-sm font-semibold text-foreground">Cognitive Bias Detection Dashboard</h3>
+                  <h3 className="text-sm font-medium text-foreground">Cognitive Bias Detection Dashboard</h3>
                 </div>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                   {biasItems.map((bias) => {
@@ -1323,7 +1323,7 @@ export default function AnalyticsPage() {
                         <div className="flex-1 min-w-0">
                           <div className="flex items-center gap-2 mb-1">
                             <Icon className="w-3.5 h-3.5 text-muted-foreground" />
-                            <span className="text-xs font-semibold text-foreground">{bias.label}</span>
+                            <span className="text-xs font-medium text-foreground">{bias.label}</span>
                             <Badge
                               className={cn(
                                 "text-[11px] border-0 px-1.5 py-0 ml-auto",
@@ -1340,7 +1340,7 @@ export default function AnalyticsPage() {
                           <p className="text-xs text-muted-foreground leading-tight mb-2">{bias.description}</p>
                           <div className="rounded bg-indigo-500/10 border border-indigo-800/40 p-2">
                             <p className="text-xs text-indigo-300 leading-tight">
-                              <span className="font-semibold">Fix: </span>
+                              <span className="font-medium">Fix: </span>
                               {bias.recommendation}
                             </p>
                           </div>
@@ -1359,7 +1359,7 @@ export default function AnalyticsPage() {
               transition={{ duration: 0.3, delay: 0.16 }}
             >
               <Card className="bg-card border-border p-4">
-                <h3 className="text-sm font-semibold text-foreground mb-3">Behavioral Alpha Estimate</h3>
+                <h3 className="text-sm font-medium text-foreground mb-3">Behavioral Alpha Estimate</h3>
                 <div className="grid grid-cols-3 gap-3">
                   {[
                     {
@@ -1383,7 +1383,7 @@ export default function AnalyticsPage() {
                   ].map((item) => (
                     <div key={item.label} className="rounded-lg bg-background border border-red-900/30 p-3">
                       <div className="text-xs text-muted-foreground uppercase tracking-wide mb-1">{item.label}</div>
-                      <div className={cn("text-xl font-bold tabular-nums", item.color)}>{item.value}</div>
+                      <div className={cn("text-xl font-medium tabular-nums", item.color)}>{item.value}</div>
                       <p className="text-xs text-muted-foreground mt-1 leading-tight">{item.description}</p>
                     </div>
                   ))}
@@ -1391,7 +1391,7 @@ export default function AnalyticsPage() {
                 <div className="mt-3 rounded-lg bg-red-500/10 border border-red-800/40 p-3 flex items-center gap-3">
                   <AlertTriangle className="w-4 h-4 text-red-400 shrink-0" />
                   <div>
-                    <p className="text-xs font-semibold text-red-300">
+                    <p className="text-xs font-medium text-red-300">
                       Total behavioral alpha drag: {data.behavioralAlphaLost.toFixed(1)}% annualized
                     </p>
                     <p className="text-xs text-muted-foreground mt-0.5">
@@ -1424,7 +1424,7 @@ export default function AnalyticsPage() {
               transition={{ duration: 0.3, delay: 0.05 }}
             >
               <Card className="bg-card border-border p-4">
-                <h3 className="text-sm font-semibold text-foreground mb-1">Peak-to-Trough Drawdown Analysis</h3>
+                <h3 className="text-sm font-medium text-foreground mb-1">Peak-to-Trough Drawdown Analysis</h3>
                 <p className="text-xs text-muted-foreground mb-3">Portfolio vs benchmark drawdown profile over 252-day window</p>
                 <DrawdownChart actual={data.equityCurveActual} benchmark={data.equityCurveHedged} />
               </Card>
@@ -1438,7 +1438,7 @@ export default function AnalyticsPage() {
                 transition={{ duration: 0.3, delay: 0.1 }}
               >
                 <Card className="bg-card border-border p-4 h-full">
-                  <h3 className="text-sm font-semibold text-foreground mb-3">Top 5 Drawdown Events</h3>
+                  <h3 className="text-sm font-medium text-foreground mb-3">Top 5 Drawdown Events</h3>
                   <div className="space-y-2">
                     {data.drawdownEvents.map((evt, i) => (
                       <button
@@ -1455,7 +1455,7 @@ export default function AnalyticsPage() {
                           <div className="flex items-center gap-2">
                             <span
                               className={cn(
-                                "text-xs font-bold w-5 h-5 rounded flex items-center justify-center",
+                                "text-xs font-medium w-5 h-5 rounded flex items-center justify-center",
                                 selectedDrawdown === i ? "bg-indigo-600 text-foreground" : "bg-muted text-muted-foreground"
                               )}
                             >
@@ -1464,7 +1464,7 @@ export default function AnalyticsPage() {
                             <span className="text-xs font-medium text-foreground">{evt.label}</span>
                           </div>
                           <div className="flex items-center gap-2">
-                            <span className="text-xs font-bold text-red-400 tabular-nums">{evt.maxLoss.toFixed(1)}%</span>
+                            <span className="text-xs font-medium text-red-400 tabular-nums">{evt.maxLoss.toFixed(1)}%</span>
                             <ChevronRight
                               className={cn(
                                 "w-3 h-3 transition-transform",
@@ -1504,7 +1504,7 @@ export default function AnalyticsPage() {
                     <Card className="bg-card border-border p-4 h-full">
                       <div className="flex items-center gap-2 mb-3">
                         <TrendingDown className="w-4 h-4 text-red-400" />
-                        <h3 className="text-sm font-semibold text-foreground">{selectedDD.label}</h3>
+                        <h3 className="text-sm font-medium text-foreground">{selectedDD.label}</h3>
                       </div>
                       <div className="grid grid-cols-2 gap-2 mb-4">
                         {[
@@ -1515,7 +1515,7 @@ export default function AnalyticsPage() {
                         ].map((m) => (
                           <div key={m.label} className="rounded bg-background border border-border p-2">
                             <div className="text-xs text-muted-foreground">{m.label}</div>
-                            <div className={cn("text-sm font-semibold mt-0.5", m.color)}>{m.value}</div>
+                            <div className={cn("text-sm font-medium mt-0.5", m.color)}>{m.value}</div>
                           </div>
                         ))}
                       </div>
@@ -1554,7 +1554,7 @@ export default function AnalyticsPage() {
               transition={{ duration: 0.3, delay: 0.2 }}
             >
               <Card className="bg-card border-border p-4">
-                <h3 className="text-sm font-semibold text-foreground mb-1">Drawdown Clustering by Market Regime</h3>
+                <h3 className="text-sm font-medium text-foreground mb-1">Drawdown Clustering by Market Regime</h3>
                 <p className="text-xs text-muted-foreground mb-3">
                   PTSD (Peak-to-Subsequent-Drawdown) metric: 2.4× — you are taking more risk than realized max loss suggests
                 </p>
@@ -1570,7 +1570,7 @@ export default function AnalyticsPage() {
                         <div className="w-2 h-2 rounded-full" style={{ backgroundColor: r.color }} />
                         <span className="text-xs text-muted-foreground">{r.regime}</span>
                       </div>
-                      <div className="text-lg font-bold text-red-400 tabular-nums">−{r.avgLoss.toFixed(1)}%</div>
+                      <div className="text-lg font-medium text-red-400 tabular-nums">−{r.avgLoss.toFixed(1)}%</div>
                       <div className="text-xs text-muted-foreground mt-0.5">avg max loss</div>
                       <div className="text-xs text-muted-foreground mt-1">{r.count} event{r.count > 1 ? "s" : ""}</div>
                     </div>
@@ -1590,7 +1590,7 @@ export default function AnalyticsPage() {
               <Card className="bg-card border-border p-4">
                 <div className="flex items-center justify-between mb-4">
                   <div>
-                    <h3 className="text-sm font-semibold text-foreground">What-If Machine — Scenario Equity Curves</h3>
+                    <h3 className="text-sm font-medium text-foreground">What-If Machine — Scenario Equity Curves</h3>
                     <p className="text-xs text-muted-foreground mt-0.5">Toggle scenarios to compare against your actual performance</p>
                   </div>
                   <div className="flex flex-wrap gap-1.5">
@@ -1628,7 +1628,7 @@ export default function AnalyticsPage() {
               transition={{ duration: 0.3, delay: 0.08 }}
             >
               <Card className="bg-card border-border p-4">
-                <h3 className="text-sm font-semibold text-foreground mb-3">Scenario Return Comparison</h3>
+                <h3 className="text-sm font-medium text-foreground mb-3">Scenario Return Comparison</h3>
                 <div className="overflow-x-auto">
                   <table className="w-full text-xs">
                     <thead>
@@ -1645,8 +1645,8 @@ export default function AnalyticsPage() {
                       <tr className="border-b border-border bg-muted/20">
                         <td className="py-2.5">
                           <div className="flex items-center gap-2">
-                            <div className="w-2 h-2 rounded-full bg-gray-300" />
-                            <span className="font-semibold text-foreground">Actual</span>
+                            <div className="w-2 h-2 rounded-full bg-muted-foreground" />
+                            <span className="font-medium text-foreground">Actual</span>
                           </div>
                         </td>
                         <td className="py-2.5 text-right tabular-nums text-foreground">${actualFinal.toFixed(2)}</td>
@@ -1670,7 +1670,7 @@ export default function AnalyticsPage() {
                             </td>
                             <td className="py-2.5 text-right tabular-nums text-foreground">${s.final.toFixed(2)}</td>
                             <td className="py-2.5 text-right tabular-nums text-foreground">{ret}%</td>
-                            <td className={cn("py-2.5 text-right tabular-nums font-semibold", pos ? "text-green-400" : "text-red-400")}>
+                            <td className={cn("py-2.5 text-right tabular-nums font-medium", pos ? "text-green-400" : "text-red-400")}>
                               {pos ? "+" : ""}{diff.toFixed(1)}%
                             </td>
                             <td className="py-2.5 text-muted-foreground text-xs">{s.label}</td>
@@ -1690,7 +1690,7 @@ export default function AnalyticsPage() {
               transition={{ duration: 0.3, delay: 0.16 }}
             >
               <Card className="bg-card border-border p-4">
-                <h3 className="text-sm font-semibold text-foreground mb-3">Regret Minimization — Key Decision Impact</h3>
+                <h3 className="text-sm font-medium text-foreground mb-3">Regret Minimization — Key Decision Impact</h3>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
                   {[
                     {
@@ -1742,7 +1742,7 @@ export default function AnalyticsPage() {
                         </Badge>
                         <span
                           className={cn(
-                            "text-sm font-bold tabular-nums",
+                            "text-sm font-medium tabular-nums",
                             item.type === "cost" ? "text-red-400" : "text-green-400"
                           )}
                         >
@@ -1757,8 +1757,8 @@ export default function AnalyticsPage() {
                 <div className="mt-3 rounded-lg bg-indigo-500/10 border border-indigo-800/40 p-3">
                   <div className="flex items-center gap-2 mb-1">
                     <Cpu className="w-3.5 h-3.5 text-indigo-400" />
-                    <span className="text-xs font-semibold text-indigo-300">Optimal Hindsight Strategy</span>
-                    <span className="text-xs font-bold text-green-400 ml-auto tabular-nums">
+                    <span className="text-xs font-medium text-indigo-300">Optimal Hindsight Strategy</span>
+                    <span className="text-xs font-medium text-green-400 ml-auto tabular-nums">
                       +{(((data.equityCurveOptimal[data.equityCurveOptimal.length - 1] / 100 - 1) * 100)).toFixed(1)}% return
                     </span>
                   </div>

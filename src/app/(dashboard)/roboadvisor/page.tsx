@@ -310,7 +310,7 @@ function RoboLandscape() {
               <Card className="p-5 bg-card border-border">
                 <div className="flex items-start justify-between mb-3">
                   <div>
-                    <h3 className="font-semibold text-foreground" style={{ color: p.color }}>{p.name}</h3>
+                    <h3 className="font-medium text-foreground" style={{ color: p.color }}>{p.name}</h3>
                     <p className="text-xs text-muted-foreground mt-1">{p.description}</p>
                   </div>
                   <Badge style={{ backgroundColor: p.color + "30", color: p.color, borderColor: p.color + "60" }} variant="outline">
@@ -326,7 +326,7 @@ function RoboLandscape() {
                   ].map(({ label, val }) => (
                     <div key={label} className="bg-muted/50 rounded-lg p-3">
                       <p className="text-xs text-muted-foreground">{label}</p>
-                      <p className="text-sm font-semibold text-foreground mt-0.5">{val}</p>
+                      <p className="text-sm font-medium text-foreground mt-0.5">{val}</p>
                     </div>
                   ))}
                 </div>
@@ -431,7 +431,7 @@ function PortfolioConstruction() {
       {/* Risk Tolerance Slider */}
       <Card className="p-5 bg-card border-border">
         <div className="flex items-center justify-between mb-4">
-          <h3 className="text-sm font-semibold text-muted-foreground">Risk Tolerance</h3>
+          <h3 className="text-sm font-medium text-muted-foreground">Risk Tolerance</h3>
           <Badge variant="outline" className={cn(
             "border-current",
             riskTolerance < 33 ? "text-emerald-400" : riskTolerance < 66 ? "text-amber-400" : "text-red-400"
@@ -457,7 +457,7 @@ function PortfolioConstruction() {
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
         {/* Efficient Frontier SVG */}
         <Card className="p-5 bg-card border-border">
-          <h3 className="text-sm font-semibold text-muted-foreground mb-4">Efficient Frontier (MPT)</h3>
+          <h3 className="text-sm font-medium text-muted-foreground mb-4">Efficient Frontier (MPT)</h3>
           <svg viewBox={`0 0 ${W} ${H}`} className="w-full">
             {/* Grid lines */}
             {[3, 5, 7, 9].map((ret) => (
@@ -537,7 +537,7 @@ function PortfolioConstruction() {
 
         {/* Allocation Pie */}
         <Card className="p-5 bg-card border-border">
-          <h3 className="text-sm font-semibold text-muted-foreground mb-4">Recommended Allocation</h3>
+          <h3 className="text-sm font-medium text-muted-foreground mb-4">Recommended Allocation</h3>
           <div className="flex items-center gap-6">
             <svg viewBox="0 0 120 120" className="w-28 h-28 flex-shrink-0">
               {pieSlices.map((sl) => (
@@ -551,7 +551,7 @@ function PortfolioConstruction() {
                     <span className="w-3 h-3 rounded-sm flex-shrink-0" style={{ backgroundColor: al.color }} />
                     <span className="text-sm text-muted-foreground">{al.label}</span>
                   </div>
-                  <span className="text-sm font-semibold text-foreground">{al.pct}%</span>
+                  <span className="text-sm font-medium text-foreground">{al.pct}%</span>
                 </div>
               ))}
             </div>
@@ -563,7 +563,7 @@ function PortfolioConstruction() {
             </div>
             <div className="bg-muted/50 rounded-lg p-3">
               <p className="text-xs text-muted-foreground">Expected Risk (σ)</p>
-              <p className="text-base font-bold text-amber-400">{fmtPct(currentPortfolio.risk)}</p>
+              <p className="text-base font-medium text-amber-400">{fmtPct(currentPortfolio.risk)}</p>
             </div>
           </div>
         </Card>
@@ -571,7 +571,7 @@ function PortfolioConstruction() {
 
       {/* Rebalancing Rules */}
       <Card className="p-5 bg-card border-border">
-        <h3 className="text-sm font-semibold text-muted-foreground mb-4">Rebalancing Rules & Tax-Loss Harvesting Automation</h3>
+        <h3 className="text-sm font-medium text-muted-foreground mb-4">Rebalancing Rules & Tax-Loss Harvesting Automation</h3>
         <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
           {[
             {
@@ -595,7 +595,7 @@ function PortfolioConstruction() {
           ].map(({ icon: Icon, color, title, desc }) => (
             <div key={title} className="bg-muted/50 rounded-lg p-4">
               <Icon className={cn("w-5 h-5 mb-2", color)} />
-              <p className="text-sm font-semibold text-foreground mb-1">{title}</p>
+              <p className="text-sm font-medium text-foreground mb-1">{title}</p>
               <p className="text-xs text-muted-foreground leading-relaxed">{desc}</p>
             </div>
           ))}
@@ -655,12 +655,12 @@ function CostComparison() {
     <div className="space-y-6">
       {/* Controls */}
       <Card className="p-5 bg-card border-border">
-        <h3 className="text-sm font-semibold text-muted-foreground mb-4">Simulation Parameters</h3>
+        <h3 className="text-sm font-medium text-muted-foreground mb-4">Simulation Parameters</h3>
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
           <div>
             <div className="flex justify-between mb-2">
               <label className="text-xs text-muted-foreground">Initial Investment</label>
-              <span className="text-xs font-semibold text-foreground">{fmtDollars(initialAmount)}</span>
+              <span className="text-xs font-medium text-foreground">{fmtDollars(initialAmount)}</span>
             </div>
             <Slider
               value={[initialAmount]}
@@ -673,7 +673,7 @@ function CostComparison() {
           <div>
             <div className="flex justify-between mb-2">
               <label className="text-xs text-muted-foreground">Annual Return (Gross)</label>
-              <span className="text-xs font-semibold text-foreground">{fmtPct(annualReturn, 1)}</span>
+              <span className="text-xs font-medium text-foreground">{fmtPct(annualReturn, 1)}</span>
             </div>
             <Slider
               value={[annualReturn]}
@@ -688,7 +688,7 @@ function CostComparison() {
 
       {/* Cost Drag Chart */}
       <Card className="p-5 bg-card border-border">
-        <h3 className="text-sm font-semibold text-muted-foreground mb-4">30-Year Compounding Cost Drag</h3>
+        <h3 className="text-sm font-medium text-muted-foreground mb-4">30-Year Compounding Cost Drag</h3>
         <svg viewBox={`0 0 ${W} ${H}`} className="w-full">
           {/* Grid */}
           {[0.25, 0.5, 0.75, 1].map((t) => {
@@ -741,7 +741,7 @@ function CostComparison() {
               <span className="w-3 h-3 rounded-full flex-shrink-0" style={{ backgroundColor: sc.color }} />
               <p className="text-xs text-muted-foreground">{sc.label}</p>
             </div>
-            <p className="text-xl font-bold text-foreground">{fmtDollars(sc.final)}</p>
+            <p className="text-xl font-medium text-foreground">{fmtDollars(sc.final)}</p>
             <p className="text-xs text-muted-foreground mt-1">30-year terminal value</p>
           </Card>
         ))}
@@ -752,7 +752,7 @@ function CostComparison() {
         <Card className="p-4 bg-red-950/30 border-red-900/40">
           <div className="flex items-center gap-2 mb-1">
             <AlertTriangle className="w-4 h-4 text-red-400" />
-            <p className="text-xs font-semibold text-red-400">Human Advisor Cost Drag</p>
+            <p className="text-xs font-medium text-red-400">Human Advisor Cost Drag</p>
           </div>
           <p className="text-2xl font-bold text-red-300">{fmtDollars(costDrag)}</p>
           <p className="text-xs text-muted-foreground mt-1">Lost to fees vs DIY over 30 years on {fmtDollars(initialAmount)} at {annualReturn}% gross</p>
@@ -760,7 +760,7 @@ function CostComparison() {
         <Card className="p-4 bg-emerald-950/30 border-emerald-900/40">
           <div className="flex items-center gap-2 mb-1">
             <CheckCircle className="w-4 h-4 text-emerald-400" />
-            <p className="text-xs font-semibold text-emerald-400">Robo vs Human Savings</p>
+            <p className="text-xs font-medium text-emerald-400">Robo vs Human Savings</p>
           </div>
           <p className="text-2xl font-bold text-emerald-300">{fmtDollars(roboSavings)}</p>
           <p className="text-xs text-muted-foreground mt-1">Saved by choosing robo over human advisor over 30 years</p>
@@ -871,9 +871,9 @@ function SmartFeatures() {
               <Icon className={cn("w-6 h-6", color)} />
               <Badge variant="outline" className="text-xs border-border text-muted-foreground">{badge}</Badge>
             </div>
-            <h3 className="font-semibold text-foreground mb-0.5">{title}</h3>
+            <h3 className="font-medium text-foreground mb-0.5">{title}</h3>
             <div className="flex items-baseline gap-1.5 mb-2">
-              <span className={cn("text-xl font-bold", color)}>{stat}</span>
+              <span className={cn("text-xl font-medium", color)}>{stat}</span>
               <span className="text-xs text-muted-foreground">{statLabel}</span>
             </div>
             <p className="text-xs text-muted-foreground leading-relaxed">{desc}</p>
@@ -883,7 +883,7 @@ function SmartFeatures() {
 
       {/* Risk Questionnaire */}
       <Card className="p-5 bg-card border-border">
-        <h3 className="text-sm font-semibold text-muted-foreground mb-4">Risk Profile Questionnaire</h3>
+        <h3 className="text-sm font-medium text-muted-foreground mb-4">Risk Profile Questionnaire</h3>
         <div className="space-y-5">
           {QUIZ_QUESTIONS.map((q, qi) => (
             <div key={qi}>
@@ -929,8 +929,8 @@ function SmartFeatures() {
               className="mt-5 p-4 bg-muted/60 rounded-xl border border-border"
             >
               <div className="flex items-center justify-between mb-3">
-                <span className="text-sm font-semibold text-foreground">Your Risk Profile</span>
-                <span className={cn("text-sm font-bold", riskLabel.color)}>{riskLabel.label}</span>
+                <span className="text-sm font-medium text-foreground">Your Risk Profile</span>
+                <span className={cn("text-sm font-medium", riskLabel.color)}>{riskLabel.label}</span>
               </div>
               <div className="w-full bg-muted rounded-full h-2 mb-2">
                 <motion.div
@@ -1022,7 +1022,7 @@ function AIAndFuture() {
         ].map(({ icon: Icon, color, title, desc }) => (
           <Card key={title} className="p-4 bg-card border-border">
             <Icon className={cn("w-6 h-6 mb-2", color)} />
-            <p className="text-sm font-semibold text-foreground mb-1.5">{title}</p>
+            <p className="text-sm font-medium text-foreground mb-1.5">{title}</p>
             <p className="text-xs text-muted-foreground leading-relaxed">{desc}</p>
           </Card>
         ))}
@@ -1030,7 +1030,7 @@ function AIAndFuture() {
 
       {/* Adoption Timeline */}
       <Card className="p-5 bg-card border-border">
-        <h3 className="text-sm font-semibold text-muted-foreground mb-5">Robo-Advisor Adoption Timeline</h3>
+        <h3 className="text-sm font-medium text-muted-foreground mb-5">Robo-Advisor Adoption Timeline</h3>
         <div className="relative">
           {/* Spine */}
           <div className="absolute left-6 top-0 bottom-0 w-px bg-muted" />
@@ -1045,7 +1045,7 @@ function AIAndFuture() {
               >
                 <div
                   className={cn(
-                    "w-12 h-12 rounded-full flex items-center justify-center text-xs font-bold flex-shrink-0 border-2 relative z-10",
+                    "w-12 h-12 rounded-full flex items-center justify-center text-xs font-medium flex-shrink-0 border-2 relative z-10",
                     ev.status === "past"
                       ? "bg-muted border-border text-muted-foreground"
                       : ev.status === "current"
@@ -1059,7 +1059,7 @@ function AIAndFuture() {
                   <div className="flex items-center gap-2 flex-wrap">
                     <p
                       className={cn(
-                        "text-sm font-semibold",
+                        "text-sm font-medium",
                         ev.status === "past"
                           ? "text-muted-foreground"
                           : ev.status === "current"
@@ -1089,7 +1089,7 @@ function AIAndFuture() {
         <div className="flex items-start gap-3">
           <Info className="w-5 h-5 text-primary mt-0.5 flex-shrink-0" />
           <div>
-            <h3 className="text-sm font-semibold text-foreground mb-2">Research Insight: Do Robos Outperform?</h3>
+            <h3 className="text-sm font-medium text-foreground mb-2">Research Insight: Do Robos Outperform?</h3>
             <p className="text-xs text-muted-foreground leading-relaxed">
               DALBAR research shows average investor underperforms the S&P 500 by ~1.5% annually due to behavioral errors.
               Robo-advisors eliminate panic selling and forced rebalancing, closing a significant portion of this gap.
@@ -1103,7 +1103,7 @@ function AIAndFuture() {
                 { label: "Behavioral alpha", val: "+1.5%/yr", color: "text-primary" },
               ].map(({ label, val, color }) => (
                 <div key={label} className="bg-muted/50 rounded-lg p-3 text-center">
-                  <p className={cn("text-base font-bold", color)}>{val}</p>
+                  <p className={cn("text-base font-medium", color)}>{val}</p>
                   <p className="text-xs text-muted-foreground mt-0.5">{label}</p>
                 </div>
               ))}

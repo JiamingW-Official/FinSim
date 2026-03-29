@@ -699,7 +699,7 @@ function MarketDataPanel() {
                 <td className="py-2 px-3 text-foreground font-medium">{row.name}</td>
                 <td className="py-2 px-3">
                   <span
-                    className="inline-block px-2 py-0.5 rounded text-xs font-bold"
+                    className="inline-block px-2 py-0.5 rounded text-xs font-medium"
                     style={{ background: tranche.color, color: tranche.textColor }}
                   >
                     {row.rating}
@@ -771,7 +771,7 @@ export default function StructuredCreditPage() {
       >
         <div className="flex items-start justify-between gap-4">
           <div>
-            <h1 className="text-2xl font-bold flex items-center gap-2">
+            <h1 className="text-xl font-bold flex items-center gap-2">
               <Layers className="w-6 h-6 text-primary" />
               Structured Credit & CLOs
             </h1>
@@ -798,7 +798,7 @@ export default function StructuredCreditPage() {
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.4, delay: 0.1 }}
-        className="grid grid-cols-2 md:grid-cols-4 gap-3"
+        className="grid grid-cols-2 md:grid-cols-4 gap-3 border-l-4 border-l-primary p-6 rounded-lg bg-card/40"
       >
         {metrics.map((m) => (
           <StatCard key={m.label} {...m} />
@@ -911,7 +911,7 @@ export default function StructuredCreditPage() {
                     ].map(({ label, value }) => (
                       <div key={label} className="rounded-lg border border-border bg-muted/20 p-2 text-center">
                         <div className="text-xs text-muted-foreground">{label}</div>
-                        <div className="text-sm font-bold text-foreground">{value}</div>
+                        <div className="text-sm font-medium text-foreground">{value}</div>
                       </div>
                     ))}
                   </div>
@@ -1037,7 +1037,7 @@ export default function StructuredCreditPage() {
                     { n: 7, step: "Equity Residual Distribution", color: "text-primary" },
                   ].map(({ n, step, color }) => (
                     <div key={n} className="flex items-center gap-2">
-                      <span className="w-5 h-5 rounded-full bg-muted flex items-center justify-center text-xs font-bold text-foreground flex-shrink-0">
+                      <span className="w-5 h-5 rounded-full bg-muted flex items-center justify-center text-xs font-medium text-foreground flex-shrink-0">
                         {n}
                       </span>
                       <span className={color}>{step}</span>
@@ -1139,7 +1139,7 @@ export default function StructuredCreditPage() {
                       <Icon className={`w-4 h-4 ${color} flex-shrink-0`} />
                       <div className="flex-1">
                         <div className="text-xs text-muted-foreground">{title}</div>
-                        <div className="font-bold text-foreground">{value}</div>
+                        <div className="font-medium text-foreground">{value}</div>
                       </div>
                       <div className="text-xs text-muted-foreground text-right">{desc}</div>
                     </div>

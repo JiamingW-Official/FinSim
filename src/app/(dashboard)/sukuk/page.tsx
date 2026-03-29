@@ -781,7 +781,7 @@ function ShariahTab() {
         <div className="rounded-xl border border-border bg-muted/40 p-4">
           <div className="flex items-center gap-2 mb-2">
             <Scale className="h-4 w-4 text-primary" />
-            <span className="font-semibold text-foreground text-sm">Shariah Board Role</span>
+            <span className="font-medium text-foreground text-sm">Shariah Board Role</span>
           </div>
           <ul className="space-y-1.5 text-xs text-muted-foreground">
             <li>• Approve all product structures before issuance</li>
@@ -794,7 +794,7 @@ function ShariahTab() {
         <div className="rounded-xl border border-border bg-muted/40 p-4">
           <div className="flex items-center gap-2 mb-2">
             <BookOpen className="h-4 w-4 text-primary" />
-            <span className="font-semibold text-foreground text-sm">AAOIFI Standards</span>
+            <span className="font-medium text-foreground text-sm">AAOIFI Standards</span>
           </div>
           <ul className="space-y-1.5 text-xs text-muted-foreground">
             <li>• Accounting &amp; Auditing Organization for Islamic Financial Institutions</li>
@@ -818,7 +818,7 @@ function StructuresTab() {
   return (
     <div className="space-y-6">
       <div>
-        <h2 className="text-lg font-semibold text-foreground mb-1">Sukuk Structure Types</h2>
+        <h2 className="text-lg font-medium text-foreground mb-1">Sukuk Structure Types</h2>
         <p className="text-sm text-muted-foreground">Different underlying contracts produce different sukuk structures. Each has distinct Shariah requirements, risk profiles, and market uses.</p>
       </div>
 
@@ -876,7 +876,7 @@ function StructuresTab() {
           {/* Pros / Cons */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             <div className="rounded-xl border border-emerald-800/40 bg-emerald-900/10 p-4">
-              <p className="text-xs text-emerald-400 uppercase tracking-wide font-semibold mb-2">Advantages</p>
+              <p className="text-xs text-emerald-400 uppercase tracking-wide font-medium mb-2">Advantages</p>
               <ul className="space-y-1.5">
                 {structure.pros.map((pro) => (
                   <li key={pro} className="flex items-start gap-2 text-xs text-muted-foreground">
@@ -887,7 +887,7 @@ function StructuresTab() {
               </ul>
             </div>
             <div className="rounded-xl border border-red-800/40 bg-red-900/10 p-4">
-              <p className="text-xs text-red-400 uppercase tracking-wide font-semibold mb-2">Limitations</p>
+              <p className="text-xs text-red-400 uppercase tracking-wide font-medium mb-2">Limitations</p>
               <ul className="space-y-1.5">
                 {structure.cons.map((con) => (
                   <li key={con} className="flex items-start gap-2 text-xs text-muted-foreground">
@@ -937,7 +937,7 @@ function MarketTab() {
   return (
     <div className="space-y-6">
       <div>
-        <h2 className="text-lg font-semibold text-foreground mb-1">Global Sukuk Market Overview</h2>
+        <h2 className="text-lg font-medium text-foreground mb-1">Global Sukuk Market Overview</h2>
         <p className="text-sm text-muted-foreground">The global sukuk market has grown from ~$116B in 2015 to ~$816B outstanding in 2024, driven by GCC sovereign issuance and Southeast Asian corporate demand.</p>
       </div>
 
@@ -1074,7 +1074,7 @@ function ComparisonTab() {
   return (
     <div className="space-y-6">
       <div>
-        <h2 className="text-lg font-semibold text-foreground mb-1">Sukuk vs. Conventional Bonds</h2>
+        <h2 className="text-lg font-medium text-foreground mb-1">Sukuk vs. Conventional Bonds</h2>
         <p className="text-sm text-muted-foreground">While sukuk and bonds may appear similar as fixed-income instruments, fundamental differences in structure, ownership, and return mechanics distinguish them.</p>
       </div>
 
@@ -1126,7 +1126,7 @@ function ComparisonTab() {
         <div className="rounded-xl border border-border bg-muted/40 p-4">
           <div className="flex items-center gap-2 mb-3">
             <BarChart3 className="h-4 w-4 text-primary" />
-            <span className="text-sm font-semibold text-foreground">Liquidity Differences</span>
+            <span className="text-sm font-medium text-foreground">Liquidity Differences</span>
           </div>
           <div className="space-y-2 text-xs text-muted-foreground">
             <div className="flex justify-between border-b border-border/40 pb-1.5">
@@ -1154,7 +1154,7 @@ function ComparisonTab() {
         <div className="rounded-xl border border-border bg-muted/40 p-4">
           <div className="flex items-center gap-2 mb-3">
             <ArrowRightLeft className="h-4 w-4 text-primary" />
-            <span className="text-sm font-semibold text-foreground">Crossover Investor Flow</span>
+            <span className="text-sm font-medium text-foreground">Crossover Investor Flow</span>
           </div>
           <div className="space-y-3 text-xs text-muted-foreground">
             <div className="bg-card/50 rounded-lg p-3">
@@ -1222,7 +1222,7 @@ export default function SukukPage() {
         </motion.div>
 
         {/* Tabs */}
-        <Tabs defaultValue="shariah">
+        <Tabs defaultValue="shariah" className="mt-8">
           <TabsList className="grid grid-cols-4 w-full bg-muted/60 mb-6">
             <TabsTrigger value="shariah" className="text-xs flex items-center gap-1.5 data-[state=inactive]:hidden md:data-[state=inactive]:flex">
               <ShieldCheck className="h-3.5 w-3.5" />

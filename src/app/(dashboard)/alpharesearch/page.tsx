@@ -469,8 +469,8 @@ export default function AlphaResearchPage() {
           </div>
         </motion.div>
 
-        {/* Key Metrics */}
-        <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
+        {/* HERO — Key Metrics */}
+        <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 border-l-4 border-l-primary rounded-xl bg-card p-6">
           <MetricCard icon={Activity}    label="Avg IC (Mean)"          value={avgIC}       sub="Portfolio IC average"         color="#6366f1" delay={0.05} />
           <MetricCard icon={Target}      label="Avg IR"                 value={avgIR}       sub="Information Ratio avg"        color="#22c55e" delay={0.10} />
           <MetricCard icon={Clock}       label="Decay Half-Life"        value={`${avgHL}d`} sub="Days until IC halves"         color="#f59e0b" delay={0.15} />
@@ -611,7 +611,7 @@ export default function AlphaResearchPage() {
                         <m.icon className="w-4 h-4" style={{ color: m.color }} />
                       </div>
                       <div>
-                        <p className="text-lg font-bold" style={{ color: m.color }}>{m.value}</p>
+                        <p className="text-lg font-medium" style={{ color: m.color }}>{m.value}</p>
                         <p className="text-xs text-muted-foreground">{m.label}</p>
                         <p className="text-xs text-muted-foreground/60">{m.sub}</p>
                       </div>
@@ -743,7 +743,7 @@ export default function AlphaResearchPage() {
                           <div className="flex gap-2 items-center">
                             <Badge variant="outline" className="text-xs h-5">{row.freq}</Badge>
                             <Badge variant="outline" className="text-xs h-5 text-muted-foreground">{row.cost}</Badge>
-                            <span className="text-xs font-bold text-green-400">{row.net}</span>
+                            <span className="text-xs font-medium text-green-400">{row.net}</span>
                           </div>
                         </div>
                       ))}
@@ -769,7 +769,7 @@ export default function AlphaResearchPage() {
                         <m.icon className="w-4 h-4" style={{ color: m.color }} />
                       </div>
                       <div>
-                        <p className="text-xl font-bold" style={{ color: m.color }}>{m.value}</p>
+                        <p className="text-xl font-medium" style={{ color: m.color }}>{m.value}</p>
                         <p className="text-xs text-muted-foreground">{m.label}</p>
                         <p className="text-xs text-muted-foreground/60">{m.sub}</p>
                       </div>

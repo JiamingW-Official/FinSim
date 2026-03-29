@@ -663,7 +663,7 @@ function ValuationSummaryTab() {
               <span className="text-xs font-semibold text-foreground">{m.name}</span>
             </div>
             <div className="flex items-end gap-2">
-              <span className="text-xl font-bold" style={{ color: m.color }}>
+              <span className="text-xl font-medium" style={{ color: m.color }}>
                 ${m.mid.toFixed(1)}
               </span>
               <span className="text-xs text-muted-foreground mb-1">mid</span>
@@ -689,7 +689,7 @@ function ValuationSummaryTab() {
                 style={{ backgroundColor: VALUATION_METHODS[selectedMethod].color }}
               />
               <div>
-                <p className="text-sm font-semibold text-foreground mb-1">
+                <p className="text-sm font-medium text-foreground mb-1">
                   {VALUATION_METHODS[selectedMethod].name} — Methodology Notes
                 </p>
                 <p className="text-sm text-muted-foreground">
@@ -704,7 +704,7 @@ function ValuationSummaryTab() {
                     <div key={item.label} className="text-center p-2 rounded-lg bg-muted">
                       <p className="text-xs text-muted-foreground">{item.label}</p>
                       <p
-                        className="text-base font-bold"
+                        className="text-base font-medium"
                         style={{ color: VALUATION_METHODS[selectedMethod].color }}
                       >
                         {item.value}
@@ -730,14 +730,14 @@ function ValuationSummaryTab() {
                 <tr>
                   <th className="text-muted-foreground font-medium text-left p-2">WACC \ TGR</th>
                   {["2.0%", "2.5%", "3.0%", "3.5%", "4.0%"].map((tgr) => (
-                    <th key={tgr} className="text-muted-foreground font-semibold text-center p-2">{tgr}</th>
+                    <th key={tgr} className="text-muted-foreground font-medium text-center p-2">{tgr}</th>
                   ))}
                 </tr>
               </thead>
               <tbody>
                 {[8.0, 8.5, 9.0, 9.5, 10.0, 10.5].map((wacc, wi) => (
                   <tr key={wacc} className="border-t border-border">
-                    <td className="text-muted-foreground font-semibold p-2">{wacc.toFixed(1)}%</td>
+                    <td className="text-muted-foreground font-medium p-2">{wacc.toFixed(1)}%</td>
                     {[2.0, 2.5, 3.0, 3.5, 4.0].map((tgr, ti) => {
                       // Synthetic price: base 57.4, adjust by wacc/tgr
                       const base = 57.4;
@@ -750,7 +750,7 @@ function ValuationSummaryTab() {
                           key={tgr}
                           className={`text-center p-2 font-mono ${
                             isMiddle
-                              ? "bg-primary/20 text-primary font-bold"
+                              ? "bg-primary/20 text-primary font-medium"
                               : isHigh
                               ? "text-emerald-400"
                               : isLow
@@ -850,7 +850,7 @@ function ComparableCompaniesTab() {
                 ].map((row) => (
                   <div key={row.k} className="flex items-center justify-between">
                     <span className="text-xs text-muted-foreground">{row.k}</span>
-                    <span className={`text-sm font-bold font-mono ${row.color}`}>
+                    <span className={`text-sm font-medium font-mono ${row.color}`}>
                       {row.v.toFixed(1)}x
                     </span>
                   </div>
@@ -915,7 +915,7 @@ function ComparableCompaniesTab() {
                         <td
                           key={col.field}
                           className={`p-2 text-right font-mono ${
-                            isMed ? "text-primary font-bold" : "text-muted-foreground"
+                            isMed ? "text-primary font-medium" : "text-muted-foreground"
                           }`}
                         >
                           {col.fmt(val)}
@@ -926,13 +926,13 @@ function ComparableCompaniesTab() {
                 ))}
                 {/* Median row */}
                 <tr className="border-t-2 border-border bg-muted/30">
-                  <td className="p-2 text-primary font-bold" colSpan={2}>Median</td>
+                  <td className="p-2 text-primary font-medium" colSpan={2}>Median</td>
                   {cols.map((col) => {
                     const vals = COMPS_TABLE.map((c) => c[col.field] as number);
                     const med = median(vals);
                     const isNum = ["ev", "revenue", "ebitda"].includes(col.field);
                     return (
-                      <td key={col.field} className="p-2 text-right font-mono text-primary font-bold">
+                      <td key={col.field} className="p-2 text-right font-mono text-primary font-medium">
                         {isNum ? `$${med.toFixed(1)}B` : `${med.toFixed(1)}x`}
                       </td>
                     );
@@ -958,7 +958,7 @@ function ComparableCompaniesTab() {
             ].map((row) => (
               <div key={row.label} className="p-3 rounded-lg bg-muted border border-border">
                 <p className="text-xs text-muted-foreground mb-2">{row.label}</p>
-                <p className="text-lg font-bold text-foreground">{row.share}</p>
+                <p className="text-lg font-medium text-foreground">{row.share}</p>
                 <div className="flex items-center gap-2 mt-1">
                   <span className="text-xs text-muted-foreground">{row.implied} EV</span>
                   <Badge className="bg-emerald-500/20 text-emerald-300 border-emerald-500/30 text-xs">
@@ -1011,7 +1011,7 @@ function MAndAAccretionTab() {
           <div>
             <div className="flex items-center justify-between mb-2">
               <span className="text-xs text-muted-foreground">Synergy Capture Rate</span>
-              <span className="text-sm font-bold text-primary">{synergyCapture}%</span>
+              <span className="text-sm font-medium text-primary">{synergyCapture}%</span>
             </div>
             <Slider
               value={[synergyCapture]}
@@ -1029,7 +1029,7 @@ function MAndAAccretionTab() {
           <div>
             <div className="flex items-center justify-between mb-2">
               <span className="text-xs text-muted-foreground">Debt Financing Mix</span>
-              <span className="text-sm font-bold text-primary">{debtFinancing}% Debt / {100 - debtFinancing}% Equity</span>
+              <span className="text-sm font-medium text-primary">{debtFinancing}% Debt / {100 - debtFinancing}% Equity</span>
             </div>
             <Slider
               value={[debtFinancing]}
@@ -1057,14 +1057,14 @@ function MAndAAccretionTab() {
           <Card key={row.year} className="bg-card border-border">
             <CardContent className="pt-4 pb-3">
               <div className="flex items-center justify-between mb-3">
-                <span className="text-xs font-semibold text-muted-foreground">{row.year}</span>
+                <span className="text-xs font-medium text-muted-foreground">{row.year}</span>
                 <Badge className="text-xs bg-muted border-border text-muted-foreground">{row.basis}</Badge>
               </div>
               <div className="flex items-end gap-2 mb-1">
                 <span className="text-2xl font-bold text-foreground">${row.eps.toFixed(2)}</span>
                 <span className="text-xs text-muted-foreground mb-1">Pro Forma EPS</span>
               </div>
-              <div className={`flex items-center gap-1 text-sm font-bold ${accretionColor(row.acc)}`}>
+              <div className={`flex items-center gap-1 text-sm font-medium ${accretionColor(row.acc)}`}>
                 {row.acc >= 0 ? (
                   <ArrowUpRight className="w-4 h-4" />
                 ) : (
@@ -1087,7 +1087,7 @@ function MAndAAccretionTab() {
           <div className="flex items-center justify-between">
             <CardTitle className="text-sm text-muted-foreground">Synergy Assumptions ($M)</CardTitle>
             <div className="text-xs text-muted-foreground">
-              Captured: <span className="text-primary font-bold">${capturedSynergies.toFixed(0)}M</span>{" "}
+              Captured: <span className="text-primary font-medium">${capturedSynergies.toFixed(0)}M</span>{" "}
               of <span className="text-muted-foreground">${totalSynergies}M</span> total
             </div>
           </div>
@@ -1131,7 +1131,7 @@ function MAndAAccretionTab() {
                       <td className="p-2 text-right font-mono text-muted-foreground">${syn.year1}M</td>
                       <td className="p-2 text-right font-mono text-muted-foreground">${syn.year2}M</td>
                       <td className="p-2 text-right font-mono text-muted-foreground">${syn.year3}M</td>
-                      <td className="p-2 text-right font-mono text-emerald-400 font-bold">${syn.fullyLoaded}M</td>
+                      <td className="p-2 text-right font-mono text-emerald-400 font-medium">${syn.fullyLoaded}M</td>
                       <td className="p-2 text-center">
                         <Badge className={`text-xs border ${confColor}`}>{syn.confidence}</Badge>
                       </td>
@@ -1139,18 +1139,18 @@ function MAndAAccretionTab() {
                   );
                 })}
                 <tr className="border-t-2 border-border bg-muted/30">
-                  <td className="p-2 text-foreground font-bold">Total Synergies</td>
+                  <td className="p-2 text-foreground font-medium">Total Synergies</td>
                   <td />
-                  <td className="p-2 text-right font-mono text-foreground font-bold">
+                  <td className="p-2 text-right font-mono text-foreground font-medium">
                     ${SYNERGIES.reduce((s, r) => s + r.year1, 0)}M
                   </td>
-                  <td className="p-2 text-right font-mono text-foreground font-bold">
+                  <td className="p-2 text-right font-mono text-foreground font-medium">
                     ${SYNERGIES.reduce((s, r) => s + r.year2, 0)}M
                   </td>
-                  <td className="p-2 text-right font-mono text-foreground font-bold">
+                  <td className="p-2 text-right font-mono text-foreground font-medium">
                     ${SYNERGIES.reduce((s, r) => s + r.year3, 0)}M
                   </td>
-                  <td className="p-2 text-right font-mono text-emerald-400 font-bold">
+                  <td className="p-2 text-right font-mono text-emerald-400 font-medium">
                     ${totalSynergies}M
                   </td>
                   <td />
@@ -1198,7 +1198,7 @@ function MAndAAccretionTab() {
                     <td className="p-2 text-right font-mono text-emerald-400">
                       {row.syn !== null ? `+$${row.syn.toLocaleString()}M` : "—"}
                     </td>
-                    <td className="p-2 text-right font-mono text-foreground font-bold">
+                    <td className="p-2 text-right font-mono text-foreground font-medium">
                       {row.label === "EPS (diluted)" ? `$${row.pf.toFixed(2)}` : `$${row.pf.toLocaleString()}M`}
                     </td>
                   </tr>
@@ -1268,7 +1268,7 @@ function FinancingStructureTab() {
           <div>
             <div className="flex items-center justify-between mb-2">
               <span className="text-xs text-muted-foreground">Target Leverage (Debt / EBITDA)</span>
-              <span className="text-sm font-bold text-primary">{leverage.toFixed(1)}x</span>
+              <span className="text-sm font-medium text-primary">{leverage.toFixed(1)}x</span>
             </div>
             <Slider
               value={[leverage * 10]}
@@ -1298,7 +1298,7 @@ function FinancingStructureTab() {
                     <Icon className={`w-3 h-3 ${item.color}`} />
                     <span className="text-xs text-muted-foreground">{item.label}</span>
                   </div>
-                  <p className={`text-lg font-bold ${item.color}`}>{item.value}</p>
+                  <p className={`text-lg font-medium ${item.color}`}>{item.value}</p>
                 </div>
               );
             })}
@@ -1332,26 +1332,26 @@ function FinancingStructureTab() {
                   <div className="flex items-center gap-2 mb-1">
                     <div className="w-3 h-3 rounded-sm bg-primary" />
                     <span className="text-xs text-muted-foreground">Debt Financing</span>
-                    <span className="text-xs font-bold text-primary ml-auto">{debtPct.toFixed(0)}%</span>
+                    <span className="text-xs font-medium text-primary ml-auto">{debtPct.toFixed(0)}%</span>
                   </div>
-                  <p className="text-sm font-bold text-primary pl-5">${totalDebt.toLocaleString()}M</p>
+                  <p className="text-sm font-medium text-primary pl-5">${totalDebt.toLocaleString()}M</p>
                 </div>
                 <div>
                   <div className="flex items-center gap-2 mb-1">
                     <div className="w-3 h-3 rounded-sm bg-primary" />
                     <span className="text-xs text-muted-foreground">Equity Financing</span>
-                    <span className="text-xs font-bold text-primary ml-auto">{equityPct.toFixed(0)}%</span>
+                    <span className="text-xs font-medium text-primary ml-auto">{equityPct.toFixed(0)}%</span>
                   </div>
-                  <p className="text-sm font-bold text-primary pl-5">${equity.toLocaleString()}M</p>
+                  <p className="text-sm font-medium text-primary pl-5">${equity.toLocaleString()}M</p>
                 </div>
                 <div className="pt-2 border-t border-border">
                   <div className="flex justify-between text-xs">
                     <span className="text-muted-foreground">Total Transaction</span>
-                    <span className="font-bold text-foreground">$8,200M</span>
+                    <span className="font-medium text-foreground">$8,200M</span>
                   </div>
                   <div className="flex justify-between text-xs mt-1">
                     <span className="text-muted-foreground">Fees &amp; Expenses</span>
-                    <span className="font-bold text-muted-foreground">$185M</span>
+                    <span className="font-medium text-muted-foreground">$185M</span>
                   </div>
                 </div>
               </div>
@@ -1372,11 +1372,11 @@ function FinancingStructureTab() {
             ].map((agency) => (
               <div key={agency.agency} className="flex items-center gap-3 p-2 rounded-lg bg-muted">
                 <div className={`w-10 h-10 rounded-lg border ${ratingInfo.bg} flex items-center justify-center`}>
-                  <span className={`text-xs font-bold ${ratingInfo.color}`}>{agency.rating}</span>
+                  <span className={`text-xs font-medium ${ratingInfo.color}`}>{agency.rating}</span>
                 </div>
                 <div className="flex-1">
                   <div className="flex items-center gap-2">
-                    <span className="text-sm font-semibold text-foreground">{agency.agency}</span>
+                    <span className="text-sm font-medium text-foreground">{agency.agency}</span>
                     <Badge className={`text-xs ${
                       agency.outlook === "Stable"
                         ? "bg-emerald-500/20 text-emerald-300 border-emerald-500/30"
@@ -1400,7 +1400,7 @@ function FinancingStructureTab() {
             <CardTitle className="text-sm text-muted-foreground">Proposed Debt Financing Structure</CardTitle>
             <span className="text-xs text-muted-foreground">
               Blended Rate:{" "}
-              <span className="text-foreground font-bold">
+              <span className="text-foreground font-medium">
                 {(
                   DEBT_TRANCHES.reduce((s, t) => s + t.amount * t.rate, 0) / totalDebt
                 ).toFixed(2)}
@@ -1447,19 +1447,19 @@ function FinancingStructureTab() {
                       <td className="p-2 text-right font-mono text-primary">{t.rate.toFixed(2)}%</td>
                       <td className="p-2 text-right font-mono text-muted-foreground">S+{t.spread}bps</td>
                       <td className="p-2 text-right font-mono text-muted-foreground">{t.maturity}yr</td>
-                      <td className={`p-2 text-center font-bold ${ratingCol}`}>{t.rating}</td>
+                      <td className={`p-2 text-center font-medium ${ratingCol}`}>{t.rating}</td>
                       <td className="p-2 text-right font-mono text-amber-400">${annInt.toFixed(0)}M</td>
                     </motion.tr>
                   );
                 })}
                 <tr className="border-t-2 border-border bg-muted/30">
-                  <td className="p-2 text-foreground font-bold">Total Debt</td>
-                  <td className="p-2 text-right font-mono text-foreground font-bold">${totalDebt.toLocaleString()}M</td>
-                  <td className="p-2 text-right font-mono text-primary font-bold">
+                  <td className="p-2 text-foreground font-medium">Total Debt</td>
+                  <td className="p-2 text-right font-mono text-foreground font-medium">${totalDebt.toLocaleString()}M</td>
+                  <td className="p-2 text-right font-mono text-primary font-medium">
                     {(DEBT_TRANCHES.reduce((s, t) => s + t.amount * t.rate, 0) / totalDebt).toFixed(2)}%
                   </td>
                   <td colSpan={3} />
-                  <td className="p-2 text-right font-mono text-amber-400 font-bold">
+                  <td className="p-2 text-right font-mono text-amber-400 font-medium">
                     ${DEBT_TRANCHES.reduce((s, t) => s + (t.amount * t.rate) / 100, 0).toFixed(0)}M
                   </td>
                 </tr>
@@ -1484,7 +1484,7 @@ function FinancingStructureTab() {
               return (
                 <div key={metric.label} className={`p-2 rounded-lg border ${col}`}>
                   <p className="text-xs text-muted-foreground">{metric.label}</p>
-                  <p className={`text-base font-bold ${col.split(" ")[0]}`}>{metric.value}</p>
+                  <p className={`text-base font-medium ${col.split(" ")[0]}`}>{metric.value}</p>
                   <div className="flex items-center gap-1 mt-0.5">
                     {metric.status === "ok" ? (
                       <CheckCircle className="w-3 h-3 text-emerald-400" />
@@ -1526,7 +1526,7 @@ export default function PitchbookPage() {
                 <FileText className="w-5 h-5 text-primary" />
               </div>
               <div>
-                <h1 className="text-xl font-bold text-foreground">Pitch Book Builder</h1>
+                <h1 className="text-xl font-medium text-foreground">Pitch Book Builder</h1>
                 <p className="text-xs text-muted-foreground">Investment Banking — M&amp;A Advisory</p>
               </div>
             </div>
@@ -1568,7 +1568,7 @@ export default function PitchbookPage() {
             return (
               <div key={stat.label} className="bg-card border border-border rounded-lg p-2 text-center">
                 <Icon className={`w-3 h-3 mx-auto mb-1 ${stat.color}`} />
-                <p className={`text-sm font-bold ${stat.color}`}>{stat.value}</p>
+                <p className={`text-sm font-medium ${stat.color}`}>{stat.value}</p>
                 <p className="text-xs text-muted-foreground leading-tight mt-0.5">{stat.label}</p>
               </div>
             );

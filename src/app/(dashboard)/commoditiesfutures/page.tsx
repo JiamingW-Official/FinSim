@@ -848,7 +848,7 @@ function SeasonalityTab() {
             <CardContent className="space-y-3">
               <div className="flex justify-between text-xs mb-1">
                 <span className="text-muted-foreground">Seasonal Strength</span>
-                <span className="text-foreground font-semibold">{comm.patternStrength}%</span>
+                <span className="text-foreground font-medium">{comm.patternStrength}%</span>
               </div>
               <Progress value={comm.patternStrength} className="h-2" />
 
@@ -1037,7 +1037,7 @@ function HedgingTab() {
               <div className="space-y-2">
                 <div className="flex justify-between text-xs">
                   <span className="text-muted-foreground">Hedge Ratio</span>
-                  <span className="text-foreground font-semibold">
+                  <span className="text-foreground font-medium">
                     {hedgeRatio.toFixed(0)}%
                   </span>
                 </div>
@@ -1052,7 +1052,7 @@ function HedgingTab() {
               <div className="space-y-2">
                 <div className="flex justify-between text-xs">
                   <span className="text-muted-foreground">Price Move</span>
-                  <span className={`font-semibold text-xs ${pos(priceMove)}`}>
+                  <span className={`font-medium text-xs ${pos(priceMove)}`}>
                     {fmtPct(priceMove)}
                   </span>
                 </div>
@@ -1152,14 +1152,14 @@ function HedgingTab() {
             <div className="grid grid-cols-2 gap-3">
               <div className="bg-red-950/30 border border-red-800/50 rounded p-3">
                 <p className="text-xs text-muted-foreground">Unhedged P&amp;L</p>
-                <p className={`text-lg font-bold font-mono ${pos(totalUnhedgedPnL)}`}>
+                <p className={`text-lg font-medium font-mono ${pos(totalUnhedgedPnL)}`}>
                   {fmtMoney(totalUnhedgedPnL)}
                 </p>
                 <p className="text-xs text-muted-foreground">at {fmtPct(priceMove)} price move</p>
               </div>
               <div className="bg-emerald-950/30 border border-emerald-800/50 rounded p-3">
                 <p className="text-xs text-muted-foreground">Hedged P&amp;L</p>
-                <p className={`text-lg font-bold font-mono ${pos(totalHedgedPnL)}`}>
+                <p className={`text-lg font-medium font-mono ${pos(totalHedgedPnL)}`}>
                   {fmtMoney(totalHedgedPnL)}
                 </p>
                 <p className="text-xs text-muted-foreground">incl. basis risk</p>
@@ -1192,7 +1192,7 @@ function HedgingTab() {
               </div>
               <div className="flex justify-between">
                 <span className="text-muted-foreground">Hedge Ratio</span>
-                <span className="text-amber-400 font-semibold">
+                <span className="text-amber-400 font-medium">
                   {(effectiveHedgeRatio * 100).toFixed(0)}%
                 </span>
               </div>
@@ -1203,8 +1203,8 @@ function HedgingTab() {
                 </span>
               </div>
               <div className="flex justify-between border-t border-border pt-2 mt-1">
-                <span className="text-muted-foreground font-semibold">Contracts Needed</span>
-                <span className="text-primary font-bold">{contractsNeeded}</span>
+                <span className="text-muted-foreground font-medium">Contracts Needed</span>
+                <span className="text-primary font-medium">{contractsNeeded}</span>
               </div>
             </CardContent>
           </Card>
@@ -1482,7 +1482,7 @@ function SectorsTab() {
             <ul className="space-y-2">
               {KEY_DRIVERS[activeSector].map((driver, i) => (
                 <li key={i} className="flex items-start gap-2 text-sm">
-                  <span className="text-primary font-bold mt-0.5">{i + 1}.</span>
+                  <span className="text-primary font-medium mt-0.5">{i + 1}.</span>
                   <span className="text-muted-foreground">{driver}</span>
                 </li>
               ))}
@@ -1519,10 +1519,10 @@ function SectorsTab() {
 export default function CommoditiesFuturesPage() {
   return (
     <div className="min-h-screen bg-background text-foreground p-4 md:p-6 space-y-6">
-      {/* Header */}
-      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+      {/* HERO Header */}
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-l-4 border-l-primary rounded-xl bg-card p-6">
         <div>
-          <h1 className="text-2xl font-bold tracking-tight flex items-center gap-2">
+          <h1 className="text-xl font-semibold tracking-tight flex items-center gap-2">
             <BarChart2 className="w-6 h-6 text-primary" />
             Commodities Futures
           </h1>

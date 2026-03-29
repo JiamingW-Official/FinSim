@@ -624,7 +624,7 @@ function FraudDetectionTab() {
           { label: "GNN fraud ring detection", value: "+34%", color: "text-emerald-400" },
         ].map((s) => (
           <Card key={s.label}>
-            <div className={cn("text-xl font-bold font-mono", s.color)}>{s.value}</div>
+            <div className={cn("text-xl font-medium font-mono", s.color)}>{s.value}</div>
             <div className="text-xs text-muted-foreground mt-0.5">{s.label}</div>
           </Card>
         ))}
@@ -853,10 +853,10 @@ function AIResearchTab() {
           {NLP_PIPELINE.map((item, i) => (
             <div key={item.step} className="bg-muted/40 rounded-lg p-3 relative">
               <div className="flex items-center gap-2 mb-1">
-                <span className="w-5 h-5 rounded-full bg-primary/20 text-primary text-xs flex items-center justify-center font-bold">
+                <span className="w-5 h-5 rounded-full bg-primary/20 text-primary text-xs flex items-center justify-center font-medium">
                   {i + 1}
                 </span>
-                <span className="text-sm font-semibold text-foreground">{item.step}</span>
+                <span className="text-sm font-medium text-foreground">{item.step}</span>
               </div>
               <p className="text-xs text-muted-foreground">{item.detail}</p>
             </div>
@@ -916,7 +916,7 @@ function AIResearchTab() {
             exit={{ opacity: 0, y: -4 }}
             className="mt-3 p-3 bg-muted/40 rounded-lg"
           >
-            <div className="text-xs font-semibold text-muted-foreground mb-1">
+            <div className="text-xs font-medium text-muted-foreground mb-1">
               {AI_TOOLS[activeCapTable].name} — Key capabilities
             </div>
             <div className="flex flex-wrap gap-1.5">
@@ -954,7 +954,7 @@ function AIResearchTab() {
             },
           ].map((item) => (
             <div key={item.filing} className="bg-muted/40 rounded-lg p-3">
-              <div className="text-xs font-semibold text-foreground mb-1">{item.filing}</div>
+              <div className="text-xs font-medium text-foreground mb-1">{item.filing}</div>
               <p className="text-xs text-muted-foreground mb-2">{item.signal}</p>
               <div className="flex items-center justify-between">
                 <InfoBadge color={item.direction === "Bearish" ? "rose" : "amber"}>
@@ -1099,7 +1099,7 @@ function RiskRegulationTab() {
                 )}
               </div>
               <div>
-                <div className="text-sm font-semibold text-foreground">{item.component}</div>
+                <div className="text-sm font-medium text-foreground">{item.component}</div>
                 <div className="text-xs text-muted-foreground">{item.description}</div>
               </div>
               <InfoBadge color={item.status === "Required" ? "emerald" : "blue"}>
@@ -1238,7 +1238,7 @@ function RiskRegulationTab() {
           {SANDBOXES.map((s) => (
             <div key={s.regulator} className="bg-muted/40 rounded-lg p-3">
               <div className="flex items-center justify-between mb-1">
-                <span className="text-sm font-semibold text-foreground">{s.regulator}</span>
+                <span className="text-sm font-medium text-foreground">{s.regulator}</span>
                 <InfoBadge color="blue">{s.program.split(" ")[0]}</InfoBadge>
               </div>
               <div className="text-xs text-muted-foreground mb-0.5 font-medium">{s.program}</div>
@@ -1253,7 +1253,7 @@ function RiskRegulationTab() {
         <div className="flex items-start gap-3">
           <AlertTriangle className="w-5 h-5 text-rose-400 flex-shrink-0 mt-0.5" />
           <div>
-            <div className="text-sm font-semibold text-rose-300 mb-1">AI Hallucinations in Finance — Key Risks</div>
+            <div className="text-sm font-medium text-rose-300 mb-1">AI Hallucinations in Finance — Key Risks</div>
             <ul className="text-xs text-muted-foreground space-y-1 list-disc list-inside">
               <li>Fabricated financial data or analyst reports used in investment memos</li>
               <li>Incorrect regulatory citations in compliance filings</li>

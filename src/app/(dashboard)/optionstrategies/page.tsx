@@ -661,8 +661,8 @@ function StrategyBuilderTab() {
 
       {/* Right: Payoff + Stats */}
       <div className="space-y-4">
-        <div className="bg-foreground/5 border border-border rounded-xl p-4">
-          <h3 className="text-sm font-semibold text-foreground mb-3">Payoff at Expiry</h3>
+        <div className="bg-foreground/5 border border-border border-l-4 border-l-primary rounded-xl p-6">
+          <h3 className="text-lg font-semibold text-foreground mb-3">Payoff at Expiry</h3>
           {legs.length > 0 ? (
             <PayoffSVG legs={legs} spot={spot} />
           ) : (
@@ -676,19 +676,19 @@ function StrategyBuilderTab() {
             <div className="grid grid-cols-3 gap-2">
               <div className="bg-foreground/5 rounded-xl p-3 text-center">
                 <div className="text-xs text-muted-foreground uppercase">Max Profit</div>
-                <div className="text-sm font-semibold text-green-400">
+                <div className="text-sm font-medium text-green-400">
                   {maxProfit >= 99999 ? "Unlimited" : `$${maxProfit.toFixed(0)}`}
                 </div>
               </div>
               <div className="bg-foreground/5 rounded-xl p-3 text-center">
                 <div className="text-xs text-muted-foreground uppercase">Max Loss</div>
-                <div className="text-sm font-semibold text-red-400">
+                <div className="text-sm font-medium text-red-400">
                   {maxLoss <= -99999 ? "Unlimited" : `$${maxLoss.toFixed(0)}`}
                 </div>
               </div>
               <div className="bg-foreground/5 rounded-xl p-3 text-center">
                 <div className="text-xs text-muted-foreground uppercase">P&L Now</div>
-                <div className={`text-sm font-semibold ${pnlAtSpot >= 0 ? "text-green-400" : "text-red-400"}`}>
+                <div className={`text-sm font-medium ${pnlAtSpot >= 0 ? "text-green-400" : "text-red-400"}`}>
                   ${pnlAtSpot.toFixed(0)}
                 </div>
               </div>
@@ -960,7 +960,7 @@ function RollCard({ scenario }: { scenario: RollScenario }) {
     <div className="bg-foreground/5 border border-border rounded-xl p-5 space-y-4">
       <div className="flex items-start justify-between gap-4">
         <div>
-          <h4 className="font-semibold text-foreground text-sm">{scenario.title}</h4>
+          <h4 className="font-medium text-foreground text-sm">{scenario.title}</h4>
           <p className="text-xs text-muted-foreground mt-1">{scenario.description}</p>
         </div>
         <span className={`text-sm font-mono font-bold whitespace-nowrap ${creditColor}`}>{creditLabel}</span>
@@ -1006,7 +1006,7 @@ function RollingStrategiesTab() {
   return (
     <div className="space-y-6">
       <div className="bg-foreground/5 border border-border rounded-xl p-4">
-        <h3 className="text-sm font-semibold text-foreground mb-2">When to Roll a Position</h3>
+        <h3 className="text-sm font-medium text-foreground mb-2">When to Roll a Position</h3>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-3 text-xs">
           {[
             { trigger: "Short option is ITM", action: "Roll up/down and out for credit", color: "text-red-400" },
@@ -1059,7 +1059,7 @@ function IVCrushViz({ ivBefore, ivAfter }: { ivBefore: number; ivAfter: number }
       <div className="flex justify-between text-xs text-muted-foreground">
         <span>IV Before: <span className="text-foreground font-medium">{ivBefore}%</span></span>
         <span>IV After: <span className="text-foreground font-medium">{ivAfter}%</span></span>
-        <span className="text-red-400 font-semibold">-{crushPct.toFixed(0)}% crush</span>
+        <span className="text-red-400 font-medium">-{crushPct.toFixed(0)}% crush</span>
       </div>
       <div className="h-3 bg-foreground/5 rounded-full overflow-hidden">
         <motion.div
@@ -1099,7 +1099,7 @@ function EarningsPlaysTab() {
     <div className="space-y-6">
       {/* IV Crush explainer */}
       <div className="bg-foreground/5 border border-border rounded-xl p-5 space-y-4">
-        <h3 className="text-sm font-semibold text-foreground">IV Crush Effect After Earnings</h3>
+        <h3 className="text-sm font-medium text-foreground">IV Crush Effect After Earnings</h3>
         <IVCrushViz ivBefore={60} ivAfter={28} />
         <p className="text-xs text-muted-foreground">
           IV spikes before earnings as market prices in uncertainty. After the report, regardless of beat or miss,
@@ -1122,7 +1122,7 @@ function EarningsPlaysTab() {
 
       {/* Expected Move Calculator */}
       <div className="bg-foreground/5 border border-border rounded-xl p-5">
-        <h3 className="text-sm font-semibold text-foreground mb-3">Expected Move Calculator</h3>
+        <h3 className="text-sm font-medium text-foreground mb-3">Expected Move Calculator</h3>
         <div className="grid grid-cols-2 gap-4">
           <div>
             <div className="text-xs text-muted-foreground mb-2">ATM Straddle = Market&apos;s Expected Move</div>
@@ -1135,11 +1135,11 @@ function EarningsPlaysTab() {
                 <span className="text-muted-foreground">ATM Put Premium:</span>
                 <span className="text-foreground">${bsPut(100, 100, 1, ivBefore).price.toFixed(2)}</span>
               </div>
-              <div className="flex justify-between text-xs font-semibold border-t border-border pt-2">
+              <div className="flex justify-between text-xs font-medium border-t border-border pt-2">
                 <span className="text-muted-foreground">Total Straddle:</span>
                 <span className="text-amber-400">${straddleCost.toFixed(2)}</span>
               </div>
-              <div className="flex justify-between text-xs font-semibold">
+              <div className="flex justify-between text-xs font-medium">
                 <span className="text-muted-foreground">Expected ±Move:</span>
                 <span className="text-amber-400">±{expectedMove.toFixed(1)}%</span>
               </div>
@@ -1160,7 +1160,7 @@ function EarningsPlaysTab() {
       {/* Historical reactions table */}
       <div className="bg-foreground/5 border border-border rounded-xl overflow-hidden">
         <div className="p-4 border-b border-border">
-          <h3 className="text-sm font-semibold text-foreground">Historical Earnings Reactions</h3>
+          <h3 className="text-sm font-medium text-foreground">Historical Earnings Reactions</h3>
           <p className="text-xs text-muted-foreground mt-1">Avg move, straddle cost as % of stock price, and typical beat/miss reactions</p>
         </div>
         <div className="overflow-x-auto">
@@ -1183,7 +1183,7 @@ function EarningsPlaysTab() {
                     onClick={() => setSelectedTicker(s.ticker)}
                     className={`border-t border-border/50 cursor-pointer transition-colors ${selectedTicker === s.ticker ? "bg-primary/10" : "hover:bg-muted/30"}`}
                   >
-                    <td className="px-4 py-2.5 font-semibold text-foreground">{s.ticker}</td>
+                    <td className="px-4 py-2.5 font-medium text-foreground">{s.ticker}</td>
                     <td className="px-4 py-2.5 text-amber-400">±{s.avgMove}%</td>
                     <td className="px-4 py-2.5">
                       <span className={`${s.ivRank > 70 ? "text-red-400" : s.ivRank > 50 ? "text-amber-400" : "text-green-400"}`}>{s.ivRank}</span>
@@ -1202,7 +1202,7 @@ function EarningsPlaysTab() {
 
       {/* IV Rank Playbook */}
       <div className="bg-foreground/5 border border-border rounded-xl p-5">
-        <h3 className="text-sm font-semibold text-foreground mb-3">IV Rank Playbook for Earnings</h3>
+        <h3 className="text-sm font-medium text-foreground mb-3">IV Rank Playbook for Earnings</h3>
         <div className="grid grid-cols-3 gap-4">
           {[
             { range: "IV Rank < 30", label: "Low IV", color: "text-green-400 bg-green-500/10", strategies: ["Long Straddle", "Long Strangle"], reason: "Options are cheap — pay for vol before IV spikes pre-earnings" },
@@ -1210,7 +1210,7 @@ function EarningsPlaysTab() {
             { range: "IV Rank > 70", label: "High IV", color: "text-red-400 bg-red-500/10", strategies: ["Iron Condor", "Short Strangle"], reason: "IV crush will hurt longs — be a net seller, profit from vol collapse" },
           ].map((item) => (
             <div key={item.range} className={`rounded-xl p-4 ${item.color}`}>
-              <div className="text-xs font-semibold uppercase mb-1">{item.range}</div>
+              <div className="text-xs font-medium uppercase mb-1">{item.range}</div>
               <div className="text-sm font-bold mb-2">{item.label}</div>
               <div className="text-xs font-medium mb-2">{item.strategies.join(" / ")}</div>
               <p className="text-xs opacity-80">{item.reason}</p>
@@ -1304,7 +1304,7 @@ function PortfolioHedgingTab() {
     <div className="space-y-6">
       {/* Portfolio Beta Calculator */}
       <div className="bg-foreground/5 border border-border rounded-xl p-5">
-        <h3 className="text-sm font-semibold text-foreground mb-3">Portfolio Beta Calculator</h3>
+        <h3 className="text-sm font-medium text-foreground mb-3">Portfolio Beta Calculator</h3>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           <div>
             <div className="flex items-center justify-between mb-2">
@@ -1340,7 +1340,7 @@ function PortfolioHedgingTab() {
                   ))}
                 </tbody>
                 <tfoot>
-                  <tr className="border-t border-border font-semibold">
+                  <tr className="border-t border-border font-medium">
                     <td className="py-2 text-muted-foreground">Total</td>
                     <td className="text-right text-muted-foreground">100%</td>
                     <td className="text-right text-amber-400">{portfolioBeta.toFixed(2)}</td>
@@ -1354,7 +1354,7 @@ function PortfolioHedgingTab() {
           {/* Hedge Sizing */}
           <div className="space-y-3">
             <div className="bg-primary/10 border border-border rounded-lg p-3 space-y-2">
-              <div className="text-xs text-primary uppercase font-semibold">Hedge Sizing</div>
+              <div className="text-xs text-primary uppercase font-medium">Hedge Sizing</div>
               <div className="grid grid-cols-2 gap-2 text-xs">
                 <div>
                   <div className="text-muted-foreground">Notional to Hedge</div>
@@ -1410,7 +1410,7 @@ function PortfolioHedgingTab() {
 
       {/* Collar Construction */}
       <div className="bg-foreground/5 border border-border rounded-xl p-5">
-        <h3 className="text-sm font-semibold text-foreground mb-3">Zero-Cost Collar Construction</h3>
+        <h3 className="text-sm font-medium text-foreground mb-3">Zero-Cost Collar Construction</h3>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
           <div className="bg-foreground/5 rounded-lg p-3 space-y-2 text-xs">
             <div className="text-xs text-muted-foreground uppercase">Buy Put (Protection)</div>
@@ -1426,7 +1426,7 @@ function PortfolioHedgingTab() {
           </div>
           <div className={`rounded-lg p-3 space-y-2 text-xs ${isZeroCost ? "bg-green-500/10" : collarCost > 0 ? "bg-red-500/10" : "bg-green-500/10"}`}>
             <div className="text-xs text-muted-foreground uppercase">Net Cost</div>
-            <div className={`text-lg font-bold ${isZeroCost ? "text-green-400" : collarCost > 0 ? "text-red-400" : "text-green-400"}`}>
+            <div className={`text-lg font-medium ${isZeroCost ? "text-green-400" : collarCost > 0 ? "text-red-400" : "text-green-400"}`}>
               {isZeroCost ? "Zero Cost!" : collarCost > 0 ? `Debit $${(collarCost * 100).toFixed(0)}` : `Credit $${(Math.abs(collarCost) * 100).toFixed(0)}`}
             </div>
             <div className="text-muted-foreground">This collar {isZeroCost ? "costs nothing to implement" : collarCost > 0 ? "requires a net payment" : "generates a credit"}</div>
@@ -1436,7 +1436,7 @@ function PortfolioHedgingTab() {
 
       {/* Put decay curve */}
       <div className="bg-foreground/5 border border-border rounded-xl p-5">
-        <h3 className="text-sm font-semibold text-foreground mb-3">Protective Put Theta Decay</h3>
+        <h3 className="text-sm font-medium text-foreground mb-3">Protective Put Theta Decay</h3>
         <svg width={tdW} height={tdH}>
           <path d={tdPath} fill="none" stroke="#f87171" strokeWidth={2} />
           <line x1={40} y1={16} x2={40} y2={16 + tdCH} stroke="#374151" strokeWidth={1} />
@@ -1455,7 +1455,7 @@ function PortfolioHedgingTab() {
 
       {/* VIX calls as tail hedge */}
       <div className="bg-foreground/5 border border-border rounded-xl p-5 space-y-3">
-        <h3 className="text-sm font-semibold text-foreground">VIX Calls as Tail Hedge</h3>
+        <h3 className="text-sm font-medium text-foreground">VIX Calls as Tail Hedge</h3>
         <div className="grid grid-cols-2 md:grid-cols-4 gap-3 text-xs">
           {[
             { label: "VIX Spot", value: "16.4", color: "text-green-400" },
@@ -1465,7 +1465,7 @@ function PortfolioHedgingTab() {
           ].map((item, i) => (
             <div key={i} className="bg-foreground/5 rounded-lg p-3">
               <div className="text-muted-foreground">{item.label}</div>
-              <div className={`text-sm font-semibold mt-1 ${item.color}`}>{item.value}</div>
+              <div className={`text-sm font-medium mt-1 ${item.color}`}>{item.value}</div>
             </div>
           ))}
         </div>
@@ -1531,7 +1531,7 @@ function ThetaDecayCurve() {
 
   return (
     <div className="bg-foreground/5 border border-border rounded-xl p-4">
-      <h4 className="text-sm font-semibold text-foreground mb-3">Theta Decay Curve — ATM vs OTM</h4>
+      <h4 className="text-sm font-medium text-foreground mb-3">Theta Decay Curve — ATM vs OTM</h4>
       <svg width={W2} height={H2}>
         {curves.map(({ label, K, color }) => {
           const path = dteSeries
@@ -1625,7 +1625,7 @@ function GammaScalpingSim() {
   return (
     <div className="bg-foreground/5 border border-border rounded-xl p-4 space-y-3">
       <div className="flex items-center justify-between">
-        <h4 className="text-sm font-semibold text-foreground">Gamma Scalping Simulation</h4>
+        <h4 className="text-sm font-medium text-foreground">Gamma Scalping Simulation</h4>
         <div className="flex items-center gap-2 text-xs">
           <span className="text-muted-foreground">Hedge every</span>
           {[1, 3, 5, 10].map((n) => (
@@ -1697,7 +1697,7 @@ function GreekManagementTab() {
     <div className="space-y-6">
       {/* Risk Dashboard */}
       <div className="bg-foreground/5 border border-border rounded-xl p-5">
-        <h3 className="text-sm font-semibold text-foreground mb-4">Portfolio Greeks Risk Dashboard</h3>
+        <h3 className="text-sm font-medium text-foreground mb-4">Portfolio Greeks Risk Dashboard</h3>
 
         <div className="overflow-x-auto mb-4">
           <table className="w-full text-xs">
@@ -1721,7 +1721,7 @@ function GreekManagementTab() {
               ))}
             </tbody>
             <tfoot>
-              <tr className="border-t border-border font-semibold text-foreground">
+              <tr className="border-t border-border font-medium text-foreground">
                 <td className="py-2 px-2" colSpan={2}>NET PORTFOLIO</td>
                 <td className={`py-2 px-2 font-mono ${totals.delta > 0 ? "text-green-400" : "text-red-400"}`}>{totals.delta > 0 ? "+" : ""}{totals.delta.toFixed(1)}</td>
                 <td className={`py-2 px-2 font-mono ${totals.gamma > 0 ? "text-green-400" : "text-red-400"}`}>{totals.gamma > 0 ? "+" : ""}{totals.gamma.toFixed(2)}</td>
@@ -1766,7 +1766,7 @@ function GreekManagementTab() {
 
       {/* Delta neutral explainer */}
       <div className="bg-foreground/5 border border-border rounded-xl p-5 space-y-3">
-        <h3 className="text-sm font-semibold text-foreground">Delta Neutral Strategies</h3>
+        <h3 className="text-sm font-medium text-foreground">Delta Neutral Strategies</h3>
         <div className="grid grid-cols-3 gap-3 text-xs">
           {[
             {
@@ -1809,7 +1809,7 @@ function GreekManagementTab() {
 
       {/* Vega Risk Chart */}
       <div className="bg-foreground/5 border border-border rounded-xl p-4">
-        <h4 className="text-sm font-semibold text-foreground mb-3">Portfolio Vega Risk: P&L vs IV Change</h4>
+        <h4 className="text-sm font-medium text-foreground mb-3">Portfolio Vega Risk: P&L vs IV Change</h4>
         <svg width={vegaW} height={vegaH}>
           <line x1={vegaPad.left} y1={vegaZeroY} x2={vegaW - vegaPad.right} y2={vegaZeroY} stroke="#374151" strokeDasharray="3 3" strokeWidth={1} />
           <path d={vegaPath} fill="none" stroke={totals.vega >= 0 ? "#34d399" : "#f87171"} strokeWidth={2} />
@@ -1863,7 +1863,7 @@ export default function OptionsStrategiesPage() {
             <div className="w-8 h-8 rounded-lg bg-primary/20 flex items-center justify-center">
               <BarChart2 className="w-4 h-4 text-primary" />
             </div>
-            <h1 className="text-xl font-bold text-foreground">Options Strategies</h1>
+            <h1 className="text-xl font-medium text-foreground">Options Strategies</h1>
           </div>
           <p className="text-sm text-muted-foreground ml-11">
             Advanced simulator — build positions, explore 20 strategies, master Greeks and portfolio hedging

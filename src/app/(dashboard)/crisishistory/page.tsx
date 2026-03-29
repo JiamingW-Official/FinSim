@@ -729,13 +729,13 @@ export default function CrisisHistoryPage() {
                 }`}
               >
                 <div className="flex items-center justify-between mb-1">
-                  <span className="text-xs font-bold text-muted-foreground">{c.year}</span>
+                  <span className="text-xs font-medium text-muted-foreground">{c.year}</span>
                   <Badge className={`text-xs px-1.5 py-0 border ${severityColor(c.severity)}`}>
                     {c.severity}
                   </Badge>
                 </div>
                 <p className="text-xs font-semibold text-foreground leading-tight mb-1">{c.shortName !== String(c.year) ? c.name : c.name}</p>
-                <p className="text-xs text-red-400 font-bold">{c.peak_loss}</p>
+                <p className="text-xs text-red-400 font-medium">{c.peak_loss}</p>
                 <p className="text-xs text-muted-foreground">{c.duration}</p>
               </button>
             ))}
@@ -769,7 +769,7 @@ export default function CrisisHistoryPage() {
                     <p className="text-sm text-muted-foreground mb-4 leading-relaxed">{selected.description}</p>
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                       <div>
-                        <h4 className="text-xs font-bold text-muted-foreground uppercase tracking-wide mb-2 flex items-center gap-1">
+                        <h4 className="text-xs font-medium text-muted-foreground uppercase tracking-wide mb-2 flex items-center gap-1">
                           <AlertTriangle className="w-3 h-3 text-orange-400" /> Key Triggers
                         </h4>
                         <ul className="space-y-1">
@@ -781,7 +781,7 @@ export default function CrisisHistoryPage() {
                         </ul>
                       </div>
                       <div>
-                        <h4 className="text-xs font-bold text-muted-foreground uppercase tracking-wide mb-2 flex items-center gap-1">
+                        <h4 className="text-xs font-medium text-muted-foreground uppercase tracking-wide mb-2 flex items-center gap-1">
                           <BookOpen className="w-3 h-3 text-emerald-400" /> Lessons Learned
                         </h4>
                         <ul className="space-y-1">
@@ -906,7 +906,7 @@ export default function CrisisHistoryPage() {
                 ].map((m) => (
                   <div key={m.label} className="bg-muted rounded-lg p-3">
                     <p className="text-xs text-muted-foreground mb-1">{m.label}</p>
-                    <p className={`text-lg font-bold ${m.color}`}>{m.value}</p>
+                    <p className={`text-lg font-medium ${m.color}`}>{m.value}</p>
                   </div>
                 ))}
               </div>
@@ -949,7 +949,7 @@ export default function CrisisHistoryPage() {
                 examples: ["Lehman 2008", "LTCM 1998", "SVB 2023", "March 2020"] },
             ].map((p) => (
               <div key={p.phase} className={`rounded-lg border p-3 ${p.color}`}>
-                <p className={`text-xs font-bold mb-2 ${p.tc}`}>{p.phase}</p>
+                <p className={`text-xs font-medium mb-2 ${p.tc}`}>{p.phase}</p>
                 <p className="text-xs text-muted-foreground leading-relaxed mb-2">{p.desc}</p>
                 <div className="space-y-1">
                   {p.examples.map((ex, i) => (
@@ -1004,7 +1004,7 @@ export default function CrisisHistoryPage() {
                   ]},
                 ].map((cat) => (
                   <div key={cat.category}>
-                    <p className={`text-xs font-bold mb-2 ${cat.color}`}>{cat.category}</p>
+                    <p className={`text-xs font-medium mb-2 ${cat.color}`}>{cat.category}</p>
                     <ul className="space-y-1">
                       {cat.items.map((item, i) => (
                         <li key={i} className="text-xs text-muted-foreground flex items-start gap-1.5">
@@ -1115,7 +1115,7 @@ export default function CrisisHistoryPage() {
                   { strategy: "Barbell Approach", desc: "Taleb's approach: 90% ultra-safe assets (T-bills, gold) + 10% high-risk/reward bets. Limits downside to 10% while retaining large upside from convex positions.", drawdown: "Capped ~10%" },
                 ].map((s) => (
                   <div key={s.strategy} className="bg-muted rounded-lg p-3">
-                    <p className="text-xs font-bold text-foreground mb-1">{s.strategy}</p>
+                    <p className="text-xs font-medium text-foreground mb-1">{s.strategy}</p>
                     <p className="text-xs text-muted-foreground mb-2 leading-relaxed">{s.desc}</p>
                     <div className="flex items-center gap-1.5">
                       <span className="text-xs text-muted-foreground">2008 drawdown:</span>
@@ -1171,7 +1171,7 @@ export default function CrisisHistoryPage() {
                     ]},
                   ].map((era) => (
                     <div key={era.era} className="bg-muted rounded-lg p-3">
-                      <p className={`text-xs font-bold mb-2 ${era.color}`}>{era.era}</p>
+                      <p className={`text-xs font-medium mb-2 ${era.color}`}>{era.era}</p>
                       <ul className="space-y-1">
                         {era.tools.map((t, i) => (
                           <li key={i} className="text-xs text-muted-foreground flex items-start gap-1.5">
@@ -1199,7 +1199,7 @@ export default function CrisisHistoryPage() {
                   ].map((row) => (
                     <div key={row.crisis} className="bg-muted rounded-lg p-3">
                       <div className="flex items-center justify-between mb-1">
-                        <p className="text-xs font-bold text-muted-foreground">{row.crisis}</p>
+                        <p className="text-xs font-medium text-muted-foreground">{row.crisis}</p>
                         <Badge className={`text-xs px-1.5 py-0 border border-border bg-muted/50 ${row.color}`}>{row.outcome}</Badge>
                       </div>
                       <p className="text-xs text-muted-foreground leading-relaxed">{row.response}</p>

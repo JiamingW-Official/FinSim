@@ -861,7 +861,7 @@ function Tab2SpreadModeling() {
 
         <div className="space-y-4">
           <div className="rounded-lg border border-border/50 bg-background/60 p-4">
-            <p className="text-xs font-semibold text-muted-foreground mb-3">
+            <p className="text-xs font-medium text-muted-foreground mb-3">
               Quote Displacement by Inventory (A-S Model)
             </p>
             <SpreadModelSVG gamma={gamma} sigma={sigma} />
@@ -1022,7 +1022,7 @@ function Tab3HFTStrategies() {
               className="rounded-md border border-border/40 bg-muted/20 p-3"
             >
               <p className="text-[11px] text-muted-foreground mb-0.5">{item.label}</p>
-              <p className="text-sm font-semibold text-primary">{item.value}</p>
+              <p className="text-sm font-medium text-primary">{item.value}</p>
             </div>
           ))}
         </div>
@@ -1155,7 +1155,7 @@ function Tab4PnlAttribution() {
           },
         ].map((item) => (
           <div key={item.label} className="rounded-lg border border-border/50 bg-background/60 p-4">
-            <p className="text-xs font-semibold text-muted-foreground mb-2">
+            <p className="text-xs font-medium text-muted-foreground mb-2">
               {item.label}
             </p>
             <p className={cn("text-xl font-bold tabular-nums mb-1", item.textColor)}>
@@ -1189,7 +1189,7 @@ function Tab4PnlAttribution() {
 
       {/* P&L chart */}
       <div className="rounded-lg border border-border/50 bg-background/60 p-4">
-        <p className="text-xs font-semibold text-muted-foreground mb-4">
+        <p className="text-xs font-medium text-muted-foreground mb-4">
           Cumulative P&L — 30 Days
         </p>
         <PnlChartSVG data={data} />
@@ -1197,7 +1197,7 @@ function Tab4PnlAttribution() {
 
       {/* Per-day breakdown table */}
       <div className="rounded-lg border border-border/50 overflow-hidden">
-        <p className="text-xs font-semibold text-muted-foreground p-3 border-b border-border/50">
+        <p className="text-xs font-medium text-muted-foreground p-3 border-b border-border/50">
           Daily Breakdown
         </p>
         <div className="overflow-x-auto max-h-48 overflow-y-auto">
@@ -1293,7 +1293,7 @@ function Tab5RegulationRisk() {
 
       {/* Circuit Breakers */}
       <div className="rounded-lg border border-border/50 overflow-hidden">
-        <p className="text-xs font-semibold text-muted-foreground p-3 border-b border-border/50">
+        <p className="text-xs font-medium text-muted-foreground p-3 border-b border-border/50">
           US Market Circuit Breakers
         </p>
         <table className="w-full text-xs">
@@ -1379,7 +1379,7 @@ function Tab5RegulationRisk() {
             <div key={section.label} className="rounded-lg border border-border/50 p-4">
               <div className="flex items-center gap-2 mb-3">
                 <Icon className={cn("h-4 w-4", section.color)} />
-                <p className="text-xs font-semibold">{section.label}</p>
+                <p className="text-xs font-medium">{section.label}</p>
               </div>
               <ul className="space-y-1.5">
                 {section.items.map((item) => (
@@ -1402,7 +1402,7 @@ function Tab5RegulationRisk() {
         >
           <div className="flex items-center gap-2">
             <AlertTriangle className="h-4 w-4 text-red-400" />
-            <span className="text-sm font-semibold">Case Study: 2010 Flash Crash (May 6)</span>
+            <span className="text-sm font-medium">Case Study: 2010 Flash Crash (May 6)</span>
           </div>
           <motion.div
             animate={{ rotate: caseStudyOpen ? 90 : 0 }}
@@ -1479,19 +1479,19 @@ export default function AlgoMMPage() {
 
   return (
     <div className="flex flex-col gap-6 p-6 max-w-5xl mx-auto">
-      {/* Header */}
+      {/* HERO Header */}
       <motion.div
         initial={{ opacity: 0, y: -12 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.25 }}
-        className="space-y-1"
+        className="border-l-4 border-l-primary rounded-xl bg-card p-6 space-y-1"
       >
         <div className="flex items-center gap-3">
           <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-primary/10 border border-primary/20">
             <Activity className="h-5 w-5 text-primary" />
           </div>
           <div>
-            <h1 className="text-xl font-bold">Algorithmic Market Making</h1>
+            <h1 className="text-xl font-semibold">Algorithmic Market Making</h1>
             <p className="text-sm text-muted-foreground">
               Electronic trading simulator — spreads, HFT mechanics, P&L attribution, regulation
             </p>

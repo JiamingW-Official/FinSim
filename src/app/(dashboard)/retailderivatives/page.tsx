@@ -424,7 +424,7 @@ function ExchangeTradedOptionsTab() {
                   transition={{ delay: i * 0.03 }}
                   className="border-b border-border hover:bg-muted/30 transition-colors"
                 >
-                  <td className="px-4 py-2.5 font-semibold text-foreground">{row.ticker}</td>
+                  <td className="px-4 py-2.5 font-medium text-foreground">{row.ticker}</td>
                   <td className="px-4 py-2.5">
                     <span
                       className={cn(
@@ -457,7 +457,7 @@ function ExchangeTradedOptionsTab() {
           className="w-full p-4 flex items-center justify-between text-left"
           onClick={() => setExpandMargin(!expandMargin)}
         >
-          <h3 className="text-sm font-semibold text-foreground flex items-center gap-2">
+          <h3 className="text-sm font-medium text-foreground flex items-center gap-2">
             <Shield size={15} className="text-amber-400" /> Margin vs Cash-Secured: What Retail Needs to Know
           </h3>
           {expandMargin ? <ChevronUp size={15} className="text-muted-foreground" /> : <ChevronDown size={15} className="text-muted-foreground" />}
@@ -472,12 +472,12 @@ function ExchangeTradedOptionsTab() {
             >
               <div className="px-4 pb-4 grid grid-cols-1 md:grid-cols-2 gap-4 text-sm">
                 <div className="rounded-lg border border-amber-500/30 bg-amber-500/5 p-4 space-y-2">
-                  <p className="font-semibold text-amber-400">Margin-Secured Put</p>
+                  <p className="font-medium text-amber-400">Margin-Secured Put</p>
                   <p className="text-muted-foreground">Broker lends portion of collateral. Amplifies risk if stock collapses below margin requirement. Maintenance margin calls possible.</p>
                   <p className="text-muted-foreground text-xs">Typical: 20% of underlying + premium − OTM amount</p>
                 </div>
                 <div className="rounded-lg border border-emerald-500/30 bg-emerald-500/5 p-4 space-y-2">
-                  <p className="font-semibold text-emerald-400">Cash-Secured Put</p>
+                  <p className="font-medium text-emerald-400">Cash-Secured Put</p>
                   <p className="text-muted-foreground">Full strike × 100 held in cash. Maximum downside = stock going to zero. No margin calls. Suitable for Options Level 1.</p>
                   <p className="text-muted-foreground text-xs">Capital required = Strike × 100 per contract</p>
                 </div>
@@ -493,7 +493,7 @@ function ExchangeTradedOptionsTab() {
           className="w-full p-4 flex items-center justify-between text-left"
           onClick={() => setExpandCompare(!expandCompare)}
         >
-          <h3 className="text-sm font-semibold text-foreground flex items-center gap-2">
+          <h3 className="text-sm font-medium text-foreground flex items-center gap-2">
             <BarChart2 size={15} className="text-primary" /> Options vs Stock: Feature Comparison
           </h3>
           {expandCompare ? <ChevronUp size={15} className="text-muted-foreground" /> : <ChevronDown size={15} className="text-muted-foreground" />}
@@ -591,7 +591,7 @@ function LeveragedETFsTab() {
       <div className="rounded-xl border border-red-500/40 bg-red-500/10 p-4 flex items-start gap-3">
         <AlertTriangle size={16} className="text-red-400 mt-0.5 flex-shrink-0" />
         <div className="text-sm">
-          <p className="font-semibold text-red-400 mb-1">Not Suitable for Long-Term Holding</p>
+          <p className="font-medium text-red-400 mb-1">Not Suitable for Long-Term Holding</p>
           <p className="text-muted-foreground">Leveraged and inverse ETFs reset daily. Volatility decay (beta slippage) erodes returns over time. These products are designed for short-term tactical use — typically intraday to a few days.</p>
         </div>
       </div>
@@ -611,7 +611,7 @@ function LeveragedETFsTab() {
           >
             <p className="font-bold text-foreground text-sm">{etf.ticker}</p>
             <p className="text-xs text-muted-foreground mt-0.5">{etf.leverage > 0 ? "+" : ""}{etf.leverage}× {etf.underlying.slice(0, 15)}</p>
-            <p className={cn("text-xs font-semibold mt-1", etf.leverage > 0 ? "text-emerald-400" : "text-red-400")}>
+            <p className={cn("text-xs font-medium mt-1", etf.leverage > 0 ? "text-emerald-400" : "text-red-400")}>
               {etf.leverage > 0 ? "Bull" : "Bear"} {Math.abs(etf.leverage)}×
             </p>
           </button>
@@ -622,21 +622,21 @@ function LeveragedETFsTab() {
       <div className="rounded-xl border border-border bg-muted/40 p-5 space-y-4">
         <div className="flex items-start justify-between flex-wrap gap-3">
           <div>
-            <h3 className="text-base font-bold text-foreground">{selected.name}</h3>
+            <h3 className="text-base font-medium text-foreground">{selected.name}</h3>
             <p className="text-sm text-muted-foreground">{selected.ticker} · {selected.leverage > 0 ? "+" : ""}{selected.leverage}× Daily · {selected.underlying}</p>
           </div>
           <div className="flex gap-3 text-xs">
             <div className="text-center">
               <p className="text-muted-foreground">AUM</p>
-              <p className="text-foreground font-semibold">${selected.aum}B</p>
+              <p className="text-foreground font-medium">${selected.aum}B</p>
             </div>
             <div className="text-center">
               <p className="text-muted-foreground">Exp Ratio</p>
-              <p className="text-amber-400 font-semibold">{selected.expense}%</p>
+              <p className="text-amber-400 font-medium">{selected.expense}%</p>
             </div>
             <div className="text-center">
               <p className="text-muted-foreground">Vol Decay Est.</p>
-              <p className="text-red-400 font-semibold">{volatilityDecayPct}% / yr</p>
+              <p className="text-red-400 font-medium">{volatilityDecayPct}% / yr</p>
             </div>
           </div>
         </div>
@@ -718,7 +718,7 @@ function LeveragedETFsTab() {
 
       {/* Volatility Decay Math */}
       <div className="rounded-xl border border-border bg-muted/40 p-5">
-        <h3 className="text-sm font-semibold text-foreground mb-3 flex items-center gap-2">
+        <h3 className="text-sm font-medium text-foreground mb-3 flex items-center gap-2">
           <Zap size={15} className="text-amber-400" /> Volatility Decay (Beta Slippage) Mathematics
         </h3>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm">
@@ -796,7 +796,7 @@ function StructuredNotesTab() {
           <div key={c.t} className={cn("rounded-xl border p-4", c.color)}>
             <div className="flex items-center gap-2 mb-2">
               {c.icon}
-              <p className="font-semibold text-foreground text-sm">{c.t}</p>
+              <p className="font-medium text-foreground text-sm">{c.t}</p>
             </div>
             <p className="text-xs text-muted-foreground mb-2">{c.desc}</p>
             <p className="text-xs text-muted-foreground italic">{c.risk}</p>
@@ -861,7 +861,7 @@ function StructuredNotesTab() {
                   <td className="px-4 py-2.5 text-right text-emerald-400">{note.participation}%</td>
                   <td className="px-4 py-2.5 text-right text-amber-400">{note.coupon > 0 ? `${note.coupon}%` : "—"}</td>
                   <td className="px-4 py-2.5 text-right">
-                    <span className={cn("font-semibold", ["AA+", "AA"].includes(note.creditRating) ? "text-emerald-400" : "text-amber-400")}>
+                    <span className={cn("font-medium", ["AA+", "AA"].includes(note.creditRating) ? "text-emerald-400" : "text-amber-400")}>
                       {note.creditRating}
                     </span>
                   </td>
@@ -883,7 +883,7 @@ function StructuredNotesTab() {
             exit={{ opacity: 0, y: 12 }}
             className="rounded-xl border border-border bg-muted/60 p-5 space-y-4"
           >
-            <h3 className="text-sm font-semibold text-foreground">{selected.name}</h3>
+            <h3 className="text-sm font-medium text-foreground">{selected.name}</h3>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm">
               <div className="space-y-2">
                 <p className="text-muted-foreground">Embedded Option Decomposition</p>
@@ -903,11 +903,11 @@ function StructuredNotesTab() {
                 <div className="space-y-1.5 text-xs text-muted-foreground">
                   <div className="flex justify-between">
                     <span>Issuer</span>
-                    <span className="text-foreground font-semibold">{selected.issuer}</span>
+                    <span className="text-foreground font-medium">{selected.issuer}</span>
                   </div>
                   <div className="flex justify-between">
                     <span>Credit Rating</span>
-                    <span className={cn("font-semibold", ["AA+", "AA"].includes(selected.creditRating) ? "text-emerald-400" : "text-amber-400")}>
+                    <span className={cn("font-medium", ["AA+", "AA"].includes(selected.creditRating) ? "text-emerald-400" : "text-amber-400")}>
                       {selected.creditRating}
                     </span>
                   </div>
@@ -954,7 +954,7 @@ function WarrantsRightsTab() {
       {/* Warrant Table */}
       <div className="rounded-xl border border-border bg-card/50">
         <div className="p-4 border-b border-border">
-          <h3 className="text-sm font-semibold text-foreground">Sample Warrant Universe</h3>
+          <h3 className="text-sm font-medium text-foreground">Sample Warrant Universe</h3>
         </div>
         <div className="overflow-x-auto">
           <table className="w-full text-xs">
@@ -981,7 +981,7 @@ function WarrantsRightsTab() {
                   className="border-b border-border hover:bg-muted/30 transition-colors"
                 >
                   <td className="px-4 py-2.5 text-foreground">{w.company}</td>
-                  <td className="px-4 py-2.5 font-semibold text-primary font-mono">{w.ticker}</td>
+                  <td className="px-4 py-2.5 font-medium text-primary font-mono">{w.ticker}</td>
                   <td className="px-4 py-2.5 text-right text-muted-foreground">${w.exercisePrice.toFixed(2)}</td>
                   <td className="px-4 py-2.5 text-right text-foreground">${w.currentStock.toFixed(2)}</td>
                   <td className="px-4 py-2.5 text-muted-foreground">{w.expiry}</td>
@@ -989,7 +989,7 @@ function WarrantsRightsTab() {
                     ${w.intrinsic.toFixed(2)}
                   </td>
                   <td className="px-4 py-2.5 text-right text-amber-400">${w.timeValue.toFixed(2)}</td>
-                  <td className="px-4 py-2.5 text-right text-foreground font-semibold">${w.premium.toFixed(2)}</td>
+                  <td className="px-4 py-2.5 text-right text-foreground font-medium">${w.premium.toFixed(2)}</td>
                   <td className="px-4 py-2.5 text-right text-red-400">{w.dilution.toFixed(2)}%</td>
                 </motion.tr>
               ))}
@@ -1000,7 +1000,7 @@ function WarrantsRightsTab() {
 
       {/* Dilution Impact Calculator */}
       <div className="rounded-xl border border-border bg-muted/40 p-5">
-        <h3 className="text-sm font-semibold text-foreground mb-4 flex items-center gap-2">
+        <h3 className="text-sm font-medium text-foreground mb-4 flex items-center gap-2">
           <DollarSign size={15} className="text-emerald-400" /> Dilution Impact: How Warrants Affect Existing Shareholders
         </h3>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm">
@@ -1017,7 +1017,7 @@ function WarrantsRightsTab() {
             <p className="text-amber-400">{"Diluted shares = 105.42M (+5.4%)"}</p>
           </div>
           <div className="space-y-3 text-sm text-muted-foreground">
-            <p>Warrants are <span className="text-foreground font-semibold">company-issued</span> — unlike listed options which are contracts between investors. When exercised, new shares are created, diluting existing holders.</p>
+            <p>Warrants are <span className="text-foreground font-medium">company-issued</span> — unlike listed options which are contracts between investors. When exercised, new shares are created, diluting existing holders.</p>
             <div className="space-y-1.5 text-xs">
               {[
                 ["Issued by", "Warrant: Company | Option: Exchange/counterparty"],
@@ -1043,7 +1043,7 @@ function WarrantsRightsTab() {
           className="w-full p-4 flex items-center justify-between text-left"
           onClick={() => setExpandDiff(!expandDiff)}
         >
-          <h3 className="text-sm font-semibold text-foreground flex items-center gap-2">
+          <h3 className="text-sm font-medium text-foreground flex items-center gap-2">
             <Info size={15} className="text-primary" /> Subscription Rights: Short-Lived Opportunities
           </h3>
           {expandDiff ? <ChevronUp size={15} className="text-muted-foreground" /> : <ChevronDown size={15} className="text-muted-foreground" />}
@@ -1065,7 +1065,7 @@ function WarrantsRightsTab() {
                     { title: "Non-Renounceable Rights", desc: "Must subscribe or let expire — cannot be sold. Common in smaller offerings. Watch for dilution.", color: "border-amber-500/30" },
                   ].map((r) => (
                     <div key={r.title} className={cn("rounded-lg border p-3", r.color, "bg-card")}>
-                      <p className="font-semibold text-foreground mb-1">{r.title}</p>
+                      <p className="font-medium text-foreground mb-1">{r.title}</p>
                       <p className="text-muted-foreground">{r.desc}</p>
                     </div>
                   ))}
@@ -1101,7 +1101,7 @@ function RetailAlternativesTab() {
       <div className="rounded-xl border border-border bg-primary/5 p-4 flex items-start gap-3">
         <Info size={16} className="text-primary mt-0.5 flex-shrink-0" />
         <div className="text-sm">
-          <p className="font-semibold text-primary mb-1">Democratization of Alternative Investments</p>
+          <p className="font-medium text-primary mb-1">Democratization of Alternative Investments</p>
           <p className="text-muted-foreground">Regulatory changes (JOBS Act, SEC Reg CF/A, 40 Act interval funds) now allow non-accredited retail investors to access private credit, real estate, and startup equity — previously available only to institutions and the ultra-wealthy.</p>
         </div>
       </div>
@@ -1116,7 +1116,7 @@ function RetailAlternativesTab() {
           { type: "Reg A+", desc: 'Mini-IPO up to $75M/yr. SEC "Tier 2". More flexibility than Reg CF.', access: "All investors", icon: <Unlock size={13} />, color: "border-orange-500/40" },
         ] as Array<{ type: string; desc: string; access: string; icon: React.ReactNode; color: string }>).map((item) => (
           <div key={item.type} className={cn("rounded-lg border p-3 bg-muted/40 space-y-1.5", item.color)}>
-            <div className="flex items-center gap-1.5 text-foreground font-semibold">
+            <div className="flex items-center gap-1.5 text-foreground font-medium">
               {item.icon}
               {item.type}
             </div>
@@ -1175,7 +1175,7 @@ function RetailAlternativesTab() {
                       {p.type}
                     </span>
                   </td>
-                  <td className="px-4 py-2.5 text-right text-foreground font-semibold">
+                  <td className="px-4 py-2.5 text-right text-foreground font-medium">
                     ${p.minInvestment.toLocaleString()}
                   </td>
                   <td className="px-4 py-2.5">
@@ -1214,7 +1214,7 @@ function RetailAlternativesTab() {
           className="w-full p-4 flex items-center justify-between text-left"
           onClick={() => setExpandDebate(!expandDebate)}
         >
-          <h3 className="text-sm font-semibold text-foreground flex items-center gap-2">
+          <h3 className="text-sm font-medium text-foreground flex items-center gap-2">
             <Users size={15} className="text-primary" /> The Accredited Investor Threshold Debate
           </h3>
           {expandDebate ? <ChevronUp size={15} className="text-muted-foreground" /> : <ChevronDown size={15} className="text-muted-foreground" />}
@@ -1234,7 +1234,7 @@ function RetailAlternativesTab() {
                 </div>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                   <div className="rounded-lg border border-emerald-500/30 bg-emerald-500/5 p-3 space-y-2">
-                    <p className="font-semibold text-emerald-400 text-xs">Arguments FOR lowering threshold</p>
+                    <p className="font-medium text-emerald-400 text-xs">Arguments FOR lowering threshold</p>
                     <ul className="space-y-1 text-xs text-muted-foreground">
                       {[
                         "Wealth-based gatekeeping excludes middle-class savers",
@@ -1250,7 +1250,7 @@ function RetailAlternativesTab() {
                     </ul>
                   </div>
                   <div className="rounded-lg border border-red-500/30 bg-red-500/5 p-3 space-y-2">
-                    <p className="font-semibold text-red-400 text-xs">Arguments AGAINST lowering threshold</p>
+                    <p className="font-medium text-red-400 text-xs">Arguments AGAINST lowering threshold</p>
                     <ul className="space-y-1 text-xs text-muted-foreground">
                       {[
                         "Private investments have limited disclosure requirements",
@@ -1267,7 +1267,7 @@ function RetailAlternativesTab() {
                   </div>
                 </div>
                 <div className="rounded-lg border border-border bg-card/50 p-3 text-xs text-muted-foreground">
-                  <span className="text-foreground font-semibold">Bottom line: </span>
+                  <span className="text-foreground font-medium">Bottom line: </span>
                   The 2023 SEC amendments allow knowledge-based accreditation (professional licenses) — a step toward merit-based access. Further reform proposals include graduated caps on alternative allocations (e.g., max 10% of portfolio) rather than binary on/off thresholds.
                 </div>
               </div>
@@ -1278,7 +1278,7 @@ function RetailAlternativesTab() {
 
       {/* Reg CF/A Crowdfunding Summary */}
       <div className="rounded-xl border border-border bg-muted/40 p-5">
-        <h3 className="text-sm font-semibold text-foreground mb-3 flex items-center gap-2">
+        <h3 className="text-sm font-medium text-foreground mb-3 flex items-center gap-2">
           <Users size={15} className="text-amber-400" /> Crowdfunding Limits (Reg CF vs Reg A+)
         </h3>
         <div className="overflow-x-auto">
@@ -1332,7 +1332,7 @@ export default function RetailDerivativesPage() {
               <Layers size={20} className="text-primary" />
             </div>
             <div>
-              <h1 className="text-xl font-bold text-foreground">Retail Derivatives & Structured Products</h1>
+              <h1 className="text-xl font-medium text-foreground">Retail Derivatives & Structured Products</h1>
               <p className="text-sm text-muted-foreground">Exchange-traded options, leveraged ETFs, structured notes, warrants, and alternative access for individual investors</p>
             </div>
           </div>

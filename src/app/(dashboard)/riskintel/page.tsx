@@ -1031,7 +1031,7 @@ export default function RiskIntelPage() {
                       <div className="text-xs font-mono text-muted-foreground mt-0.5">ρ = -0.22</div>
                     </div>
                     <div className="bg-muted rounded-lg p-2 text-center">
-                      <div className="text-sm font-semibold text-red-400">AAPL/MSFT</div>
+                      <div className="text-sm font-medium text-red-400">AAPL/MSFT</div>
                       <div className="text-xs text-muted-foreground">Highest corr</div>
                       <div className="text-xs font-mono text-muted-foreground mt-0.5">ρ = +0.82</div>
                     </div>
@@ -1135,13 +1135,13 @@ export default function RiskIntelPage() {
                   <div className="grid grid-cols-2 gap-2 pt-1 text-xs">
                     <div className="bg-muted rounded-lg p-2">
                       <div className="text-muted-foreground">1-day VaR 95%</div>
-                      <div className="text-red-400 font-semibold font-mono">
+                      <div className="text-red-400 font-medium font-mono">
                         -{(computePortfolioVol() * 1.645 / Math.sqrt(252) * 100).toFixed(2)}%
                       </div>
                     </div>
                     <div className="bg-muted rounded-lg p-2">
                       <div className="text-muted-foreground">Annual VaR 95%</div>
-                      <div className="text-red-400 font-semibold font-mono">
+                      <div className="text-red-400 font-medium font-mono">
                         -{(computePortfolioVol() * 1.645 * 100).toFixed(1)}%
                       </div>
                     </div>
@@ -1252,7 +1252,7 @@ export default function RiskIntelPage() {
                                   style={{ backgroundColor: corrColor(v) }}
                                   title={`${row.ticker} / ${POSITIONS[j].ticker}: ${v.toFixed(2)}`}
                                 >
-                                  <span className="text-[11px] font-bold" style={{ color: Math.abs(v) > 0.4 ? "#fff" : "#000" }}>
+                                  <span className="text-[11px] font-medium" style={{ color: Math.abs(v) > 0.4 ? "#fff" : "#000" }}>
                                     {isDiag ? "1" : v.toFixed(2)}
                                   </span>
                                 </td>
@@ -1306,7 +1306,7 @@ export default function RiskIntelPage() {
                               {POSITIONS[selectedCell.j].ticker}
                             </Badge>
                             <span
-                              className="ml-auto font-mono font-bold text-sm"
+                              className="ml-auto font-mono font-medium text-sm"
                               style={{
                                 color: corrColor(corrMatrix[selectedCell.i][selectedCell.j]),
                               }}
@@ -1402,7 +1402,7 @@ export default function RiskIntelPage() {
                   ].map((c) => (
                     <div key={c.label} className="flex items-center gap-1.5 bg-muted rounded-full px-3 py-1">
                       <div className="w-2 h-2 rounded-full" style={{ backgroundColor: c.color }} />
-                      <span className="font-semibold" style={{ color: c.color }}>{c.label}:</span>
+                      <span className="font-medium" style={{ color: c.color }}>{c.label}:</span>
                       <span className="text-muted-foreground">{c.members}</span>
                     </div>
                   ))}
@@ -1459,7 +1459,7 @@ export default function RiskIntelPage() {
                 <Card key={s.label} className="bg-card border-border">
                   <CardContent className="p-4">
                     <div className="text-xs text-muted-foreground mb-1">{s.label}</div>
-                    <div className="text-xl font-bold font-mono" style={{ color: s.color }}>
+                    <div className="text-xl font-medium font-mono" style={{ color: s.color }}>
                       {s.value}
                     </div>
                     <div className="text-xs text-muted-foreground mt-0.5">{s.sub}</div>
@@ -1626,7 +1626,7 @@ export default function RiskIntelPage() {
                         <div className="flex items-start justify-between gap-2">
                           <div className="flex-1 min-w-0">
                             <div className="flex items-center gap-2 flex-wrap">
-                              <span className="font-semibold text-sm text-foreground truncate">{s.name}</span>
+                              <span className="font-medium text-sm text-foreground truncate">{s.name}</span>
                               <Badge className="text-xs bg-muted text-muted-foreground border-border">
                                 {s.year}
                               </Badge>
@@ -1634,7 +1634,7 @@ export default function RiskIntelPage() {
                             <p className="text-xs text-muted-foreground mt-1 line-clamp-2">{s.cause}</p>
                           </div>
                           <div className="text-right flex-shrink-0">
-                            <div className="text-lg font-bold font-mono" style={{ color }}>
+                            <div className="text-lg font-medium font-mono" style={{ color }}>
                               {impact.toFixed(1)}%
                             </div>
                             <div className="text-xs text-muted-foreground">portfolio P&amp;L</div>
@@ -1739,7 +1739,7 @@ export default function RiskIntelPage() {
                       <div key={ctrl.label} className="space-y-2">
                         <div className="flex justify-between text-xs">
                           <span className="text-muted-foreground">{ctrl.label}</span>
-                          <span className="font-mono font-semibold" style={{ color: ctrl.color }}>
+                          <span className="font-mono font-medium" style={{ color: ctrl.color }}>
                             {ctrl.format(ctrl.value)}
                           </span>
                         </div>
@@ -1839,7 +1839,7 @@ export default function RiskIntelPage() {
                     <div key={ctrl.label} className="space-y-2">
                       <div className="flex justify-between text-xs">
                         <span className="text-muted-foreground">{ctrl.label}</span>
-                        <span className="font-mono font-semibold" style={{ color: ctrl.color }}>
+                        <span className="font-mono font-medium" style={{ color: ctrl.color }}>
                           {ctrl.format(ctrl.value)}
                         </span>
                       </div>
@@ -2021,7 +2021,7 @@ export default function RiskIntelPage() {
                   </div>
                   <div className="space-y-3">
                     <div className="bg-muted rounded-lg p-3 text-xs space-y-2">
-                      <div className="font-semibold text-muted-foreground">Risk Budget Insights</div>
+                      <div className="font-medium text-muted-foreground">Risk Budget Insights</div>
                       <p className="text-muted-foreground">
                         TSLA and NVDA are consuming disproportionate risk budget due to high volatility (62% and 52% annualized).
                         TLT, despite 24% weight, uses only 3.8% of risk budget due to low vol (15%).
@@ -2035,7 +2035,7 @@ export default function RiskIntelPage() {
                     </div>
                     {/* Leverage analysis */}
                     <div className="bg-muted rounded-lg p-3 text-xs space-y-1.5">
-                      <div className="font-semibold text-muted-foreground">Leverage Analysis</div>
+                      <div className="font-medium text-muted-foreground">Leverage Analysis</div>
                       {[
                         { label: "Portfolio leverage ratio",  val: "1.0× (no leverage)" },
                         { label: "Margin utilization",        val: "0% (cash only)" },
@@ -2143,7 +2143,7 @@ export default function RiskIntelPage() {
                               <span className="text-muted-foreground text-xs font-mono">{m.before}</span>
                               <ChevronRight className="w-3 h-3 text-muted-foreground" />
                               <span
-                                className="text-sm font-bold font-mono"
+                                className="text-sm font-medium font-mono"
                                 style={{ color: m.improved ? "#22c55e" : "#f97316" }}
                               >
                                 {m.after}

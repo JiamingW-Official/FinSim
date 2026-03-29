@@ -595,15 +595,15 @@ function ProxyVoteSimulator() {
           <p className="text-xs text-muted-foreground mb-2 font-semibold">Your Ballot Summary ({total}/{PROXY_RESOLUTIONS.length} voted)</p>
           <div className="flex gap-4">
             <div className="text-center">
-              <p className="text-xl font-bold text-emerald-400">{forCount}</p>
+              <p className="text-xl font-medium text-emerald-400">{forCount}</p>
               <p className="text-xs text-muted-foreground">For</p>
             </div>
             <div className="text-center">
-              <p className="text-xl font-bold text-rose-400">{againstCount}</p>
+              <p className="text-xl font-medium text-rose-400">{againstCount}</p>
               <p className="text-xs text-muted-foreground">Against</p>
             </div>
             <div className="text-center">
-              <p className="text-xl font-bold text-muted-foreground">{total - forCount - againstCount}</p>
+              <p className="text-xl font-medium text-muted-foreground">{total - forCount - againstCount}</p>
               <p className="text-xs text-muted-foreground">Abstain</p>
             </div>
           </div>
@@ -669,11 +669,11 @@ export default function CorpGovernancePage() {
         transition={{ duration: 0.4 }}
         className="max-w-6xl mx-auto space-y-6"
       >
-        {/* Header */}
-        <div>
+        {/* HERO Header */}
+        <div className="border-l-4 border-l-primary rounded-xl bg-card p-6">
           <div className="flex items-center gap-2 mb-1">
             <Building2 className="w-5 h-5 text-indigo-400" />
-            <h1 className="text-xl font-bold text-foreground">Corporate Governance & Shareholder Activism</h1>
+            <h1 className="text-xl font-semibold text-foreground">Corporate Governance & Shareholder Activism</h1>
           </div>
           <p className="text-sm text-muted-foreground">
             Analyze board composition, proxy battles, and governance quality across public companies.
@@ -704,11 +704,11 @@ export default function CorpGovernancePage() {
             <motion.div initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} className="space-y-4">
               <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
                 <div className="rounded-xl border border-border bg-foreground/5 p-4">
-                  <h3 className="text-sm font-semibold text-foreground mb-3">Governance Score by Company</h3>
+                  <h3 className="text-sm font-medium text-foreground mb-3">Governance Score by Company</h3>
                   <BoardBarChart companies={BOARD_COMPANIES} />
                 </div>
                 <div className="rounded-xl border border-border bg-foreground/5 p-4">
-                  <h3 className="text-sm font-semibold text-foreground mb-3">Company Detail</h3>
+                  <h3 className="text-sm font-medium text-foreground mb-3">Company Detail</h3>
                   <div className="flex flex-wrap gap-1.5 mb-3">
                     {BOARD_COMPANIES.map((c) => (
                       <button
@@ -741,7 +741,7 @@ export default function CorpGovernancePage() {
                     <div className="mt-3">
                       <div className="flex justify-between text-xs mb-1">
                         <span className="text-muted-foreground">Governance Score</span>
-                        <span className={cn("font-bold", scoreColor(selectedCompany.govScore))}>{selectedCompany.govScore}/100</span>
+                        <span className={cn("font-medium", scoreColor(selectedCompany.govScore))}>{selectedCompany.govScore}/100</span>
                       </div>
                       <ScoreBar value={selectedCompany.govScore} />
                     </div>
@@ -749,7 +749,7 @@ export default function CorpGovernancePage() {
                 </div>
               </div>
               <div className="rounded-xl border border-border bg-foreground/5 p-4 overflow-x-auto">
-                <h3 className="text-sm font-semibold text-foreground mb-3">Full Comparison Table</h3>
+                <h3 className="text-sm font-medium text-foreground mb-3">Full Comparison Table</h3>
                 <table className="w-full text-xs min-w-[580px]">
                   <thead>
                     <tr className="text-muted-foreground border-b border-border">
@@ -796,7 +796,7 @@ export default function CorpGovernancePage() {
                   <div className="flex items-start justify-between gap-3 mb-2">
                     <div>
                       <div className="flex items-center gap-2 mb-1">
-                        <span className="text-sm font-semibold text-foreground">{c.fund}</span>
+                        <span className="text-sm font-medium text-foreground">{c.fund}</span>
                         <span className="text-xs text-muted-foreground">→</span>
                         <span className="text-sm font-medium text-indigo-300">{c.target}</span>
                         <Badge className="text-xs bg-muted/50 text-muted-foreground">{c.ticker}</Badge>
@@ -841,7 +841,7 @@ export default function CorpGovernancePage() {
                   <div key={e.ticker} className="rounded-xl border border-border bg-foreground/5 p-4">
                     <div className="flex items-center justify-between mb-2">
                       <div>
-                        <p className="text-xs font-semibold text-foreground">{e.company}</p>
+                        <p className="text-xs font-medium text-foreground">{e.company}</p>
                         <p className="text-xs text-muted-foreground">{e.ticker}</p>
                       </div>
                       <EsgRadarMini score={e} />
@@ -864,13 +864,13 @@ export default function CorpGovernancePage() {
                     </div>
                     <div className="mt-3 flex justify-between items-center">
                       <span className="text-xs text-muted-foreground">Overall Score</span>
-                      <Badge className={cn("text-xs font-bold", scoreBg(e.overall))}>{e.overall}</Badge>
+                      <Badge className={cn("text-xs font-medium", scoreBg(e.overall))}>{e.overall}</Badge>
                     </div>
                   </div>
                 ))}
               </div>
               <div className="rounded-xl border border-border bg-foreground/5 p-4">
-                <h3 className="text-sm font-semibold text-foreground mb-3">Score Interpretation</h3>
+                <h3 className="text-sm font-medium text-foreground mb-3">Score Interpretation</h3>
                 <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 text-xs">
                   <div className="flex items-start gap-2"><div className="w-2 h-2 rounded-full bg-emerald-500 mt-0.5 flex-shrink-0" /><div><p className="text-emerald-400 font-medium">80–100: Strong Governance</p><p className="text-muted-foreground mt-0.5">Majority independent board, pay tied to performance, robust shareholder rights, full disclosure</p></div></div>
                   <div className="flex items-start gap-2"><div className="w-2 h-2 rounded-full bg-amber-500 mt-0.5 flex-shrink-0" /><div><p className="text-amber-400 font-medium">65–79: Adequate Governance</p><p className="text-muted-foreground mt-0.5">Some concerns — tenure concentration, partial disclosure gaps, or minor pay misalignment</p></div></div>
@@ -895,7 +895,7 @@ export default function CorpGovernancePage() {
                     onClick={() => setExpandedDefense(expandedDefense === def.name ? null : def.name)}
                   >
                     <div>
-                      <p className="text-sm font-semibold text-foreground">{def.name}</p>
+                      <p className="text-sm font-medium text-foreground">{def.name}</p>
                       <p className="text-xs text-muted-foreground mt-0.5">{def.mechanism}</p>
                     </div>
                     <div className="flex items-center gap-2 flex-shrink-0 ml-3">
@@ -912,7 +912,7 @@ export default function CorpGovernancePage() {
                     >
                       <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-3">
                         <div>
-                          <p className="text-xs font-semibold text-emerald-400 mb-2 flex items-center gap-1"><CheckCircle className="w-3 h-3" />Advantages</p>
+                          <p className="text-xs font-medium text-emerald-400 mb-2 flex items-center gap-1"><CheckCircle className="w-3 h-3" />Advantages</p>
                           <ul className="space-y-1">
                             {def.pros.map((p) => (
                               <li key={p} className="text-xs text-muted-foreground flex items-start gap-1.5">
@@ -922,7 +922,7 @@ export default function CorpGovernancePage() {
                           </ul>
                         </div>
                         <div>
-                          <p className="text-xs font-semibold text-rose-400 mb-2 flex items-center gap-1"><XCircle className="w-3 h-3" />Disadvantages</p>
+                          <p className="text-xs font-medium text-rose-400 mb-2 flex items-center gap-1"><XCircle className="w-3 h-3" />Disadvantages</p>
                           <ul className="space-y-1">
                             {def.cons.map((c) => (
                               <li key={c} className="text-xs text-muted-foreground flex items-start gap-1.5">
@@ -945,37 +945,37 @@ export default function CorpGovernancePage() {
             <motion.div initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} className="space-y-4">
               <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
                 <div className="rounded-xl border border-border bg-foreground/5 p-4">
-                  <h3 className="text-sm font-semibold text-foreground mb-4">Ownership Breakdown — Vertex Financial (VTXF)</h3>
+                  <h3 className="text-sm font-medium text-foreground mb-4">Ownership Breakdown — Vertex Financial (VTXF)</h3>
                   <OwnershipDonut data={SHAREHOLDERS} />
                   <div className="mt-4 grid grid-cols-2 gap-3 text-xs">
                     <div className="rounded-lg border border-border bg-foreground/5 p-3">
                       <p className="text-muted-foreground mb-1">Passive (Index)</p>
-                      <p className="text-xl font-bold text-primary">
+                      <p className="text-xl font-medium text-primary">
                         {SHAREHOLDERS.filter((s) => s.type === "Index").reduce((a, b) => a + b.pct, 0).toFixed(1)}%
                       </p>
                     </div>
                     <div className="rounded-lg border border-border bg-foreground/5 p-3">
                       <p className="text-muted-foreground mb-1">Active Managers</p>
-                      <p className="text-xl font-bold text-emerald-400">
+                      <p className="text-xl font-medium text-emerald-400">
                         {SHAREHOLDERS.filter((s) => s.type === "Active").reduce((a, b) => a + b.pct, 0).toFixed(1)}%
                       </p>
                     </div>
                     <div className="rounded-lg border border-border bg-foreground/5 p-3">
                       <p className="text-muted-foreground mb-1">Hedge Funds</p>
-                      <p className="text-xl font-bold text-amber-400">
+                      <p className="text-xl font-medium text-amber-400">
                         {SHAREHOLDERS.filter((s) => s.type === "Hedge Fund").reduce((a, b) => a + b.pct, 0).toFixed(1)}%
                       </p>
                     </div>
                     <div className="rounded-lg border border-border bg-foreground/5 p-3">
                       <p className="text-muted-foreground mb-1">Insiders</p>
-                      <p className="text-xl font-bold text-primary">
+                      <p className="text-xl font-medium text-primary">
                         {SHAREHOLDERS.filter((s) => s.type === "Insider").reduce((a, b) => a + b.pct, 0).toFixed(1)}%
                       </p>
                     </div>
                   </div>
                 </div>
                 <div className="rounded-xl border border-border bg-foreground/5 p-4">
-                  <h3 className="text-sm font-semibold text-foreground mb-3">Top Shareholders</h3>
+                  <h3 className="text-sm font-medium text-foreground mb-3">Top Shareholders</h3>
                   <div className="space-y-2">
                     {SHAREHOLDERS.sort((a, b) => b.pct - a.pct).map((sh, i) => (
                       <div key={sh.name} className="flex items-center gap-3">
@@ -983,7 +983,7 @@ export default function CorpGovernancePage() {
                         <div className="flex-1">
                           <div className="flex justify-between text-xs mb-0.5">
                             <span className="text-foreground font-medium">{sh.name}</span>
-                            <span className="text-foreground font-semibold">{sh.pct}%</span>
+                            <span className="text-foreground font-medium">{sh.pct}%</span>
                           </div>
                           <div className="flex items-center gap-2">
                             <div className="flex-1 h-1 rounded-full bg-foreground/10 overflow-hidden">
@@ -1001,7 +1001,7 @@ export default function CorpGovernancePage() {
                 </div>
               </div>
               <div className="rounded-xl border border-border bg-foreground/5 p-4">
-                <h3 className="text-sm font-semibold text-foreground mb-3">Voting Power Dynamics</h3>
+                <h3 className="text-sm font-medium text-foreground mb-3">Voting Power Dynamics</h3>
                 <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 text-xs">
                   <div className="space-y-1.5">
                     <p className="text-muted-foreground font-medium flex items-center gap-1"><TrendingUp className="w-3 h-3 text-primary" />Index Funds (Passive)</p>

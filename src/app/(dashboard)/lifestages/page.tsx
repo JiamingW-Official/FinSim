@@ -540,7 +540,7 @@ function Tab20s() {
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
         <ChecklistCard items={checklist} />
         <Card className="p-4 bg-card border-border space-y-3">
-          <p className="font-semibold text-sm text-foreground">Key Concepts</p>
+          <p className="font-medium text-sm text-foreground">Key Concepts</p>
           <Hint text="Employer 401(k) match is an immediate 50–100% return on your contribution. Always contribute at least enough to get the full match." />
           <Hint text="Roth IRA vs Traditional: In your 20s you're likely in a lower tax bracket — Roth conversions are cheapest now. You keep all the gains tax-free." />
           <Hint text="Compound interest math: $5,000/yr from age 22 at 7% grows to ~$1.1M by age 65. Same amount starting at 32 yields ~$530K — half as much." />
@@ -650,7 +650,7 @@ function Tab30s() {
       />
 
       <Card className="p-5 bg-card border-border">
-        <p className="font-semibold text-sm mb-4 text-foreground">Rent vs. Buy Calculator</p>
+        <p className="font-medium text-sm mb-4 text-foreground">Rent vs. Buy Calculator</p>
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
           <div>
             <div className="flex justify-between mb-2">
@@ -733,7 +733,7 @@ function Tab30s() {
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
         <ChecklistCard items={checklist} />
         <Card className="p-4 bg-card border-border space-y-3">
-          <p className="font-semibold text-sm text-foreground">30s Money Insights</p>
+          <p className="font-medium text-sm text-foreground">30s Money Insights</p>
           <Hint text="529 plans: Contributions grow tax-free when used for qualified education expenses. Many states offer a deduction on contributions — always check your state's plan." />
           <Hint text="PMI costs 0.5–1.5% annually. Putting 20% down eliminates it and saves $150–400/month on a typical mortgage." />
           <Hint text="Renting isn't throwing money away — opportunity cost of down payment + flexibility matters. Buy when break-even < 5 years and planning to stay." />
@@ -818,7 +818,7 @@ function Tab40s() {
       />
 
       <Card className="p-5 bg-card border-border">
-        <p className="font-semibold text-sm mb-4 text-foreground">Your Financial Inputs</p>
+        <p className="font-medium text-sm mb-4 text-foreground">Your Financial Inputs</p>
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
           <div>
             <div className="flex justify-between mb-2">
@@ -898,7 +898,7 @@ function Tab40s() {
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
         <ChecklistCard items={checklist} />
         <Card className="p-4 bg-card border-border space-y-3">
-          <p className="font-semibold text-sm text-foreground">Advanced Strategies</p>
+          <p className="font-medium text-sm text-foreground">Advanced Strategies</p>
           <Hint text="Backdoor Roth: Contribute $7,000 to a traditional IRA (non-deductible), then immediately convert to Roth. Eliminates income limits. Watch for pro-rata rule if you have pre-tax IRA balances." />
           <Hint text="Own-occupation disability insurance covers you if you can't work in your specific occupation — more valuable than any-occ policies for high-income professionals." />
           <div className="p-3 rounded-lg bg-muted/30 border border-border">
@@ -1010,7 +1010,7 @@ function Tab50s() {
       />
 
       <Card className="p-5 bg-card border-border">
-        <p className="font-semibold text-sm mb-4 text-foreground">Retirement Planning Inputs</p>
+        <p className="font-medium text-sm mb-4 text-foreground">Retirement Planning Inputs</p>
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
           <div>
             <div className="flex justify-between mb-2">
@@ -1086,7 +1086,7 @@ function Tab50s() {
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
         <ChecklistCard items={checklist} />
         <Card className="p-4 bg-card border-border space-y-3">
-          <p className="font-semibold text-sm text-foreground">SS Claiming Strategy</p>
+          <p className="font-medium text-sm text-foreground">SS Claiming Strategy</p>
           <div className="space-y-2">
             {[
               { age: 62, pct: 70, benefit: ssEarlyBenefit, label: "Early (reduced)" },
@@ -1106,7 +1106,7 @@ function Tab50s() {
                 <div className="flex-1 min-w-0">
                   <div className="flex justify-between">
                     <span className="text-xs font-medium text-foreground">{row.label}</span>
-                    <span className="text-xs font-bold text-emerald-400">{fmt(row.benefit)}/mo</span>
+                    <span className="text-xs font-medium text-emerald-400">{fmt(row.benefit)}/mo</span>
                   </div>
                   <div className="mt-1 h-1.5 rounded-full bg-muted">
                     <div className="h-1.5 rounded-full bg-emerald-500" style={{ width: `${row.pct}%` }} />
@@ -1203,7 +1203,7 @@ function Tab60s() {
       />
 
       <Card className="p-5 bg-card border-border">
-        <p className="font-semibold text-sm mb-4 text-foreground">Retirement Income Inputs</p>
+        <p className="font-medium text-sm mb-4 text-foreground">Retirement Income Inputs</p>
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
           <div>
             <div className="flex justify-between mb-2">
@@ -1279,7 +1279,7 @@ function Tab60s() {
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
         <ChecklistCard items={checklist} />
         <Card className="p-4 bg-card border-border space-y-3">
-          <p className="font-semibold text-sm text-foreground">Withdrawal Sequencing</p>
+          <p className="font-medium text-sm text-foreground">Withdrawal Sequencing</p>
           <div className="space-y-2">
             {[
               {
@@ -1302,17 +1302,17 @@ function Tab60s() {
               },
             ].map((row) => (
               <div key={row.step} className="flex gap-3 p-3 rounded-lg bg-muted/30 border border-border">
-                <div className={cn("w-6 h-6 rounded-full flex items-center justify-center shrink-0 text-foreground text-xs font-bold", row.color)}>
+                <div className={cn("w-6 h-6 rounded-full flex items-center justify-center shrink-0 text-foreground text-xs font-medium", row.color)}>
                   {row.step}
                 </div>
                 <div>
-                  <p className="text-xs font-semibold text-foreground">{row.account}</p>
+                  <p className="text-xs font-medium text-foreground">{row.account}</p>
                   <p className="text-xs text-muted-foreground mt-0.5">{row.why}</p>
                 </div>
               </div>
             ))}
           </div>
-          <p className="font-semibold text-xs text-foreground mt-2">Medicare Coverage</p>
+          <p className="font-medium text-xs text-foreground mt-2">Medicare Coverage</p>
           <div className="grid grid-cols-2 gap-2">
             {[
               { part: "Part A", covers: "Hospital stays", cost: "Usually free (if 40+ work qtrs)" },
@@ -1321,7 +1321,7 @@ function Tab60s() {
               { part: "Part D", covers: "Prescription drugs", cost: "~$30–80/mo + IRMAA" },
             ].map((m) => (
               <div key={m.part} className="p-2 rounded-lg bg-muted/30 border border-border">
-                <p className="text-xs font-bold text-pink-400">{m.part}</p>
+                <p className="text-xs font-medium text-pink-400">{m.part}</p>
                 <p className="text-xs text-foreground">{m.covers}</p>
                 <p className="text-xs text-muted-foreground">{m.cost}</p>
               </div>
@@ -1374,7 +1374,7 @@ export default function LifeStagesPage() {
               <div className="w-8 h-8 rounded-full bg-current/10 flex items-center justify-center opacity-80">
                 {t.icon}
               </div>
-              <span className="text-xs font-bold">{t.label}</span>
+              <span className="text-xs font-medium">{t.label}</span>
               <span className="text-xs opacity-70 hidden sm:block">{t.subtitle}</span>
               {i < TABS.length - 1 && (
                 <div className="hidden" />

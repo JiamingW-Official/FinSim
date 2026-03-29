@@ -1036,7 +1036,7 @@ function IncomeStatementAnalyzer() {
             key={t}
             onClick={() => setTicker(t)}
             className={cn(
-              "px-3 py-1.5 rounded-lg text-xs font-mono font-bold transition-colors",
+              "px-3 py-1.5 rounded-lg text-xs font-mono font-medium transition-colors",
               ticker === t
                 ? "bg-indigo-600 text-foreground"
                 : "bg-muted border border-border text-muted-foreground hover:text-foreground"
@@ -1076,7 +1076,7 @@ function IncomeStatementAnalyzer() {
           <LineChart series={epsSeries} height={180} formatVal={(v) => `$${v.toFixed(2)}`} />
           <div className="mt-3 p-3 bg-muted/60 rounded-lg">
             <p className="text-xs text-muted-foreground">
-              <span className="text-amber-400 font-semibold">Adj vs GAAP spread: </span>
+              <span className="text-amber-400 font-medium">Adj vs GAAP spread: </span>
               {((data[4].epsAdj / data[4].epsGaap - 1) * 100).toFixed(1)}% — higher spread may indicate aggressive non-GAAP adjustments.
             </p>
           </div>
@@ -1084,7 +1084,7 @@ function IncomeStatementAnalyzer() {
 
         {/* Revenue Quality */}
         <div className="bg-card border border-border rounded-xl p-4">
-          <h3 className="text-sm font-semibold text-foreground mb-1">Revenue Quality</h3>
+          <h3 className="text-sm font-medium text-foreground mb-1">Revenue Quality</h3>
           <p className="text-xs text-muted-foreground mb-3">Recurring vs one-time revenue breakdown</p>
           <div className="flex items-center gap-4 mt-4">
             <PieChart slices={[
@@ -1094,7 +1094,7 @@ function IncomeStatementAnalyzer() {
             <div className="space-y-2">
               <div className="p-3 bg-muted rounded-lg">
                 <p className="text-xs text-muted-foreground">Recurring Revenue</p>
-                <p className="text-xl font-bold text-indigo-400">{recurringPct.toFixed(1)}%</p>
+                <p className="text-xl font-medium text-indigo-400">{recurringPct.toFixed(1)}%</p>
                 <p className="text-xs text-muted-foreground mt-1">
                   {recurringPct >= 60 ? "High quality — predictable, sticky revenue" : recurringPct >= 40 ? "Moderate — mix of recurring and project-based" : "Lower quality — more one-time transactional"}
                 </p>
@@ -1106,7 +1106,7 @@ function IncomeStatementAnalyzer() {
 
       {/* Segment Analysis */}
       <div className="bg-card border border-border rounded-xl p-4">
-        <h3 className="text-sm font-semibold text-foreground mb-1">Segment Revenue Breakdown ($B)</h3>
+        <h3 className="text-sm font-medium text-foreground mb-1">Segment Revenue Breakdown ($B)</h3>
         <p className="text-xs text-muted-foreground mb-3">Revenue by business segment — 5 years</p>
         <StackedBarChart data={segmentData} height={200} />
       </div>
@@ -1153,7 +1153,7 @@ function BalanceSheetHealth() {
       {/* Ticker */}
       <div className="flex gap-2 flex-wrap">
         {INCOME_TICKERS.map((t) => (
-          <button key={t} onClick={() => setTicker(t)} className={cn("px-3 py-1.5 rounded-lg text-xs font-mono font-bold transition-colors", ticker === t ? "bg-indigo-600 text-foreground" : "bg-muted border border-border text-muted-foreground hover:text-foreground")}>
+          <button key={t} onClick={() => setTicker(t)} className={cn("px-3 py-1.5 rounded-lg text-xs font-mono font-medium transition-colors", ticker === t ? "bg-indigo-600 text-foreground" : "bg-muted border border-border text-muted-foreground hover:text-foreground")}>
             {t}
           </button>
         ))}
@@ -1161,7 +1161,7 @@ function BalanceSheetHealth() {
 
       {/* Liquidity Gauges */}
       <div className="bg-card border border-border rounded-xl p-4">
-        <h3 className="text-sm font-semibold text-foreground mb-1">Liquidity Ratios</h3>
+        <h3 className="text-sm font-medium text-foreground mb-1">Liquidity Ratios</h3>
         <p className="text-xs text-muted-foreground mb-4">Current, Quick, Cash ratio — higher is stronger</p>
         <div className="flex gap-6 flex-wrap justify-center">
           <div className="text-center">
@@ -1182,17 +1182,17 @@ function BalanceSheetHealth() {
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
         {/* Debt Maturity Schedule */}
         <div className="bg-card border border-border rounded-xl p-4">
-          <h3 className="text-sm font-semibold text-foreground mb-1">Debt Maturity Schedule ($B)</h3>
+          <h3 className="text-sm font-medium text-foreground mb-1">Debt Maturity Schedule ($B)</h3>
           <p className="text-xs text-muted-foreground mb-3">Principal maturities by year — refinancing risk</p>
           <BarChart data={debtMaturity} height={180} color="#f59e0b" formatVal={(v) => `$${v.toFixed(1)}`} />
           <p className="text-xs text-muted-foreground mt-2">
-            Total debt: <span className="text-foreground font-semibold">${latest.totalDebt.toFixed(1)}B</span> — watch for back-loaded maturities.
+            Total debt: <span className="text-foreground font-medium">${latest.totalDebt.toFixed(1)}B</span> — watch for back-loaded maturities.
           </p>
         </div>
 
         {/* Net Debt / EBITDA */}
         <div className="bg-card border border-border rounded-xl p-4">
-          <h3 className="text-sm font-semibold text-foreground mb-1">Net Debt / EBITDA Trend</h3>
+          <h3 className="text-sm font-medium text-foreground mb-1">Net Debt / EBITDA Trend</h3>
           <p className="text-xs text-muted-foreground mb-3">Leverage trajectory — lower is safer</p>
           <LineChart series={[{ label: "Net D/EBITDA", color: "#ec4899", data: netDebtEbitda }]} height={180} formatVal={(v) => v.toFixed(2)} />
           <div className="flex gap-2 mt-2">
@@ -1205,7 +1205,7 @@ function BalanceSheetHealth() {
 
       {/* Working Capital */}
       <div className="bg-card border border-border rounded-xl p-4">
-        <h3 className="text-sm font-semibold text-foreground mb-1">Working Capital Efficiency</h3>
+        <h3 className="text-sm font-medium text-foreground mb-1">Working Capital Efficiency</h3>
         <p className="text-xs text-muted-foreground mb-4">Cash Conversion Cycle — lower CCC = more efficient cash management</p>
         <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
           {[
@@ -1228,20 +1228,20 @@ function BalanceSheetHealth() {
 
       {/* Goodwill & Intangibles */}
       <div className="bg-card border border-border rounded-xl p-4">
-        <h3 className="text-sm font-semibold text-foreground mb-1">Goodwill & Intangibles Risk</h3>
+        <h3 className="text-sm font-medium text-foreground mb-1">Goodwill & Intangibles Risk</h3>
         <p className="text-xs text-muted-foreground mb-4">High goodwill as % of assets signals M&A integration risk and potential impairment</p>
         <div className="flex items-center gap-6 flex-wrap">
           <div className="flex-1 min-w-[200px]">
             <div className="flex justify-between text-xs mb-1">
               <span className="text-muted-foreground">Goodwill</span>
-              <span className={cn("font-semibold", goodwillPct > 30 ? "text-red-400" : goodwillPct > 15 ? "text-amber-400" : "text-emerald-400")}>{goodwillPct}%</span>
+              <span className={cn("font-medium", goodwillPct > 30 ? "text-red-400" : goodwillPct > 15 ? "text-amber-400" : "text-emerald-400")}>{goodwillPct}%</span>
             </div>
             <div className="h-2 bg-muted rounded-full">
               <div className={cn("h-full rounded-full", goodwillPct > 30 ? "bg-red-500" : goodwillPct > 15 ? "bg-amber-500" : "bg-emerald-500")} style={{ width: `${Math.min(goodwillPct, 100)}%` }} />
             </div>
             <div className="flex justify-between text-xs mb-1 mt-2">
               <span className="text-muted-foreground">Total Intangibles</span>
-              <span className={cn("font-semibold", intangiblesPct > 40 ? "text-red-400" : intangiblesPct > 20 ? "text-amber-400" : "text-emerald-400")}>{intangiblesPct}%</span>
+              <span className={cn("font-medium", intangiblesPct > 40 ? "text-red-400" : intangiblesPct > 20 ? "text-amber-400" : "text-emerald-400")}>{intangiblesPct}%</span>
             </div>
             <div className="h-2 bg-muted rounded-full">
               <div className={cn("h-full rounded-full", intangiblesPct > 40 ? "bg-red-500" : intangiblesPct > 20 ? "bg-amber-500" : "bg-emerald-500")} style={{ width: `${Math.min(intangiblesPct, 100)}%` }} />
@@ -1257,7 +1257,7 @@ function BalanceSheetHealth() {
 
       {/* Share Count Trend */}
       <div className="bg-card border border-border rounded-xl p-4">
-        <h3 className="text-sm font-semibold text-foreground mb-1">Share Count Trend (Buybacks vs Dilution)</h3>
+        <h3 className="text-sm font-medium text-foreground mb-1">Share Count Trend (Buybacks vs Dilution)</h3>
         <p className="text-xs text-muted-foreground mb-3">Declining share count = shareholder-friendly buybacks; rising = dilution risk</p>
         <LineChart
           series={[{ label: "Shares Outstanding (B)", color: "#6366f1", data: data.map((d) => ({ x: String(d.year), y: d.sharesOutstanding })) }]}
@@ -1324,7 +1324,7 @@ function CashFlowAnalysis() {
     <div className="space-y-6">
       <div className="flex gap-2 flex-wrap">
         {INCOME_TICKERS.map((t) => (
-          <button key={t} onClick={() => setTicker(t)} className={cn("px-3 py-1.5 rounded-lg text-xs font-mono font-bold transition-colors", ticker === t ? "bg-indigo-600 text-foreground" : "bg-muted border border-border text-muted-foreground hover:text-foreground")}>
+          <button key={t} onClick={() => setTicker(t)} className={cn("px-3 py-1.5 rounded-lg text-xs font-mono font-medium transition-colors", ticker === t ? "bg-indigo-600 text-foreground" : "bg-muted border border-border text-muted-foreground hover:text-foreground")}>
             {t}
           </button>
         ))}
@@ -1333,14 +1333,14 @@ function CashFlowAnalysis() {
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
         {/* OCF vs Net Income */}
         <div className="bg-card border border-border rounded-xl p-4">
-          <h3 className="text-sm font-semibold text-foreground mb-1">Operating CF vs Net Income</h3>
+          <h3 className="text-sm font-medium text-foreground mb-1">Operating CF vs Net Income</h3>
           <p className="text-xs text-muted-foreground mb-3">Divergence signals earnings quality issues</p>
           <LineChart series={ocfVsNiSeries} height={180} formatVal={(v) => `$${v.toFixed(0)}`} />
           <div className="mt-2 p-2 bg-muted/60 rounded-lg">
             <p className="text-xs text-muted-foreground">
               {latest.operatingCF > latest.netIncome
-                ? <><span className="text-emerald-400 font-semibold">Positive signal:</span> OCF exceeds Net Income — strong earnings quality, cash-rich operations</>
-                : <><span className="text-red-400 font-semibold">Watch:</span> Net Income exceeds OCF — possible aggressive accruals or one-time items inflating earnings</>
+                ? <><span className="text-emerald-400 font-medium">Positive signal:</span> OCF exceeds Net Income — strong earnings quality, cash-rich operations</>
+                : <><span className="text-red-400 font-medium">Watch:</span> Net Income exceeds OCF — possible aggressive accruals or one-time items inflating earnings</>
               }
             </p>
           </div>
@@ -1348,7 +1348,7 @@ function CashFlowAnalysis() {
 
         {/* FCF Margin Trend */}
         <div className="bg-card border border-border rounded-xl p-4">
-          <h3 className="text-sm font-semibold text-foreground mb-1">FCF Margin Trend</h3>
+          <h3 className="text-sm font-medium text-foreground mb-1">FCF Margin Trend</h3>
           <p className="text-xs text-muted-foreground mb-3">FCF / Revenue — expanding margin is bullish</p>
           <LineChart series={fcfMarginSeries} height={180} formatVal={(v) => `${v.toFixed(1)}%`} />
           <div className="mt-2 text-xs">
@@ -1363,7 +1363,7 @@ function CashFlowAnalysis() {
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
         {/* FCF Yield */}
         <div className="bg-card border border-border rounded-xl p-4">
-          <h3 className="text-sm font-semibold text-foreground mb-1">FCF Yield vs Historical</h3>
+          <h3 className="text-sm font-medium text-foreground mb-1">FCF Yield vs Historical</h3>
           <p className="text-xs text-muted-foreground mb-3">FCF / Market Cap — higher = better value proposition</p>
           <div className="flex items-center gap-4 mt-2">
             <div className="text-center">
@@ -1394,7 +1394,7 @@ function CashFlowAnalysis() {
 
         {/* Capital Allocation Pie */}
         <div className="bg-card border border-border rounded-xl p-4">
-          <h3 className="text-sm font-semibold text-foreground mb-1">Capital Allocation</h3>
+          <h3 className="text-sm font-medium text-foreground mb-1">Capital Allocation</h3>
           <p className="text-xs text-muted-foreground mb-3">How management deploys cash — {new Date().getFullYear()} most recent year</p>
           <div className="flex items-center gap-4">
             <PieChart slices={capAllocSlices} />
@@ -1402,7 +1402,7 @@ function CashFlowAnalysis() {
               {capAllocSlices.map((s) => (
                 <div key={s.label} className="flex items-center gap-2">
                   <div className="w-2 h-2 rounded-full" style={{ backgroundColor: s.color }} />
-                  <span className="text-xs text-muted-foreground">{s.label}: <span className="text-foreground font-semibold">${s.value.toFixed(1)}B</span></span>
+                  <span className="text-xs text-muted-foreground">{s.label}: <span className="text-foreground font-medium">${s.value.toFixed(1)}B</span></span>
                 </div>
               ))}
               <p className="text-xs text-muted-foreground mt-2">Total deployed: ${totalAlloc.toFixed(1)}B</p>
@@ -1413,16 +1413,16 @@ function CashFlowAnalysis() {
 
       {/* FCF Conversion & Reinvestment */}
       <div className="bg-card border border-border rounded-xl p-4">
-        <h3 className="text-sm font-semibold text-foreground mb-1">FCF Conversion & Reinvestment Rate</h3>
+        <h3 className="text-sm font-medium text-foreground mb-1">FCF Conversion & Reinvestment Rate</h3>
         <p className="text-xs text-muted-foreground mb-4">FCF Conversion = FCF/Net Income (%); Reinvestment = CapEx/Operating CF (%)</p>
         <div className="grid grid-cols-5 gap-2">
           {data.map((d, i) => (
             <div key={d.year} className="bg-muted rounded-lg p-3 text-center">
               <p className="text-xs text-muted-foreground mb-1">{d.year}</p>
-              <p className={cn("text-sm font-bold", fcfConversion[i] >= 80 ? "text-emerald-400" : fcfConversion[i] >= 60 ? "text-amber-400" : "text-red-400")}>{fcfConversion[i]}%</p>
+              <p className={cn("text-sm font-medium", fcfConversion[i] >= 80 ? "text-emerald-400" : fcfConversion[i] >= 60 ? "text-amber-400" : "text-red-400")}>{fcfConversion[i]}%</p>
               <p className="text-xs text-muted-foreground">FCF Conv.</p>
               <div className="border-t border-border mt-2 pt-2">
-                <p className={cn("text-sm font-bold", reinvestmentRate[i] <= 20 ? "text-emerald-400" : reinvestmentRate[i] <= 40 ? "text-amber-400" : "text-amber-300")}>{reinvestmentRate[i]}%</p>
+                <p className={cn("text-sm font-medium", reinvestmentRate[i] <= 20 ? "text-emerald-400" : reinvestmentRate[i] <= 40 ? "text-amber-400" : "text-amber-300")}>{reinvestmentRate[i]}%</p>
                 <p className="text-xs text-muted-foreground">Reinvest</p>
               </div>
             </div>
@@ -1430,7 +1430,7 @@ function CashFlowAnalysis() {
         </div>
         <div className="mt-3 p-3 bg-muted/60 rounded-lg">
           <p className="text-xs text-muted-foreground">
-            <span className="text-foreground font-semibold">5yr avg FCF conversion: {avgFcfConversion}%</span> —
+            <span className="text-foreground font-medium">5yr avg FCF conversion: {avgFcfConversion}%</span> —
             {avgFcfConversion >= 80 ? " excellent earnings quality — cash nearly matches reported profits." :
              avgFcfConversion >= 60 ? " acceptable conversion — some accruals present, watch for deterioration." :
              " low conversion — significant gap between reported earnings and cash generation, investigate accruals."}
@@ -1488,7 +1488,7 @@ function CompetitiveAnalysis() {
 
   function rankColor(rank: number, total: number, better: "high" | "low") {
     const effectiveRank = better === "high" ? rank : total - rank - 1;
-    if (effectiveRank === 0) return "text-emerald-400 font-bold";
+    if (effectiveRank === 0) return "text-emerald-400 font-medium";
     if (effectiveRank === 1) return "text-amber-400";
     return "text-muted-foreground";
   }
@@ -1497,7 +1497,7 @@ function CompetitiveAnalysis() {
     <div className="space-y-6">
       <div className="flex gap-2 flex-wrap">
         {INCOME_TICKERS.map((t) => (
-          <button key={t} onClick={() => setTicker(t)} className={cn("px-3 py-1.5 rounded-lg text-xs font-mono font-bold transition-colors", ticker === t ? "bg-indigo-600 text-foreground" : "bg-muted border border-border text-muted-foreground hover:text-foreground")}>
+          <button key={t} onClick={() => setTicker(t)} className={cn("px-3 py-1.5 rounded-lg text-xs font-mono font-medium transition-colors", ticker === t ? "bg-indigo-600 text-foreground" : "bg-muted border border-border text-muted-foreground hover:text-foreground")}>
             {t}
           </button>
         ))}
@@ -1505,7 +1505,7 @@ function CompetitiveAnalysis() {
 
       {/* Competitor comparison table */}
       <div className="bg-card border border-border rounded-xl p-4">
-        <h3 className="text-sm font-semibold text-foreground mb-3">5-Company Comparison</h3>
+        <h3 className="text-sm font-medium text-foreground mb-3">5-Company Comparison</h3>
         <div className="overflow-x-auto">
           <table className="w-full text-xs">
             <thead>
@@ -1521,7 +1521,7 @@ function CompetitiveAnalysis() {
                 return (
                   <tr key={comp.ticker} className={cn("border-b border-border/60 hover:bg-muted/30", ci === 0 && "bg-indigo-950/30")}>
                     <td className="px-3 py-2">
-                      <span className={cn("font-mono font-bold", ci === 0 ? "text-indigo-400" : "text-muted-foreground")}>{comp.ticker}</span>
+                      <span className={cn("font-mono font-medium", ci === 0 ? "text-indigo-400" : "text-muted-foreground")}>{comp.ticker}</span>
                       {ci === 0 && <span className="ml-2 text-xs bg-indigo-900/50 text-indigo-400 px-1.5 py-0.5 rounded">Selected</span>}
                     </td>
                     {metrics.map((m) => {
@@ -1547,7 +1547,7 @@ function CompetitiveAnalysis() {
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
         {/* Moat Assessment */}
         <div className="bg-card border border-border rounded-xl p-4">
-          <h3 className="text-sm font-semibold text-foreground mb-1">Moat Assessment</h3>
+          <h3 className="text-sm font-medium text-foreground mb-1">Moat Assessment</h3>
           <p className="text-xs text-muted-foreground mb-4">Competitive advantages scored 0–3 each (12 max)</p>
           <div className="space-y-3">
             {MOAT_FACTORS.map((f) => {
@@ -1556,7 +1556,7 @@ function CompetitiveAnalysis() {
                 <div key={f.key}>
                   <div className="flex items-center justify-between mb-1">
                     <span className="flex items-center gap-1.5 text-xs text-muted-foreground">{f.icon}{f.label}</span>
-                    <span className={cn("text-xs font-bold", score === 3 ? "text-emerald-400" : score === 2 ? "text-amber-400" : score === 1 ? "text-orange-400" : "text-red-400")}>{score}/3</span>
+                    <span className={cn("text-xs font-medium", score === 3 ? "text-emerald-400" : score === 2 ? "text-amber-400" : score === 1 ? "text-orange-400" : "text-red-400")}>{score}/3</span>
                   </div>
                   <div className="flex gap-1">
                     {[0, 1, 2].map((n) => (
@@ -1571,7 +1571,7 @@ function CompetitiveAnalysis() {
           <div className="mt-4 p-3 bg-muted rounded-xl">
             <div className="flex items-center justify-between">
               <span className="text-xs text-muted-foreground">Total Moat Score</span>
-              <span className={cn("text-xl font-bold", totalMoat >= 9 ? "text-emerald-400" : totalMoat >= 6 ? "text-amber-400" : "text-red-400")}>{totalMoat}/12</span>
+              <span className={cn("text-xl font-medium", totalMoat >= 9 ? "text-emerald-400" : totalMoat >= 6 ? "text-amber-400" : "text-red-400")}>{totalMoat}/12</span>
             </div>
             <p className="text-xs text-muted-foreground mt-1">
               {totalMoat >= 9 ? "Wide moat — durable competitive advantage" : totalMoat >= 6 ? "Narrow moat — some advantages, competitive pressure exists" : "No/minimal moat — commodity business, price-driven competition"}
@@ -1581,7 +1581,7 @@ function CompetitiveAnalysis() {
 
         {/* Historical Moat Stability */}
         <div className="bg-card border border-border rounded-xl p-4">
-          <h3 className="text-sm font-semibold text-foreground mb-1">Historical Margin Stability</h3>
+          <h3 className="text-sm font-medium text-foreground mb-1">Historical Margin Stability</h3>
           <p className="text-xs text-muted-foreground mb-3">Operating margin trend — expanding = moat strengthening</p>
           <LineChart
             series={[{ label: "Op Margin", color: "#6366f1", data: marginHistory }]}
@@ -1599,7 +1599,7 @@ function CompetitiveAnalysis() {
 
       {/* ESG Comparison */}
       <div className="bg-card border border-border rounded-xl p-4">
-        <h3 className="text-sm font-semibold text-foreground mb-3">ESG Comparison vs Peers</h3>
+        <h3 className="text-sm font-medium text-foreground mb-3">ESG Comparison vs Peers</h3>
         <div className="overflow-x-auto">
           <table className="w-full text-xs">
             <thead>
@@ -1616,10 +1616,10 @@ function CompetitiveAnalysis() {
                 const overall = Math.round((c.envScore + c.govScore) / 2);
                 return (
                   <tr key={c.ticker} className={cn("border-b border-border/60", i === 0 && "bg-indigo-950/30")}>
-                    <td className={cn("px-3 py-2 font-mono font-bold", i === 0 ? "text-indigo-400" : "text-muted-foreground")}>{c.ticker}</td>
+                    <td className={cn("px-3 py-2 font-mono font-medium", i === 0 ? "text-indigo-400" : "text-muted-foreground")}>{c.ticker}</td>
                     <td className="px-3 py-2 text-center text-muted-foreground">{c.envScore}</td>
                     <td className="px-3 py-2 text-center text-muted-foreground">{c.govScore}</td>
-                    <td className={cn("px-3 py-2 text-center font-bold", overall >= 70 ? "text-emerald-400" : overall >= 50 ? "text-amber-400" : "text-red-400")}>{overall}</td>
+                    <td className={cn("px-3 py-2 text-center font-medium", overall >= 70 ? "text-emerald-400" : overall >= 50 ? "text-amber-400" : "text-red-400")}>{overall}</td>
                     <td className="px-3 py-2">
                       <div className="w-24 h-1.5 bg-muted rounded-full">
                         <div className={cn("h-full rounded-full", overall >= 70 ? "bg-emerald-500" : overall >= 50 ? "bg-amber-500" : "bg-red-500")} style={{ width: `${overall}%` }} />
@@ -1680,7 +1680,7 @@ function EarningsQualityTab() {
     <div className="space-y-6">
       <div className="flex gap-2 flex-wrap">
         {INCOME_TICKERS.map((t) => (
-          <button key={t} onClick={() => setTicker(t)} className={cn("px-3 py-1.5 rounded-lg text-xs font-mono font-bold transition-colors", ticker === t ? "bg-indigo-600 text-foreground" : "bg-muted border border-border text-muted-foreground hover:text-foreground")}>
+          <button key={t} onClick={() => setTicker(t)} className={cn("px-3 py-1.5 rounded-lg text-xs font-mono font-medium transition-colors", ticker === t ? "bg-indigo-600 text-foreground" : "bg-muted border border-border text-muted-foreground hover:text-foreground")}>
             {t}
           </button>
         ))}
@@ -1690,12 +1690,12 @@ function EarningsQualityTab() {
       <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
         <div className="bg-card border border-border rounded-xl p-3">
           <p className="text-xs text-muted-foreground">Avg Accruals Ratio</p>
-          <p className={cn("text-xl font-bold mt-1", Math.abs(avgAccruals) < 0.03 ? "text-emerald-400" : Math.abs(avgAccruals) < 0.07 ? "text-amber-400" : "text-red-400")}>{avgAccruals}</p>
+          <p className={cn("text-xl font-medium mt-1", Math.abs(avgAccruals) < 0.03 ? "text-emerald-400" : Math.abs(avgAccruals) < 0.07 ? "text-amber-400" : "text-red-400")}>{avgAccruals}</p>
           <p className="text-xs text-muted-foreground mt-1">{Math.abs(avgAccruals) < 0.03 ? "High quality" : Math.abs(avgAccruals) < 0.07 ? "Moderate" : "Low quality"}</p>
         </div>
         <div className="bg-card border border-border rounded-xl p-3">
           <p className="text-xs text-muted-foreground">Channel Stuffing Flags</p>
-          <p className={cn("text-xl font-bold mt-1", channelStuffingFlags.filter((f) => f.flag).length === 0 ? "text-emerald-400" : "text-red-400")}>
+          <p className={cn("text-xl font-medium mt-1", channelStuffingFlags.filter((f) => f.flag).length === 0 ? "text-emerald-400" : "text-red-400")}>
             {channelStuffingFlags.filter((f) => f.flag).length}
           </p>
           <p className="text-xs text-muted-foreground mt-1">of {channelStuffingFlags.length} years</p>
@@ -1704,7 +1704,7 @@ function EarningsQualityTab() {
           <p className="text-xs text-muted-foreground">Auditor Opinion</p>
           <div className="flex items-center gap-1.5 mt-1">
             {isClean ? <CheckCircle size={14} className="text-emerald-400" /> : <AlertTriangle size={14} className="text-red-400" />}
-            <p className={cn("text-xs font-semibold", isClean ? "text-emerald-400" : "text-red-400")}>{isClean ? "Clean" : "Modified"}</p>
+            <p className={cn("text-xs font-medium", isClean ? "text-emerald-400" : "text-red-400")}>{isClean ? "Clean" : "Modified"}</p>
           </div>
           <p className="text-xs text-muted-foreground mt-1">Same auditor {auditorYears}yr</p>
         </div>
@@ -1712,7 +1712,7 @@ function EarningsQualityTab() {
           <p className="text-xs text-muted-foreground">Related Party Risk</p>
           <div className="flex items-center gap-1.5 mt-1">
             {!hasRelatedParty ? <CheckCircle size={14} className="text-emerald-400" /> : <AlertTriangle size={14} className="text-amber-400" />}
-            <p className={cn("text-xs font-semibold", !hasRelatedParty ? "text-emerald-400" : "text-amber-400")}>{hasRelatedParty ? "Disclosed" : "None detected"}</p>
+            <p className={cn("text-xs font-medium", !hasRelatedParty ? "text-emerald-400" : "text-amber-400")}>{hasRelatedParty ? "Disclosed" : "None detected"}</p>
           </div>
           <p className="text-xs text-muted-foreground mt-1">5yr scan</p>
         </div>
@@ -1721,7 +1721,7 @@ function EarningsQualityTab() {
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
         {/* Accruals Ratio Trend */}
         <div className="bg-card border border-border rounded-xl p-4">
-          <h3 className="text-sm font-semibold text-foreground mb-1">Accruals Ratio Trend</h3>
+          <h3 className="text-sm font-medium text-foreground mb-1">Accruals Ratio Trend</h3>
           <p className="text-xs text-muted-foreground mb-3">(Net Income − FCF) / Avg Assets — lower = higher quality earnings</p>
           <LineChart
             series={[{ label: "Accruals Ratio", color: "#f59e0b", data: data.map((d, i) => ({ x: String(d.year), y: accrualsRatios[i] })) }]}
@@ -1736,7 +1736,7 @@ function EarningsQualityTab() {
 
         {/* AR & Revenue Growth */}
         <div className="bg-card border border-border rounded-xl p-4">
-          <h3 className="text-sm font-semibold text-foreground mb-1">Revenue Recognition Red Flags</h3>
+          <h3 className="text-sm font-medium text-foreground mb-1">Revenue Recognition Red Flags</h3>
           <p className="text-xs text-muted-foreground mb-3">AR days growing faster than revenue = aggressive recognition risk</p>
           <LineChart
             series={[
@@ -1755,7 +1755,7 @@ function EarningsQualityTab() {
 
       {/* Channel Stuffing Signal */}
       <div className="bg-card border border-border rounded-xl p-4">
-        <h3 className="text-sm font-semibold text-foreground mb-1">Channel Stuffing Detection</h3>
+        <h3 className="text-sm font-medium text-foreground mb-1">Channel Stuffing Detection</h3>
         <p className="text-xs text-muted-foreground mb-4">Triggered when both AR and Inventory grow significantly faster than Revenue</p>
         <div className="grid grid-cols-4 gap-2">
           {channelStuffingFlags.map((yr) => (
@@ -1770,7 +1770,7 @@ function EarningsQualityTab() {
                   {yr.invFaster ? <AlertTriangle size={10} className="text-amber-400" /> : <CheckCircle size={10} className="text-emerald-400" />}
                   <span className={cn("text-xs", yr.invFaster ? "text-amber-400" : "text-muted-foreground")}>Inv spike</span>
                 </div>
-                {yr.flag && <p className="text-xs text-red-400 font-bold mt-1">FLAG</p>}
+                {yr.flag && <p className="text-xs text-red-400 font-medium mt-1">FLAG</p>}
               </div>
             </div>
           ))}
@@ -1779,23 +1779,23 @@ function EarningsQualityTab() {
 
       {/* Auditor Detail */}
       <div className="bg-card border border-border rounded-xl p-4">
-        <h3 className="text-sm font-semibold text-foreground mb-3">Auditor Assessment</h3>
+        <h3 className="text-sm font-medium text-foreground mb-3">Auditor Assessment</h3>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
           <div className="p-3 bg-muted rounded-xl">
             <p className="text-xs text-muted-foreground mb-1">Auditor Opinion</p>
             <div className="flex items-center gap-2">
               {isClean ? <CheckCircle size={16} className="text-emerald-400" /> : <AlertTriangle size={16} className="text-red-400" />}
-              <span className={cn("text-sm font-semibold", isClean ? "text-emerald-400" : "text-red-400")}>{auditorOpinion}</span>
+              <span className={cn("text-sm font-medium", isClean ? "text-emerald-400" : "text-red-400")}>{auditorOpinion}</span>
             </div>
           </div>
           <div className="p-3 bg-muted rounded-xl">
             <p className="text-xs text-muted-foreground mb-1">Auditor Tenure</p>
-            <p className="text-xl font-bold text-foreground">{auditorYears} years</p>
+            <p className="text-xl font-medium text-foreground">{auditorYears} years</p>
             <p className="text-xs text-muted-foreground">{auditorYears > 10 ? "Long tenure — risk of familiarity bias" : "Reasonable tenure"}</p>
           </div>
           <div className="p-3 bg-muted rounded-xl">
             <p className="text-xs text-muted-foreground mb-1">Deferred Revenue (latest)</p>
-            <p className="text-xl font-bold text-foreground">${latest.deferredRevenue.toFixed(1)}B</p>
+            <p className="text-xl font-medium text-foreground">${latest.deferredRevenue.toFixed(1)}B</p>
             <p className="text-xs text-muted-foreground">
               {(latest.deferredRevenue / latest.revenue * 100).toFixed(1)}% of revenue — {latest.deferredRevenue / latest.revenue > 0.05 ? "elevated, watch for recognition timing" : "normal levels"}
             </p>
@@ -1805,14 +1805,14 @@ function EarningsQualityTab() {
 
       {/* Benford's Law */}
       <div className="bg-card border border-border rounded-xl p-4">
-        <h3 className="text-sm font-semibold text-foreground mb-1">Benford's Law — First Digit Analysis</h3>
+        <h3 className="text-sm font-medium text-foreground mb-1">Benford's Law — First Digit Analysis</h3>
         <p className="text-xs text-muted-foreground mb-4">
           Natural financial data follows Benford's distribution. Red bars (actual) diverging significantly from green (expected) can indicate data manipulation.
         </p>
         <BenfordChart data={benfordValues} />
         <div className="mt-3 p-3 bg-muted/60 rounded-lg">
           <p className="text-xs text-muted-foreground">
-            <span className="text-foreground font-semibold">Analysis:</span> Based on {benfordValues.length} financial data points across 5 years.
+            <span className="text-foreground font-medium">Analysis:</span> Based on {benfordValues.length} financial data points across 5 years.
             Significant deviations in digits 1–3 (highest frequency digits) are most meaningful for fraud detection.
             This is one indicator among many — always combine with qualitative review.
           </p>
@@ -1837,7 +1837,7 @@ export default function FundamentalsPage() {
           <div className="w-8 h-8 rounded-lg bg-indigo-600 flex items-center justify-center">
             <BarChart2 size={16} className="text-foreground" />
           </div>
-          <h1 className="text-xl font-bold text-foreground">Fundamental Analysis</h1>
+          <h1 className="text-xl font-medium text-foreground">Fundamental Analysis</h1>
           <span className="text-xs bg-indigo-900/60 text-indigo-400 px-2 py-0.5 rounded-full border border-indigo-800">Pro</span>
         </div>
         <p className="text-sm text-muted-foreground ml-11">Deep-dive screening, income/balance sheet analysis, cash flow, competitive positioning, and earnings quality</p>

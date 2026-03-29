@@ -791,7 +791,7 @@ function StakingCalculator() {
                 : "border-border bg-foreground/5 hover:border-border"
             )}
           >
-            <div className="font-bold text-sm text-foreground">{opt.symbol}</div>
+            <div className="font-medium text-sm text-foreground">{opt.symbol}</div>
             <div className="text-xs text-emerald-400">{fmtPct(opt.baseAPY)} APY</div>
             <div className="text-xs text-muted-foreground">{opt.lockupDays === 0 ? "No lock" : `${opt.lockupDays}d lock`}</div>
           </button>
@@ -1182,7 +1182,7 @@ function LendingAnalyzer() {
                 <span className="text-sm font-medium text-foreground">{hack.protocol}</span>
                 <span className="text-xs text-muted-foreground ml-2">{hack.date}</span>
               </div>
-              <span className="text-rose-400 font-bold text-sm">{fmtB(hack.amount)}</span>
+              <span className="text-rose-400 font-medium text-sm">{fmtB(hack.amount)}</span>
               {hack.recovered ? (
                 <Badge className="bg-emerald-500/20 text-emerald-300 border-emerald-500/30 text-xs">Recovered</Badge>
               ) : (
@@ -1324,7 +1324,7 @@ function YieldStrategyBuilder() {
               selected === i ? COLOR_MAP[st.color] : "border-border bg-foreground/5 hover:border-border"
             )}
           >
-            <div className="font-bold text-xs text-foreground">{st.label}</div>
+            <div className="font-medium text-xs text-foreground">{st.label}</div>
             <div className="text-xs text-emerald-400 mt-1">{fmtPct(st.totalAPY)} APY</div>
             <div className="text-xs text-muted-foreground">Sharpe: {st.sharpe.toFixed(1)}</div>
           </button>
@@ -1368,7 +1368,7 @@ function YieldStrategyBuilder() {
           <div className="mt-3 p-2 rounded-lg bg-foreground/5 border border-border text-xs">
             <div className="flex justify-between">
               <span className="text-muted-foreground">Risk-Adj. Return (Sharpe-equiv)</span>
-              <span className={cn("font-bold", strategy.sharpe >= 1.5 ? "text-emerald-400" : strategy.sharpe >= 0.8 ? "text-amber-400" : "text-rose-400")}>
+              <span className={cn("font-medium", strategy.sharpe >= 1.5 ? "text-emerald-400" : strategy.sharpe >= 0.8 ? "text-amber-400" : "text-rose-400")}>
                 {strategy.sharpe.toFixed(1)}
               </span>
             </div>
@@ -1717,7 +1717,7 @@ export default function DefiPage() {
           initial={{ opacity: 0, y: -12 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.4 }}
-          className="flex items-start justify-between"
+          className="border-l-4 border-l-primary rounded-lg bg-card p-6 flex items-start justify-between"
         >
           <div>
             <div className="flex items-center gap-3 mb-1">
@@ -1725,7 +1725,7 @@ export default function DefiPage() {
                 <Droplets size={20} className="text-indigo-400" />
               </div>
               <div>
-                <h1 className="text-2xl font-bold text-foreground">DeFi Simulator</h1>
+                <h1 className="text-xl font-bold text-foreground">DeFi Simulator</h1>
                 <p className="text-sm text-muted-foreground">Yield Farming, Staking & Liquidity Protocol Lab</p>
               </div>
             </div>
@@ -1743,7 +1743,7 @@ export default function DefiPage() {
         </motion.div>
 
         {/* Tabs */}
-        <Tabs defaultValue="yield">
+        <Tabs defaultValue="yield" className="mt-8">
           <TabsList className="bg-card border border-border h-auto flex-wrap gap-1 p-1">
             {[
               { value: "yield", label: "Yield Dashboard", icon: <BarChart3 size={13} /> },

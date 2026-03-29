@@ -473,7 +473,7 @@ function ArbCalculator() {
           <Card key={m.label} className="bg-muted/20 border-border">
             <CardContent className="pt-3 pb-3 px-4">
               <p className="text-xs text-muted-foreground">{m.label}</p>
-              <p className={`text-lg font-bold ${m.color}`}>{m.value}</p>
+              <p className={`text-lg font-medium ${m.color}`}>{m.value}</p>
             </CardContent>
           </Card>
         ))}
@@ -481,10 +481,10 @@ function ArbCalculator() {
 
       {/* Step-by-step */}
       <div className="space-y-2">
-        <p className="text-sm font-semibold text-foreground">Arbitrage Steps</p>
+        <p className="text-sm font-medium text-foreground">Arbitrage Steps</p>
         {steps.map((st) => (
           <div key={st.step} className="flex items-center gap-3 p-3 rounded-lg bg-muted/20 border border-border/50">
-            <span className="flex-shrink-0 w-6 h-6 rounded-full bg-primary/20 text-primary text-xs font-bold flex items-center justify-center">
+            <span className="flex-shrink-0 w-6 h-6 rounded-full bg-primary/20 text-primary text-xs font-medium flex items-center justify-center">
               {st.step}
             </span>
             <span className="flex-1 text-sm text-foreground">{st.action}</span>
@@ -505,7 +505,7 @@ function ArbCalculator() {
           <Card key={m.label} className="bg-card border-border">
             <CardContent className="pt-3 pb-3 px-4">
               <p className="text-xs text-muted-foreground">{m.label}</p>
-              <p className={`text-base font-bold ${m.color}`}>{m.value}</p>
+              <p className={`text-base font-medium ${m.color}`}>{m.value}</p>
             </CardContent>
           </Card>
         ))}
@@ -713,13 +713,13 @@ export default function ETFArbPage() {
                   <CreationRedemptionDiagram />
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-4">
                     <div className="p-3 rounded-lg bg-green-500/10 border border-green-500/20">
-                      <p className="text-xs font-semibold text-green-400 mb-1">Creation (ETF Premium)</p>
+                      <p className="text-xs font-medium text-green-400 mb-1">Creation (ETF Premium)</p>
                       <p className="text-xs text-muted-foreground">
                         When ETF price &gt; NAV, APs buy the underlying basket, deliver to issuer, receive new ETF shares, then sell them in the market — pushing ETF price down toward NAV.
                       </p>
                     </div>
                     <div className="p-3 rounded-lg bg-amber-500/10 border border-amber-500/20">
-                      <p className="text-xs font-semibold text-amber-400 mb-1">Redemption (ETF Discount)</p>
+                      <p className="text-xs font-medium text-amber-400 mb-1">Redemption (ETF Discount)</p>
                       <p className="text-xs text-muted-foreground">
                         When ETF price &lt; NAV, APs buy cheap ETF shares, deliver to issuer, receive the underlying basket, sell it in the market — pushing ETF price up toward NAV.
                       </p>
@@ -778,7 +778,7 @@ export default function ETFArbPage() {
                     <Card key={m.label} className="bg-card border-border">
                       <CardContent className="pt-3 pb-3 px-4">
                         <p className="text-xs text-muted-foreground">{m.label}</p>
-                        <p className={`text-lg font-bold ${m.color}`}>{m.value}</p>
+                        <p className={`text-lg font-medium ${m.color}`}>{m.value}</p>
                       </CardContent>
                     </Card>
                   ));
@@ -796,7 +796,7 @@ export default function ETFArbPage() {
                     { dir: "Discount", icon: TrendingDown, color: "text-green-400", reasons: ["Market stress / flight to safety", "Illiquid underlying bonds or EM stocks", "APs withdrawing from market-making", "End-of-day institutional selling"] },
                   ].map((section) => (
                     <div key={section.dir} className="p-3 rounded-lg bg-muted/20 border border-border/50">
-                      <p className={`text-xs font-semibold ${section.color} mb-2 flex items-center gap-1`}>
+                      <p className={`text-xs font-medium ${section.color} mb-2 flex items-center gap-1`}>
                         <section.icon className="h-3 w-3" /> {section.dir} Causes
                       </p>
                       <ul className="space-y-1">

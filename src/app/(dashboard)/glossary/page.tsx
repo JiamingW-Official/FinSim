@@ -666,7 +666,7 @@ function CandlestickPatternsTab() {
               >
                 <div className="flex items-start justify-between gap-2 mb-2">
                   <div>
-                    <p className="text-sm font-semibold leading-tight">{pattern.name}</p>
+                    <p className="text-sm font-medium leading-tight">{pattern.name}</p>
                     <p className="text-[11px] text-muted-foreground/60">{pattern.japaneseName}</p>
                   </div>
                   {isOpen ? (
@@ -817,7 +817,7 @@ function EconomicIndicatorsTab() {
               onClick={() => setExpanded(isOpen ? null : ind.name)}
             >
               <div className="flex flex-col gap-1">
-                <span className="text-sm font-semibold">{ind.name}</span>
+                <span className="text-sm font-medium">{ind.name}</span>
                 <div className="flex flex-wrap items-center gap-1.5">
                   <Badge className={cn("text-xs", frequencyBadgeColor(ind.frequency))}>
                     {ind.frequency}
@@ -897,7 +897,7 @@ export default function GlossaryPage() {
     <div className="flex flex-col h-full min-h-0">
       {/* Header */}
       <div className="border-b border-border/50 px-4 py-3 shrink-0">
-        <h1 className="text-base font-semibold">Education Hub</h1>
+        <h1 className="text-base font-medium">Education Hub</h1>
         <p className="text-xs text-muted-foreground mt-0.5">
           Reference library — glossary, indicators, patterns, wisdom, and economics
         </p>

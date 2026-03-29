@@ -423,7 +423,7 @@ function LPLedTab() {
           ].map((t) => (
             <div key={t.title} className="rounded-lg border border-border p-4">
               <div className="flex items-center gap-2 mb-2">
-                <span className="text-sm font-semibold text-foreground">{t.title}</span>
+                <span className="text-sm font-medium text-foreground">{t.title}</span>
                 <InfoPill text={t.pill} color={t.pillColor} />
               </div>
               <p className="text-xs text-muted-foreground mb-3">{t.desc}</p>
@@ -459,7 +459,7 @@ function LPLedTab() {
                 <p className="text-sm font-medium text-foreground">{b.name}</p>
                 <p className="text-xs text-muted-foreground">{b.type}</p>
               </div>
-              <span className="text-xs font-semibold text-emerald-400">{b.aum} AUM</span>
+              <span className="text-xs font-medium text-emerald-400">{b.aum} AUM</span>
             </div>
           ))}
         </div>
@@ -511,12 +511,12 @@ function LPLedTab() {
               className="flex gap-4 rounded-lg border border-border/50 bg-black/20 p-3"
             >
               <div className="flex flex-col items-center">
-                <span className="text-xs font-bold text-primary">{p.phase}</span>
+                <span className="text-xs font-medium text-primary">{p.phase}</span>
                 <div className="flex-1 w-0.5 bg-foreground/10 mt-1" />
               </div>
               <div className="flex-1">
                 <div className="flex items-center justify-between mb-1">
-                  <span className="text-sm font-semibold text-foreground">{p.title}</span>
+                  <span className="text-sm font-medium text-foreground">{p.title}</span>
                   <span className="text-xs text-muted-foreground">{p.duration}</span>
                 </div>
                 <p className="text-xs text-muted-foreground">{p.detail}</p>
@@ -753,7 +753,7 @@ function GPLedTab() {
                   </div>
                 </div>
                 <div className="rounded-lg bg-amber-900/20 border border-amber-700/30 p-3">
-                  <p className="text-xs font-semibold text-amber-300 mb-2">Key Alignment Concern</p>
+                  <p className="text-xs font-medium text-amber-300 mb-2">Key Alignment Concern</p>
                   <p className="text-xs text-muted-foreground">
                     GP acts on both sides: as seller (from old fund) and buyer/manager (of new CV). Independent fairness opinion required to verify that CV pricing reflects fair market value, protecting rolling and exiting LPs alike.
                   </p>
@@ -789,7 +789,7 @@ function GPLedTab() {
                   </div>
                 </div>
                 <div className="rounded-lg bg-muted/40 border border-border p-3">
-                  <p className="text-xs font-semibold text-primary mb-2">Strip Sale vs Full Roll</p>
+                  <p className="text-xs font-medium text-primary mb-2">Strip Sale vs Full Roll</p>
                   <p className="text-xs text-muted-foreground mb-2">
                     <strong className="text-muted-foreground">Strip Sale:</strong> Subset of portfolio moves to CV; rest winds down in old fund. Allows GP to select best performers.
                   </p>
@@ -833,7 +833,7 @@ function GPLedTab() {
             <div key={c.title} className="rounded-lg border border-border p-3">
               <p
                 className={cn(
-                  "text-sm font-semibold mb-2",
+                  "text-sm font-medium mb-2",
                   c.color === "blue"
                     ? "text-primary"
                     : c.color === "emerald"
@@ -858,7 +858,7 @@ function GPLedTab() {
         <div className="grid grid-cols-2 md:grid-cols-3 gap-2">
           {advisors.map((a) => (
             <div key={a.name} className="rounded-lg bg-black/20 border border-border/50 px-3 py-2">
-              <p className="text-sm font-semibold text-foreground">{a.name}</p>
+              <p className="text-sm font-medium text-foreground">{a.name}</p>
               <p className="text-xs text-muted-foreground">{a.role}</p>
             </div>
           ))}
@@ -1010,7 +1010,7 @@ function NAVFinancingTab() {
             >
               <div className="flex items-center gap-2 mb-1">
                 <span className="text-muted-foreground">{u.icon}</span>
-                <span className="text-sm font-semibold text-foreground">{u.title}</span>
+                <span className="text-sm font-medium text-foreground">{u.title}</span>
                 <InfoPill text="Use case" color={u.color} />
               </div>
               <p className="text-xs text-muted-foreground">{u.desc}</p>
@@ -1023,7 +1023,7 @@ function NAVFinancingTab() {
                     className="overflow-hidden"
                   >
                     <div className="mt-2 rounded bg-rose-900/20 border border-rose-700/30 p-2">
-                      <p className="text-xs text-rose-300 font-semibold mb-1">Key Risk</p>
+                      <p className="text-xs text-rose-300 font-medium mb-1">Key Risk</p>
                       <p className="text-xs text-muted-foreground">{u.risk}</p>
                     </div>
                   </motion.div>
@@ -1073,7 +1073,7 @@ function NAVFinancingTab() {
         <SectionHeading title="NAV Loan Covenant Structure" />
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           <div className="space-y-2">
-            <p className="text-xs font-semibold text-muted-foreground mb-2">Financial Covenants</p>
+            <p className="text-xs font-medium text-muted-foreground mb-2">Financial Covenants</p>
             {[
               {
                 cov: "LTV Covenant",
@@ -1093,13 +1093,13 @@ function NAVFinancingTab() {
               },
             ].map((c) => (
               <div key={c.cov} className="rounded-lg bg-black/20 p-2">
-                <p className="text-xs font-semibold text-primary">{c.cov}</p>
+                <p className="text-xs font-medium text-primary">{c.cov}</p>
                 <p className="text-xs text-muted-foreground mt-0.5">{c.detail}</p>
               </div>
             ))}
           </div>
           <div className="space-y-2">
-            <p className="text-xs font-semibold text-muted-foreground mb-2">Structural Protections</p>
+            <p className="text-xs font-medium text-muted-foreground mb-2">Structural Protections</p>
             {[
               {
                 cov: "Cure Period",
@@ -1119,7 +1119,7 @@ function NAVFinancingTab() {
               },
             ].map((c) => (
               <div key={c.cov} className="rounded-lg bg-black/20 p-2">
-                <p className="text-xs font-semibold text-amber-300">{c.cov}</p>
+                <p className="text-xs font-medium text-amber-300">{c.cov}</p>
                 <p className="text-xs text-muted-foreground mt-0.5">{c.detail}</p>
               </div>
             ))}
@@ -1501,7 +1501,7 @@ function MarketDynamicsTab() {
         <SectionHeading title="Secondary Fund Portfolio Construction" />
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           <div>
-            <p className="text-xs font-semibold text-muted-foreground mb-3">Diversification Axes</p>
+            <p className="text-xs font-medium text-muted-foreground mb-3">Diversification Axes</p>
             <div className="space-y-2">
               {[
                 { axis: "Vintage Years", target: "3–5 different vintages", detail: "Spreads entry pricing across cycles" },
@@ -1522,7 +1522,7 @@ function MarketDynamicsTab() {
             </div>
           </div>
           <div>
-            <p className="text-xs font-semibold text-muted-foreground mb-3">Secondary vs Primary Performance</p>
+            <p className="text-xs font-medium text-muted-foreground mb-3">Secondary vs Primary Performance</p>
             <div className="rounded-lg border border-border bg-black/20 p-4 mb-3">
               <p className="text-xs text-muted-foreground mb-3">
                 Secondaries historically outperform primaries by ~200bps net IRR, driven by:
@@ -1539,13 +1539,13 @@ function MarketDynamicsTab() {
                       <p className="text-xs font-medium text-muted-foreground">{f.factor}</p>
                       <p className="text-xs text-muted-foreground">{f.note}</p>
                     </div>
-                    <span className="text-xs text-emerald-400 font-semibold whitespace-nowrap">{f.impact}</span>
+                    <span className="text-xs text-emerald-400 font-medium whitespace-nowrap">{f.impact}</span>
                   </div>
                 ))}
               </div>
             </div>
             <div className="rounded-lg bg-muted/40 border border-border p-3">
-              <p className="text-xs font-semibold text-primary mb-1">Denominator Effect Mechanics</p>
+              <p className="text-xs font-medium text-primary mb-1">Denominator Effect Mechanics</p>
               <p className="text-xs text-muted-foreground">
                 When public markets fall 30%, LP portfolio PE allocation (which marks quarterly) stays elevated as % of total portfolio. LP target 15% PE but now shows 22%. Must sell PE secondary interests to rebalance — creating forced selling pressure that drives secondary discounts during public market drawdowns.
               </p>
@@ -1619,7 +1619,7 @@ function MarketDynamicsTab() {
             <div key={section.title} className="rounded-lg border border-border p-4">
               <div className="flex items-center gap-2 mb-3">
                 <span className="text-muted-foreground">{section.icon}</span>
-                <span className="text-sm font-semibold text-foreground">{section.title}</span>
+                <span className="text-sm font-medium text-foreground">{section.title}</span>
               </div>
               <ul className="space-y-1.5">
                 {section.points.map((p) => (
@@ -1656,7 +1656,7 @@ export default function PESecondariesPage() {
             <Repeat className="w-5 h-5 text-primary" />
           </div>
           <div>
-            <h1 className="text-xl font-bold text-foreground">Private Equity Secondaries</h1>
+            <h1 className="text-xl font-medium text-foreground">Private Equity Secondaries</h1>
             <p className="text-sm text-muted-foreground">
               LP-led transactions, GP-led continuation vehicles, NAV financing &amp; market dynamics
             </p>

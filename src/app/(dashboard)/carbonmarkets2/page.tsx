@@ -1265,16 +1265,18 @@ export default function CarbonMarkets2Page() {
         transition={{ duration: 0.4 }}
         className="max-w-5xl mx-auto space-y-6"
       >
-        {/* Header */}
-        <div className="space-y-1">
+        {/* HERO Header */}
+        <div className="border-l-4 border-l-primary rounded-xl bg-card p-6 space-y-1">
           <div className="flex items-center gap-2">
             <Leaf className="text-emerald-400" size={22} />
-            <h1 className="text-2xl font-semibold text-foreground">Carbon Markets Deep Dive</h1>
+            <h1 className="text-xl font-semibold text-foreground">Carbon Markets Deep Dive</h1>
           </div>
           <p className="text-sm text-muted-foreground">
             EU ETS mechanics, voluntary carbon markets, nature-based solutions, credit quality frameworks, and corporate net-zero strategies.
           </p>
         </div>
+
+        <div className="mt-8" />
 
         {/* Key stats */}
         <div className="grid grid-cols-2 md:grid-cols-4 gap-3">

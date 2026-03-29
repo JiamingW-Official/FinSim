@@ -572,7 +572,7 @@ function IPODetailModal({
           <div>
             <div className="flex items-center gap-2">
               <h2 className="text-lg font-bold text-foreground">{ipo.company}</h2>
-              <span className="rounded bg-muted px-1.5 py-0.5 text-xs font-mono font-semibold text-muted-foreground">
+              <span className="rounded bg-muted px-1.5 py-0.5 text-xs font-mono font-medium text-muted-foreground">
                 {ipo.ticker}
               </span>
               <SentimentBadge sentiment={ipo.sentiment} />
@@ -592,24 +592,24 @@ function IPODetailModal({
         <div className="grid grid-cols-2 gap-3 mb-4">
           <div className="rounded-lg bg-muted/50 p-3">
             <p className="text-xs text-muted-foreground mb-1">Price Range</p>
-            <p className="font-semibold text-foreground">
+            <p className="font-medium text-foreground">
               ${ipo.priceRangeLow} – ${ipo.priceRangeHigh}
             </p>
             <p className="text-xs text-muted-foreground">Mid: ${midPrice}</p>
           </div>
           <div className="rounded-lg bg-muted/50 p-3">
             <p className="text-xs text-muted-foreground mb-1">Expected Date</p>
-            <p className="font-semibold text-foreground">{formatDate(ipo.expectedDate)}</p>
+            <p className="font-medium text-foreground">{formatDate(ipo.expectedDate)}</p>
             <p className="text-xs text-muted-foreground">in {daysUntil(ipo.expectedDate)} days</p>
           </div>
           <div className="rounded-lg bg-muted/50 p-3">
             <p className="text-xs text-muted-foreground mb-1">Implied Valuation</p>
-            <p className="font-semibold text-foreground">${ipo.impliedValuation}B</p>
+            <p className="font-medium text-foreground">${ipo.impliedValuation}B</p>
             <p className="text-xs text-muted-foreground">{(ipo.sharesOffered).toFixed(0)}M shares offered</p>
           </div>
           <div className="rounded-lg bg-muted/50 p-3">
             <p className="text-xs text-muted-foreground mb-1">Lock-up Period</p>
-            <p className="font-semibold text-foreground">{ipo.lockupDays} days</p>
+            <p className="font-medium text-foreground">{ipo.lockupDays} days</p>
             <p className="text-xs text-muted-foreground">S-1 filed {formatDate(ipo.s1FiledDate)}</p>
           </div>
         </div>
@@ -791,20 +791,20 @@ function FlipSimulator({ ipo }: { ipo: RecentIPO }) {
 
   return (
     <div className="rounded-lg border border-border p-4 space-y-3">
-      <p className="text-sm font-semibold text-foreground">{ipo.company} ({ipo.ticker})</p>
+      <p className="text-sm font-medium text-foreground">{ipo.company} ({ipo.ticker})</p>
       <p className="text-xs text-muted-foreground">Assume {sharesCount} shares at offer price ${ipo.offerPrice}</p>
       <div className="grid grid-cols-2 gap-3">
         <div className={cn("rounded-lg p-3 border", day1Pnl >= 0 ? "bg-green-500/10 border-green-500/20" : "bg-red-500/10 border-red-500/20")}>
           <p className="text-xs text-muted-foreground mb-1">Sold on Day 1</p>
           <p className="font-bold text-foreground">${day1Value.toFixed(0)}</p>
-          <p className={cn("text-sm font-semibold", day1Pnl >= 0 ? "text-green-400" : "text-red-400")}>
+          <p className={cn("text-sm font-medium", day1Pnl >= 0 ? "text-green-400" : "text-red-400")}>
             {day1Pnl >= 0 ? "+" : ""}${day1Pnl.toFixed(0)} ({ipo.firstDayReturn >= 0 ? "+" : ""}{ipo.firstDayReturn.toFixed(1)}%)
           </p>
         </div>
         <div className={cn("rounded-lg p-3 border", holdPnl >= 0 ? "bg-green-500/10 border-green-500/20" : "bg-red-500/10 border-red-500/20")}>
           <p className="text-xs text-muted-foreground mb-1">Held to Today</p>
-          <p className="font-bold text-foreground">${holdValue.toFixed(0)}</p>
-          <p className={cn("text-sm font-semibold", holdPnl >= 0 ? "text-green-400" : "text-red-400")}>
+          <p className="font-medium text-foreground">${holdValue.toFixed(0)}</p>
+          <p className={cn("text-sm font-medium", holdPnl >= 0 ? "text-green-400" : "text-red-400")}>
             {holdPnl >= 0 ? "+" : ""}${holdPnl.toFixed(0)} ({((holdPnl / (sharesCount * ipo.offerPrice)) * 100).toFixed(1)}%)
           </p>
         </div>
@@ -850,14 +850,14 @@ export default function IPOPage() {
         <IPODetailModal ipo={selectedIPO} onClose={() => setSelectedIPO(null)} />
       )}
 
-      {/* Header */}
-      <div className="shrink-0 border-b border-border px-6 py-4">
+      {/* Header — Hero */}
+      <div className="shrink-0 border-b border-border border-l-4 border-l-primary px-6 py-4">
         <div className="flex items-center gap-3">
           <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-primary/10">
             <Building2 className="h-4 w-4 text-primary" />
           </div>
           <div>
-            <h1 className="text-lg font-bold text-foreground">IPO Center</h1>
+            <h1 className="text-lg font-medium text-foreground">IPO Center</h1>
             <p className="text-xs text-muted-foreground">Track, analyze, and simulate IPO investing</p>
           </div>
         </div>
@@ -903,15 +903,15 @@ export default function IPOPage() {
                 <table className="w-full text-sm">
                   <thead>
                     <tr className="border-b border-border bg-muted/40">
-                      <th className="px-4 py-3 text-left text-xs font-semibold uppercase tracking-wide text-muted-foreground">Company</th>
-                      <th className="px-4 py-3 text-left text-xs font-semibold uppercase tracking-wide text-muted-foreground">Sector</th>
-                      <th className="px-4 py-3 text-left text-xs font-semibold uppercase tracking-wide text-muted-foreground">Exp. Date</th>
-                      <th className="px-4 py-3 text-right text-xs font-semibold uppercase tracking-wide text-muted-foreground">Price Range</th>
-                      <th className="px-4 py-3 text-right text-xs font-semibold uppercase tracking-wide text-muted-foreground">Shares (M)</th>
-                      <th className="px-4 py-3 text-right text-xs font-semibold uppercase tracking-wide text-muted-foreground">Valuation</th>
-                      <th className="px-4 py-3 text-left text-xs font-semibold uppercase tracking-wide text-muted-foreground">Bookrunner</th>
-                      <th className="px-4 py-3 text-center text-xs font-semibold uppercase tracking-wide text-muted-foreground">Sentiment</th>
-                      <th className="px-4 py-3 text-right text-xs font-semibold uppercase tracking-wide text-muted-foreground"></th>
+                      <th className="px-4 py-3 text-left text-xs font-medium uppercase tracking-wide text-muted-foreground">Company</th>
+                      <th className="px-4 py-3 text-left text-xs font-medium uppercase tracking-wide text-muted-foreground">Sector</th>
+                      <th className="px-4 py-3 text-left text-xs font-medium uppercase tracking-wide text-muted-foreground">Exp. Date</th>
+                      <th className="px-4 py-3 text-right text-xs font-medium uppercase tracking-wide text-muted-foreground">Price Range</th>
+                      <th className="px-4 py-3 text-right text-xs font-medium uppercase tracking-wide text-muted-foreground">Shares (M)</th>
+                      <th className="px-4 py-3 text-right text-xs font-medium uppercase tracking-wide text-muted-foreground">Valuation</th>
+                      <th className="px-4 py-3 text-left text-xs font-medium uppercase tracking-wide text-muted-foreground">Bookrunner</th>
+                      <th className="px-4 py-3 text-center text-xs font-medium uppercase tracking-wide text-muted-foreground">Sentiment</th>
+                      <th className="px-4 py-3 text-right text-xs font-medium uppercase tracking-wide text-muted-foreground"></th>
                     </tr>
                   </thead>
                   <tbody>
@@ -961,7 +961,7 @@ export default function IPOPage() {
                 <div className="flex items-start gap-2">
                   <Lock className="h-4 w-4 text-muted-foreground shrink-0 mt-0.5" />
                   <div>
-                    <p className="text-xs font-semibold text-foreground mb-1">Lock-up Period</p>
+                    <p className="text-xs font-medium text-foreground mb-1">Lock-up Period</p>
                     <p className="text-xs text-muted-foreground leading-relaxed">
                       All listed IPOs have a standard <strong className="text-foreground">180-day lock-up</strong> period during which
                       insiders and pre-IPO investors cannot sell shares. Lock-up expiry often triggers increased
@@ -999,15 +999,15 @@ export default function IPOPage() {
                 <table className="w-full text-sm">
                   <thead>
                     <tr className="border-b border-border bg-muted/40">
-                      <th className="px-4 py-3 text-left text-xs font-semibold uppercase tracking-wide text-muted-foreground">Company</th>
-                      <th className="px-4 py-3 text-right text-xs font-semibold uppercase tracking-wide text-muted-foreground">Offer $</th>
-                      <th className="px-4 py-3 text-right text-xs font-semibold uppercase tracking-wide text-muted-foreground">Current $</th>
-                      <th className="px-4 py-3 text-right text-xs font-semibold uppercase tracking-wide text-muted-foreground">Day 1</th>
-                      <th className="px-4 py-3 text-right text-xs font-semibold uppercase tracking-wide text-muted-foreground">1M</th>
-                      <th className="px-4 py-3 text-right text-xs font-semibold uppercase tracking-wide text-muted-foreground">3M</th>
-                      <th className="px-4 py-3 text-right text-xs font-semibold uppercase tracking-wide text-muted-foreground">vs Offer</th>
-                      <th className="px-4 py-3 text-left text-xs font-semibold uppercase tracking-wide text-muted-foreground">Lock-up</th>
-                      <th className="px-4 py-3 text-center text-xs font-semibold uppercase tracking-wide text-muted-foreground">Trend</th>
+                      <th className="px-4 py-3 text-left text-xs font-medium uppercase tracking-wide text-muted-foreground">Company</th>
+                      <th className="px-4 py-3 text-right text-xs font-medium uppercase tracking-wide text-muted-foreground">Offer $</th>
+                      <th className="px-4 py-3 text-right text-xs font-medium uppercase tracking-wide text-muted-foreground">Current $</th>
+                      <th className="px-4 py-3 text-right text-xs font-medium uppercase tracking-wide text-muted-foreground">Day 1</th>
+                      <th className="px-4 py-3 text-right text-xs font-medium uppercase tracking-wide text-muted-foreground">1M</th>
+                      <th className="px-4 py-3 text-right text-xs font-medium uppercase tracking-wide text-muted-foreground">3M</th>
+                      <th className="px-4 py-3 text-right text-xs font-medium uppercase tracking-wide text-muted-foreground">vs Offer</th>
+                      <th className="px-4 py-3 text-left text-xs font-medium uppercase tracking-wide text-muted-foreground">Lock-up</th>
+                      <th className="px-4 py-3 text-center text-xs font-medium uppercase tracking-wide text-muted-foreground">Trend</th>
                     </tr>
                   </thead>
                   <tbody>
@@ -1025,7 +1025,7 @@ export default function IPOPage() {
                           </td>
                           <td className="px-4 py-3 text-right font-mono text-xs text-muted-foreground">${ipo.offerPrice}</td>
                           <td className="px-4 py-3 text-right font-mono text-xs text-foreground font-medium">${ipo.currentPrice}</td>
-                          <td className={cn("px-4 py-3 text-right font-mono text-xs font-semibold", ipo.firstDayReturn >= 0 ? "text-green-400" : "text-red-400")}>
+                          <td className={cn("px-4 py-3 text-right font-mono text-xs font-medium", ipo.firstDayReturn >= 0 ? "text-green-400" : "text-red-400")}>
                             {ipo.firstDayReturn >= 0 ? "+" : ""}{ipo.firstDayReturn.toFixed(1)}%
                           </td>
                           <td className={cn("px-4 py-3 text-right font-mono text-xs", ipo.oneMonthReturn >= 0 ? "text-green-400" : "text-red-400")}>
@@ -1034,7 +1034,7 @@ export default function IPOPage() {
                           <td className={cn("px-4 py-3 text-right font-mono text-xs", ipo.threeMonthReturn >= 0 ? "text-green-400" : "text-red-400")}>
                             {ipo.threeMonthReturn >= 0 ? "+" : ""}{ipo.threeMonthReturn.toFixed(1)}%
                           </td>
-                          <td className={cn("px-4 py-3 text-right font-mono text-xs font-bold", vsOffer >= 0 ? "text-green-400" : "text-red-400")}>
+                          <td className={cn("px-4 py-3 text-right font-mono text-xs font-medium", vsOffer >= 0 ? "text-green-400" : "text-red-400")}>
                             {vsOffer >= 0 ? "+" : ""}{vsOffer.toFixed(1)}%
                           </td>
                           <td className="px-4 py-3">
@@ -1068,7 +1068,7 @@ export default function IPOPage() {
               <div className="rounded-xl border border-border p-5">
                 <div className="flex items-center gap-2 mb-4">
                   <BarChart3 className="h-4 w-4 text-primary" />
-                  <h2 className="font-semibold text-foreground">IPO Grading Tool</h2>
+                  <h2 className="font-medium text-foreground">IPO Grading Tool</h2>
                   <span className="ml-auto text-xs text-muted-foreground">Rate a company's IPO quality</span>
                 </div>
 
@@ -1140,7 +1140,7 @@ export default function IPOPage() {
 
                 <button
                   onClick={() => setGradeResult(gradeIPO(gradeInput))}
-                  className="rounded-lg bg-primary px-5 py-2 text-sm font-semibold text-primary-foreground hover:bg-primary/90 transition-colors"
+                  className="rounded-lg bg-primary px-5 py-2 text-sm font-medium text-primary-foreground hover:bg-primary/90 transition-colors"
                 >
                   Grade this IPO
                 </button>
@@ -1158,7 +1158,7 @@ export default function IPOPage() {
                         {gradeResult.grade}
                       </div>
                       <div>
-                        <p className="font-semibold text-foreground">IPO Quality Score: {gradeResult.score}/100</p>
+                        <p className="font-medium text-foreground">IPO Quality Score: {gradeResult.score}/100</p>
                         <div className="mt-1 h-2 w-48 rounded-full bg-muted overflow-hidden">
                           <div
                             className={cn(
@@ -1188,7 +1188,7 @@ export default function IPOPage() {
               <div className="rounded-xl border border-border p-5">
                 <div className="flex items-center gap-2 mb-4">
                   <BarChart3 className="h-4 w-4 text-primary" />
-                  <h2 className="font-semibold text-foreground">Average First-Day Return by Sector</h2>
+                  <h2 className="font-medium text-foreground">Average First-Day Return by Sector</h2>
                   <span className="ml-auto text-xs text-muted-foreground">Based on 204 IPOs (2019–2025)</span>
                 </div>
                 <div className="overflow-x-auto">
@@ -1209,7 +1209,7 @@ export default function IPOPage() {
               <div className="rounded-xl border border-amber-500/20 bg-amber-500/5 p-5">
                 <div className="flex items-center gap-2 mb-3">
                   <TrendingDown className="h-4 w-4 text-amber-400" />
-                  <h2 className="font-semibold text-foreground">Post-IPO Drift: The 6–12 Month Effect</h2>
+                  <h2 className="font-medium text-foreground">Post-IPO Drift: The 6–12 Month Effect</h2>
                 </div>
                 <p className="text-sm text-muted-foreground leading-relaxed mb-4">
                   Academic research consistently shows that IPOs tend to <strong className="text-foreground">underperform</strong> relative
@@ -1224,7 +1224,7 @@ export default function IPOPage() {
                   ].map((item) => (
                     <div key={item.period} className="rounded-lg bg-card border border-border p-3 text-center">
                       <p className="text-xs text-muted-foreground mb-1">{item.period}</p>
-                      <p className={cn("text-xl font-bold", item.stat.startsWith("+") ? "text-green-400" : "text-red-400")}>
+                      <p className={cn("text-xl font-medium", item.stat.startsWith("+") ? "text-green-400" : "text-red-400")}>
                         {item.stat}
                       </p>
                       <p className="text-xs text-muted-foreground mt-1">{item.note}</p>
@@ -1246,7 +1246,7 @@ export default function IPOPage() {
               <div className="rounded-xl border border-border p-5">
                 <div className="flex items-center gap-2 mb-4">
                   <DollarSign className="h-4 w-4 text-primary" />
-                  <h2 className="font-semibold text-foreground">Your IPO Allocations</h2>
+                  <h2 className="font-medium text-foreground">Your IPO Allocations</h2>
                   <span className="ml-auto text-xs text-muted-foreground">Simulated retail allocation</span>
                 </div>
                 <div className="space-y-3">
@@ -1261,16 +1261,16 @@ export default function IPOPage() {
                       <div key={alloc.ticker} className="rounded-lg border border-border p-4">
                         <div className="flex items-start justify-between mb-3">
                           <div>
-                            <p className="font-semibold text-foreground">{alloc.company}</p>
+                            <p className="font-medium text-foreground">{alloc.company}</p>
                             <p className="text-xs text-muted-foreground">
                               <span className="font-mono">{alloc.ticker}</span> · Allocated {alloc.sharesAllocated} shares @ ${alloc.offerPrice}
                             </p>
                           </div>
                           <div className="text-right">
-                            <p className={cn("text-lg font-bold", pnl >= 0 ? "text-green-400" : "text-red-400")}>
+                            <p className={cn("text-lg font-medium", pnl >= 0 ? "text-green-400" : "text-red-400")}>
                               {pnl >= 0 ? "+" : ""}${pnl.toFixed(0)}
                             </p>
-                            <p className={cn("text-xs font-semibold", pnl >= 0 ? "text-green-400" : "text-red-400")}>
+                            <p className={cn("text-xs font-medium", pnl >= 0 ? "text-green-400" : "text-red-400")}>
                               {pnlPct >= 0 ? "+" : ""}{pnlPct.toFixed(1)}%
                             </p>
                           </div>
@@ -1301,7 +1301,7 @@ export default function IPOPage() {
               <div className="rounded-xl border border-border p-5">
                 <div className="flex items-center gap-2 mb-4">
                   <TrendingUp className="h-4 w-4 text-primary" />
-                  <h2 className="font-semibold text-foreground">IPO Flip Simulator</h2>
+                  <h2 className="font-medium text-foreground">IPO Flip Simulator</h2>
                   <span className="ml-auto text-xs text-muted-foreground">Day 1 sell vs hold</span>
                 </div>
                 <div className="flex flex-wrap gap-2 mb-4">
@@ -1330,7 +1330,7 @@ export default function IPOPage() {
               <div className="rounded-xl border border-border p-5">
                 <div className="flex items-center gap-2 mb-4">
                   <Lock className="h-4 w-4 text-primary" />
-                  <h2 className="font-semibold text-foreground">Lock-up Expiry Countdown</h2>
+                  <h2 className="font-medium text-foreground">Lock-up Expiry Countdown</h2>
                 </div>
                 <div className="space-y-2">
                   {RECENT_IPOS.filter((r) => new Date(r.lockupExpiry) >= new Date(BASE_DATE))
@@ -1343,10 +1343,10 @@ export default function IPOPage() {
                         <div key={ipo.id} className="rounded-lg border border-border p-3">
                           <div className="flex items-center justify-between mb-2">
                             <div className="flex items-center gap-2">
-                              <span className="font-mono text-xs font-semibold text-foreground">{ipo.ticker}</span>
+                              <span className="font-mono text-xs font-medium text-foreground">{ipo.ticker}</span>
                               <span className="text-xs text-muted-foreground">{ipo.company}</span>
                             </div>
-                            <span className={cn("text-xs font-semibold", urgency)}>
+                            <span className={cn("text-xs font-medium", urgency)}>
                               {days}d until unlock
                             </span>
                           </div>
@@ -1367,7 +1367,7 @@ export default function IPOPage() {
               <div className="rounded-xl border border-border p-5">
                 <div className="flex items-center gap-2 mb-4">
                   <BookOpen className="h-4 w-4 text-primary" />
-                  <h2 className="font-semibold text-foreground">How Retail Investors Access IPOs</h2>
+                  <h2 className="font-medium text-foreground">How Retail Investors Access IPOs</h2>
                 </div>
                 <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
                   {[
@@ -1395,7 +1395,7 @@ export default function IPOPage() {
                     <div key={item.title} className="rounded-lg bg-muted/30 border border-border p-3">
                       <div className="flex items-center gap-2 mb-2">
                         {item.icon}
-                        <p className="text-sm font-semibold text-foreground">{item.title}</p>
+                        <p className="text-sm font-medium text-foreground">{item.title}</p>
                       </div>
                       <p className="text-xs text-muted-foreground leading-relaxed">{item.desc}</p>
                     </div>

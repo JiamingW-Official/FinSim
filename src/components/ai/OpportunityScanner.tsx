@@ -91,7 +91,7 @@ function BiasBadge({ bias }: { bias: ScanRow["bias"] }) {
       </span>
     );
   return (
-    <span className="inline-flex items-center gap-0.5 rounded border border-border bg-muted px-1 py-0.5 text-[11px] font-bold text-muted-foreground">
+    <span className="inline-flex items-center gap-0.5 rounded border border-border/40 bg-muted px-1 py-0.5 text-[11px] font-bold text-muted-foreground">
       <Minus className="h-2.5 w-2.5" />
       Neutral
     </span>
@@ -244,7 +244,7 @@ export function OpportunityScanner({
                 "rounded border px-1.5 py-0.5 text-[11px] font-bold leading-none transition-all",
                 filter === f.value
                   ? "bg-primary/15 border-primary/30 text-primary"
-                  : "border-border bg-muted text-muted-foreground hover:text-foreground hover:bg-accent",
+                  : "border-border/40 bg-muted text-muted-foreground hover:text-foreground hover:bg-accent",
               )}
             >
               {f.label}

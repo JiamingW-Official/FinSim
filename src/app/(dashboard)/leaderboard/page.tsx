@@ -165,8 +165,8 @@ export default function LeaderboardPage() {
 
   return (
     <div className="flex h-full flex-col">
-      {/* ===== HEADER ===== */}
-      <div className="border-b border-border px-4 py-4">
+      {/* ===== HEADER — Hero ===== */}
+      <div className="border-b border-border border-l-4 border-l-primary px-4 py-4">
         <div className="flex items-center gap-3">
           <div
             className="flex h-10 w-10 items-center justify-center rounded-xl bg-primary/10"
@@ -211,7 +211,7 @@ export default function LeaderboardPage() {
                 type="button"
                 onClick={() => setMainTab(tab.id)}
                 className={cn(
-                  "relative flex items-center gap-1.5 px-3 py-2.5 text-[11px] font-bold whitespace-nowrap transition-colors",
+                  "relative flex items-center gap-1.5 px-3 py-2.5 text-[11px] font-medium whitespace-nowrap transition-colors",
                   isActive ? "text-foreground" : "text-muted-foreground hover:text-foreground",
                 )}
               >
@@ -262,7 +262,7 @@ export default function LeaderboardPage() {
                         type="button"
                         onClick={() => setDimension(dim.id)}
                         className={cn(
-                          "flex items-center gap-1 rounded-md px-2.5 py-1 text-xs font-bold transition-colors whitespace-nowrap",
+                          "flex items-center gap-1 rounded-md px-2.5 py-1 text-xs font-medium transition-colors whitespace-nowrap",
                           isActive
                             ? "bg-primary/20 border border-primary/40 text-primary"
                             : "bg-muted/20 border border-border text-muted-foreground hover:text-foreground",
@@ -287,7 +287,7 @@ export default function LeaderboardPage() {
                         type="button"
                         onClick={() => setTimePeriod(p)}
                         className={cn(
-                          "rounded-md px-2.5 py-1 text-xs font-bold transition-colors",
+                          "rounded-md px-2.5 py-1 text-xs font-medium transition-colors",
                           timePeriod === p
                             ? "bg-card text-foreground shadow-sm"
                             : "text-muted-foreground hover:text-foreground",
@@ -304,7 +304,7 @@ export default function LeaderboardPage() {
               <div className="rounded-xl border border-border bg-card border-l-4 border-l-primary p-6 mb-4">
                 <div className="flex items-center gap-2 mb-5">
                   <Crown className="h-5 w-5 text-amber-400" />
-                  <span className="text-base font-bold">Top 3 — {dimConfig.label}</span>
+                  <span className="text-base font-medium">Top 3 — {dimConfig.label}</span>
                 </div>
 
                 <div className="flex items-end justify-center gap-6">
@@ -338,7 +338,7 @@ export default function LeaderboardPage() {
                   <div className="rounded-xl border border-border bg-card/50 p-3">
                     <div className="flex items-center gap-2 mb-2">
                       <Gem className="h-3.5 w-3.5 text-muted-foreground" />
-                      <span className="text-xs font-bold">Leagues</span>
+                      <span className="text-xs font-medium">Leagues</span>
                     </div>
 
                     <div className="space-y-2">
@@ -357,10 +357,10 @@ export default function LeaderboardPage() {
                             )}
                           >
                             <span className="text-sm">{info.emoji}</span>
-                            <span className={cn("text-[11px] font-bold flex-1", info.color)}>
+                            <span className={cn("text-[11px] font-medium flex-1", info.color)}>
                               {info.label}
                             </span>
-                            <span className="text-xs font-bold tabular-nums text-muted-foreground">
+                            <span className="text-xs font-medium tabular-nums text-muted-foreground">
                               {count}
                             </span>
                             <div className="w-12 h-1.5 rounded-full bg-muted/30 overflow-hidden">
@@ -369,7 +369,7 @@ export default function LeaderboardPage() {
                                   "bg-primary": tier === "alpha",
                                   "bg-cyan-400": tier === "diamond",
                                   "bg-amber-400": tier === "gold",
-                                  "bg-gray-300": tier === "silver",
+                                  "bg-muted-foreground/60": tier === "silver",
                                   "bg-orange-400": tier === "bronze",
                                 })}
                                 style={{ width: `${pct}%` }}
@@ -387,7 +387,7 @@ export default function LeaderboardPage() {
                   >
                     <div className="flex items-center gap-2 mb-3">
                       <Medal className="h-4 w-4 text-primary" />
-                      <span className="text-sm font-bold">Your Next Goal</span>
+                      <span className="text-sm font-medium">Your Next Goal</span>
                     </div>
                     <NextGoalContent userRank={userRank} dimConfig={dimConfig} ranked={filteredRanked} />
                   </div>
@@ -399,7 +399,7 @@ export default function LeaderboardPage() {
                     <div className="flex items-start gap-2">
                       <Lightbulb className="h-4 w-4 text-primary shrink-0 mt-0.5" />
                       <div>
-                        <span className="text-xs font-bold text-primary/70">
+                        <span className="text-xs font-medium text-primary/70">
                           Pro Tip
                         </span>
                         <p className="text-[11px] text-primary/80 leading-relaxed mt-1">
@@ -463,8 +463,8 @@ function FriendsTab({ friends }: { friends: FriendEntry[] }) {
     <div className="space-y-4">
       <div className="flex items-center gap-2 mb-2">
         <Users className="h-4 w-4 text-muted-foreground" />
-        <h2 className="text-sm font-bold">Friends Leaderboard</h2>
-        <span className="rounded-full bg-muted/30 px-2 py-0.5 text-xs font-bold text-muted-foreground">
+        <h2 className="text-sm font-medium">Friends Leaderboard</h2>
+        <span className="rounded-full bg-muted/30 px-2 py-0.5 text-xs font-medium text-muted-foreground">
           {friends.length}
         </span>
       </div>
@@ -472,12 +472,12 @@ function FriendsTab({ friends }: { friends: FriendEntry[] }) {
       {/* Column headers */}
       <div className="rounded-xl border border-border bg-card/50 overflow-hidden">
         <div className="grid grid-cols-[2rem_1fr_5rem_4rem_4rem_5rem] gap-2 px-3 py-2 border-b border-border/50">
-          <span className="text-[11px] font-bold text-muted-foreground text-center">#</span>
-          <span className="text-[11px] font-bold text-muted-foreground">Player</span>
-          <span className="text-[11px] font-bold text-muted-foreground text-right">Portfolio</span>
-          <span className="text-[11px] font-bold text-muted-foreground text-right">Return</span>
-          <span className="text-[11px] font-bold text-muted-foreground text-right">Win %</span>
-          <span className="text-[11px] font-bold text-muted-foreground text-center">Action</span>
+          <span className="text-[11px] font-medium text-muted-foreground text-center">#</span>
+          <span className="text-[11px] font-medium text-muted-foreground">Player</span>
+          <span className="text-[11px] font-medium text-muted-foreground text-right">Portfolio</span>
+          <span className="text-[11px] font-medium text-muted-foreground text-right">Return</span>
+          <span className="text-[11px] font-medium text-muted-foreground text-right">Win %</span>
+          <span className="text-[11px] font-medium text-muted-foreground text-center">Action</span>
         </div>
 
         {friends.map((friend, i) => {
@@ -489,14 +489,14 @@ function FriendsTab({ friends }: { friends: FriendEntry[] }) {
               key={friend.id}
               className="grid grid-cols-[2rem_1fr_5rem_4rem_4rem_5rem] gap-2 items-center px-3 py-2.5 hover:bg-accent/20 transition-colors border-b border-border/30 last:border-0"
             >
-              <span className="text-[11px] font-bold text-muted-foreground text-center">{i + 1}</span>
+              <span className="text-[11px] font-medium text-muted-foreground text-center">{i + 1}</span>
 
               <div className="flex items-center gap-2 min-w-0">
-                <div className={cn("flex h-7 w-7 shrink-0 items-center justify-center rounded-lg text-xs font-bold text-foreground", colorClass)}>
+                <div className={cn("flex h-7 w-7 shrink-0 items-center justify-center rounded-lg text-xs font-medium text-foreground", colorClass)}>
                   {getInitials(friend.name)}
                 </div>
                 <div className="min-w-0">
-                  <span className="text-[11px] font-bold truncate block">{friend.name}</span>
+                  <span className="text-[11px] font-medium truncate block">{friend.name}</span>
                   <div className="flex items-center gap-1">
                     <span className="text-[11px] text-muted-foreground">Lv.{friend.level}</span>
                     <LeagueBadge tier={friend.league} size="sm" />
@@ -504,16 +504,16 @@ function FriendsTab({ friends }: { friends: FriendEntry[] }) {
                 </div>
               </div>
 
-              <span className="text-[11px] font-bold tabular-nums text-right">
+              <span className="text-[11px] font-medium tabular-nums text-right">
                 ${(friend.portfolioValue / 1000).toFixed(1)}K
               </span>
 
-              <span className={cn("text-[11px] font-bold tabular-nums text-right",
+              <span className={cn("text-[11px] font-medium tabular-nums text-right",
                 friend.returnPct >= 0 ? "text-emerald-400" : "text-red-400")}>
                 {friend.returnPct >= 0 ? "+" : ""}{friend.returnPct.toFixed(1)}%
               </span>
 
-              <span className="text-[11px] font-bold tabular-nums text-right">
+              <span className="text-[11px] font-medium tabular-nums text-right">
                 {friend.winRate.toFixed(0)}%
               </span>
 
@@ -523,7 +523,7 @@ function FriendsTab({ friends }: { friends: FriendEntry[] }) {
                   onClick={() => setChallenged((prev) => new Set([...prev, friend.id]))}
                   disabled={isChallenged}
                   className={cn(
-                    "rounded-md px-2 py-1 text-[11px] font-bold transition-colors",
+                    "rounded-md px-2 py-1 text-[11px] font-medium transition-colors",
                     isChallenged
                       ? "bg-muted/20 text-muted-foreground cursor-default"
                       : "bg-primary/10 border border-primary/20 text-primary hover:bg-primary/20",
@@ -628,7 +628,7 @@ function YourStatsTab({ ranked, userRank }: { ranked: RankedEntry[]; userRank: R
         <div className="rounded-xl border border-border bg-card/50 p-4">
           <div className="flex items-center gap-2 mb-1">
             <Trophy className="h-4 w-4 text-primary" />
-            <span className="text-[11px] font-bold text-muted-foreground uppercase tracking-wide">Global Rank</span>
+            <span className="text-[11px] font-medium text-muted-foreground uppercase tracking-wide">Global Rank</span>
           </div>
           <div className="text-2xl font-bold tabular-nums text-primary">#{rank}</div>
           <p className="text-xs text-muted-foreground mt-0.5">out of {totalPlayers} players</p>
@@ -637,7 +637,7 @@ function YourStatsTab({ ranked, userRank }: { ranked: RankedEntry[]; userRank: R
         <div className="rounded-xl border border-border bg-card/50 p-4">
           <div className="flex items-center gap-2 mb-1">
             <Star className="h-4 w-4 text-amber-400" />
-            <span className="text-[11px] font-bold text-muted-foreground uppercase tracking-wide">Percentile</span>
+            <span className="text-[11px] font-medium text-muted-foreground uppercase tracking-wide">Percentile</span>
           </div>
           <div className="text-2xl font-bold tabular-nums text-amber-400">Top {Math.max(1, 100 - percentile)}%</div>
           <div className="mt-2 h-2 rounded-full bg-muted/30 overflow-hidden">
@@ -654,7 +654,7 @@ function YourStatsTab({ ranked, userRank }: { ranked: RankedEntry[]; userRank: R
       <div className="rounded-xl border border-border bg-card/50 p-4">
         <div className="flex items-center gap-2 mb-3">
           <TrendingUp className="h-4 w-4 text-primary" />
-          <span className="text-sm font-bold">Rank History</span>
+          <span className="text-sm font-medium">Rank History</span>
           <span className="text-xs text-muted-foreground ml-auto">Last 30 days</span>
         </div>
 
@@ -729,14 +729,14 @@ function YourStatsTab({ ranked, userRank }: { ranked: RankedEntry[]; userRank: R
       {/* Comparison table */}
       <div className="rounded-xl border border-border bg-card/50 overflow-hidden">
         <div className="px-4 py-3 border-b border-border/50">
-          <span className="text-sm font-bold">Performance Comparison</span>
+          <span className="text-sm font-medium">Performance Comparison</span>
         </div>
 
         <div className="grid grid-cols-4 px-4 py-2 border-b border-border/30">
-          <span className="text-[11px] font-bold text-muted-foreground">Metric</span>
-          <span className="text-[11px] font-bold text-muted-foreground text-center">You</span>
-          <span className="text-[11px] font-bold text-muted-foreground text-center">Top 10 Avg</span>
-          <span className="text-[11px] font-bold text-muted-foreground text-center">All Avg</span>
+          <span className="text-[11px] font-medium text-muted-foreground">Metric</span>
+          <span className="text-[11px] font-medium text-muted-foreground text-center">You</span>
+          <span className="text-[11px] font-medium text-muted-foreground text-center">Top 10 Avg</span>
+          <span className="text-[11px] font-medium text-muted-foreground text-center">All Avg</span>
         </div>
 
         {compRows.map((row, i) => (
@@ -744,8 +744,8 @@ function YourStatsTab({ ranked, userRank }: { ranked: RankedEntry[]; userRank: R
             key={row.label}
             className={cn("grid grid-cols-4 px-4 py-2.5 items-center", i % 2 === 0 ? "bg-muted/5" : "")}
           >
-            <span className="text-[11px] font-bold text-muted-foreground">{row.label}</span>
-            <span className={cn("text-[11px] font-bold tabular-nums text-center", row.userBetter ? "text-emerald-400" : "text-foreground")}>
+            <span className="text-[11px] font-medium text-muted-foreground">{row.label}</span>
+            <span className={cn("text-[11px] font-medium tabular-nums text-center", row.userBetter ? "text-emerald-400" : "text-foreground")}>
               {row.user}
             </span>
             <span className="text-[11px] tabular-nums text-muted-foreground text-center">{row.top10}</span>
@@ -783,7 +783,7 @@ function TrophyCaseTab({ achievements }: { achievements: { id: string; name: str
       <div className="rounded-xl border border-border bg-card/50 p-4">
         <div className="flex items-center justify-between mb-3">
           <div>
-            <span className="text-sm font-bold">Trophy Case</span>
+            <span className="text-sm font-medium">Trophy Case</span>
             <p className="text-xs text-muted-foreground mt-0.5">{unlockedCount} of {allDefs.length} unlocked</p>
           </div>
           <div className="text-right">
@@ -802,7 +802,7 @@ function TrophyCaseTab({ achievements }: { achievements: { id: string; name: str
       {/* Unlocked achievements */}
       {unlocked.length > 0 && (
         <div>
-          <h3 className="text-[11px] font-bold text-muted-foreground mb-3">Earned</h3>
+          <h3 className="text-[11px] font-medium text-muted-foreground mb-3">Earned</h3>
           <div className="grid grid-cols-2 sm:grid-cols-3 gap-3">
             {unlocked.map((a, i) => (
               <div
@@ -811,7 +811,7 @@ function TrophyCaseTab({ achievements }: { achievements: { id: string; name: str
               >
                 <div className="flex items-center gap-2 mb-1.5">
                   <Trophy className="h-4 w-4 text-amber-400 shrink-0" />
-                  <span className="text-[11px] font-bold text-amber-400 truncate">{a.name}</span>
+                  <span className="text-[11px] font-medium text-amber-400 truncate">{a.name}</span>
                 </div>
                 <p className="text-xs text-muted-foreground leading-relaxed mb-1">{a.description}</p>
                 {a.unlockedAt > 0 && (
@@ -828,7 +828,7 @@ function TrophyCaseTab({ achievements }: { achievements: { id: string; name: str
       {/* Locked achievements */}
       {locked.length > 0 && (
         <div>
-          <h3 className="text-[11px] font-bold text-muted-foreground mb-3">Locked</h3>
+          <h3 className="text-[11px] font-medium text-muted-foreground mb-3">Locked</h3>
           <div className="grid grid-cols-2 sm:grid-cols-3 gap-3">
             {locked.map((a, i) => (
               <div
@@ -837,7 +837,7 @@ function TrophyCaseTab({ achievements }: { achievements: { id: string; name: str
               >
                 <div className="flex items-center gap-2 mb-1.5">
                   <Lock className="h-4 w-4 text-muted-foreground shrink-0" />
-                  <span className="text-[11px] font-bold text-muted-foreground truncate">{a.name}</span>
+                  <span className="text-[11px] font-medium text-muted-foreground truncate">{a.name}</span>
                 </div>
                 <p className="text-xs text-muted-foreground/70 leading-relaxed">{a.description}</p>
               </div>
@@ -872,13 +872,13 @@ function PodiumSlot({
     >
       {/* Place label (no emoji) */}
       <span className={cn(
-        "text-xs font-bold tabular-nums",
+        "text-xs font-medium tabular-nums",
         place === 1 ? "text-amber-400" : place === 2 ? "text-muted-foreground" : "text-orange-400",
       )}>{placeLabels[place - 1]}</span>
 
       {/* Avatar */}
       <div className={cn(
-        "flex items-center justify-center rounded-xl font-bold text-foreground",
+        "flex items-center justify-center rounded-xl font-medium text-foreground",
         sizes[place],
         entry.isUser ? "bg-primary" : color,
       )}>
@@ -886,12 +886,12 @@ function PodiumSlot({
       </div>
 
       {/* Name */}
-      <span className={cn("text-xs font-bold truncate max-w-[72px] text-center", entry.isUser && "text-primary")}>
+      <span className={cn("text-xs font-medium truncate max-w-[72px] text-center", entry.isUser && "text-primary")}>
         {entry.name}
       </span>
 
       {/* Value */}
-      <span className="text-xs font-bold tabular-nums text-muted-foreground">
+      <span className="text-xs font-medium tabular-nums text-muted-foreground">
         {dimConfig.format(dimConfig.getValue(entry))}
       </span>
 
@@ -923,7 +923,7 @@ function NextGoalContent({
       <div className="flex items-center gap-2 rounded-lg bg-amber-500/10 border border-amber-500/20 px-3 py-2">
         <Crown className="h-4 w-4 text-amber-400 shrink-0" />
         <div>
-          <span className="text-xs font-bold text-amber-400">You&apos;re #1!</span>
+          <span className="text-xs font-medium text-amber-400">You&apos;re #1!</span>
           <p className="text-xs text-muted-foreground">Defend your title.</p>
         </div>
       </div>
@@ -942,13 +942,13 @@ function NextGoalContent({
     <div className="space-y-2">
       <div className="flex items-center justify-between">
         <span className="text-[11px] text-muted-foreground">
-          Beat <span className="font-bold text-foreground">{target.name}</span>
+          Beat <span className="font-medium text-foreground">{target.name}</span>
         </span>
-        <span className="text-xs font-bold text-muted-foreground">#{targetRank}</span>
+        <span className="text-xs font-medium text-muted-foreground">#{targetRank}</span>
       </div>
       <div className="flex items-center justify-between rounded-lg bg-muted/15 px-3 py-2">
         <span className="text-xs text-muted-foreground">Gap</span>
-        <span className="text-sm font-bold tabular-nums text-primary">
+        <span className="text-sm font-medium tabular-nums text-primary">
           {dimConfig.format(Math.abs(diff))}
         </span>
       </div>

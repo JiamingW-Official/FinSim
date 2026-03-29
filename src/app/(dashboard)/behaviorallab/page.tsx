@@ -756,14 +756,14 @@ export default function BehavioralLabPage() {
 
   return (
     <div className="min-h-screen bg-background text-foreground p-4 md:p-6">
-      {/* Header */}
-      <div className="mb-6">
+      {/* HERO Header */}
+      <div className="mb-8 border-l-4 border-l-primary rounded-xl bg-card p-6">
         <div className="flex items-center gap-3 mb-2">
           <div className="p-2 rounded-lg bg-primary/10 border border-border">
             <Brain className="w-6 h-6 text-primary" />
           </div>
           <div>
-            <h1 className="text-2xl font-bold text-foreground">Behavioral Economics Lab</h1>
+            <h1 className="text-xl font-semibold text-foreground">Behavioral Economics Lab</h1>
             <p className="text-sm text-muted-foreground">
               Interactive experiments revealing cognitive biases in investing
             </p>
@@ -956,7 +956,7 @@ export default function BehavioralLabPage() {
           {/* Experiment 1: Loss Aversion Coin Flip */}
           <Card className="bg-card border-border">
             <CardHeader>
-              <CardTitle className="text-base font-semibold flex items-center gap-2">
+              <CardTitle className="text-base font-medium flex items-center gap-2">
                 <div className="p-1.5 rounded bg-red-500/10">
                   <Scale className="w-4 h-4 text-red-400" />
                 </div>
@@ -970,8 +970,8 @@ export default function BehavioralLabPage() {
               <div className="p-4 rounded-lg bg-muted/60 border border-border">
                 <p className="text-sm text-foreground font-medium mb-1">The Bet</p>
                 <p className="text-sm text-muted-foreground">
-                  I flip a fair coin. <span className="text-green-400 font-semibold">Heads: you win $150.</span>{" "}
-                  <span className="text-red-400 font-semibold">Tails: you lose $100.</span>
+                  I flip a fair coin. <span className="text-green-400 font-medium">Heads: you win $150.</span>{" "}
+                  <span className="text-red-400 font-medium">Tails: you lose $100.</span>
                 </p>
                 <p className="text-xs text-muted-foreground mt-2">
                   Expected value = (+$150 × 0.5) + (−$100 × 0.5) = <span className="text-green-400">+$25</span>
@@ -1033,7 +1033,7 @@ export default function BehavioralLabPage() {
                           : "border-green-900 bg-green-950/30"
                       )}
                     >
-                      <div className="flex items-center gap-2 font-semibold">
+                      <div className="flex items-center gap-2 font-medium">
                         {exp1Choice === "reject" ? (
                           <AlertTriangle className="w-4 h-4 text-red-400" />
                         ) : (
@@ -1060,7 +1060,7 @@ export default function BehavioralLabPage() {
           {/* Experiment 2: Anchoring */}
           <Card className="bg-card border-border">
             <CardHeader>
-              <CardTitle className="text-base font-semibold flex items-center gap-2">
+              <CardTitle className="text-base font-medium flex items-center gap-2">
                 <div className="p-1.5 rounded bg-yellow-500/10">
                   <Anchor className="w-4 h-4 text-yellow-400" />
                 </div>
@@ -1106,7 +1106,7 @@ export default function BehavioralLabPage() {
                     </p>
                     <p className="text-xs text-muted-foreground mb-3">
                       Adjust the slider to your best estimate: $
-                      <span className="text-foreground font-bold">{exp2Estimate[0]}B</span>
+                      <span className="text-foreground font-medium">{exp2Estimate[0]}B</span>
                     </p>
                     <Slider
                       min={50}
@@ -1140,7 +1140,7 @@ export default function BehavioralLabPage() {
                     className="overflow-hidden"
                   >
                     <div className="p-4 rounded-lg border border-yellow-900/50 bg-yellow-950/20 text-sm space-y-2">
-                      <div className="flex items-center gap-2 font-semibold text-yellow-400">
+                      <div className="flex items-center gap-2 font-medium text-yellow-400">
                         <Anchor className="w-4 h-4" />
                         {exp2Result.biasDetected}
                       </div>
@@ -1148,15 +1148,15 @@ export default function BehavioralLabPage() {
                       <div className="grid grid-cols-3 gap-2 pt-2 text-xs">
                         <div className="text-center p-2 bg-muted rounded">
                           <p className="text-muted-foreground">Your Anchor</p>
-                          <p className="text-yellow-400 font-bold">${exp2Anchor}B</p>
+                          <p className="text-yellow-400 font-medium">${exp2Anchor}B</p>
                         </div>
                         <div className="text-center p-2 bg-muted rounded">
                           <p className="text-muted-foreground">Your Estimate</p>
-                          <p className="text-foreground font-bold">{exp2Result.userChoice}</p>
+                          <p className="text-foreground font-medium">{exp2Result.userChoice}</p>
                         </div>
                         <div className="text-center p-2 bg-muted rounded">
                           <p className="text-muted-foreground">Actual</p>
-                          <p className="text-green-400 font-bold">${TRUE_MARKET_CAP}B</p>
+                          <p className="text-green-400 font-medium">${TRUE_MARKET_CAP}B</p>
                         </div>
                       </div>
                       <div className="mt-2 h-2 bg-muted rounded-full relative overflow-hidden">
@@ -1191,7 +1191,7 @@ export default function BehavioralLabPage() {
           {/* Experiment 3: Overconfidence CI */}
           <Card className="bg-card border-border">
             <CardHeader>
-              <CardTitle className="text-base font-semibold flex items-center gap-2">
+              <CardTitle className="text-base font-medium flex items-center gap-2">
                 <div className="p-1.5 rounded bg-orange-500/10">
                   <Award className="w-4 h-4 text-orange-400" />
                 </div>
@@ -1215,7 +1215,7 @@ export default function BehavioralLabPage() {
                 <div>
                   <div className="flex justify-between text-xs mb-1">
                     <span className="text-muted-foreground">Lower bound</span>
-                    <span className="text-foreground font-bold">{exp3Low[0]}</span>
+                    <span className="text-foreground font-medium">{exp3Low[0]}</span>
                   </div>
                   <Slider
                     min={3000}
@@ -1230,7 +1230,7 @@ export default function BehavioralLabPage() {
                 <div>
                   <div className="flex justify-between text-xs mb-1">
                     <span className="text-muted-foreground">Upper bound</span>
-                    <span className="text-foreground font-bold">{exp3High[0]}</span>
+                    <span className="text-foreground font-medium">{exp3High[0]}</span>
                   </div>
                   <Slider
                     min={3000}
@@ -1260,7 +1260,7 @@ export default function BehavioralLabPage() {
                   )}
                   <div className="absolute inset-0 flex items-center justify-between px-2 text-xs text-muted-foreground">
                     <span>3000</span>
-                    <span className="font-semibold text-orange-300">
+                    <span className="font-medium text-orange-300">
                       Width: {exp3Width}
                     </span>
                     <span>6000</span>
@@ -1295,7 +1295,7 @@ export default function BehavioralLabPage() {
                     >
                       <div
                         className={cn(
-                          "flex items-center gap-2 font-semibold",
+                          "flex items-center gap-2 font-medium",
                           SP500_ACTUAL >= exp3Low[0] && SP500_ACTUAL <= exp3High[0]
                             ? "text-green-400"
                             : "text-orange-400"
@@ -1312,11 +1312,11 @@ export default function BehavioralLabPage() {
                       <div className="grid grid-cols-2 gap-2 pt-1 text-xs">
                         <div className="p-2 bg-muted rounded">
                           <p className="text-muted-foreground">Your interval</p>
-                          <p className="text-foreground font-bold">{exp3Low[0]} – {exp3High[0]}</p>
+                          <p className="text-foreground font-medium">{exp3Low[0]} – {exp3High[0]}</p>
                         </div>
                         <div className="p-2 bg-muted rounded">
                           <p className="text-muted-foreground">S&P 500 end-2023</p>
-                          <p className="text-green-400 font-bold">{SP500_ACTUAL}</p>
+                          <p className="text-green-400 font-medium">{SP500_ACTUAL}</p>
                         </div>
                       </div>
                     </div>
@@ -1341,7 +1341,7 @@ export default function BehavioralLabPage() {
             {/* Simulation chart */}
             <Card className="bg-card border-border lg:col-span-2">
               <CardHeader>
-                <CardTitle className="text-sm font-semibold text-muted-foreground flex items-center gap-2">
+                <CardTitle className="text-sm font-medium text-muted-foreground flex items-center gap-2">
                   <TrendingUp className="w-4 h-4 text-green-400" />
                   20-Period Portfolio Simulation: Rational vs. Biased Investor
                 </CardTitle>
@@ -1529,7 +1529,7 @@ export default function BehavioralLabPage() {
                       </div>
                       <div className="flex-1 min-w-0">
                         <div className="flex items-center justify-between mb-1">
-                          <p className="text-sm font-semibold text-foreground">{t.title}</p>
+                          <p className="text-sm font-medium text-foreground">{t.title}</p>
                           <Badge
                             variant="outline"
                             className="text-xs shrink-0 ml-2"
@@ -1603,7 +1603,7 @@ export default function BehavioralLabPage() {
                           <motion.div
                             initial={{ opacity: 0, y: 4 }}
                             animate={{ opacity: 1, y: 0 }}
-                            className="mt-3 flex items-center gap-1.5 text-xs font-semibold"
+                            className="mt-3 flex items-center gap-1.5 text-xs font-medium"
                             style={{ color: targetMeta.color }}
                           >
                             <Star className="w-3.5 h-3.5" />
@@ -1621,7 +1621,7 @@ export default function BehavioralLabPage() {
           {/* Educational summary */}
           <Card className="bg-card border-border">
             <CardHeader>
-              <CardTitle className="text-sm font-semibold text-muted-foreground flex items-center gap-2">
+              <CardTitle className="text-sm font-medium text-muted-foreground flex items-center gap-2">
                 <Lightbulb className="w-4 h-4 text-yellow-400" />
                 Why Debiasing Works
               </CardTitle>
@@ -1641,7 +1641,7 @@ export default function BehavioralLabPage() {
               <p>
                 Research by Kahneman, Thaler, and Shiller suggests that investors with structured
                 debiasing processes outperform their unstructured peers by{" "}
-                <span className="text-green-400 font-semibold">2–4% per year</span> on average,
+                <span className="text-green-400 font-medium">2–4% per year</span> on average,
                 compounding dramatically over decades.
               </p>
             </CardContent>

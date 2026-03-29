@@ -264,7 +264,7 @@ function DeltaHedgingCalculator({ spotPrice, analytics }: { spotPrice: number; a
             type="number"
             value={inputs.strike}
             onChange={(e) => setInputs((p) => ({ ...p, strike: Number(e.target.value) }))}
-            className="w-full rounded border border-border bg-background px-2 py-1 text-[11px] text-foreground outline-none focus:border-primary"
+            className="w-full rounded border border-border/40 bg-background px-2 py-1 text-[11px] text-foreground outline-none focus:border-primary"
           />
         </div>
         <div>
@@ -276,7 +276,7 @@ function DeltaHedgingCalculator({ spotPrice, analytics }: { spotPrice: number; a
             min={1}
             value={inputs.quantity}
             onChange={(e) => setInputs((p) => ({ ...p, quantity: Math.max(1, Number(e.target.value)) }))}
-            className="w-full rounded border border-border bg-background px-2 py-1 text-[11px] text-foreground outline-none focus:border-primary"
+            className="w-full rounded border border-border/40 bg-background px-2 py-1 text-[11px] text-foreground outline-none focus:border-primary"
           />
         </div>
         <div>
@@ -290,7 +290,7 @@ function DeltaHedgingCalculator({ spotPrice, analytics }: { spotPrice: number; a
             max={1}
             value={inputs.delta}
             onChange={(e) => setInputs((p) => ({ ...p, delta: Number(e.target.value) }))}
-            className="w-full rounded border border-border bg-background px-2 py-1 text-[11px] text-foreground outline-none focus:border-primary"
+            className="w-full rounded border border-border/40 bg-background px-2 py-1 text-[11px] text-foreground outline-none focus:border-primary"
           />
         </div>
       </div>

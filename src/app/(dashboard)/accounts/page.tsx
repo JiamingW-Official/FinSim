@@ -1106,7 +1106,7 @@ export default function AccountsPage() {
             <p className="text-xs text-muted-foreground mb-1">Best Account</p>
             <div className="flex items-center gap-1.5">
               <Trophy className="h-4 w-4 text-amber-400" />
-              <span className="text-sm font-bold text-foreground">
+              <span className="text-sm font-medium text-foreground">
                 {aggregate.bestReturn.name}
               </span>
               <Badge className={cn("text-xs py-0 px-1", pnlBg(aggregate.bestReturn.totalPnlPct))}>
@@ -1118,7 +1118,7 @@ export default function AccountsPage() {
             <p className="text-xs text-muted-foreground mb-1">Worst Account</p>
             <div className="flex items-center gap-1.5">
               <TrendingDown className="h-4 w-4 text-red-400" />
-              <span className="text-sm font-bold text-foreground">
+              <span className="text-sm font-medium text-foreground">
                 {aggregate.worstReturn.name}
               </span>
               <Badge className={cn("text-xs py-0 px-1", pnlBg(aggregate.worstReturn.totalPnlPct))}>

@@ -656,7 +656,7 @@ function InfrastructureTab() {
                   </div>
                   <div>
                     <p className="text-xs text-muted-foreground">Total Return</p>
-                    <p className="text-lg font-bold text-primary">{fmtPct(selected.totalReturn)}</p>
+                    <p className="text-lg font-medium text-primary">{fmtPct(selected.totalReturn)}</p>
                   </div>
                 </div>
               </div>
@@ -804,7 +804,7 @@ function RealEstateTab() {
                     <td className="p-3 text-muted-foreground">{r.sector}</td>
                     <td className="p-3 text-right font-mono text-emerald-400">{fmtPct(r.capRate)}</td>
                     <td className="p-3 text-right font-mono text-primary">{fmtPct(r.noiYield)}</td>
-                    <td className="p-3 text-right font-mono font-bold">{fmtPct(r.totalReturn)}</td>
+                    <td className="p-3 text-right font-mono font-medium">{fmtPct(r.totalReturn)}</td>
                     <td className="p-3 text-center">
                       <span
                         className={
@@ -1308,11 +1308,11 @@ function TimberFarmlandTab() {
                   <div className="flex gap-4 mt-2 text-sm">
                     <div>
                       <span className="text-muted-foreground">ESG Score: </span>
-                      <span className="text-emerald-400 font-semibold">{selected.esgScore}/100</span>
+                      <span className="text-emerald-400 font-medium">{selected.esgScore}/100</span>
                     </div>
                     <div>
                       <span className="text-muted-foreground">Total Return: </span>
-                      <span className="text-primary font-semibold">{fmtPct(selected.totalReturn)}</span>
+                      <span className="text-primary font-medium">{fmtPct(selected.totalReturn)}</span>
                     </div>
                   </div>
                 </div>
@@ -1383,7 +1383,7 @@ function TimberFarmlandTab() {
                     </td>
                     <td className="p-3 text-right font-mono text-primary">{fmtPct(item.landAppreciation)}</td>
                     <td className="p-3 text-right font-mono text-emerald-400">{fmtPct(item.cashYield)}</td>
-                    <td className="p-3 text-right font-mono font-bold">{fmtPct(item.totalReturn)}</td>
+                    <td className="p-3 text-right font-mono font-medium">{fmtPct(item.totalReturn)}</td>
                     <td className="p-3 text-right">
                       <span
                         className={
@@ -1631,7 +1631,7 @@ function PortfolioRoleTab() {
                   <div className="flex-1">
                     <div className="flex justify-between text-xs mb-1">
                       <span className="text-muted-foreground">Sharpe Ratio</span>
-                      <span className={`font-mono ${isMax ? "text-primary font-bold" : "text-foreground"}`}>
+                      <span className={`font-mono ${isMax ? "text-primary font-medium" : "text-foreground"}`}>
                         {sc.sharpe.toFixed(2)}
                       </span>
                     </div>
@@ -1676,7 +1676,7 @@ function PortfolioRoleTab() {
                   <span className="text-muted-foreground hidden md:block">{m.mechanism}</span>
                 </div>
                 <span
-                  className={`font-mono font-semibold ${
+                  className={`font-mono font-medium ${
                     m.hedgeScore >= 80
                       ? "text-emerald-400"
                       : m.hedgeScore >= 60
@@ -1840,7 +1840,7 @@ export default function RealAssetsPage() {
         <CardContent>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4 text-sm">
             <div className="space-y-2">
-              <h4 className="font-semibold text-foreground flex items-center gap-1.5">
+              <h4 className="font-medium text-foreground flex items-center gap-1.5">
                 <BarChart3 className="w-4 h-4 text-primary" /> Cap Rate
               </h4>
               <p className="text-muted-foreground text-xs leading-relaxed">
@@ -1849,7 +1849,7 @@ export default function RealAssetsPage() {
               </p>
             </div>
             <div className="space-y-2">
-              <h4 className="font-semibold text-foreground flex items-center gap-1.5">
+              <h4 className="font-medium text-foreground flex items-center gap-1.5">
                 <Zap className="w-4 h-4 text-amber-400" /> Regulated Asset Base
               </h4>
               <p className="text-muted-foreground text-xs leading-relaxed">
@@ -1858,7 +1858,7 @@ export default function RealAssetsPage() {
               </p>
             </div>
             <div className="space-y-2">
-              <h4 className="font-semibold text-foreground flex items-center gap-1.5">
+              <h4 className="font-medium text-foreground flex items-center gap-1.5">
                 <Leaf className="w-4 h-4 text-emerald-500" /> Biological Growth
               </h4>
               <p className="text-muted-foreground text-xs leading-relaxed">

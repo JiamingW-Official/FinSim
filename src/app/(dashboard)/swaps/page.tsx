@@ -1576,14 +1576,14 @@ function InflationSwapsPage() {
       <div className="grid grid-cols-2 gap-3">
         <div className="bg-foreground/5 rounded-xl p-4 space-y-2">
           <div className="text-xs text-foreground/40 uppercase tracking-wide">Inflation Cap (≥{capStrike}% CPI)</div>
-          <div className="text-xl font-bold text-amber-300">
+          <div className="text-xl font-medium text-amber-300">
             ${(results.capPV / 1000).toFixed(0)}K
           </div>
           <p className="text-xs text-foreground/50">Protects against CPI above {capStrike}% — e.g. pension paying real benefits</p>
         </div>
         <div className="bg-foreground/5 rounded-xl p-4 space-y-2">
           <div className="text-xs text-foreground/40 uppercase tracking-wide">Inflation Floor (≤{floorStrike}% CPI)</div>
-          <div className="text-xl font-bold text-sky-300">
+          <div className="text-xl font-medium text-sky-300">
             ${(results.floorPV / 1000).toFixed(0)}K
           </div>
           <p className="text-xs text-foreground/50">Protects against CPI below {floorStrike}% — e.g. inflation-linked bond issuer</p>
@@ -1691,7 +1691,7 @@ export default function SwapsPage() {
   return (
     <div className="min-h-screen bg-background text-foreground">
       {/* Header */}
-      <div className="border-b border-border bg-card/60 backdrop-blur px-6 py-4">
+      <div className="border-b border-border bg-card/60 backdrop-blur px-6 py-6 border-l-4 border-l-primary">
         <div className="flex items-center gap-3">
           <div className="w-8 h-8 rounded-lg bg-sky-600/20 border border-sky-500/30 flex items-center justify-center">
             <ArrowLeftRight className="w-4 h-4 text-sky-400" />

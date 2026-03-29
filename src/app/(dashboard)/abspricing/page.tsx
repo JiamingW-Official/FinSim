@@ -274,7 +274,7 @@ function ABSStructureTab() {
       {/* Waterfall Toggle */}
       <div className="rounded-xl border border-border bg-foreground/5 p-4">
         <button
-          className="flex w-full items-center justify-between text-sm font-semibold text-foreground"
+          className="flex w-full items-center justify-between text-sm font-medium text-foreground"
           onClick={() => setShowWaterfall(!showWaterfall)}
         >
           <span>Payment Waterfall (Priority of Payments)</span>
@@ -322,7 +322,7 @@ function ABSStructureTab() {
           <div className="space-y-1 text-xs">
             <div className="flex justify-between"><span className="text-foreground/50">Collateral Pool Value</span><span className="text-foreground">$105.3M</span></div>
             <div className="flex justify-between"><span className="text-foreground/50">Total Note Balance</span><span className="text-foreground">$100.0M</span></div>
-            <div className="flex justify-between"><span className="text-foreground/50">OC Amount</span><span className="text-green-400 font-semibold">$5.3M (5.3%)</span></div>
+            <div className="flex justify-between"><span className="text-foreground/50">OC Amount</span><span className="text-green-400 font-medium">$5.3M (5.3%)</span></div>
             <div className="flex justify-between"><span className="text-foreground/50">Trigger Level</span><span className="text-amber-400">4.0%</span></div>
           </div>
         </InfoCard>
@@ -331,7 +331,7 @@ function ABSStructureTab() {
           <div className="space-y-1 text-xs">
             <div className="flex justify-between"><span className="text-foreground/50">Initial Balance</span><span className="text-foreground">$1.5M</span></div>
             <div className="flex justify-between"><span className="text-foreground/50">Required Floor</span><span className="text-foreground">$1.0M (1.0%)</span></div>
-            <div className="flex justify-between"><span className="text-foreground/50">Current Balance</span><span className="text-green-400 font-semibold">$1.48M</span></div>
+            <div className="flex justify-between"><span className="text-foreground/50">Current Balance</span><span className="text-green-400 font-medium">$1.48M</span></div>
             <div className="flex justify-between"><span className="text-foreground/50">Excess Spread</span><span className="text-primary">2.85% p.a.</span></div>
           </div>
         </InfoCard>
@@ -404,7 +404,7 @@ function PrepaymentModelsTab() {
       {/* PSA Speed Slider */}
       <div className="rounded-xl border border-border bg-foreground/5 p-4">
         <div className="flex items-center justify-between mb-3">
-          <p className="text-sm font-semibold text-foreground">PSA Prepayment Speed</p>
+          <p className="text-sm font-medium text-foreground">PSA Prepayment Speed</p>
           <Badge variant="outline" className="border-primary text-primary text-sm">
             {psaSpeed} PSA
           </Badge>
@@ -426,22 +426,22 @@ function PrepaymentModelsTab() {
         <div className="mt-3 grid grid-cols-3 gap-3 text-xs">
           <div className="rounded bg-foreground/5 p-2 text-center">
             <p className="text-foreground/50">CPR at Month 1</p>
-            <p className="text-foreground font-semibold">{psaCpr(1, psaSpeed).toFixed(2)}%</p>
+            <p className="text-foreground font-medium">{psaCpr(1, psaSpeed).toFixed(2)}%</p>
           </div>
           <div className="rounded bg-foreground/5 p-2 text-center">
             <p className="text-foreground/50">CPR at Month 30</p>
-            <p className="text-foreground font-semibold">{psaCpr(30, psaSpeed).toFixed(2)}%</p>
+            <p className="text-foreground font-medium">{psaCpr(30, psaSpeed).toFixed(2)}%</p>
           </div>
           <div className="rounded bg-foreground/5 p-2 text-center">
             <p className="text-foreground/50">Computed WAL</p>
-            <p className="text-primary font-semibold">{wal.toFixed(2)} yrs</p>
+            <p className="text-primary font-medium">{wal.toFixed(2)} yrs</p>
           </div>
         </div>
       </div>
 
       {/* Prepayment Curve SVG */}
       <div className="rounded-xl border border-border bg-foreground/5 p-4">
-        <p className="mb-2 text-sm font-semibold text-foreground">CPR Curve (Months 1–360, {psaSpeed} PSA)</p>
+        <p className="mb-2 text-sm font-medium text-foreground">CPR Curve (Months 1–360, {psaSpeed} PSA)</p>
         <div className="overflow-x-auto">
           <svg viewBox={`0 0 ${CURVE_W} ${CURVE_H + 20}`} className="w-full max-w-2xl" style={{ minWidth: 400 }}>
             {/* Grid */}
@@ -475,7 +475,7 @@ function PrepaymentModelsTab() {
 
       {/* Scheduled vs Unscheduled Principal Bar Chart */}
       <div className="rounded-xl border border-border bg-foreground/5 p-4">
-        <p className="mb-2 text-sm font-semibold text-foreground">Scheduled vs Unscheduled Principal (Months 1–120)</p>
+        <p className="mb-2 text-sm font-medium text-foreground">Scheduled vs Unscheduled Principal (Months 1–120)</p>
         <div className="flex gap-4 mb-2 text-xs">
           <span className="flex items-center gap-1"><span className="inline-block w-3 h-2 rounded" style={{ background: "#3b82f6" }} /> Scheduled</span>
           <span className="flex items-center gap-1"><span className="inline-block w-3 h-2 rounded" style={{ background: "#f59e0b" }} /> Prepayment</span>
@@ -509,7 +509,7 @@ function PrepaymentModelsTab() {
 
       {/* Prepayment Sensitivity Table */}
       <div className="rounded-xl border border-border bg-foreground/5 p-4">
-        <p className="mb-3 text-sm font-semibold text-foreground">Prepayment Sensitivity — Class A Senior</p>
+        <p className="mb-3 text-sm font-medium text-foreground">Prepayment Sensitivity — Class A Senior</p>
         <div className="overflow-x-auto">
           <table className="w-full text-xs">
             <thead>
@@ -626,7 +626,7 @@ function PricingYieldTab() {
 
       {/* Floating-rate DM calculator */}
       <div className="rounded-xl border border-border bg-foreground/5 p-4">
-        <p className="mb-3 text-sm font-semibold text-foreground">Discount Margin Calculator (Floating-Rate ABS)</p>
+        <p className="mb-3 text-sm font-medium text-foreground">Discount Margin Calculator (Floating-Rate ABS)</p>
         <div className="grid gap-4 sm:grid-cols-3">
           <div>
             <label className="text-xs text-foreground/50 block mb-1">Price</label>
@@ -669,7 +669,7 @@ function PricingYieldTab() {
 
       {/* Yield Curve with ABS Spread */}
       <div className="rounded-xl border border-border bg-foreground/5 p-4">
-        <p className="mb-2 text-sm font-semibold text-foreground">ABS Spread Over Treasuries</p>
+        <p className="mb-2 text-sm font-medium text-foreground">ABS Spread Over Treasuries</p>
         <div className="flex gap-4 mb-2 text-xs">
           <span className="flex items-center gap-1"><span className="inline-block w-4 h-0.5" style={{ background: "#64748b" }} /> Treasury</span>
           <span className="flex items-center gap-1"><span className="inline-block w-4 h-0.5" style={{ background: "#3b82f6" }} /> ABS Yield</span>
@@ -704,7 +704,7 @@ function PricingYieldTab() {
       {/* Price/Yield Sensitivity + Duration */}
       <div className="grid gap-4 sm:grid-cols-2">
         <div className="rounded-xl border border-border bg-foreground/5 p-4">
-          <p className="mb-2 text-sm font-semibold text-foreground">Price / Spread Sensitivity</p>
+          <p className="mb-2 text-sm font-medium text-foreground">Price / Spread Sensitivity</p>
           <svg viewBox={`0 0 ${PY_W} ${PY_H + 10}`} className="w-full max-w-sm">
             <line x1={45} y1={20} x2={45} y2={PY_H - 25} stroke="#94a3b8" strokeWidth="1" />
             <line x1={45} y1={PY_H - 25} x2={PY_W - 15} y2={PY_H - 25} stroke="#94a3b8" strokeWidth="1" />
@@ -724,7 +724,7 @@ function PricingYieldTab() {
           <InfoCard title="Effective Duration vs Nominal">
             <div className="space-y-2 text-xs">
               <div className="flex justify-between"><span className="text-foreground/50">Nominal Duration (no prepay)</span><span className="text-foreground">4.52 yrs</span></div>
-              <div className="flex justify-between"><span className="text-foreground/50">Effective Duration (150 PSA)</span><span className="text-primary font-semibold">3.18 yrs</span></div>
+              <div className="flex justify-between"><span className="text-foreground/50">Effective Duration (150 PSA)</span><span className="text-primary font-medium">3.18 yrs</span></div>
               <div className="flex justify-between"><span className="text-foreground/50">Extension Risk (50 PSA)</span><span className="text-amber-400">+1.8 yrs</span></div>
               <div className="flex justify-between"><span className="text-foreground/50">Contraction Risk (700 PSA)</span><span className="text-red-400">-1.9 yrs</span></div>
             </div>
@@ -781,7 +781,7 @@ function CreditEnhancementTab() {
           >
             <div className="flex items-center gap-2 mb-1">
               <item.icon className={cn("h-4 w-4", item.color)} />
-              <p className="text-xs font-semibold text-foreground">{item.title}</p>
+              <p className="text-xs font-medium text-foreground">{item.title}</p>
             </div>
             <p className="text-xs text-foreground/50">{item.desc}</p>
           </motion.div>
@@ -791,7 +791,7 @@ function CreditEnhancementTab() {
       {/* Stress Test SVG */}
       <div className="rounded-xl border border-border bg-foreground/5 p-4">
         <div className="flex items-center justify-between mb-3">
-          <p className="text-sm font-semibold text-foreground">Stress Test: Default Rate vs Attachment Points</p>
+          <p className="text-sm font-medium text-foreground">Stress Test: Default Rate vs Attachment Points</p>
           <div className="flex items-center gap-2">
             <span className="text-xs text-foreground/50">Default Rate:</span>
             <Badge variant="outline" className="border-red-500 text-red-400 text-xs">{defaultRate.toFixed(1)}%</Badge>
@@ -852,7 +852,7 @@ function CreditEnhancementTab() {
 
       {/* Rating Agency Inputs */}
       <div className="rounded-xl border border-border bg-foreground/5 p-4">
-        <p className="mb-3 text-sm font-semibold text-foreground">Rating Agency Key Assumptions (Auto ABS Example)</p>
+        <p className="mb-3 text-sm font-medium text-foreground">Rating Agency Key Assumptions (Auto ABS Example)</p>
         <div className="grid gap-3 sm:grid-cols-2">
           {[
             { label: "Base Case Cumulative Loss", value: "1.80%", note: "Historical pool average" },
@@ -867,7 +867,7 @@ function CreditEnhancementTab() {
             <div key={i} className="flex items-center justify-between rounded bg-foreground/5 p-2 text-xs">
               <span className="text-foreground/70">{row.label}</span>
               <div className="text-right">
-                <span className="text-foreground font-semibold">{row.value}</span>
+                <span className="text-foreground font-medium">{row.value}</span>
                 <p className="text-foreground/30">{row.note}</p>
               </div>
             </div>
@@ -877,7 +877,7 @@ function CreditEnhancementTab() {
 
       {/* Historical Loss Rates by Asset Class */}
       <div className="rounded-xl border border-border bg-foreground/5 p-4">
-        <p className="mb-3 text-sm font-semibold text-foreground">Historical Loss Rates by Asset Class</p>
+        <p className="mb-3 text-sm font-medium text-foreground">Historical Loss Rates by Asset Class</p>
         <div className="overflow-x-auto">
           <table className="w-full text-xs">
             <thead>
@@ -904,7 +904,7 @@ function CreditEnhancementTab() {
                   <td className="py-2 text-center text-red-400">{row.stressLoss.toFixed(1)}%</td>
                   <td className="py-2 text-center text-amber-400">{row.attachPt.toFixed(1)}%</td>
                   <td className="py-2 text-center">
-                    <span className={cn("font-semibold", (row.attachPt - row.stressLoss) > 0 ? "text-green-400" : "text-red-400")}>
+                    <span className={cn("font-medium", (row.attachPt - row.stressLoss) > 0 ? "text-green-400" : "text-red-400")}>
                       {(row.attachPt - row.stressLoss).toFixed(1)}%
                     </span>
                   </td>

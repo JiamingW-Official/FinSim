@@ -929,8 +929,8 @@ export default function MicrostructureDepthPage() {
                 </div>
                 <div className="mb-4">
                   <div className="flex justify-between text-xs text-muted-foreground mb-2">
-                    <span>Trade Size: <span className="text-foreground font-semibold">${qm}M</span></span>
-                    <span>Impact: <span className="text-red-400 font-semibold">{sqrtImpact} bps</span></span>
+                    <span>Trade Size: <span className="text-foreground font-medium">${qm}M</span></span>
+                    <span>Impact: <span className="text-red-400 font-medium">{sqrtImpact} bps</span></span>
                   </div>
                   <Slider
                     value={impactTradeSize}
@@ -953,7 +953,7 @@ export default function MicrostructureDepthPage() {
                   ].map((s) => (
                     <div key={s.label} className="p-3 rounded-lg bg-muted/50 border border-border/50 text-center">
                       <p className="text-xs text-muted-foreground mb-1">{s.label}</p>
-                      <p className={cn("text-sm font-bold", s.color)}>{s.value}</p>
+                      <p className={cn("text-sm font-medium", s.color)}>{s.value}</p>
                     </div>
                   ))}
                 </div>
@@ -995,7 +995,7 @@ export default function MicrostructureDepthPage() {
                           {asset.liquidity}
                         </Badge>
                       </div>
-                      <p className="text-base font-bold text-primary font-mono">{asset.lambda}</p>
+                      <p className="text-base font-medium text-primary font-mono">{asset.lambda}</p>
                       <div className="mt-1.5 bg-muted rounded-full h-1.5">
                         <div className="h-1.5 rounded-full bg-primary" style={{ width: `${pct}%` }} />
                       </div>
@@ -1045,7 +1045,7 @@ export default function MicrostructureDepthPage() {
                     },
                   ].map((s) => (
                     <div key={s.name} className={cn("p-2.5 rounded-lg border bg-muted/30 text-xs", s.color)}>
-                      <p className={cn("font-semibold mb-0.5", s.color.split(" ")[0])}>{s.name}</p>
+                      <p className={cn("font-medium mb-0.5", s.color.split(" ")[0])}>{s.name}</p>
                       <p className="text-muted-foreground">{s.desc}</p>
                     </div>
                   ))}
@@ -1115,7 +1115,7 @@ export default function MicrostructureDepthPage() {
                     <div key={s.strategy} className="p-3 rounded-lg bg-muted/50 border border-border/50 text-center">
                       <p className="text-lg mb-0.5">{s.icon}</p>
                       <p className="text-[11px] text-muted-foreground font-medium mb-1">{s.strategy}</p>
-                      <p className={cn("text-sm font-bold", bpsNum < 2 ? "text-green-400" : bpsNum < 4 ? "text-amber-400" : "text-red-400")}>{s.bps} bps</p>
+                      <p className={cn("text-sm font-medium", bpsNum < 2 ? "text-green-400" : bpsNum < 4 ? "text-amber-400" : "text-red-400")}>{s.bps} bps</p>
                       <p className="text-xs text-muted-foreground">${costPerM} / $1M</p>
                     </div>
                   );
@@ -1145,7 +1145,7 @@ export default function MicrostructureDepthPage() {
                   <div key={card.title} className={cn("rounded-lg border p-3 flex gap-2", card.color)}>
                     <div className="mt-0.5 shrink-0">{card.icon}</div>
                     <div>
-                      <p className="font-semibold text-foreground mb-0.5">{card.title}</p>
+                      <p className="font-medium text-foreground mb-0.5">{card.title}</p>
                       <p className="text-muted-foreground leading-relaxed">{card.body}</p>
                     </div>
                   </div>

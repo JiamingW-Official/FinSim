@@ -947,19 +947,19 @@ export default function CryptoDerivativesPage() {
                 </CardHeader>
                 <CardContent className="text-[11px] text-muted-foreground space-y-2">
                   <div className="flex gap-2">
-                    <span className="text-sky-400 font-semibold shrink-0">IV:</span>
+                    <span className="text-sky-400 font-medium shrink-0">IV:</span>
                     <span>Implied Volatility — market&apos;s forecast of future price movement. Higher IV = more expensive options.</span>
                   </div>
                   <div className="flex gap-2">
-                    <span className="text-emerald-400 font-semibold shrink-0">Delta:</span>
+                    <span className="text-emerald-400 font-medium shrink-0">Delta:</span>
                     <span>Rate of change of option price per $1 move in underlying. Call deltas: 0–1; Put deltas: -1–0.</span>
                   </div>
                   <div className="flex gap-2">
-                    <span className="text-amber-400 font-semibold shrink-0">ATM:</span>
+                    <span className="text-amber-400 font-medium shrink-0">ATM:</span>
                     <span>At-The-Money — strike closest to current spot price. Highest time value, delta ≈ 0.50.</span>
                   </div>
                   <div className="flex gap-2">
-                    <span className="text-primary font-semibold shrink-0">OI:</span>
+                    <span className="text-primary font-medium shrink-0">OI:</span>
                     <span>Open Interest — total outstanding contracts. High OI signals where market participants have conviction.</span>
                   </div>
                 </CardContent>

@@ -673,7 +673,7 @@ function AssetAllocationTab() {
         {/* Donut Chart */}
         <Card className="bg-card border-border">
           <CardHeader className="pb-2">
-            <CardTitle className="text-sm font-semibold text-muted-foreground">Typical Large SWF Allocation (AUM-Weighted)</CardTitle>
+            <CardTitle className="text-sm font-medium text-muted-foreground">Typical Large SWF Allocation (AUM-Weighted)</CardTitle>
           </CardHeader>
           <CardContent>
             <div className="flex items-center gap-4">
@@ -717,7 +717,7 @@ function AssetAllocationTab() {
                         <div className="w-2.5 h-2.5 rounded-sm" style={{ backgroundColor: d.color }} />
                         <span className="text-xs text-muted-foreground">{d.label}</span>
                       </div>
-                      <span className="text-xs font-semibold text-foreground">{d.pct}%</span>
+                      <span className="text-xs font-medium text-foreground">{d.pct}%</span>
                     </div>
                     <p className="text-xs text-muted-foreground pl-4">{d.description}</p>
                   </div>
@@ -730,13 +730,13 @@ function AssetAllocationTab() {
         {/* LDI vs Return-Driven */}
         <Card className="bg-card border-border">
           <CardHeader className="pb-2">
-            <CardTitle className="text-sm font-semibold text-muted-foreground">Mandate Types: LDI vs Return-Driven</CardTitle>
+            <CardTitle className="text-sm font-medium text-muted-foreground">Mandate Types: LDI vs Return-Driven</CardTitle>
           </CardHeader>
           <CardContent className="space-y-4">
             {mandateComparison.map((m) => (
               <div key={m.type} className="p-3 bg-muted/50 rounded-lg border border-border/50">
                 <div className="flex items-start justify-between mb-2">
-                  <p className="text-sm font-semibold text-foreground">{m.type}</p>
+                  <p className="text-sm font-medium text-foreground">{m.type}</p>
                   <Badge variant="outline" className="text-xs border-border text-muted-foreground">{m.examples}</Badge>
                 </div>
                 <p className="text-xs text-muted-foreground mb-3">{m.focus}</p>
@@ -830,7 +830,7 @@ function NorwayModelTab() {
       {/* Cumulative Performance Chart */}
       <Card className="bg-card border-border">
         <CardHeader className="pb-2">
-          <CardTitle className="text-sm font-semibold text-muted-foreground flex items-center gap-2">
+          <CardTitle className="text-sm font-medium text-muted-foreground flex items-center gap-2">
             <TrendingUp className="w-4 h-4 text-emerald-400" />
             GPFG Cumulative Value (Index: 2000=100)
           </CardTitle>
@@ -866,7 +866,7 @@ function NorwayModelTab() {
       {/* Annual Returns Bar Chart */}
       <Card className="bg-card border-border">
         <CardHeader className="pb-2">
-          <CardTitle className="text-sm font-semibold text-muted-foreground">Annual Returns 2000–2023</CardTitle>
+          <CardTitle className="text-sm font-medium text-muted-foreground">Annual Returns 2000–2023</CardTitle>
         </CardHeader>
         <CardContent>
           <svg width="100%" viewBox={`0 0 ${CHART_W} ${BAR_H}`} className="overflow-visible">
@@ -902,7 +902,7 @@ function NorwayModelTab() {
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
         <Card className="bg-card border-border">
           <CardHeader className="pb-2">
-            <CardTitle className="text-sm font-semibold text-muted-foreground flex items-center gap-2">
+            <CardTitle className="text-sm font-medium text-muted-foreground flex items-center gap-2">
               <Shield className="w-4 h-4 text-red-400" />
               Ethical Exclusions (Norges Bank Council)
             </CardTitle>
@@ -925,7 +925,7 @@ function NorwayModelTab() {
 
         <Card className="bg-card border-border">
           <CardHeader className="pb-2">
-            <CardTitle className="text-sm font-semibold text-muted-foreground flex items-center gap-2">
+            <CardTitle className="text-sm font-medium text-muted-foreground flex items-center gap-2">
               <CheckCircle className="w-4 h-4 text-emerald-400" />
               Active Ownership Principles
             </CardTitle>
@@ -974,7 +974,7 @@ function EndowmentModelTab() {
       {/* Endowment Comparison Table */}
       <Card className="bg-card border-border">
         <CardHeader className="pb-2">
-          <CardTitle className="text-sm font-semibold text-muted-foreground flex items-center gap-2">
+          <CardTitle className="text-sm font-medium text-muted-foreground flex items-center gap-2">
             <Scale className="w-4 h-4 text-indigo-400" />
             Ivy Endowment vs. Typical Pension — Allocation & Performance
           </CardTitle>
@@ -998,7 +998,7 @@ function EndowmentModelTab() {
                   <td className="py-2 px-2 text-primary">{ep.alternatives}%</td>
                   <td className="py-2 px-2 text-emerald-300">{ep.realAssets}%</td>
                   <td className="py-2 px-2">
-                    <span className={`font-semibold ${ep.illiquidPct >= 60 ? "text-amber-300" : "text-muted-foreground"}`}>{ep.illiquidPct}%</span>
+                    <span className={`font-medium ${ep.illiquidPct >= 60 ? "text-amber-300" : "text-muted-foreground"}`}>{ep.illiquidPct}%</span>
                   </td>
                   <td className="py-2 px-2 text-muted-foreground">{ep.spendingRate}%</td>
                   <td className="py-2 px-2">
@@ -1016,7 +1016,7 @@ function EndowmentModelTab() {
       {/* Allocation Comparison Visual */}
       <Card className="bg-card border-border">
         <CardHeader className="pb-2">
-          <CardTitle className="text-sm font-semibold text-muted-foreground">Stacked Allocation Comparison</CardTitle>
+          <CardTitle className="text-sm font-medium text-muted-foreground">Stacked Allocation Comparison</CardTitle>
         </CardHeader>
         <CardContent>
           <svg width="100%" viewBox="0 0 700 220" className="overflow-visible">
@@ -1074,7 +1074,7 @@ function EndowmentModelTab() {
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
         <Card className="bg-card border-border">
           <CardHeader className="pb-2">
-            <CardTitle className="text-sm font-semibold text-muted-foreground flex items-center gap-2">
+            <CardTitle className="text-sm font-medium text-muted-foreground flex items-center gap-2">
               <AlertCircle className="w-4 h-4 text-amber-400" />
               Illiquidity Premium — Why It Works for Endowments
             </CardTitle>
@@ -1109,7 +1109,7 @@ function EndowmentModelTab() {
               <div key={item.title} className="flex gap-3 p-2.5 bg-muted/50 rounded-lg">
                 <item.icon className={`w-4 h-4 mt-0.5 flex-shrink-0 ${item.color}`} />
                 <div>
-                  <p className="text-xs font-semibold text-foreground">{item.title}</p>
+                  <p className="text-xs font-medium text-foreground">{item.title}</p>
                   <p className="text-xs text-muted-foreground">{item.desc}</p>
                 </div>
               </div>
@@ -1119,14 +1119,14 @@ function EndowmentModelTab() {
 
         <Card className="bg-card border-border">
           <CardHeader className="pb-2">
-            <CardTitle className="text-sm font-semibold text-muted-foreground flex items-center gap-2">
+            <CardTitle className="text-sm font-medium text-muted-foreground flex items-center gap-2">
               <Info className="w-4 h-4 text-muted-foreground" />
               Spending Rules — Balancing Growth &amp; Support
             </CardTitle>
           </CardHeader>
           <CardContent className="space-y-3">
             <div className="p-3 bg-muted/60 rounded-lg space-y-2">
-              <p className="text-xs font-semibold text-foreground">Yale Spending Formula</p>
+              <p className="text-xs font-medium text-foreground">Yale Spending Formula</p>
               <p className="text-xs text-muted-foreground font-mono bg-card p-2 rounded">
                 Spend = 0.8 × Prior_Spend × (1 + CPI) + 0.2 × 5.25% × AUM
               </p>
@@ -1188,7 +1188,7 @@ function FactorInvestingTab() {
         <div className="lg:col-span-2">
           <Card className="bg-card border-border">
             <CardHeader className="pb-2">
-              <CardTitle className="text-sm font-semibold text-muted-foreground flex items-center gap-2">
+              <CardTitle className="text-sm font-medium text-muted-foreground flex items-center gap-2">
                 <BarChart3 className="w-4 h-4 text-indigo-400" />
                 Expected Premium vs. Institutional Adoption — click a bar to explore
               </CardTitle>
@@ -1251,7 +1251,7 @@ function FactorInvestingTab() {
         <div>
           <Card className="bg-card border-border h-full">
             <CardHeader className="pb-2">
-              <CardTitle className="text-sm font-semibold text-muted-foreground">
+              <CardTitle className="text-sm font-medium text-muted-foreground">
                 {selected ? selected.factor + " Factor" : "Select a Factor"}
               </CardTitle>
             </CardHeader>
@@ -1268,7 +1268,7 @@ function FactorInvestingTab() {
                   ].map((row) => (
                     <div key={row.label} className="flex justify-between items-center py-1.5 border-b border-border">
                       <span className="text-xs text-muted-foreground">{row.label}</span>
-                      <span className={`text-xs font-semibold ${row.positive ? "text-emerald-300" : "text-red-300"}`}>{row.value}</span>
+                      <span className={`text-xs font-medium ${row.positive ? "text-emerald-300" : "text-red-300"}`}>{row.value}</span>
                     </div>
                   ))}
                   <div className="pt-1">
@@ -1302,7 +1302,7 @@ function FactorInvestingTab() {
       {/* Factor Table */}
       <Card className="bg-card border-border">
         <CardHeader className="pb-2">
-          <CardTitle className="text-sm font-semibold text-muted-foreground">Factor Summary — Institutional Implementation</CardTitle>
+          <CardTitle className="text-sm font-medium text-muted-foreground">Factor Summary — Institutional Implementation</CardTitle>
         </CardHeader>
         <CardContent className="overflow-x-auto">
           <table className="w-full text-xs">
@@ -1320,7 +1320,7 @@ function FactorInvestingTab() {
                   className="border-b border-border/50 hover:bg-muted/30 transition-colors cursor-pointer"
                   onClick={() => setSelectedFactor(f.factor === selectedFactor ? null : f.factor)}
                 >
-                  <td className="py-2 px-2 font-semibold text-foreground">{f.factor}</td>
+                  <td className="py-2 px-2 font-medium text-foreground">{f.factor}</td>
                   <td className="py-2 px-2 text-emerald-300">{f.expectedPremium}%</td>
                   <td className="py-2 px-2 text-indigo-300">{f.sharpe.toFixed(2)}</td>
                   <td className="py-2 px-2">
@@ -1347,7 +1347,7 @@ function FactorInvestingTab() {
       {/* Implementation costs explainer */}
       <Card className="bg-card border-border">
         <CardHeader className="pb-2">
-          <CardTitle className="text-sm font-semibold text-muted-foreground flex items-center gap-2">
+          <CardTitle className="text-sm font-medium text-muted-foreground flex items-center gap-2">
             <AlertCircle className="w-4 h-4 text-amber-400" />
             Why Most Institutions Underperform Factor Indices
           </CardTitle>
@@ -1387,7 +1387,7 @@ function FactorInvestingTab() {
               <div key={item.title} className={`p-3 rounded-lg border ${item.color}`}>
                 <div className="flex items-center gap-2 mb-2">
                   <item.icon className={`w-4 h-4 ${item.iconColor}`} />
-                  <p className="text-xs font-semibold text-foreground">{item.title}</p>
+                  <p className="text-xs font-medium text-foreground">{item.title}</p>
                 </div>
                 <p className="text-xs text-muted-foreground">{item.desc}</p>
               </div>
@@ -1406,13 +1406,13 @@ export default function SovereignPage() {
     <div className="min-h-screen bg-background text-foreground">
       <div className="max-w-7xl mx-auto p-6 space-y-6">
         {/* Header */}
-        <motion.div initial={{ opacity: 0, y: -12 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.4 }}>
+        <motion.div initial={{ opacity: 0, y: -12 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.4 }} className="border-l-4 border-l-primary p-6 rounded-lg bg-card/40">
           <div className="flex items-center gap-3 mb-1">
             <div className="p-2.5 bg-indigo-600 rounded-xl">
               <Globe className="w-5 h-5 text-foreground" />
             </div>
             <div>
-              <h1 className="text-2xl font-bold text-foreground">Sovereign Wealth &amp; Institutional Investing</h1>
+              <h1 className="text-xl font-bold text-foreground">Sovereign Wealth &amp; Institutional Investing</h1>
               <p className="text-sm text-muted-foreground">How the world's largest pools of capital allocate, govern, and grow</p>
             </div>
           </div>
@@ -1425,7 +1425,7 @@ export default function SovereignPage() {
         </motion.div>
 
         {/* Tabs */}
-        <Tabs defaultValue="overview">
+        <Tabs defaultValue="overview" className="mt-8">
           <TabsList className="bg-card border border-border flex-wrap h-auto gap-1 p-1">
             <TabsTrigger value="overview" className="text-xs data-[state=active]:bg-muted data-[state=active]:text-foreground">
               <Globe className="w-3.5 h-3.5 mr-1.5" />

@@ -649,7 +649,7 @@ function FinancialPlanningTab() {
                   {step.step}
                 </span>
                 <div>
-                  <span className="font-semibold text-foreground">{step.title}: </span>
+                  <span className="font-medium text-foreground">{step.title}: </span>
                   <span className="text-muted-foreground">{step.desc}</span>
                 </div>
               </div>
@@ -666,15 +666,15 @@ function FinancialPlanningTab() {
             <MonteCarloSVG />
             <div className="grid grid-cols-3 gap-2 mt-2 text-xs text-center">
               <div className="rounded bg-rose-500/10 border border-rose-500/20 p-1.5">
-                <div className="text-rose-400 font-bold">10th Pct</div>
+                <div className="text-rose-400 font-medium">10th Pct</div>
                 <div className="text-muted-foreground">Bear scenario</div>
               </div>
               <div className="rounded bg-primary/10 border border-border p-1.5">
-                <div className="text-primary font-bold">Median</div>
+                <div className="text-primary font-medium">Median</div>
                 <div className="text-muted-foreground">Base case</div>
               </div>
               <div className="rounded bg-emerald-500/10 border border-emerald-500/20 p-1.5">
-                <div className="text-emerald-400 font-bold">90th Pct</div>
+                <div className="text-emerald-400 font-medium">90th Pct</div>
                 <div className="text-muted-foreground">Bull scenario</div>
               </div>
             </div>
@@ -1048,7 +1048,7 @@ function AssetAllocationTab() {
                   : "border-emerald-500/30 bg-emerald-500/10"
               )}
             >
-              <div className="font-semibold text-foreground mb-1">{m.method} Rebalancing</div>
+              <div className="font-medium text-foreground mb-1">{m.method} Rebalancing</div>
               <div className="text-muted-foreground mb-1">Trigger: {m.frequency}</div>
               <div className="text-emerald-300 mb-0.5">Pros: {m.pros}</div>
               <div className="text-rose-300">Cons: {m.cons}</div>
@@ -1287,7 +1287,7 @@ function FeeModelsTab() {
                   )}
                 >
                   <div className="flex items-center justify-between mb-1">
-                    <span className="font-semibold text-foreground">{m.model}</span>
+                    <span className="font-medium text-foreground">{m.model}</span>
                     <div className="flex items-center gap-1.5">
                       <span className="text-muted-foreground">{m.typical}</span>
                       <Badge
@@ -1321,7 +1321,7 @@ function FeeModelsTab() {
               key={ra.name}
               className="rounded-lg border border-border bg-foreground/5 p-3 text-xs"
             >
-              <div className="font-bold text-sm mb-1" style={{ color: ra.color }}>
+              <div className="font-medium text-sm mb-1" style={{ color: ra.color }}>
                 {ra.name}
               </div>
               <div className="grid grid-cols-2 gap-x-2 mb-2 text-muted-foreground">
@@ -1357,7 +1357,7 @@ function FeeModelsTab() {
               key={fo.type}
               className="rounded-lg border border-border bg-foreground/5 p-3 text-xs"
             >
-              <div className="font-semibold text-sm mb-1" style={{ color: fo.color }}>
+              <div className="font-medium text-sm mb-1" style={{ color: fo.color }}>
                 {fo.type}
               </div>
               <div className="flex gap-4 mb-2">
@@ -1428,14 +1428,14 @@ export default function WealthMgmtPage() {
           initial={{ opacity: 0, y: -16 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.4 }}
-          className="mb-6"
+          className="mb-6 border-l-4 border-l-primary p-6 rounded-lg bg-card/40"
         >
           <div className="flex items-center gap-3 mb-1">
             <div className="rounded-xl bg-amber-500/15 p-2.5">
               <Briefcase size={22} className="text-amber-400" />
             </div>
             <div>
-              <h1 className="text-2xl font-bold text-foreground">Wealth Management</h1>
+              <h1 className="text-xl font-bold text-foreground">Wealth Management</h1>
               <p className="text-sm text-muted-foreground">
                 HNW client segmentation, financial planning, asset allocation, fee models, and family offices
               </p>
@@ -1444,7 +1444,7 @@ export default function WealthMgmtPage() {
         </motion.div>
 
         {/* Tabs */}
-        <Tabs defaultValue="segmentation">
+        <Tabs defaultValue="segmentation" className="mt-8">
           <TabsList className="mb-6 bg-foreground/5 border border-border flex-wrap h-auto gap-1 p-1">
             <TabsTrigger value="segmentation" className="data-[state=active]:bg-foreground/15 text-xs">
               <Users size={13} className="mr-1.5" />

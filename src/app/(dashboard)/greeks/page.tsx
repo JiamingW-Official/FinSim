@@ -1171,7 +1171,7 @@ function SecondOrderGreeksTab({ params }: { params: SliderParams }) {
       <div className="rounded-xl border border-border bg-card p-4">
         <div className="flex items-center gap-2 mb-2">
           <TrendingUp className="size-4 text-primary" />
-          <p className="text-sm font-semibold text-foreground">Second-Order Greeks</p>
+          <p className="text-sm font-medium text-foreground">Second-Order Greeks</p>
         </div>
         <p className="text-xs text-muted-foreground">
           First-order Greeks (delta, gamma, theta, vega, rho) measure direct sensitivity. Second-order Greeks measure
@@ -1185,11 +1185,11 @@ function SecondOrderGreeksTab({ params }: { params: SliderParams }) {
           <div key={g.name} className="rounded-xl border border-border bg-card p-4 space-y-3">
             <div className="flex items-start justify-between">
               <div>
-                <p className="text-sm font-semibold text-foreground">{g.name}</p>
+                <p className="text-sm font-medium text-foreground">{g.name}</p>
                 <p className="text-xs text-muted-foreground font-mono">{g.symbol}</p>
               </div>
               <div
-                className="px-2 py-1 rounded-lg text-sm font-mono font-bold"
+                className="px-2 py-1 rounded-lg text-sm font-mono font-medium"
                 style={{ color: g.color, backgroundColor: g.color + "20" }}
               >
                 {g.value.toFixed(5)}
@@ -1346,7 +1346,7 @@ function GreeksQuiz() {
           <div>
             <p className="text-xs text-muted-foreground mb-3">Scenario</p>
             <p className="text-sm text-foreground">{fq.scenario}</p>
-            <p className="text-sm font-semibold text-foreground mt-3">{fq.question}</p>
+            <p className="text-sm font-medium text-foreground mt-3">{fq.question}</p>
           </div>
           <AnimatePresence>
             {showFlashAnswer && (
@@ -1357,7 +1357,7 @@ function GreeksQuiz() {
                 className="mt-4 pt-4 border-t border-border"
               >
                 <p className="text-xs text-muted-foreground mb-1">Answer</p>
-                <p className="text-sm font-semibold text-green-400">{fq.choices[fq.correct]}</p>
+                <p className="text-sm font-medium text-green-400">{fq.choices[fq.correct]}</p>
                 <p className="text-xs text-muted-foreground mt-2">{fq.explanation}</p>
               </motion.div>
             )}
@@ -1425,7 +1425,7 @@ function GreeksQuiz() {
       {/* Score */}
       <div className="flex gap-2 items-center">
         <span className="text-xs text-muted-foreground">Score:</span>
-        <span className="text-sm font-mono font-bold text-foreground">{score}</span>
+        <span className="text-sm font-mono font-medium text-foreground">{score}</span>
         <Zap className="size-3.5 text-amber-400" />
       </div>
 
@@ -1441,7 +1441,7 @@ function GreeksQuiz() {
           <div className="rounded-xl border border-border bg-card p-5">
             <p className="text-xs text-muted-foreground mb-2">Scenario</p>
             <p className="text-sm text-foreground mb-4">{q.scenario}</p>
-            <p className="text-sm font-semibold text-foreground">{q.question}</p>
+            <p className="text-sm font-medium text-foreground">{q.question}</p>
           </div>
 
           <div className="grid grid-cols-1 gap-2">
@@ -1478,7 +1478,7 @@ function GreeksQuiz() {
                 ) : (
                   <X className="size-4 text-red-400 shrink-0" />
                 )}
-                <p className="text-sm font-semibold text-foreground">
+                <p className="text-sm font-medium text-foreground">
                   {selected === q.correct ? "Correct!" : "Not quite."}
                 </p>
               </div>
@@ -1520,7 +1520,7 @@ export default function GreeksPage() {
             <Calculator className="size-5 text-primary" />
           </div>
           <div>
-            <h1 className="text-lg font-semibold text-foreground">Greeks Lab</h1>
+            <h1 className="text-lg font-medium text-foreground">Greeks Lab</h1>
             <p className="text-xs text-muted-foreground">Interactive Black-Scholes calculator and Greek visualizations</p>
           </div>
         </div>

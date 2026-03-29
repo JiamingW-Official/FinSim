@@ -510,35 +510,35 @@ function BondUniverseTab({
               </div>
               <div>
                 <div className="text-muted-foreground text-xs mb-1">Modified Duration</div>
-                <div className="text-foreground font-semibold">{selectedBond.modDur.toFixed(3)} yrs</div>
+                <div className="text-foreground font-medium">{selectedBond.modDur.toFixed(3)} yrs</div>
               </div>
               <div>
                 <div className="text-muted-foreground text-xs mb-1">Convexity</div>
-                <div className="text-foreground font-semibold">{selectedBond.convexity.toFixed(4)}</div>
+                <div className="text-foreground font-medium">{selectedBond.convexity.toFixed(4)}</div>
               </div>
               <div>
                 <div className="text-muted-foreground text-xs mb-1">DV01 (per $1M face)</div>
-                <div className="text-foreground font-semibold">{fmtUSD(selectedBond.modDur * selectedBond.price * 1000 * 0.0001, 2)}</div>
+                <div className="text-foreground font-medium">{fmtUSD(selectedBond.modDur * selectedBond.price * 1000 * 0.0001, 2)}</div>
               </div>
               <div>
                 <div className="text-muted-foreground text-xs mb-1">Price (par = 1000)</div>
-                <div className="text-foreground font-semibold">${selectedBond.price.toFixed(4)}</div>
+                <div className="text-foreground font-medium">${selectedBond.price.toFixed(4)}</div>
               </div>
               <div>
                 <div className="text-muted-foreground text-xs mb-1">+100bps price chg</div>
-                <div className="text-red-400 font-semibold">
+                <div className="text-red-400 font-medium">
                   {priceChange(selectedBond.price, selectedBond.modDur, selectedBond.convexity, 1.0).toFixed(2)}
                 </div>
               </div>
               <div>
                 <div className="text-muted-foreground text-xs mb-1">-100bps price chg</div>
-                <div className="text-emerald-400 font-semibold">
+                <div className="text-emerald-400 font-medium">
                   +{Math.abs(priceChange(selectedBond.price, selectedBond.modDur, selectedBond.convexity, -1.0)).toFixed(2)}
                 </div>
               </div>
               <div>
                 <div className="text-muted-foreground text-xs mb-1">Spread to Treasury</div>
-                <div className={cn("font-semibold", selectedBond.spreadBps > 200 ? "text-red-400" : selectedBond.spreadBps > 100 ? "text-amber-400" : "text-emerald-400")}>
+                <div className={cn("font-medium", selectedBond.spreadBps > 200 ? "text-red-400" : selectedBond.spreadBps > 100 ? "text-amber-400" : "text-emerald-400")}>
                   {selectedBond.spreadBps > 0 ? `+${selectedBond.spreadBps}` : selectedBond.spreadBps} bps
                 </div>
               </div>
@@ -621,7 +621,7 @@ function YieldCurveTab() {
       {/* Chart + overlays */}
       <div className="bg-muted/60 rounded-lg border border-border p-4">
         <div className="flex items-center justify-between mb-3">
-          <h3 className="text-sm font-semibold text-foreground">Treasury Yield Curve</h3>
+          <h3 className="text-sm font-medium text-foreground">Treasury Yield Curve</h3>
           <div className="flex gap-2">
             {(["6M ago", "1Y ago", "2Y ago"] as const).map((label) => {
               const c = curves.find((x) => x.label === label)!;
@@ -709,7 +709,7 @@ function YieldCurveTab() {
             exit={{ opacity: 0, y: 12 }}
           >
             <div className="bg-muted/60 rounded-lg border border-border p-4">
-              <h3 className="text-sm font-semibold text-foreground mb-3">
+              <h3 className="text-sm font-medium text-foreground mb-3">
                 {selectedBond2.tenor.label} Treasury — YTM {fmtPct(selectedBond2.ytm)} — Price Sensitivity
               </h3>
               <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
@@ -812,7 +812,7 @@ function PortfolioBuilderTab({
         ].map((s) => (
           <div key={s.label} className="bg-muted/60 rounded-lg p-3 border border-border">
             <div className="text-muted-foreground text-xs mb-1">{s.label}</div>
-            <div className={cn("text-lg font-bold", s.color)}>{s.value}</div>
+            <div className={cn("text-lg font-medium", s.color)}>{s.value}</div>
           </div>
         ))}
       </div>
@@ -820,7 +820,7 @@ function PortfolioBuilderTab({
       {/* Target duration */}
       <div className="bg-muted/60 rounded-lg border border-border p-4">
         <div className="flex items-center justify-between mb-3">
-          <h3 className="text-sm font-semibold text-foreground">Duration Target</h3>
+          <h3 className="text-sm font-medium text-foreground">Duration Target</h3>
           <span className="text-xs text-muted-foreground">
             Gap: {stats ? `${(stats.waDuration - targetDuration).toFixed(2)}y` : "—"}
           </span>
@@ -832,7 +832,7 @@ function PortfolioBuilderTab({
             onChange={(e) => setTargetDuration(parseFloat(e.target.value))}
             className="flex-1 accent-primary"
           />
-          <span className="text-primary font-bold w-16 text-right">{targetDuration.toFixed(1)}y</span>
+          <span className="text-primary font-medium w-16 text-right">{targetDuration.toFixed(1)}y</span>
         </div>
         {stats && (
           <div className="mt-2">
@@ -859,7 +859,7 @@ function PortfolioBuilderTab({
       {/* Strategy comparison */}
       <div className="bg-muted/60 rounded-lg border border-border p-4">
         <div className="flex items-center gap-3 mb-3">
-          <h3 className="text-sm font-semibold text-foreground">Strategy Templates</h3>
+          <h3 className="text-sm font-medium text-foreground">Strategy Templates</h3>
           <div className="flex gap-1">
             {(["barbell", "bullet", "ladder"] as const).map((m) => (
               <button
@@ -906,7 +906,7 @@ function PortfolioBuilderTab({
       {/* Portfolio holdings */}
       <div className="bg-muted/60 rounded-lg border border-border p-4">
         <div className="flex items-center justify-between mb-3">
-          <h3 className="text-sm font-semibold text-foreground">Current Holdings</h3>
+          <h3 className="text-sm font-medium text-foreground">Current Holdings</h3>
           <button
             onClick={onAddBond}
             className="flex items-center gap-1 text-xs px-3 py-1 bg-emerald-600 hover:bg-emerald-500 text-foreground rounded transition-colors"
@@ -935,7 +935,7 @@ function PortfolioBuilderTab({
                   <div className="text-xs text-muted-foreground">{p.bond.rating} · {fmtPct(p.bond.ytm)} YTM · {p.bond.modDur.toFixed(1)}y dur</div>
                 </div>
                 <div className="text-right">
-                  <div className="text-xs font-semibold text-foreground">{fmtM(p.notional)}</div>
+                  <div className="text-xs font-medium text-foreground">{fmtM(p.notional)}</div>
                   <div className="text-xs text-muted-foreground">{((p.notional / Math.max(totalNotional, 1)) * 100).toFixed(1)}%</div>
                 </div>
                 <button
@@ -1031,14 +1031,14 @@ function DurationRiskTab({ portfolio }: { portfolio: PortfolioBond[] }) {
         ].map((s) => (
           <div key={s.label} className="bg-muted/60 rounded-lg p-3 border border-border">
             <div className="text-muted-foreground text-xs mb-1">{s.label}</div>
-            <div className={cn("text-lg font-bold", s.color)}>{s.value}</div>
+            <div className={cn("text-lg font-medium", s.color)}>{s.value}</div>
           </div>
         ))}
       </div>
 
       {/* Duration contribution bar chart */}
       <div className="bg-muted/60 rounded-lg border border-border p-4">
-        <h3 className="text-sm font-semibold text-foreground mb-3">Duration Contribution by Bond</h3>
+        <h3 className="text-sm font-medium text-foreground mb-3">Duration Contribution by Bond</h3>
         <div className="space-y-2">
           {portfolio.map((p) => {
             const contrib = p.bond.modDur * (p.notional / totalNotional);
@@ -1063,7 +1063,7 @@ function DurationRiskTab({ portfolio }: { portfolio: PortfolioBond[] }) {
 
       {/* Parallel shift scenarios */}
       <div className="bg-muted/60 rounded-lg border border-border p-4">
-        <h3 className="text-sm font-semibold text-foreground mb-3">Parallel Rate Shift Scenarios</h3>
+        <h3 className="text-sm font-medium text-foreground mb-3">Parallel Rate Shift Scenarios</h3>
         <div className="grid grid-cols-3 md:grid-cols-6 gap-2">
           {scenarios.map((sc) => (
             <button
@@ -1075,7 +1075,7 @@ function DurationRiskTab({ portfolio }: { portfolio: PortfolioBond[] }) {
               )}
             >
               <div className="text-xs text-muted-foreground mb-1">{sc.bps > 0 ? "+" : ""}{sc.bps}bps</div>
-              <div className={cn("text-sm font-bold", sc.totalChg >= 0 ? "text-emerald-400" : "text-red-400")}>
+              <div className={cn("text-sm font-medium", sc.totalChg >= 0 ? "text-emerald-400" : "text-red-400")}>
                 {sc.totalChg >= 0 ? "+" : ""}{fmtM(sc.totalChg)}
               </div>
               <div className={cn("text-xs", sc.pct >= 0 ? "text-emerald-500" : "text-red-500")}>
@@ -1086,19 +1086,19 @@ function DurationRiskTab({ portfolio }: { portfolio: PortfolioBond[] }) {
         </div>
         {/* Convexity benefit explanation */}
         <div className="mt-3 p-3 bg-indigo-500/10 border border-indigo-500/20 rounded text-xs text-indigo-300">
-          <span className="font-semibold">Convexity benefit:</span> For large moves, convexity means the portfolio gains more when rates fall than it loses when rates rise by the same amount. Portfolio convexity {stats?.waConvexity.toFixed(4)} provides an extra cushion at ±200bps.
+          <span className="font-medium">Convexity benefit:</span> For large moves, convexity means the portfolio gains more when rates fall than it loses when rates rise by the same amount. Portfolio convexity {stats?.waConvexity.toFixed(4)} provides an extra cushion at ±200bps.
         </div>
       </div>
 
       {/* Non-parallel shifts */}
       <div className="bg-muted/60 rounded-lg border border-border p-4">
-        <h3 className="text-sm font-semibold text-foreground mb-3">Non-Parallel Shift Analysis</h3>
+        <h3 className="text-sm font-medium text-foreground mb-3">Non-Parallel Shift Analysis</h3>
         <div className="grid grid-cols-3 gap-3">
           {nonParallelScenarios.map((sc) => (
             <div key={sc.name} className="bg-muted/40 rounded-lg p-3">
-              <div className="text-sm font-semibold text-foreground mb-1">{sc.name}</div>
+              <div className="text-sm font-medium text-foreground mb-1">{sc.name}</div>
               <div className="text-xs text-muted-foreground mb-2">{sc.desc}</div>
-              <div className={cn("text-base font-bold", sc.change >= 0 ? "text-emerald-400" : "text-red-400")}>
+              <div className={cn("text-base font-medium", sc.change >= 0 ? "text-emerald-400" : "text-red-400")}>
                 {sc.change >= 0 ? "+" : ""}{fmtM(sc.change)}
               </div>
             </div>
@@ -1190,8 +1190,8 @@ function CreditAnalysisTab() {
           return (
             <div key={item.label} className="bg-muted/60 rounded-lg border border-border p-4">
               <div className="flex items-center justify-between mb-2">
-                <h3 className="text-sm font-semibold text-foreground">{item.label}</h3>
-                <span className="text-xl font-bold" style={{ color: item.color }}>{item.spread}bps</span>
+                <h3 className="text-sm font-medium text-foreground">{item.label}</h3>
+                <span className="text-xl font-medium" style={{ color: item.color }}>{item.spread}bps</span>
               </div>
               <div className="flex gap-4 text-xs mb-2">
                 <span className="text-muted-foreground">24M avg: <span className="text-muted-foreground">{item.avg}bps</span></span>
@@ -1215,7 +1215,7 @@ function CreditAnalysisTab() {
       {/* Credit scorecard */}
       <div className="bg-muted/60 rounded-lg border border-border p-4">
         <div className="flex items-center justify-between mb-3">
-          <h3 className="text-sm font-semibold text-foreground">Credit Scorecard</h3>
+          <h3 className="text-sm font-medium text-foreground">Credit Scorecard</h3>
           <select
             className="bg-muted border border-border text-muted-foreground text-xs rounded px-2 py-1"
             value={selectedBond3?.id ?? ""}
@@ -1235,7 +1235,7 @@ function CreditAnalysisTab() {
             ].map((m) => (
               <div key={m.label} className="bg-muted/50 rounded p-3">
                 <div className="text-muted-foreground text-xs mb-1">{m.label}</div>
-                <div className={cn("text-base font-bold", m.color)}>{m.value}</div>
+                <div className={cn("text-base font-medium", m.color)}>{m.value}</div>
               </div>
             ))}
           </div>
@@ -1244,7 +1244,7 @@ function CreditAnalysisTab() {
 
       {/* Relative value */}
       <div className="bg-muted/60 rounded-lg border border-border p-4">
-        <h3 className="text-sm font-semibold text-foreground mb-3">IG Corporate Relative Value</h3>
+        <h3 className="text-sm font-medium text-foreground mb-3">IG Corporate Relative Value</h3>
         <div className="space-y-2">
           {relativeValue.map((rv) => (
             <div key={rv.bond.id} className="flex items-center gap-3">
@@ -1274,7 +1274,7 @@ function CreditAnalysisTab() {
       <div className="bg-muted/60 rounded-lg border border-border p-4">
         <div className="flex items-center gap-2 mb-3">
           <AlertTriangle className="w-4 h-4 text-amber-400" />
-          <h3 className="text-sm font-semibold text-foreground">Fallen Angel Watch</h3>
+          <h3 className="text-sm font-medium text-foreground">Fallen Angel Watch</h3>
           <span className="text-xs text-muted-foreground">— IG bonds at risk of HY downgrade</span>
         </div>
         <div className="space-y-2">
@@ -1285,7 +1285,7 @@ function CreditAnalysisTab() {
                 <span className="text-xs font-medium text-foreground">{b.name}</span>
                 <span className="text-xs text-muted-foreground ml-2">{b.issuer}</span>
               </div>
-              <span className={cn("text-xs font-semibold px-1.5 py-0.5 rounded border", ratingBg(b.rating))}>{b.rating}</span>
+              <span className={cn("text-xs font-medium px-1.5 py-0.5 rounded border", ratingBg(b.rating))}>{b.rating}</span>
               <span className="text-xs text-amber-400">+{b.spreadBps}bps</span>
               <span className="text-xs text-muted-foreground">Watch</span>
             </div>
@@ -1374,12 +1374,12 @@ function TaxExemptTab() {
     <div className="space-y-5">
       {/* Tax rate inputs */}
       <div className="bg-muted/60 rounded-lg border border-border p-4">
-        <h3 className="text-sm font-semibold text-foreground mb-4">Tax Parameters</h3>
+        <h3 className="text-sm font-medium text-foreground mb-4">Tax Parameters</h3>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
           <div>
             <div className="flex justify-between mb-2">
               <label className="text-xs text-muted-foreground">Federal Marginal Rate</label>
-              <span className="text-primary font-bold text-sm">{marginalRate}%</span>
+              <span className="text-primary font-medium text-sm">{marginalRate}%</span>
             </div>
             <div className="flex gap-2">
               {TAX_BRACKETS.map((r) => (
@@ -1399,7 +1399,7 @@ function TaxExemptTab() {
           <div>
             <div className="flex justify-between mb-2">
               <label className="text-xs text-muted-foreground">State Income Tax Rate</label>
-              <span className="text-indigo-400 font-bold text-sm">{stateRate}%</span>
+              <span className="text-indigo-400 font-medium text-sm">{stateRate}%</span>
             </div>
             <input
               type="range" min={0} max={13.3} step={0.1}
@@ -1428,7 +1428,7 @@ function TaxExemptTab() {
 
       {/* After-tax comparison table */}
       <div className="bg-muted/60 rounded-lg border border-border p-4">
-        <h3 className="text-sm font-semibold text-foreground mb-3">After-Tax Return Comparison</h3>
+        <h3 className="text-sm font-medium text-foreground mb-3">After-Tax Return Comparison</h3>
         <div className="overflow-x-auto">
           <table className="w-full text-xs">
             <thead className="text-muted-foreground border-b border-border">
@@ -1464,7 +1464,7 @@ function TaxExemptTab() {
                         {b.taxable ? (b.isBab ? "BAB (taxable)" : "Taxable") : isTriple ? "Triple Exempt" : "Tax-Exempt"}
                       </span>
                     </td>
-                    <td className="py-2 text-right font-semibold text-primary">{afterTax.toFixed(3)}%</td>
+                    <td className="py-2 text-right font-medium text-primary">{afterTax.toFixed(3)}%</td>
                     <td className="py-2 text-right text-muted-foreground">{teYield.toFixed(3)}%</td>
                     <td className={cn("py-2 text-right font-medium", vs > 0 ? "text-emerald-400" : "text-red-400")}>
                       {vs > 0 ? "+" : ""}{vs.toFixed(3)}%
@@ -1482,7 +1482,7 @@ function TaxExemptTab() {
 
       {/* Muni bond detail list */}
       <div className="bg-muted/60 rounded-lg border border-border p-4">
-        <h3 className="text-sm font-semibold text-foreground mb-3">Municipal Bond Universe</h3>
+        <h3 className="text-sm font-medium text-foreground mb-3">Municipal Bond Universe</h3>
         <div className="space-y-2">
           {MUNI_BONDS.map((b) => {
             const isTriple = b.tripleExempt && inState;
@@ -1500,15 +1500,15 @@ function TaxExemptTab() {
               >
                 <div className="flex items-center justify-between">
                   <div className="flex items-center gap-2">
-                    <span className="text-xs font-semibold text-foreground">{b.name}</span>
+                    <span className="text-xs font-medium text-foreground">{b.name}</span>
                     <span className="text-xs text-muted-foreground">{b.state} · {b.type}</span>
                     {b.amt && <span className="text-xs px-1 bg-red-500/20 text-red-400 rounded">AMT</span>}
                     {isTriple && <span className="text-xs px-1 bg-orange-500/20 text-orange-400 rounded">3x Exempt</span>}
                   </div>
                   <div className="flex items-center gap-3">
-                    <span className={cn("text-xs font-semibold px-1.5 py-0.5 rounded border", ratingBg(b.rating))}>{b.rating}</span>
+                    <span className={cn("text-xs font-medium px-1.5 py-0.5 rounded border", ratingBg(b.rating))}>{b.rating}</span>
                     <span className="text-xs text-muted-foreground">{b.coupon.toFixed(2)}%</span>
-                    <span className="text-xs font-semibold text-primary">TEY: {teYield.toFixed(2)}%</span>
+                    <span className="text-xs font-medium text-primary">TEY: {teYield.toFixed(2)}%</span>
                   </div>
                 </div>
                 <AnimatePresence>
@@ -1541,7 +1541,7 @@ function TaxExemptTab() {
         <div className="bg-muted/60 rounded-lg border border-amber-500/20 p-4">
           <div className="flex items-center gap-2 mb-2">
             <AlertTriangle className="w-4 h-4 text-amber-400" />
-            <h3 className="text-sm font-semibold text-amber-400">AMT Private Activity Bonds</h3>
+            <h3 className="text-sm font-medium text-amber-400">AMT Private Activity Bonds</h3>
           </div>
           <p className="text-xs text-muted-foreground">
             Private Activity Bonds finance private projects (airports, hospitals, stadiums) using municipal credit. While federally tax-exempt for most investors, AMT taxpayers must include this income in AMT calculations. Always check your AMT exposure before buying PABs.
@@ -1550,7 +1550,7 @@ function TaxExemptTab() {
         <div className="bg-muted/60 rounded-lg border border-primary/20 p-4">
           <div className="flex items-center gap-2 mb-2">
             <Landmark className="w-4 h-4 text-primary" />
-            <h3 className="text-sm font-semibold text-primary">Build America Bonds (BABs)</h3>
+            <h3 className="text-sm font-medium text-primary">Build America Bonds (BABs)</h3>
           </div>
           <p className="text-xs text-muted-foreground">
             Introduced in 2009 stimulus, BABs are taxable municipal bonds where the federal government subsidizes 35% of the interest cost. Issuers get lower borrowing rates; investors get higher taxable yields. They trade in both institutional and retail markets and can offer attractive after-tax returns vs Treasuries.
@@ -1621,11 +1621,11 @@ export default function FixedIncomePage() {
                 <DollarSign className="w-4 h-4 text-emerald-400" />
                 <div>
                   <div className="text-xs text-muted-foreground">Portfolio</div>
-                  <div className="text-sm font-semibold text-foreground">{fmtM(totalNotional)}</div>
+                  <div className="text-sm font-medium text-foreground">{fmtM(totalNotional)}</div>
                 </div>
                 <div className="ml-1">
                   <div className="text-xs text-muted-foreground">Bonds</div>
-                  <div className="text-sm font-semibold text-primary">{portfolioCount}</div>
+                  <div className="text-sm font-medium text-primary">{portfolioCount}</div>
                 </div>
               </motion.div>
             )}
@@ -1652,7 +1652,7 @@ export default function FixedIncomePage() {
               <Icon className="w-3.5 h-3.5" />
               {label}
               {value === "portfolio" && portfolioCount > 0 && (
-                <span className="ml-1 bg-primary text-foreground text-xs rounded-full w-4 h-4 flex items-center justify-center font-bold">
+                <span className="ml-1 bg-primary text-foreground text-xs rounded-full w-4 h-4 flex items-center justify-center font-medium">
                   {portfolioCount}
                 </span>
               )}

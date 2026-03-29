@@ -114,7 +114,7 @@ function SliderInput({
     <div className="space-y-1.5">
       <div className="flex justify-between items-center">
         <span className="text-xs text-muted-foreground">{label}</span>
-        <span className="text-xs font-semibold text-foreground">{format(value)}</span>
+        <span className="text-xs font-medium text-foreground">{format(value)}</span>
       </div>
       <div className="relative h-2 bg-muted rounded-full">
         <div
@@ -307,7 +307,7 @@ function InsuranceNeedsTab() {
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
         {/* Sliders */}
         <div className="rounded-xl border border-border bg-card p-5 space-y-5">
-          <div className="text-sm font-semibold text-foreground mb-1">Your Financial Profile</div>
+          <div className="text-sm font-medium text-foreground mb-1">Your Financial Profile</div>
           <SliderInput
             label="Annual Income"
             value={annualIncome}
@@ -355,7 +355,7 @@ function InsuranceNeedsTab() {
         {/* Results */}
         <div className="space-y-4">
           <div className="rounded-xl border border-border bg-card p-5 space-y-4">
-            <div className="text-sm font-semibold text-foreground">Coverage Recommendations</div>
+            <div className="text-sm font-medium text-foreground">Coverage Recommendations</div>
             <div className="grid grid-cols-1 gap-3">
               {[
                 {
@@ -398,15 +398,15 @@ function InsuranceNeedsTab() {
                     <div className="grid grid-cols-3 gap-2 text-xs">
                       <div>
                         <div className="text-muted-foreground">Recommended</div>
-                        <div className="font-semibold text-foreground">{fmt$(item.need)}{item.monthly ? "/mo" : ""}</div>
+                        <div className="font-medium text-foreground">{fmt$(item.need)}{item.monthly ? "/mo" : ""}</div>
                       </div>
                       <div>
                         <div className="text-muted-foreground">You Have</div>
-                        <div className="font-semibold text-foreground">{fmt$(item.have)}{item.monthly ? "/mo" : ""}</div>
+                        <div className="font-medium text-foreground">{fmt$(item.have)}{item.monthly ? "/mo" : ""}</div>
                       </div>
                       <div>
                         <div className="text-muted-foreground">Gap</div>
-                        <div className={cn("font-semibold", item.gap > 0 ? "text-red-400" : "text-green-400")}>
+                        <div className={cn("font-medium", item.gap > 0 ? "text-red-400" : "text-green-400")}>
                           {item.gap > 0 ? `-${fmt$(item.gap)}` : "None"}
                         </div>
                       </div>
@@ -419,7 +419,7 @@ function InsuranceNeedsTab() {
 
           {/* Chart */}
           <div className="rounded-xl border border-border bg-card p-4">
-            <div className="text-xs font-semibold text-muted-foreground mb-3">Coverage Gap Chart</div>
+            <div className="text-xs font-medium text-muted-foreground mb-3">Coverage Gap Chart</div>
             <CoverageGapChart
               lifeCoverage={recommendations.lifeCoverage}
               lifeNeed={recommendations.lifeNeed}
@@ -649,7 +649,7 @@ function LifeInsuranceTab() {
 
       {/* 30-year cost chart */}
       <div className="rounded-xl border border-border bg-card p-5">
-        <div className="text-sm font-semibold text-foreground mb-1">Cumulative 30-Year Premium Cost</div>
+        <div className="text-sm font-medium text-foreground mb-1">Cumulative 30-Year Premium Cost</div>
         <p className="text-xs text-muted-foreground mb-4">Total out-of-pocket premiums paid over 30 years (excludes any cash value return)</p>
         <LifeCostChart coverageAmount={coverageAmount} age={age} />
       </div>
@@ -677,7 +677,7 @@ function LifeInsuranceTab() {
               className={cn("rounded-xl border p-4 space-y-3", colorCls)}
             >
               <div className="flex items-center justify-between">
-                <div className="text-sm font-semibold text-foreground">{p.name}</div>
+                <div className="text-sm font-medium text-foreground">{p.name}</div>
                 <div className="text-base font-bold text-foreground">{fmt$(p.annual)}<span className="text-xs font-normal text-muted-foreground">/yr</span></div>
               </div>
               <div className="flex gap-2 flex-wrap">
@@ -692,7 +692,7 @@ function LifeInsuranceTab() {
               <div className="text-xs text-muted-foreground">Best for: {p.bestFor}</div>
               <div className="grid grid-cols-2 gap-3">
                 <div>
-                  <div className="text-xs text-green-400 font-semibold mb-1">Pros</div>
+                  <div className="text-xs text-green-400 font-medium mb-1">Pros</div>
                   {p.pros.map((pro, i) => (
                     <div key={i} className="flex items-start gap-1 text-xs text-muted-foreground">
                       <CheckCircle className="h-3 w-3 text-green-400 mt-0.5 shrink-0" />
@@ -701,7 +701,7 @@ function LifeInsuranceTab() {
                   ))}
                 </div>
                 <div>
-                  <div className="text-xs text-red-400 font-semibold mb-1">Cons</div>
+                  <div className="text-xs text-red-400 font-medium mb-1">Cons</div>
                   {p.cons.map((con, i) => (
                     <div key={i} className="flex items-start gap-1 text-xs text-muted-foreground">
                       <AlertTriangle className="h-3 w-3 text-red-400 mt-0.5 shrink-0" />
@@ -790,7 +790,7 @@ function DisabilityTab() {
         {/* Controls */}
         <div className="space-y-4">
           <div className="rounded-xl border border-border bg-card p-5 space-y-5">
-            <div className="text-sm font-semibold text-foreground">Your Parameters</div>
+            <div className="text-sm font-medium text-foreground">Your Parameters</div>
             <SliderInput
               label="Monthly Gross Income"
               value={monthlyIncome}
@@ -882,7 +882,7 @@ function DisabilityTab() {
         {/* Results Panel */}
         <div className="space-y-4">
           <div className="rounded-xl border border-border bg-card p-5 space-y-4">
-            <div className="text-sm font-semibold text-foreground">Coverage Summary</div>
+            <div className="text-sm font-medium text-foreground">Coverage Summary</div>
             <div className="grid grid-cols-2 gap-3">
               <StatChip label="Monthly Benefit" value={`${fmt$(monthlyBenefit)}/mo`} color="green" />
               <StatChip label="Replacement Rate" value="65% of gross" color="blue" />
@@ -893,7 +893,7 @@ function DisabilityTab() {
             </div>
 
             <div className="rounded-lg border border-border bg-muted/20 p-3 space-y-2">
-              <div className="text-xs font-semibold text-foreground">Policy Type Comparison</div>
+              <div className="text-xs font-medium text-foreground">Policy Type Comparison</div>
               <div className="space-y-2">
                 {[
                   { label: "Any-Occupation (cheapest)", multiplier: 1.0, desc: "Pays only if you can't do any job" },
@@ -905,7 +905,7 @@ function DisabilityTab() {
                       <div className="text-foreground">{policy.label}</div>
                       <div className="text-muted-foreground">{policy.desc}</div>
                     </div>
-                    <div className="font-semibold text-foreground shrink-0 ml-3">
+                    <div className="font-medium text-foreground shrink-0 ml-3">
                       {fmt$(Math.round(adjustedPremium * policy.multiplier / (ownOccupation ? 1.2 : 1.0) * policy.multiplier))}/yr
                     </div>
                   </div>
@@ -1011,7 +1011,7 @@ function PropertyAutoTab() {
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
         <div className="space-y-4">
           <div className="rounded-xl border border-border bg-card p-5 space-y-5">
-            <div className="text-sm font-semibold text-foreground">Your Coverage Parameters</div>
+            <div className="text-sm font-medium text-foreground">Your Coverage Parameters</div>
             <SliderInput
               label="Home Market Value"
               value={homeValue}
@@ -1055,10 +1055,10 @@ function PropertyAutoTab() {
 
           {/* ACV vs Replacement Cost */}
           <div className="rounded-xl border border-border bg-card p-4 space-y-3">
-            <div className="text-sm font-semibold text-foreground">ACV vs Replacement Cost</div>
+            <div className="text-sm font-medium text-foreground">ACV vs Replacement Cost</div>
             <div className="grid grid-cols-2 gap-3">
               <div className={cn("rounded-lg border p-3", !replacementCost ? "border-amber-500/30 bg-amber-500/5" : "border-border bg-muted/20")}>
-                <div className="text-xs font-semibold text-amber-400 mb-2">Actual Cash Value</div>
+                <div className="text-xs font-medium text-amber-400 mb-2">Actual Cash Value</div>
                 <div className="text-xs text-muted-foreground space-y-1">
                   <div>Rebuild cost: {fmt$(homeRebuildCost)}</div>
                   <div>After depreciation: {fmt$(acvCoverage)}</div>
@@ -1066,7 +1066,7 @@ function PropertyAutoTab() {
                 </div>
               </div>
               <div className={cn("rounded-lg border p-3", replacementCost ? "border-green-500/30 bg-green-500/5" : "border-border bg-muted/20")}>
-                <div className="text-xs font-semibold text-green-400 mb-2">Replacement Cost</div>
+                <div className="text-xs font-medium text-green-400 mb-2">Replacement Cost</div>
                 <div className="text-xs text-muted-foreground space-y-1">
                   <div>Rebuild cost: {fmt$(homeRebuildCost)}</div>
                   <div>Coverage: {fmt$(replacementCoverage)}</div>
@@ -1087,7 +1087,7 @@ function PropertyAutoTab() {
           </div>
 
           <div className="rounded-xl border border-border bg-card p-4 space-y-3">
-            <div className="text-sm font-semibold text-foreground">Annual Premium Summary</div>
+            <div className="text-sm font-medium text-foreground">Annual Premium Summary</div>
             <div className="space-y-2">
               {[
                 { label: "Homeowners (base)", amount: homePremium },
@@ -1100,7 +1100,7 @@ function PropertyAutoTab() {
                   <span className="font-medium text-foreground">{fmt$(line.amount)}/yr</span>
                 </div>
               ))}
-              <div className="flex justify-between text-sm font-semibold border-t border-border pt-2">
+              <div className="flex justify-between text-sm font-medium border-t border-border pt-2">
                 <span className="text-foreground">Total Annual Premium</span>
                 <span className="text-primary">{fmt$(totalAnnualPremium)}/yr</span>
               </div>
@@ -1111,14 +1111,14 @@ function PropertyAutoTab() {
 
       {/* Auto Liability Limits Table */}
       <div className="rounded-xl border border-border bg-card p-5">
-        <div className="text-sm font-semibold text-foreground mb-3">Auto Liability Limit Comparison (Bodily Injury / Aggregate / Property)</div>
+        <div className="text-sm font-medium text-foreground mb-3">Auto Liability Limit Comparison (Bodily Injury / Aggregate / Property)</div>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
           {autoLimits.map((limit) => {
             const recommended = limit.label === "100/300/100";
             return (
               <div key={limit.label} className={cn("rounded-lg border p-3", recommended ? "border-primary/30 bg-primary/5" : "border-border")}>
                 <div className="flex items-center justify-between mb-1">
-                  <div className="text-sm font-semibold text-foreground">{limit.label}</div>
+                  <div className="text-sm font-medium text-foreground">{limit.label}</div>
                   {recommended && <Badge className="bg-primary/10 text-primary border-primary/20 text-xs">Recommended</Badge>}
                 </div>
                 <div className="text-xs text-muted-foreground mb-2">{limit.desc}</div>
@@ -1269,7 +1269,7 @@ function HealthMedicareTab() {
         {/* Controls */}
         <div className="space-y-4">
           <div className="rounded-xl border border-border bg-card p-5 space-y-5">
-            <div className="text-sm font-semibold text-foreground">Plan Comparison Parameters</div>
+            <div className="text-sm font-medium text-foreground">Plan Comparison Parameters</div>
             <SliderInput
               label="HDHP Monthly Premium"
               value={monthlyHdhpPremium}
@@ -1316,7 +1316,7 @@ function HealthMedicareTab() {
 
           {/* HSA Triple Tax Advantage */}
           <div className="rounded-xl border border-primary/20 bg-primary/5 p-4 space-y-3">
-            <div className="flex items-center gap-2 text-sm font-semibold text-foreground">
+            <div className="flex items-center gap-2 text-sm font-medium text-foreground">
               <DollarSign className="h-4 w-4 text-primary" />
               HSA Triple Tax Advantage ({fmt$(hsaContrib)}/yr contribution)
             </div>
@@ -1328,7 +1328,7 @@ function HealthMedicareTab() {
               ].map((item) => (
                 <div key={item.label} className="flex items-center justify-between text-xs">
                   <span className="text-muted-foreground">{item.label}</span>
-                  <span className={cn("font-semibold", {
+                  <span className={cn("font-medium", {
                     green: "text-green-400",
                     blue: "text-primary",
                     purple: "text-primary",
@@ -1338,12 +1338,12 @@ function HealthMedicareTab() {
                 </div>
               ))}
               <div className="flex items-center justify-between text-xs border-t border-primary/20 pt-2">
-                <span className="font-semibold text-foreground">Total Annual Tax Savings</span>
+                <span className="font-medium text-foreground">Total Annual Tax Savings</span>
                 <span className="font-bold text-primary">{fmt$(totalHsaSavings + Math.round(annualClaims * (marginalRate / 100)))}</span>
               </div>
             </div>
             <div className="text-xs text-muted-foreground">
-              10-year HSA balance (at 7% growth, {fmt$(hsaContrib)}/yr): <span className="text-green-400 font-semibold">{fmt$(hsaBalance10yr)}</span>
+              10-year HSA balance (at 7% growth, {fmt$(hsaContrib)}/yr): <span className="text-green-400 font-medium">{fmt$(hsaBalance10yr)}</span>
             </div>
           </div>
         </div>
@@ -1351,7 +1351,7 @@ function HealthMedicareTab() {
         {/* Results */}
         <div className="space-y-4">
           <div className="rounded-xl border border-border bg-card p-4">
-            <div className="text-sm font-semibold text-foreground mb-1">Cumulative Cost Comparison ({analysisYears} Years)</div>
+            <div className="text-sm font-medium text-foreground mb-1">Cumulative Cost Comparison ({analysisYears} Years)</div>
             <p className="text-xs text-muted-foreground mb-3">HDHP includes HSA contribution tax savings (~{marginalRate}% federal)</p>
             <HealthCostChart
               years={analysisYears}
@@ -1373,7 +1373,7 @@ function HealthMedicareTab() {
 
       {/* Medicare Parts */}
       <div className="rounded-xl border border-border bg-card p-5">
-        <div className="text-sm font-semibold text-foreground mb-4">Medicare Parts Explained</div>
+        <div className="text-sm font-medium text-foreground mb-4">Medicare Parts Explained</div>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-3">
           {[
             {
@@ -1420,8 +1420,8 @@ function HealthMedicareTab() {
             return (
               <div key={part.part} className={cn("rounded-lg border p-3 space-y-2", colorCls)}>
                 <div className="flex items-center gap-2">
-                  <span className={cn("text-lg font-bold", partCls)}>{part.part}</span>
-                  <span className="text-xs font-semibold text-foreground">{part.name}</span>
+                  <span className={cn("text-lg font-medium", partCls)}>{part.part}</span>
+                  <span className="text-xs font-medium text-foreground">{part.name}</span>
                 </div>
                 <div className="text-xs text-muted-foreground">{part.covers}</div>
                 <div className={cn("text-xs font-medium", partCls)}>{part.cost}</div>
@@ -1458,7 +1458,7 @@ export default function PersonalInsurancePage() {
             <Shield className="h-5 w-5 text-primary" />
           </div>
           <div>
-            <h1 className="text-xl font-bold text-foreground">Personal Insurance Planning</h1>
+            <h1 className="text-xl font-medium text-foreground">Personal Insurance Planning</h1>
             <p className="text-sm text-muted-foreground">Risk protection analysis — life, disability, property, health</p>
           </div>
           <div className="ml-auto flex gap-2 flex-wrap">
@@ -1494,7 +1494,7 @@ export default function PersonalInsurancePage() {
             return (
               <div key={chip.label} className={cn("rounded-xl border p-3", cls)}>
                 <div className="flex items-center gap-1.5 mb-1">{chip.icon}<div className="text-xs text-muted-foreground">{chip.label}</div></div>
-                <div className="text-lg font-bold text-foreground">{chip.value}</div>
+                <div className="text-lg font-medium text-foreground">{chip.value}</div>
                 <div className="text-xs text-muted-foreground">{chip.sub}</div>
               </div>
             );

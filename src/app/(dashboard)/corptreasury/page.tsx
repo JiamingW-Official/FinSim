@@ -639,7 +639,7 @@ function CashLiquidityTab() {
         ].map((item) => (
           <div key={item.label} className="rounded-lg border border-border/40 bg-card/60 p-3">
             <p className="text-xs text-muted-foreground">{item.label}</p>
-            <p className={cn("mt-0.5 text-xl font-bold tabular-nums", item.color)}>{item.value}</p>
+            <p className={cn("mt-0.5 text-xl font-medium tabular-nums", item.color)}>{item.value}</p>
             <p className="text-xs text-muted-foreground/60">{item.sub}</p>
           </div>
         ))}
@@ -674,7 +674,7 @@ function CashLiquidityTab() {
       <div className="rounded-xl border border-border/40 bg-card/60 p-4">
         <div className="flex items-center gap-2 mb-3">
           <DollarSign className="w-4 h-4 text-primary" />
-          <h3 className="text-sm font-semibold">Cash Investment Policy Spectrum</h3>
+          <h3 className="text-sm font-medium">Cash Investment Policy Spectrum</h3>
           <span className="text-xs text-muted-foreground ml-auto">Click a tier for details</span>
         </div>
         <div className="grid grid-cols-1 gap-2 sm:grid-cols-2 lg:grid-cols-3">
@@ -690,7 +690,7 @@ function CashLiquidityTab() {
               )}
             >
               <div className="flex items-center justify-between mb-1.5">
-                <span className="text-xs font-semibold text-foreground">{tier.label}</span>
+                <span className="text-xs font-medium text-foreground">{tier.label}</span>
                 <span className={cn(
                   "text-xs rounded px-1.5 py-0.5 font-medium",
                   tier.risk === "none"     ? "bg-emerald-500/15 text-emerald-400" :
@@ -702,7 +702,7 @@ function CashLiquidityTab() {
                 </span>
               </div>
               <div className="flex items-center gap-3 text-[11px]">
-                <span className="text-emerald-400 font-bold">{tier.yield.toFixed(2)}%</span>
+                <span className="text-emerald-400 font-medium">{tier.yield.toFixed(2)}%</span>
                 <span className="text-muted-foreground">{tier.liquidity}</span>
                 <span className="text-muted-foreground ml-auto">{tier.typical}</span>
               </div>
@@ -723,7 +723,7 @@ function CashLiquidityTab() {
       <div className="rounded-xl border border-border/40 bg-card/60 p-4">
         <div className="flex items-center gap-2 mb-3">
           <RefreshCw className="w-4 h-4 text-primary" />
-          <h3 className="text-sm font-semibold">Cash Conversion Cycle (CCC)</h3>
+          <h3 className="text-sm font-medium">Cash Conversion Cycle (CCC)</h3>
         </div>
         <CashConversionCycleSVG />
         <div className="mt-3 grid grid-cols-3 gap-2 text-xs">
@@ -735,7 +735,7 @@ function CashLiquidityTab() {
             <div key={item.label} className="rounded-lg border border-border/40 bg-card/40 p-2.5">
               <div className="flex items-center gap-1.5 mb-1">
                 {item.icon}
-                <span className="font-semibold text-[11px]">{item.label}</span>
+                <span className="font-medium text-[11px]">{item.label}</span>
               </div>
               <p className="text-xs text-muted-foreground leading-relaxed">{item.action}</p>
             </div>
@@ -746,7 +746,7 @@ function CashLiquidityTab() {
       <div className="rounded-xl border border-border/40 bg-card/60 p-4">
         <div className="flex items-center gap-2 mb-3">
           <Activity className="w-4 h-4 text-primary" />
-          <h3 className="text-sm font-semibold">Treasury Technology Stack</h3>
+          <h3 className="text-sm font-medium">Treasury Technology Stack</h3>
         </div>
         <div className="grid grid-cols-2 gap-2 sm:grid-cols-4 text-xs">
           {[
@@ -756,7 +756,7 @@ function CashLiquidityTab() {
             { label: "Bank Portals",    full: "Banking Connectivity",      examples: "SWIFT gpi, Citi TTS, JPM Access",   desc: "Real-time balance reporting and account management" },
           ].map((item) => (
             <div key={item.label} className="rounded-lg border border-border/40 bg-card/40 p-2.5">
-              <div className="text-primary font-bold text-sm mb-0.5">{item.label}</div>
+              <div className="text-primary font-medium text-sm mb-0.5">{item.label}</div>
               <div className="text-xs text-muted-foreground/70 mb-1">{item.full}</div>
               <div className="text-xs text-foreground/80 mb-1">{item.examples}</div>
               <div className="text-xs text-muted-foreground leading-relaxed">{item.desc}</div>
@@ -784,7 +784,7 @@ function FXRiskTab() {
         ].map((item) => (
           <div key={item.label} className="rounded-lg border border-border/40 bg-card/60 p-3">
             <p className="text-xs text-muted-foreground">{item.label}</p>
-            <p className={cn("mt-0.5 text-xl font-bold tabular-nums", item.color)}>{item.value}</p>
+            <p className={cn("mt-0.5 text-xl font-medium tabular-nums", item.color)}>{item.value}</p>
             <p className="text-xs text-muted-foreground/60">{item.sub}</p>
           </div>
         ))}
@@ -793,7 +793,7 @@ function FXRiskTab() {
       <div className="rounded-xl border border-border/40 bg-card/60 p-4">
         <div className="flex items-center gap-2 mb-3">
           <Globe className="w-4 h-4 text-primary" />
-          <h3 className="text-sm font-semibold">Three Types of FX Exposure</h3>
+          <h3 className="text-sm font-medium">Three Types of FX Exposure</h3>
         </div>
         <div className="grid grid-cols-1 gap-3 sm:grid-cols-3">
           {[
@@ -824,7 +824,7 @@ function FXRiskTab() {
               className="rounded-lg border border-border/40 bg-card/40 p-3"
               style={{ borderLeftWidth: 3, borderLeftColor: item.color }}
             >
-              <p className="font-bold text-sm mb-1" style={{ color: item.color }}>{item.type} Exposure</p>
+              <p className="font-medium text-sm mb-1" style={{ color: item.color }}>{item.type} Exposure</p>
               <p className="text-[11px] text-muted-foreground mb-2">{item.desc}</p>
               <div className="space-y-1.5">
                 <div>
@@ -844,7 +844,7 @@ function FXRiskTab() {
       <div className="rounded-xl border border-border/40 bg-card/60 p-4">
         <div className="flex items-center gap-2 mb-3">
           <BarChart3 className="w-4 h-4 text-primary" />
-          <h3 className="text-sm font-semibold">Enterprise FX Exposure Dashboard</h3>
+          <h3 className="text-sm font-medium">Enterprise FX Exposure Dashboard</h3>
         </div>
         <div className="overflow-x-auto">
           <table className="w-full text-xs">
@@ -865,7 +865,7 @@ function FXRiskTab() {
                   )}
                   onClick={() => setActiveRow(activeRow === i ? null : i)}
                 >
-                  <td className="py-2 pr-4 font-semibold">
+                  <td className="py-2 pr-4 font-medium">
                     <span className="mr-1.5">{row.flag}</span>{row.currency}
                   </td>
                   <td className="py-2 pr-4 tabular-nums text-primary">${row.transactional.toLocaleString()}</td>
@@ -900,7 +900,7 @@ function FXRiskTab() {
       <div className="rounded-xl border border-border/40 bg-card/60 p-4">
         <div className="flex items-center gap-2 mb-3">
           <Shield className="w-4 h-4 text-primary" />
-          <h3 className="text-sm font-semibold">Hedge Accounting — IFRS 9 / ASC 815</h3>
+          <h3 className="text-sm font-medium">Hedge Accounting — IFRS 9 / ASC 815</h3>
         </div>
         <HedgeAccountingDiagram />
       </div>
@@ -909,7 +909,7 @@ function FXRiskTab() {
         <div className="flex items-start gap-2">
           <AlertTriangle className="w-4 h-4 text-amber-400 mt-0.5 shrink-0" />
           <div className="text-xs">
-            <p className="font-semibold text-amber-400 mb-1">Emerging Market FX Hedging Challenges</p>
+            <p className="font-medium text-amber-400 mb-1">Emerging Market FX Hedging Challenges</p>
             <p className="text-muted-foreground mb-2">
               In markets like BRL, INR, CNY, and NGN, hedging is expensive (wide bid/ask, NDF structure) or outright restricted. Companies must weigh hedging cost vs FX risk reduction benefit carefully.
             </p>
@@ -921,7 +921,7 @@ function FXRiskTab() {
                 { currency: "NGN", cost: "8–15%/yr",  note: "Capital controls risk" },
               ].map((em) => (
                 <div key={em.currency} className="rounded bg-card/60 p-2">
-                  <p className="font-bold text-amber-400">{em.currency}</p>
+                  <p className="font-medium text-amber-400">{em.currency}</p>
                   <p className="text-red-400 text-[11px]">{em.cost}</p>
                   <p className="text-muted-foreground text-xs">{em.note}</p>
                 </div>
@@ -960,7 +960,7 @@ function DebtMarketsTab() {
         ].map((item) => (
           <div key={item.label} className="rounded-lg border border-border/40 bg-card/60 p-3">
             <p className="text-xs text-muted-foreground">{item.label}</p>
-            <p className={cn("mt-0.5 text-xl font-bold tabular-nums", item.color)}>{item.value}</p>
+            <p className={cn("mt-0.5 text-xl font-medium tabular-nums", item.color)}>{item.value}</p>
             <p className="text-xs text-muted-foreground/60">{item.sub}</p>
           </div>
         ))}
@@ -969,7 +969,7 @@ function DebtMarketsTab() {
       <div className="rounded-xl border border-border/40 bg-card/60 p-4">
         <div className="flex items-center gap-2 mb-3">
           <Building2 className="w-4 h-4 text-primary" />
-          <h3 className="text-sm font-semibold">Investment Grade Bond Issuance Process</h3>
+          <h3 className="text-sm font-medium">Investment Grade Bond Issuance Process</h3>
           <span className="text-xs text-muted-foreground ml-auto">Click steps for detail</span>
         </div>
         <div className="space-y-2">
@@ -980,7 +980,7 @@ function DebtMarketsTab() {
               className="w-full text-left rounded-lg border border-border/30 bg-card/40 px-3 py-2.5 hover:bg-card/80 transition-colors"
             >
               <div className="flex items-center gap-3">
-                <span className="shrink-0 w-5 h-5 rounded-full bg-primary/20 text-primary flex items-center justify-center text-xs font-bold">
+                <span className="shrink-0 w-5 h-5 rounded-full bg-primary/20 text-primary flex items-center justify-center text-xs font-medium">
                   {step.step}
                 </span>
                 <span className="text-sm font-medium text-foreground">{step.label}</span>
@@ -1003,7 +1003,7 @@ function DebtMarketsTab() {
       <div className="rounded-xl border border-border/40 bg-card/60 p-4">
         <div className="flex items-center gap-2 mb-3">
           <Clock className="w-4 h-4 text-primary" />
-          <h3 className="text-sm font-semibold">Debt Maturity Profile — Managing Refinancing Risk</h3>
+          <h3 className="text-sm font-medium">Debt Maturity Profile — Managing Refinancing Risk</h3>
         </div>
         <DebtMaturityChart />
         <div className="mt-3 grid grid-cols-1 gap-2 text-xs sm:grid-cols-3">
@@ -1015,7 +1015,7 @@ function DebtMarketsTab() {
             <div key={item.label} className="rounded-lg border border-border/40 bg-card/40 p-2.5">
               <div className="flex items-center gap-1.5 mb-1">
                 {item.icon}
-                <span className="font-semibold text-[11px]">{item.label}</span>
+                <span className="font-medium text-[11px]">{item.label}</span>
               </div>
               <p className="text-xs text-muted-foreground leading-relaxed">{item.desc}</p>
             </div>
@@ -1026,7 +1026,7 @@ function DebtMarketsTab() {
       <div className="rounded-xl border border-border/40 bg-card/60 p-4">
         <div className="flex items-center gap-2 mb-3">
           <Layers className="w-4 h-4 text-primary" />
-          <h3 className="text-sm font-semibold">IG Corporate vs LBO Debt Structure</h3>
+          <h3 className="text-sm font-medium">IG Corporate vs LBO Debt Structure</h3>
         </div>
         <div className="overflow-x-auto">
           <table className="w-full text-xs">
@@ -1078,7 +1078,7 @@ function CapitalAllocationTab() {
         ].map((item) => (
           <div key={item.label} className="rounded-lg border border-border/40 bg-card/60 p-3">
             <p className="text-xs text-muted-foreground">{item.label}</p>
-            <p className={cn("mt-0.5 text-xl font-bold tabular-nums", item.color)}>{item.value}</p>
+            <p className={cn("mt-0.5 text-xl font-medium tabular-nums", item.color)}>{item.value}</p>
             <p className="text-xs text-muted-foreground/60">{item.sub}</p>
           </div>
         ))}
@@ -1087,7 +1087,7 @@ function CapitalAllocationTab() {
       <div className="rounded-xl border border-border/40 bg-card/60 p-4">
         <div className="flex items-center gap-2 mb-3">
           <BarChart3 className="w-4 h-4 text-primary" />
-          <h3 className="text-sm font-semibold">Capital Allocation Waterfall</h3>
+          <h3 className="text-sm font-medium">Capital Allocation Waterfall</h3>
           <span className="text-xs text-muted-foreground ml-1">(Illustrative $120B EBITDA company)</span>
         </div>
         <CapAllocWaterfall />
@@ -1107,7 +1107,7 @@ function CapitalAllocationTab() {
       <div className="rounded-xl border border-border/40 bg-card/60 p-4">
         <div className="flex items-center gap-2 mb-3">
           <Percent className="w-4 h-4 text-primary" />
-          <h3 className="text-sm font-semibold">WACC Calculation &amp; Hurdle Rate</h3>
+          <h3 className="text-sm font-medium">WACC Calculation &amp; Hurdle Rate</h3>
         </div>
         <WaccBreakdown />
         <div className="mt-4 grid grid-cols-3 gap-2 text-xs">
@@ -1117,7 +1117,7 @@ function CapitalAllocationTab() {
             { metric: "Payback", desc: "Years to recover initial investment. Ignores time value of money. Used as secondary screen for liquidity concerns.",            pro: "Liquidity lens",       con: "Ignores post-payback value" },
           ].map((item) => (
             <div key={item.metric} className="rounded-lg border border-border/40 bg-card/40 p-2.5">
-              <p className="font-bold text-primary text-sm mb-1">{item.metric}</p>
+              <p className="font-medium text-primary text-sm mb-1">{item.metric}</p>
               <p className="text-xs text-muted-foreground leading-relaxed mb-2">{item.desc}</p>
               <p className="text-[11px] text-emerald-400">+ {item.pro}</p>
               <p className="text-[11px] text-red-400">- {item.con}</p>
@@ -1129,7 +1129,7 @@ function CapitalAllocationTab() {
       <div className="rounded-xl border border-border/40 bg-card/60 p-4">
         <div className="flex items-center gap-2 mb-3">
           <TrendingUp className="w-4 h-4 text-primary" />
-          <h3 className="text-sm font-semibold">Share Buyback Mechanics</h3>
+          <h3 className="text-sm font-medium">Share Buyback Mechanics</h3>
         </div>
         <div className="grid grid-cols-1 gap-2 sm:grid-cols-2">
           {BUYBACK_METHODS.map((method, i) => (
@@ -1143,7 +1143,7 @@ function CapitalAllocationTab() {
             >
               <div className="flex items-center gap-2 mb-1.5">
                 <span className="text-primary">{method.icon}</span>
-                <span className="text-sm font-semibold text-foreground">{method.method}</span>
+                <span className="text-sm font-medium text-foreground">{method.method}</span>
               </div>
               <p className="text-xs text-muted-foreground mb-2">{method.description}</p>
               {activeMethod === i && (
@@ -1174,7 +1174,7 @@ function CapitalAllocationTab() {
       <div className="rounded-xl border border-border/40 bg-card/60 p-4">
         <div className="flex items-center gap-2 mb-3">
           <Building2 className="w-4 h-4 text-primary" />
-          <h3 className="text-sm font-semibold">Big Tech Capital Allocation Comparison</h3>
+          <h3 className="text-sm font-medium">Big Tech Capital Allocation Comparison</h3>
         </div>
         <div className="overflow-x-auto">
           <table className="w-full text-xs">
@@ -1189,7 +1189,7 @@ function CapitalAllocationTab() {
               {COMPANY_CAP_ALLOC.map((co) => (
                 <tr key={co.ticker} className="border-b border-border/20 hover:bg-card/80 transition-colors">
                   <td className="py-2 pr-4">
-                    <div className="font-semibold text-foreground">{co.company}</div>
+                    <div className="font-medium text-foreground">{co.company}</div>
                     <div className="text-muted-foreground/60 text-xs">{co.ticker}</div>
                   </td>
                   <td className="py-2 pr-4 tabular-nums text-emerald-400 font-medium">${co.cashOnHand}</td>
@@ -1200,7 +1200,7 @@ function CapitalAllocationTab() {
                   <td className="py-2 pr-4 tabular-nums text-muted-foreground">{co.maPct}%</td>
                   <td className="py-2 pr-4">
                     <span className={cn(
-                      "text-xs font-semibold rounded px-1.5 py-0.5",
+                      "text-xs font-medium rounded px-1.5 py-0.5",
                       co.cashReturnPct >= 100 ? "bg-emerald-500/15 text-emerald-400" :
                       co.cashReturnPct >= 80  ? "bg-primary/15 text-primary"       :
                       "bg-orange-500/15 text-orange-400",
@@ -1222,7 +1222,7 @@ function CapitalAllocationTab() {
             { company: "Amazon",    insight: "Historically capex-intensive (AWS, logistics). Lowest cash return ratio — reinvestment model over shareholder return model.",      color: "#ec4899" },
           ].map((item) => (
             <div key={item.company} className="rounded-lg border border-border/40 bg-card/40 p-2">
-              <p className="font-bold mb-1" style={{ color: item.color }}>{item.company}</p>
+              <p className="font-medium mb-1" style={{ color: item.color }}>{item.company}</p>
               <p className="text-muted-foreground leading-relaxed">{item.insight}</p>
             </div>
           ))}
@@ -1232,7 +1232,7 @@ function CapitalAllocationTab() {
       <div className="rounded-xl border border-border/30 bg-card/50 p-4">
         <div className="flex items-center gap-2 mb-2">
           <Info className="w-4 h-4 text-primary" />
-          <h3 className="text-sm font-semibold">Dividend vs Buyback Signaling Theory</h3>
+          <h3 className="text-sm font-medium">Dividend vs Buyback Signaling Theory</h3>
         </div>
         <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 text-xs">
           {[
@@ -1258,7 +1258,7 @@ function CapitalAllocationTab() {
             },
           ].map((item) => (
             <div key={item.title} className="rounded-lg border border-border/40 bg-card/40 p-3">
-              <p className="font-semibold mb-2" style={{ color: item.color }}>{item.title}</p>
+              <p className="font-medium mb-2" style={{ color: item.color }}>{item.title}</p>
               <ul className="space-y-1">
                 {item.points.map((pt, idx) => (
                   <li key={idx} className="flex items-start gap-1.5">
@@ -1289,11 +1289,11 @@ export default function CorpTreasuryPage() {
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.4 }}
       >
-        <div className="flex flex-col gap-1 sm:flex-row sm:items-center sm:justify-between">
+        <div className="flex flex-col gap-1 sm:flex-row sm:items-center sm:justify-between border-l-4 border-l-primary rounded-xl bg-card p-6">
           <div>
             <div className="flex items-center gap-2 mb-1">
               <Building2 className="w-5 h-5 text-primary" />
-              <h1 className="text-2xl font-bold tracking-tight">Corporate Treasury Management</h1>
+              <h1 className="text-xl font-semibold tracking-tight">Corporate Treasury Management</h1>
             </div>
             <p className="text-sm text-muted-foreground max-w-2xl">
               Cash management, FX hedging, debt capital markets, share buybacks, and capital allocation frameworks — the full CFO toolkit.

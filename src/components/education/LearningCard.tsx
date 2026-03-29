@@ -29,7 +29,7 @@ export function LearningCard({
       initial={{ opacity: 0, y: 12 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.3, delay, ease: "easeOut" }}
-      className="glass rounded-lg border border-border overflow-hidden"
+      className="glass rounded-lg border border-border/40 overflow-hidden"
     >
       <button
         type="button"

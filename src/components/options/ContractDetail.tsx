@@ -102,10 +102,10 @@ export function ContractDetail({
       animate={{ x: 0, opacity: 1 }}
       exit={{ x: "100%", opacity: 0 }}
       transition={{ type: "spring", damping: 28, stiffness: 300 }}
-      className="flex flex-col h-full bg-card border-l border-border text-sm"
+      className="flex flex-col h-full bg-card border-l border-border/40 text-sm"
     >
       {/* Section 1 - Header */}
-      <div className="px-3 py-2 border-b border-border flex items-center justify-between">
+      <div className="px-3 py-2 border-b border-border/40 flex items-center justify-between">
         <span className="font-bold text-sm text-foreground">
           {contract.ticker} {contract.expiry.slice(5)} ${contract.strike}
           {contract.type[0].toUpperCase()}
@@ -121,7 +121,7 @@ export function ContractDetail({
       </div>
 
       {/* Section 2 - Price block */}
-      <div className="px-3 py-2 border-b border-border flex items-center gap-2">
+      <div className="px-3 py-2 border-b border-border/40 flex items-center gap-2">
         <span className="text-2xl font-bold tabular-nums text-foreground">
           ${contract.mid.toFixed(2)}
         </span>
@@ -148,7 +148,7 @@ export function ContractDetail({
       </div>
 
       {/* Section 3 - Greeks 2x3 grid */}
-      <div className="px-3 py-2 border-b border-border">
+      <div className="px-3 py-2 border-b border-border/40">
         <p className="text-[11px] text-muted-foreground font-semibold uppercase mb-1.5">Greeks</p>
         <div className="grid grid-cols-3 gap-1.5">
           {greekRows.map((g) => (
@@ -164,7 +164,7 @@ export function ContractDetail({
       </div>
 
       {/* Section 4 - Contract stats */}
-      <div className="px-3 py-2 border-b border-border">
+      <div className="px-3 py-2 border-b border-border/40">
         <div className="grid grid-cols-2 gap-1.5">
           {[
             { label: "IV", value: `${(contract.iv * 100).toFixed(1)}%` },
@@ -183,7 +183,7 @@ export function ContractDetail({
       </div>
 
       {/* Section 5 - Bid/Ask visual */}
-      <div className="px-3 py-2 border-b border-border">
+      <div className="px-3 py-2 border-b border-border/40">
         <p className="text-[11px] text-muted-foreground uppercase mb-1.5">Bid/Ask</p>
         <div className="flex items-center gap-2 mb-1">
           <span className="text-[11px] font-bold text-emerald-400 tabular-nums">
@@ -222,7 +222,7 @@ export function ContractDetail({
       </div>
 
       {/* Section 6 - Mini sparkline */}
-      <div className="px-3 py-2 border-b border-border">
+      <div className="px-3 py-2 border-b border-border/40">
         <svg
           width="100%"
           height="40"
@@ -242,7 +242,7 @@ export function ContractDetail({
       </div>
 
       {/* Section 7 - Probability */}
-      <div className="px-3 py-2 border-b border-border">
+      <div className="px-3 py-2 border-b border-border/40">
         <p className="text-[11px] text-muted-foreground uppercase mb-2">Probability</p>
         <div className="flex flex-col gap-2">
           <div>

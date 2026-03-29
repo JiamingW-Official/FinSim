@@ -828,7 +828,7 @@ export default function GreenBondsPage() {
                     <chip.icon size={13} className={chip.color} />
                     <span className="text-xs text-muted-foreground">{chip.label}</span>
                   </div>
-                  <p className={`text-base font-bold ${chip.color}`}>{chip.value}</p>
+                  <p className={`text-base font-medium ${chip.color}`}>{chip.value}</p>
                 </CardContent>
               </Card>
             ))}
@@ -1035,7 +1035,7 @@ export default function GreenBondsPage() {
                     className={`p-3 rounded-lg border ${item.bg} ${item.border}`}
                   >
                     <div className="flex items-center justify-between mb-1">
-                      <span className={`text-xs font-bold ${item.color}`}>{item.article}</span>
+                      <span className={`text-xs font-medium ${item.color}`}>{item.article}</span>
                       <span className={`text-xs font-medium ${item.color}`}>{item.title}</span>
                       {item.applicable ? (
                         <CheckCircle size={12} className="text-green-500" />
@@ -1228,7 +1228,7 @@ export default function GreenBondsPage() {
                   >
                     <div className="mt-3 p-3 rounded-lg border border-border bg-muted/50 space-y-2">
                       <div className="flex items-center justify-between">
-                        <span className="text-sm font-semibold text-foreground">
+                        <span className="text-sm font-medium text-foreground">
                           {selectedBond.issuer}
                         </span>
                         <span
@@ -1240,23 +1240,23 @@ export default function GreenBondsPage() {
                       <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 text-xs">
                         <div>
                           <p className="text-muted-foreground">Maturity</p>
-                          <p className="font-semibold text-foreground">{selectedBond.maturity}Y</p>
+                          <p className="font-medium text-foreground">{selectedBond.maturity}Y</p>
                         </div>
                         <div>
                           <p className="text-muted-foreground">Size</p>
-                          <p className="font-semibold text-foreground">
+                          <p className="font-medium text-foreground">
                             {selectedBond.currency} {selectedBond.size}B
                           </p>
                         </div>
                         <div>
                           <p className="text-muted-foreground">Greenium</p>
-                          <p className="font-semibold text-green-400">
+                          <p className="font-medium text-green-400">
                             {(selectedBond.greenium * 100).toFixed(1)} bps
                           </p>
                         </div>
                         <div>
                           <p className="text-muted-foreground">SPO Provider</p>
-                          <p className="font-semibold" style={{ color: selectedBond.spoColor }}>
+                          <p className="font-medium" style={{ color: selectedBond.spoColor }}>
                             {selectedBond.spo}
                           </p>
                         </div>
@@ -1388,7 +1388,7 @@ export default function GreenBondsPage() {
                     />
                     <div className="flex-1 min-w-0">
                       <div className="flex items-center justify-between">
-                        <span className="text-xs font-semibold text-foreground">{spo.name}</span>
+                        <span className="text-xs font-medium text-foreground">{spo.name}</span>
                         <span className="text-xs text-muted-foreground font-mono">{spo.market}</span>
                       </div>
                       <p className="text-xs text-muted-foreground">{spo.strength}</p>
@@ -1521,11 +1521,11 @@ export default function GreenBondsPage() {
                         <td className="py-2 text-foreground font-medium">{row.metric}</td>
                         <td className="py-2 text-right font-mono text-muted-foreground">{row.v22}</td>
                         <td className="py-2 text-right font-mono text-muted-foreground">{row.v23}</td>
-                        <td className="py-2 text-right font-mono text-green-400 font-semibold">
+                        <td className="py-2 text-right font-mono text-green-400 font-medium">
                           {row.v24}
                         </td>
                         <td className="py-2 text-right">
-                          <span className={`text-xs font-semibold ${growth >= 0 ? "text-green-400" : "text-red-400"}`}>
+                          <span className={`text-xs font-medium ${growth >= 0 ? "text-green-400" : "text-red-400"}`}>
                             {growth >= 0 ? "+" : ""}
                             {growth.toFixed(1)}%
                           </span>
@@ -1572,7 +1572,7 @@ export default function GreenBondsPage() {
                   <div key={row.sdg}>
                     <div className="flex justify-between text-xs mb-1">
                       <span className="text-muted-foreground">
-                        <span className="font-bold" style={{ color: row.color }}>{row.sdg}</span>
+                        <span className="font-medium" style={{ color: row.color }}>{row.sdg}</span>
                         {" — "}
                         {row.title}
                       </span>
@@ -1640,7 +1640,7 @@ export default function GreenBondsPage() {
                       key={block.side}
                       className={`p-3 rounded-lg border ${block.bg} ${block.border}`}
                     >
-                      <p className={`text-xs font-semibold mb-2 ${block.color}`}>{block.side}</p>
+                      <p className={`text-xs font-medium mb-2 ${block.color}`}>{block.side}</p>
                       <ul className="space-y-1">
                         {block.points.map((pt) => (
                           <li key={pt} className="flex items-start gap-2 text-xs text-muted-foreground">

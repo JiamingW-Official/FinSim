@@ -1008,13 +1008,13 @@ export default function TransitionFinancePage() {
         initial={{ opacity: 0, y: -16 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.4 }}
-        className="mb-6"
+        className="mb-6 border-l-4 border-l-primary p-6 rounded-lg bg-card/40"
       >
         <div className="flex items-center gap-3 mb-1">
           <div className="p-2 rounded-lg bg-emerald-500/10 border border-emerald-500/20">
             <Leaf className="w-5 h-5 text-emerald-400" />
           </div>
-          <h1 className="text-2xl font-semibold text-foreground">
+          <h1 className="text-xl font-semibold text-foreground">
             Transition Finance &amp; Climate Risk
           </h1>
         </div>
@@ -1024,7 +1024,7 @@ export default function TransitionFinancePage() {
       </motion.div>
 
       {/* Tabs */}
-      <Tabs value={activeTab} onValueChange={setActiveTab} className="space-y-4">
+      <Tabs value={activeTab} onValueChange={setActiveTab} className="mt-8 space-y-4">
         <TabsList className="bg-card border border-border h-auto p-1 flex-wrap gap-1">
           <TabsTrigger value="landscape" className="text-xs data-[state=active]:bg-emerald-600 data-[state=active]:text-foreground">
             <Globe className="w-3.5 h-3.5 mr-1" />Climate Finance

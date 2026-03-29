@@ -84,14 +84,14 @@ export function MarketRegimeCard() {
 
   if (!result) {
     return (
-      <div className="border-b border-border px-3 py-2 text-xs text-muted-foreground">
+      <div className="border-b border-border/40 px-3 py-2 text-xs text-muted-foreground">
         Advance the chart to detect market regime.
       </div>
     );
   }
 
   const { regime, bias, conviction } = result;
-  const borderCls = REGIME_BORDER[regime.regime] ?? "border-border";
+  const borderCls = REGIME_BORDER[regime.regime] ?? "border-border/40";
   const labelCls  = REGIME_LABEL_COLOR[regime.regime] ?? "text-foreground";
   const dotCls    = REGIME_DOT[regime.regime] ?? "bg-muted-foreground";
   const biasCls   = BIAS_COLOR[bias] ?? "text-foreground";
@@ -138,7 +138,7 @@ export function MarketRegimeCard() {
               ? "bg-primary/10 border-primary/25"
               : conviction === "medium"
               ? "bg-orange-500/10 border-orange-500/25"
-              : "bg-muted border-border",
+              : "bg-muted border-border/40",
             convCls,
           )}
         >
@@ -146,7 +146,7 @@ export function MarketRegimeCard() {
         </span>
         <span
           className={cn(
-            "rounded border px-1.5 py-0.5 text-[11px] font-bold leading-none text-muted-foreground border-border bg-muted",
+            "rounded border px-1.5 py-0.5 text-[11px] font-bold leading-none text-muted-foreground border-border/40 bg-muted",
           )}
         >
           ADX: {regime.adxLevel}

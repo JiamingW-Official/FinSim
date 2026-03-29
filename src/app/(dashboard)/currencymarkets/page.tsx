@@ -749,7 +749,7 @@ export default function CurrencyMarketsPage() {
                   >
                     <div className="flex items-center gap-2">
                       <span>{cp.flag1}{cp.flag2}</span>
-                      <span className="font-mono font-semibold text-foreground">{cp.symbol}</span>
+                      <span className="font-mono font-medium text-foreground">{cp.symbol}</span>
                     </div>
                     <div className="flex items-center gap-2">
                       <span className="text-emerald-400 font-mono text-xs">+{cp.differential.toFixed(2)}%</span>
@@ -792,41 +792,41 @@ export default function CurrencyMarketsPage() {
                   <div className="grid grid-cols-2 gap-3">
                     <div className="bg-emerald-500/10 border border-emerald-500/20 rounded-lg p-3">
                       <div className="text-muted-foreground text-xs mb-1">Long ({selectedCarryPair.longCcy})</div>
-                      <div className="text-emerald-400 font-mono font-bold text-xl">{selectedCarryPair.longRate}%</div>
+                      <div className="text-emerald-400 font-mono font-medium text-xl">{selectedCarryPair.longRate}%</div>
                       <div className="text-muted-foreground text-xs">Policy rate</div>
                     </div>
                     <div className="bg-red-500/10 border border-red-500/20 rounded-lg p-3">
                       <div className="text-muted-foreground text-xs mb-1">Short ({selectedCarryPair.shortCcy})</div>
-                      <div className="text-red-400 font-mono font-bold text-xl">{selectedCarryPair.shortRate}%</div>
+                      <div className="text-red-400 font-mono font-medium text-xl">{selectedCarryPair.shortRate}%</div>
                       <div className="text-muted-foreground text-xs">Policy rate</div>
                     </div>
                   </div>
 
                   <div className="flex justify-between items-center py-2 border-t border-border/50">
                     <span className="text-muted-foreground text-sm">Net Differential</span>
-                    <span className="text-amber-400 font-mono font-bold text-lg">+{selectedCarryPair.differential.toFixed(2)}%</span>
+                    <span className="text-amber-400 font-mono font-medium text-lg">+{selectedCarryPair.differential.toFixed(2)}%</span>
                   </div>
 
                   <div className="grid grid-cols-2 gap-2 text-sm">
                     <div className="flex flex-col gap-1">
                       <span className="text-muted-foreground text-xs">30D Carry Return</span>
-                      <span className={cn("font-mono font-semibold", parseFloat(selectedCarryPair.carryReturn[selectedCarryPair.carryReturn.length - 1].toString()) >= 0 ? "text-emerald-400" : "text-red-400")}>
+                      <span className={cn("font-mono font-medium", parseFloat(selectedCarryPair.carryReturn[selectedCarryPair.carryReturn.length - 1].toString()) >= 0 ? "text-emerald-400" : "text-red-400")}>
                         {selectedCarryPair.carryReturn[selectedCarryPair.carryReturn.length - 1]}%
                       </span>
                     </div>
                     <div className="flex flex-col gap-1">
                       <span className="text-muted-foreground text-xs">Max Drawdown</span>
-                      <span className="text-red-400 font-mono font-semibold">{selectedCarryPair.maxDrawdown}%</span>
+                      <span className="text-red-400 font-mono font-medium">{selectedCarryPair.maxDrawdown}%</span>
                     </div>
                     <div className="flex flex-col gap-1">
                       <span className="text-muted-foreground text-xs">Sharpe Ratio</span>
-                      <span className={cn("font-mono font-semibold", selectedCarryPair.sharpe > 0.5 ? "text-emerald-400" : "text-amber-400")}>
+                      <span className={cn("font-mono font-medium", selectedCarryPair.sharpe > 0.5 ? "text-emerald-400" : "text-amber-400")}>
                         {selectedCarryPair.sharpe}
                       </span>
                     </div>
                     <div className="flex flex-col gap-1">
                       <span className="text-muted-foreground text-xs">Crash Risk</span>
-                      <span className={cn("font-semibold", selectedCarryPair.crashRisk === "High" ? "text-red-400" : selectedCarryPair.crashRisk === "Medium" ? "text-amber-400" : "text-emerald-400")}>
+                      <span className={cn("font-medium", selectedCarryPair.crashRisk === "High" ? "text-red-400" : selectedCarryPair.crashRisk === "Medium" ? "text-amber-400" : "text-emerald-400")}>
                         {selectedCarryPair.crashRisk}
                       </span>
                     </div>
@@ -845,13 +845,13 @@ export default function CurrencyMarketsPage() {
                 <CardContent className="grid grid-cols-2 gap-3">
                   <div>
                     <div className="text-muted-foreground text-xs mb-1">Leveraged Return</div>
-                    <div className={cn("font-mono font-bold text-xl", parseFloat(leveragedReturn) >= 0 ? "text-emerald-400" : "text-red-400")}>
+                    <div className={cn("font-mono font-medium text-xl", parseFloat(leveragedReturn) >= 0 ? "text-emerald-400" : "text-red-400")}>
                       {parseFloat(leveragedReturn) >= 0 ? "+" : ""}{leveragedReturn}%
                     </div>
                   </div>
                   <div>
                     <div className="text-muted-foreground text-xs mb-1">Max Drawdown</div>
-                    <div className="font-mono font-bold text-xl text-red-400">{leveragedDD}%</div>
+                    <div className="font-mono font-medium text-xl text-red-400">{leveragedDD}%</div>
                   </div>
                   {parseFloat(leveragedDD) < -20 && (
                     <div className="col-span-2 flex items-center gap-2 text-xs text-red-400 bg-red-500/10 rounded-lg p-2">
@@ -891,7 +891,7 @@ export default function CurrencyMarketsPage() {
                   { phase: "Phase 3: Crash", color: "red", desc: "Feedback loop: falling prices trigger stop-losses → more selling → prices fall further. Weeks of carry income erased in hours. Highly leveraged positions face margin calls. Carry crash is nonlinear and rapid." },
                 ].map((p) => (
                   <div key={p.phase} className={cn("rounded-lg p-4 border", p.color === "emerald" ? "border-emerald-500/20 bg-emerald-500/5" : p.color === "amber" ? "border-amber-500/20 bg-amber-500/5" : "border-red-500/20 bg-red-500/5")}>
-                    <div className={cn("font-semibold text-sm mb-2", p.color === "emerald" ? "text-emerald-400" : p.color === "amber" ? "text-amber-400" : "text-red-400")}>{p.phase}</div>
+                    <div className={cn("font-medium text-sm mb-2", p.color === "emerald" ? "text-emerald-400" : p.color === "amber" ? "text-amber-400" : "text-red-400")}>{p.phase}</div>
                     <p className="text-muted-foreground text-xs leading-relaxed">{p.desc}</p>
                   </div>
                 ))}
@@ -948,7 +948,7 @@ export default function CurrencyMarketsPage() {
                           <td className="py-2.5 px-3 font-mono text-muted-foreground text-xs text-right">{row.impliedRate}</td>
                           <td className="py-2.5 px-3 font-mono text-muted-foreground text-xs text-right">{row.actualRate}</td>
                           <td className="py-2.5 px-3 text-right">
-                            <span className={cn("font-mono font-semibold text-sm", over ? "text-amber-400" : "text-primary")}>
+                            <span className={cn("font-mono font-medium text-sm", over ? "text-amber-400" : "text-primary")}>
                               {over ? "+" : ""}{row.valuation}%
                             </span>
                           </td>
@@ -1005,7 +1005,7 @@ export default function CurrencyMarketsPage() {
                     { reason: "Behavioral Bias", desc: "Momentum and trend-following by institutional investors create persistent deviations." },
                   ].map((item) => (
                     <div key={item.reason} className="flex gap-2 text-xs">
-                      <span className="text-primary font-semibold whitespace-nowrap">{item.reason}:</span>
+                      <span className="text-primary font-medium whitespace-nowrap">{item.reason}:</span>
                       <span className="text-muted-foreground">{item.desc}</span>
                     </div>
                   ))}
@@ -1063,9 +1063,9 @@ export default function CurrencyMarketsPage() {
               </p>
               <ReerChart />
               <div className="mt-2 grid grid-cols-1 md:grid-cols-3 gap-3 text-xs text-muted-foreground">
-                <div><span className="text-amber-400 font-semibold">USD REER:</span> Driven by Fed tightening, dollar dominance in trade invoicing.</div>
-                <div><span className="text-primary font-semibold">EUR REER:</span> ECB policy normalization after years of negative rates.</div>
-                <div><span className="text-primary font-semibold">JPY REER:</span> Multi-decade low reflects BOJ yield curve control and inflation gap.</div>
+                <div><span className="text-amber-400 font-medium">USD REER:</span> Driven by Fed tightening, dollar dominance in trade invoicing.</div>
+                <div><span className="text-primary font-medium">EUR REER:</span> ECB policy normalization after years of negative rates.</div>
+                <div><span className="text-primary font-medium">JPY REER:</span> Multi-decade low reflects BOJ yield curve control and inflation gap.</div>
               </div>
             </CardContent>
           </Card>
@@ -1102,7 +1102,7 @@ export default function CurrencyMarketsPage() {
                     >
                       {/* Year badge */}
                       <div className="w-12 flex-shrink-0 text-right">
-                        <Badge className="text-xs font-bold" style={{ backgroundColor: crisis.color + "30", color: crisis.color, borderColor: crisis.color + "50" }}>
+                        <Badge className="text-xs font-medium" style={{ backgroundColor: crisis.color + "30", color: crisis.color, borderColor: crisis.color + "50" }}>
                           {crisis.year}
                         </Badge>
                       </div>
@@ -1113,11 +1113,11 @@ export default function CurrencyMarketsPage() {
                       {/* Content */}
                       <div className="flex-1 min-w-0">
                         <div className="flex items-center gap-2 flex-wrap">
-                          <span className="text-foreground font-semibold text-sm">{crisis.name}</span>
+                          <span className="text-foreground font-medium text-sm">{crisis.name}</span>
                           <span className="text-muted-foreground text-xs">{crisis.country}</span>
                           <Badge variant="outline" className="text-xs border-border text-muted-foreground">{crisis.currency}</Badge>
                         </div>
-                        <div className={cn("text-sm font-mono font-bold mt-0.5", crisis.peakDevaluation < 0 ? "text-red-400" : "text-emerald-400")}>
+                        <div className={cn("text-sm font-mono font-medium mt-0.5", crisis.peakDevaluation < 0 ? "text-red-400" : "text-emerald-400")}>
                           {crisis.peakDevaluation > 0 ? "+" : ""}{crisis.peakDevaluation}% peak move
                         </div>
                       </div>
@@ -1151,18 +1151,18 @@ export default function CurrencyMarketsPage() {
                 <CardContent className="space-y-4">
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                     <div>
-                      <div className="text-muted-foreground text-xs font-semibold mb-2">Attack Mechanics</div>
+                      <div className="text-muted-foreground text-xs font-medium mb-2">Attack Mechanics</div>
                       <p className="text-muted-foreground text-sm leading-relaxed">{selectedCrisisData.mechanism}</p>
                     </div>
                     <div>
-                      <div className="text-muted-foreground text-xs font-semibold mb-2">Outcome</div>
+                      <div className="text-muted-foreground text-xs font-medium mb-2">Outcome</div>
                       <p className="text-muted-foreground text-sm leading-relaxed">{selectedCrisisData.outcome}</p>
                     </div>
                   </div>
 
                   {/* Speculative pressure indicators */}
                   <div>
-                    <div className="text-muted-foreground text-xs font-semibold mb-2">Speculative Pressure Indicators</div>
+                    <div className="text-muted-foreground text-xs font-medium mb-2">Speculative Pressure Indicators</div>
                     <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
                       {[
                         { label: "Reserve Depletion", value: selectedCrisis === 0 ? 72 : selectedCrisis === 1 ? 85 : selectedCrisis === 2 ? 91 : selectedCrisis === 3 ? 88 : 20, unit: "%" },
@@ -1172,7 +1172,7 @@ export default function CurrencyMarketsPage() {
                       ].map((ind) => (
                         <div key={ind.label} className="bg-foreground/[0.03] border border-border rounded-lg p-3">
                           <div className="text-muted-foreground text-xs mb-1">{ind.label}</div>
-                          <div className="font-mono font-bold text-foreground text-lg">{ind.value}{ind.unit}</div>
+                          <div className="font-mono font-medium text-foreground text-lg">{ind.value}{ind.unit}</div>
                         </div>
                       ))}
                     </div>
@@ -1193,7 +1193,7 @@ export default function CurrencyMarketsPage() {
             <CardContent>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div className="space-y-3">
-                  <div className="text-muted-foreground text-xs font-semibold">First-Generation Model (Krugman 1979)</div>
+                  <div className="text-muted-foreground text-xs font-medium">First-Generation Model (Krugman 1979)</div>
                   <p className="text-muted-foreground text-xs leading-relaxed">
                     Fiscal deficits monetized by central banks create inflation, depleting foreign exchange reserves. When reserves approach zero, a speculative attack forces the abandonment of the peg. The attack is rational — speculators anticipate the inevitable. <strong className="text-foreground">Fundamentals-driven.</strong>
                   </p>
@@ -1208,7 +1208,7 @@ export default function CurrencyMarketsPage() {
                 </div>
 
                 <div className="space-y-3">
-                  <div className="text-muted-foreground text-xs font-semibold">Second-Generation Model (Obstfeld 1994)</div>
+                  <div className="text-muted-foreground text-xs font-medium">Second-Generation Model (Obstfeld 1994)</div>
                   <p className="text-muted-foreground text-xs leading-relaxed">
                     Multiple equilibria: a peg can be sustainable if everyone believes it will hold, but self-fulfilling attacks can force abandonment even with strong fundamentals. The cost of defending the peg depends on market expectations — creating a coordination game. <strong className="text-foreground">Expectations-driven.</strong>
                   </p>
@@ -1230,7 +1230,7 @@ export default function CurrencyMarketsPage() {
                   { title: "Post-Crisis Recovery", items: ["IMF conditionality programs", "Structural reform packages", "Debt restructuring / haircuts", "Gradual reserve rebuilding", "New monetary framework (inflation target)"] },
                 ].map((section) => (
                   <div key={section.title} className="bg-foreground/[0.02] border border-border/50 rounded-lg p-3">
-                    <div className="text-muted-foreground text-xs font-semibold mb-2">{section.title}</div>
+                    <div className="text-muted-foreground text-xs font-medium mb-2">{section.title}</div>
                     {section.items.map((item) => (
                       <div key={item} className="flex items-center gap-1.5 text-xs text-muted-foreground mb-1">
                         <div className="w-1 h-1 rounded-full bg-muted flex-shrink-0" />

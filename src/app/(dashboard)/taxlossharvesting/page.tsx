@@ -369,7 +369,7 @@ export default function TaxLossHarvestingPage() {
       </motion.div>
 
       {/* Key metrics */}
-      <motion.div {...fadeUp(0.05)} className="grid grid-cols-2 md:grid-cols-4 gap-3">
+      <motion.div {...fadeUp(0.05)} className="grid grid-cols-2 md:grid-cols-4 gap-3 border-l-4 border-l-primary p-6 rounded-lg bg-card/40">
         {[
           {
             label: "Est. Tax Savings (YTD)",
@@ -410,7 +410,7 @@ export default function TaxLossHarvestingPage() {
                 <m.icon className={`w-4 h-4 ${m.color}`} />
               </div>
               <p className="text-xs text-muted-foreground mb-0.5">{m.label}</p>
-              <p className={`text-xl font-bold ${m.color}`}>{m.value}</p>
+              <p className={`text-xl font-medium ${m.color}`}>{m.value}</p>
             </CardContent>
           </Card>
         ))}
@@ -533,7 +533,7 @@ export default function TaxLossHarvestingPage() {
                             <tr key={h.ticker} className="border-b border-border/50 hover:bg-muted/30 transition-colors">
                               <td className="px-3 py-2">
                                 <div className="flex items-center gap-1.5">
-                                  <span className="font-semibold text-foreground">{h.ticker}</span>
+                                  <span className="font-medium text-foreground">{h.ticker}</span>
                                   {h.harvestCandidate && (
                                     <Badge className="bg-red-500/20 text-red-400 border-red-500/30 border text-[11px] px-1 py-0">
                                       TLH
@@ -664,7 +664,7 @@ export default function TaxLossHarvestingPage() {
               <CardContent className="p-4 flex gap-3">
                 <Info className="w-4 h-4 text-yellow-400 shrink-0 mt-0.5" />
                 <div className="text-xs text-muted-foreground">
-                  <span className="font-semibold text-yellow-400">Important:</span> The wash sale loss is not
+                  <span className="font-medium text-yellow-400">Important:</span> The wash sale loss is not
                   permanently lost — it is added to the cost basis of the replacement security, deferring the
                   tax benefit rather than eliminating it. However, this deferral can become a permanent loss if
                   the replacement is sold in a wash sale or in a tax-advantaged account.
@@ -695,7 +695,7 @@ export default function TaxLossHarvestingPage() {
                     { label: "Year 20 advantage", value: formatCurrency(100000 * 1.102 ** 20 - 100000 * 1.085 ** 20), color: "text-green-400" },
                   ].map((stat) => (
                     <div key={stat.label} className="text-center p-3 rounded-lg bg-muted/40 border border-border">
-                      <p className={`text-lg font-bold ${stat.color}`}>{stat.value}</p>
+                      <p className={`text-lg font-medium ${stat.color}`}>{stat.value}</p>
                       <p className="text-xs text-muted-foreground">{stat.label}</p>
                     </div>
                   ))}
@@ -738,7 +738,7 @@ export default function TaxLossHarvestingPage() {
                     <div className={`w-9 h-9 rounded-lg ${card.bg} flex items-center justify-center mb-3`}>
                       <card.icon className={`w-4.5 h-4.5 ${card.color}`} />
                     </div>
-                    <p className="text-sm font-semibold text-foreground mb-1">{card.title}</p>
+                    <p className="text-sm font-medium text-foreground mb-1">{card.title}</p>
                     <p className="text-xs text-muted-foreground mb-3">{card.desc}</p>
                     <Badge className={`${card.bg} ${card.color} border text-xs`} style={{ borderColor: card.color + "55" }}>
                       {card.stat}
@@ -792,7 +792,7 @@ export default function TaxLossHarvestingPage() {
                           : "border-border bg-muted/20"
                       }`}
                     >
-                      <p className={`text-sm font-semibold mb-2 ${option.positive ? "text-green-400" : "text-foreground"}`}>
+                      <p className={`text-sm font-medium mb-2 ${option.positive ? "text-green-400" : "text-foreground"}`}>
                         {option.label}
                       </p>
                       <ul className="space-y-1">
@@ -836,7 +836,7 @@ export default function TaxLossHarvestingPage() {
                             <p className="text-xs font-medium text-foreground">{row.label}</p>
                             <p className="text-xs text-muted-foreground">{row.note}</p>
                           </div>
-                          <span className="text-xs font-semibold text-primary">{row.value}</span>
+                          <span className="text-xs font-medium text-primary">{row.value}</span>
                         </div>
                       ))}
                     </div>
@@ -874,7 +874,7 @@ export default function TaxLossHarvestingPage() {
               <CardContent className="p-4 flex gap-3">
                 <Info className="w-4 h-4 text-primary shrink-0 mt-0.5" />
                 <div className="text-xs text-muted-foreground">
-                  <span className="font-semibold text-primary">How it works:</span> A direct indexing platform
+                  <span className="font-medium text-primary">How it works:</span> A direct indexing platform
                   (e.g., Parametric, Fidelity Managed Accounts, Schwab Personalized Indexing) purchases each
                   constituent stock individually. When any stock falls below your cost basis, the system
                   automatically harvests the loss and buys a correlated substitute for 31+ days, then rotates

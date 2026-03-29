@@ -736,7 +736,7 @@ function Chip({ label, value, color = "text-foreground" }: { label: string; valu
   return (
     <div className="bg-muted/60 rounded-lg px-3 py-2 flex flex-col gap-0.5">
       <span className="text-xs text-muted-foreground uppercase tracking-wide">{label}</span>
-      <span className={cn("text-sm font-bold font-mono", color)}>{value}</span>
+      <span className={cn("text-sm font-medium font-mono", color)}>{value}</span>
     </div>
   );
 }
@@ -873,7 +873,7 @@ export default function RiskModelsPage() {
                   { zone: "Red", exceptions: "10+", multiplier: "4.0", color: "text-red-400", bg: "bg-red-900/20 border-red-800" },
                 ].map((z) => (
                   <div key={z.zone} className={cn("rounded-lg border p-3", z.bg)}>
-                    <div className={cn("font-bold text-sm", z.color)}>{z.zone} Zone</div>
+                    <div className={cn("font-medium text-sm", z.color)}>{z.zone} Zone</div>
                     <div className="text-xs text-muted-foreground mt-1">Exceptions: <span className="text-foreground">{z.exceptions}</span></div>
                     <div className="text-xs text-muted-foreground">Capital ×: <span className={z.color}>{z.multiplier}</span></div>
                   </div>
@@ -916,7 +916,7 @@ export default function RiskModelsPage() {
                   <div className="text-xs text-muted-foreground">• Coherent, captures tail risk better</div>
                 </div>
               </div>
-              <div className="text-xs font-semibold text-muted-foreground mt-2">Sensitivity-Based Approach (SBA) — Standardised Method</div>
+              <div className="text-xs font-medium text-muted-foreground mt-2">Sensitivity-Based Approach (SBA) — Standardised Method</div>
               <div className="grid grid-cols-3 gap-2">
                 {["Delta (Δ) — linear price sensitivity to risk factors", "Vega (ν) — sensitivity of options to implied vol", "Curvature — captures non-linear option risk (γ)"].map((item, i) => (
                   <div key={i} className="bg-muted/30 rounded p-2 text-xs text-muted-foreground">{item}</div>
@@ -946,7 +946,7 @@ export default function RiskModelsPage() {
                     { name: "Factor Model", desc: "Decompose returns into systematic factors (market, sector, style). Correlation implied by factor loadings. Avoids full Σ matrix estimation for large portfolios." },
                   ].map((m, i) => (
                     <div key={i} className="bg-muted/40 rounded-lg p-3">
-                      <div className="text-xs font-semibold text-indigo-300">{m.name}</div>
+                      <div className="text-xs font-medium text-indigo-300">{m.name}</div>
                       <div className="text-xs text-muted-foreground mt-1">{m.desc}</div>
                     </div>
                   ))}
@@ -1080,19 +1080,19 @@ export default function RiskModelsPage() {
             <div className="space-y-3">
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                 <div className="bg-muted/30 rounded-lg p-3 space-y-1">
-                  <div className="text-xs font-semibold text-amber-300">F-IRB (Foundation)</div>
+                  <div className="text-xs font-medium text-amber-300">F-IRB (Foundation)</div>
                   <div className="text-xs text-muted-foreground">Bank provides own <span className="text-foreground">PD</span> estimates.</div>
                   <div className="text-xs text-muted-foreground">Regulator provides LGD, EAD, M.</div>
                   <div className="text-xs text-muted-foreground">Corporate: LGD = 45%, EAD = drawn + 75% × undrawn.</div>
                 </div>
                 <div className="bg-muted/30 rounded-lg p-3 space-y-1">
-                  <div className="text-xs font-semibold text-emerald-300">A-IRB (Advanced)</div>
+                  <div className="text-xs font-medium text-emerald-300">A-IRB (Advanced)</div>
                   <div className="text-xs text-muted-foreground">Bank provides own <span className="text-foreground">PD, LGD, EAD, M</span>.</div>
                   <div className="text-xs text-muted-foreground">Higher data requirements (7yr history).</div>
                   <div className="text-xs text-muted-foreground">Lower capital floor (output floor: 72.5% of SA).</div>
                 </div>
               </div>
-              <div className="text-xs font-semibold text-muted-foreground">AIRB Capital Formula (Simplified)</div>
+              <div className="text-xs font-medium text-muted-foreground">AIRB Capital Formula (Simplified)</div>
               <FormulaBlock>
                 ρ = 0.12 × (1−exp(−50×PD)) / (1−exp(−50)) + 0.24 × [1 − (1−exp(−50×PD)) / (1−exp(−50))]{"\n"}
                 K = LGD × [N(√(1/1−ρ) × G(PD) + √(ρ/(1−ρ)) × G(0.999)) − PD]{"\n"}
@@ -1122,7 +1122,7 @@ export default function RiskModelsPage() {
                   { abbr: "CVA", name: "Credit Valuation Adjustment", color: "text-red-400" },
                 ].map((m) => (
                   <div key={m.abbr} className="bg-muted/30 rounded p-2">
-                    <div className={cn("text-xs font-bold font-mono", m.color)}>{m.abbr}</div>
+                    <div className={cn("text-xs font-medium font-mono", m.color)}>{m.abbr}</div>
                     <div className="text-xs text-muted-foreground">{m.name}</div>
                   </div>
                 ))}
@@ -1215,7 +1215,7 @@ export default function RiskModelsPage() {
                   { name: "Hot House World", desc: "Current policies only. High chronic physical risk. >3°C warming.", color: "text-red-400" },
                 ].map((sc, i) => (
                   <div key={i} className="bg-muted/30 rounded p-2">
-                    <div className={cn("text-xs font-semibold", sc.color)}>{sc.name}</div>
+                    <div className={cn("text-xs font-medium", sc.color)}>{sc.name}</div>
                     <div className="text-xs text-muted-foreground mt-1">{sc.desc}</div>
                   </div>
                 ))}
@@ -1236,7 +1236,7 @@ export default function RiskModelsPage() {
               <div className="mt-2 space-y-1">
                 {["Identify critical loss threshold (e.g., CET1 &lt; 4.5%)", "Search scenario space: what shocks breach the threshold?", "Assess plausibility of breaking scenarios", "Design mitigants before they occur"].map((step, i) => (
                   <div key={i} className="flex items-start gap-2 text-xs text-muted-foreground">
-                    <span className="text-indigo-400 font-bold shrink-0">{i + 1}.</span>
+                    <span className="text-indigo-400 font-medium shrink-0">{i + 1}.</span>
                     <span dangerouslySetInnerHTML={{ __html: step }} />
                   </div>
                 ))}
@@ -1262,11 +1262,11 @@ export default function RiskModelsPage() {
           >
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
               <div className="bg-muted/30 rounded-lg p-3">
-                <div className="text-xs font-semibold text-primary mb-1">Sensitivity Analysis</div>
+                <div className="text-xs font-medium text-primary mb-1">Sensitivity Analysis</div>
                 <div className="text-xs text-muted-foreground">Varies one factor at a time (DV01, CS01, equity delta). Measures marginal impact. Fast, tractable. Ignores cross-factor correlations. Used for hedging, limit-setting, P&L attribution.</div>
               </div>
               <div className="bg-muted/30 rounded-lg p-3">
-                <div className="text-xs font-semibold text-primary mb-1">Scenario Analysis</div>
+                <div className="text-xs font-medium text-primary mb-1">Scenario Analysis</div>
                 <div className="text-xs text-muted-foreground">Moves multiple factors simultaneously using economic logic. Captures correlation and second-order effects. Historical: uses observed crisis moves. Hypothetical: custom narrative (e.g., geopolitical shock). Regulatorily required.</div>
               </div>
             </div>
@@ -1308,7 +1308,7 @@ export default function RiskModelsPage() {
                   },
                 ].map((p, i) => (
                   <div key={i} className={cn("rounded-lg border p-3 space-y-2", p.color.split(" ")[0])}>
-                    <div className={cn("text-xs font-semibold", p.color.split(" ")[1])}>{p.pillar}</div>
+                    <div className={cn("text-xs font-medium", p.color.split(" ")[1])}>{p.pillar}</div>
                     {p.items.map((item, j) => (
                       <div key={j} className="flex items-start gap-1.5 text-xs text-muted-foreground">
                         <span className="text-muted-foreground">•</span>
@@ -1340,7 +1340,7 @@ export default function RiskModelsPage() {
                   { stage: "Retirement", items: "Decommission, successor transition" },
                 ].map((st, i) => (
                   <div key={i} className="bg-muted/30 rounded p-2">
-                    <div className="text-xs font-semibold text-muted-foreground">{st.stage}</div>
+                    <div className="text-xs font-medium text-muted-foreground">{st.stage}</div>
                     <div className="text-xs text-muted-foreground mt-0.5">{st.items}</div>
                   </div>
                 ))}
@@ -1365,7 +1365,7 @@ export default function RiskModelsPage() {
                   { metric: "Gini", name: "Gini Coefficient", thresholds: ">60% good | 40–60% acceptable | <40% poor discrimination", color: "text-emerald-400" },
                 ].map((m, i) => (
                   <div key={i} className="bg-muted/30 rounded-lg p-2">
-                    <div className={cn("text-sm font-bold font-mono", m.color)}>{m.metric}</div>
+                    <div className={cn("text-sm font-medium font-mono", m.color)}>{m.metric}</div>
                     <div className="text-xs text-muted-foreground">{m.name}</div>
                     <div className="text-xs text-muted-foreground mt-1">{m.thresholds}</div>
                   </div>
@@ -1382,11 +1382,11 @@ export default function RiskModelsPage() {
           >
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs">
               <div className="space-y-2">
-                <div className="text-foreground font-semibold">Backtesting</div>
+                <div className="text-foreground font-medium">Backtesting</div>
                 <p className="text-muted-foreground">Compares model predictions against actual observed outcomes over historical period. Tests predictive accuracy. Example: VaR backtesting (exceptions count), PD backtesting (realised default rates vs predicted PDs). Statistical tests: Kupiec (proportion of failures), Christoffersen (independence of failures).</p>
               </div>
               <div className="space-y-2">
-                <div className="text-foreground font-semibold">Benchmarking</div>
+                <div className="text-foreground font-medium">Benchmarking</div>
                 <p className="text-muted-foreground">Compares primary model outputs against independent reference models (challenger models). Doesn&apos;t require outcomes — useful for validation before model goes live. Example: internal credit scorecard vs vendor bureau score, IRB PD model vs external rating agency PDs. Identifies systematic bias.</p>
               </div>
             </div>

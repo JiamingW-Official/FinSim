@@ -953,7 +953,7 @@ function FinancialModelingTab() {
       <div className="rounded-xl bg-muted/50 border border-border/50 p-4">
         <div className="flex items-center gap-2 mb-3">
           <Layers size={15} className="text-indigo-400" />
-          <p className="text-sm font-semibold text-foreground">3-Statement Model Linkage</p>
+          <p className="text-sm font-medium text-foreground">3-Statement Model Linkage</p>
         </div>
         <p className="text-xs text-muted-foreground mb-4">
           The three financial statements are deeply interlinked. Net income flows from the IS to the CFS and equity section of the BS.
@@ -966,7 +966,7 @@ function FinancialModelingTab() {
       <div className="rounded-xl bg-muted/50 border border-border/50 p-4">
         <div className="flex items-center gap-2 mb-3">
           <Activity size={15} className="text-muted-foreground" />
-          <p className="text-sm font-semibold text-foreground">Key Driver Assumptions — {TICKER}</p>
+          <p className="text-sm font-medium text-foreground">Key Driver Assumptions — {TICKER}</p>
         </div>
         <div className="overflow-x-auto">
           <table className="w-full text-xs">
@@ -989,7 +989,7 @@ function FinancialModelingTab() {
                   <td className="py-2 pl-3 text-right">
                     <span
                       className={cn(
-                        "px-2 py-0.5 rounded-full text-xs font-semibold",
+                        "px-2 py-0.5 rounded-full text-xs font-medium",
                         row.sensitivity === "High"
                           ? "bg-red-500/20 text-red-400"
                           : row.sensitivity === "Medium"
@@ -1011,7 +1011,7 @@ function FinancialModelingTab() {
       <div className="rounded-xl bg-muted/50 border border-border/50 p-4">
         <div className="flex items-center gap-2 mb-3">
           <BarChart3 size={15} className="text-primary" />
-          <p className="text-sm font-semibold text-foreground">Sensitivity Analysis — Tornado Chart</p>
+          <p className="text-sm font-medium text-foreground">Sensitivity Analysis — Tornado Chart</p>
         </div>
         <p className="text-xs text-muted-foreground mb-4">
           Shows impact on price target from moving each assumption from base to bull/bear,
@@ -1050,7 +1050,7 @@ function ValuationTab() {
       <div className="rounded-xl bg-muted/50 border border-border/50 p-4">
         <div className="flex items-center gap-2 mb-3">
           <Calculator size={15} className="text-primary" />
-          <p className="text-sm font-semibold text-foreground">DCF Sensitivity — WACC vs Terminal Growth ($/share)</p>
+          <p className="text-sm font-medium text-foreground">DCF Sensitivity — WACC vs Terminal Growth ($/share)</p>
         </div>
         <p className="text-xs text-muted-foreground mb-4">
           Green = above ${BASE_PT} bull target. Yellow = near current price ${CURRENT_PRICE}. Red = downside.
@@ -1063,7 +1063,7 @@ function ValuationTab() {
       <div className="rounded-xl bg-muted/50 border border-border/50 p-4">
         <div className="flex items-center gap-2 mb-3">
           <Scale size={15} className="text-muted-foreground" />
-          <p className="text-sm font-semibold text-foreground">P/E Relative Valuation Context</p>
+          <p className="text-sm font-medium text-foreground">P/E Relative Valuation Context</p>
         </div>
         <div className="grid grid-cols-3 gap-3 mb-4">
           {[
@@ -1091,7 +1091,7 @@ function ValuationTab() {
         <div className="flex items-center justify-between mb-3">
           <div className="flex items-center gap-2">
             <Layers size={15} className="text-emerald-400" />
-            <p className="text-sm font-semibold text-foreground">Semiconductor Comps Table</p>
+            <p className="text-sm font-medium text-foreground">Semiconductor Comps Table</p>
           </div>
           <div className="flex gap-1">
             {(["evEbitda", "pe", "evRev", "growth"] as const).map((k) => (
@@ -1163,11 +1163,11 @@ function ValuationTab() {
               })}
               {/* Median row */}
               <tr className="border-t border-border/50 bg-muted/20">
-                <td className="py-2 pr-3 text-muted-foreground font-semibold text-xs italic">Median</td>
+                <td className="py-2 pr-3 text-muted-foreground font-medium text-xs italic">Median</td>
                 <td className="py-2 px-2 text-right text-muted-foreground font-mono">—</td>
-                <td className="py-2 px-2 text-right text-muted-foreground font-mono font-semibold">{medEvEbitda.toFixed(1)}x</td>
-                <td className="py-2 px-2 text-right text-muted-foreground font-mono font-semibold">{medEvRev.toFixed(1)}x</td>
-                <td className="py-2 px-2 text-right text-muted-foreground font-mono font-semibold">{medPE.toFixed(0)}x</td>
+                <td className="py-2 px-2 text-right text-muted-foreground font-mono font-medium">{medEvEbitda.toFixed(1)}x</td>
+                <td className="py-2 px-2 text-right text-muted-foreground font-mono font-medium">{medEvRev.toFixed(1)}x</td>
+                <td className="py-2 px-2 text-right text-muted-foreground font-mono font-medium">{medPE.toFixed(0)}x</td>
                 <td className="py-2 px-2 text-right text-muted-foreground font-mono">—</td>
                 <td className="py-2 px-2 text-right text-muted-foreground font-mono">—</td>
                 <td className="py-2 pl-2" />
@@ -1271,7 +1271,7 @@ function ReportStructureTab() {
     <div className="space-y-6">
       {/* Report outline */}
       <div>
-        <h3 className="text-sm font-semibold text-foreground mb-1">Professional Research Report Structure</h3>
+        <h3 className="text-sm font-medium text-foreground mb-1">Professional Research Report Structure</h3>
         <p className="text-xs text-muted-foreground">
           Sell-side and buy-side reports follow a consistent structure. Click each section to explore what it should contain.
         </p>
@@ -1291,7 +1291,7 @@ function ReportStructureTab() {
                 className="w-2 h-6 rounded-full flex-shrink-0"
                 style={{ backgroundColor: sec.color }}
               />
-              <span className="text-sm font-semibold text-foreground flex-1">{sec.title}</span>
+              <span className="text-sm font-medium text-foreground flex-1">{sec.title}</span>
               <ChevronRight
                 size={14}
                 className={cn("text-muted-foreground transition-transform flex-shrink-0", openSection === i && "rotate-90")}
@@ -1328,7 +1328,7 @@ function ReportStructureTab() {
         <div className="rounded-xl bg-emerald-500/10 border border-emerald-500/20 p-4">
           <div className="flex items-center gap-2 mb-3">
             <TrendingUp size={15} className="text-emerald-400" />
-            <p className="text-sm font-semibold text-emerald-300">NVDA Bull Case — $1,250 PT</p>
+            <p className="text-sm font-medium text-emerald-300">NVDA Bull Case — $1,250 PT</p>
           </div>
           <ul className="space-y-1.5 text-xs text-muted-foreground">
             {[
@@ -1348,7 +1348,7 @@ function ReportStructureTab() {
         <div className="rounded-xl bg-red-500/10 border border-red-500/20 p-4">
           <div className="flex items-center gap-2 mb-3">
             <TrendingDown size={15} className="text-red-400" />
-            <p className="text-sm font-semibold text-red-300">NVDA Bear Case — $600 PT</p>
+            <p className="text-sm font-medium text-red-300">NVDA Bear Case — $600 PT</p>
           </div>
           <ul className="space-y-1.5 text-xs text-muted-foreground">
             {[
@@ -1371,7 +1371,7 @@ function ReportStructureTab() {
       <div className="rounded-xl bg-muted/50 border border-border/50 p-4">
         <div className="flex items-center gap-2 mb-3">
           <Clock size={15} className="text-amber-400" />
-          <p className="text-sm font-semibold text-foreground">Catalyst Calendar — {TICKER}</p>
+          <p className="text-sm font-medium text-foreground">Catalyst Calendar — {TICKER}</p>
         </div>
         <div className="space-y-2">
           {CATALYSTS.map((cat, i) => (
@@ -1379,7 +1379,7 @@ function ReportStructureTab() {
               <span className="font-mono text-muted-foreground w-14 flex-shrink-0">{cat.date}</span>
               <span
                 className={cn(
-                  "px-2 py-0.5 rounded-full font-semibold flex-shrink-0",
+                  "px-2 py-0.5 rounded-full font-medium flex-shrink-0",
                   cat.type === "earnings"
                     ? "bg-indigo-500/20 text-indigo-300"
                     : cat.type === "product"
@@ -1394,7 +1394,7 @@ function ReportStructureTab() {
               <span className="text-muted-foreground flex-1">{cat.event}</span>
               <span
                 className={cn(
-                  "font-semibold flex-shrink-0",
+                  "font-medium flex-shrink-0",
                   cat.impact === "High" ? "text-red-400" : cat.impact === "Medium" ? "text-amber-400" : "text-muted-foreground"
                 )}
               >
@@ -1450,7 +1450,7 @@ function AnalystRatingsTab() {
         ].map((stat, i) => (
           <div key={`stat-${i}`} className="rounded-xl bg-muted/50 border border-border/50 p-3 text-center">
             <p className="text-xs text-muted-foreground mb-1">{stat.label}</p>
-            <p className={cn("text-xl font-bold", stat.color)}>{stat.value}</p>
+            <p className={cn("text-xl font-medium", stat.color)}>{stat.value}</p>
             <p className="text-xs text-muted-foreground mt-0.5">{stat.sub}</p>
           </div>
         ))}
@@ -1465,7 +1465,7 @@ function AnalystRatingsTab() {
       <div className="rounded-xl bg-muted/50 border border-border/50 p-4">
         <div className="flex items-center gap-2 mb-3">
           <Star size={15} className="text-amber-400" />
-          <p className="text-sm font-semibold text-foreground">Individual Analyst Ratings</p>
+          <p className="text-sm font-medium text-foreground">Individual Analyst Ratings</p>
         </div>
         <div className="overflow-x-auto">
           <table className="w-full text-xs">
@@ -1486,12 +1486,12 @@ function AnalystRatingsTab() {
                 const isUp = r.priceTarget > CURRENT_PRICE;
                 return (
                   <tr key={`rating-${i}`} className="border-b border-border/30 hover:bg-muted/20">
-                    <td className="py-2 pr-3 text-foreground font-semibold">{r.firm}</td>
+                    <td className="py-2 pr-3 text-foreground font-medium">{r.firm}</td>
                     <td className="py-2 px-2 text-muted-foreground">{r.analyst}</td>
                     <td className="py-2 px-2 text-center">
                       <RatingBadge rating={r.rating} />
                     </td>
-                    <td className="py-2 px-2 text-right text-foreground font-mono font-semibold">${r.priceTarget}</td>
+                    <td className="py-2 px-2 text-right text-foreground font-mono font-medium">${r.priceTarget}</td>
                     <td className={cn("py-2 px-2 text-right font-mono", isUp ? "text-emerald-400" : "text-red-400")}>
                       {isUp ? "+" : ""}{pctDiff}%
                     </td>
@@ -1529,7 +1529,7 @@ function AnalystRatingsTab() {
       <div className="rounded-xl bg-muted/50 border border-border/50 p-4">
         <div className="flex items-center gap-2 mb-3">
           <Target size={15} className="text-rose-400" />
-          <p className="text-sm font-semibold text-foreground">12-Month Price Target Accuracy by Firm</p>
+          <p className="text-sm font-medium text-foreground">12-Month Price Target Accuracy by Firm</p>
         </div>
         <PriceTargetAccuracyChart ratings={ANALYST_RATINGS} />
       </div>
@@ -1538,7 +1538,7 @@ function AnalystRatingsTab() {
       <div className="rounded-xl bg-muted/50 border border-border/50 p-4">
         <div className="flex items-center gap-2 mb-3">
           <TrendingUp size={15} className="text-emerald-400" />
-          <p className="text-sm font-semibold text-foreground">EPS Estimate Revision Momentum</p>
+          <p className="text-sm font-medium text-foreground">EPS Estimate Revision Momentum</p>
         </div>
         <p className="text-xs text-muted-foreground mb-3">
           Count of upward EPS estimate revisions minus downward revisions over rolling 8-week window. Rising = positive momentum.
@@ -1621,11 +1621,11 @@ export default function EquityResearchPage() {
             <div>
               <div className="flex items-center gap-2 mb-1">
                 <BookOpen size={20} className="text-indigo-400" />
-                <h1 className="text-xl font-bold text-foreground">Equity Research</h1>
+                <h1 className="text-xl font-medium text-foreground">Equity Research</h1>
               </div>
               <p className="text-sm text-muted-foreground">
                 Process, financial modeling, valuation methodology, and analyst dynamics —
-                illustrated with <span className="text-indigo-300 font-semibold">{TICKER}</span> as a live case study.
+                illustrated with <span className="text-indigo-300 font-medium">{TICKER}</span> as a live case study.
               </p>
             </div>
             <div className="text-right flex-shrink-0">

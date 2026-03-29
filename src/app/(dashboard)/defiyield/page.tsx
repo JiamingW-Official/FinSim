@@ -534,7 +534,7 @@ function RiskAnalysisTab() {
               onChange={(e) => setPriceChange(Number(e.target.value))}
               className="flex-1 accent-primary"
             />
-            <span className="text-sm font-semibold text-foreground w-16 text-right">
+            <span className="text-sm font-medium text-foreground w-16 text-right">
               {priceChange > 0 ? "+" : ""}{priceChange}%
             </span>
           </div>
@@ -542,15 +542,15 @@ function RiskAnalysisTab() {
           <div className="grid grid-cols-3 gap-3">
             <div className="bg-muted/20 rounded-lg p-3 text-center">
               <p className="text-xs text-muted-foreground mb-1">IL %</p>
-              <p className="text-xl font-bold text-red-400">-{ilPct.toFixed(2)}%</p>
+              <p className="text-xl font-medium text-red-400">-{ilPct.toFixed(2)}%</p>
             </div>
             <div className="bg-muted/20 rounded-lg p-3 text-center">
               <p className="text-xs text-muted-foreground mb-1">HODL Value</p>
-              <p className="text-xl font-bold text-foreground">${Math.round(hodlVal).toLocaleString()}</p>
+              <p className="text-xl font-medium text-foreground">${Math.round(hodlVal).toLocaleString()}</p>
             </div>
             <div className="bg-muted/20 rounded-lg p-3 text-center">
               <p className="text-xs text-muted-foreground mb-1">LP Loss vs HODL</p>
-              <p className="text-xl font-bold text-orange-400">-${Math.round(ilDollar).toLocaleString()}</p>
+              <p className="text-xl font-medium text-orange-400">-${Math.round(ilDollar).toLocaleString()}</p>
             </div>
           </div>
 
@@ -688,7 +688,7 @@ function RiskAnalysisTab() {
             </svg>
 
             <div className="flex-1 space-y-3">
-              <p className="text-sm font-semibold text-foreground">{strat.name}</p>
+              <p className="text-sm font-medium text-foreground">{strat.name}</p>
               <div className="text-2xl font-bold text-emerald-400">{strat.apy}% APY</div>
               {radarCategories.map((c) => (
                 <div key={c.label} className="space-y-1">
@@ -778,7 +778,7 @@ function YieldCalculatorTab() {
               <div key={label} className="space-y-1">
                 <div className="flex justify-between text-xs">
                   <span className="text-muted-foreground">{label}</span>
-                  <span className="text-foreground font-semibold">{fmt(val)}</span>
+                  <span className="text-foreground font-medium">{fmt(val)}</span>
                 </div>
                 <input
                   type="range"
@@ -817,7 +817,7 @@ function YieldCalculatorTab() {
             ].map(({ label, val, color }) => (
               <div key={label} className="bg-muted/20 rounded-lg p-3 text-center">
                 <p className="text-xs text-muted-foreground mb-1">{label}</p>
-                <p className={`text-base font-bold ${color}`}>{val}</p>
+                <p className={`text-base font-medium ${color}`}>{val}</p>
               </div>
             ))}
           </div>
@@ -880,7 +880,7 @@ function YieldCalculatorTab() {
 
           {/* Tips */}
           <div className="bg-primary/5 border border-primary/20 rounded-lg p-3">
-            <p className="text-xs font-semibold text-primary mb-1">DeFi Compounding Tips</p>
+            <p className="text-xs font-medium text-primary mb-1">DeFi Compounding Tips</p>
             <ul className="text-xs text-muted-foreground space-y-1">
               <li>• Auto-compounding vaults (Yearn, Beefy) reinvest rewards multiple times per day</li>
               <li>• Higher frequency compounding significantly boosts returns above 20% APY</li>
@@ -914,8 +914,8 @@ function YieldCalculatorTab() {
                   className="rounded-lg p-3 text-center border"
                   style={{ backgroundColor: bg, borderColor: border }}
                 >
-                  <p className="text-xs font-semibold text-foreground truncate">{p.name}</p>
-                  <p className="text-sm font-bold mt-1" style={{ color: `rgb(${r},${g},${b})` }}>
+                  <p className="text-xs font-medium text-foreground truncate">{p.name}</p>
+                  <p className="text-sm font-medium mt-1" style={{ color: `rgb(${r},${g},${b})` }}>
                     {midApy.toFixed(1)}%
                   </p>
                   <p className="text-xs text-muted-foreground">{p.type}</p>
@@ -970,8 +970,8 @@ export default function DeFiYieldPage() {
           </div>
         </motion.div>
 
-        {/* Key Metrics */}
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+        {/* Key Metrics — Hero */}
+        <div className="border-l-4 border-l-primary rounded-lg bg-card p-6 grid grid-cols-2 md:grid-cols-4 gap-4">
           <MetricCard
             icon={DollarSign}
             label="Total Value Locked"
@@ -1011,11 +1011,11 @@ export default function DeFiYieldPage() {
           initial={{ opacity: 0, y: 10 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.25 }}
-          className="flex items-center gap-2 bg-yellow-400/5 border border-yellow-400/20 rounded-lg px-4 py-2.5"
+          className="mt-8 flex items-center gap-2 bg-yellow-400/5 border border-yellow-400/20 rounded-lg px-4 py-2.5"
         >
           <AlertTriangle className="w-4 h-4 text-yellow-400 shrink-0" />
           <p className="text-xs text-yellow-200/80">
-            <span className="font-semibold text-yellow-400">Risk Reminder:</span> DeFi protocols carry smart contract risk, impermanent loss, and regulatory uncertainty. Never invest more than you can afford to lose.
+            <span className="font-medium text-yellow-400">Risk Reminder:</span> DeFi protocols carry smart contract risk, impermanent loss, and regulatory uncertainty. Never invest more than you can afford to lose.
           </p>
         </motion.div>
 

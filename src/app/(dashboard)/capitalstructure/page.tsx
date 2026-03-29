@@ -540,11 +540,11 @@ function MertonPanel() {
           <p className="text-xs text-muted-foreground font-medium mb-2">Merton Outputs</p>
           <div className="flex justify-between text-xs">
             <span className="text-muted-foreground">Distance-to-Default</span>
-            <span className={`font-semibold ${dtdColor}`}>{result.distanceToDefault.toFixed(2)}σ</span>
+            <span className={`font-medium ${dtdColor}`}>{result.distanceToDefault.toFixed(2)}σ</span>
           </div>
           <div className="flex justify-between text-xs">
             <span className="text-muted-foreground">Credit Spread</span>
-            <span className="text-foreground font-semibold">{result.spread.toFixed(0)} bps</span>
+            <span className="text-foreground font-medium">{result.spread.toFixed(0)} bps</span>
           </div>
           <div className="flex justify-between text-xs">
             <span className="text-muted-foreground">d₁</span>
@@ -556,13 +556,13 @@ function MertonPanel() {
           </div>
           <div className="flex justify-between text-xs">
             <span className="text-muted-foreground">Asset / Debt Ratio</span>
-            <span className={assetValue >= debtFace ? "text-emerald-400 font-semibold" : "text-red-400 font-semibold"}>
+            <span className={assetValue >= debtFace ? "text-emerald-400 font-medium" : "text-red-400 font-medium"}>
               {(assetValue / debtFace).toFixed(2)}x
             </span>
           </div>
           <div className="flex justify-between text-xs">
             <span className="text-muted-foreground">Default Signal</span>
-            <span className={pdColor + " font-semibold"}>
+            <span className={pdColor + " font-medium"}>
               {result.pd < 5 ? "Safe" : result.pd < 20 ? "Watch" : result.pd < 50 ? "At Risk" : "Distressed"}
             </span>
           </div>
@@ -643,7 +643,7 @@ function CovenantTracker() {
                 />
               </div>
               <div className="text-xs text-muted-foreground w-32 text-right">
-                <span className={isBreached ? "text-red-400 font-semibold" : isTight ? "text-yellow-400 font-semibold" : "text-emerald-400"}>
+                <span className={isBreached ? "text-red-400 font-medium" : isTight ? "text-yellow-400 font-medium" : "text-emerald-400"}>
                   {c.current}{c.unit}
                 </span>
                 <span className="text-muted-foreground mx-1">/</span>
@@ -699,7 +699,7 @@ function DistressedScreener() {
               <div className="flex items-start justify-between">
                 <div className="flex items-center gap-2">
                   <div>
-                    <span className="text-sm font-semibold text-foreground">{co.name}</span>
+                    <span className="text-sm font-medium text-foreground">{co.name}</span>
                     <span className="text-xs text-muted-foreground ml-2 font-mono">{co.ticker}</span>
                   </div>
                   <Badge className={`text-xs px-1.5 ${meta.color}`}>{meta.label}</Badge>
@@ -711,11 +711,11 @@ function DistressedScreener() {
               <div className="flex items-center gap-4 mt-2 flex-wrap">
                 <div className="text-xs">
                   <span className="text-muted-foreground">Price </span>
-                  <span className={`font-semibold ${priceColor}`}>{co.price.toFixed(1)}¢</span>
+                  <span className={`font-medium ${priceColor}`}>{co.price.toFixed(1)}¢</span>
                 </div>
                 <div className="text-xs">
                   <span className="text-muted-foreground">YTM </span>
-                  <span className="text-red-400 font-semibold">{co.ytm.toFixed(1)}%</span>
+                  <span className="text-red-400 font-medium">{co.ytm.toFixed(1)}%</span>
                 </div>
                 <div className="text-xs">
                   <span className="text-muted-foreground">Duration </span>
@@ -738,15 +738,15 @@ function DistressedScreener() {
                 <div className="flex gap-2 flex-wrap">
                   <div className="bg-muted/60 rounded p-2 text-xs flex-1 min-w-24">
                     <p className="text-muted-foreground mb-0.5">Implied Recovery</p>
-                    <p className={`font-semibold ${priceColor}`}>{co.price.toFixed(1)}¢ on $</p>
+                    <p className={`font-medium ${priceColor}`}>{co.price.toFixed(1)}¢ on $</p>
                   </div>
                   <div className="bg-muted/60 rounded p-2 text-xs flex-1 min-w-24">
                     <p className="text-muted-foreground mb-0.5">Distress Ratio</p>
-                    <p className="text-red-400 font-semibold">{(co.ytm - 10).toFixed(0)} bps over HY</p>
+                    <p className="text-red-400 font-medium">{(co.ytm - 10).toFixed(0)} bps over HY</p>
                   </div>
                   <div className="bg-muted/60 rounded p-2 text-xs flex-1 min-w-24">
                     <p className="text-muted-foreground mb-0.5">Coverage at EV</p>
-                    <p className="text-muted-foreground font-semibold">{((co.ebitda * 6) / (co.leverage * co.ebitda) * 100).toFixed(0)}%</p>
+                    <p className="text-muted-foreground font-medium">{((co.ebitda * 6) / (co.leverage * co.ebitda) * 100).toFixed(0)}%</p>
                   </div>
                 </div>
               </div>
@@ -795,10 +795,10 @@ export default function CapitalStructurePage() {
       transition={{ duration: 0.4 }}
       className="p-4 sm:p-6 space-y-5 max-w-5xl mx-auto"
     >
-      {/* Header */}
-      <div className="flex items-start justify-between gap-4 flex-wrap">
+      {/* HERO Header */}
+      <div className="flex items-start justify-between gap-4 flex-wrap border-l-4 border-l-primary rounded-xl bg-card p-6">
         <div>
-          <h1 className="text-2xl font-bold text-foreground flex items-center gap-2">
+          <h1 className="text-xl font-semibold text-foreground flex items-center gap-2">
             <Layers className="w-6 h-6 text-primary" />
             Capital Structure &amp; Distressed Investing
           </h1>
@@ -829,7 +829,7 @@ export default function CapitalStructurePage() {
               <k.icon className={`w-4 h-4 ${k.color} shrink-0`} />
               <div>
                 <p className="text-xs text-muted-foreground">{k.label}</p>
-                <p className="text-sm font-semibold text-foreground leading-tight">{k.value}</p>
+                <p className="text-sm font-medium text-foreground leading-tight">{k.value}</p>
               </div>
             </CardContent>
           </Card>
@@ -841,7 +841,7 @@ export default function CapitalStructurePage() {
         <AlertTriangle className="w-4 h-4 text-primary shrink-0" />
         <div className="text-xs">
           <span className="text-muted-foreground">Fulcrum Security at EV ${ev}M: </span>
-          <span className="text-primary font-semibold">{fulcrumInfo}</span>
+          <span className="text-primary font-medium">{fulcrumInfo}</span>
         </div>
       </div>
 
@@ -959,7 +959,7 @@ export default function CapitalStructurePage() {
                             </td>
                             <td className="py-1.5 text-right text-muted-foreground">{t.rating}</td>
                             <td className="py-1.5 text-right text-muted-foreground">${rec.toFixed(0)}</td>
-                            <td className={`py-1.5 text-right font-semibold ${cents >= 100 ? "text-emerald-400" : cents > 0 ? "text-yellow-400" : "text-red-400"}`}>
+                            <td className={`py-1.5 text-right font-medium ${cents >= 100 ? "text-emerald-400" : cents > 0 ? "text-yellow-400" : "text-red-400"}`}>
                               {cents >= 100 ? "100¢" : cents > 0 ? cents.toFixed(1) + "¢" : "0¢"}
                             </td>
                           </tr>
@@ -1055,7 +1055,7 @@ export default function CapitalStructurePage() {
           <div key={tip.title} className="bg-muted/40 border border-border/30 rounded-lg p-3">
             <div className="flex items-center gap-2 mb-1.5">
               <tip.icon className={`w-4 h-4 ${tip.color} shrink-0`} />
-              <span className="text-xs font-semibold text-foreground">{tip.title}</span>
+              <span className="text-xs font-medium text-foreground">{tip.title}</span>
             </div>
             <p className="text-[11px] text-muted-foreground leading-relaxed">{tip.body}</p>
           </div>

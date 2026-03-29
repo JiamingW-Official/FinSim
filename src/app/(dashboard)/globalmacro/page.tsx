@@ -279,7 +279,7 @@ function RegimeCard({ indicator }: { indicator: typeof REGIME_INDICATORS[0] }) {
               className={cn(
                 "flex-1 text-center py-1 px-1 rounded text-xs font-semibold transition-all",
                 opt === indicator.current
-                  ? "text-zinc-900"
+                  ? "text-background"
                   : "bg-muted text-muted-foreground"
               )}
               style={opt === indicator.current ? { backgroundColor: indicator.color } : {}}
@@ -809,7 +809,7 @@ function IndicatorRow({ ind }: { ind: MacroIndicator }) {
       </div>
       <Sparkline seed={ind.sparkSeed} expanding={ind.expanding} />
       <div className="text-right shrink-0 w-16">
-        <div className="text-sm font-bold text-foreground">{ind.value}{ind.unit}</div>
+        <div className="text-sm font-medium text-foreground">{ind.value}{ind.unit}</div>
         <div className={cn("text-xs", ind.expanding ? "text-green-400" : "text-red-400")}>
           {ind.expanding ? "Expanding" : "Contracting"}
         </div>
@@ -862,7 +862,7 @@ function FxMatrixTable() {
           <tr>
             <th className="p-1.5 text-left text-muted-foreground font-medium w-16">Base →</th>
             {CURRENCIES.map((c) => (
-              <th key={c.code} className="p-1.5 text-center text-muted-foreground font-semibold">
+              <th key={c.code} className="p-1.5 text-center text-muted-foreground font-medium">
                 {c.flag} {c.code}
               </th>
             ))}
@@ -871,7 +871,7 @@ function FxMatrixTable() {
         <tbody>
           {CURRENCIES.map((base) => (
             <tr key={base.code} className="border-t border-border">
-              <td className="p-1.5 text-muted-foreground font-semibold">
+              <td className="p-1.5 text-muted-foreground font-medium">
                 {base.flag} {base.code}
               </td>
               {CURRENCIES.map((quote) => {
@@ -910,7 +910,7 @@ function CarryMatrix() {
           <tr>
             <th className="p-1.5 text-left text-muted-foreground font-medium w-16">Long →</th>
             {CURRENCIES.map((c) => (
-              <th key={c.code} className="p-1.5 text-center text-muted-foreground font-semibold">
+              <th key={c.code} className="p-1.5 text-center text-muted-foreground font-medium">
                 {c.flag} {c.code}
               </th>
             ))}
@@ -919,7 +919,7 @@ function CarryMatrix() {
         <tbody>
           {CURRENCIES.map((base) => (
             <tr key={base.code} className="border-t border-border">
-              <td className="p-1.5 text-muted-foreground font-semibold">
+              <td className="p-1.5 text-muted-foreground font-medium">
                 {base.flag} {base.code}
               </td>
               {CURRENCIES.map((quote) => {
@@ -963,7 +963,7 @@ function PppChart() {
         const overvalued = c.overUnder > 0;
         return (
           <div key={c.code} className="flex items-center gap-3">
-            <div className="w-12 text-xs text-muted-foreground font-semibold text-right">
+            <div className="w-12 text-xs text-muted-foreground font-medium text-right">
               {ccy?.flag} {c.code}
             </div>
             <div className="flex-1 flex items-center gap-2">
@@ -1090,7 +1090,7 @@ export default function GlobalMacroPage() {
             <Globe className="w-5 h-5 text-indigo-400" />
           </div>
           <div>
-            <h1 className="text-xl font-bold text-foreground">Global Macro Trading</h1>
+            <h1 className="text-xl font-medium text-foreground">Global Macro Trading</h1>
             <p className="text-xs text-muted-foreground">Macro regime analysis · Trade ideas · Central banks · Economic indicators · Currency markets</p>
           </div>
         </div>
@@ -1114,7 +1114,7 @@ export default function GlobalMacroPage() {
           >
             <Card className="bg-card border-border mb-6">
               <CardHeader className="pb-2">
-                <CardTitle className="text-sm font-semibold text-muted-foreground flex items-center gap-2">
+                <CardTitle className="text-sm font-medium text-muted-foreground flex items-center gap-2">
                   <Globe className="w-4 h-4 text-indigo-400" />
                   Global Economic Outlook Heatmap
                 </CardTitle>
@@ -1148,7 +1148,7 @@ export default function GlobalMacroPage() {
                   <div key={c} className="flex items-center gap-2 text-xs">
                     <div className="w-2.5 h-2.5 rounded-full" style={{ backgroundColor: CONVICTION_COLOR[c] }} />
                     <span className="text-muted-foreground">{c} Conviction:</span>
-                    <span className="font-semibold text-foreground">{count}</span>
+                    <span className="font-medium text-foreground">{count}</span>
                   </div>
                 );
               })}
@@ -1158,7 +1158,7 @@ export default function GlobalMacroPage() {
                 return (
                   <div key={h} className="flex items-center gap-2 text-xs">
                     <span className="text-muted-foreground">{h}:</span>
-                    <span className="font-semibold text-foreground">{count}</span>
+                    <span className="font-medium text-foreground">{count}</span>
                   </div>
                 );
               })}
@@ -1197,7 +1197,7 @@ export default function GlobalMacroPage() {
           >
             <Card className="bg-card border-border mb-6">
               <CardHeader className="pb-2">
-                <CardTitle className="text-sm font-semibold text-muted-foreground flex items-center gap-2">
+                <CardTitle className="text-sm font-medium text-muted-foreground flex items-center gap-2">
                   <BarChart2 className="w-4 h-4 text-indigo-400" />
                   Central Bank Rate Cycle (Past 3 Years — 6 Major Banks)
                 </CardTitle>
@@ -1209,7 +1209,7 @@ export default function GlobalMacroPage() {
 
             <Card className="bg-card border-border mb-6">
               <CardHeader className="pb-2">
-                <CardTitle className="text-sm font-semibold text-muted-foreground flex items-center gap-2">
+                <CardTitle className="text-sm font-medium text-muted-foreground flex items-center gap-2">
                   <Layers className="w-4 h-4 text-indigo-400" />
                   Policy Divergence Heatmap
                 </CardTitle>
@@ -1232,7 +1232,7 @@ export default function GlobalMacroPage() {
                         <div className="flex items-center gap-3">
                           <span className="text-2xl">{bank.flag}</span>
                           <div>
-                            <div className="font-semibold text-sm text-foreground">{bank.name}</div>
+                            <div className="font-medium text-sm text-foreground">{bank.name}</div>
                             <div className="text-xs text-muted-foreground">
                               Rate: <span className="text-foreground font-mono">{bank.rate.toFixed(2)}%</span>
                               <span className="mx-2 text-muted-foreground/50">|</span>
@@ -1356,7 +1356,7 @@ export default function GlobalMacroPage() {
           >
             <Card className="bg-card border-border">
               <CardHeader className="pb-2">
-                <CardTitle className="text-sm font-semibold text-muted-foreground flex items-center gap-2">
+                <CardTitle className="text-sm font-medium text-muted-foreground flex items-center gap-2">
                   <DollarSign className="w-4 h-4 text-indigo-400" />
                   FX Performance Matrix — YTD % Change
                 </CardTitle>
@@ -1369,7 +1369,7 @@ export default function GlobalMacroPage() {
 
             <Card className="bg-card border-border">
               <CardHeader className="pb-2">
-                <CardTitle className="text-sm font-semibold text-muted-foreground flex items-center gap-2">
+                <CardTitle className="text-sm font-medium text-muted-foreground flex items-center gap-2">
                   <Target className="w-4 h-4 text-indigo-400" />
                   Carry Trade Matrix — Interest Rate Differentials
                 </CardTitle>
@@ -1382,7 +1382,7 @@ export default function GlobalMacroPage() {
 
             <Card className="bg-card border-border">
               <CardHeader className="pb-2">
-                <CardTitle className="text-sm font-semibold text-muted-foreground flex items-center gap-2">
+                <CardTitle className="text-sm font-medium text-muted-foreground flex items-center gap-2">
                   <Info className="w-4 h-4 text-indigo-400" />
                   PPP Valuation vs USD
                 </CardTitle>
@@ -1395,7 +1395,7 @@ export default function GlobalMacroPage() {
 
             <Card className="bg-card border-border">
               <CardHeader className="pb-2">
-                <CardTitle className="text-sm font-semibold text-muted-foreground flex items-center gap-2">
+                <CardTitle className="text-sm font-medium text-muted-foreground flex items-center gap-2">
                   <BarChart2 className="w-4 h-4 text-indigo-400" />
                   Real Effective Exchange Rate (REER)
                 </CardTitle>

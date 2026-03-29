@@ -507,7 +507,7 @@ export default function LoanSyndPage() {
               <kpi.icon size={14} className={kpi.color} />
               <span className="text-xs text-foreground/40">{kpi.label}</span>
             </div>
-            <p className="text-lg font-semibold">{kpi.value}</p>
+            <p className="text-lg font-medium">{kpi.value}</p>
             <p className="text-xs text-foreground/40">{kpi.sub}</p>
           </motion.div>
         ))}
@@ -595,25 +595,25 @@ export default function LoanSyndPage() {
                 exit={{ opacity: 0, height: 0 }}
                 className="bg-indigo-500/10 border border-indigo-500/30 rounded-xl p-4 overflow-hidden"
               >
-                <p className="text-sm font-semibold text-indigo-300 mb-2">{selectedLoan.company} — Deal Summary</p>
+                <p className="text-sm font-medium text-indigo-300 mb-2">{selectedLoan.company} — Deal Summary</p>
                 <div className="grid grid-cols-2 md:grid-cols-4 gap-3 text-xs">
                   <div>
                     <p className="text-foreground/40 mb-0.5">All-In Yield</p>
-                    <p className="text-foreground font-mono font-semibold">
+                    <p className="text-foreground font-mono font-medium">
                       {((selectedLoan.spread / 100) + selectedLoan.floor + (100 - selectedLoan.oid) / selectedLoan.maturity).toFixed(2)}%
                     </p>
                   </div>
                   <div>
                     <p className="text-foreground/40 mb-0.5">OID Discount</p>
-                    <p className="text-foreground font-mono font-semibold">{(100 - selectedLoan.oid).toFixed(2)} pts</p>
+                    <p className="text-foreground font-mono font-medium">{(100 - selectedLoan.oid).toFixed(2)} pts</p>
                   </div>
                   <div>
                     <p className="text-foreground/40 mb-0.5">Spread (bps)</p>
-                    <p className="text-amber-300 font-mono font-semibold">{selectedLoan.spread} bps</p>
+                    <p className="text-amber-300 font-mono font-medium">{selectedLoan.spread} bps</p>
                   </div>
                   <div>
                     <p className="text-foreground/40 mb-0.5">Loan Size</p>
-                    <p className="text-foreground font-mono font-semibold">${selectedLoan.size.toFixed(1)}B</p>
+                    <p className="text-foreground font-mono font-medium">${selectedLoan.size.toFixed(1)}B</p>
                   </div>
                 </div>
               </motion.div>
@@ -689,7 +689,7 @@ export default function LoanSyndPage() {
                   },
                 ].map((sec, i) => (
                   <div key={i} className={cn("rounded-lg p-3", sec.bg)}>
-                    <p className={cn("font-semibold mb-1.5", sec.color)}>{sec.tier} Senior Secured</p>
+                    <p className={cn("font-medium mb-1.5", sec.color)}>{sec.tier} Senior Secured</p>
                     <ul className="space-y-1 text-foreground/60">
                       {sec.items.map((item, j) => (
                         <li key={j} className="flex items-start gap-1.5">
@@ -820,7 +820,7 @@ export default function LoanSyndPage() {
                 },
               ].map((col, i) => (
                 <div key={i}>
-                  <p className={cn("font-semibold mb-2", col.color)}>{col.title}</p>
+                  <p className={cn("font-medium mb-2", col.color)}>{col.title}</p>
                   <ul className="space-y-1.5 text-foreground/60">
                     {col.points.map((pt, j) => (
                       <li key={j} className="flex items-start gap-1.5">
@@ -969,7 +969,7 @@ export default function LoanSyndPage() {
               </div>
               <div className="flex items-center gap-3 text-xs">
                 <span className="text-foreground/50">Nexus Technology TLB</span>
-                <span className={cn("font-mono font-semibold", priceChange >= 0 ? "text-emerald-400" : "text-red-400")}>
+                <span className={cn("font-mono font-medium", priceChange >= 0 ? "text-emerald-400" : "text-red-400")}>
                   {priceChange >= 0 ? "+" : ""}{priceChange.toFixed(3)} pts
                 </span>
               </div>
@@ -978,15 +978,15 @@ export default function LoanSyndPage() {
             <div className="grid grid-cols-3 gap-3 mt-3 text-xs">
               <div className="text-center">
                 <p className="text-foreground/40">Current Bid</p>
-                <p className="text-foreground font-mono font-semibold">{(latestPrice - bidAsk / 2).toFixed(3)}</p>
+                <p className="text-foreground font-mono font-medium">{(latestPrice - bidAsk / 2).toFixed(3)}</p>
               </div>
               <div className="text-center">
                 <p className="text-foreground/40">Current Ask</p>
-                <p className="text-foreground font-mono font-semibold">{(latestPrice + bidAsk / 2).toFixed(3)}</p>
+                <p className="text-foreground font-mono font-medium">{(latestPrice + bidAsk / 2).toFixed(3)}</p>
               </div>
               <div className="text-center">
                 <p className="text-foreground/40">Bid/Ask Spread</p>
-                <p className="text-amber-300 font-mono font-semibold">{bidAsk.toFixed(3)} pts</p>
+                <p className="text-amber-300 font-mono font-medium">{bidAsk.toFixed(3)} pts</p>
               </div>
             </div>
           </div>
@@ -1078,7 +1078,7 @@ export default function LoanSyndPage() {
                 ].map((idx, i) => (
                   <div key={i} className="p-3 bg-foreground/5 rounded-lg">
                     <div className="flex justify-between items-center mb-2">
-                      <span className={cn("font-semibold", idx.color)}>{idx.name}</span>
+                      <span className={cn("font-medium", idx.color)}>{idx.name}</span>
                       <Pill color="default">{idx.ticker}</Pill>
                     </div>
                     <ul className="space-y-1 text-foreground/50">
@@ -1110,7 +1110,7 @@ export default function LoanSyndPage() {
               ].map((m, i) => (
                 <div key={i} className="p-3 bg-foreground/5 rounded-lg text-center">
                   <p className="text-foreground/40 mb-1">{m.label}</p>
-                  <p className="text-foreground font-semibold font-mono">{m.val}</p>
+                  <p className="text-foreground font-medium font-mono">{m.val}</p>
                   <p className="text-foreground/30 mt-0.5">{m.sub}</p>
                 </div>
               ))}

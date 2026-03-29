@@ -819,7 +819,7 @@ function REITAnalysis() {
           >
             <div className="flex justify-between items-start mb-3">
               <div>
-                <span className="font-mono font-bold text-xl text-foreground">{sel.ticker}</span>
+                <span className="font-mono font-medium text-xl text-foreground">{sel.ticker}</span>
                 <span className="ml-2 text-muted-foreground">{sel.name}</span>
               </div>
               <span className="rounded px-2 py-0.5 text-xs font-medium" style={{ backgroundColor: (SECTOR_COLORS[sel.sector] ?? "#6b7280") + "30", color: SECTOR_COLORS[sel.sector] ?? "#9ca3af" }}>
@@ -959,7 +959,7 @@ function CommercialRE() {
             <div className="flex items-center justify-between">
               <div className="flex items-center gap-2">
                 <span className="text-xl">{s.icon}</span>
-                <span className="font-semibold text-foreground text-sm">{s.type}</span>
+                <span className="font-medium text-foreground text-sm">{s.type}</span>
               </div>
               {s.trend === "up" ? <TrendingUp className="w-4 h-4 text-emerald-400" /> : s.trend === "down" ? <TrendingDown className="w-4 h-4 text-rose-400" /> : <ArrowRight className="w-4 h-4 text-amber-400" />}
             </div>
@@ -1174,7 +1174,7 @@ function DevelopmentTab() {
           <div>
             <div className="flex justify-between text-xs text-muted-foreground mb-1">
               <span>Total Development Cost</span>
-              <span className="text-foreground font-semibold">{fmtM(totalCost)}</span>
+              <span className="text-foreground font-medium">{fmtM(totalCost)}</span>
             </div>
             <svg viewBox={`0 0 ${BAR_W} ${BAR_H + 20}`} className="w-full">
               {costBreakdown.map((c) => {
@@ -1266,7 +1266,7 @@ function DevelopmentTab() {
                     <td className="px-3 py-2 text-right text-muted-foreground">{fmtUSD(r.cost)}</td>
                     <td className="px-3 py-2 text-right text-emerald-400">{fmtUSD(r.addedVal)}</td>
                     <td className="px-3 py-2 text-right">
-                      <span className={r.roi >= 100 ? "text-emerald-400 font-semibold" : r.roi >= 75 ? "text-amber-400" : "text-rose-400"}>
+                      <span className={r.roi >= 100 ? "text-emerald-400 font-medium" : r.roi >= 75 ? "text-amber-400" : "text-rose-400"}>
                         {r.roi}%
                       </span>
                     </td>
@@ -1289,7 +1289,7 @@ function DevelopmentTab() {
           {irrFlows.cashFlows.map((cf, i) => (
             <div key={i} className="text-center">
               <div className="text-xs text-muted-foreground mb-1">Yr {i}</div>
-              <div className={cn("text-sm font-semibold", cf < 0 ? "text-rose-400" : "text-emerald-400")}>{fmtM(cf)}</div>
+              <div className={cn("text-sm font-medium", cf < 0 ? "text-rose-400" : "text-emerald-400")}>{fmtM(cf)}</div>
               <div className="text-xs text-muted-foreground">{i === 0 ? "Equity In" : i === 5 ? "Exit + CF" : "Cash Flow"}</div>
             </div>
           ))}
@@ -1420,7 +1420,7 @@ function PortfolioStrategy() {
           <div className="mt-2 space-y-1">
             {STRATEGIES.map((s) => (
               <div key={s.strategy} className="text-xs flex gap-2">
-                <span className="font-semibold w-24 shrink-0" style={{ color: s.color }}>{s.strategy}</span>
+                <span className="font-medium w-24 shrink-0" style={{ color: s.color }}>{s.strategy}</span>
                 <span className="text-muted-foreground">{s.description}</span>
               </div>
             ))}
@@ -1510,7 +1510,7 @@ function PortfolioStrategy() {
             { rule: "Tax Deferred", desc: "Not tax-free — basis carries over to new property" },
           ].map(({ rule, desc }) => (
             <div key={rule} className="flex gap-3 text-xs">
-              <span className="font-semibold text-primary w-28 shrink-0">{rule}</span>
+              <span className="font-medium text-primary w-28 shrink-0">{rule}</span>
               <span className="text-muted-foreground">{desc}</span>
             </div>
           ))}
@@ -1523,7 +1523,7 @@ function PortfolioStrategy() {
             { pct: "10+ Markets", risk: "Well diversified — national economic sensitivity dominates" },
           ].map(({ pct, risk }) => (
             <div key={pct} className="flex gap-3 text-xs">
-              <span className="font-semibold text-amber-400 w-24 shrink-0">{pct}</span>
+              <span className="font-medium text-amber-400 w-24 shrink-0">{pct}</span>
               <span className="text-muted-foreground">{risk}</span>
             </div>
           ))}

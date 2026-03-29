@@ -695,7 +695,7 @@ function PurchaseModal({
           </button>
           <button
             onClick={() => onConfirm(tokens)}
-            className="flex-1 rounded-md bg-primary py-1.5 text-xs font-semibold text-primary-foreground hover:bg-primary/90 transition-colors"
+            className="flex-1 rounded-md bg-primary py-1.5 text-xs font-medium text-primary-foreground hover:bg-primary/90 transition-colors"
           >
             Add to Portfolio
           </button>
@@ -773,7 +773,7 @@ function PortfolioTab({
         </p>
         <button
           onClick={onOpenPurchase}
-          className="rounded-md bg-primary px-4 py-1.5 text-xs font-semibold text-primary-foreground hover:bg-primary/90 transition-colors"
+          className="rounded-md bg-primary px-4 py-1.5 text-xs font-medium text-primary-foreground hover:bg-primary/90 transition-colors"
         >
           Browse Markets
         </button>
@@ -894,7 +894,7 @@ function SummaryChip({
   return (
     <div className="rounded-lg border bg-card p-3 space-y-1">
       <p className="text-xs text-muted-foreground">{label}</p>
-      <p className={cn("text-sm font-semibold font-mono", className)}>{value}</p>
+      <p className={cn("text-sm font-medium font-mono", className)}>{value}</p>
     </div>
   );
 }
@@ -971,7 +971,7 @@ function YieldCalculatorTab() {
         <div className="space-y-2">
           <div className="flex justify-between text-xs">
             <label className="text-muted-foreground">Investment Amount</label>
-            <span className="font-mono font-semibold">
+            <span className="font-mono font-medium">
               ${investmentAmount.toLocaleString()}
             </span>
           </div>
@@ -1226,7 +1226,7 @@ function EducationTab() {
     <div className="flex flex-col gap-6 max-w-3xl">
       {/* Explainer */}
       <div className="rounded-lg border bg-card p-5 space-y-3">
-        <h3 className="text-sm font-semibold">What is RWA Tokenization?</h3>
+        <h3 className="text-sm font-medium">What is RWA Tokenization?</h3>
         <p className="text-xs text-muted-foreground leading-relaxed">
           Real World Asset (RWA) tokenization is the process of representing
           ownership rights in physical or off-chain financial assets as digital
@@ -1251,7 +1251,7 @@ function EducationTab() {
 
       {/* Benefits */}
       <div className="rounded-lg border bg-card p-5 space-y-3">
-        <h3 className="text-sm font-semibold">Key Benefits</h3>
+        <h3 className="text-sm font-medium">Key Benefits</h3>
         <div className="space-y-3">
           {BENEFITS.map((b) => (
             <div key={b.title} className="flex gap-3">
@@ -1271,7 +1271,7 @@ function EducationTab() {
 
       {/* Risks */}
       <div className="rounded-lg border bg-card p-5 space-y-3">
-        <h3 className="text-sm font-semibold">Key Risks</h3>
+        <h3 className="text-sm font-medium">Key Risks</h3>
         <div className="space-y-3">
           {RISKS.map((r) => (
             <div key={r.title} className="flex gap-3">
@@ -1293,12 +1293,12 @@ function EducationTab() {
       <div className="rounded-lg border bg-card p-5 space-y-3">
         <div className="flex items-center gap-1.5">
           <Info className="h-4 w-4 text-muted-foreground" />
-          <h3 className="text-sm font-semibold">Key Metrics Glossary</h3>
+          <h3 className="text-sm font-medium">Key Metrics Glossary</h3>
         </div>
         <div className="space-y-2">
           {GLOSSARY.map((g) => (
             <div key={g.term} className="rounded-md bg-muted/30 px-3 py-2 space-y-0.5">
-              <p className="text-xs font-semibold text-primary">{g.term}</p>
+              <p className="text-xs font-medium text-primary">{g.term}</p>
               <p className="text-[11px] text-muted-foreground leading-relaxed">
                 {g.definition}
               </p>
@@ -1309,12 +1309,12 @@ function EducationTab() {
 
       {/* Real examples */}
       <div className="rounded-lg border bg-card p-5 space-y-3">
-        <h3 className="text-sm font-semibold">Real-World Examples</h3>
+        <h3 className="text-sm font-medium">Real-World Examples</h3>
         <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
           {REAL_EXAMPLES.map((ex) => (
             <div key={ex.name} className="rounded-md border p-3 space-y-1.5">
               <div className="flex items-start justify-between gap-2">
-                <p className="text-xs font-semibold leading-tight">{ex.name}</p>
+                <p className="text-xs font-medium leading-tight">{ex.name}</p>
                 <TypeBadge type={ex.type as AssetType} />
               </div>
               <p className="text-[11px] text-muted-foreground leading-relaxed">
@@ -1382,10 +1382,10 @@ export default function TokenizedPage() {
   return (
     <div className="flex flex-col gap-0 h-full">
       {/* Header */}
-      <div className="border-b border-border px-4 py-4">
+      <div className="border-b border-border px-6 py-6 border-l-4 border-l-primary">
         <div className="flex items-center justify-between">
           <div>
-            <h1 className="text-lg font-semibold">Tokenized Real World Assets</h1>
+            <h1 className="text-lg font-medium">Tokenized Real World Assets</h1>
             <p className="text-[11px] text-muted-foreground mt-0.5">
               Simulate fractional ownership of real-world assets
             </p>

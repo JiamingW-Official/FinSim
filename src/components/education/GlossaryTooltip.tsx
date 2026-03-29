@@ -63,7 +63,7 @@ export function GlossaryTooltip({ term, children }: GlossaryTooltipProps) {
       <TooltipContent
         side="top"
         sideOffset={4}
-        className="max-w-[300px] space-y-1.5 bg-card text-card-foreground border border-border p-3"
+        className="max-w-[300px] space-y-1.5 bg-card text-card-foreground border border-border/40 p-3"
       >
         {/* Header */}
         <div className="flex items-center gap-2">

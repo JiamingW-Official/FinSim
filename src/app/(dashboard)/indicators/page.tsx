@@ -872,7 +872,7 @@ function InflationTab() {
               className="flex items-center justify-center"
             >
               {c.pct >= 10 && (
-                <span className="text-foreground text-xs font-bold">{c.pct}%</span>
+                <span className="text-foreground text-xs font-medium">{c.pct}%</span>
               )}
             </div>
           ))}
@@ -913,10 +913,10 @@ function InflationTab() {
             Fed 2% target
           </div>
           <div className="flex items-center gap-1.5 text-xs text-muted-foreground">
-            Peak: <span className="text-red-400 font-semibold ml-1">9.1% (Jun 2022)</span>
+            Peak: <span className="text-red-400 font-medium ml-1">9.1% (Jun 2022)</span>
           </div>
           <div className="flex items-center gap-1.5 text-xs text-muted-foreground">
-            Current: <span className="text-indigo-400 font-semibold ml-1">3.2% (Mar 2026)</span>
+            Current: <span className="text-indigo-400 font-medium ml-1">3.2% (Mar 2026)</span>
           </div>
         </div>
       </SectionCard>
@@ -929,7 +929,7 @@ function InflationTab() {
               <div key={b.label} className="bg-muted/50 rounded-xl p-3.5">
                 <div className="flex justify-between items-baseline mb-2">
                   <span className="text-sm text-muted-foreground">{b.label}</span>
-                  <span className="text-xl font-bold text-indigo-300">{b.val}%</span>
+                  <span className="text-xl font-medium text-indigo-300">{b.val}%</span>
                 </div>
                 <div className="w-full bg-muted rounded-full h-1.5 relative">
                   <div className="absolute left-0 h-1.5 bg-indigo-500 rounded-full" style={{ width: `${(b.val / 5) * 100}%` }} />
@@ -949,24 +949,24 @@ function InflationTab() {
             <div className="flex items-center gap-3 text-sm">
               <div className="text-center">
                 <p className="text-muted-foreground text-xs">Fed Funds</p>
-                <p className="text-lg font-bold text-amber-300">{FED_RATE}%</p>
+                <p className="text-lg font-medium text-amber-300">{FED_RATE}%</p>
               </div>
               <span className="text-muted-foreground text-xl">−</span>
               <div className="text-center">
                 <p className="text-muted-foreground text-xs">10Y Breakeven</p>
-                <p className="text-lg font-bold text-indigo-300">{BREAKEVEN_10Y}%</p>
+                <p className="text-lg font-medium text-indigo-300">{BREAKEVEN_10Y}%</p>
               </div>
               <span className="text-muted-foreground text-xl">=</span>
               <div className="text-center bg-emerald-500/10 rounded-lg p-2">
                 <p className="text-muted-foreground text-xs">Real Rate</p>
-                <p className="text-lg font-bold text-emerald-300">{(FED_RATE - BREAKEVEN_10Y).toFixed(2)}%</p>
+                <p className="text-lg font-medium text-emerald-300">{(FED_RATE - BREAKEVEN_10Y).toFixed(2)}%</p>
               </div>
             </div>
           </div>
           <div className="space-y-1.5 text-xs text-muted-foreground">
-            <div className="flex items-start gap-2"><span className="text-emerald-400 font-bold mt-0.5">▸</span> Positive real rates restrict borrowing and reduce inflation</div>
-            <div className="flex items-start gap-2"><span className="text-red-400 font-bold mt-0.5">▸</span> Negative real rates stimulate economy but risk inflation persistence</div>
-            <div className="flex items-start gap-2"><span className="text-indigo-400 font-bold mt-0.5">▸</span> Current real rate is historically high — restrictive territory</div>
+            <div className="flex items-start gap-2"><span className="text-emerald-400 font-medium mt-0.5">▸</span> Positive real rates restrict borrowing and reduce inflation</div>
+            <div className="flex items-start gap-2"><span className="text-red-400 font-medium mt-0.5">▸</span> Negative real rates stimulate economy but risk inflation persistence</div>
+            <div className="flex items-start gap-2"><span className="text-indigo-400 font-medium mt-0.5">▸</span> Current real rate is historically high — restrictive territory</div>
           </div>
         </SectionCard>
       </div>
@@ -1002,7 +1002,7 @@ function LaborTab() {
           />
         </div>
         <div className="flex justify-between text-xs text-muted-foreground mt-2">
-          <span>Average: <span className="text-muted-foreground font-semibold">{Math.round(PAYROLLS_6M.reduce((a, b) => a + b) / PAYROLLS_6M.length)}K</span></span>
+          <span>Average: <span className="text-muted-foreground font-medium">{Math.round(PAYROLLS_6M.reduce((a, b) => a + b) / PAYROLLS_6M.length)}K</span></span>
           <span>Break-even: ~100K–120K (keeps unemployment stable)</span>
         </div>
       </SectionCard>
@@ -1019,7 +1019,7 @@ function LaborTab() {
               <div key={w.label} className="bg-muted/50 rounded-lg p-3">
                 <div className="flex justify-between text-sm mb-1.5">
                   <span className="text-muted-foreground text-xs">{w.label}</span>
-                  <span className="font-bold font-mono" style={{ color: w.color }}>{w.val}%</span>
+                  <span className="font-medium font-mono" style={{ color: w.color }}>{w.val}%</span>
                 </div>
                 <div className="w-full bg-muted rounded-full h-1.5 relative">
                   <div className="absolute left-0 h-1.5 rounded-full" style={{ width: `${(w.val / 8) * 100}%`, background: w.color }} />
@@ -1037,7 +1037,7 @@ function LaborTab() {
             : "bg-emerald-500/10 border-emerald-500/30")}>
             <div className="flex items-center gap-2 mb-1">
               <AlertTriangle className={cn("w-4 h-4", sahmTriggered ? "text-red-400" : "text-emerald-400")} />
-              <span className={cn("text-sm font-semibold", sahmTriggered ? "text-red-300" : "text-emerald-300")}>
+              <span className={cn("text-sm font-medium", sahmTriggered ? "text-red-300" : "text-emerald-300")}>
                 {sahmTriggered ? "RECESSION SIGNAL TRIGGERED" : "No Recession Signal"}
               </span>
             </div>
@@ -1061,7 +1061,7 @@ function LaborTab() {
             return (
               <div key={j.label} className="bg-muted/60 border border-border/50 rounded-xl p-3">
                 <p className="text-xs text-muted-foreground mb-1">{j.label}</p>
-                <p className="text-lg font-bold text-foreground">{j.value}{j.unit}</p>
+                <p className="text-lg font-medium text-foreground">{j.value}{j.unit}</p>
                 <div className="mt-2">
                   <Sparkline data={j.series} color="auto" W={100} H={32} />
                 </div>
@@ -1089,7 +1089,7 @@ function LaborTab() {
           />
         </div>
         <div className="flex gap-4 mt-2 flex-wrap text-xs text-muted-foreground">
-          <span><span className="text-amber-400 font-semibold">● Latest point</span> — current labor market position</span>
+          <span><span className="text-amber-400 font-medium">● Latest point</span> — current labor market position</span>
           <span>Curve shifting right = structural mismatch (skills gap, geographic barriers)</span>
           <span>Tight labor market: low unemployment + high openings (top-left)</span>
         </div>
@@ -1153,7 +1153,7 @@ function HousingTab() {
             <div key={label} className={cn("rounded-xl p-3.5 border",
               warn ? "bg-red-500/10 border-red-500/20" : "bg-muted/50 border-border/50")}>
               <p className="text-xs text-muted-foreground">{label}</p>
-              <p className={cn("text-xl font-bold mt-1", warn ? "text-red-300" : "text-foreground")}>{val}</p>
+              <p className={cn("text-xl font-medium mt-1", warn ? "text-red-300" : "text-foreground")}>{val}</p>
             </div>
           ))}
         </div>
@@ -1169,7 +1169,7 @@ function HousingTab() {
             {CREDIT_STATS.map(c => (
               <div key={c.label} className="flex items-center justify-between bg-muted/50 rounded-lg px-3 py-2.5">
                 <span className="text-sm text-muted-foreground">{c.label}</span>
-                <span className="font-mono font-bold text-sm" style={{ color: c.color }}>{c.value}</span>
+                <span className="font-mono font-medium text-sm" style={{ color: c.color }}>{c.value}</span>
               </div>
             ))}
           </div>
@@ -1332,7 +1332,7 @@ function GlobalTab() {
             ].map(({ label, val, pos }) => (
               <div key={label} className="flex justify-between py-1.5 border-b border-border/50">
                 <span className="text-xs text-muted-foreground">{label}</span>
-                <span className={cn("text-xs font-semibold font-mono", pos ? "text-emerald-400" : "text-red-400")}>{val}</span>
+                <span className={cn("text-xs font-medium font-mono", pos ? "text-emerald-400" : "text-red-400")}>{val}</span>
               </div>
             ))}
           </div>
@@ -1345,7 +1345,7 @@ function GlobalTab() {
           {CYCLE_REGIONS.map(r => (
             <div key={r.region} className="bg-muted/50 rounded-xl p-3 border border-border/50">
               <Globe className="w-4 h-4 mb-2" style={{ color: r.color }} />
-              <p className="text-sm font-semibold text-foreground">{r.region}</p>
+              <p className="text-sm font-medium text-foreground">{r.region}</p>
               <Badge className="mt-1.5 text-xs" style={{
                 background: `${r.color}20`,
                 color: r.color,
@@ -1415,8 +1415,8 @@ export default function EconomicIndicatorsPage() {
             </div>
           </div>
 
-          {/* Key macro summary bar */}
-          <div className="flex flex-wrap gap-4 mt-4">
+          {/* Key macro summary bar — Hero */}
+          <div className="flex flex-wrap gap-4 mt-4 rounded-xl border border-border bg-card border-l-4 border-l-primary p-6">
             {[
               { label: "GDP Growth",   val: "2.4%",  color: "text-emerald-400" },
               { label: "CPI",         val: "3.2%",  color: "text-amber-400"   },
@@ -1427,7 +1427,7 @@ export default function EconomicIndicatorsPage() {
             ].map(({ label, val, color }) => (
               <div key={label} className="flex items-center gap-1.5 text-sm">
                 <span className="text-muted-foreground">{label}:</span>
-                <span className={cn("font-semibold font-mono", color)}>{val}</span>
+                <span className={cn("font-medium font-mono", color)}>{val}</span>
               </div>
             ))}
           </div>

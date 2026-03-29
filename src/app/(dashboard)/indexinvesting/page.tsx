@@ -792,7 +792,7 @@ function ThreeFundBuilder() {
           <div>
             <div className="flex justify-between mb-1">
               <span className="text-sm font-medium text-amber-400">Bonds (BND)</span>
-              <span className="text-sm font-bold text-foreground">{bondsAlloc}%</span>
+              <span className="text-sm font-medium text-foreground">{bondsAlloc}%</span>
             </div>
             <div className="h-4 rounded bg-muted overflow-hidden">
               <div
@@ -819,15 +819,15 @@ function ThreeFundBuilder() {
           </svg>
           <div className="grid grid-cols-3 gap-2 w-full">
             <div className="bg-muted rounded-lg p-3 text-center">
-              <div className="text-lg font-bold text-green-400">{expectedReturn.toFixed(1)}%</div>
+              <div className="text-lg font-medium text-green-400">{expectedReturn.toFixed(1)}%</div>
               <div className="text-xs text-muted-foreground">Exp. Return</div>
             </div>
             <div className="bg-muted rounded-lg p-3 text-center">
-              <div className="text-lg font-bold text-amber-400">{expectedVol.toFixed(1)}%</div>
+              <div className="text-lg font-medium text-amber-400">{expectedVol.toFixed(1)}%</div>
               <div className="text-xs text-muted-foreground">Volatility</div>
             </div>
             <div className="bg-muted rounded-lg p-3 text-center">
-              <div className="text-lg font-bold text-indigo-400">{sharpe.toFixed(2)}</div>
+              <div className="text-lg font-medium text-indigo-400">{sharpe.toFixed(2)}</div>
               <div className="text-xs text-muted-foreground">Sharpe</div>
             </div>
           </div>
@@ -864,7 +864,7 @@ function ThreeFundBuilder() {
         ].map((f) => (
           <div key={f.ticker} className="bg-muted/60 rounded-lg p-3 border border-border">
             <div className="flex items-center justify-between mb-1">
-              <span className="font-bold text-sm" style={{ color: f.color }}>
+              <span className="font-medium text-sm" style={{ color: f.color }}>
                 {f.ticker}
               </span>
               <Badge variant="outline" className="text-xs">
@@ -873,7 +873,7 @@ function ThreeFundBuilder() {
             </div>
             <div className="text-xs text-muted-foreground font-medium">{f.name}</div>
             <div className="text-xs text-muted-foreground mt-1">{f.desc}</div>
-            <div className="mt-2 text-base font-bold text-foreground">{f.pct}%</div>
+            <div className="mt-2 text-base font-medium text-foreground">{f.pct}%</div>
           </div>
         ))}
       </div>
@@ -911,7 +911,7 @@ function ETFTable() {
       <div className="flex items-center gap-3">
         <label className="text-sm text-muted-foreground">Initial Investment</label>
         <div className="flex items-center gap-2 flex-1 max-w-xs">
-          <span className="text-green-400 font-bold">${initialInvest.toLocaleString()}</span>
+          <span className="text-green-400 font-medium">${initialInvest.toLocaleString()}</span>
           <Slider
             min={1000}
             max={100000}
@@ -938,7 +938,7 @@ function ETFTable() {
             {netCostRows.map((etf, i) => (
               <tr key={etf.ticker} className={cn("border-b border-border/50", i % 2 === 0 && "bg-muted/20")}>
                 <td className="py-2.5 pr-3">
-                  <span className="font-bold" style={{ color: etf.color }}>
+                  <span className="font-medium" style={{ color: etf.color }}>
                     {etf.ticker}
                   </span>
                   <div className="text-xs text-muted-foreground">{etf.name}</div>
@@ -999,7 +999,7 @@ function ActivePassiveSection() {
       {/* Fee math */}
       <div className="flex items-center gap-3">
         <label className="text-sm text-muted-foreground whitespace-nowrap">Holding Period</label>
-        <span className="text-indigo-400 font-bold w-12">{horizon}Y</span>
+        <span className="text-indigo-400 font-medium w-12">{horizon}Y</span>
         <Slider
           min={1}
           max={40}
@@ -1046,7 +1046,7 @@ function ActivePassiveSection() {
               {stat.icon}
               {stat.label}
             </div>
-            <div className={cn("text-xl font-bold", stat.color)}>{stat.value}</div>
+            <div className={cn("text-xl font-medium", stat.color)}>{stat.value}</div>
             <div className="text-xs text-muted-foreground">{stat.sub}</div>
           </div>
         ))}
@@ -1208,7 +1208,7 @@ function FactorSection() {
                 )}
               >
                 <td className="py-2.5 pr-3">
-                  <span className="font-bold" style={{ color: etf.color }}>
+                  <span className="font-medium" style={{ color: etf.color }}>
                     {etf.ticker}
                   </span>
                   <div className="text-xs text-muted-foreground">{etf.name}</div>
@@ -1333,8 +1333,8 @@ export default function IndexInvestingPage() {
         </p>
       </motion.div>
 
-      {/* Quick stats */}
-      <div className="grid grid-cols-2 md:grid-cols-4 gap-3 mb-6">
+      {/* Quick stats — Hero */}
+      <div className="grid grid-cols-2 md:grid-cols-4 gap-3 mb-6 rounded-xl border border-border bg-card border-l-4 border-l-primary p-6">
         {[
           { label: "S&P 500 YTD", value: "+8.4%", color: "text-green-400", icon: <TrendingUp className="w-4 h-4" /> },
           { label: "Avg ETF Fee", value: "0.07%", color: "text-amber-400", icon: <DollarSign className="w-4 h-4" /> },
@@ -1352,7 +1352,7 @@ export default function IndexInvestingPage() {
               {stat.icon}
               {stat.label}
             </div>
-            <div className={cn("text-xl font-bold", stat.color)}>{stat.value}</div>
+            <div className={cn("text-xl font-medium", stat.color)}>{stat.value}</div>
           </motion.div>
         ))}
       </div>
@@ -1411,7 +1411,7 @@ export default function IndexInvestingPage() {
                         )}
                       >
                         <td className="py-2.5 pr-3">
-                          <span className="font-bold" style={{ color: idx2.color }}>
+                          <span className="font-medium" style={{ color: idx2.color }}>
                             {idx2.name}
                           </span>
                           <div className="text-xs text-muted-foreground">{idx2.ticker}</div>
@@ -1439,7 +1439,7 @@ export default function IndexInvestingPage() {
             <Card className="bg-card border-border">
               <CardHeader className="pb-2">
                 <CardTitle className="text-base flex items-center gap-2">
-                  <span style={{ color: idx.color }} className="font-bold">
+                  <span style={{ color: idx.color }} className="font-medium">
                     {idx.name}
                   </span>
                   — Size Breakdown
@@ -1450,11 +1450,11 @@ export default function IndexInvestingPage() {
                 <div className="mt-3 grid grid-cols-2 gap-2">
                   <div className="bg-muted rounded-lg p-2">
                     <div className="text-xs text-muted-foreground">Annual Return (hist.)</div>
-                    <div className="text-sm font-bold text-green-400">+{idx.annualReturn}%</div>
+                    <div className="text-sm font-medium text-green-400">+{idx.annualReturn}%</div>
                   </div>
                   <div className="bg-muted rounded-lg p-2">
                     <div className="text-xs text-muted-foreground">Volatility (ann.)</div>
-                    <div className="text-sm font-bold text-amber-400">{idx.volatility}%</div>
+                    <div className="text-sm font-medium text-amber-400">{idx.volatility}%</div>
                   </div>
                 </div>
               </CardContent>
@@ -1605,7 +1605,7 @@ export default function IndexInvestingPage() {
             <CardContent className="space-y-4">
               <div className="flex items-center gap-3">
                 <label className="text-sm text-muted-foreground whitespace-nowrap">Your Age</label>
-                <span className="text-indigo-400 font-bold w-10">{age}</span>
+                <span className="text-indigo-400 font-medium w-10">{age}</span>
                 <Slider
                   min={20}
                   max={75}

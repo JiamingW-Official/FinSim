@@ -455,7 +455,7 @@ export function ComparisonChart({ defaultTicker }: { defaultTicker: string }) {
                     value={addInput}
                     onChange={(e) => setAddInput(e.target.value)}
                     onKeyDown={(e) => { if (e.key === "Enter") handleAddTicker(); if (e.key === "Escape") { setAddingTicker(false); setAddInput(""); } }}
-                    className="h-5 rounded border border-border bg-background px-1 text-xs text-foreground"
+                    className="h-5 rounded border border-border/40 bg-background px-1 text-xs text-foreground"
                   >
                     <option value="">Pick ticker</option>
                     {availableToAdd.map((t) => (
@@ -465,13 +465,13 @@ export function ComparisonChart({ defaultTicker }: { defaultTicker: string }) {
                   <button
                     onClick={handleAddTicker}
                     disabled={!addInput}
-                    className="h-5 rounded border border-border bg-primary/20 px-1.5 text-xs text-primary hover:bg-primary/30 disabled:opacity-40"
+                    className="h-5 rounded border border-border/40 bg-primary/20 px-1.5 text-xs text-primary hover:bg-primary/30 disabled:opacity-40"
                   >
                     Add
                   </button>
                   <button
                     onClick={() => { setAddingTicker(false); setAddInput(""); }}
-                    className="h-5 rounded border border-border bg-muted/30 px-1.5 text-xs text-muted-foreground hover:bg-muted/50"
+                    className="h-5 rounded border border-border/40 bg-muted/30 px-1.5 text-xs text-muted-foreground hover:bg-muted/50"
                   >
                     <X size={9} />
                   </button>
@@ -479,7 +479,7 @@ export function ComparisonChart({ defaultTicker }: { defaultTicker: string }) {
               ) : (
                 <button
                   onClick={() => setAddingTicker(true)}
-                  className="inline-flex items-center gap-0.5 rounded-full border border-dashed border-border px-2 py-0.5 text-xs text-muted-foreground hover:border-primary hover:text-primary transition-colors"
+                  className="inline-flex items-center gap-0.5 rounded-full border border-dashed border-border/40 px-2 py-0.5 text-xs text-muted-foreground hover:border-primary hover:text-primary transition-colors"
                 >
                   <Plus size={9} />
                   Add
@@ -493,7 +493,7 @@ export function ComparisonChart({ defaultTicker }: { defaultTicker: string }) {
         <div className="flex-1" />
 
         {/* Time range buttons */}
-        <div className="flex items-center gap-0.5 rounded border border-border overflow-hidden">
+        <div className="flex items-center gap-0.5 rounded border border-border/40 overflow-hidden">
           {TIME_RANGES.map((r) => (
             <button
               key={r.label}

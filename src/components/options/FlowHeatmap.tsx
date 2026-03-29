@@ -283,7 +283,7 @@ export function FlowHeatmap({ items }: FlowHeatmapProps) {
       {/* Tooltip */}
       {tooltip && (
         <div
-          className="pointer-events-none absolute z-20 rounded-md border border-border bg-popover p-2 shadow-sm"
+          className="pointer-events-none absolute z-20 rounded-md border border-border/40 bg-popover p-2 shadow-sm"
           style={{
             left: Math.min(tooltip.x + 8, (svgWidth * 0.75)),
             top: tooltip.y - 60,

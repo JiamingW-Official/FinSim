@@ -427,12 +427,12 @@ export default function InsuranceLinkedPage() {
           </div>
         </motion.div>
 
-        {/* Key Metrics */}
+        {/* Key Metrics — Hero */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.4, delay: 0.08 }}
-          className="grid grid-cols-2 md:grid-cols-4 gap-4"
+          className="grid grid-cols-2 md:grid-cols-4 gap-4 rounded-xl border border-border bg-card border-l-4 border-l-primary p-6"
         >
           <MetricCard
             label="ILS Market Size"
@@ -554,7 +554,7 @@ export default function InsuranceLinkedPage() {
                     <CardContent className="pt-4">
                       <div className="flex items-center gap-2 mb-2">
                         <Icon className={cn("w-4 h-4", color)} />
-                        <span className="text-sm font-semibold text-foreground">{title}</span>
+                        <span className="text-sm font-medium text-foreground">{title}</span>
                       </div>
                       <p className="text-xs text-muted-foreground leading-relaxed">{body}</p>
                     </CardContent>
@@ -568,7 +568,7 @@ export default function InsuranceLinkedPage() {
               {/* Risk-Return Scatter */}
               <Card className="bg-card border-border">
                 <CardHeader className="pb-2">
-                  <CardTitle className="text-sm font-semibold flex items-center gap-2">
+                  <CardTitle className="text-sm font-medium flex items-center gap-2">
                     <Activity className="w-4 h-4 text-primary" />
                     Risk-Return: ILS vs Other Asset Classes
                   </CardTitle>
@@ -596,7 +596,7 @@ export default function InsuranceLinkedPage() {
               {/* Fund Table */}
               <Card className="bg-card border-border">
                 <CardHeader className="pb-2">
-                  <CardTitle className="text-sm font-semibold flex items-center gap-2">
+                  <CardTitle className="text-sm font-medium flex items-center gap-2">
                     <Layers className="w-4 h-4 text-primary" />
                     ILS Fund Comparison
                   </CardTitle>
@@ -619,7 +619,7 @@ export default function InsuranceLinkedPage() {
                               <Badge variant="outline" className="text-xs">{f.strategy}</Badge>
                             </td>
                             <td className="px-4 py-2.5 text-foreground">{f.aum.toLocaleString()}</td>
-                            <td className="px-4 py-2.5 text-green-400 font-semibold">+{f.ytdReturn.toFixed(1)}%</td>
+                            <td className="px-4 py-2.5 text-green-400 font-medium">+{f.ytdReturn.toFixed(1)}%</td>
                             <td className="px-4 py-2.5 text-primary">{f.sharpe.toFixed(2)}</td>
                             <td className="px-4 py-2.5 text-red-400">{f.maxDrawdown.toFixed(1)}%</td>
                             <td className="px-4 py-2.5 text-amber-400">{f.expLoss.toFixed(1)}%</td>
@@ -637,7 +637,7 @@ export default function InsuranceLinkedPage() {
                   <div className="flex gap-3">
                     <Info className="w-4 h-4 text-primary mt-0.5 shrink-0" />
                     <div>
-                      <p className="text-sm font-semibold text-primary mb-1">Investor Access</p>
+                      <p className="text-sm font-medium text-primary mb-1">Investor Access</p>
                       <p className="text-xs text-muted-foreground leading-relaxed">
                         ILS funds are primarily available to institutional and qualified investors. Minimum investments typically range from $1M (fund of funds) to $10M+ (direct sidecars). Cat bond ETFs (e.g., SRSKX, JHILS) provide retail exposure but with higher fees and broader mandates.
                       </p>
@@ -652,7 +652,7 @@ export default function InsuranceLinkedPage() {
               {/* Loss histogram */}
               <Card className="bg-card border-border">
                 <CardHeader className="pb-2">
-                  <CardTitle className="text-sm font-semibold flex items-center gap-2">
+                  <CardTitle className="text-sm font-medium flex items-center gap-2">
                     <Activity className="w-4 h-4 text-amber-400" />
                     Monte Carlo Loss Distribution (10,000 Simulations)
                   </CardTitle>
@@ -668,7 +668,7 @@ export default function InsuranceLinkedPage() {
                     ].map(({ label, value, color }) => (
                       <div key={label} className="bg-muted/30 rounded-lg p-3 text-center border border-border/50">
                         <div className="text-xs text-muted-foreground mb-0.5">{label}</div>
-                        <div className={cn("text-base font-bold", color)}>{value}</div>
+                        <div className={cn("text-base font-medium", color)}>{value}</div>
                       </div>
                     ))}
                   </div>
@@ -707,7 +707,7 @@ export default function InsuranceLinkedPage() {
                     <CardContent className="pt-4">
                       <div className="flex items-center gap-2 mb-3">
                         <Icon className={cn("w-4 h-4", color)} />
-                        <span className="text-sm font-semibold text-foreground">{title}</span>
+                        <span className="text-sm font-medium text-foreground">{title}</span>
                       </div>
                       <ul className="space-y-1.5">
                         {items.map((item) => (
@@ -725,7 +725,7 @@ export default function InsuranceLinkedPage() {
               {/* Correlation matrix mini */}
               <Card className="bg-card border-border">
                 <CardHeader className="pb-2">
-                  <CardTitle className="text-sm font-semibold">Correlation Matrix: ILS vs Major Asset Classes</CardTitle>
+                  <CardTitle className="text-sm font-medium">Correlation Matrix: ILS vs Major Asset Classes</CardTitle>
                   <p className="text-xs text-muted-foreground">5-year monthly return correlations</p>
                 </CardHeader>
                 <CardContent>
@@ -789,7 +789,7 @@ export default function InsuranceLinkedPage() {
               {/* Events table */}
               <Card className="bg-card border-border">
                 <CardHeader className="pb-2">
-                  <CardTitle className="text-sm font-semibold flex items-center gap-2">
+                  <CardTitle className="text-sm font-medium flex items-center gap-2">
                     <AlertTriangle className="w-4 h-4 text-amber-400" />
                     Major Nat-Cat Events and ILS Impact
                   </CardTitle>
@@ -816,7 +816,7 @@ export default function InsuranceLinkedPage() {
                               <td className="px-4 py-2.5 text-muted-foreground">{e.year}</td>
                               <td className="px-4 py-2.5 font-medium text-foreground whitespace-nowrap">{e.event}</td>
                               <td className="px-4 py-2.5 text-muted-foreground">{e.region}</td>
-                              <td className="px-4 py-2.5 text-amber-400 font-semibold">${e.totalLoss}B</td>
+                              <td className="px-4 py-2.5 text-amber-400 font-medium">${e.totalLoss}B</td>
                               <td className="px-4 py-2.5 text-red-400">${e.ilsLoss.toFixed(1)}B</td>
                               <td className="px-4 py-2.5">
                                 <PerilBadge peril={e.peril as CatBond["peril"]} />
@@ -839,7 +839,7 @@ export default function InsuranceLinkedPage() {
                   <CardContent className="pt-4">
                     <div className="flex items-center gap-2 mb-2">
                       <AlertTriangle className="w-4 h-4 text-amber-400" />
-                      <span className="text-sm font-semibold text-amber-400">2017 Season: Stress Test</span>
+                      <span className="text-sm font-medium text-amber-400">2017 Season: Stress Test</span>
                     </div>
                     <p className="text-xs text-muted-foreground leading-relaxed">
                       Harvey, Irma, and Maria collectively caused $280B+ in insured losses. The ILS market paid claims, spreads spiked 200–400bps at 2018 renewals, but the asset class recovered within 18 months. Demonstrated the market&apos;s resilience and capital adequacy.
@@ -850,7 +850,7 @@ export default function InsuranceLinkedPage() {
                   <CardContent className="pt-4">
                     <div className="flex items-center gap-2 mb-2">
                       <Wind className="w-4 h-4 text-red-400" />
-                      <span className="text-sm font-semibold text-red-400">Hurricane Ian (2022): Largest ILS Loss</span>
+                      <span className="text-sm font-medium text-red-400">Hurricane Ian (2022): Largest ILS Loss</span>
                     </div>
                     <p className="text-xs text-muted-foreground leading-relaxed">
                       Ian was the costliest single ILS loss event at ~$3.1B. Multiple Florida cat bonds triggered, including Safepoint and Heritage Insurance vehicles. The event accelerated market-wide repricing and led to the tightest supply of capacity since Katrina.
@@ -862,7 +862,7 @@ export default function InsuranceLinkedPage() {
               {/* Key takeaways */}
               <Card className="bg-card border-border">
                 <CardHeader className="pb-2">
-                  <CardTitle className="text-sm font-semibold">Historical Return Context</CardTitle>
+                  <CardTitle className="text-sm font-medium">Historical Return Context</CardTitle>
                 </CardHeader>
                 <CardContent>
                   <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
@@ -874,7 +874,7 @@ export default function InsuranceLinkedPage() {
                     ].map(({ label, value, sub, color }) => (
                       <div key={label} className="bg-muted/30 rounded-lg p-3 border border-border/50">
                         <div className="text-xs text-muted-foreground mb-1">{label}</div>
-                        <div className={cn("text-lg font-bold", color)}>{value}</div>
+                        <div className={cn("text-lg font-medium", color)}>{value}</div>
                         <div className="text-xs text-muted-foreground">{sub}</div>
                       </div>
                     ))}

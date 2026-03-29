@@ -327,7 +327,7 @@ function BinomialTree() {
     <div className="flex flex-col gap-6 p-4">
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-4">
         <div className="lg:col-span-1 bg-card rounded-xl border border-border p-4 flex flex-col gap-4">
-          <h3 className="text-sm font-semibold text-muted-foreground">Parameters (N=4 steps)</h3>
+          <h3 className="text-sm font-medium text-muted-foreground">Parameters (N=4 steps)</h3>
           <SliderRow label="Spot Price (S)" value={S} min={50} max={200} step={1}
             format={v => `$${v.toFixed(0)}`} onChange={setS} />
           <SliderRow label="Strike Price (K)" value={K} min={50} max={200} step={1}
@@ -342,7 +342,7 @@ function BinomialTree() {
           <div className="flex gap-2 mt-2">
             {(["call", "put"] as const).map(t => (
               <button key={t} onClick={() => setOptType(t)}
-                className={`flex-1 py-1.5 rounded-lg text-xs font-semibold transition-colors ${
+                className={`flex-1 py-1.5 rounded-lg text-xs font-medium transition-colors ${
                   optType === t ? "bg-primary text-foreground" : "bg-muted text-muted-foreground hover:bg-muted"
                 }`}>
                 {t.toUpperCase()}
@@ -354,11 +354,11 @@ function BinomialTree() {
           <div className="mt-2 grid grid-cols-2 gap-2">
             <div className="bg-muted rounded-lg p-3 text-center">
               <div className="text-xs text-muted-foreground">Binomial</div>
-              <div className="text-lg font-mono font-bold text-foreground">${tree.binomialPrice.toFixed(4)}</div>
+              <div className="text-lg font-mono font-medium text-foreground">${tree.binomialPrice.toFixed(4)}</div>
             </div>
             <div className="bg-muted rounded-lg p-3 text-center">
               <div className="text-xs text-muted-foreground">Black-Scholes</div>
-              <div className="text-lg font-mono font-bold text-primary">${tree.bsPrice.toFixed(4)}</div>
+              <div className="text-lg font-mono font-medium text-primary">${tree.bsPrice.toFixed(4)}</div>
             </div>
           </div>
           <div className="text-xs text-muted-foreground text-center">
@@ -369,7 +369,7 @@ function BinomialTree() {
 
         {/* Tree SVG */}
         <div className="lg:col-span-2 bg-card rounded-xl border border-border p-4 overflow-x-auto">
-          <h3 className="text-sm font-semibold text-muted-foreground mb-2">Binomial Tree (Stock / Option Value)</h3>
+          <h3 className="text-sm font-medium text-muted-foreground mb-2">Binomial Tree (Stock / Option Value)</h3>
           <svg width={W} height={H} className="font-mono text-[11px]">
             {/* Edges */}
             {Array.from({ length: N }, (_, i) =>
@@ -502,7 +502,7 @@ function MonteCarlo() {
     <div className="flex flex-col gap-6 p-4">
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-4">
         <div className="lg:col-span-1 bg-card rounded-xl border border-border p-4 flex flex-col gap-4">
-          <h3 className="text-sm font-semibold text-muted-foreground">Parameters (100 paths)</h3>
+          <h3 className="text-sm font-medium text-muted-foreground">Parameters (100 paths)</h3>
           <SliderRow label="Spot Price (S)" value={S} min={50} max={200} step={1}
             format={v => `$${v.toFixed(0)}`} onChange={setS} />
           <SliderRow label="Strike Price (K)" value={K} min={50} max={200} step={1}
@@ -516,7 +516,7 @@ function MonteCarlo() {
           <div className="flex gap-2">
             {(["call", "put"] as const).map(t => (
               <button key={t} onClick={() => setOptType(t)}
-                className={`flex-1 py-1.5 rounded-lg text-xs font-semibold transition-colors ${
+                className={`flex-1 py-1.5 rounded-lg text-xs font-medium transition-colors ${
                   optType === t ? "bg-primary text-foreground" : "bg-muted text-muted-foreground hover:bg-muted"
                 }`}>
                 {t.toUpperCase()}
@@ -527,11 +527,11 @@ function MonteCarlo() {
           <div className="grid grid-cols-2 gap-2 mt-2">
             <div className="bg-muted rounded-lg p-3 text-center">
               <div className="text-xs text-muted-foreground">MC Price</div>
-              <div className="text-lg font-mono font-bold text-foreground">${mcPrice.toFixed(4)}</div>
+              <div className="text-lg font-mono font-medium text-foreground">${mcPrice.toFixed(4)}</div>
             </div>
             <div className="bg-muted rounded-lg p-3 text-center">
               <div className="text-xs text-muted-foreground">BS Price</div>
-              <div className="text-lg font-mono font-bold text-primary">${bsPrice.toFixed(4)}</div>
+              <div className="text-lg font-mono font-medium text-primary">${bsPrice.toFixed(4)}</div>
             </div>
           </div>
 
@@ -564,7 +564,7 @@ function MonteCarlo() {
         <div className="lg:col-span-2 flex flex-col gap-4">
           {/* Paths */}
           <div className="bg-card rounded-xl border border-border p-4">
-            <h3 className="text-sm font-semibold text-muted-foreground mb-2">100 Simulated Stock Paths</h3>
+            <h3 className="text-sm font-medium text-muted-foreground mb-2">100 Simulated Stock Paths</h3>
             <svg width="100%" viewBox={`0 0 ${W} ${H}`}>
               {/* Strike line */}
               <line x1={0} y1={scaleY(K)} x2={W} y2={scaleY(K)}
@@ -593,7 +593,7 @@ function MonteCarlo() {
 
           {/* Payoff histogram */}
           <div className="bg-card rounded-xl border border-border p-4">
-            <h3 className="text-sm font-semibold text-muted-foreground mb-2">Discounted Payoff Distribution</h3>
+            <h3 className="text-sm font-medium text-muted-foreground mb-2">Discounted Payoff Distribution</h3>
             <svg width="100%" viewBox={`0 0 ${W} 120`}>
               {hist.map((count, i) => {
                 const bH = maxHist > 0 ? (count / maxHist) * 100 : 0;
@@ -701,7 +701,7 @@ function ExoticOptions() {
     <div className="flex flex-col gap-6 p-4">
       <div className="grid grid-cols-1 lg:grid-cols-4 gap-4">
         <div className="bg-card rounded-xl border border-border p-4 flex flex-col gap-4">
-          <h3 className="text-sm font-semibold text-muted-foreground">Parameters (MC 2000 paths)</h3>
+          <h3 className="text-sm font-medium text-muted-foreground">Parameters (MC 2000 paths)</h3>
           <SliderRow label="Spot Price (S)" value={S} min={50} max={200} step={1}
             format={v => `$${v.toFixed(0)}`} onChange={setS} />
           <SliderRow label="Strike Price (K)" value={K} min={50} max={200} step={1}
@@ -717,7 +717,7 @@ function ExoticOptions() {
         </div>
 
         <div className="lg:col-span-3 bg-card rounded-xl border border-border p-4">
-          <h3 className="text-sm font-semibold text-muted-foreground mb-3">Exotic Options Comparison</h3>
+          <h3 className="text-sm font-medium text-muted-foreground mb-3">Exotic Options Comparison</h3>
           <div className="overflow-x-auto">
             <table className="w-full text-sm">
               <thead>
@@ -737,7 +737,7 @@ function ExoticOptions() {
                     <tr key={i} className="border-b border-border/50 hover:bg-muted/30">
                       <td className="py-2 text-foreground text-xs font-medium">{row.name}</td>
                       <td className="py-2 text-muted-foreground font-mono text-xs">{row.formula}</td>
-                      <td className="py-2 text-right font-mono font-semibold text-foreground">${row.price.toFixed(4)}</td>
+                      <td className="py-2 text-right font-mono font-medium text-foreground">${row.price.toFixed(4)}</td>
                       <td className="py-2 text-right font-mono text-xs">
                         {diff !== null ? (
                           <span className={diff >= 0 ? "text-amber-400" : "text-emerald-400"}>
@@ -842,7 +842,7 @@ function InterestRateModels() {
     <div className="flex flex-col gap-6 p-4">
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-4">
         <div className="bg-card rounded-xl border border-border p-4 flex flex-col gap-4">
-          <h3 className="text-sm font-semibold text-muted-foreground">Vasicek Model Parameters</h3>
+          <h3 className="text-sm font-medium text-muted-foreground">Vasicek Model Parameters</h3>
           <div className="text-xs text-muted-foreground">dr = κ(θ−r)dt + σdW</div>
           <SliderRow label="Initial Rate (r₀)" value={r0} min={0.001} max={0.15} step={0.001}
             format={v => `${(v * 100).toFixed(2)}%`} onChange={setR0} />
@@ -855,7 +855,7 @@ function InterestRateModels() {
           <SliderRow label="Face Value ($)" value={faceValue} min={100} max={10000} step={100}
             format={v => `$${v.toFixed(0)}`} onChange={setFaceValue} />
 
-          <div className="mt-2 text-xs text-muted-foreground font-semibold">Selected Bond Prices (Analytical)</div>
+          <div className="mt-2 text-xs text-muted-foreground font-medium">Selected Bond Prices (Analytical)</div>
           <div className="grid grid-cols-2 gap-2">
             {[1, 2, 5, 10].map(yr => {
               const row = bondPrices.find(b => b.T === yr);
@@ -875,7 +875,7 @@ function InterestRateModels() {
         <div className="lg:col-span-2 flex flex-col gap-4">
           {/* Short rate paths */}
           <div className="bg-card rounded-xl border border-border p-4">
-            <h3 className="text-sm font-semibold text-muted-foreground mb-2">Vasicek Short Rate Paths (8 simulations)</h3>
+            <h3 className="text-sm font-medium text-muted-foreground mb-2">Vasicek Short Rate Paths (8 simulations)</h3>
             <svg width="100%" viewBox={`0 0 ${W} ${H}`}>
               {/* Long-run mean line */}
               <line x1={0} y1={scaleY(theta)} x2={W} y2={scaleY(theta)}
@@ -912,7 +912,7 @@ function InterestRateModels() {
 
           {/* Yield curve */}
           <div className="bg-card rounded-xl border border-border p-4">
-            <h3 className="text-sm font-semibold text-muted-foreground mb-2">Zero-Coupon Yield Curve</h3>
+            <h3 className="text-sm font-medium text-muted-foreground mb-2">Zero-Coupon Yield Curve</h3>
             <svg width="100%" viewBox={`0 0 ${W} ${H}`}>
               <polyline
                 points={yieldCurve.map(y => `${ycScaleX(y.T)},${ycScaleY(y.yield)}`).join(" ")}
@@ -955,13 +955,13 @@ export default function DerivativesPricingPage() {
           initial={{ opacity: 0, y: -16 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.4 }}
-          className="flex items-center gap-3 mb-6"
+          className="border-l-4 border-l-primary rounded-lg bg-card p-6 flex items-center gap-3 mb-6"
         >
           <div className="p-2 bg-indigo-600/20 rounded-lg border border-indigo-600/30">
             <FlaskConical className="w-5 h-5 text-indigo-400" />
           </div>
           <div>
-            <h1 className="text-xl font-bold">Derivatives Pricing Laboratory</h1>
+            <h1 className="text-xl font-medium">Derivatives Pricing Laboratory</h1>
             <p className="text-sm text-muted-foreground">Black-Scholes, Binomial Trees, Monte Carlo, Exotic Options, Interest Rate Models</p>
           </div>
           <div className="ml-auto flex gap-2">
@@ -971,7 +971,7 @@ export default function DerivativesPricingPage() {
         </motion.div>
 
         {/* Tabs */}
-        <Tabs defaultValue="bs" className="w-full">
+        <Tabs defaultValue="bs" className="w-full mt-8">
           <TabsList className="bg-card border border-border mb-4 flex flex-wrap h-auto gap-1 p-1">
             <TabsTrigger value="bs" className="flex items-center gap-1.5 text-xs">
               <FlaskConical className="w-3.5 h-3.5" />Black-Scholes Lab

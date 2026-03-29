@@ -784,7 +784,7 @@ export default function MonteCarloPage() {
                   ].map(item => (
                     <div key={item.label} className="bg-muted rounded p-2 text-center">
                       <p className="text-muted-foreground">{item.label}</p>
-                      <p className={`font-bold ${item.color}`}>{item.value}</p>
+                      <p className={`font-medium ${item.color}`}>{item.value}</p>
                       <p className="text-muted-foreground">
                         {((parseFloat(item.value.replace(/[$KM]/g, "")) * (item.value.includes("M") ? 1000000 : item.value.includes("K") ? 1000 : 1) / simParams.initialValue - 1) * 100).toFixed(0)}x initial
                       </p>
@@ -819,7 +819,7 @@ export default function MonteCarloPage() {
                     </div>
                   ))}
                   <div className="pt-2 border-t border-border">
-                    <div className="flex justify-between font-bold">
+                    <div className="flex justify-between font-medium">
                       <span>Black-Scholes Price</span>
                       <span className="text-green-400">${optionData[optionData.length - 1].bsPrice.toFixed(4)}</span>
                     </div>
@@ -938,7 +938,7 @@ export default function MonteCarloPage() {
                     <p className="text-green-400 font-medium">Monte Carlo validation:</p>
                     <p className="text-muted-foreground text-xs mt-1">
                       Our simulation at 4% withdrawal shows{" "}
-                      <span className="text-green-400 font-bold">
+                      <span className="text-green-400 font-medium">
                         {retirementData.find(r => r.withdrawalRate === 4)?.successRate.toFixed(1)}%
                       </span>{" "}
                       success rate — consistent with historical research.
@@ -982,7 +982,7 @@ export default function MonteCarloPage() {
                             className={`border-b border-border/50 hover:bg-muted/30 transition-colors ${isGold ? "bg-amber-500/5" : ""}`}
                           >
                             <td className="py-3 pr-4">
-                              <span className={`font-bold ${isGold ? "text-amber-400" : ""}`}>
+                              <span className={`font-medium ${isGold ? "text-amber-400" : ""}`}>
                                 {row.withdrawalRate}%
                               </span>
                               {isGold && (
@@ -1002,7 +1002,7 @@ export default function MonteCarloPage() {
                                     style={{ width: `${row.successRate}%` }}
                                   />
                                 </div>
-                                <span className={`font-bold ${row.successRate >= 90 ? "text-green-400" : row.successRate >= 70 ? "text-amber-400" : "text-red-400"}`}>
+                                <span className={`font-medium ${row.successRate >= 90 ? "text-green-400" : row.successRate >= 70 ? "text-amber-400" : "text-red-400"}`}>
                                   {row.successRate.toFixed(1)}%
                                 </span>
                               </div>
@@ -1064,7 +1064,7 @@ export default function MonteCarloPage() {
                 <Card key={item.label} className="border-border">
                   <CardContent className="p-4">
                     <p className="text-xs text-muted-foreground mb-1">{item.label}</p>
-                    <p className={`text-xl font-bold ${item.color}`}>{item.value}</p>
+                    <p className={`text-xl font-medium ${item.color}`}>{item.value}</p>
                     <p className="text-xs text-muted-foreground mt-1">{item.sub}</p>
                   </CardContent>
                 </Card>

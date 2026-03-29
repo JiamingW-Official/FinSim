@@ -348,7 +348,7 @@ function EvidenceTab() {
       <div className="rounded-xl border border-border bg-card/50 p-5">
         <div className="flex items-center gap-2 mb-4">
           <XCircle className="w-4 h-4 text-red-400" />
-          <h3 className="font-semibold text-foreground">Why Active Managers Struggle</h3>
+          <h3 className="font-medium text-foreground">Why Active Managers Struggle</h3>
         </div>
         <div className="space-y-3">
           {reasons.map((item) => (
@@ -369,7 +369,7 @@ function EvidenceTab() {
       <div className="rounded-xl border border-border bg-card/50 p-5">
         <div className="flex items-center gap-2 mb-4">
           <CheckCircle className="w-4 h-4 text-green-400" />
-          <h3 className="font-semibold text-foreground">Bright Spots for Active Management</h3>
+          <h3 className="font-medium text-foreground">Bright Spots for Active Management</h3>
         </div>
         <div className="space-y-2">
           {brightSpots.map((item) => (
@@ -475,7 +475,7 @@ function IndexMechanicsTab() {
       <div className="rounded-xl border border-border bg-card/50 p-5">
         <div className="flex items-center gap-2 mb-3">
           <Scale className="w-4 h-4 text-primary" />
-          <h3 className="font-semibold text-foreground">Market Cap Weighting Mechanics</h3>
+          <h3 className="font-medium text-foreground">Market Cap Weighting Mechanics</h3>
         </div>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           <div className="space-y-2">
@@ -533,7 +533,7 @@ function IndexMechanicsTab() {
       <div className="rounded-xl border border-border bg-card/50 p-5">
         <div className="flex items-center gap-2 mb-3">
           <Zap className="w-4 h-4 text-yellow-400" />
-          <h3 className="font-semibold text-foreground">ETF Creation / Redemption Arbitrage</h3>
+          <h3 className="font-medium text-foreground">ETF Creation / Redemption Arbitrage</h3>
         </div>
         <ETFCreationRedemptionSVG />
         <div className="mt-3 grid grid-cols-1 md:grid-cols-2 gap-3">
@@ -552,7 +552,7 @@ function IndexMechanicsTab() {
       <div className="rounded-xl border border-border bg-card/50 p-5">
         <div className="flex items-center gap-2 mb-4">
           <BarChart2 className="w-4 h-4 text-primary" />
-          <h3 className="font-semibold text-foreground">Tracking Error Sources (basis points per year)</h3>
+          <h3 className="font-medium text-foreground">Tracking Error Sources (basis points per year)</h3>
         </div>
         <div className="space-y-2">
           {trackingErrorSources.map((item) => (
@@ -560,7 +560,7 @@ function IndexMechanicsTab() {
               <div className="w-40 text-xs text-muted-foreground shrink-0">{item.source}</div>
               <div className="flex-1 flex items-center gap-2">
                 <div
-                  className="h-5 rounded flex items-center px-1.5 text-xs font-mono font-semibold"
+                  className="h-5 rounded flex items-center px-1.5 text-xs font-mono font-medium"
                   style={{
                     width: `${Math.abs(item.bps) * 12 + 30}px`,
                     backgroundColor: item.bps < 0 ? "#10b98133" : "#6366f133",
@@ -580,13 +580,13 @@ function IndexMechanicsTab() {
       <div className="rounded-xl border border-border bg-card/50 p-5">
         <div className="flex items-center gap-2 mb-4">
           <Layers className="w-4 h-4 text-amber-400" />
-          <h3 className="font-semibold text-foreground">Index Provider Concentration Risk</h3>
+          <h3 className="font-medium text-foreground">Index Provider Concentration Risk</h3>
         </div>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
           {indexProviders.map((p) => (
             <div key={p.name} className="p-3 rounded-lg bg-muted/50 border border-border/50">
               <div className="flex items-center justify-between mb-2">
-                <span className="font-semibold text-foreground text-sm">{p.name}</span>
+                <span className="font-medium text-foreground text-sm">{p.name}</span>
                 <span className="text-xs text-muted-foreground">{p.aum} AUM</span>
               </div>
               <div className="w-full bg-muted rounded-full h-1.5 mb-2">
@@ -736,7 +736,7 @@ function FactorTab() {
       <div className="rounded-xl border border-border bg-card/50 p-5">
         <div className="flex items-center gap-2 mb-4">
           <Zap className="w-4 h-4 text-primary" />
-          <h3 className="font-semibold text-foreground">Factor Investing — The Middle Ground</h3>
+          <h3 className="font-medium text-foreground">Factor Investing — The Middle Ground</h3>
         </div>
         <p className="text-sm text-muted-foreground mb-4">
           Factor investing (smart beta) sits between pure passive and active management. It systematically tilts toward characteristics — value, quality, momentum — that have historically earned excess returns. Click a factor for details.
@@ -754,7 +754,7 @@ function FactorTab() {
               )}
               style={{ borderColor: selectedFactor?.name === f.name ? f.color : undefined }}
             >
-              <p className="text-sm font-semibold" style={{ color: f.color }}>{f.name}</p>
+              <p className="text-sm font-medium" style={{ color: f.color }}>{f.name}</p>
               <p className="text-xs text-muted-foreground mt-0.5">+{f.historicPremium}% hist.</p>
               <p className="text-xs text-muted-foreground">{f.cost}% fee</p>
             </button>
@@ -773,7 +773,7 @@ function FactorTab() {
                 className="mt-4 p-4 rounded-xl border"
                 style={{ borderColor: selectedFactor.color + "44", backgroundColor: selectedFactor.color + "11" }}
               >
-                <p className="text-sm font-semibold text-foreground mb-1">{selectedFactor.name} Factor</p>
+                <p className="text-sm font-medium text-foreground mb-1">{selectedFactor.name} Factor</p>
                 <p className="text-sm text-muted-foreground mb-3">{selectedFactor.description}</p>
                 <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
                   {[
@@ -798,7 +798,7 @@ function FactorTab() {
       <div className="rounded-xl border border-border bg-card/50 p-5">
         <div className="flex items-center gap-2 mb-3">
           <AlertTriangle className="w-4 h-4 text-amber-400" />
-          <h3 className="font-semibold text-foreground">Factor Crowding vs Persistence</h3>
+          <h3 className="font-medium text-foreground">Factor Crowding vs Persistence</h3>
         </div>
         <FactorCrowdingSVG factors={FACTORS} />
         <p className="text-xs text-muted-foreground mt-2">
@@ -810,7 +810,7 @@ function FactorTab() {
       <div className="rounded-xl border border-border bg-card/50 p-5">
         <div className="flex items-center gap-2 mb-3">
           <TrendingDown className="w-4 h-4 text-red-400" />
-          <h3 className="font-semibold text-foreground">Factor Decay After Publication</h3>
+          <h3 className="font-medium text-foreground">Factor Decay After Publication</h3>
         </div>
         <FactorDecaySVG />
         <p className="text-xs text-muted-foreground mt-2">
@@ -822,7 +822,7 @@ function FactorTab() {
       <div className="rounded-xl border border-border bg-card/50 p-5">
         <div className="flex items-center gap-2 mb-4">
           <DollarSign className="w-4 h-4 text-green-400" />
-          <h3 className="font-semibold text-foreground">Cost Spectrum: Passive → Active</h3>
+          <h3 className="font-medium text-foreground">Cost Spectrum: Passive → Active</h3>
         </div>
         <div className="space-y-2">
           {costComparison.map((c) => (
@@ -836,7 +836,7 @@ function FactorTab() {
                   border: `1px solid ${c.color}44`,
                 }}
               >
-                <span className="text-xs font-mono font-semibold" style={{ color: c.color }}>{c.fee}%</span>
+                <span className="text-xs font-mono font-medium" style={{ color: c.color }}>{c.fee}%</span>
               </div>
               <span className="text-xs text-muted-foreground hidden md:block">{c.examples}</span>
             </div>
@@ -848,7 +848,7 @@ function FactorTab() {
       <div className="rounded-xl border border-border bg-card/50 p-5">
         <div className="flex items-center gap-2 mb-3">
           <Scale className="w-4 h-4 text-primary" />
-          <h3 className="font-semibold text-foreground">Equal Weight vs Cap Weight</h3>
+          <h3 className="font-medium text-foreground">Equal Weight vs Cap Weight</h3>
         </div>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           <div className="p-3 rounded-lg bg-muted/50">
@@ -1084,7 +1084,7 @@ function FeeImpactTab() {
       <div className="rounded-xl border border-border bg-card/50 p-5">
         <div className="flex items-center gap-2 mb-3">
           <TrendingDown className="w-4 h-4 text-red-400" />
-          <h3 className="font-semibold text-foreground">The Compound Fee Drag Over 40 Years</h3>
+          <h3 className="font-medium text-foreground">The Compound Fee Drag Over 40 Years</h3>
         </div>
         <CompoundFeeDragSVG />
 
@@ -1120,7 +1120,7 @@ function FeeImpactTab() {
       <div className="rounded-xl border border-border bg-card/50 p-5">
         <div className="flex items-center gap-2 mb-4">
           <DollarSign className="w-4 h-4 text-green-400" />
-          <h3 className="font-semibold text-foreground">Tax Efficiency Comparison</h3>
+          <h3 className="font-medium text-foreground">Tax Efficiency Comparison</h3>
         </div>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
           {[
@@ -1157,7 +1157,7 @@ function FeeImpactTab() {
           ].map((item) => (
             <div key={item.type} className={cn("p-4 rounded-xl border bg-card/50", item.color)}>
               <div className="flex items-center justify-between mb-3">
-                <p className="font-semibold text-foreground text-sm">{item.type}</p>
+                <p className="font-medium text-foreground text-sm">{item.type}</p>
                 <span className={cn("text-xs font-medium", item.badgeColor)}>{item.badge}</span>
               </div>
               <div className="space-y-1.5 mb-3">
@@ -1184,7 +1184,7 @@ function FeeImpactTab() {
       <div className="rounded-xl border border-border bg-card/50 p-5">
         <div className="flex items-center gap-2 mb-4">
           <Target className="w-4 h-4 text-amber-400" />
-          <h3 className="font-semibold text-foreground">When Active Management Makes Sense</h3>
+          <h3 className="font-medium text-foreground">When Active Management Makes Sense</h3>
         </div>
         <div className="space-y-2">
           {whenActive.map((item) => (
@@ -1203,7 +1203,7 @@ function FeeImpactTab() {
       <div className="rounded-xl border border-border bg-card/50 p-5">
         <div className="flex items-center gap-2 mb-3">
           <Layers className="w-4 h-4 text-primary" />
-          <h3 className="font-semibold text-foreground">Core-Satellite Portfolio Construction</h3>
+          <h3 className="font-medium text-foreground">Core-Satellite Portfolio Construction</h3>
         </div>
         <CoreSatelliteSVG />
         <p className="text-xs text-muted-foreground mt-2">
@@ -1215,13 +1215,13 @@ function FeeImpactTab() {
       <div className="rounded-xl border border-border bg-card/50 p-5">
         <div className="flex items-center gap-2 mb-4">
           <CheckCircle className="w-4 h-4 text-green-400" />
-          <h3 className="font-semibold text-foreground">Behavioral Benefits of Passive Investing</h3>
+          <h3 className="font-medium text-foreground">Behavioral Benefits of Passive Investing</h3>
         </div>
         <ul className="space-y-2">
           {behavioral.map((item, i) => (
             <li key={i} className="flex gap-2 items-start text-sm">
               <div className="w-5 h-5 rounded-full bg-green-900/30 border border-green-800/50 flex items-center justify-center shrink-0 mt-0.5">
-                <span className="text-green-400 text-xs font-bold">{i + 1}</span>
+                <span className="text-green-400 text-xs font-medium">{i + 1}</span>
               </div>
               <span className="text-muted-foreground">{item}</span>
             </li>
@@ -1229,7 +1229,7 @@ function FeeImpactTab() {
         </ul>
 
         <div className="mt-4 p-4 rounded-xl bg-primary/10 border border-primary/20">
-          <p className="text-sm font-semibold text-primary mb-1">The Verdict</p>
+          <p className="text-sm font-medium text-primary mb-1">The Verdict</p>
           <p className="text-sm text-muted-foreground">
             For most investors, a low-cost passive core (70–85%) combined with selective factor tilts (10–20%) and minimal active satellite positions (5–10%) delivers the best risk-adjusted, after-tax, long-term outcome. The key insight: <strong className="text-foreground">the cost of &quot;doing nothing&quot; is often lower than the cost of &quot;doing something.&quot;</strong>
           </p>
@@ -1262,22 +1262,24 @@ export default function ActivePassivePage() {
             </div>
           </div>
 
-          {/* Key stats strip */}
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-3 mt-4">
+          {/* Key stats strip — HERO */}
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-3 mt-4 border-l-4 border-l-primary rounded-xl bg-card p-6">
             {[
               { label: "Active funds underperform (20Y)", value: "92%", color: "text-red-400", sub: "US Large Cap SPIVA" },
               { label: "Vanguard VOO expense ratio", value: "0.03%", color: "text-green-400", sub: "vs 1%+ active avg" },
               { label: "Factor premiums post-publish", value: "−58%", color: "text-amber-400", sub: "vs in-sample (McLean)" },
               { label: "Fee gap over 40 years", value: "$1.7M", color: "text-primary", sub: "$100K at 0.05% vs 2%" },
             ].map((stat) => (
-              <div key={stat.label} className="p-3 rounded-xl bg-card border border-border">
-                <p className={cn("text-xl font-bold", stat.color)}>{stat.value}</p>
+              <div key={stat.label} className="p-3 rounded-xl bg-muted/30 border border-border">
+                <p className={cn("text-xl font-medium", stat.color)}>{stat.value}</p>
                 <p className="text-xs text-muted-foreground mt-0.5 leading-tight">{stat.label}</p>
                 <p className="text-xs text-muted-foreground mt-0.5">{stat.sub}</p>
               </div>
             ))}
           </div>
         </motion.div>
+
+        <div className="mt-8" />
 
         {/* Tabs */}
         <Tabs defaultValue="evidence">

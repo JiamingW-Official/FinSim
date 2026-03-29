@@ -929,7 +929,7 @@ function GSIBTab() {
                         Bucket {row.bucket}
                       </Badge>
                     </td>
-                    <td className="p-2 font-bold" style={{ color: bucketColor(row.bucket) }}>{row.surcharge}</td>
+                    <td className="p-2 font-medium" style={{ color: bucketColor(row.bucket) }}>{row.surcharge}</td>
                     <td className="p-2 text-muted-foreground">{row.totalCapital}</td>
                     <td className="p-2 text-muted-foreground">
                       <ArrowRight className="w-3 h-3" />
@@ -974,7 +974,7 @@ function GSIBTab() {
             ].map((item, i) => (
               <div key={i} className="flex justify-between items-center text-xs border-b border-border pb-2">
                 <span className="text-muted-foreground">{item.label}</span>
-                <span className="font-bold" style={{ color: item.color }}>{item.value}</span>
+                <span className="font-medium" style={{ color: item.color }}>{item.value}</span>
               </div>
             ))}
             <p className="text-xs text-muted-foreground">
@@ -1023,10 +1023,10 @@ function MetricsTab() {
             <div className="flex justify-between items-start mb-2">
               <div>
                 <div className="text-xs text-muted-foreground">{m.name}</div>
-                <div className="text-lg font-bold text-foreground font-mono">{m.symbol}</div>
+                <div className="text-lg font-medium text-foreground font-mono">{m.symbol}</div>
               </div>
               <div className="text-right">
-                <div className="text-base font-bold" style={{ color: riskColors[m.riskLevel] }}>{m.value}</div>
+                <div className="text-base font-medium" style={{ color: riskColors[m.riskLevel] }}>{m.value}</div>
                 <div className="flex items-center gap-1 justify-end mt-0.5">
                   {m.trend === "up" ? <TrendingUp className="w-3 h-3 text-red-400" /> : m.trend === "down" ? <TrendingDown className="w-3 h-3 text-green-400" /> : <Activity className="w-3 h-3 text-muted-foreground" />}
                   <Badge variant="outline" className="text-xs capitalize" style={{ borderColor: riskColors[m.riskLevel], color: riskColors[m.riskLevel] }}>
@@ -1154,7 +1154,7 @@ function MacroPruTab() {
                 <div className="flex items-center justify-between">
                   <div className="flex items-center gap-3">
                     <div
-                      className="text-xs font-bold rounded px-2 py-1 font-mono"
+                      className="text-xs font-medium rounded px-2 py-1 font-mono"
                       style={{ backgroundColor: typeColor(tool.type) + "20", color: typeColor(tool.type), border: `1px solid ${typeColor(tool.type)}40` }}
                     >
                       {tool.acronym}
@@ -1165,7 +1165,7 @@ function MacroPruTab() {
                     </div>
                   </div>
                   <div className="text-right">
-                    <div className="text-sm font-bold text-foreground">{tool.currentValue}</div>
+                    <div className="text-sm font-medium text-foreground">{tool.currentValue}</div>
                     <div className="text-xs text-muted-foreground">Range: {tool.range}</div>
                     <Badge variant="outline" className="text-xs mt-1 border-green-700 text-green-400">{tool.status}</Badge>
                   </div>
@@ -1282,7 +1282,7 @@ function MacroPruTab() {
                 { label: "FSB monitoring universe", value: "$218T", color: "#60a5fa" },
               ].map((stat, i) => (
                 <div key={i} className="rounded bg-muted/50 border border-border p-2 text-center">
-                  <div className="text-base font-bold" style={{ color: stat.color }}>{stat.value}</div>
+                  <div className="text-base font-medium" style={{ color: stat.color }}>{stat.value}</div>
                   <div className="text-muted-foreground">{stat.label}</div>
                 </div>
               ))}
@@ -1309,7 +1309,7 @@ function MacroPruTab() {
               { year: "2023", name: "Basel III Endgame", desc: "Proposed expanded capital requirements including operational risk; revised market risk (FRTB) charges", color: "#60a5fa" },
             ].map((item, i) => (
               <div key={i} className="flex items-start gap-3">
-                <div className="text-xs font-bold rounded px-2 py-1 shrink-0 mt-0.5"
+                <div className="text-xs font-medium rounded px-2 py-1 shrink-0 mt-0.5"
                   style={{ backgroundColor: item.color + "20", color: item.color, border: `1px solid ${item.color}40` }}>
                   {item.year}
                 </div>
@@ -1337,14 +1337,14 @@ export default function SystemicRiskPage() {
         initial={{ opacity: 0, y: -16 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.4 }}
-        className="mb-6"
+        className="mb-6 border-l-4 border-l-primary p-6 rounded-lg bg-card/40"
       >
         <div className="flex items-center gap-3 mb-2">
           <div className="p-2 rounded-lg bg-red-950/50 border border-red-900/50">
             <AlertTriangle className="w-6 h-6 text-red-400" />
           </div>
           <div>
-            <h1 className="text-2xl font-bold text-foreground">Systemic Risk &amp; Financial Stability</h1>
+            <h1 className="text-xl font-bold text-foreground">Systemic Risk &amp; Financial Stability</h1>
             <p className="text-sm text-muted-foreground">How financial crises propagate — contagion, G-SIBs, systemic metrics, macroprudential regulation</p>
           </div>
         </div>
@@ -1360,14 +1360,14 @@ export default function SystemicRiskPage() {
           ].map((chip, i) => (
             <div key={i} className={`rounded-full border px-3 py-1 text-xs flex items-center gap-1.5 ${chip.color}`}>
               <span className="text-muted-foreground">{chip.label}:</span>
-              <span className="font-bold">{chip.value}</span>
+              <span className="font-medium">{chip.value}</span>
             </div>
           ))}
         </div>
       </motion.div>
 
       {/* Tabs */}
-      <Tabs defaultValue="contagion">
+      <Tabs defaultValue="contagion" className="mt-8">
         <TabsList className="bg-card border border-border mb-6 flex-wrap h-auto gap-1 p-1">
           {[
             { value: "contagion", label: "Contagion Mechanisms", icon: GitBranch },

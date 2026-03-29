@@ -650,8 +650,8 @@ function SingleOptionTab() {
   return (
     <div className="grid grid-cols-1 lg:grid-cols-5 gap-4">
       {/* Inputs */}
-      <Card className="lg:col-span-2 bg-card border-border p-4 space-y-4">
-        <h3 className="text-sm font-semibold text-foreground flex items-center gap-2"><Calculator size={14} /> Parameters</h3>
+      <Card className="lg:col-span-2 bg-card border-border border-l-4 border-l-primary p-6 space-y-4">
+        <h3 className="text-lg font-semibold text-foreground flex items-center gap-2"><Calculator size={14} /> Parameters</h3>
 
         <div className="flex gap-2">
           <button onClick={() => setIsCall(true)} className={`flex-1 py-1.5 text-xs rounded font-medium transition-colors ${isCall ? "bg-primary text-foreground" : "bg-muted text-muted-foreground hover:bg-muted"}`}>Call</button>
@@ -709,7 +709,7 @@ function SingleOptionTab() {
         {/* Greeks sensitivity */}
         <Card className="bg-card border-border p-4">
           <div className="flex items-center justify-between mb-3">
-            <h3 className="text-sm font-semibold text-foreground">Greeks Sensitivity (±20% stock range)</h3>
+            <h3 className="text-sm font-medium text-foreground">Greeks Sensitivity (±20% stock range)</h3>
             <div className="flex gap-1">
               {(["delta", "gamma", "theta", "vega"] as const).map(gk => (
                 <button key={gk} onClick={() => setShowGreek(gk)} className={`px-2 py-0.5 text-xs rounded transition-colors ${showGreek === gk ? "bg-indigo-600 text-foreground" : "bg-muted text-muted-foreground"}`}>{gk}</button>
@@ -721,7 +721,7 @@ function SingleOptionTab() {
 
         {/* What-if table */}
         <Card className="bg-card border-border p-4">
-          <h3 className="text-sm font-semibold text-foreground mb-3">What-If P&L Scenarios at Expiry</h3>
+          <h3 className="text-sm font-medium text-foreground mb-3">What-If P&L Scenarios at Expiry</h3>
           <div className="overflow-x-auto">
             <table className="w-full text-xs">
               <thead>
@@ -832,7 +832,7 @@ function StrategyBuilderTab() {
       {/* Top Controls */}
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-4">
         <Card className="bg-card border-border p-4 space-y-3">
-          <h3 className="text-sm font-semibold text-foreground flex items-center gap-2"><Layers size={14} /> Setup</h3>
+          <h3 className="text-sm font-medium text-foreground flex items-center gap-2"><Layers size={14} /> Setup</h3>
           <div className="space-y-1">
             <label className="text-xs text-muted-foreground">Stock Price: ${spot}</label>
             <Slider value={[spot]} onValueChange={([v]) => setSpot(v)} min={50} max={500} step={1} />
@@ -854,7 +854,7 @@ function StrategyBuilderTab() {
         </Card>
 
         <Card className="lg:col-span-2 bg-card border-border p-4">
-          <h3 className="text-sm font-semibold text-foreground mb-2">Strategy Presets</h3>
+          <h3 className="text-sm font-medium text-foreground mb-2">Strategy Presets</h3>
           <div className="grid grid-cols-2 sm:grid-cols-3 gap-1.5 max-h-40 overflow-y-auto">
             {Object.entries(presets).map(([name, preset]) => (
               <button key={name} onClick={() => applyPreset(name)}
@@ -872,7 +872,7 @@ function StrategyBuilderTab() {
       {/* Legs Editor */}
       <Card className="bg-card border-border p-4">
         <div className="flex items-center justify-between mb-3">
-          <h3 className="text-sm font-semibold text-foreground">Legs</h3>
+          <h3 className="text-sm font-medium text-foreground">Legs</h3>
           <Button size="sm" variant="outline" className="h-7 text-xs border-border text-muted-foreground hover:bg-muted" onClick={addLeg}>
             <Plus size={12} className="mr-1" /> Add Leg
           </Button>
@@ -911,11 +911,11 @@ function StrategyBuilderTab() {
       {legs.length > 0 && (
         <div className="grid grid-cols-1 lg:grid-cols-5 gap-4">
           <Card className="lg:col-span-3 bg-card border-border p-4">
-            <h3 className="text-sm font-semibold text-foreground mb-2">Combined Payoff at Expiry {stressIV !== "normal" && <span className="text-amber-400 text-xs ml-1">({stressIV === "double" ? "IV×2" : "IV÷2"})</span>}</h3>
+            <h3 className="text-sm font-medium text-foreground mb-2">Combined Payoff at Expiry {stressIV !== "normal" && <span className="text-amber-400 text-xs ml-1">({stressIV === "double" ? "IV×2" : "IV÷2"})</span>}</h3>
             <PayoffChart legs={legs} spot={spot} r={r} sigma={effectiveSigma} height={200} />
           </Card>
           <Card className="lg:col-span-2 bg-card border-border p-4 space-y-1">
-            <h3 className="text-sm font-semibold text-foreground mb-2">Strategy Metrics</h3>
+            <h3 className="text-sm font-medium text-foreground mb-2">Strategy Metrics</h3>
             <MetricRow label="Max Profit" value={pnlRange.maxProfit > 9999 ? "Unlimited" : fmtDollar(pnlRange.maxProfit)} colored />
             <MetricRow label="Max Loss" value={pnlRange.maxLoss < -9999 ? "Unlimited" : fmtDollar(pnlRange.maxLoss)} colored />
             <MetricRow label="Breakeven(s)" value={breakevens.length ? breakevens.map(b => `$${b}`).join(", ") : "N/A"} />
@@ -953,7 +953,7 @@ function VolatilityTab() {
     <div className="space-y-4">
       {/* Ticker selector */}
       <Card className="bg-card border-border p-4">
-        <h3 className="text-sm font-semibold text-foreground mb-3">IV vs HV by Ticker</h3>
+        <h3 className="text-sm font-medium text-foreground mb-3">IV vs HV by Ticker</h3>
         <div className="flex flex-wrap gap-2 mb-4">
           {TICKERS.map(t => (
             <button key={t} onClick={() => setSelectedTicker(t)}
@@ -996,7 +996,7 @@ function VolatilityTab() {
       {/* Selected ticker detail */}
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-4">
         <Card className="bg-card border-border p-4 flex flex-col items-center justify-center gap-3">
-          <h3 className="text-sm font-semibold text-foreground self-start">{selectedTicker} IV Gauges</h3>
+          <h3 className="text-sm font-medium text-foreground self-start">{selectedTicker} IV Gauges</h3>
           <div className="flex gap-4">
             <div className="text-center">
               <GaugeSVG value={tickerVol.ivPct} label="IV %ile" color="#818CF8" />
@@ -1010,13 +1010,13 @@ function VolatilityTab() {
         </Card>
 
         <Card className="bg-card border-border p-4">
-          <h3 className="text-sm font-semibold text-foreground mb-2">Volatility Skew (30 DTE)</h3>
+          <h3 className="text-sm font-medium text-foreground mb-2">Volatility Skew (30 DTE)</h3>
           <IVSmileChart data={smileData} />
           <p className="text-xs text-muted-foreground mt-2">Put skew: OTM puts trade at higher IV, reflecting demand for downside protection.</p>
         </Card>
 
         <Card className="bg-card border-border p-4">
-          <h3 className="text-sm font-semibold text-foreground mb-2">Term Structure</h3>
+          <h3 className="text-sm font-medium text-foreground mb-2">Term Structure</h3>
           <TermStructureChart data={termData} />
           <p className="text-xs text-muted-foreground mt-2">
             {termData[0].iv > termData[termData.length - 1].iv ? "Inverted: near-term IV > long-term IV. Market expects near-term volatility event." : "Normal contango: long-term IV > near-term IV."}
@@ -1086,7 +1086,7 @@ function StrategyComparisonTab() {
     <div className="space-y-4">
       <div className="grid grid-cols-1 lg:grid-cols-4 gap-4">
         <Card className="bg-card border-border p-4 space-y-3">
-          <h3 className="text-sm font-semibold text-foreground flex items-center gap-2"><ArrowUpDown size={14} /> Setup</h3>
+          <h3 className="text-sm font-medium text-foreground flex items-center gap-2"><ArrowUpDown size={14} /> Setup</h3>
           <div className="space-y-1">
             <label className="text-xs text-muted-foreground">Underlying: ${spot}</label>
             <Slider value={[spot]} onValueChange={([v]) => setSpot(v)} min={50} max={500} step={1} />
@@ -1109,7 +1109,7 @@ function StrategyComparisonTab() {
         </Card>
 
         <Card className="lg:col-span-3 bg-card border-border p-4">
-          <h3 className="text-sm font-semibold text-foreground mb-2">Overlaid Payoff Diagram</h3>
+          <h3 className="text-sm font-medium text-foreground mb-2">Overlaid Payoff Diagram</h3>
           {strategyLegs[0].length > 0 && (
             <PayoffChart
               legs={strategyLegs[0]}
@@ -1136,7 +1136,7 @@ function StrategyComparisonTab() {
 
       {/* Comparison table */}
       <Card className="bg-card border-border p-4">
-        <h3 className="text-sm font-semibold text-foreground mb-3">Side-by-Side Comparison</h3>
+        <h3 className="text-sm font-medium text-foreground mb-3">Side-by-Side Comparison</h3>
         <div className="overflow-x-auto">
           <table className="w-full text-xs">
             <thead>
@@ -1238,7 +1238,7 @@ function GreeksDashboardTab() {
     <div className="space-y-4">
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-4">
         <Card className="bg-card border-border p-4 space-y-3">
-          <h3 className="text-sm font-semibold text-foreground flex items-center gap-2"><Activity size={14} /> Parameters</h3>
+          <h3 className="text-sm font-medium text-foreground flex items-center gap-2"><Activity size={14} /> Parameters</h3>
           <div className="space-y-1">
             <label className="text-xs text-muted-foreground">Underlying Price: ${spot}</label>
             <Slider value={[spot]} onValueChange={([v]) => setSpot(v)} min={50} max={500} step={1} />
@@ -1247,7 +1247,7 @@ function GreeksDashboardTab() {
             <label className="text-xs text-muted-foreground">IV: {(sigma * 100).toFixed(0)}%</label>
             <Slider value={[sigma * 100]} onValueChange={([v]) => setSigma(v / 100)} min={5} max={150} step={1} />
           </div>
-          <h3 className="text-xs font-semibold text-foreground pt-2">Portfolio Greeks</h3>
+          <h3 className="text-xs font-medium text-foreground pt-2">Portfolio Greeks</h3>
           <MetricRow label="Portfolio Value" value={`$${aggregated.portfolioValue.toFixed(2)}`} />
           <MetricRow label="Net Delta" value={fmt(aggregated.delta, 2)} colored />
           <MetricRow label="Net Gamma" value={fmt(aggregated.gamma, 4)} colored />
@@ -1256,7 +1256,7 @@ function GreeksDashboardTab() {
         </Card>
 
         <Card className="bg-card border-border p-4">
-          <h3 className="text-sm font-semibold text-foreground mb-3 flex items-center gap-2"><Shield size={14} /> Delta-Neutral Hedging</h3>
+          <h3 className="text-sm font-medium text-foreground mb-3 flex items-center gap-2"><Shield size={14} /> Delta-Neutral Hedging</h3>
           <p className="text-xs text-muted-foreground mb-3">Your portfolio delta tells you the equivalent share exposure. To hedge to delta-neutral, trade the opposite in shares.</p>
           <div className="bg-muted/60 rounded p-3 space-y-2">
             <MetricRow label="Current Portfolio Delta" value={fmt(aggregated.delta, 2)} colored />
@@ -1270,7 +1270,7 @@ function GreeksDashboardTab() {
         </Card>
 
         <Card className="bg-card border-border p-4">
-          <h3 className="text-sm font-semibold text-foreground mb-2 flex items-center gap-2"><Zap size={14} /> Theta Decay</h3>
+          <h3 className="text-sm font-medium text-foreground mb-2 flex items-center gap-2"><Zap size={14} /> Theta Decay</h3>
           <ThetaDecayChart S={spot} K={Math.round(spot / 5) * 5} r={r} sigma={sigma} isCall={isCall} />
           <div className="flex gap-2 mt-2">
             <button onClick={() => setIsCall(true)} className={`flex-1 py-1 text-xs rounded ${isCall ? "bg-primary text-foreground" : "bg-muted text-muted-foreground"}`}>Call</button>
@@ -1283,7 +1283,7 @@ function GreeksDashboardTab() {
       {/* Positions table */}
       <Card className="bg-card border-border p-4">
         <div className="flex items-center justify-between mb-3">
-          <h3 className="text-sm font-semibold text-foreground">Option Positions (up to 5)</h3>
+          <h3 className="text-sm font-medium text-foreground">Option Positions (up to 5)</h3>
           <Button size="sm" variant="outline" className="h-7 text-xs border-border text-muted-foreground hover:bg-muted" onClick={addPosition} disabled={positions.length >= 5}>
             <Plus size={12} className="mr-1" /> Add Position
           </Button>

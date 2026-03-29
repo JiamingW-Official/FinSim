@@ -607,17 +607,17 @@ function PricingMechanicsTab() {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-4">
           <div className="rounded-lg border border-border bg-muted/30 p-3">
             <div className="text-xs text-muted-foreground mb-1">Face Value</div>
-            <div className="text-xl font-bold text-foreground">${faceVal}M</div>
+            <div className="text-xl font-medium text-foreground">${faceVal}M</div>
             <div className="text-xs text-muted-foreground">Par amount</div>
           </div>
           <div className="rounded-lg border border-border bg-muted/30 p-3">
             <div className="text-xs text-muted-foreground mb-1">Issue Price</div>
-            <div className="text-xl font-bold text-amber-400">98.5¢</div>
+            <div className="text-xl font-medium text-amber-400">98.5¢</div>
             <div className="text-xs text-muted-foreground">Lender pays ${faceVal - oidDiscount}M</div>
           </div>
           <div className="rounded-lg border border-border bg-muted/30 p-3">
             <div className="text-xs text-muted-foreground mb-1">OID Yield Boost</div>
-            <div className="text-xl font-bold text-emerald-400">+{oidAllInBps}bps</div>
+            <div className="text-xl font-medium text-emerald-400">+{oidAllInBps}bps</div>
             <div className="text-xs text-muted-foreground">On 5yr maturity assumption</div>
           </div>
         </div>
@@ -667,7 +667,7 @@ function PricingMechanicsTab() {
             exit={{ opacity: 0, y: -4 }}
             className="mt-3 rounded-lg bg-muted/40 border border-border p-3 text-xs text-primary"
           >
-            <span className="font-semibold">{ratchetLevels[selectedRatchet].label}:</span>{" "}
+            <span className="font-medium">{ratchetLevels[selectedRatchet].label}:</span>{" "}
             At {ratchetLevels[selectedRatchet].leverage} net leverage the borrower pays SOFR+
             {ratchetLevels[selectedRatchet].spread}bps. Tested each quarter based on compliance certificate.
             {selectedRatchet === ratchetLevels.length - 1 && " This is the floor — maximum benefit from deleveraging."}
@@ -700,7 +700,7 @@ function PricingMechanicsTab() {
           ))}
         </div>
         <div className="rounded-lg bg-amber-900/20 border border-amber-500/20 p-3 text-xs text-amber-300">
-          <span className="font-semibold">Waiver Process:</span> Borrower engages Facility Agent →
+          <span className="font-medium">Waiver Process:</span> Borrower engages Facility Agent →
           Agent circulates waiver request to lenders → majority lender consent required (typically 66.67%
           of commitments) → waiver letter executed, often with an amendment fee of 15–50bps.
         </div>
@@ -873,7 +873,7 @@ function SyndicationProcessTab() {
               className="rounded-lg border border-border bg-muted/30 p-4"
               style={{ borderColor: timeline[activeStep].color + "40" }}
             >
-              <div className="text-sm font-semibold mb-1" style={{ color: timeline[activeStep].color }}>
+              <div className="text-sm font-medium mb-1" style={{ color: timeline[activeStep].color }}>
                 {timeline[activeStep].step} <span className="text-muted-foreground font-normal text-xs">({timeline[activeStep].weeks})</span>
               </div>
               <p className="text-xs text-muted-foreground">{timeline[activeStep].desc}</p>
@@ -935,7 +935,7 @@ function SyndicationProcessTab() {
           ))}
         </div>
         <div className="rounded-lg bg-foreground/5 border border-border p-3">
-          <div className="text-xs font-semibold text-muted-foreground mb-2">LSTA Standard Documentation</div>
+          <div className="text-xs font-medium text-muted-foreground mb-2">LSTA Standard Documentation</div>
           <ul className="space-y-1">
             {lstaFeatures.map((f) => (
               <li key={f} className="flex items-start gap-2 text-xs text-muted-foreground">
@@ -1222,7 +1222,7 @@ function MarketDynamicsTab() {
           ))}
         </div>
         <div className="rounded-lg bg-amber-900/20 border border-amber-500/20 p-3 text-xs text-amber-300">
-          <span className="font-semibold">Basel III Impact:</span> Higher risk-weight assets (RWA) on leveraged loans
+          <span className="font-medium">Basel III Impact:</span> Higher risk-weight assets (RWA) on leveraged loans
           (100–150% vs 20–50% for IG) plus leverage ratio constraints have driven banks to originate-and-distribute
           rather than hold, accelerating the shift to non-bank holders.
         </div>
@@ -1243,7 +1243,7 @@ function MarketDynamicsTab() {
           ))}
         </div>
         <div className="rounded-lg bg-emerald-900/20 border border-emerald-500/20 p-3 text-xs text-emerald-300">
-          <span className="font-semibold">Margin Step Mechanics:</span> If borrower meets SPT (e.g., 30% CO2 reduction by
+          <span className="font-medium">Margin Step Mechanics:</span> If borrower meets SPT (e.g., 30% CO2 reduction by
           2026) → margin reduces by 10–25bps. Miss the SPT → margin increases by same amount. Third-party verification
           required annually. SPT must be material, ambitious, and independently verifiable per LMA/APLMA Sustainability
           Linked Loan Principles.
@@ -1260,7 +1260,7 @@ function MarketDynamicsTab() {
           <div className="rounded-lg border border-border bg-muted/30 p-4">
             <div className="flex items-center gap-2 mb-2">
               <Users size={14} className="text-primary" />
-              <span className="text-sm font-semibold text-primary">Relationship Banking</span>
+              <span className="text-sm font-medium text-primary">Relationship Banking</span>
             </div>
             <ul className="space-y-1 text-xs text-muted-foreground">
               <li className="flex items-start gap-2"><ArrowRight size={10} className="mt-0.5 shrink-0 text-muted-foreground" />MLA holds large slice; cross-sells advisory, FX, deposits</li>
@@ -1272,7 +1272,7 @@ function MarketDynamicsTab() {
           <div className="rounded-lg border border-orange-500/20 bg-orange-900/10 p-4">
             <div className="flex items-center gap-2 mb-2">
               <Globe size={14} className="text-orange-400" />
-              <span className="text-sm font-semibold text-orange-300">Transaction Banking</span>
+              <span className="text-sm font-medium text-orange-300">Transaction Banking</span>
             </div>
             <ul className="space-y-1 text-xs text-muted-foreground">
               <li className="flex items-start gap-2"><ArrowRight size={10} className="mt-0.5 shrink-0 text-muted-foreground" />Originate-and-distribute; minimal hold; fee-driven</li>
@@ -1305,14 +1305,14 @@ export default function SyndicatedLendingPage() {
       <motion.div
         initial={{ opacity: 0, y: -12 }}
         animate={{ opacity: 1, y: 0 }}
-        className="mb-6"
+        className="mb-6 border-l-4 border-l-primary p-6 rounded-lg bg-card/40"
       >
         <div className="flex items-center gap-3 mb-2">
           <div className="rounded-lg bg-indigo-500/10 border border-indigo-500/20 p-2">
             <Building2 size={20} className="text-indigo-400" />
           </div>
           <div>
-            <h1 className="text-xl font-bold text-foreground">Syndicated Lending</h1>
+            <h1 className="text-xl font-medium text-foreground">Syndicated Lending</h1>
             <p className="text-xs text-muted-foreground">
               How large corporate loans are arranged, priced, and distributed among multiple banks
             </p>
@@ -1328,7 +1328,7 @@ export default function SyndicatedLendingPage() {
       </motion.div>
 
       {/* Tabs */}
-      <Tabs defaultValue="structure" className="space-y-4">
+      <Tabs defaultValue="structure" className="mt-8 space-y-4">
         <TabsList className="grid grid-cols-2 md:grid-cols-4 bg-card border border-border h-auto p-1 gap-1">
           {tabs.map((t) => {
             const Icon = t.icon;

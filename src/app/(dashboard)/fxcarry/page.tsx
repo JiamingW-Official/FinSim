@@ -755,7 +755,7 @@ export default function FXCarryPage() {
                             {pos.spotReturnYtd >= 0 ? "+" : ""}
                             {pos.spotReturnYtd.toFixed(2)}%
                           </td>
-                          <td className={cn("px-4 py-3 text-right font-mono font-bold", pos.totalReturnYtd >= 0 ? "text-emerald-400" : "text-rose-400")}>
+                          <td className={cn("px-4 py-3 text-right font-mono font-medium", pos.totalReturnYtd >= 0 ? "text-emerald-400" : "text-rose-400")}>
                             +{pos.totalReturnYtd.toFixed(2)}%
                           </td>
                           <td className="px-4 py-3 text-center">
@@ -773,7 +773,7 @@ export default function FXCarryPage() {
 
             <Card className="border-border bg-card">
               <CardHeader className="pb-2">
-                <CardTitle className="text-sm font-semibold">Carry Basket vs EUR/USD — Equity Curve (2010–2026)</CardTitle>
+                <CardTitle className="text-sm font-medium">Carry Basket vs EUR/USD — Equity Curve (2010–2026)</CardTitle>
               </CardHeader>
               <CardContent>
                 <BacktestEquityCurve />
@@ -788,7 +788,7 @@ export default function FXCarryPage() {
           <TabsContent value="rates" className="space-y-6">
             <Card className="border-border bg-card">
               <CardHeader className="pb-2">
-                <CardTitle className="text-sm font-semibold flex items-center gap-2">
+                <CardTitle className="text-sm font-medium flex items-center gap-2">
                   <BarChart2 className="w-4 h-4 text-primary" />
                   G10 Policy Rates — Sorted by Rate Level
                 </CardTitle>
@@ -825,14 +825,14 @@ export default function FXCarryPage() {
                       <div className="flex items-center gap-3">
                         <FlagEmoji code={ccy.flag} />
                         <div>
-                          <div className="font-semibold text-sm">{ccy.code}</div>
+                          <div className="font-medium text-sm">{ccy.code}</div>
                           <div className="text-xs text-muted-foreground">{ccy.central_bank}</div>
                         </div>
                       </div>
                       <div className="text-right">
                         <div
                           className={cn(
-                            "text-lg font-bold font-mono",
+                            "text-lg font-medium font-mono",
                             ccy.policyRate >= 4 ? "text-emerald-400" : ccy.policyRate <= 0.5 ? "text-rose-400" : "text-primary"
                           )}
                         >
@@ -853,7 +853,7 @@ export default function FXCarryPage() {
 
             <Card className="border-border bg-card">
               <CardHeader className="pb-2">
-                <CardTitle className="text-sm font-semibold flex items-center gap-2">
+                <CardTitle className="text-sm font-medium flex items-center gap-2">
                   <Activity className="w-4 h-4 text-primary" />
                   Carry Returns vs Volatility Regime
                 </CardTitle>
@@ -869,7 +869,7 @@ export default function FXCarryPage() {
 
             <Card className="border-border bg-card">
               <CardHeader className="pb-2">
-                <CardTitle className="text-sm font-semibold text-rose-400 flex items-center gap-2">
+                <CardTitle className="text-sm font-medium text-rose-400 flex items-center gap-2">
                   <AlertTriangle className="w-4 h-4" />
                   Sudden Unwind Scenario Analysis
                 </CardTitle>
@@ -904,7 +904,7 @@ export default function FXCarryPage() {
                           <td className="px-3 py-2 text-right font-mono text-amber-400">{row.unwind}%</td>
                           <td className="px-3 py-2 text-right font-mono text-rose-400">{row.nzdjpy}%</td>
                           <td className="px-3 py-2 text-right font-mono text-rose-400">{row.audjpy}%</td>
-                          <td className="px-3 py-2 text-right font-mono text-rose-400 font-bold">{row.basket}%</td>
+                          <td className="px-3 py-2 text-right font-mono text-rose-400 font-medium">{row.basket}%</td>
                           <td className="px-3 py-2 text-center">
                             <Badge
                               className={cn(
@@ -941,27 +941,27 @@ export default function FXCarryPage() {
                   <CardContent className="p-5 space-y-4">
                     <div className="flex items-start justify-between gap-4">
                       <div>
-                        <h3 className={cn("text-base font-bold", strat.color)}>{strat.name}</h3>
+                        <h3 className={cn("text-base font-medium", strat.color)}>{strat.name}</h3>
                         <p className="text-sm text-muted-foreground mt-1">{strat.description}</p>
                       </div>
                       <div className="flex gap-3 shrink-0 text-center">
                         <div>
-                          <div className={cn("text-lg font-bold", strat.color)}>{strat.sharpe}</div>
+                          <div className={cn("text-lg font-medium", strat.color)}>{strat.sharpe}</div>
                           <div className="text-xs text-muted-foreground">Sharpe</div>
                         </div>
                         <div>
-                          <div className="text-lg font-bold text-rose-400">{strat.maxDD}%</div>
+                          <div className="text-lg font-medium text-rose-400">{strat.maxDD}%</div>
                           <div className="text-xs text-muted-foreground">Max DD</div>
                         </div>
                         <div>
-                          <div className={cn("text-lg font-bold", strat.color)}>+{strat.ytd}%</div>
+                          <div className={cn("text-lg font-medium", strat.color)}>+{strat.ytd}%</div>
                           <div className="text-xs text-muted-foreground">YTD</div>
                         </div>
                       </div>
                     </div>
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                       <div>
-                        <h4 className="text-xs font-semibold text-emerald-400 mb-1">Advantages</h4>
+                        <h4 className="text-xs font-medium text-emerald-400 mb-1">Advantages</h4>
                         <ul className="space-y-1">
                           {strat.pros.map((p) => (
                             <li key={p} className="text-xs text-muted-foreground flex items-start gap-1">
@@ -972,7 +972,7 @@ export default function FXCarryPage() {
                         </ul>
                       </div>
                       <div>
-                        <h4 className="text-xs font-semibold text-rose-400 mb-1">Risks</h4>
+                        <h4 className="text-xs font-medium text-rose-400 mb-1">Risks</h4>
                         <ul className="space-y-1">
                           {strat.cons.map((c) => (
                             <li key={c} className="text-xs text-muted-foreground flex items-start gap-1">
@@ -990,7 +990,7 @@ export default function FXCarryPage() {
 
             <Card className="border-border bg-card">
               <CardContent className="p-5 space-y-2">
-                <h3 className="font-semibold text-sm">Educational Note: The Carry Trade Paradox</h3>
+                <h3 className="font-medium text-sm">Educational Note: The Carry Trade Paradox</h3>
                 <p className="text-xs text-muted-foreground leading-relaxed">
                   Uncovered interest rate parity (UIP) predicts that high-yielding currencies should depreciate
                   enough to offset the rate advantage — but empirically, they often do not (the &quot;forward premium puzzle&quot;).

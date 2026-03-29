@@ -400,14 +400,14 @@ export default function HFDueDiligencePage() {
       </motion.div>
 
       {/* Key Metrics */}
-      <motion.div custom={1} variants={fadeUp} initial="hidden" animate="visible" className="grid grid-cols-2 md:grid-cols-4 gap-4">
+      <motion.div custom={1} variants={fadeUp} initial="hidden" animate="visible" className="grid grid-cols-2 md:grid-cols-4 gap-4 rounded-xl border border-border bg-card border-l-4 border-l-primary p-6">
         {KEY_METRICS.map((m) => (
           <MetricCard key={m.label} label={m.label} value={m.value} sub={m.sub} icon={m.icon} highlight={m.highlight} />
         ))}
       </motion.div>
 
       {/* DD Summary Bar */}
-      <motion.div custom={2} variants={fadeUp} initial="hidden" animate="visible">
+      <motion.div custom={2} variants={fadeUp} initial="hidden" animate="visible" className="mt-8">
         <Card className="bg-card border-border">
           <CardContent className="p-4">
             <div className="flex flex-wrap items-center gap-4">
@@ -586,7 +586,7 @@ export default function HFDueDiligencePage() {
                     <tbody>
                       {TRACK_RECORD.map((row, i) => (
                         <tr key={row.period} className={cn("border-b border-border", i % 2 === 0 ? "bg-muted/10" : "")}>
-                          <td className="p-3 font-semibold">{row.period}</td>
+                          <td className="p-3 font-medium">{row.period}</td>
                           <td className={cn("p-3 text-right font-medium", row.return1y >= 0 ? "text-emerald-400" : "text-rose-400")}>
                             {row.return1y >= 0 ? "+" : ""}{row.return1y.toFixed(1)}%
                           </td>
@@ -682,7 +682,7 @@ export default function HFDueDiligencePage() {
                           ? <AlertTriangle className={cn("h-4 w-4 shrink-0", flag.severity === "critical" ? "text-rose-400" : flag.severity === "high" ? "text-amber-400" : "text-primary")} />
                           : <Lock className="h-4 w-4 text-muted-foreground shrink-0" />
                         }
-                        <span className={cn("text-sm font-semibold", flag.detected ? "text-foreground" : "text-muted-foreground")}>{flag.title}</span>
+                        <span className={cn("text-sm font-medium", flag.detected ? "text-foreground" : "text-muted-foreground")}>{flag.title}</span>
                       </div>
                       <div className="flex gap-1.5 shrink-0">
                         <SeverityBadge severity={flag.severity} />
@@ -709,7 +709,7 @@ export default function HFDueDiligencePage() {
                 <div className="flex flex-wrap gap-4 items-start">
                   <div className="flex items-center gap-2">
                     <div className="w-3 h-3 rounded-full bg-amber-400" />
-                    <span className="text-sm font-semibold text-amber-400">CONDITIONAL INVEST</span>
+                    <span className="text-sm font-medium text-amber-400">CONDITIONAL INVEST</span>
                   </div>
                   <p className="text-sm text-muted-foreground flex-1">
                     Strong quantitative profile (Sharpe 1.47, low beta 0.31, clean audit history) offset by 3 detected issues: AUM bloat, key person risk, and concentrated positions.

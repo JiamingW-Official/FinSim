@@ -678,7 +678,7 @@ function ETFExplorer() {
   function Th({ k, children }: { k: keyof ETFRow; children: React.ReactNode }) {
     return (
       <th
-        className="cursor-pointer select-none whitespace-nowrap px-3 py-2 text-left text-xs font-semibold text-muted-foreground hover:text-foreground"
+        className="cursor-pointer select-none whitespace-nowrap px-3 py-2 text-left text-xs font-medium text-muted-foreground hover:text-foreground"
         onClick={() => toggleSort(k)}
       >
         <div className="flex items-center gap-0.5">
@@ -711,13 +711,13 @@ function ETFExplorer() {
             <thead className="sticky top-0 bg-card z-10 border-b border-border/50">
               <tr>
                 <Th k="symbol">Symbol</Th>
-                <th className="px-3 py-2 text-left text-xs font-semibold text-muted-foreground">Name</th>
-                <th className="px-3 py-2 text-left text-xs font-semibold text-muted-foreground">Category</th>
+                <th className="px-3 py-2 text-left text-xs font-medium text-muted-foreground">Name</th>
+                <th className="px-3 py-2 text-left text-xs font-medium text-muted-foreground">Category</th>
                 <Th k="aumB">AUM ($B)</Th>
                 <Th k="expenseRatio">Exp Ratio</Th>
                 <Th k="ytdReturn">YTD</Th>
                 <Th k="y1Return">1Y</Th>
-                <th className="px-3 py-2 text-left text-xs font-semibold text-muted-foreground">52W Range</th>
+                <th className="px-3 py-2 text-left text-xs font-medium text-muted-foreground">52W Range</th>
                 <Th k="dividendYield">Div Yield</Th>
               </tr>
             </thead>
@@ -731,7 +731,7 @@ function ETFExplorer() {
                   )}
                   onClick={() => setSelectedETF((prev) => prev?.symbol === etf.symbol ? null : etf)}
                 >
-                  <td className="px-3 py-2.5 font-bold text-primary">{etf.symbol}</td>
+                  <td className="px-3 py-2.5 font-medium text-primary">{etf.symbol}</td>
                   <td className="px-3 py-2.5 max-w-[160px] truncate text-muted-foreground">{etf.name}</td>
                   <td className="px-3 py-2.5">
                     <CategoryBadge cat={etf.category} />
@@ -812,7 +812,7 @@ function FundComparison() {
     <div className="flex h-full flex-col overflow-y-auto px-6 py-4 gap-5">
       {/* ETF selector */}
       <div>
-        <div className="mb-2 text-xs font-semibold text-muted-foreground">
+        <div className="mb-2 text-xs font-medium text-muted-foreground">
           Select up to 4 ETFs
         </div>
         <div className="flex flex-wrap gap-1.5">
@@ -845,7 +845,7 @@ function FundComparison() {
           {/* Performance chart */}
           <div className="rounded-lg border border-border/50 bg-card p-4">
             <div className="mb-3 flex items-center justify-between">
-              <span className="text-xs font-semibold text-muted-foreground">
+              <span className="text-xs font-medium text-muted-foreground">
                 Normalized Performance (52W, base 100)
               </span>
               <div className="flex gap-3">
@@ -911,9 +911,9 @@ function FundComparison() {
             <table className="w-full text-xs">
               <thead>
                 <tr className="border-b border-border/50 bg-muted/20">
-                  <th className="px-4 py-2.5 text-left text-xs font-semibold text-muted-foreground">Metric</th>
+                  <th className="px-4 py-2.5 text-left text-xs font-medium text-muted-foreground">Metric</th>
                   {selectedRows.map((e, i) => (
-                    <th key={e.symbol} className="px-4 py-2.5 text-left text-xs font-semibold" style={{ color: COMPARE_COLORS[i] }}>
+                    <th key={e.symbol} className="px-4 py-2.5 text-left text-xs font-medium" style={{ color: COMPARE_COLORS[i] }}>
                       {e.symbol}
                     </th>
                   ))}
@@ -961,15 +961,15 @@ function FundComparison() {
 
           {/* Overlap analysis */}
           <div className="rounded-lg border border-border/50 bg-card px-4 py-3">
-            <div className="mb-2 text-xs font-semibold text-muted-foreground">Holdings Overlap</div>
+            <div className="mb-2 text-xs font-medium text-muted-foreground">Holdings Overlap</div>
             <div className="flex flex-wrap gap-3">
               {overlapPairs.length === 0 ? (
                 <span className="text-xs text-muted-foreground">No pairs to compare.</span>
               ) : overlapPairs.map((p) => (
                 <div key={`${p.a}-${p.b}`} className="flex items-center gap-2 rounded-md border border-border/50 bg-muted/20 px-3 py-1.5">
-                  <span className="text-xs font-semibold">{p.a} + {p.b}</span>
+                  <span className="text-xs font-medium">{p.a} + {p.b}</span>
                   <span className="text-xs text-muted-foreground">share</span>
-                  <span className={cn("text-xs font-bold", p.pct > 30 ? "text-amber-400" : "text-emerald-400")}>
+                  <span className={cn("text-xs font-medium", p.pct > 30 ? "text-amber-400" : "text-emerald-400")}>
                     {p.pct}%
                   </span>
                   <span className="text-xs text-muted-foreground">of holdings</span>
@@ -1093,7 +1093,7 @@ function HoldingsXRay() {
     <div className="flex h-full flex-col overflow-y-auto px-6 py-4 gap-5">
       {/* ETF picker */}
       <div className="flex items-center gap-3">
-        <span className="text-xs font-semibold text-muted-foreground">Select ETF</span>
+        <span className="text-xs font-medium text-muted-foreground">Select ETF</span>
         <select
           value={selectedSym}
           onChange={(e) => setSelectedSym(e.target.value)}
@@ -1108,14 +1108,14 @@ function HoldingsXRay() {
       <div className="grid grid-cols-1 gap-5 lg:grid-cols-2">
         {/* Top 10 holdings */}
         <div className="rounded-lg border border-border/50 bg-card p-4">
-          <div className="mb-3 text-xs font-semibold text-muted-foreground">
+          <div className="mb-3 text-xs font-medium text-muted-foreground">
             Top 10 Holdings
           </div>
           <div className="space-y-2">
             {etf.topHoldings.map((h, i) => (
               <div key={h.ticker} className="flex items-center gap-2">
                 <span className="w-4 text-[11px] text-muted-foreground text-right">{i + 1}</span>
-                <span className="w-10 shrink-0 text-xs font-bold text-primary">{h.ticker}</span>
+                <span className="w-10 shrink-0 text-xs font-medium text-primary">{h.ticker}</span>
                 <div className="flex-1 relative h-4 rounded bg-muted/30">
                   <div
                     className="h-full rounded bg-primary/25 transition-all"
@@ -1125,7 +1125,7 @@ function HoldingsXRay() {
                     {h.name.length > 22 ? h.name.slice(0, 22) + "…" : h.name}
                   </span>
                 </div>
-                <span className="w-10 text-right text-xs tabular-nums font-semibold">{h.weight.toFixed(2)}%</span>
+                <span className="w-10 text-right text-xs tabular-nums font-medium">{h.weight.toFixed(2)}%</span>
               </div>
             ))}
           </div>
@@ -1133,7 +1133,7 @@ function HoldingsXRay() {
 
         {/* Sector breakdown */}
         <div className="rounded-lg border border-border/50 bg-card p-4">
-          <div className="mb-3 text-xs font-semibold text-muted-foreground">
+          <div className="mb-3 text-xs font-medium text-muted-foreground">
             Sector Breakdown
           </div>
           <div className="flex items-center gap-4">
@@ -1143,7 +1143,7 @@ function HoldingsXRay() {
                 <div key={s.sector} className="flex items-center gap-2">
                   <div className="h-2 w-2 rounded-full shrink-0" style={{ backgroundColor: s.color }} />
                   <span className="flex-1 text-xs text-muted-foreground">{s.sector}</span>
-                  <span className="text-xs font-semibold tabular-nums">{s.pct}%</span>
+                  <span className="text-xs font-medium tabular-nums">{s.pct}%</span>
                 </div>
               ))}
             </div>
@@ -1152,7 +1152,7 @@ function HoldingsXRay() {
 
         {/* Geographic exposure */}
         <div className="rounded-lg border border-border/50 bg-card p-4">
-          <div className="mb-3 text-xs font-semibold text-muted-foreground">
+          <div className="mb-3 text-xs font-medium text-muted-foreground">
             Geographic Exposure
           </div>
           <div className="space-y-3">
@@ -1165,7 +1165,7 @@ function HoldingsXRay() {
                     style={{ width: `${g.pct}%` }}
                   />
                 </div>
-                <span className="w-10 text-right text-xs font-semibold tabular-nums">{g.pct}%</span>
+                <span className="w-10 text-right text-xs font-medium tabular-nums">{g.pct}%</span>
               </div>
             ))}
           </div>
@@ -1173,7 +1173,7 @@ function HoldingsXRay() {
 
         {/* Factor exposures radar */}
         <div className="rounded-lg border border-border/50 bg-card p-4">
-          <div className="mb-3 text-xs font-semibold text-muted-foreground">
+          <div className="mb-3 text-xs font-medium text-muted-foreground">
             Factor Exposures
           </div>
           <div className="flex items-center gap-4">
@@ -1185,7 +1185,7 @@ function HoldingsXRay() {
                   <div className="w-16 h-1.5 rounded-full bg-muted/30">
                     <div className="h-full rounded-full bg-indigo-500/60" style={{ width: `${v}%` }} />
                   </div>
-                  <span className="w-6 text-right text-xs font-semibold tabular-nums">{v}</span>
+                  <span className="w-6 text-right text-xs font-medium tabular-nums">{v}</span>
                 </div>
               ))}
             </div>
@@ -1250,7 +1250,7 @@ function ETFScreener() {
   }) {
     return (
       <div className="flex items-center gap-2 flex-wrap">
-        <span className="text-xs font-semibold text-muted-foreground shrink-0">{label}:</span>
+        <span className="text-xs font-medium text-muted-foreground shrink-0">{label}:</span>
         {options.map((opt) => (
           <button
             key={opt}
@@ -1276,7 +1276,7 @@ function ETFScreener() {
       <div className="rounded-lg border border-border/50 bg-card px-4 py-4 space-y-3">
         <div className="flex items-center gap-2 mb-1">
           <Filter className="h-3.5 w-3.5 text-muted-foreground" />
-          <span className="text-xs font-semibold text-muted-foreground">Filters</span>
+          <span className="text-xs font-medium text-muted-foreground">Filters</span>
         </div>
         <FilterGroup
           label="Category"
@@ -1306,7 +1306,7 @@ function ETFScreener() {
 
       {/* Results */}
       <div>
-        <div className="mb-2 text-xs font-semibold text-muted-foreground">
+        <div className="mb-2 text-xs font-medium text-muted-foreground">
           {filtered.length} ETF{filtered.length !== 1 ? "s" : ""} match your criteria
         </div>
         {filtered.length === 0 ? (
@@ -1321,7 +1321,7 @@ function ETFScreener() {
                 <div className="flex items-start justify-between mb-2">
                   <div>
                     <div className="flex items-center gap-2">
-                      <span className="text-sm font-bold text-primary">{etf.symbol}</span>
+                      <span className="text-sm font-medium text-primary">{etf.symbol}</span>
                       <CategoryBadge cat={etf.category} />
                     </div>
                     <p className="text-xs text-muted-foreground mt-0.5 leading-tight">{etf.name}</p>
@@ -1336,7 +1336,7 @@ function ETFScreener() {
                   ].map((s) => (
                     <div key={s.label} className="rounded bg-muted/20 px-1.5 py-1 text-center">
                       <div className="text-[11px] text-muted-foreground">{s.label}</div>
-                      <div className="text-xs font-semibold tabular-nums">{s.value}</div>
+                      <div className="text-xs font-medium tabular-nums">{s.value}</div>
                     </div>
                   ))}
                 </div>
@@ -1354,7 +1354,7 @@ function ETFScreener() {
       <div>
         <div className="mb-3 flex items-center gap-2">
           <Star className="h-3.5 w-3.5 text-amber-400" />
-          <span className="text-xs font-semibold text-muted-foreground">Best ETF for Your Goal</span>
+          <span className="text-xs font-medium text-muted-foreground">Best ETF for Your Goal</span>
         </div>
         <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
           {RECOMMENDATIONS.map((rec) => {
@@ -1364,8 +1364,8 @@ function ETFScreener() {
               <div key={rec.goal} className="rounded-lg border border-border/50 bg-card p-4 hover:border-amber-400/30 transition-colors">
                 <div className="flex items-start justify-between mb-2">
                   <div>
-                    <div className="text-xs font-semibold text-amber-400 mb-1">{rec.goal}</div>
-                    <div className="text-sm font-bold">{etf.symbol}</div>
+                    <div className="text-xs font-medium text-amber-400 mb-1">{rec.goal}</div>
+                    <div className="text-sm font-medium">{etf.symbol}</div>
                     <div className="text-xs text-muted-foreground">{etf.name}</div>
                   </div>
                   <div className="flex flex-col items-end gap-1">
@@ -1394,7 +1394,7 @@ export default function ETFPage() {
       <div className="flex items-center gap-3 border-b border-border/50 px-6 py-4">
         <PieChart className="h-5 w-5 text-primary" />
         <div>
-          <h1 className="text-base font-semibold leading-none">ETF Analysis</h1>
+          <h1 className="text-base font-medium leading-none">ETF Analysis</h1>
           <p className="mt-1 text-xs text-muted-foreground">
             Explore, compare, and screen 15 major ETFs across all asset classes
           </p>

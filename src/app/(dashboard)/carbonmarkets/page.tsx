@@ -845,7 +845,7 @@ function QualityTab() {
           {CALYX_RATINGS.map((r) => (
             <div key={r.rating} className="space-y-1">
               <div className="flex justify-between text-xs">
-                <span className="font-mono font-bold" style={{ color: r.color }}>{r.rating}</span>
+                <span className="font-mono font-medium" style={{ color: r.color }}>{r.rating}</span>
                 <span className="text-muted-foreground">{r.label}</span>
                 <span className="text-muted-foreground">{r.pct}% of rated credits</span>
               </div>
@@ -923,17 +923,17 @@ function InvestmentTab() {
           <PriceForecastChart />
           <div className="grid grid-cols-3 gap-3 mt-3 text-xs">
             <div className="border border-border rounded p-2">
-              <div className="text-emerald-400 font-bold">NZE Scenario</div>
+              <div className="text-emerald-400 font-medium">NZE Scenario</div>
               <div className="text-muted-foreground">$250/t by 2030</div>
               <div className="text-muted-foreground">Net Zero Emissions pathway; rapid policy tightening globally</div>
             </div>
             <div className="border border-border rounded p-2">
-              <div className="text-amber-400 font-bold">SDS Scenario</div>
+              <div className="text-amber-400 font-medium">SDS Scenario</div>
               <div className="text-muted-foreground">$150/t by 2030</div>
               <div className="text-muted-foreground">Sustainable Development; Paris-aligned with current pledges</div>
             </div>
             <div className="border border-border rounded p-2">
-              <div className="text-muted-foreground font-bold">STEPS Baseline</div>
+              <div className="text-muted-foreground font-medium">STEPS Baseline</div>
               <div className="text-muted-foreground">$110/t by 2030</div>
               <div className="text-muted-foreground">Stated policies only; modest tightening of existing systems</div>
             </div>
@@ -961,7 +961,7 @@ function InvestmentTab() {
               <tbody>
                 {CARBON_FUNDS.map((fund, i) => (
                   <tr key={i} className="border-b border-border/60 hover:bg-muted/30">
-                    <td className="py-2 px-3 text-primary font-mono font-bold">{fund.ticker}</td>
+                    <td className="py-2 px-3 text-primary font-mono font-medium">{fund.ticker}</td>
                     <td className="py-2 px-3 text-muted-foreground">{fund.name}</td>
                     <td className="py-2 px-3 text-muted-foreground">{fund.aum}</td>
                     <td className="py-2 px-3 text-muted-foreground">{fund.exposure}</td>
@@ -1089,13 +1089,13 @@ function InvestmentTab() {
 export default function CarbonMarketsPage() {
   return (
     <div className="min-h-screen bg-background text-foreground p-4 md:p-6">
-      <div className="mb-6">
+      <div className="mb-8 border-l-4 border-l-primary rounded-xl bg-card p-6">
         <div className="flex items-center gap-3 mb-2 flex-wrap">
           <div className="p-2 rounded-lg bg-emerald-500/10 border border-emerald-500/20">
             <Leaf className="w-6 h-6 text-emerald-400" />
           </div>
           <div>
-            <h1 className="text-2xl font-bold text-foreground">Carbon Markets</h1>
+            <h1 className="text-xl font-semibold text-foreground">Carbon Markets</h1>
             <p className="text-sm text-muted-foreground">ETS compliance, voluntary credits, quality assessment, and investment strategies</p>
           </div>
           <div className="ml-auto flex gap-2 flex-wrap">

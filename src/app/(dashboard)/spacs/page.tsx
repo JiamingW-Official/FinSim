@@ -351,7 +351,7 @@ function SpacDetailPanel({ spac, onClose }: { spac: SPAC; onClose: () => void })
       <div className="mb-3 rounded-lg border border-border/50 bg-background/50 p-3">
         <div className="mb-2 flex items-center gap-1.5">
           <Shield className="h-3.5 w-3.5 text-primary" />
-          <span className="text-xs font-semibold text-foreground">Trust Floor Safety</span>
+          <span className="text-xs font-medium text-foreground">Trust Floor Safety</span>
         </div>
         <div className="grid grid-cols-3 gap-2">
           <div className="text-center">
@@ -364,7 +364,7 @@ function SpacDetailPanel({ spac, onClose }: { spac: SPAC; onClose: () => void })
           </div>
           <div className="text-center">
             <p className="text-xs text-muted-foreground">Downside</p>
-            <p className={cn("text-sm font-bold", downside <= 0 ? "text-green-400" : "text-red-400")}>
+            <p className={cn("text-sm font-medium", downside <= 0 ? "text-green-400" : "text-red-400")}>
               {downside <= 0 ? `$${Math.abs(downside).toFixed(2)}` : `-$${Math.abs(downside).toFixed(2)}`}
             </p>
           </div>
@@ -378,7 +378,7 @@ function SpacDetailPanel({ spac, onClose }: { spac: SPAC; onClose: () => void })
 
       {/* Target description */}
       <div className="mb-3">
-        <p className="mb-1.5 text-xs font-semibold text-muted-foreground/60">
+        <p className="mb-1.5 text-xs font-medium text-muted-foreground/60">
           Target
         </p>
         <p className="text-xs leading-relaxed text-foreground/80">
@@ -388,7 +388,7 @@ function SpacDetailPanel({ spac, onClose }: { spac: SPAC; onClose: () => void })
 
       {/* Deal terms */}
       <div className="mb-3 rounded-lg border border-border/50 bg-background/50 p-3">
-        <p className="mb-1.5 text-xs font-semibold text-muted-foreground/60">
+        <p className="mb-1.5 text-xs font-medium text-muted-foreground/60">
           Deal Terms
         </p>
         <p className="text-xs leading-relaxed text-foreground/80">{spac.dealTerms}</p>
@@ -396,32 +396,32 @@ function SpacDetailPanel({ spac, onClose }: { spac: SPAC; onClose: () => void })
 
       {/* Warrant value */}
       <div className="mb-3 rounded-lg border border-border/50 bg-background/50 p-3">
-        <p className="mb-2 text-xs font-semibold text-muted-foreground/60">
+        <p className="mb-2 text-xs font-medium text-muted-foreground/60">
           Warrant Details
         </p>
         <div className="grid grid-cols-2 gap-2 text-xs">
           <div>
             <span className="text-muted-foreground">Per unit:</span>{" "}
-            <span className="font-semibold text-foreground">{warrantsLabel} warrant</span>
+            <span className="font-medium text-foreground">{warrantsLabel} warrant</span>
           </div>
           <div>
             <span className="text-muted-foreground">Strike:</span>{" "}
-            <span className="font-semibold text-foreground">${spac.warrantStrike.toFixed(2)}</span>
+            <span className="font-medium text-foreground">${spac.warrantStrike.toFixed(2)}</span>
           </div>
           <div>
             <span className="text-muted-foreground">Est. value:</span>{" "}
-            <span className="font-semibold text-foreground">${warrantsEstimate.toFixed(2)}</span>
+            <span className="font-medium text-foreground">${warrantsEstimate.toFixed(2)}</span>
           </div>
           <div>
             <span className="text-muted-foreground">Deadline:</span>{" "}
-            <span className="font-semibold text-amber-400">{spac.deadlineMonths}mo</span>
+            <span className="font-medium text-amber-400">{spac.deadlineMonths}mo</span>
           </div>
         </div>
       </div>
 
       {/* Redemption option */}
       <div className="rounded-lg border border-border bg-primary/5 p-3">
-        <p className="mb-1.5 flex items-center gap-1.5 text-xs font-semibold text-primary">
+        <p className="mb-1.5 flex items-center gap-1.5 text-xs font-medium text-primary">
           <Shield className="h-3 w-3" /> Redemption Right
         </p>
         <p className="text-xs leading-relaxed text-foreground/70">
@@ -443,7 +443,7 @@ function BondDetailPanel({ bond, onClose }: { bond: ConvertibleBond; onClose: ()
     <div className="flex h-full flex-col overflow-y-auto border-l border-border/50 bg-card/40 p-4">
       <div className="mb-4 flex items-start justify-between gap-2">
         <div>
-          <h3 className="text-sm font-semibold text-foreground">{bond.issuer}</h3>
+          <h3 className="text-sm font-medium text-foreground">{bond.issuer}</h3>
           <p className="text-xs text-muted-foreground">{bond.ticker} · {bond.sector}</p>
         </div>
         <button
@@ -463,7 +463,7 @@ function BondDetailPanel({ bond, onClose }: { bond: ConvertibleBond; onClose: ()
           {inTheMoney
             ? <TrendingUp className="h-4 w-4 text-green-400" />
             : <TrendingDown className="h-4 w-4 text-muted-foreground" />}
-          <span className={cn("text-xs font-semibold", inTheMoney ? "text-green-400" : "text-muted-foreground")}>
+          <span className={cn("text-xs font-medium", inTheMoney ? "text-green-400" : "text-muted-foreground")}>
             {inTheMoney ? "In-the-Money — Conversion favorable" : "Out-of-the-Money — Bond floor dominant"}
           </span>
         </div>
@@ -475,33 +475,33 @@ function BondDetailPanel({ bond, onClose }: { bond: ConvertibleBond; onClose: ()
 
       {/* Term sheet */}
       <div className="mb-3 rounded-lg border border-border/50 bg-background/50 p-3">
-        <p className="mb-2 text-xs font-semibold text-muted-foreground/60">
+        <p className="mb-2 text-xs font-medium text-muted-foreground/60">
           Term Sheet
         </p>
         <div className="grid grid-cols-2 gap-2 text-xs">
           <div>
             <span className="text-muted-foreground">Face Value:</span>{" "}
-            <span className="font-semibold text-foreground">${bond.faceValue.toLocaleString()}</span>
+            <span className="font-medium text-foreground">${bond.faceValue.toLocaleString()}</span>
           </div>
           <div>
             <span className="text-muted-foreground">Coupon:</span>{" "}
-            <span className="font-semibold text-foreground">{bond.coupon.toFixed(2)}%</span>
+            <span className="font-medium text-foreground">{bond.coupon.toFixed(2)}%</span>
           </div>
           <div>
             <span className="text-muted-foreground">Maturity:</span>{" "}
-            <span className="font-semibold text-foreground">{bond.maturityYears}yr</span>
+            <span className="font-medium text-foreground">{bond.maturityYears}yr</span>
           </div>
           <div>
             <span className="text-muted-foreground">Conv. Ratio:</span>{" "}
-            <span className="font-semibold text-foreground">{conversionRatio.toFixed(2)}x</span>
+            <span className="font-medium text-foreground">{conversionRatio.toFixed(2)}x</span>
           </div>
           <div>
             <span className="text-muted-foreground">Bond Floor:</span>{" "}
-            <span className="font-semibold text-foreground">${bond.bondFloor.toFixed(0)}</span>
+            <span className="font-medium text-foreground">${bond.bondFloor.toFixed(0)}</span>
           </div>
           <div>
             <span className="text-muted-foreground">Parity Value:</span>{" "}
-            <span className={cn("font-semibold", inTheMoney ? "text-green-400" : "text-foreground")}>
+            <span className={cn("font-medium", inTheMoney ? "text-green-400" : "text-foreground")}>
               ${bond.parityValue.toFixed(0)}
             </span>
           </div>
@@ -510,7 +510,7 @@ function BondDetailPanel({ bond, onClose }: { bond: ConvertibleBond; onClose: ()
 
       {/* Provisions */}
       <div className="mb-3 rounded-lg border border-border/50 bg-background/50 p-3">
-        <p className="mb-2 text-xs font-semibold text-muted-foreground/60">
+        <p className="mb-2 text-xs font-medium text-muted-foreground/60">
           Call / Put Provisions
         </p>
         <div className="space-y-2 text-xs">
@@ -527,7 +527,7 @@ function BondDetailPanel({ bond, onClose }: { bond: ConvertibleBond; onClose: ()
 
       {/* Delta gauge */}
       <div className="rounded-lg border border-border/50 bg-background/50 p-3">
-        <p className="mb-2 text-xs font-semibold text-muted-foreground/60">
+        <p className="mb-2 text-xs font-medium text-muted-foreground/60">
           Conversion Delta (Equity Sensitivity)
         </p>
         <div className="mb-1.5 h-2 w-full rounded-full bg-muted">
@@ -538,7 +538,7 @@ function BondDetailPanel({ bond, onClose }: { bond: ConvertibleBond; onClose: ()
         </div>
         <div className="flex justify-between text-xs text-muted-foreground">
           <span>0 (Pure Bond)</span>
-          <span className="font-semibold text-primary">{bond.delta.toFixed(2)}</span>
+          <span className="font-medium text-primary">{bond.delta.toFixed(2)}</span>
           <span>1 (Equity-like)</span>
         </div>
         <p className="mt-2 text-xs text-muted-foreground/70">
@@ -723,7 +723,7 @@ function SpacTrackerTab({ spacs }: { spacs: SPAC[] }) {
                   </td>
                   <td className="px-3 py-2.5 text-right font-mono">
                     <span className={cn(
-                      "font-semibold",
+                      "font-medium",
                       spac.premiumDiscount > 0 ? "text-green-400" : "text-red-400",
                     )}>
                       {spac.premiumDiscount > 0 ? "+" : ""}{spac.premiumDiscount.toFixed(2)}%
@@ -796,7 +796,7 @@ function SpacArbCalculatorTab() {
       <div className="rounded-lg border border-border bg-primary/10 p-4">
         <div className="mb-2 flex items-center gap-2">
           <BookOpen className="h-4 w-4 text-primary" />
-          <span className="text-sm font-semibold text-primary">SPAC Arb Thesis</span>
+          <span className="text-sm font-medium text-primary">SPAC Arb Thesis</span>
         </div>
         <p className="text-xs leading-relaxed text-foreground/80">
           SPAC arbitrage exploits the asymmetric return profile: <strong className="text-primary">downside is protected by the trust value</strong> (you can redeem at NAV),
@@ -808,7 +808,7 @@ function SpacArbCalculatorTab() {
 
       {/* Inputs */}
       <div className="rounded-lg border border-border/50 bg-card/60 p-4">
-        <h3 className="mb-3 text-sm font-semibold text-foreground">Inputs</h3>
+        <h3 className="mb-3 text-sm font-medium text-foreground">Inputs</h3>
         <div className="grid grid-cols-2 gap-3">
           {[
             { label: "Current SPAC Price ($)", value: price, set: setPrice, step: "0.01" },
@@ -832,7 +832,7 @@ function SpacArbCalculatorTab() {
 
       {/* Outputs */}
       <div className="rounded-lg border border-border/50 bg-card/60 p-4">
-        <h3 className="mb-3 text-sm font-semibold text-foreground">Analysis</h3>
+        <h3 className="mb-3 text-sm font-medium text-foreground">Analysis</h3>
         <div className="grid grid-cols-2 gap-3">
           {[
             {
@@ -865,7 +865,7 @@ function SpacArbCalculatorTab() {
                 <Icon className="h-3 w-3 text-muted-foreground/60" />
                 <p className="text-xs text-muted-foreground/70">{label}</p>
               </div>
-              <p className={cn("text-xl font-bold tabular-nums", color)}>{value}</p>
+              <p className={cn("text-xl font-medium tabular-nums", color)}>{value}</p>
             </div>
           ))}
         </div>
@@ -873,7 +873,7 @@ function SpacArbCalculatorTab() {
 
       {/* Payoff diagram */}
       <div className="rounded-lg border border-border/50 bg-card/60 p-4">
-        <h3 className="mb-3 text-sm font-semibold text-foreground">Payoff Diagram</h3>
+        <h3 className="mb-3 text-sm font-medium text-foreground">Payoff Diagram</h3>
         <p className="mb-2 text-xs text-muted-foreground/70">
           P&L per share vs. final stock price. Floor is guaranteed by trust redemption.
         </p>
@@ -942,7 +942,7 @@ function ConvertibleBondsTab({ bonds }: { bonds: ConvertibleBond[] }) {
                     </td>
                     <td className="px-3 py-2.5 text-right font-mono text-foreground">${bond.bondFloor.toFixed(0)}</td>
                     <td className="px-3 py-2.5 text-right font-mono">
-                      <span className={cn(itm ? "text-green-400 font-semibold" : "text-muted-foreground")}>
+                      <span className={cn(itm ? "text-green-400 font-medium" : "text-muted-foreground")}>
                         ${bond.parityValue.toFixed(0)}
                       </span>
                     </td>
@@ -1043,7 +1043,7 @@ function EducationTab() {
         <div key={title} className="rounded-lg border border-border/50 bg-card/60 p-4">
           <div className="mb-3 flex items-center gap-2.5">
             <span className="text-xl" role="img" aria-label={title}>{emoji}</span>
-            <h3 className="text-sm font-semibold text-foreground">{title}</h3>
+            <h3 className="text-sm font-medium text-foreground">{title}</h3>
           </div>
           <ul className="space-y-2">
             {content.map((point, i) => (
@@ -1068,11 +1068,11 @@ export default function SPACsPage() {
   return (
     <div className="flex h-full flex-col overflow-hidden bg-background">
       {/* Header */}
-      <div className="shrink-0 border-b border-border/50 px-4 py-3">
+      <div className="shrink-0 border-b border-border/50 px-6 py-6 border-l-4 border-l-primary">
         <div className="flex items-center gap-2">
           <Zap className="h-5 w-5 text-primary" />
-          <h1 className="text-lg font-semibold text-foreground">SPACs &amp; Convertible Bonds</h1>
-          <span className="rounded-full bg-primary/10 px-2 py-0.5 text-xs font-semibold text-primary">
+          <h1 className="text-lg font-medium text-foreground">SPACs &amp; Convertible Bonds</h1>
+          <span className="rounded-full bg-primary/10 px-2 py-0.5 text-xs font-medium text-primary">
             Simulator
           </span>
         </div>

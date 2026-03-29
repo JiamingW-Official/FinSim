@@ -1091,7 +1091,7 @@ function ScanSimulatorTab() {
                       <div className="flex items-start justify-between">
                         <div>
                           <div className="flex items-center gap-2">
-                            <span className="font-bold text-foreground text-sm">{result.ticker}</span>
+                            <span className="font-medium text-foreground text-sm">{result.ticker}</span>
                             <span
                               className={cn(
                                 "text-xs px-1.5 py-0.5 rounded border",
@@ -1299,14 +1299,14 @@ function PatternStatsTab() {
       <Card className="p-5 bg-card border-border">
         <div className="flex items-center gap-2 mb-4">
           <Star className="h-4 w-4 text-amber-400" />
-          <h3 className="text-sm font-semibold text-foreground">Best Patterns for {condition}</h3>
+          <h3 className="text-sm font-medium text-foreground">Best Patterns for {condition}</h3>
         </div>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
           {recommendations.map((rec, rank) => (
             <div key={rec.name} className="p-3 rounded-lg bg-card/60 border border-border">
               <div className="flex items-center gap-2 mb-2">
-                <span className="text-lg font-bold text-muted-foreground">#{rank + 1}</span>
-                <span className="text-sm font-semibold text-foreground">{rec.name}</span>
+                <span className="text-lg font-medium text-muted-foreground">#{rank + 1}</span>
+                <span className="text-sm font-medium text-foreground">{rec.name}</span>
               </div>
               <div className="space-y-1 text-xs text-muted-foreground">
                 <div className="flex justify-between">
@@ -1329,7 +1329,7 @@ function PatternStatsTab() {
 
       {/* Full table */}
       <Card className="p-5 bg-card/60 border-border">
-        <h3 className="text-sm font-semibold text-foreground mb-4">Historical Win Rate Table</h3>
+        <h3 className="text-sm font-medium text-foreground mb-4">Historical Win Rate Table</h3>
         <div className="overflow-x-auto">
           <table className="w-full text-xs">
             <thead>
@@ -1357,7 +1357,7 @@ function PatternStatsTab() {
                   <td className="py-2 pr-4 text-right">
                     <span
                       className={cn(
-                        "font-semibold",
+                        "font-medium",
                         row.winRate >= 75
                           ? "text-emerald-400"
                           : row.winRate >= 65
@@ -1396,7 +1396,7 @@ export default function PatternsPage() {
         <div>
           <div className="flex items-center gap-2 mb-1">
             <BarChart2 className="h-5 w-5 text-indigo-400" />
-            <h1 className="text-xl font-bold text-foreground">Chart Pattern Recognition</h1>
+            <h1 className="text-xl font-medium text-foreground">Chart Pattern Recognition</h1>
           </div>
           <p className="text-sm text-muted-foreground">
             Master 20 classic patterns — library, interactive quiz, live scan, and statistics.

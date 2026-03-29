@@ -699,7 +699,7 @@ export default function PensionFundPage() {
                     <p>
                       At current contribution levels and {ACTUARIAL_RETURN_ASSUMPTION}% return assumption, funded ratio
                       is projected to reach{" "}
-                      <span className="text-green-400 font-semibold">
+                      <span className="text-green-400 font-medium">
                         {projectionData[projectionData.length - 1]?.fundedRatio.toFixed(1)}%
                       </span>{" "}
                       by 2035.
@@ -728,7 +728,7 @@ export default function PensionFundPage() {
                     { label: "Funding Gap", val: `$${(PBO - PLAN_ASSETS).toFixed(2)}B`, color: "text-amber-400" },
                   ].map((item) => (
                     <div key={item.label} className="text-center p-2 rounded-lg bg-muted/50">
-                      <div className={cn("font-bold text-base", item.color)}>{item.val}</div>
+                      <div className={cn("font-medium text-base", item.color)}>{item.val}</div>
                       <div className="text-muted-foreground">{item.label}</div>
                     </div>
                   ))}
@@ -768,7 +768,7 @@ export default function PensionFundPage() {
                               <span className="font-medium">{a.name}</span>
                             </div>
                           </td>
-                          <td className="text-right px-3 font-semibold">{a.allocation}%</td>
+                          <td className="text-right px-3 font-medium">{a.allocation}%</td>
                           <td className="text-right px-3 text-green-400">{a.expectedReturn.toFixed(1)}%</td>
                           <td className="text-right px-3 text-primary">{a.duration.toFixed(1)}y</td>
                           <td className="text-right px-3">
@@ -800,7 +800,7 @@ export default function PensionFundPage() {
                           </td>
                         </tr>
                       ))}
-                      <tr className="border-t-2 border-border font-semibold text-xs text-muted-foreground bg-muted/20">
+                      <tr className="border-t-2 border-border font-medium text-xs text-muted-foreground bg-muted/20">
                         <td className="py-2 pr-4">Portfolio Weighted Average</td>
                         <td className="text-right px-3">100%</td>
                         <td className="text-right px-3 text-green-400">
@@ -821,7 +821,7 @@ export default function PensionFundPage() {
                 </div>
                 <div className="mt-4 grid grid-cols-1 sm:grid-cols-2 gap-3">
                   <div className="p-3 rounded-lg bg-primary/10 border border-border text-xs space-y-1">
-                    <p className="font-semibold text-primary flex items-center gap-1">
+                    <p className="font-medium text-primary flex items-center gap-1">
                       <Info className="w-3.5 h-3.5" /> Liability Hedge Ratio
                     </p>
                     <p className="text-muted-foreground">
@@ -831,7 +831,7 @@ export default function PensionFundPage() {
                     </p>
                   </div>
                   <div className="p-3 rounded-lg bg-green-500/10 border border-green-500/20 text-xs space-y-1">
-                    <p className="font-semibold text-green-300 flex items-center gap-1">
+                    <p className="font-medium text-green-300 flex items-center gap-1">
                       <TrendingUp className="w-3.5 h-3.5" /> Return vs. Hedging Tradeoff
                     </p>
                     <p className="text-muted-foreground">
@@ -883,7 +883,7 @@ export default function PensionFundPage() {
 
                 <div className="p-4 rounded-lg bg-muted/50 border border-border space-y-3">
                   <div className="flex items-center justify-between">
-                    <span className="font-semibold text-sm">{currentLDI.label}</span>
+                    <span className="font-medium text-sm">{currentLDI.label}</span>
                     <div className="flex gap-2">
                       <Badge variant="outline" className="text-xs border-primary/50 text-primary">
                         Hedge: {currentLDI.hedgeRatio}%
@@ -906,7 +906,7 @@ export default function PensionFundPage() {
                   <p className="text-sm text-muted-foreground">{currentLDI.description}</p>
 
                   <div>
-                    <p className="text-xs font-semibold text-muted-foreground mb-1.5">Instruments Used:</p>
+                    <p className="text-xs font-medium text-muted-foreground mb-1.5">Instruments Used:</p>
                     <div className="flex flex-wrap gap-1.5">
                       {currentLDI.instruments.map((inst) => (
                         <Badge key={inst} variant="secondary" className="text-xs">
@@ -918,7 +918,7 @@ export default function PensionFundPage() {
 
                   <div className="grid grid-cols-2 gap-3">
                     <div>
-                      <p className="text-xs font-semibold text-green-400 mb-1">Advantages</p>
+                      <p className="text-xs font-medium text-green-400 mb-1">Advantages</p>
                       <ul className="space-y-0.5">
                         {currentLDI.pros.map((p) => (
                           <li key={p} className="text-xs text-muted-foreground flex items-start gap-1.5">
@@ -929,7 +929,7 @@ export default function PensionFundPage() {
                       </ul>
                     </div>
                     <div>
-                      <p className="text-xs font-semibold text-red-400 mb-1">Limitations</p>
+                      <p className="text-xs font-medium text-red-400 mb-1">Limitations</p>
                       <ul className="space-y-0.5">
                         {currentLDI.cons.map((c) => (
                           <li key={c} className="text-xs text-muted-foreground flex items-start gap-1.5">
@@ -944,7 +944,7 @@ export default function PensionFundPage() {
 
                 {/* Interest rate sensitivity table */}
                 <div>
-                  <p className="text-xs font-semibold text-muted-foreground mb-2">
+                  <p className="text-xs font-medium text-muted-foreground mb-2">
                     Interest Rate Sensitivity — Funded Ratio Impact
                   </p>
                   <div className="overflow-x-auto">
@@ -1023,7 +1023,7 @@ export default function PensionFundPage() {
                           >
                             {sc.icon}
                           </span>
-                          <span className="text-sm font-semibold">{sc.name}</span>
+                          <span className="text-sm font-medium">{sc.name}</span>
                         </div>
                         <Badge
                           variant="outline"
@@ -1045,14 +1045,14 @@ export default function PensionFundPage() {
                       <div className="grid grid-cols-2 gap-2 pt-1">
                         <div className="p-2 rounded bg-muted/50 text-center">
                           <div className="text-xs text-muted-foreground mb-0.5">Rate Shock</div>
-                          <div className={cn("text-sm font-bold", sc.rateShock >= 0 ? "text-amber-400" : "text-primary")}>
+                          <div className={cn("text-sm font-medium", sc.rateShock >= 0 ? "text-amber-400" : "text-primary")}>
                             {sc.rateShock > 0 ? "+" : ""}
                             {sc.rateShock.toFixed(0) === "0" ? "—" : `${sc.rateShock * 100}bps`}
                           </div>
                         </div>
                         <div className="p-2 rounded bg-muted/50 text-center">
                           <div className="text-xs text-muted-foreground mb-0.5">Equity Shock</div>
-                          <div className={cn("text-sm font-bold", sc.equityShock >= 0 ? "text-green-400" : "text-red-400")}>
+                          <div className={cn("text-sm font-medium", sc.equityShock >= 0 ? "text-green-400" : "text-red-400")}>
                             {sc.equityShock > 0 ? "+" : ""}
                             {sc.equityShock}%
                           </div>
@@ -1064,7 +1064,7 @@ export default function PensionFundPage() {
                         <div className="flex items-center gap-1">
                           <span
                             className={cn(
-                              "text-lg font-bold",
+                              "text-lg font-medium",
                               sc.fundedRatioImpact > 0 ? "text-green-400" : "text-red-400"
                             )}
                           >
@@ -1124,7 +1124,7 @@ export default function PensionFundPage() {
                         </div>
                         <div
                           className={cn(
-                            "w-12 text-right font-semibold",
+                            "w-12 text-right font-medium",
                             row.isBase
                               ? "text-primary"
                               : row.ratio >= 80
@@ -1184,7 +1184,7 @@ export default function PensionFundPage() {
                     },
                   ].map((item) => (
                     <div key={item.term} className="p-3 rounded-lg bg-muted/40 border border-border/50 space-y-1">
-                      <p className="text-xs font-semibold text-foreground">{item.term}</p>
+                      <p className="text-xs font-medium text-foreground">{item.term}</p>
                       <p className="text-xs text-muted-foreground">{item.def}</p>
                     </div>
                   ))}

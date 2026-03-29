@@ -614,11 +614,11 @@ export default function CommoditySpreadsPage() {
       transition={{ duration: 0.4 }}
       className="min-h-screen bg-background text-foreground p-4 md:p-6 space-y-6"
     >
-      {/* Header */}
-      <div className="flex flex-col gap-1">
+      {/* HERO Header */}
+      <div className="flex flex-col gap-1 border-l-4 border-l-primary rounded-xl bg-card p-6">
         <div className="flex items-center gap-2">
           <ArrowUpDown className="w-6 h-6 text-indigo-400" />
-          <h1 className="text-2xl font-bold text-foreground">
+          <h1 className="text-xl font-semibold text-foreground">
             Commodity Spreads &amp; Relative Value
           </h1>
           <Badge className="bg-indigo-500/15 text-indigo-400 border-indigo-500/30 text-xs">
@@ -734,7 +734,7 @@ export default function CommoditySpreadsPage() {
           {/* Refinery context */}
           <Card className="bg-card border-border">
             <CardHeader className="pb-2">
-              <CardTitle className="text-sm font-semibold flex items-center gap-2">
+              <CardTitle className="text-sm font-medium flex items-center gap-2">
                 <Info className="w-4 h-4 text-muted-foreground" />
                 Crack Spread Context &amp; Drivers
               </CardTitle>
@@ -820,7 +820,7 @@ export default function CommoditySpreadsPage() {
             ].map((sp) => (
               <Card key={sp.label} className="bg-card border-border">
                 <CardHeader className="pb-2">
-                  <CardTitle className="text-sm font-semibold flex flex-col gap-1">
+                  <CardTitle className="text-sm font-medium flex flex-col gap-1">
                     <div className="flex items-center gap-2">
                       <Zap className="w-4 h-4" style={{ color: sp.color }} />
                       <span className="truncate">{sp.label}</span>
@@ -848,7 +848,7 @@ export default function CommoditySpreadsPage() {
           {/* Spark spread comparison */}
           <Card className="bg-card border-border">
             <CardHeader className="pb-2">
-              <CardTitle className="text-sm font-semibold flex items-center gap-2">
+              <CardTitle className="text-sm font-medium flex items-center gap-2">
                 <BarChart2 className="w-4 h-4 text-muted-foreground" />
                 Fuel Switching Dynamics
               </CardTitle>
@@ -901,7 +901,7 @@ export default function CommoditySpreadsPage() {
           <div className="grid grid-cols-1 lg:grid-cols-5 gap-4">
             <Card className="bg-card border-border lg:col-span-3">
               <CardHeader className="pb-2">
-                <CardTitle className="text-sm font-semibold flex items-center gap-2">
+                <CardTitle className="text-sm font-medium flex items-center gap-2">
                   <Wheat className="w-4 h-4 text-yellow-400" />
                   Board Crush Spread (12-Month History)
                   <Badge className={`ml-auto text-xs ${posBg(crushCurrent.chg)}`}>
@@ -922,7 +922,7 @@ export default function CommoditySpreadsPage() {
 
             <Card className="bg-card border-border lg:col-span-2">
               <CardHeader className="pb-2">
-                <CardTitle className="text-sm font-semibold text-muted-foreground">
+                <CardTitle className="text-sm font-medium text-muted-foreground">
                   Crush Economics
                 </CardTitle>
               </CardHeader>
@@ -968,7 +968,7 @@ export default function CommoditySpreadsPage() {
                   ].map((row) => (
                     <div key={row.label} className={`flex items-center justify-between rounded-md px-2.5 py-1.5 ${row.bg}`}>
                       <span className="text-xs text-muted-foreground">{row.label}</span>
-                      <span className={`text-xs font-semibold ${row.color}`}>{row.value}</span>
+                      <span className={`text-xs font-medium ${row.color}`}>{row.value}</span>
                     </div>
                   ))}
                 </div>
@@ -986,7 +986,7 @@ export default function CommoditySpreadsPage() {
           {/* Crush factors */}
           <Card className="bg-card border-border">
             <CardHeader className="pb-2">
-              <CardTitle className="text-sm font-semibold text-muted-foreground">Key Crush Spread Drivers</CardTitle>
+              <CardTitle className="text-sm font-medium text-muted-foreground">Key Crush Spread Drivers</CardTitle>
             </CardHeader>
             <CardContent>
               <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
@@ -1053,7 +1053,7 @@ export default function CommoditySpreadsPage() {
           {calendarView === "table" ? (
             <Card className="bg-card border-border">
               <CardHeader className="pb-2">
-                <CardTitle className="text-sm font-semibold flex items-center gap-2">
+                <CardTitle className="text-sm font-medium flex items-center gap-2">
                   <Calendar className="w-4 h-4 text-muted-foreground" />
                   Energy &amp; Ag Calendar Spreads
                 </CardTitle>
@@ -1086,7 +1086,7 @@ export default function CommoditySpreadsPage() {
                           <td className="py-2.5 pr-4 text-foreground font-mono">
                             {cs.backPrice < 10 ? cs.backPrice.toFixed(3) : cs.backPrice.toFixed(2)}
                           </td>
-                          <td className={`py-2.5 pr-4 font-mono font-semibold ${posColor(cs.spread)}`}>
+                          <td className={`py-2.5 pr-4 font-mono font-medium ${posColor(cs.spread)}`}>
                             {cs.spread > 0 ? "+" : ""}
                             {cs.spread < 1 && cs.spread > -1 ? cs.spread.toFixed(3) : cs.spread.toFixed(2)}
                           </td>
@@ -1124,7 +1124,7 @@ export default function CommoditySpreadsPage() {
               {CALENDAR_SPREADS.map((cs) => (
                 <Card key={cs.commodity} className="bg-card border-border">
                   <CardHeader className="pb-2">
-                    <CardTitle className="text-sm font-semibold flex items-center gap-2">
+                    <CardTitle className="text-sm font-medium flex items-center gap-2">
                       <span>{cs.icon}</span>
                       <span className="truncate">{cs.commodity}</span>
                       <Badge
@@ -1144,7 +1144,7 @@ export default function CommoditySpreadsPage() {
                       <span className="text-muted-foreground">
                         Front: <span className="text-foreground font-mono">{cs.frontPrice.toFixed(2)}</span>
                       </span>
-                      <span className={`font-mono font-semibold ${posColor(cs.spread)}`}>
+                      <span className={`font-mono font-medium ${posColor(cs.spread)}`}>
                         Spread: {cs.spread > 0 ? "+" : ""}{cs.spread.toFixed(2)}
                       </span>
                       <span className="text-muted-foreground">
@@ -1161,7 +1161,7 @@ export default function CommoditySpreadsPage() {
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <Card className="bg-card border-border">
               <CardHeader className="pb-2">
-                <CardTitle className="text-sm font-semibold flex items-center gap-2">
+                <CardTitle className="text-sm font-medium flex items-center gap-2">
                   <TrendingUp className="w-4 h-4 text-amber-400" />
                   Backwardation
                 </CardTitle>
@@ -1185,7 +1185,7 @@ export default function CommoditySpreadsPage() {
             </Card>
             <Card className="bg-card border-border">
               <CardHeader className="pb-2">
-                <CardTitle className="text-sm font-semibold flex items-center gap-2">
+                <CardTitle className="text-sm font-medium flex items-center gap-2">
                   <TrendingDown className="w-4 h-4 text-indigo-400" />
                   Contango
                 </CardTitle>
@@ -1214,7 +1214,7 @@ export default function CommoditySpreadsPage() {
         <TabsContent value="weather" className="data-[state=inactive]:hidden mt-4 space-y-4">
           <Card className="bg-card border-border">
             <CardHeader className="pb-2">
-              <CardTitle className="text-sm font-semibold flex items-center gap-2">
+              <CardTitle className="text-sm font-medium flex items-center gap-2">
                 <CloudRain className="w-4 h-4 text-sky-400" />
                 Weather Event Impact on Commodity Spreads
               </CardTitle>
@@ -1268,7 +1268,7 @@ export default function CommoditySpreadsPage() {
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <Card className="bg-card border-border">
               <CardHeader className="pb-2">
-                <CardTitle className="text-sm font-semibold text-muted-foreground">Energy Seasonality Calendar</CardTitle>
+                <CardTitle className="text-sm font-medium text-muted-foreground">Energy Seasonality Calendar</CardTitle>
               </CardHeader>
               <CardContent>
                 <div className="space-y-1.5">
@@ -1290,7 +1290,7 @@ export default function CommoditySpreadsPage() {
             </Card>
             <Card className="bg-card border-border">
               <CardHeader className="pb-2">
-                <CardTitle className="text-sm font-semibold text-muted-foreground">Agricultural Seasonality Calendar</CardTitle>
+                <CardTitle className="text-sm font-medium text-muted-foreground">Agricultural Seasonality Calendar</CardTitle>
               </CardHeader>
               <CardContent>
                 <div className="space-y-1.5">
@@ -1328,7 +1328,7 @@ export default function CommoditySpreadsPage() {
                   onClick={() => setActiveStrategy(activeStrategy === i ? null : i)}
                 >
                   <CardHeader className="pb-2">
-                    <CardTitle className="text-sm font-semibold flex items-center gap-2">
+                    <CardTitle className="text-sm font-medium flex items-center gap-2">
                       <div
                         className="w-3 h-3 rounded-full shrink-0"
                         style={{ backgroundColor: strat.color }}
@@ -1410,7 +1410,7 @@ export default function CommoditySpreadsPage() {
                             <BarChart2 className="w-3.5 h-3.5 text-muted-foreground" />
                             <span className="text-xs text-muted-foreground">Risk/Reward</span>
                             <span
-                              className="text-xs font-semibold"
+                              className="text-xs font-medium"
                               style={{ color: strat.color }}
                             >
                               {strat.rrRatio}

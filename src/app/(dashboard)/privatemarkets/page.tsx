@@ -817,7 +817,7 @@ function IRRCalculator() {
 
   return (
     <div className="rounded-xl border border-border bg-card p-5">
-      <h3 className="text-sm font-semibold text-foreground mb-4">IRR Calculator</h3>
+      <h3 className="text-sm font-medium text-foreground mb-4">IRR Calculator</h3>
       <div className="grid grid-cols-1 gap-3 mb-4">
         <div>
           <label className="block text-xs text-muted-foreground mb-1">
@@ -1083,7 +1083,7 @@ function VCEconomics() {
 
   return (
     <div className="rounded-xl border border-border bg-card p-5">
-      <h3 className="text-sm font-semibold text-foreground mb-4">VC Fund Economics (2%/20%)</h3>
+      <h3 className="text-sm font-medium text-foreground mb-4">VC Fund Economics (2%/20%)</h3>
       <div className="grid grid-cols-2 gap-4 mb-4">
         <div>
           <label className="block text-xs text-muted-foreground mb-1">
@@ -1098,7 +1098,7 @@ function VCEconomics() {
             onChange={(e) => setCommitted(Number(e.target.value))}
             className="w-full accent-primary"
           />
-          <div className="text-sm font-semibold text-foreground mt-1">${committed}M</div>
+          <div className="text-sm font-medium text-foreground mt-1">${committed}M</div>
         </div>
         <div>
           <label className="block text-xs text-muted-foreground mb-1">
@@ -1113,12 +1113,12 @@ function VCEconomics() {
             onChange={(e) => setGrossReturn(Number(e.target.value))}
             className="w-full accent-primary"
           />
-          <div className="text-sm font-semibold text-foreground mt-1">${grossReturn}M</div>
+          <div className="text-sm font-medium text-foreground mt-1">${grossReturn}M</div>
         </div>
       </div>
       <div className="grid grid-cols-2 gap-3 text-xs">
         <div className="rounded-lg bg-muted/20 p-3 space-y-1.5">
-          <div className="font-semibold text-muted-foreground uppercase tracking-wide text-xs mb-2">
+          <div className="font-medium text-muted-foreground uppercase tracking-wide text-xs mb-2">
             LP Waterfall
           </div>
           <div className="flex justify-between">
@@ -1134,12 +1134,12 @@ function VCEconomics() {
             <span className="text-green-400 font-medium">${lpCarry.toFixed(1)}M</span>
           </div>
           <div className="flex justify-between border-t border-border pt-1 mt-1">
-            <span className="font-semibold text-foreground">LP Total</span>
-            <span className="font-semibold text-green-400">${lpTotal.toFixed(1)}M</span>
+            <span className="font-medium text-foreground">LP Total</span>
+            <span className="font-medium text-green-400">${lpTotal.toFixed(1)}M</span>
           </div>
         </div>
         <div className="rounded-lg bg-muted/20 p-3 space-y-1.5">
-          <div className="font-semibold text-muted-foreground uppercase tracking-wide text-xs mb-2">
+          <div className="font-medium text-muted-foreground uppercase tracking-wide text-xs mb-2">
             GP Economics
           </div>
           <div className="flex justify-between">
@@ -1155,8 +1155,8 @@ function VCEconomics() {
             <span className="text-primary font-medium">${gpCarry.toFixed(1)}M</span>
           </div>
           <div className="flex justify-between border-t border-border pt-1 mt-1">
-            <span className="font-semibold text-foreground">GP Total</span>
-            <span className="font-semibold text-primary">${gpTotal.toFixed(1)}M</span>
+            <span className="font-medium text-foreground">GP Total</span>
+            <span className="font-medium text-primary">${gpTotal.toFixed(1)}M</span>
           </div>
         </div>
       </div>
@@ -1428,7 +1428,7 @@ function InfraAssets() {
         <tbody>
           {assets.map((a, i) => (
             <tr key={a.type} className={cn("border-b border-border/50", i % 2 === 0 ? "" : "bg-muted/10")}>
-              <td className="py-2.5 px-3 font-semibold text-primary">{a.type}</td>
+              <td className="py-2.5 px-3 font-medium text-primary">{a.type}</td>
               <td className="py-2.5 px-3 text-muted-foreground">{a.examples}</td>
               <td className="py-2.5 px-3 text-green-400 font-medium">{a.yieldRange}</td>
               <td className="py-2.5 px-3 text-foreground">{a.inflLink}</td>
@@ -1574,7 +1574,7 @@ function HFStrategyTable() {
               <td className="py-2.5 px-3">
                 <span
                   className={cn(
-                    "font-semibold",
+                    "font-medium",
                     st.sharpe >= 1.5 ? "text-green-400" : st.sharpe >= 1.0 ? "text-amber-400" : "text-red-400"
                   )}
                 >
@@ -1627,7 +1627,7 @@ function FeeBreakevenCalc() {
 
   return (
     <div className="rounded-xl border border-border bg-card p-5">
-      <h3 className="text-sm font-semibold text-foreground mb-4">Fee Structure Comparison</h3>
+      <h3 className="text-sm font-medium text-foreground mb-4">Fee Structure Comparison</h3>
       <div className="mb-4">
         <label className="block text-xs text-muted-foreground mb-1">
           Gross Strategy Return: {grossRet}%
@@ -1656,7 +1656,7 @@ function FeeBreakevenCalc() {
       </div>
       <div className="mt-3 text-center text-xs text-muted-foreground">
         1.5%/15% saves LP{" "}
-        <span className={netDiff > 0 ? "text-green-400 font-semibold" : "text-red-400 font-semibold"}>
+        <span className={netDiff > 0 ? "text-green-400 font-medium" : "text-red-400 font-medium"}>
           {netDiff.toFixed(2)}%
         </span>{" "}
         per year at {grossRet}% gross return (assumes 8% hurdle)
@@ -1810,8 +1810,8 @@ function PortfolioOptimizer() {
       {/* Slider */}
       <div className="rounded-xl border border-border bg-card p-5">
         <div className="flex items-center justify-between mb-3">
-          <h3 className="text-sm font-semibold text-foreground">Alternatives Allocation</h3>
-          <span className="text-lg font-bold text-primary">{altPct}%</span>
+          <h3 className="text-sm font-medium text-foreground">Alternatives Allocation</h3>
+          <span className="text-lg font-medium text-primary">{altPct}%</span>
         </div>
         <div className="flex items-center gap-3 text-xs text-muted-foreground mb-2">
           <span>0% Alts (Pure 60/40)</span>
@@ -1835,7 +1835,7 @@ function PortfolioOptimizer() {
             <motion.div
               key={a.name}
               layout
-              className="flex items-center justify-center text-xs font-semibold text-foreground/80 overflow-hidden"
+              className="flex items-center justify-center text-xs font-medium text-foreground/80 overflow-hidden"
               style={{
                 width: `${a.pct}%`,
                 backgroundColor: a.color,
@@ -1877,13 +1877,13 @@ function PortfolioOptimizer() {
 
       {/* Efficient Frontier */}
       <div className="rounded-xl border border-border bg-card p-4">
-        <h3 className="text-sm font-semibold text-foreground mb-3">Efficient Frontier</h3>
+        <h3 className="text-sm font-medium text-foreground mb-3">Efficient Frontier</h3>
         <EfficientFrontierSVG altWeight={altPct / 50} />
       </div>
 
       {/* Liquidity premiums */}
       <div className="rounded-xl border border-border bg-card p-5">
-        <h3 className="text-sm font-semibold text-foreground mb-4">Illiquidity Premium</h3>
+        <h3 className="text-sm font-medium text-foreground mb-4">Illiquidity Premium</h3>
         <p className="text-xs text-muted-foreground mb-3">
           Estimated additional annualized return for accepting lock-up periods vs. liquid alternatives.
         </p>
@@ -1902,7 +1902,7 @@ function PortfolioOptimizer() {
                   transition={{ duration: 0.6 }}
                 />
               </div>
-              <span className="text-xs font-semibold text-primary w-14 text-right">
+              <span className="text-xs font-medium text-primary w-14 text-right">
                 +{lp.premium.toFixed(1)}% p.a.
               </span>
             </div>
@@ -2021,7 +2021,7 @@ function FundDocChecklist() {
   return (
     <div className="rounded-xl border border-border bg-card p-5">
       <div className="flex items-center justify-between mb-4">
-        <h3 className="text-sm font-semibold text-foreground">Fund Documents Checklist</h3>
+        <h3 className="text-sm font-medium text-foreground">Fund Documents Checklist</h3>
         <Badge
           variant="outline"
           className={cn(
@@ -2036,7 +2036,7 @@ function FundDocChecklist() {
       </div>
 
       <div className="space-y-1.5">
-        <div className="text-xs font-semibold text-muted-foreground uppercase tracking-wide mb-2">
+        <div className="text-xs font-medium text-muted-foreground uppercase tracking-wide mb-2">
           Required Documents
         </div>
         {required.map((doc) => (
@@ -2055,7 +2055,7 @@ function FundDocChecklist() {
           </div>
         ))}
 
-        <div className="text-xs font-semibold text-muted-foreground uppercase tracking-wide mb-2 mt-4">
+        <div className="text-xs font-medium text-muted-foreground uppercase tracking-wide mb-2 mt-4">
           Optional / Best Practice
         </div>
         {optional.map((doc) => (
@@ -2087,7 +2087,7 @@ function GPLPAlignment() {
 
   return (
     <div className="rounded-xl border border-border bg-card p-5">
-      <h3 className="text-sm font-semibold text-foreground mb-4">GP/LP Alignment Metrics</h3>
+      <h3 className="text-sm font-medium text-foreground mb-4">GP/LP Alignment Metrics</h3>
       <div className="grid grid-cols-2 gap-2">
         {metrics.map((m) => (
           <div key={m.label} className="rounded-lg bg-muted/20 p-2.5">
@@ -2095,7 +2095,7 @@ function GPLPAlignment() {
               <span className="text-xs text-muted-foreground leading-tight">{m.label}</span>
               <span
                 className={cn(
-                  "text-xs font-semibold shrink-0 ml-1",
+                  "text-xs font-medium shrink-0 ml-1",
                   m.good ? "text-green-400" : "text-amber-400"
                 )}
               >
@@ -2136,7 +2136,7 @@ export default function PrivateMarketsPage() {
             <Layers className="w-5 h-5 text-primary" />
           </div>
           <div>
-            <h1 className="text-xl font-bold text-foreground">Private Markets & Alternatives</h1>
+            <h1 className="text-xl font-medium text-foreground">Private Markets & Alternatives</h1>
             <p className="text-sm text-muted-foreground">
               Private equity, venture capital, real assets, and hedge fund strategies
             </p>
@@ -2178,7 +2178,7 @@ export default function PrivateMarketsPage() {
 
           {/* J-Curve */}
           <div className="rounded-xl border border-border bg-card p-5">
-            <h3 className="text-sm font-semibold text-foreground mb-1">J-Curve: Fund Value Over Time</h3>
+            <h3 className="text-sm font-medium text-foreground mb-1">J-Curve: Fund Value Over Time</h3>
             <p className="text-xs text-muted-foreground mb-4">
               Capital is called during years 1-4 (negative NAV vs. committed), then value creation drives returns in years 5-10.
             </p>
@@ -2198,7 +2198,7 @@ export default function PrivateMarketsPage() {
 
           {/* PE Fund Universe */}
           <div className="rounded-xl border border-border bg-card p-5">
-            <h3 className="text-sm font-semibold text-foreground mb-4">PE Fund Universe</h3>
+            <h3 className="text-sm font-medium text-foreground mb-4">PE Fund Universe</h3>
             <div className="flex flex-wrap gap-3 mb-4">
               <StatChip label="TVPI" value="Invested capital multiple" color="default" />
               <StatChip label="DPI" value="Distributions / Paid-In" color="green" />
@@ -2209,7 +2209,7 @@ export default function PrivateMarketsPage() {
 
           {/* Vintage Heatmap */}
           <div className="rounded-xl border border-border bg-card p-5">
-            <h3 className="text-sm font-semibold text-foreground mb-1">
+            <h3 className="text-sm font-medium text-foreground mb-1">
               Vintage Year IRR Heatmap
             </h3>
             <p className="text-xs text-muted-foreground mb-4">
@@ -2220,7 +2220,7 @@ export default function PrivateMarketsPage() {
 
           {/* Capital Calls Timeline */}
           <div className="rounded-xl border border-border bg-card p-5">
-            <h3 className="text-sm font-semibold text-foreground mb-1">Capital Calls & Distribution Timeline</h3>
+            <h3 className="text-sm font-medium text-foreground mb-1">Capital Calls & Distribution Timeline</h3>
             <p className="text-xs text-muted-foreground mb-4">
               Typical drawdown schedule for a 7-year PE fund. Early quarters are dominated by capital calls; later quarters shift to distributions.
             </p>
@@ -2246,7 +2246,7 @@ export default function PrivateMarketsPage() {
 
           {/* Power Law */}
           <div className="rounded-xl border border-border bg-card p-5">
-            <h3 className="text-sm font-semibold text-foreground mb-1">Power Law Distribution</h3>
+            <h3 className="text-sm font-medium text-foreground mb-1">Power Law Distribution</h3>
             <p className="text-xs text-muted-foreground mb-4">
               In a typical 20-company portfolio: 10 fail (0x), 5 return capital or less, 4 return 2-5x, and 1 drives most of the fund&apos;s value at 10x+.
             </p>
@@ -2260,7 +2260,7 @@ export default function PrivateMarketsPage() {
 
           {/* Stage Breakdown */}
           <div className="rounded-xl border border-border bg-card p-5">
-            <h3 className="text-sm font-semibold text-foreground mb-4">Funding Stage Breakdown</h3>
+            <h3 className="text-sm font-medium text-foreground mb-4">Funding Stage Breakdown</h3>
             <VCStages />
           </div>
 
@@ -2269,7 +2269,7 @@ export default function PrivateMarketsPage() {
 
           {/* Top Sectors */}
           <div className="rounded-xl border border-border bg-card p-5">
-            <h3 className="text-sm font-semibold text-foreground mb-4">Top VC Sectors (2025 YTD)</h3>
+            <h3 className="text-sm font-medium text-foreground mb-4">Top VC Sectors (2025 YTD)</h3>
             <div className="overflow-x-auto">
               <table className="w-full text-xs">
                 <thead>
@@ -2284,7 +2284,7 @@ export default function PrivateMarketsPage() {
                 <tbody>
                   {VC_SECTORS.map((s, i) => (
                     <tr key={s.name} className={cn("border-b border-border/50", i % 2 === 0 ? "" : "bg-muted/10")}>
-                      <td className="py-2.5 px-3 font-semibold text-foreground">{s.name}</td>
+                      <td className="py-2.5 px-3 font-medium text-foreground">{s.name}</td>
                       <td className="py-2.5 px-3 text-muted-foreground">{s.deals.toLocaleString()}</td>
                       <td className="py-2.5 px-3 text-foreground">${s.medianVal}B</td>
                       <td className="py-2.5 px-3">
@@ -2310,13 +2310,13 @@ export default function PrivateMarketsPage() {
 
           {/* Infrastructure Assets */}
           <div className="rounded-xl border border-border bg-card p-5">
-            <h3 className="text-sm font-semibold text-foreground mb-4">Infrastructure Asset Classes</h3>
+            <h3 className="text-sm font-medium text-foreground mb-4">Infrastructure Asset Classes</h3>
             <InfraAssets />
           </div>
 
           {/* Radar Chart */}
           <div className="rounded-xl border border-border bg-card p-5">
-            <h3 className="text-sm font-semibold text-foreground mb-1">Asset Class Comparison</h3>
+            <h3 className="text-sm font-medium text-foreground mb-1">Asset Class Comparison</h3>
             <p className="text-xs text-muted-foreground mb-4">
               Relative scores (0–1) across yield, inflation linkage, stability, liquidity, and growth potential.
             </p>
@@ -2325,14 +2325,14 @@ export default function PrivateMarketsPage() {
 
           {/* CLO Waterfall */}
           <div className="rounded-xl border border-border bg-card p-5">
-            <h3 className="text-sm font-semibold text-foreground mb-1">CLO Capital Structure</h3>
+            <h3 className="text-sm font-medium text-foreground mb-1">CLO Capital Structure</h3>
             <p className="text-xs text-muted-foreground mb-4">
               Collateralized Loan Obligation: senior tranches absorb losses last, equity tranche takes first loss but earns residual upside.
             </p>
             <CLOWaterfallSVG />
             <div className="grid grid-cols-2 gap-3 mt-4">
               <div className="rounded-lg bg-muted/20 p-3">
-                <div className="text-xs font-semibold text-foreground mb-2">Direct Lending</div>
+                <div className="text-xs font-medium text-foreground mb-2">Direct Lending</div>
                 <div className="space-y-1 text-xs text-muted-foreground">
                   <div className="flex justify-between">
                     <span>Senior Secured</span>
@@ -2349,7 +2349,7 @@ export default function PrivateMarketsPage() {
                 </div>
               </div>
               <div className="rounded-lg bg-muted/20 p-3">
-                <div className="text-xs font-semibold text-foreground mb-2">vs. Leveraged Loans</div>
+                <div className="text-xs font-medium text-foreground mb-2">vs. Leveraged Loans</div>
                 <div className="space-y-1 text-xs text-muted-foreground">
                   <div className="flex justify-between">
                     <span>LL Avg Spread</span>
@@ -2370,7 +2370,7 @@ export default function PrivateMarketsPage() {
 
           {/* CPI vs Infra scatter */}
           <div className="rounded-xl border border-border bg-card p-5">
-            <h3 className="text-sm font-semibold text-foreground mb-1">Inflation Linkage</h3>
+            <h3 className="text-sm font-medium text-foreground mb-1">Inflation Linkage</h3>
             <p className="text-xs text-muted-foreground mb-4">
               Many infrastructure contracts have explicit CPI escalators — revenues grow with inflation, protecting real returns.
             </p>
@@ -2382,8 +2382,8 @@ export default function PrivateMarketsPage() {
                 { asset: "Social Infrastructure", cpi: "100%", mechanism: "Government availability payments, CPI-indexed" },
               ].map((item) => (
                 <div key={item.asset} className="rounded-lg bg-muted/20 p-3">
-                  <div className="text-xs font-semibold text-foreground mb-1">{item.asset}</div>
-                  <div className="text-sm font-bold text-primary mb-1">CPI Link: {item.cpi}</div>
+                  <div className="text-xs font-medium text-foreground mb-1">{item.asset}</div>
+                  <div className="text-sm font-medium text-primary mb-1">CPI Link: {item.cpi}</div>
                   <div className="text-xs text-muted-foreground">{item.mechanism}</div>
                 </div>
               ))}
@@ -2401,7 +2401,7 @@ export default function PrivateMarketsPage() {
 
           {/* Bubble Chart */}
           <div className="rounded-xl border border-border bg-card p-5">
-            <h3 className="text-sm font-semibold text-foreground mb-1">Risk-Return Bubble Chart</h3>
+            <h3 className="text-sm font-medium text-foreground mb-1">Risk-Return Bubble Chart</h3>
             <p className="text-xs text-muted-foreground mb-3">
               Bubble size = strategy AUM. X-axis = volatility, Y-axis = annualized return.
             </p>
@@ -2410,7 +2410,7 @@ export default function PrivateMarketsPage() {
 
           {/* Strategy Table */}
           <div className="rounded-xl border border-border bg-card p-5">
-            <h3 className="text-sm font-semibold text-foreground mb-4">Strategy Performance Metrics</h3>
+            <h3 className="text-sm font-medium text-foreground mb-4">Strategy Performance Metrics</h3>
             <HFStrategyTable />
           </div>
 
@@ -2419,7 +2419,7 @@ export default function PrivateMarketsPage() {
 
           {/* Correlation Matrix */}
           <div className="rounded-xl border border-border bg-card p-5">
-            <h3 className="text-sm font-semibold text-foreground mb-1">
+            <h3 className="text-sm font-medium text-foreground mb-1">
               S&amp;P 500 Correlation by Strategy
             </h3>
             <p className="text-xs text-muted-foreground mb-4">
@@ -2452,7 +2452,7 @@ export default function PrivateMarketsPage() {
                         />
                       </div>
                       <div
-                        className="text-xs font-semibold w-12 text-right"
+                        className="text-xs font-medium w-12 text-right"
                         style={{ color }}
                       >
                         {st.corr.toFixed(2)}
@@ -2484,7 +2484,7 @@ export default function PrivateMarketsPage() {
 
           {/* DD Accordion */}
           <div className="rounded-xl border border-border bg-card p-5">
-            <h3 className="text-sm font-semibold text-foreground mb-4">Investment Checklist</h3>
+            <h3 className="text-sm font-medium text-foreground mb-4">Investment Checklist</h3>
             <DDAccordion />
           </div>
 
@@ -2495,7 +2495,7 @@ export default function PrivateMarketsPage() {
 
           {/* Glossary */}
           <div className="rounded-xl border border-border bg-card p-5">
-            <h3 className="text-sm font-semibold text-foreground mb-4">Key Private Markets Terms</h3>
+            <h3 className="text-sm font-medium text-foreground mb-4">Key Private Markets Terms</h3>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
               {[
                 { term: "IRR", def: "Internal Rate of Return — discount rate making NPV of all cash flows = 0" },
@@ -2512,7 +2512,7 @@ export default function PrivateMarketsPage() {
                 { term: "Dry Powder", def: "Committed but uncalled capital — measure of PE industry's investment capacity" },
               ].map((g) => (
                 <div key={g.term} className="rounded-lg bg-muted/20 p-3">
-                  <div className="text-xs font-bold text-primary mb-0.5">{g.term}</div>
+                  <div className="text-xs font-medium text-primary mb-0.5">{g.term}</div>
                   <div className="text-[11px] text-muted-foreground">{g.def}</div>
                 </div>
               ))}

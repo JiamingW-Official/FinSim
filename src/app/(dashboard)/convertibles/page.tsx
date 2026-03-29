@@ -504,7 +504,7 @@ function GreeksSensitivityTab() {
           },
         ].map((g) => (
           <div key={g.greek} className="bg-card border border-border rounded-xl p-4">
-            <div className={cn("text-sm font-semibold mb-2", g.color)}>{g.greek}</div>
+            <div className={cn("text-sm font-medium mb-2", g.color)}>{g.greek}</div>
             <p className="text-xs text-muted-foreground leading-relaxed">{g.body}</p>
           </div>
         ))}
@@ -554,7 +554,7 @@ function MarketOverviewTab() {
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
         {/* Sector donut */}
         <div className="bg-card border border-border rounded-xl p-4">
-          <div className="text-sm font-semibold text-foreground mb-3">Market by Sector</div>
+          <div className="text-sm font-medium text-foreground mb-3">Market by Sector</div>
           <svg viewBox="0 0 300 160" className="w-full">
             {slices.map((sl) => (
               <path key={sl.name} d={sl.path} fill={sl.color} stroke="#18181b" strokeWidth={2} />
@@ -572,7 +572,7 @@ function MarketOverviewTab() {
 
         {/* Issuance bar chart */}
         <div className="bg-card border border-border rounded-xl p-4">
-          <div className="text-sm font-semibold text-foreground mb-1">Global Issuance ($B)</div>
+          <div className="text-sm font-medium text-foreground mb-1">Global Issuance ($B)</div>
           <div className="text-xs text-muted-foreground mb-2">Annual convertible issuance 2018–2025</div>
           <svg viewBox={`0 0 ${svgW} ${svgH}`} className="w-full">
             {[0, 50, 100, 150].map((y) => (
@@ -605,7 +605,7 @@ function MarketOverviewTab() {
       {/* Top issuers table */}
       <div className="bg-card border border-border rounded-xl overflow-hidden">
         <div className="px-4 py-3 border-b border-border">
-          <div className="text-sm font-semibold text-foreground">Top Convertible Issuers</div>
+          <div className="text-sm font-medium text-foreground">Top Convertible Issuers</div>
         </div>
         <div className="overflow-x-auto">
           <table className="w-full text-xs">
@@ -661,7 +661,7 @@ function MarketOverviewTab() {
           },
         ].map((c) => (
           <div key={c.title} className="bg-card border border-border rounded-xl p-4">
-            <div className="flex items-center gap-2 text-sm font-semibold text-foreground mb-2">
+            <div className="flex items-center gap-2 text-sm font-medium text-foreground mb-2">
               {c.icon}{c.title}
             </div>
             <p className="text-xs text-muted-foreground leading-relaxed">{c.body}</p>
@@ -761,7 +761,7 @@ function InvestmentStrategiesTab() {
               )}
             >
               <div className={cn("mb-1", selected === i ? cc.text : "text-muted-foreground")}>{st.icon}</div>
-              <div className={cn("text-sm font-semibold", selected === i ? cc.text : "text-muted-foreground")}>{st.name}</div>
+              <div className={cn("text-sm font-medium", selected === i ? cc.text : "text-muted-foreground")}>{st.name}</div>
               <div className="text-xs text-muted-foreground mt-0.5 line-clamp-2">{st.profile}</div>
             </button>
           );
@@ -784,14 +784,14 @@ function InvestmentStrategiesTab() {
             </div>
             <p className="text-sm text-muted-foreground leading-relaxed">{s.mechanics}</p>
             <div className="flex gap-4 mt-3">
-              <div className="text-xs text-muted-foreground">Target Return: <span className={cn("font-mono font-semibold", colorClasses[s.color].text)}>{s.targetReturn}</span></div>
-              <div className="text-xs text-muted-foreground">Horizon: <span className={cn("font-mono font-semibold", colorClasses[s.color].text)}>{s.horizon}</span></div>
+              <div className="text-xs text-muted-foreground">Target Return: <span className={cn("font-mono font-medium", colorClasses[s.color].text)}>{s.targetReturn}</span></div>
+              <div className="text-xs text-muted-foreground">Horizon: <span className={cn("font-mono font-medium", colorClasses[s.color].text)}>{s.horizon}</span></div>
             </div>
           </div>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <div className="bg-card border border-border rounded-xl p-4">
-              <div className="text-xs font-semibold text-green-400 mb-3 flex items-center gap-1.5">
+              <div className="text-xs font-medium text-green-400 mb-3 flex items-center gap-1.5">
                 <TrendingUp size={13} /> Advantages
               </div>
               <ul className="space-y-2">
@@ -803,7 +803,7 @@ function InvestmentStrategiesTab() {
               </ul>
             </div>
             <div className="bg-card border border-border rounded-xl p-4">
-              <div className="text-xs font-semibold text-red-400 mb-3 flex items-center gap-1.5">
+              <div className="text-xs font-medium text-red-400 mb-3 flex items-center gap-1.5">
                 <TrendingDown size={13} /> Risks & Drawbacks
               </div>
               <ul className="space-y-2">
@@ -820,7 +820,7 @@ function InvestmentStrategiesTab() {
 
       {/* Comparative table */}
       <div className="bg-card border border-border rounded-xl overflow-hidden">
-        <div className="px-4 py-3 border-b border-border text-sm font-semibold text-foreground">
+        <div className="px-4 py-3 border-b border-border text-sm font-medium text-foreground">
           Strategy Comparison
         </div>
         <div className="overflow-x-auto">
@@ -925,7 +925,7 @@ function RiskAnalysisTab() {
     <div className="space-y-6">
       {/* Risk matrix SVG */}
       <div className="bg-card border border-border rounded-xl p-4">
-        <div className="text-sm font-semibold text-foreground mb-1">Risk Matrix</div>
+        <div className="text-sm font-medium text-foreground mb-1">Risk Matrix</div>
         <div className="text-xs text-muted-foreground mb-3">Bubble size = severity × likelihood</div>
         <svg viewBox={`0 0 ${svgW} ${svgH}`} className="w-full">
           {/* Grid zones */}
@@ -992,7 +992,7 @@ function RiskAnalysisTab() {
             <div className="flex items-center justify-between mb-2">
               <div className="flex items-center gap-2">
                 <AlertTriangle size={14} style={{ color: rk.color }} />
-                <span className="text-sm font-semibold text-foreground">{rk.name}</span>
+                <span className="text-sm font-medium text-foreground">{rk.name}</span>
               </div>
               <div className="flex gap-2 text-xs">
                 <span className="px-2 py-0.5 rounded font-mono" style={{ background: `${rk.color}20`, color: rk.color }}>
@@ -1029,7 +1029,7 @@ function RiskAnalysisTab() {
 
       {/* Risk summary */}
       <div className="bg-card border border-border rounded-xl p-4">
-        <div className="flex items-center gap-2 text-sm font-semibold text-foreground mb-3">
+        <div className="flex items-center gap-2 text-sm font-medium text-foreground mb-3">
           <BookOpen size={15} className="text-indigo-400" /> Risk Management Framework
         </div>
         <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 text-xs text-muted-foreground leading-relaxed">
@@ -1057,12 +1057,12 @@ export default function ConvertiblesPage() {
   return (
     <div className="min-h-screen bg-background text-foreground">
       <div className="max-w-7xl mx-auto px-4 py-6 space-y-6">
-        {/* Header */}
-        <div className="flex items-center justify-between">
+        {/* HERO Header */}
+        <div className="flex items-center justify-between border-l-4 border-l-primary rounded-xl bg-card p-6">
           <div>
             <div className="flex items-center gap-2 mb-1">
               <Layers size={22} className="text-indigo-400" />
-              <h1 className="text-xl font-bold text-foreground">Convertible Bonds & Hybrid Securities</h1>
+              <h1 className="text-xl font-semibold text-foreground">Convertible Bonds & Hybrid Securities</h1>
             </div>
             <p className="text-sm text-muted-foreground">
               Bonds with embedded equity options — $320B+ global market bridging debt and equity

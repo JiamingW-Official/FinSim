@@ -661,13 +661,13 @@ function StrategyExplorer() {
             </div>
             <div className="grid grid-cols-2 gap-3 text-sm">
               <div className="rounded-lg bg-emerald-400/8 border border-emerald-400/20 p-3">
-                <div className="flex items-center gap-1.5 mb-1 text-emerald-400 text-xs font-semibold uppercase tracking-wide">
+                <div className="flex items-center gap-1.5 mb-1 text-emerald-400 text-xs font-medium uppercase tracking-wide">
                   <TrendingUp className="w-3.5 h-3.5" /> Best environment
                 </div>
                 <p className="text-muted-foreground text-xs">{sel.bestEnv}</p>
               </div>
               <div className="rounded-lg bg-red-400/8 border border-red-400/20 p-3">
-                <div className="flex items-center gap-1.5 mb-1 text-red-400 text-xs font-semibold uppercase tracking-wide">
+                <div className="flex items-center gap-1.5 mb-1 text-red-400 text-xs font-medium uppercase tracking-wide">
                   <ShieldAlert className="w-3.5 h-3.5" /> Worst environment
                 </div>
                 <p className="text-muted-foreground text-xs">{sel.worstEnv}</p>
@@ -1084,9 +1084,9 @@ function GlobalMacroSimulator() {
                         {theme.category.charAt(0).toUpperCase() + theme.category.slice(1)}
                       </Badge>
                     </div>
-                    <h4 className="text-sm font-semibold text-foreground">{theme.name}</h4>
+                    <h4 className="text-sm font-medium text-foreground">{theme.name}</h4>
                   </div>
-                  <span className={cn("text-sm font-semibold tabular-nums", plPct >= 0 ? "text-emerald-400" : "text-red-400")}>
+                  <span className={cn("text-sm font-medium tabular-nums", plPct >= 0 ? "text-emerald-400" : "text-red-400")}>
                     {pct(plPct)}
                   </span>
                 </div>
@@ -1139,7 +1139,7 @@ function GlobalMacroSimulator() {
                     )}
                     style={activeRegime === i ? { boxShadow: `0 0 0 1.5px ${r.color}` } : undefined}
                   >
-                    <div className="font-semibold mb-0.5" style={{ color: r.color }}>{r.name}</div>
+                    <div className="font-medium mb-0.5" style={{ color: r.color }}>{r.name}</div>
                     <div className="text-muted-foreground text-xs">{r.quadrant}</div>
                   </button>
                 ))}
@@ -1165,7 +1165,7 @@ function GlobalMacroSimulator() {
             {CB_STANCES.map((cb) => (
               <div key={cb.bank} className="rounded-lg bg-foreground/[0.04] border border-border/50 p-3">
                 <div className="flex items-center justify-between mb-1">
-                  <span className="text-xs font-semibold text-foreground">{cb.bank}</span>
+                  <span className="text-xs font-medium text-foreground">{cb.bank}</span>
                   <div className="flex items-center gap-2">
                     <span className="text-xs text-muted-foreground">{cb.rate}</span>
                     <Badge
@@ -1356,7 +1356,7 @@ function EventDriven() {
               return (
                 <Card className="bg-foreground/[0.03] border-border/50">
                   <CardContent className="p-5">
-                    <h4 className="text-sm font-semibold text-foreground mb-3">
+                    <h4 className="text-sm font-medium text-foreground mb-3">
                       Deal Analysis — {deal.target} / {deal.acquirer}
                     </h4>
                     <div className="grid grid-cols-2 md:grid-cols-4 gap-3 mb-4">
@@ -1584,7 +1584,7 @@ function CTASimulator() {
             <CrisisAlphaChart />
             <div className="mt-3 rounded-lg bg-primary/8 border border-border p-3">
               <p className="text-xs text-muted-foreground">
-                <span className="text-primary font-semibold">Crisis Alpha: </span>
+                <span className="text-primary font-medium">Crisis Alpha: </span>
                 CTAs delivered positive returns in 4 of 5 major equity drawdowns. The 2022 +25% return
                 during one of the worst bond and equity years illustrates trend-following&apos;s unique
                 diversification benefit during sustained trending environments.
@@ -1679,7 +1679,7 @@ function FundEconomics() {
               <div>
                 <div className="flex justify-between text-xs mb-2">
                   <span className="text-muted-foreground">Fund AUM</span>
-                  <span className="text-foreground font-semibold">${aumLevel}M</span>
+                  <span className="text-foreground font-medium">${aumLevel}M</span>
                 </div>
                 <input
                   type="range"
@@ -1697,7 +1697,7 @@ function FundEconomics() {
               <div>
                 <div className="flex justify-between text-xs mb-2">
                   <span className="text-muted-foreground">Annual Gross Return</span>
-                  <span className="text-foreground font-semibold">{returnLevel}%</span>
+                  <span className="text-foreground font-medium">{returnLevel}%</span>
                 </div>
                 <input
                   type="range"
@@ -1729,7 +1729,7 @@ function FundEconomics() {
                   )}
                 >
                   <span className="text-muted-foreground">{label}</span>
-                  <span className={cn("font-semibold tabular-nums", color)}>
+                  <span className={cn("font-medium tabular-nums", color)}>
                     ${value.toFixed(2)}M
                   </span>
                 </div>
@@ -1821,7 +1821,7 @@ function FundEconomics() {
                       <td className="py-1.5 text-muted-foreground">${aum.toLocaleString()}M</td>
                       <td className="py-1.5 text-right text-muted-foreground">${mf.toFixed(1)}M</td>
                       <td className="py-1.5 text-right text-amber-400">${pf.toFixed(1)}M</td>
-                      <td className="py-1.5 text-right text-foreground font-semibold">${(mf + pf).toFixed(1)}M</td>
+                      <td className="py-1.5 text-right text-foreground font-medium">${(mf + pf).toFixed(1)}M</td>
                     </tr>
                   );
                 })}
@@ -1838,7 +1838,7 @@ function FundEconomics() {
               ].map(({ label, value, note }) => (
                 <div key={label} className="rounded-lg bg-foreground/5 p-2.5">
                   <div className="text-muted-foreground text-xs mb-0.5">{label}</div>
-                  <div className="text-foreground font-semibold">{value}</div>
+                  <div className="text-foreground font-medium">{value}</div>
                   <div className="text-muted-foreground text-xs">{note}</div>
                 </div>
               ))}
@@ -1878,8 +1878,19 @@ export default function HedgeFundPage() {
           </div>
         </motion.div>
 
+        {/* Hero */}
+        <div className="rounded-xl border border-border bg-card border-l-4 border-l-primary p-6">
+          <div className="flex items-center gap-3 mb-2">
+            <Layers className="w-5 h-5 text-primary" />
+            <h2 className="text-lg font-medium text-foreground">Strategy Explorer &amp; Simulators</h2>
+          </div>
+          <p className="text-sm text-muted-foreground">
+            Explore L/S Equity, Global Macro, Event Driven, CTA, and fund economics across institutional hedge fund strategies.
+          </p>
+        </div>
+
         {/* Tabs */}
-        <Tabs defaultValue="explorer">
+        <Tabs defaultValue="explorer" className="mt-8">
           <TabsList className="bg-foreground/5 border border-border/50 flex-wrap h-auto gap-0.5 p-1">
             {[
               { value: "explorer", label: "Strategy Explorer", icon: <Layers className="w-3.5 h-3.5" /> },

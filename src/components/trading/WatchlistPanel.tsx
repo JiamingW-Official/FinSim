@@ -142,7 +142,7 @@ function ListDropdown({ onRename, onDuplicate, onDelete, canDelete, onClose }: L
   return (
     <div
       ref={ref}
-      className="absolute top-full right-0 z-50 mt-1 min-w-[120px] rounded border border-border bg-card shadow-sm"
+      className="absolute top-full right-0 z-50 mt-1 min-w-[120px] rounded border border-border/40 bg-card shadow-sm"
     >
       <button
         onClick={() => { onRename(); onClose(); }}
@@ -202,7 +202,7 @@ function MultiAlertModal({ item, price, onClose }: MultiAlertModalProps) {
   }
 
   return (
-    <div className="border border-border rounded-md bg-background p-3 space-y-3 mx-2 mb-1">
+    <div className="border border-border/40 rounded-md bg-background p-3 space-y-3 mx-2 mb-1">
       <div className="flex items-center justify-between">
         <span className="text-xs font-medium text-foreground">Alerts — {item.ticker}</span>
         <button onClick={onClose} className="text-muted-foreground hover:text-foreground">
@@ -226,7 +226,7 @@ function MultiAlertModal({ item, price, onClose }: MultiAlertModalProps) {
                   "flex h-3.5 w-3.5 shrink-0 items-center justify-center rounded border transition-colors",
                   alert.enabled
                     ? "border-primary bg-primary text-primary-foreground"
-                    : "border-border bg-background",
+                    : "border-border/40 bg-background",
                 )}
               >
                 {alert.enabled && <Check className="h-2 w-2" />}
@@ -251,7 +251,7 @@ function MultiAlertModal({ item, price, onClose }: MultiAlertModalProps) {
         <select
           value={type}
           onChange={(e) => setType(e.target.value as AlertType)}
-          className="w-full rounded border border-border bg-background px-2 py-1 text-xs text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+          className="w-full rounded border border-border/40 bg-background px-2 py-1 text-xs text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
         >
           <option value="above">Price Above</option>
           <option value="below">Price Below</option>
@@ -270,7 +270,7 @@ function MultiAlertModal({ item, price, onClose }: MultiAlertModalProps) {
                   ? `e.g. ${(price * 0.95).toFixed(2)}`
                   : "e.g. 5"
             }
-            className="flex-1 rounded border border-border bg-background px-2 py-1 text-xs font-mono focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+            className="flex-1 rounded border border-border/40 bg-background px-2 py-1 text-xs font-mono focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
           />
           <button
             onClick={handleAdd}
@@ -349,7 +349,7 @@ function InlineNote({ ticker, note, onClose }: InlineNoteProps) {
         }}
         onBlur={handleSave}
         placeholder="Add note..."
-        className="w-full rounded border border-border bg-background px-2 py-1 text-xs focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+        className="w-full rounded border border-border/40 bg-background px-2 py-1 text-xs focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
       />
     </div>
   );
@@ -820,7 +820,7 @@ export function WatchlistPanel() {
   return (
     <div className="flex flex-col bg-card overflow-hidden" style={{ height: "100%" }}>
       {/* Header row 1: label + count + mode toggles */}
-      <div className="flex items-center justify-between border-b border-border px-3 py-2 shrink-0">
+      <div className="flex items-center justify-between border-b border-border/40 px-3 py-2 shrink-0">
         <span className="text-xs font-medium text-muted-foreground">
           Watchlist
         </span>
@@ -846,7 +846,7 @@ export function WatchlistPanel() {
             <select
               value={groupBy}
               onChange={(e) => setGroupBy(e.target.value as GroupBy)}
-              className="appearance-none rounded border border-border bg-background pl-1 pr-4 py-0.5 text-xs text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring cursor-pointer"
+              className="appearance-none rounded border border-border/40 bg-background pl-1 pr-4 py-0.5 text-xs text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring cursor-pointer"
               title="Group by"
             >
               <option value="none">None</option>
@@ -879,7 +879,7 @@ export function WatchlistPanel() {
             <select
               value={activeListId}
               onChange={(e) => setActiveList(e.target.value)}
-              className="w-full appearance-none rounded border border-border bg-background px-2 py-0.5 text-[11px] font-medium text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring cursor-pointer"
+              className="w-full appearance-none rounded border border-border/40 bg-background px-2 py-0.5 text-[11px] font-medium text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring cursor-pointer"
             >
               {lists.map((l) => (
                 <option key={l.id} value={l.id}>
@@ -991,7 +991,7 @@ export function WatchlistPanel() {
                 <button
                   key={s.ticker}
                   onClick={() => addToWatchlist(s.ticker)}
-                  className="rounded border border-border px-1.5 py-0.5 text-xs text-muted-foreground hover:text-foreground hover:border-foreground/30 transition-colors"
+                  className="rounded border border-border/40 px-1.5 py-0.5 text-xs text-muted-foreground hover:text-foreground hover:border-foreground/30 transition-colors"
                 >
                   +{s.ticker}
                 </button>
@@ -1002,7 +1002,7 @@ export function WatchlistPanel() {
       </div>
 
       {/* Add input */}
-      <div className="border-t border-border px-3 py-2 shrink-0">
+      <div className="border-t border-border/40 px-3 py-2 shrink-0">
         <div className="flex items-center gap-1.5">
           <div className="relative flex-1">
             <input
@@ -1021,7 +1021,7 @@ export function WatchlistPanel() {
               }}
               placeholder="Add ticker..."
               maxLength={5}
-              className="w-full rounded border border-border bg-background px-2 py-1 text-xs font-mono uppercase focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring placeholder:normal-case placeholder:font-sans placeholder:not-italic"
+              className="w-full rounded border border-border/40 bg-background px-2 py-1 text-xs font-mono uppercase focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring placeholder:normal-case placeholder:font-sans placeholder:not-italic"
             />
           </div>
           <button

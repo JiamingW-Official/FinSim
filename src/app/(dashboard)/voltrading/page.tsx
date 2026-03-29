@@ -624,7 +624,7 @@ export default function VolTradingPage() {
         initial={{ opacity: 0, y: -16 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.35 }}
-        className="flex flex-col gap-1"
+        className="flex flex-col gap-1 border-l-4 border-l-primary p-6 rounded-lg bg-card/40"
       >
         <div className="flex items-center gap-3">
           <div className="p-2 rounded-lg bg-primary/10 border border-border">
@@ -704,7 +704,7 @@ export default function VolTradingPage() {
                     <div key={shape.label} className="flex items-start gap-2">
                       <div className="w-2 h-2 rounded-full mt-1 flex-shrink-0" style={{ background: shape.color }} />
                       <div>
-                        <span className="text-xs font-semibold" style={{ color: shape.color }}>{shape.label}: </span>
+                        <span className="text-xs font-medium" style={{ color: shape.color }}>{shape.label}: </span>
                         <span className="text-xs text-muted-foreground">{shape.description}</span>
                       </div>
                     </div>
@@ -716,7 +716,7 @@ export default function VolTradingPage() {
 
           <Card className="bg-background border-border">
             <CardHeader className="pb-2">
-              <CardTitle className="text-sm font-semibold text-foreground flex items-center gap-2">
+              <CardTitle className="text-sm font-medium text-foreground flex items-center gap-2">
                 <Target className="w-4 h-4 text-primary" />
                 Volatility Skew Dynamics
               </CardTitle>
@@ -725,15 +725,15 @@ export default function VolTradingPage() {
               <SkewSVG />
               <div className="grid grid-cols-1 md:grid-cols-3 gap-3 mt-4 text-xs">
                 <div className="bg-card rounded-lg p-3 border border-border">
-                  <p className="font-semibold text-primary mb-1">Put Skew Origin</p>
+                  <p className="font-medium text-primary mb-1">Put Skew Origin</p>
                   <p className="text-muted-foreground">Institutional investors systematically buy OTM puts for portfolio insurance, creating persistent demand that inflates put IV vs call IV — a structural risk premium.</p>
                 </div>
                 <div className="bg-card rounded-lg p-3 border border-border">
-                  <p className="font-semibold text-primary mb-1">Sticky Strike vs Sticky Delta</p>
+                  <p className="font-medium text-primary mb-1">Sticky Strike vs Sticky Delta</p>
                   <p className="text-muted-foreground">Sticky strike: same absolute strike keeps its IV as spot moves. Sticky delta: vol follows the delta (25Δ put always has same IV). Equity tends sticky strike; FX tends sticky delta.</p>
                 </div>
                 <div className="bg-card rounded-lg p-3 border border-border">
-                  <p className="font-semibold text-muted-foreground mb-1">Post-Earnings Surface</p>
+                  <p className="font-medium text-muted-foreground mb-1">Post-Earnings Surface</p>
                   <p className="text-muted-foreground">Near-dated vol collapses dramatically post-earnings (vol crush). Far-dated vol barely moves. The surface flattens in the front end as event uncertainty resolves.</p>
                 </div>
               </div>
@@ -743,7 +743,7 @@ export default function VolTradingPage() {
           {/* SABR Model */}
           <Card className="bg-background border-border">
             <CardHeader className="pb-2">
-              <CardTitle className="text-sm font-semibold text-foreground flex items-center gap-2">
+              <CardTitle className="text-sm font-medium text-foreground flex items-center gap-2">
                 <Zap className="w-4 h-4 text-amber-400" />
                 SABR Model Parameters
               </CardTitle>
@@ -760,7 +760,7 @@ export default function VolTradingPage() {
                     className="text-left bg-card border border-border rounded-lg p-3 hover:border-border transition-colors"
                   >
                     <div className="flex items-center justify-between mb-1">
-                      <span className="text-sm font-bold" style={{ color: p.color }}>{p.param}</span>
+                      <span className="text-sm font-medium" style={{ color: p.color }}>{p.param}</span>
                       {expandedSabrParam === p.param ? <ChevronUp className="w-3 h-3 text-muted-foreground" /> : <ChevronDown className="w-3 h-3 text-muted-foreground" />}
                     </div>
                     <p className="text-xs text-muted-foreground">{p.meaning}</p>
@@ -787,7 +787,7 @@ export default function VolTradingPage() {
             <ExpandableSection title="SVI Parameterization" defaultOpen>
               <div className="space-y-2 text-xs text-muted-foreground">
                 <p>
-                  <span className="font-semibold text-foreground">SVI (Stochastic Volatility Inspired)</span> parameterizes the smile as:
+                  <span className="font-medium text-foreground">SVI (Stochastic Volatility Inspired)</span> parameterizes the smile as:
                 </p>
                 <div className="bg-card rounded p-3 font-mono text-muted-foreground text-[11px]">
                   w(k) = a + b [rho(k-m) + sqrt((k-m)^2 + sigma^2)]
@@ -801,7 +801,7 @@ export default function VolTradingPage() {
               <div className="space-y-3">
                 {ARB_CONDITIONS.map((c) => (
                   <div key={c.name} className="border-l-2 pl-3" style={{ borderColor: c.color }}>
-                    <p className="text-xs font-semibold" style={{ color: c.color }}>{c.name}</p>
+                    <p className="text-xs font-medium" style={{ color: c.color }}>{c.name}</p>
                     <p className="text-xs text-muted-foreground">{c.condition}</p>
                     <p className="text-xs text-muted-foreground mt-0.5">Violation: {c.violation}</p>
                   </div>
@@ -812,7 +812,7 @@ export default function VolTradingPage() {
 
           <Card className="bg-background border-border">
             <CardHeader className="pb-2">
-              <CardTitle className="text-sm font-semibold text-foreground flex items-center gap-2">
+              <CardTitle className="text-sm font-medium text-foreground flex items-center gap-2">
                 <Info className="w-4 h-4 text-muted-foreground" />
                 Local Vol vs Stochastic Vol
               </CardTitle>
@@ -831,7 +831,7 @@ export default function VolTradingPage() {
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
             <Card className="bg-background border-border">
               <CardHeader className="pb-2">
-                <CardTitle className="text-sm font-semibold text-foreground flex items-center gap-2">
+                <CardTitle className="text-sm font-medium text-foreground flex items-center gap-2">
                   <TrendingUp className="w-4 h-4 text-emerald-400" />
                   Long Straddle: Payoff at Expiry
                 </CardTitle>
@@ -840,13 +840,13 @@ export default function VolTradingPage() {
                 <BreakevenDisplay />
                 <div className="grid grid-cols-2 gap-3 mt-3 text-xs">
                   <div className="bg-card rounded-lg p-3 border border-border">
-                    <p className="font-semibold text-emerald-300 mb-1">Breakeven Formula</p>
+                    <p className="font-medium text-emerald-300 mb-1">Breakeven Formula</p>
                     <p className="text-muted-foreground">Upside BE = Strike + Total Premium</p>
                     <p className="text-muted-foreground">Downside BE = Strike − Total Premium</p>
                     <p className="text-muted-foreground mt-1">ATM S=100, Call=3.2, Put=3.0 → BEs: 93.8 / 106.2</p>
                   </div>
                   <div className="bg-card rounded-lg p-3 border border-border">
-                    <p className="font-semibold text-primary mb-1">Pay Theta, Own Gamma</p>
+                    <p className="font-medium text-primary mb-1">Pay Theta, Own Gamma</p>
                     <p className="text-muted-foreground">Long straddle: negative theta (time decay enemy) but long gamma (big moves profit). Profitability depends on realized vol exceeding implied vol over the holding period.</p>
                   </div>
                 </div>
@@ -855,7 +855,7 @@ export default function VolTradingPage() {
 
             <Card className="bg-background border-border">
               <CardHeader className="pb-2">
-                <CardTitle className="text-sm font-semibold text-foreground flex items-center gap-2">
+                <CardTitle className="text-sm font-medium text-foreground flex items-center gap-2">
                   <Activity className="w-4 h-4 text-primary" />
                   Gamma Scalping P&L Simulation
                 </CardTitle>
@@ -864,7 +864,7 @@ export default function VolTradingPage() {
                 <GammaScalpPnLSVG />
                 <div className="space-y-2 mt-3 text-xs text-muted-foreground">
                   <p>
-                    <span className="font-semibold text-foreground">Gamma scalping condition: </span>
+                    <span className="font-medium text-foreground">Gamma scalping condition: </span>
                     Daily P&L approx 0.5 x Gamma x S^2 x (sigma_realized^2 - sigma_implied^2) x dt. Positive when realized exceeds implied.
                   </p>
                   <p>
@@ -877,7 +877,7 @@ export default function VolTradingPage() {
 
           <Card className="bg-background border-border">
             <CardHeader className="pb-2">
-              <CardTitle className="text-sm font-semibold text-foreground flex items-center gap-2">
+              <CardTitle className="text-sm font-medium text-foreground flex items-center gap-2">
                 <Layers className="w-4 h-4 text-primary" />
                 Long Vol Strategy Reference
               </CardTitle>
@@ -895,7 +895,7 @@ export default function VolTradingPage() {
                   <tbody>
                     {LONG_VOL_STRATEGIES.map((st, i) => (
                       <tr key={st.name} className={cn("border-b border-border", i % 2 === 0 ? "bg-background" : "bg-card/30")}>
-                        <td className="py-2 px-2 font-semibold text-primary">{st.name}</td>
+                        <td className="py-2 px-2 font-medium text-primary">{st.name}</td>
                         <td className="py-2 px-2 text-muted-foreground">{st.structure}</td>
                         <td className="py-2 px-2 text-muted-foreground">{st.outlook}</td>
                         <td className="py-2 px-2 text-red-400">{st.risk}</td>
@@ -913,9 +913,9 @@ export default function VolTradingPage() {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             <ExpandableSection title="Variance Swap: Pure Vol Exposure" defaultOpen>
               <div className="space-y-3 text-xs text-muted-foreground">
-                <p>A variance swap pays <span className="text-foreground font-semibold">(sigma_realized^2 - K_var) x Notional</span> at expiry. Unlike options, it has no delta and no need for dynamic hedging.</p>
+                <p>A variance swap pays <span className="text-foreground font-medium">(sigma_realized^2 - K_var) x Notional</span> at expiry. Unlike options, it has no delta and no need for dynamic hedging.</p>
                 <div className="bg-card rounded p-3 space-y-1.5">
-                  <p className="font-semibold text-muted-foreground">Key mechanics:</p>
+                  <p className="font-medium text-muted-foreground">Key mechanics:</p>
                   <p>Fair strike K_var is replicated via a log-contract (infinite strip of OTM options)</p>
                   <p>Vega notional = Variance notional x 2 x K_var</p>
                   <p>Convexity: long var swap benefits from very large vol moves (sigma^2 is convex in sigma)</p>
@@ -928,7 +928,7 @@ export default function VolTradingPage() {
               <div className="space-y-3 text-xs text-muted-foreground">
                 <p>UVXY targets 1.5x daily return of the S&P 500 short-term VIX futures index (blend of 1st and 2nd month futures).</p>
                 <div className="bg-card rounded p-3 space-y-1.5">
-                  <p className="font-semibold text-muted-foreground">Why UVXY decays chronically:</p>
+                  <p className="font-medium text-muted-foreground">Why UVXY decays chronically:</p>
                   <p>Contango roll cost: rolling near-term futures into higher-priced later contracts</p>
                   <p>Average roll cost: 5-7% per month in normal contango markets</p>
                   <p>Leverage decay: daily rebalancing causes compounding drag</p>
@@ -945,7 +945,7 @@ export default function VolTradingPage() {
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
             <Card className="bg-background border-border">
               <CardHeader className="pb-2">
-                <CardTitle className="text-sm font-semibold text-foreground flex items-center gap-2">
+                <CardTitle className="text-sm font-medium text-foreground flex items-center gap-2">
                   <DollarSign className="w-4 h-4 text-emerald-400" />
                   Volatility Risk Premium (Historical)
                 </CardTitle>
@@ -960,7 +960,7 @@ export default function VolTradingPage() {
 
             <Card className="bg-background border-border">
               <CardHeader className="pb-2">
-                <CardTitle className="text-sm font-semibold text-foreground flex items-center gap-2">
+                <CardTitle className="text-sm font-medium text-foreground flex items-center gap-2">
                   <AlertTriangle className="w-4 h-4 text-red-400" />
                   February 2018: XIV/SVXY Implosion
                 </CardTitle>
@@ -969,11 +969,11 @@ export default function VolTradingPage() {
                 <VixSpikeSVG />
                 <div className="mt-3 space-y-2 text-xs text-muted-foreground">
                   <p>
-                    <span className="font-semibold text-red-300">What happened: </span>
+                    <span className="font-medium text-red-300">What happened: </span>
                     VIX spiked from ~14 to ~50 in a single afternoon. XIV (inverse VIX ETP) was designed to reset daily — a 90%+ VIX move triggered the acceleration clause, terminating the product.
                   </p>
                   <p>
-                    <span className="font-semibold text-amber-300">Lesson: </span>
+                    <span className="font-medium text-amber-300">Lesson: </span>
                     Short vol strategies carry embedded tail risk. Position sizing, stop-losses, and stress scenario analysis are mandatory — not optional — risk management tools.
                   </p>
                 </div>
@@ -983,7 +983,7 @@ export default function VolTradingPage() {
 
           <Card className="bg-background border-border">
             <CardHeader className="pb-2">
-              <CardTitle className="text-sm font-semibold text-foreground flex items-center gap-2">
+              <CardTitle className="text-sm font-medium text-foreground flex items-center gap-2">
                 <Shield className="w-4 h-4 text-red-400" />
                 Short Vol Strategy Reference
               </CardTitle>
@@ -1001,7 +1001,7 @@ export default function VolTradingPage() {
                   <tbody>
                     {SHORT_VOL_STRATEGIES.map((st, i) => (
                       <tr key={st.name} className={cn("border-b border-border", i % 2 === 0 ? "bg-background" : "bg-card/30")}>
-                        <td className="py-2 px-2 font-semibold text-red-300">{st.name}</td>
+                        <td className="py-2 px-2 font-medium text-red-300">{st.name}</td>
                         <td className="py-2 px-2 text-muted-foreground">{st.structure}</td>
                         <td className="py-2 px-2 text-emerald-400">{st.maxGain}</td>
                         <td className="py-2 px-2 text-red-400">{st.maxLoss}</td>
@@ -1020,7 +1020,7 @@ export default function VolTradingPage() {
               <div className="space-y-2 text-xs text-muted-foreground">
                 <p>Iron condor = bear call spread + bull put spread. Collects premium from both wings. Profitable if underlying stays within the short strikes at expiry.</p>
                 <div className="bg-card rounded p-3 space-y-1">
-                  <p className="font-semibold text-muted-foreground">P&L formula:</p>
+                  <p className="font-medium text-muted-foreground">P&L formula:</p>
                   <p>Max gain = net premium collected</p>
                   <p>Max loss = wing width minus premium</p>
                   <p>Break-evens = short strikes plus/minus net premium</p>
@@ -1033,7 +1033,7 @@ export default function VolTradingPage() {
               <div className="space-y-2 text-xs text-muted-foreground">
                 <p>Short VIX futures captures roll yield when VIX futures trade above spot VIX (contango). As time passes, futures converge down to spot — the short position profits from this convergence.</p>
                 <div className="bg-card rounded p-3 space-y-1">
-                  <p className="font-semibold text-muted-foreground">Annualized roll yield approx:</p>
+                  <p className="font-medium text-muted-foreground">Annualized roll yield approx:</p>
                   <p className="font-mono text-xs">(VIX_futures - VIX_spot) / VIX_spot x 252/DTE</p>
                 </div>
                 <p className="text-amber-400 font-medium">Risk: VIX spot can spike above futures during stress, destroying the trade instantly with unlimited theoretical loss.</p>
@@ -1044,7 +1044,7 @@ export default function VolTradingPage() {
               <div className="space-y-2 text-xs text-muted-foreground">
                 <p>VRP (Vol Risk Premium) = Implied Vol minus Expected Realized Vol. Normalized VRP = (IV - HV20) / HV20.</p>
                 <div className="bg-card rounded p-3 space-y-1.5">
-                  <p className="font-semibold text-muted-foreground">Signal thresholds:</p>
+                  <p className="font-medium text-muted-foreground">Signal thresholds:</p>
                   <p className="text-emerald-400">nVRP &gt; 0.15: sell premium (IV expensive)</p>
                   <p className="text-red-400">nVRP &lt; -0.05: avoid or go long vol</p>
                   <p className="text-muted-foreground">IV Rank &gt; 50: premium selling regime</p>
@@ -1059,7 +1059,7 @@ export default function VolTradingPage() {
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
             <Card className="bg-background border-border">
               <CardHeader className="pb-2">
-                <CardTitle className="text-sm font-semibold text-foreground flex items-center gap-2">
+                <CardTitle className="text-sm font-medium text-foreground flex items-center gap-2">
                   <BarChart2 className="w-4 h-4 text-primary" />
                   Dispersion Trade Structure
                 </CardTitle>
@@ -1074,7 +1074,7 @@ export default function VolTradingPage() {
 
             <Card className="bg-background border-border">
               <CardHeader className="pb-2">
-                <CardTitle className="text-sm font-semibold text-foreground flex items-center gap-2">
+                <CardTitle className="text-sm font-medium text-foreground flex items-center gap-2">
                   <Activity className="w-4 h-4 text-primary" />
                   Implied vs Realized Correlation
                 </CardTitle>
@@ -1090,7 +1090,7 @@ export default function VolTradingPage() {
 
           <Card className="bg-background border-border">
             <CardHeader className="pb-2">
-              <CardTitle className="text-sm font-semibold text-foreground flex items-center gap-2">
+              <CardTitle className="text-sm font-medium text-foreground flex items-center gap-2">
                 <Target className="w-4 h-4 text-amber-400" />
                 Implied Correlation Formula
               </CardTitle>
@@ -1108,7 +1108,7 @@ export default function VolTradingPage() {
                     { sym: "rho_implied", def: "Market-implied average pairwise correlation", color: "text-amber-300" },
                   ].map((item) => (
                     <div key={item.sym} className="bg-background rounded p-2 border border-border">
-                      <code className={cn("font-mono font-bold text-sm", item.color)}>{item.sym}</code>
+                      <code className={cn("font-mono font-medium text-sm", item.color)}>{item.sym}</code>
                       <p className="text-muted-foreground mt-1">{item.def}</p>
                     </div>
                   ))}
@@ -1119,7 +1119,7 @@ export default function VolTradingPage() {
 
           <Card className="bg-background border-border">
             <CardHeader className="pb-2">
-              <CardTitle className="text-sm font-semibold text-foreground flex items-center gap-2">
+              <CardTitle className="text-sm font-medium text-foreground flex items-center gap-2">
                 <DollarSign className="w-4 h-4 text-emerald-400" />
                 Dispersion P&L Decomposition (Illustrative, vol pts)
               </CardTitle>
@@ -1138,7 +1138,7 @@ export default function VolTradingPage() {
                       <div className="w-16 flex items-center">
                         <div className={cn("h-2 rounded", barColor)} style={{ width: `${barW}%` }} />
                       </div>
-                      <div className={cn("text-xs font-bold w-12 text-right", color, isLast && "text-sm")}>
+                      <div className={cn("text-xs font-medium w-12 text-right", color, isLast && "text-sm")}>
                         {item.value > 0 ? "+" : ""}{item.value.toFixed(1)}
                       </div>
                     </div>
@@ -1153,11 +1153,11 @@ export default function VolTradingPage() {
               <div className="space-y-2 text-xs text-muted-foreground">
                 <div className="grid grid-cols-2 gap-3">
                   <div className="bg-card rounded p-3">
-                    <p className="font-semibold text-primary mb-1">Variance Dispersion</p>
+                    <p className="font-medium text-primary mb-1">Variance Dispersion</p>
                     <p>Use variance swaps on index and components. Pure volatility exposure, no delta hedging needed. Payoff scales with realized variance (sigma^2), rewarding large moves convexly.</p>
                   </div>
                   <div className="bg-card rounded p-3">
-                    <p className="font-semibold text-muted-foreground mb-1">Vega Dispersion</p>
+                    <p className="font-medium text-muted-foreground mb-1">Vega Dispersion</p>
                     <p>Use options (ATM straddles) on index and components. Requires continuous delta hedging. Payoff linear in vol. More gamma exposure, path-dependent P&L.</p>
                   </div>
                 </div>
@@ -1169,7 +1169,7 @@ export default function VolTradingPage() {
               <div className="space-y-2 text-xs text-muted-foreground">
                 <p>In normal regimes, average pairwise stock correlations are 0.3-0.5. During crises, correlations spike to 0.7-0.9 as macro factors dominate all individual names.</p>
                 <div className="bg-card rounded p-3 space-y-1.5">
-                  <p className="font-semibold text-muted-foreground">Dispersion trade crisis P&L:</p>
+                  <p className="font-medium text-muted-foreground">Dispersion trade crisis P&L:</p>
                   <p className="text-red-400">Index vol spikes — short index vega hurts badly</p>
                   <p className="text-red-400">Correlation spike — individual stocks move together</p>
                   <p className="text-muted-foreground">Long individual vol gains, but insufficient to offset</p>
@@ -1182,9 +1182,9 @@ export default function VolTradingPage() {
               <div className="space-y-2 text-xs text-muted-foreground">
                 <p>Dispersion can be implemented at sector level (e.g., XLK vs mega-cap tech) or full index level (SPX vs S&P 500 components).</p>
                 <div className="bg-card rounded p-3 space-y-1.5">
-                  <p className="font-semibold text-muted-foreground">Sector advantages:</p>
+                  <p className="font-medium text-muted-foreground">Sector advantages:</p>
                   <p>Higher intra-sector correlation tracking, fewer legs (10-30 vs 500 stocks), sector events drive larger divergence</p>
-                  <p className="font-semibold text-muted-foreground mt-2">Full index advantages:</p>
+                  <p className="font-medium text-muted-foreground mt-2">Full index advantages:</p>
                   <p>Deeper liquidity on SPX options, more diversified correlation exposure across the market</p>
                 </div>
               </div>
@@ -1212,7 +1212,7 @@ export default function VolTradingPage() {
 
           <Card className="bg-background border-border">
             <CardHeader className="pb-2">
-              <CardTitle className="text-sm font-semibold text-foreground flex items-center gap-2">
+              <CardTitle className="text-sm font-medium text-foreground flex items-center gap-2">
                 <Layers className="w-4 h-4 text-muted-foreground" />
                 Practical Implementation
               </CardTitle>
@@ -1255,7 +1255,7 @@ export default function VolTradingPage() {
                   },
                 ].map((section) => (
                   <div key={section.title} className="bg-card rounded-lg p-3 border border-border">
-                    <p className={cn("font-semibold mb-2", section.color)}>{section.title}</p>
+                    <p className={cn("font-medium mb-2", section.color)}>{section.title}</p>
                     <ul className="space-y-1">
                       {section.points.map((pt, i) => (
                         <li key={i} className="text-muted-foreground flex items-start gap-1.5">

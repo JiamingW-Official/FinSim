@@ -484,7 +484,7 @@ export default function SystematicMacroPage() {
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.4, delay: 0.05 }}
-        className="grid grid-cols-2 sm:grid-cols-4 gap-3"
+        className="grid grid-cols-2 sm:grid-cols-4 gap-3 border-l-4 border-l-primary p-6 rounded-lg bg-card/40"
       >
         {SUMMARY_STATS.map((stat, i) => {
           const Icon = stat.icon;
@@ -554,7 +554,7 @@ export default function SystematicMacroPage() {
                         </Badge>
                       </div>
                       <p className="text-xs font-semibold text-foreground">{card.label}</p>
-                      <p className={`text-lg font-bold mt-0.5 ${card.dir === "buy" ? "text-green-400" : card.dir === "sell" ? "text-red-400" : "text-muted-foreground"}`}>
+                      <p className={`text-lg font-medium mt-0.5 ${card.dir === "buy" ? "text-green-400" : card.dir === "sell" ? "text-red-400" : "text-muted-foreground"}`}>
                         {card.pct}
                       </p>
                       <p className="text-xs text-muted-foreground mt-1 leading-tight">{card.desc}</p>
@@ -682,7 +682,7 @@ export default function SystematicMacroPage() {
                   <CardContent className="pt-4 pb-3 px-4">
                     <p className="text-xs text-muted-foreground uppercase tracking-wide">{m.label}</p>
                     <p
-                      className={`text-xl font-bold mt-1 ${
+                      className={`text-xl font-medium mt-1 ${
                         m.positive === true ? "text-green-400" : m.positive === false ? "text-red-400" : "text-foreground"
                       }`}
                     >

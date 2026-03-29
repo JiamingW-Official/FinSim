@@ -1016,11 +1016,11 @@ export default function CTASimulatorPage() {
                     <div className="mt-3 grid grid-cols-2 gap-3">
                       <div className="p-2 rounded bg-emerald-500/5 border border-emerald-500/20">
                         <p className="text-xs text-muted-foreground">CTA Max DD</p>
-                        <p className="text-sm font-bold text-emerald-400">{Math.min(...drawdown.map((d) => d.cta)).toFixed(1)}%</p>
+                        <p className="text-sm font-medium text-emerald-400">{Math.min(...drawdown.map((d) => d.cta)).toFixed(1)}%</p>
                       </div>
                       <div className="p-2 rounded bg-red-500/5 border border-red-500/20">
                         <p className="text-xs text-muted-foreground">Equity Max DD</p>
-                        <p className="text-sm font-bold text-red-400">{Math.min(...drawdown.map((d) => d.equity)).toFixed(1)}%</p>
+                        <p className="text-sm font-medium text-red-400">{Math.min(...drawdown.map((d) => d.equity)).toFixed(1)}%</p>
                       </div>
                     </div>
                   </CardContent>
@@ -1071,7 +1071,7 @@ export default function CTASimulatorPage() {
                         ].map(({ label, val }) => (
                           <div key={label} className="text-center">
                             <p className="text-xs text-muted-foreground">{label}</p>
-                            <p className={`text-sm font-bold ${val < -0.1 ? "text-emerald-400" : val > 0.1 ? "text-red-400" : "text-muted-foreground"}`}>
+                            <p className={`text-sm font-medium ${val < -0.1 ? "text-emerald-400" : val > 0.1 ? "text-red-400" : "text-muted-foreground"}`}>
                               {val > 0 ? "+" : ""}{val.toFixed(2)}
                             </p>
                           </div>

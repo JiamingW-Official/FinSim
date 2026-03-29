@@ -733,7 +733,7 @@ export default function ScreenerPage() {
   return (
     <div className="flex h-full flex-col overflow-hidden bg-background">
       {/* Header */}
-      <div className="shrink-0 border-b border-border/50 px-6 py-4">
+      <div className="shrink-0 border-b border-border/50 px-6 py-6 border-l-4 border-l-primary">
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-3">
             <Search className="h-5 w-5 text-primary" />
@@ -949,7 +949,7 @@ export default function ScreenerPage() {
               <button
                 type="button"
                 onClick={handleRunScreen}
-                className="ml-auto flex items-center gap-1.5 rounded-md bg-primary px-3 py-1.5 text-xs font-semibold text-primary-foreground hover:opacity-90"
+                className="ml-auto flex items-center gap-1.5 rounded-md bg-primary px-3 py-1.5 text-xs font-medium text-primary-foreground hover:opacity-90"
               >
                 <Play className="h-3 w-3 fill-current" />
                 Run Screen
@@ -1008,11 +1008,11 @@ export default function ScreenerPage() {
                       )}
                     >
                       <td className="px-3 py-2 text-muted-foreground">{s.rank}</td>
-                      <td className="px-3 py-2 font-mono font-semibold text-primary">{s.ticker}</td>
+                      <td className="px-3 py-2 font-mono font-medium text-primary">{s.ticker}</td>
                       <td className="px-3 py-2 max-w-[120px] truncate text-foreground/80">{s.company}</td>
                       <td className="px-3 py-2 text-muted-foreground">{s.sector.split(" ")[0]}</td>
                       <td className="px-3 py-2">
-                        <span className={cn("font-semibold", scoreColor(s.score))}>{s.score}</span>
+                        <span className={cn("font-medium", scoreColor(s.score))}>{s.score}</span>
                       </td>
                       <td className="px-3 py-2">
                         <span className={cn(s.peRatio < 15 ? "text-emerald-400" : s.peRatio > 35 ? "text-red-400" : "text-muted-foreground")}>
@@ -1078,7 +1078,7 @@ export default function ScreenerPage() {
                 {/* Sparkline */}
                 <div className="flex items-center justify-between rounded-lg bg-muted/20 p-3">
                   <div>
-                    <p className="text-xl font-semibold">${selectedStock.price.toFixed(2)}</p>
+                    <p className="text-xl font-medium">${selectedStock.price.toFixed(2)}</p>
                     <p className={cn("text-xs", returnColor(selectedStock.return1M))}>
                       {selectedStock.return1M > 0 ? "+" : ""}{selectedStock.return1M}% (1M)
                     </p>
@@ -1145,7 +1145,7 @@ export default function ScreenerPage() {
             <section>
               <div className="mb-4 flex items-center gap-2">
                 <TrendingUp className="h-4 w-4 text-primary" />
-                <h2 className="text-sm font-semibold">Today's Top Picks</h2>
+                <h2 className="text-sm font-medium">Today's Top Picks</h2>
                 <span className="text-xs text-muted-foreground">· AI-curated · 2026-03-27</span>
               </div>
               <div className="grid grid-cols-1 gap-4 lg:grid-cols-2 xl:grid-cols-3">
@@ -1154,9 +1154,9 @@ export default function ScreenerPage() {
                     <div className="flex items-start justify-between">
                       <div>
                         <div className="flex items-center gap-2">
-                          <span className="font-mono font-bold text-primary text-base">{pick.ticker}</span>
+                          <span className="font-mono font-medium text-primary text-base">{pick.ticker}</span>
                           <span className={cn(
-                            "rounded-full px-2 py-0.5 text-xs font-semibold",
+                            "rounded-full px-2 py-0.5 text-xs font-medium",
                             pick.category === "Value" ? "bg-primary/10 text-primary" :
                             pick.category === "Growth" ? "bg-emerald-500/10 text-emerald-400" :
                             pick.category === "Income" ? "bg-amber-500/10 text-amber-400" :
@@ -1170,7 +1170,7 @@ export default function ScreenerPage() {
                         <p className="text-xs text-muted-foreground/60">{pick.sector}</p>
                       </div>
                       <div className="text-right">
-                        <p className="text-base font-semibold">${pick.price.toFixed(2)}</p>
+                        <p className="text-base font-medium">${pick.price.toFixed(2)}</p>
                         <p className={cn("text-xs", returnColor(pick.return1M))}>
                           {pick.return1M > 0 ? "+" : ""}{pick.return1M}% 1M
                         </p>
@@ -1181,7 +1181,7 @@ export default function ScreenerPage() {
                     <div>
                       <div className="flex items-center justify-between mb-1">
                         <span className="text-xs text-muted-foreground">AI Confidence</span>
-                        <span className="text-xs font-semibold text-emerald-400">{pick.confidence}%</span>
+                        <span className="text-xs font-medium text-emerald-400">{pick.confidence}%</span>
                       </div>
                       <div className="h-1.5 rounded-full bg-muted overflow-hidden">
                         <div className="h-full rounded-full bg-emerald-400" style={{ width: `${pick.confidence}%` }} />
@@ -1200,7 +1200,7 @@ export default function ScreenerPage() {
                     </div>
 
                     <div className="flex items-center justify-between pt-1">
-                      <span className={cn("text-xs font-semibold", scoreColor(pick.score))}>Score {pick.score}/100</span>
+                      <span className={cn("text-xs font-medium", scoreColor(pick.score))}>Score {pick.score}/100</span>
                       <button type="button" className="flex items-center gap-1 text-xs text-primary hover:underline">
                         <Star className="h-3 w-3" />
                         Watchlist
@@ -1215,7 +1215,7 @@ export default function ScreenerPage() {
             <section>
               <div className="mb-4 flex items-center gap-2">
                 <Layers className="h-4 w-4 text-primary" />
-                <h2 className="text-sm font-semibold">Sector Leaders</h2>
+                <h2 className="text-sm font-medium">Sector Leaders</h2>
                 <span className="text-xs text-muted-foreground">· Best AI score per sector</span>
               </div>
               <div className="rounded-xl border border-border overflow-hidden">
@@ -1237,12 +1237,12 @@ export default function ScreenerPage() {
                         <td className="px-4 py-2.5 text-muted-foreground">{s.sector}</td>
                         <td className="px-4 py-2.5">
                           <div>
-                            <span className="font-mono font-semibold text-primary">{s.ticker}</span>
+                            <span className="font-mono font-medium text-primary">{s.ticker}</span>
                             <span className="text-muted-foreground/60 ml-1.5">{s.company}</span>
                           </div>
                         </td>
                         <td className="px-4 py-2.5">
-                          <span className={cn("font-semibold", scoreColor(s.score))}>{s.score}</span>
+                          <span className={cn("font-medium", scoreColor(s.score))}>{s.score}</span>
                         </td>
                         <td className="px-4 py-2.5 font-medium">${s.price.toFixed(2)}</td>
                         <td className="px-4 py-2.5">
@@ -1263,21 +1263,21 @@ export default function ScreenerPage() {
             <section>
               <div className="mb-4 flex items-center gap-2">
                 <Eye className="h-4 w-4 text-primary" />
-                <h2 className="text-sm font-semibold">Hidden Gems</h2>
+                <h2 className="text-sm font-medium">Hidden Gems</h2>
                 <span className="text-xs text-muted-foreground">· Small/Mid-cap with strong fundamentals</span>
               </div>
               <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5">
                 {hiddenGems.map((s) => (
                   <div key={s.ticker} className="rounded-xl border border-border bg-card p-3 space-y-2">
                     <div className="flex items-center justify-between">
-                      <span className="font-mono font-bold text-primary">{s.ticker}</span>
-                      <span className="text-xs rounded-full bg-primary/10 text-primary px-2 py-0.5 font-semibold">{marketCapLabel(s.marketCapB)}</span>
+                      <span className="font-mono font-medium text-primary">{s.ticker}</span>
+                      <span className="text-xs rounded-full bg-primary/10 text-primary px-2 py-0.5 font-medium">{marketCapLabel(s.marketCapB)}</span>
                     </div>
                     <p className="text-xs text-muted-foreground truncate">{s.company}</p>
                     <div className="space-y-1">
                       <div className="flex justify-between text-xs">
                         <span className="text-muted-foreground">Score</span>
-                        <span className={cn("font-semibold", scoreColor(s.score))}>{s.score}</span>
+                        <span className={cn("font-medium", scoreColor(s.score))}>{s.score}</span>
                       </div>
                       <div className="flex justify-between text-xs">
                         <span className="text-muted-foreground">Rev Grw</span>
@@ -1297,14 +1297,14 @@ export default function ScreenerPage() {
             <section>
               <div className="mb-4 flex items-center gap-2">
                 <TrendingDown className="h-4 w-4 text-amber-400" />
-                <h2 className="text-sm font-semibold">Contrarian Picks</h2>
+                <h2 className="text-sm font-medium">Contrarian Picks</h2>
                 <span className="text-xs text-muted-foreground">· Insider accumulation despite bearish sentiment</span>
               </div>
               <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5">
                 {contrarian.map((s) => (
                   <div key={s.ticker} className="rounded-xl border border-amber-500/20 bg-amber-500/5 p-3 space-y-2">
                     <div className="flex items-center justify-between">
-                      <span className="font-mono font-bold text-amber-400">{s.ticker}</span>
+                      <span className="font-mono font-medium text-amber-400">{s.ticker}</span>
                       <span className="text-xs text-amber-400/70">Insider +</span>
                     </div>
                     <p className="text-xs text-muted-foreground truncate">{s.company}</p>
@@ -1319,7 +1319,7 @@ export default function ScreenerPage() {
                       </div>
                       <div className="flex justify-between text-xs">
                         <span className="text-muted-foreground">Score</span>
-                        <span className={cn("font-semibold", scoreColor(s.score))}>{s.score}</span>
+                        <span className={cn("font-medium", scoreColor(s.score))}>{s.score}</span>
                       </div>
                     </div>
                   </div>
@@ -1336,7 +1336,7 @@ export default function ScreenerPage() {
             <section>
               <div className="mb-4 flex items-center gap-2">
                 <Bookmark className="h-4 w-4 text-primary" />
-                <h2 className="text-sm font-semibold">Your Saved Screens</h2>
+                <h2 className="text-sm font-medium">Your Saved Screens</h2>
               </div>
               {savedScreens.length === 0 ? (
                 <p className="text-sm text-muted-foreground italic">No saved screens yet. Run a screen and save it from the Screen Builder tab.</p>
@@ -1351,7 +1351,7 @@ export default function ScreenerPage() {
                             {screen.criteria.length} criteri{screen.criteria.length !== 1 ? "a" : "on"} · Last run {screen.lastRun}
                           </p>
                         </div>
-                        <span className={cn("text-xs font-semibold", scoreColor(screen.resultCount * 5))}>
+                        <span className={cn("text-xs font-medium", scoreColor(screen.resultCount * 5))}>
                           {screen.resultCount} results
                         </span>
                       </div>
@@ -1394,7 +1394,7 @@ export default function ScreenerPage() {
             <section>
               <div className="mb-4 flex items-center gap-2">
                 <BarChart2 className="h-4 w-4 text-primary" />
-                <h2 className="text-sm font-semibold">Compare Screens</h2>
+                <h2 className="text-sm font-medium">Compare Screens</h2>
               </div>
               <div className="rounded-xl border border-border bg-card p-4 space-y-4">
                 <div className="flex items-center gap-3">
@@ -1457,7 +1457,7 @@ export default function ScreenerPage() {
                         <p className="text-xs font-medium text-muted-foreground mb-2">Overlapping stocks</p>
                         <div className="flex flex-wrap gap-2">
                           {compareResults.overlap.map((t) => (
-                            <span key={t} className="rounded-full border border-primary/30 bg-primary/10 px-2.5 py-1 text-xs font-mono font-semibold text-primary">
+                            <span key={t} className="rounded-full border border-primary/30 bg-primary/10 px-2.5 py-1 text-xs font-mono font-medium text-primary">
                               {t}
                             </span>
                           ))}
@@ -1473,7 +1473,7 @@ export default function ScreenerPage() {
             <section>
               <div className="mb-4 flex items-center gap-2">
                 <TrendingUp className="h-4 w-4 text-emerald-400" />
-                <h2 className="text-sm font-semibold">Historical Performance</h2>
+                <h2 className="text-sm font-medium">Historical Performance</h2>
                 <span className="text-xs text-muted-foreground">· Hypothetical top-5 backtest</span>
               </div>
               <div className="grid grid-cols-1 gap-3 sm:grid-cols-3">
@@ -1506,7 +1506,7 @@ export default function ScreenerPage() {
             <section>
               <div className="mb-4 flex items-center gap-2">
                 <Users className="h-4 w-4 text-primary" />
-                <h2 className="text-sm font-semibold">Community Screens</h2>
+                <h2 className="text-sm font-medium">Community Screens</h2>
                 <span className="text-xs text-muted-foreground">· Popular shared filters from top traders</span>
               </div>
               <div className="space-y-2">
@@ -1545,7 +1545,7 @@ export default function ScreenerPage() {
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50">
           <div className="rounded-xl border border-border bg-card p-6 shadow-sm w-80 space-y-4">
             <div className="flex items-center justify-between">
-              <h3 className="text-sm font-semibold">Save Screen</h3>
+              <h3 className="text-sm font-medium">Save Screen</h3>
               <button type="button" onClick={() => setSaveDialogOpen(false)} className="rounded-md p-1 hover:bg-accent">
                 <X className="h-4 w-4 text-muted-foreground" />
               </button>
@@ -1577,7 +1577,7 @@ export default function ScreenerPage() {
                 type="button"
                 onClick={handleSaveScreen}
                 disabled={!saveName.trim()}
-                className="flex-1 rounded-md bg-primary py-2 text-xs font-semibold text-primary-foreground disabled:opacity-40 hover:opacity-90"
+                className="flex-1 rounded-md bg-primary py-2 text-xs font-medium text-primary-foreground disabled:opacity-40 hover:opacity-90"
               >
                 Save
               </button>

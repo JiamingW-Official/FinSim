@@ -988,19 +988,19 @@ export default function CommodityCyclesPage() {
 
   return (
     <div className="min-h-screen bg-background text-foreground p-6">
-      {/* Header */}
+      {/* HERO Header */}
       <motion.div
         initial={{ opacity: 0, y: -12 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.4 }}
-        className="mb-6"
+        className="mb-8 border-l-4 border-l-primary rounded-xl bg-card p-6"
       >
         <div className="flex items-center gap-3 mb-2">
           <div className="p-2 rounded-lg bg-amber-500/15">
             <Activity className="text-amber-400" size={22} />
           </div>
           <div>
-            <h1 className="text-2xl font-bold text-foreground">Commodity Super-Cycles</h1>
+            <h1 className="text-xl font-semibold text-foreground">Commodity Super-Cycles</h1>
             <p className="text-sm text-muted-foreground">
               Raw materials analysis, market dynamics, and investment vehicles
             </p>
@@ -1098,7 +1098,7 @@ export default function CommodityCyclesPage() {
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
               <Card className="bg-foreground/[0.03] border-border">
                 <CardHeader className="pb-2">
-                  <CardTitle className="text-sm font-semibold text-muted-foreground flex items-center gap-2">
+                  <CardTitle className="text-sm font-medium text-muted-foreground flex items-center gap-2">
                     <Zap size={14} className="text-amber-400" />
                     Global Oil Supply vs Demand (mb/d)
                   </CardTitle>
@@ -1110,7 +1110,7 @@ export default function CommodityCyclesPage() {
 
               <Card className="bg-foreground/[0.03] border-border">
                 <CardHeader className="pb-2">
-                  <CardTitle className="text-sm font-semibold text-muted-foreground">
+                  <CardTitle className="text-sm font-medium text-muted-foreground">
                     OPEC+ Production Context
                   </CardTitle>
                 </CardHeader>
@@ -1144,7 +1144,7 @@ export default function CommodityCyclesPage() {
                     <div key={label}>
                       <div className="flex justify-between text-xs mb-1">
                         <span className="text-muted-foreground">{label}</span>
-                        <span className="font-semibold" style={{ color }}>
+                        <span className="font-medium" style={{ color }}>
                           {value}
                           {suffix}
                         </span>
@@ -1166,7 +1166,7 @@ export default function CommodityCyclesPage() {
 
             <Card className="bg-foreground/[0.03] border-border">
               <CardHeader className="pb-2">
-                <CardTitle className="text-sm font-semibold text-muted-foreground">
+                <CardTitle className="text-sm font-medium text-muted-foreground">
                   Energy Complex — Market Data
                 </CardTitle>
               </CardHeader>
@@ -1255,7 +1255,7 @@ export default function CommodityCyclesPage() {
                   <CardContent className="pt-4">
                     <div className="flex items-center gap-2 mb-2">
                       {icon}
-                      <span className="text-sm font-semibold text-foreground">
+                      <span className="text-sm font-medium text-foreground">
                         {title}
                       </span>
                     </div>
@@ -1273,7 +1273,7 @@ export default function CommodityCyclesPage() {
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
               <Card className="bg-foreground/[0.03] border-border">
                 <CardHeader className="pb-2">
-                  <CardTitle className="text-sm font-semibold text-muted-foreground">
+                  <CardTitle className="text-sm font-medium text-muted-foreground">
                     Relative Price Performance (Indexed, 24 months)
                   </CardTitle>
                 </CardHeader>
@@ -1284,7 +1284,7 @@ export default function CommodityCyclesPage() {
 
               <Card className="bg-foreground/[0.03] border-border">
                 <CardHeader className="pb-2">
-                  <CardTitle className="text-sm font-semibold text-muted-foreground">
+                  <CardTitle className="text-sm font-medium text-muted-foreground">
                     EV Demand Drivers (per vehicle)
                   </CardTitle>
                 </CardHeader>
@@ -1300,7 +1300,7 @@ export default function CommodityCyclesPage() {
                     <div key={metal}>
                       <div className="flex justify-between text-xs mb-1">
                         <span className="font-medium text-foreground">{metal}</span>
-                        <span style={{ color }} className="font-semibold">
+                        <span style={{ color }} className="font-medium">
                           {kg} kg
                         </span>
                       </div>
@@ -1323,7 +1323,7 @@ export default function CommodityCyclesPage() {
             {/* Metals table */}
             <Card className="bg-foreground/[0.03] border-border">
               <CardHeader className="pb-2">
-                <CardTitle className="text-sm font-semibold text-muted-foreground">
+                <CardTitle className="text-sm font-medium text-muted-foreground">
                   Metals Market Overview
                 </CardTitle>
               </CardHeader>
@@ -1430,7 +1430,7 @@ export default function CommodityCyclesPage() {
                   <CardContent className="pt-4">
                     <div className="flex items-center gap-2 mb-2">
                       <span className="text-lg">{icon}</span>
-                      <span className="font-semibold text-foreground text-sm">
+                      <span className="font-medium text-foreground text-sm">
                         {name}
                       </span>
                       <Badge className="text-xs bg-foreground/5 text-muted-foreground border-border">
@@ -1453,7 +1453,7 @@ export default function CommodityCyclesPage() {
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
               <Card className="bg-foreground/[0.03] border-border">
                 <CardHeader className="pb-2">
-                  <CardTitle className="text-sm font-semibold text-muted-foreground flex items-center gap-2">
+                  <CardTitle className="text-sm font-medium text-muted-foreground flex items-center gap-2">
                     <Wheat size={14} className="text-amber-400" />
                     Seasonal Price Patterns (Index Jan=100)
                   </CardTitle>
@@ -1468,13 +1468,13 @@ export default function CommodityCyclesPage() {
 
               <Card className="bg-foreground/[0.03] border-border">
                 <CardHeader className="pb-2">
-                  <CardTitle className="text-sm font-semibold text-muted-foreground">
+                  <CardTitle className="text-sm font-medium text-muted-foreground">
                     ENSO Impact on Agricultural Markets
                   </CardTitle>
                 </CardHeader>
                 <CardContent className="space-y-3">
                   <div className="rounded-lg p-3 bg-primary/5 border border-border">
-                    <p className="text-xs font-semibold text-primary mb-1.5">
+                    <p className="text-xs font-medium text-primary mb-1.5">
                       La Nina (cool Pacific)
                     </p>
                     <div className="grid grid-cols-2 gap-2 text-xs">
@@ -1493,7 +1493,7 @@ export default function CommodityCyclesPage() {
                     </div>
                   </div>
                   <div className="rounded-lg p-3 bg-orange-500/5 border border-orange-500/20">
-                    <p className="text-xs font-semibold text-orange-400 mb-1.5">
+                    <p className="text-xs font-medium text-orange-400 mb-1.5">
                       El Nino (warm Pacific)
                     </p>
                     <div className="grid grid-cols-2 gap-2 text-xs">
@@ -1518,7 +1518,7 @@ export default function CommodityCyclesPage() {
             {/* Agri table */}
             <Card className="bg-foreground/[0.03] border-border">
               <CardHeader className="pb-2">
-                <CardTitle className="text-sm font-semibold text-muted-foreground">
+                <CardTitle className="text-sm font-medium text-muted-foreground">
                   Agricultural Complex — Market Data
                 </CardTitle>
               </CardHeader>
@@ -1590,7 +1590,7 @@ export default function CommodityCyclesPage() {
             {/* Crop calendar visual */}
             <Card className="bg-foreground/[0.03] border-border">
               <CardHeader className="pb-2">
-                <CardTitle className="text-sm font-semibold text-muted-foreground flex items-center gap-2">
+                <CardTitle className="text-sm font-medium text-muted-foreground flex items-center gap-2">
                   <Globe size={14} className="text-primary" />
                   Northern Hemisphere Crop Calendar
                 </CardTitle>
@@ -1706,7 +1706,7 @@ export default function CommodityCyclesPage() {
             {/* Quick compare table */}
             <Card className="bg-foreground/[0.03] border-border">
               <CardHeader className="pb-2">
-                <CardTitle className="text-sm font-semibold text-muted-foreground flex items-center gap-2">
+                <CardTitle className="text-sm font-medium text-muted-foreground flex items-center gap-2">
                   <DollarSign size={14} className="text-emerald-400" />
                   Investment Vehicle Comparison
                 </CardTitle>
@@ -1775,7 +1775,7 @@ export default function CommodityCyclesPage() {
 
             {/* Detailed cards */}
             <div className="space-y-3">
-              <h3 className="text-sm font-semibold text-muted-foreground uppercase tracking-wide">
+              <h3 className="text-sm font-medium text-muted-foreground uppercase tracking-wide">
                 Detailed Analysis
               </h3>
               {INVESTMENT_VEHICLES.map((v) => (
@@ -1806,7 +1806,7 @@ export default function CommodityCyclesPage() {
                       >
                         {v.type}
                       </Badge>
-                      <span className="font-semibold text-foreground text-sm">
+                      <span className="font-medium text-foreground text-sm">
                         {v.name}
                       </span>
                       <span className="font-mono text-primary text-xs">
@@ -1900,7 +1900,7 @@ export default function CommodityCyclesPage() {
                 <div className="flex items-start gap-3">
                   <Info size={16} className="text-amber-400 mt-0.5 shrink-0" />
                   <div>
-                    <p className="text-sm font-semibold text-amber-400 mb-1">
+                    <p className="text-sm font-medium text-amber-400 mb-1">
                       Understanding Futures Roll Cost
                     </p>
                     <p className="text-xs text-muted-foreground leading-relaxed">

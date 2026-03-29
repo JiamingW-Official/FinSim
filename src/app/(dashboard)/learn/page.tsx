@@ -273,7 +273,7 @@ export default function LearnPage() {
                               {isActive && (
                                 <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-primary opacity-30" />
                               )}
-                              {isDone && <Check className="h-2 w-2 text-white" />}
+                              {isDone && <Check className="h-2 w-2 text-primary-foreground" />}
                             </div>
                             <span className={`text-[11px] font-normal ${
                               isActive ? "text-primary font-medium" : isDone ? "text-emerald-400" : "text-muted-foreground"

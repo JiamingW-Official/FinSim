@@ -800,8 +800,14 @@ export default function InstitutionalAllocPage() {
         </div>
       </motion.div>
 
+      {/* Hero */}
+      <div className="rounded-xl border border-border bg-card border-l-4 border-l-primary p-6">
+        <h2 className="text-lg font-medium text-foreground mb-1">Institutional Allocation Framework</h2>
+        <p className="text-sm text-muted-foreground">Compare endowment, pension, and sovereign wealth allocation models across Yale, Harvard, and Norway frameworks.</p>
+      </div>
+
       {/* Tabs */}
-      <Tabs defaultValue="models">
+      <Tabs defaultValue="models" className="mt-8">
         <TabsList className="bg-card border border-border mb-6 flex-wrap h-auto gap-1 p-1">
           <TabsTrigger value="models" className="data-[state=active]:bg-primary text-sm">
             <BarChart3 className="w-3.5 h-3.5 mr-1.5" />
@@ -893,7 +899,7 @@ export default function InstitutionalAllocPage() {
                     { label: "Real Assets", val: pct(selectedModel.realAssets) },
                   ].map((s) => (
                     <div key={s.label} className="bg-muted/60 rounded-lg p-2 text-center">
-                      <div className="text-sm font-bold text-foreground">{s.val}</div>
+                      <div className="text-sm font-medium text-foreground">{s.val}</div>
                       <div className="text-xs text-muted-foreground">{s.label}</div>
                     </div>
                   ))}
@@ -954,7 +960,7 @@ export default function InstitutionalAllocPage() {
                     { label: "Infrastructure vs IG Bonds", val: "+3.1%", color: "#9b8fe8" },
                   ].map((s) => (
                     <div key={s.label} className="bg-muted/60 rounded-lg p-3 text-center">
-                      <div className="text-base font-bold" style={{ color: s.color }}>{s.val}</div>
+                      <div className="text-base font-medium" style={{ color: s.color }}>{s.val}</div>
                       <div className="text-xs text-muted-foreground mt-1">{s.label}</div>
                     </div>
                   ))}
@@ -980,7 +986,7 @@ export default function InstitutionalAllocPage() {
                             style={{ width: `${ac.pct}%`, backgroundColor: ac.color }}
                           />
                         </div>
-                        <span className="text-sm font-bold text-foreground w-10 text-right">{ac.pct}%</span>
+                        <span className="text-sm font-medium text-foreground w-10 text-right">{ac.pct}%</span>
                         <Badge
                           variant="outline"
                           className="text-xs shrink-0"
@@ -1008,7 +1014,7 @@ export default function InstitutionalAllocPage() {
               <CardContent>
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-4">
                   <div className="bg-muted/60 rounded-lg p-3">
-                    <div className="text-xs font-semibold text-primary mb-2">Simple 5% Rule</div>
+                    <div className="text-xs font-medium text-primary mb-2">Simple 5% Rule</div>
                     <p className="text-xs text-muted-foreground leading-relaxed">
                       Spend exactly 5% of trailing 12-month portfolio value each year. Pro: simple. Con: highly procyclical —
                       spending collapses after market crashes precisely when budget needs are highest.
@@ -1018,7 +1024,7 @@ export default function InstitutionalAllocPage() {
                     </div>
                   </div>
                   <div className="bg-muted/60 rounded-lg p-3">
-                    <div className="text-xs font-semibold text-green-400 mb-2">Yale Hybrid Rule</div>
+                    <div className="text-xs font-medium text-green-400 mb-2">Yale Hybrid Rule</div>
                     <p className="text-xs text-muted-foreground leading-relaxed">
                       Blends last year&apos;s spending (70% weight) with target rate applied to current AUM (30% weight). Provides
                       budget stability while still adjusting to portfolio growth over time.
@@ -1034,7 +1040,7 @@ export default function InstitutionalAllocPage() {
 
             {/* Liquidity ladder */}
             <div>
-              <h3 className="text-sm font-semibold text-muted-foreground mb-3 flex items-center gap-2">
+              <h3 className="text-sm font-medium text-muted-foreground mb-3 flex items-center gap-2">
                 <Activity className="w-4 h-4 text-primary" />
                 Liquidity Ladder — Endowment Structure
               </h3>
@@ -1043,10 +1049,10 @@ export default function InstitutionalAllocPage() {
                   <Card key={tier.tier} className="bg-card/60 border-border">
                     <CardContent className="pt-4 pb-4">
                       <div className="flex items-center gap-2 mb-2">
-                        <div className="w-6 h-6 rounded-full flex items-center justify-center text-xs font-bold text-foreground" style={{ backgroundColor: tier.color + "33", border: `1px solid ${tier.color}` }}>
+                        <div className="w-6 h-6 rounded-full flex items-center justify-center text-xs font-medium text-foreground" style={{ backgroundColor: tier.color + "33", border: `1px solid ${tier.color}` }}>
                           {tier.tier}
                         </div>
-                        <span className="text-xs font-semibold text-foreground">{pct(tier.pct)}</span>
+                        <span className="text-xs font-medium text-foreground">{pct(tier.pct)}</span>
                       </div>
                       <div className="text-xs font-medium mb-1" style={{ color: tier.color }}>{tier.label}</div>
                       <div className="text-xs text-muted-foreground mb-2">Liquidation: {tier.timeToLiquid}</div>
@@ -1110,7 +1116,7 @@ export default function InstitutionalAllocPage() {
                       <CardContent className="pt-4 pb-4">
                         <div className="flex items-center gap-2 mb-2">
                           {c.icon}
-                          <span className="text-xs font-semibold text-foreground">{c.title}</span>
+                          <span className="text-xs font-medium text-foreground">{c.title}</span>
                         </div>
                         <p className="text-xs text-muted-foreground leading-relaxed">{c.body}</p>
                       </CardContent>
@@ -1213,7 +1219,7 @@ export default function InstitutionalAllocPage() {
               <CardContent>
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                   <div>
-                    <div className="text-xs font-semibold text-primary mb-2">Pay-Fixed Receiver Swap</div>
+                    <div className="text-xs font-medium text-primary mb-2">Pay-Fixed Receiver Swap</div>
                     <p className="text-xs text-muted-foreground leading-relaxed">
                       Pension pays fixed rate (e.g., 4.5%), receives floating SOFR. When rates fall, the swap gains
                       value (matching liability increase). Notional can be sized to achieve target duration extension
@@ -1221,7 +1227,7 @@ export default function InstitutionalAllocPage() {
                     </p>
                   </div>
                   <div>
-                    <div className="text-xs font-semibold text-amber-400 mb-2">LDI Fund Overlay</div>
+                    <div className="text-xs font-medium text-amber-400 mb-2">LDI Fund Overlay</div>
                     <p className="text-xs text-muted-foreground leading-relaxed">
                       Pooled LDI funds offer leveraged exposure to long-duration gilts/Treasuries. £1 of collateral
                       can control £3–5 of liability hedging. Risk: collateral calls during rate spikes (UK LDI crisis
@@ -1271,7 +1277,7 @@ export default function InstitutionalAllocPage() {
                   <CardContent className="pt-4 pb-4">
                     <div className="flex items-center gap-2 mb-2" style={{ color: m.color }}>
                       {m.icon}
-                      <span className="text-sm font-semibold">{m.type}</span>
+                      <span className="text-sm font-medium">{m.type}</span>
                     </div>
                     <div className="text-xs text-muted-foreground mb-2 italic">{m.examples}</div>
                     <p className="text-xs text-muted-foreground leading-relaxed">{m.desc}</p>
@@ -1306,7 +1312,7 @@ export default function InstitutionalAllocPage() {
                   <div className="grid grid-cols-2 gap-2">
                     <div className="bg-muted/60 rounded p-2">
                       <div className="text-xs text-muted-foreground">AUM</div>
-                      <div className="text-sm font-bold text-foreground">{selectedSWF.aum}</div>
+                      <div className="text-sm font-medium text-foreground">{selectedSWF.aum}</div>
                     </div>
                     <div className="bg-muted/60 rounded p-2">
                       <div className="text-xs text-muted-foreground">Mandate</div>
@@ -1314,7 +1320,7 @@ export default function InstitutionalAllocPage() {
                     </div>
                   </div>
                   <div className="bg-muted/40 rounded-lg p-3">
-                    <div className="text-xs font-semibold text-muted-foreground mb-1">Governance</div>
+                    <div className="text-xs font-medium text-muted-foreground mb-1">Governance</div>
                     <p className="text-xs text-muted-foreground leading-relaxed">{selectedSWF.governance}</p>
                   </div>
                   <div className="bg-primary/10 border border-border rounded-lg p-3">
@@ -1404,7 +1410,7 @@ export default function InstitutionalAllocPage() {
                     },
                   ].map((c) => (
                     <div key={c.title} className="bg-muted/60 rounded-lg p-3">
-                      <div className="text-xs font-semibold mb-1" style={{ color: c.color }}>{c.title}</div>
+                      <div className="text-xs font-medium mb-1" style={{ color: c.color }}>{c.title}</div>
                       <p className="text-xs text-muted-foreground leading-relaxed">{c.body}</p>
                     </div>
                   ))}
@@ -1423,7 +1429,7 @@ export default function InstitutionalAllocPage() {
               <CardContent>
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                   <div>
-                    <div className="text-xs font-semibold text-green-400 mb-2 flex items-center gap-1">
+                    <div className="text-xs font-medium text-green-400 mb-2 flex items-center gap-1">
                       <CheckCircle className="w-3.5 h-3.5" /> Benchmark Hugger (Norway GPFG)
                     </div>
                     <ul className="space-y-1">
@@ -1441,7 +1447,7 @@ export default function InstitutionalAllocPage() {
                     </ul>
                   </div>
                   <div>
-                    <div className="text-xs font-semibold text-primary mb-2 flex items-center gap-1">
+                    <div className="text-xs font-medium text-primary mb-2 flex items-center gap-1">
                       <AlertTriangle className="w-3.5 h-3.5" /> High-Conviction (GIC, ADIA, CIC)
                     </div>
                     <ul className="space-y-1">

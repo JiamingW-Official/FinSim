@@ -711,7 +711,7 @@ function MPesaChart() {
           ].map((stat) => (
             <div key={stat.label} className="bg-muted rounded p-3 text-center">
               <p className="text-xs text-muted-foreground">{stat.label}</p>
-              <p className={`text-sm font-bold mt-1 ${stat.color}`}>{stat.value}</p>
+              <p className={`text-sm font-medium mt-1 ${stat.color}`}>{stat.value}</p>
             </div>
           ))}
         </div>
@@ -881,7 +881,7 @@ function InterestRateExplainer() {
           </div>
         ))}
         <div className="bg-muted rounded-lg p-3 border border-border">
-          <p className="text-xs text-muted-foreground font-semibold flex items-center gap-1">
+          <p className="text-xs text-muted-foreground font-medium flex items-center gap-1">
             <Info className="w-3 h-3 text-primary" />
             Controversy
           </p>
@@ -1021,7 +1021,7 @@ export default function MicrofinancepagePage() {
               <Globe className="w-5 h-5 text-green-400" />
             </div>
             <div>
-              <h1 className="text-xl font-bold text-foreground">
+              <h1 className="text-xl font-medium text-foreground">
                 Microfinance &amp; Financial Inclusion
               </h1>
               <p className="text-xs text-muted-foreground">
@@ -1043,7 +1043,7 @@ export default function MicrofinancepagePage() {
                 className="bg-card border border-border rounded-full px-3 py-1 flex items-center gap-2"
               >
                 <span className="text-xs text-muted-foreground">{chip.label}</span>
-                <span className="text-xs font-semibold text-foreground">{chip.value}</span>
+                <span className="text-xs font-medium text-foreground">{chip.value}</span>
               </div>
             ))}
           </div>
@@ -1157,7 +1157,7 @@ export default function MicrofinancepagePage() {
                             style={{ backgroundColor: r.color + "44", border: `1px solid ${r.color}` }}
                           >
                             <span
-                              className="text-xs font-mono font-bold"
+                              className="text-xs font-mono font-medium"
                               style={{ color: r.color }}
                             >
                               ${r.avgLoanUSD.toLocaleString()}
@@ -1258,7 +1258,7 @@ export default function MicrofinancepagePage() {
                           <p className="text-xs text-muted-foreground">{metric.desc}</p>
                         </div>
                         <span
-                          className="text-sm font-bold font-mono"
+                          className="text-sm font-medium font-mono"
                           style={{ color: metric.color }}
                         >
                           {metric.value}
@@ -1376,7 +1376,7 @@ export default function MicrofinancepagePage() {
                   ].map((b) => (
                     <div key={b.label} className="bg-muted rounded p-3">
                       <p className="text-xs text-muted-foreground">{b.label}</p>
-                      <p className={`text-lg font-bold font-mono mt-1 ${b.color}`}>{b.value}</p>
+                      <p className={`text-lg font-medium font-mono mt-1 ${b.color}`}>{b.value}</p>
                       <p className="text-xs text-muted-foreground mt-0.5">{b.note}</p>
                     </div>
                   ))}
@@ -1398,7 +1398,7 @@ export default function MicrofinancepagePage() {
                     <div>
                       <p className="text-xs text-muted-foreground">{m.label}</p>
                       <p
-                        className={`text-sm font-bold mt-0.5 ${
+                        className={`text-sm font-medium mt-0.5 ${
                           m.trend === "up"
                             ? "text-green-400"
                             : m.trend === "down"
@@ -1466,9 +1466,9 @@ export default function MicrofinancepagePage() {
                   ].map((pillar) => (
                     <div key={pillar.pillar} className="bg-muted rounded-lg p-4 space-y-3">
                       <div className="flex justify-between items-center">
-                        <p className="text-xs font-semibold text-muted-foreground">{pillar.pillar}</p>
+                        <p className="text-xs font-medium text-muted-foreground">{pillar.pillar}</p>
                         <span
-                          className={`text-xs font-mono font-bold ${
+                          className={`text-xs font-mono font-medium ${
                             pillar.score >= 75
                               ? "text-green-400"
                               : pillar.score >= 60
@@ -1492,7 +1492,7 @@ export default function MicrofinancepagePage() {
                   ))}
                 </div>
                 <div className="mt-4 bg-amber-500/10 border border-amber-500/30 rounded-lg p-3">
-                  <p className="text-xs font-semibold text-amber-400 flex items-center gap-1">
+                  <p className="text-xs font-medium text-amber-400 flex items-center gap-1">
                     <AlertTriangle className="w-3 h-3" /> Mission Drift Concern
                   </p>
                   <p className="text-xs text-muted-foreground mt-1">
@@ -1529,7 +1529,7 @@ export default function MicrofinancepagePage() {
                         )}
                       </div>
                       <div>
-                        <p className="text-xs font-semibold text-muted-foreground">{study.study}</p>
+                        <p className="text-xs font-medium text-muted-foreground">{study.study}</p>
                         <p className="text-xs text-muted-foreground mb-1">{study.location}</p>
                         <p className="text-xs text-muted-foreground">{study.finding}</p>
                       </div>
@@ -1537,7 +1537,7 @@ export default function MicrofinancepagePage() {
                   ))}
                 </div>
                 <div className="mt-4 bg-muted rounded-lg p-3">
-                  <p className="text-xs font-semibold text-muted-foreground">Meta-Analytic Consensus</p>
+                  <p className="text-xs font-medium text-muted-foreground">Meta-Analytic Consensus</p>
                   <p className="text-xs text-muted-foreground mt-1">
                     Banerjee et al. (2015) synthesized 6 RCTs and found: microfinance expands business investment but has no average effect on consumption or income poverty. Effects are highly heterogeneous — existing entrepreneurs benefit most; pure subsistence households see little change. Access to savings products and insurance may be more powerful poverty-reduction tools than credit alone.
                   </p>
@@ -1556,7 +1556,7 @@ export default function MicrofinancepagePage() {
                 <Card key={feat.title} className="bg-card border-border">
                   <CardContent className="p-4 space-y-2">
                     <feat.icon className={`w-5 h-5 ${feat.color}`} />
-                    <p className="text-xs font-semibold text-foreground">{feat.title}</p>
+                    <p className="text-xs font-medium text-foreground">{feat.title}</p>
                     <p className="text-xs text-muted-foreground">{feat.desc}</p>
                   </CardContent>
                 </Card>
@@ -1636,7 +1636,7 @@ export default function MicrofinancepagePage() {
                   ].map((stat) => (
                     <div key={stat.label} className="bg-muted rounded p-3 text-center">
                       <p className="text-xs text-muted-foreground">{stat.label}</p>
-                      <p className={`text-sm font-bold mt-1 ${stat.color}`}>{stat.value}</p>
+                      <p className={`text-sm font-medium mt-1 ${stat.color}`}>{stat.value}</p>
                     </div>
                   ))}
                 </div>
@@ -1660,7 +1660,7 @@ export default function MicrofinancepagePage() {
                       {ch.severity}
                     </Badge>
                     <div>
-                      <p className="text-xs font-semibold text-muted-foreground">{ch.label}</p>
+                      <p className="text-xs font-medium text-muted-foreground">{ch.label}</p>
                       <p className="text-xs text-muted-foreground mt-0.5">{ch.detail}</p>
                     </div>
                   </div>
@@ -1679,7 +1679,7 @@ export default function MicrofinancepagePage() {
               <CardContent>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                   <div className="space-y-3">
-                    <p className="text-xs font-semibold text-green-400">Opportunities</p>
+                    <p className="text-xs font-medium text-green-400">Opportunities</p>
                     {[
                       "Offline NFC payments reach rural areas with no internet",
                       "Programmable conditional transfers (gov't subsidies directly to poor)",
@@ -1694,7 +1694,7 @@ export default function MicrofinancepagePage() {
                     ))}
                   </div>
                   <div className="space-y-3">
-                    <p className="text-xs font-semibold text-red-400">Risks</p>
+                    <p className="text-xs font-medium text-red-400">Risks</p>
                     {[
                       "Disintermediates MFIs — deposits flee to CBDC wallets",
                       "Surveillance risk: all transactions visible to government",
@@ -1710,7 +1710,7 @@ export default function MicrofinancepagePage() {
                   </div>
                 </div>
                 <div className="mt-4 bg-primary/10 border border-border rounded-lg p-3">
-                  <p className="text-xs font-semibold text-primary">Live CBDC Inclusion Programs</p>
+                  <p className="text-xs font-medium text-primary">Live CBDC Inclusion Programs</p>
                   <p className="text-xs text-muted-foreground mt-1">
                     Nigeria eNaira (2021): 13M wallets registered, though adoption lagged. Bahamas Sand Dollar: offline card enables reaching remote Out Islands. India Digital Rupee pilot (2022–): RBI targeting financial inclusion via offline CBDC in UP and Bihar states. Most experts view tiered CBDC (small wallets = no KYC) as the best path to serving the unbanked.
                   </p>

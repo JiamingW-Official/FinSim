@@ -887,7 +887,7 @@ function ScenarioBuilderTab() {
                         <span className="text-muted-foreground font-mono w-8">{a.ticker}</span>
                         <span className="text-muted-foreground">{a.asset}</span>
                       </div>
-                      <span className={`font-mono font-semibold tabular-nums ${retColor(val)}`}>
+                      <span className={`font-mono font-medium tabular-nums ${retColor(val)}`}>
                         {val >= 0 ? "+" : ""}
                         {val}%
                       </span>
@@ -937,7 +937,7 @@ function ScenarioBuilderTab() {
       {/* Three-scenario summary table */}
       <Card className="bg-card border-border">
         <CardHeader className="pb-3">
-          <CardTitle className="text-sm font-semibold text-foreground">
+          <CardTitle className="text-sm font-medium text-foreground">
             Three-Scenario Return Matrix (Simulated)
           </CardTitle>
         </CardHeader>
@@ -1037,7 +1037,7 @@ function HistoricalStressTab() {
                   </div>
                   <div className="flex items-center gap-3">
                     <span
-                      className={`text-sm font-mono font-semibold ${pnlColor(portfolioPnl)}`}
+                      className={`text-sm font-mono font-medium ${pnlColor(portfolioPnl)}`}
                     >
                       {portfolioPnl >= 0 ? "+" : ""}
                       {portfolioPnl.toFixed(1)}%
@@ -1081,7 +1081,7 @@ function HistoricalStressTab() {
         {/* Asset Returns Table */}
         <Card className="bg-card border-border h-fit">
           <CardHeader className="pb-3">
-            <CardTitle className="text-sm font-semibold text-foreground">
+            <CardTitle className="text-sm font-medium text-foreground">
               Asset Returns by Crisis
             </CardTitle>
           </CardHeader>
@@ -1136,7 +1136,7 @@ function HistoricalStressTab() {
                   <div key={hs.name} className="flex items-center gap-1">
                     <span className="text-xs text-muted-foreground">{hs.year}:</span>
                     <span
-                      className={`text-xs font-mono font-semibold ${
+                      className={`text-xs font-mono font-medium ${
                         hs.vix > 60 ? "text-red-400" : hs.vix > 35 ? "text-orange-400" : "text-yellow-400"
                       }`}
                     >
@@ -1218,7 +1218,7 @@ function TailRiskTab() {
       {/* Histogram */}
       <Card className="bg-card border-border">
         <CardHeader className="pb-2">
-          <CardTitle className="text-sm font-semibold text-foreground flex items-center gap-2">
+          <CardTitle className="text-sm font-medium text-foreground flex items-center gap-2">
             <BarChart3 className="w-4 h-4 text-red-400" />
             Stressed Portfolio Return Distribution
           </CardTitle>
@@ -1245,7 +1245,7 @@ function TailRiskTab() {
       {/* Sector Concentration & Tail Correlation */}
       <Card className="bg-card border-border">
         <CardHeader className="pb-2">
-          <CardTitle className="text-sm font-semibold text-foreground">
+          <CardTitle className="text-sm font-medium text-foreground">
             Sector Concentration & Tail Correlation
           </CardTitle>
         </CardHeader>
@@ -1265,7 +1265,7 @@ function TailRiskTab() {
                     <span className="text-muted-foreground font-mono">
                       {sc.weight.toFixed(1)}% wgt
                     </span>
-                    <span className={`font-mono font-semibold ${corrColor}`}>
+                    <span className={`font-mono font-medium ${corrColor}`}>
                       ρ={sc.tailCorr.toFixed(2)}
                     </span>
                   </div>
@@ -1308,7 +1308,7 @@ function MacroSensitivityTab() {
 
       <Card className="bg-card border-border">
         <CardHeader className="pb-2">
-          <CardTitle className="text-sm font-semibold text-foreground flex items-center gap-2">
+          <CardTitle className="text-sm font-medium text-foreground flex items-center gap-2">
             <Zap className="w-4 h-4 text-yellow-400" />
             Macro Factor Sensitivity — Tornado Chart
           </CardTitle>
@@ -1321,7 +1321,7 @@ function MacroSensitivityTab() {
       {/* Detail table */}
       <Card className="bg-card border-border">
         <CardHeader className="pb-2">
-          <CardTitle className="text-sm font-semibold text-foreground">
+          <CardTitle className="text-sm font-medium text-foreground">
             Sensitivity Detail Table
           </CardTitle>
         </CardHeader>
@@ -1350,7 +1350,7 @@ function MacroSensitivityTab() {
                     {[f.equity, f.bonds, f.gold, f.credit, f.usd].map((v, i) => (
                       <td
                         key={i}
-                        className={`text-right py-2 px-3 font-mono font-semibold ${pnlColor(v)}`}
+                        className={`text-right py-2 px-3 font-mono font-medium ${pnlColor(v)}`}
                       >
                         {v >= 0 ? "+" : ""}
                         {v}%
@@ -1394,7 +1394,7 @@ function MacroSensitivityTab() {
       {/* Rate sensitivity deep-dive */}
       <Card className="bg-card border-border">
         <CardHeader className="pb-2">
-          <CardTitle className="text-sm font-semibold text-foreground">
+          <CardTitle className="text-sm font-medium text-foreground">
             Rate Sensitivity — Duration Ladder
           </CardTitle>
         </CardHeader>
@@ -1572,7 +1572,7 @@ function ReverseStressTab() {
       {/* Liquidity Spiral */}
       <Card className="bg-card border-border">
         <CardHeader className="pb-2">
-          <CardTitle className="text-sm font-semibold text-foreground flex items-center gap-2">
+          <CardTitle className="text-sm font-medium text-foreground flex items-center gap-2">
             <AlertTriangle className="w-4 h-4 text-orange-400" />
             Liquidity Spiral Scenarios
           </CardTitle>
@@ -1602,7 +1602,7 @@ function ReverseStressTab() {
       {/* Path-Dependent Risks */}
       <Card className="bg-card border-border">
         <CardHeader className="pb-2">
-          <CardTitle className="text-sm font-semibold text-foreground flex items-center gap-2">
+          <CardTitle className="text-sm font-medium text-foreground flex items-center gap-2">
             <TrendingDown className="w-4 h-4 text-red-400" />
             Path-Dependent Risk Amplifiers
           </CardTitle>
@@ -1625,7 +1625,7 @@ function ReverseStressTab() {
       {/* SVG — Loss ladder visualization */}
       <Card className="bg-card border-border">
         <CardHeader className="pb-2">
-          <CardTitle className="text-sm font-semibold text-foreground">
+          <CardTitle className="text-sm font-medium text-foreground">
             Loss Severity Ladder — Recovery Time Estimate
           </CardTitle>
         </CardHeader>
@@ -1711,10 +1711,10 @@ export default function ScenarioAnalysisPage() {
   return (
     <div className="flex flex-col h-full bg-background text-foreground">
       {/* Header */}
-      <div className="flex-shrink-0 border-b border-border px-6 py-5">
+      <div className="flex-shrink-0 border-b border-border px-6 py-5 border-l-4 border-l-primary">
         <div className="flex items-center justify-between">
           <div>
-            <h1 className="text-xl font-semibold text-foreground flex items-center gap-2">
+            <h1 className="text-xl font-medium text-foreground flex items-center gap-2">
               <Activity className="w-5 h-5 text-primary" />
               Scenario Analysis
             </h1>
@@ -1730,7 +1730,7 @@ export default function ScenarioAnalysisPage() {
       </div>
 
       {/* Tabs */}
-      <div className="flex-1 overflow-hidden">
+      <div className="flex-1 overflow-hidden mt-8">
         <Tabs defaultValue="builder" className="h-full flex flex-col">
           <div className="flex-shrink-0 px-6 pt-3 border-b border-border">
             <TabsList className="bg-card border border-border h-8">

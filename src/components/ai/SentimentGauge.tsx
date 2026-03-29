@@ -239,7 +239,7 @@ export function SentimentGauge({ score, bias, signals }: SentimentGaugeProps) {
             Bullish{" "}
             <span className="font-bold">{bullCount}</span>
           </span>
-          <span className="inline-flex items-center gap-1 rounded border border-border bg-muted px-2 py-0.5 text-[11px] font-bold text-muted-foreground">
+          <span className="inline-flex items-center gap-1 rounded border border-border/40 bg-muted px-2 py-0.5 text-[11px] font-bold text-muted-foreground">
             Neutral{" "}
             <span className="font-bold">{neutCount}</span>
           </span>

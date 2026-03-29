@@ -408,7 +408,7 @@ function PodStructureTab() {
               const tc = t.color === "amber" ? "text-amber-400" : t.color === "orange" ? "text-orange-400" : "text-red-400";
               return (
                 <div key={t.trigger} className={`p-3 rounded-lg border ${bg}`}>
-                  <p className={`text-xs font-semibold ${tc} mb-1`}>{t.trigger}</p>
+                  <p className={`text-xs font-medium ${tc} mb-1`}>{t.trigger}</p>
                   <p className="text-xs font-mono text-muted-foreground mb-1">{t.level}</p>
                   <p className="text-xs text-muted-foreground">{t.action}</p>
                 </div>
@@ -776,11 +776,11 @@ function RiskManagementTab() {
           </table>
           <div className="mt-4 grid grid-cols-2 gap-3">
             <div className="p-3 bg-muted/40 rounded-lg text-xs space-y-1">
-              <p className="font-semibold text-muted-foreground">Leverage Limits</p>
+              <p className="font-medium text-muted-foreground">Leverage Limits</p>
               <p className="text-muted-foreground">Gross: typically 5–8x NAV across portfolio. Quant pods may run 10–15x intra-pod but offset across books. Portfolio net exposure target: 15–30% long bias.</p>
             </div>
             <div className="p-3 bg-muted/40 rounded-lg text-xs space-y-1">
-              <p className="font-semibold text-muted-foreground">Tail Risk Overlay</p>
+              <p className="font-medium text-muted-foreground">Tail Risk Overlay</p>
               <p className="text-muted-foreground">Portfolio-level SPX puts (3–5% OTM, 3-month tenor). Tail risk cost ~40–80bps/year. Correlation swaps when cross-pod correlations spike above 0.5 threshold.</p>
             </div>
           </div>
@@ -916,7 +916,7 @@ function EconomicsTab() {
         <CardContent>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-4">
             <div className="p-3 bg-amber-900/20 border border-amber-800 rounded-lg">
-              <p className="text-xs font-semibold text-amber-400 mb-2">What Investors Pay</p>
+              <p className="text-xs font-medium text-amber-400 mb-2">What Investors Pay</p>
               <div className="space-y-1.5 text-xs">
                 <div className="flex justify-between text-muted-foreground">
                   <span>Management Fee</span><span className="font-mono">0%–1%</span>
@@ -927,13 +927,13 @@ function EconomicsTab() {
                 <div className="flex justify-between text-muted-foreground">
                   <span>Performance Fee</span><span className="font-mono">20–30%</span>
                 </div>
-                <div className="flex justify-between font-semibold text-foreground pt-1 border-t border-amber-800">
+                <div className="flex justify-between font-medium text-foreground pt-1 border-t border-amber-800">
                   <span>Total Cost on Gross</span><span className="font-mono text-amber-400">5–8%/yr</span>
                 </div>
               </div>
             </div>
             <div className="p-3 bg-muted/50 rounded-lg border border-border">
-              <p className="text-xs font-semibold text-muted-foreground mb-2">Pass-Through Includes</p>
+              <p className="text-xs font-medium text-muted-foreground mb-2">Pass-Through Includes</p>
               <ul className="space-y-1 text-xs text-muted-foreground">
                 <li className="flex gap-1.5"><CircleDot className="h-2.5 w-2.5 mt-0.5 text-indigo-400 shrink-0" />PM compensation (salary + bonus)</li>
                 <li className="flex gap-1.5"><CircleDot className="h-2.5 w-2.5 mt-0.5 text-indigo-400 shrink-0" />Research data (Bloomberg, FactSet, alt data)</li>
@@ -945,7 +945,7 @@ function EconomicsTab() {
               </ul>
             </div>
             <div className="p-3 bg-muted/50 rounded-lg border border-border">
-              <p className="text-xs font-semibold text-muted-foreground mb-2">Why Investors Still Pay</p>
+              <p className="text-xs font-medium text-muted-foreground mb-2">Why Investors Still Pay</p>
               <ul className="space-y-1 text-xs text-muted-foreground">
                 <li className="flex gap-1.5"><span className="text-emerald-400">+</span> Consistent 10–25% annual net returns</li>
                 <li className="flex gap-1.5"><span className="text-emerald-400">+</span> Low correlation to public markets</li>
@@ -961,11 +961,11 @@ function EconomicsTab() {
           {/* Capacity & talent war */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             <div className="p-3 bg-muted/40 rounded-lg border border-border text-xs">
-              <p className="font-semibold text-muted-foreground mb-2 flex items-center gap-1.5"><Building2 className="h-3.5 w-3.5 text-indigo-400" /> Capacity Constraints at $50B+</p>
+              <p className="font-medium text-muted-foreground mb-2 flex items-center gap-1.5"><Building2 className="h-3.5 w-3.5 text-indigo-400" /> Capacity Constraints at $50B+</p>
               <p className="text-muted-foreground leading-relaxed">When AUM exceeds ~$50B, alpha generation becomes harder. More capital chasing the same opportunities compresses spreads. Funds either: (1) return capital to investors, (2) expand into new strategies, or (3) grow headcount — with diminishing returns on each additional pod. Citadel ($63B) and Millennium ($68B) have reached this threshold, pushing into more exotic/niche strategies to maintain edge.</p>
             </div>
             <div className="p-3 bg-muted/40 rounded-lg border border-border text-xs">
-              <p className="font-semibold text-muted-foreground mb-2 flex items-center gap-1.5"><Zap className="h-3.5 w-3.5 text-amber-400" /> Talent War &amp; Compensation Inflation</p>
+              <p className="font-medium text-muted-foreground mb-2 flex items-center gap-1.5"><Zap className="h-3.5 w-3.5 text-amber-400" /> Talent War &amp; Compensation Inflation</p>
               <p className="text-muted-foreground leading-relaxed">Top PMs earn $5–50M+/year via pass-through model. Multi-strats are in constant competition for talent — a proven PM with $2B+ AUM and 15%+ returns commands $10–30M guaranteed. Non-compete clauses (typically 1 year) drive bidding wars. Analyst salaries at multi-strats 2–3× investment banking peers. Compensation is the #1 expense, making the pass-through model essential for firm economics.</p>
             </div>
           </div>
@@ -974,8 +974,8 @@ function EconomicsTab() {
           <div className="mt-4 grid grid-cols-2 md:grid-cols-5 gap-2">
             {funds.map((f) => (
               <div key={f.name} className="p-2.5 bg-muted/50 rounded-lg border border-border text-center">
-                <p className="text-xs font-semibold text-foreground mb-1">{f.name}</p>
-                <p className="text-lg font-bold" style={{ color: f.color }}>${f.aum}B</p>
+                <p className="text-xs font-medium text-foreground mb-1">{f.name}</p>
+                <p className="text-lg font-medium" style={{ color: f.color }}>${f.aum}B</p>
                 <p className="text-xs text-muted-foreground mt-0.5">Exp: {f.expenseRatio}%</p>
                 <p className="text-xs text-muted-foreground">Perf: {f.perfFee}%</p>
                 <p className={`text-xs font-medium mt-1 ${f.returnYtd >= 10 ? "text-emerald-400" : "text-amber-400"}`}>+{f.returnYtd}% YTD</p>
@@ -1008,7 +1008,7 @@ export default function MultiStrategyPage() {
               <Layers className="h-5 w-5 text-indigo-400" />
             </div>
             <div>
-              <h1 className="text-xl font-bold text-foreground">Multi-Strategy Hedge Funds</h1>
+              <h1 className="text-xl font-medium text-foreground">Multi-Strategy Hedge Funds</h1>
               <p className="text-sm text-muted-foreground">Millennium / Point72 / Citadel model — pod architecture, risk, and economics</p>
             </div>
           </div>

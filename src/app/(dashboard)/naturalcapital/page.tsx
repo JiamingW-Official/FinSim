@@ -527,11 +527,11 @@ function EcosystemTab() {
     <div className="space-y-6">
       {/* Hero stat */}
       <motion.div variants={fadeUp} initial="hidden" animate="visible">
-        <Card className="bg-card border-border">
+        <Card className="bg-card border-border border-l-4 border-l-primary">
           <CardContent className="p-6">
             <div className="flex flex-col md:flex-row md:items-center gap-6">
               <div className="flex-1">
-                <p className="text-sm text-muted-foreground mb-1">Total Natural Capital Value</p>
+                <p className="text-lg font-semibold text-muted-foreground mb-1">Total Natural Capital Value</p>
                 <div className="text-2xl font-bold text-emerald-400">$125T</div>
                 <p className="text-muted-foreground text-sm mt-1">estimated annual ecosystem services value</p>
                 <p className="text-xs text-muted-foreground mt-2">
@@ -579,7 +579,7 @@ function EcosystemTab() {
         </Card>
       </motion.div>
 
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+      <div className="mt-8 grid grid-cols-1 lg:grid-cols-2 gap-6">
         {/* Sector Dependency */}
         <motion.div variants={fadeUp} initial="hidden" animate="visible">
           <Card className="bg-card border-border/50">
@@ -864,7 +864,7 @@ function TNFDTab() {
                 >
                   <div className="flex items-center gap-2 mb-2">
                     <div
-                      className="w-7 h-7 rounded-full flex items-center justify-center text-xs font-bold flex-shrink-0"
+                      className="w-7 h-7 rounded-full flex items-center justify-center text-xs font-medium flex-shrink-0"
                       style={{ backgroundColor: pillar.color + "22", color: pillar.color }}
                     >
                       {i + 1}
@@ -902,7 +902,7 @@ function TNFDTab() {
                 <button
                   key={step.letter}
                   onClick={() => setActiveLeap(i)}
-                  className={`flex-1 py-2 rounded-lg border text-sm font-bold transition-all ${activeLeap === i ? "text-foreground" : "text-muted-foreground border-border bg-muted/50 hover:bg-muted/50"}`}
+                  className={`flex-1 py-2 rounded-lg border text-sm font-medium transition-all ${activeLeap === i ? "text-foreground" : "text-muted-foreground border-border bg-muted/50 hover:bg-muted/50"}`}
                   style={activeLeap === i ? { backgroundColor: step.color + "33", borderColor: step.color, color: step.color } : {}}
                 >
                   {step.letter}
@@ -915,7 +915,7 @@ function TNFDTab() {
             >
               <div className="flex items-center gap-3 mb-3">
                 <div
-                  className="w-10 h-10 rounded-full flex items-center justify-center text-xl font-bold"
+                  className="w-10 h-10 rounded-full flex items-center justify-center text-xl font-medium"
                   style={{ backgroundColor: leapSteps[activeLeap].color + "22", color: leapSteps[activeLeap].color }}
                 >
                   {leapSteps[activeLeap].letter}
@@ -1092,7 +1092,7 @@ function TNFDTab() {
                         style={{ backgroundColor: item.color }}
                       />
                       <div>
-                        <span className="text-xs font-bold" style={{ color: item.color }}>{item.year}</span>
+                        <span className="text-xs font-medium" style={{ color: item.color }}>{item.year}</span>
                         <p className="text-xs text-muted-foreground mt-0.5">{item.event}</p>
                       </div>
                     </div>
@@ -1279,15 +1279,15 @@ function BiodiversityCreditsTab() {
                   </div>
                   <div className="grid grid-cols-3 gap-3 mb-2">
                     <div className="text-center p-2 rounded bg-card border border-border/50">
-                      <div className="text-sm font-bold" style={{ color: nbs.color }}>{nbs.carbonPotential}</div>
+                      <div className="text-sm font-medium" style={{ color: nbs.color }}>{nbs.carbonPotential}</div>
                       <div className="text-xs text-muted-foreground">Gt CO₂/yr potential</div>
                     </div>
                     <div className="text-center p-2 rounded bg-card border border-border/50">
-                      <div className="text-sm font-bold text-primary">${nbs.costPerHa.toLocaleString()}</div>
+                      <div className="text-sm font-medium text-primary">${nbs.costPerHa.toLocaleString()}</div>
                       <div className="text-xs text-muted-foreground">cost/hectare</div>
                     </div>
                     <div className="text-center p-2 rounded bg-card border border-border/50">
-                      <div className="text-sm font-bold text-primary">{nbs.biodiversityBenefit}</div>
+                      <div className="text-sm font-medium text-primary">{nbs.biodiversityBenefit}</div>
                       <div className="text-xs text-muted-foreground">biodiversity benefit</div>
                     </div>
                   </div>
@@ -1338,7 +1338,7 @@ function BiodiversityCreditsTab() {
                 },
               ].map(std => (
                 <div key={std.name} className="p-4 rounded-lg border bg-muted/40" style={{ borderColor: std.color + "44" }}>
-                  <div className="font-semibold text-sm mb-1" style={{ color: std.color }}>{std.name}</div>
+                  <div className="font-medium text-sm mb-1" style={{ color: std.color }}>{std.name}</div>
                   <div className="text-xs text-muted-foreground mb-2">{std.type}</div>
                   <p className="text-xs text-muted-foreground mb-3">{std.description}</p>
                   <ul className="space-y-1">
@@ -1362,7 +1362,7 @@ function BiodiversityCreditsTab() {
                   { req: "No Net Harm", desc: "Must not displace harm elsewhere (leakage prevention required)" },
                 ].map(item => (
                   <div key={item.req} className="p-2 rounded bg-card border border-border/50">
-                    <div className="text-xs font-semibold text-foreground mb-1">{item.req}</div>
+                    <div className="text-xs font-medium text-foreground mb-1">{item.req}</div>
                     <div className="text-xs text-muted-foreground">{item.desc}</div>
                   </div>
                 ))}
@@ -1431,7 +1431,7 @@ function DeforestationTab() {
               <div className="p-4 rounded-lg bg-muted/40 border border-red-900/30">
                 <div className="flex items-center gap-2 mb-2">
                   <AlertTriangle className="w-4 h-4 text-red-400" />
-                  <span className="text-sm font-semibold text-red-300">EU Deforestation Regulation</span>
+                  <span className="text-sm font-medium text-red-300">EU Deforestation Regulation</span>
                   <Badge className="bg-red-900/40 text-red-300 text-xs border-red-700">In Force 2025</Badge>
                 </div>
                 <p className="text-xs text-muted-foreground mb-3">
@@ -1456,7 +1456,7 @@ function DeforestationTab() {
               <div className="p-4 rounded-lg bg-muted/40 border border-green-900/30">
                 <div className="flex items-center gap-2 mb-2">
                   <Users className="w-4 h-4 text-green-400" />
-                  <span className="text-sm font-semibold text-green-300">Finance for Biodiversity Pledge</span>
+                  <span className="text-sm font-medium text-green-300">Finance for Biodiversity Pledge</span>
                   <Badge className="bg-green-900/40 text-green-300 text-xs border-green-700">150+ Signatories</Badge>
                 </div>
                 <p className="text-xs text-muted-foreground mb-3">
@@ -1471,7 +1471,7 @@ function DeforestationTab() {
                     { label: "By-2030 target", value: "No net loss" },
                   ].map(item => (
                     <div key={item.label} className="text-center p-2 rounded bg-card border border-border/50">
-                      <div className="text-sm font-bold text-green-400">{item.value}</div>
+                      <div className="text-sm font-medium text-green-400">{item.value}</div>
                       <div className="text-xs text-muted-foreground">{item.label}</div>
                     </div>
                   ))}
@@ -1521,7 +1521,7 @@ function DeforestationTab() {
                     </td>
                     <td className="py-2 px-3 text-muted-foreground">{fc.mainRegions.join(", ")}</td>
                     <td className="py-2 px-3">
-                      <span className="font-semibold text-yellow-400">${fc.financialExposure}B</span>
+                      <span className="font-medium text-yellow-400">${fc.financialExposure}B</span>
                     </td>
                     <td className="py-2 pl-3">
                       {fc.eudrCovered ? (
@@ -1657,7 +1657,7 @@ function DeforestationTab() {
                   <tr key={company.name} className={`border-b border-border ${i % 2 === 0 ? "bg-muted/20" : ""}`}>
                     <td className="py-2 pr-3 font-medium text-foreground">{company.name}</td>
                     <td className="py-2 px-2 text-muted-foreground">{company.sector}</td>
-                    <td className="py-2 px-2 font-semibold text-yellow-400">${company.exposure}B</td>
+                    <td className="py-2 px-2 font-medium text-yellow-400">${company.exposure}B</td>
                     <td className="py-2 px-2">
                       <RiskBadge level={company.deforestationRisk} />
                     </td>
@@ -1716,11 +1716,11 @@ function DeforestationTab() {
                     { step: "Track & Disclose", desc: "Annual progress reporting aligned with TNFD and GRI biodiversity standards" },
                   ].map((item, i) => (
                     <div key={item.step} className="flex gap-3">
-                      <div className="flex-shrink-0 w-6 h-6 rounded-full bg-green-900/40 text-green-400 text-xs flex items-center justify-center font-bold border border-green-800">
+                      <div className="flex-shrink-0 w-6 h-6 rounded-full bg-green-900/40 text-green-400 text-xs flex items-center justify-center font-medium border border-green-800">
                         {i + 1}
                       </div>
                       <div>
-                        <span className="text-xs font-semibold text-green-300">{item.step}: </span>
+                        <span className="text-xs font-medium text-green-300">{item.step}: </span>
                         <span className="text-xs text-muted-foreground">{item.desc}</span>
                       </div>
                     </div>
@@ -1738,7 +1738,7 @@ function DeforestationTab() {
                       { target: "$200B/yr", desc: "Biodiversity finance gap to close by 2030" },
                     ].map(item => (
                       <div key={item.target} className="p-2 rounded bg-card border border-border/50">
-                        <div className="text-xs font-bold text-green-400">{item.target}</div>
+                        <div className="text-xs font-medium text-green-400">{item.target}</div>
                         <div className="text-xs text-muted-foreground">{item.desc}</div>
                       </div>
                     ))}
@@ -1806,15 +1806,15 @@ export default function NaturalCapitalPage() {
             </div>
             <div className="flex gap-3 flex-shrink-0">
               <div className="text-center p-2 rounded-lg bg-card border border-border/50">
-                <div className="text-lg font-bold text-emerald-400">$125T</div>
+                <div className="text-lg font-medium text-emerald-400">$125T</div>
                 <div className="text-xs text-muted-foreground">Nature value/yr</div>
               </div>
               <div className="text-center p-2 rounded-lg bg-card border border-border/50">
-                <div className="text-lg font-bold text-red-400">6/9</div>
+                <div className="text-lg font-medium text-red-400">6/9</div>
                 <div className="text-xs text-muted-foreground">Boundaries exceeded</div>
               </div>
               <div className="text-center p-2 rounded-lg bg-card border border-border/50">
-                <div className="text-lg font-bold text-primary">150+</div>
+                <div className="text-lg font-medium text-primary">150+</div>
                 <div className="text-xs text-muted-foreground">FfBP signatories</div>
               </div>
             </div>

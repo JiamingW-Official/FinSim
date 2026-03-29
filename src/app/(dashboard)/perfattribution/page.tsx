@@ -595,7 +595,7 @@ function BHBTab() {
                     </td>
                   </tr>
                 ))}
-                <tr className="border-t border-border font-bold text-foreground">
+                <tr className="border-t border-border font-medium text-foreground">
                   <td className="py-2 pr-3">TOTAL</td>
                   <td className="text-right px-2">{pct(sectors.reduce((a, s) => a + s.portfolioWeight, 0))}</td>
                   <td className="text-right px-2">{pct(sectors.reduce((a, s) => a + s.benchmarkWeight, 0))}</td>
@@ -638,36 +638,36 @@ function BHBTab() {
               <CardContent className="space-y-3 text-xs">
                 <div className="grid grid-cols-2 gap-3">
                   <div className="space-y-2">
-                    <div className="text-muted-foreground font-semibold uppercase tracking-wide">Allocation Effect</div>
+                    <div className="text-muted-foreground font-medium uppercase tracking-wide">Allocation Effect</div>
                     <div className="font-mono text-muted-foreground">
                       = (w_p − w_b) × (R_b,sector − R_b,total)
                     </div>
                     <div className="font-mono" style={{ color: sel.color }}>
                       = ({pct(sel.portfolioWeight)} − {pct(sel.benchmarkWeight)}) × ({pct(sel.benchmarkReturn)} − {pct(benchmarkReturn)})
                     </div>
-                    <div className="font-bold text-sm" style={{ color: sel.allocationEffect >= 0 ? "#22c55e" : "#ef4444" }}>
+                    <div className="font-medium text-sm" style={{ color: sel.allocationEffect >= 0 ? "#22c55e" : "#ef4444" }}>
                       = {bps(sel.allocationEffect)}
                     </div>
                   </div>
                   <div className="space-y-2">
-                    <div className="text-muted-foreground font-semibold uppercase tracking-wide">Selection Effect</div>
+                    <div className="text-muted-foreground font-medium uppercase tracking-wide">Selection Effect</div>
                     <div className="font-mono text-muted-foreground">
                       = w_b × (R_p,sector − R_b,sector)
                     </div>
                     <div className="font-mono" style={{ color: sel.color }}>
                       = {pct(sel.benchmarkWeight)} × ({pct(sel.portfolioReturn)} − {pct(sel.benchmarkReturn)})
                     </div>
-                    <div className="font-bold text-sm" style={{ color: sel.selectionEffect >= 0 ? "#22c55e" : "#ef4444" }}>
+                    <div className="font-medium text-sm" style={{ color: sel.selectionEffect >= 0 ? "#22c55e" : "#ef4444" }}>
                       = {bps(sel.selectionEffect)}
                     </div>
                   </div>
                 </div>
                 <div className="space-y-2">
-                  <div className="text-muted-foreground font-semibold uppercase tracking-wide">Interaction Effect</div>
+                  <div className="text-muted-foreground font-medium uppercase tracking-wide">Interaction Effect</div>
                   <div className="font-mono text-muted-foreground">
                     = (w_p − w_b) × (R_p,sector − R_b,sector) — combined active decisions
                   </div>
-                  <div className="font-bold text-sm" style={{ color: "#06b6d4" }}>
+                  <div className="font-medium text-sm" style={{ color: "#06b6d4" }}>
                     = {bps(sel.interactionEffect)}
                   </div>
                 </div>
@@ -702,14 +702,14 @@ function BHBTab() {
       {/* Currency attribution add-on */}
       <Card className="border-border bg-card/60">
         <CardHeader className="pb-2">
-          <CardTitle className="text-sm font-semibold text-foreground flex items-center gap-2">
+          <CardTitle className="text-sm font-medium text-foreground flex items-center gap-2">
             <DollarSign className="w-4 h-4 text-amber-400" />
             Currency Attribution Add-On (Global Portfolios)
           </CardTitle>
         </CardHeader>
         <CardContent className="grid grid-cols-1 md:grid-cols-2 gap-4 text-xs text-muted-foreground">
           <div className="space-y-2">
-            <div className="text-muted-foreground font-semibold uppercase tracking-wide">Currency Effect</div>
+            <div className="text-muted-foreground font-medium uppercase tracking-wide">Currency Effect</div>
             <div className="font-mono bg-muted rounded px-3 py-2 text-amber-300">
               Currency = w_b × (FX_local − FX_base)
             </div>
@@ -719,7 +719,7 @@ function BHBTab() {
             </p>
           </div>
           <div className="space-y-2">
-            <div className="text-muted-foreground font-semibold uppercase tracking-wide">Hedging Overlay Impact</div>
+            <div className="text-muted-foreground font-medium uppercase tracking-wide">Hedging Overlay Impact</div>
             <div className="font-mono bg-muted rounded px-3 py-2 text-primary">
               Overlay = Σ hedge_notional × (F_locked − spot)
             </div>
@@ -760,7 +760,7 @@ function FactorTab() {
       {/* FF5 bar chart */}
       <Card className="border-border bg-card/60">
         <CardHeader className="pb-2">
-          <CardTitle className="text-sm font-semibold text-foreground">
+          <CardTitle className="text-sm font-medium text-foreground">
             Fama-French 5-Factor Contributions to Active Return
           </CardTitle>
         </CardHeader>
@@ -866,7 +866,7 @@ function FactorTab() {
             style={{ borderColor: f.color + "40", background: f.color + "08" }}
           >
             <div className="flex justify-between items-start mb-2">
-              <div className="text-xs font-semibold" style={{ color: f.color }}>
+              <div className="text-xs font-medium" style={{ color: f.color }}>
                 {f.factor}
               </div>
               <Badge
@@ -893,7 +893,7 @@ function FactorTab() {
               <div>
                 <div className="text-muted-foreground">t-stat</div>
                 <div
-                  className="font-mono font-bold"
+                  className="font-mono font-medium"
                   style={{
                     color: Math.abs(f.tStat) > 2 ? "#22c55e" : Math.abs(f.tStat) > 1 ? "#f59e0b" : "#ef4444",
                   }}
@@ -910,13 +910,13 @@ function FactorTab() {
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
         <Card className="border-border bg-card/60">
           <CardHeader className="pb-2">
-            <CardTitle className="text-sm font-semibold text-foreground">
+            <CardTitle className="text-sm font-medium text-foreground">
               Model Quality — R² = {(rSquared * 100).toFixed(1)}%
             </CardTitle>
           </CardHeader>
           <CardContent className="text-xs text-muted-foreground space-y-2">
             <p>
-              <span className="text-indigo-400 font-semibold">R² = 0.87</span> means 87% of the
+              <span className="text-indigo-400 font-medium">R² = 0.87</span> means 87% of the
               portfolio&apos;s return variation is explained by the 5 systematic factors.
               The remaining 13% is idiosyncratic alpha or unmodeled risk.
             </p>
@@ -939,7 +939,7 @@ function FactorTab() {
 
         <Card className="border-border bg-card/60">
           <CardHeader className="pb-2">
-            <CardTitle className="text-sm font-semibold text-foreground">Style Box Analysis</CardTitle>
+            <CardTitle className="text-sm font-medium text-foreground">Style Box Analysis</CardTitle>
           </CardHeader>
           <CardContent>
             <svg viewBox="0 0 200 180" className="w-full max-w-xs mx-auto">
@@ -994,7 +994,7 @@ function FactorTab() {
       {/* Fixed income factor attribution */}
       <Card className="border-border bg-card/60">
         <CardHeader className="pb-2">
-          <CardTitle className="text-sm font-semibold text-foreground flex items-center gap-2">
+          <CardTitle className="text-sm font-medium text-foreground flex items-center gap-2">
             <Shield className="w-4 h-4 text-primary" />
             Fixed Income Factor Attribution
           </CardTitle>
@@ -1127,8 +1127,8 @@ function RiskTab() {
           <Card key={m.name} className="border-border bg-card/60" style={{ borderColor: m.color + "30" }}>
             <CardContent className="pt-4 pb-4">
               <div className="flex justify-between items-center mb-2">
-                <div className="text-sm font-semibold text-foreground">{m.name}</div>
-                <div className="text-xl font-bold" style={{ color: m.color }}>
+                <div className="text-sm font-medium text-foreground">{m.name}</div>
+                <div className="text-xl font-medium" style={{ color: m.color }}>
                   {m.value.toFixed(2)}
                 </div>
               </div>
@@ -1142,7 +1142,7 @@ function RiskTab() {
               <div className="flex items-center gap-2 text-xs">
                 <span className="text-muted-foreground">vs Benchmark:</span>
                 <span
-                  className="font-semibold"
+                  className="font-medium"
                   style={{
                     color:
                       m.value > m.benchmark
@@ -1196,7 +1196,7 @@ function RiskTab() {
       <Card className="border-border bg-card/60">
         <CardHeader className="pb-2">
           <div className="flex items-center justify-between">
-            <CardTitle className="text-sm font-semibold text-foreground">
+            <CardTitle className="text-sm font-medium text-foreground">
               Drawdown Analysis
             </CardTitle>
             <div className="flex gap-3 text-xs">
@@ -1231,7 +1231,7 @@ function RiskTab() {
       {/* Rolling Sharpe */}
       <Card className="border-border bg-card/60">
         <CardHeader className="pb-2">
-          <CardTitle className="text-sm font-semibold text-foreground">
+          <CardTitle className="text-sm font-medium text-foreground">
             Rolling 12-Month Sharpe Ratio
           </CardTitle>
         </CardHeader>
@@ -1277,7 +1277,7 @@ function RiskTab() {
       {/* Benchmark impact note */}
       <Card className="border-border bg-card/60">
         <CardHeader className="pb-2">
-          <CardTitle className="text-sm font-semibold text-foreground flex items-center gap-2">
+          <CardTitle className="text-sm font-medium text-foreground flex items-center gap-2">
             <Info className="w-4 h-4 text-primary" />
             Benchmark Selection Impact
           </CardTitle>
@@ -1295,9 +1295,9 @@ function RiskTab() {
               { bmk: "T-Bill (β≈0)", ir: "2.10", sharpe: "1.24", color: "#22c55e" },
             ].map(({ bmk, ir, sharpe, color }) => (
               <div key={bmk} className="rounded-lg border border-border p-3" style={{ borderColor: color + "40" }}>
-                <div className="font-semibold text-xs mb-1" style={{ color }}>{bmk}</div>
-                <div>IR: <span className="font-bold text-foreground">{ir}</span></div>
-                <div>Sharpe: <span className="font-bold text-foreground">{sharpe}</span></div>
+                <div className="font-medium text-xs mb-1" style={{ color }}>{bmk}</div>
+                <div>IR: <span className="font-medium text-foreground">{ir}</span></div>
+                <div>Sharpe: <span className="font-medium text-foreground">{sharpe}</span></div>
               </div>
             ))}
           </div>
@@ -1355,7 +1355,7 @@ function ManagerTab() {
       {/* Manager comparison table */}
       <Card className="border-border bg-card/60">
         <CardHeader className="pb-2">
-          <CardTitle className="text-sm font-semibold text-foreground flex items-center gap-2">
+          <CardTitle className="text-sm font-medium text-foreground flex items-center gap-2">
             <Users className="w-4 h-4 text-indigo-400" />
             Peer Group Comparison — Manager Universe
           </CardTitle>
@@ -1397,7 +1397,7 @@ function ManagerTab() {
                         {m.name}
                       </td>
                       <td
-                        className="text-right px-2 font-bold"
+                        className="text-right px-2 font-medium"
                         style={{ color: m.alpha >= 0 ? "#22c55e" : "#ef4444" }}
                       >
                         {pct(m.alpha / 100)}
@@ -1466,7 +1466,7 @@ function ManagerTab() {
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
         <Card className="border-border bg-card/60">
           <CardHeader className="pb-2">
-            <CardTitle className="text-sm font-semibold text-foreground">
+            <CardTitle className="text-sm font-medium text-foreground">
               Performance Persistence — Quartile Flow
             </CardTitle>
           </CardHeader>
@@ -1533,24 +1533,24 @@ function ManagerTab() {
         {/* Skill vs luck framework */}
         <Card className="border-border bg-card/60">
           <CardHeader className="pb-2">
-            <CardTitle className="text-sm font-semibold text-foreground flex items-center gap-2">
+            <CardTitle className="text-sm font-medium text-foreground flex items-center gap-2">
               <Star className="w-4 h-4 text-amber-400" />
               Skill vs Luck Framework
             </CardTitle>
           </CardHeader>
           <CardContent className="text-xs text-muted-foreground space-y-3">
             <div className="rounded-lg border border-border p-3 space-y-1">
-              <div className="font-semibold text-foreground">Alpha t-statistic</div>
+              <div className="font-medium text-foreground">Alpha t-statistic</div>
               <div className="font-mono text-indigo-300">t = α / (σ_α / √T)</div>
               <p>Measures statistical significance. Need t &gt; 2.0 for 95% confidence that alpha is not zero.</p>
             </div>
             <div className="rounded-lg border border-border p-3 space-y-1">
-              <div className="font-semibold text-foreground">Minimum Track Record (MTR)</div>
+              <div className="font-medium text-foreground">Minimum Track Record (MTR)</div>
               <div className="font-mono text-indigo-300">MTR = (z_α / IR)² years</div>
               <p>A manager with IR = 0.5 needs (2/0.5)² = 16 years of track record to confirm skill with 95% confidence.</p>
             </div>
             <div className="rounded-lg border border-border p-3 space-y-1">
-              <div className="font-semibold text-foreground">Luck Threshold</div>
+              <div className="font-medium text-foreground">Luck Threshold</div>
               <p>
                 Given 1,000 managers all with zero skill, ~23 will have t-stat &gt; 2.0 purely by chance in any 5-year period.
                 Universe-relative evaluation is essential.
@@ -1563,7 +1563,7 @@ function ManagerTab() {
       {/* Fee impact SVG */}
       <Card className="border-border bg-card/60">
         <CardHeader className="pb-2">
-          <CardTitle className="text-sm font-semibold text-foreground flex items-center gap-2">
+          <CardTitle className="text-sm font-medium text-foreground flex items-center gap-2">
             <DollarSign className="w-4 h-4 text-red-400" />
             Fee Impact — 8% Gross Return, 30-Year Compound
           </CardTitle>
@@ -1620,11 +1620,11 @@ function ManagerTab() {
           </svg>
           <div className="mt-2 text-xs text-muted-foreground">
             A 2% fee drag reduces terminal wealth by{" "}
-            <span className="text-red-400 font-semibold">
+            <span className="text-red-400 font-medium">
               ${(feeData[30].gross - feeData[30].net2).toFixed(0)}
             </span>{" "}
             on a $100 initial investment over 30 years — nearly{" "}
-            <span className="text-red-400 font-semibold">
+            <span className="text-red-400 font-medium">
               {(((feeData[30].gross - feeData[30].net2) / feeData[30].gross) * 100).toFixed(0)}%
             </span>{" "}
             of gross terminal wealth.
@@ -1635,7 +1635,7 @@ function ManagerTab() {
       {/* GIPS compliance */}
       <Card className="border-border bg-card/60">
         <CardHeader className="pb-2">
-          <CardTitle className="text-sm font-semibold text-foreground flex items-center gap-2">
+          <CardTitle className="text-sm font-medium text-foreground flex items-center gap-2">
             <CheckCircle className="w-4 h-4 text-green-400" />
             GIPS Compliance Requirements
           </CardTitle>
@@ -1655,7 +1655,7 @@ function ManagerTab() {
       {/* Red flags */}
       <Card className="border-border bg-card/60">
         <CardHeader className="pb-2">
-          <CardTitle className="text-sm font-semibold text-foreground flex items-center gap-2">
+          <CardTitle className="text-sm font-medium text-foreground flex items-center gap-2">
             <AlertTriangle className="w-4 h-4 text-red-400" />
             Red Flags in Performance Reporting
           </CardTitle>
@@ -1679,7 +1679,7 @@ function ManagerTab() {
                 <div className="flex items-center justify-between px-3 py-2">
                   <div className="flex items-center gap-2">
                     <span className="w-2 h-2 rounded-full flex-shrink-0" style={{ background: severityColor }} />
-                    <span className="text-xs font-semibold text-foreground">{flag.flag}</span>
+                    <span className="text-xs font-medium text-foreground">{flag.flag}</span>
                     <Badge
                       className="text-xs capitalize"
                       style={{
@@ -1737,7 +1737,7 @@ export default function PerfAttributionPage() {
             <BarChart3 className="w-5 h-5 text-indigo-400" />
           </div>
           <div>
-            <h1 className="text-xl font-bold text-foreground">Investment Performance Attribution</h1>
+            <h1 className="text-xl font-medium text-foreground">Investment Performance Attribution</h1>
             <p className="text-xs text-muted-foreground">
               BHB decomposition · Factor attribution · Risk metrics · Manager evaluation
             </p>

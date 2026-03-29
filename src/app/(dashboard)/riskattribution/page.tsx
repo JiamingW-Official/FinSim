@@ -516,8 +516,8 @@ function FactorTab() {
               </tr>
             ))}
             <tr className="border-t border-border">
-              <td className="px-3 py-2 text-foreground font-bold" colSpan={3}>Total Portfolio Return</td>
-              <td className={cn("px-3 py-2 font-mono font-bold", pctColor(totalReturn))}>{pct(totalReturn)}</td>
+              <td className="px-3 py-2 text-foreground font-medium" colSpan={3}>Total Portfolio Return</td>
+              <td className={cn("px-3 py-2 font-mono font-medium", pctColor(totalReturn))}>{pct(totalReturn)}</td>
               <td className="px-3 py-2 font-mono text-muted-foreground">100%</td>
             </tr>
           </tbody>
@@ -585,7 +585,7 @@ function ActiveShareTab() {
             onValueChange={(v) => setConviction(v[0])}
             className="flex-1"
           />
-          <span className="text-sm font-bold text-foreground w-8">{conviction}</span>
+          <span className="text-sm font-medium text-foreground w-8">{conviction}</span>
         </div>
 
         <div className="grid grid-cols-2 md:grid-cols-4 gap-3 mb-6">
@@ -594,7 +594,7 @@ function ActiveShareTab() {
           <StatCard label="Information Ratio" value={irVal(conviction)} sub="Alpha per unit of TE" highlight="neutral" />
           <div className="rounded-xl border border-border bg-foreground/5 p-4">
             <p className="text-xs text-muted-foreground mb-1">Classification</p>
-            <p className={cn("text-base font-bold", zoneColor)}>{zone}</p>
+            <p className={cn("text-base font-medium", zoneColor)}>{zone}</p>
             {activeShare < 60 && (
               <p className="text-xs text-rose-400/80 mt-1 flex items-center gap-1">
                 <AlertTriangle className="w-3 h-3" /> Closet indexing risk
@@ -749,13 +749,13 @@ function RiskContribTab() {
             {POSITIONS.map((pos, i) => (
               <tr key={pos.ticker} className="border-b border-border/50 hover:bg-muted/30 transition-colors">
                 <td className="px-3 py-2 text-muted-foreground">{i + 1}</td>
-                <td className="px-3 py-2 text-foreground font-bold">{pos.ticker}</td>
+                <td className="px-3 py-2 text-foreground font-medium">{pos.ticker}</td>
                 <td className="px-3 py-2 font-mono text-muted-foreground">{(pos.weight * 100).toFixed(1)}%</td>
                 <td className="px-3 py-2 font-mono text-muted-foreground">{(pos.vol * 100).toFixed(1)}%</td>
                 <td className={cn("px-3 py-2 font-mono", pos.mctr > 0.03 ? "text-rose-400" : "text-muted-foreground")}>
                   {(pos.mctr * 100).toFixed(3)}%
                 </td>
-                <td className="px-3 py-2 font-mono font-bold text-foreground">{(pos.pctContrib * 100).toFixed(2)}%</td>
+                <td className="px-3 py-2 font-mono font-medium text-foreground">{(pos.pctContrib * 100).toFixed(2)}%</td>
                 <td className="px-3 py-2 w-28">
                   <div className="h-2 rounded-full bg-foreground/10 overflow-hidden">
                     <div
@@ -850,15 +850,15 @@ function ScenarioTab() {
                   <div className="flex gap-4">
                     <div>
                       <p className="text-xs text-muted-foreground">Portfolio</p>
-                      <p className={cn("text-sm font-bold font-mono", pctColor(sc.portfolioImpact))}>{pct(sc.portfolioImpact, 1)}</p>
+                      <p className={cn("text-sm font-medium font-mono", pctColor(sc.portfolioImpact))}>{pct(sc.portfolioImpact, 1)}</p>
                     </div>
                     <div>
                       <p className="text-xs text-muted-foreground">Benchmark</p>
-                      <p className={cn("text-sm font-bold font-mono", pctColor(sc.benchmarkImpact))}>{pct(sc.benchmarkImpact, 1)}</p>
+                      <p className={cn("text-sm font-medium font-mono", pctColor(sc.benchmarkImpact))}>{pct(sc.benchmarkImpact, 1)}</p>
                     </div>
                     <div>
                       <p className="text-xs text-muted-foreground">Excess</p>
-                      <p className={cn("text-sm font-bold font-mono", pctColor(excess))}>{pct(excess, 2)}</p>
+                      <p className={cn("text-sm font-medium font-mono", pctColor(excess))}>{pct(excess, 2)}</p>
                     </div>
                   </div>
                 </div>
@@ -1011,7 +1011,7 @@ function HistoryTab() {
               return (
                 <tr key={h.month} className="border-b border-border/50 hover:bg-muted/30 transition-colors">
                   <td className="px-3 py-2 text-muted-foreground font-medium">{h.month} &apos;25</td>
-                  <td className={cn("px-3 py-2 font-mono font-bold", pctColor(h.cumAlpha))}>{pct(h.cumAlpha)}</td>
+                  <td className={cn("px-3 py-2 font-mono font-medium", pctColor(h.cumAlpha))}>{pct(h.cumAlpha)}</td>
                   <td className={cn("px-3 py-2 font-mono", pctColor(h.allocEffect))}>{pct(h.allocEffect)}</td>
                   <td className={cn("px-3 py-2 font-mono", pctColor(h.selEffect))}>{pct(h.selEffect)}</td>
                   <td className={cn("px-3 py-2 font-mono", pctColor(delta))}>{pct(delta)}</td>

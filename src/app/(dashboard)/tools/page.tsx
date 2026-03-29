@@ -1257,7 +1257,7 @@ function TaxCalculatorTab() {
               ].map(({ label, value }) => (
                 <div key={label} className="rounded-lg border border-border/60 p-3 space-y-0.5">
                   <p className="text-xs text-muted-foreground">{label}</p>
-                  <p className="text-sm font-semibold font-mono">{value}</p>
+                  <p className="text-sm font-medium font-mono">{value}</p>
                 </div>
               ))}
             </CardContent>
@@ -1322,7 +1322,7 @@ function TaxCalculatorTab() {
                     <td className="py-1.5 text-right font-mono text-foreground">{fmtK(b.tax)}</td>
                   </tr>
                 ))}
-                <tr className="font-semibold">
+                <tr className="font-medium">
                   <td className="pt-2" colSpan={3}>Total Federal Tax</td>
                   <td className="pt-2 text-right font-mono">{fmtK(result.federalTax)}</td>
                 </tr>
@@ -1587,7 +1587,7 @@ function LoanCalculatorTab() {
               ].map(({ label, value }) => (
                 <div key={label} className="rounded-lg border border-border/60 p-3 space-y-0.5">
                   <p className="text-xs text-muted-foreground">{label}</p>
-                  <p className="text-sm font-semibold font-mono">{value}</p>
+                  <p className="text-sm font-medium font-mono">{value}</p>
                 </div>
               ))}
             </CardContent>
@@ -1612,7 +1612,7 @@ function LoanCalculatorTab() {
                     className={`rounded-lg border p-3 space-y-0.5 ${positive ? "border-green-500/30 bg-green-500/5" : "border-border/60"}`}
                   >
                     <p className="text-xs text-muted-foreground">{label}</p>
-                    <p className={`text-sm font-semibold font-mono ${positive ? "text-green-500" : ""}`}>{value}</p>
+                    <p className={`text-sm font-medium font-mono ${positive ? "text-green-500" : ""}`}>{value}</p>
                   </div>
                 ))}
               </CardContent>
@@ -2141,21 +2141,21 @@ function MacroSimulatorTab() {
               <div className="grid grid-cols-3 gap-4">
                 <div className="rounded-lg border border-border/60 p-3 space-y-0.5">
                   <p className="text-xs text-muted-foreground">Portfolio P&L</p>
-                  <p className={`text-base font-semibold font-mono ${totalImpact >= 0 ? "text-green-500" : "text-red-400"}`}>
+                  <p className={`text-base font-medium font-mono ${totalImpact >= 0 ? "text-green-500" : "text-red-400"}`}>
                     {totalImpact >= 0 ? "+" : ""}{fmtK(totalImpact)}
                   </p>
                   <p className="text-xs text-muted-foreground">{totalImpactPct >= 0 ? "+" : ""}{totalImpactPct.toFixed(1)}%</p>
                 </div>
                 <div className="rounded-lg border border-green-500/30 bg-green-500/5 p-3 space-y-0.5">
                   <p className="text-xs text-muted-foreground">Best Case</p>
-                  <p className="text-base font-semibold font-mono text-green-500">
+                  <p className="text-base font-medium font-mono text-green-500">
                     +{fmtK(PORTFOLIO_VALUE * (bestCase / 100))}
                   </p>
                   <p className="text-xs text-muted-foreground">+{bestCase.toFixed(1)}%</p>
                 </div>
                 <div className="rounded-lg border border-red-500/30 bg-red-500/5 p-3 space-y-0.5">
                   <p className="text-xs text-muted-foreground">Worst Case</p>
-                  <p className="text-base font-semibold font-mono text-red-400">
+                  <p className="text-base font-medium font-mono text-red-400">
                     {fmtK(PORTFOLIO_VALUE * (worstCase / 100))}
                   </p>
                   <p className="text-xs text-muted-foreground">{worstCase.toFixed(1)}%</p>
@@ -2193,7 +2193,7 @@ export default function ToolsPage() {
       {/* Header */}
       <div className="flex items-center gap-3 px-6 pt-4 pb-3 border-b border-border/50 shrink-0">
         <div>
-          <h1 className="text-base font-semibold leading-tight">Financial Tools</h1>
+          <h1 className="text-base font-medium leading-tight">Financial Tools</h1>
           <p className="text-xs text-muted-foreground mt-0.5">
             Interactive calculators for wealth planning, taxes, and macro analysis.
           </p>
@@ -2224,7 +2224,7 @@ export default function ToolsPage() {
               key={t.id}
               onClick={() => setActiveTab(t.id)}
               className={cn(
-                "rounded-md px-2.5 py-1 text-xs font-semibold transition-colors",
+                "rounded-md px-2.5 py-1 text-xs font-medium transition-colors",
                 activeTab === t.id
                   ? "bg-primary/15 text-primary border border-primary/30"
                   : "bg-muted/30 text-muted-foreground border border-border hover:text-foreground"

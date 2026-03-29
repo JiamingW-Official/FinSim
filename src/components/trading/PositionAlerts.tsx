@@ -172,7 +172,7 @@ export function PositionAlerts() {
             alertedTimeExit.current.add(key);
             toast.custom(
               () => (
-                <div className="flex items-center gap-2 rounded-lg border border-border bg-card px-3 py-2 shadow-sm text-[11px] max-w-64">
+                <div className="flex items-center gap-2 rounded-lg border border-border/40 bg-card px-3 py-2 shadow-sm text-[11px] max-w-64">
                   <span className="text-base shrink-0">⏱️</span>
                   <div className="min-w-0">
                     <div className="font-bold text-primary leading-tight">Long-Held Position</div>

@@ -573,7 +573,7 @@ function BusinessCycleClock() {
               <Card className="bg-card border-border/50">
                 <CardContent className="px-4 py-3">
                   <p className="text-xs text-muted-foreground">
-                    <span className="font-semibold text-foreground">Transition signal: </span>
+                    <span className="font-medium text-foreground">Transition signal: </span>
                     {activePhase === "Recovery" && "Watch for PMI crossing 55 and yield curve steepening — signals shift to Expansion."}
                     {activePhase === "Expansion" && "Watch for PMI topping out, yield curve flattening, Fed rate hikes accelerating — signals shift to Slowdown."}
                     {activePhase === "Slowdown" && "Watch for PMI crossing below 50, credit spread widening above 200 bps — signals shift to Contraction."}
@@ -605,7 +605,7 @@ function BusinessCycleClock() {
           >
             <div className="flex items-center gap-2 mb-1">
               <span className="w-2.5 h-2.5 rounded-full" style={{ backgroundColor: p.color }} />
-              <span className="text-xs font-semibold text-foreground">{p.phase}</span>
+              <span className="text-xs font-medium text-foreground">{p.phase}</span>
               {p.phase === CURRENT_PHASE && (
                 <span className="ml-auto text-xs font-bold" style={{ color: p.color }}>NOW</span>
               )}
@@ -657,7 +657,7 @@ function SectorPerformance() {
           <BarChart3 className="w-5 h-5 text-indigo-400" />
         </div>
         <div>
-          <h2 className="text-base font-semibold text-foreground">Sector Performance by Cycle Phase</h2>
+          <h2 className="text-base font-medium text-foreground">Sector Performance by Cycle Phase</h2>
           <p className="text-xs text-muted-foreground">Historical average annualized returns per phase (GICS sectors)</p>
         </div>
       </div>
@@ -785,7 +785,7 @@ function SectorPerformance() {
                     <td className="px-4 py-2">
                       <div className="flex items-center gap-2">
                         <span className="w-2 h-2 rounded-full" style={{ backgroundColor: sec.color }} />
-                        <span className="font-semibold text-foreground">{sec.etf}</span>
+                        <span className="font-medium text-foreground">{sec.etf}</span>
                         <span className="text-muted-foreground">{sec.name}</span>
                       </div>
                     </td>
@@ -821,7 +821,7 @@ function RotationSignals() {
           <Activity className="w-5 h-5 text-yellow-400" />
         </div>
         <div>
-          <h2 className="text-base font-semibold text-foreground">Rotation Signals Dashboard</h2>
+          <h2 className="text-base font-medium text-foreground">Rotation Signals Dashboard</h2>
           <p className="text-xs text-muted-foreground">PMI, yield curve, credit spreads, earnings revisions as rotation triggers</p>
         </div>
       </div>
@@ -849,9 +849,9 @@ function RotationSignals() {
               </div>
             </div>
             <div className="flex items-center gap-4 text-sm">
-              <span className="text-green-400 font-semibold">{bullCount} Bullish</span>
-              <span className="text-yellow-400 font-semibold">{neutralCount} Neutral</span>
-              <span className="text-red-400 font-semibold">{bearCount} Bearish</span>
+              <span className="text-green-400 font-medium">{bullCount} Bullish</span>
+              <span className="text-yellow-400 font-medium">{neutralCount} Neutral</span>
+              <span className="text-red-400 font-medium">{bearCount} Bearish</span>
             </div>
           </div>
         </CardContent>
@@ -873,7 +873,7 @@ function RotationSignals() {
                 <CardContent className="px-4 py-3 space-y-2">
                   <div className="flex items-start justify-between gap-2">
                     <div>
-                      <p className="text-sm font-semibold text-foreground">{sig.name}</p>
+                      <p className="text-sm font-medium text-foreground">{sig.name}</p>
                       <p className="text-xs text-muted-foreground">{sig.description}</p>
                     </div>
                     <div className="flex flex-col items-end gap-1.5">
@@ -933,7 +933,7 @@ function RotationSignals() {
                 color === "red" && "border-red-500/30 bg-red-500/5",
               )}>
                 <p className={cn(
-                  "text-xs font-semibold mb-2",
+                  "text-xs font-medium mb-2",
                   color === "green" && "text-green-400",
                   color === "yellow" && "text-yellow-400",
                   color === "red" && "text-red-400",
@@ -995,7 +995,7 @@ function FactorRotation() {
           <Layers className="w-5 h-5 text-primary" />
         </div>
         <div>
-          <h2 className="text-base font-semibold text-foreground">Factor Rotation by Business Cycle</h2>
+          <h2 className="text-base font-medium text-foreground">Factor Rotation by Business Cycle</h2>
           <p className="text-xs text-muted-foreground">Value, Growth, Quality, Momentum, Low-Vol factor returns per phase</p>
         </div>
       </div>
@@ -1108,7 +1108,7 @@ function FactorRotation() {
             >
               <CardHeader className="pb-2 pt-4 px-4">
                 <div className="flex items-center justify-between">
-                  <CardTitle className="text-sm font-semibold" style={{ color: factor.color }}>
+                  <CardTitle className="text-sm font-medium" style={{ color: factor.color }}>
                     {factor.name}
                   </CardTitle>
                   {isCurrent && (
@@ -1136,7 +1136,7 @@ function FactorRotation() {
                     return (
                       <div key={ph} className="text-center">
                         <p className="text-xs text-muted-foreground mb-0.5">{ph.slice(0, 3)}</p>
-                        <p className={cn("text-xs font-mono font-semibold", val > 0 ? "text-green-400" : "text-red-400")}>
+                        <p className={cn("text-xs font-mono font-medium", val > 0 ? "text-green-400" : "text-red-400")}>
                           {val > 0 ? "+" : ""}{val.toFixed(1)}
                         </p>
                       </div>
@@ -1177,7 +1177,7 @@ function ETFImplementation() {
           <DollarSign className="w-5 h-5 text-green-400" />
         </div>
         <div>
-          <h2 className="text-base font-semibold text-foreground">ETF Implementation & Tactical Allocation</h2>
+          <h2 className="text-base font-medium text-foreground">ETF Implementation & Tactical Allocation</h2>
           <p className="text-xs text-muted-foreground">SPDR sector ETFs (XL-series) with tactical weights per cycle phase</p>
         </div>
       </div>
@@ -1290,7 +1290,7 @@ function ETFImplementation() {
                       <td className="px-4 py-2">
                         <div className="flex items-center gap-2">
                           <span className="w-2 h-2 rounded-full flex-shrink-0" style={{ backgroundColor: sec.color }} />
-                          <span className="font-semibold text-foreground">{sec.etf}</span>
+                          <span className="font-medium text-foreground">{sec.etf}</span>
                         </div>
                       </td>
                       <td className="px-3 py-2 text-muted-foreground">{sec.name}</td>
@@ -1306,7 +1306,7 @@ function ETFImplementation() {
                       </td>
                       <td className="px-3 py-2 text-center">
                         <span className={cn(
-                          "font-semibold",
+                          "font-medium",
                           pct >= 15 ? "text-green-400"
                           : pct >= 8 ? "text-primary"
                           : pct >= 3 ? "text-muted-foreground"
@@ -1434,7 +1434,7 @@ export default function SectorRotationPage() {
       </div>
 
       {/* Summary stat chips */}
-      <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
+      <div className="grid grid-cols-2 md:grid-cols-4 gap-3 border-l-4 border-l-primary p-6 rounded-lg bg-card/40">
         {[
           { label: "Current Phase", value: CURRENT_PHASE, sub: "Late-cycle", icon: <Clock className="w-4 h-4" />, color: "#f59e0b" },
           { label: "Best Sector", value: "XLV", sub: "Healthcare +4.2% avg", icon: <TrendingUp className="w-4 h-4" />, color: "#10b981" },
@@ -1455,7 +1455,7 @@ export default function SectorRotationPage() {
       </div>
 
       {/* Main tabs */}
-      <Tabs defaultValue="clock" className="space-y-4">
+      <Tabs defaultValue="clock" className="mt-8 space-y-4">
         <TabsList className="bg-muted border border-border/50 h-auto flex-wrap">
           <TabsTrigger value="clock" className="data-[state=active]:bg-muted text-xs">
             Business Cycle Clock

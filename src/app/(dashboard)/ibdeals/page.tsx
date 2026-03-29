@@ -695,6 +695,11 @@ export default function IBDealsPage() {
         </p>
       </motion.div>
 
+      <div className="rounded-xl border border-border bg-card border-l-4 border-l-primary p-6 mb-8">
+        <h2 className="text-lg font-medium text-foreground mb-1">Deal Simulator Suite</h2>
+        <p className="text-sm text-muted-foreground">Track live M&amp;A deals, structure transactions, run fairness opinions, regulatory reviews, LBO models, and league tables.</p>
+      </div>
+
       <Tabs defaultValue="tracker" className="w-full">
         <TabsList className="bg-card border border-border flex flex-wrap gap-1 h-auto p-1 mb-6">
           {[
@@ -893,7 +898,7 @@ export default function IBDealsPage() {
           {/* YTD bar chart + cross-border */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             <div className="bg-card border border-border rounded-xl p-4">
-              <h2 className="font-semibold text-sm mb-4 flex items-center gap-2">
+              <h2 className="font-medium text-sm mb-4 flex items-center gap-2">
                 <DollarSign size={14} className="text-emerald-400" />
                 Global M&A Volume YTD ($B)
               </h2>
@@ -926,7 +931,7 @@ export default function IBDealsPage() {
             </div>
 
             <div className="bg-card border border-border rounded-xl p-4">
-              <h2 className="font-semibold text-sm mb-3 flex items-center gap-2">
+              <h2 className="font-medium text-sm mb-3 flex items-center gap-2">
                 <Globe size={14} className="text-primary" />
                 Cross-Border Deal Origins
               </h2>
@@ -970,7 +975,7 @@ export default function IBDealsPage() {
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-4">
             {/* Controls */}
             <div className="bg-card border border-border rounded-xl p-4 space-y-4">
-              <h2 className="font-semibold text-sm flex items-center gap-2">
+              <h2 className="font-medium text-sm flex items-center gap-2">
                 <Target size={14} className="text-primary" />
                 Deal Builder
               </h2>
@@ -1088,7 +1093,7 @@ export default function IBDealsPage() {
 
                 {/* Accretion/Dilution */}
                 <div className="bg-card border border-border rounded-xl p-4">
-                  <h3 className="text-sm font-semibold mb-3 flex items-center gap-2">
+                  <h3 className="text-sm font-medium mb-3 flex items-center gap-2">
                     {dealCalcs.accretive ? (
                       <TrendingUp size={14} className="text-emerald-400" />
                     ) : (
@@ -1099,21 +1104,21 @@ export default function IBDealsPage() {
                   <div className="grid grid-cols-2 md:grid-cols-4 gap-3 mb-3">
                     <div className="text-center">
                       <div className="text-xs text-muted-foreground mb-1">Standalone EPS</div>
-                      <div className="text-sm font-semibold text-foreground">${fmt(acquirerEPS, 2)}</div>
+                      <div className="text-sm font-medium text-foreground">${fmt(acquirerEPS, 2)}</div>
                     </div>
                     <div className="text-center">
                       <div className="text-xs text-muted-foreground mb-1">Combined EPS</div>
-                      <div className="text-sm font-semibold text-foreground">${fmt(dealCalcs.combinedEPS, 2)}</div>
+                      <div className="text-sm font-medium text-foreground">${fmt(dealCalcs.combinedEPS, 2)}</div>
                     </div>
                     <div className="text-center">
                       <div className="text-xs text-muted-foreground mb-1">EPS Change</div>
-                      <div className={cn("text-sm font-bold", dealCalcs.accretive ? "text-emerald-400" : "text-red-400")}>
+                      <div className={cn("text-sm font-medium", dealCalcs.accretive ? "text-emerald-400" : "text-red-400")}>
                         {dealCalcs.epsChange > 0 ? "+" : ""}{fmt(dealCalcs.epsChange, 2)}%
                       </div>
                     </div>
                     <div className="text-center">
                       <div className="text-xs text-muted-foreground mb-1">Verdict</div>
-                      <span className={cn("px-2 py-0.5 rounded text-xs font-bold", dealCalcs.accretive ? "bg-emerald-500/20 text-emerald-400" : "bg-red-500/20 text-red-400")}>
+                      <span className={cn("px-2 py-0.5 rounded text-xs font-medium", dealCalcs.accretive ? "bg-emerald-500/20 text-emerald-400" : "bg-red-500/20 text-red-400")}>
                         {dealCalcs.accretive ? "ACCRETIVE" : "DILUTIVE"}
                       </span>
                     </div>
@@ -1121,9 +1126,9 @@ export default function IBDealsPage() {
                   <div className="border-t border-border pt-3">
                     <p className="text-xs text-muted-foreground">
                       Required synergies to break even:{" "}
-                      <span className="text-amber-400 font-semibold">${fmt(dealCalcs.requiredSynergies, 0)}M</span>
+                      <span className="text-amber-400 font-medium">${fmt(dealCalcs.requiredSynergies, 0)}M</span>
                       {" "}vs. your synergy input of{" "}
-                      <span className={cn("font-semibold", synergiesInput >= dealCalcs.requiredSynergies ? "text-emerald-400" : "text-red-400")}>
+                      <span className={cn("font-medium", synergiesInput >= dealCalcs.requiredSynergies ? "text-emerald-400" : "text-red-400")}>
                         ${synergiesInput}M
                       </span>
                       {" "}— {synergiesInput >= dealCalcs.requiredSynergies ? "Deal justified by synergies" : "Insufficient synergies to justify premium"}
@@ -1133,26 +1138,26 @@ export default function IBDealsPage() {
 
                 {/* Financing structure */}
                 <div className="bg-card border border-border rounded-xl p-4">
-                  <h3 className="text-sm font-semibold mb-3 flex items-center gap-2">
+                  <h3 className="text-sm font-medium mb-3 flex items-center gap-2">
                     <DollarSign size={14} className="text-primary" />
                     Financing Structure
                   </h3>
                   <div className="grid grid-cols-2 md:grid-cols-4 gap-3 mb-3">
                     <div className="bg-muted/50 rounded p-2">
                       <div className="text-xs text-muted-foreground">Cash Consideration</div>
-                      <div className="text-sm font-semibold text-foreground">{fmtB(dealCalcs.offeredEquity * cashMix / 100)}</div>
+                      <div className="text-sm font-medium text-foreground">{fmtB(dealCalcs.offeredEquity * cashMix / 100)}</div>
                     </div>
                     <div className="bg-muted/50 rounded p-2">
                       <div className="text-xs text-muted-foreground">Stock Consideration</div>
-                      <div className="text-sm font-semibold text-foreground">{fmtB(dealCalcs.offeredEquity * (100 - cashMix) / 100)}</div>
+                      <div className="text-sm font-medium text-foreground">{fmtB(dealCalcs.offeredEquity * (100 - cashMix) / 100)}</div>
                     </div>
                     <div className="bg-muted/50 rounded p-2">
                       <div className="text-xs text-muted-foreground">Debt Financing</div>
-                      <div className="text-sm font-semibold text-primary">{fmtM(dealCalcs.debtFinancing)}</div>
+                      <div className="text-sm font-medium text-primary">{fmtM(dealCalcs.debtFinancing)}</div>
                     </div>
                     <div className="bg-muted/50 rounded p-2">
                       <div className="text-xs text-muted-foreground">Equity Financing</div>
-                      <div className="text-sm font-semibold text-primary">{fmtM(Math.max(0, dealCalcs.equityFinancing))}</div>
+                      <div className="text-sm font-medium text-primary">{fmtM(Math.max(0, dealCalcs.equityFinancing))}</div>
                     </div>
                   </div>
                   {/* Financing bar */}
@@ -1182,7 +1187,7 @@ export default function IBDealsPage() {
         <TabsContent value="fairness" className="data-[state=inactive]:hidden space-y-6">
           {/* Comps */}
           <div className="bg-card border border-border rounded-xl p-4">
-            <h2 className="font-semibold text-sm mb-3 flex items-center gap-2">
+            <h2 className="font-medium text-sm mb-3 flex items-center gap-2">
               <Scale size={14} className="text-primary" />
               Comparable Company Analysis
             </h2>
@@ -1213,7 +1218,7 @@ export default function IBDealsPage() {
                     </tr>
                   ))}
                   {/* Median row */}
-                  <tr className="border-t-2 border-border bg-muted/30 font-semibold">
+                  <tr className="border-t-2 border-border bg-muted/30 font-medium">
                     <td className="px-3 py-2 text-muted-foreground">Median</td>
                     <td className="px-3 py-2 text-right text-muted-foreground">—</td>
                     <td className="px-3 py-2 text-right text-muted-foreground">—</td>
@@ -1234,7 +1239,7 @@ export default function IBDealsPage() {
 
           {/* Precedents */}
           <div className="bg-card border border-border rounded-xl p-4">
-            <h2 className="font-semibold text-sm mb-3 flex items-center gap-2">
+            <h2 className="font-medium text-sm mb-3 flex items-center gap-2">
               <FileText size={14} className="text-primary" />
               Precedent Transaction Analysis
             </h2>
@@ -1267,7 +1272,7 @@ export default function IBDealsPage() {
           {/* Football Field SVG */}
           {valuationRanges && (
             <div className="bg-card border border-border rounded-xl p-4">
-              <h2 className="font-semibold text-sm mb-4 flex items-center gap-2">
+              <h2 className="font-medium text-sm mb-4 flex items-center gap-2">
                 <BarChart3 size={14} className="text-emerald-400" />
                 Football Field — Implied Valuation Range ($B EV)
               </h2>
@@ -1365,7 +1370,7 @@ export default function IBDealsPage() {
                   ? "bg-emerald-900/20 border-emerald-500/30 text-emerald-300"
                   : "bg-red-900/20 border-red-500/30 text-red-300"
               )}>
-                <div className="flex items-center gap-2 font-semibold mb-1">
+                <div className="flex items-center gap-2 font-medium mb-1">
                   {valuationRanges.inRange ? <CheckCircle size={14} /> : <AlertTriangle size={14} />}
                   Board Recommendation
                 </div>
@@ -1383,7 +1388,7 @@ export default function IBDealsPage() {
         <TabsContent value="regulatory" className="data-[state=inactive]:hidden space-y-6">
           {/* Timeline */}
           <div className="bg-card border border-border rounded-xl p-4">
-            <h2 className="font-semibold text-sm mb-4 flex items-center gap-2">
+            <h2 className="font-medium text-sm mb-4 flex items-center gap-2">
               <Shield size={14} className="text-amber-400" />
               Regulatory Review Timeline
             </h2>
@@ -1424,7 +1429,7 @@ export default function IBDealsPage() {
           {/* HHI Calculator */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             <div className="bg-card border border-border rounded-xl p-4">
-              <h2 className="font-semibold text-sm mb-3 flex items-center gap-2">
+              <h2 className="font-medium text-sm mb-3 flex items-center gap-2">
                 <Percent size={14} className="text-red-400" />
                 HHI Calculator (Herfindahl-Hirschman Index)
               </h2>
@@ -1454,15 +1459,15 @@ export default function IBDealsPage() {
                     <div className="grid grid-cols-3 gap-2">
                       <div className="text-center bg-muted/50 rounded p-2">
                         <div className="text-xs text-muted-foreground">Pre-HHI</div>
-                        <div className="text-lg font-bold text-foreground">{preHHI}</div>
+                        <div className="text-lg font-medium text-foreground">{preHHI}</div>
                       </div>
                       <div className="text-center bg-muted/50 rounded p-2">
                         <div className="text-xs text-muted-foreground">Post-HHI</div>
-                        <div className="text-lg font-bold text-red-400">{postHHI}</div>
+                        <div className="text-lg font-medium text-red-400">{postHHI}</div>
                       </div>
                       <div className="text-center bg-muted/50 rounded p-2">
                         <div className="text-xs text-muted-foreground">Delta</div>
-                        <div className="text-lg font-bold text-amber-400">+{delta}</div>
+                        <div className="text-lg font-medium text-amber-400">+{delta}</div>
                       </div>
                     </div>
                     <div className="space-y-1">
@@ -1492,7 +1497,7 @@ export default function IBDealsPage() {
 
             {/* Remedies */}
             <div className="bg-card border border-border rounded-xl p-4">
-              <h2 className="font-semibold text-sm mb-3 flex items-center gap-2">
+              <h2 className="font-medium text-sm mb-3 flex items-center gap-2">
                 <Scale size={14} className="text-primary" />
                 Potential Remedies
               </h2>
@@ -1524,7 +1529,7 @@ export default function IBDealsPage() {
 
           {/* Historical outcomes */}
           <div className="bg-card border border-border rounded-xl p-4">
-            <h2 className="font-semibold text-sm mb-3 flex items-center gap-2">
+            <h2 className="font-medium text-sm mb-3 flex items-center gap-2">
               <FileText size={14} className="text-primary" />
               Historical Regulatory Outcomes
             </h2>
@@ -1566,7 +1571,7 @@ export default function IBDealsPage() {
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-4">
             {/* LBO controls */}
             <div className="bg-card border border-border rounded-xl p-4 space-y-4">
-              <h2 className="font-semibold text-sm flex items-center gap-2">
+              <h2 className="font-medium text-sm flex items-center gap-2">
                 <Building2 size={14} className="text-orange-400" />
                 LBO Model Inputs
               </h2>
@@ -1654,14 +1659,14 @@ export default function IBDealsPage() {
                   ].map((m) => (
                     <div key={m.label} className="bg-card border border-border rounded-xl p-3">
                       <div className="text-xs text-muted-foreground mb-1">{m.label}</div>
-                      <div className={cn("text-lg font-bold", m.color)}>{m.value}</div>
+                      <div className={cn("text-lg font-medium", m.color)}>{m.value}</div>
                     </div>
                   ))}
                 </div>
 
                 {/* Exit scenarios table */}
                 <div className="bg-card border border-border rounded-xl p-4">
-                  <h3 className="text-sm font-semibold mb-3 flex items-center gap-2">
+                  <h3 className="text-sm font-medium mb-3 flex items-center gap-2">
                     <TrendingUp size={14} className="text-emerald-400" />
                     Returns at Different Exit Scenarios
                   </h3>
@@ -1678,16 +1683,16 @@ export default function IBDealsPage() {
                       </thead>
                       <tbody>
                         {lboCalcs.exitScenarios.map((sc, i) => (
-                          <tr key={i} className={cn("border-t border-border", i === 2 ? "bg-emerald-900/10 font-semibold" : "")}>
+                          <tr key={i} className={cn("border-t border-border", i === 2 ? "bg-emerald-900/10 font-medium" : "")}>
                             <td className="px-3 py-2 text-center text-foreground">
                               {sc.multiple}×{i === 2 && <span className="text-emerald-400 ml-1 text-[11px]">BASE</span>}
                             </td>
                             <td className="px-3 py-2 text-right text-muted-foreground">{fmtB(sc.exitEV)}</td>
                             <td className="px-3 py-2 text-right text-muted-foreground">{fmtB(sc.exitEquity)}</td>
-                            <td className={cn("px-3 py-2 text-right font-semibold", sc.moic >= 2 ? "text-emerald-400" : sc.moic >= 1.5 ? "text-amber-400" : "text-red-400")}>
+                            <td className={cn("px-3 py-2 text-right font-medium", sc.moic >= 2 ? "text-emerald-400" : sc.moic >= 1.5 ? "text-amber-400" : "text-red-400")}>
                               {fmt(sc.moic, 2)}×
                             </td>
-                            <td className={cn("px-3 py-2 text-right font-semibold", sc.irr >= 20 ? "text-emerald-400" : sc.irr >= 15 ? "text-amber-400" : "text-red-400")}>
+                            <td className={cn("px-3 py-2 text-right font-medium", sc.irr >= 20 ? "text-emerald-400" : sc.irr >= 15 ? "text-amber-400" : "text-red-400")}>
                               {fmt(sc.irr, 1)}%
                             </td>
                           </tr>
@@ -1699,7 +1704,7 @@ export default function IBDealsPage() {
 
                 {/* Debt schedule SVG */}
                 <div className="bg-card border border-border rounded-xl p-4">
-                  <h3 className="text-sm font-semibold mb-3 flex items-center gap-2">
+                  <h3 className="text-sm font-medium mb-3 flex items-center gap-2">
                     <BarChart3 size={14} className="text-primary" />
                     Debt Paydown Schedule ($B)
                   </h3>
@@ -1733,7 +1738,7 @@ export default function IBDealsPage() {
 
                 {/* Returns waterfall */}
                 <div className="bg-card border border-border rounded-xl p-4">
-                  <h3 className="text-sm font-semibold mb-3 flex items-center gap-2">
+                  <h3 className="text-sm font-medium mb-3 flex items-center gap-2">
                     <Award size={14} className="text-amber-400" />
                     Sponsor Returns Waterfall (Base Case)
                   </h3>
@@ -1756,17 +1761,17 @@ export default function IBDealsPage() {
                               className={cn("h-full rounded-full", item.color)}
                             />
                           </div>
-                          <span className="text-xs font-semibold text-foreground w-20 text-right">{fmtB(item.value)}</span>
+                          <span className="text-xs font-medium text-foreground w-20 text-right">{fmtB(item.value)}</span>
                         </div>
                       );
                     })}
                     <div className="border-t border-border pt-2 flex justify-between text-xs text-muted-foreground">
                       <span>Total Exit Equity</span>
-                      <span className="text-foreground font-semibold">{fmtB(lboCalcs.baseExit.exitEquity)}</span>
+                      <span className="text-foreground font-medium">{fmtB(lboCalcs.baseExit.exitEquity)}</span>
                     </div>
                     <div className="flex justify-between text-xs text-muted-foreground">
                       <span>Base Case MOIC / IRR</span>
-                      <span className="text-emerald-400 font-semibold">
+                      <span className="text-emerald-400 font-medium">
                         {fmt(lboCalcs.baseExit.moic, 2)}× MOIC / {fmt(lboCalcs.baseExit.irr, 1)}% IRR
                       </span>
                     </div>
@@ -1813,7 +1818,7 @@ export default function IBDealsPage() {
             >
               <div className="p-4 border-b border-border flex items-center gap-2">
                 <Award size={14} className="text-amber-400" />
-                <h2 className="font-semibold text-sm">
+                <h2 className="font-medium text-sm">
                   {leagueTab === "advisory" ? "M&A Advisory" : leagueTab === "ecm" ? "Equity Capital Markets" : "Debt Capital Markets"} — Top 10 Banks (2025 YTD)
                 </h2>
               </div>
@@ -1843,7 +1848,7 @@ export default function IBDealsPage() {
                             className="border-t border-border hover:bg-muted/20"
                           >
                             <td className="px-4 py-2 text-center">
-                              <span className={cn("w-6 h-6 rounded-full flex items-center justify-center text-xs font-bold mx-auto",
+                              <span className={cn("w-6 h-6 rounded-full flex items-center justify-center text-xs font-medium mx-auto",
                                 i === 0 ? "bg-amber-500/20 text-amber-400" :
                                 i === 1 ? "bg-muted-foreground/20 text-muted-foreground" :
                                 i === 2 ? "bg-orange-600/20 text-orange-400" :
@@ -1854,7 +1859,7 @@ export default function IBDealsPage() {
                             </td>
                             <td className="px-4 py-2 font-medium text-foreground">{entry.bank}</td>
                             <td className="px-4 py-2 text-right text-muted-foreground">{entry.deals}</td>
-                            <td className="px-4 py-2 text-right text-emerald-400 font-semibold">{fmtB(entry.value)}</td>
+                            <td className="px-4 py-2 text-right text-emerald-400 font-medium">{fmtB(entry.value)}</td>
                             <td className="px-4 py-2">
                               <div className="flex items-center gap-2">
                                 <div className="w-28 bg-muted rounded-full h-2 overflow-hidden">
@@ -1879,7 +1884,7 @@ export default function IBDealsPage() {
 
           {/* Fee wallet */}
           <div className="bg-card border border-border rounded-xl p-4">
-            <h2 className="font-semibold text-sm mb-3 flex items-center gap-2">
+            <h2 className="font-medium text-sm mb-3 flex items-center gap-2">
               <DollarSign size={14} className="text-emerald-400" />
               Investment Bank Fee Wallet Estimator
             </h2>
@@ -1890,7 +1895,7 @@ export default function IBDealsPage() {
                 { type: "DCM (Bond)", rate: "0.3–1.5%", typical: "0.5% on $2B issuance = $10M", note: "Higher for HY bonds; lower for IG; management fee + selling concession" },
               ].map((f) => (
                 <div key={f.type} className="bg-muted/50 rounded-lg p-3">
-                  <div className="font-semibold text-xs text-primary mb-1">{f.type}</div>
+                  <div className="font-medium text-xs text-primary mb-1">{f.type}</div>
                   <div className="text-xs text-foreground mb-1">Rate: {f.rate}</div>
                   <div className="text-xs text-emerald-400 mb-2">Typical: {f.typical}</div>
                   <div className="text-xs text-muted-foreground">{f.note}</div>
@@ -1901,7 +1906,7 @@ export default function IBDealsPage() {
 
           {/* IB compensation */}
           <div className="bg-card border border-border rounded-xl p-4">
-            <h2 className="font-semibold text-sm mb-3 flex items-center gap-2">
+            <h2 className="font-medium text-sm mb-3 flex items-center gap-2">
               <Users size={14} className="text-primary" />
               IB Analyst / Associate Compensation (Top Banks, 2025)
             </h2>
@@ -1924,7 +1929,7 @@ export default function IBDealsPage() {
                         <td className="px-3 py-2 font-medium text-foreground">{row.title}</td>
                         <td className="px-3 py-2 text-right text-muted-foreground">${(row.base / 1000).toFixed(0)}K</td>
                         <td className="px-3 py-2 text-right text-amber-400">${(row.bonus / 1000).toFixed(0)}K</td>
-                        <td className="px-3 py-2 text-right font-semibold text-emerald-400">
+                        <td className="px-3 py-2 text-right font-medium text-emerald-400">
                           {row.total >= 1000000 ? `$${(row.total / 1000000).toFixed(2)}M` : `$${(row.total / 1000).toFixed(0)}K`}
                         </td>
                         <td className="px-3 py-2">

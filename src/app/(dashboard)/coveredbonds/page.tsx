@@ -451,7 +451,7 @@ function FrameworksTab() {
               <div className="flex items-center gap-3 mb-4">
                 <span className="text-2xl">{selectedFw.flag}</span>
                 <div>
-                  <h3 className="text-foreground font-semibold">{selectedFw.name}</h3>
+                  <h3 className="text-foreground font-medium">{selectedFw.name}</h3>
                   <p className="text-muted-foreground text-xs">{selectedFw.law}</p>
                 </div>
               </div>
@@ -486,7 +486,7 @@ function FrameworksTab() {
           <div className="shrink-0 w-36 space-y-2">
             <div className="p-3 bg-green-500/10 border border-green-500/20 rounded-lg text-center">
               <div className="text-xs text-muted-foreground">Status</div>
-              <div className="text-green-400 font-semibold text-sm mt-1">Bail-in Exempt</div>
+              <div className="text-green-400 font-medium text-sm mt-1">Bail-in Exempt</div>
             </div>
             <div className="p-3 bg-muted border border-border rounded-lg text-center">
               <div className="text-xs text-muted-foreground">Authority</div>
@@ -790,7 +790,7 @@ function ABSComparisonTab() {
         <SectionCard title="Investor Base & Structural Differences" icon={<Info size={16} />}>
           <div className="space-y-3 text-xs text-muted-foreground">
             <div>
-              <div className="text-primary font-semibold mb-1">Covered Bond Investors</div>
+              <div className="text-primary font-medium mb-1">Covered Bond Investors</div>
               <div className="space-y-0.5">
                 {["Central banks & official sector", "Commercial banks (LCR)", "Insurance companies (Solvency II)", "Asset managers (core fixed income)"].map((i) => (
                   <div key={i} className="flex items-center gap-1.5">
@@ -801,7 +801,7 @@ function ABSComparisonTab() {
               </div>
             </div>
             <div>
-              <div className="text-primary font-semibold mb-1">ABS / RMBS Investors</div>
+              <div className="text-primary font-medium mb-1">ABS / RMBS Investors</div>
               <div className="space-y-0.5">
                 {["Hedge funds (mezzanine / equity)", "Insurance (senior tranches)", "Conduit / SIV vehicles", "Specialist ABS asset managers"].map((i) => (
                   <div key={i} className="flex items-center gap-1.5">
@@ -830,14 +830,14 @@ export default function CoveredBondsPage() {
 
   return (
     <div className="min-h-screen bg-background text-foreground p-4 md:p-6">
-      {/* Header */}
-      <div className="mb-6">
+      {/* HERO Header */}
+      <div className="mb-8 border-l-4 border-l-primary rounded-xl bg-card p-6">
         <div className="flex items-center gap-3 mb-2">
           <div className="p-2 bg-primary/10 border border-border rounded-lg">
             <Shield size={20} className="text-primary" />
           </div>
           <div>
-            <h1 className="text-xl font-bold text-foreground">Covered Bonds</h1>
+            <h1 className="text-xl font-semibold text-foreground">Covered Bonds</h1>
             <p className="text-muted-foreground text-sm">Dual recourse, cover pool mechanics, and European frameworks</p>
           </div>
         </div>
@@ -853,7 +853,7 @@ export default function CoveredBondsPage() {
           ].map(({ label, value, color }) => (
             <div key={label} className="flex items-center gap-1.5 bg-card border border-border rounded-lg px-3 py-1.5 text-xs">
               <span className="text-muted-foreground">{label}:</span>
-              <span className={cn("font-semibold", color)}>{value}</span>
+              <span className={cn("font-medium", color)}>{value}</span>
             </div>
           ))}
         </div>

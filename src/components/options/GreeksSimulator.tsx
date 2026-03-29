@@ -196,7 +196,7 @@ function VolSurface3D() {
   ];
 
   return (
-    <div className="rounded-xl border border-border bg-card p-4 space-y-4">
+    <div className="rounded-xl border border-border/40 bg-card p-4 space-y-4">
       <div className="flex items-center justify-between">
         <div>
           <p className="text-sm font-semibold text-foreground">3D Volatility Surface</p>
@@ -366,7 +366,7 @@ function PnlAttribution() {
   const zero = W / 2;
 
   return (
-    <div className="rounded-xl border border-border bg-card p-4 space-y-4">
+    <div className="rounded-xl border border-border/40 bg-card p-4 space-y-4">
       <div>
         <p className="text-sm font-semibold text-foreground">Greeks P&L Attribution</p>
         <p className="text-xs text-muted-foreground">Long 1 ATM call (S=$100, K=$100, 30DTE, σ=30%)</p>
@@ -641,7 +641,7 @@ function DeltaHedgingSimulator() {
   const rehedgeCount = hedgeData.filter((d) => d.rehedged).length;
 
   return (
-    <div className="rounded-xl border border-border bg-card p-4 space-y-4">
+    <div className="rounded-xl border border-border/40 bg-card p-4 space-y-4">
       <div className="flex items-center justify-between">
         <div>
           <p className="text-sm font-semibold text-foreground">Delta Hedging Simulation</p>
@@ -827,7 +827,7 @@ function VolTradingMechanics() {
   }, [regime, rv]);
 
   return (
-    <div className="rounded-xl border border-border bg-card p-4 space-y-4">
+    <div className="rounded-xl border border-border/40 bg-card p-4 space-y-4">
       <div>
         <p className="text-sm font-semibold text-foreground">Volatility Trading Mechanics</p>
         <p className="text-xs text-muted-foreground">Long straddle (ATM call + put) — how realized vs implied vol drives P&L</p>
@@ -974,7 +974,7 @@ function SkewTradingPanel() {
   function smileSy(iv: number) { return padT + cH - ((iv - ivMin) / (ivMax - ivMin)) * cH; }
 
   return (
-    <div className="rounded-xl border border-border bg-card p-4 space-y-4">
+    <div className="rounded-xl border border-border/40 bg-card p-4 space-y-4">
       <div>
         <p className="text-sm font-semibold text-foreground">Risk Reversal & Skew Trading</p>
         <p className="text-xs text-muted-foreground">25-delta risk reversal: sell OTM put, buy OTM call</p>
@@ -1107,7 +1107,7 @@ export default function GreeksSimulator() {
   return (
     <div className="space-y-4">
       {/* Section nav */}
-      <div className="rounded-xl border border-border bg-card p-1 flex flex-wrap gap-1">
+      <div className="rounded-xl border border-border/40 bg-card p-1 flex flex-wrap gap-1">
         {SECTIONS.map((s) => (
           <button
             key={s.id}

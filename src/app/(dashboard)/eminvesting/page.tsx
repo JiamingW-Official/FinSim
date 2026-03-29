@@ -492,12 +492,12 @@ export default function EMInvestingPage() {
         </p>
       </motion.div>
 
-      {/* Stat chips */}
+      {/* Stat chips — Hero */}
       <motion.div
         initial={{ opacity: 0, y: 8 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.4, delay: 0.1 }}
-        className="grid grid-cols-2 sm:grid-cols-4 gap-3 mb-6"
+        className="border-l-4 border-l-primary rounded-lg bg-card p-6 grid grid-cols-2 sm:grid-cols-4 gap-3 mb-8"
       >
         {[
           { label: "MSCI EM Countries", value: "24", sub: "vs 23 DM", icon: <Globe className="w-4 h-4" />, color: "text-orange-400" },
@@ -594,7 +594,7 @@ export default function EMInvestingPage() {
                       <span className="text-orange-400 font-medium">EM {v.em}</span>
                       <span className="text-indigo-400 font-medium">DM {v.dm}</span>
                     </div>
-                    <div className={cn("text-sm font-bold", v.discount.startsWith("+") ? "text-emerald-400" : "text-amber-400")}>{v.discount}</div>
+                    <div className={cn("text-sm font-medium", v.discount.startsWith("+") ? "text-emerald-400" : "text-amber-400")}>{v.discount}</div>
                   </div>
                 ))}
               </div>
@@ -615,7 +615,7 @@ export default function EMInvestingPage() {
               <div className="space-y-2">
                 {EM_DRIVERS.map((d, i) => (
                   <div key={`driver-${i}`} className="flex items-start gap-3 p-2.5 bg-muted/50 rounded-lg">
-                    <div className={cn("text-xs font-bold rounded px-1.5 py-0.5 shrink-0 mt-0.5", d.dir === "pos" ? "bg-emerald-500/20 text-emerald-400" : d.dir === "neg" ? "bg-red-500/20 text-red-400" : "bg-amber-500/20 text-amber-400")}>
+                    <div className={cn("text-xs font-medium rounded px-1.5 py-0.5 shrink-0 mt-0.5", d.dir === "pos" ? "bg-emerald-500/20 text-emerald-400" : d.dir === "neg" ? "bg-red-500/20 text-red-400" : "bg-amber-500/20 text-amber-400")}>
                       {d.impact}
                     </div>
                     <div>
@@ -689,7 +689,7 @@ export default function EMInvestingPage() {
                   },
                 ].map((seg, i) => (
                   <div key={`hc-lc-${i}`} className="p-3 rounded-lg border" style={{ borderColor: seg.color + "40" }}>
-                    <div className="text-sm font-bold mb-1" style={{ color: seg.color }}>{seg.type}</div>
+                    <div className="text-sm font-medium mb-1" style={{ color: seg.color }}>{seg.type}</div>
                     <div className="text-xs text-muted-foreground mb-2">Index: {seg.index}</div>
                     <div className="mb-2">
                       <div className="text-xs text-emerald-400 font-medium mb-1">Pros</div>
@@ -801,11 +801,11 @@ export default function EMInvestingPage() {
             <CardContent className="space-y-3">
               <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
                 <div className="p-3 bg-muted/50 rounded-lg border border-red-500/20">
-                  <div className="text-xs font-bold text-red-400 mb-1">Belt & Road Initiative (BRI) Debt Diplomacy</div>
+                  <div className="text-xs font-medium text-red-400 mb-1">Belt & Road Initiative (BRI) Debt Diplomacy</div>
                   <p className="text-xs text-muted-foreground">China's BRI has committed $1T+ in infrastructure loans to 140+ countries. Critics cite: opaque terms, collateral clauses (Hambantota port, Zambia copper mines), limited transparency, and debt relief conditionality. Refinancing risks concentrated in 2024–2027.</p>
                 </div>
                 <div className="p-3 bg-muted/50 rounded-lg border border-amber-500/20">
-                  <div className="text-xs font-bold text-amber-400 mb-1">EM Corporate Dollar Debt Risks</div>
+                  <div className="text-xs font-medium text-amber-400 mb-1">EM Corporate Dollar Debt Risks</div>
                   <p className="text-xs text-muted-foreground">EM corporates issued $400B+ in USD bonds. Risks: (1) Revenue/cost FX mismatch — local revenue, USD debt service; (2) Refinancing cliff — large maturities 2025–2027; (3) Rising USD rates increase refinancing cost; (4) China property (Evergrande, Sunac) — $300B+ restructuring overhang.</p>
                 </div>
               </div>
@@ -831,7 +831,7 @@ export default function EMInvestingPage() {
                     style={{ borderColor: expandedRisk === i ? cat.color : cat.color + "30", background: expandedRisk === i ? cat.color + "15" : "#18181b" }}
                     onClick={() => setExpandedRisk(expandedRisk === i ? null : i)}
                   >
-                    <div className="text-xs font-bold mb-2" style={{ color: cat.color }}>{cat.category}</div>
+                    <div className="text-xs font-medium mb-2" style={{ color: cat.color }}>{cat.category}</div>
                     <AnimatePresence initial={false}>
                       <ul className="space-y-1">
                         {cat.components.map((c, j) => (
@@ -964,7 +964,7 @@ export default function EMInvestingPage() {
                   { tier: "Frontier Market (FM)", examples: "Vietnam, Nigeria, Kuwait (prior), Romania, Kenya", criteria: "Smaller, less liquid markets; higher political risk; FM indices: MSCI FM, FTSE FM; often pathway to EM promotion", color: "#22c55e" },
                 ].map((t, i) => (
                   <div key={`tier-${i}`} className="p-3 rounded-lg border" style={{ borderColor: t.color + "40" }}>
-                    <div className="text-xs font-bold mb-1" style={{ color: t.color }}>{t.tier}</div>
+                    <div className="text-xs font-medium mb-1" style={{ color: t.color }}>{t.tier}</div>
                     <div className="text-xs text-muted-foreground font-medium mb-1">Examples: <span className="text-muted-foreground font-normal">{t.examples}</span></div>
                     <p className="text-xs text-muted-foreground">{t.criteria}</p>
                   </div>
@@ -993,7 +993,7 @@ export default function EMInvestingPage() {
                   { label: "Portfolio (hot money)", stat: "Most volatile", color: "text-amber-400" },
                 ].map((s, i) => (
                   <div key={`cfc-${i}`} className="text-center p-2 bg-muted/50 rounded">
-                    <div className={cn("text-sm font-bold", s.color)}>{s.stat}</div>
+                    <div className={cn("text-sm font-medium", s.color)}>{s.stat}</div>
                     <div className="text-xs text-muted-foreground">{s.label}</div>
                   </div>
                 ))}
@@ -1012,7 +1012,7 @@ export default function EMInvestingPage() {
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 {PUSH_PULL.map((pp, i) => (
                   <div key={`pp-${i}`} className="p-3 rounded-lg border" style={{ borderColor: pp.color + "40" }}>
-                    <div className="text-xs font-bold mb-2" style={{ color: pp.color }}>{pp.type}</div>
+                    <div className="text-xs font-medium mb-2" style={{ color: pp.color }}>{pp.type}</div>
                     {pp.factors.map((f, j) => (
                       <div key={`ppf-${i}-${j}`} className="text-xs text-muted-foreground flex gap-1.5 mb-1">
                         <span style={{ color: pp.color }}>→</span>{f}
@@ -1143,7 +1143,7 @@ export default function EMInvestingPage() {
                   { title: "Strategic Calculus", color: "#6366f1", items: ["Internationalization without full opening = control", "e-CNY as BRI settlement / reserve alternative", "Offshore RMB (CNH) vs onshore (CNY) gap persists", "USD weaponization (sanctions) accelerates RMB push", "CIPS (SWIFT alternative) expanding EM transaction rails"] },
                 ].map((sec, i) => (
                   <div key={`cca-${i}`} className="p-3 rounded-lg border" style={{ borderColor: sec.color + "40" }}>
-                    <div className="text-xs font-bold mb-2" style={{ color: sec.color }}>{sec.title}</div>
+                    <div className="text-xs font-medium mb-2" style={{ color: sec.color }}>{sec.title}</div>
                     {sec.items.map((item, j) => (
                       <div key={`ccai-${i}-${j}`} className="text-xs text-muted-foreground flex gap-1.5 mb-1">
                         <span style={{ color: sec.color }}>•</span>{item}

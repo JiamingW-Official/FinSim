@@ -116,7 +116,7 @@ export function AlertsPanel() {
 
       {/* Add Alert Form */}
       {showForm && (
-        <div className="border border-border rounded-lg p-3 bg-muted/20 space-y-2">
+        <div className="border border-border/40 rounded-lg p-3 bg-muted/20 space-y-2">
           <div className="flex items-center gap-2">
             <span className="text-xs text-muted-foreground font-medium shrink-0">
               {ticker}
@@ -126,7 +126,7 @@ export function AlertsPanel() {
               onChange={(e) =>
                 setConditionType(e.target.value as ConditionTypeKey)
               }
-              className="flex-1 text-[11px] bg-background border border-border rounded px-2 py-1 outline-none focus:border-primary transition-colors"
+              className="flex-1 text-[11px] bg-background border border-border/40 rounded px-2 py-1 outline-none focus:border-primary transition-colors"
             >
               {CONDITION_TYPES.map((ct) => (
                 <option key={ct.value} value={ct.value}>
@@ -144,7 +144,7 @@ export function AlertsPanel() {
                 conditionType === "volume_spike" ? "Multiplier" : "Value"
               }
               step={conditionType === "volume_spike" ? "0.5" : "0.01"}
-              className="flex-1 text-[11px] font-mono tabular-nums bg-background border border-border rounded px-2 py-1 outline-none focus:border-primary transition-colors"
+              className="flex-1 text-[11px] font-mono tabular-nums bg-background border border-border/40 rounded px-2 py-1 outline-none focus:border-primary transition-colors"
               onKeyDown={(e) => e.key === "Enter" && handleAdd()}
             />
             <button

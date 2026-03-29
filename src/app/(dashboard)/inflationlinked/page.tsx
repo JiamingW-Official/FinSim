@@ -1215,7 +1215,7 @@ function InflationHedgingTab() {
               return (
                 <div key={key} className="rounded-lg border border-border/50 bg-foreground/[0.03] p-2 text-center">
                   <div className="text-[11px] text-muted-foreground mb-1">{label}</div>
-                  <div className="text-lg font-bold" style={{ color }}>{val}%</div>
+                  <div className="text-lg font-medium" style={{ color }}>{val}%</div>
                   <div className="w-full bg-foreground/5 rounded-full h-1.5 mt-1">
                     <div className="h-1.5 rounded-full" style={{ width: `${val}%`, backgroundColor: color, opacity: 0.8 }} />
                   </div>
@@ -1250,13 +1250,13 @@ export default function InflationLinkedPage() {
               <Flame className="w-5 h-5 text-primary" />
             </div>
             <div>
-              <h1 className="text-xl font-bold text-foreground">Inflation-Linked Bonds</h1>
+              <h1 className="text-xl font-medium text-foreground">Inflation-Linked Bonds</h1>
               <p className="text-sm text-muted-foreground">TIPS mechanics, real yields, breakeven inflation &amp; hedging strategies</p>
             </div>
           </div>
 
-          {/* Key stats row */}
-          <div className="grid grid-cols-2 gap-2 sm:grid-cols-5 mt-4">
+          {/* Key stats row — Hero */}
+          <div className="grid grid-cols-2 gap-2 sm:grid-cols-5 mt-4 rounded-xl border border-border bg-card border-l-4 border-l-primary p-6">
             <StatChip label="10Y TIPS Yield" value="+2.18%" color="green" />
             <StatChip label="10Y Breakeven" value="2.35%" color="amber" />
             <StatChip label="5y5y Fwd Inflation" value="2.48%" color="amber" />
@@ -1266,7 +1266,7 @@ export default function InflationLinkedPage() {
         </motion.div>
 
         {/* Tabs */}
-        <Tabs defaultValue="mechanics">
+        <Tabs defaultValue="mechanics" className="mt-8">
           <TabsList className="mb-4 bg-foreground/5 border border-border p-1 rounded-lg flex-wrap h-auto gap-1">
             <TabsTrigger value="mechanics" className="text-xs data-[state=active]:bg-primary data-[state=active]:text-foreground rounded">
               <Calculator className="w-3 h-3 mr-1.5" />

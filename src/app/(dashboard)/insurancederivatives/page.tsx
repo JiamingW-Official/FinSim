@@ -474,8 +474,14 @@ export default function InsuranceDerivativesPage() {
         </div>
       </div>
 
+      {/* Hero */}
+      <div className="rounded-xl border border-border bg-card border-l-4 border-l-primary p-6">
+        <h2 className="text-lg font-medium text-foreground mb-1">ILS &amp; CAT Bond Analytics</h2>
+        <p className="text-sm text-muted-foreground">Catastrophe bond market overview, risk modeling, ILS vs reinsurance, trigger types, portfolio construction, and weather derivatives.</p>
+      </div>
+
       {/* Tabs */}
-      <Tabs defaultValue="market">
+      <Tabs defaultValue="market" className="mt-8">
         <TabsList className="bg-card border border-border">
           <TabsTrigger value="market">CAT Bond Market</TabsTrigger>
           <TabsTrigger value="risk">Risk Modeling</TabsTrigger>
@@ -505,7 +511,7 @@ export default function InsuranceDerivativesPage() {
             <Card className="bg-card border-border">
               <CardContent className="pt-4 pb-3">
                 <p className="text-xs text-muted-foreground">Active Issuances (2024)</p>
-                <p className="text-2xl font-semibold text-foreground mt-1">48 Tranches</p>
+                <p className="text-2xl font-medium text-foreground mt-1">48 Tranches</p>
                 <p className="text-xs text-primary mt-1">$16.2B new issuance</p>
               </CardContent>
             </Card>
@@ -730,7 +736,7 @@ export default function InsuranceDerivativesPage() {
                     {item.icon}
                     <div>
                       <p className="text-xs text-muted-foreground">{item.label}</p>
-                      <p className={cn("text-2xl font-semibold mt-1", item.color)}>{item.value}</p>
+                      <p className={cn("text-2xl font-medium mt-1", item.color)}>{item.value}</p>
                       <p className="text-xs text-muted-foreground mt-1">{item.sub}</p>
                     </div>
                   </div>
@@ -981,7 +987,7 @@ export default function InsuranceDerivativesPage() {
                   ].map((m) => (
                     <div key={m.label} className="bg-muted/60 rounded p-2.5">
                       <p className="text-muted-foreground">{m.label}</p>
-                      <p className={cn("text-xl font-semibold mt-1", m.color)}>{m.value}</p>
+                      <p className={cn("text-xl font-medium mt-1", m.color)}>{m.value}</p>
                       <p className="text-muted-foreground mt-0.5">{m.note}</p>
                     </div>
                   ))}
@@ -1004,7 +1010,7 @@ export default function InsuranceDerivativesPage() {
                     { label: "Typical Liquidity", value: "Secondary mkt", color: "text-amber-400" },
                   ].map((s) => (
                     <div key={s.label} className="bg-muted/40 rounded p-2 text-center">
-                      <p className={cn("font-semibold", s.color)}>{s.value}</p>
+                      <p className={cn("font-medium", s.color)}>{s.value}</p>
                       <p className="text-muted-foreground mt-0.5">{s.label}</p>
                     </div>
                   ))}
@@ -1093,7 +1099,7 @@ export default function InsuranceDerivativesPage() {
                   <div className="flex items-start gap-2">
                     {item.icon}
                     <div>
-                      <p className={cn("font-semibold text-sm", item.color)}>{item.label}</p>
+                      <p className={cn("font-medium text-sm", item.color)}>{item.label}</p>
                       <p className="text-foreground text-xs font-medium mt-0.5">{item.value}</p>
                       <p className="text-muted-foreground text-xs mt-1">{item.desc}</p>
                     </div>
@@ -1187,7 +1193,7 @@ export default function InsuranceDerivativesPage() {
                 ].map((s) => (
                   <div key={s.label} className="bg-muted/40 rounded-lg p-3">
                     <p className="text-muted-foreground">{s.label}</p>
-                    <p className={cn("text-xl font-semibold mt-1", s.color)}>{s.value}</p>
+                    <p className={cn("text-xl font-medium mt-1", s.color)}>{s.value}</p>
                     <p className="text-muted-foreground mt-0.5">{s.sub}</p>
                   </div>
                 ))}

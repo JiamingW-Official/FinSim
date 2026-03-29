@@ -466,11 +466,11 @@ function ScreenerTab() {
           </div>
           <div>
             <p className="text-xs text-muted-foreground mb-1">Spread to AAA</p>
-            <p className="text-xl font-bold text-amber-400">{selected.spreadToAAA} bps</p>
+            <p className="text-xl font-medium text-amber-400">{selected.spreadToAAA} bps</p>
           </div>
           <div>
             <p className="text-xs text-muted-foreground mb-1">AMT Status</p>
-            <p className="text-sm font-semibold mt-1">
+            <p className="text-sm font-medium mt-1">
               {selected.isAMT
                 ? <span className="text-amber-400">Subject to AMT</span>
                 : <span className="text-emerald-400">AMT-Free</span>
@@ -489,11 +489,11 @@ function ScreenerTab() {
           </CardHeader>
           <CardContent className="space-y-2 text-sm text-muted-foreground">
             <p>
-              <span className="text-indigo-400 font-semibold">General Obligation (GO)</span> bonds are
+              <span className="text-indigo-400 font-medium">General Obligation (GO)</span> bonds are
               backed by the full taxing power of the issuer. Generally lower risk and lower yield.
             </p>
             <p>
-              <span className="text-muted-foreground font-semibold">Revenue bonds</span> are backed solely by
+              <span className="text-muted-foreground font-medium">Revenue bonds</span> are backed solely by
               cash flows from a specific project — tolls, utility fees, tuition. Higher yield, but
               dependent on project performance.
             </p>
@@ -511,7 +511,7 @@ function ScreenerTab() {
               TEY = Muni Yield / (1 - Tax Bracket)
             </div>
             <p className="text-xs">
-              Example: 3.82% muni at 37% bracket: TEY = 3.82 / 0.63 = <span className="text-indigo-400 font-semibold">6.06%</span>
+              Example: 3.82% muni at 37% bracket: TEY = 3.82 / 0.63 = <span className="text-indigo-400 font-medium">6.06%</span>
             </p>
           </CardContent>
         </Card>
@@ -540,7 +540,7 @@ function CalculatorTab() {
           <CardContent className="space-y-5">
             <div>
               <label className="text-sm text-muted-foreground block mb-2">
-                Muni Bond Yield: <span className="text-emerald-400 font-semibold">{muniYield.toFixed(2)}%</span>
+                Muni Bond Yield: <span className="text-emerald-400 font-medium">{muniYield.toFixed(2)}%</span>
               </label>
               <input
                 type="range"
@@ -579,7 +579,7 @@ function CalculatorTab() {
             <div className="bg-muted/60 rounded-lg p-4 space-y-2">
               <div className="flex justify-between text-sm">
                 <span className="text-muted-foreground">Muni yield</span>
-                <span className="text-emerald-400 font-semibold">{muniYield.toFixed(2)}%</span>
+                <span className="text-emerald-400 font-medium">{muniYield.toFixed(2)}%</span>
               </div>
               <div className="flex justify-between text-sm">
                 <span className="text-muted-foreground">Tax bracket</span>
@@ -587,7 +587,7 @@ function CalculatorTab() {
               </div>
               <div className="border-t border-border pt-2 flex justify-between">
                 <span className="text-muted-foreground font-medium">Tax-Equiv Yield</span>
-                <span className="text-indigo-400 font-bold text-lg">{tey.toFixed(2)}%</span>
+                <span className="text-indigo-400 font-medium text-lg">{tey.toFixed(2)}%</span>
               </div>
             </div>
           </CardContent>
@@ -602,7 +602,7 @@ function CalculatorTab() {
             <p className="text-xs text-muted-foreground mt-3">
               At the <span className="text-indigo-400">{targetBracket}%</span> bracket, a muni yielding{" "}
               <span className="text-emerald-400">{muniYield.toFixed(2)}%</span> is equivalent to a{" "}
-              <span className="text-indigo-400 font-semibold">{tey.toFixed(2)}%</span> taxable bond.
+              <span className="text-indigo-400 font-medium">{tey.toFixed(2)}%</span> taxable bond.
             </p>
           </CardContent>
         </Card>
@@ -634,7 +634,7 @@ function CalculatorTab() {
                     <tr key={b} className={cn("border-b border-border/60", b === targetBracket && "bg-indigo-500/10")}>
                       <td className="py-2 px-3 text-muted-foreground font-medium">{b}%</td>
                       <td className="py-2 px-3 text-muted-foreground">{(100 - b)}%</td>
-                      <td className="py-2 px-3 text-indigo-400 font-semibold">{t.toFixed(2)}%</td>
+                      <td className="py-2 px-3 text-indigo-400 font-medium">{t.toFixed(2)}%</td>
                       <td className={cn("py-2 px-3 font-medium",
                         diff > 0.001 ? "text-emerald-400" : diff < -0.001 ? "text-red-400" : "text-muted-foreground"
                       )}>
@@ -712,7 +712,7 @@ function AnalysisTab() {
               ].map((r, i) => (
                 <div key={`rs-${i}`} className="p-3 rounded-lg bg-muted/50 border border-border/50">
                   <div className="flex justify-between mb-1">
-                    <span className={cn("font-bold", r.color)}>{r.rating}</span>
+                    <span className={cn("font-medium", r.color)}>{r.rating}</span>
                     <span className="text-muted-foreground text-sm">{r.spread}</span>
                   </div>
                   <p className="text-xs text-muted-foreground">{r.note}</p>
@@ -766,7 +766,7 @@ function StateFiscalTab() {
                             }}
                           />
                         </div>
-                        <span className={cn("text-sm font-semibold w-10 text-right",
+                        <span className={cn("text-sm font-medium w-10 text-right",
                           st.pensionFunded >= 80 ? "text-emerald-400" : st.pensionFunded >= 60 ? "text-amber-400" : "text-red-400"
                         )}>
                           {st.pensionFunded}%
@@ -775,7 +775,7 @@ function StateFiscalTab() {
                     </td>
                     <td className="py-3 px-3 text-muted-foreground">${st.debtPerCapita.toLocaleString()}</td>
                     <td className="py-3 px-3">
-                      <span className={cn("font-semibold", st.budgetBalance >= 0 ? "text-emerald-400" : "text-red-400")}>
+                      <span className={cn("font-medium", st.budgetBalance >= 0 ? "text-emerald-400" : "text-red-400")}>
                         {st.budgetBalance >= 0 ? "+" : ""}{st.budgetBalance.toFixed(1)}%
                       </span>
                     </td>
@@ -796,7 +796,7 @@ function StateFiscalTab() {
         ].map((item, i) => (
           <Card key={`outlook-${i}`} className="bg-card border-border">
             <CardContent className="pt-4">
-              <div className={cn("text-xl font-bold mb-1", item.color)}>{item.state}</div>
+              <div className={cn("text-xl font-medium mb-1", item.color)}>{item.state}</div>
               <p className="text-xs text-muted-foreground">{item.note}</p>
             </CardContent>
           </Card>
@@ -811,15 +811,15 @@ function StateFiscalTab() {
         </CardHeader>
         <CardContent className="grid grid-cols-1 md:grid-cols-3 gap-4 text-sm text-muted-foreground">
           <div>
-            <p className="font-semibold text-muted-foreground mb-1">Pension Funded Ratio</p>
+            <p className="font-medium text-muted-foreground mb-1">Pension Funded Ratio</p>
             <p>Assets vs. obligations. Below 60% signals structural stress — the state must divert general revenues to cover shortfalls.</p>
           </div>
           <div>
-            <p className="font-semibold text-muted-foreground mb-1">Debt Per Capita</p>
+            <p className="font-medium text-muted-foreground mb-1">Debt Per Capita</p>
             <p>Total outstanding GO and moral-obligation debt divided by population. Higher values mean each resident bears more burden.</p>
           </div>
           <div>
-            <p className="font-semibold text-muted-foreground mb-1">Budget Balance</p>
+            <p className="font-medium text-muted-foreground mb-1">Budget Balance</p>
             <p>Surplus or deficit as % of revenues. Persistent deficits pressure ratings; surpluses indicate fiscal flexibility.</p>
           </div>
         </CardContent>
@@ -844,7 +844,7 @@ function AMTTab() {
         <CardContent className="space-y-4">
           <p className="text-sm text-muted-foreground">
             Most municipal bonds are exempt from federal income tax. However,{" "}
-            <span className="text-amber-400 font-semibold">Private Activity Bonds (PABs)</span> — issued
+            <span className="text-amber-400 font-medium">Private Activity Bonds (PABs)</span> — issued
             for airports, private university projects, and housing programs — may trigger AMT liability
             for certain investors.
           </p>
@@ -852,7 +852,7 @@ function AMTTab() {
             <div className="bg-muted/50 border border-border rounded-lg p-4">
               <div className="flex items-center gap-2 mb-2">
                 <Shield className="w-4 h-4 text-emerald-400" />
-                <span className="text-sm font-semibold text-emerald-400">Regular Munis — AMT-Free</span>
+                <span className="text-sm font-medium text-emerald-400">Regular Munis — AMT-Free</span>
               </div>
               <ul className="text-xs text-muted-foreground space-y-1">
                 <li>General obligation bonds (cities, counties, states)</li>
@@ -865,7 +865,7 @@ function AMTTab() {
             <div className="bg-amber-500/5 border border-amber-500/20 rounded-lg p-4">
               <div className="flex items-center gap-2 mb-2">
                 <AlertTriangle className="w-4 h-4 text-amber-400" />
-                <span className="text-sm font-semibold text-amber-400">Private Activity Bonds — AMT Risk</span>
+                <span className="text-sm font-medium text-amber-400">Private Activity Bonds — AMT Risk</span>
               </div>
               <ul className="text-xs text-muted-foreground space-y-1">
                 <li>Airport revenue bonds (Denver, LAX, ORD)</li>
@@ -892,7 +892,7 @@ function AMTTab() {
                   <p className="text-xs text-muted-foreground">{b.state} · {b.type} · {b.rating}</p>
                 </div>
                 <div className="text-right">
-                  <p className="text-sm font-semibold text-amber-400">{b.yield.toFixed(2)}% yield</p>
+                  <p className="text-sm font-medium text-amber-400">{b.yield.toFixed(2)}% yield</p>
                   <p className="text-xs text-muted-foreground">TEY {b.teyAt37.toFixed(2)}% (37%)</p>
                 </div>
               </div>
@@ -921,7 +921,7 @@ function AMTTab() {
                 )}
               >
                 <div className="flex items-center gap-2 mb-1">
-                  <span className={cn("text-xs font-bold px-1.5 py-0.5 rounded",
+                  <span className={cn("text-xs font-medium px-1.5 py-0.5 rounded",
                     item.avoid ? "bg-red-500/20 text-red-400" : "bg-emerald-500/20 text-emerald-400"
                   )}>
                     {item.avoid ? "AVOID" : "OK"}
@@ -948,7 +948,7 @@ function AMTTab() {
                   <p className="text-xs text-muted-foreground">{b.state} · {b.rating}</p>
                 </div>
                 <div className="text-right">
-                  <p className="text-sm font-semibold text-emerald-400">{b.yield.toFixed(2)}%</p>
+                  <p className="text-sm font-medium text-emerald-400">{b.yield.toFixed(2)}%</p>
                   <p className="text-xs text-muted-foreground">TEY {b.teyAt37.toFixed(2)}%</p>
                 </div>
               </div>
@@ -1002,7 +1002,7 @@ export default function MuniBondsPage() {
                 <stat.icon className={cn("w-4 h-4", stat.color)} />
                 <span className="text-xs text-muted-foreground">{stat.label}</span>
               </div>
-              <div className={cn("text-xl font-bold", stat.color)}>{stat.value}</div>
+              <div className={cn("text-xl font-medium", stat.color)}>{stat.value}</div>
               <div className="text-xs text-muted-foreground mt-0.5">{stat.sub}</div>
             </CardContent>
           </Card>

@@ -223,7 +223,7 @@ function AssetLocationTab() {
         <Card className="border-orange-500/30 bg-orange-500/5">
           <CardContent className="pt-3 pb-3 text-center">
             <p className="text-xs text-muted-foreground">Annual Drag (Suboptimal)</p>
-            <p className="text-xl font-bold text-orange-400">{fmtK(totalDragSaved)}</p>
+            <p className="text-xl font-medium text-orange-400">{fmtK(totalDragSaved)}</p>
             <p className="text-xs text-muted-foreground mt-1">lost annually</p>
           </CardContent>
         </Card>
@@ -310,20 +310,20 @@ function AssetLocationTab() {
                 <div className="grid grid-cols-3 gap-3">
                   <div className="bg-muted/40 rounded-lg p-2 text-center">
                     <p className="text-xs text-muted-foreground">Efficiency Score</p>
-                    <p className="text-base font-bold" style={{ color: selectedAsset.color }}>{selectedAsset.taxEfficiencyScore}/100</p>
+                    <p className="text-base font-medium" style={{ color: selectedAsset.color }}>{selectedAsset.taxEfficiencyScore}/100</p>
                   </div>
                   <div className="bg-muted/40 rounded-lg p-2 text-center">
                     <p className="text-xs text-muted-foreground">Annual Return</p>
-                    <p className="text-base font-bold text-green-400">{selectedAsset.annualReturn}%</p>
+                    <p className="text-base font-medium text-green-400">{selectedAsset.annualReturn}%</p>
                   </div>
                   <div className="bg-muted/40 rounded-lg p-2 text-center">
                     <p className="text-xs text-muted-foreground">Tax Drag (wrong bucket)</p>
-                    <p className="text-base font-bold text-red-400">{selectedAsset.taxDrag}%/yr</p>
+                    <p className="text-base font-medium text-red-400">{selectedAsset.taxDrag}%/yr</p>
                   </div>
                 </div>
                 <div className="bg-muted/20 rounded-lg p-3 text-sm">
                   <p className="text-muted-foreground">Annual drag on {fmtK(portfolioValue / ASSET_CLASSES.length)} allocation:</p>
-                  <p className="font-semibold text-red-400">
+                  <p className="font-medium text-red-400">
                     {fmtDollar((portfolioValue / ASSET_CLASSES.length) * selectedAsset.taxDrag / 100)} lost per year in wrong account
                   </p>
                 </div>
@@ -364,7 +364,7 @@ function AssetLocationTab() {
               },
             ].map((bucket) => (
               <div key={bucket.label} className="rounded-lg p-3 space-y-2" style={{ backgroundColor: bucket.color + "10", border: `1px solid ${bucket.color}30` }}>
-                <p className="text-sm font-semibold" style={{ color: bucket.color }}>{bucket.label}</p>
+                <p className="text-sm font-medium" style={{ color: bucket.color }}>{bucket.label}</p>
                 <ul className="space-y-1">
                   {bucket.items.map((item) => (
                     <li key={item} className="text-xs text-muted-foreground flex items-start gap-1">
@@ -483,7 +483,7 @@ function TaxLossHarvestingTab() {
         <CardContent className="pt-4 space-y-2">
           <div className="flex justify-between text-sm">
             <span className="text-muted-foreground">Your Marginal Tax Rate</span>
-            <span className="font-semibold">{marginalRate}%</span>
+            <span className="font-medium">{marginalRate}%</span>
           </div>
           <Slider min={10} max={37} step={1} value={[marginalRate]} onValueChange={([v]) => setMarginalRate(v)} />
         </CardContent>
@@ -494,19 +494,19 @@ function TaxLossHarvestingTab() {
         <Card className="border-red-500/30 bg-red-500/5">
           <CardContent className="pt-3 pb-3 text-center">
             <p className="text-xs text-muted-foreground">Total Harvestable Loss</p>
-            <p className="text-xl font-bold text-red-400">{fmtK(totalHarvestable)}</p>
+            <p className="text-xl font-medium text-red-400">{fmtK(totalHarvestable)}</p>
           </CardContent>
         </Card>
         <Card className="border-green-500/30 bg-green-500/5">
           <CardContent className="pt-3 pb-3 text-center">
             <p className="text-xs text-muted-foreground">Tax Savings @ {marginalRate}%</p>
-            <p className="text-xl font-bold text-green-400">{fmtK(totalSavings)}</p>
+            <p className="text-xl font-medium text-green-400">{fmtK(totalSavings)}</p>
           </CardContent>
         </Card>
         <Card className="border-border bg-primary/5">
           <CardContent className="pt-3 pb-3 text-center">
             <p className="text-xs text-muted-foreground">Eligible Positions</p>
-            <p className="text-xl font-bold text-primary">{eligibleCount} / {positions.length}</p>
+            <p className="text-xl font-medium text-primary">{eligibleCount} / {positions.length}</p>
           </CardContent>
         </Card>
       </div>
@@ -536,7 +536,7 @@ function TaxLossHarvestingTab() {
               >
                 <div className="flex items-center justify-between">
                   <div className="flex items-center gap-2">
-                    <span className="font-mono font-bold text-sm">{p.ticker}</span>
+                    <span className="font-mono font-medium text-sm">{p.ticker}</span>
                     {p.washSaleRisk && (
                       <Badge variant="destructive" className="text-xs">Wash Sale Risk</Badge>
                     )}
@@ -546,7 +546,7 @@ function TaxLossHarvestingTab() {
                     <span className="text-xs text-muted-foreground">{p.holdingDays}d | {p.isLongTerm ? "LT" : "ST"}</span>
                   </div>
                   <div className="text-right">
-                    <p className="text-sm font-semibold text-red-400">{fmtK(p.unrealizedLoss)}</p>
+                    <p className="text-sm font-medium text-red-400">{fmtK(p.unrealizedLoss)}</p>
                     <p className="text-xs text-muted-foreground">saves {fmtK(taxSavings)}</p>
                   </div>
                 </div>
@@ -701,14 +701,14 @@ function TaxLossHarvestingTab() {
               <div key={method.label} className="rounded-lg p-3 space-y-2" style={{ backgroundColor: method.color + "10", border: `1px solid ${method.color}30` }}>
                 <div className="flex items-center gap-2">
                   <method.icon className="h-4 w-4" style={{ color: method.color }} />
-                  <span className="text-sm font-semibold" style={{ color: method.color }}>{method.label}</span>
+                  <span className="text-sm font-medium" style={{ color: method.color }}>{method.label}</span>
                 </div>
                 <ul className="space-y-1">
                   {method.items.map((item) => (
                     <li key={item} className="text-xs text-muted-foreground">{item}</li>
                   ))}
                 </ul>
-                <div className="text-xs font-semibold" style={{ color: method.color }}>{method.savings}</div>
+                <div className="text-xs font-medium" style={{ color: method.color }}>{method.savings}</div>
               </div>
             ))}
           </div>
@@ -788,7 +788,7 @@ function RothConversionTab() {
           <CardContent className="pt-4 space-y-2">
             <div className="flex justify-between text-sm">
               <span className="text-muted-foreground">Other Income</span>
-              <span className="font-semibold">{fmtK(currentIncome)}</span>
+              <span className="font-medium">{fmtK(currentIncome)}</span>
             </div>
             <Slider min={0} max={250000} step={5000} value={[currentIncome]} onValueChange={([v]) => setCurrentIncome(v)} />
           </CardContent>
@@ -797,7 +797,7 @@ function RothConversionTab() {
           <CardContent className="pt-4 space-y-2">
             <div className="flex justify-between text-sm">
               <span className="text-muted-foreground">Conversion Amount</span>
-              <span className="font-semibold">{fmtK(conversionAmount)}</span>
+              <span className="font-medium">{fmtK(conversionAmount)}</span>
             </div>
             <Slider min={5000} max={200000} step={5000} value={[conversionAmount]} onValueChange={([v]) => setConversionAmount(v)} />
           </CardContent>
@@ -809,25 +809,25 @@ function RothConversionTab() {
         <Card className="border-border bg-primary/5">
           <CardContent className="pt-3 pb-3 text-center">
             <p className="text-xs text-muted-foreground">Tax Cost Now</p>
-            <p className="text-lg font-bold text-primary">{fmtK(conversionTax)}</p>
+            <p className="text-lg font-medium text-primary">{fmtK(conversionTax)}</p>
           </CardContent>
         </Card>
         <Card className={cn("border-amber-500/30 bg-amber-500/5", afterBracket?.rate !== currentBracket?.rate && "border-red-500/30 bg-red-500/5")}>
           <CardContent className="pt-3 pb-3 text-center">
             <p className="text-xs text-muted-foreground">Bracket After</p>
-            <p className="text-lg font-bold text-amber-400">{afterBracket?.rate ?? 37}%</p>
+            <p className="text-lg font-medium text-amber-400">{afterBracket?.rate ?? 37}%</p>
           </CardContent>
         </Card>
         <Card className="border-green-500/30 bg-green-500/5">
           <CardContent className="pt-3 pb-3 text-center">
             <p className="text-xs text-muted-foreground">Roth Wins In</p>
-            <p className="text-lg font-bold text-green-400">{rothBreakevenYrs} yrs</p>
+            <p className="text-lg font-medium text-green-400">{rothBreakevenYrs} yrs</p>
           </CardContent>
         </Card>
         <Card className={cn("border-border bg-primary/5", irmaa ? "" : "border-muted/30")}>
           <CardContent className="pt-3 pb-3 text-center">
             <p className="text-xs text-muted-foreground">IRMAA Status</p>
-            <p className="text-lg font-bold text-primary">{irmaa ? "Safe" : "Breached"}</p>
+            <p className="text-lg font-medium text-primary">{irmaa ? "Safe" : "Breached"}</p>
           </CardContent>
         </Card>
       </div>
@@ -956,7 +956,7 @@ function RothConversionTab() {
           </CardHeader>
           <CardContent className="space-y-1">
             {IRMAA_THRESHOLDS.slice(0, 4).map((t, i) => (
-              <div key={i} className={cn("flex justify-between text-xs py-1 border-b border-border/30 last:border-0", totalIncome > (IRMAA_THRESHOLDS[i - 1]?.income ?? 0) && totalIncome <= t.income && "text-amber-400 font-semibold")}>
+              <div key={i} className={cn("flex justify-between text-xs py-1 border-b border-border/30 last:border-0", totalIncome > (IRMAA_THRESHOLDS[i - 1]?.income ?? 0) && totalIncome <= t.income && "text-amber-400 font-medium")}>
                 <span className="text-muted-foreground">≤ {fmtK(t.income)}</span>
                 <span>{fmtDollar(t.premium, 2)}/mo Part B</span>
               </div>
@@ -1066,7 +1066,7 @@ function CapitalGainsTab() {
           <CardContent className="pt-4 space-y-2">
             <div className="flex justify-between text-sm">
               <span className="text-muted-foreground">Ordinary Income</span>
-              <span className="font-semibold">{fmtK(income)}</span>
+              <span className="font-medium">{fmtK(income)}</span>
             </div>
             <Slider min={10000} max={600000} step={10000} value={[income]} onValueChange={([v]) => setIncome(v)} />
           </CardContent>
@@ -1075,7 +1075,7 @@ function CapitalGainsTab() {
           <CardContent className="pt-4 space-y-2">
             <div className="flex justify-between text-sm">
               <span className="text-muted-foreground">Capital Gain Amount</span>
-              <span className="font-semibold">{fmtK(gainAmount)}</span>
+              <span className="font-medium">{fmtK(gainAmount)}</span>
             </div>
             <Slider min={1000} max={500000} step={1000} value={[gainAmount]} onValueChange={([v]) => setGainAmount(v)} />
           </CardContent>
@@ -1106,22 +1106,22 @@ function CapitalGainsTab() {
           <div className="grid grid-cols-4 gap-3">
             <div className="bg-muted/40 rounded-lg p-3 text-center">
               <p className="text-xs text-muted-foreground">ST Rate</p>
-              <p className="text-xl font-bold text-red-400">{(stRate * 100).toFixed(0)}%</p>
+              <p className="text-xl font-medium text-red-400">{(stRate * 100).toFixed(0)}%</p>
               <p className="text-xs text-muted-foreground">ordinary income</p>
             </div>
             <div className="bg-muted/40 rounded-lg p-3 text-center">
               <p className="text-xs text-muted-foreground">LT Rate</p>
-              <p className="text-xl font-bold text-green-400">{(ltRate * 100).toFixed(0)}%</p>
+              <p className="text-xl font-medium text-green-400">{(ltRate * 100).toFixed(0)}%</p>
               <p className="text-xs text-muted-foreground">preferential</p>
             </div>
             <div className={cn("rounded-lg p-3 text-center", niit > 0 ? "bg-amber-500/10" : "bg-muted/40")}>
               <p className="text-xs text-muted-foreground">NIIT Surtax</p>
-              <p className="text-xl font-bold text-amber-400">{niit > 0 ? "3.8%" : "0%"}</p>
+              <p className="text-xl font-medium text-amber-400">{niit > 0 ? "3.8%" : "0%"}</p>
               <p className="text-xs text-muted-foreground">if MAGI &gt;$200k</p>
             </div>
             <div className="bg-muted/40 rounded-lg p-3 text-center">
               <p className="text-xs text-muted-foreground">Tax Due</p>
-              <p className="text-xl font-bold text-foreground">{fmtK(taxDue)}</p>
+              <p className="text-xl font-medium text-foreground">{fmtK(taxDue)}</p>
               <p className="text-xs text-muted-foreground">{(effectiveRate * 100).toFixed(1)}% effective</p>
             </div>
           </div>
@@ -1204,18 +1204,18 @@ function CapitalGainsTab() {
               <div key={s.title} className="rounded-lg p-3 space-y-2" style={{ backgroundColor: s.color + "0d", border: `1px solid ${s.color}25` }}>
                 <div className="flex items-center gap-2">
                   <s.icon className="h-4 w-4 shrink-0" style={{ color: s.color }} />
-                  <span className="text-sm font-semibold" style={{ color: s.color }}>{s.title}</span>
+                  <span className="text-sm font-medium" style={{ color: s.color }}>{s.title}</span>
                 </div>
                 <p className="text-xs text-muted-foreground">{s.description}</p>
                 <div className="text-xs bg-muted/30 rounded p-2 text-muted-foreground italic">{s.example}</div>
-                <div className="text-xs font-semibold" style={{ color: s.color }}>Potential: {s.saving}</div>
+                <div className="text-xs font-medium" style={{ color: s.color }}>Potential: {s.saving}</div>
               </div>
             ))}
           </div>
 
           {/* Gain harvesting in low-income years */}
           <div className="mt-4 p-3 bg-green-500/10 border border-green-500/20 rounded-lg space-y-1">
-            <p className="text-sm font-semibold text-green-400 flex items-center gap-1">
+            <p className="text-sm font-medium text-green-400 flex items-center gap-1">
               <TrendingDown className="h-4 w-4" />
               Gain Harvesting in Low-Income Years (0% LTCG)
             </p>
@@ -1245,7 +1245,7 @@ export default function TaxEfficientPage() {
             <DollarSign className="h-5 w-5 text-green-400" />
           </div>
           <div>
-            <h1 className="text-xl font-bold tracking-tight">Tax-Efficient Investing</h1>
+            <h1 className="text-xl font-medium tracking-tight">Tax-Efficient Investing</h1>
             <p className="text-sm text-muted-foreground">
               Asset location, tax-loss harvesting, Roth conversions &amp; capital gains management
             </p>
@@ -1257,7 +1257,7 @@ export default function TaxEfficientPage() {
       </motion.div>
 
       {/* Quick stats */}
-      <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
+      <div className="grid grid-cols-2 md:grid-cols-4 gap-3 border-l-4 border-l-primary p-6 rounded-lg bg-card/40">
         {[
           { label: "Optimal Location Benefit", value: "0.4–1.5%/yr", icon: MapPin, color: "#22c55e" },
           { label: "TLH Tax Alpha", value: "0.5–1.2%/yr", icon: Scissors, color: "#ef4444" },
@@ -1270,7 +1270,7 @@ export default function TaxEfficientPage() {
                 <stat.icon className="h-4 w-4 shrink-0" style={{ color: stat.color }} />
                 <div>
                   <p className="text-xs text-muted-foreground">{stat.label}</p>
-                  <p className="text-sm font-bold text-foreground">{stat.value}</p>
+                  <p className="text-sm font-medium text-foreground">{stat.value}</p>
                 </div>
               </div>
             </CardContent>
@@ -1279,7 +1279,7 @@ export default function TaxEfficientPage() {
       </div>
 
       {/* Tabs */}
-      <Tabs defaultValue="location" className="space-y-4">
+      <Tabs defaultValue="location" className="mt-8 space-y-4">
         <TabsList className="grid grid-cols-4 w-full">
           <TabsTrigger value="location" className="flex items-center gap-1 text-xs">
             <MapPin className="h-3 w-3" />

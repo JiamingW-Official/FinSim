@@ -635,7 +635,7 @@ function ISRow({
             key={i}
             className={cn(
               "py-1.5 px-3 text-xs text-right font-mono",
-              bold ? "font-semibold text-foreground" : "text-muted-foreground"
+              bold ? "font-medium text-foreground" : "text-muted-foreground"
             )}
           >
             {formatted}
@@ -931,7 +931,7 @@ export default function FinancialModelPage() {
       <div className="shrink-0 border-b border-border/50 bg-card/60 backdrop-blur-sm px-6 py-4">
         <div className="flex items-center justify-between flex-wrap gap-3">
           <div>
-            <h1 className="text-lg font-semibold tracking-tight flex items-center gap-2">
+            <h1 className="text-lg font-medium tracking-tight flex items-center gap-2">
               <Calculator className="w-5 h-5 text-primary" />
               Financial Model Builder
             </h1>
@@ -977,7 +977,7 @@ export default function FinancialModelPage() {
             </div>
             <div className="flex flex-col items-end">
               <span className="text-xs text-muted-foreground">{companyData.name}</span>
-              <span className="text-sm font-semibold text-foreground">${companyData.currentPrice.toFixed(2)}</span>
+              <span className="text-sm font-medium text-foreground">${companyData.currentPrice.toFixed(2)}</span>
             </div>
           </div>
         </div>
@@ -1156,8 +1156,8 @@ export default function FinancialModelPage() {
                         { label: "Total Assets", value: bsData.totalAssets, bold: true, highlight: true },
                       ].map(({ label, value, bold, highlight }) => (
                         <tr key={label} className={cn("border-b border-border/50", highlight && "bg-primary/5")}>
-                          <td className={cn("py-1.5 text-muted-foreground", bold && "font-semibold text-foreground")}>{label}</td>
-                          <td className={cn("py-1.5 text-right font-mono", bold && "font-semibold text-foreground")}>{fmt(value)}</td>
+                          <td className={cn("py-1.5 text-muted-foreground", bold && "font-medium text-foreground")}>{label}</td>
+                          <td className={cn("py-1.5 text-right font-mono", bold && "font-medium text-foreground")}>{fmt(value)}</td>
                         </tr>
                       ))}
                     </tbody>
@@ -1177,8 +1177,8 @@ export default function FinancialModelPage() {
                         { label: "Total Liabilities", value: bsData.totalLiab, bold: true, highlight: true },
                       ].map(({ label, value, bold, highlight }) => (
                         <tr key={label} className={cn("border-b border-border/50", highlight && "bg-red-500/5")}>
-                          <td className={cn("py-1.5 text-muted-foreground", bold && "font-semibold text-foreground")}>{label}</td>
-                          <td className={cn("py-1.5 text-right font-mono", bold && "font-semibold text-foreground")}>{fmt(value)}</td>
+                          <td className={cn("py-1.5 text-muted-foreground", bold && "font-medium text-foreground")}>{label}</td>
+                          <td className={cn("py-1.5 text-right font-mono", bold && "font-medium text-foreground")}>{fmt(value)}</td>
                         </tr>
                       ))}
                     </tbody>
@@ -1193,8 +1193,8 @@ export default function FinancialModelPage() {
                         { label: "Total Liab. + Equity", value: bsData.totalLiab + bsData.totalEquity, bold: true },
                       ].map(({ label, value, bold, highlight }) => (
                         <tr key={label} className={cn("border-b border-border/50", highlight && "bg-emerald-500/5")}>
-                          <td className={cn("py-1.5 text-muted-foreground", bold && "font-semibold text-foreground")}>{label}</td>
-                          <td className={cn("py-1.5 text-right font-mono", bold && "font-semibold text-foreground")}>{fmt(value)}</td>
+                          <td className={cn("py-1.5 text-muted-foreground", bold && "font-medium text-foreground")}>{label}</td>
+                          <td className={cn("py-1.5 text-right font-mono", bold && "font-medium text-foreground")}>{fmt(value)}</td>
                         </tr>
                       ))}
                     </tbody>
@@ -1212,8 +1212,8 @@ export default function FinancialModelPage() {
                       { label: "Cash Conversion Cycle (CCC)", value: bsData.ccc.toFixed(1) + " days", bold: true },
                     ].map(({ label, value, bold }) => (
                       <div key={label} className="flex justify-between items-center py-1.5 border-b border-border/50">
-                        <span className={cn("text-xs", bold ? "text-foreground font-semibold" : "text-muted-foreground")}>{label}</span>
-                        <span className={cn("text-xs font-mono", bold ? "text-foreground font-semibold" : "text-muted-foreground")}>{value}</span>
+                        <span className={cn("text-xs", bold ? "text-foreground font-medium" : "text-muted-foreground")}>{label}</span>
+                        <span className={cn("text-xs font-mono", bold ? "text-foreground font-medium" : "text-muted-foreground")}>{value}</span>
                       </div>
                     ))}
                   </div>
@@ -1245,7 +1245,7 @@ export default function FinancialModelPage() {
                   <SectionHeading>Cash Flow Statement (LTM, $B)</SectionHeading>
                   <table className="w-full text-xs">
                     <tbody>
-                      <tr><td colSpan={2} className="pt-2 pb-1 text-xs text-primary font-semibold">Operating Activities</td></tr>
+                      <tr><td colSpan={2} className="pt-2 pb-1 text-xs text-primary font-medium">Operating Activities</td></tr>
                       {[
                         { label: "Net Income", value: cfData.ni },
                         { label: "  + D&A", value: cfData.da },
@@ -1253,22 +1253,22 @@ export default function FinancialModelPage() {
                         { label: "Operating Cash Flow", value: cfData.operatingCF, bold: true, highlight: "blue" },
                       ].map(({ label, value, bold, highlight }) => (
                         <tr key={label} className={cn("border-b border-border/50", highlight === "blue" && "bg-primary/5")}>
-                          <td className={cn("py-1.5 text-muted-foreground", bold && "text-foreground font-semibold")}>{label}</td>
-                          <td className={cn("py-1.5 text-right font-mono", value < 0 ? "text-red-400" : "text-muted-foreground", bold && "text-foreground font-semibold")}>{fmt(value)}</td>
+                          <td className={cn("py-1.5 text-muted-foreground", bold && "text-foreground font-medium")}>{label}</td>
+                          <td className={cn("py-1.5 text-right font-mono", value < 0 ? "text-red-400" : "text-muted-foreground", bold && "text-foreground font-medium")}>{fmt(value)}</td>
                         </tr>
                       ))}
-                      <tr><td colSpan={2} className="pt-3 pb-1 text-xs text-primary font-semibold">Investing Activities</td></tr>
+                      <tr><td colSpan={2} className="pt-3 pb-1 text-xs text-primary font-medium">Investing Activities</td></tr>
                       {[
                         { label: "  Capital Expenditures", value: -cfData.capex },
                         { label: "  Acquisitions & Other", value: -1.5 },
                         { label: "Investing Cash Flow", value: cfData.investingCF, bold: true, highlight: "purple" },
                       ].map(({ label, value, bold, highlight }) => (
                         <tr key={label} className={cn("border-b border-border/50", highlight === "purple" && "bg-primary/5")}>
-                          <td className={cn("py-1.5 text-muted-foreground", bold && "text-foreground font-semibold")}>{label}</td>
-                          <td className={cn("py-1.5 text-right font-mono", value < 0 ? "text-red-400" : "text-muted-foreground", bold && "text-foreground font-semibold")}>{fmt(value)}</td>
+                          <td className={cn("py-1.5 text-muted-foreground", bold && "text-foreground font-medium")}>{label}</td>
+                          <td className={cn("py-1.5 text-right font-mono", value < 0 ? "text-red-400" : "text-muted-foreground", bold && "text-foreground font-medium")}>{fmt(value)}</td>
                         </tr>
                       ))}
-                      <tr><td colSpan={2} className="pt-3 pb-1 text-xs text-amber-400 font-semibold">Financing Activities</td></tr>
+                      <tr><td colSpan={2} className="pt-3 pb-1 text-xs text-amber-400 font-medium">Financing Activities</td></tr>
                       {[
                         { label: "  Debt Issuance / (Repay.)", value: cfData.debtChange },
                         { label: "  Share Buybacks", value: cfData.buybacks },
@@ -1276,8 +1276,8 @@ export default function FinancialModelPage() {
                         { label: "Financing Cash Flow", value: cfData.financingCF, bold: true, highlight: "amber" },
                       ].map(({ label, value, bold, highlight }) => (
                         <tr key={label} className={cn("border-b border-border/50", highlight === "amber" && "bg-amber-500/5")}>
-                          <td className={cn("py-1.5 text-muted-foreground", bold && "text-foreground font-semibold")}>{label}</td>
-                          <td className={cn("py-1.5 text-right font-mono", value < 0 ? "text-red-400" : "text-muted-foreground", bold && "text-foreground font-semibold")}>{fmt(value)}</td>
+                          <td className={cn("py-1.5 text-muted-foreground", bold && "text-foreground font-medium")}>{label}</td>
+                          <td className={cn("py-1.5 text-right font-mono", value < 0 ? "text-red-400" : "text-muted-foreground", bold && "text-foreground font-medium")}>{fmt(value)}</td>
                         </tr>
                       ))}
                     </tbody>
@@ -1297,8 +1297,8 @@ export default function FinancialModelPage() {
                         { label: "FCF Conversion", value: fmtPct(cfData.fcfConversion), color: cfData.fcfConversion > 80 ? "text-emerald-400" : "text-amber-400" },
                       ].map(({ label, value, color, big }) => (
                         <div key={label} className="flex justify-between items-center border-b border-border/50 pb-2">
-                          <span className={cn("text-xs", big ? "font-semibold text-foreground" : "text-muted-foreground")}>{label}</span>
-                          <span className={cn("text-xs font-mono font-semibold", color, big && "text-base")}>{value}</span>
+                          <span className={cn("text-xs", big ? "font-medium text-foreground" : "text-muted-foreground")}>{label}</span>
+                          <span className={cn("text-xs font-mono font-medium", color, big && "text-base")}>{value}</span>
                         </div>
                       ))}
                     </div>
@@ -1396,7 +1396,7 @@ export default function FinancialModelPage() {
                     { label: "Intrinsic Value/Share", value: fmtM(dcfData.intrinsicGGM), big: true },
                   ].map(({ label, value, big }) => (
                     <div key={label} className="flex justify-between py-1.5 border-b border-border/50">
-                      <span className={cn("text-xs", big ? "text-foreground font-semibold" : "text-muted-foreground")}>{label}</span>
+                      <span className={cn("text-xs", big ? "text-foreground font-medium" : "text-muted-foreground")}>{label}</span>
                       <span className={cn("text-xs font-mono", big ? "text-emerald-400 text-sm font-bold" : "text-muted-foreground")}>{value}</span>
                     </div>
                   ))}
@@ -1412,7 +1412,7 @@ export default function FinancialModelPage() {
                     { label: "Intrinsic Value/Share", value: fmtM(dcfData.intrinsicMult), big: true },
                   ].map(({ label, value, big }) => (
                     <div key={label} className="flex justify-between py-1.5 border-b border-border/50">
-                      <span className={cn("text-xs", big ? "text-foreground font-semibold" : "text-muted-foreground")}>{label}</span>
+                      <span className={cn("text-xs", big ? "text-foreground font-medium" : "text-muted-foreground")}>{label}</span>
                       <span className={cn("text-xs font-mono", big ? "text-primary text-sm font-bold" : "text-muted-foreground")}>{value}</span>
                     </div>
                   ))}
@@ -1434,13 +1434,13 @@ export default function FinancialModelPage() {
                     </div>
                     <div className="flex justify-between">
                       <span className="text-xs text-muted-foreground">MoS vs GGM</span>
-                      <span className={cn("text-xs font-mono font-semibold", dcfData.intrinsicGGM > companyData.currentPrice ? "text-emerald-400" : "text-red-400")}>
+                      <span className={cn("text-xs font-mono font-medium", dcfData.intrinsicGGM > companyData.currentPrice ? "text-emerald-400" : "text-red-400")}>
                         {((dcfData.intrinsicGGM / companyData.currentPrice - 1) * 100).toFixed(1)}%
                       </span>
                     </div>
                     <div className="pt-2 border-t border-border flex justify-between items-center">
                       <span className="text-sm text-muted-foreground font-medium">Signal</span>
-                      <span className={cn("text-lg font-bold", mosColor)}>{mosGGM}</span>
+                      <span className={cn("text-lg font-medium", mosColor)}>{mosGGM}</span>
                     </div>
                   </div>
                 </div>
@@ -1492,17 +1492,17 @@ export default function FinancialModelPage() {
                     })}
                     {/* Median row */}
                     <tr className="border-t-2 border-border bg-primary/5">
-                      <td className="py-1.5 px-3 font-semibold text-primary">Median</td>
+                      <td className="py-1.5 px-3 font-medium text-primary">Median</td>
                       <td className="py-1.5 px-3 text-right font-mono text-primary">—</td>
                       <td className="py-1.5 px-3 text-right font-mono text-primary">—</td>
                       <td className="py-1.5 px-3 text-right font-mono text-primary">—</td>
                       <td className="py-1.5 px-3 text-right font-mono text-primary">—</td>
                       <td className="py-1.5 px-3 text-right font-mono text-primary">—</td>
-                      <td className="py-1.5 px-3 text-right font-mono font-semibold text-primary">{fmtRatio(medians.evRevenue)}</td>
-                      <td className="py-1.5 px-3 text-right font-mono font-semibold text-primary">{fmtRatio(medians.evEbitda)}</td>
-                      <td className="py-1.5 px-3 text-right font-mono font-semibold text-primary">{fmtRatio(medians.pe)}</td>
-                      <td className="py-1.5 px-3 text-right font-mono font-semibold text-primary">{fmtRatio(medians.pFcf)}</td>
-                      <td className="py-1.5 px-3 text-right font-mono font-semibold text-primary">{fmtRatio(medians.pSales)}</td>
+                      <td className="py-1.5 px-3 text-right font-mono font-medium text-primary">{fmtRatio(medians.evRevenue)}</td>
+                      <td className="py-1.5 px-3 text-right font-mono font-medium text-primary">{fmtRatio(medians.evEbitda)}</td>
+                      <td className="py-1.5 px-3 text-right font-mono font-medium text-primary">{fmtRatio(medians.pe)}</td>
+                      <td className="py-1.5 px-3 text-right font-mono font-medium text-primary">{fmtRatio(medians.pFcf)}</td>
+                      <td className="py-1.5 px-3 text-right font-mono font-medium text-primary">{fmtRatio(medians.pSales)}</td>
                     </tr>
                   </tbody>
                 </table>
@@ -1535,7 +1535,7 @@ export default function FinancialModelPage() {
                             <td className="py-1.5 text-muted-foreground">{label}</td>
                             <td className="py-1.5 text-right font-mono text-muted-foreground">{median}</td>
                             <td className="py-1.5 text-right font-mono text-foreground font-medium">{fmtM(implied)}</td>
-                            <td className={cn("py-1.5 text-right font-mono font-semibold", upside >= 0 ? "text-emerald-400" : "text-red-400")}>
+                            <td className={cn("py-1.5 text-right font-mono font-medium", upside >= 0 ? "text-emerald-400" : "text-red-400")}>
                               {upside >= 0 ? "+" : ""}{upside.toFixed(1)}%
                             </td>
                           </tr>
@@ -1570,7 +1570,7 @@ export default function FinancialModelPage() {
                   return (
                     <div key={sc.scenario} className={cn("rounded-xl border p-4", c.bg, c.border)}>
                       <div className="flex items-center justify-between mb-3">
-                        <span className={cn("text-sm font-semibold capitalize", c.text)}>{sc.scenario} Case</span>
+                        <span className={cn("text-sm font-medium capitalize", c.text)}>{sc.scenario} Case</span>
                         <span className={cn("text-xs px-2 py-0.5 rounded-full font-medium", c.badge)}>2026E</span>
                       </div>
                       {[
@@ -1585,7 +1585,7 @@ export default function FinancialModelPage() {
                           <span className="text-xs font-mono text-foreground">{value}</span>
                         </div>
                       ))}
-                      <div className={cn("mt-2 text-sm font-bold text-center pt-1", upside >= 0 ? "text-emerald-400" : "text-red-400")}>
+                      <div className={cn("mt-2 text-sm font-medium text-center pt-1", upside >= 0 ? "text-emerald-400" : "text-red-400")}>
                         {upside >= 0 ? "+" : ""}{upside.toFixed(1)}% vs Current
                       </div>
                     </div>
@@ -1640,23 +1640,23 @@ export default function FinancialModelPage() {
                   <div className="flex items-center gap-3 bg-foreground/[0.03] border border-border rounded-lg px-4 py-3">
                     <div>
                       <p className="text-xs text-muted-foreground uppercase tracking-wide">Current Price</p>
-                      <p className="text-lg font-bold text-foreground">{fmtM(companyData.currentPrice)}</p>
+                      <p className="text-lg font-medium text-foreground">{fmtM(companyData.currentPrice)}</p>
                     </div>
                     <div className="text-muted-foreground text-xl">=</div>
                     <div>
                       <p className="text-xs text-muted-foreground uppercase tracking-wide">Break-Even Revenue Growth</p>
-                      <p className="text-lg font-bold text-amber-400">{breakEvenGrowth}%</p>
+                      <p className="text-lg font-medium text-amber-400">{breakEvenGrowth}%</p>
                     </div>
                     <div className="text-muted-foreground text-xl">vs</div>
                     <div>
                       <p className="text-xs text-muted-foreground uppercase tracking-wide">Your Forecast</p>
-                      <p className={cn("text-lg font-bold", isAssumptions.revenueGrowth >= parseFloat(breakEvenGrowth) ? "text-emerald-400" : "text-red-400")}>
+                      <p className={cn("text-lg font-medium", isAssumptions.revenueGrowth >= parseFloat(breakEvenGrowth) ? "text-emerald-400" : "text-red-400")}>
                         {isAssumptions.revenueGrowth.toFixed(1)}%
                       </p>
                     </div>
                   </div>
                   <div className={cn(
-                    "px-4 py-3 rounded-lg border text-sm font-semibold",
+                    "px-4 py-3 rounded-lg border text-sm font-medium",
                     isAssumptions.revenueGrowth >= parseFloat(breakEvenGrowth)
                       ? "bg-emerald-500/10 border-emerald-500/30 text-emerald-400"
                       : "bg-red-500/10 border-red-500/30 text-red-400"

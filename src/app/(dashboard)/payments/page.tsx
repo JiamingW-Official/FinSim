@@ -696,7 +696,7 @@ function DigitalWalletsTab() {
                   <div className="w-3 h-3 rounded-full shrink-0" style={{ background: w.color }} />
                   <div className="flex-1 min-w-0">
                     <div className="flex items-center gap-2">
-                      <span className="text-xs font-semibold text-foreground">{w.name}</span>
+                      <span className="text-xs font-medium text-foreground">{w.name}</span>
                       <span className="text-xs text-muted-foreground">{w.share}%</span>
                     </div>
                     <div className="text-xs text-muted-foreground">{w.users} users · {w.model}</div>
@@ -756,7 +756,7 @@ function DigitalWalletsTab() {
             <CardContent className="pt-4">
               <div className="flex items-center gap-2 mb-2">
                 {card.icon}
-                <span className="text-sm font-semibold text-foreground">{card.title}</span>
+                <span className="text-sm font-medium text-foreground">{card.title}</span>
               </div>
               <p className="text-xs text-muted-foreground leading-relaxed">{card.body}</p>
             </CardContent>
@@ -911,7 +911,7 @@ function CBDCTab() {
               },
             ].map((item) => (
               <div key={item.title} className="space-y-2">
-                <div className="text-sm font-semibold" style={{ color: item.color }}>{item.title}</div>
+                <div className="text-sm font-medium" style={{ color: item.color }}>{item.title}</div>
                 <ul className="space-y-1">
                   {item.points.map((pt, i) => (
                     <li key={i} className="flex items-start gap-2 text-xs text-muted-foreground">
@@ -1129,7 +1129,7 @@ function PaymentStocksTab() {
             <CardContent className="pt-4">
               <div className="flex items-center gap-2 mb-1">
                 {card.icon}
-                <span className="text-sm font-semibold text-foreground">{card.title}</span>
+                <span className="text-sm font-medium text-foreground">{card.title}</span>
               </div>
               <div className="text-xs mb-2" style={{ color: card.color }}>{card.subtitle}</div>
               <p className="text-xs text-muted-foreground leading-relaxed">{card.body}</p>

@@ -870,7 +870,7 @@ function CountdownTimer() {
     <div className="flex items-center gap-2 rounded-md bg-primary/10 px-3 py-2 text-sm">
       <Clock className="h-4 w-4 text-primary" />
       <span className="text-muted-foreground">Next high-impact event:</span>
-      <span className="font-semibold text-primary">PCE Inflation (Mar 29)</span>
+      <span className="font-medium text-primary">PCE Inflation (Mar 29)</span>
       <span className="ml-auto font-mono font-bold text-primary">{remaining}</span>
     </div>
   );
@@ -987,10 +987,10 @@ export default function NewsPage() {
   return (
     <div className="flex h-full flex-col overflow-hidden">
       {/* Header */}
-      <div className="flex shrink-0 items-center gap-3 border-b border-border/50 px-6 py-4">
+      <div className="flex shrink-0 items-center gap-3 border-b border-border/50 border-l-4 border-l-primary px-6 py-6">
         <Newspaper className="h-5 w-5 text-primary" />
         <div>
-          <h1 className="text-lg font-semibold leading-none">Market News</h1>
+          <h1 className="text-xl font-medium leading-none">Market News</h1>
           <p className="mt-0.5 text-xs text-muted-foreground">
             News feed, sentiment analysis, earnings impact &amp; economic calendar
           </p>
@@ -1002,7 +1002,7 @@ export default function NewsPage() {
       </div>
 
       {/* Tabs */}
-      <Tabs defaultValue="feed" className="flex flex-1 flex-col overflow-hidden">
+      <Tabs defaultValue="feed" className="mt-8 flex flex-1 flex-col overflow-hidden">
         <TabsList className="mx-6 mt-3 shrink-0 self-start">
           <TabsTrigger value="feed">
             <Newspaper className="mr-1.5 h-3.5 w-3.5" />
@@ -1054,7 +1054,7 @@ export default function NewsPage() {
                                 Breaking
                               </span>
                             )}
-                            <span className="text-xs font-semibold text-primary">
+                            <span className="text-xs font-medium text-primary">
                               {item.source}
                             </span>
                             <span className="text-xs text-muted-foreground">
@@ -1064,7 +1064,7 @@ export default function NewsPage() {
                               {item.category}
                             </span>
                           </div>
-                          <p className="text-sm font-semibold leading-snug text-foreground">
+                          <p className="text-sm font-medium leading-snug text-foreground">
                             {item.headline}
                           </p>
                           <div className="mt-2 flex items-center gap-2 flex-wrap">
@@ -1072,7 +1072,7 @@ export default function NewsPage() {
                             {item.tickers.map((t) => (
                               <span
                                 key={t}
-                                className="rounded bg-muted px-1.5 py-0.5 text-xs font-mono font-semibold text-foreground/70"
+                                className="rounded bg-muted px-1.5 py-0.5 text-xs font-mono font-medium text-foreground/70"
                               >
                                 {t}
                               </span>
@@ -1095,7 +1095,7 @@ export default function NewsPage() {
                           {item.summary}
                         </p>
                         <div className="rounded-md bg-muted/50 px-3 py-2">
-                          <p className="text-xs font-semibold uppercase tracking-wide text-muted-foreground mb-1">
+                          <p className="text-xs font-medium uppercase tracking-wide text-muted-foreground mb-1">
                             Market Impact
                           </p>
                           <p className="text-xs text-foreground/80">{item.marketImpact}</p>
@@ -1108,7 +1108,7 @@ export default function NewsPage() {
                               type="button"
                               onClick={() => addToWatchlist(t)}
                               className={cn(
-                                "inline-flex items-center gap-1 rounded px-2 py-0.5 text-xs font-mono font-semibold transition-colors",
+                                "inline-flex items-center gap-1 rounded px-2 py-0.5 text-xs font-mono font-medium transition-colors",
                                 watchlist.has(t)
                                   ? "bg-primary/20 text-primary"
                                   : "bg-muted text-muted-foreground hover:bg-primary/10 hover:text-primary",
@@ -1156,7 +1156,7 @@ export default function NewsPage() {
                 <div className="space-y-2">
                   {TICKER_SENTIMENTS.map((ts) => (
                     <div key={ts.ticker} className="flex items-center gap-3">
-                      <span className="w-12 font-mono text-xs font-semibold text-foreground/70">
+                      <span className="w-12 font-mono text-xs font-medium text-foreground/70">
                         {ts.ticker}
                       </span>
                       <div className="flex-1 h-3 rounded-full bg-muted overflow-hidden">
@@ -1167,7 +1167,7 @@ export default function NewsPage() {
                       </div>
                       <span
                         className={cn(
-                          "w-10 text-right text-xs font-semibold",
+                          "w-10 text-right text-xs font-medium",
                           ts.bullishPct >= 55
                             ? "text-emerald-400"
                             : ts.bullishPct <= 40
@@ -1212,8 +1212,8 @@ export default function NewsPage() {
                 <div className="flex items-center justify-between">
                   <CardTitle className="text-sm">Insider Trading Sentiment</CardTitle>
                   <div className="flex gap-3 text-xs">
-                    <span className="text-emerald-400 font-semibold">{insiderBuys} Buys</span>
-                    <span className="text-red-400 font-semibold">{insiderSells} Sells</span>
+                    <span className="text-emerald-400 font-medium">{insiderBuys} Buys</span>
+                    <span className="text-red-400 font-medium">{insiderSells} Sells</span>
                   </div>
                 </div>
               </CardHeader>
@@ -1233,12 +1233,12 @@ export default function NewsPage() {
                       {INSIDER_ROWS.map((row, i) => (
                         <tr key={i} className="border-b border-border/30">
                           <td className="py-1.5 text-muted-foreground">{row.date}</td>
-                          <td className="py-1.5 font-mono font-semibold">{row.ticker}</td>
+                          <td className="py-1.5 font-mono font-medium">{row.ticker}</td>
                           <td className="py-1.5 text-muted-foreground max-w-[90px] truncate">{row.insiderName}</td>
                           <td className="py-1.5 text-right">
                             <span
                               className={cn(
-                                "rounded-full px-1.5 py-0.5 text-[11px] font-bold",
+                                "rounded-full px-1.5 py-0.5 text-[11px] font-medium",
                                 row.type === "Buy"
                                   ? "bg-emerald-500/15 text-emerald-400"
                                   : "bg-red-500/15 text-red-400",
@@ -1262,8 +1262,8 @@ export default function NewsPage() {
                 <div className="flex items-center justify-between">
                   <CardTitle className="text-sm">Analyst Rating Changes This Week</CardTitle>
                   <div className="flex gap-3 text-xs">
-                    <span className="text-emerald-400 font-semibold">{upgrades} Upgrades</span>
-                    <span className="text-red-400 font-semibold">{downgrades} Downgrades</span>
+                    <span className="text-emerald-400 font-medium">{upgrades} Upgrades</span>
+                    <span className="text-red-400 font-medium">{downgrades} Downgrades</span>
                   </div>
                 </div>
               </CardHeader>
@@ -1272,11 +1272,11 @@ export default function NewsPage() {
                   {ANALYST_CHANGES.map((row, i) => (
                     <div key={i} className="flex items-center gap-2 text-xs">
                       <span className="text-muted-foreground w-12">{row.date}</span>
-                      <span className="font-mono font-semibold w-12">{row.ticker}</span>
+                      <span className="font-mono font-medium w-12">{row.ticker}</span>
                       <span className="flex-1 text-muted-foreground text-xs truncate">{row.firm}</span>
                       <span
                         className={cn(
-                          "rounded-full px-1.5 py-0.5 text-[11px] font-bold",
+                          "rounded-full px-1.5 py-0.5 text-[11px] font-medium",
                           row.change === "Upgrade"
                             ? "bg-emerald-500/15 text-emerald-400"
                             : "bg-red-500/15 text-red-400",
@@ -1309,7 +1309,7 @@ export default function NewsPage() {
                       <div key={item.id} className="flex items-start gap-3 text-xs">
                         <SentimentBadge s={item.sentiment} />
                         <span className="text-muted-foreground flex-1">
-                          <span className="font-semibold text-foreground">{item.tickers.join(", ")}</span>
+                          <span className="font-medium text-foreground">{item.tickers.join(", ")}</span>
                           {" — "}
                           News is {item.sentiment.toLowerCase()} but social media sentiment diverges.
                           Potential mispricing or delayed market reaction.
@@ -1357,14 +1357,14 @@ export default function NewsPage() {
                         return (
                           <tr key={row.ticker} className="border-b border-border/30">
                             <td className="py-2">
-                              <div className="font-mono font-semibold">{row.ticker}</div>
+                              <div className="font-mono font-medium">{row.ticker}</div>
                               <div className="text-xs text-muted-foreground">{row.company}</div>
                             </td>
                             <td className="py-2 text-right text-muted-foreground">${row.epsEst.toFixed(2)}</td>
                             <td className="py-2 text-right font-medium">${row.epsActual.toFixed(2)}</td>
                             <td
                               className={cn(
-                                "py-2 text-right font-semibold",
+                                "py-2 text-right font-medium",
                                 row.epsSurprisePct >= 0 ? "text-emerald-400" : "text-red-400",
                               )}
                             >
@@ -1382,7 +1382,7 @@ export default function NewsPage() {
                             </td>
                             <td
                               className={cn(
-                                "py-2 text-right font-semibold",
+                                "py-2 text-right font-medium",
                                 row.day1Reaction >= 0 ? "text-emerald-400" : "text-red-400",
                               )}
                             >
@@ -1445,12 +1445,12 @@ export default function NewsPage() {
                       return (
                         <div key={row.ticker} className="rounded-md bg-amber-500/10 p-3 text-xs">
                           <div className="flex items-center gap-2 mb-1">
-                            <span className="font-mono font-bold">{row.ticker}</span>
+                            <span className="font-mono font-medium">{row.ticker}</span>
                             <span className="text-muted-foreground">{row.company}</span>
                           </div>
                           <p className="text-muted-foreground leading-relaxed">
-                            Day-1 reaction: <span className={cn("font-semibold", row.day1Reaction >= 0 ? "text-emerald-400" : "text-red-400")}>{row.day1Reaction >= 0 ? "+" : ""}{row.day1Reaction.toFixed(1)}%</span>{" "}
-                            → 5-day drift: <span className={cn("font-semibold", row.day5Drift >= 0 ? "text-emerald-400" : "text-red-400")}>{row.day5Drift >= 0 ? "+" : ""}{row.day5Drift.toFixed(1)}%</span>.{" "}
+                            Day-1 reaction: <span className={cn("font-medium", row.day1Reaction >= 0 ? "text-emerald-400" : "text-red-400")}>{row.day1Reaction >= 0 ? "+" : ""}{row.day1Reaction.toFixed(1)}%</span>{" "}
+                            → 5-day drift: <span className={cn("font-medium", row.day5Drift >= 0 ? "text-emerald-400" : "text-red-400")}>{row.day5Drift >= 0 ? "+" : ""}{row.day5Drift.toFixed(1)}%</span>.{" "}
                             {reversed
                               ? "Market fully reversed the initial move — potential mean-reversion opportunity."
                               : "Drift amplified the initial reaction — momentum continuation."}
@@ -1463,7 +1463,7 @@ export default function NewsPage() {
 
                 {/* Pre-earnings sentiment */}
                 <div className="mt-4 border-t border-border/50 pt-4">
-                  <p className="text-xs font-semibold text-muted-foreground mb-2">
+                  <p className="text-xs font-medium text-muted-foreground mb-2">
                     Pre-Earnings Sentiment (Next Week&apos;s Reporters)
                   </p>
                   <div className="space-y-2">
@@ -1473,7 +1473,7 @@ export default function NewsPage() {
                       { ticker: "JPM", date: "Apr 9", score: 65 },
                     ].map((item) => (
                       <div key={item.ticker} className="flex items-center gap-2 text-xs">
-                        <span className="font-mono font-semibold w-12">{item.ticker}</span>
+                        <span className="font-mono font-medium w-12">{item.ticker}</span>
                         <span className="text-muted-foreground w-12">{item.date}</span>
                         <div className="flex-1 h-2 rounded-full bg-muted overflow-hidden">
                           <div
@@ -1486,7 +1486,7 @@ export default function NewsPage() {
                         </div>
                         <span
                           className={cn(
-                            "w-10 text-right font-semibold",
+                            "w-10 text-right font-medium",
                             item.score >= 60 ? "text-emerald-400" : item.score >= 45 ? "text-amber-400" : "text-red-400",
                           )}
                         >
@@ -1524,7 +1524,7 @@ export default function NewsPage() {
                       <ImpactDot impact={event.impact} />
                       <div className="flex-1 min-w-0">
                         <div className="flex items-center gap-2">
-                          <span className="text-xs font-semibold text-muted-foreground w-14 shrink-0">
+                          <span className="text-xs font-medium text-muted-foreground w-14 shrink-0">
                             {event.date}
                           </span>
                           <span
@@ -1550,7 +1550,7 @@ export default function NewsPage() {
                       </div>
                       <span
                         className={cn(
-                          "text-[11px] font-bold uppercase tracking-wide shrink-0",
+                          "text-[11px] font-medium uppercase tracking-wide shrink-0",
                           event.impact === "high" ? "text-red-400" : event.impact === "medium" ? "text-amber-400" : "text-emerald-400",
                         )}
                       >
@@ -1576,7 +1576,7 @@ export default function NewsPage() {
                       <ImpactDot impact={event.impact} />
                       <div className="flex-1 min-w-0">
                         <div className="flex items-center gap-2">
-                          <span className="text-xs font-semibold text-muted-foreground w-14 shrink-0">
+                          <span className="text-xs font-medium text-muted-foreground w-14 shrink-0">
                             {event.date}
                           </span>
                           <span
@@ -1602,7 +1602,7 @@ export default function NewsPage() {
                       </div>
                       <span
                         className={cn(
-                          "text-[11px] font-bold uppercase tracking-wide shrink-0",
+                          "text-[11px] font-medium uppercase tracking-wide shrink-0",
                           event.impact === "high" ? "text-red-400" : event.impact === "medium" ? "text-amber-400" : "text-emerald-400",
                         )}
                       >
@@ -1626,9 +1626,9 @@ export default function NewsPage() {
                       key={i}
                       className="rounded-md border border-primary/30 bg-primary/5 px-4 py-3 text-center"
                     >
-                      <p className="text-xs font-bold text-primary">{event.date}</p>
+                      <p className="text-xs font-medium text-primary">{event.date}</p>
                       <p className="text-xs text-muted-foreground mt-0.5">FOMC Meeting</p>
-                      <span className="mt-1 inline-block text-[11px] font-bold uppercase text-red-400">HIGH</span>
+                      <span className="mt-1 inline-block text-[11px] font-medium uppercase text-red-400">HIGH</span>
                     </div>
                   ))}
                 </div>
@@ -1650,7 +1650,7 @@ export default function NewsPage() {
                       className="rounded-md border border-border/50 bg-muted/30 px-3 py-2"
                     >
                       <p className="text-xs text-muted-foreground">{event.date}</p>
-                      <p className="text-xs font-semibold leading-snug mt-0.5">{event.event}</p>
+                      <p className="text-xs font-medium leading-snug mt-0.5">{event.event}</p>
                       <ImpactDot impact={event.impact} />
                     </div>
                   ))}
@@ -1670,7 +1670,7 @@ export default function NewsPage() {
                       key={i}
                       className="rounded-md border border-amber-500/30 bg-amber-500/5 px-4 py-3"
                     >
-                      <p className="text-xs font-bold text-amber-400">{event.date}</p>
+                      <p className="text-xs font-medium text-amber-400">{event.date}</p>
                       <p className="text-xs text-muted-foreground mt-0.5">{event.event}</p>
                     </div>
                   ))}

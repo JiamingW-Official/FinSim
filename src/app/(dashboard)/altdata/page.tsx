@@ -1033,7 +1033,7 @@ function BuildingEdgeTab() {
             >
               <div className="flex items-center justify-between px-3 py-2">
                 <div className="flex items-center gap-2">
-                  <span className="w-5 h-5 rounded-full bg-indigo-500/20 text-indigo-400 text-xs flex items-center justify-center font-bold">
+                  <span className="w-5 h-5 rounded-full bg-indigo-500/20 text-indigo-400 text-xs flex items-center justify-center font-medium">
                     {i + 1}
                   </span>
                   <span className="text-sm text-foreground">{stage.stage}</span>
@@ -1126,7 +1126,7 @@ function BuildingEdgeTab() {
             {icMetrics.map((m, i) => (
               <div key={`icm-${i}`} className="bg-muted/50 rounded-lg p-3">
                 <div className="text-xs text-muted-foreground mb-1">{m.metric}</div>
-                <div className="text-sm font-bold text-primary">{m.value}</div>
+                <div className="text-sm font-medium text-primary">{m.value}</div>
                 <div className="text-xs text-muted-foreground mt-1">{m.label}</div>
               </div>
             ))}
@@ -1166,18 +1166,19 @@ export default function AltDataPage() {
   return (
     <div className="min-h-screen bg-background text-foreground p-4 md:p-6">
       <div className="max-w-4xl mx-auto space-y-6">
-        {/* Header */}
+        {/* HERO Header */}
         <motion.div
           initial={{ opacity: 0, y: -12 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.3 }}
+          className="border-l-4 border-l-primary rounded-xl bg-card p-6"
         >
           <div className="flex items-start gap-3">
             <div className="p-2 rounded-lg bg-indigo-500/20">
               <Database className="w-6 h-6 text-indigo-400" />
             </div>
             <div>
-              <h1 className="text-xl font-bold text-foreground">Alternative Data in Investing</h1>
+              <h1 className="text-xl font-semibold text-foreground">Alternative Data in Investing</h1>
               <p className="text-sm text-muted-foreground mt-0.5">
                 Satellite imagery, credit card transactions, NLP on filings, geolocation, and the
                 full alt data ecosystem.
@@ -1190,11 +1191,12 @@ export default function AltDataPage() {
                 key={`chip-${i}`}
                 className={cn("px-3 py-1 rounded-full text-xs font-medium", chip.color)}
               >
-                {chip.label}: <span className="font-bold">{chip.value}</span>
+                {chip.label}: <span className="font-medium">{chip.value}</span>
               </div>
             ))}
           </div>
         </motion.div>
+        <div className="mt-8" />
 
         {/* Tabs */}
         <Tabs defaultValue="categories">

@@ -1251,14 +1251,14 @@ export default function OptionsJournalPage() {
   return (
     <div className="flex flex-col h-full min-h-0 overflow-y-auto bg-background">
       {/* Header */}
-      <div className="border-b border-border px-6 py-4 flex-shrink-0">
+      <div className="border-b border-border border-l-4 border-l-primary px-6 py-6 flex-shrink-0">
         <div className="flex items-center justify-between flex-wrap gap-3">
           <div className="flex items-center gap-3">
             <div className="p-2 bg-primary/10 rounded-lg">
               <BookOpen className="w-5 h-5 text-primary" />
             </div>
             <div>
-              <h1 className="text-lg font-semibold text-foreground">Options Journal</h1>
+              <h1 className="text-xl font-semibold text-foreground">Options Journal</h1>
               <p className="text-xs text-muted-foreground">Performance tracker & trade analysis</p>
             </div>
           </div>
@@ -1273,13 +1273,13 @@ export default function OptionsJournalPage() {
             </div>
             <div className="text-right">
               <div className="text-xs text-muted-foreground">Win Rate</div>
-              <div className={`font-bold ${winRate >= 50 ? "text-emerald-400" : "text-red-400"}`}>
+              <div className={`font-medium ${winRate >= 50 ? "text-emerald-400" : "text-red-400"}`}>
                 {winRate}%
               </div>
             </div>
             <div className="text-right">
               <div className="text-xs text-muted-foreground">Trades</div>
-              <div className="font-bold text-foreground">{TRADES.length}</div>
+              <div className="font-medium text-foreground">{TRADES.length}</div>
             </div>
           </div>
         </div>

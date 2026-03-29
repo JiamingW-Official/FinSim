@@ -357,7 +357,7 @@ function DirectionBadge({ direction }: { direction: "long" | "short" }) {
       </span>
     );
   return (
-    <span className="inline-flex items-center gap-0.5 rounded border border-red-500/40 bg-red-500/15 px-1.5 py-0.5 text-[11px] font-bold text-red-400 leading-none uppercase">
+    <span className="inline-flex items-center gap-0.5 rounded border border-red-500/40 bg-red-500/15 px-1.5 py-0.5 text-[11px] font-medium text-red-400 leading-none uppercase">
       <TrendingDown className="h-2.5 w-2.5" />
       Short
     </span>
@@ -373,7 +373,7 @@ function ConsensusBadge({ consensus }: { consensus: AnalystRating["consensus"] }
     "Strong Sell": "border-rose-500/40 bg-rose-500/15 text-rose-400",
   };
   return (
-    <span className={cn("rounded border px-1.5 py-0.5 text-[11px] font-bold leading-none", styles[consensus])}>
+    <span className={cn("rounded border px-1.5 py-0.5 text-[11px] font-medium leading-none", styles[consensus])}>
       {consensus}
     </span>
   );
@@ -390,7 +390,7 @@ function SentimentBar({ score }: { score: number }) {
           style={{ width: `${normalized}%` }}
         />
       </div>
-      <span className={cn("text-[11px] font-bold w-6 text-right", score > 20 ? "text-emerald-400" : score < -20 ? "text-red-400" : "text-amber-400")}>
+      <span className={cn("text-[11px] font-medium w-6 text-right", score > 20 ? "text-emerald-400" : score < -20 ? "text-red-400" : "text-amber-400")}>
         {score > 0 ? "+" : ""}{score}
       </span>
     </div>
@@ -507,7 +507,7 @@ function TradeIdeasTab() {
                     <div className="flex items-center gap-1.5 flex-wrap">
                       <span className="text-xs font-semibold text-foreground truncate">{trade.trader}</span>
                       <DirectionBadge direction={trade.direction} />
-                      <span className="text-xs font-bold text-foreground">{trade.ticker}</span>
+                      <span className="text-xs font-medium text-foreground">{trade.ticker}</span>
                     </div>
                     <div className="text-[11px] text-muted-foreground/50">{trade.setupName} · {ageLabel}</div>
                   </div>
@@ -516,18 +516,18 @@ function TradeIdeasTab() {
                 {/* Price row */}
                 <div className="grid grid-cols-3 gap-2 text-[11px]">
                   <div>
-                    <div className="text-muted-foreground/50 uppercase text-[7px] font-bold tracking-wide mb-0.5">Entry</div>
-                    <div className="font-mono font-bold text-foreground">${trade.entry.toFixed(2)}</div>
+                    <div className="text-muted-foreground/50 uppercase text-[7px] font-medium tracking-wide mb-0.5">Entry</div>
+                    <div className="font-mono font-medium text-foreground">${trade.entry.toFixed(2)}</div>
                   </div>
                   <div>
-                    <div className="text-muted-foreground/50 uppercase text-[7px] font-bold tracking-wide mb-0.5">Target</div>
-                    <div className={cn("font-mono font-bold", trade.direction === "long" ? "text-emerald-400" : "text-red-400")}>
+                    <div className="text-muted-foreground/50 uppercase text-[7px] font-medium tracking-wide mb-0.5">Target</div>
+                    <div className={cn("font-mono font-medium", trade.direction === "long" ? "text-emerald-400" : "text-red-400")}>
                       ${trade.target.toFixed(2)}
                     </div>
                   </div>
                   <div>
-                    <div className="text-muted-foreground/50 uppercase text-[7px] font-bold tracking-wide mb-0.5">Upside</div>
-                    <div className={cn("font-mono font-bold", upsideAbs >= 4 ? "text-emerald-400" : "text-amber-400")}>
+                    <div className="text-muted-foreground/50 uppercase text-[7px] font-medium tracking-wide mb-0.5">Upside</div>
+                    <div className={cn("font-mono font-medium", upsideAbs >= 4 ? "text-emerald-400" : "text-amber-400")}>
                       {upside > 0 ? "+" : ""}{upside.toFixed(1)}%
                     </div>
                   </div>
@@ -539,7 +539,7 @@ function TradeIdeasTab() {
                     type="button"
                     onClick={() => toggleLike(trade.id)}
                     className={cn(
-                      "flex items-center gap-1 rounded border px-2 py-1 text-[11px] font-bold leading-none transition-all",
+                      "flex items-center gap-1 rounded border px-2 py-1 text-[11px] font-medium leading-none transition-all",
                       isLiked
                         ? "border-rose-500/40 bg-rose-500/15 text-rose-400"
                         : "border-border bg-muted text-muted-foreground hover:text-rose-400 hover:border-rose-500/30",
@@ -552,7 +552,7 @@ function TradeIdeasTab() {
                     type="button"
                     onClick={() => handleCopyTrade(trade)}
                     className={cn(
-                      "flex items-center gap-1 rounded border px-2 py-1 text-[11px] font-bold leading-none transition-all",
+                      "flex items-center gap-1 rounded border px-2 py-1 text-[11px] font-medium leading-none transition-all",
                       isCopied
                         ? "border-emerald-500/40 bg-emerald-500/15 text-emerald-400"
                         : "border-border bg-muted text-muted-foreground hover:text-foreground hover:bg-accent",
@@ -573,7 +573,7 @@ function TradeIdeasTab() {
                       });
                     }}
                     className={cn(
-                      "ml-auto flex items-center gap-1 rounded border px-2 py-1 text-[11px] font-bold leading-none transition-all",
+                      "ml-auto flex items-center gap-1 rounded border px-2 py-1 text-[11px] font-medium leading-none transition-all",
                       followedTraders.has(trade.trader)
                         ? "border-primary/40 bg-primary/15 text-primary"
                         : "border-border bg-muted text-muted-foreground hover:text-foreground hover:bg-accent",
@@ -623,11 +623,11 @@ function AnalystRatingsTab() {
           >
             {/* Row 1 */}
             <div className="flex items-center gap-2 flex-wrap">
-              <span className="text-sm font-bold text-foreground w-12 shrink-0">{r.ticker}</span>
+              <span className="text-sm font-medium text-foreground w-12 shrink-0">{r.ticker}</span>
               <ConsensusBadge consensus={r.consensus} />
               <span className="text-[11px] text-muted-foreground/60">{r.analysts} analysts</span>
               <div className={cn(
-                "ml-auto flex items-center gap-0.5 rounded border px-1.5 py-0.5 text-[11px] font-bold",
+                "ml-auto flex items-center gap-0.5 rounded border px-1.5 py-0.5 text-[11px] font-medium",
                 isUp ? "border-emerald-500/40 bg-emerald-500/10 text-emerald-400" : "border-red-500/40 bg-red-500/10 text-red-400",
               )}>
                 {isUp ? <ArrowUpRight className="h-2.5 w-2.5" /> : <ArrowDownRight className="h-2.5 w-2.5" />}
@@ -639,11 +639,11 @@ function AnalystRatingsTab() {
             <div className="flex items-center gap-4 text-xs">
               <div>
                 <span className="text-muted-foreground/50 mr-1">Current</span>
-                <span className="font-mono font-bold text-foreground">${r.currentPrice.toFixed(2)}</span>
+                <span className="font-mono font-medium text-foreground">${r.currentPrice.toFixed(2)}</span>
               </div>
               <div>
                 <span className="text-muted-foreground/50 mr-1">Target</span>
-                <span className={cn("font-mono font-bold", isUp ? "text-emerald-400" : "text-red-400")}>${r.priceTarget.toFixed(2)}</span>
+                <span className={cn("font-mono font-medium", isUp ? "text-emerald-400" : "text-red-400")}>${r.priceTarget.toFixed(2)}</span>
               </div>
             </div>
 
@@ -688,7 +688,7 @@ function TrendingTab() {
       <section className="space-y-2">
         <div className="flex items-center gap-1.5 mb-1">
           <Flame className="h-3.5 w-3.5 text-orange-400" />
-          <h3 className="text-xs font-bold text-foreground">Trending Topics</h3>
+          <h3 className="text-xs font-medium text-foreground">Trending Topics</h3>
         </div>
         {topics.map((t, i) => (
           <motion.div
@@ -702,7 +702,7 @@ function TrendingTab() {
               <div className="flex-1 min-w-0">
                 <div className="flex items-center gap-1.5 flex-wrap">
                   {t.ticker && (
-                    <span className="text-[11px] font-bold text-primary bg-primary/10 rounded px-1 py-0.5">{t.ticker}</span>
+                    <span className="text-[11px] font-medium text-primary bg-primary/10 rounded px-1 py-0.5">{t.ticker}</span>
                   )}
                   <span className="text-xs font-medium text-foreground">{t.topic}</span>
                 </div>
@@ -713,7 +713,7 @@ function TrendingTab() {
                   </span>
                 </div>
               </div>
-              <div className="shrink-0 text-[11px] font-bold text-muted-foreground/40">
+              <div className="shrink-0 text-[11px] font-medium text-muted-foreground/40">
                 #{i + 1}
               </div>
             </div>
@@ -726,7 +726,7 @@ function TrendingTab() {
       <section className="space-y-2">
         <div className="flex items-center gap-1.5 mb-1">
           <BarChart2 className="h-3.5 w-3.5 text-primary" />
-          <h3 className="text-xs font-bold text-foreground">Volume Anomalies</h3>
+          <h3 className="text-xs font-medium text-foreground">Volume Anomalies</h3>
           <span className="text-[11px] text-muted-foreground/50">vs 30-day avg</span>
         </div>
         {anomalies.map((a, i) => (
@@ -738,12 +738,12 @@ function TrendingTab() {
             className="rounded-lg border border-border/50 bg-card p-2.5"
           >
             <div className="flex items-center gap-2">
-              <span className="text-xs font-bold text-foreground w-10 shrink-0">{a.ticker}</span>
+              <span className="text-xs font-medium text-foreground w-10 shrink-0">{a.ticker}</span>
               <div className="flex-1 min-w-0">
                 <div className="flex items-center justify-between text-[11px] mb-1">
                   <span className="text-muted-foreground/60">{formatVolume(a.volume)} / {formatVolume(a.avgVolume)} avg</span>
                   <span className={cn(
-                    "font-bold rounded px-1 py-0.5",
+                    "font-medium rounded px-1 py-0.5",
                     a.ratio >= 3 ? "text-rose-400 bg-rose-500/10" : a.ratio >= 2 ? "text-amber-400 bg-amber-500/10" : "text-primary bg-primary/10",
                   )}>
                     {a.ratio.toFixed(1)}x
@@ -760,7 +760,7 @@ function TrendingTab() {
                 </div>
               </div>
               <div className={cn(
-                "shrink-0 text-xs font-bold font-mono",
+                "shrink-0 text-xs font-medium font-mono",
                 a.priceChange >= 0 ? "text-emerald-400" : "text-red-400",
               )}>
                 {a.priceChange >= 0 ? "+" : ""}{a.priceChange.toFixed(1)}%
@@ -819,13 +819,13 @@ function TopTradersTab() {
             </div>
             <div className="flex-1 min-w-0">
               <div className="flex items-center gap-1.5">
-                <span className="text-xs font-bold text-foreground">{trader.username}</span>
+                <span className="text-xs font-medium text-foreground">{trader.username}</span>
                 <span className="text-[11px] text-muted-foreground/40">#{i + 1}</span>
               </div>
               <div className="text-[11px] text-muted-foreground/60 truncate">{trader.strategy}</div>
             </div>
             <div className={cn(
-              "shrink-0 text-sm font-bold font-mono",
+              "shrink-0 text-sm font-medium font-mono",
               trader.returnPct >= 0 ? "text-emerald-400" : "text-red-400",
             )}>
               +{trader.returnPct.toFixed(1)}%
@@ -835,18 +835,18 @@ function TopTradersTab() {
           {/* Stats row */}
           <div className="grid grid-cols-3 gap-2 text-[11px]">
             <div>
-              <div className="text-muted-foreground/50 uppercase text-[7px] font-bold tracking-wide mb-0.5">Win Rate</div>
-              <div className={cn("font-bold", trader.winRate >= 60 ? "text-emerald-400" : trader.winRate >= 45 ? "text-amber-400" : "text-red-400")}>
+              <div className="text-muted-foreground/50 uppercase text-[7px] font-medium tracking-wide mb-0.5">Win Rate</div>
+              <div className={cn("font-medium", trader.winRate >= 60 ? "text-emerald-400" : trader.winRate >= 45 ? "text-amber-400" : "text-red-400")}>
                 {trader.winRate.toFixed(1)}%
               </div>
             </div>
             <div>
-              <div className="text-muted-foreground/50 uppercase text-[7px] font-bold tracking-wide mb-0.5">Trades</div>
-              <div className="font-bold text-foreground">{trader.trades}</div>
+              <div className="text-muted-foreground/50 uppercase text-[7px] font-medium tracking-wide mb-0.5">Trades</div>
+              <div className="font-medium text-foreground">{trader.trades}</div>
             </div>
             <div>
-              <div className="text-muted-foreground/50 uppercase text-[7px] font-bold tracking-wide mb-0.5">This Month</div>
-              <div className="font-bold text-emerald-400">+{trader.returnPct.toFixed(1)}%</div>
+              <div className="text-muted-foreground/50 uppercase text-[7px] font-medium tracking-wide mb-0.5">This Month</div>
+              <div className="font-medium text-emerald-400">+{trader.returnPct.toFixed(1)}%</div>
             </div>
           </div>
 
@@ -855,7 +855,7 @@ function TopTradersTab() {
             <button
               type="button"
               onClick={() => setProfileTrader(trader)}
-              className="flex items-center gap-1 rounded border border-border bg-muted px-2 py-1 text-[11px] font-bold text-muted-foreground leading-none hover:text-foreground hover:bg-accent transition-all"
+              className="flex items-center gap-1 rounded border border-border bg-muted px-2 py-1 text-[11px] font-medium text-muted-foreground leading-none hover:text-foreground hover:bg-accent transition-all"
             >
               <Star className="h-2.5 w-2.5" />
               View Profile
@@ -864,7 +864,7 @@ function TopTradersTab() {
               type="button"
               onClick={() => toggleFollow(trader.id)}
               className={cn(
-                "flex items-center gap-1 rounded border px-2 py-1 text-[11px] font-bold leading-none transition-all ml-auto",
+                "flex items-center gap-1 rounded border px-2 py-1 text-[11px] font-medium leading-none transition-all ml-auto",
                 followedTraders.has(trader.id)
                   ? "border-primary/40 bg-primary/15 text-primary"
                   : "border-border bg-muted text-muted-foreground hover:text-foreground hover:bg-accent",
@@ -899,7 +899,7 @@ function TopTradersTab() {
               <div className="flex items-center gap-3">
                 <Avatar initials={profileTrader.initials} colorClass={profileTrader.avatarColor} size="lg" />
                 <div className="flex-1">
-                  <div className="text-sm font-bold text-foreground">{profileTrader.username}</div>
+                  <div className="text-sm font-medium text-foreground">{profileTrader.username}</div>
                   <div className="text-xs text-muted-foreground/60 truncate">{profileTrader.strategy}</div>
                 </div>
                 <button
@@ -920,20 +920,20 @@ function TopTradersTab() {
                 ].map((s) => (
                   <div key={s.label} className="rounded-lg bg-muted/50 p-2 text-center">
                     <div className="text-[11px] text-muted-foreground/50 uppercase tracking-wide mb-1">{s.label}</div>
-                    <div className={cn("text-sm font-bold", s.color)}>{s.value}</div>
+                    <div className={cn("text-sm font-medium", s.color)}>{s.value}</div>
                   </div>
                 ))}
               </div>
 
               {/* Recent trades */}
               <div>
-                <div className="text-xs font-bold text-muted-foreground/60 uppercase tracking-wide mb-2">Recent Trades</div>
+                <div className="text-xs font-medium text-muted-foreground/60 uppercase tracking-wide mb-2">Recent Trades</div>
                 <div className="space-y-1">
                   {profileTrader.tradeHistory.map((t, idx) => (
                     <div key={idx} className="flex items-center justify-between text-xs py-1 border-b border-border/30 last:border-0">
-                      <span className="font-bold text-foreground">{t.ticker}</span>
+                      <span className="font-medium text-foreground">{t.ticker}</span>
                       <span className="text-muted-foreground/50">{t.date}</span>
-                      <span className={cn("font-mono font-bold", t.pnl >= 0 ? "text-emerald-400" : "text-red-400")}>
+                      <span className={cn("font-mono font-medium", t.pnl >= 0 ? "text-emerald-400" : "text-red-400")}>
                         {t.pnl >= 0 ? "+" : ""}{t.pnl.toFixed(1)}%
                       </span>
                     </div>
@@ -953,12 +953,12 @@ function TopTradersTab() {
 export default function CommunityPage() {
   return (
     <div className="flex flex-col h-full min-h-0">
-      {/* Page header */}
-      <div className="shrink-0 border-b border-border/50 px-6 py-4">
+      {/* HERO header */}
+      <div className="shrink-0 border-b border-border/50 border-l-4 border-l-primary px-6 py-4">
         <div className="flex items-center gap-2">
           <Users className="h-5 w-5 text-primary" />
           <div>
-            <h1 className="text-lg font-bold text-foreground leading-none">Community</h1>
+            <h1 className="text-lg font-semibold text-foreground leading-none">Community</h1>
             <p className="text-xs text-muted-foreground/60 mt-0.5">
               Trade ideas, analyst ratings, trending tickers, and top traders
             </p>

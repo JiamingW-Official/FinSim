@@ -422,7 +422,7 @@ function AMMTab() {
                 },
               ].map((f) => (
                 <div key={f.title} className={`rounded-lg border p-4 ${f.color}`}>
-                  <p className="text-xs font-semibold text-foreground mb-2">{f.title}</p>
+                  <p className="text-xs font-medium text-foreground mb-2">{f.title}</p>
                   <code className="text-sm font-mono text-primary block mb-2 break-all">{f.formula}</code>
                   <p className="text-xs text-muted-foreground leading-relaxed">{f.note}</p>
                 </div>
@@ -506,7 +506,7 @@ function LendingTab() {
         <div>
           <Card className="bg-card border-border">
             <CardHeader className="pb-2">
-              <CardTitle className="text-sm font-semibold flex items-center gap-2">
+              <CardTitle className="text-sm font-medium flex items-center gap-2">
                 <Activity className="w-4 h-4 text-primary" />
                 Utilization Rate vs Interest Rate
               </CardTitle>
@@ -589,7 +589,7 @@ function LendingTab() {
         <div>
           <Card className="bg-card border-border h-full">
             <CardHeader className="pb-2">
-              <CardTitle className="text-sm font-semibold flex items-center gap-2">
+              <CardTitle className="text-sm font-medium flex items-center gap-2">
                 <Lock className="w-4 h-4 text-primary" />
                 Collateral Ratio & Health Factor
               </CardTitle>
@@ -652,7 +652,7 @@ function LendingTab() {
       <div>
         <Card className="bg-card border-border">
           <CardHeader className="pb-2">
-            <CardTitle className="text-sm font-semibold flex items-center gap-2">
+            <CardTitle className="text-sm font-medium flex items-center gap-2">
               <BarChart3 className="w-4 h-4 text-primary" />
               Lending Protocol Comparison
             </CardTitle>
@@ -684,7 +684,7 @@ function LendingTab() {
               ].map((p) => (
                 <div key={p.name} className={`rounded-lg border p-4 ${p.color}`}>
                   <div className="flex items-center justify-between mb-3">
-                    <p className="text-sm font-semibold">{p.name}</p>
+                    <p className="text-sm font-medium">{p.name}</p>
                     <span className={`text-xs px-2 py-0.5 rounded-full ${p.badgeColor}`}>{p.badge}</span>
                   </div>
                   <ul className="space-y-1">
@@ -762,7 +762,7 @@ function YieldTab() {
           <Card key={c.label} className="bg-card border-border">
             <CardContent className="pt-4 pb-3">
               <p className="text-xs text-muted-foreground">{c.label}</p>
-              <p className="text-lg font-bold text-foreground mt-0.5">{c.value}</p>
+              <p className="text-lg font-medium text-foreground mt-0.5">{c.value}</p>
               <p className="text-xs text-muted-foreground mt-0.5">{c.sub}</p>
             </CardContent>
           </Card>
@@ -774,7 +774,7 @@ function YieldTab() {
         <div>
           <Card className="bg-card border-border">
             <CardHeader className="pb-2">
-              <CardTitle className="text-sm font-semibold flex items-center gap-2">
+              <CardTitle className="text-sm font-medium flex items-center gap-2">
                 <TrendingUp className="w-4 h-4 text-primary" />
                 APR vs APY — 5-Year Growth
               </CardTitle>
@@ -834,11 +834,11 @@ function YieldTab() {
               <CardContent className="pt-4 pb-4">
                 <div className="flex items-start justify-between mb-2">
                   <div>
-                    <p className="text-sm font-semibold">{vs.name}</p>
+                    <p className="text-sm font-medium">{vs.name}</p>
                     <p className="text-xs text-muted-foreground">{vs.protocol}</p>
                   </div>
                   <div className="text-right">
-                    <p className="text-lg font-bold text-emerald-400">{fmtPct(vs.apy)} APY</p>
+                    <p className="text-lg font-medium text-emerald-400">{fmtPct(vs.apy)} APY</p>
                     <Badge variant="outline" className={`text-xs ${vs.risk === "Low" ? "border-emerald-500/40 text-emerald-400" : vs.risk === "Medium" ? "border-amber-500/40 text-amber-400" : "border-red-500/40 text-red-400"}`}>
                       {vs.risk} Risk
                     </Badge>
@@ -864,7 +864,7 @@ function YieldTab() {
       <div>
         <Card className="bg-card border-border">
           <CardHeader className="pb-2">
-            <CardTitle className="text-sm font-semibold flex items-center gap-2">
+            <CardTitle className="text-sm font-medium flex items-center gap-2">
               <RefreshCw className="w-4 h-4 text-primary" />
               Auto-Compounding Formula
             </CardTitle>
@@ -888,13 +888,13 @@ function YieldTab() {
                   ].map((row) => (
                     <div key={row.n} className="text-center rounded-md border border-border p-2">
                       <p className="text-xs text-muted-foreground">{row.n}</p>
-                      <p className="text-sm font-bold text-emerald-400">{fmtPct(row.result, 2)}</p>
+                      <p className="text-sm font-medium text-emerald-400">{fmtPct(row.result, 2)}</p>
                     </div>
                   ))}
                 </div>
               </div>
               <div className="space-y-2">
-                <p className="text-xs font-semibold text-muted-foreground mb-3">Harvest Gas Cost Breakeven</p>
+                <p className="text-xs font-medium text-muted-foreground mb-3">Harvest Gas Cost Breakeven</p>
                 {[
                   { position: "$1,000", freq: "Weekly", gasCost: "$12", breakevenApr: "62%" },
                   { position: "$10,000", freq: "Daily", gasCost: "$5", breakevenApr: "18%" },
@@ -976,7 +976,7 @@ function LiquidityMiningTab() {
           <Card key={c.label} className="bg-card border-border">
             <CardContent className="pt-4 pb-3">
               <p className="text-xs text-muted-foreground">{c.label}</p>
-              <p className="text-lg font-bold text-foreground mt-0.5">{c.value}</p>
+              <p className="text-lg font-medium text-foreground mt-0.5">{c.value}</p>
               <p className="text-xs text-muted-foreground mt-0.5">{c.sub}</p>
             </CardContent>
           </Card>
@@ -988,7 +988,7 @@ function LiquidityMiningTab() {
         <div>
           <Card className="bg-card border-border">
             <CardHeader className="pb-2">
-              <CardTitle className="text-sm font-semibold flex items-center gap-2">
+              <CardTitle className="text-sm font-medium flex items-center gap-2">
                 <Calculator className="w-4 h-4 text-primary" />
                 Impermanent Loss Curve
               </CardTitle>
@@ -1047,7 +1047,7 @@ function LiquidityMiningTab() {
         <div>
           <Card className="bg-card border-border">
             <CardHeader className="pb-2">
-              <CardTitle className="text-sm font-semibold flex items-center gap-2">
+              <CardTitle className="text-sm font-medium flex items-center gap-2">
                 <Zap className="w-4 h-4 text-primary" />
                 Token Emissions Schedule (52 Weeks)
               </CardTitle>
@@ -1106,7 +1106,7 @@ function LiquidityMiningTab() {
       <div>
         <Card className="bg-card border-border">
           <CardHeader className="pb-2">
-            <CardTitle className="text-sm font-semibold flex items-center gap-2">
+            <CardTitle className="text-sm font-medium flex items-center gap-2">
               <Layers className="w-4 h-4 text-primary" />
               Liquidity Bootstrapping Mechanisms
             </CardTitle>
@@ -1137,7 +1137,7 @@ function LiquidityMiningTab() {
                 },
               ].map((m) => (
                 <div key={m.name} className={`rounded-lg border p-4 ${m.color}`}>
-                  <p className="text-sm font-semibold mb-2">{m.name}</p>
+                  <p className="text-sm font-medium mb-2">{m.name}</p>
                   <p className="text-xs text-muted-foreground leading-relaxed mb-3">{m.desc}</p>
                   <div className="space-y-1">
                     <p className="text-xs text-emerald-400 flex items-start gap-1"><CheckCircle className="w-3 h-3 mt-0.5 flex-shrink-0" />{m.pro}</p>
@@ -1173,7 +1173,7 @@ function RiskTab() {
           <Card key={c.label} className="bg-card border-border">
             <CardContent className="pt-4 pb-3">
               <p className="text-xs text-muted-foreground">{c.label}</p>
-              <p className="text-lg font-bold text-foreground mt-0.5">{c.value}</p>
+              <p className="text-lg font-medium text-foreground mt-0.5">{c.value}</p>
               <p className="text-xs text-muted-foreground mt-0.5">{c.sub}</p>
             </CardContent>
           </Card>
@@ -1184,7 +1184,7 @@ function RiskTab() {
       <div>
         <Card className="bg-card border-border">
           <CardHeader className="pb-2">
-            <CardTitle className="text-sm font-semibold flex items-center gap-2">
+            <CardTitle className="text-sm font-medium flex items-center gap-2">
               <AlertTriangle className="w-4 h-4 text-primary" />
               DeFi Risk Factor Analysis
             </CardTitle>
@@ -1235,7 +1235,7 @@ function RiskTab() {
       <div>
         <Card className="bg-card border-border">
           <CardHeader className="pb-2">
-            <CardTitle className="text-sm font-semibold flex items-center gap-2">
+            <CardTitle className="text-sm font-medium flex items-center gap-2">
               <Eye className="w-4 h-4 text-primary" />
               Protocol Risk Dashboard
             </CardTitle>
@@ -1268,11 +1268,11 @@ function RiskTab() {
                     </div>
                     <div className="text-center w-16 flex-shrink-0">
                       <p className="text-xs text-muted-foreground">Risk</p>
-                      <p className={`text-sm font-bold ${riskColor}`}>{p.riskScore}/100</p>
+                      <p className={`text-sm font-medium ${riskColor}`}>{p.riskScore}/100</p>
                     </div>
                     <div className="text-center w-12 flex-shrink-0">
                       <p className="text-xs text-muted-foreground">Audits</p>
-                      <p className="text-sm font-bold text-foreground">{p.audits}</p>
+                      <p className="text-sm font-medium text-foreground">{p.audits}</p>
                     </div>
                     <div className="flex-shrink-0">
                       {p.verified ? (
@@ -1293,7 +1293,7 @@ function RiskTab() {
       <div>
         <Card className="bg-card border-border">
           <CardHeader className="pb-2">
-            <CardTitle className="text-sm font-semibold flex items-center gap-2">
+            <CardTitle className="text-sm font-medium flex items-center gap-2">
               <GitBranch className="w-4 h-4 text-primary" />
               Protocol Safety Checklist
             </CardTitle>
@@ -1343,7 +1343,7 @@ function RiskTab() {
                 },
               ].map((section) => (
                 <div key={section.category}>
-                  <p className="text-xs font-semibold text-muted-foreground mb-2">{section.category}</p>
+                  <p className="text-xs font-medium text-muted-foreground mb-2">{section.category}</p>
                   <div className="space-y-1.5">
                     {section.items.map((item) => (
                       <div key={item.label} className="flex items-center gap-2 text-xs">
@@ -1373,7 +1373,7 @@ export default function DeFiProtocolsPage() {
     <div className="flex flex-col h-full min-h-0 bg-background">
       {/* Header */}
       <div
-        className="flex-shrink-0 px-6 pt-6 pb-4 border-b border-border"
+        className="flex-shrink-0 px-6 pt-6 pb-4 border-b border-border border-l-4 border-l-primary"
       >
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-3">
@@ -1381,7 +1381,7 @@ export default function DeFiProtocolsPage() {
               <Cpu className="w-4 h-4 text-primary" />
             </div>
             <div>
-              <h1 className="text-lg font-semibold text-foreground">DeFi Protocols</h1>
+              <h1 className="text-lg font-medium text-foreground">DeFi Protocols</h1>
               <p className="text-xs text-muted-foreground">AMM mechanics, lending, yield optimization, liquidity mining & risk</p>
             </div>
           </div>
@@ -1399,7 +1399,7 @@ export default function DeFiProtocolsPage() {
       </div>
 
       {/* Tabs */}
-      <div className="flex-1 min-h-0 overflow-y-auto">
+      <div className="flex-1 min-h-0 overflow-y-auto mt-8">
         <Tabs defaultValue="amm" className="h-full flex flex-col">
           <div className="flex-shrink-0 px-6 pt-4 pb-0">
             <TabsList className="grid grid-cols-5 w-full">

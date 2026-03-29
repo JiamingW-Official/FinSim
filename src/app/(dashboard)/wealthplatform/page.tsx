@@ -1113,9 +1113,9 @@ export default function WealthPlatformPage() {
   return (
     <div className="min-h-screen bg-background text-foreground p-4 md:p-6 space-y-6">
       {/* Header */}
-      <div className="flex items-center justify-between">
+      <div className="flex items-center justify-between border-l-4 border-l-primary p-6 rounded-lg bg-card/40">
         <div>
-          <h1 className="text-2xl font-semibold tracking-tight">
+          <h1 className="text-xl font-semibold tracking-tight">
             Wealth Management Platform
           </h1>
           <p className="text-sm text-muted-foreground mt-0.5">
@@ -1409,7 +1409,7 @@ export default function WealthPlatformPage() {
                       <div className="text-sm font-medium text-foreground">{trade.ticker}</div>
                       <div className="text-xs text-muted-foreground">{trade.reason}</div>
                     </div>
-                    <div className="text-sm font-semibold text-foreground">
+                    <div className="text-sm font-medium text-foreground">
                       {fmtK(trade.amount)}
                     </div>
                   </div>
@@ -1486,7 +1486,7 @@ export default function WealthPlatformPage() {
                         )}>
                           {selected && <CheckCircle className="w-3 h-3 text-foreground" />}
                         </div>
-                        <span className="text-sm font-semibold text-foreground w-12">{pos.ticker}</span>
+                        <span className="text-sm font-medium text-foreground w-12">{pos.ticker}</span>
                         <Badge variant="outline" className="text-xs border-border text-muted-foreground px-1.5">
                           {pos.sector}
                         </Badge>
@@ -1504,7 +1504,7 @@ export default function WealthPlatformPage() {
                 })}
                 <div className="pt-2 border-t border-border flex items-center justify-between">
                   <span className="text-xs text-muted-foreground">Total tax savings selected</span>
-                  <span className="text-sm font-bold text-emerald-400">{fmtK(totalHarvestSaving)}</span>
+                  <span className="text-sm font-medium text-emerald-400">{fmtK(totalHarvestSaving)}</span>
                 </div>
               </CardContent>
             </Card>
@@ -1542,14 +1542,14 @@ export default function WealthPlatformPage() {
                   <div className="grid grid-cols-2 gap-2">
                     <div className="p-2 rounded-lg bg-muted/60 text-center">
                       <div className="text-xs text-muted-foreground">Tax Due Now</div>
-                      <div className="text-sm font-bold text-red-400">
+                      <div className="text-sm font-medium text-red-400">
                         {fmtK(rothConversionTax.currentTax)}
                       </div>
                       <div className="text-xs text-muted-foreground">24% marginal</div>
                     </div>
                     <div className="p-2 rounded-lg bg-muted/60 text-center">
                       <div className="text-xs text-muted-foreground">Est. Lifetime Saving</div>
-                      <div className="text-sm font-bold text-emerald-400">
+                      <div className="text-sm font-medium text-emerald-400">
                         {fmtK(rothConversionTax.projectedSaving)}
                       </div>
                       <div className="text-xs text-muted-foreground">vs 35% future rate</div>
@@ -1638,7 +1638,7 @@ export default function WealthPlatformPage() {
                 ].map((stat) => (
                   <div key={stat.label} className="p-3 rounded-lg bg-muted/60 text-center">
                     <div className="text-xs text-muted-foreground">{stat.label}</div>
-                    <div className={cn("text-lg font-bold mt-0.5", stat.color)}>{stat.value}</div>
+                    <div className={cn("text-lg font-medium mt-0.5", stat.color)}>{stat.value}</div>
                   </div>
                 ))}
               </div>
@@ -1671,7 +1671,7 @@ export default function WealthPlatformPage() {
                       {HOLDINGS.map((h) => (
                         <tr key={h.ticker} className="hover:bg-muted/30 transition-colors">
                           <td className="py-1.5">
-                            <div className="font-semibold text-foreground">{h.ticker}</div>
+                            <div className="font-medium text-foreground">{h.ticker}</div>
                             <div className="text-xs text-muted-foreground truncate max-w-[100px]">{h.name}</div>
                           </td>
                           <td className="text-right text-muted-foreground py-1.5">{fmtK(h.value)}</td>
@@ -1689,7 +1689,7 @@ export default function WealthPlatformPage() {
                       ))}
                     </tbody>
                     <tfoot>
-                      <tr className="border-t border-border text-muted-foreground font-semibold">
+                      <tr className="border-t border-border text-muted-foreground font-medium">
                         <td className="pt-2">Total</td>
                         <td className="text-right pt-2">{fmtK(totalPortValue)}</td>
                         <td className="text-right pt-2">100%</td>
@@ -1749,7 +1749,7 @@ export default function WealthPlatformPage() {
                         className="p-3 rounded-lg bg-muted/60 border border-border/50"
                       >
                         <div className="text-xs text-muted-foreground mb-0.5">{m.label}</div>
-                        <div className={cn("text-xl font-bold", m.color)}>{m.value}</div>
+                        <div className={cn("text-xl font-medium", m.color)}>{m.value}</div>
                         <div className="text-xs text-muted-foreground mb-1.5">{m.desc}</div>
                         <Progress value={m.bar} className="h-1" />
                       </div>

@@ -392,7 +392,7 @@ function SpinoffMechanicsTab() {
                       </div>
                       {/* Cons */}
                       <div className="rounded-lg border border-red-500/20 bg-red-500/5 p-3">
-                        <div className="text-xs font-semibold text-red-400 uppercase tracking-wide mb-2">Disadvantages</div>
+                        <div className="text-xs font-medium text-red-400 uppercase tracking-wide mb-2">Disadvantages</div>
                         <ul className="space-y-1.5">
                           {tx.cons.map((c, i) => (
                             <li key={i} className="flex items-start gap-2 text-xs text-foreground/70">
@@ -425,7 +425,7 @@ function SpinoffMechanicsTab() {
 
       {/* Section 355 Requirements */}
       <div className="rounded-xl border border-border bg-foreground/5 p-5">
-        <h3 className="text-sm font-semibold text-foreground mb-1 flex items-center gap-2">
+        <h3 className="text-sm font-medium text-foreground mb-1 flex items-center gap-2">
           <CheckCircle2 className="w-4 h-4 text-emerald-400" />
           IRC Section 355 — Tax-Free Spinoff Requirements
         </h3>
@@ -437,7 +437,7 @@ function SpinoffMechanicsTab() {
                 {i + 1}
               </div>
               <div>
-                <div className="text-xs font-semibold text-foreground/80">{r.req}</div>
+                <div className="text-xs font-medium text-foreground/80">{r.req}</div>
                 <div className="text-xs text-foreground/50">{r.desc}</div>
               </div>
             </div>
@@ -447,13 +447,13 @@ function SpinoffMechanicsTab() {
 
       {/* Why Companies Spin Off */}
       <div className="rounded-xl border border-border bg-foreground/5 p-5">
-        <h3 className="text-sm font-semibold text-foreground mb-3">Why Companies Spin Off Units</h3>
+        <h3 className="text-sm font-medium text-foreground mb-3">Why Companies Spin Off Units</h3>
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
           {spinoffReasons.map((r, i) => (
             <div key={i} className="flex items-start gap-3 p-3 rounded-lg bg-foreground/5 border border-border/50">
               <div className="mt-0.5 shrink-0">{r.icon}</div>
               <div>
-                <div className="text-xs font-semibold text-foreground/90 mb-0.5">{r.title}</div>
+                <div className="text-xs font-medium text-foreground/90 mb-0.5">{r.title}</div>
                 <div className="text-xs text-foreground/50">{r.desc}</div>
               </div>
             </div>
@@ -561,7 +561,7 @@ function ShareholderDistributionSVG() {
   ];
   return (
     <div className="rounded-xl border border-border bg-foreground/5 p-5">
-      <h3 className="text-sm font-semibold text-foreground mb-3 flex items-center gap-2">
+      <h3 className="text-sm font-medium text-foreground mb-3 flex items-center gap-2">
         <Info className="w-4 h-4 text-primary" />
         Shareholder Distribution Timeline
       </h3>
@@ -615,7 +615,7 @@ function SOTPTab() {
   return (
     <div className="space-y-5">
       <div className="rounded-xl border border-border bg-foreground/5 p-5">
-        <h2 className="text-lg font-semibold text-foreground mb-1">Sum-of-Parts (SOTP) Calculator</h2>
+        <h2 className="text-lg font-medium text-foreground mb-1">Sum-of-Parts (SOTP) Calculator</h2>
         <p className="text-sm text-foreground/50">
           Value each business unit independently using EV/EBITDA multiples. Compare to conglomerate market cap.
         </p>
@@ -632,7 +632,7 @@ function SOTPTab() {
               <div className="flex items-center justify-between">
                 <div className="flex items-center gap-2">
                   <div className="w-2.5 h-2.5 rounded-full" style={{ backgroundColor: colors[i] }} />
-                  <span className="text-sm font-semibold text-foreground">{seg.name}</span>
+                  <span className="text-sm font-medium text-foreground">{seg.name}</span>
                   <span className="text-xs text-foreground/40">{revShare.toFixed(0)}% of revenue</span>
                 </div>
                 <div className="text-right">
@@ -691,7 +691,7 @@ function SOTPTab() {
 
       {/* Corp Adjustments */}
       <div className="rounded-xl border border-border bg-foreground/5 p-4">
-        <h3 className="text-xs font-semibold text-foreground/60 uppercase tracking-wide mb-3">Corporate Adjustments</h3>
+        <h3 className="text-xs font-medium text-foreground/60 uppercase tracking-wide mb-3">Corporate Adjustments</h3>
         <div className="grid grid-cols-2 gap-4">
           <div>
             <label className="text-xs text-foreground/40 mb-1 block">Net Debt ($M)</label>
@@ -776,7 +776,7 @@ function SOTPSummaryChart({
 
   return (
     <div className="rounded-xl border border-border bg-foreground/5 p-5">
-      <h3 className="text-sm font-semibold text-foreground mb-3">Segment EV Breakdown</h3>
+      <h3 className="text-sm font-medium text-foreground mb-3">Segment EV Breakdown</h3>
       <svg viewBox={`0 0 ${W} ${H}`} className="w-full" style={{ height: H }}>
         {sotp.map((seg, i) => {
           const barW = ((seg.ev / maxEV) * (W - labelW - 100)) | 0;
@@ -801,15 +801,15 @@ function SOTPSummaryChart({
         </div>
         <div className="rounded-lg bg-red-500/10 border border-red-500/20 p-3 text-center">
           <div className="text-xs text-red-400 mb-1">Cong. Discount (15%)</div>
-          <div className="text-base font-bold text-red-400">−${(conglomerateDiscountEV / 1000).toFixed(1)}B</div>
+          <div className="text-base font-medium text-red-400">−${(conglomerateDiscountEV / 1000).toFixed(1)}B</div>
         </div>
         <div className="rounded-lg bg-foreground/5 p-3 text-center">
           <div className="text-xs text-foreground/40 mb-1">SOTP / Share</div>
-          <div className="text-base font-bold text-emerald-400">${sotpPerShare.toFixed(2)}</div>
+          <div className="text-base font-medium text-emerald-400">${sotpPerShare.toFixed(2)}</div>
         </div>
         <div className={cn("rounded-lg p-3 text-center border", upliftPct > 0 ? "bg-emerald-500/10 border-emerald-500/20" : "bg-red-500/10 border-red-500/20")}>
           <div className={cn("text-xs mb-1", upliftPct > 0 ? "text-emerald-400" : "text-red-400")}>Uplift Potential</div>
-          <div className={cn("text-base font-bold", upliftPct > 0 ? "text-emerald-400" : "text-red-400")}>
+          <div className={cn("text-base font-medium", upliftPct > 0 ? "text-emerald-400" : "text-red-400")}>
             {upliftPct > 0 ? "+" : ""}{upliftPct.toFixed(1)}%
           </div>
         </div>
@@ -834,7 +834,7 @@ function HoldingCoDiscountSVG({ totalSotpEV, conglomerateDiscountEV, netDebt, so
 
   return (
     <div className="rounded-xl border border-border bg-foreground/5 p-5">
-      <h3 className="text-sm font-semibold text-foreground mb-1">NAV vs Market Cap — Holding Company Analysis</h3>
+      <h3 className="text-sm font-medium text-foreground mb-1">NAV vs Market Cap — Holding Company Analysis</h3>
       <p className="text-xs text-foreground/40 mb-3">Conglomerates typically trade at 10–20% discount to intrinsic NAV.</p>
       <svg viewBox={`0 0 ${W} ${H}`} className="w-full" style={{ height: H }}>
         {/* NAV bar */}
@@ -884,7 +884,7 @@ function HistoricalPerformanceTab() {
   return (
     <div className="space-y-5">
       <div className="rounded-xl border border-border bg-foreground/5 p-5">
-        <h2 className="text-lg font-semibold text-foreground mb-1">Famous Spinoff Performance</h2>
+        <h2 className="text-lg font-medium text-foreground mb-1">Famous Spinoff Performance</h2>
         <p className="text-sm text-foreground/50">1-year and 3-year returns post-spinoff vs S&P 500. Data reflects historical records.</p>
       </div>
 
@@ -939,7 +939,7 @@ function HistoricalPerformanceTab() {
                       <span className="text-foreground/50 text-xs leading-tight">{row.reason}</span>
                     </td>
                     <td className="text-center px-3 py-3">
-                      <span className={cn("font-bold", row.spinoff1Y >= 0 ? "text-emerald-400" : "text-red-400")}>
+                      <span className={cn("font-medium", row.spinoff1Y >= 0 ? "text-emerald-400" : "text-red-400")}>
                         {row.spinoff1Y >= 0 ? "+" : ""}{row.spinoff1Y.toFixed(1)}%
                       </span>
                     </td>
@@ -949,7 +949,7 @@ function HistoricalPerformanceTab() {
                       </span>
                     </td>
                     <td className="text-center px-3 py-3">
-                      <span className={cn("font-semibold", row.spinoff3Y >= 0 ? "text-emerald-400" : "text-red-400")}>
+                      <span className={cn("font-medium", row.spinoff3Y >= 0 ? "text-emerald-400" : "text-red-400")}>
                         {row.spinoff3Y >= 0 ? "+" : ""}{row.spinoff3Y.toFixed(1)}%
                       </span>
                     </td>
@@ -994,7 +994,7 @@ function PerformanceScatter({ data }: { data: SpinoffRecord[] }) {
 
   return (
     <div className="rounded-xl border border-border bg-foreground/5 p-5">
-      <h3 className="text-sm font-semibold text-foreground mb-1">Parent vs SpinCo 1Y Returns (Scatter)</h3>
+      <h3 className="text-sm font-medium text-foreground mb-1">Parent vs SpinCo 1Y Returns (Scatter)</h3>
       <p className="text-xs text-foreground/40 mb-3">Points above diagonal = SpinCo outperformed parent.</p>
       <svg viewBox={`0 0 ${W} ${H}`} className="w-full" style={{ height: H }}>
         {/* Grid */}
@@ -1099,7 +1099,7 @@ function InvestingStrategyTab() {
   return (
     <div className="space-y-5">
       <div className="rounded-xl border border-border bg-foreground/5 p-5">
-        <h2 className="text-lg font-semibold text-foreground mb-1">Spinoff Investing Strategy</h2>
+        <h2 className="text-lg font-medium text-foreground mb-1">Spinoff Investing Strategy</h2>
         <p className="text-sm text-foreground/50">Spinoffs have historically outperformed broad market indices. Here is why and how to capitalize.</p>
       </div>
 
@@ -1108,13 +1108,13 @@ function InvestingStrategyTab() {
 
       {/* Why Outperform */}
       <div className="rounded-xl border border-border bg-foreground/5 p-5">
-        <h3 className="text-sm font-semibold text-foreground mb-3">Why Spinoffs Outperform</h3>
+        <h3 className="text-sm font-medium text-foreground mb-3">Why Spinoffs Outperform</h3>
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
           {whyOutperform.map((item, i) => (
             <div key={i} className="flex items-start gap-3 p-3 rounded-lg bg-foreground/5 border border-border/50">
               <div className="mt-0.5 shrink-0">{item.icon}</div>
               <div>
-                <div className="text-xs font-semibold text-foreground/90 mb-1">{item.title}</div>
+                <div className="text-xs font-medium text-foreground/90 mb-1">{item.title}</div>
                 <div className="text-xs text-foreground/50 leading-relaxed">{item.desc}</div>
               </div>
             </div>
@@ -1124,7 +1124,7 @@ function InvestingStrategyTab() {
 
       {/* Timing Strategies */}
       <div className="rounded-xl border border-border bg-foreground/5 p-5">
-        <h3 className="text-sm font-semibold text-foreground mb-3">When to Buy</h3>
+        <h3 className="text-sm font-medium text-foreground mb-3">When to Buy</h3>
         <div className="space-y-3">
           {timingStrategies.map((strat, i) => {
             const colorMap: Record<string, string> = {
@@ -1139,7 +1139,7 @@ function InvestingStrategyTab() {
             };
             return (
               <div key={i} className={cn("rounded-lg border p-4", colorMap[strat.color])}>
-                <div className={cn("text-sm font-semibold mb-2", labelMap[strat.color])}>{strat.title}</div>
+                <div className={cn("text-sm font-medium mb-2", labelMap[strat.color])}>{strat.title}</div>
                 <div className="grid grid-cols-2 gap-3 mb-2">
                   <div>
                     <div className="text-xs text-emerald-400 font-medium mb-1">Pros</div>
@@ -1173,7 +1173,7 @@ function InvestingStrategyTab() {
 
       {/* Risks */}
       <div className="rounded-xl border border-amber-500/20 bg-amber-500/5 p-5">
-        <h3 className="text-sm font-semibold text-amber-400 mb-3 flex items-center gap-2">
+        <h3 className="text-sm font-medium text-amber-400 mb-3 flex items-center gap-2">
           <AlertTriangle className="w-4 h-4" />
           Key Spinoff Investment Risks
         </h3>
@@ -1182,7 +1182,7 @@ function InvestingStrategyTab() {
             <div key={i} className="flex items-start gap-3">
               <div className="w-1.5 h-1.5 rounded-full bg-amber-400 mt-2 shrink-0" />
               <div>
-                <span className="text-xs font-semibold text-amber-300">{r.label}: </span>
+                <span className="text-xs font-medium text-amber-300">{r.label}: </span>
                 <span className="text-xs text-foreground/55">{r.desc}</span>
               </div>
             </div>
@@ -1224,12 +1224,12 @@ function SpinoffIndexChart({ data, outperformance }: { data: ChartPoint[]; outpe
     <div className="rounded-xl border border-border bg-foreground/5 p-5">
       <div className="flex items-start justify-between mb-3">
         <div>
-          <h3 className="text-sm font-semibold text-foreground">Spinoff Index vs S&P 500 (10 Years)</h3>
+          <h3 className="text-sm font-medium text-foreground">Spinoff Index vs S&P 500 (10 Years)</h3>
           <p className="text-xs text-foreground/40">Simulated — based on historical outperformance patterns. Base = 100.</p>
         </div>
         <div className="text-right">
           <div className="text-xs text-foreground/40">Cumulative outperformance</div>
-          <div className="text-lg font-bold text-emerald-400">+{outperformance}%</div>
+          <div className="text-lg font-medium text-emerald-400">+{outperformance}%</div>
         </div>
       </div>
 
@@ -1279,20 +1279,20 @@ export default function SpinoffsPage() {
     <div className="min-h-screen bg-background text-foreground">
       <div className="max-w-5xl mx-auto px-4 py-8">
         {/* Header */}
-        <div className="mb-8">
+        <div className="mb-8 border-l-4 border-l-primary p-6 rounded-lg bg-card/40">
           <div className="flex items-center gap-3 mb-2">
             <div className="w-9 h-9 rounded-xl bg-primary/20 border border-border flex items-center justify-center">
               <Scissors className="w-5 h-5 text-primary" />
             </div>
             <div>
-              <h1 className="text-2xl font-bold text-foreground">Corporate Spinoffs & Restructuring</h1>
+              <h1 className="text-xl font-bold text-foreground">Corporate Spinoffs & Restructuring</h1>
               <p className="text-sm text-foreground/40">Mechanics, valuation, historical performance, and investment strategies</p>
             </div>
           </div>
         </div>
 
         {/* Tabs */}
-        <Tabs defaultValue="mechanics" className="space-y-5">
+        <Tabs defaultValue="mechanics" className="mt-8 space-y-5">
           <TabsList className="bg-foreground/5 border border-border p-1 rounded-xl h-auto flex flex-wrap gap-1">
             <TabsTrigger value="mechanics" className="rounded-lg text-xs px-4 py-2 data-[state=active]:bg-foreground/10 data-[state=active]:text-foreground text-foreground/50">
               Spinoff Mechanics

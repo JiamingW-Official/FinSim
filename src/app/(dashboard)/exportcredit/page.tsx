@@ -288,11 +288,11 @@ function ECAOverviewTab() {
           <table className="w-full text-sm">
             <thead>
               <tr className="border-b border-border bg-muted/30">
-                <th className="text-left p-3 font-semibold text-foreground">ECA</th>
-                <th className="text-left p-3 font-semibold text-foreground">Country</th>
-                <th className="text-left p-3 font-semibold text-foreground">Ownership</th>
-                <th className="text-right p-3 font-semibold text-foreground">Exposure (bn)</th>
-                <th className="text-left p-3 font-semibold text-foreground">Key Sectors</th>
+                <th className="text-left p-3 font-medium text-foreground">ECA</th>
+                <th className="text-left p-3 font-medium text-foreground">Country</th>
+                <th className="text-left p-3 font-medium text-foreground">Ownership</th>
+                <th className="text-right p-3 font-medium text-foreground">Exposure (bn)</th>
+                <th className="text-left p-3 font-medium text-foreground">Key Sectors</th>
               </tr>
             </thead>
             <tbody>
@@ -313,7 +313,7 @@ function ECAOverviewTab() {
                   </td>
                   <td className="p-3 text-muted-foreground">{eca.country}</td>
                   <td className="p-3 text-muted-foreground text-xs">{eca.ownership}</td>
-                  <td className="p-3 text-right font-semibold text-foreground">${eca.annualExposure}bn</td>
+                  <td className="p-3 text-right font-medium text-foreground">${eca.annualExposure}bn</td>
                   <td className="p-3">
                     <div className="flex flex-wrap gap-1">
                       {eca.keySectors.slice(0, 3).map((sec) => (
@@ -342,7 +342,7 @@ function ECAOverviewTab() {
           >
             <div className="flex items-center gap-3 mb-4">
               <div className="w-3 h-3 rounded-full" style={{ background: selected.color }} />
-              <h3 className="font-semibold text-foreground">{selected.name}</h3>
+              <h3 className="font-medium text-foreground">{selected.name}</h3>
               <span className="text-xs text-muted-foreground ml-auto">Est. {selected.founded}</span>
             </div>
             <div className="grid grid-cols-2 md:grid-cols-4 gap-3 mb-4">
@@ -352,7 +352,7 @@ function ECAOverviewTab() {
               <InfoCard label="Products" value={`${selected.products.length} types`} />
             </div>
             <div>
-              <div className="text-xs font-semibold text-muted-foreground mb-2">Product Range</div>
+              <div className="text-xs font-medium text-muted-foreground mb-2">Product Range</div>
               <div className="flex flex-wrap gap-2">
                 {selected.products.map((p) => (
                   <span key={p} className="px-2 py-1 rounded-md text-xs font-medium bg-primary/10 text-primary">{p}</span>
@@ -365,7 +365,7 @@ function ECAOverviewTab() {
 
       {/* Role in exports */}
       <div className="bg-card border border-border rounded-xl p-5">
-        <h3 className="text-sm font-semibold text-foreground mb-4">How ECAs Support Exports</h3>
+        <h3 className="text-sm font-medium text-foreground mb-4">How ECAs Support Exports</h3>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           {[
             {
@@ -451,7 +451,7 @@ function OECDConsensusTab() {
           },
         ].map((item) => (
           <div key={item.title} className="bg-card border border-border rounded-lg p-4">
-            <div className="text-sm font-semibold text-foreground mb-1">{item.title}</div>
+            <div className="text-sm font-medium text-foreground mb-1">{item.title}</div>
             <div className="text-xs text-muted-foreground">{item.desc}</div>
           </div>
         ))}
@@ -459,21 +459,21 @@ function OECDConsensusTab() {
 
       {/* CIRR rates table */}
       <div className="bg-card border border-border rounded-xl p-5">
-        <h3 className="text-sm font-semibold text-foreground mb-4">CIRR Rates by Currency (Indicative, % p.a.)</h3>
+        <h3 className="text-sm font-medium text-foreground mb-4">CIRR Rates by Currency (Indicative, % p.a.)</h3>
         <div className="overflow-x-auto">
           <table className="w-full text-sm">
             <thead>
               <tr className="border-b border-border">
-                <th className="text-left p-2 font-semibold text-muted-foreground">Currency</th>
-                <th className="text-center p-2 font-semibold text-muted-foreground">Up to 5 yrs</th>
-                <th className="text-center p-2 font-semibold text-muted-foreground">5–8.5 yrs</th>
-                <th className="text-center p-2 font-semibold text-muted-foreground">Over 8.5 yrs</th>
+                <th className="text-left p-2 font-medium text-muted-foreground">Currency</th>
+                <th className="text-center p-2 font-medium text-muted-foreground">Up to 5 yrs</th>
+                <th className="text-center p-2 font-medium text-muted-foreground">5–8.5 yrs</th>
+                <th className="text-center p-2 font-medium text-muted-foreground">Over 8.5 yrs</th>
               </tr>
             </thead>
             <tbody>
               {Object.entries(cirrByCurrency).map(([ccy, rates]) => (
                 <tr key={ccy} className="border-b border-border/40">
-                  <td className="p-2 font-semibold text-foreground">{ccy}</td>
+                  <td className="p-2 font-medium text-foreground">{ccy}</td>
                   {rates.map((r) => (
                     <td key={r.maturity} className="p-2 text-center text-primary font-mono">{r.rate.toFixed(2)}%</td>
                   ))}
@@ -487,16 +487,16 @@ function OECDConsensusTab() {
 
       {/* Sector maximum repayment terms */}
       <div className="bg-card border border-border rounded-xl p-5">
-        <h3 className="text-sm font-semibold text-foreground mb-4">Maximum Repayment Terms by Sector</h3>
+        <h3 className="text-sm font-medium text-foreground mb-4">Maximum Repayment Terms by Sector</h3>
         <div className="overflow-x-auto">
           <table className="w-full text-sm">
             <thead>
               <tr className="border-b border-border">
-                <th className="text-left p-2 font-semibold text-muted-foreground">Sector</th>
-                <th className="text-center p-2 font-semibold text-muted-foreground">Max Repayment</th>
-                <th className="text-center p-2 font-semibold text-muted-foreground">Max Local Cost</th>
-                <th className="text-center p-2 font-semibold text-muted-foreground">Tied Aid</th>
-                <th className="text-left p-2 font-semibold text-muted-foreground">Notes</th>
+                <th className="text-left p-2 font-medium text-muted-foreground">Sector</th>
+                <th className="text-center p-2 font-medium text-muted-foreground">Max Repayment</th>
+                <th className="text-center p-2 font-medium text-muted-foreground">Max Local Cost</th>
+                <th className="text-center p-2 font-medium text-muted-foreground">Tied Aid</th>
+                <th className="text-left p-2 font-medium text-muted-foreground">Notes</th>
               </tr>
             </thead>
             <tbody>
@@ -522,7 +522,7 @@ function OECDConsensusTab() {
 
       {/* Country risk heatmap */}
       <div className="bg-card border border-border rounded-xl p-5">
-        <h3 className="text-sm font-semibold text-foreground mb-1">Minimum Premium Rate (MPR) Heatmap</h3>
+        <h3 className="text-sm font-medium text-foreground mb-1">Minimum Premium Rate (MPR) Heatmap</h3>
         <p className="text-xs text-muted-foreground mb-4">Annual premium % by country risk category (1 = lowest risk) and repayment horizon</p>
         <svg viewBox="0 0 560 300" className="w-full" aria-label="Country risk premium heatmap">
           {/* Column headers */}
@@ -536,7 +536,7 @@ function OECDConsensusTab() {
             const y = 38 + i * 36;
             return (
               <g key={`row-${i}`}>
-                <text x={118} y={y + 18} textAnchor="end" fontSize={11} fill="currentColor" className="fill-foreground font-semibold">
+                <text x={118} y={y + 18} textAnchor="end" fontSize={11} fill="currentColor" className="fill-foreground font-medium">
                   {categories[i]}
                 </text>
                 {row.map((val, j) => {
@@ -575,7 +575,7 @@ function OECDConsensusTab() {
             { cat: "Cat 7", examples: "Sudan, Zimbabwe, Syria, Venezuela", color: "text-red-400" },
           ].map((item) => (
             <div key={item.cat} className="bg-muted/20 rounded-lg p-2">
-              <div className={cn("text-xs font-semibold mb-1", item.color)}>{item.cat}</div>
+              <div className={cn("text-xs font-medium mb-1", item.color)}>{item.cat}</div>
               <div className="text-xs text-muted-foreground">{item.examples}</div>
             </div>
           ))}
@@ -653,7 +653,7 @@ function BuyerCreditFlow() {
   return (
     <div className="space-y-5">
       <div className="bg-card border border-border rounded-xl p-5">
-        <h3 className="text-sm font-semibold text-foreground mb-2">Buyer Credit Structure</h3>
+        <h3 className="text-sm font-medium text-foreground mb-2">Buyer Credit Structure</h3>
         <p className="text-xs text-muted-foreground mb-5">
           In a buyer credit arrangement, the ECA-backed bank lends directly to the foreign buyer, who uses the loan proceeds to pay the exporter upfront.
           The exporter receives full payment; the credit risk sits with the bank (covered by ECA guarantee/insurance).
@@ -669,7 +669,7 @@ function BuyerCreditFlow() {
           ].map((box) => (
             <g key={box.label}>
               <rect x={box.x} y={box.y} width={box.w} height={box.h} rx={8} fill={box.fill} fillOpacity={0.2} stroke={box.fill} strokeOpacity={0.6} />
-              <text x={box.x + box.w / 2} y={box.y + 26} textAnchor="middle" fontSize={12} fill="currentColor" className="fill-foreground font-semibold">
+              <text x={box.x + box.w / 2} y={box.y + 26} textAnchor="middle" fontSize={12} fill="currentColor" className="fill-foreground font-medium">
                 {box.label}
               </text>
               <text x={box.x + box.w / 2} y={box.y + 42} textAnchor="middle" fontSize={9} fill="currentColor" className="fill-muted-foreground">
@@ -711,7 +711,7 @@ function BuyerCreditFlow() {
         ))}
       </div>
       <div className="bg-card border border-border rounded-lg p-4">
-        <div className="text-xs font-semibold text-muted-foreground mb-2">Key Features</div>
+        <div className="text-xs font-medium text-muted-foreground mb-2">Key Features</div>
         <ul className="space-y-1">
           {[
             "Exporter receives payment immediately upon shipment/delivery",
@@ -735,7 +735,7 @@ function SupplierCreditFlow() {
   return (
     <div className="space-y-5">
       <div className="bg-card border border-border rounded-xl p-5">
-        <h3 className="text-sm font-semibold text-foreground mb-2">Supplier Credit Structure</h3>
+        <h3 className="text-sm font-medium text-foreground mb-2">Supplier Credit Structure</h3>
         <p className="text-xs text-muted-foreground mb-5">
           In a supplier credit, the exporter extends credit directly to the foreign buyer and later discounts (sells) the resulting receivables to a bank,
           which is guaranteed by the ECA. The exporter retains credit risk until the receivables are sold.
@@ -749,7 +749,7 @@ function SupplierCreditFlow() {
           ].map((box) => (
             <g key={box.label}>
               <rect x={box.x} y={box.y} width={box.w} height={box.h} rx={8} fill={box.fill} fillOpacity={0.2} stroke={box.fill} strokeOpacity={0.6} />
-              <text x={box.x + box.w / 2} y={box.y + 26} textAnchor="middle" fontSize={12} fill="currentColor" className="fill-foreground font-semibold">{box.label}</text>
+              <text x={box.x + box.w / 2} y={box.y + 26} textAnchor="middle" fontSize={12} fill="currentColor" className="fill-foreground font-medium">{box.label}</text>
               <text x={box.x + box.w / 2} y={box.y + 42} textAnchor="middle" fontSize={9} fill="currentColor" className="fill-muted-foreground">{box.sub}</text>
             </g>
           ))}
@@ -825,7 +825,7 @@ function PoliticalRiskPanel() {
   return (
     <div className="space-y-4">
       <div className="bg-card border border-border rounded-xl p-5">
-        <h3 className="text-sm font-semibold text-foreground mb-4">Political Risk Insurance Coverage Types</h3>
+        <h3 className="text-sm font-medium text-foreground mb-4">Political Risk Insurance Coverage Types</h3>
         <p className="text-xs text-muted-foreground mb-5">
           PRI is offered by ECAs (and multilaterals like MIGA) to protect foreign direct investment and trade receivables against sovereign / quasi-sovereign risks
           that are beyond commercial credit analysis.
@@ -835,7 +835,7 @@ function PoliticalRiskPanel() {
             <div key={risk.name} className="bg-muted/20 rounded-lg p-4">
               <div className="flex items-center gap-3 mb-2">
                 <risk.icon size={16} style={{ color: risk.color }} />
-                <span className="font-semibold text-sm text-foreground">{risk.name}</span>
+                <span className="font-medium text-sm text-foreground">{risk.name}</span>
                 <div className="ml-auto flex items-center gap-2">
                   <span className="text-xs text-muted-foreground">Severity:</span>
                   <div className="w-24 h-2 bg-muted rounded-full overflow-hidden">
@@ -896,7 +896,7 @@ function GuaranteesPanel() {
           <div key={item.title} className="bg-card border border-border rounded-xl p-4">
             <div className="flex items-center gap-2 mb-2">
               <div className="w-2 h-2 rounded-full shrink-0" style={{ background: item.color }} />
-              <span className="font-semibold text-sm text-foreground">{item.title}</span>
+              <span className="font-medium text-sm text-foreground">{item.title}</span>
             </div>
             <p className="text-xs text-muted-foreground mb-3">{item.desc}</p>
             <ul className="space-y-1">
@@ -913,7 +913,7 @@ function GuaranteesPanel() {
 
       {/* Letter of credit confirmation */}
       <div className="bg-card border border-border rounded-xl p-5">
-        <h3 className="text-sm font-semibold text-foreground mb-2">Letter of Credit Confirmation</h3>
+        <h3 className="text-sm font-medium text-foreground mb-2">Letter of Credit Confirmation</h3>
         <p className="text-xs text-muted-foreground mb-3">
           When a foreign buyer's bank issues an LC but is located in a high-risk country, a confirming bank (backed by ECA) adds its irrevocable undertaking
           to pay the exporter upon compliant document presentation, regardless of the issuing bank's ability to pay.
@@ -964,29 +964,29 @@ function DealStructuringTab() {
 
       {/* Pricing formula */}
       <div className="bg-card border border-border rounded-xl p-5">
-        <h3 className="text-sm font-semibold text-foreground mb-4">ECA-Covered Loan Pricing Formula</h3>
+        <h3 className="text-sm font-medium text-foreground mb-4">ECA-Covered Loan Pricing Formula</h3>
         <div className="flex flex-wrap items-center gap-2 mb-5 text-sm">
           <div className="bg-primary/15 border border-border rounded-lg px-3 py-2 text-center">
             <div className="text-xs text-muted-foreground">Base Rate</div>
-            <div className="font-semibold text-primary">CIRR / SOFR</div>
+            <div className="font-medium text-primary">CIRR / SOFR</div>
             <div className="text-xs text-primary">{baseRate.toFixed(2)}%</div>
           </div>
           <span className="text-muted-foreground font-bold text-lg">+</span>
           <div className="bg-amber-500/15 border border-amber-500/30 rounded-lg px-3 py-2 text-center">
             <div className="text-xs text-muted-foreground">ECA Premium</div>
-            <div className="font-semibold text-amber-400">MPR (risk cat)</div>
+            <div className="font-medium text-amber-400">MPR (risk cat)</div>
             <div className="text-xs text-amber-400">{ecaPremium.toFixed(2)}%</div>
           </div>
           <span className="text-muted-foreground font-bold text-lg">+</span>
           <div className="bg-primary/15 border border-border rounded-lg px-3 py-2 text-center">
             <div className="text-xs text-muted-foreground">Bank Margin</div>
-            <div className="font-semibold text-primary">Credit spread</div>
+            <div className="font-medium text-primary">Credit spread</div>
             <div className="text-xs text-primary">{bankMargin.toFixed(2)}%</div>
           </div>
-          <span className="text-muted-foreground font-bold text-lg">=</span>
+          <span className="text-muted-foreground font-medium text-lg">=</span>
           <div className="bg-emerald-500/15 border border-emerald-500/30 rounded-lg px-3 py-2 text-center">
             <div className="text-xs text-muted-foreground">All-In Rate</div>
-            <div className="font-semibold text-emerald-400">Borrower pays</div>
+            <div className="font-medium text-emerald-400">Borrower pays</div>
             <div className="text-xs text-emerald-400">{allIn.toFixed(2)}%</div>
           </div>
         </div>
@@ -1024,7 +1024,7 @@ function DealStructuringTab() {
 
       {/* Content requirements */}
       <div className="bg-card border border-border rounded-xl p-5">
-        <h3 className="text-sm font-semibold text-foreground mb-3">Content Requirements</h3>
+        <h3 className="text-sm font-medium text-foreground mb-3">Content Requirements</h3>
         <p className="text-xs text-muted-foreground mb-4">
           ECAs require a minimum percentage of the export contract value to originate from the ECA's home country.
           This "domestic content" requirement ensures the transaction genuinely supports home-country exports.
@@ -1043,7 +1043,7 @@ function DealStructuringTab() {
 
       {/* Deal timeline */}
       <div className="bg-card border border-border rounded-xl p-5">
-        <h3 className="text-sm font-semibold text-foreground mb-4">Typical Deal Timeline (Medium-Large Transaction)</h3>
+        <h3 className="text-sm font-medium text-foreground mb-4">Typical Deal Timeline (Medium-Large Transaction)</h3>
         <div className="relative">
           {/* Vertical line */}
           <div className="absolute left-[100px] top-0 bottom-0 w-px bg-border" />
@@ -1057,7 +1057,7 @@ function DealStructuringTab() {
                   <div className="w-3 h-3 rounded-full border-2 mt-0.5" style={{ background: step.color, borderColor: step.color }} />
                 </div>
                 <div className="flex-1 pb-2">
-                  <div className="text-sm font-semibold text-foreground">{step.phase}</div>
+                  <div className="text-sm font-medium text-foreground">{step.phase}</div>
                   <div className="text-xs text-muted-foreground">{step.desc}</div>
                 </div>
               </div>
@@ -1068,7 +1068,7 @@ function DealStructuringTab() {
 
       {/* E&S Standards */}
       <div className="bg-card border border-border rounded-xl p-5">
-        <h3 className="text-sm font-semibold text-foreground mb-3">Environmental & Social Standards</h3>
+        <h3 className="text-sm font-medium text-foreground mb-3">Environmental & Social Standards</h3>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           {[
             {
@@ -1095,7 +1095,7 @@ function DealStructuringTab() {
             <div key={item.title} className="flex gap-3">
               <div className="w-1 rounded-full shrink-0 mt-1" style={{ background: item.color, minHeight: "40px" }} />
               <div>
-                <div className="text-sm font-semibold text-foreground">{item.title}</div>
+                <div className="text-sm font-medium text-foreground">{item.title}</div>
                 <div className="text-xs text-muted-foreground mt-0.5">{item.desc}</div>
               </div>
             </div>
@@ -1105,7 +1105,7 @@ function DealStructuringTab() {
 
       {/* Paris Club */}
       <div className="bg-card border border-border rounded-xl p-5">
-        <h3 className="text-sm font-semibold text-foreground mb-3">Debt Restructuring: Paris Club</h3>
+        <h3 className="text-sm font-medium text-foreground mb-3">Debt Restructuring: Paris Club</h3>
         <p className="text-xs text-muted-foreground mb-4">
           When a sovereign borrower cannot service ECA-backed loans, the Paris Club (informal group of 22 creditor nations)
           provides coordinated debt relief, ensuring comparable treatment across all bilateral creditors.
@@ -1129,7 +1129,7 @@ function DealStructuringTab() {
         >
           <div className="flex items-center gap-3">
             <Info size={16} className="text-primary" />
-            <span className="font-semibold text-sm text-foreground">Case Study: Large Infrastructure Deal</span>
+            <span className="font-medium text-sm text-foreground">Case Study: Large Infrastructure Deal</span>
           </div>
           {showCaseStudy ? <ChevronUp size={16} className="text-muted-foreground" /> : <ChevronDown size={16} className="text-muted-foreground" />}
         </button>
@@ -1144,7 +1144,7 @@ function DealStructuringTab() {
             >
               <div className="px-5 pb-5 space-y-4 border-t border-border">
                 <div className="mt-4 p-4 bg-muted/20 rounded-lg">
-                  <div className="text-sm font-semibold text-foreground mb-1">Hypothetical: $800m Power Plant in Sub-Saharan Africa</div>
+                  <div className="text-sm font-medium text-foreground mb-1">Hypothetical: $800m Power Plant in Sub-Saharan Africa</div>
                   <div className="text-xs text-muted-foreground mb-3">Illustrative deal combining multiple ECA products</div>
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-3 text-xs">
                     {[

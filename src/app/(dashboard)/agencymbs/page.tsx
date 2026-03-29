@@ -1030,7 +1030,7 @@ function PrepaymentAnalysisTab() {
                       isBase ? "bg-primary/5 border-border" : i % 2 === 0 ? "bg-card" : "bg-muted/20"
                     )}
                   >
-                    <td className="py-2.5 text-center font-semibold text-foreground">
+                    <td className="py-2.5 text-center font-medium text-foreground">
                       {row.psa} PSA {isBase && <span className="text-primary ml-1">(base)</span>}
                     </td>
                     <td className="py-2.5 text-center text-muted-foreground">{row.month1CPR.toFixed(1)}%</td>
@@ -1095,7 +1095,7 @@ function CMOStructuresTab() {
                 >
                   <div className="flex items-center gap-3">
                     <div className="w-2.5 h-2.5 rounded-full shrink-0" style={{ backgroundColor: tranche.color }} />
-                    <span className="font-semibold text-foreground text-sm">{tranche.name}</span>
+                    <span className="font-medium text-foreground text-sm">{tranche.name}</span>
                     <span className="text-xs text-muted-foreground bg-muted px-2 py-0.5 rounded">{tranche.type}</span>
                     <RiskBadge level={tranche.risk} />
                   </div>
@@ -1269,7 +1269,7 @@ function CMOStructuresTab() {
           </div>
           <div className="col-span-2 space-y-3 text-xs text-muted-foreground">
             <div className="bg-red-500/8 border border-red-500/20 rounded-lg p-3">
-              <div className="font-semibold text-red-300 mb-1">IO Strip</div>
+              <div className="font-medium text-red-300 mb-1">IO Strip</div>
               <p className="text-muted-foreground leading-relaxed">
                 Value <strong className="text-red-300">falls</strong> as CPR rises — faster prepayments
                 reduce the outstanding balance and therefore the interest paid. Effective duration is
@@ -1277,7 +1277,7 @@ function CMOStructuresTab() {
               </p>
             </div>
             <div className="bg-emerald-500/8 border border-emerald-500/20 rounded-lg p-3">
-              <div className="font-semibold text-emerald-300 mb-1">PO Strip</div>
+              <div className="font-medium text-emerald-300 mb-1">PO Strip</div>
               <p className="text-muted-foreground leading-relaxed">
                 Value <strong className="text-emerald-300">rises</strong> as CPR rises — faster principal
                 return on a discounted purchase produces greater IRR. Extreme positive convexity; worst
@@ -1359,7 +1359,7 @@ function CMOStructuresTab() {
               — creating a long, volatile cash flow profile.
             </p>
             <div className="bg-amber-500/8 border border-amber-500/20 rounded-lg p-3">
-              <div className="font-semibold text-amber-300 mb-1">Key Risks</div>
+              <div className="font-medium text-amber-300 mb-1">Key Risks</div>
               <ul className="text-muted-foreground space-y-1 mt-1">
                 <li className="flex items-start gap-1.5"><ArrowRight size={10} className="mt-0.5 shrink-0 text-amber-400" />Extreme duration extension if prior tranches don&apos;t retire early</li>
                 <li className="flex items-start gap-1.5"><ArrowRight size={10} className="mt-0.5 shrink-0 text-amber-400" />High volatility to prepayment model assumptions</li>
@@ -1551,7 +1551,7 @@ function ConvexityRiskTab() {
               ].map((row) => (
                 <div key={row.shock} className="flex justify-between bg-muted rounded-lg px-3 py-2 border border-border">
                   <span className="text-muted-foreground">{row.shock} rate shock</span>
-                  <span className={cn("font-semibold", row.color)}>{row.dur}</span>
+                  <span className={cn("font-medium", row.color)}>{row.dur}</span>
                 </div>
               ))}
             </div>
@@ -1564,7 +1564,7 @@ function ConvexityRiskTab() {
         <div className="grid grid-cols-2 gap-6">
           <div className="space-y-3 text-sm text-muted-foreground">
             <div className="bg-muted rounded-xl p-4 border border-border">
-              <div className="font-semibold text-primary mb-2">Z-Spread</div>
+              <div className="font-medium text-primary mb-2">Z-Spread</div>
               <p className="text-xs text-muted-foreground leading-relaxed">
                 The constant spread over the <strong className="text-primary">spot rate curve</strong> that
                 equates the present value of cash flows to the market price. Does not adjust for the embedded
@@ -1572,7 +1572,7 @@ function ConvexityRiskTab() {
               </p>
             </div>
             <div className="bg-muted rounded-xl p-4 border border-border">
-              <div className="font-semibold text-emerald-300 mb-2">OAS (Option-Adjusted Spread)</div>
+              <div className="font-medium text-emerald-300 mb-2">OAS (Option-Adjusted Spread)</div>
               <p className="text-xs text-muted-foreground leading-relaxed">
                 The spread after removing the value of the embedded prepayment option via Monte Carlo
                 interest rate simulation. <strong className="text-emerald-200">OAS = Z-Spread − Option Cost</strong>.
@@ -1675,7 +1675,7 @@ function ConvexityRiskTab() {
             <div key={row.instrument} className="bg-muted/60 rounded-xl p-4 border border-border">
               <div className="flex items-start justify-between gap-4">
                 <div className="flex-1">
-                  <div className="font-semibold text-foreground text-sm mb-1">{row.instrument}</div>
+                  <div className="font-medium text-foreground text-sm mb-1">{row.instrument}</div>
                   <div className="grid grid-cols-2 gap-3 text-xs">
                     <div>
                       <div className="text-emerald-400 font-medium mb-0.5">Pros</div>

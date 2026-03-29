@@ -527,7 +527,7 @@ function EquityFuturesTab() {
               <thead>
                 <tr className="border-b border-border bg-muted/20">
                   {["Symbol", "Name", "Region", "Spot", "Futures", "Fair Value", "Premium", "Volume", "OI", "Expiry", "Roll Spread"].map((h) => (
-                    <th key={h} className="px-3 py-2 text-left text-xs font-semibold text-muted-foreground whitespace-nowrap">{h}</th>
+                    <th key={h} className="px-3 py-2 text-left text-xs font-medium text-muted-foreground whitespace-nowrap">{h}</th>
                   ))}
                 </tr>
               </thead>
@@ -550,10 +550,10 @@ function EquityFuturesTab() {
                         <Badge variant="outline" className="text-xs py-0">{f.region}</Badge>
                       </td>
                       <td className="px-3 py-2.5 tabular-nums text-xs font-medium">{fmtPrice(f.spotPrice)}</td>
-                      <td className="px-3 py-2.5 tabular-nums text-xs font-semibold text-foreground">{fmtPrice(f.futuresPrice)}</td>
+                      <td className="px-3 py-2.5 tabular-nums text-xs font-medium text-foreground">{fmtPrice(f.futuresPrice)}</td>
                       <td className="px-3 py-2.5 tabular-nums text-xs text-muted-foreground">{fmtPrice(f.fairValue)}</td>
                       <td className="px-3 py-2.5 tabular-nums text-xs">
-                        <span className={cn("font-semibold", chgCls(f.premium))}>
+                        <span className={cn("font-medium", chgCls(f.premium))}>
                           {up(f.premium) ? "+" : ""}{fmt(premPct, 3)}%
                         </span>
                       </td>
@@ -575,7 +575,7 @@ function EquityFuturesTab() {
       {/* Basis/Roll Calendar */}
       <Card className="bg-card border-border">
         <CardHeader className="pb-2 pt-4 px-4">
-          <CardTitle className="text-sm font-semibold flex items-center gap-2">
+          <CardTitle className="text-sm font-medium flex items-center gap-2">
             <RefreshCw className="h-4 w-4 text-amber-400" /> Basis & Roll Calendar — Front Month vs Next Month
           </CardTitle>
         </CardHeader>
@@ -588,7 +588,7 @@ function EquityFuturesTab() {
                   <Badge variant="outline" className="text-xs py-0">{f.expiry}</Badge>
                 </div>
                 <div className="text-xs text-muted-foreground">Roll spread</div>
-                <div className="text-sm font-semibold tabular-nums text-amber-400">
+                <div className="text-sm font-medium tabular-nums text-amber-400">
                   {f.rollSpread > 0 ? "+" : ""}{f.rollSpread.toFixed(2)}
                 </div>
                 <div className="text-xs text-muted-foreground mt-0.5">
@@ -603,7 +603,7 @@ function EquityFuturesTab() {
       {/* Single Stock Futures */}
       <Card className="bg-card border-border">
         <CardHeader className="pb-2 pt-4 px-4">
-          <CardTitle className="text-sm font-semibold flex items-center gap-2">
+          <CardTitle className="text-sm font-medium flex items-center gap-2">
             <Activity className="h-4 w-4 text-primary" /> Single Stock Futures (SSF)
           </CardTitle>
         </CardHeader>
@@ -613,7 +613,7 @@ function EquityFuturesTab() {
               <thead>
                 <tr className="border-b border-border bg-muted/20">
                   {["Ticker", "Spot", "Futures", "Premium", "Vol", "Expiry"].map((h) => (
-                    <th key={h} className="px-3 py-2 text-left text-xs font-semibold text-muted-foreground">{h}</th>
+                    <th key={h} className="px-3 py-2 text-left text-xs font-medium text-muted-foreground">{h}</th>
                   ))}
                 </tr>
               </thead>
@@ -622,11 +622,11 @@ function EquityFuturesTab() {
                   const premPct = (s.premium / s.spotPrice) * 100;
                   return (
                     <tr key={s.ticker} className="border-b border-border/40 hover:bg-muted/20 transition-colors">
-                      <td className="px-3 py-2.5 font-bold text-xs text-primary">{s.ticker}</td>
+                      <td className="px-3 py-2.5 font-medium text-xs text-primary">{s.ticker}</td>
                       <td className="px-3 py-2.5 tabular-nums text-xs font-medium">{fmtPrice(s.spotPrice)}</td>
-                      <td className="px-3 py-2.5 tabular-nums text-xs font-semibold text-foreground">{fmtPrice(s.futuresPrice)}</td>
+                      <td className="px-3 py-2.5 tabular-nums text-xs font-medium text-foreground">{fmtPrice(s.futuresPrice)}</td>
                       <td className="px-3 py-2.5 tabular-nums text-xs">
-                        <span className={cn("font-semibold", chgCls(premPct))}>{up(premPct) ? "+" : ""}{premPct.toFixed(3)}%</span>
+                        <span className={cn("font-medium", chgCls(premPct))}>{up(premPct) ? "+" : ""}{premPct.toFixed(3)}%</span>
                       </td>
                       <td className="px-3 py-2.5 tabular-nums text-xs text-muted-foreground">{fmtLarge(s.volume)}</td>
                       <td className="px-3 py-2.5 text-xs text-muted-foreground">{s.expiry}</td>
@@ -669,7 +669,7 @@ function InterestRateFuturesTab() {
       {/* US Treasury Futures */}
       <Card className="bg-card border-border">
         <CardHeader className="pb-2 pt-4 px-4">
-          <CardTitle className="text-sm font-semibold flex items-center gap-2">
+          <CardTitle className="text-sm font-medium flex items-center gap-2">
             <DollarSign className="h-4 w-4 text-green-400" /> US Treasury Futures
           </CardTitle>
         </CardHeader>
@@ -679,16 +679,16 @@ function InterestRateFuturesTab() {
               <thead>
                 <tr className="border-b border-border bg-muted/20">
                   {["Symbol", "Name", "Price", "Yield", "Chg (pts)", "Duration", "DV01/Contract", "OI"].map((h) => (
-                    <th key={h} className="px-3 py-2 text-left text-xs font-semibold text-muted-foreground whitespace-nowrap">{h}</th>
+                    <th key={h} className="px-3 py-2 text-left text-xs font-medium text-muted-foreground whitespace-nowrap">{h}</th>
                   ))}
                 </tr>
               </thead>
               <tbody>
                 {irFutures.map((f) => (
                   <tr key={f.symbol} className="border-b border-border/40 hover:bg-muted/20 transition-colors">
-                    <td className="px-3 py-2.5 font-bold text-xs text-green-400">{f.symbol}</td>
+                    <td className="px-3 py-2.5 font-medium text-xs text-green-400">{f.symbol}</td>
                     <td className="px-3 py-2.5 text-xs text-muted-foreground">{f.name}</td>
-                    <td className="px-3 py-2.5 tabular-nums text-xs font-semibold text-foreground">{f.price.toFixed(3)}</td>
+                    <td className="px-3 py-2.5 tabular-nums text-xs font-medium text-foreground">{f.price.toFixed(3)}</td>
                     <td className="px-3 py-2.5 tabular-nums text-xs">
                       <span className={chgCls(-f.yield_)}>{f.yield_.toFixed(3)}%</span>
                     </td>
@@ -711,7 +711,7 @@ function InterestRateFuturesTab() {
         {/* Yield Curve from Futures */}
         <Card className="bg-card border-border">
           <CardHeader className="pb-2 pt-4 px-4">
-            <CardTitle className="text-sm font-semibold">Yield Curve (from Futures)</CardTitle>
+            <CardTitle className="text-sm font-medium">Yield Curve (from Futures)</CardTitle>
           </CardHeader>
           <CardContent className="px-4 pb-4">
             <svg viewBox={`0 0 ${svgW} ${svgH}`} className="w-full h-auto">
@@ -747,14 +747,14 @@ function InterestRateFuturesTab() {
         {/* SOFR Strip */}
         <Card className="bg-card border-border">
           <CardHeader className="pb-2 pt-4 px-4">
-            <CardTitle className="text-sm font-semibold">SOFR Futures — Implied Rate Strip</CardTitle>
+            <CardTitle className="text-sm font-medium">SOFR Futures — Implied Rate Strip</CardTitle>
           </CardHeader>
           <CardContent className="px-4 pb-4 flex flex-col gap-2">
             {sofr.map((s) => (
               <div key={s.label} className="flex items-center gap-3">
-                <span className="w-8 text-xs font-semibold text-primary">{s.label}</span>
+                <span className="w-8 text-xs font-medium text-primary">{s.label}</span>
                 <Progress value={(s.impliedRate / 6.5) * 100} className="h-2 flex-1" />
-                <span className="text-xs font-semibold tabular-nums text-foreground w-14 text-right">{s.impliedRate.toFixed(3)}%</span>
+                <span className="text-xs font-medium tabular-nums text-foreground w-14 text-right">{s.impliedRate.toFixed(3)}%</span>
               </div>
             ))}
             <p className="text-xs text-muted-foreground mt-1">Implied overnight rate from SOFR futures pricing</p>
@@ -765,7 +765,7 @@ function InterestRateFuturesTab() {
       {/* FOMC Path */}
       <Card className="bg-card border-border">
         <CardHeader className="pb-2 pt-4 px-4">
-          <CardTitle className="text-sm font-semibold flex items-center gap-2">
+          <CardTitle className="text-sm font-medium flex items-center gap-2">
             <Activity className="h-4 w-4 text-amber-400" /> Fed Funds Futures — Market-Implied FOMC Path
           </CardTitle>
         </CardHeader>
@@ -775,7 +775,7 @@ function InterestRateFuturesTab() {
               <thead>
                 <tr className="border-b border-border">
                   {["Meeting", "Implied Rate", "P(Hike)", "P(Hold)", "P(Cut)"].map((h) => (
-                    <th key={h} className="pb-2 text-left font-semibold text-muted-foreground pr-4 whitespace-nowrap">{h}</th>
+                    <th key={h} className="pb-2 text-left font-medium text-muted-foreground pr-4 whitespace-nowrap">{h}</th>
                   ))}
                 </tr>
               </thead>
@@ -783,7 +783,7 @@ function InterestRateFuturesTab() {
                 {fomc.map((m, i) => (
                   <tr key={i} className="border-b border-border/30">
                     <td className="py-2 pr-4 font-medium text-foreground">{m.date}</td>
-                    <td className="py-2 pr-4 tabular-nums text-amber-400 font-semibold">{m.impliedRate.toFixed(2)}%</td>
+                    <td className="py-2 pr-4 tabular-nums text-amber-400 font-medium">{m.impliedRate.toFixed(2)}%</td>
                     <td className="py-2 pr-4">
                       <span className="text-red-400">{(m.probHike * 100).toFixed(0)}%</span>
                     </td>
@@ -807,7 +807,7 @@ function InterestRateFuturesTab() {
       {/* International Rate Futures */}
       <Card className="bg-card border-border">
         <CardHeader className="pb-2 pt-4 px-4">
-          <CardTitle className="text-sm font-semibold flex items-center gap-2">
+          <CardTitle className="text-sm font-medium flex items-center gap-2">
             <Globe className="h-4 w-4 text-primary" /> International Rate Futures
           </CardTitle>
         </CardHeader>
@@ -817,19 +817,19 @@ function InterestRateFuturesTab() {
               <thead>
                 <tr className="border-b border-border bg-muted/20">
                   {["Symbol", "Name", "Country", "Price", "Yield", "Change"].map((h) => (
-                    <th key={h} className="px-3 py-2 text-left text-xs font-semibold text-muted-foreground">{h}</th>
+                    <th key={h} className="px-3 py-2 text-left text-xs font-medium text-muted-foreground">{h}</th>
                   ))}
                 </tr>
               </thead>
               <tbody>
                 {intl.map((f) => (
                   <tr key={f.symbol + f.country} className="border-b border-border/40 hover:bg-muted/20 transition-colors">
-                    <td className="px-3 py-2.5 font-bold text-xs text-primary">{f.symbol}</td>
+                    <td className="px-3 py-2.5 font-medium text-xs text-primary">{f.symbol}</td>
                     <td className="px-3 py-2.5 text-xs text-muted-foreground">{f.name}</td>
                     <td className="px-3 py-2.5">
                       <Badge variant="outline" className="text-xs py-0">{f.country}</Badge>
                     </td>
-                    <td className="px-3 py-2.5 tabular-nums text-xs font-semibold">{f.price.toFixed(3)}</td>
+                    <td className="px-3 py-2.5 tabular-nums text-xs font-medium">{f.price.toFixed(3)}</td>
                     <td className="px-3 py-2.5 tabular-nums text-xs text-amber-400">{f.yield_.toFixed(3)}%</td>
                     <td className="px-3 py-2.5 tabular-nums text-xs">
                       <ChgBadge v={f.change} suffix=" pts" />
@@ -872,7 +872,7 @@ function CurrencyCryptoTab() {
       {/* FX Futures Table */}
       <Card className="bg-card border-border">
         <CardHeader className="pb-2 pt-4 px-4">
-          <CardTitle className="text-sm font-semibold flex items-center gap-2">
+          <CardTitle className="text-sm font-medium flex items-center gap-2">
             <Globe className="h-4 w-4 text-primary" /> FX Futures (CME)
           </CardTitle>
         </CardHeader>
@@ -882,16 +882,16 @@ function CurrencyCryptoTab() {
               <thead>
                 <tr className="border-b border-border bg-muted/20">
                   {["Symbol", "Pair", "Futures Price", "Change", "Volume", "Roll Cost", "Forward Rate", "Expiry"].map((h) => (
-                    <th key={h} className="px-3 py-2 text-left text-xs font-semibold text-muted-foreground whitespace-nowrap">{h}</th>
+                    <th key={h} className="px-3 py-2 text-left text-xs font-medium text-muted-foreground whitespace-nowrap">{h}</th>
                   ))}
                 </tr>
               </thead>
               <tbody>
                 {fxFutures.map((f) => (
                   <tr key={f.symbol} className="border-b border-border/40 hover:bg-muted/20 transition-colors">
-                    <td className="px-3 py-2.5 font-bold text-xs text-primary">{f.symbol}</td>
+                    <td className="px-3 py-2.5 font-medium text-xs text-primary">{f.symbol}</td>
                     <td className="px-3 py-2.5 text-xs font-medium text-foreground">{f.pair}</td>
-                    <td className="px-3 py-2.5 tabular-nums text-xs font-semibold text-foreground">{fmtPrice(f.price)}</td>
+                    <td className="px-3 py-2.5 tabular-nums text-xs font-medium text-foreground">{fmtPrice(f.price)}</td>
                     <td className="px-3 py-2.5 tabular-nums text-xs">
                       <span className={chgCls(f.change)}>
                         {up(f.change) ? "+" : ""}{fmtPrice(Math.abs(f.change))}
@@ -916,14 +916,14 @@ function CurrencyCryptoTab() {
       {/* Implied Cross Rates */}
       <Card className="bg-card border-border">
         <CardHeader className="pb-2 pt-4 px-4">
-          <CardTitle className="text-sm font-semibold">Implied Cross Rates (from Futures)</CardTitle>
+          <CardTitle className="text-sm font-medium">Implied Cross Rates (from Futures)</CardTitle>
         </CardHeader>
         <CardContent className="px-4 pb-4">
           <div className="grid grid-cols-2 gap-3 sm:grid-cols-4">
             {crossRates.map((c) => (
               <div key={c.pair} className="rounded-lg border border-border bg-muted/20 p-3 text-center">
                 <div className="text-xs text-muted-foreground mb-1">{c.pair}</div>
-                <div className="text-sm font-bold tabular-nums text-foreground">{fmtPrice(c.rate)}</div>
+                <div className="text-sm font-medium tabular-nums text-foreground">{fmtPrice(c.rate)}</div>
                 <div className="text-xs text-muted-foreground mt-0.5">Implied from futures</div>
               </div>
             ))}
@@ -938,7 +938,7 @@ function CurrencyCryptoTab() {
       {cryptoFutures.map((c) => (
         <Card key={c.symbol} className="bg-card border-border">
           <CardHeader className="pb-2 pt-4 px-4">
-            <CardTitle className="text-sm font-semibold flex items-center gap-2">
+            <CardTitle className="text-sm font-medium flex items-center gap-2">
               <Zap className="h-4 w-4 text-orange-400" /> {c.name} ({c.symbol}) — Futures Structure
             </CardTitle>
           </CardHeader>
@@ -946,22 +946,22 @@ function CurrencyCryptoTab() {
             <div className="grid grid-cols-2 gap-3 sm:grid-cols-4 mb-3">
               <div className="rounded-lg border border-border bg-muted/20 p-3">
                 <div className="text-xs text-muted-foreground mb-1">Spot Price</div>
-                <div className="text-sm font-bold tabular-nums">${fmtLarge(c.spotPrice)}</div>
+                <div className="text-sm font-medium tabular-nums">${fmtLarge(c.spotPrice)}</div>
               </div>
               <div className="rounded-lg border border-border bg-muted/20 p-3">
                 <div className="text-xs text-muted-foreground mb-1">Perpetual</div>
-                <div className="text-sm font-bold tabular-nums text-amber-400">${fmtLarge(c.perpPrice)}</div>
+                <div className="text-sm font-medium tabular-nums text-amber-400">${fmtLarge(c.perpPrice)}</div>
                 <div className="text-xs text-muted-foreground">
                   Basis: <span className={chgCls(c.basis)}>{c.basis > 0 ? "+" : ""}{c.basis.toFixed(3)}%</span>
                 </div>
               </div>
               <div className="rounded-lg border border-border bg-muted/20 p-3">
                 <div className="text-xs text-muted-foreground mb-1">Q1 (Jun 25)</div>
-                <div className="text-sm font-bold tabular-nums text-primary">${fmtLarge(c.q1Price)}</div>
+                <div className="text-sm font-medium tabular-nums text-primary">${fmtLarge(c.q1Price)}</div>
               </div>
               <div className="rounded-lg border border-border bg-muted/20 p-3">
                 <div className="text-xs text-muted-foreground mb-1">Q2 (Sep 25)</div>
-                <div className="text-sm font-bold tabular-nums text-primary">${fmtLarge(c.q2Price)}</div>
+                <div className="text-sm font-medium tabular-nums text-primary">${fmtLarge(c.q2Price)}</div>
               </div>
             </div>
             {/* Funding Rate */}
@@ -969,13 +969,13 @@ function CurrencyCryptoTab() {
               <div className="flex items-center justify-between flex-wrap gap-2">
                 <div>
                   <div className="text-xs text-muted-foreground mb-0.5">8-Hour Funding Rate</div>
-                  <div className={cn("text-lg font-bold tabular-nums", chgCls(c.fundingRate8h))}>
+                  <div className={cn("text-lg font-medium tabular-nums", chgCls(c.fundingRate8h))}>
                     {c.fundingRate8h > 0 ? "+" : ""}{(c.fundingRate8h * 100).toFixed(4)}%
                   </div>
                 </div>
                 <div className="text-right">
                   <div className="text-xs text-muted-foreground mb-0.5">Annualized</div>
-                  <div className={cn("text-sm font-semibold tabular-nums", chgCls(c.fundingAnnualized))}>
+                  <div className={cn("text-sm font-medium tabular-nums", chgCls(c.fundingAnnualized))}>
                     {c.fundingAnnualized > 0 ? "+" : ""}{(c.fundingAnnualized * 100).toFixed(2)}%
                   </div>
                 </div>
@@ -1082,7 +1082,7 @@ function VolatilityTab() {
       <div className="grid gap-4 sm:grid-cols-2">
         <Card className="bg-card border-border">
           <CardHeader className="pb-2 pt-4 px-4">
-            <CardTitle className="text-sm font-semibold flex items-center gap-2">
+            <CardTitle className="text-sm font-medium flex items-center gap-2">
               VIX Futures Strip (M1–M6)
               <Badge variant="outline" className={cn("text-xs", isContango ? "text-orange-400 border-orange-400/30" : "text-emerald-400 border-emerald-400/30")}>
                 {isContango ? "Contango" : "Backwardation"}
@@ -1094,7 +1094,7 @@ function VolatilityTab() {
               <thead>
                 <tr className="border-b border-border bg-muted/20">
                   {["Contract", "Price", "Chg", "OI"].map((h) => (
-                    <th key={h} className="px-3 py-2 text-left font-semibold text-muted-foreground">{h}</th>
+                    <th key={h} className="px-3 py-2 text-left font-medium text-muted-foreground">{h}</th>
                   ))}
                 </tr>
               </thead>
@@ -1102,7 +1102,7 @@ function VolatilityTab() {
                 {[{ month: "Spot", label: "VIX Spot", price: vixSpot, change: 0, oi: 0 }, ...vixFutures].map((f) => (
                   <tr key={f.month} className="border-b border-border/40 hover:bg-muted/20">
                     <td className="px-3 py-2 font-medium text-foreground">{f.label ?? f.month}</td>
-                    <td className="px-3 py-2 tabular-nums font-semibold text-amber-400">{f.price.toFixed(2)}</td>
+                    <td className="px-3 py-2 tabular-nums font-medium text-amber-400">{f.price.toFixed(2)}</td>
                     <td className="px-3 py-2 tabular-nums">
                       {f.change !== 0 ? <ChgBadge v={f.change} suffix="" /> : <span className="text-muted-foreground">—</span>}
                     </td>
@@ -1119,7 +1119,7 @@ function VolatilityTab() {
         {/* Term Structure SVG */}
         <Card className="bg-card border-border">
           <CardHeader className="pb-2 pt-4 px-4">
-            <CardTitle className="text-sm font-semibold">VIX Term Structure</CardTitle>
+            <CardTitle className="text-sm font-medium">VIX Term Structure</CardTitle>
           </CardHeader>
           <CardContent className="px-4 pb-4">
             <svg viewBox={`0 0 ${svgW} ${svgH}`} className="w-full h-auto">
@@ -1151,21 +1151,21 @@ function VolatilityTab() {
       {/* VIX Options Chain */}
       <Card className="bg-card border-border">
         <CardHeader className="pb-2 pt-4 px-4">
-          <CardTitle className="text-sm font-semibold">VIX Options Chain (Near-Term)</CardTitle>
+          <CardTitle className="text-sm font-medium">VIX Options Chain (Near-Term)</CardTitle>
         </CardHeader>
         <CardContent className="p-0">
           <div className="overflow-x-auto">
             <table className="w-full text-xs">
               <thead>
                 <tr className="border-b border-border bg-muted/20">
-                  <th className="px-3 py-2 text-left font-semibold text-muted-foreground" colSpan={2}>Call</th>
-                  <th className="px-3 py-2 text-center font-semibold text-muted-foreground">Strike</th>
-                  <th className="px-3 py-2 text-right font-semibold text-muted-foreground" colSpan={2}>Put</th>
+                  <th className="px-3 py-2 text-left font-medium text-muted-foreground" colSpan={2}>Call</th>
+                  <th className="px-3 py-2 text-center font-medium text-muted-foreground">Strike</th>
+                  <th className="px-3 py-2 text-right font-medium text-muted-foreground" colSpan={2}>Put</th>
                 </tr>
                 <tr className="border-b border-border/50">
                   <th className="px-3 py-1.5 text-left text-xs text-muted-foreground">Price</th>
                   <th className="px-3 py-1.5 text-left text-xs text-muted-foreground">IV</th>
-                  <th className="px-3 py-1.5 text-center text-xs font-bold text-foreground">Strike</th>
+                  <th className="px-3 py-1.5 text-center text-xs font-medium text-foreground">Strike</th>
                   <th className="px-3 py-1.5 text-right text-xs text-muted-foreground">IV</th>
                   <th className="px-3 py-1.5 text-right text-xs text-muted-foreground">Price</th>
                 </tr>
@@ -1175,11 +1175,11 @@ function VolatilityTab() {
                   const atm = Math.abs(o.strike - vixSpot) < 2;
                   return (
                     <tr key={o.strike} className={cn("border-b border-border/30", atm && "bg-amber-500/5")}>
-                      <td className="px-3 py-2 tabular-nums text-emerald-400 font-semibold">{o.callPrice.toFixed(2)}</td>
+                      <td className="px-3 py-2 tabular-nums text-emerald-400 font-medium">{o.callPrice.toFixed(2)}</td>
                       <td className="px-3 py-2 tabular-nums text-muted-foreground">{o.iv.toFixed(1)}%</td>
-                      <td className={cn("px-3 py-2 text-center font-bold", atm ? "text-amber-400" : "text-foreground")}>{o.strike}</td>
+                      <td className={cn("px-3 py-2 text-center font-medium", atm ? "text-amber-400" : "text-foreground")}>{o.strike}</td>
                       <td className="px-3 py-2 tabular-nums text-muted-foreground text-right">{o.iv.toFixed(1)}%</td>
-                      <td className="px-3 py-2 tabular-nums text-red-400 font-semibold text-right">{o.putPrice.toFixed(2)}</td>
+                      <td className="px-3 py-2 tabular-nums text-red-400 font-medium text-right">{o.putPrice.toFixed(2)}</td>
                     </tr>
                   );
                 })}
@@ -1192,13 +1192,13 @@ function VolatilityTab() {
       {/* Variance Swaps */}
       <Card className="bg-card border-border">
         <CardHeader className="pb-2 pt-4 px-4">
-          <CardTitle className="text-sm font-semibold">Variance Swaps — Implied vs Realized Variance</CardTitle>
+          <CardTitle className="text-sm font-medium">Variance Swaps — Implied vs Realized Variance</CardTitle>
         </CardHeader>
         <CardContent className="px-4 pb-4 flex flex-col gap-3">
           {varSwaps.map((v) => (
             <div key={v.tenor} className="rounded-lg border border-border bg-muted/20 p-3">
               <div className="flex items-center justify-between mb-2">
-                <span className="text-xs font-bold text-foreground">{v.tenor} Variance Swap</span>
+                <span className="text-xs font-medium text-foreground">{v.tenor} Variance Swap</span>
                 <Badge variant="outline" className={cn("text-xs", v.spread > 0 ? "text-orange-400 border-orange-400/30" : "text-emerald-400 border-emerald-400/30")}>
                   Spread: {v.spread > 0 ? "+" : ""}{v.spread.toFixed(2)} vol pts
                 </Badge>
@@ -1229,7 +1229,7 @@ function VolatilityTab() {
       {/* Historical VIX Histogram */}
       <Card className="bg-card border-border">
         <CardHeader className="pb-2 pt-4 px-4">
-          <CardTitle className="text-sm font-semibold">Historical VIX Distribution — Last 2 Years (504 sessions)</CardTitle>
+          <CardTitle className="text-sm font-medium">Historical VIX Distribution — Last 2 Years (504 sessions)</CardTitle>
         </CardHeader>
         <CardContent className="px-4 pb-4">
           <svg viewBox={`0 0 ${histW} ${histH}`} className="w-full h-auto">
@@ -1321,7 +1321,7 @@ function MarginOrderTab() {
       {/* Contract Selector */}
       <Card className="bg-card border-border">
         <CardHeader className="pb-2 pt-4 px-4">
-          <CardTitle className="text-sm font-semibold flex items-center gap-2">
+          <CardTitle className="text-sm font-medium flex items-center gap-2">
             <Calculator className="h-4 w-4 text-primary" /> Select Contract
           </CardTitle>
         </CardHeader>
@@ -1348,7 +1348,7 @@ function MarginOrderTab() {
       {/* Contract Specs */}
       <Card className="bg-card border-border">
         <CardHeader className="pb-2 pt-4 px-4">
-          <CardTitle className="text-sm font-semibold">
+          <CardTitle className="text-sm font-medium">
             Contract Specifications — {selectedSpec.name} ({selectedSpec.symbol})
           </CardTitle>
         </CardHeader>
@@ -1370,7 +1370,7 @@ function MarginOrderTab() {
       {/* P&L Tick Tracker */}
       <Card className="bg-card border-border">
         <CardHeader className="pb-2 pt-4 px-4">
-          <CardTitle className="text-sm font-semibold flex items-center gap-2">
+          <CardTitle className="text-sm font-medium flex items-center gap-2">
             <Activity className="h-4 w-4 text-emerald-400" /> P&L Tick Tracker
           </CardTitle>
         </CardHeader>
@@ -1380,7 +1380,7 @@ function MarginOrderTab() {
               <label className="text-xs text-muted-foreground block mb-1">Contracts</label>
               <div className="flex items-center gap-1">
                 <Button size="sm" variant="outline" className="h-7 w-7 p-0" onClick={() => setNumContracts(Math.max(1, numContracts - 1))}>−</Button>
-                <span className="flex-1 text-center text-sm font-semibold tabular-nums">{numContracts}</span>
+                <span className="flex-1 text-center text-sm font-medium tabular-nums">{numContracts}</span>
                 <Button size="sm" variant="outline" className="h-7 w-7 p-0" onClick={() => setNumContracts(numContracts + 1)}>+</Button>
               </div>
             </div>
@@ -1388,11 +1388,11 @@ function MarginOrderTab() {
               <label className="text-xs text-muted-foreground block mb-1">Side</label>
               <div className="flex rounded-lg border border-border overflow-hidden h-7">
                 <button
-                  className={cn("flex-1 text-xs font-semibold transition-colors", side === "long" ? "bg-emerald-500/20 text-emerald-400" : "text-muted-foreground hover:bg-accent/50")}
+                  className={cn("flex-1 text-xs font-medium transition-colors", side === "long" ? "bg-emerald-500/20 text-emerald-400" : "text-muted-foreground hover:bg-accent/50")}
                   onClick={() => setSide("long")}
                 >Long</button>
                 <button
-                  className={cn("flex-1 text-xs font-semibold transition-colors", side === "short" ? "bg-red-500/20 text-red-400" : "text-muted-foreground hover:bg-accent/50")}
+                  className={cn("flex-1 text-xs font-medium transition-colors", side === "short" ? "bg-red-500/20 text-red-400" : "text-muted-foreground hover:bg-accent/50")}
                   onClick={() => setSide("short")}
                 >Short</button>
               </div>
@@ -1417,23 +1417,23 @@ function MarginOrderTab() {
           <div className="rounded-lg border border-border bg-muted/20 p-3 grid grid-cols-2 gap-2 sm:grid-cols-4">
             <div>
               <div className="text-xs text-muted-foreground">P&L per Contract</div>
-              <div className={cn("text-sm font-bold tabular-nums", chgCls(pnlPerContract))}>
+              <div className={cn("text-sm font-medium tabular-nums", chgCls(pnlPerContract))}>
                 {pnlPerContract > 0 ? "+" : ""}${pnlPerContract.toFixed(2)}
               </div>
             </div>
             <div>
               <div className="text-xs text-muted-foreground">Total P&L ({numContracts} ct)</div>
-              <div className={cn("text-sm font-bold tabular-nums", chgCls(totalPnl))}>
+              <div className={cn("text-sm font-medium tabular-nums", chgCls(totalPnl))}>
                 {totalPnl > 0 ? "+" : ""}${totalPnl.toFixed(2)}
               </div>
             </div>
             <div>
               <div className="text-xs text-muted-foreground">Notional Value</div>
-              <div className="text-sm font-bold tabular-nums">${fmtLarge(notional)}</div>
+              <div className="text-sm font-medium tabular-nums">${fmtLarge(notional)}</div>
             </div>
             <div>
               <div className="text-xs text-muted-foreground">Return on Margin</div>
-              <div className={cn("text-sm font-bold tabular-nums", chgCls(totalPnl))}>
+              <div className={cn("text-sm font-medium tabular-nums", chgCls(totalPnl))}>
                 {initMarginReq > 0 ? `${((totalPnl / initMarginReq) * 100).toFixed(2)}%` : "N/A"}
               </div>
             </div>
@@ -1444,7 +1444,7 @@ function MarginOrderTab() {
       {/* Margin Account Simulator */}
       <Card className="bg-card border-border">
         <CardHeader className="pb-2 pt-4 px-4">
-          <CardTitle className="text-sm font-semibold flex items-center gap-2">
+          <CardTitle className="text-sm font-medium flex items-center gap-2">
             <Shield className="h-4 w-4 text-primary" /> Margin Account Simulator
           </CardTitle>
         </CardHeader>
@@ -1476,7 +1476,7 @@ function MarginOrderTab() {
           <div>
             <div className="flex justify-between text-xs mb-1">
               <span className="text-muted-foreground">Portfolio Margin Used</span>
-              <span className={cn("font-semibold", portfolioMarginPct > 80 ? "text-red-400" : portfolioMarginPct > 50 ? "text-amber-400" : "text-emerald-400")}>
+              <span className={cn("font-medium", portfolioMarginPct > 80 ? "text-red-400" : portfolioMarginPct > 50 ? "text-amber-400" : "text-emerald-400")}>
                 ${portfolioMargin.toLocaleString()} / ${accountSize.toLocaleString()} ({portfolioMarginPct.toFixed(1)}%)
               </span>
             </div>
@@ -1502,7 +1502,7 @@ function MarginOrderTab() {
                 <thead>
                   <tr className="border-b border-border bg-muted/20">
                     {["Contract", "Qty", "Init Margin", "Maint Margin", "Margin Call @ Price", ""].map((h) => (
-                      <th key={h} className="px-3 py-2 text-left font-semibold text-muted-foreground whitespace-nowrap">{h}</th>
+                      <th key={h} className="px-3 py-2 text-left font-medium text-muted-foreground whitespace-nowrap">{h}</th>
                     ))}
                   </tr>
                 </thead>
@@ -1519,7 +1519,7 @@ function MarginOrderTab() {
                     const posMaintMargin = p.spec.maintenanceMargin * p.qty;
                     return (
                       <tr key={p.spec.symbol} className="border-b border-border/40 hover:bg-muted/20">
-                        <td className="px-3 py-2.5 font-bold text-primary">{p.spec.symbol}</td>
+                        <td className="px-3 py-2.5 font-medium text-primary">{p.spec.symbol}</td>
                         <td className="px-3 py-2.5 tabular-nums">{p.qty}</td>
                         <td className="px-3 py-2.5 tabular-nums text-red-400">${posInitMargin.toLocaleString()}</td>
                         <td className="px-3 py-2.5 tabular-nums text-orange-400">${posMaintMargin.toLocaleString()}</td>
@@ -1535,13 +1535,13 @@ function MarginOrderTab() {
                 </tbody>
                 <tfoot>
                   <tr className="bg-muted/30">
-                    <td className="px-3 py-2 font-bold text-foreground" colSpan={2}>Total</td>
-                    <td className="px-3 py-2 tabular-nums font-bold text-red-400">${portfolioMargin.toLocaleString()}</td>
-                    <td className="px-3 py-2 tabular-nums font-bold text-orange-400">
+                    <td className="px-3 py-2 font-medium text-foreground" colSpan={2}>Total</td>
+                    <td className="px-3 py-2 tabular-nums font-medium text-red-400">${portfolioMargin.toLocaleString()}</td>
+                    <td className="px-3 py-2 tabular-nums font-medium text-orange-400">
                       ${marginAcctPositions.reduce((s, p) => s + p.spec.maintenanceMargin * p.qty, 0).toLocaleString()}
                     </td>
                     <td colSpan={2} className="px-3 py-2">
-                      <span className={cn("text-xs font-semibold", marginBuffer >= 0 ? "text-emerald-400" : "text-red-400")}>
+                      <span className={cn("text-xs font-medium", marginBuffer >= 0 ? "text-emerald-400" : "text-red-400")}>
                         Buffer: ${marginBuffer.toLocaleString()}
                       </span>
                     </td>
@@ -1556,7 +1556,7 @@ function MarginOrderTab() {
       {/* Margin Call Scenario */}
       <Card className="bg-card border-border border-orange-500/20">
         <CardHeader className="pb-2 pt-4 px-4">
-          <CardTitle className="text-sm font-semibold flex items-center gap-2 text-amber-400">
+          <CardTitle className="text-sm font-medium flex items-center gap-2 text-amber-400">
             <AlertTriangle className="h-4 w-4" /> Margin Call Scenario — {selectedSpec.symbol}
           </CardTitle>
         </CardHeader>
@@ -1564,28 +1564,28 @@ function MarginOrderTab() {
           <div className="grid grid-cols-2 gap-3 sm:grid-cols-4">
             <div className="rounded-lg border border-border bg-muted/20 p-3">
               <div className="text-xs text-muted-foreground mb-1">Entry Price</div>
-              <div className="text-sm font-bold tabular-nums">{fmtPrice(entryPrice)}</div>
+              <div className="text-sm font-medium tabular-nums">{fmtPrice(entryPrice)}</div>
             </div>
             <div className="rounded-lg border border-orange-500/20 bg-orange-500/5 p-3">
               <div className="text-xs text-muted-foreground mb-1">Margin Call Price</div>
-              <div className="text-sm font-bold tabular-nums text-orange-400">{fmtPrice(marginCallPrice)}</div>
+              <div className="text-sm font-medium tabular-nums text-orange-400">{fmtPrice(marginCallPrice)}</div>
             </div>
             <div className="rounded-lg border border-border bg-muted/20 p-3">
               <div className="text-xs text-muted-foreground mb-1">Move to Call</div>
-              <div className={cn("text-sm font-bold tabular-nums", chgCls(marginCallPrice - entryPrice))}>
+              <div className={cn("text-sm font-medium tabular-nums", chgCls(marginCallPrice - entryPrice))}>
                 {((marginCallPrice - entryPrice) / entryPrice * 100).toFixed(2)}%
               </div>
             </div>
             <div className="rounded-lg border border-border bg-muted/20 p-3">
               <div className="text-xs text-muted-foreground mb-1">Excess Margin (1 ct)</div>
-              <div className="text-sm font-bold tabular-nums text-emerald-400">
+              <div className="text-sm font-medium tabular-nums text-emerald-400">
                 ${(initMarginReq - maintMarginReq).toLocaleString()}
               </div>
             </div>
           </div>
           <div className="rounded-lg border border-border bg-muted/10 p-3">
             <p className="text-xs text-muted-foreground leading-relaxed">
-              <span className="font-semibold text-foreground">How it works:</span> Your broker will issue a margin call if your account equity
+              <span className="font-medium text-foreground">How it works:</span> Your broker will issue a margin call if your account equity
               falls below the maintenance margin of ${selectedSpec.maintenanceMargin.toLocaleString()} per contract.
               For a {side === "long" ? "long" : "short"} position of {numContracts} contract(s) entered at {fmtPrice(entryPrice)},
               the margin call is triggered at {fmtPrice(marginCallPrice)} — a move of&nbsp;
@@ -1614,7 +1614,7 @@ export default function FuturesPage() {
       >
         <div className="flex items-center gap-2">
           <BarChart2 className="h-5 w-5 text-primary" />
-          <h1 className="text-xl font-bold text-foreground">Futures & Financial Derivatives</h1>
+          <h1 className="text-xl font-medium text-foreground">Futures & Financial Derivatives</h1>
           <Badge variant="outline" className="text-xs text-muted-foreground border-muted-foreground/30">SIMULATED</Badge>
         </div>
         <p className="text-xs text-muted-foreground">

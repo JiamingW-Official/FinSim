@@ -267,7 +267,7 @@ function WealthAccumulationTab() {
           <div className="space-y-2">
             <div className="flex justify-between text-sm">
               <span className="text-muted-foreground">Annual Return</span>
-              <span className="text-foreground font-semibold">{fmtPct(returnRate)}</span>
+              <span className="text-foreground font-medium">{fmtPct(returnRate)}</span>
             </div>
             <Slider min={1} max={15} step={0.5} value={[returnRate]} onValueChange={([v]) => setReturnRate(v)} />
           </div>
@@ -275,7 +275,7 @@ function WealthAccumulationTab() {
           <div className="space-y-2">
             <div className="flex justify-between text-sm">
               <span className="text-muted-foreground">Time Horizon</span>
-              <span className="text-foreground font-semibold">{years} years</span>
+              <span className="text-foreground font-medium">{years} years</span>
             </div>
             <Slider min={1} max={40} step={1} value={[years]} onValueChange={([v]) => setYears(v)} />
           </div>
@@ -300,7 +300,7 @@ function WealthAccumulationTab() {
             </div>
             <div className="bg-muted rounded-xl p-4 text-center">
               <div className="text-xs text-muted-foreground mb-1">Market Growth</div>
-              <div className="text-xl font-bold text-emerald-400">{fmtK(growthAmount)}</div>
+              <div className="text-xl font-medium text-emerald-400">{fmtK(growthAmount)}</div>
             </div>
           </div>
 
@@ -322,7 +322,7 @@ function WealthAccumulationTab() {
                 return (
                   <div key={sc.label} className="bg-muted rounded-lg p-3 text-center">
                     <div className="text-xs text-muted-foreground">{sc.label} ({sc.rate}%)</div>
-                    <div className="text-sm font-bold mt-1" style={{ color: sc.color }}>{fmtK(fv)}</div>
+                    <div className="text-sm font-medium mt-1" style={{ color: sc.color }}>{fmtK(fv)}</div>
                   </div>
                 );
               })}
@@ -335,7 +335,7 @@ function WealthAccumulationTab() {
       <Card className="p-5 bg-card border-border">
         <div className="flex items-center gap-2 mb-4">
           <Zap size={16} className="text-yellow-400" />
-          <h3 className="text-sm font-semibold text-foreground">Power of Starting Early — $500/month at 8%</h3>
+          <h3 className="text-sm font-medium text-foreground">Power of Starting Early — $500/month at 8%</h3>
         </div>
         <EarlyStartChart />
         <p className="text-xs text-muted-foreground mt-2">Starting 10 years earlier can more than double your retirement wealth due to compound interest.</p>
@@ -478,7 +478,7 @@ function NetWorthTab() {
         {/* Assets column */}
         <Card className="p-5 bg-card border-border space-y-3">
           <div className="flex items-center justify-between">
-            <h3 className="text-sm font-semibold text-muted-foreground">Assets</h3>
+            <h3 className="text-sm font-medium text-muted-foreground">Assets</h3>
             <Badge className="bg-green-900/50 text-green-400 border-green-800">{fmt(totalAssets)}</Badge>
           </div>
           {assetItems.map((item, i) => (
@@ -501,7 +501,7 @@ function NetWorthTab() {
         {/* Liabilities column */}
         <Card className="p-5 bg-card border-border space-y-3">
           <div className="flex items-center justify-between">
-            <h3 className="text-sm font-semibold text-muted-foreground">Liabilities</h3>
+            <h3 className="text-sm font-medium text-muted-foreground">Liabilities</h3>
             <Badge className="bg-red-900/50 text-red-400 border-red-800">{fmt(totalLiabilities)}</Badge>
           </div>
           {liabilityItems.map((item, i) => (
@@ -554,7 +554,7 @@ function NetWorthTab() {
 
           <div className="bg-muted rounded-lg p-3 text-center">
             <div className="text-xs text-muted-foreground">Wealth Percentile</div>
-            <div className="text-lg font-bold text-primary">{percentileLabel}</div>
+            <div className="text-lg font-medium text-primary">{percentileLabel}</div>
             <div className="text-xs text-muted-foreground">among {ageBracket} age group</div>
           </div>
         </Card>
@@ -562,7 +562,7 @@ function NetWorthTab() {
 
       {/* Milestones */}
       <Card className="p-5 bg-card border-border">
-        <h3 className="text-sm font-semibold text-muted-foreground mb-4">Net Worth Milestones</h3>
+        <h3 className="text-sm font-medium text-muted-foreground mb-4">Net Worth Milestones</h3>
         <div className="flex items-center gap-3 overflow-x-auto pb-2">
           {NET_WORTH_MILESTONES.map((m, i) => {
             const achieved = netWorth >= m.value;
@@ -574,7 +574,7 @@ function NetWorthTab() {
                 )}>
                   {m.emoji}
                 </div>
-                <div className={cn("text-xs font-semibold", achieved ? "text-green-400" : "text-muted-foreground")}>{m.label}</div>
+                <div className={cn("text-xs font-medium", achieved ? "text-green-400" : "text-muted-foreground")}>{m.label}</div>
                 {achieved && <CheckCircle size={10} className="text-green-500" />}
               </div>
             );
@@ -678,7 +678,7 @@ function PassiveIncomeTab() {
         <div className="flex items-center justify-between mb-3">
           <div className="flex items-center gap-2">
             <Flame size={16} className="text-orange-400" />
-            <span className="text-sm font-semibold text-foreground">Financial Independence Progress</span>
+            <span className="text-sm font-medium text-foreground">Financial Independence Progress</span>
           </div>
           <div className="text-xs text-muted-foreground">
             Active Income Target: {fmt(activeIncome)}/mo
@@ -690,8 +690,8 @@ function PassiveIncomeTab() {
           </div>
         </div>
         <div className="flex justify-between text-sm mb-2">
-          <span className="text-muted-foreground">Monthly Passive: <span className="text-foreground font-bold">{fmt(totalMonthlyPassive)}</span></span>
-          <span className="text-muted-foreground">FI Target: <span className="text-foreground font-bold">{fmt(fiThreshold)}</span></span>
+          <span className="text-muted-foreground">Monthly Passive: <span className="text-foreground font-medium">{fmt(totalMonthlyPassive)}</span></span>
+          <span className="text-muted-foreground">FI Target: <span className="text-foreground font-medium">{fmt(fiThreshold)}</span></span>
         </div>
         <Progress value={fiPct} className="h-3 mb-1" />
         <div className="text-xs text-muted-foreground">{fmtPct(fiPct)} of FI threshold reached</div>
@@ -704,7 +704,7 @@ function PassiveIncomeTab() {
             <div className="flex items-center justify-between">
               <div className="flex items-center gap-2" style={{ color: stream.color }}>
                 {stream.icon}
-                <span className="text-sm font-semibold text-foreground">{stream.label}</span>
+                <span className="text-sm font-medium text-foreground">{stream.label}</span>
               </div>
               <Badge style={{ background: stream.color + "20", color: stream.color, borderColor: stream.color + "40" }}>
                 {fmt(monthlyIncomes[i])}/mo
@@ -735,7 +735,7 @@ function PassiveIncomeTab() {
       {/* Dividend Growth Chart */}
       <Card className="p-5 bg-card border-border">
         <div className="flex items-center justify-between mb-3">
-          <h3 className="text-sm font-semibold text-foreground">Dividend Growth Investing — $100K at 3% Yield Growing 7%/yr</h3>
+          <h3 className="text-sm font-medium text-foreground">Dividend Growth Investing — $100K at 3% Yield Growing 7%/yr</h3>
           <div className="flex items-center gap-2 text-xs text-muted-foreground">
             Years: {yearsGrowth}
             <input type="range" min={5} max={30} step={1} value={yearsGrowth}
@@ -776,12 +776,12 @@ function PassiveIncomeTab() {
 
       {/* Capital Needed for $5K/month */}
       <Card className="p-5 bg-card border-border">
-        <h3 className="text-sm font-semibold text-foreground mb-3">Capital Required for $5,000/month Passive Income</h3>
+        <h3 className="text-sm font-medium text-foreground mb-3">Capital Required for $5,000/month Passive Income</h3>
         <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-2">
           {capitalNeeded.map((row) => (
             <div key={row.yield} className="bg-muted rounded-lg p-3 text-center">
               <div className="text-xs text-muted-foreground">{row.yield}% yield</div>
-              <div className="text-sm font-bold text-primary mt-1">{fmtK(row.capital)}</div>
+              <div className="text-sm font-medium text-primary mt-1">{fmtK(row.capital)}</div>
             </div>
           ))}
         </div>
@@ -928,11 +928,11 @@ function TaxOptimizationTab() {
       {/* Income & bracket */}
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
         <Card className="p-5 bg-card border-border space-y-4">
-          <h3 className="text-sm font-semibold text-muted-foreground">Tax Bracket Calculator</h3>
+          <h3 className="text-sm font-medium text-muted-foreground">Tax Bracket Calculator</h3>
           <div className="space-y-2">
             <div className="flex justify-between text-sm">
               <span className="text-muted-foreground">Annual Income</span>
-              <span className="text-foreground font-semibold">{fmt(income)}</span>
+              <span className="text-foreground font-medium">{fmt(income)}</span>
             </div>
             <Slider min={10000} max={600000} step={5000} value={[income]} onValueChange={([v]) => setIncome(v)} />
           </div>
@@ -940,15 +940,15 @@ function TaxOptimizationTab() {
           <div className="grid grid-cols-3 gap-3">
             <div className="bg-muted rounded-lg p-3 text-center">
               <div className="text-xs text-muted-foreground">Marginal Rate</div>
-              <div className="text-xl font-bold text-red-400">{marginalRate}%</div>
+              <div className="text-xl font-medium text-red-400">{marginalRate}%</div>
             </div>
             <div className="bg-muted rounded-lg p-3 text-center">
               <div className="text-xs text-muted-foreground">Effective Rate</div>
-              <div className="text-xl font-bold text-yellow-400">{fmtPct(effectiveRate)}</div>
+              <div className="text-xl font-medium text-yellow-400">{fmtPct(effectiveRate)}</div>
             </div>
             <div className="bg-muted rounded-lg p-3 text-center">
               <div className="text-xs text-muted-foreground">Total Tax</div>
-              <div className="text-xl font-bold text-orange-400">{fmtK(calcTax(income).totalTax)}</div>
+              <div className="text-xl font-medium text-orange-400">{fmtK(calcTax(income).totalTax)}</div>
             </div>
           </div>
 
@@ -956,17 +956,17 @@ function TaxOptimizationTab() {
         </Card>
 
         <Card className="p-5 bg-card border-border space-y-4">
-          <h3 className="text-sm font-semibold text-muted-foreground">Tax-Advantaged Account Optimizer</h3>
+          <h3 className="text-sm font-medium text-muted-foreground">Tax-Advantaged Account Optimizer</h3>
           <div className="space-y-2">
             <div className="flex justify-between text-sm">
               <span className="text-muted-foreground">Annual 401k Contribution</span>
-              <span className="text-foreground font-semibold">{fmt(annualContrib)}</span>
+              <span className="text-foreground font-medium">{fmt(annualContrib)}</span>
             </div>
             <Slider min={1000} max={23000} step={500} value={[annualContrib]} onValueChange={([v]) => setAnnualContrib(v)} />
           </div>
 
           <div className="bg-emerald-900/30 border border-emerald-800/50 rounded-lg p-3">
-            <div className="text-xs text-emerald-400 font-semibold">Annual Tax Savings</div>
+            <div className="text-xs text-emerald-400 font-medium">Annual Tax Savings</div>
             <div className="text-2xl font-bold text-emerald-400">{fmt(taxSaved)}</div>
             <div className="text-xs text-muted-foreground mt-1">at {marginalRate}% marginal rate on {fmt(annualContrib)} contribution</div>
           </div>
@@ -1001,11 +1001,11 @@ function TaxOptimizationTab() {
 
       {/* Asset Location */}
       <Card className="p-5 bg-card border-border">
-        <h3 className="text-sm font-semibold text-muted-foreground mb-3">Asset Location Strategy</h3>
+        <h3 className="text-sm font-medium text-muted-foreground mb-3">Asset Location Strategy</h3>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
           {ACCOUNT_TYPES.map((acct) => (
             <div key={acct.type} className="bg-muted rounded-xl p-4 space-y-3">
-              <div className="text-sm font-semibold" style={{ color: acct.color }}>{acct.type}</div>
+              <div className="text-sm font-medium" style={{ color: acct.color }}>{acct.type}</div>
               <div>
                 <div className="text-xs text-green-400 mb-1 font-medium">Best for:</div>
                 {acct.best.map((item, i) => (
@@ -1030,7 +1030,7 @@ function TaxOptimizationTab() {
       {/* Roth Conversion + Estate */}
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
         <Card className="p-5 bg-card border-border space-y-3">
-          <h3 className="text-sm font-semibold text-muted-foreground">Roth Conversion Ladder</h3>
+          <h3 className="text-sm font-medium text-muted-foreground">Roth Conversion Ladder</h3>
           <p className="text-xs text-muted-foreground">Convert traditional IRA funds to Roth up to the top of each bracket. Ideal strategy for early retirees with low current income.</p>
           {rothConversionRanges.map((r, i) => (
             <div key={i} className="flex items-center gap-3">
@@ -1045,7 +1045,7 @@ function TaxOptimizationTab() {
         </Card>
 
         <Card className="p-5 bg-card border-border space-y-3">
-          <h3 className="text-sm font-semibold text-muted-foreground">Estate Planning Basics</h3>
+          <h3 className="text-sm font-medium text-muted-foreground">Estate Planning Basics</h3>
           <div className="space-y-2">
             {[
               { label: "Annual Gift Exclusion", value: "$18,000 per person", note: "Gift tax-free to any number of individuals", color: "#3b82f6" },
@@ -1056,7 +1056,7 @@ function TaxOptimizationTab() {
               <div key={i} className="bg-muted rounded-lg p-3">
                 <div className="flex items-center justify-between">
                   <span className="text-xs text-muted-foreground">{item.label}</span>
-                  <span className="text-xs font-semibold" style={{ color: item.color }}>{item.value}</span>
+                  <span className="text-xs font-medium" style={{ color: item.color }}>{item.value}</span>
                 </div>
                 <div className="text-xs text-muted-foreground mt-1">{item.note}</div>
               </div>
@@ -1185,7 +1185,7 @@ function RiskInsuranceTab() {
       <Card className="p-5 bg-card border-border">
         <div className="flex items-center gap-2 mb-3">
           <TrendingUp size={14} className="text-primary" />
-          <h3 className="text-sm font-semibold text-foreground">Human Capital — Your Most Valuable Asset</h3>
+          <h3 className="text-sm font-medium text-foreground">Human Capital — Your Most Valuable Asset</h3>
           <Badge className="bg-muted/70 text-primary border-border">{fmtK(humanCapital)}</Badge>
         </div>
         <p className="text-xs text-muted-foreground mb-3">Present value of all future earnings at 5% discount rate. This is what life &amp; disability insurance protects.</p>
@@ -1215,7 +1215,7 @@ function RiskInsuranceTab() {
           <Card key={i} className="p-4 bg-card border-border">
             <div className="flex items-center gap-2 mb-2">
               <span style={{ color: item.color }}>{item.icon}</span>
-              <span className="text-sm font-semibold text-foreground">{item.label}</span>
+              <span className="text-sm font-medium text-foreground">{item.label}</span>
               <Badge className="ml-auto" style={{ background: item.color + "20", color: item.color, borderColor: item.color + "40" }}>
                 {item.value}
               </Badge>
@@ -1227,7 +1227,7 @@ function RiskInsuranceTab() {
 
       {/* Property / Deductible Optimization */}
       <Card className="p-5 bg-card border-border">
-        <h3 className="text-sm font-semibold text-foreground mb-3">Deductible Optimization: Pay yourself to self-insure</h3>
+        <h3 className="text-sm font-medium text-foreground mb-3">Deductible Optimization: Pay yourself to self-insure</h3>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
           {[
             { label: "Low Deductible ($500)", premium: 2400, savings: 0, note: "Highest annual cost, pays for small claims" },
@@ -1236,8 +1236,8 @@ function RiskInsuranceTab() {
           ].map((opt, i) => (
             <div key={i} className={cn("bg-muted rounded-xl p-4 border", i === 1 ? "border-border" : "border-border")}>
               {i === 1 && <Badge className="bg-muted/70 text-primary border-border text-xs mb-2">Recommended</Badge>}
-              <div className="text-sm font-semibold text-foreground">{opt.label}</div>
-              <div className="text-lg font-bold text-foreground mt-1">{fmt(opt.premium)}/yr</div>
+              <div className="text-sm font-medium text-foreground">{opt.label}</div>
+              <div className="text-lg font-medium text-foreground mt-1">{fmt(opt.premium)}/yr</div>
               {opt.savings > 0 && <div className="text-xs text-green-400">Save {fmt(opt.savings)}/yr</div>}
               <div className="text-xs text-muted-foreground mt-2">{opt.note}</div>
             </div>
@@ -1293,7 +1293,7 @@ function SWRHistoricalChart() {
   return (
     <div>
       <div className="flex items-center gap-3 mb-2">
-        <div className="text-sm text-muted-foreground">Success Rate: <span className="text-green-400 font-bold">{survivedCount}%</span></div>
+        <div className="text-sm text-muted-foreground">Success Rate: <span className="text-green-400 font-medium">{survivedCount}%</span></div>
         <Badge className="bg-green-900/50 text-green-400 border-green-800">100 historical 30-year periods</Badge>
       </div>
       <svg viewBox={`0 0 ${vw} ${vh}`} className="w-full" style={{ height: vh }}>
@@ -1383,7 +1383,7 @@ function FIRoadmapTab() {
       {/* FIRE Calculator */}
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-4">
         <Card className="p-5 bg-card border-border space-y-4">
-          <h3 className="text-sm font-semibold text-muted-foreground">FIRE Calculator</h3>
+          <h3 className="text-sm font-medium text-muted-foreground">FIRE Calculator</h3>
 
           {[
             { label: "Annual Expenses", value: annualExpenses, min: 10000, max: 200000, step: 2500, set: setAnnualExpenses },
@@ -1426,7 +1426,7 @@ function FIRoadmapTab() {
             <div className="relative h-4 bg-muted rounded-full overflow-hidden">
               <div className="absolute inset-y-0 left-0 bg-primary rounded-full transition-all duration-300"
                 style={{ width: `${progressPct}%` }} />
-              <div className="absolute inset-0 flex items-center justify-center text-xs font-bold text-foreground">
+              <div className="absolute inset-0 flex items-center justify-center text-xs font-medium text-foreground">
                 {fmtPct(progressPct)}
               </div>
             </div>
@@ -1457,7 +1457,7 @@ function FIRoadmapTab() {
       <Card className="p-5 bg-card border-border">
         <div className="flex items-center gap-2 mb-3">
           <BarChart3 size={14} className="text-green-400" />
-          <h3 className="text-sm font-semibold text-foreground">4% Safe Withdrawal Rate — Historical Analysis</h3>
+          <h3 className="text-sm font-medium text-foreground">4% Safe Withdrawal Rate — Historical Analysis</h3>
         </div>
         <SWRHistoricalChart />
       </Card>
@@ -1465,7 +1465,7 @@ function FIRoadmapTab() {
       {/* Barista FIRE + One More Year */}
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
         <Card className="p-5 bg-card border-border space-y-3">
-          <h3 className="text-sm font-semibold text-foreground">Barista FIRE Calculator</h3>
+          <h3 className="text-sm font-medium text-foreground">Barista FIRE Calculator</h3>
           <p className="text-xs text-muted-foreground">Work part-time to cover some expenses — retire with less capital needed.</p>
           <div className="space-y-2">
             <div className="flex justify-between text-xs">
@@ -1478,37 +1478,37 @@ function FIRoadmapTab() {
           <div className="grid grid-cols-2 gap-3">
             <div className="bg-muted rounded-xl p-3 text-center">
               <div className="text-xs text-muted-foreground">Standard FIRE</div>
-              <div className="text-lg font-bold text-primary">{fmtK(fiNumber)}</div>
+              <div className="text-lg font-medium text-primary">{fmtK(fiNumber)}</div>
               <div className="text-xs text-muted-foreground">{yearsToFI} years</div>
             </div>
             <div className="bg-muted rounded-xl p-3 text-center">
               <div className="text-xs text-muted-foreground">Barista FIRE</div>
-              <div className="text-lg font-bold text-green-400">{fmtK(fiBaristaNumber)}</div>
+              <div className="text-lg font-medium text-green-400">{fmtK(fiBaristaNumber)}</div>
               <div className="text-xs text-muted-foreground">{yearsToBarista} years</div>
             </div>
           </div>
 
           <div className="bg-muted/40 border border-border rounded-lg p-3 text-xs text-primary">
             Part-time income of {fmt(baristaEarnings)}/yr saves{" "}
-            <span className="font-bold">{fmtK(fiNumber - fiBaristaNumber)}</span> in required capital and reaches FI{" "}
-            <span className="font-bold">{yearsToFI - yearsToBarista} years earlier</span>.
+            <span className="font-medium">{fmtK(fiNumber - fiBaristaNumber)}</span> in required capital and reaches FI{" "}
+            <span className="font-medium">{yearsToFI - yearsToBarista} years earlier</span>.
           </div>
         </Card>
 
         <Card className="p-5 bg-card border-border space-y-3">
-          <h3 className="text-sm font-semibold text-foreground">One More Year Syndrome</h3>
+          <h3 className="text-sm font-medium text-foreground">One More Year Syndrome</h3>
           <p className="text-xs text-muted-foreground">
             Working one extra year after reaching FI adds capital but costs you irreplaceable time.
           </p>
           <div className="grid grid-cols-2 gap-3">
             <div className="bg-muted rounded-xl p-3 text-center">
               <div className="text-xs text-muted-foreground">Current Withdrawal</div>
-              <div className="text-lg font-bold text-green-400">{fmt(oneMoreYear.standardWithdrawal)}/yr</div>
+              <div className="text-lg font-medium text-green-400">{fmt(oneMoreYear.standardWithdrawal)}/yr</div>
               <div className="text-xs text-muted-foreground">4% of {fmtK(fiNumber)}</div>
             </div>
             <div className="bg-muted rounded-xl p-3 text-center">
               <div className="text-xs text-muted-foreground">After 1 More Year</div>
-              <div className="text-lg font-bold text-yellow-400">{fmt(oneMoreYear.extraWithdrawal)}/yr</div>
+              <div className="text-lg font-medium text-yellow-400">{fmt(oneMoreYear.extraWithdrawal)}/yr</div>
               <div className="text-xs text-muted-foreground">+{fmt(oneMoreYear.diff)}/yr gain</div>
             </div>
           </div>
@@ -1557,15 +1557,15 @@ export default function WealthBuilderPage() {
   return (
     <div className="min-h-screen bg-background text-foreground">
       {/* Header */}
-      <div className="border-b border-border bg-background/80 backdrop-blur-sm sticky top-0 z-10">
-        <div className="max-w-screen-2xl mx-auto px-6 py-4">
+      <div className="border-b border-border bg-background/80 backdrop-blur-sm sticky top-0 z-10 border-l-4 border-l-primary">
+        <div className="max-w-screen-2xl mx-auto px-6 py-6">
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-3">
               <div className="w-9 h-9 rounded-xl bg-emerald-600 flex items-center justify-center">
                 <TrendingUp size={18} className="text-foreground" />
               </div>
               <div>
-                <h1 className="text-lg font-bold text-foreground">Wealth Builder</h1>
+                <h1 className="text-lg font-medium text-foreground">Wealth Builder</h1>
                 <p className="text-xs text-muted-foreground">Comprehensive financial independence planning toolkit</p>
               </div>
             </div>

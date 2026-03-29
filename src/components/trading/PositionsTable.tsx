@@ -116,7 +116,7 @@ export function PositionsTable() {
     <div className="overflow-x-auto">
       <table className="w-full text-xs" role="table">
         <thead>
-          <tr className="border-b border-border text-muted-foreground">
+          <tr className="border-b border-border/40 text-muted-foreground">
             <th scope="col" className="w-4 px-1 py-1.5" />
             <th scope="col" className="px-2 py-1.5 text-left font-medium whitespace-nowrap">Ticker</th>
             <th scope="col" className="px-2 py-1.5 text-right font-medium whitespace-nowrap">P&amp;L</th>

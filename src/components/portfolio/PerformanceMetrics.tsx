@@ -16,11 +16,11 @@ function MetricCard({
   color?: string;
 }) {
   return (
-    <div className="rounded-lg border border-border bg-card p-3">
+    <div className="rounded-lg border border-border/40 bg-card p-3">
       <div className="text-xs font-medium text-muted-foreground">
         {label}
       </div>
-      <div className={cn("mt-1 text-lg font-bold tabular-nums", color)}>
+      <div className={cn("mt-1 text-lg font-medium tabular-nums", color)}>
         {value}
       </div>
     </div>

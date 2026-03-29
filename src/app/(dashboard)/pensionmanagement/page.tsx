@@ -713,7 +713,7 @@ function FundedRatioCalculator() {
           <div className="text-xs text-muted-foreground mt-1">Unfunded Liability</div>
         </div>
         <div className="bg-muted rounded-lg p-3 text-center">
-          <div className="text-xl font-bold text-primary">${requiredContrib.toLocaleString()}M</div>
+          <div className="text-xl font-medium text-primary">${requiredContrib.toLocaleString()}M</div>
           <div className="text-xs text-muted-foreground mt-1">Annual Contribution</div>
         </div>
       </div>
@@ -748,7 +748,7 @@ export default function PensionManagementPage() {
             <Building2 className="w-5 h-5 text-primary" />
           </div>
           <div>
-            <h1 className="text-xl font-bold text-foreground">Pension Fund Management</h1>
+            <h1 className="text-xl font-medium text-foreground">Pension Fund Management</h1>
             <p className="text-sm text-muted-foreground">Institutional LDI · Asset-Liability Matching · Long-Horizon Investing</p>
           </div>
         </div>
@@ -762,7 +762,7 @@ export default function PensionManagementPage() {
           ].map((chip) => (
             <div key={chip.label} className="bg-muted/60 rounded-lg px-3 py-1.5 flex items-center gap-2">
               <span className="text-xs text-muted-foreground">{chip.label}</span>
-              <span className={`text-sm font-bold ${chip.color}`}>{chip.value}</span>
+              <span className={`text-sm font-medium ${chip.color}`}>{chip.value}</span>
             </div>
           ))}
         </div>
@@ -888,7 +888,7 @@ export default function PensionManagementPage() {
                         { label: "Healthy", range: "> 80%", color: "text-emerald-400" },
                       ].map((s) => (
                         <div key={s.label} className="bg-muted rounded p-2">
-                          <div className={`font-bold ${s.color}`}>{s.label}</div>
+                          <div className={`font-medium ${s.color}`}>{s.label}</div>
                           <div className="text-muted-foreground">{s.range}</div>
                         </div>
                       ))}
@@ -932,7 +932,7 @@ export default function PensionManagementPage() {
                           <td className="py-2 pr-2 text-right text-muted-foreground">{f.members.toLocaleString()}</td>
                           <td className="py-2 pr-2 text-right">
                             <span
-                              className={`font-bold ${
+                              className={`font-medium ${
                                 f.fundedRatio >= 100
                                   ? "text-emerald-400"
                                   : f.fundedRatio >= 80
@@ -1181,11 +1181,11 @@ export default function PensionManagementPage() {
                   <AllocationWaterfall scenario={selectedScenario} />
                   <div className="grid grid-cols-2 gap-3 mt-4">
                     <div className="bg-muted rounded-lg p-3 text-center">
-                      <div className="text-lg font-bold text-emerald-400">{selectedScenario.expectedReturn}%</div>
+                      <div className="text-lg font-medium text-emerald-400">{selectedScenario.expectedReturn}%</div>
                       <div className="text-xs text-muted-foreground">Expected Return</div>
                     </div>
                     <div className="bg-muted rounded-lg p-3 text-center">
-                      <div className="text-lg font-bold text-orange-400">{selectedScenario.volatility}%</div>
+                      <div className="text-lg font-medium text-orange-400">{selectedScenario.volatility}%</div>
                       <div className="text-xs text-muted-foreground">Expected Volatility</div>
                     </div>
                   </div>
@@ -1340,11 +1340,11 @@ export default function PensionManagementPage() {
                     </div>
                     <div className="grid grid-cols-2 gap-2 mb-2 text-xs">
                       <div className="bg-muted rounded p-2 text-center">
-                        <div className="text-red-400 font-bold">{rf.impactBps}bps</div>
+                        <div className="text-red-400 font-medium">{rf.impactBps}bps</div>
                         <div className="text-muted-foreground">Liability Impact</div>
                       </div>
                       <div className="bg-muted rounded p-2 text-center">
-                        <div className="text-emerald-400 font-bold">{rf.hedgeRatio}%</div>
+                        <div className="text-emerald-400 font-medium">{rf.hedgeRatio}%</div>
                         <div className="text-muted-foreground">Hedged</div>
                       </div>
                     </div>
@@ -1420,7 +1420,7 @@ export default function PensionManagementPage() {
                           </td>
                           <td className="py-2 text-right">
                             <span
-                              className={`font-bold ${sc.fundedImpact > 0 ? "text-emerald-400" : "text-red-400"}`}
+                              className={`font-medium ${sc.fundedImpact > 0 ? "text-emerald-400" : "text-red-400"}`}
                             >
                               {sc.fundedImpact > 0 ? "+" : ""}
                               {sc.fundedImpact}pp
@@ -1716,7 +1716,7 @@ export default function PensionManagementPage() {
                     },
                   ].map((item) => (
                     <div key={item.metric} className="bg-muted rounded-lg p-3 text-center">
-                      <div className={`text-base font-bold ${item.color}`}>{item.value}</div>
+                      <div className={`text-base font-medium ${item.color}`}>{item.value}</div>
                       <div className="font-medium text-foreground mt-1">{item.metric}</div>
                       <div className="text-muted-foreground mt-0.5 text-xs">{item.desc}</div>
                     </div>

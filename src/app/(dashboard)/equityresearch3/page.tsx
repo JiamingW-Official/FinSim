@@ -756,7 +756,7 @@ function SOTPTab() {
 
       {/* Holding Company Discount */}
       <div className="bg-muted border border-border rounded-xl p-4">
-        <h3 className="text-sm font-semibold text-foreground mb-3 flex items-center gap-2">
+        <h3 className="text-sm font-medium text-foreground mb-3 flex items-center gap-2">
           <AlertTriangle className="w-4 h-4 text-amber-400" />
           Conglomerate Discount — Causes & Unlocking Value
         </h3>
@@ -767,7 +767,7 @@ function SOTPTab() {
             { title: "Conglomerate Discount", desc: "Historically 15–30% of gross NAV. Narrows when activists push spin-offs, when segments are disclosed, or at spin-off announcement." },
           ].map((item, i) => (
             <div key={i} className="bg-card rounded-lg p-3">
-              <p className="text-xs font-semibold text-amber-400 mb-1">{item.title}</p>
+              <p className="text-xs font-medium text-amber-400 mb-1">{item.title}</p>
               <p className="text-xs text-muted-foreground">{item.desc}</p>
             </div>
           ))}
@@ -777,7 +777,7 @@ function SOTPTab() {
         <div className="flex items-center gap-3">
           <span className="text-xs text-muted-foreground w-28">Typical Range:</span>
           <div className="flex-1 h-4 bg-card rounded-full overflow-hidden relative">
-            <div className="h-full bg-gradient-to-r from-green-600 via-amber-500 to-red-600 w-full rounded-full opacity-30" />
+            <div className="h-full bg-muted w-full rounded-full" />
             <div
               className="absolute top-0 h-full w-1.5 bg-amber-400 rounded-full"
               style={{ left: `${((HOLDING_CO_DISCOUNT - 0.05) / 0.35) * 100}%` }}
@@ -793,7 +793,7 @@ function SOTPTab() {
 
         {/* Unlocking mechanisms */}
         <div className="mt-3 space-y-1.5">
-          <p className="text-xs font-semibold text-muted-foreground">Value Unlocking Mechanisms</p>
+          <p className="text-xs font-medium text-muted-foreground">Value Unlocking Mechanisms</p>
           {[
             { label: "Pure-play Spin-Off", detail: "Separates high-multiple from low-multiple businesses. Parent retains some shares. Market re-rates each independently." },
             { label: "Tracking Stock", detail: "Separate share class tracking one division's economics. Avoids tax friction of full spin-off. Less clean than pure spin." },
@@ -803,7 +803,7 @@ function SOTPTab() {
             <div key={i} className="flex gap-2 items-start">
               <CheckCircle2 className="w-3.5 h-3.5 text-emerald-500 mt-0.5 flex-shrink-0" />
               <span className="text-xs text-muted-foreground">
-                <span className="font-semibold">{m.label}: </span>
+                <span className="font-medium">{m.label}: </span>
                 {m.detail}
               </span>
             </div>
@@ -813,13 +813,13 @@ function SOTPTab() {
 
       {/* Net-Net & Graham */}
       <div className="bg-muted border border-border rounded-xl p-4">
-        <h3 className="text-sm font-semibold text-foreground mb-2 flex items-center gap-2">
+        <h3 className="text-sm font-medium text-foreground mb-2 flex items-center gap-2">
           <DollarSign className="w-4 h-4 text-green-400" />
           Graham Net-Net & Asset-Heavy Liquidation Value
         </h3>
         <div className="grid md:grid-cols-2 gap-4">
           <div>
-            <p className="text-xs font-semibold text-green-400 mb-1">Net Current Asset Value (NCAV)</p>
+            <p className="text-xs font-medium text-green-400 mb-1">Net Current Asset Value (NCAV)</p>
             <p className="text-xs text-muted-foreground mb-2">
               Graham's net-net framework: buy stocks trading below 2/3 of (Current Assets − All Liabilities). Extremely conservative; assets valued at liquidation, not going-concern.
             </p>
@@ -833,8 +833,8 @@ function SOTPTab() {
                 <span className="text-red-400">−$Y</span>
               </div>
               <div className="flex justify-between border-t border-border pt-0.5 mt-0.5">
-                <span className="text-foreground font-bold">NCAV</span>
-                <span className="text-muted-foreground font-bold">=$Z</span>
+                <span className="text-foreground font-medium">NCAV</span>
+                <span className="text-muted-foreground font-medium">=$Z</span>
               </div>
               <div className="flex justify-between">
                 <span className="text-muted-foreground">Buy threshold</span>
@@ -843,7 +843,7 @@ function SOTPTab() {
             </div>
           </div>
           <div>
-            <p className="text-xs font-semibold text-amber-400 mb-1">Berkshire-Style NAV Investing</p>
+            <p className="text-xs font-medium text-amber-400 mb-1">Berkshire-Style NAV Investing</p>
             <p className="text-xs text-muted-foreground">
               For holding companies like BRK, value = sum of operating subsidiaries at fair value + publicly-traded portfolio at market + cash − debt. Buffett explicitly tracks look-through earnings.
             </p>
@@ -909,7 +909,7 @@ function PrimaryResearchTab() {
 
         {/* Channel framework */}
         <div className="bg-muted border border-border rounded-xl p-4">
-          <h3 className="text-sm font-semibold text-foreground mb-3 flex items-center gap-2">
+          <h3 className="text-sm font-medium text-foreground mb-3 flex items-center gap-2">
             <Network className="w-4 h-4 text-primary" />
             Channel Check Framework
           </h3>
@@ -958,7 +958,7 @@ function PrimaryResearchTab() {
 
       {/* Expert networks */}
       <div className="bg-muted border border-border rounded-xl p-4">
-        <h3 className="text-sm font-semibold text-foreground mb-3 flex items-center gap-2">
+        <h3 className="text-sm font-medium text-foreground mb-3 flex items-center gap-2">
           <Users className="w-4 h-4 text-primary" />
           Expert Network Landscape
         </h3>
@@ -966,14 +966,14 @@ function PrimaryResearchTab() {
           {expertNetworks.map((en, i) => (
             <div key={i} className="bg-card rounded-lg p-3 border border-border">
               <div className="flex items-center gap-2 mb-1">
-                <span className="text-xs font-bold text-foreground bg-primary px-2 py-0.5 rounded">{en.name}</span>
+                <span className="text-xs font-medium text-foreground bg-primary px-2 py-0.5 rounded">{en.name}</span>
               </div>
               <p className="text-xs text-muted-foreground">{en.description}</p>
             </div>
           ))}
         </div>
         <div className="mt-3 p-3 bg-amber-950/30 border border-amber-800/50 rounded-lg">
-          <p className="text-xs text-amber-300 font-semibold mb-1">Compliance & Mosaic Theory</p>
+          <p className="text-xs text-amber-300 font-medium mb-1">Compliance & Mosaic Theory</p>
           <p className="text-xs text-muted-foreground">
             Expert calls are legal when experts share publicly available information or non-material opinions. Material non-public information (MNPI) from former insiders violates insider trading laws. Always use compliance-approved call protocols.
           </p>
@@ -982,7 +982,7 @@ function PrimaryResearchTab() {
 
       {/* Scuttlebutt */}
       <div className="bg-muted border border-border rounded-xl p-4">
-        <h3 className="text-sm font-semibold text-foreground mb-1 flex items-center gap-2">
+        <h3 className="text-sm font-medium text-foreground mb-1 flex items-center gap-2">
           <Search className="w-4 h-4 text-emerald-400" />
           Scuttlebutt Investing — Phil Fisher Method
         </h3>
@@ -994,7 +994,7 @@ function PrimaryResearchTab() {
             <div key={i} className="flex gap-2 items-start bg-card rounded-lg p-2.5">
               <CheckCircle2 className="w-3.5 h-3.5 text-emerald-400 mt-0.5 flex-shrink-0" />
               <div>
-                <p className="text-xs font-semibold text-foreground">{pr.label}</p>
+                <p className="text-xs font-medium text-foreground">{pr.label}</p>
                 <p className="text-xs text-muted-foreground mt-0.5">{pr.detail}</p>
               </div>
             </div>
@@ -1004,7 +1004,7 @@ function PrimaryResearchTab() {
 
       {/* Alt Data */}
       <div className="bg-muted border border-border rounded-xl p-4">
-        <h3 className="text-sm font-semibold text-foreground mb-3 flex items-center gap-2">
+        <h3 className="text-sm font-medium text-foreground mb-3 flex items-center gap-2">
           <Zap className="w-4 h-4 text-muted-foreground" />
           Alternative Data Sources
         </h3>
@@ -1020,7 +1020,7 @@ function PrimaryResearchTab() {
             >
               <div className="flex items-center gap-2 mb-1">
                 <div className="text-muted-foreground">{src.icon}</div>
-                <span className="text-xs font-semibold text-foreground">{src.name}</span>
+                <span className="text-xs font-medium text-foreground">{src.name}</span>
               </div>
               <p className="text-xs text-muted-foreground">{src.detail}</p>
             </motion.div>
@@ -1028,7 +1028,7 @@ function PrimaryResearchTab() {
         </div>
         <div className="mt-3 p-2.5 bg-card rounded-lg border border-border">
           <p className="text-xs text-muted-foreground">
-            <span className="font-semibold text-muted-foreground">Proprietary Survey Design: </span>
+            <span className="font-medium text-muted-foreground">Proprietary Survey Design: </span>
             Consumer surveys (n=500–2000) or enterprise CIO surveys testing intent-to-purchase, Net Promoter Scores, and vendor preference shifts. Panel providers include Qualtrics, SurveyMonkey, and Dynata. Statistical significance requires careful sample design.
           </p>
         </div>
@@ -1056,7 +1056,7 @@ function ForensicTab() {
         <div className="flex gap-3 items-start">
           <Microscope className="w-5 h-5 text-amber-400 flex-shrink-0 mt-0.5" />
           <div>
-            <p className="text-sm font-semibold text-amber-300 mb-1">Forensic Accounting Overview</p>
+            <p className="text-sm font-medium text-amber-300 mb-1">Forensic Accounting Overview</p>
             <p className="text-xs text-muted-foreground">
               Forensic accounting examines whether reported financials accurately reflect economic reality. Short sellers, credit analysts, and deep-value investors use these frameworks to detect earnings management, fraud, and distress before prices adjust. The goal is not to find fraud in every company — but to identify when the quality of reported earnings is materially lower than consensus assumes.
             </p>
@@ -1073,7 +1073,7 @@ function ForensicTab() {
               onClick={() => setExpandedCategory(expandedCategory === i ? null : i)}
             >
               <AlertTriangle className="w-4 h-4 text-amber-400 flex-shrink-0" />
-              <span className="text-sm font-semibold text-foreground flex-1">{cat.category}</span>
+              <span className="text-sm font-medium text-foreground flex-1">{cat.category}</span>
               <span className="text-xs text-muted-foreground mr-2">{cat.flags.length} flags</span>
               <ChevronDown className={cn("w-4 h-4 text-muted-foreground transition-transform", expandedCategory === i && "rotate-180")} />
             </button>
@@ -1094,7 +1094,7 @@ function ForensicTab() {
                           <div className="flex items-start gap-2">
                             <div className={cn("w-2 h-2 rounded-full mt-1.5 flex-shrink-0", severityDot(flag.severity))} />
                             <span className="text-xs font-medium flex-1">{flag.label}</span>
-                            <span className={cn("text-xs font-semibold uppercase px-1.5 py-0.5 rounded", flag.severity === "high" ? "bg-red-900/60 text-red-300" : flag.severity === "medium" ? "bg-amber-900/60 text-amber-300" : "bg-muted text-muted-foreground")}>
+                            <span className={cn("text-xs font-medium uppercase px-1.5 py-0.5 rounded", flag.severity === "high" ? "bg-red-900/60 text-red-300" : flag.severity === "medium" ? "bg-amber-900/60 text-amber-300" : "bg-muted text-muted-foreground")}>
                               {flag.severity}
                             </span>
                           </div>
@@ -1123,7 +1123,7 @@ function ForensicTab() {
 
       {/* Beneish M-Score */}
       <div className="bg-muted border border-border rounded-xl p-4">
-        <h3 className="text-sm font-semibold text-foreground mb-1 flex items-center gap-2">
+        <h3 className="text-sm font-medium text-foreground mb-1 flex items-center gap-2">
           <BarChart3 className="w-4 h-4 text-red-400" />
           Beneish M-Score — Earnings Manipulation Detection
         </h3>
@@ -1134,7 +1134,7 @@ function ForensicTab() {
           {BENEISH_VARS.map((v, i) => (
             <div key={i} className="bg-card rounded-lg p-2.5 border border-border">
               <div className="flex items-center gap-2 mb-0.5">
-                <span className="text-xs font-mono font-bold text-red-400">{v.abbrev}</span>
+                <span className="text-xs font-mono font-medium text-red-400">{v.abbrev}</span>
                 <span className="text-xs text-muted-foreground">{v.name}</span>
               </div>
               <div className="flex justify-between items-center">
@@ -1146,7 +1146,7 @@ function ForensicTab() {
         </div>
         <div className="mt-3 p-2.5 bg-card rounded-lg border border-border">
           <p className="text-xs text-muted-foreground">
-            <span className="font-semibold text-red-400">Formula: </span>
+            <span className="font-medium text-red-400">Formula: </span>
             M = −4.84 + 0.92×DSRI + 0.528×GMI + 0.404×AQI + 0.892×SGI + 0.115×DEPI − 0.172×SGAI + 4.679×TATA − 0.327×LVGI.
             Score above −1.78: probable manipulator. Score below −2.22: likely non-manipulator.
           </p>
@@ -1156,7 +1156,7 @@ function ForensicTab() {
       {/* Altman Z & Zmijewski */}
       <div className="grid md:grid-cols-2 gap-4">
         <div className="bg-muted border border-border rounded-xl p-4">
-          <h3 className="text-sm font-semibold text-foreground mb-2 flex items-center gap-2">
+          <h3 className="text-sm font-medium text-foreground mb-2 flex items-center gap-2">
             <TrendingDown className="w-4 h-4 text-orange-400" />
             Altman Z-Score
           </h3>
@@ -1184,7 +1184,7 @@ function ForensicTab() {
         </div>
 
         <div className="bg-muted border border-border rounded-xl p-4">
-          <h3 className="text-sm font-semibold text-foreground mb-2 flex items-center gap-2">
+          <h3 className="text-sm font-medium text-foreground mb-2 flex items-center gap-2">
             <Shield className="w-4 h-4 text-primary" />
             Short Seller Report Anatomy
           </h3>
@@ -1200,7 +1200,7 @@ function ForensicTab() {
               <div key={i} className="flex gap-2 items-start">
                 <span className="text-xs font-mono text-primary w-5 mt-0.5">{i + 1}.</span>
                 <div>
-                  <p className="text-xs font-semibold text-foreground">{s.section}</p>
+                  <p className="text-xs font-medium text-foreground">{s.section}</p>
                   <p className="text-xs text-muted-foreground">{s.detail}</p>
                 </div>
               </div>
@@ -1235,7 +1235,7 @@ function ThesisTab() {
     <div className="space-y-6">
       {/* Thesis steps */}
       <div className="bg-muted border border-border rounded-xl p-4">
-        <h3 className="text-sm font-semibold text-foreground mb-3 flex items-center gap-2">
+        <h3 className="text-sm font-medium text-foreground mb-3 flex items-center gap-2">
           <Target className="w-4 h-4 text-primary" />
           Differentiated Thesis Construction Framework
         </h3>
@@ -1247,7 +1247,7 @@ function ThesisTab() {
               key={i}
               onClick={() => setActiveStep(i)}
               className={cn(
-                "text-xs px-2.5 py-1 rounded-lg font-semibold transition-colors",
+                "text-xs px-2.5 py-1 rounded-lg font-medium transition-colors",
                 activeStep === i ? "bg-primary text-foreground" : "bg-muted text-muted-foreground hover:bg-muted"
               )}
             >
@@ -1267,11 +1267,11 @@ function ThesisTab() {
           >
             <div className="flex items-center gap-2 mb-2">
               <span className="text-xs font-mono text-muted-foreground">{THESIS_STEPS[activeStep].step}</span>
-              <h4 className="text-sm font-bold text-foreground">{THESIS_STEPS[activeStep].title}</h4>
+              <h4 className="text-sm font-medium text-foreground">{THESIS_STEPS[activeStep].title}</h4>
             </div>
             <p className="text-xs text-muted-foreground mb-3">{THESIS_STEPS[activeStep].description}</p>
             <div className="bg-muted/40 border border-border rounded-lg p-2.5">
-              <p className="text-xs text-primary font-semibold mb-0.5">Example</p>
+              <p className="text-xs text-primary font-medium mb-0.5">Example</p>
               <p className="text-xs text-muted-foreground italic">{THESIS_STEPS[activeStep].example}</p>
             </div>
           </motion.div>
@@ -1280,7 +1280,7 @@ function ThesisTab() {
 
       {/* Variant perception */}
       <div className="bg-muted border border-border rounded-xl p-4">
-        <h3 className="text-sm font-semibold text-foreground mb-2 flex items-center gap-2">
+        <h3 className="text-sm font-medium text-foreground mb-2 flex items-center gap-2">
           <Lightbulb className="w-4 h-4 text-yellow-400" />
           Variant Perception — Howard Marks Framework
         </h3>
@@ -1305,7 +1305,7 @@ function ThesisTab() {
             <div key={i} className="bg-card rounded-lg p-3 border border-border">
               <div className="flex items-center gap-2 mb-1">
                 {item.icon}
-                <p className="text-xs font-semibold text-foreground">{item.label}</p>
+                <p className="text-xs font-medium text-foreground">{item.label}</p>
               </div>
               <p className="text-xs text-muted-foreground">{item.desc}</p>
             </div>
@@ -1315,7 +1315,7 @@ function ThesisTab() {
 
       {/* TAM / SAM / SOM */}
       <div className="bg-muted border border-border rounded-xl p-4">
-        <h3 className="text-sm font-semibold text-foreground mb-3 flex items-center gap-2">
+        <h3 className="text-sm font-medium text-foreground mb-3 flex items-center gap-2">
           <TrendingUp className="w-4 h-4 text-emerald-400" />
           TAM / SAM / SOM Market Sizing
         </h3>
@@ -1325,14 +1325,14 @@ function ThesisTab() {
             const barH = (t.value / 320) * maxH;
             return (
               <div key={i} className="flex flex-col items-center gap-1.5 flex-1">
-                <span className="text-xs font-mono font-bold" style={{ color: t.color }}>${t.value}B</span>
+                <span className="text-xs font-mono font-medium" style={{ color: t.color }}>${t.value}B</span>
                 <div className="w-full flex items-end justify-center">
                   <div
                     className="w-full rounded-t-md opacity-80 transition-all"
                     style={{ height: barH, backgroundColor: t.color }}
                   />
                 </div>
-                <span className="text-xs font-bold" style={{ color: t.color }}>{t.label}</span>
+                <span className="text-xs font-medium" style={{ color: t.color }}>{t.label}</span>
                 <span className="text-xs text-muted-foreground text-center">{t.desc}</span>
               </div>
             );
@@ -1340,7 +1340,7 @@ function ThesisTab() {
         </div>
         <div className="bg-card rounded-lg p-2.5 border border-border">
           <p className="text-xs text-muted-foreground">
-            <span className="font-semibold text-muted-foreground">Bottom-up vs. Top-down: </span>
+            <span className="font-medium text-muted-foreground">Bottom-up vs. Top-down: </span>
             Top-down (TAM × share) is common in sell-side reports but often inflated. Bottom-up (unit volume × price × penetration by segment) is more rigorous. Always triangulate both. If the bottom-up SOM is &lt;5% of TAM, question the TAM definition.
           </p>
         </div>
@@ -1349,7 +1349,7 @@ function ThesisTab() {
       {/* Moat radar */}
       <div className="grid md:grid-cols-2 gap-6">
         <div className="bg-muted border border-border rounded-xl p-4 flex flex-col items-center">
-          <h3 className="text-sm font-semibold text-foreground mb-3 w-full flex items-center gap-2">
+          <h3 className="text-sm font-medium text-foreground mb-3 w-full flex items-center gap-2">
             <Shield className="w-4 h-4 text-primary" />
             Economic Moat Durability
           </h3>
@@ -1357,7 +1357,7 @@ function ThesisTab() {
         </div>
 
         <div className="bg-muted border border-border rounded-xl p-4">
-          <h3 className="text-sm font-semibold text-foreground mb-3 flex items-center gap-2">
+          <h3 className="text-sm font-medium text-foreground mb-3 flex items-center gap-2">
             <Shield className="w-4 h-4 text-primary" />
             Moat Classification
           </h3>
@@ -1372,7 +1372,7 @@ function ThesisTab() {
                 onClick={() => setActiveMoat(activeMoat === i ? null : i)}
               >
                 <div className="flex items-center gap-2">
-                  <span className="text-xs font-bold text-foreground">{moat.name}</span>
+                  <span className="text-xs font-medium text-foreground">{moat.name}</span>
                   <div className="flex-1 h-1.5 bg-muted rounded-full overflow-hidden ml-2">
                     <div className="h-full bg-primary rounded-full" style={{ width: `${moat.durability}%` }} />
                   </div>
@@ -1404,7 +1404,7 @@ function ThesisTab() {
 
       {/* Idea generation */}
       <div className="bg-muted border border-border rounded-xl p-4">
-        <h3 className="text-sm font-semibold text-foreground mb-3 flex items-center gap-2">
+        <h3 className="text-sm font-medium text-foreground mb-3 flex items-center gap-2">
           <BookOpen className="w-4 h-4 text-muted-foreground" />
           Idea Generation Sources
         </h3>
@@ -1413,7 +1413,7 @@ function ThesisTab() {
             <div key={i} className="flex gap-2 items-start bg-card rounded-lg p-2.5 border border-border">
               <ChevronRight className="w-3.5 h-3.5 text-muted-foreground mt-0.5 flex-shrink-0" />
               <div>
-                <p className="text-xs font-semibold text-foreground">{src.label}</p>
+                <p className="text-xs font-medium text-foreground">{src.label}</p>
                 <p className="text-xs text-muted-foreground mt-0.5">{src.detail}</p>
               </div>
             </div>
@@ -1423,13 +1423,13 @@ function ThesisTab() {
 
       {/* Position sizing */}
       <div className="bg-muted border border-border rounded-xl p-4">
-        <h3 className="text-sm font-semibold text-foreground mb-3 flex items-center gap-2">
+        <h3 className="text-sm font-medium text-foreground mb-3 flex items-center gap-2">
           <Activity className="w-4 h-4 text-rose-400" />
           Position Sizing & When to Sell
         </h3>
         <div className="grid md:grid-cols-2 gap-4">
           <div>
-            <p className="text-xs font-semibold text-rose-400 mb-2">Conviction-Based Sizing</p>
+            <p className="text-xs font-medium text-rose-400 mb-2">Conviction-Based Sizing</p>
             <div className="space-y-1.5">
               {[
                 { label: "Tier 1 — Best ideas", size: "4–8%", criteria: "High conviction, liquid, low correlation, near catalyst" },
@@ -1437,9 +1437,9 @@ function ThesisTab() {
                 { label: "Tier 3 — Exploratory", size: "0.5–2%", criteria: "Early research, thesis forming, position starter" },
               ].map((tier, i) => (
                 <div key={i} className="flex gap-2 items-start bg-card rounded p-2">
-                  <span className="text-xs font-bold text-rose-400 w-16 flex-shrink-0">{tier.size}</span>
+                  <span className="text-xs font-medium text-rose-400 w-16 flex-shrink-0">{tier.size}</span>
                   <div>
-                    <p className="text-xs font-semibold text-foreground">{tier.label}</p>
+                    <p className="text-xs font-medium text-foreground">{tier.label}</p>
                     <p className="text-xs text-muted-foreground">{tier.criteria}</p>
                   </div>
                 </div>
@@ -1447,7 +1447,7 @@ function ThesisTab() {
             </div>
           </div>
           <div>
-            <p className="text-xs font-semibold text-amber-400 mb-2">When to Sell Discipline</p>
+            <p className="text-xs font-medium text-amber-400 mb-2">When to Sell Discipline</p>
             <div className="space-y-1.5">
               {[
                 { trigger: "Thesis plays out", action: "Price reaches intrinsic value estimate. Trim or exit." },
@@ -1459,7 +1459,7 @@ function ThesisTab() {
                 <div key={i} className="flex gap-2 items-start">
                   <XCircle className="w-3.5 h-3.5 text-amber-400 mt-0.5 flex-shrink-0" />
                   <div className="text-xs">
-                    <span className="font-semibold text-foreground">{item.trigger}: </span>
+                    <span className="font-medium text-foreground">{item.trigger}: </span>
                     <span className="text-muted-foreground">{item.action}</span>
                   </div>
                 </div>
@@ -1485,7 +1485,7 @@ export default function EquityResearch3Page() {
         <div>
           <div className="flex items-center gap-2 mb-1">
             <Microscope className="w-5 h-5 text-primary" />
-            <span className="text-xs font-semibold text-primary">Advanced Equity Research</span>
+            <span className="text-xs font-medium text-primary">Advanced Equity Research</span>
           </div>
           <h1 className="text-2xl font-bold text-foreground">
             SOTP · Primary Research · Forensic Accounting · Thesis Construction

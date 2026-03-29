@@ -708,16 +708,16 @@ export default function MortgageFinancePage() {
                     <div className="bg-primary/10 border border-border rounded p-2">
                       <div className="text-xs text-primary font-medium mb-1">Buy</div>
                       <div className="text-xs text-muted-foreground">Monthly all-in</div>
-                      <div className="font-bold text-sm">{fmtUSD(bvr.totalMonthlyBuy)}</div>
+                      <div className="font-medium text-sm">{fmtUSD(bvr.totalMonthlyBuy)}</div>
                       <div className="text-xs text-muted-foreground mt-1">Future home value</div>
-                      <div className="font-semibold text-xs text-emerald-400">{fmtK(bvr.futureHomeValue)}</div>
+                      <div className="font-medium text-xs text-emerald-400">{fmtK(bvr.futureHomeValue)}</div>
                     </div>
                     <div className="bg-emerald-500/10 border border-emerald-500/20 rounded p-2">
                       <div className="text-xs text-emerald-300 font-medium mb-1">Rent</div>
                       <div className="text-xs text-muted-foreground">Monthly</div>
-                      <div className="font-bold text-sm">{fmtUSD(bvr.totalMonthlyRent)}</div>
+                      <div className="font-medium text-sm">{fmtUSD(bvr.totalMonthlyRent)}</div>
                       <div className="text-xs text-muted-foreground mt-1">Est. total cost</div>
-                      <div className="font-semibold text-xs text-rose-400">{fmtK(bvr.totalRentCost)}</div>
+                      <div className="font-medium text-xs text-rose-400">{fmtK(bvr.totalRentCost)}</div>
                     </div>
                   </div>
 
@@ -747,7 +747,7 @@ export default function MortgageFinancePage() {
                   ].map((c) => (
                     <div key={c.title} className="bg-muted/30 rounded p-3">
                       <div className="flex items-center justify-between mb-1">
-                        <span className="text-xs font-semibold">{c.title}</span>
+                        <span className="text-xs font-medium">{c.title}</span>
                         <Badge variant="secondary" className="text-xs">{c.val}</Badge>
                       </div>
                       <p className="text-xs text-muted-foreground">{c.desc}</p>
@@ -836,11 +836,11 @@ export default function MortgageFinancePage() {
                   </div>
                   <div className="mt-3 grid grid-cols-2 gap-2 text-xs">
                     <div className="bg-muted/30 rounded p-2">
-                      <div className="font-semibold text-amber-400 mb-0.5">Option-Adjusted Spread</div>
+                      <div className="font-medium text-amber-400 mb-0.5">Option-Adjusted Spread</div>
                       <div className="text-muted-foreground">OAS strips out the embedded prepayment option value, giving the true credit/liquidity spread vs. Treasuries.</div>
                     </div>
                     <div className="bg-muted/30 rounded p-2">
-                      <div className="font-semibold text-rose-400 mb-0.5">Negative Convexity</div>
+                      <div className="font-medium text-rose-400 mb-0.5">Negative Convexity</div>
                       <div className="text-muted-foreground">MBS prices rise less than equivalent bonds when rates fall (prepayments accelerate) but fall more when rates rise.</div>
                     </div>
                   </div>
@@ -861,7 +861,7 @@ export default function MortgageFinancePage() {
                     { name: "Ginnie Mae (GNMA)", detail: "Full-faith USG guarantee. Pools FHA/VA/USDA loans only. Highest credit quality. Used by banks for liquidity.", color: "text-emerald-400" },
                   ].map((a) => (
                     <div key={a.name} className="bg-muted/30 rounded p-3">
-                      <div className={cn("text-xs font-bold mb-1", a.color)}>{a.name}</div>
+                      <div className={cn("text-xs font-medium mb-1", a.color)}>{a.name}</div>
                       <p className="text-xs text-muted-foreground">{a.detail}</p>
                     </div>
                   ))}
@@ -893,7 +893,7 @@ export default function MortgageFinancePage() {
                     ].map((d) => (
                       <div key={d.yr} className="bg-muted/30 rounded p-2">
                         <div className="text-muted-foreground">{d.yr}</div>
-                        <div className={cn("font-bold", d.color)}>{d.val}</div>
+                        <div className={cn("font-medium", d.color)}>{d.val}</div>
                         <div className="text-muted-foreground text-xs">{d.note}</div>
                       </div>
                     ))}
@@ -921,7 +921,7 @@ export default function MortgageFinancePage() {
                         <Icon className={cn("w-4 h-4 mt-0.5 flex-shrink-0", d.color)} />
                         <div>
                           <div className="flex items-center gap-2">
-                            <span className="text-xs font-semibold">{d.label}</span>
+                            <span className="text-xs font-medium">{d.label}</span>
                             <Badge variant="secondary" className="text-xs">{d.current}</Badge>
                           </div>
                           <p className="text-xs text-muted-foreground mt-0.5">{d.note}</p>
@@ -947,7 +947,7 @@ export default function MortgageFinancePage() {
                     { prog: "Conventional 97", dn: "3% down", rate: "Market", note: "620+ credit. PMI until 80% LTV." },
                   ].map((p) => (
                     <div key={p.prog} className="bg-muted/30 rounded p-2 text-xs">
-                      <div className="font-semibold text-primary mb-1">{p.prog}</div>
+                      <div className="font-medium text-primary mb-1">{p.prog}</div>
                       <div className="flex justify-between text-muted-foreground">
                         <span>Down:</span><span className="text-foreground">{p.dn}</span>
                       </div>
@@ -979,15 +979,15 @@ export default function MortgageFinancePage() {
                   <PrepaymentChart />
                   <div className="mt-3 grid grid-cols-3 gap-2 text-xs text-center">
                     <div className="bg-muted/30 rounded p-2">
-                      <div className="text-indigo-300 font-semibold">100% PSA</div>
+                      <div className="text-indigo-300 font-medium">100% PSA</div>
                       <div className="text-muted-foreground">Standard benchmark. Ramps to 6% CPR by month 30.</div>
                     </div>
                     <div className="bg-muted/30 rounded p-2">
-                      <div className="text-amber-300 font-semibold">200% PSA</div>
+                      <div className="text-amber-300 font-medium">200% PSA</div>
                       <div className="text-muted-foreground">Elevated refinancing environment. 12% peak CPR.</div>
                     </div>
                     <div className="bg-muted/30 rounded p-2">
-                      <div className="text-rose-300 font-semibold">300% PSA</div>
+                      <div className="text-rose-300 font-medium">300% PSA</div>
                       <div className="text-muted-foreground">Refi boom (rate drop). 18% CPR — MBS investors hurt.</div>
                     </div>
                   </div>
@@ -1038,7 +1038,7 @@ export default function MortgageFinancePage() {
                       <ArrowRight className="w-3 h-3 mt-1 text-muted-foreground flex-shrink-0" />
                       <div className="flex-1">
                         <div className="flex items-center gap-2 mb-0.5">
-                          <span className="text-xs font-semibold">{r.factor}</span>
+                          <span className="text-xs font-medium">{r.factor}</span>
                           <span className={cn("text-xs", r.color)}>{r.level}</span>
                         </div>
                         <p className="text-xs text-muted-foreground">{r.desc}</p>
@@ -1060,7 +1060,7 @@ export default function MortgageFinancePage() {
               <CardContent>
                 <div className="grid md:grid-cols-2 gap-4">
                   <div className="space-y-2">
-                    <h4 className="text-xs font-semibold text-rose-400">When Rates Fall (Prepayment Risk)</h4>
+                    <h4 className="text-xs font-medium text-rose-400">When Rates Fall (Prepayment Risk)</h4>
                     <ul className="text-xs text-muted-foreground space-y-1">
                       <li className="flex gap-2"><span className="text-rose-400">•</span>Borrowers refinance en masse at lower rates</li>
                       <li className="flex gap-2"><span className="text-rose-400">•</span>MBS investors receive principal back early</li>
@@ -1070,7 +1070,7 @@ export default function MortgageFinancePage() {
                     </ul>
                   </div>
                   <div className="space-y-2">
-                    <h4 className="text-xs font-semibold text-amber-400">When Rates Rise (Extension Risk)</h4>
+                    <h4 className="text-xs font-medium text-amber-400">When Rates Rise (Extension Risk)</h4>
                     <ul className="text-xs text-muted-foreground space-y-1">
                       <li className="flex gap-2"><span className="text-amber-400">•</span>Prepayments slow — borrowers "lock in" low-rate loans</li>
                       <li className="flex gap-2"><span className="text-amber-400">•</span>MBS duration extends beyond initial expectation</li>
@@ -1081,7 +1081,7 @@ export default function MortgageFinancePage() {
                   </div>
                 </div>
                 <div className="mt-3 bg-primary/10 border border-border rounded p-3 text-xs text-muted-foreground">
-                  <span className="font-semibold text-primary">OAS Hedging: </span>
+                  <span className="font-medium text-primary">OAS Hedging: </span>
                   MBS portfolio managers use interest-rate swaps, swaptions, and Treasury futures to hedge duration and convexity. The OAS measures the spread remaining after hedging away the embedded prepayment option.
                 </div>
               </CardContent>

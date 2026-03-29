@@ -495,7 +495,7 @@ function PatternScannerTab() {
           type="button"
           onClick={handleScan}
           disabled={scanning}
-          className="inline-flex items-center gap-1.5 rounded-md bg-primary px-3 py-1.5 text-xs font-semibold text-primary-foreground transition-opacity hover:opacity-90 disabled:opacity-60"
+          className="inline-flex items-center gap-1.5 rounded-md bg-primary px-3 py-1.5 text-xs font-medium text-primary-foreground transition-opacity hover:opacity-90 disabled:opacity-60"
         >
           <RefreshCw className={cn("h-3 w-3", scanning && "animate-spin")} />
           {scanning ? "Scanning…" : "Scan All"}
@@ -536,12 +536,12 @@ function PatternScannerTab() {
           <table className="w-full text-sm">
             <thead>
               <tr className="border-b border-border/40 bg-muted/30">
-                <th className="px-3 py-2 text-left text-xs font-semibold text-muted-foreground">Ticker</th>
-                <th className="px-3 py-2 text-left text-xs font-semibold text-muted-foreground">Pattern</th>
-                <th className="px-3 py-2 text-left text-xs font-semibold text-muted-foreground">Direction</th>
-                <th className="px-3 py-2 text-right text-xs font-semibold text-muted-foreground">Reliability</th>
-                <th className="px-3 py-2 text-right text-xs font-semibold text-muted-foreground">Price</th>
-                <th className="px-3 py-2 text-right text-xs font-semibold text-muted-foreground">% Change</th>
+                <th className="px-3 py-2 text-left text-xs font-medium text-muted-foreground">Ticker</th>
+                <th className="px-3 py-2 text-left text-xs font-medium text-muted-foreground">Pattern</th>
+                <th className="px-3 py-2 text-left text-xs font-medium text-muted-foreground">Direction</th>
+                <th className="px-3 py-2 text-right text-xs font-medium text-muted-foreground">Reliability</th>
+                <th className="px-3 py-2 text-right text-xs font-medium text-muted-foreground">Price</th>
+                <th className="px-3 py-2 text-right text-xs font-medium text-muted-foreground">% Change</th>
               </tr>
             </thead>
             <tbody>
@@ -552,7 +552,7 @@ function PatternScannerTab() {
                   className="cursor-pointer border-b border-border/20 transition-colors last:border-0 hover:bg-accent/30"
                 >
                   <td className="px-3 py-2.5">
-                    <span className="font-semibold text-foreground">{r.ticker}</span>
+                    <span className="font-medium text-foreground">{r.ticker}</span>
                   </td>
                   <td className="px-3 py-2.5">
                     <span className="text-xs text-foreground/80">{r.name}</span>
@@ -686,7 +686,7 @@ function TechnicalScannerTab() {
           type="button"
           onClick={handleScan}
           disabled={scanning}
-          className="inline-flex items-center gap-1.5 rounded-md bg-primary px-3 py-1.5 text-xs font-semibold text-primary-foreground transition-opacity hover:opacity-90 disabled:opacity-60"
+          className="inline-flex items-center gap-1.5 rounded-md bg-primary px-3 py-1.5 text-xs font-medium text-primary-foreground transition-opacity hover:opacity-90 disabled:opacity-60"
         >
           <RefreshCw className={cn("h-3 w-3", scanning && "animate-spin")} />
           {scanning ? "Scanning…" : "Scan All"}
@@ -698,7 +698,7 @@ function TechnicalScannerTab() {
 
       {/* Condition filter chips */}
       <div className="flex flex-wrap gap-1.5">
-        <span className="flex items-center gap-1 text-xs font-semibold text-muted-foreground">
+        <span className="flex items-center gap-1 text-xs font-medium text-muted-foreground">
           <Filter className="h-3 w-3" />
           Filter:
         </span>
@@ -745,22 +745,22 @@ function TechnicalScannerTab() {
             <thead>
               <tr className="border-b border-border/40 bg-muted/30">
                 <th
-                  className="cursor-pointer px-3 py-2 text-left text-xs font-semibold text-muted-foreground hover:text-foreground"
+                  className="cursor-pointer px-3 py-2 text-left text-xs font-medium text-muted-foreground hover:text-foreground"
                   onClick={() => handleSort("ticker")}
                 >
                   <span className="flex items-center gap-0.5">Ticker <SortIcon col="ticker" /></span>
                 </th>
-                <th className="px-3 py-2 text-left text-xs font-semibold text-muted-foreground">Condition</th>
-                <th className="px-3 py-2 text-left text-xs font-semibold text-muted-foreground">Value</th>
+                <th className="px-3 py-2 text-left text-xs font-medium text-muted-foreground">Condition</th>
+                <th className="px-3 py-2 text-left text-xs font-medium text-muted-foreground">Value</th>
                 <th
-                  className="cursor-pointer px-3 py-2 text-center text-xs font-semibold text-muted-foreground hover:text-foreground"
+                  className="cursor-pointer px-3 py-2 text-center text-xs font-medium text-muted-foreground hover:text-foreground"
                   onClick={() => handleSort("strength")}
                 >
                   <span className="flex items-center justify-center gap-0.5">Strength <SortIcon col="strength" /></span>
                 </th>
-                <th className="px-3 py-2 text-right text-xs font-semibold text-muted-foreground">Price</th>
+                <th className="px-3 py-2 text-right text-xs font-medium text-muted-foreground">Price</th>
                 <th
-                  className="cursor-pointer px-3 py-2 text-right text-xs font-semibold text-muted-foreground hover:text-foreground"
+                  className="cursor-pointer px-3 py-2 text-right text-xs font-medium text-muted-foreground hover:text-foreground"
                   onClick={() => handleSort("signalCount")}
                 >
                   <span className="flex items-center justify-end gap-0.5">Signals <SortIcon col="signalCount" /></span>
@@ -776,7 +776,7 @@ function TechnicalScannerTab() {
                 >
                   <td className="px-3 py-2.5">
                     <div className="flex flex-col gap-0.5">
-                      <span className="font-semibold text-foreground">{r.ticker}</span>
+                      <span className="font-medium text-foreground">{r.ticker}</span>
                       <span className="text-xs tabular-nums text-muted-foreground">${r.currentPrice.toFixed(2)}</span>
                     </div>
                   </td>
@@ -901,7 +901,7 @@ function SetupFinderTab() {
           type="button"
           onClick={handleScan}
           disabled={scanning}
-          className="inline-flex items-center gap-1.5 rounded-md bg-primary px-3 py-1.5 text-xs font-semibold text-primary-foreground transition-opacity hover:opacity-90 disabled:opacity-60"
+          className="inline-flex items-center gap-1.5 rounded-md bg-primary px-3 py-1.5 text-xs font-medium text-primary-foreground transition-opacity hover:opacity-90 disabled:opacity-60"
         >
           <RefreshCw className={cn("h-3 w-3", scanning && "animate-spin")} />
           {scanning ? "Scanning…" : "Scan All"}
@@ -924,13 +924,13 @@ function SetupFinderTab() {
           <table className="w-full text-sm">
             <thead>
               <tr className="border-b border-border/40 bg-muted/30">
-                <th className="px-3 py-2 text-left text-xs font-semibold text-muted-foreground">Ticker</th>
-                <th className="px-3 py-2 text-left text-xs font-semibold text-muted-foreground">Setup</th>
-                <th className="px-3 py-2 text-right text-xs font-semibold text-muted-foreground">Entry Zone</th>
-                <th className="px-3 py-2 text-right text-xs font-semibold text-muted-foreground">Target</th>
-                <th className="px-3 py-2 text-right text-xs font-semibold text-muted-foreground">Stop</th>
-                <th className="px-3 py-2 text-right text-xs font-semibold text-muted-foreground">R:R</th>
-                <th className="px-3 py-2 text-center text-xs font-semibold text-muted-foreground">Quality</th>
+                <th className="px-3 py-2 text-left text-xs font-medium text-muted-foreground">Ticker</th>
+                <th className="px-3 py-2 text-left text-xs font-medium text-muted-foreground">Setup</th>
+                <th className="px-3 py-2 text-right text-xs font-medium text-muted-foreground">Entry Zone</th>
+                <th className="px-3 py-2 text-right text-xs font-medium text-muted-foreground">Target</th>
+                <th className="px-3 py-2 text-right text-xs font-medium text-muted-foreground">Stop</th>
+                <th className="px-3 py-2 text-right text-xs font-medium text-muted-foreground">R:R</th>
+                <th className="px-3 py-2 text-center text-xs font-medium text-muted-foreground">Quality</th>
               </tr>
             </thead>
             <tbody>
@@ -942,7 +942,7 @@ function SetupFinderTab() {
                 >
                   <td className="px-3 py-2.5">
                     <div className="flex flex-col gap-0.5">
-                      <span className="font-semibold text-foreground">{s.ticker}</span>
+                      <span className="font-medium text-foreground">{s.ticker}</span>
                       <DirectionBadge direction={s.bias} />
                     </div>
                   </td>
@@ -966,7 +966,7 @@ function SetupFinderTab() {
                   <td className="px-3 py-2.5 text-right">
                     <span
                       className={cn(
-                        "tabular-nums text-xs font-semibold",
+                        "tabular-nums text-xs font-medium",
                         s.riskReward >= 2 ? "text-emerald-500" : s.riskReward >= 1 ? "text-amber-500" : "text-rose-500",
                       )}
                     >
@@ -1007,10 +1007,10 @@ export default function ScannerPage() {
   return (
     <div className="flex flex-col h-full overflow-hidden">
       {/* Header */}
-      <div className="flex shrink-0 items-center gap-3 border-b border-border/50 px-6 py-4">
+      <div className="flex shrink-0 items-center gap-3 border-b border-border/50 px-6 py-6 border-l-4 border-l-primary">
         <ScanLine className="h-5 w-5 text-primary" />
         <div>
-          <h1 className="text-base font-semibold leading-none">Scanner</h1>
+          <h1 className="text-base font-medium leading-none">Scanner</h1>
           <p className="mt-1 text-[11px] text-muted-foreground">
             Scan all 10 tickers for patterns, technical conditions, and high-conviction setups
           </p>

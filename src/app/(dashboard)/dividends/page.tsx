@@ -588,7 +588,7 @@ function ExDividendCalendarTab() {
     <div className="space-y-6">
       {/* Upcoming strip */}
       <div className="bg-muted/20 border border-border/40 rounded-lg p-4">
-        <h3 className="text-sm font-semibold mb-3 flex items-center gap-2">
+        <h3 className="text-sm font-medium mb-3 flex items-center gap-2">
           <Calendar className="w-4 h-4 text-primary" />
           Upcoming Ex-Dividend Dates (Next 60 Days)
         </h3>
@@ -598,7 +598,7 @@ function ExDividendCalendarTab() {
             const daysAway = Math.round((r.date.getTime() - today.getTime()) / 86400000);
             return (
               <div key={r.ticker} className="flex items-center gap-3 text-sm">
-                <span className="font-mono font-semibold w-12 text-foreground">{r.ticker}</span>
+                <span className="font-mono font-medium w-12 text-foreground">{r.ticker}</span>
                 <span className={cn(
                   "px-2 py-0.5 rounded text-xs font-medium border",
                   SECTOR_COLORS[r.sector]?.bg,
@@ -633,7 +633,7 @@ function ExDividendCalendarTab() {
 
           return (
             <div key={name} className="bg-muted/20 border border-border/40 rounded-lg p-4">
-              <h4 className="text-sm font-semibold mb-3">{name}</h4>
+              <h4 className="text-sm font-medium mb-3">{name}</h4>
               <div className="grid grid-cols-7 gap-0.5 text-center text-xs mb-1">
                 {["Su", "Mo", "Tu", "We", "Th", "Fr", "Sa"].map((d) => (
                   <div key={d} className="text-muted-foreground py-1 font-medium">{d}</div>
@@ -797,7 +797,7 @@ function DividendGrowthTab() {
       {/* Header */}
       <div className="flex items-start justify-between">
         <div>
-          <h3 className="text-base font-semibold">{def.name} ({def.ticker})</h3>
+          <h3 className="text-base font-medium">{def.name} ({def.ticker})</h3>
           <p className="text-sm text-muted-foreground">{def.sector} · {def.consecutiveYears} consecutive years of dividend growth</p>
         </div>
         {def.consecutiveYears >= 50 ? (
@@ -916,7 +916,7 @@ function DividendGrowthTab() {
       <div className={cn("rounded-lg border p-4", scoreBg)}>
         <div className="flex items-start justify-between mb-3">
           <div>
-            <h4 className="text-sm font-semibold">Dividend Safety Score</h4>
+            <h4 className="text-sm font-medium">Dividend Safety Score</h4>
             <p className="text-xs text-muted-foreground mt-0.5">Based on payout ratio, FCF coverage, debt levels, and growth track record</p>
           </div>
           <div className="text-right">
@@ -962,10 +962,10 @@ function DividendGrowthTab() {
 export default function DividendsPage() {
   return (
     <div className="p-4 sm:p-6 space-y-4">
-      {/* Header */}
-      <div className="flex items-center justify-between">
+      {/* Header — Hero */}
+      <div className="border-l-4 border-l-primary rounded-lg bg-card p-6 flex items-center justify-between">
         <div>
-          <h1 className="text-xl font-semibold flex items-center gap-2">
+          <h1 className="text-lg font-medium flex items-center gap-2">
             <DollarSign className="w-5 h-5 text-green-400" />
             Dividend Investing
           </h1>
@@ -974,7 +974,7 @@ export default function DividendsPage() {
       </div>
 
       {/* Tabs */}
-      <Tabs defaultValue="stocks">
+      <Tabs defaultValue="stocks" className="mt-8">
         <TabsList className="grid w-full grid-cols-5">
           <TabsTrigger value="stocks" className="flex items-center gap-1.5 text-xs sm:text-sm">
             <TrendingUp className="w-3.5 h-3.5" />

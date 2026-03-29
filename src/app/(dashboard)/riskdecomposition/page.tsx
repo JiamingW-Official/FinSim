@@ -418,7 +418,7 @@ function RiskDecompositionTab() {
                   const syst = parseFloat((r2 * 100).toFixed(1));
                   return (
                     <tr key={p.ticker} className="border-b border-border/50 hover:bg-muted/30">
-                      <td className="py-2 font-semibold text-foreground">{p.ticker}</td>
+                      <td className="py-2 font-medium text-foreground">{p.ticker}</td>
                       <td className="py-2 text-right text-muted-foreground">{p.weight}%</td>
                       <td className="py-2 text-right text-muted-foreground">{p.beta.toFixed(2)}</td>
                       <td className="py-2 text-right text-muted-foreground">{p.vol}%</td>
@@ -523,12 +523,12 @@ function MarginalContributionTab() {
                         <td className="py-2">
                           <div className="flex items-center gap-2">
                             <div className="w-2.5 h-2.5 rounded-sm" style={{ background: r.color }} />
-                            <span className="font-semibold text-foreground">{r.ticker}</span>
+                            <span className="font-medium text-foreground">{r.ticker}</span>
                           </div>
                         </td>
                         <td className="py-2 text-right text-muted-foreground">{r.weight.toFixed(1)}%</td>
                         <td className="py-2 text-right text-indigo-300">{r.mctr.toFixed(2)}%</td>
-                        <td className="py-2 text-right font-semibold text-foreground">{r.pctRiskContrib.toFixed(1)}%</td>
+                        <td className="py-2 text-right font-medium text-foreground">{r.pctRiskContrib.toFixed(1)}%</td>
                         <td className="py-2 text-right">
                           {over ? (
                             <Badge className="bg-red-500/20 text-red-300 border-0 text-xs">Risk Heavy</Badge>
@@ -682,13 +682,13 @@ function StressTestingTab() {
                         </div>
                       </td>
                       <td className="py-2.5 text-right text-muted-foreground">{sc.year}</td>
-                      <td className={`py-2.5 text-right font-semibold ${returnColor(sc.marketReturn)}`}>
+                      <td className={`py-2.5 text-right font-medium ${returnColor(sc.marketReturn)}`}>
                         {sc.marketReturn.toFixed(1)}%
                       </td>
-                      <td className={`py-2.5 text-right font-semibold ${returnColor(sc.portfolioReturn)}`}>
+                      <td className={`py-2.5 text-right font-medium ${returnColor(sc.portfolioReturn)}`}>
                         {sc.portfolioReturn.toFixed(1)}%
                       </td>
-                      <td className={`py-2.5 text-right font-semibold ${returnColor(sc.maxDrawdown)}`}>
+                      <td className={`py-2.5 text-right font-medium ${returnColor(sc.maxDrawdown)}`}>
                         {sc.maxDrawdown.toFixed(1)}%
                       </td>
                       <td className="py-2.5 text-right text-muted-foreground">{sc.recoveryDays.toLocaleString()}</td>
@@ -710,7 +710,7 @@ function StressTestingTab() {
                             <div className="mt-3 grid grid-cols-3 gap-3">
                               <div className="bg-card rounded-lg p-2">
                                 <div className="text-xs text-muted-foreground mb-0.5">Portfolio vs Market</div>
-                                <div className={`text-sm font-bold ${(sc.portfolioReturn - sc.marketReturn) > 0 ? "text-emerald-400" : "text-red-400"}`}>
+                                <div className={`text-sm font-medium ${(sc.portfolioReturn - sc.marketReturn) > 0 ? "text-emerald-400" : "text-red-400"}`}>
                                   {(sc.portfolioReturn - sc.marketReturn) > 0 ? "+" : ""}
                                   {(sc.portfolioReturn - sc.marketReturn).toFixed(1)}%
                                 </div>
@@ -718,14 +718,14 @@ function StressTestingTab() {
                               </div>
                               <div className="bg-card rounded-lg p-2">
                                 <div className="text-xs text-muted-foreground mb-0.5">Portfolio Beta Used</div>
-                                <div className="text-sm font-bold text-indigo-300">
+                                <div className="text-sm font-medium text-indigo-300">
                                   {(sc.portfolioReturn / sc.marketReturn).toFixed(2)}x
                                 </div>
                                 <div className="text-xs text-muted-foreground">implied beta</div>
                               </div>
                               <div className="bg-card rounded-lg p-2">
                                 <div className="text-xs text-muted-foreground mb-0.5">Recovery Speed</div>
-                                <div className={`text-sm font-bold ${sc.recoveryDays < 200 ? "text-emerald-400" : sc.recoveryDays < 600 ? "text-amber-400" : "text-red-400"}`}>
+                                <div className={`text-sm font-medium ${sc.recoveryDays < 200 ? "text-emerald-400" : sc.recoveryDays < 600 ? "text-amber-400" : "text-red-400"}`}>
                                   {sc.recoveryDays < 200 ? "Fast" : sc.recoveryDays < 600 ? "Moderate" : "Slow"}
                                 </div>
                                 <div className="text-xs text-muted-foreground">{sc.recoveryDays} days</div>
@@ -864,11 +864,11 @@ function ValueAtRiskTab() {
                 </div>
                 <div>
                   <div className="text-xs text-muted-foreground mb-1">CVaR 95% (Expected Shortfall)</div>
-                  <div className="text-xl font-bold text-orange-400">{v.cvar95.toFixed(2)}%</div>
+                  <div className="text-xl font-medium text-orange-400">{v.cvar95.toFixed(2)}%</div>
                 </div>
                 <div>
                   <div className="text-xs text-muted-foreground mb-1">CVaR 99%</div>
-                  <div className="text-xl font-bold text-orange-500">{v.cvar99.toFixed(2)}%</div>
+                  <div className="text-xl font-medium text-orange-500">{v.cvar99.toFixed(2)}%</div>
                 </div>
               </div>
               <p className="mt-3 text-xs text-muted-foreground">
@@ -1064,11 +1064,11 @@ function RiskBudgetingTab() {
             <div className="grid grid-cols-2 gap-3">
               <div className="bg-muted rounded-lg p-3">
                 <div className="text-xs text-muted-foreground">Current Portfolio Vol</div>
-                <div className="text-xl font-bold text-indigo-400">{PORTFOLIO_VOL}%</div>
+                <div className="text-xl font-medium text-indigo-400">{PORTFOLIO_VOL}%</div>
               </div>
               <div className="bg-muted rounded-lg p-3">
                 <div className="text-xs text-muted-foreground">ERC Portfolio Vol (est.)</div>
-                <div className="text-xl font-bold text-emerald-400">13.2%</div>
+                <div className="text-xl font-medium text-emerald-400">13.2%</div>
               </div>
             </div>
           </CardContent>
@@ -1087,11 +1087,11 @@ function RiskBudgetingTab() {
             <div className="grid grid-cols-2 gap-3">
               <div className="bg-muted rounded-lg p-3">
                 <div className="text-xs text-muted-foreground">Concentration (HHI)</div>
-                <div className="text-xl font-bold text-amber-400">0.074</div>
+                <div className="text-xl font-medium text-amber-400">0.074</div>
               </div>
               <div className="bg-muted rounded-lg p-3">
                 <div className="text-xs text-muted-foreground">ERC HHI (target)</div>
-                <div className="text-xl font-bold text-emerald-400">0.100</div>
+                <div className="text-xl font-medium text-emerald-400">0.100</div>
               </div>
             </div>
           </CardContent>
@@ -1216,14 +1216,14 @@ function RiskBudgetingTab() {
                       <td className="py-2">
                         <div className="flex items-center gap-2">
                           <div className="w-2.5 h-2.5 rounded-sm" style={{ background: r.color }} />
-                          <span className="font-semibold text-foreground">{r.ticker}</span>
+                          <span className="font-medium text-foreground">{r.ticker}</span>
                         </div>
                       </td>
                       <td className="py-2 text-right text-muted-foreground">{r.currentWeight.toFixed(1)}%</td>
                       <td className="py-2 text-right text-muted-foreground">{r.currentRiskContrib.toFixed(1)}%</td>
-                      <td className="py-2 text-right font-semibold text-indigo-300">{r.ercWeight.toFixed(1)}%</td>
+                      <td className="py-2 text-right font-medium text-indigo-300">{r.ercWeight.toFixed(1)}%</td>
                       <td className="py-2 text-right text-emerald-300">10.0%</td>
-                      <td className={`py-2 text-right font-semibold ${delta > 0 ? "text-emerald-400" : delta < 0 ? "text-red-400" : "text-muted-foreground"}`}>
+                      <td className={`py-2 text-right font-medium ${delta > 0 ? "text-emerald-400" : delta < 0 ? "text-red-400" : "text-muted-foreground"}`}>
                         {delta > 0 ? "+" : ""}{delta.toFixed(1)}%
                       </td>
                       <td className="py-2 text-right">
@@ -1267,7 +1267,7 @@ export default function RiskDecompositionPage() {
           <Shield className="w-5 h-5 text-indigo-400" />
         </div>
         <div>
-          <h1 className="text-xl font-bold text-foreground">Portfolio Risk Decomposition</h1>
+          <h1 className="text-xl font-medium text-foreground">Portfolio Risk Decomposition</h1>
           <p className="text-sm text-muted-foreground">Attribution analysis, stress testing, VaR, and risk budgeting</p>
         </div>
         <div className="ml-auto flex items-center gap-2">

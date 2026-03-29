@@ -151,7 +151,7 @@ function Tab101() {
               { name: "NYSE Specialists", share: "Historic", note: "Obligated quoters" },
             ].map((e) => (
               <div key={e.name} className="bg-muted rounded p-2 text-center">
-                <div className="font-semibold text-foreground text-xs">{e.name}</div>
+                <div className="font-medium text-foreground text-xs">{e.name}</div>
                 <div className="text-amber-400 text-xs">{e.share}</div>
                 <div className="text-muted-foreground text-xs">{e.note}</div>
               </div>
@@ -210,7 +210,7 @@ function Tab101() {
       content: (
         <div className="space-y-3 text-sm text-muted-foreground">
           <div className="bg-muted rounded-lg p-4 font-mono text-xs space-y-2">
-            <div className="text-muted-foreground font-sans font-semibold mb-2">P&L Formula</div>
+            <div className="text-muted-foreground font-sans font-medium mb-2">P&L Formula</div>
             <div className="text-emerald-400">Gross P&L = ½ × spread × volume_filled</div>
             <div className="text-rose-400">− Inventory Risk = σ² × |position| × T</div>
             <div className="text-amber-400">− Adverse Selection = α × |informed_flow|</div>
@@ -367,7 +367,7 @@ function TabSpread() {
       {/* Controls */}
       <div className="grid grid-cols-2 gap-4">
         <div className="bg-card border border-border rounded-xl p-4 space-y-3">
-          <div className="text-xs font-semibold text-muted-foreground">Market Parameters</div>
+          <div className="text-xs font-medium text-muted-foreground">Market Parameters</div>
           <div>
             <div className="flex justify-between text-xs mb-1">
               <span className="text-muted-foreground">Annual Volatility</span>
@@ -427,7 +427,7 @@ function TabSpread() {
         </div>
 
         <div className="bg-card border border-border rounded-xl p-4 space-y-3">
-          <div className="text-xs font-semibold text-muted-foreground">Optimal Quotes</div>
+          <div className="text-xs font-medium text-muted-foreground">Optimal Quotes</div>
           <div className="space-y-2">
             {[
               {
@@ -448,7 +448,7 @@ function TabSpread() {
             ].map((r) => (
               <div key={r.label} className="flex justify-between items-center bg-muted rounded p-2">
                 <span className="text-muted-foreground text-xs">{r.label}</span>
-                <span className={cn("font-mono text-sm font-bold", r.color)}>{r.val}</span>
+                <span className={cn("font-mono text-sm font-medium", r.color)}>{r.val}</span>
               </div>
             ))}
           </div>
@@ -478,18 +478,18 @@ function TabSpread() {
 
       {/* Info panel */}
       <div className="bg-card border border-border rounded-xl p-4">
-        <div className="text-xs font-semibold text-muted-foreground mb-3">Key Insight</div>
+        <div className="text-xs font-medium text-muted-foreground mb-3">Key Insight</div>
         <div className="grid grid-cols-3 gap-3 text-xs text-muted-foreground">
           <div className="bg-muted rounded p-3">
-            <div className="text-amber-400 font-semibold mb-1">Quoted vs Realized</div>
+            <div className="text-amber-400 font-medium mb-1">Quoted vs Realized</div>
             <p>Realized spread ≈ 65% of quoted due to adverse selection and market impact. A high-quality MM minimizes this gap.</p>
           </div>
           <div className="bg-muted rounded p-3">
-            <div className="text-primary font-semibold mb-1">Risk-Aversion Effect</div>
+            <div className="text-primary font-medium mb-1">Risk-Aversion Effect</div>
             <p>Higher γ → wider spreads but lower fill rate. The optimal γ maximizes risk-adjusted P&L given your inventory constraints.</p>
           </div>
           <div className="bg-muted rounded p-3">
-            <div className="text-rose-400 font-semibold mb-1">Adverse Selection</div>
+            <div className="text-rose-400 font-medium mb-1">Adverse Selection</div>
             <p>Informed traders systematically trade against MMs. The AS component compensates for being on the wrong side of informed flow.</p>
           </div>
         </div>
@@ -526,7 +526,7 @@ function TabInventory() {
     <div className="space-y-4">
       <div className="flex items-center justify-between">
         <div>
-          <div className="text-sm font-semibold text-foreground">30-Period Market Making Simulation</div>
+          <div className="text-sm font-medium text-foreground">30-Period Market Making Simulation</div>
           <div className="text-xs text-muted-foreground">Seeded trades, ±1000 share inventory limit</div>
         </div>
         <div className="flex items-center gap-3">
@@ -582,7 +582,7 @@ function TabInventory() {
         ].map((m) => (
           <div key={m.label} className="bg-card border border-border rounded-xl p-3">
             <div className="text-muted-foreground text-xs">{m.label}</div>
-            <div className={cn("font-mono font-bold text-lg", m.color)}>
+            <div className={cn("font-mono font-medium text-lg", m.color)}>
               {typeof m.val === "number" ? m.val + m.suffix : m.val}
             </div>
           </div>
@@ -591,7 +591,7 @@ function TabInventory() {
 
       {/* Inventory Chart */}
       <div className="bg-card border border-border rounded-xl p-4">
-        <div className="text-xs font-semibold text-muted-foreground mb-3">Inventory Position</div>
+        <div className="text-xs font-medium text-muted-foreground mb-3">Inventory Position</div>
         <svg width="100%" height={svgH} viewBox={`0 0 ${svgW} ${svgH}`}>
           {/* Grid lines */}
           {[-1000, -500, 0, 500, 1000].map((v) => {
@@ -637,7 +637,7 @@ function TabInventory() {
 
       {/* P&L Chart */}
       <div className="bg-card border border-border rounded-xl p-4">
-        <div className="text-xs font-semibold text-muted-foreground mb-3">Cumulative P&L</div>
+        <div className="text-xs font-medium text-muted-foreground mb-3">Cumulative P&L</div>
         <svg width="100%" height={svgH} viewBox={`0 0 ${svgW} ${svgH}`}>
           {[0, 0.5, 1].map((frac) => {
             const v = -maxPnl + frac * 2 * maxPnl;
@@ -695,18 +695,18 @@ function TabInventory() {
 
       {/* Quote skewing info */}
       <div className="bg-card border border-border rounded-xl p-4">
-        <div className="text-xs font-semibold text-muted-foreground mb-3">Quote Skewing Logic</div>
+        <div className="text-xs font-medium text-muted-foreground mb-3">Quote Skewing Logic</div>
         <div className="grid grid-cols-3 gap-3 text-xs">
           <div className="bg-muted rounded p-3">
-            <div className="text-emerald-400 font-semibold mb-1">Long Inventory → Skew Down</div>
+            <div className="text-emerald-400 font-medium mb-1">Long Inventory → Skew Down</div>
             <p className="text-muted-foreground">Lower bid AND ask to attract sell orders. Accept worse prices to reduce position.</p>
           </div>
           <div className="bg-muted rounded p-3">
-            <div className="text-rose-400 font-semibold mb-1">Short Inventory → Skew Up</div>
+            <div className="text-rose-400 font-medium mb-1">Short Inventory → Skew Up</div>
             <p className="text-muted-foreground">Raise bid AND ask to attract buy orders. Restore flat inventory at cost of spread.</p>
           </div>
           <div className="bg-muted rounded p-3">
-            <div className="text-amber-400 font-semibold mb-1">EOD Close-Out</div>
+            <div className="text-amber-400 font-medium mb-1">EOD Close-Out</div>
             <p className="text-muted-foreground">Use market sweeps at close. Accept full adverse impact to avoid overnight inventory risk.</p>
           </div>
         </div>
@@ -775,9 +775,9 @@ function TabAMM() {
     <div className="space-y-4">
       {/* Comparison table */}
       <div className="bg-card border border-border rounded-xl p-4">
-        <div className="text-xs font-semibold text-muted-foreground mb-3">AMM vs CLOB Comparison</div>
+        <div className="text-xs font-medium text-muted-foreground mb-3">AMM vs CLOB Comparison</div>
         <div className="space-y-1">
-          <div className="grid grid-cols-3 gap-2 text-xs font-semibold text-muted-foreground pb-1 border-b border-border">
+          <div className="grid grid-cols-3 gap-2 text-xs font-medium text-muted-foreground pb-1 border-b border-border">
             <span>Metric</span>
             <span className="text-primary">AMM (Uniswap v2/v3)</span>
             <span className="text-primary">CLOB (NYSE / Binance)</span>
@@ -791,7 +791,7 @@ function TabAMM() {
               <span
                 className={cn(
                   "text-muted-foreground",
-                  c.winner === "amm" && "text-emerald-400 font-semibold",
+                  c.winner === "amm" && "text-emerald-400 font-medium",
                   c.winner === "tie" && "text-muted-foreground"
                 )}
               >
@@ -800,7 +800,7 @@ function TabAMM() {
               <span
                 className={cn(
                   "text-muted-foreground",
-                  c.winner === "clob" && "text-emerald-400 font-semibold",
+                  c.winner === "clob" && "text-emerald-400 font-medium",
                   c.winner === "tie" && "text-muted-foreground"
                 )}
               >
@@ -814,7 +814,7 @@ function TabAMM() {
       {/* IL Calculator */}
       <div className="grid grid-cols-2 gap-4">
         <div className="bg-card border border-border rounded-xl p-4 space-y-3">
-          <div className="text-xs font-semibold text-muted-foreground">Impermanent Loss Calculator</div>
+          <div className="text-xs font-medium text-muted-foreground">Impermanent Loss Calculator</div>
           <div>
             <div className="flex justify-between text-xs mb-1">
               <span className="text-muted-foreground">Price Move</span>
@@ -862,7 +862,7 @@ function TabAMM() {
             ].map((r) => (
               <div key={r.label} className="flex justify-between items-center bg-muted rounded px-3 py-2">
                 <span className="text-muted-foreground text-xs">{r.label}</span>
-                <span className={cn("font-mono text-sm font-bold", r.color)}>{r.val}</span>
+                <span className={cn("font-mono text-sm font-medium", r.color)}>{r.val}</span>
               </div>
             ))}
           </div>
@@ -870,7 +870,7 @@ function TabAMM() {
 
         {/* IL Curve SVG */}
         <div className="bg-card border border-border rounded-xl p-4">
-          <div className="text-xs font-semibold text-muted-foreground mb-3">IL Curve (x×y=k)</div>
+          <div className="text-xs font-medium text-muted-foreground mb-3">IL Curve (x×y=k)</div>
           <svg width="100%" height={svgH} viewBox={`0 0 ${svgW} ${svgH}`}>
             {[0, 0.1, 0.2, 0.3].map((v) => {
               const y = pad.t + ih - (v / maxIL) * ih;
@@ -923,7 +923,7 @@ function TabAMM() {
           </div>
 
           <div className="mt-3 bg-muted rounded p-3 text-xs space-y-1">
-            <div className="text-muted-foreground font-semibold">Uniswap v3: Concentrated Liquidity</div>
+            <div className="text-muted-foreground font-medium">Uniswap v3: Concentrated Liquidity</div>
             <p className="text-muted-foreground">
               LPs set a price range [pMin, pMax]. Capital efficiency = full-range LP multiplied by price_range_factor.
               Higher efficiency → higher IL if price exits range (position becomes all one token).
@@ -1007,7 +1007,7 @@ function TabHFT() {
       {/* Latency edge calculator */}
       <div className="grid grid-cols-2 gap-4">
         <div className="bg-card border border-border rounded-xl p-4 space-y-3">
-          <div className="text-xs font-semibold text-muted-foreground">Latency Edge Calculator</div>
+          <div className="text-xs font-medium text-muted-foreground">Latency Edge Calculator</div>
           <div>
             <div className="flex justify-between text-xs mb-1">
               <span className="text-muted-foreground">Trades Per Day</span>
@@ -1037,11 +1037,11 @@ function TabHFT() {
           <div className="bg-muted rounded-lg p-3 space-y-2">
             <div className="flex justify-between">
               <span className="text-muted-foreground text-xs">Est. Daily Edge</span>
-              <span className="text-emerald-400 font-mono font-bold text-sm">{fmtDollar(dailyEdge)}</span>
+              <span className="text-emerald-400 font-mono font-medium text-sm">{fmtDollar(dailyEdge)}</span>
             </div>
             <div className="flex justify-between">
               <span className="text-muted-foreground text-xs">Annual Edge</span>
-              <span className="text-emerald-400 font-mono font-bold text-sm">{fmtDollar(dailyEdge * 252)}</span>
+              <span className="text-emerald-400 font-mono font-medium text-sm">{fmtDollar(dailyEdge * 252)}</span>
             </div>
           </div>
           <div className="text-xs text-muted-foreground">
@@ -1050,7 +1050,7 @@ function TabHFT() {
         </div>
 
         <div className="bg-card border border-border rounded-xl p-4">
-          <div className="text-xs font-semibold text-muted-foreground mb-3">Latency Comparison</div>
+          <div className="text-xs font-medium text-muted-foreground mb-3">Latency Comparison</div>
           <svg width="100%" height={svgH} viewBox={`0 0 ${svgW} ${svgH}`}>
             {[
               { label: "Co-located HFT", micros: 0.5, color: "#22c55e" },
@@ -1081,12 +1081,12 @@ function TabHFT() {
 
       {/* Order types */}
       <div className="bg-card border border-border rounded-xl p-4">
-        <div className="text-xs font-semibold text-muted-foreground mb-3">HFT Order Types</div>
+        <div className="text-xs font-medium text-muted-foreground mb-3">HFT Order Types</div>
         <div className="grid grid-cols-2 gap-3">
           {orderTypes.map((ot) => (
             <div key={ot.name} className="bg-muted rounded-lg p-3">
               <div className="flex items-center gap-2 mb-1">
-                <span className={cn("font-mono font-bold text-sm", ot.color)}>{ot.name}</span>
+                <span className={cn("font-mono font-medium text-sm", ot.color)}>{ot.name}</span>
                 <span className="text-muted-foreground text-xs">{ot.full}</span>
               </div>
               <p className="text-muted-foreground text-xs">{ot.desc}</p>
@@ -1097,10 +1097,10 @@ function TabHFT() {
 
       {/* HFT vs Stat Arb */}
       <div className="bg-card border border-border rounded-xl p-4">
-        <div className="text-xs font-semibold text-muted-foreground mb-3">Market Making vs Statistical Arbitrage</div>
+        <div className="text-xs font-medium text-muted-foreground mb-3">Market Making vs Statistical Arbitrage</div>
         <div className="grid grid-cols-2 gap-3">
           <div className="bg-muted rounded-lg p-3">
-            <div className="text-primary font-semibold text-sm mb-2">HFT Market Making</div>
+            <div className="text-primary font-medium text-sm mb-2">HFT Market Making</div>
             <div className="space-y-1 text-xs text-muted-foreground">
               <div className="flex gap-2"><CheckCircle size={10} className="text-emerald-400 mt-0.5 shrink-0" /><span>Consistent small profits on spread</span></div>
               <div className="flex gap-2"><CheckCircle size={10} className="text-emerald-400 mt-0.5 shrink-0" /><span>High volume = law of large numbers</span></div>
@@ -1110,7 +1110,7 @@ function TabHFT() {
             </div>
           </div>
           <div className="bg-muted rounded-lg p-3">
-            <div className="text-primary font-semibold text-sm mb-2">Statistical Arbitrage</div>
+            <div className="text-primary font-medium text-sm mb-2">Statistical Arbitrage</div>
             <div className="space-y-1 text-xs text-muted-foreground">
               <div className="flex gap-2"><CheckCircle size={10} className="text-emerald-400 mt-0.5 shrink-0" /><span>Directional alpha from mispricings</span></div>
               <div className="flex gap-2"><CheckCircle size={10} className="text-emerald-400 mt-0.5 shrink-0" /><span>Lower turnover needed</span></div>
@@ -1124,7 +1124,7 @@ function TabHFT() {
 
       {/* Regulatory landscape */}
       <div className="bg-card border border-border rounded-xl p-4">
-        <div className="text-xs font-semibold text-muted-foreground mb-3">Regulatory Landscape</div>
+        <div className="text-xs font-medium text-muted-foreground mb-3">Regulatory Landscape</div>
         <div className="space-y-2">
           {regulatoryRules.map((r) => (
             <div key={r.rule} className="flex gap-3 bg-muted rounded-lg p-3">
@@ -1134,7 +1134,7 @@ function TabHFT() {
                 </Badge>
               </div>
               <div>
-                <div className="text-foreground font-semibold text-xs">{r.rule}</div>
+                <div className="text-foreground font-medium text-xs">{r.rule}</div>
                 <div className="text-muted-foreground text-xs mt-0.5">{r.summary}</div>
               </div>
             </div>
@@ -1144,10 +1144,10 @@ function TabHFT() {
 
       {/* Market impact */}
       <div className="bg-card border border-border rounded-xl p-4">
-        <div className="text-xs font-semibold text-muted-foreground mb-3">HFT Market Impact: Debate</div>
+        <div className="text-xs font-medium text-muted-foreground mb-3">HFT Market Impact: Debate</div>
         <div className="grid grid-cols-2 gap-3 text-xs">
           <div>
-            <div className="text-emerald-400 font-semibold mb-2">Positive Contributions</div>
+            <div className="text-emerald-400 font-medium mb-2">Positive Contributions</div>
             <div className="space-y-1 text-muted-foreground">
               {[
                 "Tighter bid-ask spreads for all participants",
@@ -1164,7 +1164,7 @@ function TabHFT() {
             </div>
           </div>
           <div>
-            <div className="text-rose-400 font-semibold mb-2">Concerns & Criticisms</div>
+            <div className="text-rose-400 font-medium mb-2">Concerns & Criticisms</div>
             <div className="space-y-1 text-muted-foreground">
               {[
                 "Liquidity evaporates in market stress (Flash Crash 2010)",
@@ -1214,7 +1214,7 @@ export default function MarketMakingPage() {
               <Activity size={20} className="text-primary" />
             </div>
             <div>
-              <h1 className="text-xl font-bold text-foreground">Market Making Simulator</h1>
+              <h1 className="text-xl font-medium text-foreground">Market Making Simulator</h1>
               <p className="text-muted-foreground text-sm">
                 Spread modeling, inventory management, AMM mechanics, and HFT dynamics
               </p>
@@ -1232,7 +1232,7 @@ export default function MarketMakingPage() {
             ].map((m) => (
               <div key={m.label} className="bg-card border border-border rounded-lg px-3 py-2">
                 <div className="text-muted-foreground text-xs">{m.label}</div>
-                <div className={cn("font-mono font-bold", m.color)}>{m.val}</div>
+                <div className={cn("font-mono font-medium", m.color)}>{m.val}</div>
                 <div className="text-muted-foreground text-xs">{m.sub}</div>
               </div>
             ))}

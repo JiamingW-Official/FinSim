@@ -552,7 +552,7 @@ export default function GreenFinancePage() {
           <Leaf className="text-emerald-400" size={20} />
         </div>
         <div>
-          <h1 className="text-xl font-bold text-foreground">Green Bonds &amp; Climate Finance</h1>
+          <h1 className="text-xl font-medium text-foreground">Green Bonds &amp; Climate Finance</h1>
           <p className="text-xs text-muted-foreground">Sustainable debt markets, greenium analysis, carbon markets &amp; taxonomy</p>
         </div>
       </div>
@@ -841,7 +841,7 @@ export default function GreenFinancePage() {
                 {CARBON_CREDITS.map((credit) => (
                   <div key={credit.abbr} className="rounded-lg border border-border bg-foreground/5 p-3">
                     <div className="flex items-center justify-between mb-2">
-                      <span className="text-xs font-bold text-foreground">{credit.abbr}</span>
+                      <span className="text-xs font-medium text-foreground">{credit.abbr}</span>
                       <Badge className={cn(
                         "text-[11px] py-0 border-none",
                         credit.market === "compliance" ? "bg-primary/20 text-primary" : "bg-emerald-500/20 text-emerald-300"
@@ -915,7 +915,7 @@ export default function GreenFinancePage() {
                       <tr key={i} className={cn("border-b border-border/50 hover:bg-muted/30 transition-colors")}>
                         <td className="p-2">
                           <span className={cn(
-                            "inline-block px-2 py-0.5 rounded text-xs font-bold",
+                            "inline-block px-2 py-0.5 rounded text-xs font-medium",
                             bgMap[ins.color] ?? "bg-muted",
                             colorMap[ins.color] ?? "text-muted-foreground"
                           )}>{ins.abbr}</span>
@@ -1024,7 +1024,7 @@ export default function GreenFinancePage() {
               const borders = ["border-emerald-500/30", "border-border", "border-border"];
               return (
                 <div key={tier.article} className={cn("rounded-lg border p-4", borders[i])}>
-                  <p className={cn("text-sm font-bold mb-1", colors[i])}>{tier.article}</p>
+                  <p className={cn("text-sm font-medium mb-1", colors[i])}>{tier.article}</p>
                   <p className="text-xs text-foreground mb-1">{tier.label}</p>
                   <p className="text-xs text-muted-foreground mb-2">{tier.desc}</p>
                   <div className="space-y-1 text-xs">

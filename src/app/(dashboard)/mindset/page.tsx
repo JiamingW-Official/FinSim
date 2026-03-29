@@ -907,7 +907,7 @@ function BiasAssessment() {
               >
                 <div className="flex items-center gap-2">
                   <Lightbulb className="h-4 w-4" style={{ color: r.color }} />
-                  <span className="text-sm font-semibold text-foreground">{r.label}</span>
+                  <span className="text-sm font-medium text-foreground">{r.label}</span>
                 </div>
                 <p className="text-xs text-muted-foreground leading-relaxed">{r.tip}</p>
               </div>
@@ -1064,7 +1064,7 @@ function DecisionFramework() {
         <div className="lg:col-span-2">
           <Card className="bg-card/60 border-border">
             <CardHeader>
-              <CardTitle className="text-sm font-semibold text-foreground">
+              <CardTitle className="text-sm font-medium text-foreground">
                 Pre-Trade Checklist
               </CardTitle>
             </CardHeader>
@@ -1101,7 +1101,7 @@ function DecisionFramework() {
         <div className="space-y-4">
           <Card className="bg-card/60 border-border">
             <CardHeader>
-              <CardTitle className="text-sm font-semibold text-foreground">
+              <CardTitle className="text-sm font-medium text-foreground">
                 Trade Quality
               </CardTitle>
             </CardHeader>
@@ -1123,7 +1123,7 @@ function DecisionFramework() {
 
       <Card className="bg-card/60 border-border">
         <CardHeader>
-          <CardTitle className="text-sm font-semibold text-foreground">
+          <CardTitle className="text-sm font-medium text-foreground">
             Investment Thesis Builder
           </CardTitle>
         </CardHeader>
@@ -1155,7 +1155,7 @@ function DecisionFramework() {
           {thesisFields.ticker && thesisFields.catalyst && (
             <div className="mt-4 rounded-lg border border-indigo-800/40 bg-indigo-950/20 p-3">
               <p className="text-xs text-muted-foreground leading-relaxed">
-                <span className="font-semibold text-indigo-300">{thesisFields.ticker}</span>
+                <span className="font-medium text-indigo-300">{thesisFields.ticker}</span>
                 {thesisFields.catalyst && ` — catalyst: ${thesisFields.catalyst}`}
                 {thesisFields.timeline && ` over ${thesisFields.timeline}`}
                 {thesisFields.target && `, targeting ${thesisFields.target}`}
@@ -1173,7 +1173,7 @@ function DecisionFramework() {
             onClick={() => setShowJournal((v) => !v)}
             className="flex items-center justify-between w-full"
           >
-            <CardTitle className="text-sm font-semibold text-foreground">
+            <CardTitle className="text-sm font-medium text-foreground">
               Decision Journal
             </CardTitle>
             {showJournal ? (
@@ -1282,7 +1282,7 @@ function EmotionalIntelligence() {
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
         <Card className="bg-card/60 border-border">
           <CardHeader>
-            <CardTitle className="text-sm font-semibold text-foreground">
+            <CardTitle className="text-sm font-medium text-foreground">
               Market Emotion Cycle
             </CardTitle>
           </CardHeader>
@@ -1313,7 +1313,7 @@ function EmotionalIntelligence() {
         <div className="space-y-4">
           <Card className="bg-card/60 border-border">
             <CardHeader>
-              <CardTitle className="text-sm font-semibold text-foreground">
+              <CardTitle className="text-sm font-medium text-foreground">
                 How Am I Feeling Today?
               </CardTitle>
             </CardHeader>
@@ -1354,7 +1354,7 @@ function EmotionalIntelligence() {
 
           <Card className="bg-card/60 border-border">
             <CardHeader>
-              <CardTitle className="text-sm font-semibold text-foreground">
+              <CardTitle className="text-sm font-medium text-foreground">
                 Rules for Trading While Emotional
               </CardTitle>
             </CardHeader>
@@ -1383,7 +1383,7 @@ function EmotionalIntelligence() {
 
       <Card className="bg-card/60 border-border">
         <CardHeader>
-          <CardTitle className="text-sm font-semibold text-foreground">
+          <CardTitle className="text-sm font-medium text-foreground">
             Emotion Score vs Monthly Return
           </CardTitle>
         </CardHeader>
@@ -1447,7 +1447,7 @@ function ProcessOutcome() {
               <div className="flex items-center justify-between">
                 <div className="flex items-center gap-2">
                   <Icon className="h-4 w-4" style={{ color: q.color }} />
-                  <span className="font-semibold text-sm text-foreground">{q.label}</span>
+                  <span className="font-medium text-sm text-foreground">{q.label}</span>
                 </div>
                 <div className="flex gap-2">
                   <Badge
@@ -1477,13 +1477,13 @@ function ProcessOutcome() {
 
       <Card className="bg-card/60 border-border">
         <CardHeader>
-          <CardTitle className="text-sm font-semibold text-foreground">
+          <CardTitle className="text-sm font-medium text-foreground">
             Luck vs Skill Separator
           </CardTitle>
         </CardHeader>
         <CardContent className="space-y-4">
           <p className="text-xs text-muted-foreground leading-relaxed">
-            You need at least <span className="text-indigo-300 font-semibold">30 trades</span> to distinguish
+            You need at least <span className="text-indigo-300 font-medium">30 trades</span> to distinguish
             skill from luck. With fewer trades, a 60% win rate could easily be explained by random variation.
             At 100 trades, a 55% win rate with consistent process is statistically meaningful.
           </p>
@@ -1494,7 +1494,7 @@ function ProcessOutcome() {
               { trades: 100, confidence: "~95%", label: "High confidence" },
             ].map((item) => (
               <div key={item.trades} className="rounded-lg bg-muted/40 p-3 space-y-1">
-                <div className="text-xl font-bold text-foreground">{item.trades}</div>
+                <div className="text-xl font-medium text-foreground">{item.trades}</div>
                 <div className="text-xs text-indigo-400 font-medium">{item.confidence}</div>
                 <div className="text-xs text-muted-foreground">{item.label}</div>
               </div>
@@ -1505,7 +1505,7 @@ function ProcessOutcome() {
 
       <Card className="bg-card/60 border-border">
         <CardHeader>
-          <CardTitle className="text-sm font-semibold text-foreground">
+          <CardTitle className="text-sm font-medium text-foreground">
             Process Scorecard — Last 5 Trades
           </CardTitle>
         </CardHeader>
@@ -1518,7 +1518,7 @@ function ProcessOutcome() {
                 className="flex items-center gap-4 p-3 rounded-lg bg-muted/30 border border-border/40"
               >
                 <div className="w-16 shrink-0">
-                  <span className="text-sm font-semibold text-foreground">{trade.ticker}</span>
+                  <span className="text-sm font-medium text-foreground">{trade.ticker}</span>
                   <div className="text-xs text-muted-foreground">{trade.date}</div>
                 </div>
                 <Badge
@@ -1557,7 +1557,7 @@ function ProcessOutcome() {
           {Object.keys(processRatings).length > 0 && (
             <div className="rounded-lg border border-indigo-800/40 bg-indigo-950/20 p-3 text-xs text-muted-foreground">
               Average process score:{" "}
-              <span className="font-bold text-indigo-300">{avgProcess.toFixed(1)}/10</span>.{" "}
+              <span className="font-medium text-indigo-300">{avgProcess.toFixed(1)}/10</span>.{" "}
               {avgProcess >= 7
                 ? "Good process discipline. Focus on improving execution consistency."
                 : avgProcess >= 5
@@ -1607,7 +1607,7 @@ function MentalModelsTab() {
                 <div className="flex items-center justify-between">
                   <div className="flex items-center gap-2">
                     <span className="text-lg">{model.icon}</span>
-                    <CardTitle className="text-sm font-semibold text-foreground">
+                    <CardTitle className="text-sm font-medium text-foreground">
                       {model.name}
                     </CardTitle>
                   </div>
@@ -1746,7 +1746,7 @@ function PerformanceReview() {
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
         <Card className="bg-card/60 border-border">
           <CardHeader>
-            <CardTitle className="text-sm font-semibold text-foreground">
+            <CardTitle className="text-sm font-medium text-foreground">
               12-Month Performance Journal
             </CardTitle>
           </CardHeader>
@@ -1767,7 +1767,7 @@ function PerformanceReview() {
                     <div className="text-xs text-muted-foreground font-medium">{d.month}</div>
                     <div
                       className={cn(
-                        "text-sm font-bold",
+                        "text-sm font-medium",
                         isPos ? "text-green-300" : "text-red-400"
                       )}
                     >
@@ -1784,7 +1784,7 @@ function PerformanceReview() {
 
         <Card className="bg-card/60 border-border">
           <CardHeader>
-            <CardTitle className="text-sm font-semibold text-foreground">
+            <CardTitle className="text-sm font-medium text-foreground">
               Mood vs Next Month Return
             </CardTitle>
           </CardHeader>
@@ -1808,7 +1808,7 @@ function PerformanceReview() {
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
         <Card className="bg-card/60 border-border">
           <CardHeader>
-            <CardTitle className="text-sm font-semibold text-foreground">
+            <CardTitle className="text-sm font-medium text-foreground">
               Mistake Tracker
             </CardTitle>
           </CardHeader>
@@ -1870,7 +1870,7 @@ function PerformanceReview() {
 
         <Card className="bg-card/60 border-border">
           <CardHeader>
-            <CardTitle className="text-sm font-semibold text-foreground">
+            <CardTitle className="text-sm font-medium text-foreground">
               Learning Velocity
             </CardTitle>
           </CardHeader>
@@ -1912,7 +1912,7 @@ function PerformanceReview() {
 
       <Card className="bg-card/60 border-border">
         <CardHeader>
-          <CardTitle className="text-sm font-semibold text-foreground">
+          <CardTitle className="text-sm font-medium text-foreground">
             90-Day Improvement Plan
           </CardTitle>
         </CardHeader>
@@ -1934,7 +1934,7 @@ function PerformanceReview() {
               >
                 <div className="flex items-center gap-2 mb-1">
                   <Target className="h-3.5 w-3.5 text-indigo-400" />
-                  <span className="text-xs font-semibold text-foreground">{area.focus}</span>
+                  <span className="text-xs font-medium text-foreground">{area.focus}</span>
                 </div>
                 <p className="text-xs text-muted-foreground">4-week structured program</p>
               </button>

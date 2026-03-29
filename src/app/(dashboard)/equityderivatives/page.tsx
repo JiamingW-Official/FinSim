@@ -1029,14 +1029,14 @@ export default function EquityDerivativesPage() {
         initial={{ opacity: 0, y: -12 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.35 }}
-        className="mb-6"
+        className="mb-6 border-l-4 border-l-primary rounded-lg bg-card p-6"
       >
         <div className="flex items-center gap-3 mb-2">
           <div className="p-2 rounded-lg bg-primary/10 border border-border">
             <Layers className="w-5 h-5 text-primary" />
           </div>
           <div>
-            <h1 className="text-2xl font-bold text-foreground">
+            <h1 className="text-xl font-bold text-foreground">
               Equity Derivatives
             </h1>
             <p className="text-sm text-muted-foreground">
@@ -1064,7 +1064,7 @@ export default function EquityDerivativesPage() {
       </motion.div>
 
       {/* Tabs */}
-      <Tabs defaultValue="sso">
+      <Tabs defaultValue="sso" className="mt-8">
         <TabsList className="grid grid-cols-2 md:grid-cols-4 w-full mb-6 bg-card/80 border border-border">
           <TabsTrigger value="sso" className="text-xs md:text-sm">
             <Target className="w-3.5 h-3.5 mr-1.5 hidden sm:inline" />
@@ -1192,13 +1192,13 @@ export default function EquityDerivativesPage() {
                     <span className="text-emerald-400 font-semibold">Ordinary dividends:</span> Listed equity options are NOT automatically adjusted for ordinary dividends. The dividend is priced into put-call parity via the forward price F = S·e^(r-q)T. Traders call this the &quot;dividend drag&quot; on call values.
                   </p>
                   <p>
-                    <span className="text-emerald-400 font-semibold">Special dividends:</span> OCC adjusts listed option strikes/multipliers for special dividends {">"}$0.125/share. The strike is reduced by the dividend amount on ex-date.
+                    <span className="text-emerald-400 font-medium">Special dividends:</span> OCC adjusts listed option strikes/multipliers for special dividends {">"}$0.125/share. The strike is reduced by the dividend amount on ex-date.
                   </p>
                   <p>
-                    <span className="text-emerald-400 font-semibold">M&A treatment:</span> In cash mergers, listed options are typically cash-settled at intrinsic value. In stock mergers, options convert per the exchange ratio. Volatility typically collapses to merger spread dynamics after announcement.
+                    <span className="text-emerald-400 font-medium">M&A treatment:</span> In cash mergers, listed options are typically cash-settled at intrinsic value. In stock mergers, options convert per the exchange ratio. Volatility typically collapses to merger spread dynamics after announcement.
                   </p>
                   <p>
-                    <span className="text-amber-400 font-semibold">Early exercise of American options:</span> Rational when the time value of money on the strike exceeds the remaining optionality. For deep ITM calls with large pending dividends: exercise just before ex-date to capture the dividend the call does not receive.
+                    <span className="text-amber-400 font-medium">Early exercise of American options:</span> Rational when the time value of money on the strike exceeds the remaining optionality. For deep ITM calls with large pending dividends: exercise just before ex-date to capture the dividend the call does not receive.
                   </p>
                 </div>
               </CollapsibleSection>
@@ -1209,7 +1209,7 @@ export default function EquityDerivativesPage() {
               >
                 <div className="text-xs text-muted-foreground space-y-2">
                   <p>
-                    <span className="text-primary font-semibold">Warrants</span> are issued by the company itself; exercise creates new shares, diluting existing shareholders. Listed exchange-traded options involve no new share issuance — only transfer of existing shares.
+                    <span className="text-primary font-medium">Warrants</span> are issued by the company itself; exercise creates new shares, diluting existing shareholders. Listed exchange-traded options involve no new share issuance — only transfer of existing shares.
                   </p>
                   <div className="bg-muted/60 rounded p-3 font-mono text-[11px] mt-2">
                     <div className="text-muted-foreground mb-1">Warrant dilution adjustment:</div>
@@ -1219,7 +1219,7 @@ export default function EquityDerivativesPage() {
                     </div>
                   </div>
                   <p>
-                    <span className="text-amber-400 font-semibold">LEAPS</span> (Long-term Equity AnticiPation Securities) are listed options with expirations of 1–3 years. Used as cheap leverage substitutes for long stock positions, capital-efficient covered writes, and long-dated tail hedges.
+                    <span className="text-amber-400 font-medium">LEAPS</span> (Long-term Equity AnticiPation Securities) are listed options with expirations of 1–3 years. Used as cheap leverage substitutes for long stock positions, capital-efficient covered writes, and long-dated tail hedges.
                   </p>
                 </div>
               </CollapsibleSection>
@@ -1235,7 +1235,7 @@ export default function EquityDerivativesPage() {
                       { label: "OTC (ISDA)", features: ["Custom terms, any expiry", "Counterparty credit risk", "CSA/collateral negotiated", "Barrier/digital/Asian variants"] },
                     ].map((col) => (
                       <div key={col.label} className="bg-muted/50 rounded p-3">
-                        <div className="text-sky-300 font-semibold text-[11px] mb-2">{col.label}</div>
+                        <div className="text-sky-300 font-medium text-[11px] mb-2">{col.label}</div>
                         {col.features.map((f) => (
                           <div key={f} className="flex items-start gap-1 mb-1">
                             <span className="text-sky-500 mt-0.5">•</span>
@@ -1246,7 +1246,7 @@ export default function EquityDerivativesPage() {
                     ))}
                   </div>
                   <p>
-                    <span className="text-emerald-400 font-semibold">Equity Linked Notes (ELNs):</span> Structured notes embedding a short put (reverse convertible) or long call (participation note). Issuer embeds the option premium into the note coupon or principal protection level. Retail investors receive enhanced yield; bank monetizes the embedded short vol.
+                    <span className="text-emerald-400 font-medium">Equity Linked Notes (ELNs):</span> Structured notes embedding a short put (reverse convertible) or long call (participation note). Issuer embeds the option premium into the note coupon or principal protection level. Retail investors receive enhanced yield; bank monetizes the embedded short vol.
                   </p>
                 </div>
               </CollapsibleSection>
@@ -1274,15 +1274,15 @@ export default function EquityDerivativesPage() {
                 <TrsMechanicsSVG />
                 <div className="grid grid-cols-2 sm:grid-cols-3 gap-3 text-xs">
                   <div className="bg-muted/60 rounded p-2">
-                    <div className="text-emerald-400 font-semibold mb-1">Equity Leg</div>
+                    <div className="text-emerald-400 font-medium mb-1">Equity Leg</div>
                     <div className="text-muted-foreground">Receiver gets: price appreciation + dividends. Payer hedged by holding stock.</div>
                   </div>
                   <div className="bg-muted/60 rounded p-2">
-                    <div className="text-sky-400 font-semibold mb-1">Funding Leg</div>
+                    <div className="text-sky-400 font-medium mb-1">Funding Leg</div>
                     <div className="text-muted-foreground">Receiver pays: SOFR + spread (financing cost). Reset quarterly or semi-annually.</div>
                   </div>
                   <div className="bg-muted/60 rounded p-2">
-                    <div className="text-amber-400 font-semibold mb-1">Funded vs Unfunded</div>
+                    <div className="text-amber-400 font-medium mb-1">Funded vs Unfunded</div>
                     <div className="text-muted-foreground">Funded: receiver posts upfront capital. Unfunded: receiver posts only initial margin (more leveraged).</div>
                   </div>
                 </div>
@@ -1310,7 +1310,7 @@ export default function EquityDerivativesPage() {
                     <tbody>
                       {TRS_USE_CASES.map((row, i) => (
                         <tr key={i} className="border-b border-border/50 hover:bg-muted/30">
-                          <td className={cn("px-3 py-2 font-semibold", row.color)}>{row.strategy}</td>
+                          <td className={cn("px-3 py-2 font-medium", row.color)}>{row.strategy}</td>
                           <td className="px-3 py-2 text-muted-foreground">{row.receiver}</td>
                           <td className="px-3 py-2 text-muted-foreground">{row.motivation}</td>
                           <td className="px-3 py-2 text-red-400/80">{row.risk}</td>
@@ -1336,7 +1336,7 @@ export default function EquityDerivativesPage() {
                     </p>
                   </div>
                   <p>
-                    <span className="text-red-300 font-semibold">Lesson:</span> TRS concentration risk is invisible to regulators without prime broker reporting. Post-Archegos, SEC proposed mandatory disclosure of synthetic equity positions above 5% thresholds.
+                    <span className="text-red-300 font-medium">Lesson:</span> TRS concentration risk is invisible to regulators without prime broker reporting. Post-Archegos, SEC proposed mandatory disclosure of synthetic equity positions above 5% thresholds.
                   </p>
                 </div>
               </CollapsibleSection>
@@ -1353,7 +1353,7 @@ export default function EquityDerivativesPage() {
                   </div>
                   <VarianceSwapDisplay />
                   <p>
-                    <span className="text-amber-400 font-semibold">Vega swap</span> is a linearized variant: payoff = Vega Notional × (σ_realized − σ_strike). Unlike variance swaps, vega swaps do not convexify — they have symmetric P&L in vol space and are easier for clients to size.
+                    <span className="text-amber-400 font-medium">Vega swap</span> is a linearized variant: payoff = Vega Notional × (σ_realized − σ_strike). Unlike variance swaps, vega swaps do not convexify — they have symmetric P&L in vol space and are easier for clients to size.
                   </p>
                 </div>
               </CollapsibleSection>
@@ -1364,13 +1364,13 @@ export default function EquityDerivativesPage() {
               >
                 <div className="text-xs text-muted-foreground space-y-2">
                   <p>
-                    <span className="text-sky-300 font-semibold">Dividend swap:</span> Receiver pays a fixed dividend level (strike), receives actual declared dividends. Used to hedge dividend uncertainty in long-dated equity structures or speculate on corporate payout policy changes.
+                    <span className="text-sky-300 font-medium">Dividend swap:</span> Receiver pays a fixed dividend level (strike), receives actual declared dividends. Used to hedge dividend uncertainty in long-dated equity structures or speculate on corporate payout policy changes.
                   </p>
                   <p>
-                    <span className="text-sky-300 font-semibold">Equity repo:</span> Similar to fixed income repo — holder of stock sells and agrees to repurchase at a fixed date. Provides financing for leveraged long positions; rebate rate reflects stock borrowing cost and dividend pass-through terms.
+                    <span className="text-sky-300 font-medium">Equity repo:</span> Similar to fixed income repo — holder of stock sells and agrees to repurchase at a fixed date. Provides financing for leveraged long positions; rebate rate reflects stock borrowing cost and dividend pass-through terms.
                   </p>
                   <p>
-                    <span className="text-emerald-400 font-semibold">Synthetic ETF construction:</span> Rather than holding all index constituents physically, a synthetic ETF enters an equity swap with a bank counterparty. The bank delivers the index return; the ETF posts a substitute collateral basket. Lower tracking error but introduces counterparty credit risk (UCITS limits to 10% exposure per counterparty).
+                    <span className="text-emerald-400 font-medium">Synthetic ETF construction:</span> Rather than holding all index constituents physically, a synthetic ETF enters an equity swap with a bank counterparty. The bank delivers the index return; the ETF posts a substitute collateral basket. Lower tracking error but introduces counterparty credit risk (UCITS limits to 10% exposure per counterparty).
                   </p>
                 </div>
               </CollapsibleSection>
@@ -1406,7 +1406,7 @@ export default function EquityDerivativesPage() {
                     </div>
                   </div>
                   <p>
-                    VIX measures the <span className="text-primary font-semibold">expected 30-day annualized volatility</span> of the S&P 500, derived from a strip of OTM SPX options. VVIX measures vol-of-VIX.
+                    VIX measures the <span className="text-primary font-medium">expected 30-day annualized volatility</span> of the S&P 500, derived from a strip of OTM SPX options. VVIX measures vol-of-VIX.
                   </p>
                   <div className="grid grid-cols-3 gap-2 mt-2">
                     {[
@@ -1457,13 +1457,13 @@ export default function EquityDerivativesPage() {
               >
                 <div className="text-xs text-muted-foreground space-y-2">
                   <p>
-                    <span className="text-primary font-semibold">SVI (Stochastic Volatility Inspired):</span> parameterizes total implied variance w(k) = a + b{"{"}ρ(k−m) + √((k−m)²+σ²){"}"}. Guarantees no static arbitrage across strikes for a given expiry. Used widely for single-expiry smile fitting.
+                    <span className="text-primary font-medium">SVI (Stochastic Volatility Inspired):</span> parameterizes total implied variance w(k) = a + b{"{"}ρ(k−m) + √((k−m)²+σ²){"}"}. Guarantees no static arbitrage across strikes for a given expiry. Used widely for single-expiry smile fitting.
                   </p>
                   <p>
-                    <span className="text-sky-300 font-semibold">SABR model:</span> stochastic α (vol of vol) and ρ (vol-spot correlation) parameters. Forward SABR popular for interest rate derivatives and swaptions. Equity desks typically use local volatility (Dupire) or SLV (stochastic local vol) hybrid models for path-dependent exotic pricing.
+                    <span className="text-sky-300 font-medium">SABR model:</span> stochastic α (vol of vol) and ρ (vol-spot correlation) parameters. Forward SABR popular for interest rate derivatives and swaptions. Equity desks typically use local volatility (Dupire) or SLV (stochastic local vol) hybrid models for path-dependent exotic pricing.
                   </p>
                   <p>
-                    <span className="text-amber-400 font-semibold">Realized vs implied vol P&L:</span> Gamma P&L = ½ Γ S² (σ²_realized/σ²_implied − 1) dt. Long gamma profitable when realized vol {">"} implied vol paid; short gamma (vol selling) profitable in low realized vol environments.
+                    <span className="text-amber-400 font-medium">Realized vs implied vol P&L:</span> Gamma P&L = ½ Γ S² (σ²_realized/σ²_implied − 1) dt. Long gamma profitable when realized vol {">"} implied vol paid; short gamma (vol selling) profitable in low realized vol environments.
                   </p>
                 </div>
               </CollapsibleSection>
@@ -1489,7 +1489,7 @@ export default function EquityDerivativesPage() {
                       },
                     ].map((s) => (
                       <div key={s.name} className="bg-muted/60 rounded p-3">
-                        <div className={cn("font-semibold mb-1", s.color)}>{s.name}</div>
+                        <div className={cn("font-medium mb-1", s.color)}>{s.name}</div>
                         <div className="text-muted-foreground mb-2">{s.desc}</div>
                         <div className="text-red-400 text-xs">Max Loss: {s.risk}</div>
                       </div>
@@ -1504,17 +1504,17 @@ export default function EquityDerivativesPage() {
               >
                 <div className="text-xs text-muted-foreground space-y-2">
                   <p>
-                    <span className="text-sky-300 font-semibold">Dispersion trade:</span> Short index variance swap + long component stock variance swaps (weighted by index weights). Profits when correlation falls (stocks diverge more than the index implies). Index vol trades at a premium to weighted component vol due to &quot;correlation risk premium.&quot;
+                    <span className="text-sky-300 font-medium">Dispersion trade:</span> Short index variance swap + long component stock variance swaps (weighted by index weights). Profits when correlation falls (stocks diverge more than the index implies). Index vol trades at a premium to weighted component vol due to &quot;correlation risk premium.&quot;
                   </p>
                   <div className="bg-muted/60 rounded p-3 font-mono text-[11px]">
                     <div className="text-sky-300 mb-1">Implied correlation approximation:</div>
                     <div className="text-foreground">ρ_implied = (σ²_index − Σwᵢ²σᵢ²) / (2 ΣΣ wᵢwⱼ σᵢσⱼ)</div>
                   </div>
                   <p>
-                    <span className="text-primary font-semibold">Correlation swaps</span> pay directly on realized correlation between a basket and its components. More pure exposure than dispersion trades but less liquid; OTC only. Typical strikes: 40–60% for S&P 500 sub-baskets.
+                    <span className="text-primary font-medium">Correlation swaps</span> pay directly on realized correlation between a basket and its components. More pure exposure than dispersion trades but less liquid; OTC only. Typical strikes: 40–60% for S&P 500 sub-baskets.
                   </p>
                   <p>
-                    <span className="text-amber-400 font-semibold">Variance notional conversion:</span> $1M vega notional converts to a variance notional of $1M / (2 × σ_strike). At 20% strike, variance notional = $25,000. At 40% strike, variance notional = $12,500. The convexity of variance swaps means realized vol above strike is increasingly profitable vs vega swaps.
+                    <span className="text-amber-400 font-medium">Variance notional conversion:</span> $1M vega notional converts to a variance notional of $1M / (2 × σ_strike). At 20% strike, variance notional = $25,000. At 40% strike, variance notional = $12,500. The convexity of variance swaps means realized vol above strike is increasingly profitable vs vega swaps.
                   </p>
                 </div>
               </CollapsibleSection>
@@ -1548,7 +1548,7 @@ export default function EquityDerivativesPage() {
                       { label: "In-the-Money CB", desc: "Conversion value dominates. Equity-like delta ~0.9+.", color: "text-emerald-400" },
                     ].map((s) => (
                       <div key={s.label} className="bg-muted/50 rounded p-2">
-                        <div className={cn("font-semibold mb-1", s.color)}>{s.label}</div>
+                        <div className={cn("font-medium mb-1", s.color)}>{s.label}</div>
                         <div className="text-muted-foreground">{s.desc}</div>
                       </div>
                     ))}
@@ -1625,10 +1625,10 @@ export default function EquityDerivativesPage() {
                     </div>
                   </div>
                   <p>
-                    <span className="text-primary font-semibold">CB Arbitrage strategy:</span> Long the CB (bond + embedded call), short the underlying stock delta-equivalent. The arb captures the implied volatility discount of the embedded option vs listed options. Position is long gamma: profits from large moves in either direction. Risk: credit deterioration widens CB spread and collapses the bond floor.
+                    <span className="text-primary font-medium">CB Arbitrage strategy:</span> Long the CB (bond + embedded call), short the underlying stock delta-equivalent. The arb captures the implied volatility discount of the embedded option vs listed options. Position is long gamma: profits from large moves in either direction. Risk: credit deterioration widens CB spread and collapses the bond floor.
                   </p>
                   <p>
-                    <span className="text-sky-300 font-semibold">Convexity of CB:</span> CBs exhibit positive convexity — in equity rallies, delta approaches 1 and price rises dollar-for-dollar with stock; in equity declines, delta approaches 0 and the bond floor limits downside. This asymmetric profile is the core attraction for equity investors seeking downside cushion.
+                    <span className="text-sky-300 font-medium">Convexity of CB:</span> CBs exhibit positive convexity — in equity rallies, delta approaches 1 and price rises dollar-for-dollar with stock; in equity declines, delta approaches 0 and the bond floor limits downside. This asymmetric profile is the core attraction for equity investors seeking downside cushion.
                   </p>
                 </div>
               </CollapsibleSection>
@@ -1647,13 +1647,13 @@ export default function EquityDerivativesPage() {
                       { scenario: "Stock declines", action: "Delta decreases → buy back stock short (delta hedge)", color: "text-emerald-400" },
                     ].map((s) => (
                       <div key={s.scenario} className="bg-muted/50 rounded p-2">
-                        <div className={cn("font-semibold text-[11px] mb-1", s.color)}>{s.scenario}</div>
+                        <div className={cn("font-medium text-[11px] mb-1", s.color)}>{s.scenario}</div>
                         <div className="text-muted-foreground">{s.action}</div>
                       </div>
                     ))}
                   </div>
                   <p>
-                    The net effect is <span className="text-emerald-400 font-semibold">buy low / sell high</span> systematically — capturing realized gamma. This is profitable when realized vol {">"} implied vol priced into the embedded option. The CB pays for this gamma via a lower coupon (the option premium embedded in the structure).
+                    The net effect is <span className="text-emerald-400 font-medium">buy low / sell high</span> systematically — capturing realized gamma. This is profitable when realized vol {">"} implied vol priced into the embedded option. The CB pays for this gamma via a lower coupon (the option premium embedded in the structure).
                   </p>
                   <p className="text-muted-foreground">
                     P&L per delta-hedge rebalancing ≈ ½ × Γ × (ΔS)² — the classic &quot;scalped gamma&quot; formula. Larger stock moves and higher gamma (near-ATM CBs) maximize gamma P&L.
@@ -1667,7 +1667,7 @@ export default function EquityDerivativesPage() {
               >
                 <div className="text-xs text-muted-foreground space-y-3">
                   <p>
-                    <span className="text-amber-400 font-semibold">Mandatory convertibles</span> (PRCS — Preferred Redeemable Increased Dividend Equity Securities, DECS — Debt Exchangeable for Common Stock) must convert at maturity regardless of stock price. The conversion ratio varies with the stock price at maturity, giving them an equity-like profile from issuance. They offer higher coupons (4–7%) to compensate for mandatory conversion risk.
+                    <span className="text-amber-400 font-medium">Mandatory convertibles</span> (PRCS — Preferred Redeemable Increased Dividend Equity Securities, DECS — Debt Exchangeable for Common Stock) must convert at maturity regardless of stock price. The conversion ratio varies with the stock price at maturity, giving them an equity-like profile from issuance. They offer higher coupons (4–7%) to compensate for mandatory conversion risk.
                   </p>
                   <div className="bg-muted/60 rounded p-3 font-mono text-[11px]">
                     <div className="text-amber-300 mb-1">PRCS conversion schedule:</div>
@@ -1678,12 +1678,12 @@ export default function EquityDerivativesPage() {
                     </div>
                   </div>
                   <p>
-                    <span className="text-red-400 font-semibold">CoCo (Contingent Convertible) / AT1 bonds:</span> Bank capital instruments that absorb losses at a trigger point (e.g. CET1 ratio falls below 5.125%). They either convert into equity or face principal write-down. Additional Tier 1 (AT1) bonds count toward Basel III capital requirements. Credit Suisse write-down of ~$17B CHF AT1s in March 2023 shocked the market — prioritizing equity recovery over AT1 bondholders contrary to typical creditor hierarchy.
+                    <span className="text-red-400 font-medium">CoCo (Contingent Convertible) / AT1 bonds:</span> Bank capital instruments that absorb losses at a trigger point (e.g. CET1 ratio falls below 5.125%). They either convert into equity or face principal write-down. Additional Tier 1 (AT1) bonds count toward Basel III capital requirements. Credit Suisse write-down of ~$17B CHF AT1s in March 2023 shocked the market — prioritizing equity recovery over AT1 bondholders contrary to typical creditor hierarchy.
                   </p>
                   <div className="flex items-start gap-2 p-3 bg-amber-950/30 border border-amber-900/40 rounded">
                     <Zap className="w-4 h-4 text-amber-400 shrink-0 mt-0.5" />
                     <p>
-                      <span className="text-amber-300 font-semibold">Bail-in mechanics:</span> AT1 bonds have a statutory bail-in power allowing regulators to write them down or convert them before public funds are used. This makes AT1 yields permanently higher than senior unsecured debt — the &quot;going concern&quot; loss-absorbing premium.
+                      <span className="text-amber-300 font-medium">Bail-in mechanics:</span> AT1 bonds have a statutory bail-in power allowing regulators to write them down or convert them before public funds are used. This makes AT1 yields permanently higher than senior unsecured debt — the &quot;going concern&quot; loss-absorbing premium.
                     </p>
                   </div>
                 </div>
@@ -1717,7 +1717,7 @@ export default function EquityDerivativesPage() {
                         { ratio: ">150%", region: "Deep ITM", delta: "0.85–1.0", dur: "Near zero", credit: "Negligible", behavior: "Converts/calls; equity-like", color: "text-primary" },
                       ].map((row, i) => (
                         <tr key={i} className="border-b border-border/50 hover:bg-muted/30">
-                          <td className={cn("px-2 py-1.5 font-semibold", row.color)}>{row.ratio}</td>
+                          <td className={cn("px-2 py-1.5 font-medium", row.color)}>{row.ratio}</td>
                           <td className="px-2 py-1.5 text-muted-foreground">{row.region}</td>
                           <td className="px-2 py-1.5 text-primary">{row.delta}</td>
                           <td className="px-2 py-1.5 text-muted-foreground">{row.dur}</td>

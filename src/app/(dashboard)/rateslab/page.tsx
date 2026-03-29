@@ -519,7 +519,7 @@ function SwapPricerTab() {
                 >
                   <div className="text-[11px] text-foreground/40">{`Q${i + 1}`}</div>
                   <div
-                    className={`text-xs font-mono font-semibold ${
+                    className={`text-xs font-mono font-medium ${
                       net >= 0 ? "text-emerald-400" : "text-red-400"
                     }`}
                   >
@@ -570,7 +570,7 @@ function SwapCurveTab() {
     <div className="space-y-4">
       {/* Chart */}
       <Card>
-        <h3 className="text-sm font-semibold text-foreground/80 mb-3">
+        <h3 className="text-sm font-medium text-foreground/80 mb-3">
           SOFR Swap Curve — Par / Zero / Forward
         </h3>
         <div className="overflow-x-auto">
@@ -629,7 +629,7 @@ function SwapCurveTab() {
 
       {/* Table */}
       <Card>
-        <h3 className="text-sm font-semibold text-foreground/80 mb-3">Bootstrapped Rates</h3>
+        <h3 className="text-sm font-medium text-foreground/80 mb-3">Bootstrapped Rates</h3>
         <div className="overflow-x-auto">
           <table className="w-full text-xs">
             <thead>
@@ -747,7 +747,7 @@ function SwaptionTab() {
     <div className="grid grid-cols-1 lg:grid-cols-[280px_1fr] gap-4">
       {/* Controls */}
       <Card className="space-y-4">
-        <h3 className="text-sm font-semibold text-foreground/80 flex items-center gap-2">
+        <h3 className="text-sm font-medium text-foreground/80 flex items-center gap-2">
           <TrendingUp className="w-4 h-4 text-pink-400" />
           Swaption Parameters
         </h3>
@@ -842,7 +842,7 @@ function SwaptionTab() {
 
       {/* Payoff chart */}
       <Card className="space-y-3">
-        <h3 className="text-sm font-semibold text-foreground/80">
+        <h3 className="text-sm font-medium text-foreground/80">
           Payoff at Expiry vs Rate Level
         </h3>
         <div className="overflow-x-auto">
@@ -941,7 +941,7 @@ function SwaptionTab() {
         <div className="grid grid-cols-3 gap-2 text-[11px]">
           <div className="bg-foreground/5 rounded p-2">
             <div className="text-foreground/40 mb-1">Moneyness</div>
-            <div className={`font-mono font-semibold ${
+            <div className={`font-mono font-medium ${
               isPayer
                 ? sofrFwd > strike ? "text-emerald-400" : "text-red-400"
                 : sofrFwd < strike ? "text-emerald-400" : "text-red-400"
@@ -953,7 +953,7 @@ function SwaptionTab() {
           </div>
           <div className="bg-foreground/5 rounded p-2">
             <div className="text-foreground/40 mb-1">Intrinsic</div>
-            <div className="font-mono font-semibold text-amber-400">
+            <div className="font-mono font-medium text-amber-400">
               {fmtK(Math.max(0, isPayer
                 ? (sofrFwd / 100 - strike / 100) * annuity
                 : (strike / 100 - sofrFwd / 100) * annuity))}
@@ -961,7 +961,7 @@ function SwaptionTab() {
           </div>
           <div className="bg-foreground/5 rounded p-2">
             <div className="text-foreground/40 mb-1">Time Value</div>
-            <div className="font-mono font-semibold text-primary">
+            <div className="font-mono font-medium text-primary">
               {fmtK(Math.max(0, result.price - Math.max(0, isPayer
                 ? (sofrFwd / 100 - strike / 100) * annuity
                 : (strike / 100 - sofrFwd / 100) * annuity)))}
@@ -1034,7 +1034,7 @@ function CrossCurrencyTab() {
     <div className="grid grid-cols-1 lg:grid-cols-[280px_1fr] gap-4">
       {/* Controls */}
       <Card className="space-y-4">
-        <h3 className="text-sm font-semibold text-foreground/80 flex items-center gap-2">
+        <h3 className="text-sm font-medium text-foreground/80 flex items-center gap-2">
           <Globe className="w-4 h-4 text-muted-foreground" />
           Cross-Currency Swap
         </h3>
@@ -1104,7 +1104,7 @@ function CrossCurrencyTab() {
 
       {/* Diagram */}
       <Card className="space-y-3">
-        <h3 className="text-sm font-semibold text-foreground/80">
+        <h3 className="text-sm font-medium text-foreground/80">
           Cash Flow Structure
         </h3>
 
@@ -1196,7 +1196,7 @@ function CrossCurrencyTab() {
                   <div className="text-[11px] text-foreground/40">{`Y${t.toFixed(1)}`}</div>
                   <div className="text-[11px] text-primary">{fmtK(usdFlow)}</div>
                   <div className="text-[11px] text-emerald-300">{fmtK(eurFlow)}</div>
-                  <div className={`text-xs font-mono font-semibold ${net >= 0 ? "text-emerald-400" : "text-red-400"}`}>
+                  <div className={`text-xs font-mono font-medium ${net >= 0 ? "text-emerald-400" : "text-red-400"}`}>
                     {fmtK(net)}
                   </div>
                 </div>
@@ -1269,7 +1269,7 @@ function DurationHedgingTab() {
     <div className="grid grid-cols-1 lg:grid-cols-[280px_1fr] gap-4">
       {/* Controls */}
       <Card className="space-y-4">
-        <h3 className="text-sm font-semibold text-foreground/80 flex items-center gap-2">
+        <h3 className="text-sm font-medium text-foreground/80 flex items-center gap-2">
           <Shield className="w-4 h-4 text-amber-400" />
           Hedge Parameters
         </h3>
@@ -1351,7 +1351,7 @@ function DurationHedgingTab() {
 
       {/* P&L analysis */}
       <Card className="space-y-4">
-        <h3 className="text-sm font-semibold text-foreground/80">
+        <h3 className="text-sm font-medium text-foreground/80">
           P&amp;L Sensitivity — Parallel Rate Shift
         </h3>
 

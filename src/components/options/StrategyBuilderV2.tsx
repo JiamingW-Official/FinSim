@@ -41,7 +41,7 @@ const SENTIMENTS: {
   {
     value: "neutral",
     label: "Neutral",
-    activeClass: "bg-muted border-border text-muted-foreground",
+    activeClass: "bg-muted border-border/40 text-muted-foreground",
     icon: "→",
   },
   {

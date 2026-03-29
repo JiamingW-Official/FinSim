@@ -1171,11 +1171,11 @@ function DualCurrencyTab() {
               <p>Bank pays an enhanced interest rate because investor has sold a put option to the bank (embedded option).</p>
             </div>
             <div className="flex gap-3 items-start">
-              <div className="w-6 h-6 rounded-full bg-amber-500/20 text-amber-400 flex items-center justify-center text-xs font-bold shrink-0">3</div>
+              <div className="w-6 h-6 rounded-full bg-amber-500/20 text-amber-400 flex items-center justify-center text-xs font-medium shrink-0">3</div>
               <p>At maturity: if spot USD/JPY is below strike (e.g., 150.0), USD principal + enhanced interest is returned.</p>
             </div>
             <div className="flex gap-3 items-start">
-              <div className="w-6 h-6 rounded-full bg-red-500/20 text-red-400 flex items-center justify-center text-xs font-bold shrink-0">4</div>
+              <div className="w-6 h-6 rounded-full bg-red-500/20 text-red-400 flex items-center justify-center text-xs font-medium shrink-0">4</div>
               <p>If spot is above strike at maturity, principal is converted to JPY at the strike rate. Investor receives JPY — regardless of current market rate.</p>
             </div>
             <div className="p-3 bg-muted/60 rounded text-muted-foreground border-l-2 border-amber-400">

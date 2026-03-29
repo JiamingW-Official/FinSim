@@ -26,7 +26,7 @@ function ratingColor(r: string): string {
   if (r === "Hold") return "bg-amber-500/10 text-amber-400 border-amber-500/20";
   if (r === "Sell") return "bg-red-500/10 text-red-400 border-red-500/20";
   if (r === "Strong Sell") return "bg-red-500/20 text-red-400 border-red-500/30";
-  return "bg-muted/30 text-muted-foreground border-border";
+  return "bg-muted/30 text-muted-foreground border-border/40";
 }
 
 function earningsColor(r: string): string {
@@ -82,7 +82,7 @@ function PriceBar({
   const pos = range > 0 ? ((current - low) / range) * 100 : 50;
   return (
     <div className="space-y-1.5">
-      <div className="text-[11px] font-bold text-foreground/50">{label}</div>
+      <div className="text-[11px] font-medium text-foreground/50">{label}</div>
       <div className="relative h-1.5 rounded-full bg-muted/40">
         <div className="absolute inset-0 rounded-full bg-muted/60" />
         <div
@@ -92,7 +92,7 @@ function PriceBar({
       </div>
       <div className="flex justify-between text-[11px] text-muted-foreground">
         <span>${fmt(low, 0)}</span>
-        <span className="font-bold text-foreground">${fmt(current, 2)} ({fmt(pos, 0)}% of range)</span>
+        <span className="font-medium text-foreground">${fmt(current, 2)} ({fmt(pos, 0)}% of range)</span>
         <span>${fmt(high, 0)}</span>
       </div>
     </div>
@@ -146,7 +146,7 @@ export function FundamentalsPanel() {
 
   return (
     <Tabs defaultValue="overview" className="flex h-full flex-col">
-      <TabsList className="h-6 w-full justify-start rounded-none border-b border-border bg-card px-2 shrink-0">
+      <TabsList className="h-6 w-full justify-start rounded-none border-b border-border/40 bg-card px-2 shrink-0">
         {["overview", "valuation", "financials", "catalyst"].map((tab) => (
           <TabsTrigger
             key={tab}
@@ -185,7 +185,7 @@ export function FundamentalsPanel() {
             ].map(({ label, value }) => (
               <span key={label} className="px-1.5 py-0.5 text-[10px]">
                 <span className="text-muted-foreground uppercase tracking-wide">{label} </span>
-                <span className="font-bold tabular-nums text-foreground">{value}</span>
+                <span className="font-medium tabular-nums text-foreground">{value}</span>
               </span>
             ))}
           </div>
@@ -242,7 +242,7 @@ export function FundamentalsPanel() {
 
       {/* ── VALUATION TAB — CONSOLE card layout ── */}
       <TabsContent value="valuation" className="flex-1 overflow-auto mt-0 p-3 space-y-1.5">
-        <div className="text-[10px] font-bold text-muted-foreground uppercase tracking-wide mb-2">Valuation Multiples</div>
+        <div className="text-[10px] font-medium text-muted-foreground uppercase tracking-wide mb-2">Valuation Multiples</div>
         <Row label="P/E Ratio" metric="peRatio" value={data.peRatio > 0 ? `${fmt(data.peRatio)}×` : "N/A"} />
         <Row label="Forward P/E" metric="forwardPE" value={data.forwardPE > 0 ? `${fmt(data.forwardPE)}×` : "N/A"} />
         <Row label="Price / Book" metric="pbRatio" value={data.pbRatio > 0 ? `${fmt(data.pbRatio)}×` : "N/A"} />
@@ -252,7 +252,7 @@ export function FundamentalsPanel() {
         {/* Vs-sector comparison */}
         {!isETF && data.sectorAvgPE > 0 && (
           <div className="rounded-lg bg-card border border-border/40 p-3 space-y-1 mt-2 text-xs">
-            <div className="text-[10px] font-bold text-muted-foreground uppercase tracking-wide">Vs Sector Avg P/E</div>
+            <div className="text-[10px] font-medium text-muted-foreground uppercase tracking-wide">Vs Sector Avg P/E</div>
             <div className="flex items-center gap-2">
               <div className="flex-1">
                 <div className="flex justify-between text-[11px] mb-0.5">
@@ -296,7 +296,7 @@ export function FundamentalsPanel() {
         {/* Growth */}
         {!isETF && (
           <div className="space-y-1">
-            <div className="text-[10px] font-bold text-muted-foreground uppercase tracking-wide">Growth</div>
+            <div className="text-[10px] font-medium text-muted-foreground uppercase tracking-wide">Growth</div>
             <Row
               label="Revenue"
               value={data.revenue}
@@ -323,7 +323,7 @@ export function FundamentalsPanel() {
         {/* Margins */}
         {!isETF && (
           <div className="space-y-2">
-            <div className="text-[10px] font-bold text-muted-foreground uppercase tracking-wide">Margins</div>
+            <div className="text-[10px] font-medium text-muted-foreground uppercase tracking-wide">Margins</div>
             <MetricTooltip metric="grossMargin">
               <span className="text-[11px] text-muted-foreground cursor-help border-b border-dotted border-muted-foreground/50">Gross Margin</span>
             </MetricTooltip>
@@ -336,7 +336,7 @@ export function FundamentalsPanel() {
         {/* Balance Sheet */}
         {!isETF && (
           <div className="space-y-1">
-            <div className="text-[10px] font-bold text-muted-foreground uppercase tracking-wide">Balance Sheet</div>
+            <div className="text-[10px] font-medium text-muted-foreground uppercase tracking-wide">Balance Sheet</div>
             <Row label="ROE" metric="roe" value={`${fmt(data.roe)}%`} valueClass={data.roe > 20 ? "text-emerald-400" : data.roe > 10 ? "text-amber-400" : "text-red-400"} />
             <Row label="Debt / Equity" metric="debtToEquity" value={data.debtToEquity > 0 ? fmt(data.debtToEquity, 2) : "N/A"} valueClass={data.debtToEquity > 2 ? "text-red-400" : data.debtToEquity < 0.5 ? "text-emerald-400" : "text-amber-400"} />
             <Row label="Current Ratio" metric="currentRatio" value={data.currentRatio > 0 ? fmt(data.currentRatio, 2) : "N/A"} valueClass={data.currentRatio < 1 ? "text-red-400" : data.currentRatio > 1.5 ? "text-emerald-400" : "text-amber-400"} />
@@ -346,7 +346,7 @@ export function FundamentalsPanel() {
 
         {/* Income */}
         <div className="space-y-1">
-          <div className="text-[10px] font-bold text-muted-foreground uppercase tracking-wide">Income</div>
+          <div className="text-[10px] font-medium text-muted-foreground uppercase tracking-wide">Income</div>
           <Row label="Dividend Yield" metric="dividendYield" value={data.dividendYield > 0 ? `${fmt(data.dividendYield, 2)}%` : "N/A"} />
           {!isETF && (
             <Row label="Payout Ratio" metric="dividendPayoutRatio" value={data.dividendPayoutRatio > 0 ? `${fmt(data.dividendPayoutRatio)}%` : "N/A"} />
@@ -360,7 +360,7 @@ export function FundamentalsPanel() {
         {/* Earnings — CONSOLE card */}
         {!isETF && (
           <div className="rounded-lg bg-card border border-border/40 p-3 space-y-1.5 text-xs">
-            <div className="text-[10px] font-bold text-muted-foreground uppercase tracking-wide">Earnings</div>
+            <div className="text-[10px] font-medium text-muted-foreground uppercase tracking-wide">Earnings</div>
             <div className="flex items-center justify-between">
               <span className="text-xs text-muted-foreground">Next earnings</span>
               <span className="rounded border border-primary/30 bg-primary/10 px-1.5 py-0.5 text-xs font-bold text-primary">
@@ -391,7 +391,7 @@ export function FundamentalsPanel() {
         {/* Short interest — CONSOLE card */}
         {!isETF && (
           <div className="rounded-lg bg-card border border-border/40 p-3 space-y-1 text-xs">
-            <div className="text-[10px] font-bold text-muted-foreground uppercase tracking-wide">Short Interest</div>
+            <div className="text-[10px] font-medium text-muted-foreground uppercase tracking-wide">Short Interest</div>
             <div className="flex items-center justify-between">
               <MetricTooltip metric="shortFloat">
                 <span className="text-xs text-muted-foreground cursor-help border-b border-dotted border-muted-foreground/50">Short Float</span>
@@ -414,7 +414,7 @@ export function FundamentalsPanel() {
         {/* Risks — FLOW card (borderless, narrative) */}
         {!isETF && data.risks.length > 0 && (
           <div className="bg-transparent p-0 space-y-1.5">
-            <div className="text-[10px] font-bold text-muted-foreground uppercase tracking-wide">Key Risks</div>
+            <div className="text-[10px] font-medium text-muted-foreground uppercase tracking-wide">Key Risks</div>
             {data.risks.map((risk, i) => (
               <div key={i} className="flex items-start gap-1.5">
                 <AlertTriangle className="mt-0.5 h-2.5 w-2.5 shrink-0 text-amber-400" />
@@ -428,7 +428,7 @@ export function FundamentalsPanel() {
         {/* Catalysts — FLOW card (borderless, narrative) */}
         {!isETF && data.catalysts.length > 0 && (
           <div className="bg-transparent p-0 space-y-1.5">
-            <div className="text-[10px] font-bold text-muted-foreground uppercase tracking-wide">Key Catalysts</div>
+            <div className="text-[10px] font-medium text-muted-foreground uppercase tracking-wide">Key Catalysts</div>
             {data.catalysts.map((catalyst, i) => (
               <div key={i} className="flex items-start gap-1.5">
                 <Zap className="mt-0.5 h-2.5 w-2.5 shrink-0 text-emerald-400" />

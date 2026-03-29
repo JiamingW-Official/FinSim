@@ -595,12 +595,12 @@ export default function AlgoExecutionPage() {
         </div>
       </motion.div>
 
-      {/* Key Metrics */}
+      {/* HERO — Key Metrics */}
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.4, delay: 0.1 }}
-        className="grid grid-cols-2 md:grid-cols-4 gap-4"
+        className="grid grid-cols-2 md:grid-cols-4 gap-4 border-l-4 border-l-primary rounded-xl bg-card p-6"
       >
         {metrics.map((m) => (
           <Card key={m.label} className={`border ${m.border} ${m.bg}`}>
@@ -698,7 +698,7 @@ export default function AlgoExecutionPage() {
             {/* Volume Profile Breakdown */}
             <Card className="border-border bg-card">
               <CardHeader className="pb-2">
-                <CardTitle className="text-sm font-semibold flex items-center gap-2">
+                <CardTitle className="text-sm font-medium flex items-center gap-2">
                   <Clock className="w-4 h-4 text-primary" />
                   Intraday Volume Distribution
                 </CardTitle>
@@ -732,7 +732,7 @@ export default function AlgoExecutionPage() {
             <div className="grid grid-cols-1 lg:grid-cols-3 gap-4">
               <Card className="lg:col-span-2 border-border bg-card">
                 <CardHeader className="pb-2">
-                  <CardTitle className="text-sm font-semibold flex items-center gap-2">
+                  <CardTitle className="text-sm font-medium flex items-center gap-2">
                     <Activity className="w-4 h-4 text-red-400" />
                     Square-Root Market Impact Model
                   </CardTitle>
@@ -748,7 +748,7 @@ export default function AlgoExecutionPage() {
               <div className="space-y-4">
                 <Card className="border-border bg-card">
                   <CardHeader className="pb-2">
-                    <CardTitle className="text-sm font-semibold">Impact Drivers</CardTitle>
+                    <CardTitle className="text-sm font-medium">Impact Drivers</CardTitle>
                   </CardHeader>
                   <CardContent className="space-y-3 text-xs text-muted-foreground">
                     {[
@@ -781,7 +781,7 @@ export default function AlgoExecutionPage() {
                       <div key={item.label} className="flex gap-2">
                         <div className={`mt-0.5 w-2 h-2 rounded-full flex-shrink-0 ${item.color.replace("text", "bg")}`} />
                         <div>
-                          <span className={`font-semibold ${item.color}`}>{item.label}: </span>
+                          <span className={`font-medium ${item.color}`}>{item.label}: </span>
                           {item.desc}
                         </div>
                       </div>
@@ -791,7 +791,7 @@ export default function AlgoExecutionPage() {
 
                 <Card className="border-yellow-700/30 bg-yellow-900/10">
                   <CardContent className="p-4">
-                    <div className="flex items-center gap-2 text-yellow-400 font-semibold text-sm mb-2">
+                    <div className="flex items-center gap-2 text-yellow-400 font-medium text-sm mb-2">
                       <AlertTriangle className="w-4 h-4" />
                       Permanent vs Temporary
                     </div>
@@ -812,7 +812,7 @@ export default function AlgoExecutionPage() {
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
               <Card className="border-border bg-card">
                 <CardHeader className="pb-2">
-                  <CardTitle className="text-sm font-semibold flex items-center gap-2">
+                  <CardTitle className="text-sm font-medium flex items-center gap-2">
                     <DollarSign className="w-4 h-4 text-green-400" />
                     Transaction Cost Breakdown
                   </CardTitle>
@@ -837,7 +837,7 @@ export default function AlgoExecutionPage() {
 
               <Card className="border-border bg-card">
                 <CardHeader className="pb-2">
-                  <CardTitle className="text-sm font-semibold flex items-center gap-2">
+                  <CardTitle className="text-sm font-medium flex items-center gap-2">
                     <Shield className="w-4 h-4 text-primary" />
                     Cost Components Detail
                   </CardTitle>
@@ -888,7 +888,7 @@ export default function AlgoExecutionPage() {
               <Card className="border-border bg-card">
                 <CardHeader className="pb-2">
                   <div className="flex items-center justify-between">
-                    <CardTitle className="text-base font-semibold">{selectedAlgoData.fullName}</CardTitle>
+                    <CardTitle className="text-base font-medium">{selectedAlgoData.fullName}</CardTitle>
                     <div className="flex items-center gap-2">
                       <ComplexityBadge level={selectedAlgoData.complexity} />
                       <Badge variant="outline" className="text-xs">
@@ -900,7 +900,7 @@ export default function AlgoExecutionPage() {
                 </CardHeader>
                 <CardContent className="space-y-4">
                   <div>
-                    <div className="flex items-center gap-1.5 text-green-400 text-xs font-semibold mb-2">
+                    <div className="flex items-center gap-1.5 text-green-400 text-xs font-medium mb-2">
                       <CheckCircle className="w-3.5 h-3.5" />
                       Pros
                     </div>
@@ -914,7 +914,7 @@ export default function AlgoExecutionPage() {
                     </ul>
                   </div>
                   <div>
-                    <div className="flex items-center gap-1.5 text-red-400 text-xs font-semibold mb-2">
+                    <div className="flex items-center gap-1.5 text-red-400 text-xs font-medium mb-2">
                       <AlertTriangle className="w-3.5 h-3.5" />
                       Cons
                     </div>
@@ -933,7 +933,7 @@ export default function AlgoExecutionPage() {
               {/* Comparison table */}
               <Card className="border-border bg-card">
                 <CardHeader className="pb-2">
-                  <CardTitle className="text-sm font-semibold flex items-center gap-2">
+                  <CardTitle className="text-sm font-medium flex items-center gap-2">
                     <Layers className="w-4 h-4 text-primary" />
                     Side-by-Side Comparison
                   </CardTitle>
@@ -958,7 +958,7 @@ export default function AlgoExecutionPage() {
                             }`}
                             onClick={() => setSelectedAlgo(a.name)}
                           >
-                            <td className="py-2 font-semibold" style={{ color: a.color }}>
+                            <td className="py-2 font-medium" style={{ color: a.color }}>
                               {a.name}
                             </td>
                             <td className="py-2 text-center text-muted-foreground">{a.typicalSlippage}</td>
@@ -980,7 +980,7 @@ export default function AlgoExecutionPage() {
             {/* When to use guide */}
             <Card className="border-border bg-card">
               <CardHeader className="pb-2">
-                <CardTitle className="text-sm font-semibold flex items-center gap-2">
+                <CardTitle className="text-sm font-medium flex items-center gap-2">
                   <TrendingUp className="w-4 h-4 text-green-400" />
                   Decision Framework: Which Algo to Use?
                 </CardTitle>
@@ -1026,7 +1026,7 @@ export default function AlgoExecutionPage() {
                     },
                   ].map((item) => (
                     <div key={item.scenario} className="p-3 rounded-lg border border-border bg-muted/20 space-y-1">
-                      <div className="font-semibold" style={{ color: item.color }}>
+                      <div className="font-medium" style={{ color: item.color }}>
                         {item.algo}
                       </div>
                       <div className="text-muted-foreground italic">{item.scenario}</div>
@@ -1044,7 +1044,7 @@ export default function AlgoExecutionPage() {
               {/* Fill Rate Chart */}
               <Card className="border-border bg-card">
                 <CardHeader className="pb-2">
-                  <CardTitle className="text-sm font-semibold flex items-center gap-2">
+                  <CardTitle className="text-sm font-medium flex items-center gap-2">
                     <BarChart3 className="w-4 h-4 text-primary" />
                     Venue Fill Rates
                   </CardTitle>
@@ -1072,7 +1072,7 @@ export default function AlgoExecutionPage() {
               {/* Venue metrics table */}
               <Card className="border-border bg-card">
                 <CardHeader className="pb-2">
-                  <CardTitle className="text-sm font-semibold flex items-center gap-2">
+                  <CardTitle className="text-sm font-medium flex items-center gap-2">
                     <Layers className="w-4 h-4 text-primary" />
                     Venue Quality Metrics
                   </CardTitle>
@@ -1166,7 +1166,7 @@ export default function AlgoExecutionPage() {
               ].map((section) => (
                 <Card key={section.title} className={`border ${section.border} ${section.bg}`}>
                   <CardHeader className="pb-2">
-                    <CardTitle className={`text-sm font-semibold flex items-center gap-2 ${section.color}`}>
+                    <CardTitle className={`text-sm font-medium flex items-center gap-2 ${section.color}`}>
                       <section.icon className="w-4 h-4" />
                       {section.title}
                     </CardTitle>
@@ -1188,7 +1188,7 @@ export default function AlgoExecutionPage() {
             {/* Smart Order Routing */}
             <Card className="border-border bg-card">
               <CardHeader className="pb-2">
-                <CardTitle className="text-sm font-semibold flex items-center gap-2">
+                <CardTitle className="text-sm font-medium flex items-center gap-2">
                   <TrendingUp className="w-4 h-4 text-yellow-400" />
                   Smart Order Routing (SOR) Logic
                 </CardTitle>
@@ -1206,7 +1206,7 @@ export default function AlgoExecutionPage() {
                         {item.step}
                       </div>
                       <div>
-                        <div className="font-semibold text-foreground mb-0.5">{item.label}</div>
+                        <div className="font-medium text-foreground mb-0.5">{item.label}</div>
                         <div className="text-muted-foreground">{item.desc}</div>
                       </div>
                     </div>

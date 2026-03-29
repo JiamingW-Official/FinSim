@@ -584,19 +584,19 @@ export default function MomentumBuilderPage() {
                     </div>
                     <div className="p-3 bg-muted/50 rounded-lg">
                       <p className="text-xs text-muted-foreground">IC Estimate</p>
-                      <p className="text-lg font-semibold text-primary">
+                      <p className="text-lg font-medium text-primary">
                         {(0.04 + Math.max(0, signalScore) * 0.04).toFixed(3)}
                       </p>
                     </div>
                     <div className="p-3 bg-muted/50 rounded-lg">
                       <p className="text-xs text-muted-foreground">Turnover / yr</p>
-                      <p className="text-lg font-semibold text-amber-400">
+                      <p className="text-lg font-medium text-amber-400">
                         {Math.round(100 / rebalFreq * 12)}%
                       </p>
                     </div>
                     <div className="p-3 bg-muted/50 rounded-lg">
                       <p className="text-xs text-muted-foreground">Concentration</p>
-                      <p className="text-lg font-semibold text-primary">
+                      <p className="text-lg font-medium text-primary">
                         {portfolioSize <= 15 ? "High" : portfolioSize <= 25 ? "Med" : "Low"}
                       </p>
                     </div>
@@ -692,13 +692,13 @@ export default function MomentumBuilderPage() {
                               <td className="p-2 font-mono text-muted-foreground">{idx + 1}</td>
                               <td className="p-2">
                                 <div className="flex items-center gap-1">
-                                  <span className="font-semibold">{stock.ticker}</span>
+                                  <span className="font-medium">{stock.ticker}</span>
                                   {isTop && <ArrowUpRight className="w-3 h-3 text-green-500" />}
                                   {isBot && <ArrowDownRight className="w-3 h-3 text-red-500" />}
                                 </div>
                               </td>
                               <td className="p-2 text-muted-foreground hidden sm:table-cell">{stock.sector}</td>
-                              <td className="p-2 text-right font-mono font-semibold">
+                              <td className="p-2 text-right font-mono font-medium">
                                 <span className={isTop ? "text-green-400" : isBot ? "text-red-400" : "text-foreground"}>
                                   {stock.momentumScore > 0 ? "+" : ""}{stock.momentumScore}
                                 </span>
@@ -756,7 +756,7 @@ export default function MomentumBuilderPage() {
                   {topDecile.map(s => (
                     <div key={s.ticker} className="flex justify-between items-center p-2 bg-green-950/30 rounded-lg">
                       <div>
-                        <p className="text-sm font-semibold">{s.ticker}</p>
+                        <p className="text-sm font-medium">{s.ticker}</p>
                         <p className="text-xs text-muted-foreground">{s.name}</p>
                       </div>
                       <div className="text-right">
@@ -778,7 +778,7 @@ export default function MomentumBuilderPage() {
                   {botDecile.map(s => (
                     <div key={s.ticker} className="flex justify-between items-center p-2 bg-red-950/30 rounded-lg">
                       <div>
-                        <p className="text-sm font-semibold">{s.ticker}</p>
+                        <p className="text-sm font-medium">{s.ticker}</p>
                         <p className="text-xs text-muted-foreground">{s.name}</p>
                       </div>
                       <div className="text-right">
@@ -806,7 +806,7 @@ export default function MomentumBuilderPage() {
             ].map(item => (
               <Card key={item.label} className="p-3">
                 <p className="text-xs text-muted-foreground">{item.label}</p>
-                <p className={`text-xl font-semibold font-mono ${item.color}`}>{item.value}</p>
+                <p className={`text-xl font-medium font-mono ${item.color}`}>{item.value}</p>
               </Card>
             ))}
           </div>
@@ -907,7 +907,7 @@ export default function MomentumBuilderPage() {
                     <tbody>
                       {holdingRows.map(row => (
                         <tr key={row.period} className="border-b border-border/50 hover:bg-muted/20">
-                          <td className="p-2 font-mono font-semibold">{row.period}</td>
+                          <td className="p-2 font-mono font-medium">{row.period}</td>
                           <td className="p-2 text-right font-mono text-primary">{row.ic.toFixed(4)}</td>
                           <td className={`p-2 text-right font-mono ${Math.abs(row.tStat) >= 2 ? "text-green-400" : "text-amber-400"}`}>
                             {row.tStat}
@@ -942,7 +942,7 @@ export default function MomentumBuilderPage() {
                           <div className="flex gap-3 text-muted-foreground">
                             <span>Turnover: {row.turnover}%</span>
                             <span>TC: {row.tcost}%</span>
-                            <span className={`font-semibold ${row.netReturn > row.grossReturn - 2 ? "text-green-400" : "text-amber-400"}`}>
+                            <span className={`font-medium ${row.netReturn > row.grossReturn - 2 ? "text-green-400" : "text-amber-400"}`}>
                               Net: {row.netReturn}%
                             </span>
                           </div>
@@ -1014,7 +1014,7 @@ export default function MomentumBuilderPage() {
                     <CardContent className="pt-4">
                       <div className="flex justify-between items-start mb-2">
                         <div>
-                          <p className="text-sm font-semibold">{ev.name}</p>
+                          <p className="text-sm font-medium">{ev.name}</p>
                           <p className="text-xs text-muted-foreground">{ev.period}</p>
                         </div>
                         <Badge variant="destructive" className="text-xs">{ev.peakDD}% DD</Badge>

@@ -252,7 +252,7 @@ function BasicsTab() {
               "rounded-lg border p-3",
               item.color === "blue" ? "border-border bg-primary/5" : "border-border bg-primary/5"
             )}>
-              <div className="text-xs font-semibold text-foreground mb-1">{item.label}</div>
+              <div className="text-xs font-medium text-foreground mb-1">{item.label}</div>
               <div className="text-xs text-muted-foreground">{item.desc}</div>
             </div>
           ))}
@@ -276,7 +276,7 @@ function BasicsTab() {
             <thead>
               <tr className="border-b border-border bg-muted/40">
                 {["Company", "Country", "GWP", "S&P Rating", "Specialty"].map((h) => (
-                  <th key={h} className="px-4 py-2.5 text-left text-xs font-semibold text-muted-foreground">{h}</th>
+                  <th key={h} className="px-4 py-2.5 text-left text-xs font-medium text-muted-foreground">{h}</th>
                 ))}
               </tr>
             </thead>
@@ -563,7 +563,7 @@ function CatBondsTab() {
             }[t.color];
             return (
               <div key={t.type} className={cn("rounded-lg border p-4", colorCls?.border, colorCls?.bg)}>
-                <div className={cn("text-sm font-semibold mb-1.5", colorCls?.title)}>{t.type} Trigger</div>
+                <div className={cn("text-sm font-medium mb-1.5", colorCls?.title)}>{t.type} Trigger</div>
                 <p className="text-xs text-muted-foreground mb-3 leading-relaxed">{t.desc}</p>
                 <div className="flex gap-2 flex-wrap">
                   <span className={cn("rounded px-2 py-0.5 text-xs border", colorCls?.badge)}>+ {t.pro}</span>
@@ -749,7 +749,7 @@ function ILSTab() {
             <thead>
               <tr className="border-b border-border bg-muted/40">
                 {["Instrument", "Market Size", "Liquidity", "Collateral", "Tenor"].map((h) => (
-                  <th key={h} className="px-4 py-2.5 text-left text-xs font-semibold text-muted-foreground">{h}</th>
+                  <th key={h} className="px-4 py-2.5 text-left text-xs font-medium text-muted-foreground">{h}</th>
                 ))}
               </tr>
             </thead>
@@ -809,7 +809,7 @@ function ILSTab() {
               <div key={item.title} className={cn("rounded-lg border p-4", cls?.border, cls?.bg)}>
                 <div className="flex items-center gap-2 mb-2">
                   <Icon size={14} className={cls?.icon} />
-                  <span className="text-sm font-semibold text-foreground">{item.title}</span>
+                  <span className="text-sm font-medium text-foreground">{item.title}</span>
                 </div>
                 <p className="text-xs text-muted-foreground leading-relaxed">{item.desc}</p>
               </div>
@@ -1018,7 +1018,7 @@ function CyclesTab() {
               <div key={phase.phase} className={cn("rounded-lg border p-4", cls?.border, cls?.bg)}>
                 <div className="flex items-center gap-2 mb-3">
                   <Icon size={16} className={cls?.icon} />
-                  <span className={cn("text-sm font-semibold", cls?.title)}>{phase.phase}</span>
+                  <span className={cn("text-sm font-medium", cls?.title)}>{phase.phase}</span>
                 </div>
                 <p className="text-xs text-muted-foreground mb-2 italic">{phase.cause}</p>
                 <ul className="space-y-1">

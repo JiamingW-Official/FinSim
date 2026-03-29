@@ -584,13 +584,13 @@ function HistoricalPerformance({ history }: { history: PortfolioPoint[] }) {
           </div>
           <div>
             <div className="text-xs text-muted-foreground">S&amp;P 500 YTD</div>
-            <div className={cn("font-mono font-bold", lastSp >= 0 ? "text-primary" : "text-red-400")}>
+            <div className={cn("font-mono font-medium", lastSp >= 0 ? "text-primary" : "text-red-400")}>
               {lastSp > 0 ? "+" : ""}{lastSp.toFixed(1)}%
             </div>
           </div>
           <div>
             <div className="text-xs text-muted-foreground">Sharpe Ratio</div>
-            <div className="text-foreground font-mono font-bold">1.42</div>
+            <div className="text-foreground font-mono font-medium">1.42</div>
           </div>
         </div>
       </CardContent>
@@ -840,23 +840,23 @@ function ArbitrageCalculator() {
         <div className="mt-5 grid grid-cols-2 gap-3 sm:grid-cols-4">
           <div className="bg-muted/60 rounded-xl p-3 text-center">
             <div className="text-xs text-muted-foreground mb-1">Gross P&amp;L</div>
-            <div className={cn("text-xl font-bold font-mono", grossPnL >= 0 ? "text-emerald-400" : "text-red-400")}>
+            <div className={cn("text-xl font-medium font-mono", grossPnL >= 0 ? "text-emerald-400" : "text-red-400")}>
               {grossPnL >= 0 ? "+" : ""}${grossPnL.toFixed(0)}
             </div>
           </div>
           <div className="bg-muted/60 rounded-xl p-3 text-center">
             <div className="text-xs text-muted-foreground mb-1">Ann. Return</div>
-            <div className="text-xl font-bold font-mono text-primary">{annualizedReturn.toFixed(1)}%</div>
+            <div className="text-xl font-medium font-mono text-primary">{annualizedReturn.toFixed(1)}%</div>
           </div>
           <div className="bg-muted/60 rounded-xl p-3 text-center">
             <div className="text-xs text-muted-foreground mb-1">Expected Value</div>
-            <div className={cn("text-xl font-bold font-mono", expectedValue >= 0 ? "text-foreground" : "text-red-400")}>
+            <div className={cn("text-xl font-medium font-mono", expectedValue >= 0 ? "text-foreground" : "text-red-400")}>
               {expectedValue >= 0 ? "+" : ""}${expectedValue.toFixed(0)}
             </div>
           </div>
           <div className="bg-muted/60 rounded-xl p-3 text-center">
             <div className="text-xs text-muted-foreground mb-1">Reward / Risk</div>
-            <div className={cn("text-xl font-bold font-mono", rrRatio >= 1 ? "text-emerald-400" : "text-amber-400")}>
+            <div className={cn("text-xl font-medium font-mono", rrRatio >= 1 ? "text-emerald-400" : "text-amber-400")}>
               {rrRatio.toFixed(2)}x
             </div>
           </div>
@@ -930,7 +930,7 @@ function SummaryStats({ deals }: { deals: Deal[] }) {
         <Card key={stat.label} className="bg-card border-border">
           <CardContent className="pt-4 pb-3">
             <div className={cn("mb-1", stat.color)}>{stat.icon}</div>
-            <div className={cn("text-xl font-bold font-mono", stat.color)}>{stat.value}</div>
+            <div className={cn("text-xl font-medium font-mono", stat.color)}>{stat.value}</div>
             <div className="text-xs text-muted-foreground mt-0.5">{stat.label}</div>
           </CardContent>
         </Card>

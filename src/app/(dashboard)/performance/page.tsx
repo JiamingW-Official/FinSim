@@ -1079,7 +1079,7 @@ export default function PerformancePage() {
                 ].map((item) => (
                   <div key={item.label} className="flex items-center gap-1.5 rounded-full border border-border/50 px-3 py-1 text-sm">
                     <span className="text-muted-foreground">{item.label}</span>
-                    <span className={cn("font-bold tabular-nums", item.color)}>
+                    <span className={cn("font-medium tabular-nums", item.color)}>
                       {item.val >= 0 ? "+" : ""}{item.val.toFixed(1)}%
                     </span>
                   </div>
@@ -1197,7 +1197,7 @@ export default function PerformancePage() {
                   ].map((row) => (
                     <tr key={row.metric} className="border-b border-border/30 hover:bg-muted/20">
                       <td className="py-2 text-muted-foreground">{row.metric}</td>
-                      <td className="py-2 text-right font-semibold text-orange-400">{row.portfolio}</td>
+                      <td className="py-2 text-right font-medium text-orange-400">{row.portfolio}</td>
                       {benchmarkStats.map((b) => {
                         const isBetter = row.better(row.bv(b));
                         return (
@@ -1266,17 +1266,17 @@ export default function PerformancePage() {
                   <div className="flex items-center gap-2">
                     <span className="w-3 h-3 rounded-full bg-green-500 inline-block" />
                     <span className="text-muted-foreground">Wins</span>
-                    <span className="font-semibold ml-auto">{stats.wins}</span>
+                    <span className="font-medium ml-auto">{stats.wins}</span>
                   </div>
                   <div className="flex items-center gap-2">
                     <span className="w-3 h-3 rounded-full bg-red-500 inline-block" />
                     <span className="text-muted-foreground">Losses</span>
-                    <span className="font-semibold ml-auto">{stats.losses}</span>
+                    <span className="font-medium ml-auto">{stats.losses}</span>
                   </div>
                   <div className="flex items-center gap-2">
                     <span className="w-3 h-3 rounded-full bg-muted-foreground inline-block" />
                     <span className="text-muted-foreground">Breakeven</span>
-                    <span className="font-semibold ml-auto">{stats.breakevens}</span>
+                    <span className="font-medium ml-auto">{stats.breakevens}</span>
                   </div>
                 </div>
               </div>
@@ -1350,7 +1350,7 @@ export default function PerformancePage() {
                     {c.icon}
                     <span className="text-xs text-muted-foreground">{c.label}</span>
                   </div>
-                  <p className="font-semibold">{c.value}</p>
+                  <p className="font-medium">{c.value}</p>
                   <p className="text-xs text-muted-foreground">{c.sub}</p>
                 </div>
               ))}
@@ -1370,7 +1370,7 @@ export default function PerformancePage() {
               <div className="flex-1">
                 <div className="flex justify-between text-xs text-muted-foreground mb-2">
                   <span>5%</span>
-                  <span className="font-semibold text-foreground">{targetReturn}%</span>
+                  <span className="font-medium text-foreground">{targetReturn}%</span>
                   <span>100%</span>
                 </div>
                 <Slider
@@ -1416,7 +1416,7 @@ export default function PerformancePage() {
                   </div>
                   <div>
                     <p className="text-xs text-muted-foreground">Target</p>
-                    <p className="text-xl font-bold text-foreground">{targetReturn}%</p>
+                    <p className="text-xl font-medium text-foreground">{targetReturn}%</p>
                   </div>
                   <div className={cn("rounded-lg p-3 text-sm font-medium", willHitTarget ? "bg-green-500/10 text-green-500" : "bg-amber-500/10 text-amber-500")}>
                     {willHitTarget

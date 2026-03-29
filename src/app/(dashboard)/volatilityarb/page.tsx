@@ -354,13 +354,13 @@ export default function VolatilityArbPage() {
   return (
     <div className="min-h-screen bg-background text-foreground p-6">
       {/* Header */}
-      <div className="mb-6">
+      <div className="mb-6 border-l-4 border-l-primary p-6 rounded-lg bg-card/40">
         <div className="flex items-center gap-3 mb-2">
           <div className="p-2 bg-primary/10 rounded-lg">
             <Sigma className="w-6 h-6 text-primary" />
           </div>
           <div>
-            <h1 className="text-2xl font-bold tracking-tight">Volatility Arbitrage</h1>
+            <h1 className="text-xl font-bold tracking-tight">Volatility Arbitrage</h1>
             <p className="text-muted-foreground text-sm">
               Realized vs implied vol trading · Delta-neutral strategies · Dispersion & surface arb
             </p>
@@ -560,11 +560,11 @@ export default function VolatilityArbPage() {
                         <div className="text-muted-foreground">Rich — Short Vol</div>
                       </div>
                       <div className="text-center">
-                        <div className="text-muted-foreground text-lg font-bold">{volRows.length - richCount - cheapCount}</div>
+                        <div className="text-muted-foreground text-lg font-medium">{volRows.length - richCount - cheapCount}</div>
                         <div className="text-muted-foreground">Fair — Neutral</div>
                       </div>
                       <div className="text-center">
-                        <div className="text-green-400 text-lg font-bold">{cheapCount}</div>
+                        <div className="text-green-400 text-lg font-medium">{cheapCount}</div>
                         <div className="text-muted-foreground">Cheap — Long Vol</div>
                       </div>
                     </div>
@@ -741,7 +741,7 @@ export default function VolatilityArbPage() {
                       { label: "Vol Arb Edge", value: "8 vol pts", color: "text-primary" },
                     ].map((s) => (
                       <div key={s.label} className="text-center p-2 bg-muted/30 rounded-lg">
-                        <div className={`text-sm font-bold ${s.color}`}>{s.value}</div>
+                        <div className={`text-sm font-medium ${s.color}`}>{s.value}</div>
                         <div className="text-xs text-muted-foreground">{s.label}</div>
                       </div>
                     ))}
@@ -823,13 +823,13 @@ export default function VolatilityArbPage() {
                       <div className="text-xs text-primary mt-2">IV: {(indexIV * 100).toFixed(1)}%</div>
                     </div>
                     <div className="p-3 bg-muted/30 rounded-lg">
-                      <div className="text-xs font-semibold text-green-400 mb-1">BUY</div>
+                      <div className="text-xs font-medium text-green-400 mb-1">BUY</div>
                       <div className="text-sm font-medium">Single-Stock Straddles</div>
                       <div className="text-xs text-muted-foreground mt-1">Long vol on individual components, weighted by index weights</div>
                       <div className="text-xs text-green-400 mt-2">Basket IV: {(basketIV * 100).toFixed(1)}%</div>
                     </div>
                     <div className="p-3 bg-muted/30 rounded-lg">
-                      <div className="text-xs font-semibold text-amber-400 mb-1">EDGE</div>
+                      <div className="text-xs font-medium text-amber-400 mb-1">EDGE</div>
                       <div className="text-sm font-medium">Correlation Premium</div>
                       <div className="text-xs text-muted-foreground mt-1">
                         Index IV typically overstates realized correlation. Implied corr: {(impliedCorr * 100).toFixed(0)}% — historically realized is ~{Math.max(0, (impliedCorr * 100 - 15)).toFixed(0)}%
@@ -863,7 +863,7 @@ export default function VolatilityArbPage() {
                       <tbody>
                         {dispRows.map((row) => (
                           <tr key={row.ticker} className="border-b border-border/40 hover:bg-muted/30 transition-colors">
-                            <td className="py-2 pr-4 font-mono font-semibold">{row.ticker}</td>
+                            <td className="py-2 pr-4 font-mono font-medium">{row.ticker}</td>
                             <td className="text-right pr-4 text-muted-foreground">{(row.weight * 100).toFixed(0)}%</td>
                             <td className="text-right pr-4 font-mono" style={{ color: volColor(row.iv) }}>
                               {(row.iv * 100).toFixed(1)}%
@@ -878,7 +878,7 @@ export default function VolatilityArbPage() {
                             </td>
                           </tr>
                         ))}
-                        <tr className="border-t-2 border-border font-semibold">
+                        <tr className="border-t-2 border-border font-medium">
                           <td className="py-2 pr-4 text-sm">BASKET</td>
                           <td className="text-right pr-4">100%</td>
                           <td className="text-right pr-4 font-mono text-primary">{(basketIV * 100).toFixed(1)}%</td>
@@ -951,7 +951,7 @@ export default function VolatilityArbPage() {
                       <tbody>
                         {calendarRows.map((row) => (
                           <tr key={row.ticker} className="border-b border-border/40 hover:bg-muted/30 transition-colors">
-                            <td className="py-2 pr-4 font-mono font-semibold">{row.ticker}</td>
+                            <td className="py-2 pr-4 font-mono font-medium">{row.ticker}</td>
                             <td className="text-right pr-4 font-mono text-muted-foreground">
                               {(row.frontIV * 100).toFixed(1)}%
                             </td>
@@ -1007,7 +1007,7 @@ export default function VolatilityArbPage() {
                       <tbody>
                         {rrRows.map((row) => (
                           <tr key={row.ticker} className="border-b border-border/40 hover:bg-muted/30 transition-colors">
-                            <td className="py-2 pr-4 font-mono font-semibold">{row.ticker}</td>
+                            <td className="py-2 pr-4 font-mono font-medium">{row.ticker}</td>
                             <td className="text-right pr-4 font-mono text-green-400">
                               {(row.call25d * 100).toFixed(1)}%
                             </td>
@@ -1272,7 +1272,7 @@ export default function VolatilityArbPage() {
                 <CardContent>
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                     <div className="space-y-3">
-                      <div className="text-xs font-semibold text-muted-foreground uppercase tracking-wide">Risk Sources</div>
+                      <div className="text-xs font-medium text-muted-foreground uppercase tracking-wide">Risk Sources</div>
                       {[
                         { label: "VIX Gap Spike", desc: "Overnight VIX jump on macro shock. Short vega books can lose 50–100% in days.", severity: "Critical" },
                         { label: "Correlation Breakdown", desc: "Dispersion trades lose if single-stock correlations spike to 1 (crisis regime).", severity: "High" },
@@ -1289,7 +1289,7 @@ export default function VolatilityArbPage() {
                       ))}
                     </div>
                     <div className="space-y-3">
-                      <div className="text-xs font-semibold text-muted-foreground uppercase tracking-wide">Mitigation Strategies</div>
+                      <div className="text-xs font-medium text-muted-foreground uppercase tracking-wide">Mitigation Strategies</div>
                       {[
                         { label: "VIX Call Hedge", desc: "Allocate 2–5% of premium collected to buying OTM VIX calls as tail hedge." },
                         { label: "Position Sizing", desc: "Never exceed 1% account risk per vol trade. Scale inversely with VIX level." },

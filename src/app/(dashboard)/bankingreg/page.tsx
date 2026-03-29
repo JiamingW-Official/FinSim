@@ -424,21 +424,21 @@ export default function BankingRegPage() {
                 <CardContent className="space-y-3 text-xs text-muted-foreground">
                   <div className="bg-muted/50 rounded-lg p-3 border border-border/50">
                     <div className="flex items-center justify-between mb-1">
-                      <span className="font-semibold text-sky-400">LCR — Liquidity Coverage Ratio</span>
+                      <span className="font-medium text-sky-400">LCR — Liquidity Coverage Ratio</span>
                       <Badge className="bg-sky-900/40 text-sky-300 text-xs">≥ 100%</Badge>
                     </div>
                     <p>HQLA / Net cash outflows over 30-day stress. Ensures short-term liquidity. Level 1 (cash, sovereign) and Level 2 (corporate bonds) assets.</p>
                   </div>
                   <div className="bg-muted/50 rounded-lg p-3 border border-border/50">
                     <div className="flex items-center justify-between mb-1">
-                      <span className="font-semibold text-amber-400">NSFR — Net Stable Funding Ratio</span>
+                      <span className="font-medium text-amber-400">NSFR — Net Stable Funding Ratio</span>
                       <Badge className="bg-amber-900/40 text-amber-300 text-xs">≥ 100%</Badge>
                     </div>
                     <p>Available stable funding / Required stable funding over 1-year horizon. Discourages over-reliance on short-term wholesale funding.</p>
                   </div>
                   <div className="bg-muted/50 rounded-lg p-3 border border-border/50">
                     <div className="flex items-center justify-between mb-1">
-                      <span className="font-semibold text-emerald-400">SLR — Supplementary Leverage Ratio</span>
+                      <span className="font-medium text-emerald-400">SLR — Supplementary Leverage Ratio</span>
                       <Badge className="bg-emerald-900/40 text-emerald-300 text-xs">≥ 3%</Badge>
                     </div>
                     <p>Tier 1 capital / Total leverage exposure. Non-risk-based backstop. G-SIBs face enhanced SLR (eSLR) of 5% at holding company, 6% at bank sub.</p>
@@ -451,7 +451,7 @@ export default function BankingRegPage() {
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               <Card className="bg-card border-border">
                 <CardHeader className="pb-2">
-                  <CardTitle className="text-sm font-semibold text-foreground flex items-center gap-2">
+                  <CardTitle className="text-sm font-medium text-foreground flex items-center gap-2">
                     <Building2 className="w-4 h-4 text-primary" />
                     G-SIB Surcharge by Bucket
                   </CardTitle>
@@ -493,9 +493,9 @@ export default function BankingRegPage() {
                           <div className="space-y-2 text-xs">
                             <div className="flex items-center gap-3">
                               <span className="text-muted-foreground">CET1 Surcharge:</span>
-                              <Badge className="bg-muted/60 text-primary text-sm font-bold">{info.surcharge}</Badge>
+                              <Badge className="bg-muted/60 text-primary text-sm font-medium">{info.surcharge}</Badge>
                               <span className="text-muted-foreground">Effective CET1 min:</span>
-                              <Badge className="bg-indigo-900/40 text-indigo-300 text-sm font-bold">{info.cet1}</Badge>
+                              <Badge className="bg-indigo-900/40 text-indigo-300 text-sm font-medium">{info.cet1}</Badge>
                             </div>
                             <p className="text-muted-foreground leading-relaxed">{info.banks}</p>
                           </div>
@@ -508,7 +508,7 @@ export default function BankingRegPage() {
 
               <Card className="bg-card border-border">
                 <CardHeader className="pb-2">
-                  <CardTitle className="text-sm font-semibold text-foreground flex items-center gap-2">
+                  <CardTitle className="text-sm font-medium text-foreground flex items-center gap-2">
                     <CheckCircle className="w-4 h-4 text-emerald-400" />
                     US Basel III Endgame &amp; Capital Actions
                   </CardTitle>
@@ -546,7 +546,7 @@ export default function BankingRegPage() {
             {/* DFAST/CCAR flow */}
             <Card className="bg-card border-border">
               <CardHeader className="pb-2">
-                <CardTitle className="text-sm font-semibold text-foreground flex items-center gap-2">
+                <CardTitle className="text-sm font-medium text-foreground flex items-center gap-2">
                   <Activity className="w-4 h-4 text-sky-400" />
                   DFAST / CCAR Framework — Fed Supervisory Process
                 </CardTitle>
@@ -565,7 +565,7 @@ export default function BankingRegPage() {
             {/* Capital ratio under stress */}
             <Card className="bg-card border-border">
               <CardHeader className="pb-2">
-                <CardTitle className="text-sm font-semibold text-foreground flex items-center gap-2">
+                <CardTitle className="text-sm font-medium text-foreground flex items-center gap-2">
                   <TrendingDown className="w-4 h-4 text-amber-400" />
                   CET1 Ratio Projection Under Three Scenarios (illustrative)
                 </CardTitle>
@@ -626,7 +626,7 @@ export default function BankingRegPage() {
             {/* SPOE vs MPOE */}
             <Card className="bg-card border-border">
               <CardHeader className="pb-2">
-                <CardTitle className="text-sm font-semibold text-foreground flex items-center gap-2">
+                <CardTitle className="text-sm font-medium text-foreground flex items-center gap-2">
                   <FileText className="w-4 h-4 text-emerald-400" />
                   Resolution Strategies — SPOE vs. MPOE
                 </CardTitle>
@@ -662,7 +662,7 @@ export default function BankingRegPage() {
                 {/* 2023 failures timeline */}
                 <Card className="bg-card border-border">
                   <CardHeader className="pb-2">
-                    <CardTitle className="text-sm font-semibold text-foreground flex items-center gap-2">
+                    <CardTitle className="text-sm font-medium text-foreground flex items-center gap-2">
                       <AlertTriangle className="w-4 h-4 text-red-400" />
                       2023 Banking Crisis Timeline
                     </CardTitle>
@@ -680,7 +680,7 @@ export default function BankingRegPage() {
                           <span className={cn("font-mono text-xs shrink-0 mt-0.5 w-12", `text-[${f.color}]`)} style={{ color: f.color }}>{f.date}</span>
                           <div className="flex-1 bg-muted/50 rounded-md px-2 py-1.5 border border-border/40">
                             <div className="flex items-center justify-between mb-0.5">
-                              <span className="font-semibold text-foreground">{f.bank}</span>
+                              <span className="font-medium text-foreground">{f.bank}</span>
                               <span style={{ color: f.color }} className="text-xs font-mono">{f.assets}</span>
                             </div>
                             <span className="text-muted-foreground">{f.cause}</span>
@@ -689,7 +689,7 @@ export default function BankingRegPage() {
                       ))}
                     </div>
                     <div className="mt-3 bg-amber-950/30 border border-amber-800/40 rounded-md px-3 py-2 text-xs text-amber-300">
-                      <span className="font-semibold">Systemic Risk Exception:</span> FDIC invoked SRE to guarantee all deposits at SVB &amp; Signature beyond $250K limit, preventing broader contagion. Required Treasury/Fed/FDIC joint determination.
+                      <span className="font-medium">Systemic Risk Exception:</span> FDIC invoked SRE to guarantee all deposits at SVB &amp; Signature beyond $250K limit, preventing broader contagion. Required Treasury/Fed/FDIC joint determination.
                     </div>
                   </CardContent>
                 </Card>
@@ -708,7 +708,7 @@ export default function BankingRegPage() {
             {/* FDIC mechanics */}
             <Card className="bg-card border-border">
               <CardHeader className="pb-2">
-                <CardTitle className="text-sm font-semibold text-foreground flex items-center gap-2">
+                <CardTitle className="text-sm font-medium text-foreground flex items-center gap-2">
                   <Lock className="w-4 h-4 text-amber-400" />
                   Deposit Insurance — Global Coverage Comparison
                 </CardTitle>
@@ -767,7 +767,7 @@ export default function BankingRegPage() {
             {/* Quick reference grid */}
             <Card className="bg-card border-border">
               <CardHeader className="pb-2">
-                <CardTitle className="text-sm font-semibold text-foreground flex items-center gap-2">
+                <CardTitle className="text-sm font-medium text-foreground flex items-center gap-2">
                   <Users className="w-4 h-4 text-emerald-400" />
                   Regulatory Agency Quick Reference
                 </CardTitle>
@@ -785,7 +785,7 @@ export default function BankingRegPage() {
                     <div key={i} className="bg-muted/40 rounded-lg px-3 py-2 border border-border/40">
                       <div className="flex items-center gap-2 mb-1">
                         <div className="w-2 h-2 rounded-full" style={{ backgroundColor: a.color }} />
-                        <span className="text-xs font-semibold text-foreground">{a.agency}</span>
+                        <span className="text-xs font-medium text-foreground">{a.agency}</span>
                       </div>
                       <p className="text-[11px] text-muted-foreground leading-snug">{a.role}</p>
                     </div>

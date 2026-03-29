@@ -681,7 +681,7 @@ function PayoffStrategiesTab() {
             ].map((item) => (
               <div key={item.label} className="p-3 rounded-lg bg-muted/60 border border-border/50">
                 <div className="text-xs font-medium mb-1" style={{ color: item.color }}>{item.label}</div>
-                <div className="text-lg font-bold text-foreground">{item.months >= 600 ? "Never" : `${item.months}m`}</div>
+                <div className="text-lg font-medium text-foreground">{item.months >= 600 ? "Never" : `${item.months}m`}</div>
                 <div className="text-xs text-muted-foreground">{fmtK(item.interest)} interest</div>
               </div>
             ))}
@@ -765,7 +765,7 @@ function PayoffStrategiesTab() {
               </div>
               <div className="flex justify-between text-xs border-t border-border pt-2">
                 <span className="text-muted-foreground font-medium">Net benefit:</span>
-                <span className={cn("font-bold", btSavings > 0 ? "text-green-400" : "text-red-400")}>
+                <span className={cn("font-medium", btSavings > 0 ? "text-green-400" : "text-red-400")}>
                   {btSavings > 0 ? "+" : ""}{fmtK(btSavings)}
                 </span>
               </div>
@@ -805,7 +805,7 @@ function PayoffStrategiesTab() {
               </div>
               <div className="flex justify-between text-xs border-t border-border pt-2">
                 <span className="text-muted-foreground font-medium">Total savings:</span>
-                <span className={cn("font-bold", consSavings > 0 ? "text-green-400" : "text-red-400")}>
+                <span className={cn("font-medium", consSavings > 0 ? "text-green-400" : "text-red-400")}>
                   {consSavings > 0 ? "+" : ""}{fmtK(consSavings)}
                 </span>
               </div>
@@ -1055,7 +1055,7 @@ function MortgageOptimizationTab() {
               </div>
               <div className="flex justify-between text-xs">
                 <span className="text-muted-foreground">Break-even:</span>
-                <span className="text-foreground font-bold">
+                <span className="text-foreground font-medium">
                   {breakEvenMonths === Infinity ? "Never" : `${breakEvenMonths} months (${(breakEvenMonths / 12).toFixed(1)} yrs)`}
                 </span>
               </div>
@@ -1306,7 +1306,7 @@ function CreditBehavioralTab() {
             <div className="space-y-2">
               <div className="flex justify-between text-xs">
                 <span className="text-muted-foreground">Utilization</span>
-                <span className={cn("font-bold", currentUtil < 10 ? "text-green-400" : currentUtil < 30 ? "text-primary" : currentUtil < 50 ? "text-amber-400" : "text-red-400")}>
+                <span className={cn("font-medium", currentUtil < 10 ? "text-green-400" : currentUtil < 30 ? "text-primary" : currentUtil < 50 ? "text-amber-400" : "text-red-400")}>
                   {fmtPct(currentUtil)}
                 </span>
               </div>
@@ -1565,14 +1565,14 @@ export default function DebtManagementPage() {
         initial={{ opacity: 0, y: -12 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.35 }}
-        className="mb-6"
+        className="mb-6 border-l-4 border-l-primary rounded-lg bg-card p-6"
       >
         <div className="flex items-center gap-3 mb-2">
           <div className="p-2 rounded-lg bg-red-500/10 border border-red-500/20">
             <TrendingDown className="w-5 h-5 text-red-400" />
           </div>
           <div>
-            <h1 className="text-xl font-bold text-foreground">Personal Debt Management</h1>
+            <h1 className="text-lg font-medium text-foreground">Personal Debt Management</h1>
             <p className="text-xs text-muted-foreground">
               Avalanche vs snowball · Mortgage optimization · Credit mastery · Debt freedom
             </p>
@@ -1591,7 +1591,7 @@ export default function DebtManagementPage() {
       </motion.div>
 
       {/* Tabs */}
-      <Tabs value={activeTab} onValueChange={setActiveTab}>
+      <Tabs value={activeTab} onValueChange={setActiveTab} className="mt-8">
         <TabsList className="grid grid-cols-4 mb-6 bg-card border border-border">
           {[
             { id: "overview", label: "Debt Overview", icon: <BarChart3 className="w-3.5 h-3.5" /> },

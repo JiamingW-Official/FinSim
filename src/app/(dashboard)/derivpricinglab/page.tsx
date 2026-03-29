@@ -422,14 +422,14 @@ export default function DerivPricingLabPage() {
         </div>
       </motion.div>
 
-      {/* Shared Parameter Bar */}
+      {/* Shared Parameter Bar — Hero */}
       <motion.div
         initial={{ opacity: 0, y: 8 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.4, delay: 0.1 }}
       >
-        <Card className="bg-card border-border">
-          <CardContent className="p-4">
+        <Card className="bg-card border-border border-l-4 border-l-primary">
+          <CardContent className="p-6">
             <p className="text-xs text-muted-foreground mb-4 font-medium">
               Shared Option Parameters — all tabs update in real time
             </p>
@@ -484,6 +484,7 @@ export default function DerivPricingLabPage() {
         initial={{ opacity: 0, y: 8 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.4, delay: 0.2 }}
+        className="mt-8"
       >
         <Tabs defaultValue="bs">
           <TabsList className="bg-card border border-border mb-6">
@@ -611,7 +612,7 @@ export default function DerivPricingLabPage() {
               <Card className="bg-card border-border">
                 <CardContent className="p-4">
                   <p className="text-xs text-muted-foreground mb-1">Down Factor (d)</p>
-                  <p className="text-2xl font-semibold text-rose-300">{binomial.d.toFixed(4)}</p>
+                  <p className="text-2xl font-medium text-rose-300">{binomial.d.toFixed(4)}</p>
                   <p className="text-xs text-muted-foreground mt-1">d = 1/u</p>
                 </CardContent>
               </Card>
@@ -817,7 +818,7 @@ function SliderParam({ label, value, min, max, step, format, onChange, color }: 
     <div>
       <div className="flex justify-between items-baseline mb-2">
         <p className="text-xs text-muted-foreground">{label}</p>
-        <p className={`text-sm font-semibold ${colorMap[color]}`}>{format(value)}</p>
+        <p className={`text-sm font-medium ${colorMap[color]}`}>{format(value)}</p>
       </div>
       <Slider
         min={min} max={max} step={step}
@@ -873,7 +874,7 @@ function GreekCard({ label, value, sub, color }: GreekCardProps) {
     <Card className={`border ${cls}`}>
       <CardContent className="p-3">
         <p className="text-xs text-muted-foreground mb-1">{label}</p>
-        <p className={`text-xl font-semibold font-mono ${cls.split(" ")[0]}`}>{value}</p>
+        <p className={`text-xl font-medium font-mono ${cls.split(" ")[0]}`}>{value}</p>
         <p className="text-xs text-muted-foreground mt-0.5">{sub}</p>
       </CardContent>
     </Card>

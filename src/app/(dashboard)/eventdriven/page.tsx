@@ -506,7 +506,7 @@ function ActivismTab() {
                 {ACTIVIST_FUNDS.map((f) => (
                   <div key={f.name} className="rounded-lg bg-muted/50 p-3">
                     <div className="flex items-center justify-between mb-1">
-                      <p className="text-sm font-semibold text-foreground">{f.name}</p>
+                      <p className="text-sm font-medium text-foreground">{f.name}</p>
                       <Badge variant="outline" className="text-xs border-border text-muted-foreground">{f.aum}</Badge>
                     </div>
                     <p className="text-xs text-indigo-300 mb-1">{f.style}</p>
@@ -530,15 +530,15 @@ function ActivismTab() {
         </CardHeader>
         <CardContent className="space-y-3">
           <div className="rounded-lg bg-muted/60 p-3">
-            <p className="text-xs font-semibold text-sky-300 mb-2">Rights Offering</p>
+            <p className="text-xs font-medium text-sky-300 mb-2">Rights Offering</p>
             <p className="text-xs text-muted-foreground">Company offers existing shareholders right to buy new shares at discount (typ. 15–25%) to market price. Non-transferable (basic) or tradeable (renounceable). Theoretical ex-rights price (TERP) = (Shares × Price + New Shares × Offer Price) / Total Shares.</p>
           </div>
           <div className="rounded-lg bg-muted/60 p-3">
-            <p className="text-xs font-semibold text-amber-300 mb-2">Dutch Auction Tender</p>
+            <p className="text-xs font-medium text-amber-300 mb-2">Dutch Auction Tender</p>
             <p className="text-xs text-muted-foreground">Company specifies range (e.g., $45–$50). Shareholders tender shares at price they will accept. Company buys at lowest clearing price that lets it purchase target quantity. All successful tenderers receive the same clearing price. Favors price discovery over fixed-price tender.</p>
           </div>
           <div className="rounded-lg bg-muted/60 p-3">
-            <p className="text-xs font-semibold text-primary mb-2">Odd-Lot Tender Premium</p>
+            <p className="text-xs font-medium text-primary mb-2">Odd-Lot Tender Premium</p>
             <p className="text-xs text-muted-foreground">Shareholders with fewer than 100 shares (odd lots) often get priority or slight premium in tender offers. Retail arb: buy &lt;100 share lots to participate without proration — especially valuable in heavily oversubscribed deals.</p>
           </div>
         </CardContent>
@@ -557,7 +557,7 @@ function ActivismTab() {
             <div key={d.name} className="flex items-start gap-2 rounded-lg bg-muted/40 p-2">
               <Shield className="w-3 h-3 text-red-400 mt-0.5 flex-shrink-0" />
               <div>
-                <p className="text-xs font-semibold text-foreground">{d.name}</p>
+                <p className="text-xs font-medium text-foreground">{d.name}</p>
                 <p className="text-xs text-muted-foreground">{d.desc}</p>
               </div>
             </div>
@@ -715,7 +715,7 @@ function SpinoffsTab() {
             <div key={i} className="flex items-start gap-2 rounded-lg bg-muted/40 p-3">
               <CheckCircle className="w-3.5 h-3.5 text-emerald-400 mt-0.5 flex-shrink-0" />
               <div>
-                <p className="text-xs font-semibold text-foreground">{item.title}</p>
+                <p className="text-xs font-medium text-foreground">{item.title}</p>
                 <p className="text-xs text-muted-foreground mt-0.5">{item.desc}</p>
               </div>
             </div>
@@ -747,7 +747,7 @@ function SpinoffsTab() {
                   <span className="text-xs text-amber-400 font-medium">{ph.time}</span>
                 </div>
                 <div>
-                  <p className="text-xs font-semibold text-foreground">{ph.phase}</p>
+                  <p className="text-xs font-medium text-foreground">{ph.phase}</p>
                   <p className="text-xs text-muted-foreground">{ph.desc}</p>
                 </div>
               </div>
@@ -780,15 +780,15 @@ function SpinoffsTab() {
         </CardHeader>
         <CardContent className="space-y-3">
           <div className="rounded-lg bg-muted/60 p-3">
-            <p className="text-xs font-semibold text-primary mb-1">Morris Trust</p>
+            <p className="text-xs font-medium text-primary mb-1">Morris Trust</p>
             <p className="text-xs text-muted-foreground">Parent spins off unwanted subsidiary tax-free, then the subsidiary merges with an acquirer. The parent's shareholders must receive ≥50% of the combined entity. Used to divest divisions without triggering gain on sale.</p>
           </div>
           <div className="rounded-lg bg-muted/60 p-3">
-            <p className="text-xs font-semibold text-indigo-300 mb-1">Reverse Morris Trust</p>
+            <p className="text-xs font-medium text-indigo-300 mb-1">Reverse Morris Trust</p>
             <p className="text-xs text-muted-foreground">The acquirer is the SpinCo in a Reverse Morris Trust — the buyer merges with the spun-off entity and the target company's shareholders own &lt;50%. Allows buyer to acquire a business tax-free by pairing acquisition with target's spin-off.</p>
           </div>
           <div className="rounded-lg bg-muted/60 p-3">
-            <p className="text-xs font-semibold text-amber-300 mb-1">Insider Selling Post-Spin</p>
+            <p className="text-xs font-medium text-amber-300 mb-1">Insider Selling Post-Spin</p>
             <p className="text-xs text-muted-foreground">Officers and directors often receive SpinCo grants aligned to parent tenure. Many sell immediately post-distribution (restricted window opens). Monitor 144/4 filings in first 90 days; heavy insider selling can signal weak SpinCo fundamentals.</p>
           </div>
         </CardContent>
@@ -957,7 +957,7 @@ function DistressedSPACTab() {
               { term: "Cramdown", desc: "Court confirms plan over objection of a class; senior creditors can cram down junior classes as long as plan is fair and equitable." },
             ].map((item) => (
               <div key={item.term} className="rounded-lg bg-muted/40 p-2">
-                <p className="text-xs font-semibold text-foreground">{item.term}</p>
+                <p className="text-xs font-medium text-foreground">{item.term}</p>
                 <p className="text-xs text-muted-foreground">{item.desc}</p>
               </div>
             ))}
@@ -999,7 +999,7 @@ function DistressedSPACTab() {
               },
             ].map((m) => (
               <div key={m.label} className="rounded-lg bg-muted/50 p-3">
-                <p className={cn("text-xs font-semibold mb-1", m.color)}>{m.label}</p>
+                <p className={cn("text-xs font-medium mb-1", m.color)}>{m.label}</p>
                 <p className="text-xs text-muted-foreground">{m.desc}</p>
               </div>
             ))}
@@ -1122,11 +1122,11 @@ function DistressedSPACTab() {
             <p className="text-xs text-muted-foreground">Public warrants (1/2 unit) trade on exchange; redeem for $0.01 if stock &gt;$18 for 20/30 days (cashless redemption). Black-Scholes inputs: high vol (60–90%), long maturity → substantial time value even for deeply OTM warrants.</p>
           </div>
           <div className="rounded-lg bg-muted/60 p-3">
-            <p className="text-xs font-semibold text-sky-300 mb-1">Unit Decomposition Arb</p>
+            <p className="text-xs font-medium text-sky-300 mb-1">Unit Decomposition Arb</p>
             <p className="text-xs text-muted-foreground">Units typically split into shares + warrants after 52 days. If unit trades below theoretical (share + warrant) value, buy units and split → arbitrage. Common in first few months post-IPO; gap typically closes within days.</p>
           </div>
           <div className="rounded-lg bg-muted/60 p-3">
-            <p className="text-xs font-semibold text-primary mb-1">Pure Arb Strategy (Pre-Deal)</p>
+            <p className="text-xs font-medium text-primary mb-1">Pure Arb Strategy (Pre-Deal)</p>
             <p className="text-xs text-muted-foreground">Buy SPAC at or below $10.00 trust NAV; hold for trust interest (3–5% annualized in 2022–24 high-rate environment); redeem at NAV if bad deal announced. Collect warrants as free option. Low-risk carry trade during search period.</p>
           </div>
         </CardContent>

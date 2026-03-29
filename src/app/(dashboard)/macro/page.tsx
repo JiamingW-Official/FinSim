@@ -374,7 +374,7 @@ function HeatmapGrid({
               className="rounded p-1.5 flex flex-col items-center justify-center text-center"
               style={{ background: bg, minHeight: 44 }}
             >
-              <span className={`text-xs font-bold ${textDark ? "text-gray-800" : "text-foreground"}`}>{cell.country}</span>
+              <span className={`text-xs font-bold ${textDark ? "text-background" : "text-foreground"}`}>{cell.country}</span>
               <span className={`text-[11px] ${textDark ? "text-muted-foreground/50" : "text-foreground/90"}`}>{cell.label}</span>
             </div>
           );
@@ -663,7 +663,7 @@ export default function MacroDashboardPage() {
                     />
                     <ChartLegend series={[gdpSeries]} />
                     <p className="text-xs text-muted-foreground mt-2">
-                      Current: <span className="text-foreground font-semibold">+2.5%</span> — Steady expansion above trend growth of ~1.8%. Driven by resilient consumer spending and services sector.
+                      Current: <span className="text-foreground font-medium">+2.5%</span> — Steady expansion above trend growth of ~1.8%. Driven by resilient consumer spending and services sector.
                     </p>
                   </CardContent>
                 </Card>
@@ -671,7 +671,7 @@ export default function MacroDashboardPage() {
                 {/* PMI Chart */}
                 <Card className="bg-card border-border">
                   <CardHeader className="pb-2">
-                    <CardTitle className="text-sm font-semibold text-foreground flex items-center gap-2">
+                    <CardTitle className="text-sm font-medium text-foreground flex items-center gap-2">
                       <Activity size={14} className="text-emerald-400" />
                       Manufacturing PMI
                     </CardTitle>
@@ -684,7 +684,7 @@ export default function MacroDashboardPage() {
                     />
                     <ChartLegend series={[pmiSeries]} />
                     <p className="text-xs text-muted-foreground mt-2">
-                      Current: <span className="text-foreground font-semibold">50.8</span> — Barely in expansion territory. New orders sub-index at 52.4 signals modest improvement ahead.
+                      Current: <span className="text-foreground font-medium">50.8</span> — Barely in expansion territory. New orders sub-index at 52.4 signals modest improvement ahead.
                     </p>
                   </CardContent>
                 </Card>
@@ -692,7 +692,7 @@ export default function MacroDashboardPage() {
                 {/* Industrial Production */}
                 <Card className="bg-card border-border">
                   <CardHeader className="pb-2">
-                    <CardTitle className="text-sm font-semibold text-foreground flex items-center gap-2">
+                    <CardTitle className="text-sm font-medium text-foreground flex items-center gap-2">
                       <BarChart2 size={14} className="text-amber-400" />
                       Industrial Production (YoY %)
                     </CardTitle>
@@ -701,7 +701,7 @@ export default function MacroDashboardPage() {
                     <LineChart series={[indProdSeries]} height={180} />
                     <ChartLegend series={[indProdSeries]} />
                     <p className="text-xs text-muted-foreground mt-2">
-                      Current: <span className="text-foreground font-semibold">+1.9%</span> — Recovery from 2023 contraction. Semiconductor and auto sectors leading rebound.
+                      Current: <span className="text-foreground font-medium">+1.9%</span> — Recovery from 2023 contraction. Semiconductor and auto sectors leading rebound.
                     </p>
                   </CardContent>
                 </Card>
@@ -709,7 +709,7 @@ export default function MacroDashboardPage() {
                 {/* Retail Sales */}
                 <Card className="bg-card border-border">
                   <CardHeader className="pb-2">
-                    <CardTitle className="text-sm font-semibold text-foreground flex items-center gap-2">
+                    <CardTitle className="text-sm font-medium text-foreground flex items-center gap-2">
                       <DollarSign size={14} className="text-pink-400" />
                       Retail Sales (YoY %)
                     </CardTitle>
@@ -718,7 +718,7 @@ export default function MacroDashboardPage() {
                     <LineChart series={[retailSalesSeries]} height={180} />
                     <ChartLegend series={[retailSalesSeries]} />
                     <p className="text-xs text-muted-foreground mt-2">
-                      Current: <span className="text-foreground font-semibold">+3.5%</span> — Normalizing from post-pandemic highs. Real (inflation-adjusted) growth near +0.7%.
+                      Current: <span className="text-foreground font-medium">+3.5%</span> — Normalizing from post-pandemic highs. Real (inflation-adjusted) growth near +0.7%.
                     </p>
                   </CardContent>
                 </Card>
@@ -727,7 +727,7 @@ export default function MacroDashboardPage() {
               {/* Combined overlay */}
               <Card className="bg-card border-border">
                 <CardHeader className="pb-2">
-                  <CardTitle className="text-sm font-semibold text-foreground">Growth Composite Overlay</CardTitle>
+                  <CardTitle className="text-sm font-medium text-foreground">Growth Composite Overlay</CardTitle>
                 </CardHeader>
                 <CardContent>
                   <LineChart
@@ -748,7 +748,7 @@ export default function MacroDashboardPage() {
                 {/* CPI & PCE */}
                 <Card className="bg-card border-border">
                   <CardHeader className="pb-2">
-                    <CardTitle className="text-sm font-semibold text-foreground flex items-center gap-2">
+                    <CardTitle className="text-sm font-medium text-foreground flex items-center gap-2">
                       <TrendingDown size={14} className="text-red-400" />
                       CPI vs Core PCE (YoY %)
                     </CardTitle>
@@ -763,11 +763,11 @@ export default function MacroDashboardPage() {
                     <div className="grid grid-cols-2 gap-2 mt-3">
                       <div className="bg-muted rounded p-2 text-center">
                         <div className="text-xs text-muted-foreground">CPI (latest)</div>
-                        <div className="text-lg font-bold text-red-400">2.8%</div>
+                        <div className="text-lg font-medium text-red-400">2.8%</div>
                       </div>
                       <div className="bg-muted rounded p-2 text-center">
                         <div className="text-xs text-muted-foreground">Core PCE (latest)</div>
-                        <div className="text-lg font-bold text-orange-400">2.8%</div>
+                        <div className="text-lg font-medium text-orange-400">2.8%</div>
                       </div>
                     </div>
                   </CardContent>
@@ -776,7 +776,7 @@ export default function MacroDashboardPage() {
                 {/* TIPS Breakeven */}
                 <Card className="bg-card border-border">
                   <CardHeader className="pb-2">
-                    <CardTitle className="text-sm font-semibold text-foreground flex items-center gap-2">
+                    <CardTitle className="text-sm font-medium text-foreground flex items-center gap-2">
                       <Activity size={14} className="text-primary" />
                       Inflation Expectations (TIPS Breakeven)
                     </CardTitle>
@@ -792,7 +792,7 @@ export default function MacroDashboardPage() {
                     />
                     <ChartLegend series={[tipsBeSeries]} />
                     <p className="text-xs text-muted-foreground mt-2">
-                      5Y TIPS breakeven at <span className="text-foreground font-semibold">2.3%</span> — Market expects inflation slightly above Fed target over next 5 years, down from 3.1% peak in early 2022.
+                      5Y TIPS breakeven at <span className="text-foreground font-medium">2.3%</span> — Market expects inflation slightly above Fed target over next 5 years, down from 3.1% peak in early 2022.
                     </p>
                   </CardContent>
                 </Card>
@@ -800,7 +800,7 @@ export default function MacroDashboardPage() {
                 {/* Wage Growth */}
                 <Card className="bg-card border-border">
                   <CardHeader className="pb-2">
-                    <CardTitle className="text-sm font-semibold text-foreground flex items-center gap-2">
+                    <CardTitle className="text-sm font-medium text-foreground flex items-center gap-2">
                       <DollarSign size={14} className="text-emerald-400" />
                       Wage Growth (YoY %)
                     </CardTitle>
@@ -813,7 +813,7 @@ export default function MacroDashboardPage() {
                     />
                     <ChartLegend series={[wageSeries]} />
                     <p className="text-xs text-muted-foreground mt-2">
-                      Average hourly earnings at <span className="text-foreground font-semibold">+3.9%</span> — Wage growth decelerating from 5.7% peak but still above Fed's estimated ~3.5% sustainable rate.
+                      Average hourly earnings at <span className="text-foreground font-medium">+3.9%</span> — Wage growth decelerating from 5.7% peak but still above Fed's estimated ~3.5% sustainable rate.
                     </p>
                   </CardContent>
                 </Card>
@@ -821,7 +821,7 @@ export default function MacroDashboardPage() {
                 {/* Inflation breakdown */}
                 <Card className="bg-card border-border">
                   <CardHeader className="pb-2">
-                    <CardTitle className="text-sm font-semibold text-foreground">CPI Component Breakdown</CardTitle>
+                    <CardTitle className="text-sm font-medium text-foreground">CPI Component Breakdown</CardTitle>
                   </CardHeader>
                   <CardContent className="space-y-3">
                     {[
@@ -857,7 +857,7 @@ export default function MacroDashboardPage() {
               {/* Full overlay */}
               <Card className="bg-card border-border">
                 <CardHeader className="pb-2">
-                  <CardTitle className="text-sm font-semibold text-foreground">Inflation Overview (24-Month Trend)</CardTitle>
+                  <CardTitle className="text-sm font-medium text-foreground">Inflation Overview (24-Month Trend)</CardTitle>
                 </CardHeader>
                 <CardContent>
                   <LineChart
@@ -878,7 +878,7 @@ export default function MacroDashboardPage() {
                 {/* Unemployment */}
                 <Card className="bg-card border-border">
                   <CardHeader className="pb-2">
-                    <CardTitle className="text-sm font-semibold text-foreground flex items-center gap-2">
+                    <CardTitle className="text-sm font-medium text-foreground flex items-center gap-2">
                       <Users size={14} className="text-indigo-400" />
                       Unemployment Rate (U-3, %)
                     </CardTitle>
@@ -901,7 +901,7 @@ export default function MacroDashboardPage() {
                       ].map((m) => (
                         <div key={m.label} className="bg-muted rounded p-2 text-center">
                           <div className="text-xs text-muted-foreground">{m.label}</div>
-                          <div className="text-sm font-bold text-foreground">{m.value}</div>
+                          <div className="text-sm font-medium text-foreground">{m.value}</div>
                         </div>
                       ))}
                     </div>
@@ -911,7 +911,7 @@ export default function MacroDashboardPage() {
                 {/* JOLTS */}
                 <Card className="bg-card border-border">
                   <CardHeader className="pb-2">
-                    <CardTitle className="text-sm font-semibold text-foreground flex items-center gap-2">
+                    <CardTitle className="text-sm font-medium text-foreground flex items-center gap-2">
                       <BarChart2 size={14} className="text-emerald-400" />
                       JOLTS Job Openings (millions)
                     </CardTitle>
@@ -924,7 +924,7 @@ export default function MacroDashboardPage() {
                     />
                     <ChartLegend series={[joltsSeries]} />
                     <p className="text-xs text-muted-foreground mt-2">
-                      Job openings at <span className="text-foreground font-semibold">8.6M</span> — Down from 12M peak but still above pre-pandemic levels. Hires-to-openings ratio improving. Quits rate 2.1% (normalizing).
+                      Job openings at <span className="text-foreground font-medium">8.6M</span> — Down from 12M peak but still above pre-pandemic levels. Hires-to-openings ratio improving. Quits rate 2.1% (normalizing).
                     </p>
                   </CardContent>
                 </Card>
@@ -932,7 +932,7 @@ export default function MacroDashboardPage() {
                 {/* LFP */}
                 <Card className="bg-card border-border">
                   <CardHeader className="pb-2">
-                    <CardTitle className="text-sm font-semibold text-foreground flex items-center gap-2">
+                    <CardTitle className="text-sm font-medium text-foreground flex items-center gap-2">
                       <Activity size={14} className="text-amber-400" />
                       Labor Force Participation Rate (%)
                     </CardTitle>
@@ -945,7 +945,7 @@ export default function MacroDashboardPage() {
                     />
                     <ChartLegend series={[lfpSeries]} />
                     <p className="text-xs text-muted-foreground mt-2">
-                      LFP at <span className="text-foreground font-semibold">62.5%</span> — Still ~0.9pp below Feb 2020 peak due to early retirements and demographic shifts among 55+ cohort.
+                      LFP at <span className="text-foreground font-medium">62.5%</span> — Still ~0.9pp below Feb 2020 peak due to early retirements and demographic shifts among 55+ cohort.
                     </p>
                   </CardContent>
                 </Card>
@@ -953,7 +953,7 @@ export default function MacroDashboardPage() {
                 {/* Wage pressure heatmap */}
                 <Card className="bg-card border-border">
                   <CardHeader className="pb-2">
-                    <CardTitle className="text-sm font-semibold text-foreground">Sector Wage Pressure</CardTitle>
+                    <CardTitle className="text-sm font-medium text-foreground">Sector Wage Pressure</CardTitle>
                   </CardHeader>
                   <CardContent className="space-y-2.5">
                     {[
@@ -977,7 +977,7 @@ export default function MacroDashboardPage() {
                             }}
                           />
                         </div>
-                        <div className="text-xs text-foreground font-semibold w-10 text-right">{sec.growth}%</div>
+                        <div className="text-xs text-foreground font-medium w-10 text-right">{sec.growth}%</div>
                         <Badge
                           className={`text-xs py-0 px-1.5 border ${
                             sec.pressure === "High"
@@ -1001,7 +1001,7 @@ export default function MacroDashboardPage() {
               {/* All labor series */}
               <Card className="bg-card border-border">
                 <CardHeader className="pb-2">
-                  <CardTitle className="text-sm font-semibold text-foreground">Labor Market Composite (24-Month)</CardTitle>
+                  <CardTitle className="text-sm font-medium text-foreground">Labor Market Composite (24-Month)</CardTitle>
                 </CardHeader>
                 <CardContent>
                   <LineChart
@@ -1021,7 +1021,7 @@ export default function MacroDashboardPage() {
                 {/* GDP Growth Heatmap */}
                 <Card className="bg-card border-border lg:col-span-1">
                   <CardHeader className="pb-2">
-                    <CardTitle className="text-sm font-semibold text-foreground flex items-center gap-2">
+                    <CardTitle className="text-sm font-medium text-foreground flex items-center gap-2">
                       <Globe size={14} className="text-indigo-400" />
                       GDP Growth (YoY %)
                     </CardTitle>
@@ -1049,7 +1049,7 @@ export default function MacroDashboardPage() {
                 {/* Inflation Heatmap */}
                 <Card className="bg-card border-border lg:col-span-1">
                   <CardHeader className="pb-2">
-                    <CardTitle className="text-sm font-semibold text-foreground flex items-center gap-2">
+                    <CardTitle className="text-sm font-medium text-foreground flex items-center gap-2">
                       <AlertTriangle size={14} className="text-amber-400" />
                       Inflation (CPI YoY %)
                     </CardTitle>
@@ -1077,7 +1077,7 @@ export default function MacroDashboardPage() {
                 {/* Current Account Heatmap */}
                 <Card className="bg-card border-border lg:col-span-1">
                   <CardHeader className="pb-2">
-                    <CardTitle className="text-sm font-semibold text-foreground flex items-center gap-2">
+                    <CardTitle className="text-sm font-medium text-foreground flex items-center gap-2">
                       <DollarSign size={14} className="text-primary" />
                       Current Account (% GDP)
                     </CardTitle>
@@ -1106,7 +1106,7 @@ export default function MacroDashboardPage() {
               {/* G7 comparison table */}
               <Card className="bg-card border-border">
                 <CardHeader className="pb-2">
-                  <CardTitle className="text-sm font-semibold text-foreground">G7 Macro Snapshot</CardTitle>
+                  <CardTitle className="text-sm font-medium text-foreground">G7 Macro Snapshot</CardTitle>
                 </CardHeader>
                 <CardContent>
                   <div className="overflow-x-auto">
@@ -1132,7 +1132,7 @@ export default function MacroDashboardPage() {
                           { c: "Japan", gdp: 1.9, cpi: 2.8, unemp: 2.5, rate: 0.10, ca: 3.5 },
                         ].map((row) => (
                           <tr key={row.c} className="border-b border-border/50 hover:bg-muted/30 transition-colors">
-                            <td className="py-2 font-semibold text-foreground">{row.c}</td>
+                            <td className="py-2 font-medium text-foreground">{row.c}</td>
                             <td className={`text-right py-2 ${row.gdp < 0 ? "text-red-400" : row.gdp > 2 ? "text-emerald-400" : "text-amber-400"}`}>
                               {row.gdp > 0 ? "+" : ""}{row.gdp.toFixed(1)}%
                             </td>
@@ -1161,7 +1161,7 @@ export default function MacroDashboardPage() {
                 {/* Regime Quadrant */}
                 <Card className="bg-card border-border">
                   <CardHeader className="pb-2">
-                    <CardTitle className="text-sm font-semibold text-foreground flex items-center gap-2">
+                    <CardTitle className="text-sm font-medium text-foreground flex items-center gap-2">
                       <Layers size={14} className="text-indigo-400" />
                       Macro Regime Quadrant
                     </CardTitle>
@@ -1170,11 +1170,11 @@ export default function MacroDashboardPage() {
                     <RegimeQuadrant inflation={currentInflation} growth={currentGrowth} />
                     <div className="grid grid-cols-2 gap-2 mt-3">
                       <div className="bg-emerald-500/10 border border-emerald-500/20 rounded p-2">
-                        <div className="text-xs text-emerald-400 font-semibold mb-1">Expansion Regime</div>
+                        <div className="text-xs text-emerald-400 font-medium mb-1">Expansion Regime</div>
                         <div className="text-xs text-muted-foreground">Growth above trend, inflation above target. Current US regime. Favor equities, commodities, real assets.</div>
                       </div>
                       <div className="bg-indigo-500/10 border border-indigo-500/20 rounded p-2">
-                        <div className="text-xs text-indigo-400 font-semibold mb-1">Asset Implications</div>
+                        <div className="text-xs text-indigo-400 font-medium mb-1">Asset Implications</div>
                         <div className="text-xs text-muted-foreground">Overweight: cyclicals, energy. Neutral: IG bonds. Underweight: long-duration Treasuries, defensive sectors.</div>
                       </div>
                     </div>
@@ -1184,7 +1184,7 @@ export default function MacroDashboardPage() {
                 {/* Leading Indicators Scorecard */}
                 <Card className="bg-card border-border">
                   <CardHeader className="pb-2">
-                    <CardTitle className="text-sm font-semibold text-foreground flex items-center gap-2">
+                    <CardTitle className="text-sm font-medium text-foreground flex items-center gap-2">
                       <Activity size={14} className="text-emerald-400" />
                       Leading Indicators Scorecard
                     </CardTitle>
@@ -1194,7 +1194,7 @@ export default function MacroDashboardPage() {
                       <span className="text-xs text-muted-foreground">Composite Score</span>
                       <div className="flex items-center gap-2">
                         <Progress value={liScore} className="w-24 h-2" />
-                        <span className={`text-sm font-bold ${liScore >= 70 ? "text-emerald-400" : liScore >= 50 ? "text-amber-400" : "text-red-400"}`}>
+                        <span className={`text-sm font-medium ${liScore >= 70 ? "text-emerald-400" : liScore >= 50 ? "text-amber-400" : "text-red-400"}`}>
                           {liScore}/100
                         </span>
                       </div>
@@ -1212,7 +1212,7 @@ export default function MacroDashboardPage() {
                             <span className="text-muted-foreground">{li.name}</span>
                           </div>
                           <div className="flex items-center gap-2">
-                            <span className={`font-semibold ${passed ? "text-foreground" : "text-red-400"}`}>
+                            <span className={`font-medium ${passed ? "text-foreground" : "text-red-400"}`}>
                               {li.value}
                             </span>
                             <span className="text-muted-foreground text-xs">
@@ -1234,7 +1234,7 @@ export default function MacroDashboardPage() {
               {/* NBER cycle tracker */}
               <Card className="bg-card border-border">
                 <CardHeader className="pb-2">
-                  <CardTitle className="text-sm font-semibold text-foreground flex items-center gap-2">
+                  <CardTitle className="text-sm font-medium text-foreground flex items-center gap-2">
                     <Layers size={14} className="text-primary" />
                     NBER Business Cycle Tracker
                   </CardTitle>
@@ -1249,8 +1249,8 @@ export default function MacroDashboardPage() {
                       { label: "Recession Probability", value: "18%", sub: "12-month ahead (NY Fed)", color: "amber" },
                     ].map((stat) => (
                       <div key={stat.label} className={`bg-${stat.color}-500/10 border border-${stat.color}-500/20 rounded-lg p-3`}>
-                        <div className={`text-xs text-${stat.color}-400 font-semibold mb-0.5`}>{stat.label}</div>
-                        <div className="text-lg font-bold text-foreground">{stat.value}</div>
+                        <div className={`text-xs text-${stat.color}-400 font-medium mb-0.5`}>{stat.label}</div>
+                        <div className="text-lg font-medium text-foreground">{stat.value}</div>
                         <div className="text-xs text-muted-foreground">{stat.sub}</div>
                       </div>
                     ))}
@@ -1261,7 +1261,7 @@ export default function MacroDashboardPage() {
               {/* Recession risk indicators */}
               <Card className="bg-card border-border">
                 <CardHeader className="pb-2">
-                  <CardTitle className="text-sm font-semibold text-foreground flex items-center gap-2">
+                  <CardTitle className="text-sm font-medium text-foreground flex items-center gap-2">
                     <AlertTriangle size={14} className="text-amber-400" />
                     Recession Early Warning Signals
                   </CardTitle>
@@ -1287,7 +1287,7 @@ export default function MacroDashboardPage() {
                         }`}
                       >
                         <div className="flex items-center justify-between mb-1">
-                          <span className="text-xs font-semibold text-foreground">{item.signal}</span>
+                          <span className="text-xs font-medium text-foreground">{item.signal}</span>
                           {item.status === "safe" ? (
                             <Minus size={12} className="text-emerald-400" />
                           ) : item.status === "warn" ? (
@@ -1297,7 +1297,7 @@ export default function MacroDashboardPage() {
                           )}
                         </div>
                         <div
-                          className={`text-sm font-bold mb-1 ${
+                          className={`text-sm font-medium mb-1 ${
                             item.status === "safe" ? "text-emerald-400" : item.status === "warn" ? "text-amber-400" : "text-muted-foreground"
                           }`}
                         >

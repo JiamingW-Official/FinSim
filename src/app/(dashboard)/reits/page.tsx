@@ -413,7 +413,7 @@ function ValuationTab() {
               <div>
                 <div className="flex justify-between mb-1">
                   <label className="text-xs text-muted-foreground">Cap Rate</label>
-                  <span className="text-xs font-semibold text-primary">{capRate.toFixed(1)}%</span>
+                  <span className="text-xs font-medium text-primary">{capRate.toFixed(1)}%</span>
                 </div>
                 <input
                   type="range"
@@ -492,7 +492,7 @@ function ValuationTab() {
                         }`}
                       />
                     </div>
-                    <div className={`w-14 text-right font-mono font-semibold shrink-0 ${
+                    <div className={`w-14 text-right font-mono font-medium shrink-0 ${
                       item.isBase ? "text-primary" : isNeg ? "text-rose-400" : "text-emerald-400"
                     }`}>
                       {isNeg ? "-" : item.isBase ? "" : "+"}{fmt(abs, 2)}
@@ -643,7 +643,7 @@ function DividendsTab() {
               <div className="p-1.5 rounded-md bg-muted/50">{s.icon}</div>
               <div>
                 <p className="text-xs text-muted-foreground">{s.label}</p>
-                <p className="text-sm font-semibold">{s.value}</p>
+                <p className="text-sm font-medium">{s.value}</p>
               </div>
             </CardContent>
           </Card>
@@ -888,7 +888,7 @@ function PortfolioTab() {
               <div className="p-1.5 rounded-md bg-muted/50">{s.icon}</div>
               <div>
                 <p className="text-xs text-muted-foreground">{s.label}</p>
-                <p className="text-sm font-semibold">{s.value}</p>
+                <p className="text-sm font-medium">{s.value}</p>
               </div>
             </CardContent>
           </Card>

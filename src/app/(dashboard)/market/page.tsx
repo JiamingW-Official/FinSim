@@ -178,7 +178,7 @@ function SectorHeatmap() {
               </p>
               <p
                 className={cn(
-                  "font-mono tabular-nums text-[11px] font-semibold mt-0.5",
+                  "font-mono tabular-nums text-[11px] font-medium mt-0.5",
                   isPos ? "text-emerald-500" : "text-red-500",
                 )}
               >
@@ -247,7 +247,7 @@ function VixIndicator() {
   return (
     <div className="rounded-lg border bg-card p-4 space-y-3">
       <div className="flex items-center justify-between">
-        <h3 className="text-sm font-semibold">VIX — Volatility Index</h3>
+        <h3 className="text-sm font-medium">VIX — Volatility Index</h3>
         <span
           className={cn(
             "text-xs font-medium px-1.5 py-0.5 rounded",
@@ -306,7 +306,7 @@ function OverviewTab() {
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-4">
         {/* Gainers */}
         <div className="rounded-lg border bg-card p-4 space-y-2">
-          <h3 className="text-sm font-semibold text-emerald-500">Top Gainers</h3>
+          <h3 className="text-sm font-medium text-emerald-500">Top Gainers</h3>
           <table className="w-full text-xs">
             <thead>
               <tr className="text-xs text-muted-foreground border-b">
@@ -318,7 +318,7 @@ function OverviewTab() {
             <tbody>
               {movers.gainers.map((s) => (
                 <tr key={s.ticker} className="border-b border-border/20 last:border-0">
-                  <td className="py-1 font-mono font-semibold">{s.ticker}</td>
+                  <td className="py-1 font-mono font-medium">{s.ticker}</td>
                   <td className="py-1 text-right font-mono tabular-nums">
                     ${s.price.toFixed(2)}
                   </td>
@@ -333,7 +333,7 @@ function OverviewTab() {
 
         {/* Losers */}
         <div className="rounded-lg border bg-card p-4 space-y-2">
-          <h3 className="text-sm font-semibold text-red-500">Top Losers</h3>
+          <h3 className="text-sm font-medium text-red-500">Top Losers</h3>
           <table className="w-full text-xs">
             <thead>
               <tr className="text-xs text-muted-foreground border-b">
@@ -345,7 +345,7 @@ function OverviewTab() {
             <tbody>
               {movers.losers.map((s) => (
                 <tr key={s.ticker} className="border-b border-border/20 last:border-0">
-                  <td className="py-1 font-mono font-semibold">{s.ticker}</td>
+                  <td className="py-1 font-mono font-medium">{s.ticker}</td>
                   <td className="py-1 text-right font-mono tabular-nums">
                     ${s.price.toFixed(2)}
                   </td>
@@ -545,7 +545,7 @@ function CalendarTab() {
           });
           return (
             <div key={date} className="space-y-2">
-              <h3 className="text-xs font-semibold text-muted-foreground">
+              <h3 className="text-xs font-medium text-muted-foreground">
                 {label}
               </h3>
               <div className="rounded-lg border bg-card overflow-hidden">
@@ -634,7 +634,7 @@ function InsiderTab({ ticker }: { ticker: string }) {
           <p className="text-xs text-muted-foreground">Net Activity</p>
           <p
             className={cn(
-              "text-lg font-semibold font-mono tabular-nums mt-1",
+              "text-lg font-medium font-mono tabular-nums mt-1",
               data.netBuying > 0 ? "text-emerald-500" : "text-red-500",
             )}
           >
@@ -644,13 +644,13 @@ function InsiderTab({ ticker }: { ticker: string }) {
         </div>
         <div className="rounded-lg border bg-card p-3">
           <p className="text-xs text-muted-foreground">Total Buying</p>
-          <p className="text-lg font-semibold font-mono tabular-nums mt-1 text-emerald-500">
+          <p className="text-lg font-medium font-mono tabular-nums mt-1 text-emerald-500">
             {formatValue(data.totalBuyValue)}
           </p>
         </div>
         <div className="rounded-lg border bg-card p-3">
           <p className="text-xs text-muted-foreground">Total Selling</p>
-          <p className="text-lg font-semibold font-mono tabular-nums mt-1 text-red-500">
+          <p className="text-lg font-medium font-mono tabular-nums mt-1 text-red-500">
             {formatValue(data.totalSellValue)}
           </p>
         </div>
@@ -700,7 +700,7 @@ function InsiderTab({ ticker }: { ticker: string }) {
                     isLarge && "ring-1 ring-inset ring-amber-500/20",
                   )}
                 >
-                  <td className="p-3 font-mono font-semibold">{ticker}</td>
+                  <td className="p-3 font-mono font-medium">{ticker}</td>
                   <td className="p-3">
                     <div className="flex items-center gap-1.5">
                       {isLarge && (
@@ -772,8 +772,8 @@ function InstitutionalTab({ ticker }: { ticker: string }) {
       {/* Ownership bar */}
       <div className="rounded-lg border bg-card p-4 space-y-3">
         <div className="flex items-center justify-between">
-          <h3 className="text-sm font-semibold">Total Institutional Ownership — {ticker}</h3>
-          <span className="font-mono tabular-nums text-lg font-bold">
+          <h3 className="text-sm font-medium">Total Institutional Ownership — {ticker}</h3>
+          <span className="font-mono tabular-nums text-lg font-medium">
             {data.totalInstitutionalOwnership.toFixed(1)}%
           </span>
         </div>
@@ -786,19 +786,19 @@ function InstitutionalTab({ ticker }: { ticker: string }) {
         <div className="grid grid-cols-3 gap-3 text-center">
           <div>
             <p className="text-xs text-muted-foreground">Increased</p>
-            <p className="text-sm font-semibold text-emerald-500">
+            <p className="text-sm font-medium text-emerald-500">
               {data.holders.filter((h) => h.quarterlyChange > 0).length}
             </p>
           </div>
           <div>
             <p className="text-xs text-muted-foreground">Decreased</p>
-            <p className="text-sm font-semibold text-red-500">
+            <p className="text-sm font-medium text-red-500">
               {data.holders.filter((h) => h.quarterlyChange < 0).length}
             </p>
           </div>
           <div>
             <p className="text-xs text-muted-foreground">Unchanged</p>
-            <p className="text-sm font-semibold text-muted-foreground">
+            <p className="text-sm font-medium text-muted-foreground">
               {data.holders.filter((h) => h.quarterlyChange === 0).length}
             </p>
           </div>
@@ -958,10 +958,10 @@ function OptionsFlowTab({ ticker, currentPrice }: { ticker: string; currentPrice
                     isWhale && "bg-amber-500/[0.04]",
                   )}
                 >
-                  <td className="p-3 font-mono font-semibold">
+                  <td className="p-3 font-mono font-medium">
                     <div className="flex items-center gap-1.5">
                       {isWhale && (
-                        <span className="text-[11px] font-bold text-amber-500 bg-amber-500/10 px-1 py-0.5 rounded">
+                        <span className="text-[11px] font-medium text-amber-500 bg-amber-500/10 px-1 py-0.5 rounded">
                           WHALE
                         </span>
                       )}
@@ -975,7 +975,7 @@ function OptionsFlowTab({ ticker, currentPrice }: { ticker: string; currentPrice
                   <td className="p-3 text-center">
                     <span
                       className={cn(
-                        "text-xs font-bold px-1.5 py-0.5 rounded",
+                        "text-xs font-medium px-1.5 py-0.5 rounded",
                         flow.type === "call"
                           ? "text-emerald-500 bg-emerald-500/10"
                           : "text-red-500 bg-red-500/10",
@@ -1077,7 +1077,7 @@ function FearGreedGauge({ value }: { value: number }) {
 
   return (
     <div className="rounded-lg border bg-card p-4 space-y-2">
-      <h3 className="text-sm font-semibold">Fear &amp; Greed Index</h3>
+      <h3 className="text-sm font-medium">Fear &amp; Greed Index</h3>
       <div className="flex flex-col items-center gap-1">
         <svg width="160" height="90" viewBox="0 0 160 90">
           {/* Background arc */}
@@ -1136,7 +1136,7 @@ function FearGreedGauge({ value }: { value: number }) {
             {value}
           </text>
         </svg>
-        <span className={cn("text-xs font-semibold", labelColor)}>{label}</span>
+        <span className={cn("text-xs font-medium", labelColor)}>{label}</span>
       </div>
     </div>
   );
@@ -1169,7 +1169,7 @@ function CryptoTab() {
 
         {/* BTC Dominance */}
         <div className="rounded-lg border bg-card p-4 space-y-3">
-          <h3 className="text-sm font-semibold">BTC Dominance</h3>
+          <h3 className="text-sm font-medium">BTC Dominance</h3>
           <div className="flex items-end gap-2">
             <span className="font-mono tabular-nums text-2xl font-bold">
               {btcDominance.toFixed(1)}%
@@ -1209,7 +1209,7 @@ function CryptoTab() {
                 <td className="p-3 text-muted-foreground">{i + 1}</td>
                 <td className="p-3">
                   <div className="flex items-center gap-2">
-                    <span className="font-mono font-bold text-foreground w-14">{asset.symbol}</span>
+                    <span className="font-mono font-medium text-foreground w-14">{asset.symbol}</span>
                     <span className="text-muted-foreground text-xs">{asset.name}</span>
                   </div>
                 </td>
@@ -1218,7 +1218,7 @@ function CryptoTab() {
                 </td>
                 <td
                   className={cn(
-                    "p-3 text-right font-mono tabular-nums font-semibold",
+                    "p-3 text-right font-mono tabular-nums font-medium",
                     asset.change24h >= 0 ? "text-emerald-500" : "text-red-500",
                   )}
                 >
@@ -1275,7 +1275,7 @@ export default function MarketIntelligencePage() {
       {/* Top bar */}
       <div className="flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between px-4 pt-4 pb-3 border-b border-border/40">
         <div>
-          <h1 className="text-lg font-semibold">Market Terminal</h1>
+          <h1 className="text-lg font-medium">Market Terminal</h1>
           <p className="text-xs text-muted-foreground">
             Bloomberg-style market intelligence &amp; data
           </p>
@@ -1297,7 +1297,7 @@ export default function MarketIntelligencePage() {
               ))}
             </select>
             {currentPrice > 0 && (
-              <span className="font-mono tabular-nums text-sm font-semibold">
+              <span className="font-mono tabular-nums text-sm font-medium">
                 ${currentPrice.toFixed(2)}
               </span>
             )}

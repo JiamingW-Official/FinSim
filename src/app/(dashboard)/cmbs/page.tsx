@@ -265,7 +265,7 @@ function StructureTab() {
       {/* Capital Stack */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4 items-start">
         <div className="bg-muted/60 border border-border/50 rounded-xl p-5">
-          <h3 className="text-sm font-semibold text-foreground mb-4 flex items-center gap-2">
+          <h3 className="text-sm font-medium text-foreground mb-4 flex items-center gap-2">
             <Layers className="w-4 h-4 text-amber-400" />
             Capital Stack (8 Tranches)
           </h3>
@@ -296,11 +296,11 @@ function StructureTab() {
                   <div className="grid grid-cols-2 gap-2 text-xs">
                     <div className="bg-muted rounded p-2">
                       <div className="text-muted-foreground">Size</div>
-                      <div className="font-semibold text-foreground">{t.size}% of deal</div>
+                      <div className="font-medium text-foreground">{t.size}% of deal</div>
                     </div>
                     <div className="bg-muted rounded p-2">
                       <div className="text-muted-foreground">Spread</div>
-                      <div className="font-semibold text-foreground">+{t.spread} bps</div>
+                      <div className="font-medium text-foreground">+{t.spread} bps</div>
                     </div>
                   </div>
                 </motion.div>
@@ -309,7 +309,7 @@ function StructureTab() {
           </AnimatePresence>
 
           <div className="bg-muted/60 border border-border/50 rounded-xl p-4 space-y-3">
-            <h4 className="text-xs font-semibold text-muted-foreground uppercase tracking-wide">Servicer Roles</h4>
+            <h4 className="text-xs font-medium text-muted-foreground uppercase tracking-wide">Servicer Roles</h4>
             {[
               { role: "Master Servicer", desc: "Collects P&I from all performing loans; advances scheduled payments to certificate holders when borrowers are current.", color: "text-primary" },
               { role: "Special Servicer", desc: "Takes over when loan becomes 60+ days delinquent. Negotiates workouts, foreclosures, REO sales. Compensated via workout fees.", color: "text-amber-400" },
@@ -317,7 +317,7 @@ function StructureTab() {
               { role: "Operating Advisor", desc: "Post-Dodd-Frank oversight of special servicer decisions when B-piece buyer accumulates conflicts.", color: "text-green-400" },
             ].map((item) => (
               <div key={item.role} className="flex gap-3">
-                <div className={cn("text-xs font-semibold w-32 shrink-0 pt-0.5", item.color)}>{item.role}</div>
+                <div className={cn("text-xs font-medium w-32 shrink-0 pt-0.5", item.color)}>{item.role}</div>
                 <div className="text-xs text-muted-foreground leading-relaxed">{item.desc}</div>
               </div>
             ))}
@@ -372,7 +372,7 @@ function LoanAnalysisTab() {
       <div className="bg-muted/60 border border-border/50 rounded-xl overflow-hidden">
         <div className="px-5 py-3 border-b border-border/50 flex items-center gap-2">
           <Building2 className="w-4 h-4 text-primary" />
-          <span className="text-sm font-semibold text-foreground">Sample Loan Pool (8 Loans)</span>
+          <span className="text-sm font-medium text-foreground">Sample Loan Pool (8 Loans)</span>
         </div>
         <div className="overflow-x-auto">
           <table className="w-full text-xs">
@@ -395,12 +395,12 @@ function LoanAnalysisTab() {
                   </td>
                   <td className="px-3 py-2 text-muted-foreground whitespace-nowrap">{loan.city}</td>
                   <td className="px-3 py-2">
-                    <span className={cn("font-semibold", loan.dscr >= 1.25 ? "text-green-400" : loan.dscr >= 1.0 ? "text-amber-400" : "text-red-400")}>
+                    <span className={cn("font-medium", loan.dscr >= 1.25 ? "text-green-400" : loan.dscr >= 1.0 ? "text-amber-400" : "text-red-400")}>
                       {loan.dscr.toFixed(2)}x
                     </span>
                   </td>
                   <td className="px-3 py-2">
-                    <span className={cn("font-semibold", loan.ltv <= 65 ? "text-green-400" : loan.ltv <= 75 ? "text-amber-400" : "text-red-400")}>
+                    <span className={cn("font-medium", loan.ltv <= 65 ? "text-green-400" : loan.ltv <= 75 ? "text-amber-400" : "text-red-400")}>
                       {loan.ltv}%
                     </span>
                   </td>
@@ -424,7 +424,7 @@ function LoanAnalysisTab() {
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
         {/* DSCR vs LTV Scatter */}
         <div className="bg-muted/60 border border-border/50 rounded-xl p-5">
-          <h3 className="text-sm font-semibold text-foreground mb-3 flex items-center gap-2">
+          <h3 className="text-sm font-medium text-foreground mb-3 flex items-center gap-2">
             <BarChart3 className="w-4 h-4 text-primary" />
             DSCR vs LTV Scatter
           </h3>
@@ -474,14 +474,14 @@ function LoanAnalysisTab() {
 
         {/* NOI Stress Test */}
         <div className="bg-muted/60 border border-border/50 rounded-xl p-5 space-y-4">
-          <h3 className="text-sm font-semibold text-foreground flex items-center gap-2">
+          <h3 className="text-sm font-medium text-foreground flex items-center gap-2">
             <Activity className="w-4 h-4 text-amber-400" />
             NOI Stress Testing — Occupancy
           </h3>
           <div className="space-y-2">
             <div className="flex items-center justify-between text-xs text-muted-foreground">
               <span>Occupancy Rate</span>
-              <span className="font-bold text-amber-300 text-sm">{occupancy}%</span>
+              <span className="font-medium text-amber-300 text-sm">{occupancy}%</span>
             </div>
             <input
               type="range" min={50} max={100} value={occupancy}
@@ -505,7 +505,7 @@ function LoanAnalysisTab() {
                   />
                   <div className="absolute top-0 left-[62.5%] h-full w-px bg-muted-foreground opacity-50" />
                 </div>
-                <span className={cn("font-semibold w-10 text-right", loan.stressedDSCR >= 1.25 ? "text-green-400" : loan.stressedDSCR >= 1.0 ? "text-amber-400" : "text-red-400")}>
+                <span className={cn("font-medium w-10 text-right", loan.stressedDSCR >= 1.25 ? "text-green-400" : loan.stressedDSCR >= 1.0 ? "text-amber-400" : "text-red-400")}>
                   {loan.stressedDSCR.toFixed(2)}x
                 </span>
                 <span className="text-muted-foreground w-12 text-right">{loan.debtYield.toFixed(1)}%DY</span>
@@ -518,7 +518,7 @@ function LoanAnalysisTab() {
 
       {/* Property Sector Heatmap */}
       <div className="bg-muted/60 border border-border/50 rounded-xl p-5">
-        <h3 className="text-sm font-semibold text-foreground mb-4 flex items-center gap-2">
+        <h3 className="text-sm font-medium text-foreground mb-4 flex items-center gap-2">
           <Building2 className="w-4 h-4 text-green-400" />
           Property Sector Heatmap
         </h3>
@@ -534,9 +534,9 @@ function LoanAnalysisTab() {
               sector.trend === "bullish" ? "text-green-400" : sector.trend === "neutral" ? "text-amber-400" : "text-red-400";
             return (
               <div key={sector.name} className={cn("border rounded-xl p-4 space-y-2", heatColor)}>
-                <div className="font-semibold text-sm text-foreground">{sector.name}</div>
+                <div className="font-medium text-sm text-foreground">{sector.name}</div>
                 <div className="text-xs text-muted-foreground">Weight: <span className="text-foreground font-medium">{sector.weight}%</span></div>
-                <div className={cn("text-xs font-semibold", trendColor)}>
+                <div className={cn("text-xs font-medium", trendColor)}>
                   {sector.trend === "bullish" ? "▲" : sector.trend === "neutral" ? "—" : "▼"} NOI {sector.noigrowth > 0 ? "+" : ""}{sector.noigrowth}% YoY
                 </div>
                 <div className="text-xs text-muted-foreground">Vacancy: <span className={sector.vacancyRate > 15 ? "text-red-400" : "text-muted-foreground"}>{sector.vacancyRate}%</span></div>
@@ -592,7 +592,7 @@ function PerformanceTab() {
 
       {/* Delinquency bar chart */}
       <div className="bg-muted/60 border border-border/50 rounded-xl p-5">
-        <h3 className="text-sm font-semibold text-foreground mb-4 flex items-center gap-2">
+        <h3 className="text-sm font-medium text-foreground mb-4 flex items-center gap-2">
           <BarChart3 className="w-4 h-4 text-red-400" />
           12-Month Delinquency Rate (30+ Days)
         </h3>
@@ -632,7 +632,7 @@ function PerformanceTab() {
       {/* Vintage loss rates + Prepayment speeds */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
         <div className="bg-muted/60 border border-border/50 rounded-xl p-5">
-          <h3 className="text-sm font-semibold text-foreground mb-4 flex items-center gap-2">
+          <h3 className="text-sm font-medium text-foreground mb-4 flex items-center gap-2">
             <TrendingDown className="w-4 h-4 text-red-400" />
             Realized Loss Rate by Vintage
           </h3>
@@ -646,7 +646,7 @@ function PerformanceTab() {
                     style={{ width: `${(v.lossRate / 4) * 100}%` }}
                   />
                 </div>
-                <span className={cn("w-10 text-right font-semibold", v.lossRate > 3 ? "text-red-400" : v.lossRate > 1.5 ? "text-amber-400" : "text-green-400")}>
+                <span className={cn("w-10 text-right font-medium", v.lossRate > 3 ? "text-red-400" : v.lossRate > 1.5 ? "text-amber-400" : "text-green-400")}>
                   {v.lossRate}%
                 </span>
               </div>
@@ -656,7 +656,7 @@ function PerformanceTab() {
         </div>
 
         <div className="bg-muted/60 border border-border/50 rounded-xl p-5">
-          <h3 className="text-sm font-semibold text-foreground mb-4 flex items-center gap-2">
+          <h3 className="text-sm font-medium text-foreground mb-4 flex items-center gap-2">
             <TrendingUp className="w-4 h-4 text-primary" />
             Prepayment Speeds by Property Type (CPR%)
           </h3>
@@ -669,7 +669,7 @@ function PerformanceTab() {
                   <div className="flex-1 bg-muted rounded-full h-2">
                     <div className="h-2 rounded-full transition-all" style={{ width: `${(p.cpr / 25) * 100}%`, backgroundColor: color }} />
                   </div>
-                  <span className="w-12 text-right font-semibold text-muted-foreground">{p.cpr}% CPR</span>
+                  <span className="w-12 text-right font-medium text-muted-foreground">{p.cpr}% CPR</span>
                 </div>
               );
             })}
@@ -740,7 +740,7 @@ function TradingTab() {
 
       {/* CMBX Spread Chart */}
       <div className="bg-muted/60 border border-border/50 rounded-xl p-5">
-        <h3 className="text-sm font-semibold text-foreground mb-4 flex items-center gap-2">
+        <h3 className="text-sm font-medium text-foreground mb-4 flex items-center gap-2">
           <Activity className="w-4 h-4 text-primary" />
           CMBX Index Spreads — 12 Month (IG vs HY)
         </h3>
@@ -778,7 +778,7 @@ function TradingTab() {
       {/* Bid/Ask liquidity table + Extension risk */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
         <div className="bg-muted/60 border border-border/50 rounded-xl p-5">
-          <h3 className="text-sm font-semibold text-foreground mb-4 flex items-center gap-2">
+          <h3 className="text-sm font-medium text-foreground mb-4 flex items-center gap-2">
             <DollarSign className="w-4 h-4 text-green-400" />
             Bid/Ask Liquidity by Tranche
           </h3>
@@ -799,7 +799,7 @@ function TradingTab() {
                   <td className="py-2 text-right text-green-400 font-mono">+{l.bid}</td>
                   <td className="py-2 text-right text-red-400 font-mono">+{l.ask}</td>
                   <td className="py-2 text-right text-amber-400 font-mono">{l.ask - l.bid}</td>
-                  <td className={cn("py-2 text-right font-semibold", depthColor[l.depth])}>{l.depth}</td>
+                  <td className={cn("py-2 text-right font-medium", depthColor[l.depth])}>{l.depth}</td>
                 </tr>
               ))}
             </tbody>
@@ -808,7 +808,7 @@ function TradingTab() {
         </div>
 
         <div className="bg-muted/60 border border-border/50 rounded-xl p-5 space-y-4">
-          <h3 className="text-sm font-semibold text-foreground flex items-center gap-2">
+          <h3 className="text-sm font-medium text-foreground flex items-center gap-2">
             <Clock className="w-4 h-4 text-orange-400" />
             Extension Risk Analysis — Office Sector
           </h3>
@@ -825,7 +825,7 @@ function TradingTab() {
                   <div className="text-xs text-muted-foreground">{item.label}</div>
                   <div className="text-xs text-muted-foreground">{item.note}</div>
                 </div>
-                <div className="text-sm font-bold text-orange-300 whitespace-nowrap">{item.value}</div>
+                <div className="text-sm font-medium text-orange-300 whitespace-nowrap">{item.value}</div>
               </div>
             ))}
           </div>
@@ -841,7 +841,7 @@ function TradingTab() {
       <div className="bg-muted/60 border border-border/50 rounded-xl overflow-hidden">
         <button
           onClick={() => setShowWorkflow(!showWorkflow)}
-          className="w-full flex items-center justify-between px-5 py-4 text-sm font-semibold text-foreground hover:bg-muted/30 transition-colors"
+          className="w-full flex items-center justify-between px-5 py-4 text-sm font-medium text-foreground hover:bg-muted/30 transition-colors"
         >
           <span className="flex items-center gap-2">
             <Layers className="w-4 h-4 text-primary" />
@@ -866,7 +866,7 @@ function TradingTab() {
                   { step: "4. Post-Trade", items: ["Update position risk systems", "Monitor servicer advances", "Watch delinquency triggers", "Report to PM & risk committee"], color: "border-border text-primary" },
                 ].map((phase) => (
                   <div key={phase.step} className={cn("border rounded-xl p-4 space-y-2", phase.color.split(" ")[0])}>
-                    <div className={cn("text-xs font-bold", phase.color.split(" ")[1])}>{phase.step}</div>
+                    <div className={cn("text-xs font-medium", phase.color.split(" ")[1])}>{phase.step}</div>
                     <ul className="space-y-1">
                       {phase.items.map((item) => (
                         <li key={item} className="flex items-start gap-1.5 text-xs text-muted-foreground">
@@ -890,14 +890,14 @@ function TradingTab() {
 export default function CMBSPage() {
   return (
     <div className="min-h-screen bg-background text-foreground p-4 md:p-6 lg:p-8">
-      {/* Header */}
-      <motion.div initial={{ opacity: 0, y: -16 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.4 }} className="mb-6">
+      {/* HERO Header */}
+      <motion.div initial={{ opacity: 0, y: -16 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.4 }} className="mb-8 border-l-4 border-l-primary rounded-xl bg-card p-6">
         <div className="flex items-start gap-4">
           <div className="p-3 rounded-xl bg-primary/15 border border-border">
             <Building2 className="w-6 h-6 text-primary" />
           </div>
           <div>
-            <h1 className="text-2xl font-bold text-foreground">Commercial Mortgage-Backed Securities</h1>
+            <h1 className="text-xl font-semibold text-foreground">Commercial Mortgage-Backed Securities</h1>
             <p className="text-sm text-muted-foreground mt-1">
               CMBS structure, DSCR/LTV analysis, property sectors, IO periods, and CMBS trading mechanics
             </p>

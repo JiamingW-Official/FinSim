@@ -642,7 +642,7 @@ export default function QuantRiskPage() {
                   </div>
                 </div>
                 <div className="pt-2 space-y-2 text-xs text-muted-foreground border-t border-border">
-                  <p className="font-semibold text-foreground">Assumptions</p>
+                  <p className="font-medium text-foreground">Assumptions</p>
                   <p>Daily vol (σ): 1.20%</p>
                   <p>Portfolio: $10M notional</p>
                   <p>Historical window: 500 days</p>
@@ -654,7 +654,7 @@ export default function QuantRiskPage() {
             {/* Table */}
             <Card className="border-border bg-card col-span-2">
               <CardHeader className="pb-2">
-                <CardTitle className="text-sm font-semibold flex items-center gap-2">
+                <CardTitle className="text-sm font-medium flex items-center gap-2">
                   <BarChart3 className="w-4 h-4 text-sky-500" />
                   VaR Comparison — {holdingLabels[holdingIdx]} Horizon
                 </CardTitle>
@@ -700,7 +700,7 @@ export default function QuantRiskPage() {
           {/* P&L histogram */}
           <Card className="border-border bg-card">
             <CardHeader className="pb-2">
-              <CardTitle className="text-sm font-semibold flex items-center gap-2">
+              <CardTitle className="text-sm font-medium flex items-center gap-2">
                 <BarChart3 className="w-4 h-4 text-primary" />
                 P&amp;L Distribution with VaR Threshold
               </CardTitle>
@@ -725,7 +725,7 @@ export default function QuantRiskPage() {
             {/* ES vs VaR panel */}
             <Card className="border-border bg-card">
               <CardHeader className="pb-2">
-                <CardTitle className="text-sm font-semibold flex items-center gap-2">
+                <CardTitle className="text-sm font-medium flex items-center gap-2">
                   <Target className="w-4 h-4 text-amber-500" />
                   ES vs VaR — All Confidence Levels
                 </CardTitle>
@@ -741,18 +741,18 @@ export default function QuantRiskPage() {
                   return (
                     <div key={cl} className="p-3 rounded-lg border border-border bg-muted/20">
                       <div className="flex justify-between mb-2">
-                        <span className="text-xs font-semibold text-foreground">Confidence: {cl}</span>
+                        <span className="text-xs font-medium text-foreground">Confidence: {cl}</span>
                         <Badge variant="outline" className="text-xs">ES/VaR ratio: {esRatio.toFixed(2)}x</Badge>
                       </div>
                       <div className="grid grid-cols-2 gap-3">
                         <div>
                           <div className="text-xs text-muted-foreground mb-1">VaR (Parametric)</div>
-                          <div className="text-base font-bold text-indigo-400">{fmtUSD(varAmt)}</div>
+                          <div className="text-base font-medium text-indigo-400">{fmtUSD(varAmt)}</div>
                           <Progress value={50} className="h-1.5 mt-1" />
                         </div>
                         <div>
                           <div className="text-xs text-muted-foreground mb-1">Exp. Shortfall</div>
-                          <div className="text-base font-bold text-red-400">{fmtUSD(esAmt)}</div>
+                          <div className="text-base font-medium text-red-400">{fmtUSD(esAmt)}</div>
                           <Progress value={50 * esRatio} className="h-1.5 mt-1" />
                         </div>
                       </div>
@@ -769,7 +769,7 @@ export default function QuantRiskPage() {
             {/* Backtesting */}
             <Card className="border-border bg-card">
               <CardHeader className="pb-2">
-                <CardTitle className="text-sm font-semibold flex items-center gap-2">
+                <CardTitle className="text-sm font-medium flex items-center gap-2">
                   <Activity className="w-4 h-4 text-sky-500" />
                   250-Day Backtesting
                 </CardTitle>
@@ -778,15 +778,15 @@ export default function QuantRiskPage() {
                 <TailLossChart backtestData={backtestData} />
                 <div className="grid grid-cols-3 gap-2 text-center">
                   <div className="p-2 rounded-lg bg-muted/20 border border-border">
-                    <div className="text-lg font-bold text-foreground">{exceptions}</div>
+                    <div className="text-lg font-medium text-foreground">{exceptions}</div>
                     <div className="text-xs text-muted-foreground">Exceptions</div>
                   </div>
                   <div className="p-2 rounded-lg bg-muted/20 border border-border">
-                    <div className="text-lg font-bold text-foreground">{fmtPct(exceptions / 250)}</div>
+                    <div className="text-lg font-medium text-foreground">{fmtPct(exceptions / 250)}</div>
                     <div className="text-xs text-muted-foreground">Exception rate</div>
                   </div>
                   <div className="p-2 rounded-lg bg-muted/20 border border-border">
-                    <div className="text-lg font-bold text-foreground">1%</div>
+                    <div className="text-lg font-medium text-foreground">1%</div>
                     <div className="text-xs text-muted-foreground">Expected rate</div>
                   </div>
                 </div>
@@ -794,7 +794,7 @@ export default function QuantRiskPage() {
                 <div className={`p-3 rounded-lg border text-xs flex items-center gap-2 ${trafficLight === "green" ? "border-emerald-500/40 bg-emerald-500/10 text-emerald-400" : trafficLight === "amber" ? "border-amber-500/40 bg-amber-500/10 text-amber-400" : "border-red-500/40 bg-red-500/10 text-red-400"}`}>
                   {trafficLight === "green" ? <CheckCircle className="w-4 h-4" /> : trafficLight === "amber" ? <AlertTriangle className="w-4 h-4" /> : <XCircle className="w-4 h-4" />}
                   <div>
-                    <span className="font-semibold capitalize">{trafficLight} zone</span>
+                    <span className="font-medium capitalize">{trafficLight} zone</span>
                     {" — "}
                     {trafficLight === "green" && "0–4 exceptions: model acceptable (Basel Zone 1)"}
                     {trafficLight === "amber" && "5–9 exceptions: model under scrutiny (Basel Zone 2)"}
@@ -808,7 +808,7 @@ export default function QuantRiskPage() {
           {/* ES interpretation card */}
           <Card className="border-border bg-card">
             <CardHeader className="pb-2">
-              <CardTitle className="text-sm font-semibold flex items-center gap-2">
+              <CardTitle className="text-sm font-medium flex items-center gap-2">
                 <Info className="w-4 h-4 text-indigo-400" />
                 FRTB Framework — ES Metrics
               </CardTitle>
@@ -823,7 +823,7 @@ export default function QuantRiskPage() {
                 ].map((m) => (
                   <div key={m.label} className="p-3 rounded-lg bg-muted/20 border border-border">
                     <div className="text-xs text-muted-foreground mb-1">{m.label}</div>
-                    <div className="text-lg font-bold text-foreground">{m.value}</div>
+                    <div className="text-lg font-medium text-foreground">{m.value}</div>
                     <div className="text-xs text-muted-foreground">{m.note}</div>
                   </div>
                 ))}
@@ -837,7 +837,7 @@ export default function QuantRiskPage() {
           <div className="grid grid-cols-1 lg:grid-cols-5 gap-4">
             {/* Scenario list */}
             <div className="space-y-2 lg:col-span-2">
-              <h3 className="text-xs font-semibold text-muted-foreground">Historical Scenarios</h3>
+              <h3 className="text-xs font-medium text-muted-foreground">Historical Scenarios</h3>
               {stressScenarios.map((sc, i) => (
                 <motion.div
                   key={sc.name}
@@ -851,7 +851,7 @@ export default function QuantRiskPage() {
                 >
                   <div className="flex justify-between items-start">
                     <div>
-                      <div className="text-sm font-semibold text-foreground">{sc.name}</div>
+                      <div className="text-sm font-medium text-foreground">{sc.name}</div>
                       <div className="text-xs text-muted-foreground">{sc.year}</div>
                     </div>
                     <Badge
@@ -885,7 +885,7 @@ export default function QuantRiskPage() {
             {/* Bar chart */}
             <Card className="border-border bg-card lg:col-span-3">
               <CardHeader className="pb-2">
-                <CardTitle className="text-sm font-semibold flex items-center gap-2">
+                <CardTitle className="text-sm font-medium flex items-center gap-2">
                   <TrendingDown className="w-4 h-4 text-red-500" />
                   Portfolio P&amp;L Impact by Scenario
                 </CardTitle>
@@ -893,7 +893,7 @@ export default function QuantRiskPage() {
               <CardContent>
                 <StressBarChart scenarios={stressScenarios} />
                 <div className="mt-4 space-y-2">
-                  <h4 className="text-xs font-semibold text-muted-foreground">FRTB Capital Requirements</h4>
+                  <h4 className="text-xs font-medium text-muted-foreground">FRTB Capital Requirements</h4>
                   {stressScenarios.map((sc) => (
                     <div key={sc.name} className="flex items-center gap-2">
                       <span className="text-xs text-muted-foreground w-28 shrink-0">{sc.name}</span>
@@ -901,7 +901,7 @@ export default function QuantRiskPage() {
                         value={sc.frtbCapital * 100}
                         className="flex-1 h-2"
                       />
-                      <span className="text-xs font-semibold tabular-nums w-12 text-right" style={{ color: sc.color }}>
+                      <span className="text-xs font-medium tabular-nums w-12 text-right" style={{ color: sc.color }}>
                         {fmtPct(sc.frtbCapital)}
                       </span>
                     </div>
@@ -914,7 +914,7 @@ export default function QuantRiskPage() {
           {/* Scenario comparison matrix */}
           <Card className="border-border bg-card">
             <CardHeader className="pb-2">
-              <CardTitle className="text-sm font-semibold flex items-center gap-2">
+              <CardTitle className="text-sm font-medium flex items-center gap-2">
                 <Zap className="w-4 h-4 text-amber-500" />
                 Cross-Scenario Risk Matrix
               </CardTitle>
@@ -936,13 +936,13 @@ export default function QuantRiskPage() {
                   <tbody>
                     {stressScenarios.map((sc) => (
                       <tr key={sc.name} className="border-b border-border/50 hover:bg-muted/20 transition-colors">
-                        <td className="py-2 font-semibold" style={{ color: sc.color }}>{sc.name} ({sc.year})</td>
+                        <td className="py-2 font-medium" style={{ color: sc.color }}>{sc.name} ({sc.year})</td>
                         <td className="py-2 text-right text-red-400 tabular-nums">{fmtPct(sc.portfolioLoss)}</td>
                         <td className="py-2 text-right text-red-400 tabular-nums">{fmtPct(sc.equityLoss)}</td>
                         <td className={`py-2 text-right tabular-nums ${sc.bondsGain >= 0 ? "text-emerald-400" : "text-red-400"}`}>{fmtPct(sc.bondsGain)}</td>
                         <td className="py-2 text-right text-red-400 tabular-nums">{fmtPct(sc.fxLoss)}</td>
                         <td className="py-2 text-right text-amber-400 tabular-nums">{fmtPct(sc.frtbCapital)}</td>
-                        <td className="py-2 text-right text-red-500 tabular-nums font-semibold">{fmtUSD(sc.portfolioLoss * portfolioValue)}</td>
+                        <td className="py-2 text-right text-red-500 tabular-nums font-medium">{fmtUSD(sc.portfolioLoss * portfolioValue)}</td>
                       </tr>
                     ))}
                   </tbody>
@@ -958,7 +958,7 @@ export default function QuantRiskPage() {
             {/* Pie + legend */}
             <Card className="border-border bg-card">
               <CardHeader className="pb-2">
-                <CardTitle className="text-sm font-semibold flex items-center gap-2">
+                <CardTitle className="text-sm font-medium flex items-center gap-2">
                   <PieChart className="w-4 h-4 text-indigo-500" />
                   Factor VaR Decomposition
                 </CardTitle>
@@ -976,7 +976,7 @@ export default function QuantRiskPage() {
                         <div className="flex-1">
                           <Progress value={(f.contribution / totalFactorContrib) * 100} className="h-1.5" />
                         </div>
-                        <span className="text-xs font-semibold tabular-nums w-10 text-right" style={{ color: f.color }}>
+                        <span className="text-xs font-medium tabular-nums w-10 text-right" style={{ color: f.color }}>
                           {f.contribution.toFixed(1)}%
                         </span>
                       </div>
@@ -992,7 +992,7 @@ export default function QuantRiskPage() {
             {/* Marginal VaR */}
             <Card className="border-border bg-card">
               <CardHeader className="pb-2">
-                <CardTitle className="text-sm font-semibold flex items-center gap-2">
+                <CardTitle className="text-sm font-medium flex items-center gap-2">
                   <Layers className="w-4 h-4 text-sky-500" />
                   Marginal VaR by Factor
                 </CardTitle>
@@ -1004,7 +1004,7 @@ export default function QuantRiskPage() {
                   return (
                     <div key={f.name} className="p-3 rounded-lg border border-border bg-muted/10 hover:bg-muted/20 transition-colors">
                       <div className="flex justify-between items-center mb-1.5">
-                        <span className="text-xs font-semibold" style={{ color: f.color }}>{f.name} Factor</span>
+                        <span className="text-xs font-medium" style={{ color: f.color }}>{f.name} Factor</span>
                         <div className="flex gap-2">
                           <Badge variant="outline" className="text-xs">{mvarPct.toFixed(3)}%</Badge>
                           <Badge variant="outline" className="text-xs">{fmtUSD(mvarUSD)}</Badge>
@@ -1024,7 +1024,7 @@ export default function QuantRiskPage() {
           {/* Component VaR table */}
           <Card className="border-border bg-card">
             <CardHeader className="pb-2">
-              <CardTitle className="text-sm font-semibold flex items-center gap-2">
+              <CardTitle className="text-sm font-medium flex items-center gap-2">
                 <BarChart3 className="w-4 h-4 text-primary" />
                 Component VaR — Position Level
               </CardTitle>
@@ -1051,17 +1051,17 @@ export default function QuantRiskPage() {
                       const compVaR = f.marginalVaR * notional;
                       return (
                         <tr key={f.name} className="border-b border-border/50 hover:bg-muted/20 transition-colors">
-                          <td className="py-2 font-semibold" style={{ color: f.color }}>{f.name}</td>
+                          <td className="py-2 font-medium" style={{ color: f.color }}>{f.name}</td>
                           <td className="py-2 text-right tabular-nums">{fmtUSD(notional)}</td>
                           <td className="py-2 text-right tabular-nums">{fmtPct(weight)}</td>
                           <td className="py-2 text-right tabular-nums">{betaVal.toFixed(2)}x</td>
                           <td className="py-2 text-right tabular-nums text-amber-400">{(f.marginalVaR * 100).toFixed(4)}%</td>
-                          <td className="py-2 text-right tabular-nums font-semibold">{fmtUSD(compVaR)}</td>
+                          <td className="py-2 text-right tabular-nums font-medium">{fmtUSD(compVaR)}</td>
                           <td className="py-2 text-right tabular-nums">{f.contribution.toFixed(1)}%</td>
                         </tr>
                       );
                     })}
-                    <tr className="font-bold border-t border-border">
+                    <tr className="font-medium border-t border-border">
                       <td className="py-2">Total Portfolio</td>
                       <td className="py-2 text-right tabular-nums">{fmtUSD(portfolioValue)}</td>
                       <td className="py-2 text-right">100%</td>

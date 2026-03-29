@@ -993,7 +993,7 @@ export default function StructuredNotesPage() {
           </div>
         </div>
         {/* Key metrics strip */}
-        <div className="mt-4 grid grid-cols-2 md:grid-cols-4 gap-3">
+        <div className="mt-4 grid grid-cols-2 md:grid-cols-4 gap-3 border-l-4 border-l-primary p-6 rounded-lg bg-card/40">
           {[
             {
               label: "Market Size",
@@ -1160,7 +1160,7 @@ export default function StructuredNotesPage() {
                     </div>
                     <div className="bg-muted/60 rounded-lg p-2 text-center">
                       <div
-                        className="text-sm font-bold"
+                        className="text-sm font-medium"
                         style={{ color: product.color }}
                       >
                         {product.barrierLevel > 0
@@ -1171,7 +1171,7 @@ export default function StructuredNotesPage() {
                     </div>
                     <div className="bg-muted/60 rounded-lg p-2 text-center">
                       <div
-                        className="text-sm font-bold"
+                        className="text-sm font-medium"
                         style={{ color: product.color }}
                       >
                         {product.coupon > 0 ? `${product.coupon}%` : "0%"}
@@ -1266,7 +1266,7 @@ export default function StructuredNotesPage() {
             {/* Controls */}
             <div className="space-y-5">
               <div className="bg-card border border-border rounded-xl p-4 space-y-5">
-                <h3 className="text-sm font-semibold text-foreground flex items-center gap-2">
+                <h3 className="text-sm font-medium text-foreground flex items-center gap-2">
                   <TrendingUp className="w-4 h-4 text-primary" />
                   Payoff Parameters
                 </h3>
@@ -1336,7 +1336,7 @@ export default function StructuredNotesPage() {
 
               {/* Key metrics */}
               <div className="bg-card border border-border rounded-xl p-4 space-y-3">
-                <h3 className="text-sm font-semibold text-foreground">
+                <h3 className="text-sm font-medium text-foreground">
                   Payoff Summary
                 </h3>
                 <div className="space-y-2">
@@ -1399,7 +1399,7 @@ export default function StructuredNotesPage() {
             {/* Payoff diagram */}
             <div className="lg:col-span-2 space-y-4">
               <div className="bg-card border border-border rounded-xl p-4">
-                <h3 className="text-sm font-semibold text-foreground mb-4 flex items-center gap-2">
+                <h3 className="text-sm font-medium text-foreground mb-4 flex items-center gap-2">
                   <BarChart3 className="w-4 h-4 text-primary" />
                   Payoff Diagram — Underlying vs Note Return
                 </h3>
@@ -1420,7 +1420,7 @@ export default function StructuredNotesPage() {
 
               {/* Scenarios */}
               <div className="bg-card border border-border rounded-xl p-4">
-                <h3 className="text-sm font-semibold text-foreground mb-3 flex items-center gap-2">
+                <h3 className="text-sm font-medium text-foreground mb-3 flex items-center gap-2">
                   <Activity className="w-4 h-4 text-primary" />
                   Scenario Analysis
                 </h3>
@@ -1440,7 +1440,7 @@ export default function StructuredNotesPage() {
             {/* Controls */}
             <div className="space-y-4">
               <div className="bg-card border border-border rounded-xl p-4 space-y-5">
-                <h3 className="text-sm font-semibold text-foreground flex items-center gap-2">
+                <h3 className="text-sm font-medium text-foreground flex items-center gap-2">
                   <DollarSign className="w-4 h-4 text-emerald-400" />
                   Pricing Inputs
                 </h3>
@@ -1507,7 +1507,7 @@ export default function StructuredNotesPage() {
 
               {/* Fair value vs offer */}
               <div className="bg-card border border-border rounded-xl p-4 space-y-3">
-                <h3 className="text-sm font-semibold text-foreground">
+                <h3 className="text-sm font-medium text-foreground">
                   Valuation Summary
                 </h3>
                 <div className="space-y-3">
@@ -1540,7 +1540,7 @@ export default function StructuredNotesPage() {
                     <div key={item.label} className="flex justify-between text-xs">
                       <span className="text-muted-foreground">{item.label}</span>
                       <span
-                        className="font-mono font-semibold"
+                        className="font-mono font-medium"
                         style={{ color: item.color }}
                       >
                         {item.sign}
@@ -1548,7 +1548,7 @@ export default function StructuredNotesPage() {
                       </span>
                     </div>
                   ))}
-                  <div className="border-t border-border pt-2 flex justify-between text-sm font-semibold">
+                  <div className="border-t border-border pt-2 flex justify-between text-sm font-medium">
                     <span className="text-foreground">Fair Value</span>
                     <span className="font-mono text-primary">
                       {fairValue.toFixed(2)}
@@ -1562,7 +1562,7 @@ export default function StructuredNotesPage() {
                   </div>
                   <div
                     className={cn(
-                      "flex justify-between text-xs font-semibold",
+                      "flex justify-between text-xs font-medium",
                       discount > 0 ? "text-red-400" : "text-emerald-400"
                     )}
                   >
@@ -1581,7 +1581,7 @@ export default function StructuredNotesPage() {
             {/* Waterfall chart + secondary market */}
             <div className="lg:col-span-2 space-y-4">
               <div className="bg-card border border-border rounded-xl p-4">
-                <h3 className="text-sm font-semibold text-foreground mb-4 flex items-center gap-2">
+                <h3 className="text-sm font-medium text-foreground mb-4 flex items-center gap-2">
                   <BarChart3 className="w-4 h-4 text-emerald-400" />
                   Component Decomposition — % of Face Value
                 </h3>
@@ -1604,7 +1604,7 @@ export default function StructuredNotesPage() {
               {/* Secondary market + liquidity */}
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <div className="bg-card border border-border rounded-xl p-4">
-                  <h3 className="text-sm font-semibold text-foreground mb-3 flex items-center gap-2">
+                  <h3 className="text-sm font-medium text-foreground mb-3 flex items-center gap-2">
                     <Activity className="w-4 h-4 text-amber-400" />
                     Secondary Market Dynamics
                   </h3>
@@ -1634,7 +1634,7 @@ export default function StructuredNotesPage() {
                 </div>
 
                 <div className="bg-card border border-border rounded-xl p-4">
-                  <h3 className="text-sm font-semibold text-foreground mb-3 flex items-center gap-2">
+                  <h3 className="text-sm font-medium text-foreground mb-3 flex items-center gap-2">
                     <Lock className="w-4 h-4 text-primary" />
                     Issuer Credit Impact
                   </h3>
@@ -1679,7 +1679,7 @@ export default function StructuredNotesPage() {
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
             {/* Risk factors */}
             <div className="bg-card border border-border rounded-xl p-4 space-y-4">
-              <h3 className="text-sm font-semibold text-foreground flex items-center gap-2">
+              <h3 className="text-sm font-medium text-foreground flex items-center gap-2">
                 <AlertTriangle className="w-4 h-4 text-amber-400" />
                 Risk Factor Scores (click to expand)
               </h3>
@@ -1696,7 +1696,7 @@ export default function StructuredNotesPage() {
 
             {/* Suitability matrix */}
             <div className="bg-card border border-border rounded-xl p-4">
-              <h3 className="text-sm font-semibold text-foreground mb-4 flex items-center gap-2">
+              <h3 className="text-sm font-medium text-foreground mb-4 flex items-center gap-2">
                 <Shield className="w-4 h-4 text-emerald-400" />
                 Investor Suitability Matrix
               </h3>
@@ -1749,7 +1749,7 @@ export default function StructuredNotesPage() {
 
               {/* Break-even analysis */}
               <div className="mt-4 p-3 bg-muted/40 rounded-lg">
-                <h4 className="text-xs font-semibold text-muted-foreground mb-2 flex items-center gap-1.5">
+                <h4 className="text-xs font-medium text-muted-foreground mb-2 flex items-center gap-1.5">
                   <TrendingUp className="w-3.5 h-3.5 text-primary" />
                   Break-Even Analysis (current settings)
                 </h4>
@@ -1776,7 +1776,7 @@ export default function StructuredNotesPage() {
                     <span>Break-even underlying</span>
                     <span
                       className={cn(
-                        "font-mono font-semibold",
+                        "font-mono font-medium",
                         breakEvenUnderlying === 0
                           ? "text-emerald-400"
                           : "text-amber-400"
@@ -1791,7 +1791,7 @@ export default function StructuredNotesPage() {
                     <span>Max loss at crash (−60%)</span>
                     <span
                       className={cn(
-                        "font-mono font-semibold",
+                        "font-mono font-medium",
                         capitalProtection >= 100
                           ? "text-emerald-400"
                           : "text-red-400"
@@ -1808,7 +1808,7 @@ export default function StructuredNotesPage() {
 
             {/* Scenario table */}
             <div className="lg:col-span-2 bg-card border border-border rounded-xl p-4">
-              <h3 className="text-sm font-semibold text-foreground mb-3 flex items-center gap-2">
+              <h3 className="text-sm font-medium text-foreground mb-3 flex items-center gap-2">
                 <BarChart3 className="w-4 h-4 text-primary" />
                 Full Scenario Table — Current Payoff Parameters
               </h3>
@@ -1847,7 +1847,7 @@ export default function StructuredNotesPage() {
                   >
                     <div className="flex items-center gap-2 mb-1.5">
                       {card.icon}
-                      <span className="text-xs font-semibold text-foreground">
+                      <span className="text-xs font-medium text-foreground">
                         {card.title}
                       </span>
                     </div>

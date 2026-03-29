@@ -1423,7 +1423,7 @@ function ExecutionTab() {
             ].map(({ q, imp, note }) => (
               <div key={q} className="bg-muted/40 rounded p-2 text-center">
                 <p className="text-muted-foreground">{q}</p>
-                <p className="text-primary font-bold">{imp}</p>
+                <p className="text-primary font-medium">{imp}</p>
                 <p className="text-muted-foreground text-xs">{note}</p>
               </div>
             ))}
@@ -1463,7 +1463,7 @@ function ExecutionTab() {
             ))}
           </div>
           <p className="text-xs text-muted-foreground mt-3">
-            Total IS: <span className="text-rose-400 font-bold">17.2 bps</span> vs arrival price.
+            Total IS: <span className="text-rose-400 font-medium">17.2 bps</span> vs arrival price.
             Post-trade TCA benchmarks this against VWAP, close, and PWP (pre-weighted price).
           </p>
         </CardContent>
@@ -1499,12 +1499,12 @@ function ExecutionTab() {
                     onClick={() => setSelectedAlgo(a)}
                   >
                     <td className="px-4 py-2">
-                      <p className={`font-bold ${a.color}`}>{a.name}</p>
+                      <p className={`font-medium ${a.color}`}>{a.name}</p>
                       <p className="text-muted-foreground text-xs">{a.fullName}</p>
                     </td>
                     <td className="px-3 py-2 text-muted-foreground">{a.objective}</td>
                     <td className="px-3 py-2 text-muted-foreground">{a.bestFor}</td>
-                    <td className={`px-3 py-2 text-right font-mono font-bold ${a.avgPI < 4 ? "text-emerald-400" : "text-amber-400"}`}>
+                    <td className={`px-3 py-2 text-right font-mono font-medium ${a.avgPI < 4 ? "text-emerald-400" : "text-amber-400"}`}>
                       {a.avgPI.toFixed(1)}
                     </td>
                     <td className={`px-3 py-2 text-right font-medium ${complexityColor(a.complexity)}`}>
@@ -1641,7 +1641,7 @@ export default function QuantStrategies2Page() {
               className="flex items-center gap-2 bg-card border border-border rounded-lg px-3 py-1.5 text-xs"
             >
               <span className="text-muted-foreground">{label}</span>
-              <span className={`font-bold ${color}`}>{value}</span>
+              <span className={`font-medium ${color}`}>{value}</span>
             </div>
           ))}
         </div>

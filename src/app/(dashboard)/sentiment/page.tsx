@@ -453,7 +453,7 @@ function CotBar({ entry }: { entry: CotEntry }) {
           {ncPct > 12 ? `${ncPct.toFixed(0)}%` : ""}
         </div>
         <div
-          className="flex items-center justify-center text-[11px] font-bold text-foreground"
+          className="flex items-center justify-center text-[11px] font-medium text-foreground"
           style={{
             width: `${ssPct}%`,
             background: "#8b5cf6",
@@ -481,7 +481,7 @@ function BreadthGauge({
     <div className="flex flex-col items-center gap-1">
       <MiniGauge value={value} size={64} />
       <div className="text-center">
-        <div className="text-sm font-bold" style={{ color }}>
+        <div className="text-sm font-medium" style={{ color }}>
           {value}%
         </div>
         <div className="text-xs text-muted-foreground leading-tight">{label}</div>
@@ -906,13 +906,13 @@ export default function SentimentPage() {
         initial={{ opacity: 0, y: -12 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.4 }}
-        className="flex items-center gap-3"
+        className="flex items-center gap-3 border-l-4 border-l-primary p-6 rounded-lg bg-card/40"
       >
         <div className="p-2 rounded-lg bg-primary/15">
           <Brain className="h-5 w-5 text-primary" />
         </div>
         <div>
-          <h1 className="text-lg font-bold text-foreground">
+          <h1 className="text-lg font-medium text-foreground">
             Market Psychology & Sentiment
           </h1>
           <p className="text-xs text-muted-foreground">
@@ -1008,7 +1008,7 @@ export default function SentimentPage() {
                       <MiniGauge value={ind.value} size={52} />
                       <div className="text-center">
                         <div
-                          className="text-sm font-bold"
+                          className="text-sm font-medium"
                           style={{ color: getFgColor(ind.value) }}
                         >
                           {ind.value}
@@ -1093,7 +1093,7 @@ export default function SentimentPage() {
                       className="bg-muted/60 rounded-lg p-2"
                     >
                       <div
-                        className="text-xl font-bold"
+                        className="text-xl font-medium"
                         style={{ color: d.color }}
                       >
                         {d.value}%
@@ -1105,7 +1105,7 @@ export default function SentimentPage() {
                 {/* 3-segment bar */}
                 <div className="flex h-6 rounded overflow-hidden">
                   <div
-                    className="flex items-center justify-center text-xs font-bold text-foreground"
+                    className="flex items-center justify-center text-xs font-medium text-foreground"
                     style={{
                       width: `${aaiiData.bulls}%`,
                       background: "#22c55e",
@@ -1114,7 +1114,7 @@ export default function SentimentPage() {
                     {aaiiData.bulls}%
                   </div>
                   <div
-                    className="flex items-center justify-center text-xs font-bold text-foreground"
+                    className="flex items-center justify-center text-xs font-medium text-foreground"
                     style={{
                       width: `${aaiiData.neutral}%`,
                       background: "#eab308",
@@ -1123,7 +1123,7 @@ export default function SentimentPage() {
                     {aaiiData.neutral}%
                   </div>
                   <div
-                    className="flex items-center justify-center text-xs font-bold text-foreground"
+                    className="flex items-center justify-center text-xs font-medium text-foreground"
                     style={{
                       width: `${aaiiData.bears}%`,
                       background: "#ef4444",
@@ -1196,7 +1196,7 @@ export default function SentimentPage() {
                     { label: "P/C < 0.7", meaning: "Extreme complacency — bearish signal", color: "text-red-400" },
                   ].map((r) => (
                     <div key={r.label} className="flex gap-2 items-start text-[11px]">
-                      <span className={cn("font-mono font-bold flex-shrink-0 w-20", r.color)}>
+                      <span className={cn("font-mono font-medium flex-shrink-0 w-20", r.color)}>
                         {r.label}
                       </span>
                       <span className="text-muted-foreground">{r.meaning}</span>
@@ -1249,7 +1249,7 @@ export default function SentimentPage() {
                       key={s.ticker}
                       className="grid grid-cols-4 text-xs py-0.5"
                     >
-                      <span className="font-mono font-bold text-foreground">
+                      <span className="font-mono font-medium text-foreground">
                         {s.ticker}
                       </span>
                       <span className="text-right text-amber-400">
@@ -1352,7 +1352,7 @@ export default function SentimentPage() {
                       </div>
                       <div
                         className={cn(
-                          "text-xl font-bold mt-0.5",
+                          "text-xl font-medium mt-0.5",
                           mclellanOscillator > 0
                             ? "text-emerald-400"
                             : "text-red-400",
@@ -1415,7 +1415,7 @@ export default function SentimentPage() {
                         <td className="py-1.5 text-muted-foreground pr-4">{s.sector}</td>
                         <td className="text-center py-1.5 px-2">
                           <span
-                            className="inline-block px-2 py-0.5 rounded text-xs font-bold"
+                            className="inline-block px-2 py-0.5 rounded text-xs font-medium"
                             style={{
                               background: heatColor(s.above50ma) + "28",
                               color: heatColor(s.above50ma),
@@ -1426,7 +1426,7 @@ export default function SentimentPage() {
                         </td>
                         <td className="text-center py-1.5 px-2">
                           <span
-                            className="inline-block px-2 py-0.5 rounded text-xs font-bold"
+                            className="inline-block px-2 py-0.5 rounded text-xs font-medium"
                             style={{
                               background: heatColor(s.above200ma) + "28",
                               color: heatColor(s.above200ma),
@@ -1437,7 +1437,7 @@ export default function SentimentPage() {
                         </td>
                         <td className="text-center py-1.5 px-2">
                           <span
-                            className="inline-block px-2 py-0.5 rounded text-xs font-bold"
+                            className="inline-block px-2 py-0.5 rounded text-xs font-medium"
                             style={{
                               background: heatColor(s.rsiAvg, 30, 70) + "28",
                               color: heatColor(s.rsiAvg, 30, 70),
@@ -1526,7 +1526,7 @@ export default function SentimentPage() {
                   </div>
                   {darkPoolData.map((d) => (
                     <div key={d.ticker} className="grid grid-cols-3 text-xs py-0.5 items-center">
-                      <span className="font-mono font-bold text-foreground">{d.ticker}</span>
+                      <span className="font-mono font-medium text-foreground">{d.ticker}</span>
                       <div className="flex items-center justify-end gap-2">
                         <div className="w-16 h-1.5 bg-muted rounded overflow-hidden">
                           <div
@@ -1566,7 +1566,7 @@ export default function SentimentPage() {
                 <CardContent className="space-y-2">
                   <div className="flex h-6 rounded overflow-hidden">
                     <div
-                      className="flex items-center justify-center text-xs font-bold text-foreground"
+                      className="flex items-center justify-center text-xs font-medium text-foreground"
                       style={{
                         width: `${(insiderRatio.buying / (insiderRatio.buying + insiderRatio.selling)) * 100}%`,
                         background: "#22c55e",
@@ -1575,7 +1575,7 @@ export default function SentimentPage() {
                       Buy {insiderRatio.buying}%
                     </div>
                     <div
-                      className="flex items-center justify-center text-xs font-bold text-foreground"
+                      className="flex items-center justify-center text-xs font-medium text-foreground"
                       style={{
                         width: `${(insiderRatio.selling / (insiderRatio.buying + insiderRatio.selling)) * 100}%`,
                         background: "#ef4444",
@@ -1601,7 +1601,7 @@ export default function SentimentPage() {
                     {hedgeFundMoves.map((m) => (
                       <div key={m.fund} className="flex items-center justify-between text-[11px]">
                         <span className="text-muted-foreground w-28 flex-shrink-0">{m.fund}</span>
-                        <span className="font-mono font-bold text-foreground">{m.ticker}</span>
+                        <span className="font-mono font-medium text-foreground">{m.ticker}</span>
                         <Badge
                           className={cn(
                             "text-[11px] py-0",
@@ -1715,7 +1715,7 @@ export default function SentimentPage() {
                 {socialTickers.map((s) => (
                   <div key={s.ticker} className="space-y-0.5">
                     <div className="flex justify-between text-xs">
-                      <span className="font-mono font-bold text-muted-foreground w-12">{s.ticker}</span>
+                      <span className="font-mono font-medium text-muted-foreground w-12">{s.ticker}</span>
                       <span className="text-muted-foreground">{s.mentions.toLocaleString()} mentions</span>
                       <div className="flex gap-2">
                         <span className="text-emerald-400">{s.bull}% bull</span>
@@ -1797,7 +1797,7 @@ export default function SentimentPage() {
                   </div>
                   <div className="flex h-3 rounded overflow-hidden gap-0.5">
                     <div
-                      className="bg-emerald-500 rounded-l flex items-center justify-center text-[11px] text-foreground font-bold"
+                      className="bg-emerald-500 rounded-l flex items-center justify-center text-[11px] text-foreground font-medium"
                       style={{ width: `${q.agree}%` }}
                     >
                       {q.agree > 15 ? `${q.agree}%` : ""}
@@ -1809,7 +1809,7 @@ export default function SentimentPage() {
                       {q.neutral > 10 ? `${q.neutral}%` : ""}
                     </div>
                     <div
-                      className="bg-red-500 rounded-r flex items-center justify-center text-[11px] text-foreground font-bold"
+                      className="bg-red-500 rounded-r flex items-center justify-center text-[11px] text-foreground font-medium"
                       style={{ width: `${q.disagree}%` }}
                     >
                       {q.disagree > 15 ? `${q.disagree}%` : ""}

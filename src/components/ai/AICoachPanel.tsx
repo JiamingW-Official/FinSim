@@ -416,7 +416,7 @@ const REGIME_CLASSES: Record<string, { bg: string; text: string; border: string 
 const CONVICTION_CLASSES: Record<string, { bg: string; text: string; border: string }> = {
   high:   { bg: "bg-primary/15",   text: "text-primary",          border: "border-primary/30" },
   medium: { bg: "bg-orange-500/15", text: "text-orange-400",       border: "border-orange-500/30" },
-  low:    { bg: "bg-muted",         text: "text-muted-foreground", border: "border-border" },
+  low:    { bg: "bg-muted",         text: "text-muted-foreground", border: "border-border/40" },
 };
 
 // ─── Multi-Timeframe Confluence Panel ────────────────────────────────────────

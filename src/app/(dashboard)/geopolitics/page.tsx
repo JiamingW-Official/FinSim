@@ -823,7 +823,7 @@ function SanctionsTradeTab() {
               {/* SWIFT impact table */}
               <Card className="bg-card border-border">
                 <CardHeader className="pb-1">
-                  <CardTitle className="text-sm font-semibold text-muted-foreground">Russia: Key Metrics Before/After SWIFT Exclusion</CardTitle>
+                  <CardTitle className="text-sm font-medium text-muted-foreground">Russia: Key Metrics Before/After SWIFT Exclusion</CardTitle>
                 </CardHeader>
                 <CardContent className="p-0">
                   <table className="w-full text-xs">
@@ -858,7 +858,7 @@ function SanctionsTradeTab() {
             <div className="space-y-4">
               <Card className="bg-card border-border">
                 <CardHeader className="pb-2">
-                  <CardTitle className="text-sm font-semibold text-muted-foreground flex items-center gap-2">
+                  <CardTitle className="text-sm font-medium text-muted-foreground flex items-center gap-2">
                     <DollarSign className="w-4 h-4 text-amber-400" />
                     USD Share of Global FX Reserves 2000–2024
                   </CardTitle>
@@ -874,7 +874,7 @@ function SanctionsTradeTab() {
                     ].map(({ label, value, color }) => (
                       <div key={label} className="bg-muted rounded p-2.5">
                         <div className="text-muted-foreground mb-0.5">{label}</div>
-                        <div className={cn("font-semibold", color)}>{value}</div>
+                        <div className={cn("font-medium", color)}>{value}</div>
                       </div>
                     ))}
                   </div>
@@ -890,7 +890,7 @@ function SanctionsTradeTab() {
 
               <Card className="bg-card border-border">
                 <CardHeader className="pb-2">
-                  <CardTitle className="text-sm font-semibold text-muted-foreground">Currency Weaponization — Escalation Ladder</CardTitle>
+                  <CardTitle className="text-sm font-medium text-muted-foreground">Currency Weaponization — Escalation Ladder</CardTitle>
                 </CardHeader>
                 <CardContent>
                   <div className="space-y-2 text-xs">
@@ -919,7 +919,7 @@ function SanctionsTradeTab() {
             <div className="space-y-4">
               <Card className="bg-card border-border">
                 <CardHeader className="pb-2">
-                  <CardTitle className="text-sm font-semibold text-muted-foreground flex items-center gap-2">
+                  <CardTitle className="text-sm font-medium text-muted-foreground flex items-center gap-2">
                     <Cpu className="w-4 h-4 text-primary" />
                     US–China Technology Decoupling Timeline
                   </CardTitle>
@@ -930,7 +930,7 @@ function SanctionsTradeTab() {
                     {DECOUPLING_EVENTS.map((evt, i) => (
                       <div key={i} className="flex gap-4 relative">
                         <div
-                          className="w-16 text-xs font-bold flex-shrink-0 pt-0.5"
+                          className="w-16 text-xs font-medium flex-shrink-0 pt-0.5"
                           style={{ color: evt.impact === "high" ? "#ef4444" : evt.impact === "medium" ? "#f59e0b" : "#22c55e" }}
                         >
                           {evt.year}
@@ -962,7 +962,7 @@ function SanctionsTradeTab() {
 
               <Card className="bg-card border-border">
                 <CardHeader className="pb-2">
-                  <CardTitle className="text-sm font-semibold text-muted-foreground flex items-center gap-2">
+                  <CardTitle className="text-sm font-medium text-muted-foreground flex items-center gap-2">
                     <Anchor className="w-4 h-4 text-green-400" />
                     Friend-Shoring & Supply Chain Realignment
                   </CardTitle>
@@ -990,7 +990,7 @@ function SanctionsTradeTab() {
                       },
                     ].map(({ region, color, plays, risk }) => (
                       <div key={region} className="rounded p-3" style={{ background: color + "11", border: `1px solid ${color}33` }}>
-                        <div className="font-semibold mb-2" style={{ color }}>{region}</div>
+                        <div className="font-medium mb-2" style={{ color }}>{region}</div>
                         {plays.map(p => (
                           <div key={p} className="text-muted-foreground flex items-start gap-1 mb-0.5">
                             <span style={{ color }} className="mt-0.5">•</span> {p}
@@ -1033,7 +1033,7 @@ function RiskPremiumTab() {
       {/* GPR chart */}
       <Card className="bg-card border-border">
         <CardHeader className="pb-2">
-          <CardTitle className="text-sm font-semibold text-muted-foreground flex items-center gap-2">
+          <CardTitle className="text-sm font-medium text-muted-foreground flex items-center gap-2">
             <Activity className="w-4 h-4 text-orange-400" />
             Geopolitical Risk Index (GPR) — Quarterly 2015–2024
           </CardTitle>
@@ -1050,7 +1050,7 @@ function RiskPremiumTab() {
               { label: "Peak (Ukraine 2022)", value: "248", color: "text-red-400" },
             ].map(({ label, value, color }) => (
               <div key={label} className="bg-muted rounded p-2.5 text-center">
-                <div className={cn("text-lg font-bold", color)}>{value}</div>
+                <div className={cn("text-lg font-medium", color)}>{value}</div>
                 <div className="text-muted-foreground">{label}</div>
               </div>
             ))}
@@ -1062,7 +1062,7 @@ function RiskPremiumTab() {
         {/* Oil price response */}
         <Card className="bg-card border-border">
           <CardHeader className="pb-2">
-            <CardTitle className="text-sm font-semibold text-muted-foreground flex items-center gap-2">
+            <CardTitle className="text-sm font-medium text-muted-foreground flex items-center gap-2">
               <Flame className="w-4 h-4 text-amber-400" />
               Oil Price Response Function
             </CardTitle>
@@ -1083,7 +1083,7 @@ function RiskPremiumTab() {
         {/* Safe haven flows */}
         <Card className="bg-card border-border">
           <CardHeader className="pb-2">
-            <CardTitle className="text-sm font-semibold text-muted-foreground flex items-center gap-2">
+            <CardTitle className="text-sm font-medium text-muted-foreground flex items-center gap-2">
               <Anchor className="w-4 h-4 text-primary" />
               Safe Haven Asset Performance During Geo-Events
             </CardTitle>
@@ -1109,7 +1109,7 @@ function RiskPremiumTab() {
       {/* Sector impact matrix */}
       <Card className="bg-card border-border">
         <CardHeader className="pb-2">
-          <CardTitle className="text-sm font-semibold text-muted-foreground flex items-center gap-2">
+          <CardTitle className="text-sm font-medium text-muted-foreground flex items-center gap-2">
             <Layers className="w-4 h-4 text-primary" />
             Sector Impact by Geopolitical Scenario (Standard Deviations from Normal)
           </CardTitle>
@@ -1151,7 +1151,7 @@ function RiskPremiumTab() {
       {/* GPR pricing across asset classes */}
       <Card className="bg-card border-border">
         <CardHeader className="pb-2">
-          <CardTitle className="text-sm font-semibold text-muted-foreground flex items-center gap-2">
+          <CardTitle className="text-sm font-medium text-muted-foreground flex items-center gap-2">
             <BarChart2 className="w-4 h-4 text-primary" />
             Geopolitical Risk Pricing Across Asset Classes
           </CardTitle>
@@ -1196,7 +1196,7 @@ function RiskPremiumTab() {
               <div key={asset} className="bg-muted rounded p-3">
                 <div className="flex items-center gap-2 mb-2" style={{ color }}>
                   {icon}
-                  <span className="font-semibold">{asset}</span>
+                  <span className="font-medium">{asset}</span>
                 </div>
                 {points.map((p, i) => (
                   <div key={i} className="text-muted-foreground flex gap-1 mb-1">
@@ -1232,7 +1232,7 @@ function PortfolioPositioningTab() {
                 : "bg-card border-border hover:border-border"
             )}
           >
-            <div className="font-semibold text-foreground leading-snug mb-1">{sc.name}</div>
+            <div className="font-medium text-foreground leading-snug mb-1">{sc.name}</div>
             <div className="text-muted-foreground">Prob: {sc.probability}%</div>
           </button>
         ))}
@@ -1249,7 +1249,7 @@ function PortfolioPositioningTab() {
           <Card className="bg-card border-red-900/40">
             <CardHeader className="pb-2">
               <div className="flex items-start justify-between">
-                <CardTitle className="text-sm font-semibold text-red-300 flex items-center gap-2">
+                <CardTitle className="text-sm font-medium text-red-300 flex items-center gap-2">
                   <ShieldAlert className="w-4 h-4" />
                   Stress Test: {selectedScenario.name}
                 </CardTitle>
@@ -1265,14 +1265,14 @@ function PortfolioPositioningTab() {
                   { label: "VIX Spike", value: `~${selectedScenario.vixSpike}`, color: "text-red-400" },
                 ].map(({ label, value, color }) => (
                   <div key={label} className="bg-muted rounded p-2.5 text-center">
-                    <div className={cn("text-xl font-bold", color)}>{value}</div>
+                    <div className={cn("text-xl font-medium", color)}>{value}</div>
                     <div className="text-muted-foreground mt-0.5">{label}</div>
                   </div>
                 ))}
               </div>
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div>
-                  <div className="text-xs font-semibold text-green-400 mb-2 flex items-center gap-1.5">
+                  <div className="text-xs font-medium text-green-400 mb-2 flex items-center gap-1.5">
                     <TrendingUp className="w-3.5 h-3.5" /> Recommended Hedges
                   </div>
                   {selectedScenario.hedges.map(h => (
@@ -1282,7 +1282,7 @@ function PortfolioPositioningTab() {
                   ))}
                 </div>
                 <div>
-                  <div className="text-xs font-semibold text-primary mb-2 flex items-center gap-1.5">
+                  <div className="text-xs font-medium text-primary mb-2 flex items-center gap-1.5">
                     <Target className="w-3.5 h-3.5" /> Potential Beneficiaries
                   </div>
                   {selectedScenario.positives.map(p => (
@@ -1300,7 +1300,7 @@ function PortfolioPositioningTab() {
       {/* Hedge strategy table */}
       <Card className="bg-card border-border">
         <CardHeader className="pb-2">
-          <CardTitle className="text-sm font-semibold text-muted-foreground flex items-center gap-2">
+          <CardTitle className="text-sm font-medium text-muted-foreground flex items-center gap-2">
             <ShieldAlert className="w-4 h-4 text-green-400" />
             Geopolitical Hedge Strategies — Effectiveness Comparison
           </CardTitle>
@@ -1352,7 +1352,7 @@ function PortfolioPositioningTab() {
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
         <Card className="bg-card border-border">
           <CardHeader className="pb-2">
-            <CardTitle className="text-sm font-semibold text-muted-foreground flex items-center gap-2">
+            <CardTitle className="text-sm font-medium text-muted-foreground flex items-center gap-2">
               <Globe className="w-4 h-4 text-primary" />
               Geopolitical Diversification Metrics
             </CardTitle>
@@ -1389,7 +1389,7 @@ function PortfolioPositioningTab() {
 
         <Card className="bg-card border-border">
           <CardHeader className="pb-2">
-            <CardTitle className="text-sm font-semibold text-muted-foreground flex items-center gap-2">
+            <CardTitle className="text-sm font-medium text-muted-foreground flex items-center gap-2">
               <AlertTriangle className="w-4 h-4 text-amber-400" />
               Multinational Revenue Exposure Analysis
             </CardTitle>
@@ -1438,7 +1438,7 @@ function PortfolioPositioningTab() {
         <CardContent className="p-4 flex items-start gap-3 text-xs">
           <Info className="w-4 h-4 text-amber-400 flex-shrink-0 mt-0.5" />
           <div>
-            <div className="font-semibold text-amber-300 mb-1">Political Risk Insurance (PRI)</div>
+            <div className="font-medium text-amber-300 mb-1">Political Risk Insurance (PRI)</div>
             <div className="text-muted-foreground space-y-1">
               <div>Offered by MIGA (World Bank), OPIC/DFC, Lloyd's syndicates, and AIG. Covers expropriation, currency inconvertibility, political violence, and contract frustration.</div>
               <div className="mt-1 grid grid-cols-2 gap-2">

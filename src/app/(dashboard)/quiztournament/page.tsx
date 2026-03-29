@@ -993,7 +993,7 @@ function QuestionCard({
                 variantClass
               )}
             >
-              <span className="flex-shrink-0 w-6 h-6 rounded-full bg-muted border border-border text-xs flex items-center justify-center font-bold text-muted-foreground">
+              <span className="flex-shrink-0 w-6 h-6 rounded-full bg-muted border border-border text-xs flex items-center justify-center font-medium text-muted-foreground">
                 {optionLetters[idx]}
               </span>
               <span className="text-sm text-foreground">{opt}</span>
@@ -1105,7 +1105,7 @@ function FinalScoreScreen({
           initial={{ scale: 0 }}
           animate={{ scale: 1 }}
           transition={{ type: "spring", stiffness: 200, delay: 0.1 }}
-          className={cn("text-7xl font-bold mb-2", color)}
+          className={cn("text-7xl font-medium mb-2", color)}
         >
           {grade}
         </motion.div>
@@ -1250,7 +1250,7 @@ function DailyChallengeTab() {
           <div className="text-2xl mb-3">
             <Brain className="h-12 w-12 text-primary mx-auto" />
           </div>
-          <h2 className="text-xl font-bold text-foreground">Daily Challenge</h2>
+          <h2 className="text-xl font-medium text-foreground">Daily Challenge</h2>
           <p className="text-muted-foreground text-sm mt-1">
             10 questions · 30 seconds each · New questions every day
           </p>
@@ -1266,15 +1266,15 @@ function DailyChallengeTab() {
         <Card className="bg-muted/50 border-border/40 p-4 w-full max-w-sm">
           <div className="grid grid-cols-3 gap-3 text-center">
             <div>
-              <div className="text-lg font-bold text-foreground">10</div>
+              <div className="text-lg font-medium text-foreground">10</div>
               <div className="text-xs text-muted-foreground">Questions</div>
             </div>
             <div>
-              <div className="text-lg font-bold text-foreground">30s</div>
+              <div className="text-lg font-medium text-foreground">30s</div>
               <div className="text-xs text-muted-foreground">Per Question</div>
             </div>
             <div>
-              <div className="text-lg font-bold text-yellow-400">150</div>
+              <div className="text-lg font-medium text-yellow-400">150</div>
               <div className="text-xs text-muted-foreground">Max Points</div>
             </div>
           </div>
@@ -1390,7 +1390,7 @@ function WeeklyLeagueTab() {
             </div>
             <div className="text-right">
               <div className="text-xs text-muted-foreground mb-0.5">Weekly Score</div>
-              <div className="text-xl font-bold text-yellow-400">{userPlayer.weeklyScore.toLocaleString()}</div>
+              <div className="text-xl font-medium text-yellow-400">{userPlayer.weeklyScore.toLocaleString()}</div>
             </div>
             <div className="text-right">
               <div className="text-xs text-muted-foreground mb-0.5">7-Day Trend</div>
@@ -1426,7 +1426,7 @@ function WeeklyLeagueTab() {
                 s.status === "upcoming" && "bg-muted/50 border-border/40"
               )}
             >
-              <span className="text-xs font-bold text-muted-foreground">{s.day}</span>
+              <span className="text-xs font-medium text-muted-foreground">{s.day}</span>
               <span className={cn("text-xs",
                 s.status === "done" ? "text-green-400" :
                 s.status === "today" ? "text-primary" : "text-muted-foreground"
@@ -1483,7 +1483,7 @@ function WeeklyLeagueTab() {
             </div>
             <div className="flex-1 min-w-0">
               <div className="flex items-center gap-1.5">
-                <span className={cn("text-sm font-semibold", player.isUser ? "text-primary" : "text-foreground")}>
+                <span className={cn("text-sm font-medium", player.isUser ? "text-primary" : "text-foreground")}>
                   {player.username}
                 </span>
                 <span className={cn("text-xs font-medium", TIER_COLOR[player.tier])}>
@@ -1495,7 +1495,7 @@ function WeeklyLeagueTab() {
               data={player.trend}
               color={player.trend[player.trend.length - 1] > player.trend[0] ? "#22c55e" : "#ef4444"}
             />
-            <div className="text-sm font-bold text-yellow-400 tabular-nums w-16 text-right">
+            <div className="text-sm font-medium text-yellow-400 tabular-nums w-16 text-right">
               {player.weeklyScore.toLocaleString()}
             </div>
           </div>
@@ -1504,12 +1504,12 @@ function WeeklyLeagueTab() {
 
       {/* Prize structure */}
       <div>
-        <div className="text-xs font-semibold text-muted-foreground mb-2">Weekly Prizes</div>
+        <div className="text-xs font-medium text-muted-foreground mb-2">Weekly Prizes</div>
         <div className="grid grid-cols-5 gap-2">
           {prizes.map((p) => (
             <div key={p.rank} className="bg-muted/50 border border-border/40 rounded-lg p-2 text-center">
-              <div className="text-xs font-bold text-muted-foreground">{p.rank}</div>
-              <div className="text-sm font-bold text-primary">+{p.xp}</div>
+              <div className="text-xs font-medium text-muted-foreground">{p.rank}</div>
+              <div className="text-sm font-medium text-primary">+{p.xp}</div>
               <div className="text-xs text-muted-foreground">XP</div>
             </div>
           ))}
@@ -1622,7 +1622,7 @@ function SpeedRoundTab() {
       <div className="flex flex-col items-center gap-6 py-8">
         <div className="text-center">
           <Zap className="h-12 w-12 text-yellow-400 mx-auto mb-3" />
-          <h2 className="text-xl font-bold text-foreground">Speed Round</h2>
+          <h2 className="text-xl font-medium text-foreground">Speed Round</h2>
           <p className="text-muted-foreground text-sm mt-1">20 questions · 15 seconds each · No pauses</p>
           {personalBest > 0 && (
             <div className="mt-2 inline-flex items-center gap-1 text-yellow-400 text-sm">
@@ -1646,17 +1646,17 @@ function SpeedRoundTab() {
           ))}
         </div>
         <Card className="bg-muted/50 border-border/40 p-4 w-full max-w-sm">
-          <div className="text-xs text-muted-foreground font-semibold uppercase mb-2">Multiplier Ladder</div>
+          <div className="text-xs text-muted-foreground font-medium uppercase mb-2">Multiplier Ladder</div>
           <div className="flex gap-2">
             {[1, 2, 3, 5].map((m) => (
               <div key={m} className="flex-1 text-center p-2 rounded bg-muted/50 border border-border/40">
-                <div className="text-sm font-bold text-yellow-400">{m}×</div>
+                <div className="text-sm font-medium text-yellow-400">{m}×</div>
                 <div className="text-xs text-muted-foreground">{m === 1 ? "Start" : m === 2 ? "2-in-a-row" : m === 3 ? "4-in-a-row" : "8+"}</div>
               </div>
             ))}
           </div>
         </Card>
-        <Button onClick={startRound} className="bg-yellow-500 hover:bg-yellow-400 text-black font-bold px-8">
+        <Button onClick={startRound} className="bg-yellow-500 hover:bg-yellow-400 text-black font-medium px-8">
           <Zap className="h-4 w-4 mr-2" />
           Start Speed Round
         </Button>
@@ -1678,11 +1678,11 @@ function SpeedRoundTab() {
           )}
           <div className="flex justify-center gap-6 mt-4">
             <div className="text-center">
-              <div className="text-lg font-bold text-foreground">{correct}/{answers.length}</div>
+              <div className="text-lg font-medium text-foreground">{correct}/{answers.length}</div>
               <div className="text-xs text-muted-foreground">Correct</div>
             </div>
             <div className="text-center">
-              <div className="text-lg font-bold text-orange-400">{Math.max(...answers.map((_, i) => {
+              <div className="text-lg font-medium text-orange-400">{Math.max(...answers.map((_, i) => {
                 let streak = 0;
                 for (let j = i; j < answers.length && answers[j].correct; j++) streak++;
                 return streak;
@@ -1691,7 +1691,7 @@ function SpeedRoundTab() {
             </div>
             {mode === "survival" && (
               <div className="text-center">
-                <div className="text-lg font-bold text-red-400">{MAX_LIVES - lives}</div>
+                <div className="text-lg font-medium text-red-400">{MAX_LIVES - lives}</div>
                 <div className="text-xs text-muted-foreground">Lives Lost</div>
               </div>
             )}
@@ -1700,7 +1700,7 @@ function SpeedRoundTab() {
 
         {/* Post-round replay */}
         <div>
-          <div className="text-xs font-semibold text-muted-foreground mb-2">Question Replay</div>
+          <div className="text-xs font-medium text-muted-foreground mb-2">Question Replay</div>
           <div className="space-y-1.5 max-h-56 overflow-y-auto">
             {answers.map((ans, i) => {
               const q = questions[i];
@@ -1716,7 +1716,7 @@ function SpeedRoundTab() {
                         </p>
                       )}
                     </div>
-                    <span className={cn("text-xs font-bold flex-shrink-0", ans.correct ? "text-green-400" : "text-red-400")}>
+                    <span className={cn("text-xs font-medium flex-shrink-0", ans.correct ? "text-green-400" : "text-red-400")}>
                       {ans.correct ? `+${ans.points}` : "0"}
                     </span>
                   </div>
@@ -1726,7 +1726,7 @@ function SpeedRoundTab() {
           </div>
         </div>
 
-        <Button onClick={startRound} className="w-full bg-yellow-500 hover:bg-yellow-400 text-black font-bold">
+        <Button onClick={startRound} className="w-full bg-yellow-500 hover:bg-yellow-400 text-black font-medium">
           <Zap className="h-4 w-4 mr-2" />
           Play Again
         </Button>
@@ -1746,7 +1746,7 @@ function SpeedRoundTab() {
             {current + 1}/{SPEED_QUESTIONS}
           </div>
           <div className={cn(
-            "flex items-center gap-1 px-2 py-0.5 rounded-full text-xs font-bold",
+            "flex items-center gap-1 px-2 py-0.5 rounded-full text-xs font-medium",
             multiplier === 1 ? "bg-muted text-muted-foreground" :
             multiplier === 2 ? "bg-primary/20 text-primary" :
             multiplier === 3 ? "bg-primary/20 text-primary" :
@@ -1766,7 +1766,7 @@ function SpeedRoundTab() {
           )}
         </div>
         <div className="flex items-center gap-2">
-          <span className="text-xs text-yellow-400 font-bold">{totalPoints} pts</span>
+          <span className="text-xs text-yellow-400 font-medium">{totalPoints} pts</span>
           <CountdownRing timeLeft={timeLeft} total={SPEED_TIMER} />
         </div>
       </div>
@@ -1795,7 +1795,7 @@ function SpeedRoundTab() {
                 onClick={() => handleSpeedAnswer(idx)}
                 className="w-full text-left p-3 rounded-lg border border-border/50 bg-card/60 hover:border-yellow-500/50 hover:bg-yellow-500/5 transition-all text-sm text-foreground flex items-center gap-2"
               >
-                <span className="w-5 h-5 rounded bg-muted border border-border text-xs flex items-center justify-center font-bold text-muted-foreground flex-shrink-0">
+                <span className="w-5 h-5 rounded bg-muted border border-border text-xs flex items-center justify-center font-medium text-muted-foreground flex-shrink-0">
                   {["A", "B", "C", "D"][idx]}
                 </span>
                 {opt}
@@ -1906,7 +1906,7 @@ function BossChallengesTab() {
             {won ? (
               <>
                 <Crown className="h-12 w-12 text-yellow-400 mx-auto mb-3" />
-                <h3 className="text-xl font-bold text-yellow-400">Victory!</h3>
+                <h3 className="text-xl font-medium text-yellow-400">Victory!</h3>
                 <p className="text-muted-foreground text-sm mt-1">{activeBoss.name} defeated!</p>
                 <div className="mt-3 inline-flex items-center gap-2 bg-yellow-500/20 border border-yellow-500/40 rounded-full px-4 py-1.5">
                   <Star className="h-4 w-4 text-yellow-400" />
@@ -1916,7 +1916,7 @@ function BossChallengesTab() {
             ) : (
               <>
                 <XCircle className="h-12 w-12 text-red-400 mx-auto mb-3" />
-                <h3 className="text-xl font-bold text-red-400">Defeated!</h3>
+                <h3 className="text-xl font-medium text-red-400">Defeated!</h3>
                 <p className="text-muted-foreground text-sm mt-1">
                   {playerHP <= 0 ? "Your HP reached zero." : `Need ${activeBoss.winThreshold}/10 correct — you got ${correctCount}.`}
                 </p>
@@ -1924,11 +1924,11 @@ function BossChallengesTab() {
             )}
             <div className="flex justify-center gap-6 mt-4">
               <div className="text-center">
-                <div className="text-lg font-bold text-foreground">{correctCount}/10</div>
+                <div className="text-lg font-medium text-foreground">{correctCount}/10</div>
                 <div className="text-xs text-muted-foreground">Correct</div>
               </div>
               <div className="text-center">
-                <div className="text-lg font-bold text-green-400">{playerHP}</div>
+                <div className="text-lg font-medium text-green-400">{playerHP}</div>
                 <div className="text-xs text-muted-foreground">HP Remaining</div>
               </div>
             </div>
@@ -1941,7 +1941,7 @@ function BossChallengesTab() {
                   setBossPhase("idle");
                   setActiveBoss(null);
                 }}
-                className="flex-1 bg-yellow-500 hover:bg-yellow-400 text-black font-bold"
+                className="flex-1 bg-yellow-500 hover:bg-yellow-400 text-black font-medium"
               >
                 <ChevronRight className="h-4 w-4 mr-1" />
                 Next Boss
@@ -1976,7 +1976,7 @@ function BossChallengesTab() {
           <div>
             <div className="flex items-center justify-between text-xs mb-1">
               <span className="text-muted-foreground">You</span>
-              <span className={cn("font-bold", playerHP > 50 ? "text-green-400" : playerHP > 25 ? "text-yellow-400" : "text-red-400")}>
+              <span className={cn("font-medium", playerHP > 50 ? "text-green-400" : playerHP > 25 ? "text-yellow-400" : "text-red-400")}>
                 {playerHP} HP
               </span>
             </div>
@@ -1985,7 +1985,7 @@ function BossChallengesTab() {
           <div>
             <div className="flex items-center justify-between text-xs mb-1">
               <span className="text-muted-foreground">{activeBoss.name}</span>
-              <span className="text-red-400 font-bold">{bossHP} HP</span>
+              <span className="text-red-400 font-medium">{bossHP} HP</span>
             </div>
             <Progress value={bossHP} className="h-2 bg-muted" />
           </div>
@@ -2057,7 +2057,7 @@ function BossChallengesTab() {
               </div>
               <div className="flex-1 min-w-0">
                 <div className="flex items-center gap-2">
-                  <span className="text-sm font-bold text-foreground">{boss.name}</span>
+                  <span className="text-sm font-medium text-foreground">{boss.name}</span>
                   <span className="text-xs text-muted-foreground">{boss.title}</span>
                 </div>
                 <p className="text-xs text-muted-foreground mt-0.5 line-clamp-1">{boss.description}</p>
@@ -2151,7 +2151,7 @@ function QuestionBuilderTab() {
       {/* Builder form */}
       <Card className="bg-card/70 border-border/50 p-4 space-y-3">
         <div className="flex items-center justify-between">
-          <div className="text-sm font-semibold text-foreground flex items-center gap-2">
+          <div className="text-sm font-medium text-foreground flex items-center gap-2">
             <Plus className="h-4 w-4 text-primary" />
             Create a Question
           </div>
@@ -2175,7 +2175,7 @@ function QuestionBuilderTab() {
         <div className="grid grid-cols-2 gap-2">
           {(["optionA", "optionB", "optionC", "optionD"] as const).map((key, idx) => (
             <div key={key} className="relative">
-              <span className="absolute left-2.5 top-2.5 text-xs font-bold text-muted-foreground">
+              <span className="absolute left-2.5 top-2.5 text-xs font-medium text-muted-foreground">
                 {["A", "B", "C", "D"][idx]}
               </span>
               <input
@@ -2230,7 +2230,7 @@ function QuestionBuilderTab() {
         <div className="flex items-center gap-3 p-3 bg-muted/50 rounded-lg border border-border/40">
           <div>
             <div className="text-xs text-muted-foreground">Share Code</div>
-            <div className="text-lg font-mono font-bold text-primary tracking-widest">{shareCode}</div>
+            <div className="text-lg font-mono font-medium text-primary tracking-widest">{shareCode}</div>
           </div>
           <Button
             size="sm"
@@ -2254,7 +2254,7 @@ function QuestionBuilderTab() {
             className="overflow-hidden"
           >
             <Card className="bg-card/50 border-border/40 p-4">
-              <div className="text-xs text-muted-foreground font-semibold uppercase mb-3">Preview</div>
+              <div className="text-xs text-muted-foreground font-medium uppercase mb-3">Preview</div>
               <QuestionCard
                 question={previewQuestion}
                 onAnswer={() => {}}
@@ -2275,7 +2275,7 @@ function QuestionBuilderTab() {
       <div>
         <div className="flex items-center gap-2 mb-3">
           <Users className="h-4 w-4 text-muted-foreground" />
-          <span className="text-sm font-semibold text-foreground">Top Community Questions</span>
+          <span className="text-sm font-medium text-foreground">Top Community Questions</span>
         </div>
         <div className="space-y-3">
           {communityQs.map((cq) => (
@@ -2300,7 +2300,7 @@ function QuestionBuilderTab() {
                   >
                     <ThumbsUp className="h-3.5 w-3.5" />
                   </button>
-                  <span className="text-xs font-bold text-muted-foreground">
+                  <span className="text-xs font-medium text-muted-foreground">
                     {cq.votes + (votes[cq.id] === "up" ? 1 : votes[cq.id] === "down" ? -1 : 0)}
                   </span>
                   <button
@@ -2343,7 +2343,7 @@ export default function QuizTournamentPage() {
             <Trophy className="h-6 w-6 text-yellow-400" />
           </div>
           <div>
-            <h1 className="text-xl font-bold text-foreground">Quiz Tournament</h1>
+            <h1 className="text-xl font-medium text-foreground">Quiz Tournament</h1>
             <p className="text-xs text-muted-foreground">Test your financial knowledge across 8 categories</p>
           </div>
           <div className="ml-auto flex items-center gap-1.5">
@@ -2362,7 +2362,7 @@ export default function QuizTournamentPage() {
           ].map((stat) => (
             <Card key={stat.label} className="bg-card/60 border-border/50 p-3 text-center">
               <div className="flex justify-center mb-1">{stat.icon}</div>
-              <div className={cn("text-base font-bold", stat.color)}>{stat.value}</div>
+              <div className={cn("text-base font-medium", stat.color)}>{stat.value}</div>
               <div className="text-xs text-muted-foreground">{stat.label}</div>
             </Card>
           ))}

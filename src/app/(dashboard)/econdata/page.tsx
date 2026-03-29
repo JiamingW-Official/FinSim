@@ -799,18 +799,18 @@ function FedWatch({ data }: { data: ReturnType<typeof generateData> }) {
           <div className="space-y-3">
             <div className="flex items-center justify-between">
               <span className="text-xs text-muted-foreground">Fed Funds (Target)</span>
-              <span className="text-lg font-bold text-foreground">{currentRate}%</span>
+              <span className="text-lg font-medium text-foreground">{currentRate}%</span>
             </div>
             <div className="flex items-center justify-between">
               <span className="text-xs text-muted-foreground">Neutral Rate (r*)</span>
-              <span className="text-lg font-bold text-emerald-400">{neutralRate}%</span>
+              <span className="text-lg font-medium text-emerald-400">{neutralRate}%</span>
             </div>
             <div className="flex items-center justify-between">
               <span className="text-xs text-muted-foreground">Taylor Rule Rate</span>
-              <span className="text-lg font-bold text-amber-400">{taylorRate}%</span>
+              <span className="text-lg font-medium text-amber-400">{taylorRate}%</span>
             </div>
             <div className="mt-3 p-2 bg-foreground/5 rounded-lg text-xs text-muted-foreground">
-              <div className="font-semibold text-muted-foreground mb-1">Taylor Rule Formula</div>
+              <div className="font-medium text-muted-foreground mb-1">Taylor Rule Formula</div>
               <code className="text-indigo-300">r* + π + 0.5(π-2%) + 0.5(GDP gap)</code>
               <div className="mt-1">= 2.5 + 3.1 + 0.5(1.1) + 0.5(-0.6) = {taylorRate}%</div>
             </div>
@@ -1079,7 +1079,7 @@ function RecessionTab({ data }: { data: ReturnType<typeof generateData> }) {
               </div>
             </div>
             <div className="space-y-1">
-              <div className="text-sm font-semibold text-amber-400">Elevated Risk</div>
+              <div className="text-sm font-medium text-amber-400">Elevated Risk</div>
               <div className="text-xs text-muted-foreground">{triggered} of {recessionIndicators.length} indicators triggered</div>
               <div className="text-xs text-muted-foreground">Yield curve inversion ongoing</div>
               <div className="text-xs text-muted-foreground">LEI declining 6 consecutive months</div>
@@ -1125,13 +1125,13 @@ function RecessionTab({ data }: { data: ReturnType<typeof generateData> }) {
             className={cn("p-3 rounded-lg border text-xs", ri.triggered ? "border-red-500/20 bg-red-500/5" : "border-border bg-foreground/[0.02]")}
           >
             <div className="flex items-center justify-between mb-1">
-              <span className="font-semibold text-foreground">{ri.name}</span>
+              <span className="font-medium text-foreground">{ri.name}</span>
               <span className={cn("px-2 py-0.5 rounded-full text-xs", ri.triggered ? "bg-red-500/20 text-red-300" : "bg-emerald-500/20 text-emerald-300")}>
                 {ri.triggered ? "TRIGGERED" : "CLEAR"}
               </span>
             </div>
             <div className="flex items-center gap-3 mb-1">
-              <span className="text-lg font-bold text-foreground">{ri.value}{ri.unit}</span>
+              <span className="text-lg font-medium text-foreground">{ri.value}{ri.unit}</span>
               <span className="text-muted-foreground">vs {ri.threshold}{ri.unit} threshold</span>
             </div>
             <div className="text-muted-foreground">{ri.desc}</div>
@@ -1371,20 +1371,20 @@ export default function EconDataPage() {
         <motion.div
           initial={{ opacity: 0, y: -12 }}
           animate={{ opacity: 1, y: 0 }}
-          className="mb-6"
+          className="mb-6 border-l-4 border-l-primary rounded-lg bg-card p-6"
         >
           <div className="flex items-center gap-3 mb-1">
             <div className="w-8 h-8 rounded-lg bg-indigo-500/20 border border-indigo-500/30 flex items-center justify-center">
               <Activity className="w-4 h-4 text-indigo-400" />
             </div>
-            <h1 className="text-2xl font-bold text-foreground">Economic Data</h1>
+            <h1 className="text-xl font-bold text-foreground">Economic Data</h1>
             <span className="px-2 py-0.5 text-xs rounded-full bg-emerald-500/20 text-emerald-400 border border-emerald-500/30">Live</span>
           </div>
           <p className="text-sm text-muted-foreground ml-11">Macro indicators, Fed policy, global comparisons, and recession signals</p>
         </motion.div>
 
         {/* Tabs */}
-        <Tabs value={activeTab} onValueChange={setActiveTab}>
+        <Tabs value={activeTab} onValueChange={setActiveTab} className="mt-8">
           <TabsList className="bg-foreground/[0.04] border border-border rounded-xl p-1 mb-6 flex flex-wrap gap-1 h-auto">
             {tabs.map((tab) => {
               const Icon = tab.icon;

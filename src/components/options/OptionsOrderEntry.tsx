@@ -231,7 +231,7 @@ export function OptionsOrderEntry({ spotPrice, analytics }: OptionsOrderEntryPro
           <div className="flex gap-2">
             <motion.button
               onClick={clearLegs}
-              className="flex items-center gap-1 rounded-lg border border-border px-3 py-2 text-xs font-bold text-muted-foreground hover:bg-accent"
+              className="flex items-center gap-1 rounded-lg border border-border/40 px-3 py-2 text-xs font-bold text-muted-foreground hover:bg-accent"
               whileHover={{ scale: 1.02 }}
               whileTap={{ scale: 0.98 }}
             >

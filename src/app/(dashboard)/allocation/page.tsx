@@ -575,7 +575,7 @@ function PortfolioBuilder() {
         <div className="lg:col-span-2 space-y-3">
           <Card className="bg-card border-border p-4">
             <div className="flex items-center justify-between mb-3">
-              <h3 className="text-sm font-semibold text-foreground">Allocation Sliders</h3>
+              <h3 className="text-sm font-medium text-foreground">Allocation Sliders</h3>
               <Badge className={cn("text-xs", totalOk ? "bg-emerald-900/50 text-emerald-400 border-emerald-800" : "bg-red-900/50 text-red-400 border-red-800")}>
                 Total: {total.toFixed(1)}%
               </Badge>
@@ -619,7 +619,7 @@ function PortfolioBuilder() {
         <div className="space-y-4">
           {/* Donut */}
           <Card className="bg-card border-border p-4">
-            <h3 className="text-sm font-semibold text-foreground mb-3">Allocation</h3>
+            <h3 className="text-sm font-medium text-foreground mb-3">Allocation</h3>
             <div className="flex justify-center">
               <svg width={160} height={160} viewBox="-80 -80 160 160">
                 {slices.map((s, i) => (
@@ -650,7 +650,7 @@ function PortfolioBuilder() {
 
           {/* Metrics */}
           <Card className="bg-card border-border p-4">
-            <h3 className="text-sm font-semibold text-foreground mb-3">Portfolio Metrics</h3>
+            <h3 className="text-sm font-medium text-foreground mb-3">Portfolio Metrics</h3>
             <div className="space-y-3">
               {[
                 { label: "Expected Return", value: fmtPct(metrics.expectedReturn), color: "text-emerald-400", icon: TrendingUp },
@@ -664,7 +664,7 @@ function PortfolioBuilder() {
                     <item.icon className="w-3.5 h-3.5 text-muted-foreground" />
                     <span className="text-xs text-muted-foreground">{item.label}</span>
                   </div>
-                  <span className={cn("text-sm font-semibold", item.color)}>{item.value}</span>
+                  <span className={cn("text-sm font-medium", item.color)}>{item.value}</span>
                 </div>
               ))}
             </div>
@@ -674,7 +674,7 @@ function PortfolioBuilder() {
 
       {/* Efficient Frontier overlay */}
       <Card className="bg-card border-border p-5">
-        <h3 className="text-sm font-semibold text-foreground mb-4">Your Portfolio on the Efficient Frontier</h3>
+        <h3 className="text-sm font-medium text-foreground mb-4">Your Portfolio on the Efficient Frontier</h3>
         <svg width={EW} height={EH}>
           {/* Grid */}
           {[4, 6, 8, 10, 12, 14].map(r => (
@@ -828,7 +828,7 @@ function ReturnScenarios({ weights }: { weights: number[] }) {
       {/* Monte Carlo Fan Chart */}
       <Card className="bg-card border-border p-5">
         <div className="flex items-center justify-between mb-1">
-          <h3 className="text-sm font-semibold text-foreground">Monte Carlo Simulation — 500 Scenarios, 30 Years</h3>
+          <h3 className="text-sm font-medium text-foreground">Monte Carlo Simulation — 500 Scenarios, 30 Years</h3>
           <Badge className="bg-indigo-900/50 text-indigo-300 border-indigo-800 text-xs">
             Starting: $100K
           </Badge>
@@ -896,14 +896,14 @@ function ReturnScenarios({ weights }: { weights: number[] }) {
           </div>
           <div className="text-center">
             <p className="text-xs text-muted-foreground">Worst 5th %ile</p>
-            <p className="text-xl font-bold text-red-400">{fmtK(mcResult.worst5th)}</p>
+            <p className="text-xl font-medium text-red-400">{fmtK(mcResult.worst5th)}</p>
           </div>
         </div>
       </Card>
 
       {/* Historical Scenarios */}
       <Card className="bg-card border-border p-5">
-        <h3 className="text-sm font-semibold text-foreground mb-1">Historical Stress Test</h3>
+        <h3 className="text-sm font-medium text-foreground mb-1">Historical Stress Test</h3>
         <p className="text-xs text-muted-foreground mb-4">Portfolio return vs S&P 500 in each historical scenario</p>
 
         <div className="overflow-x-auto">
@@ -1130,7 +1130,7 @@ function RebalancingSimulator({ weights }: { weights: number[] }) {
 
       {/* Chart */}
       <Card className="bg-card border-border p-5">
-        <h3 className="text-sm font-semibold text-foreground mb-1">Portfolio Value Over 20 Years — $100K Starting</h3>
+        <h3 className="text-sm font-medium text-foreground mb-1">Portfolio Value Over 20 Years — $100K Starting</h3>
         <div className="overflow-x-auto">
           <svg width={W} height={H}>
             {/* Grid */}
@@ -1171,7 +1171,7 @@ function RebalancingSimulator({ weights }: { weights: number[] }) {
 
       {/* Results table */}
       <Card className="bg-card border-border p-5">
-        <h3 className="text-sm font-semibold text-foreground mb-4">Strategy Comparison</h3>
+        <h3 className="text-sm font-medium text-foreground mb-4">Strategy Comparison</h3>
         <div className="overflow-x-auto">
           <table className="w-full text-xs">
             <thead>
@@ -1199,7 +1199,7 @@ function RebalancingSimulator({ weights }: { weights: number[] }) {
                         <span className="text-foreground">{s.label}</span>
                       </div>
                     </td>
-                    <td className="py-2 text-right font-semibold" style={{ color: r.color }}>{fmtK(endVal)}</td>
+                    <td className="py-2 text-right font-medium" style={{ color: r.color }}>{fmtK(endVal)}</td>
                     <td className={cn("py-2 text-right font-medium", totalReturn >= 0 ? "text-emerald-400" : "text-red-400")}>
                       {totalReturn.toFixed(1)}%
                     </td>
@@ -1346,27 +1346,27 @@ function LifecyclePlanning() {
     <div className="space-y-6">
       {/* Controls */}
       <Card className="bg-card border-border p-5">
-        <h3 className="text-sm font-semibold text-foreground mb-4">Personal Parameters</h3>
+        <h3 className="text-sm font-medium text-foreground mb-4">Personal Parameters</h3>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
           <div>
-            <label className="text-xs text-muted-foreground block mb-2">Current Age: <span className="text-foreground font-semibold">{currentAge}</span></label>
+            <label className="text-xs text-muted-foreground block mb-2">Current Age: <span className="text-foreground font-medium">{currentAge}</span></label>
             <Slider value={[currentAge]} onValueChange={([v]) => setCurrentAge(v)} min={20} max={75} step={1} />
           </div>
           <div>
-            <label className="text-xs text-muted-foreground block mb-2">Retirement Age: <span className="text-foreground font-semibold">{retirementAge}</span></label>
+            <label className="text-xs text-muted-foreground block mb-2">Retirement Age: <span className="text-foreground font-medium">{retirementAge}</span></label>
             <Slider value={[retirementAge]} onValueChange={([v]) => setRetirementAge(v)} min={50} max={75} step={1} />
           </div>
           <div>
-            <label className="text-xs text-muted-foreground block mb-2">Portfolio Value: <span className="text-foreground font-semibold">{fmtK(portfolioVal)}</span></label>
+            <label className="text-xs text-muted-foreground block mb-2">Portfolio Value: <span className="text-foreground font-medium">{fmtK(portfolioVal)}</span></label>
             <Slider value={[portfolioVal]} onValueChange={([v]) => setPortfolioVal(v)} min={100_000} max={5_000_000} step={50_000} />
           </div>
           <div>
-            <label className="text-xs text-muted-foreground block mb-2">Safe Withdrawal Rate: <span className="text-foreground font-semibold">{swr.toFixed(1)}%</span></label>
+            <label className="text-xs text-muted-foreground block mb-2">Safe Withdrawal Rate: <span className="text-foreground font-medium">{swr.toFixed(1)}%</span></label>
             <Slider value={[swr]} onValueChange={([v]) => setSwr(v)} min={2} max={7} step={0.1} />
           </div>
         </div>
         <div className="mt-4">
-          <label className="text-xs text-muted-foreground block mb-2">Risk Tolerance: <span className="text-foreground font-semibold">{toleranceLabels[riskTolerance]}</span></label>
+          <label className="text-xs text-muted-foreground block mb-2">Risk Tolerance: <span className="text-foreground font-medium">{toleranceLabels[riskTolerance]}</span></label>
           <div className="flex gap-2">
             {toleranceLabels.map((label, i) => (
               <button
@@ -1386,7 +1386,7 @@ function LifecyclePlanning() {
 
       {/* Glide Path Chart */}
       <Card className="bg-card border-border p-5">
-        <h3 className="text-sm font-semibold text-foreground mb-1">Asset Allocation Glide Path</h3>
+        <h3 className="text-sm font-medium text-foreground mb-1">Asset Allocation Glide Path</h3>
         <p className="text-xs text-muted-foreground mb-4">Recommended stock allocation at each age for your risk tolerance</p>
         <div className="overflow-x-auto">
           <svg width={GW} height={GH}>
@@ -1492,7 +1492,7 @@ function LifecyclePlanning() {
 
       {/* Target Date Fund Comparison */}
       <Card className="bg-card border-border p-5">
-        <h3 className="text-sm font-semibold text-foreground mb-4">Target Date Fund Comparison</h3>
+        <h3 className="text-sm font-medium text-foreground mb-4">Target Date Fund Comparison</h3>
         <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
           {TARGET_DATE_FUNDS.map(fund => {
             const DONUT_R = 44, INNER = 28;
@@ -1504,7 +1504,7 @@ function LifecyclePlanning() {
             let cumAngle = -Math.PI / 2;
             return (
               <div key={fund.name} className="bg-muted/50 rounded-lg p-3 text-center">
-                <p className="text-xs font-semibold text-foreground mb-2">{fund.name}</p>
+                <p className="text-xs font-medium text-foreground mb-2">{fund.name}</p>
                 <svg width={100} height={100} className="mx-auto">
                   <g transform="translate(50,50)">
                     {segments.map(seg => {
@@ -1548,7 +1548,7 @@ function LifecyclePlanning() {
       <Card className="bg-card border-border p-5">
         <div className="flex items-start justify-between mb-1">
           <div>
-            <h3 className="text-sm font-semibold text-foreground">Sequence of Returns Risk</h3>
+            <h3 className="text-sm font-medium text-foreground">Sequence of Returns Risk</h3>
             <p className="text-xs text-muted-foreground mt-0.5">
               Same average return, different order — dramatically different outcomes.
               Annual withdrawal: {fmtK(sorResult.annualWithdrawal)}
@@ -1616,7 +1616,7 @@ function LifecyclePlanning() {
         <div className="mt-4 p-3 bg-muted/50 rounded-lg">
           <p className="text-xs text-muted-foreground">
             <span className="text-amber-400 font-medium">Key insight:</span> A {swr.toFixed(1)}% withdrawal rate from a {fmtK(portfolioVal)} portfolio
-            ({fmtK(sorResult.annualWithdrawal)}/yr) has a <span className="text-foreground font-semibold">{fmtPct(swrProb * 100, 0)} probability</span> of lasting 30 years.
+            ({fmtK(sorResult.annualWithdrawal)}/yr) has a <span className="text-foreground font-medium">{fmtPct(swrProb * 100, 0)} probability</span> of lasting 30 years.
             Early sequence risk is the greatest threat to retirement security — avoid large early withdrawals in down markets.
           </p>
         </div>
@@ -1647,7 +1647,7 @@ export default function AllocationPage() {
               <div className="w-8 h-8 rounded-lg bg-indigo-600/20 border border-indigo-500/30 flex items-center justify-center">
                 <PieChart className="w-4 h-4 text-indigo-400" />
               </div>
-              <h1 className="text-xl font-bold text-foreground">Multi-Asset Allocation Simulator</h1>
+              <h1 className="text-xl font-medium text-foreground">Multi-Asset Allocation Simulator</h1>
               <Badge className="bg-indigo-900/50 text-indigo-300 border-indigo-800 text-xs">12 Asset Classes</Badge>
             </div>
             <p className="text-sm text-muted-foreground ml-11">
@@ -1660,12 +1660,12 @@ export default function AllocationPage() {
           </div>
         </motion.div>
 
-        {/* Quick Stats */}
+        {/* HERO — Quick Stats */}
         <motion.div
           initial={{ opacity: 0, y: 8 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.35, delay: 0.1 }}
-          className="grid grid-cols-2 md:grid-cols-4 gap-3"
+          className="grid grid-cols-2 md:grid-cols-4 gap-3 border-l-4 border-l-primary rounded-xl bg-card p-6"
         >
           {(() => {
             const m = computePortfolioMetrics(sharedWeights);
@@ -1683,7 +1683,7 @@ export default function AllocationPage() {
                 </div>
                 <div>
                   <p className="text-xs text-muted-foreground">{item.label}</p>
-                  <p className={cn("text-base font-bold", item.color)}>{item.value}</p>
+                  <p className={cn("text-base font-medium", item.color)}>{item.value}</p>
                 </div>
               </div>
             </Card>

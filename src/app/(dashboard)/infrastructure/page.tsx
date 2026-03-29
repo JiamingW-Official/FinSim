@@ -711,8 +711,8 @@ export default function InfrastructurePage() {
         </div>
       </motion.div>
 
-      {/* ── Key Metrics ── */}
-      <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+      {/* ── Key Metrics — Hero ── */}
+      <div className="grid grid-cols-2 md:grid-cols-4 gap-4 rounded-xl border border-border bg-card border-l-4 border-l-primary p-6">
         <MetricCard
           icon={<DollarSign size={18} />}
           label="Global Infra AUM"
@@ -932,7 +932,7 @@ export default function InfrastructurePage() {
               >
                 <Card className="bg-card border-border h-full">
                   <CardContent className="p-4">
-                    <div className="text-lg font-bold mb-1" style={{ color: card.color }}>
+                    <div className="text-lg font-medium mb-1" style={{ color: card.color }}>
                       {card.value}
                     </div>
                     <div className="font-medium text-sm text-foreground mb-1">{card.title}</div>
@@ -1182,7 +1182,7 @@ export default function InfrastructurePage() {
                         style={{ width: `${(row.alloc / 15) * 100}%`, opacity: 0.7 }}
                       />
                     </div>
-                    <span className="text-xs font-bold text-foreground w-8 text-right">{row.alloc}%</span>
+                    <span className="text-xs font-medium text-foreground w-8 text-right">{row.alloc}%</span>
                     <span className="text-xs text-muted-foreground hidden md:block ml-2">{row.note}</span>
                   </div>
                 ))}

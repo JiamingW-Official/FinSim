@@ -151,7 +151,7 @@ export function RiskMeter({
       <TooltipContent
         side="left"
         sideOffset={8}
-        className="max-w-[240px] space-y-1 bg-card text-card-foreground border border-border p-2.5"
+        className="max-w-[240px] space-y-1 bg-card text-card-foreground border border-border/40 p-2.5"
       >
         <div className="text-xs font-semibold">Risk Assessment</div>
         {factors.length > 0 ? (

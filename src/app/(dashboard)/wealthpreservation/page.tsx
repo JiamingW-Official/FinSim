@@ -516,7 +516,7 @@ function StrategyCard({ strategy }: { strategy: Strategy }) {
                 </ul>
               </div>
               <div>
-                <div className="text-xs font-semibold text-primary mb-1.5 flex items-center gap-1">
+                <div className="text-xs font-medium text-primary mb-1.5 flex items-center gap-1">
                   <FileText className="w-3 h-3" /> Tax Treatment
                 </div>
                 <p className="text-xs text-muted-foreground">{strategy.taxTreatment}</p>
@@ -621,7 +621,7 @@ function SuccessionTimeline() {
             {/* Content */}
             <div className={cn("flex-1 pb-6 border rounded-lg p-3 mb-3 ml-0", borderColor, "bg-card/50")}>
               <div className="flex items-center justify-between mb-1">
-                <span className="text-sm font-semibold text-foreground">{step.title}</span>
+                <span className="text-sm font-medium text-foreground">{step.title}</span>
                 <Badge
                   variant="outline"
                   className={cn(
@@ -708,7 +708,7 @@ function TaxStrategyPanel() {
                 <div className="rounded-lg p-2 bg-muted shrink-0">{s.icon}</div>
                 <div className="flex-1 min-w-0">
                   <div className="flex items-center justify-between gap-2 mb-1">
-                    <span className="text-sm font-semibold text-foreground">{s.title}</span>
+                    <span className="text-sm font-medium text-foreground">{s.title}</span>
                     <Badge
                       variant="outline"
                       className={cn(
@@ -810,7 +810,7 @@ function InflationHedgesPanel() {
                         style={{ width: `${h.correlation * 100}%` }}
                       />
                     </div>
-                    <span className="text-xs font-semibold text-emerald-400">{(h.correlation * 100).toFixed(0)}%</span>
+                    <span className="text-xs font-medium text-emerald-400">{(h.correlation * 100).toFixed(0)}%</span>
                   </div>
                 </td>
                 <td className="px-4 py-3 text-right hidden md:table-cell">
@@ -906,7 +906,7 @@ export default function WealthPreservationPage() {
         </motion.div>
 
         {/* ── Key Metrics ── */}
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-4 border-l-4 border-l-primary p-6 rounded-lg bg-card/40">
           <MetricCard
             icon={<Target className="w-4 h-4 text-emerald-400" />}
             label="Real Return Target"
@@ -974,7 +974,7 @@ export default function WealthPreservationPage() {
                           <div className="flex-1 min-w-0">
                             <div className="flex justify-between">
                               <span className="text-xs font-medium text-foreground">{slice.label}</span>
-                              <span className="text-xs font-bold text-foreground">{slice.pct}%</span>
+                              <span className="text-xs font-medium text-foreground">{slice.pct}%</span>
                             </div>
                             <p className="text-xs text-muted-foreground">{slice.description}</p>
                           </div>
@@ -998,7 +998,7 @@ export default function WealthPreservationPage() {
                       Proper asset location, tax-loss harvesting, and vehicle selection can add 1–2% of net annual return for high-income taxpayers. The difference compounds dramatically over decades.
                     </p>
                     <div className="mt-3 p-3 bg-primary/5 rounded-lg border border-border">
-                      <div className="text-xs font-semibold text-primary mb-1">Key Insight</div>
+                      <div className="text-xs font-medium text-primary mb-1">Key Insight</div>
                       <p className="text-xs text-muted-foreground">
                         At a 37% marginal rate + 3.8% NIIT, unoptimized equity returns of 8% yield only 4.3% after-tax. Tax optimization can recover 1.5–2% annually.
                       </p>
@@ -1036,7 +1036,7 @@ export default function WealthPreservationPage() {
                 <div className="flex items-start gap-2">
                   <AlertTriangle className="w-4 h-4 text-amber-400 shrink-0 mt-0.5" />
                   <p className="text-xs text-muted-foreground">
-                    <span className="font-semibold text-amber-400">High-Net-Worth Tax Drag: </span>
+                    <span className="font-medium text-amber-400">High-Net-Worth Tax Drag: </span>
                     Investors in the top tax bracket (37% ordinary, 23.8% long-term capital gains including NIIT) pay 40–50% more in taxes than those using comprehensive optimization strategies. Tax alpha is often the largest single driver of after-tax wealth accumulation.
                   </p>
                 </div>
@@ -1057,7 +1057,7 @@ export default function WealthPreservationPage() {
                 <div className="flex items-start gap-2">
                   <Info className="w-4 h-4 text-red-400 shrink-0 mt-0.5" />
                   <p className="text-xs text-muted-foreground">
-                    <span className="font-semibold text-red-400">Silent Wealth Destroyer: </span>
+                    <span className="font-medium text-red-400">Silent Wealth Destroyer: </span>
                     At 4% inflation, a $10M portfolio loses $400K in real purchasing power annually without hedging. Over 30 years at 4% inflation, $10M shrinks to equivalent of $3.08M today. Inflation protection is not optional for generational wealth preservation.
                   </p>
                 </div>
@@ -1114,7 +1114,7 @@ export default function WealthPreservationPage() {
                 <div className="flex items-start gap-2">
                   <Star className="w-4 h-4 text-indigo-400 shrink-0 mt-0.5" />
                   <div>
-                    <div className="text-xs font-semibold text-indigo-400 mb-1">Critical 2025 Planning Window</div>
+                    <div className="text-xs font-medium text-indigo-400 mb-1">Critical 2025 Planning Window</div>
                     <p className="text-xs text-muted-foreground leading-relaxed">
                       The 2017 Tax Cuts and Jobs Act doubled estate tax exemptions expire December 31, 2025. Families with estates above $7M should act now to lock in the higher $13.61M exemption through irrevocable trusts, GRATs, or direct gifts before the sunset. Failure to act may cost $2.7M+ in additional estate taxes per couple.
                     </p>

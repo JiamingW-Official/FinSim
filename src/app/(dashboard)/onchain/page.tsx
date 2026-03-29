@@ -653,9 +653,9 @@ export default function OnchainPage() {
               </div>
 
               {/* BTC vs ETH comparison */}
-              <Card className="bg-card border-border">
+              <Card className="bg-card border-border border-l-4 border-l-primary">
                 <CardHeader className="pb-2">
-                  <CardTitle className="text-sm font-semibold text-muted-foreground">
+                  <CardTitle className="text-lg font-semibold text-muted-foreground">
                     BTC vs ETH — Network Comparison
                   </CardTitle>
                 </CardHeader>
@@ -802,7 +802,7 @@ export default function OnchainPage() {
               {/* Whale wallet tracker */}
               <Card className="bg-card border-border">
                 <CardHeader className="pb-2">
-                  <CardTitle className="text-sm font-semibold text-muted-foreground">
+                  <CardTitle className="text-sm font-medium text-muted-foreground">
                     Whale Wallet Tracker — Top BTC Addresses
                   </CardTitle>
                 </CardHeader>
@@ -905,7 +905,7 @@ export default function OnchainPage() {
               {/* TVL by protocol table */}
               <Card className="bg-card border-border">
                 <CardHeader className="pb-2">
-                  <CardTitle className="text-sm font-semibold text-muted-foreground">
+                  <CardTitle className="text-sm font-medium text-muted-foreground">
                     TVL by Protocol — Top 10
                   </CardTitle>
                 </CardHeader>
@@ -930,7 +930,7 @@ export default function OnchainPage() {
                           return (
                             <tr key={row.protocol} className="hover:bg-muted/30 transition-colors">
                               <td className="py-2 text-xs text-muted-foreground font-mono">{i + 1}</td>
-                              <td className="py-2 text-xs font-semibold text-foreground">{row.protocol}</td>
+                              <td className="py-2 text-xs font-medium text-foreground">{row.protocol}</td>
                               <td className="py-2 text-xs text-muted-foreground">{row.chain}</td>
                               <td className="py-2">
                                 <Badge variant="outline" className="text-xs border-border text-muted-foreground bg-muted">
@@ -963,7 +963,7 @@ export default function OnchainPage() {
               {/* Stablecoin breakdown */}
               <Card className="bg-card border-border">
                 <CardHeader className="pb-2">
-                  <CardTitle className="text-sm font-semibold text-muted-foreground">
+                  <CardTitle className="text-sm font-medium text-muted-foreground">
                     Stablecoin Supply Breakdown
                   </CardTitle>
                 </CardHeader>
@@ -971,7 +971,7 @@ export default function OnchainPage() {
                   <div className="space-y-3">
                     {STABLECOINS.map((sc) => (
                       <div key={sc.name} className="flex items-center gap-3">
-                        <span className="w-12 text-xs font-semibold text-muted-foreground">{sc.name}</span>
+                        <span className="w-12 text-xs font-medium text-muted-foreground">{sc.name}</span>
                         <div className="flex-1">
                           <Progress
                             value={sc.pct}
@@ -990,7 +990,7 @@ export default function OnchainPage() {
               {/* DEX vs CEX bar chart */}
               <Card className="bg-card border-border">
                 <CardHeader className="pb-2">
-                  <CardTitle className="text-sm font-semibold text-muted-foreground">
+                  <CardTitle className="text-sm font-medium text-muted-foreground">
                     DEX Volume vs CEX — 24h Spot Volume
                   </CardTitle>
                 </CardHeader>
@@ -1044,7 +1044,7 @@ export default function OnchainPage() {
               <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
                 <Card className="bg-card border-border">
                   <CardHeader className="pb-2">
-                    <CardTitle className="text-sm font-semibold text-muted-foreground">
+                    <CardTitle className="text-sm font-medium text-muted-foreground">
                       Mining Pool Distribution (30d)
                     </CardTitle>
                   </CardHeader>
@@ -1072,7 +1072,7 @@ export default function OnchainPage() {
 
                 <Card className="bg-card border-border">
                   <CardHeader className="pb-2">
-                    <CardTitle className="text-sm font-semibold text-muted-foreground">
+                    <CardTitle className="text-sm font-medium text-muted-foreground">
                       ETH Staking Overview
                     </CardTitle>
                   </CardHeader>
@@ -1119,7 +1119,7 @@ export default function OnchainPage() {
               {/* Miner revenue sparkline */}
               <Card className="bg-card border-border">
                 <CardHeader className="pb-2">
-                  <CardTitle className="text-sm font-semibold text-muted-foreground">
+                  <CardTitle className="text-sm font-medium text-muted-foreground">
                     Miner Revenue (60-Day Trend)
                   </CardTitle>
                 </CardHeader>
@@ -1292,7 +1292,7 @@ export default function OnchainPage() {
               {/* Signal interpretation guide */}
               <Card className="bg-card border-border">
                 <CardHeader className="pb-2">
-                  <CardTitle className="text-sm font-semibold text-muted-foreground">
+                  <CardTitle className="text-sm font-medium text-muted-foreground">
                     On-Chain Signal Interpretation Guide
                   </CardTitle>
                 </CardHeader>
@@ -1334,7 +1334,7 @@ export default function OnchainPage() {
                       >
                         <div className="flex items-center gap-2 mb-2">
                           <span className="w-2 h-2 rounded-full" style={{ background: item.color }} />
-                          <span className="text-xs font-semibold text-foreground">{item.signal}</span>
+                          <span className="text-xs font-medium text-foreground">{item.signal}</span>
                         </div>
                         <div className="space-y-1">
                           <p className="text-xs text-emerald-400">

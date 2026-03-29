@@ -563,7 +563,7 @@ function VolArbitrageTab() {
     <div className="space-y-6">
       {/* Strategy selector */}
       <div className="rounded-xl border border-border bg-foreground/5 p-5">
-        <h2 className="text-lg font-semibold text-foreground mb-4 flex items-center gap-2">
+        <h2 className="text-lg font-medium text-foreground mb-4 flex items-center gap-2">
           <TrendingUp className="w-5 h-5 text-primary" />
           Volatility Arbitrage Strategies
         </h2>
@@ -750,7 +750,7 @@ function MMRiskTab() {
     <div className="space-y-6">
       {/* Book overview */}
       <div className="rounded-xl border border-border bg-foreground/5 p-5">
-        <h2 className="text-lg font-semibold text-foreground mb-4 flex items-center gap-2">
+        <h2 className="text-lg font-medium text-foreground mb-4 flex items-center gap-2">
           <Shield className="w-5 h-5 text-primary" />
           Market Maker Book Management
         </h2>
@@ -929,7 +929,7 @@ function MMRiskTab() {
                   {sc.theta >= 0 ? "+" : ""}{sc.theta.toLocaleString()}
                 </span>
               </div>
-              <div className={`text-right font-mono font-semibold ${sc.total >= 0 ? "text-emerald-400" : "text-red-400"}`}>
+              <div className={`text-right font-mono font-medium ${sc.total >= 0 ? "text-emerald-400" : "text-red-400"}`}>
                 {sc.total >= 0 ? "+" : ""}{sc.total.toLocaleString()}
               </div>
             </div>

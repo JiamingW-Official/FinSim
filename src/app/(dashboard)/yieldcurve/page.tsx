@@ -758,7 +758,7 @@ export default function YieldCurvePage() {
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.4, delay: 0.1 }}
-        className="grid grid-cols-2 md:grid-cols-4 gap-3"
+        className="grid grid-cols-2 md:grid-cols-4 gap-3 border-l-4 border-l-primary p-6 rounded-lg bg-card/40"
       >
         {[
           { label: "2s10s Spread", value: spread2s10s, prev: metrics[0].prev, unit: "bps", icon: TrendingUp },
@@ -797,7 +797,7 @@ export default function YieldCurvePage() {
                   )}
                 </>
               ) : (
-                <div className={cn("text-base font-bold mt-1", m.regimeColor)}>
+                <div className={cn("text-base font-medium mt-1", m.regimeColor)}>
                   {m.regime}
                 </div>
               )}
@@ -838,7 +838,7 @@ export default function YieldCurvePage() {
                       return (
                         <div key={p.tenor} className="text-center">
                           <div className="text-xs font-medium text-muted-foreground">{p.tenor}</div>
-                          <div className="text-sm font-bold tabular-nums">{p.yield.toFixed(2)}%</div>
+                          <div className="text-sm font-medium tabular-nums">{p.yield.toFixed(2)}%</div>
                           <div className={cn("text-xs tabular-nums", chg >= 0 ? "text-green-400" : "text-red-400")}>
                             {chg >= 0 ? "+" : ""}{chg.toFixed(1)}
                           </div>
@@ -857,7 +857,7 @@ export default function YieldCurvePage() {
                   <CardContent>
                     <RegimeGauge spread={spread2s10s} />
                     <div className="mt-2 text-center">
-                      <div className={cn("text-sm font-bold", curveRegime.color)}>
+                      <div className={cn("text-sm font-medium", curveRegime.color)}>
                         {curveRegime.name}
                       </div>
                       <p className="text-xs text-muted-foreground mt-1 leading-relaxed">
@@ -891,15 +891,15 @@ export default function YieldCurvePage() {
             {/* Spread metrics detail */}
             <Card className="border-border">
               <CardHeader className="pb-2">
-                <CardTitle className="text-sm font-semibold">Key Spread Definitions</CardTitle>
+                <CardTitle className="text-sm font-medium">Key Spread Definitions</CardTitle>
               </CardHeader>
               <CardContent>
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
                   {metrics.slice(0, 3).map((m) => (
                     <div key={m.label} className="p-3 rounded-lg bg-muted/30 border border-border space-y-1">
                       <div className="flex items-center justify-between">
-                        <span className="text-xs font-semibold">{m.label}</span>
-                        <span className={cn("text-sm font-bold tabular-nums", spreadColor(m.spread))}>
+                        <span className="text-xs font-medium">{m.label}</span>
+                        <span className={cn("text-sm font-medium tabular-nums", spreadColor(m.spread))}>
                           {m.spread > 0 ? "+" : ""}{m.spread.toFixed(0)} bps
                         </span>
                       </div>
@@ -975,7 +975,7 @@ export default function YieldCurvePage() {
                         ].map((item) => (
                           <div key={item.label} className="p-2 rounded bg-muted/30 border border-border text-center">
                             <div className="text-xs text-muted-foreground">{item.label}</div>
-                            <div className={cn("text-sm font-bold tabular-nums", item.color)}>
+                            <div className={cn("text-sm font-medium tabular-nums", item.color)}>
                               {item.value > 0 ? "+" : ""}{item.value} bps
                             </div>
                           </div>
@@ -996,7 +996,7 @@ export default function YieldCurvePage() {
                       {/* R:R calc */}
                       <div className="flex items-center justify-between text-xs">
                         <span className="text-muted-foreground">Reward/Risk</span>
-                        <span className="font-bold text-green-400">
+                        <span className="font-medium text-green-400">
                           {Math.abs((trade.target - trade.entry) / (trade.entry - trade.stop)).toFixed(1)}:1
                         </span>
                       </div>
@@ -1005,7 +1005,7 @@ export default function YieldCurvePage() {
 
                   <Card className="border-border">
                     <CardHeader className="pb-2">
-                      <CardTitle className="text-sm font-semibold flex items-center gap-2">
+                      <CardTitle className="text-sm font-medium flex items-center gap-2">
                         <Target className="h-4 w-4 text-primary" />
                         P&L Profile (vs Spread Level)
                       </CardTitle>
@@ -1035,7 +1035,7 @@ export default function YieldCurvePage() {
             {/* Strategy explainer */}
             <Card className="border-border">
               <CardHeader className="pb-2">
-                <CardTitle className="text-sm font-semibold">Strategy Reference</CardTitle>
+                <CardTitle className="text-sm font-medium">Strategy Reference</CardTitle>
               </CardHeader>
               <CardContent>
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-3">
@@ -1062,7 +1062,7 @@ export default function YieldCurvePage() {
                     },
                   ].map((s) => (
                     <div key={s.name} className={cn("p-3 rounded-lg border", s.color)}>
-                      <div className="text-xs font-bold mb-1">{s.name}</div>
+                      <div className="text-xs font-medium mb-1">{s.name}</div>
                       <p className="text-xs text-muted-foreground leading-relaxed">{s.desc}</p>
                     </div>
                   ))}
@@ -1075,7 +1075,7 @@ export default function YieldCurvePage() {
           <TabsContent value="historical" className="mt-4 space-y-4">
             <Card className="border-border">
               <CardHeader className="pb-2">
-                <CardTitle className="text-sm font-semibold flex items-center gap-2">
+                <CardTitle className="text-sm font-medium flex items-center gap-2">
                   <AlertTriangle className="h-4 w-4 text-orange-400" />
                   Major Yield Curve Inversions
                 </CardTitle>
@@ -1124,7 +1124,7 @@ export default function YieldCurvePage() {
             {/* Inversion bar chart */}
             <Card className="border-border">
               <CardHeader className="pb-2">
-                <CardTitle className="text-sm font-semibold">Inversion Depth Comparison</CardTitle>
+                <CardTitle className="text-sm font-medium">Inversion Depth Comparison</CardTitle>
               </CardHeader>
               <CardContent>
                 <div className="space-y-3">
@@ -1168,7 +1168,7 @@ export default function YieldCurvePage() {
             {/* Regime base rates */}
             <Card className="border-border">
               <CardHeader className="pb-2">
-                <CardTitle className="text-sm font-semibold">Curve Regime Base Rates (Since 1976)</CardTitle>
+                <CardTitle className="text-sm font-medium">Curve Regime Base Rates (Since 1976)</CardTitle>
               </CardHeader>
               <CardContent>
                 <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
@@ -1183,7 +1183,7 @@ export default function YieldCurvePage() {
                         <div className={cn("h-2 w-2 rounded-full", r.color)} />
                         <span className="text-xs font-medium">{r.regime}</span>
                       </div>
-                      <div className="text-lg font-bold tabular-nums">{r.pct}%</div>
+                      <div className="text-lg font-medium tabular-nums">{r.pct}%</div>
                       <div className="text-xs text-muted-foreground">Avg {r.months} months</div>
                     </div>
                   ))}
@@ -1197,7 +1197,7 @@ export default function YieldCurvePage() {
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
               <Card className="border-border">
                 <CardHeader className="pb-2">
-                  <CardTitle className="text-sm font-semibold flex items-center gap-2">
+                  <CardTitle className="text-sm font-medium flex items-center gap-2">
                     <BarChart3 className="h-4 w-4 text-primary" />
                     Macro Drivers
                   </CardTitle>
@@ -1209,9 +1209,9 @@ export default function YieldCurvePage() {
                       className="p-3 rounded-lg border border-border bg-muted/20 space-y-1"
                     >
                       <div className="flex items-center justify-between">
-                        <span className="text-xs font-semibold">{sig.signal}</span>
+                        <span className="text-xs font-medium">{sig.signal}</span>
                         <div className="flex items-center gap-2">
-                          <span className="text-xs font-bold tabular-nums">{sig.value}</span>
+                          <span className="text-xs font-medium tabular-nums">{sig.value}</span>
                           <Badge
                             variant="outline"
                             className={cn(
@@ -1236,7 +1236,7 @@ export default function YieldCurvePage() {
               <div className="space-y-4">
                 <Card className="border-border">
                   <CardHeader className="pb-2">
-                    <CardTitle className="text-sm font-semibold flex items-center gap-2">
+                    <CardTitle className="text-sm font-medium flex items-center gap-2">
                       <Target className="h-4 w-4 text-primary" />
                       Signal Scorecard
                     </CardTitle>
@@ -1257,7 +1257,7 @@ export default function YieldCurvePage() {
                             <div key={row.label} className="space-y-1">
                               <div className="flex justify-between text-xs">
                                 <span className="text-muted-foreground">{row.label}</span>
-                                <span className={cn("font-bold", row.textColor)}>{row.count}/{total}</span>
+                                <span className={cn("font-medium", row.textColor)}>{row.count}/{total}</span>
                               </div>
                               <div className="h-1.5 bg-muted rounded-full overflow-hidden">
                                 <motion.div
@@ -1272,7 +1272,7 @@ export default function YieldCurvePage() {
                           <div className="pt-2 border-t border-border">
                             <div className="text-xs font-medium text-muted-foreground mb-1">Net Bias</div>
                             <div className={cn(
-                              "text-sm font-bold",
+                              "text-sm font-medium",
                               steepeners > flatteners ? "text-green-400" : steepeners < flatteners ? "text-red-400" : "text-yellow-400"
                             )}>
                               {steepeners > flatteners ? "Steepener Bias" : steepeners < flatteners ? "Flattener Bias" : "Mixed Signals"}
@@ -1286,7 +1286,7 @@ export default function YieldCurvePage() {
 
                 <Card className="border-border">
                   <CardHeader className="pb-2">
-                    <CardTitle className="text-sm font-semibold flex items-center gap-2">
+                    <CardTitle className="text-sm font-medium flex items-center gap-2">
                       <RefreshCw className="h-4 w-4 text-primary" />
                       Key Risk Factors
                     </CardTitle>
@@ -1321,7 +1321,7 @@ export default function YieldCurvePage() {
             {/* Fed path */}
             <Card className="border-border">
               <CardHeader className="pb-2">
-                <CardTitle className="text-sm font-semibold">Fed Rate Path Scenarios & Curve Impact</CardTitle>
+                <CardTitle className="text-sm font-medium">Fed Rate Path Scenarios & Curve Impact</CardTitle>
               </CardHeader>
               <CardContent>
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
@@ -1353,7 +1353,7 @@ export default function YieldCurvePage() {
                   ].map((sc) => (
                     <div key={sc.scenario} className={cn("p-3 rounded-lg border space-y-2", sc.color)}>
                       <div className="flex items-center justify-between">
-                        <span className="text-xs font-bold">{sc.scenario}</span>
+                        <span className="text-xs font-medium">{sc.scenario}</span>
                         <Badge variant="outline" className="text-xs">
                           {sc.prob}%
                         </Badge>

@@ -984,13 +984,13 @@ export default function AlgoPage() {
 
   return (
     <div className="flex h-full flex-col">
-      {/* Header */}
-      <div className="flex items-center gap-3 border-b border-border/50 bg-black/30 px-6 py-3 shrink-0">
+      {/* HERO Header */}
+      <div className="flex items-center gap-3 border-b border-border/50 border-l-4 border-l-primary bg-black/30 px-6 py-4 shrink-0">
         <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-primary/15">
           <Bot className="h-4 w-4 text-primary" />
         </div>
         <div>
-          <h1 className="text-sm font-bold text-foreground">Algo Trading Lab</h1>
+          <h1 className="text-lg font-semibold text-foreground">Algo Trading Lab</h1>
           <p className="text-xs text-muted-foreground">Build, backtest, and optimize algorithmic strategies</p>
         </div>
         {result && (
@@ -1057,7 +1057,7 @@ export default function AlgoPage() {
                 {/* Entry Rules */}
                 <Card className="border-border/50 bg-card/50 p-4 space-y-3">
                   <div className="flex items-center justify-between">
-                    <h2 className="text-xs font-bold text-foreground uppercase tracking-wide">Entry Rules</h2>
+                    <h2 className="text-xs font-medium text-foreground uppercase tracking-wide">Entry Rules</h2>
                     <select
                       value={strategy.entryLogic}
                       onChange={(e) => setStrategy((s) => ({ ...s, entryLogic: e.target.value as Logic }))}
@@ -1093,7 +1093,7 @@ export default function AlgoPage() {
                 {/* Exit Rules */}
                 <Card className="border-border/50 bg-card/50 p-4 space-y-3">
                   <div className="flex items-center justify-between">
-                    <h2 className="text-xs font-bold text-foreground uppercase tracking-wide">Exit Rules</h2>
+                    <h2 className="text-xs font-medium text-foreground uppercase tracking-wide">Exit Rules</h2>
                     <select
                       value={strategy.exitLogic}
                       onChange={(e) => setStrategy((s) => ({ ...s, exitLogic: e.target.value as Logic }))}
@@ -1128,7 +1128,7 @@ export default function AlgoPage() {
 
                 {/* Position Sizing */}
                 <Card className="border-border/50 bg-card/50 p-4 space-y-4">
-                  <h2 className="text-xs font-bold text-foreground uppercase tracking-wide">Position Sizing</h2>
+                  <h2 className="text-xs font-medium text-foreground uppercase tracking-wide">Position Sizing</h2>
                   <div className="space-y-2">
                     {(
                       [
@@ -1176,7 +1176,7 @@ export default function AlgoPage() {
 
               {/* Strategy Summary */}
               <Card className="border-border/50 bg-card/50 p-4">
-                <h2 className="mb-2 text-xs font-bold text-muted-foreground uppercase tracking-wide">Strategy Summary</h2>
+                <h2 className="mb-2 text-xs font-medium text-muted-foreground uppercase tracking-wide">Strategy Summary</h2>
                 <p className="text-sm text-foreground leading-relaxed">{summary}</p>
               </Card>
             </div>
@@ -1203,7 +1203,7 @@ export default function AlgoPage() {
                 <>
                   {/* Performance Summary */}
                   <div>
-                    <h2 className="mb-3 text-xs font-bold text-muted-foreground uppercase tracking-wide">Performance Summary</h2>
+                    <h2 className="mb-3 text-xs font-medium text-muted-foreground uppercase tracking-wide">Performance Summary</h2>
                     <div className="flex flex-wrap gap-2">
                       <MetricChip
                         label="Total Return"
@@ -1251,7 +1251,7 @@ export default function AlgoPage() {
 
                   {/* Equity Curve */}
                   <Card className="border-border/50 bg-card/50 p-4">
-                    <h2 className="mb-3 text-xs font-bold text-muted-foreground uppercase tracking-wide">Equity Curve</h2>
+                    <h2 className="mb-3 text-xs font-medium text-muted-foreground uppercase tracking-wide">Equity Curve</h2>
                     <div className="flex items-center gap-4 mb-3">
                       <div className="flex items-center gap-1.5 text-xs text-muted-foreground">
                         <span className="inline-block h-1.5 w-4 rounded bg-primary" /> Strategy
@@ -1271,7 +1271,7 @@ export default function AlgoPage() {
 
                   {/* Trade Log */}
                   <Card className="border-border/50 bg-card/50 p-4">
-                    <h2 className="mb-3 text-xs font-bold text-muted-foreground uppercase tracking-wide">
+                    <h2 className="mb-3 text-xs font-medium text-muted-foreground uppercase tracking-wide">
                       Trade Log ({result.trades.length} trades)
                     </h2>
                     <div className="overflow-x-auto">
@@ -1316,7 +1316,7 @@ export default function AlgoPage() {
 
                   {/* Buy & Hold comparison */}
                   <Card className="border-border/50 bg-card/50 p-4">
-                    <h2 className="mb-2 text-xs font-bold text-muted-foreground uppercase tracking-wide">vs Buy &amp; Hold</h2>
+                    <h2 className="mb-2 text-xs font-medium text-muted-foreground uppercase tracking-wide">vs Buy &amp; Hold</h2>
                     <div className="flex items-end gap-8">
                       <div>
                         <p className="text-xs text-muted-foreground mb-0.5">Strategy Return</p>
@@ -1364,20 +1364,20 @@ export default function AlgoPage() {
                     <Card key={lib.id} className="border-border/50 bg-card/50 p-4 space-y-3 hover:border-border transition-colors">
                       <div className="flex items-start justify-between">
                         <div>
-                          <h3 className="text-sm font-bold text-foreground">{lib.name}</h3>
+                          <h3 className="text-sm font-medium text-foreground">{lib.name}</h3>
                           <p className="mt-0.5 text-[11px] text-muted-foreground leading-snug">{lib.description}</p>
                         </div>
                       </div>
                       <div className="flex flex-wrap gap-2">
                         <div className="flex flex-col">
                           <span className="text-[11px] text-muted-foreground uppercase tracking-wide">Avg Annual</span>
-                          <span className={cn("text-sm font-bold tabular-nums", lib.avgReturn >= 0 ? "text-green-400" : "text-red-400")}>
+                          <span className={cn("text-sm font-medium tabular-nums", lib.avgReturn >= 0 ? "text-green-400" : "text-red-400")}>
                             +{lib.avgReturn.toFixed(1)}%
                           </span>
                         </div>
                         <div className="flex flex-col">
                           <span className="text-[11px] text-muted-foreground uppercase tracking-wide">Win Rate</span>
-                          <span className="text-sm font-bold tabular-nums text-foreground">{(lib.winRate * 100).toFixed(0)}%</span>
+                          <span className="text-sm font-medium tabular-nums text-foreground">{(lib.winRate * 100).toFixed(0)}%</span>
                         </div>
                         <div className="flex flex-col flex-1">
                           <span className="text-[11px] text-muted-foreground uppercase tracking-wide">Best For</span>
@@ -1404,7 +1404,7 @@ export default function AlgoPage() {
             <div className="mx-auto max-w-4xl space-y-6">
               {/* Parameter Sweep */}
               <Card className="border-border/50 bg-card/50 p-4 space-y-4">
-                <h2 className="text-xs font-bold text-foreground uppercase tracking-wide">Parameter Sweep</h2>
+                <h2 className="text-xs font-medium text-foreground uppercase tracking-wide">Parameter Sweep</h2>
                 <div className="flex items-center gap-4">
                   <div>
                     <label className="mb-1 block text-xs text-muted-foreground">Parameter to sweep</label>
@@ -1450,7 +1450,7 @@ export default function AlgoPage() {
                 <div className="flex items-start gap-2">
                   <AlertTriangle className="h-4 w-4 text-amber-400 shrink-0 mt-0.5" />
                   <div>
-                    <h3 className="text-xs font-bold text-amber-300">Overfitting Warning</h3>
+                    <h3 className="text-xs font-medium text-amber-300">Overfitting Warning</h3>
                     <p className="mt-1 text-xs text-muted-foreground leading-relaxed">
                       When optimizing parameters, strategies may be overfit to the test period.
                       {strategy.entryConditions.length + strategy.exitConditions.length >= 4
@@ -1464,17 +1464,17 @@ export default function AlgoPage() {
 
               {/* Walk-Forward */}
               <Card className="border-border/50 bg-card/50 p-4 space-y-4">
-                <h2 className="text-xs font-bold text-foreground uppercase tracking-wide">Walk-Forward Testing</h2>
+                <h2 className="text-xs font-medium text-foreground uppercase tracking-wide">Walk-Forward Testing</h2>
                 <p className="text-[11px] text-muted-foreground">
                   Strategy performance on in-sample (first 80%) vs out-of-sample (last 20%) data.
                 </p>
                 <div className="grid grid-cols-2 gap-4">
                   <div className="rounded-md border border-border/50 bg-card/60 p-3 space-y-1.5">
-                    <p className="text-xs font-semibold uppercase tracking-wide text-muted-foreground">In-Sample (≈202 bars)</p>
+                    <p className="text-xs font-medium uppercase tracking-wide text-muted-foreground">In-Sample (≈202 bars)</p>
                     <div className="space-y-0.5">
                       <div className="flex justify-between text-xs">
                         <span className="text-muted-foreground">Return</span>
-                        <span className={cn("font-semibold", wfInSample.totalReturn >= 0 ? "text-green-400" : "text-red-400")}>
+                        <span className={cn("font-medium", wfInSample.totalReturn >= 0 ? "text-green-400" : "text-red-400")}>
                           {(wfInSample.totalReturn * 100).toFixed(1)}%
                         </span>
                       </div>
@@ -1493,11 +1493,11 @@ export default function AlgoPage() {
                     </div>
                   </div>
                   <div className="rounded-md border border-border/50 bg-card/60 p-3 space-y-1.5">
-                    <p className="text-xs font-semibold uppercase tracking-wide text-muted-foreground">Out-of-Sample (≈50 bars)</p>
+                    <p className="text-xs font-medium uppercase tracking-wide text-muted-foreground">Out-of-Sample (≈50 bars)</p>
                     <div className="space-y-0.5">
                       <div className="flex justify-between text-xs">
                         <span className="text-muted-foreground">Return</span>
-                        <span className={cn("font-semibold", wfOutSample.totalReturn >= 0 ? "text-green-400" : "text-red-400")}>
+                        <span className={cn("font-medium", wfOutSample.totalReturn >= 0 ? "text-green-400" : "text-red-400")}>
                           {(wfOutSample.totalReturn * 100).toFixed(1)}%
                         </span>
                       </div>
@@ -1526,7 +1526,7 @@ export default function AlgoPage() {
 
               {/* Monte Carlo */}
               <Card className="border-border/50 bg-card/50 p-4 space-y-4">
-                <h2 className="text-xs font-bold text-foreground uppercase tracking-wide">Monte Carlo Simulation</h2>
+                <h2 className="text-xs font-medium text-foreground uppercase tracking-wide">Monte Carlo Simulation</h2>
                 <p className="text-[11px] text-muted-foreground">
                   Trade order shuffled 500 times to show distribution of possible outcomes.
                   {!mcResults && " Run parameter sweep above to generate Monte Carlo results."}

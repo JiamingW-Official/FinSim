@@ -383,10 +383,10 @@ function ProviderComparisonTable() {
                   <span className="text-green-400 font-semibold">{p.eWeight}%</span>
                 </td>
                 <td className="px-4 py-3">
-                  <span className="text-primary font-semibold">{p.sWeight}%</span>
+                  <span className="text-primary font-medium">{p.sWeight}%</span>
                 </td>
                 <td className="px-4 py-3">
-                  <span className="text-amber-400 font-semibold">{p.gWeight}%</span>
+                  <span className="text-amber-400 font-medium">{p.gWeight}%</span>
                 </td>
               </tr>
             ))}
@@ -404,7 +404,7 @@ function ProviderComparisonTable() {
           >
             <div className="flex items-center gap-2 mb-3">
               <span className="w-3 h-3 rounded-full" style={{ background: sel.color }} />
-              <span className="font-semibold text-foreground">{sel.name}</span>
+              <span className="font-medium text-foreground">{sel.name}</span>
             </div>
             <div className="grid grid-cols-2 gap-3 text-sm">
               <div>
@@ -575,7 +575,7 @@ function ESGWeightBarChart() {
                 <div style={{ width: `${p.sWeight}%`, background: "#3b82f6" }} className="flex items-center justify-center text-[11px] text-foreground font-bold">
                   {p.sWeight}
                 </div>
-                <div style={{ width: `${p.gWeight}%`, background: "#f59e0b" }} className="flex items-center justify-center text-[11px] text-foreground font-bold">
+                <div style={{ width: `${p.gWeight}%`, background: "#f59e0b" }} className="flex items-center justify-center text-[11px] text-foreground font-medium">
                   {p.gWeight}
                 </div>
               </div>
@@ -601,7 +601,7 @@ function FrameworkMatrix() {
         <thead>
           <tr className="border-b border-border bg-foreground/5">
             {["Framework", "Focus", "Mandatory?", "Geography", "Key Topics"].map((h) => (
-              <th key={h} className="px-4 py-3 text-left text-xs font-semibold text-muted-foreground">
+              <th key={h} className="px-4 py-3 text-left text-xs font-medium text-muted-foreground">
                 {h}
               </th>
             ))}
@@ -614,7 +614,7 @@ function FrameworkMatrix() {
                 <div className="flex items-center gap-2">
                   <span className="w-2 h-2 rounded-full" style={{ background: f.color }} />
                   <div>
-                    <div className="font-bold text-foreground">{f.abbr}</div>
+                    <div className="font-medium text-foreground">{f.abbr}</div>
                     <div className="text-xs text-muted-foreground">{f.name}</div>
                   </div>
                 </div>
@@ -710,14 +710,14 @@ function DoubleMaterialityCard() {
       <CardContent>
         <div className="flex gap-4">
           <div className="flex-1 rounded-lg bg-primary/10 border border-border p-3">
-            <div className="text-xs font-bold text-primary mb-1">Financial Materiality</div>
+            <div className="text-xs font-medium text-primary mb-1">Financial Materiality</div>
             <p className="text-xs text-muted-foreground">
               How sustainability risks & opportunities affect the company's financial position,
               performance, cash flows, and enterprise value. Used by TCFD, SASB, ISSB.
             </p>
           </div>
           <div className="flex-1 rounded-lg bg-emerald-500/10 border border-emerald-500/30 p-3">
-            <div className="text-xs font-bold text-emerald-300 mb-1">Impact Materiality</div>
+            <div className="text-xs font-medium text-emerald-300 mb-1">Impact Materiality</div>
             <p className="text-xs text-muted-foreground">
               How the company's activities impact people, the environment, and society — regardless
               of financial effect. Used by GRI, mandated under CSRD Article 29.
@@ -725,7 +725,7 @@ function DoubleMaterialityCard() {
           </div>
         </div>
         <div className="mt-3 p-3 rounded-lg bg-foreground/5 border border-border text-xs text-muted-foreground">
-          <span className="text-foreground font-semibold">CSRD scope:</span> ~50,000 EU companies from 2025–2028 phased rollout.
+          <span className="text-foreground font-medium">CSRD scope:</span> ~50,000 EU companies from 2025–2028 phased rollout.
           Requires assurance (limited initially, reasonable by 2028) by an approved auditor.
         </div>
         <div className="mt-2 grid grid-cols-3 gap-2 text-xs">
@@ -735,7 +735,7 @@ function DoubleMaterialityCard() {
             { label: "SFDR Art. 9", desc: "Sustainable investment objective", color: "bg-emerald-500/20 text-emerald-300" },
           ].map((item) => (
             <div key={item.label} className={`rounded p-2 ${item.color} border border-border`}>
-              <div className="font-bold">{item.label}</div>
+              <div className="font-medium">{item.label}</div>
               <div className="text-xs opacity-80 mt-0.5">{item.desc}</div>
             </div>
           ))}
@@ -767,13 +767,13 @@ function CDPScoringCard() {
           {grades.map((g) => (
             <div key={g.grade} className="flex items-center gap-3">
               <span
-                className="w-8 h-8 rounded-lg flex items-center justify-center text-sm font-bold shrink-0"
+                className="w-8 h-8 rounded-lg flex items-center justify-center text-sm font-medium shrink-0"
                 style={{ background: g.color + "33", color: g.color, border: `1px solid ${g.color}55` }}
               >
                 {g.grade}
               </span>
               <div className="flex-1">
-                <div className="text-xs font-semibold text-foreground">{g.label}</div>
+                <div className="text-xs font-medium text-foreground">{g.label}</div>
                 <div className="text-xs text-muted-foreground">{g.desc}</div>
               </div>
             </div>
@@ -824,7 +824,7 @@ function GreenwashTaxonomyCard() {
               style={{ borderColor: t.color + "44", background: t.color + "11" }}
             >
               <div className="text-lg mb-1">{t.icon}</div>
-              <div className="text-xs font-bold mb-2" style={{ color: t.color }}>
+              <div className="text-xs font-medium mb-2" style={{ color: t.color }}>
                 {t.type}
               </div>
               <ul className="space-y-1">
@@ -858,7 +858,7 @@ function GreenwashCasesTable() {
             <thead>
               <tr className="border-b border-border bg-foreground/5">
                 {["Company", "Year", "Regulator", "Allegation", "Fine/Outcome", "Severity"].map((h) => (
-                  <th key={h} className="px-3 py-2 text-left text-muted-foreground font-semibold">
+                  <th key={h} className="px-3 py-2 text-left text-muted-foreground font-medium">
                     {h}
                   </th>
                 ))}
@@ -867,12 +867,12 @@ function GreenwashCasesTable() {
             <tbody>
               {GREENWASH_CASES.map((c) => (
                 <tr key={c.company} className="border-b border-border/50 hover:bg-muted/30">
-                  <td className="px-3 py-2 font-semibold text-foreground max-w-[120px]">{c.company}</td>
+                  <td className="px-3 py-2 font-medium text-foreground max-w-[120px]">{c.company}</td>
                   <td className="px-3 py-2 text-muted-foreground">{c.year}</td>
                   <td className="px-3 py-2 text-muted-foreground">{c.regulator}</td>
                   <td className="px-3 py-2 text-muted-foreground max-w-[200px] line-clamp-2">{c.allegation}</td>
                   <td className="px-3 py-2">
-                    <span className="font-semibold text-red-400">{c.fine}</span>
+                    <span className="font-medium text-red-400">{c.fine}</span>
                   </td>
                   <td className="px-3 py-2">
                     <Badge className={`text-xs ${sevColor(c.severity)}`}>{c.severity}</Badge>
@@ -936,14 +936,14 @@ function ImpactVsESGWashing() {
       <CardContent>
         <div className="grid grid-cols-2 gap-3">
           <div className="rounded-lg bg-primary/10 border border-border p-3">
-            <div className="text-xs font-bold text-primary mb-2">ESG Washing</div>
+            <div className="text-xs font-medium text-primary mb-2">ESG Washing</div>
             <p className="text-xs text-muted-foreground mb-2">
               Overstating the integration of E/S/G factors in investment process or company operations.
             </p>
             <div className="text-xs text-muted-foreground">Examples: DWS, Goldman ESG fund allegations</div>
           </div>
           <div className="rounded-lg bg-emerald-500/10 border border-emerald-500/30 p-3">
-            <div className="text-xs font-bold text-emerald-300 mb-2">Impact Washing</div>
+            <div className="text-xs font-medium text-emerald-300 mb-2">Impact Washing</div>
             <p className="text-xs text-muted-foreground mb-2">
               Claiming measurable positive real-world outcomes (additionality) that cannot be evidenced or attributed.
             </p>
@@ -952,11 +952,11 @@ function ImpactVsESGWashing() {
         </div>
         <div className="mt-3 grid grid-cols-2 gap-2 text-xs">
           <div className="rounded bg-foreground/5 p-2 border border-border">
-            <div className="text-muted-foreground font-semibold mb-1">Science-Based vs Aspiration</div>
+            <div className="text-muted-foreground font-medium mb-1">Science-Based vs Aspiration</div>
             <p className="text-muted-foreground text-xs">SBTi validates targets consistent with 1.5°C or well-below 2°C scenarios. Aspirational targets lack this rigor.</p>
           </div>
           <div className="rounded bg-foreground/5 p-2 border border-border">
-            <div className="text-muted-foreground font-semibold mb-1">AI Greenwashing Detection</div>
+            <div className="text-muted-foreground font-medium mb-1">AI Greenwashing Detection</div>
             <p className="text-muted-foreground text-xs">NLP tools (ESG Book, Clarity AI) scan filings and news for greenwashing signals via sentiment and consistency analysis.</p>
           </div>
         </div>
@@ -990,7 +990,7 @@ function IntegrationSpectrum() {
             {steps.map((step, i) => (
               <div key={step.label} className="flex-1 flex flex-col items-center gap-1">
                 <div
-                  className="w-full h-8 rounded flex items-center justify-center text-[11px] font-bold text-foreground text-center leading-tight px-1"
+                  className="w-full h-8 rounded flex items-center justify-center text-[11px] font-medium text-foreground text-center leading-tight px-1"
                   style={{ background: step.color + "44", border: `1px solid ${step.color}66` }}
                 >
                   {step.label}
@@ -1146,7 +1146,7 @@ function ActiveOwnershipCard() {
               <div className="text-2xl font-bold" style={{ color: st.color }}>
                 {st.value}
               </div>
-              <div className="text-xs font-semibold text-foreground mt-0.5">{st.label}</div>
+              <div className="text-xs font-medium text-foreground mt-0.5">{st.label}</div>
               <div className="text-xs text-muted-foreground">{st.sub}</div>
             </div>
           ))}
@@ -1189,7 +1189,7 @@ export default function ESGDataPage() {
             <Leaf className="w-5 h-5 text-emerald-400" />
           </div>
           <div>
-            <h1 className="text-xl font-bold text-foreground">ESG Data & Ratings</h1>
+            <h1 className="text-xl font-medium text-foreground">ESG Data & Ratings</h1>
             <p className="text-sm text-muted-foreground">
               Rating methodologies, disclosure frameworks, greenwashing, and ESG integration in investment
             </p>
@@ -1237,7 +1237,7 @@ export default function ESGDataPage() {
         <TabsContent value="providers" className="data-[state=inactive]:hidden space-y-6">
           <motion.div initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.3 }}>
             <div className="mb-4">
-              <h2 className="text-base font-semibold text-foreground mb-1">Provider Comparison</h2>
+              <h2 className="text-base font-medium text-foreground mb-1">Provider Comparison</h2>
               <p className="text-xs text-muted-foreground">Click any row to see additional details. ESG ratings correlate at ~0.61 vs 0.92 for credit ratings.</p>
             </div>
             <ProviderComparisonTable />
@@ -1268,7 +1268,7 @@ export default function ESGDataPage() {
                   { provider: "ISS ESG", freq: "Annual + controversy alerts", lag: "60 days post-disclosure" },
                 ].map((r) => (
                   <div key={r.provider} className="flex gap-2 border-b border-border/50 pb-1 last:border-0">
-                    <span className="text-muted-foreground font-semibold w-24 shrink-0">{r.provider}</span>
+                    <span className="text-muted-foreground font-medium w-24 shrink-0">{r.provider}</span>
                     <span className="text-muted-foreground flex-1">{r.freq}</span>
                     <span className="text-muted-foreground shrink-0 text-xs">{r.lag}</span>
                   </div>
@@ -1292,7 +1292,7 @@ export default function ESGDataPage() {
                   { sector: "Nuclear", msci: "Separate flag", sus: "Country/capacity flag", sp: "Social acceptance scored" },
                 ].map((r) => (
                   <div key={r.sector} className="flex gap-2 border-b border-border/50 pb-1 last:border-0">
-                    <span className="text-red-300 font-semibold w-20 shrink-0">{r.sector}</span>
+                    <span className="text-red-300 font-medium w-20 shrink-0">{r.sector}</span>
                     <span className="text-muted-foreground flex-1 text-xs">{r.msci} | {r.sus} | {r.sp}</span>
                   </div>
                 ))}
@@ -1306,7 +1306,7 @@ export default function ESGDataPage() {
         <TabsContent value="frameworks" className="data-[state=inactive]:hidden space-y-6">
           <motion.div initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.3 }}>
             <div className="mb-4">
-              <h2 className="text-base font-semibold text-foreground mb-1">Global Disclosure Frameworks</h2>
+              <h2 className="text-base font-medium text-foreground mb-1">Global Disclosure Frameworks</h2>
               <p className="text-xs text-muted-foreground">GRI, SASB, TCFD, TNFD, ISSB — different scopes, different audiences, increasing mandatory adoption.</p>
             </div>
             <FrameworkMatrix />
@@ -1370,7 +1370,7 @@ export default function ESGDataPage() {
                     "Protection and restoration of biodiversity",
                   ].map((obj, i) => (
                     <div key={obj} className="flex items-center gap-2 text-xs">
-                      <span className="w-5 h-5 rounded bg-emerald-500/20 text-emerald-400 flex items-center justify-center text-xs font-bold shrink-0">
+                      <span className="w-5 h-5 rounded bg-emerald-500/20 text-emerald-400 flex items-center justify-center text-xs font-medium shrink-0">
                         {i + 1}
                       </span>
                       <span className="text-muted-foreground">{obj}</span>
@@ -1389,11 +1389,11 @@ export default function ESGDataPage() {
               </CardHeader>
               <CardContent className="space-y-3 text-xs">
                 <div className="rounded-lg bg-primary/10 border border-border p-3">
-                  <div className="font-bold text-primary mb-1">Limited Assurance</div>
+                  <div className="font-medium text-primary mb-1">Limited Assurance</div>
                   <p className="text-muted-foreground">Negative assurance — nothing came to attention indicating material error. Lower cost; required initially under CSRD (2025–2027).</p>
                 </div>
                 <div className="rounded-lg bg-emerald-500/10 border border-emerald-500/30 p-3">
-                  <div className="font-bold text-emerald-300 mb-1">Reasonable Assurance</div>
+                  <div className="font-medium text-emerald-300 mb-1">Reasonable Assurance</div>
                   <p className="text-muted-foreground">Positive assurance — auditor concludes information is free from material misstatement. Equivalent to financial audit standard. Required under CSRD by 2028.</p>
                 </div>
                 <p className="text-muted-foreground text-xs">
@@ -1408,7 +1408,7 @@ export default function ESGDataPage() {
         <TabsContent value="greenwashing" className="data-[state=inactive]:hidden space-y-6">
           <motion.div initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.3 }}>
             <div className="mb-4">
-              <h2 className="text-base font-semibold text-foreground mb-1">Greenwashing & Data Quality</h2>
+              <h2 className="text-base font-medium text-foreground mb-1">Greenwashing & Data Quality</h2>
               <p className="text-xs text-muted-foreground">Identifying misleading ESG claims, regulatory enforcement, and quality assessment frameworks.</p>
             </div>
             <GreenwashTaxonomyCard />
@@ -1431,7 +1431,7 @@ export default function ESGDataPage() {
               </CardHeader>
               <CardContent className="text-xs space-y-2">
                 <div className="rounded bg-primary/10 border border-border p-2">
-                  <span className="font-bold text-primary">80% Rule:</span>
+                  <span className="font-medium text-primary">80% Rule:</span>
                   <span className="text-muted-foreground ml-1">Funds must invest ≥80% of assets in instruments consistent with the fund name (ESG, sustainable, green, climate, etc.)</span>
                 </div>
                 <div className="space-y-1.5">
@@ -1469,7 +1469,7 @@ export default function ESGDataPage() {
                 ].map((v) => (
                   <div key={v.org} className="flex gap-2 border-b border-border/50 pb-1.5 last:border-0">
                     <div className="flex-1">
-                      <div className="font-semibold text-foreground">{v.org}</div>
+                      <div className="font-medium text-foreground">{v.org}</div>
                       <div className="text-muted-foreground text-xs">{v.role}</div>
                     </div>
                     <span className="text-emerald-400 text-xs shrink-0">{v.cost}</span>
@@ -1484,7 +1484,7 @@ export default function ESGDataPage() {
         <TabsContent value="integration" className="data-[state=inactive]:hidden space-y-6">
           <motion.div initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.3 }}>
             <div className="mb-4">
-              <h2 className="text-base font-semibold text-foreground mb-1">ESG Integration in Investment Process</h2>
+              <h2 className="text-base font-medium text-foreground mb-1">ESG Integration in Investment Process</h2>
               <p className="text-xs text-muted-foreground">From exclusionary screening to impact investing — and the evidence on ESG alpha generation.</p>
             </div>
             <IntegrationSpectrum />
@@ -1507,11 +1507,11 @@ export default function ESGDataPage() {
               </CardHeader>
               <CardContent className="text-xs space-y-3">
                 <div className="rounded bg-emerald-500/10 border border-emerald-500/30 p-2">
-                  <span className="font-bold text-emerald-300">Bull case:</span>
+                  <span className="font-medium text-emerald-300">Bull case:</span>
                   <span className="text-muted-foreground ml-1">Lower tail risk, fewer regulatory/litigation surprises, better governance improves capital allocation → superior risk-adjusted returns</span>
                 </div>
                 <div className="rounded bg-red-500/10 border border-red-500/30 p-2">
-                  <span className="font-bold text-red-300">Bear case:</span>
+                  <span className="font-medium text-red-300">Bear case:</span>
                   <span className="text-muted-foreground ml-1">High-ESG stocks re-rate as demand grows, front-running effect diminishes. Returns = quality + low-vol factor beta, not ESG alpha</span>
                 </div>
                 <div className="space-y-1.5">
@@ -1553,7 +1553,7 @@ export default function ESGDataPage() {
                     <div key={f.factor}>
                       <div className="flex justify-between mb-0.5">
                         <span className="text-muted-foreground font-medium">{f.factor}</span>
-                        <span className={`font-bold ${f.correlation > 0 ? "text-emerald-400" : "text-red-400"}`}>
+                        <span className={`font-medium ${f.correlation > 0 ? "text-emerald-400" : "text-red-400"}`}>
                           {f.correlation > 0 ? "+" : ""}{f.correlation.toFixed(2)}
                         </span>
                       </div>

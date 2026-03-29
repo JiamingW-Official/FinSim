@@ -596,7 +596,7 @@ export default function PortfolioOptimizerPage() {
                         </div>
                         <div className="text-center">
                           <div className="text-muted-foreground">Sharpe</div>
-                          <div className="font-semibold text-primary">{pt.sharpe.toFixed(3)}</div>
+                          <div className="font-medium text-primary">{pt.sharpe.toFixed(3)}</div>
                         </div>
                       </div>
                       <div className="space-y-1">
@@ -666,13 +666,13 @@ export default function PortfolioOptimizerPage() {
                                   <span className="text-xs text-muted-foreground hidden sm:inline">{a.name}</span>
                                 </div>
                               </td>
-                              <td className="py-2 text-right text-emerald-400 font-mono font-semibold">
+                              <td className="py-2 text-right text-emerald-400 font-mono font-medium">
                                 {(a.expectedReturn * 100).toFixed(1)}%
                               </td>
-                              <td className="py-2 text-right text-rose-400 font-mono font-semibold">
+                              <td className="py-2 text-right text-rose-400 font-mono font-medium">
                                 {(a.volatility * 100).toFixed(1)}%
                               </td>
-                              <td className="py-2 text-right text-primary font-mono font-semibold">
+                              <td className="py-2 text-right text-primary font-mono font-medium">
                                 {sharpe.toFixed(3)}
                               </td>
                               <td className="py-2 text-right">
@@ -879,13 +879,13 @@ export default function PortfolioOptimizerPage() {
                                 {(w * 100).toFixed(1)}%
                               </td>
                             ))}
-                            <td className="py-2 text-right font-semibold text-emerald-400 font-mono">
+                            <td className="py-2 text-right font-medium text-emerald-400 font-mono">
                               {(pt.ret * 100).toFixed(2)}%
                             </td>
-                            <td className="py-2 text-right font-semibold text-rose-400 font-mono">
+                            <td className="py-2 text-right font-medium text-rose-400 font-mono">
                               {(pt.vol * 100).toFixed(2)}%
                             </td>
-                            <td className="py-2 text-right font-semibold text-primary font-mono">
+                            <td className="py-2 text-right font-medium text-primary font-mono">
                               {pt.sharpe.toFixed(3)}
                             </td>
                             <td className="py-2 text-right font-mono text-amber-400 text-xs">
@@ -999,7 +999,7 @@ export default function PortfolioOptimizerPage() {
               ].map((s) => (
                 <Card key={s.title} className="border-border/50">
                   <CardContent className="p-4 space-y-1">
-                    <div className="font-semibold text-sm" style={{ color: s.color }}>{s.title}</div>
+                    <div className="font-medium text-sm" style={{ color: s.color }}>{s.title}</div>
                     <p className="text-xs text-muted-foreground">{s.desc}</p>
                     <p className="text-xs text-amber-400/80 italic">{s.tradeoff}</p>
                   </CardContent>
@@ -1333,7 +1333,7 @@ export default function PortfolioOptimizerPage() {
                         ].map((row) => (
                           <tr key={row.param} className="border-b border-border/20">
                             <td className="py-1.5">{row.param}</td>
-                            <td className="py-1.5 text-right font-semibold" style={{ color: row.color }}>{row.impact}</td>
+                            <td className="py-1.5 text-right font-medium" style={{ color: row.color }}>{row.impact}</td>
                             <td className="py-1.5 text-right text-muted-foreground font-mono">{row.error}</td>
                           </tr>
                         ))}
@@ -1384,7 +1384,7 @@ export default function PortfolioOptimizerPage() {
               <CardContent>
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
                   <div className="space-y-2">
-                    <div className="font-semibold text-sm text-primary">1. Market Equilibrium</div>
+                    <div className="font-medium text-sm text-primary">1. Market Equilibrium</div>
                     <p className="text-xs text-muted-foreground">
                       Start with implied returns from market-cap weights (reverse optimization). These represent the &quot;neutral&quot; view — no alpha assumed. Implied return μ = λ Σ w_mkt where λ is risk aversion coefficient.
                     </p>
@@ -1393,7 +1393,7 @@ export default function PortfolioOptimizerPage() {
                     </div>
                   </div>
                   <div className="space-y-2">
-                    <div className="font-semibold text-sm text-primary">2. Investor Views</div>
+                    <div className="font-medium text-sm text-primary">2. Investor Views</div>
                     <p className="text-xs text-muted-foreground">
                       Express views as P × μ = Q + ε, where P picks the assets, Q is the view return, and ε ~ N(0, Ω) captures uncertainty. Absolute views (&quot;AAPL returns 15%&quot;) and relative views (&quot;AAPL outperforms MSFT by 3%&quot;) are both supported.
                     </p>
@@ -1402,7 +1402,7 @@ export default function PortfolioOptimizerPage() {
                     </div>
                   </div>
                   <div className="space-y-2">
-                    <div className="font-semibold text-sm text-emerald-400">3. Posterior Returns</div>
+                    <div className="font-medium text-sm text-emerald-400">3. Posterior Returns</div>
                     <p className="text-xs text-muted-foreground">
                       Bayesian update combines equilibrium prior with investor views. The posterior expected return blends market and analyst signals proportional to confidence (Ω⁻¹). This dramatically stabilizes optimal weights vs. pure historical estimates.
                     </p>

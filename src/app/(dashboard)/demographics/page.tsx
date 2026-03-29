@@ -1068,7 +1068,7 @@ function JapanCaseStudyTab() {
               { label: "Population Decline", value: "−600k/yr", sub: "Net loss since 2010 peak" },
             ].map((stat) => (
               <div key={stat.label} className="bg-muted rounded-lg p-3 text-center">
-                <div className="text-xl font-bold text-foreground">{stat.value}</div>
+                <div className="text-xl font-medium text-foreground">{stat.value}</div>
                 <div className="text-xs text-muted-foreground mt-0.5">{stat.label}</div>
                 <div className="text-xs text-muted-foreground mt-0.5">{stat.sub}</div>
               </div>
@@ -1373,7 +1373,7 @@ export default function DemographicsPage() {
             <Users className="w-6 h-6 text-primary" />
           </div>
           <div>
-            <h1 className="text-xl font-bold">Global Demographics</h1>
+            <h1 className="text-xl font-medium">Global Demographics</h1>
             <p className="text-sm text-muted-foreground">
               Population trends, aging dynamics, and long-term investment implications
             </p>
@@ -1388,8 +1388,8 @@ export default function DemographicsPage() {
           </div>
         </div>
 
-        {/* Key stats strip */}
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-3 mb-6">
+        {/* Key stats strip — Hero */}
+        <div className="border-l-4 border-l-primary rounded-lg bg-card p-6 grid grid-cols-2 md:grid-cols-4 gap-3 mb-8">
           {[
             { label: "World Population",   value: "8.2B",  sub: "+70M/yr net",   color: "text-primary" },
             { label: "Median World Age",   value: "30.9",  sub: "+2.5 yrs/decade", color: "text-amber-400" },

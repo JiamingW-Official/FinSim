@@ -466,7 +466,7 @@ function MarketOverviewTab() {
               <div key={p.peril} className="flex items-center gap-2">
                 <div className="w-2 h-2 rounded-full flex-shrink-0" style={{ backgroundColor: p.color }} />
                 <span className="text-xs text-muted-foreground flex-1">{p.peril}</span>
-                <span className="text-xs font-semibold text-foreground">{p.share}%</span>
+                <span className="text-xs font-medium text-foreground">{p.share}%</span>
                 <div className="w-20 h-1.5 rounded-full bg-muted overflow-hidden">
                   <div
                     className="h-full rounded-full"
@@ -667,7 +667,7 @@ function CatBondMechanicsTab() {
         </div>
         <div className="grid grid-cols-2 gap-3 text-sm">
           <div>
-            <div className="text-xs font-semibold text-green-400 mb-1.5">Advantages</div>
+            <div className="text-xs font-medium text-green-400 mb-1.5">Advantages</div>
             <ul className="space-y-1">
               {TRIGGER_DESCRIPTIONS[selectedTrigger].pros.map((p, i) => (
                 <li key={i} className="flex items-start gap-1.5 text-xs text-muted-foreground">
@@ -678,7 +678,7 @@ function CatBondMechanicsTab() {
             </ul>
           </div>
           <div>
-            <div className="text-xs font-semibold text-red-400 mb-1.5">Disadvantages</div>
+            <div className="text-xs font-medium text-red-400 mb-1.5">Disadvantages</div>
             <ul className="space-y-1">
               {TRIGGER_DESCRIPTIONS[selectedTrigger].cons.map((c, i) => (
                 <li key={i} className="flex items-start gap-1.5 text-xs text-muted-foreground">
@@ -690,7 +690,7 @@ function CatBondMechanicsTab() {
           </div>
         </div>
         <div className="mt-3 text-xs text-muted-foreground bg-muted/30 rounded-lg p-2">
-          <span className="font-semibold text-amber-400">Basis Risk:</span> The difference between sponsor actual losses and trigger value. Parametric triggers have the highest basis risk but fastest settlement; indemnity has zero basis risk but slowest settlement.
+          <span className="font-medium text-amber-400">Basis Risk:</span> The difference between sponsor actual losses and trigger value. Parametric triggers have the highest basis risk but fastest settlement; indemnity has zero basis risk but slowest settlement.
         </div>
       </div>
 
@@ -717,7 +717,7 @@ function CatBondMechanicsTab() {
           ))}
         </div>
         <div className="text-xs text-muted-foreground mb-2">
-          <span className="font-semibold text-foreground">{selectedBond.name}</span> — {selectedBond.peril} |{" "}
+          <span className="font-medium text-foreground">{selectedBond.name}</span> — {selectedBond.peril} |{" "}
           Trigger: {selectedBond.trigger} | Notional: ${selectedBond.notional}M
         </div>
         <AttachmentDiagram bond={selectedBond} />
@@ -844,7 +844,7 @@ function PricingReturnsTab() {
                     <td className="px-3 py-2 text-right text-red-400">{b.expectedLoss.toFixed(1)}%</td>
                     <td className="px-3 py-2 text-right text-primary">{b.spread} bps</td>
                     <td className="px-3 py-2 text-right">
-                      <span className={cn("font-semibold", multiple >= 3 ? "text-green-400" : multiple >= 2 ? "text-amber-400" : "text-red-400")}>
+                      <span className={cn("font-medium", multiple >= 3 ? "text-green-400" : multiple >= 2 ? "text-amber-400" : "text-red-400")}>
                         {multiple.toFixed(1)}x
                       </span>
                     </td>
@@ -875,7 +875,7 @@ function PricingReturnsTab() {
 
       {/* Pricing formula */}
       <div className="rounded-xl border border-amber-500/20 bg-amber-500/5 p-4">
-        <div className="text-xs font-semibold uppercase tracking-wide text-amber-400 mb-2">Pricing Framework</div>
+        <div className="text-xs font-medium uppercase tracking-wide text-amber-400 mb-2">Pricing Framework</div>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-xs text-muted-foreground">
           <div>
             <p className="text-foreground/90 font-medium mb-1">Cat Bond Yield = SOFR + Spread</p>
@@ -1001,7 +1001,7 @@ function PerilAnalysisTab() {
             <tbody>
               {PERIL_EVENTS.map((e, i) => (
                 <tr key={e.returnPeriod} className={cn("border-b border-border/50", i % 2 === 0 ? "bg-muted/10" : "")}>
-                  <td className="px-4 py-2 font-semibold text-foreground">{e.returnPeriod}-year</td>
+                  <td className="px-4 py-2 font-medium text-foreground">{e.returnPeriod}-year</td>
                   <td className="px-3 py-2 text-right text-amber-400">{e.probability.toFixed(1)}%</td>
                   <td className="px-3 py-2 text-right text-primary">${e.usHurricane}B</td>
                   <td className="px-3 py-2 text-right text-primary">${e.usEarthquake}B</td>
@@ -1050,7 +1050,7 @@ function PerilAnalysisTab() {
       <div className="rounded-xl border border-green-500/20 bg-green-500/5 p-4">
         <div className="flex items-center gap-2 mb-2">
           <Globe size={14} className="text-green-400" />
-          <span className="text-xs font-semibold uppercase tracking-wide text-green-400">Peril Diversification</span>
+          <span className="text-xs font-medium uppercase tracking-wide text-green-400">Peril Diversification</span>
         </div>
         <p className="text-xs text-muted-foreground mb-2">
           Different perils are largely uncorrelated with each other: a US hurricane does not cause a Japanese earthquake.
@@ -1267,7 +1267,7 @@ function PortfolioConstructionTab() {
         <div className="mb-4">
           <div className="flex justify-between text-xs text-muted-foreground mb-1.5">
             <span>Cat Bond Weight</span>
-            <span className="font-semibold text-foreground">{catWeight}%</span>
+            <span className="font-medium text-foreground">{catWeight}%</span>
           </div>
           <input
             type="range"
@@ -1310,7 +1310,7 @@ function PortfolioConstructionTab() {
                   style={{ width: `${(a.weight / 25) * 100}%` }}
                 />
               </div>
-              <span className="text-xs font-semibold text-foreground w-8 text-right">{a.weight.toFixed(0)}%</span>
+              <span className="text-xs font-medium text-foreground w-8 text-right">{a.weight.toFixed(0)}%</span>
               <span className="text-xs text-muted-foreground w-16 text-right">Ret: {a.expReturn}%</span>
             </div>
           ))}
@@ -1390,12 +1390,12 @@ export default function CatBondsPage() {
           </div>
         </motion.div>
 
-        {/* Summary chips */}
+        {/* HERO — Summary chips */}
         <motion.div
           initial={{ opacity: 0, y: 8 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.35, delay: 0.08 }}
-          className="grid grid-cols-2 md:grid-cols-5 gap-2"
+          className="grid grid-cols-2 md:grid-cols-5 gap-2 border-l-4 border-l-primary rounded-xl bg-card p-6"
         >
           <StatChip label="Perils Covered" value="7 Major" color="blue" />
           <StatChip label="Avg Spread" value="~590 bps" color="purple" />

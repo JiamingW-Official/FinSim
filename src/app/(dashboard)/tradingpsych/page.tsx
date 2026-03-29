@@ -1121,8 +1121,8 @@ export default function TradingPsychPage() {
   return (
     <div className="min-h-screen bg-background text-foreground p-4 md:p-6 space-y-6">
       {/* Header */}
-      <div className="space-y-1">
-        <h1 className="text-2xl font-bold tracking-tight flex items-center gap-2">
+      <div className="space-y-1 border-l-4 border-l-primary p-6 rounded-lg bg-card/40">
+        <h1 className="text-xl font-bold tracking-tight flex items-center gap-2">
           <Brain className="w-6 h-6 text-primary" />
           Trading Psychology
         </h1>
@@ -1132,7 +1132,7 @@ export default function TradingPsychPage() {
         </p>
       </div>
 
-      <Tabs defaultValue="bias">
+      <Tabs defaultValue="bias" className="mt-8">
         <TabsList className="flex flex-wrap gap-1 h-auto">
           <TabsTrigger value="bias" className="text-xs">
             Bias Assessment
@@ -1599,7 +1599,7 @@ export default function TradingPsychPage() {
                             : "transparent",
                       }}
                     >
-                      <span style={{ color: row.color }} className="font-bold w-6">
+                      <span style={{ color: row.color }} className="font-medium w-6">
                         {row.grade}
                       </span>
                       <span className="text-muted-foreground">{row.range}</span>
@@ -1722,7 +1722,7 @@ export default function TradingPsychPage() {
                     <span style={{ color: stat.color }}>{stat.icon}</span>
                     <span className="text-xs text-muted-foreground">{stat.label}</span>
                   </div>
-                  <p className="text-lg font-bold">{stat.value}</p>
+                  <p className="text-lg font-medium">{stat.value}</p>
                 </CardContent>
               </Card>
             ))}
@@ -1791,10 +1791,10 @@ export default function TradingPsychPage() {
                             {technique.description}
                           </p>
                           <div className="space-y-2">
-                            <p className="text-xs font-semibold">Step-by-Step:</p>
+                            <p className="text-xs font-medium">Step-by-Step:</p>
                             {technique.steps.map((step, i) => (
                               <div key={i} className="flex items-start gap-3">
-                                <div className="w-5 h-5 rounded-full bg-primary/10 text-primary text-xs flex items-center justify-center flex-shrink-0 font-bold">
+                                <div className="w-5 h-5 rounded-full bg-primary/10 text-primary text-xs flex items-center justify-center flex-shrink-0 font-medium">
                                   {i + 1}
                                 </div>
                                 <p className="text-xs text-muted-foreground pt-0.5">
@@ -1818,7 +1818,7 @@ export default function TradingPsychPage() {
               <div className="flex items-start gap-3">
                 <Flame className="w-4 h-4 mt-0.5 text-orange-500 flex-shrink-0" />
                 <div className="space-y-2">
-                  <p className="text-xs font-semibold">Physical Health → Decision Quality</p>
+                  <p className="text-xs font-medium">Physical Health → Decision Quality</p>
                   <div className="grid grid-cols-2 gap-2">
                     {[
                       { factor: "7–9 hrs sleep", impact: "+23% cognitive performance", positive: true },
@@ -1856,7 +1856,7 @@ export default function TradingPsychPage() {
               <div className="flex items-start gap-3">
                 <Star className="w-4 h-4 mt-0.5 text-yellow-500 flex-shrink-0" />
                 <div className="space-y-1">
-                  <p className="text-xs font-semibold">The One Question That Changes Everything</p>
+                  <p className="text-xs font-medium">The One Question That Changes Everything</p>
                   <p className="text-xs text-muted-foreground leading-relaxed">
                     Before every trade entry, ask yourself:{" "}
                     <span className="text-foreground font-medium italic">

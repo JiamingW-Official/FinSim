@@ -663,7 +663,7 @@ export default function EsgPage() {
                                 <div className="text-muted-foreground truncate max-w-[110px]">{c.name}</div>
                               </td>
                               <td className="px-2 py-2 text-center">
-                                <span className={`font-bold text-sm ${c.ratingColor}`}>{c.rating}</span>
+                                <span className={`font-medium text-sm ${c.ratingColor}`}>{c.rating}</span>
                               </td>
                               <td className="px-2 py-2 text-right">
                                 <span className="text-emerald-400">{c.eScore}</span>
@@ -674,7 +674,7 @@ export default function EsgPage() {
                               <td className="px-2 py-2 text-right">
                                 <span className="text-primary">{c.gScore}</span>
                               </td>
-                              <td className="px-2 py-2 text-right font-bold">{c.total}</td>
+                              <td className="px-2 py-2 text-right font-medium">{c.total}</td>
                               <td className="px-3 py-2 text-center">
                                 <span className={`inline-block px-1.5 py-0.5 rounded border text-xs font-medium ${controversyBadge(c.controversyLevel)}`}>
                                   {c.controversyLevel}
@@ -694,7 +694,7 @@ export default function EsgPage() {
                 <Card className="bg-card border-border">
                   <CardHeader className="pb-1">
                     <CardTitle className="text-sm flex items-center gap-2">
-                      <span className={`font-bold text-base ${selectedCompany.ratingColor}`}>{selectedCompany.rating}</span>
+                      <span className={`font-medium text-base ${selectedCompany.ratingColor}`}>{selectedCompany.rating}</span>
                       {selectedCompany.ticker}
                       <span className="text-muted-foreground font-normal text-xs">— {selectedCompany.sector}</span>
                     </CardTitle>
@@ -793,7 +793,7 @@ export default function EsgPage() {
                       <div key={i} className="flex items-center justify-between pb-2 border-b border-border/40 last:border-0">
                         <span className="text-muted-foreground">{row.label}</span>
                         <div className="flex gap-3">
-                          <span className={row.esgPos ? "text-emerald-400 font-semibold" : "text-red-400 font-semibold"}>
+                          <span className={row.esgPos ? "text-emerald-400 font-medium" : "text-red-400 font-medium"}>
                             ESG: {row.esg}
                           </span>
                           <span className="text-muted-foreground">|</span>
@@ -829,7 +829,7 @@ export default function EsgPage() {
                       const colors = ["text-emerald-400", "text-red-400", "text-indigo-400"];
                       return (
                         <tr key={key} className="border-b border-border/40">
-                          <td className={`px-3 py-2 font-semibold ${colors[ki]}`}>{labels[ki]}</td>
+                          <td className={`px-3 py-2 font-medium ${colors[ki]}`}>{labels[ki]}</td>
                           {PERF_DATA.map((d) => (
                             <td key={d.year} className={`px-3 py-2 text-right ${colors[ki]}`}>{d[key].toFixed(1)}</td>
                           ))}
@@ -892,7 +892,7 @@ export default function EsgPage() {
                               ? <CheckCircle className="w-3.5 h-3.5 text-emerald-400 inline" />
                               : <XCircle className="w-3.5 h-3.5 text-red-400 inline" />}
                           </td>
-                          <td className="px-2 py-2 text-right font-semibold text-sky-400">{r.netZeroTarget}</td>
+                          <td className="px-2 py-2 text-right font-medium text-sky-400">{r.netZeroTarget}</td>
                           <td className="px-3 py-2 text-right text-muted-foreground">{r.carbonFootprint.toLocaleString()}</td>
                         </tr>
                       ))}
@@ -922,7 +922,7 @@ export default function EsgPage() {
                     <div key={i}>
                       <div className="flex justify-between mb-0.5">
                         <span>{item.label}</span>
-                        <span className="font-semibold text-foreground">{item.value}%</span>
+                        <span className="font-medium text-foreground">{item.value}%</span>
                       </div>
                       <Progress value={item.value} className="h-1.5" />
                     </div>
@@ -948,7 +948,7 @@ export default function EsgPage() {
                     <div key={i}>
                       <div className="flex justify-between mb-0.5">
                         <span>{item.label}</span>
-                        <span className="font-semibold text-foreground">{item.value}%</span>
+                        <span className="font-medium text-foreground">{item.value}%</span>
                       </div>
                       <Progress value={item.value} className="h-1.5" />
                     </div>
@@ -978,7 +978,7 @@ export default function EsgPage() {
                       <div key={c.ticker} className="text-xs">
                         <div className="flex justify-between mb-0.5">
                           <span className="text-muted-foreground">{c.ticker}</span>
-                          <span className="font-semibold" style={{ color }}>{c.carbonIntensity}</span>
+                          <span className="font-medium" style={{ color }}>{c.carbonIntensity}</span>
                         </div>
                         <div className="h-1.5 bg-border rounded-full overflow-hidden">
                           <div className="h-full rounded-full" style={{ width: `${pct}%`, backgroundColor: color }} />
@@ -1006,7 +1006,7 @@ export default function EsgPage() {
                       <div key={c.ticker} className="text-xs">
                         <div className="flex justify-between mb-0.5">
                           <span className="text-muted-foreground">{c.ticker}</span>
-                          <span className="font-semibold" style={{ color }}>{c.waterUsage}</span>
+                          <span className="font-medium" style={{ color }}>{c.waterUsage}</span>
                         </div>
                         <div className="h-1.5 bg-border rounded-full overflow-hidden">
                           <div className="h-full rounded-full" style={{ width: `${pct}%`, backgroundColor: color }} />
@@ -1030,7 +1030,7 @@ export default function EsgPage() {
                     <div key={c.ticker} className="text-xs">
                       <div className="flex justify-between mb-0.5">
                         <span className="text-muted-foreground">{c.ticker}</span>
-                        <span className={`font-semibold ${c.boardDiversity >= 50 ? "text-emerald-400" : c.boardDiversity >= 35 ? "text-yellow-400" : "text-red-400"}`}>
+                        <span className={`font-medium ${c.boardDiversity >= 50 ? "text-emerald-400" : c.boardDiversity >= 35 ? "text-yellow-400" : "text-red-400"}`}>
                           {c.boardDiversity}%
                         </span>
                       </div>
@@ -1053,7 +1053,7 @@ export default function EsgPage() {
                     <div key={c.ticker} className="text-xs">
                       <div className="flex justify-between mb-0.5">
                         <span className="text-muted-foreground">{c.ticker}</span>
-                        <span className={`font-semibold ${c.employeeSat >= 80 ? "text-emerald-400" : c.employeeSat >= 65 ? "text-yellow-400" : "text-red-400"}`}>
+                        <span className={`font-medium ${c.employeeSat >= 80 ? "text-emerald-400" : c.employeeSat >= 65 ? "text-yellow-400" : "text-red-400"}`}>
                           {c.employeeSat}
                         </span>
                       </div>
@@ -1098,7 +1098,7 @@ export default function EsgPage() {
                             {c.renewableEnergy}%
                           </text>
                         </svg>
-                        <span className="text-xs font-semibold">{c.ticker}</span>
+                        <span className="text-xs font-medium">{c.ticker}</span>
                         <span className="text-xs text-muted-foreground">{c.sector}</span>
                       </div>
                     );
@@ -1164,23 +1164,23 @@ export default function EsgPage() {
                   <CardContent className="text-xs space-y-1.5">
                     <div className="flex justify-between">
                       <span className="text-muted-foreground">Universe</span>
-                      <span className="font-semibold">{COMPANIES.length} companies</span>
+                      <span className="font-medium">{COMPANIES.length} companies</span>
                     </div>
                     <div className="flex justify-between">
                       <span className="text-muted-foreground">After screening</span>
-                      <span className="font-semibold text-emerald-400">{screened.length} companies</span>
+                      <span className="font-medium text-emerald-400">{screened.length} companies</span>
                     </div>
                     <div className="flex justify-between">
                       <span className="text-muted-foreground">Excluded</span>
-                      <span className="font-semibold text-red-400">{COMPANIES.length - screened.length}</span>
+                      <span className="font-medium text-red-400">{COMPANIES.length - screened.length}</span>
                     </div>
                     <div className="flex justify-between">
                       <span className="text-muted-foreground">Active positive screens</span>
-                      <span className="font-semibold">{screening.filter((c) => c.type === "positive" && c.active).length}</span>
+                      <span className="font-medium">{screening.filter((c) => c.type === "positive" && c.active).length}</span>
                     </div>
                     <div className="flex justify-between">
                       <span className="text-muted-foreground">Active exclusions</span>
-                      <span className="font-semibold">{screening.filter((c) => c.type === "negative" && c.active).length}</span>
+                      <span className="font-medium">{screening.filter((c) => c.type === "negative" && c.active).length}</span>
                     </div>
                   </CardContent>
                 </Card>
@@ -1211,15 +1211,15 @@ export default function EsgPage() {
                               <span className="text-muted-foreground ml-1">{c.name}</span>
                             </td>
                             <td className="px-2 py-2 text-center">
-                              <span className={`font-bold ${c.ratingColor}`}>{c.rating}</span>
+                              <span className={`font-medium ${c.ratingColor}`}>{c.rating}</span>
                             </td>
-                            <td className="px-2 py-2 text-right font-semibold">{c.total}</td>
+                            <td className="px-2 py-2 text-right font-medium">{c.total}</td>
                             <td className="px-2 py-2 text-center">
                               <span className={`px-1.5 py-0.5 rounded border text-xs font-medium ${controversyBadge(c.controversyLevel)}`}>
                                 {c.controversyLevel}
                               </span>
                             </td>
-                            <td className="px-3 py-2 text-right text-emerald-400 font-semibold">{c.renewableEnergy}%</td>
+                            <td className="px-3 py-2 text-right text-emerald-400 font-medium">{c.renewableEnergy}%</td>
                           </tr>
                         ))}
                       </tbody>
@@ -1251,16 +1251,16 @@ export default function EsgPage() {
                         {THEMATIC_ETFS.map((e) => (
                           <tr key={e.ticker} className="border-b border-border/40">
                             <td className="px-3 py-2">
-                              <div className="font-semibold">{e.ticker}</div>
+                              <div className="font-medium">{e.ticker}</div>
                               <div className="text-muted-foreground truncate max-w-[130px]">{e.name}</div>
                               <Badge variant="outline" className="text-xs mt-0.5 px-1 py-0">{e.theme}</Badge>
                             </td>
-                            <td className="px-2 py-2 text-right font-semibold">{e.aum.toFixed(1)}</td>
-                            <td className={`px-2 py-2 text-right font-semibold ${e.ytdReturn >= 0 ? "text-emerald-400" : "text-red-400"}`}>
+                            <td className="px-2 py-2 text-right font-medium">{e.aum.toFixed(1)}</td>
+                            <td className={`px-2 py-2 text-right font-medium ${e.ytdReturn >= 0 ? "text-emerald-400" : "text-red-400"}`}>
                               {e.ytdReturn >= 0 ? "+" : ""}{e.ytdReturn.toFixed(1)}%
                             </td>
                             <td className="px-2 py-2 text-right text-muted-foreground">{e.expenseRatio.toFixed(2)}%</td>
-                            <td className={`px-2 py-2 text-right font-bold ${getRating(e.esgScore).color}`}>{e.esgScore}</td>
+                            <td className={`px-2 py-2 text-right font-medium ${getRating(e.esgScore).color}`}>{e.esgScore}</td>
                             <td className="px-3 py-2">
                               <div className="flex gap-1 flex-wrap">
                                 {e.sdgAlignment.map((sdg) => (
@@ -1285,7 +1285,7 @@ export default function EsgPage() {
                   </CardHeader>
                   <CardContent className="grid grid-cols-1 sm:grid-cols-2 gap-4 text-xs">
                     <div>
-                      <div className="font-semibold text-emerald-400 mb-1.5 flex items-center gap-1">
+                      <div className="font-medium text-emerald-400 mb-1.5 flex items-center gap-1">
                         <CheckCircle className="w-3.5 h-3.5" /> Active Engagement
                       </div>
                       <ul className="space-y-1 text-muted-foreground">
@@ -1298,7 +1298,7 @@ export default function EsgPage() {
                       </ul>
                     </div>
                     <div>
-                      <div className="font-semibold text-red-400 mb-1.5 flex items-center gap-1">
+                      <div className="font-medium text-red-400 mb-1.5 flex items-center gap-1">
                         <XCircle className="w-3.5 h-3.5" /> Exclusion Approach
                       </div>
                       <ul className="space-y-1 text-muted-foreground">

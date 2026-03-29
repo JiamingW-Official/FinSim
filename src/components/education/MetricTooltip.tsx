@@ -233,7 +233,7 @@ export function MetricTooltip({ metric, children }: MetricTooltipProps) {
       <TooltipContent
         side="top"
         sideOffset={4}
-        className="max-w-72 space-y-2 bg-card border border-border p-3"
+        className="max-w-72 space-y-2 bg-card border border-border/40 p-3"
       >
         <p className="text-[11px] text-foreground/80 leading-relaxed">
           {edu.definition}

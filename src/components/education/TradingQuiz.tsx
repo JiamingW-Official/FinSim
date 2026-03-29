@@ -123,7 +123,7 @@ function ResultScreen({
 
   const gradeColors: Record<string, string> = {
     A: "text-emerald-400 border-emerald-400/30 bg-emerald-400/10",
-    B: "text-primary border-border bg-primary/10",
+    B: "text-primary border-border/40 bg-primary/10",
     C: "text-amber-400 border-amber-400/30 bg-amber-400/10",
     D: "text-orange-400 border-orange-400/30 bg-orange-400/10",
     F: "text-red-400 border-red-400/30 bg-red-400/10",
@@ -336,7 +336,7 @@ export function TradingQuiz({ onComplete, category }: TradingQuizProps) {
           animate={{ opacity: 1, x: 0 }}
           exit={{ opacity: 0, x: -direction * 48 }}
           transition={{ duration: 0.22, ease: "easeOut" }}
-          className="rounded-lg border border-border bg-card p-4 space-y-4"
+          className="rounded-lg border border-border/40 bg-card p-4 space-y-4"
         >
           {/* Question front */}
           <div className="space-y-1">
@@ -363,7 +363,7 @@ export function TradingQuiz({ onComplete, category }: TradingQuizProps) {
 
               if (answerState === "idle") {
                 optionClass +=
-                  " border-border bg-muted/20 hover:border-primary/50 hover:bg-muted/40 cursor-pointer";
+                  " border-border/40 bg-muted/20 hover:border-primary/50 hover:bg-muted/40 cursor-pointer";
               } else if (isCorrect) {
                 optionClass += " border-emerald-500/50 bg-emerald-500/10 text-emerald-400 cursor-default";
               } else if (isSelected && !isCorrect) {

@@ -1134,7 +1134,7 @@ export default function CrossAssetMomPage() {
                     { label: "Recovery", value: "18 months", color: "text-amber-400" },
                   ].map((s) => (
                     <div key={s.label} className="bg-muted rounded p-2 text-center">
-                      <p className={`text-sm font-bold ${s.color}`}>{s.value}</p>
+                      <p className={`text-sm font-medium ${s.color}`}>{s.value}</p>
                       <p className="text-xs text-muted-foreground">{s.label}</p>
                     </div>
                   ))}
@@ -1201,8 +1201,8 @@ export default function CrossAssetMomPage() {
                     { period: "36+ Months", alpha: "-2.1% ann.", effect: "Reversal to value", sentiment: "negative", color: "#ef4444" },
                   ].map((p) => (
                     <div key={p.period} className="bg-muted/60 border border-border/50 rounded-lg p-3">
-                      <p className="text-xs font-semibold text-muted-foreground">{p.period}</p>
-                      <p className="text-lg font-bold mt-1" style={{ color: p.color }}>{p.alpha}</p>
+                      <p className="text-xs font-medium text-muted-foreground">{p.period}</p>
+                      <p className="text-lg font-medium mt-1" style={{ color: p.color }}>{p.alpha}</p>
                       <p className="text-xs text-muted-foreground mt-0.5">{p.effect}</p>
                     </div>
                   ))}
@@ -1235,7 +1235,7 @@ export default function CrossAssetMomPage() {
               <CardContent className="space-y-3">
                 <p className="text-sm text-muted-foreground leading-relaxed">
                   Commodity Trading Advisors (CTAs) are systematic managers that apply{" "}
-                  <span className="text-indigo-400 font-semibold">trend following</span> across
+                  <span className="text-indigo-400 font-medium">trend following</span> across
                   futures markets — equities, bonds, currencies, commodities. The core premise: trends
                   persist due to behavioral biases (underreaction to information, herding) and structural
                   flows (central bank intervention, corporate hedging).
@@ -1248,7 +1248,7 @@ export default function CrossAssetMomPage() {
                     { label: "Crisis Alpha", value: "Yes", color: "#ec4899" },
                   ].map((s) => (
                     <div key={s.label} className="bg-muted rounded p-2 text-center">
-                      <p className="text-base font-bold" style={{ color: s.color }}>{s.value}</p>
+                      <p className="text-base font-medium" style={{ color: s.color }}>{s.value}</p>
                       <p className="text-xs text-muted-foreground">{s.label}</p>
                     </div>
                   ))}
@@ -1265,14 +1265,14 @@ export default function CrossAssetMomPage() {
                 <MAcrossoverSVG />
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 mt-3">
                   <div className="bg-muted/60 rounded-lg p-3 border border-border/50">
-                    <p className="text-xs font-semibold text-emerald-400 mb-1">Long Signal</p>
+                    <p className="text-xs font-medium text-emerald-400 mb-1">Long Signal</p>
                     <p className="text-xs text-muted-foreground">
                       Fast MA &gt; Slow MA — asset is in uptrend. Position = +1 (or fraction based on conviction).
                       Typical: SMA20 crosses above SMA50.
                     </p>
                   </div>
                   <div className="bg-muted/60 rounded-lg p-3 border border-border/50">
-                    <p className="text-xs font-semibold text-red-400 mb-1">Short Signal</p>
+                    <p className="text-xs font-medium text-red-400 mb-1">Short Signal</p>
                     <p className="text-xs text-muted-foreground">
                       Fast MA &lt; Slow MA — asset is in downtrend. Position = -1 (or fraction).
                       Shorting via futures is standard (no borrowing constraints).
@@ -1324,7 +1324,7 @@ export default function CrossAssetMomPage() {
                       }`}
                     >
                       <div className="flex items-center justify-between mb-1">
-                        <span className="text-xs font-bold" style={{ color: m.color }}>
+                        <span className="text-xs font-medium" style={{ color: m.color }}>
                           {m.shortName}
                         </span>
                         <span className="text-xs text-emerald-400 font-mono">{m.annualReturn}%</span>
@@ -1333,15 +1333,15 @@ export default function CrossAssetMomPage() {
                       <div className="flex gap-3">
                         <div>
                           <p className="text-xs text-muted-foreground">Sharpe</p>
-                          <p className="text-xs font-semibold text-foreground">{m.sharpe}</p>
+                          <p className="text-xs font-medium text-foreground">{m.sharpe}</p>
                         </div>
                         <div>
                           <p className="text-xs text-muted-foreground">MaxDD</p>
-                          <p className="text-xs font-semibold text-red-400">{m.maxDrawdown}%</p>
+                          <p className="text-xs font-medium text-red-400">{m.maxDrawdown}%</p>
                         </div>
                         <div>
                           <p className="text-xs text-muted-foreground">WinRate</p>
-                          <p className="text-xs font-semibold text-foreground">{m.winRate}%</p>
+                          <p className="text-xs font-medium text-foreground">{m.winRate}%</p>
                         </div>
                       </div>
                     </button>
@@ -1356,21 +1356,21 @@ export default function CrossAssetMomPage() {
                       exit={{ opacity: 0, height: 0 }}
                       className="bg-indigo-950/30 border border-indigo-800/40 rounded-lg p-4"
                     >
-                      <p className="text-sm font-semibold text-indigo-300 mb-2">
+                      <p className="text-sm font-medium text-indigo-300 mb-2">
                         {selectedTrendModel.name} — Detail
                       </p>
                       <div className="grid grid-cols-3 gap-3">
                         <div>
                           <p className="text-xs text-muted-foreground">Annual Return</p>
-                          <p className="text-base font-bold text-emerald-400">{selectedTrendModel.annualReturn}%</p>
+                          <p className="text-base font-medium text-emerald-400">{selectedTrendModel.annualReturn}%</p>
                         </div>
                         <div>
                           <p className="text-xs text-muted-foreground">Sharpe Ratio</p>
-                          <p className="text-base font-bold text-indigo-300">{selectedTrendModel.sharpe}</p>
+                          <p className="text-base font-medium text-indigo-300">{selectedTrendModel.sharpe}</p>
                         </div>
                         <div>
                           <p className="text-xs text-muted-foreground">Avg Hold (days)</p>
-                          <p className="text-base font-bold text-amber-400">{selectedTrendModel.avgHoldDays}</p>
+                          <p className="text-base font-medium text-amber-400">{selectedTrendModel.avgHoldDays}</p>
                         </div>
                       </div>
                     </motion.div>
@@ -1415,26 +1415,26 @@ export default function CrossAssetMomPage() {
                       className="bg-muted/60 border border-border/50 rounded-lg p-3"
                     >
                       <div className="flex items-center justify-between mb-2">
-                        <span className="text-xs font-bold text-muted-foreground">{a.shortName}</span>
+                        <span className="text-xs font-medium text-muted-foreground">{a.shortName}</span>
                         <SignalBadge signal={a.signal} />
                       </div>
                       <p className="text-xs text-muted-foreground mb-2">{a.name}</p>
                       <div className="grid grid-cols-2 gap-1">
                         <div>
                           <p className="text-xs text-muted-foreground">Mom Sharpe</p>
-                          <p className="text-sm font-semibold" style={{ color: a.color }}>{a.momentumSharpe}</p>
+                          <p className="text-sm font-medium" style={{ color: a.color }}>{a.momentumSharpe}</p>
                         </div>
                         <div>
                           <p className="text-xs text-muted-foreground">Ann. Ret</p>
-                          <p className="text-sm font-semibold text-emerald-400">{a.annualReturn}%</p>
+                          <p className="text-sm font-medium text-emerald-400">{a.annualReturn}%</p>
                         </div>
                         <div>
                           <p className="text-xs text-muted-foreground">Max DD</p>
-                          <p className="text-sm font-semibold text-red-400">{a.maxDrawdown}%</p>
+                          <p className="text-sm font-medium text-red-400">{a.maxDrawdown}%</p>
                         </div>
                         <div>
                           <p className="text-xs text-muted-foreground">Vol</p>
-                          <p className="text-sm font-semibold text-muted-foreground">{a.volatility}%</p>
+                          <p className="text-sm font-medium text-muted-foreground">{a.volatility}%</p>
                         </div>
                       </div>
                     </div>
@@ -1453,7 +1453,7 @@ export default function CrossAssetMomPage() {
               <CardContent className="space-y-3">
                 <p className="text-sm text-muted-foreground leading-relaxed">
                   Each asset receives a weight proportional to its{" "}
-                  <span className="text-indigo-400 font-semibold">inverse volatility</span>, so that every
+                  <span className="text-indigo-400 font-medium">inverse volatility</span>, so that every
                   position contributes equally to portfolio risk. Multiply by the momentum signal (±1 or
                   continuous z-score) to get the final position size.
                 </p>
@@ -1506,7 +1506,7 @@ export default function CrossAssetMomPage() {
                       exit={{ opacity: 0, height: 0 }}
                       className="bg-indigo-950/30 border border-indigo-700/40 rounded-lg p-3"
                     >
-                      <p className="text-xs font-semibold text-indigo-300 mb-1">
+                      <p className="text-xs font-medium text-indigo-300 mb-1">
                         {selectedPortfolioAsset.name} ({selectedPortfolioAsset.shortName})
                       </p>
                       <div className="grid grid-cols-4 gap-2 text-xs">
@@ -1571,7 +1571,7 @@ export default function CrossAssetMomPage() {
                 <CrisisPerformanceSVG />
                 <div className="mt-3 grid grid-cols-2 gap-3">
                   <div className="bg-emerald-950/30 border border-emerald-800/40 rounded-lg p-3">
-                    <p className="text-xs font-semibold text-emerald-400 mb-1">Trend CTA — Crisis Alpha</p>
+                    <p className="text-xs font-medium text-emerald-400 mb-1">Trend CTA — Crisis Alpha</p>
                     <p className="text-xs text-emerald-200/70 leading-relaxed">
                       Trend following earned positive returns in 2001, 2008, 2011, 2015, 2020, and 2022 —
                       all major equity bear markets. The exception: 2009 momentum crash and V-shaped
@@ -1579,7 +1579,7 @@ export default function CrossAssetMomPage() {
                     </p>
                   </div>
                   <div className="bg-amber-950/30 border border-amber-800/40 rounded-lg p-3">
-                    <p className="text-xs font-semibold text-amber-400 mb-1">2022 — The Best Year</p>
+                    <p className="text-xs font-medium text-amber-400 mb-1">2022 — The Best Year</p>
                     <p className="text-xs text-amber-200/70 leading-relaxed">
                       CTA strategies returned +28% average in 2022 as persistent inflation drove sustained
                       trends in bonds (short), commodities (long), and dollar (long). AQR Managed Futures
@@ -1631,7 +1631,7 @@ export default function CrossAssetMomPage() {
                     },
                   ].map((item) => (
                     <div key={item.title} className="bg-muted/60 border border-border/50 rounded-lg p-3">
-                      <p className="text-xs font-semibold mb-1" style={{ color: item.color }}>
+                      <p className="text-xs font-medium mb-1" style={{ color: item.color }}>
                         {item.title}
                       </p>
                       <p className="text-xs text-muted-foreground leading-relaxed mb-2">{item.desc}</p>
@@ -1673,7 +1673,7 @@ export default function CrossAssetMomPage() {
                   ))}
                 </div>
                 <div className="mt-3 bg-amber-950/20 border border-amber-800/30 rounded-lg p-3">
-                  <p className="text-xs text-amber-300 font-semibold mb-1">Capacity Constraints</p>
+                  <p className="text-xs text-amber-300 font-medium mb-1">Capacity Constraints</p>
                   <p className="text-xs text-amber-200/70 leading-relaxed">
                     Market impact becomes significant at AUM &gt; $500M for single-asset strategies. Diversification
                     across 40-80 markets improves capacity significantly. AQR and Winton manage $10B+ through
@@ -1720,7 +1720,7 @@ export default function CrossAssetMomPage() {
                     },
                   ].map((f) => (
                     <div key={f.name} className="bg-muted/60 border border-border/50 rounded-lg p-3">
-                      <p className="text-sm font-bold mb-1" style={{ color: f.color }}>{f.name}</p>
+                      <p className="text-sm font-medium mb-1" style={{ color: f.color }}>{f.name}</p>
                       <p className="text-xs text-muted-foreground mb-2">{f.description}</p>
                       <div className="flex items-center gap-2 mb-1">
                         <span className="text-xs text-muted-foreground">Sharpe:</span>
@@ -1734,7 +1734,7 @@ export default function CrossAssetMomPage() {
                 <div className="bg-indigo-950/30 border border-indigo-700/40 rounded-lg p-3">
                   <div className="flex items-center justify-between">
                     <div>
-                      <p className="text-xs text-indigo-300 font-semibold">Combined Portfolio (1/3 each)</p>
+                      <p className="text-xs text-indigo-300 font-medium">Combined Portfolio (1/3 each)</p>
                       <p className="text-xs text-muted-foreground mt-0.5">
                         Sharpe rises from ~0.6 individually to ~1.1 combined — subadditive volatility through low
                         factor correlation. This is the theoretical foundation of multi-factor style premia.
@@ -1810,7 +1810,7 @@ export default function CrossAssetMomPage() {
                     >
                       <div className="flex items-center gap-2 mb-2">
                         <section.icon size={13} style={{ color: section.color }} />
-                        <p className="text-xs font-semibold" style={{ color: section.color }}>
+                        <p className="text-xs font-medium" style={{ color: section.color }}>
                           {section.title}
                         </p>
                       </div>
@@ -1843,7 +1843,7 @@ export default function CrossAssetMomPage() {
                     { label: "Carry", pct: 9, note: "Roll/coupon income", color: "#ec4899" },
                   ].map((s) => (
                     <div key={s.label} className="bg-muted rounded p-2">
-                      <p className="text-base font-bold" style={{ color: s.color }}>{s.pct}%</p>
+                      <p className="text-base font-medium" style={{ color: s.color }}>{s.pct}%</p>
                       <p className="text-xs text-muted-foreground">{s.label}</p>
                       <p className="text-xs text-muted-foreground">{s.note}</p>
                     </div>
@@ -1898,7 +1898,7 @@ export default function CrossAssetMomPage() {
                     >
                       <div className="flex items-start justify-between gap-2">
                         <div className="flex-1">
-                          <p className="text-xs font-semibold" style={{ color: p.color }}>
+                          <p className="text-xs font-medium" style={{ color: p.color }}>
                             {p.paper}
                           </p>
                           <p className="text-xs text-muted-foreground font-medium mt-0.5">{p.title}</p>
@@ -1906,7 +1906,7 @@ export default function CrossAssetMomPage() {
                         </div>
                         <div className="text-right shrink-0 ml-2">
                           <p className="text-xs text-muted-foreground">Sharpe</p>
-                          <p className="text-sm font-mono font-bold" style={{ color: p.color }}>
+                          <p className="text-sm font-mono font-medium" style={{ color: p.color }}>
                             {p.sharpe}
                           </p>
                         </div>

@@ -1159,7 +1159,7 @@ function DiversificationScoreTab() {
           <Card key={m.label} className="bg-muted/50 border-border">
             <CardContent className="pt-3 pb-3">
               <p className="text-xs text-muted-foreground">{m.label}</p>
-              <p className="text-xl font-bold text-foreground mt-0.5">{m.value}</p>
+              <p className="text-xl font-medium text-foreground mt-0.5">{m.value}</p>
               <p className="text-xs text-muted-foreground mt-0.5">{m.sub}</p>
             </CardContent>
           </Card>
@@ -1406,19 +1406,19 @@ function OptimalPairsTab() {
                           <div className="grid grid-cols-3 gap-3">
                             <div className="text-center bg-muted/40 rounded-lg p-2">
                               <p className="text-xs text-muted-foreground">Correlation</p>
-                              <p className="text-base font-bold text-foreground mt-0.5">
+                              <p className="text-base font-medium text-foreground mt-0.5">
                                 {pair.correlation > 0 ? "+" : ""}{pair.correlation.toFixed(2)}
                               </p>
                             </div>
                             <div className="text-center bg-muted/40 rounded-lg p-2">
                               <p className="text-xs text-muted-foreground">Vol Reduction</p>
-                              <p className="text-base font-bold text-green-400 mt-0.5">
+                              <p className="text-base font-medium text-green-400 mt-0.5">
                                 ~{pair.reductionPct}%
                               </p>
                             </div>
                             <div className="text-center bg-muted/40 rounded-lg p-2">
                               <p className="text-xs text-muted-foreground">Free Lunch</p>
-                              <p className={`text-base font-bold mt-0.5 ${
+                              <p className={`text-base font-medium mt-0.5 ${
                                 pair.freeLunch === "High" ? "text-green-400" :
                                 pair.freeLunch === "Medium" ? "text-amber-400" : "text-muted-foreground"
                               }`}>
@@ -1505,12 +1505,12 @@ function OptimalPairsTab() {
 export default function CorrelationsPage() {
   return (
     <div className="min-h-screen bg-background text-foreground p-6">
-      {/* Page header */}
+      {/* HERO header */}
       <motion.div
         initial={{ opacity: 0, y: -10 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.3 }}
-        className="mb-6"
+        className="mb-8 border-l-4 border-l-primary rounded-xl bg-card p-6"
       >
         <div className="flex items-center gap-3 mb-2">
           <div className="w-8 h-8 rounded-lg bg-primary/20 border border-primary/40 flex items-center justify-center">

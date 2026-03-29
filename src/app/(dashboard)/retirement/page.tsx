@@ -260,11 +260,11 @@ function ReadinessTab() {
             </div>
             <div className="flex justify-between">
               <span className="text-muted-foreground">Annual Income (4%)</span>
-              <span className="font-semibold">{fmtK(calc.annualFromSavings)}</span>
+              <span className="font-medium">{fmtK(calc.annualFromSavings)}</span>
             </div>
             <div className="flex justify-between">
               <span className="text-muted-foreground">Income Needed</span>
-              <span className="font-semibold">{fmtK(state.incomeNeeded)}</span>
+              <span className="font-medium">{fmtK(state.incomeNeeded)}</span>
             </div>
             <div className="border-t border-border pt-2 flex justify-between">
               <span className="text-muted-foreground">Monthly Gap</span>
@@ -277,7 +277,7 @@ function ReadinessTab() {
 
         {/* Milestones */}
         <Card className="p-4 space-y-2">
-          <p className="text-xs font-semibold text-muted-foreground mb-3">Milestones</p>
+          <p className="text-xs font-medium text-muted-foreground mb-3">Milestones</p>
           {milestones.map((m) => (
             <div key={m.label} className="flex items-center gap-2">
               {m.key ? (
@@ -305,7 +305,7 @@ function ReadinessTab() {
       {/* Inputs */}
       <div className="lg:col-span-2 space-y-4">
         <Card className="p-4 space-y-4">
-          <p className="text-xs font-semibold text-muted-foreground">Your Information</p>
+          <p className="text-xs font-medium text-muted-foreground">Your Information</p>
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             {ageInput("currentAge", "Current Age", 20, 70)}
             {ageInput("retirementAge", "Target Retirement Age", 50, 80)}
@@ -318,7 +318,7 @@ function ReadinessTab() {
 
         {/* Coverage bar */}
         <Card className="p-4 space-y-3">
-          <p className="text-xs font-semibold text-muted-foreground">Coverage Analysis</p>
+          <p className="text-xs font-medium text-muted-foreground">Coverage Analysis</p>
           <div className="space-y-1">
             <div className="flex justify-between text-xs text-muted-foreground">
               <span>Savings Coverage</span>
@@ -333,11 +333,11 @@ function ReadinessTab() {
             </div>
             <div className="rounded-lg bg-muted/50 p-2">
               <p className="text-muted-foreground">Total Contributions</p>
-              <p className="font-bold text-lg">{fmtK(state.monthlyContribution * 12 * (state.retirementAge - state.currentAge))}</p>
+              <p className="font-medium text-lg">{fmtK(state.monthlyContribution * 12 * (state.retirementAge - state.currentAge))}</p>
             </div>
             <div className="rounded-lg bg-muted/50 p-2">
               <p className="text-muted-foreground">Investment Growth</p>
-              <p className="font-bold text-lg text-emerald-500">{fmtK(calc.nestEgg - state.currentSavings - state.monthlyContribution * 12 * (state.retirementAge - state.currentAge))}</p>
+              <p className="font-medium text-lg text-emerald-500">{fmtK(calc.nestEgg - state.currentSavings - state.monthlyContribution * 12 * (state.retirementAge - state.currentAge))}</p>
             </div>
           </div>
         </Card>
@@ -452,20 +452,20 @@ function AccountsTab() {
           <table className="w-full text-xs">
             <thead>
               <tr className="border-b border-border bg-muted/30">
-                <th className="text-left p-3 font-semibold text-muted-foreground">Account</th>
-                <th className="text-left p-3 font-semibold text-muted-foreground">2024 Limit</th>
-                <th className="text-left p-3 font-semibold text-muted-foreground">Catch-Up (50+)</th>
-                <th className="text-left p-3 font-semibold text-muted-foreground">Employer Match</th>
-                <th className="text-left p-3 font-semibold text-muted-foreground">Tax Treatment</th>
-                <th className="text-left p-3 font-semibold text-muted-foreground">RMDs</th>
-                <th className="text-left p-3 font-semibold text-muted-foreground">Key Benefit</th>
+                <th className="text-left p-3 font-medium text-muted-foreground">Account</th>
+                <th className="text-left p-3 font-medium text-muted-foreground">2024 Limit</th>
+                <th className="text-left p-3 font-medium text-muted-foreground">Catch-Up (50+)</th>
+                <th className="text-left p-3 font-medium text-muted-foreground">Employer Match</th>
+                <th className="text-left p-3 font-medium text-muted-foreground">Tax Treatment</th>
+                <th className="text-left p-3 font-medium text-muted-foreground">RMDs</th>
+                <th className="text-left p-3 font-medium text-muted-foreground">Key Benefit</th>
               </tr>
             </thead>
             <tbody>
               {ACCOUNTS.map((a, i) => (
                 <tr key={a.name} className={cn("border-b border-border/40 hover:bg-muted/20 transition-colors", i % 2 === 0 ? "" : "bg-muted/10")}>
                   <td className="p-3">
-                    <span className={cn("font-bold", a.color)}>{a.name}</span>
+                    <span className={cn("font-medium", a.color)}>{a.name}</span>
                   </td>
                   <td className="p-3 font-mono">{a.limit2024}</td>
                   <td className="p-3 font-mono">{a.catchUp}</td>
@@ -488,7 +488,7 @@ function AccountsTab() {
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
         {/* Roth vs Traditional */}
         <Card className="p-4 space-y-3">
-          <p className="text-sm font-semibold flex items-center gap-2">
+          <p className="text-sm font-medium flex items-center gap-2">
             <BarChart3 className="h-4 w-4 text-primary" />
             Roth vs. Traditional Break-Even
           </p>
@@ -496,24 +496,24 @@ function AccountsTab() {
             <div className="space-y-1">
               <div className="flex justify-between text-xs text-muted-foreground">
                 <span>Current Marginal Tax Rate</span>
-                <span className="font-mono font-semibold text-foreground">{nowRate}%</span>
+                <span className="font-mono font-medium text-foreground">{nowRate}%</span>
               </div>
               <Slider min={10} max={37} step={1} value={[nowRate]} onValueChange={([v]) => setNowRate(v)} />
             </div>
             <div className="space-y-1">
               <div className="flex justify-between text-xs text-muted-foreground">
                 <span>Expected Retirement Tax Rate</span>
-                <span className="font-mono font-semibold text-foreground">{retireRate}%</span>
+                <span className="font-mono font-medium text-foreground">{retireRate}%</span>
               </div>
               <Slider min={0} max={37} step={1} value={[retireRate]} onValueChange={([v]) => setRetireRate(v)} />
             </div>
             <div className={cn("rounded-lg p-3 text-sm", rothBetter ? "bg-emerald-500/10 border border-emerald-500/30" : "bg-primary/10 border border-border")}>
               {rothBetter ? (
-                <p><span className="font-bold text-emerald-400">Roth IRA is better</span> — you expect a higher tax rate in retirement. Pay taxes now at {nowRate}%, withdraw tax-free later.</p>
+                <p><span className="font-medium text-emerald-400">Roth IRA is better</span> — you expect a higher tax rate in retirement. Pay taxes now at {nowRate}%, withdraw tax-free later.</p>
               ) : nowRate === retireRate ? (
                 <p className="text-muted-foreground">Tax rates are equal — either account type works. Roth has the edge (no RMDs, tax-free heirs).</p>
               ) : (
-                <p><span className="font-bold text-primary">Traditional is better</span> — you expect a lower tax rate in retirement. Defer taxes now at {nowRate}%, pay {retireRate}% later.</p>
+                <p><span className="font-medium text-primary">Traditional is better</span> — you expect a lower tax rate in retirement. Defer taxes now at {nowRate}%, pay {retireRate}% later.</p>
               )}
               <p className="text-xs text-muted-foreground mt-1">
                 Roth after-tax value multiplier: {breakEvenYears.toFixed(3)}x per dollar contributed
@@ -524,7 +524,7 @@ function AccountsTab() {
 
         {/* Employer Match Optimizer */}
         <Card className="p-4 space-y-3">
-          <p className="text-sm font-semibold flex items-center gap-2">
+          <p className="text-sm font-medium flex items-center gap-2">
             <DollarSign className="h-4 w-4 text-amber-400" />
             Employer Match Optimizer
           </p>
@@ -532,26 +532,26 @@ function AccountsTab() {
             <div className="space-y-1">
               <div className="flex justify-between text-xs text-muted-foreground">
                 <span>Annual Salary</span>
-                <span className="font-mono font-semibold text-foreground">{fmtK(salaryK * 1000)}</span>
+                <span className="font-mono font-medium text-foreground">{fmtK(salaryK * 1000)}</span>
               </div>
               <Slider min={30} max={300} step={5} value={[salaryK]} onValueChange={([v]) => setSalaryK(v)} />
             </div>
             <div className="space-y-1">
               <div className="flex justify-between text-xs text-muted-foreground">
                 <span>Employer Match (% of your contribution)</span>
-                <span className="font-mono font-semibold text-foreground">{matchPct}%</span>
+                <span className="font-mono font-medium text-foreground">{matchPct}%</span>
               </div>
               <Slider min={0} max={100} step={5} value={[matchPct]} onValueChange={([v]) => setMatchPct(v)} />
             </div>
             <div className="rounded-lg bg-amber-500/10 border border-amber-500/30 p-3 text-sm">
-              <p className="text-amber-400 font-bold">Free Money Alert!</p>
+              <p className="text-amber-400 font-medium">Free Money Alert!</p>
               <p className="text-xs text-muted-foreground mt-1">
                 If you contribute at least 3% of salary, your employer adds{" "}
-                <span className="font-semibold text-foreground">{fmtK(matchPct / 100 * salaryK * 1000 * 0.03)}/yr</span>.
+                <span className="font-medium text-foreground">{fmtK(matchPct / 100 * salaryK * 1000 * 0.03)}/yr</span>.
               </p>
               <p className="text-xs text-muted-foreground mt-1">
                 Not contributing enough to get the full match costs you{" "}
-                <span className="font-semibold text-red-400">{fmtK(matchLeaving)}/yr</span> in free compensation.
+                <span className="font-medium text-red-400">{fmtK(matchLeaving)}/yr</span> in free compensation.
               </p>
             </div>
           </div>
@@ -636,7 +636,7 @@ function SocialSecurityTab() {
           return (
             <Card key={c.age} className="p-4 space-y-2">
               <div className="flex items-center justify-between">
-                <p className="text-sm font-semibold">{c.label}</p>
+                <p className="text-sm font-medium">{c.label}</p>
                 <Badge variant="outline" style={{ borderColor: c.color, color: c.color }} className="text-xs">
                   Claim at {c.age}
                 </Badge>
@@ -647,7 +647,7 @@ function SocialSecurityTab() {
               </p>
               <div className="border-t border-border pt-2">
                 <p className="text-xs text-muted-foreground">Total by age {lifeExpectancy}</p>
-                <p className="text-sm font-semibold">{fmtK(total)}</p>
+                <p className="text-sm font-medium">{fmtK(total)}</p>
               </div>
               {c.age === 62 && (
                 <p className="text-xs text-muted-foreground">25% reduction vs FRA</p>
@@ -664,24 +664,24 @@ function SocialSecurityTab() {
       <Card className="p-4 space-y-3">
         <div className="flex items-center gap-2">
           <Heart className="h-4 w-4 text-rose-400" />
-          <p className="text-sm font-semibold">Break-Even Calculator</p>
+          <p className="text-sm font-medium">Break-Even Calculator</p>
         </div>
         <div className="space-y-1">
           <div className="flex justify-between text-xs text-muted-foreground">
             <span>Life Expectancy / Health Horizon</span>
-            <span className="font-mono font-semibold text-foreground">Age {lifeExpectancy}</span>
+            <span className="font-mono font-medium text-foreground">Age {lifeExpectancy}</span>
           </div>
           <Slider min={65} max={95} step={1} value={[lifeExpectancy]} onValueChange={([v]) => setLifeExpectancy(v)} />
         </div>
         <div className="grid grid-cols-2 gap-3 text-xs">
           <div className="rounded-lg bg-muted/40 p-2">
             <p className="text-muted-foreground">62 vs 67 Break-Even</p>
-            <p className="font-semibold text-base">Age {be62_67}</p>
+            <p className="font-medium text-base">Age {be62_67}</p>
             <p className="text-muted-foreground">{lifeExpectancy < be62_67 ? "Take at 62 (live shorter)" : "Take at 67 (live longer)"}</p>
           </div>
           <div className="rounded-lg bg-muted/40 p-2">
             <p className="text-muted-foreground">67 vs 70 Break-Even</p>
-            <p className="font-semibold text-base">Age {be67_70}</p>
+            <p className="font-medium text-base">Age {be67_70}</p>
             <p className="text-muted-foreground">{lifeExpectancy < be67_70 ? "Take at 67 (live shorter)" : "Take at 70 (live longer)"}</p>
           </div>
         </div>
@@ -689,7 +689,7 @@ function SocialSecurityTab() {
 
       {/* Cumulative benefits chart */}
       <Card className="p-4 space-y-2">
-        <p className="text-sm font-semibold">Cumulative Lifetime Benefits (Age 62–90)</p>
+        <p className="text-sm font-medium">Cumulative Lifetime Benefits (Age 62–90)</p>
         <div className="overflow-x-auto">
           <svg viewBox={`0 0 ${svgW} ${svgH}`} className="w-full" style={{ minWidth: 320 }}>
             {/* Grid lines */}
@@ -738,7 +738,7 @@ function SocialSecurityTab() {
       {/* Spousal + WEP info */}
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
         <Card className="p-4 space-y-2">
-          <p className="text-sm font-semibold flex items-center gap-2">
+          <p className="text-sm font-medium flex items-center gap-2">
             <Shield className="h-4 w-4 text-primary" />
             Spousal Benefits
           </p>
@@ -750,7 +750,7 @@ function SocialSecurityTab() {
           </ul>
         </Card>
         <Card className="p-4 space-y-2">
-          <p className="text-sm font-semibold flex items-center gap-2">
+          <p className="text-sm font-medium flex items-center gap-2">
             <AlertTriangle className="h-4 w-4 text-amber-400" />
             Windfall Elimination Provision (WEP)
           </p>
@@ -871,7 +871,7 @@ function InvestmentStrategyTab() {
     <div className="space-y-4">
       {/* Glide path */}
       <Card className="p-4 space-y-2">
-        <p className="text-sm font-semibold flex items-center gap-2">
+        <p className="text-sm font-medium flex items-center gap-2">
           <TrendingUp className="h-4 w-4 text-primary" />
           Glide Path: Stock Allocation by Age
         </p>
@@ -918,7 +918,7 @@ function InvestmentStrategyTab() {
 
       {/* Target date funds */}
       <Card className="p-4 space-y-3">
-        <p className="text-sm font-semibold flex items-center gap-2">
+        <p className="text-sm font-medium flex items-center gap-2">
           <PieChart className="h-4 w-4 text-primary" />
           Target Date Fund Comparison
         </p>
@@ -930,7 +930,7 @@ function InvestmentStrategyTab() {
             return (
               <div key={f.name} className="rounded-lg border border-border p-3 space-y-2">
                 <div className="flex items-center justify-between">
-                  <p className="font-bold text-sm" style={{ color: f.color }}>Fund {f.name}</p>
+                  <p className="font-medium text-sm" style={{ color: f.color }}>Fund {f.name}</p>
                   <Badge variant="outline" className="text-xs py-0" style={{ borderColor: f.color }}>TDF</Badge>
                 </div>
                 <p className="text-xs text-muted-foreground">{f.desc}</p>
@@ -958,7 +958,7 @@ function InvestmentStrategyTab() {
 
       {/* Sequence of returns */}
       <Card className="p-4 space-y-2">
-        <p className="text-sm font-semibold flex items-center gap-2">
+        <p className="text-sm font-medium flex items-center gap-2">
           <AlertTriangle className="h-4 w-4 text-amber-400" />
           Sequence of Returns Risk
         </p>
@@ -994,7 +994,7 @@ function InvestmentStrategyTab() {
 
       {/* Bucket strategy */}
       <Card className="p-4 space-y-3">
-        <p className="text-sm font-semibold flex items-center gap-2">
+        <p className="text-sm font-medium flex items-center gap-2">
           <Layers className="h-4 w-4 text-primary" />
           Bucket Strategy
         </p>
@@ -1033,10 +1033,10 @@ function InvestmentStrategyTab() {
           ].map((b) => (
             <div key={b.label} className={cn("rounded-lg border p-3 space-y-1.5", b.border, b.bg)}>
               <div className="flex items-center justify-between">
-                <p className={cn("font-bold text-sm", b.color)}>{b.label}</p>
+                <p className={cn("font-medium text-sm", b.color)}>{b.label}</p>
                 <Badge variant="outline" className="text-xs">{b.pct}</Badge>
               </div>
-              <p className="text-xs font-semibold text-foreground">{b.horizon}</p>
+              <p className="text-xs font-medium text-foreground">{b.horizon}</p>
               <p className="text-xs text-muted-foreground font-medium">{b.assets}</p>
               <p className="text-xs text-muted-foreground">{b.purpose}</p>
             </div>
@@ -1080,7 +1080,7 @@ function HealthcareRMDsTab() {
     <div className="space-y-4">
       {/* Medicare timeline */}
       <Card className="p-4 space-y-3">
-        <p className="text-sm font-semibold flex items-center gap-2">
+        <p className="text-sm font-medium flex items-center gap-2">
           <Heart className="h-4 w-4 text-rose-400" />
           Medicare Enrollment Timeline
         </p>
@@ -1091,8 +1091,8 @@ function HealthcareRMDsTab() {
             { age: "Age 65+", event: "Special Enrollment", detail: "If covered by employer plan at 65, you have 8 months to enroll in Part B after losing employer coverage.", color: "bg-emerald-500/20 border-emerald-500/40" },
           ].map((e) => (
             <div key={e.age} className={cn("flex-1 min-w-[200px] rounded-lg border p-3 space-y-1", e.color)}>
-              <p className="font-bold text-xs">{e.age}</p>
-              <p className="text-xs font-semibold">{e.event}</p>
+              <p className="font-medium text-xs">{e.age}</p>
+              <p className="text-xs font-medium">{e.event}</p>
               <p className="text-xs text-muted-foreground">{e.detail}</p>
             </div>
           ))}
@@ -1101,7 +1101,7 @@ function HealthcareRMDsTab() {
 
       {/* Medicare parts */}
       <Card className="p-4 space-y-3">
-        <p className="text-sm font-semibold flex items-center gap-2">
+        <p className="text-sm font-medium flex items-center gap-2">
           <Shield className="h-4 w-4 text-primary" />
           Medicare Parts Overview
         </p>
@@ -1114,10 +1114,10 @@ function HealthcareRMDsTab() {
           ].map((p) => (
             <div key={p.part} className={cn("rounded-lg border p-3 space-y-1", p.border)}>
               <div className="flex items-center gap-1">
-                <span className={cn("font-bold text-sm", p.color)}>{p.part}</span>
+                <span className={cn("font-medium text-sm", p.color)}>{p.part}</span>
                 <span className="text-xs text-muted-foreground">— {p.name}</span>
               </div>
-              <p className="text-xs font-semibold">{p.premium}</p>
+              <p className="text-xs font-medium">{p.premium}</p>
               <p className="text-xs text-muted-foreground">{p.covers}</p>
               <p className="text-xs text-muted-foreground">{p.deductible}</p>
             </div>
@@ -1126,15 +1126,15 @@ function HealthcareRMDsTab() {
         <div className="rounded-lg bg-amber-500/10 border border-amber-500/30 p-3 flex items-start gap-2">
           <AlertTriangle className="h-4 w-4 text-amber-400 shrink-0 mt-0.5" />
           <p className="text-xs text-muted-foreground">
-            <span className="font-semibold text-foreground">Fidelity estimates</span> a 65-year-old couple will need approximately{" "}
-            <span className="font-bold text-amber-400">$315,000</span> to cover healthcare costs in retirement (2023 estimate, not including long-term care).
+            <span className="font-medium text-foreground">Fidelity estimates</span> a 65-year-old couple will need approximately{" "}
+            <span className="font-medium text-amber-400">$315,000</span> to cover healthcare costs in retirement (2023 estimate, not including long-term care).
           </p>
         </div>
       </Card>
 
       {/* RMD Calculator */}
       <Card className="p-4 space-y-3">
-        <p className="text-sm font-semibold flex items-center gap-2">
+        <p className="text-sm font-medium flex items-center gap-2">
           <Calculator className="h-4 w-4 text-primary" />
           RMD Calculator (IRS Uniform Lifetime Table)
         </p>
@@ -1144,7 +1144,7 @@ function HealthcareRMDsTab() {
         <div className="space-y-1">
           <div className="flex justify-between text-xs text-muted-foreground">
             <span>IRA / 401(k) Balance</span>
-            <span className="font-mono font-semibold text-foreground">{fmtK(iraBalance)}</span>
+            <span className="font-mono font-medium text-foreground">{fmtK(iraBalance)}</span>
           </div>
           <Slider min={50000} max={5_000_000} step={50000} value={[iraBalance]} onValueChange={([v]) => setIraBalance(v)} />
         </div>
@@ -1199,7 +1199,7 @@ function HealthcareRMDsTab() {
             <tbody>
               {rmdData.map((d, i) => (
                 <tr key={d.age} className={cn("border-b border-border/30 hover:bg-muted/20", i % 2 === 0 ? "" : "bg-muted/10")}>
-                  <td className="p-1.5 font-semibold">{d.age}</td>
+                  <td className="p-1.5 font-medium">{d.age}</td>
                   <td className="p-1.5 text-muted-foreground">{d.divisor}</td>
                   <td className="p-1.5 text-right font-mono">{fmtK(d.rmd)}</td>
                   <td className="p-1.5 text-right font-mono text-muted-foreground">{fmtK(d.rmd / 12)}</td>
@@ -1212,7 +1212,7 @@ function HealthcareRMDsTab() {
 
       {/* QCD */}
       <Card className="p-4 space-y-2">
-        <p className="text-sm font-semibold flex items-center gap-2">
+        <p className="text-sm font-medium flex items-center gap-2">
           <Landmark className="h-4 w-4 text-emerald-400" />
           Qualified Charitable Distribution (QCD)
         </p>
@@ -1255,7 +1255,7 @@ export default function RetirementPage() {
         {/* Header */}
         <div className="flex items-center justify-between flex-wrap gap-2">
           <div>
-            <h1 className="text-xl font-bold tracking-tight flex items-center gap-2">
+            <h1 className="text-xl font-medium tracking-tight flex items-center gap-2">
               <Target className="h-5 w-5 text-primary" />
               Retirement Planning
             </h1>

@@ -605,7 +605,7 @@ function CrisisAnatomyTab() {
               </div>
             </div>
             <div className="bg-muted/50 rounded p-2">
-              <div className="text-orange-400 font-semibold mb-1">Contagion Channels</div>
+              <div className="text-orange-400 font-medium mb-1">Contagion Channels</div>
               <div className="text-muted-foreground leading-tight">
                 Trade links, bank balance sheets, portfolio rebalancing, FX reserves, sentiment. EM more susceptible via capital flows.
               </div>
@@ -669,7 +669,7 @@ function CrisisGenerationModels() {
                 {m.icon}
               </div>
               <div>
-                <div className="text-[11px] font-bold text-foreground">{m.gen}: {m.title}</div>
+                <div className="text-[11px] font-medium text-foreground">{m.gen}: {m.title}</div>
                 <div className="text-[11px] text-muted-foreground">{m.economists}</div>
               </div>
             </div>
@@ -761,7 +761,7 @@ function FXReserveMetrics() {
       {metrics.map((m) => (
         <div key={m.rule} className="bg-muted/50 rounded-lg p-3 border border-border">
           <div className="flex items-center justify-between mb-1">
-            <span className="text-[12px] font-bold text-foreground">{m.rule}</span>
+            <span className="text-[12px] font-medium text-foreground">{m.rule}</span>
             <Badge variant="outline" className="text-[11px] border-cyan-500 text-muted-foreground">{m.threshold}</Badge>
           </div>
           <p className="text-xs text-muted-foreground mb-1">{m.desc}</p>
@@ -785,7 +785,7 @@ function CarryUnwindExplainer() {
       {steps.map((s) => (
         <div key={s.step} className="flex items-start gap-2">
           <div
-            className="w-5 h-5 rounded-full flex items-center justify-center text-[11px] font-bold text-black shrink-0"
+            className="w-5 h-5 rounded-full flex items-center justify-center text-[11px] font-medium text-black shrink-0"
             style={{ backgroundColor: s.color }}
           >
             {s.step}
@@ -850,12 +850,12 @@ function CurrencyCrisesTab() {
                 )}
               >
                 <div className="flex items-center justify-between mb-1">
-                  <span className="text-[12px] font-bold text-foreground">{cs.country}</span>
+                  <span className="text-[12px] font-medium text-foreground">{cs.country}</span>
                   <span className="text-xs text-muted-foreground">{cs.year}</span>
                 </div>
                 <div className="flex items-center gap-1 mb-1">
                   <ArrowDownRight className="w-3 h-3 text-red-400" />
-                  <span className="text-red-400 text-[11px] font-semibold">-{cs.depreciationPct}%</span>
+                  <span className="text-red-400 text-[11px] font-medium">-{cs.depreciationPct}%</span>
                   <Badge
                     variant="outline"
                     className={cn(
@@ -880,19 +880,19 @@ function CurrencyCrisesTab() {
                 className="overflow-hidden mt-3"
               >
                 <div className="bg-muted rounded-lg p-4 space-y-2">
-                  <div className="text-sm font-bold text-foreground">
+                  <div className="text-sm font-medium text-foreground">
                     {CURRENCY_CRISES[selectedCase].country} {CURRENCY_CRISES[selectedCase].year}
                   </div>
                   <div>
-                    <span className="text-xs text-red-400 font-semibold uppercase tracking-wide">Trigger: </span>
+                    <span className="text-xs text-red-400 font-medium uppercase tracking-wide">Trigger: </span>
                     <span className="text-[11px] text-muted-foreground">{CURRENCY_CRISES[selectedCase].trigger}</span>
                   </div>
                   <div>
-                    <span className="text-xs text-yellow-400 font-semibold uppercase tracking-wide">Response: </span>
+                    <span className="text-xs text-yellow-400 font-medium uppercase tracking-wide">Response: </span>
                     <span className="text-[11px] text-muted-foreground">{CURRENCY_CRISES[selectedCase].response}</span>
                   </div>
                   <div>
-                    <span className="text-xs text-green-400 font-semibold uppercase tracking-wide">Outcome: </span>
+                    <span className="text-xs text-green-400 font-medium uppercase tracking-wide">Outcome: </span>
                     <span className="text-[11px] text-muted-foreground">{CURRENCY_CRISES[selectedCase].outcome}</span>
                   </div>
                 </div>
@@ -1088,14 +1088,14 @@ function CreditorHierarchy() {
       {tiers.map((t) => (
         <div key={t.rank} className="flex items-start gap-3 bg-muted/40 rounded p-2">
           <div
-            className="w-6 h-6 rounded-full flex items-center justify-center text-xs font-bold text-black shrink-0"
+            className="w-6 h-6 rounded-full flex items-center justify-center text-xs font-medium text-black shrink-0"
             style={{ backgroundColor: t.color }}
           >
             {t.rank}
           </div>
           <div className="flex-1 min-w-0">
             <div className="flex items-center gap-2">
-              <span className="text-[11px] font-semibold text-foreground">{t.creditor}</span>
+              <span className="text-[11px] font-medium text-foreground">{t.creditor}</span>
               <Badge variant="outline" className="text-[11px] px-1 py-0" style={{ borderColor: t.color, color: t.color }}>
                 {t.type}
               </Badge>
@@ -1141,7 +1141,7 @@ function PostDefaultRecovery() {
       {cases.map((c) => (
         <div key={c.country} className="bg-muted/50 rounded-lg p-3">
           <div className="flex items-center justify-between mb-2">
-            <span className="text-[12px] font-bold text-foreground">{c.country} ({c.year})</span>
+            <span className="text-[12px] font-medium text-foreground">{c.country} ({c.year})</span>
             <Badge variant="outline" className="text-[11px]" style={{ borderColor: c.color, color: c.color }}>
               {c.haircut}% haircut
             </Badge>
@@ -1161,7 +1161,7 @@ function PostDefaultRecovery() {
             </div>
             <div>
               <div className="text-[11px] text-muted-foreground mb-1">Avg GDP Growth Post-Restructuring</div>
-              <span className="text-[11px] font-semibold" style={{ color: c.color }}>+{c.gdpRecovery}% p.a.</span>
+              <span className="text-[11px] font-medium" style={{ color: c.color }}>+{c.gdpRecovery}% p.a.</span>
             </div>
           </div>
         </div>
@@ -1198,19 +1198,19 @@ function SovereignDebtTab() {
           <DebtRestructuringProcess />
           <div className="grid grid-cols-3 gap-2 text-xs">
             <div className="bg-muted/50 rounded p-2">
-              <div className="text-yellow-400 font-semibold mb-1">Brady Bonds (1989)</div>
+              <div className="text-yellow-400 font-medium mb-1">Brady Bonds (1989)</div>
               <div className="text-muted-foreground leading-tight">
                 US Treasury-collateralized bonds exchanged for defaulted bank debt. Created liquid EM debt market. Mexico, Argentina, Brazil benefited.
               </div>
             </div>
             <div className="bg-muted/50 rounded p-2">
-              <div className="text-muted-foreground font-semibold mb-1">CDS as Distress Signal</div>
+              <div className="text-muted-foreground font-medium mb-1">CDS as Distress Signal</div>
               <div className="text-muted-foreground leading-tight">
                 Sovereign CDS spreads &gt;300bps = elevated risk. &gt;500bps = distress. &gt;1000bps = near-default. CDS basis trade: buy bonds, buy CDS for arb.
               </div>
             </div>
             <div className="bg-muted/50 rounded p-2">
-              <div className="text-primary font-semibold mb-1">Debt Sustainability (DSA)</div>
+              <div className="text-primary font-medium mb-1">Debt Sustainability (DSA)</div>
               <div className="text-muted-foreground leading-tight">
                 IMF framework: project debt/GDP under baseline + stress scenarios. Debt sustainable if converges to benchmark without extraordinary measures.
               </div>
@@ -1231,7 +1231,7 @@ function SovereignDebtTab() {
           <CardContent>
             <CreditorHierarchy />
             <div className="mt-2 bg-red-950/20 border border-red-500/30 rounded p-2">
-              <div className="text-[11px] text-red-400 font-semibold mb-1">NML Capital vs Argentina (2012)</div>
+              <div className="text-[11px] text-red-400 font-medium mb-1">NML Capital vs Argentina (2012)</div>
               <div className="text-[11px] text-muted-foreground">
                 Hedge fund bought defaulted bonds at 20 cents, refused 2001 restructuring. Won NY court judgment blocking all payments to other creditors until holdouts paid in full (pari passu). Argentina locked out of markets until 2016.
               </div>
@@ -1353,7 +1353,7 @@ function SorosCaseStudy() {
       {timeline.map((t, i) => (
         <div key={i} className="flex gap-3">
           <div className="w-24 shrink-0">
-            <span className="text-[11px] text-yellow-400 font-semibold">{t.date}</span>
+            <span className="text-[11px] text-yellow-400 font-medium">{t.date}</span>
           </div>
           <div className="flex-1">
             <span className="text-xs text-muted-foreground leading-snug">{t.event}</span>
@@ -1444,15 +1444,15 @@ function CrisisInvestingTab() {
           <div className="grid grid-cols-3 gap-2 mt-2">
             <div className="bg-muted/50 rounded p-2 text-center">
               <div className="text-xs text-muted-foreground">Avg Decline</div>
-              <div className="text-xl font-bold text-red-400">-52%</div>
+              <div className="text-xl font-medium text-red-400">-52%</div>
             </div>
             <div className="bg-muted/50 rounded p-2 text-center">
               <div className="text-xs text-muted-foreground">Avg Recovery</div>
-              <div className="text-xl font-bold text-green-400">18mo</div>
+              <div className="text-xl font-medium text-green-400">18mo</div>
             </div>
             <div className="bg-muted/50 rounded p-2 text-center">
               <div className="text-xs text-muted-foreground">Best Entry Window</div>
-              <div className="text-xl font-bold text-yellow-400">±6mo</div>
+              <div className="text-xl font-medium text-yellow-400">±6mo</div>
             </div>
           </div>
         </CardContent>
@@ -1471,7 +1471,7 @@ function CrisisInvestingTab() {
             {entryTriggers.map((t) => (
               <div key={t.metric} className="bg-muted/50 rounded-lg p-3 border border-border">
                 <div className="text-xs text-muted-foreground mb-1">{t.metric}</div>
-                <div className="text-[12px] font-bold mb-1" style={{ color: t.color }}>{t.threshold}</div>
+                <div className="text-[12px] font-medium mb-1" style={{ color: t.color }}>{t.threshold}</div>
                 <div className="text-[11px] text-muted-foreground">{t.meaning}</div>
               </div>
             ))}
@@ -1501,7 +1501,7 @@ function CrisisInvestingTab() {
                   )}
                 >
                   <div className="flex items-center justify-between">
-                    <span className="text-[12px] font-bold text-foreground">{theme.title}</span>
+                    <span className="text-[12px] font-medium text-foreground">{theme.title}</span>
                     <div className="flex items-center gap-2">
                       <Badge
                         variant="outline"
@@ -1531,15 +1531,15 @@ function CrisisInvestingTab() {
                     >
                       <div className="bg-muted rounded-b-lg p-3 border-x border-b border-indigo-500/50 space-y-1.5">
                         <div>
-                          <span className="text-[11px] text-primary font-semibold uppercase">Examples: </span>
+                          <span className="text-[11px] text-primary font-medium uppercase">Examples: </span>
                           <span className="text-xs text-muted-foreground">{theme.examples}</span>
                         </div>
                         <div>
-                          <span className="text-[11px] text-green-400 font-semibold uppercase">Entry: </span>
+                          <span className="text-[11px] text-green-400 font-medium uppercase">Entry: </span>
                           <span className="text-xs text-muted-foreground">{theme.entry}</span>
                         </div>
                         <div>
-                          <span className="text-[11px] text-yellow-400 font-semibold uppercase">Timing: </span>
+                          <span className="text-[11px] text-yellow-400 font-medium uppercase">Timing: </span>
                           <span className="text-xs text-muted-foreground">{theme.timing}</span>
                         </div>
                       </div>
@@ -1564,7 +1564,7 @@ function CrisisInvestingTab() {
           <CardContent>
             <SorosCaseStudy />
             <div className="mt-3 bg-yellow-950/20 border border-yellow-500/30 rounded p-2">
-              <div className="text-[11px] text-yellow-400 font-semibold mb-1">Key Lesson</div>
+              <div className="text-[11px] text-yellow-400 font-medium mb-1">Key Lesson</div>
               <div className="text-[11px] text-muted-foreground">
                 A government commitment to a fixed rate is only credible if the underlying macro supports it.
                 When unemployment was rising, the political cost of defending the peg exceeded its benefit — Soros bet on this asymmetry.
@@ -1599,7 +1599,7 @@ function CrisisInvestingTab() {
           <div className="grid grid-cols-2 gap-4">
             <PostCrisisSignals />
             <div className="space-y-2">
-              <div className="text-[11px] text-muted-foreground font-semibold mb-2">Recovery Framework</div>
+              <div className="text-[11px] text-muted-foreground font-medium mb-2">Recovery Framework</div>
               {[
                 { phase: "Stabilization (0–6mo)", desc: "Stop the bleeding: IMF, rate hikes, austerity" },
                 { phase: "Adjustment (6–18mo)", desc: "Current account improves, FX stabilizes" },
@@ -1607,7 +1607,7 @@ function CrisisInvestingTab() {
                 { phase: "Rebound (18–48mo)", desc: "Growth returns, spreads tighten, re-rating" },
               ].map((p) => (
                 <div key={p.phase} className="bg-muted/50 rounded p-2">
-                  <div className="text-xs font-semibold text-indigo-400 mb-0.5">{p.phase}</div>
+                  <div className="text-xs font-medium text-indigo-400 mb-0.5">{p.phase}</div>
                   <div className="text-[11px] text-muted-foreground">{p.desc}</div>
                 </div>
               ))}
@@ -1637,7 +1637,7 @@ export default function MacroCrisisPage() {
               <AlertTriangle className="w-5 h-5 text-red-400" />
             </div>
             <div>
-              <h1 className="text-xl font-bold text-foreground">Global Macro Crises</h1>
+              <h1 className="text-xl font-medium text-foreground">Global Macro Crises</h1>
               <p className="text-[12px] text-muted-foreground">
                 Anatomy of financial crises, currency crises, sovereign defaults, and crisis investing
               </p>

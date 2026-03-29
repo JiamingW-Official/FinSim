@@ -117,9 +117,9 @@ function TradeResultCard({
   return (
     <>
       {/* Header */}
-      <div className="flex items-center justify-between border-b border-border bg-background/60 px-4 py-3">
+      <div className="flex items-center justify-between border-b border-border/40 bg-background/60 px-4 py-3">
         <div className="flex items-center gap-2">
-          <span className="text-xs font-bold tracking-widest text-primary">
+          <span className="text-xs font-medium tracking-widest text-primary">
             FINSIM
           </span>
           <span className="text-xs text-muted-foreground">Trade Result</span>
@@ -155,7 +155,7 @@ function TradeResultCard({
               {pnlSign}{formatCurrency(Math.abs(pnl))}
             </span>
           </div>
-          <span className="text-sm font-bold opacity-80">
+          <span className="text-sm font-medium opacity-80">
             {pnlSign}{pnlPct.toFixed(1)}%
           </span>
         </div>
@@ -164,15 +164,15 @@ function TradeResultCard({
         <div className="grid w-full grid-cols-3 gap-1 rounded-lg bg-background/60 px-3 py-2 text-center text-xs">
           <div>
             <div className="text-muted-foreground">Exit</div>
-            <div className="font-bold tabular-nums">{formatCurrency(exitPrice)}</div>
+            <div className="font-medium tabular-nums">{formatCurrency(exitPrice)}</div>
           </div>
           <div>
             <div className="text-muted-foreground">Shares</div>
-            <div className="font-bold">{trade.quantity}</div>
+            <div className="font-medium">{trade.quantity}</div>
           </div>
           <div>
             <div className="text-muted-foreground">Fees</div>
-            <div className="font-bold">{formatCurrency(trade.fees)}</div>
+            <div className="font-medium">{formatCurrency(trade.fees)}</div>
           </div>
         </div>
 
@@ -193,23 +193,23 @@ function TradeResultCard({
 
         {/* CTA */}
         <div className="text-center">
-          <div className="text-sm font-bold">Can you beat this?</div>
+          <div className="text-sm font-medium">Can you beat this?</div>
           <div className="text-[11px] text-muted-foreground">finsim.app</div>
         </div>
       </div>
 
       {/* Actions */}
-      <div className="flex gap-2 border-t border-border px-4 py-3">
+      <div className="flex gap-2 border-t border-border/40 px-4 py-3">
         <button
           onClick={handleCopy}
-          className="flex flex-1 items-center justify-center gap-1.5 rounded-lg bg-primary py-2 text-[11px] font-bold text-primary-foreground transition-colors hover:bg-primary/90 active:bg-primary/80"
+          className="flex flex-1 items-center justify-center gap-1.5 rounded-lg bg-primary py-2 text-[11px] font-medium text-primary-foreground transition-colors hover:bg-primary/90 active:bg-primary/80"
         >
           <Copy className="h-3.5 w-3.5" />
           Copy Share Text
         </button>
         <button
           onClick={onClose}
-          className="rounded-lg border border-border px-3 py-2 text-[11px] font-bold text-muted-foreground transition-colors hover:bg-accent"
+          className="rounded-lg border border-border/40 px-3 py-2 text-[11px] font-medium text-muted-foreground transition-colors hover:bg-accent"
         >
           Dismiss
         </button>
@@ -242,9 +242,9 @@ function StreakShareCard({
 
   return (
     <>
-      <div className="flex items-center justify-between border-b border-border bg-background/60 px-4 py-3">
+      <div className="flex items-center justify-between border-b border-border/40 bg-background/60 px-4 py-3">
         <div className="flex items-center gap-2">
-          <span className="text-xs font-bold tracking-widest text-primary">FINSIM</span>
+          <span className="text-xs font-medium tracking-widest text-primary">FINSIM</span>
           <span className="text-xs text-muted-foreground">Win Streak</span>
         </div>
         <button
@@ -262,23 +262,23 @@ function StreakShareCard({
           <span className="text-lg font-bold text-muted-foreground">in a row</span>
         </div>
         <div className="text-center">
-          <div className="text-sm font-bold">Trade Win Streak</div>
+          <div className="text-sm font-medium">Trade Win Streak</div>
           <div className="text-xs text-muted-foreground">Level {level} • finsim.app</div>
         </div>
         <div className="text-xs text-muted-foreground">Can you beat this?</div>
       </div>
 
-      <div className="flex gap-2 border-t border-border px-4 py-3">
+      <div className="flex gap-2 border-t border-border/40 px-4 py-3">
         <button
           onClick={handleCopy}
-          className="flex flex-1 items-center justify-center gap-1.5 rounded-lg bg-primary py-2 text-[11px] font-bold text-primary-foreground transition-colors hover:bg-primary/90"
+          className="flex flex-1 items-center justify-center gap-1.5 rounded-lg bg-primary py-2 text-[11px] font-medium text-primary-foreground transition-colors hover:bg-primary/90"
         >
           <Copy className="h-3.5 w-3.5" />
           Copy Share Text
         </button>
         <button
           onClick={onClose}
-          className="rounded-lg border border-border px-3 py-2 text-[11px] font-bold text-muted-foreground transition-colors hover:bg-accent"
+          className="rounded-lg border border-border/40 px-3 py-2 text-[11px] font-medium text-muted-foreground transition-colors hover:bg-accent"
         >
           Dismiss
         </button>
@@ -313,9 +313,9 @@ function LevelUpShareCard({
 
   return (
     <>
-      <div className="flex items-center justify-between border-b border-border bg-background/60 px-4 py-3">
+      <div className="flex items-center justify-between border-b border-border/40 bg-background/60 px-4 py-3">
         <div className="flex items-center gap-2">
-          <span className="text-xs font-bold tracking-widest text-primary">FINSIM</span>
+          <span className="text-xs font-medium tracking-widest text-primary">FINSIM</span>
           <span className="text-xs text-muted-foreground">Level Up</span>
         </div>
         <button
@@ -342,17 +342,17 @@ function LevelUpShareCard({
         <div className="text-xs text-muted-foreground">finsim.app</div>
       </div>
 
-      <div className="flex gap-2 border-t border-border px-4 py-3">
+      <div className="flex gap-2 border-t border-border/40 px-4 py-3">
         <button
           onClick={handleCopy}
-          className="flex flex-1 items-center justify-center gap-1.5 rounded-lg bg-primary py-2 text-[11px] font-bold text-primary-foreground transition-colors hover:bg-primary/90"
+          className="flex flex-1 items-center justify-center gap-1.5 rounded-lg bg-primary py-2 text-[11px] font-medium text-primary-foreground transition-colors hover:bg-primary/90"
         >
           <Copy className="h-3.5 w-3.5" />
           Copy Share Text
         </button>
         <button
           onClick={onClose}
-          className="rounded-lg border border-border px-3 py-2 text-[11px] font-bold text-muted-foreground transition-colors hover:bg-accent"
+          className="rounded-lg border border-border/40 px-3 py-2 text-[11px] font-medium text-muted-foreground transition-colors hover:bg-accent"
         >
           Dismiss
         </button>
@@ -388,9 +388,9 @@ function PortfolioMilestoneCard({
 
   return (
     <>
-      <div className="flex items-center justify-between border-b border-border bg-background/60 px-4 py-3">
+      <div className="flex items-center justify-between border-b border-border/40 bg-background/60 px-4 py-3">
         <div className="flex items-center gap-2">
-          <span className="text-xs font-bold tracking-widest text-primary">FINSIM</span>
+          <span className="text-xs font-medium tracking-widest text-primary">FINSIM</span>
           <span className="text-xs text-muted-foreground">Portfolio Milestone</span>
         </div>
         <button
@@ -416,17 +416,17 @@ function PortfolioMilestoneCard({
         <div className="text-xs text-muted-foreground">Level {level} • finsim.app</div>
       </div>
 
-      <div className="flex gap-2 border-t border-border px-4 py-3">
+      <div className="flex gap-2 border-t border-border/40 px-4 py-3">
         <button
           onClick={handleCopy}
-          className="flex flex-1 items-center justify-center gap-1.5 rounded-lg bg-primary py-2 text-[11px] font-bold text-primary-foreground transition-colors hover:bg-primary/90"
+          className="flex flex-1 items-center justify-center gap-1.5 rounded-lg bg-primary py-2 text-[11px] font-medium text-primary-foreground transition-colors hover:bg-primary/90"
         >
           <Copy className="h-3.5 w-3.5" />
           Copy Share Text
         </button>
         <button
           onClick={onClose}
-          className="rounded-lg border border-border px-3 py-2 text-[11px] font-bold text-muted-foreground transition-colors hover:bg-accent"
+          className="rounded-lg border border-border/40 px-3 py-2 text-[11px] font-medium text-muted-foreground transition-colors hover:bg-accent"
         >
           Dismiss
         </button>
@@ -535,7 +535,7 @@ export function TradeShareCard() {
             exit={{ scale: 0.9, opacity: 0 }}
             transition={{ type: "spring", stiffness: 350, damping: 25 }}
             onClick={(e) => e.stopPropagation()}
-            className="w-80 overflow-hidden rounded-2xl border border-border bg-card shadow-sm"
+            className="w-80 overflow-hidden rounded-2xl border border-border/40 bg-card shadow-sm"
           >
             {variant.type === "trade" && (
               <TradeResultCard

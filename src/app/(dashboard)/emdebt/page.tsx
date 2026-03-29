@@ -340,14 +340,14 @@ function SovereignTab() {
               <div className="grid grid-cols-2 md:grid-cols-4 gap-3 text-xs mb-4">
                 <div className="bg-muted rounded p-3">
                   <div className="text-muted-foreground mb-1">Basis (Local − USD)</div>
-                  <div className="text-foreground font-mono text-lg font-bold">
+                  <div className="text-foreground font-mono text-lg font-medium">
                     +{fmtPct(sel.localYield - sel.usdYield, 2)}
                   </div>
                   <div className="text-muted-foreground">FX risk premium</div>
                 </div>
                 <div className="bg-muted rounded p-3">
                   <div className="text-muted-foreground mb-1">CDS / Spread Basis</div>
-                  <div className={cn("font-mono text-lg font-bold", sel.cdsBps < sel.spreadUST ? "text-emerald-400" : "text-rose-400")}>
+                  <div className={cn("font-mono text-lg font-medium", sel.cdsBps < sel.spreadUST ? "text-emerald-400" : "text-rose-400")}>
                     {sel.spreadUST - sel.cdsBps > 0 ? "+" : ""}
                     {fmtBps(sel.spreadUST - sel.cdsBps)}
                   </div>
@@ -355,14 +355,14 @@ function SovereignTab() {
                 </div>
                 <div className="bg-muted rounded p-3">
                   <div className="text-muted-foreground mb-1">Debt/GDP</div>
-                  <div className={cn("font-mono text-lg font-bold", sel.debtGDP > 70 ? "text-rose-400" : "text-amber-400")}>
+                  <div className={cn("font-mono text-lg font-medium", sel.debtGDP > 70 ? "text-rose-400" : "text-amber-400")}>
                     {fmtPct(sel.debtGDP)}%
                   </div>
                   <div className="text-muted-foreground">{sel.debtGDP > 70 ? "Elevated" : "Moderate"} burden</div>
                 </div>
                 <div className="bg-muted rounded p-3">
                   <div className="text-muted-foreground mb-1">Current Account</div>
-                  <div className={cn("font-mono text-lg font-bold", posColor(sel.currentAccount))}>
+                  <div className={cn("font-mono text-lg font-medium", posColor(sel.currentAccount))}>
                     {sel.currentAccount >= 0 ? "+" : ""}{fmtPct(sel.currentAccount)} GDP
                   </div>
                   <div className="text-muted-foreground">{sel.currentAccount < -3 ? "Significant deficit" : sel.currentAccount < 0 ? "Mild deficit" : "Surplus"}</div>
@@ -564,7 +564,7 @@ function HardLocalTab() {
                     <td className="py-2 px-3 text-right font-mono text-muted-foreground">{fmtPct(c.localYield, 2)}</td>
                     <td className="py-2 px-3 text-right font-mono text-rose-400">−{fmtPct(c.hedgeCost, 1)}</td>
                     <td className="py-2 px-3 text-right font-mono text-muted-foreground">{fmtPct(c.realYield, 1)}</td>
-                    <td className="py-2 px-3 text-right font-mono font-bold text-emerald-400">
+                    <td className="py-2 px-3 text-right font-mono font-medium text-emerald-400">
                       {fmtPct(c.netCarry, 2)}
                     </td>
                     <td className="py-2 px-3">
@@ -599,11 +599,11 @@ function HardLocalTab() {
         </InfoCard>
         <InfoCard title="Local Currency Bonds — Pros & Cons">
           <div className="space-y-1.5">
-            <div className="text-emerald-400 font-semibold mb-1">Advantages</div>
+            <div className="text-emerald-400 font-medium mb-1">Advantages</div>
             <div className="text-muted-foreground">Higher nominal yields; no original sin (country borrows in own currency)</div>
             <div className="text-muted-foreground">Diversification from DM rates; local CB policy drives pricing</div>
             <div className="text-muted-foreground">FX appreciation adds to USD total return</div>
-            <div className="mt-2 text-rose-400 font-semibold mb-1">Risks</div>
+            <div className="mt-2 text-rose-400 font-medium mb-1">Risks</div>
             <div className="text-muted-foreground">FX depreciation can wipe out high nominal yield</div>
             <div className="text-muted-foreground">Liquidity can dry up in stress; exit timing critical</div>
             <div className="text-muted-foreground">Hedging cost erodes carry in high-differential markets</div>
@@ -952,7 +952,7 @@ function CurrencyImpactTab() {
                     {totalReturn(sc.localYield, sc.fxBear) >= 0 ? "+" : ""}
                     {fmtPct(totalReturn(sc.localYield, sc.fxBear), 1)}
                   </td>
-                  <td className={cn("py-2 px-3 text-right font-mono font-bold", posColor(totalReturn(sc.localYield, sc.fxStress)))}>
+                  <td className={cn("py-2 px-3 text-right font-mono font-medium", posColor(totalReturn(sc.localYield, sc.fxStress)))}>
                     {totalReturn(sc.localYield, sc.fxStress) >= 0 ? "+" : ""}
                     {fmtPct(totalReturn(sc.localYield, sc.fxStress), 1)}
                   </td>
@@ -1115,14 +1115,14 @@ function CrisisHistoryTab() {
               />
               <div className="flex-1 min-w-0">
                 <div className="flex items-center gap-2 flex-wrap">
-                  <span className="text-xs font-bold text-muted-foreground">{c.year}</span>
-                  <span className="text-sm font-semibold text-foreground">{c.name}</span>
+                  <span className="text-xs font-medium text-muted-foreground">{c.year}</span>
+                  <span className="text-sm font-medium text-foreground">{c.name}</span>
                   <Badge className="text-xs bg-muted text-muted-foreground border-border">{c.countries}</Badge>
                 </div>
                 <p className="text-xs text-muted-foreground mt-0.5 truncate">{c.trigger}</p>
               </div>
               <div className="text-right flex-shrink-0">
-                <div className="text-xs font-mono font-bold text-rose-400">{c.peakSpread.toLocaleString()} bps</div>
+                <div className="text-xs font-mono font-medium text-rose-400">{c.peakSpread.toLocaleString()} bps</div>
                 <div className="text-xs text-muted-foreground">GDP: {c.gdpDrop}</div>
               </div>
             </div>
@@ -1136,22 +1136,22 @@ function CrisisHistoryTab() {
               >
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-xs">
                   <div>
-                    <div className="text-muted-foreground font-semibold mb-1">Crisis Trigger</div>
+                    <div className="text-muted-foreground font-medium mb-1">Crisis Trigger</div>
                     <p className="text-muted-foreground">{c.trigger}</p>
                   </div>
                   <div>
-                    <div className="text-muted-foreground font-semibold mb-1">Key Lesson</div>
+                    <div className="text-muted-foreground font-medium mb-1">Key Lesson</div>
                     <p className="text-muted-foreground">{c.lesson}</p>
                   </div>
                 </div>
                 <div className="flex gap-4 mt-3">
                   <div className="text-xs">
                     <span className="text-muted-foreground">Peak Spread: </span>
-                    <span className="text-rose-400 font-mono font-bold">{c.peakSpread.toLocaleString()} bps</span>
+                    <span className="text-rose-400 font-mono font-medium">{c.peakSpread.toLocaleString()} bps</span>
                   </div>
                   <div className="text-xs">
                     <span className="text-muted-foreground">GDP Impact: </span>
-                    <span className="text-rose-400 font-mono font-bold">{c.gdpDrop}</span>
+                    <span className="text-rose-400 font-mono font-medium">{c.gdpDrop}</span>
                   </div>
                 </div>
               </motion.div>
@@ -1191,14 +1191,14 @@ function CrisisHistoryTab() {
 export default function EmDebtPage() {
   return (
     <div className="min-h-screen bg-background text-foreground p-4 md:p-6">
-      {/* Header */}
-      <div className="mb-6">
+      {/* Header — Hero */}
+      <div className="mb-6 border-l-4 border-l-primary rounded-lg bg-card p-6">
         <div className="flex items-center gap-3 mb-2 flex-wrap">
           <div className="p-2 rounded-lg bg-primary/10 border border-border">
             <Landmark className="w-6 h-6 text-primary" />
           </div>
           <div>
-            <h1 className="text-2xl font-bold text-foreground">Emerging Markets Debt</h1>
+            <h1 className="text-xl font-bold text-foreground">Emerging Markets Debt</h1>
             <p className="text-sm text-muted-foreground">
               Sovereign bonds, hard vs local currency, spread decomposition, crisis history
             </p>
@@ -1211,7 +1211,7 @@ export default function EmDebtPage() {
         </div>
       </div>
 
-      <Tabs defaultValue="sovereign">
+      <Tabs defaultValue="sovereign" className="mt-8">
         <TabsList className="bg-card border border-border mb-6 flex flex-wrap gap-1 h-auto p-1">
           <TabsTrigger
             value="sovereign"

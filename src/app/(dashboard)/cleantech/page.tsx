@@ -683,13 +683,13 @@ export default function CleantechPage() {
 
   return (
     <div className="min-h-screen bg-background text-foreground p-4 md:p-6">
-      {/* Header */}
-      <div className="mb-6">
+      {/* HERO Header */}
+      <div className="mb-8 border-l-4 border-l-primary rounded-xl bg-card p-6">
         <div className="flex items-center gap-3 mb-1">
           <div className="p-2 bg-emerald-500/10 rounded-lg">
             <Leaf className="w-5 h-5 text-emerald-400" />
           </div>
-          <h1 className="text-2xl font-semibold text-foreground">Clean Technology & Energy Transition</h1>
+          <h1 className="text-xl font-semibold text-foreground">Clean Technology & Energy Transition</h1>
         </div>
         <p className="text-muted-foreground text-sm ml-12">
           Renewable capacity, cost trajectories, investment vehicles, and policy landscape
@@ -889,11 +889,11 @@ export default function CleantechPage() {
                       <div key={co.ticker} className="bg-muted rounded-lg p-3">
                         <div className="flex items-start justify-between mb-1">
                           <div>
-                            <span className="font-semibold text-foreground text-sm">{co.ticker}</span>
+                            <span className="font-medium text-foreground text-sm">{co.ticker}</span>
                             <span className="text-muted-foreground text-xs ml-2">{co.name}</span>
                           </div>
                           <span
-                            className={`text-xs font-semibold ${co.ytdReturn >= 0 ? "text-emerald-400" : "text-red-400"}`}
+                            className={`text-xs font-medium ${co.ytdReturn >= 0 ? "text-emerald-400" : "text-red-400"}`}
                           >
                             {co.ytdReturn >= 0 ? "+" : ""}
                             {co.ytdReturn.toFixed(1)}% YTD
@@ -1053,7 +1053,7 @@ export default function CleantechPage() {
                         },
                       ].map((item) => (
                         <div key={item.metric} className="bg-muted rounded p-3">
-                          <div className="font-semibold text-foreground mb-1">{item.metric}</div>
+                          <div className="font-medium text-foreground mb-1">{item.metric}</div>
                           <div className="flex justify-between text-muted-foreground mb-0.5">
                             <span>Capex:</span><span className="text-amber-400">{item.capex}</span>
                           </div>
@@ -1076,7 +1076,7 @@ export default function CleantechPage() {
                   <CardContent>
                     <div className="space-y-3 text-xs">
                       <div className="bg-muted rounded p-3">
-                        <div className="font-semibold text-foreground mb-2">Production Cost by Route ($/kg H₂)</div>
+                        <div className="font-medium text-foreground mb-2">Production Cost by Route ($/kg H₂)</div>
                         {[
                           { route: "Grey (SMR from gas)", cost: 1.5, color: "#6b7280" },
                           { route: "Blue (SMR + CCS)", cost: 2.8, color: "#3b82f6" },
@@ -1091,14 +1091,14 @@ export default function CleantechPage() {
                                 style={{ width: `${(r.cost / 5) * 100}%`, backgroundColor: r.color }}
                               />
                             </div>
-                            <span style={{ color: r.color }} className="w-12 text-right font-semibold">
+                            <span style={{ color: r.color }} className="w-12 text-right font-medium">
                               ${r.cost}
                             </span>
                           </div>
                         ))}
                       </div>
                       <div className="bg-muted rounded p-3">
-                        <div className="font-semibold text-foreground mb-1">Key Cost Drivers</div>
+                        <div className="font-medium text-foreground mb-1">Key Cost Drivers</div>
                         <ul className="text-muted-foreground space-y-1">
                           <li className="flex items-start gap-1.5"><Zap className="w-3 h-3 mt-0.5 text-amber-400 shrink-0" />Electricity cost: ~65–70% of green H₂ cost</li>
                           <li className="flex items-start gap-1.5"><Battery className="w-3 h-3 mt-0.5 text-emerald-400 shrink-0" />Electrolyzer capex declining ~18%/yr</li>
@@ -1142,11 +1142,11 @@ export default function CleantechPage() {
                       <tbody>
                         {CLEAN_ETFS.map((etf) => (
                           <tr key={etf.ticker} className="border-b border-border/50 hover:bg-muted/30">
-                            <td className="py-2 font-semibold text-primary">{etf.ticker}</td>
+                            <td className="py-2 font-medium text-primary">{etf.ticker}</td>
                             <td className="py-2 text-muted-foreground hidden md:table-cell">{etf.name}</td>
                             <td className="py-2 text-right text-foreground">{etf.aum.toFixed(2)}</td>
                             <td className="py-2 text-right text-foreground">{etf.expenseRatio.toFixed(2)}%</td>
-                            <td className={`py-2 text-right font-semibold ${etf.ytd >= 0 ? "text-emerald-400" : "text-red-400"}`}>
+                            <td className={`py-2 text-right font-medium ${etf.ytd >= 0 ? "text-emerald-400" : "text-red-400"}`}>
                               {etf.ytd >= 0 ? "+" : ""}
                               {etf.ytd.toFixed(1)}%
                             </td>
@@ -1178,7 +1178,7 @@ export default function CleantechPage() {
                       They distribute most of their cash flows as dividends.
                     </p>
                     <div className="bg-muted rounded p-3">
-                      <div className="font-semibold text-foreground mb-2">Key Characteristics</div>
+                      <div className="font-medium text-foreground mb-2">Key Characteristics</div>
                       <ul className="space-y-1 text-muted-foreground">
                         <li className="flex items-start gap-1.5"><CheckCircle className="w-3 h-3 text-emerald-400 mt-0.5 shrink-0" />Long-term PPAs (15–25 yr) provide stable cash flows</li>
                         <li className="flex items-start gap-1.5"><CheckCircle className="w-3 h-3 text-emerald-400 mt-0.5 shrink-0" />Target dividend yield: 4–7%; dividend growth: 5–8%/yr</li>
@@ -1187,7 +1187,7 @@ export default function CleantechPage() {
                       </ul>
                     </div>
                     <div className="bg-muted rounded p-3">
-                      <div className="font-semibold text-foreground mb-1">Notable YieldCos</div>
+                      <div className="font-medium text-foreground mb-1">Notable YieldCos</div>
                       <div className="grid grid-cols-2 gap-1 text-muted-foreground">
                         {["BEP (Brookfield Renewable)", "NEP (NextEra Energy Partners)", "CWEN (Clearway Energy)", "AY (Atlantica Sustainable)"].map((n) => (
                           <div key={n} className="text-xs">{n}</div>
@@ -1203,7 +1203,7 @@ export default function CleantechPage() {
                   </CardHeader>
                   <CardContent className="space-y-3 text-xs">
                     <div className="bg-muted rounded p-3">
-                      <div className="font-semibold text-foreground mb-2">Green Bond Market (2025)</div>
+                      <div className="font-medium text-foreground mb-2">Green Bond Market (2025)</div>
                       {[
                         { label: "Annual issuance", value: "$620B" },
                         { label: "Cumulative outstanding", value: "$4.2T" },
@@ -1217,7 +1217,7 @@ export default function CleantechPage() {
                       ))}
                     </div>
                     <div className="bg-muted rounded p-3">
-                      <div className="font-semibold text-foreground mb-2">Infrastructure Fund Examples</div>
+                      <div className="font-medium text-foreground mb-2">Infrastructure Fund Examples</div>
                       {[
                         { name: "Macquarie Green Infrastructure", focus: "Solar/Wind/Storage, global" },
                         { name: "Blackrock Climate Finance", focus: "Transition assets, private credit" },
@@ -1249,7 +1249,7 @@ export default function CleantechPage() {
                       { title: "Grid Integration Costs", desc: "Curtailment, transmission congestion, and integration costs can reduce effective returns for solar/wind projects." },
                     ].map((r) => (
                       <div key={r.title} className="bg-muted rounded p-3 border border-amber-900/30">
-                        <div className="font-semibold text-amber-300 mb-1">{r.title}</div>
+                        <div className="font-medium text-amber-300 mb-1">{r.title}</div>
                         <p className="text-muted-foreground">{r.desc}</p>
                       </div>
                     ))}
@@ -1284,7 +1284,7 @@ export default function CleantechPage() {
                     ].map((item) => (
                       <div key={item.credit} className="bg-muted rounded p-3">
                         <div className="flex items-start justify-between mb-1">
-                          <span className="font-semibold text-foreground">{item.credit}</span>
+                          <span className="font-medium text-foreground">{item.credit}</span>
                           <Badge className="bg-green-900/50 text-green-300 border-green-800 text-xs ml-2 shrink-0">{item.amount}</Badge>
                         </div>
                         <p className="text-muted-foreground">{item.desc}</p>
@@ -1318,7 +1318,7 @@ export default function CleantechPage() {
                           <div className="flex items-center gap-2 mb-0.5">
                             <span className="font-bold">{item.year}</span>
                             <Badge variant="outline" className="text-xs border-current py-0">{item.region}</Badge>
-                            <span className="font-semibold">{item.event}</span>
+                            <span className="font-medium">{item.event}</span>
                           </div>
                           <p className="text-muted-foreground">{item.detail}</p>
                         </div>
@@ -1355,7 +1355,7 @@ export default function CleantechPage() {
                             <td className="py-2 text-foreground">{row.region}</td>
                             <td className="py-2 text-right">
                               <span
-                                className={`font-semibold ${row.priceUsd >= 50 ? "text-red-400" : row.priceUsd >= 30 ? "text-amber-400" : "text-muted-foreground"}`}
+                                className={`font-medium ${row.priceUsd >= 50 ? "text-red-400" : row.priceUsd >= 30 ? "text-amber-400" : "text-muted-foreground"}`}
                               >
                                 ${row.priceUsd}
                               </span>
@@ -1368,7 +1368,7 @@ export default function CleantechPage() {
                     </table>
                   </div>
                   <div className="mt-4 bg-muted rounded p-3 text-xs">
-                    <div className="font-semibold text-foreground mb-2">Impact on Fossil vs Renewables</div>
+                    <div className="font-medium text-foreground mb-2">Impact on Fossil vs Renewables</div>
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
                       <div>
                         <div className="text-red-400 font-medium mb-1">Fossil Fuel Cost Increase ($/MWh added)</div>
@@ -1379,7 +1379,7 @@ export default function CleantechPage() {
                         ].map((r) => (
                           <div key={r.source} className="flex justify-between text-muted-foreground py-0.5">
                             <span>{r.source}</span>
-                            <span className="text-red-400 font-semibold">{r.increase}</span>
+                            <span className="text-red-400 font-medium">{r.increase}</span>
                           </div>
                         ))}
                       </div>

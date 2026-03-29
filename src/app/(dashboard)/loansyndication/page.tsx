@@ -746,9 +746,9 @@ function BookBuildingTab() {
               </tbody>
               <tfoot>
                 <tr className="border-t border-border">
-                  <td className="py-2 pr-4 font-semibold text-foreground" colSpan={2}>Total</td>
-                  <td className="py-2 pr-4 text-right font-semibold text-foreground">{fmtM(totalCommit)}</td>
-                  <td className="py-2 pr-4 text-right font-semibold text-foreground">{fmtM(totalAlloc)}</td>
+                  <td className="py-2 pr-4 font-medium text-foreground" colSpan={2}>Total</td>
+                  <td className="py-2 pr-4 text-right font-medium text-foreground">{fmtM(totalCommit)}</td>
+                  <td className="py-2 pr-4 text-right font-medium text-foreground">{fmtM(totalAlloc)}</td>
                   <td />
                 </tr>
               </tfoot>
@@ -785,7 +785,7 @@ function PricingGridTab() {
           <div className="flex items-center gap-4">
             <div className="flex-1">
               <p className="text-xs text-muted-foreground mb-2">
-                Leverage (x EBITDA): <span className="text-foreground font-semibold">{leverageInput.toFixed(1)}x</span>
+                Leverage (x EBITDA): <span className="text-foreground font-medium">{leverageInput.toFixed(1)}x</span>
               </p>
               <input
                 type="range"
@@ -843,7 +843,7 @@ function PricingGridTab() {
                     />
                   </div>
                   <div className="w-24 text-right shrink-0">
-                    <span className={`text-sm font-semibold ${isActive ? "text-primary" : "text-foreground"}`}>
+                    <span className={`text-sm font-medium ${isActive ? "text-primary" : "text-foreground"}`}>
                       SOFR+{tier.spreadBps}
                     </span>
                   </div>
@@ -1103,11 +1103,11 @@ function CovenantTab() {
                         className="border-t border-border grid grid-cols-1 md:grid-cols-2 divide-y md:divide-y-0 md:divide-x divide-border"
                       >
                         <div className="p-4 bg-red-500/5">
-                          <p className="text-xs font-semibold text-red-400 mb-1">Cov-Lite</p>
+                          <p className="text-xs font-medium text-red-400 mb-1">Cov-Lite</p>
                           <p className="text-sm text-muted-foreground">{cov.covLite}</p>
                         </div>
                         <div className="p-4 bg-emerald-500/5">
-                          <p className="text-xs font-semibold text-emerald-400 mb-1">Full Covenant</p>
+                          <p className="text-xs font-medium text-emerald-400 mb-1">Full Covenant</p>
                           <p className="text-sm text-muted-foreground">{cov.fullCov}</p>
                         </div>
                       </motion.div>
@@ -1166,7 +1166,7 @@ function LeagueTableTab() {
                 {displayed.map((entry) => (
                   <tr key={entry.rank} className="border-b border-border/50 hover:bg-muted/30 transition-colors">
                     <td className="py-3 pr-3">
-                      <span className={`text-sm font-bold ${
+                      <span className={`text-sm font-medium ${
                         entry.rank === 1 ? "text-amber-400"
                           : entry.rank === 2 ? "text-muted-foreground"
                           : entry.rank === 3 ? "text-orange-400"
@@ -1191,7 +1191,7 @@ function LeagueTableTab() {
                         <span className="text-xs text-muted-foreground w-12">{entry.sharePercent}%</span>
                       </div>
                     </td>
-                    <td className="py-3 pr-4 text-right font-semibold text-foreground">{entry.volumeB.toFixed(1)}</td>
+                    <td className="py-3 pr-4 text-right font-medium text-foreground">{entry.volumeB.toFixed(1)}</td>
                     <td className="py-3 pr-4 text-right text-muted-foreground">{entry.sharePercent}%</td>
                     <td className="py-3 text-right">
                       <span className={`text-xs font-medium flex items-center justify-end gap-0.5 ${

@@ -342,7 +342,7 @@ export function AdaptiveFlashcards({ onSessionStats }: AdaptiveFlashcardsProps) 
               onClick={handleFlip}
             >
               {/* Front */}
-              <div className="card-flip-front min-h-[220px] rounded-xl border border-border bg-card p-5 flex flex-col items-center justify-center gap-3">
+              <div className="card-flip-front min-h-[220px] rounded-xl border border-border/40 bg-card p-5 flex flex-col items-center justify-center gap-3">
                 <div className="flex w-full items-center justify-between">
                   {cat && (
                     <span

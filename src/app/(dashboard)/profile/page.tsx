@@ -633,19 +633,19 @@ export default function ProfilePage() {
           <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
             <div className="rounded-lg border border-border bg-background p-3">
               <p className="text-[11px] text-muted-foreground">XP</p>
-              <p className="text-base font-bold font-mono tabular-nums">{xp.toLocaleString()}</p>
+              <p className="text-base font-medium font-mono tabular-nums">{xp.toLocaleString()}</p>
             </div>
             <div className="rounded-lg border border-border bg-background p-3">
               <p className="text-[11px] text-muted-foreground">Win Rate</p>
-              <p className="text-base font-bold font-mono tabular-nums">{winRate.toFixed(1)}%</p>
+              <p className="text-base font-medium font-mono tabular-nums">{winRate.toFixed(1)}%</p>
             </div>
             <div className="rounded-lg border border-border bg-background p-3">
               <p className="text-[11px] text-muted-foreground">Trades</p>
-              <p className="text-base font-bold font-mono tabular-nums">{trades.length}</p>
+              <p className="text-base font-medium font-mono tabular-nums">{trades.length}</p>
             </div>
             <div className="rounded-lg border border-border bg-background p-3">
               <p className="text-[11px] text-muted-foreground">Lessons</p>
-              <p className="text-base font-bold font-mono tabular-nums">{completedLessons.length}</p>
+              <p className="text-base font-medium font-mono tabular-nums">{completedLessons.length}</p>
             </div>
           </div>
           <div>
@@ -775,7 +775,7 @@ export default function ProfilePage() {
                         <div className="text-2xl">{archetype.icon}</div>
                         <div className="flex-1">
                           <div className="flex items-center gap-2 mb-1">
-                            <h2 className="text-base font-bold">{archetype.name}</h2>
+                            <h2 className="text-base font-medium">{archetype.name}</h2>
                             <Badge variant="secondary" className="text-xs">Your Archetype</Badge>
                           </div>
                           <p className="text-xs text-muted-foreground leading-relaxed">{archetype.description}</p>
@@ -808,7 +808,7 @@ export default function ProfilePage() {
                       </div>
 
                       <div className="rounded-lg bg-primary/5 border border-primary/15 p-3">
-                        <p className="text-xs text-primary font-semibold uppercase mb-2">Recommended Strategies</p>
+                        <p className="text-xs text-primary font-medium uppercase mb-2">Recommended Strategies</p>
                         <div className="flex flex-wrap gap-1.5">
                           {archetype.strategies.map((s) => (
                             <Badge key={s} variant="secondary" className="text-xs">{s}</Badge>
@@ -891,7 +891,7 @@ export default function ProfilePage() {
                     return (
                       <div key={i} className="flex items-center justify-between rounded-lg border border-border bg-background/50 px-3 py-2.5 hover:border-primary/30 transition-colors cursor-pointer">
                         <div className="flex items-center gap-2.5">
-                          <div className="flex h-6 w-6 items-center justify-center rounded-md text-xs font-bold text-foreground/70 bg-foreground/[0.08]">
+                          <div className="flex h-6 w-6 items-center justify-center rounded-md text-xs font-medium text-foreground/70 bg-foreground/[0.08]">
                             {i + 1}
                           </div>
                           <div>
@@ -973,7 +973,7 @@ export default function ProfilePage() {
                     <Card key={stat.label} className="border-border bg-card">
                       <CardContent className="pt-3 pb-3 text-center">
                         <Icon className={`h-4 w-4 mx-auto mb-1 ${stat.color}`} />
-                        <div className="text-base font-bold">{stat.value}</div>
+                        <div className="text-base font-medium">{stat.value}</div>
                         <div className="text-xs text-muted-foreground">{stat.label}</div>
                       </CardContent>
                     </Card>
@@ -1055,10 +1055,10 @@ export default function ProfilePage() {
                   {curriculum.map((week, wi) => (
                     <div key={wi} className="space-y-2">
                       <div className="flex items-center gap-2">
-                        <div className="flex h-5 w-5 items-center justify-center rounded-full bg-primary/15 text-[11px] font-bold text-primary">
+                        <div className="flex h-5 w-5 items-center justify-center rounded-full bg-primary/15 text-[11px] font-medium text-primary">
                           {week.week}
                         </div>
-                        <span className="text-xs font-semibold">Week {week.week}: {week.theme}</span>
+                        <span className="text-xs font-medium">Week {week.week}: {week.theme}</span>
                       </div>
                       <div className="ml-7 space-y-1.5">
                         {week.days.map((d, di) => (
@@ -1156,7 +1156,7 @@ export default function ProfilePage() {
                           <Icon className={`h-3.5 w-3.5 ${stat.color}`} />
                           <span className="text-xs text-muted-foreground">{stat.label}</span>
                         </div>
-                        <div className="text-sm font-bold">{stat.value}</div>
+                        <div className="text-sm font-medium">{stat.value}</div>
                       </CardContent>
                     </Card>
                   );
@@ -1172,7 +1172,7 @@ export default function ProfilePage() {
                   <div className="space-y-1.5">
                     <div className="flex items-center justify-between text-xs">
                       <span className="text-muted-foreground">Overall Percentile</span>
-                      <span className="font-bold text-primary">Top {100 - communityPercentile}%</span>
+                      <span className="font-medium text-primary">Top {100 - communityPercentile}%</span>
                     </div>
                     <div className="h-3 rounded-full bg-foreground/[0.08] overflow-hidden">
                       <motion.div
@@ -1275,7 +1275,7 @@ export default function ProfilePage() {
                             <p className="text-xs text-muted-foreground">{item.note}</p>
                           </div>
                         </div>
-                        <span className="text-xs font-semibold">{item.value}</span>
+                        <span className="text-xs font-medium">{item.value}</span>
                       </div>
                     );
                   })}
@@ -1305,21 +1305,21 @@ export default function ProfilePage() {
                   <div className="flex items-center justify-between">
                     <div className="flex items-center gap-3">
                       <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-primary/15 border border-primary/25">
-                        <span className="text-sm font-bold text-primary">{level}</span>
+                        <span className="text-sm font-medium text-primary">{level}</span>
                       </div>
                       <div>
-                        <p className="text-xs font-semibold">Current Level</p>
+                        <p className="text-xs font-medium">Current Level</p>
                         <p className="text-xs text-muted-foreground">{xp.toLocaleString()} XP total</p>
                       </div>
                     </div>
                     <ArrowRight className="h-4 w-4 text-muted-foreground" />
                     <div className="flex items-center gap-3">
                       <div>
-                        <p className="text-xs font-semibold text-right">Level {nextLevel}</p>
+                        <p className="text-xs font-medium text-right">Level {nextLevel}</p>
                         <p className="text-xs text-muted-foreground">{levelProgress.needed - levelProgress.current} XP needed</p>
                       </div>
                       <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-primary/15 border border-border">
-                        <span className="text-sm font-bold text-primary">{nextLevel}</span>
+                        <span className="text-sm font-medium text-primary">{nextLevel}</span>
                       </div>
                     </div>
                   </div>
@@ -1445,7 +1445,7 @@ export default function ProfilePage() {
                     <CardTitle className="text-sm">30-Day Streak Calendar</CardTitle>
                     <div className="flex items-center gap-1.5">
                       <Flame className="h-3.5 w-3.5 text-orange-400" />
-                      <span className="text-xs font-semibold text-orange-400">{loginStreak} day streak</span>
+                      <span className="text-xs font-medium text-orange-400">{loginStreak} day streak</span>
                     </div>
                   </div>
                 </CardHeader>

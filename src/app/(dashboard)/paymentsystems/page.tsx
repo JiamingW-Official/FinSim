@@ -1125,21 +1125,21 @@ export default function PaymentSystemsPage() {
               <SWIFTChainSVG />
               <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 mt-3 text-xs">
                 <div className="bg-muted/50 rounded p-2">
-                  <div className="text-yellow-400 font-semibold mb-1">Nostro Account</div>
+                  <div className="text-yellow-400 font-medium mb-1">Nostro Account</div>
                   <div className="text-muted-foreground">
                     &quot;Our money at your bank&quot; — Bank A holds a pre-funded account at Bank B in the
                     destination currency.
                   </div>
                 </div>
                 <div className="bg-muted/50 rounded p-2">
-                  <div className="text-green-400 font-semibold mb-1">Vostro Account</div>
+                  <div className="text-green-400 font-medium mb-1">Vostro Account</div>
                   <div className="text-muted-foreground">
                     &quot;Your money at our bank&quot; — mirror view. Bank B holds Bank A&apos;s funds and
                     records them as a vostro liability.
                   </div>
                 </div>
                 <div className="bg-muted/50 rounded p-2">
-                  <div className="text-red-400 font-semibold mb-1">Pain Points</div>
+                  <div className="text-red-400 font-medium mb-1">Pain Points</div>
                   <div className="text-muted-foreground">
                     Each hop adds 1–2 days, $10–25 in fees, and opacity. A 5-hop transfer costs $50–125 and
                     takes 3–5 business days.
@@ -1228,14 +1228,14 @@ export default function PaymentSystemsPage() {
                 <FourPartyModelSVG />
                 <div className="grid grid-cols-2 gap-2 text-xs">
                   <div className="bg-primary/10 border border-border rounded p-2">
-                    <div className="text-primary font-semibold mb-1">4-Party (Visa/MC)</div>
+                    <div className="text-primary font-medium mb-1">4-Party (Visa/MC)</div>
                     <div className="text-muted-foreground">
                       Cardholder, Issuing Bank, Acquiring Bank, Merchant. Network sets rules but
                       doesn&apos;t issue cards or acquire merchants directly.
                     </div>
                   </div>
                   <div className="bg-primary/10 border border-border rounded p-2">
-                    <div className="text-primary font-semibold mb-1">3-Party (Amex/Discover)</div>
+                    <div className="text-primary font-medium mb-1">3-Party (Amex/Discover)</div>
                     <div className="text-muted-foreground">
                       Network acts as both issuer and acquirer. Direct relationship with cardholder
                       and merchant. Higher control but smaller acceptance.
@@ -1278,7 +1278,7 @@ export default function PaymentSystemsPage() {
                   },
                 ].map((item) => (
                   <div key={item.label} className={cn("border rounded p-2", item.bg)}>
-                    <div className={cn("font-semibold mb-1", item.color)}>{item.label}</div>
+                    <div className={cn("font-medium mb-1", item.color)}>{item.label}</div>
                     <div className="text-muted-foreground">{item.desc}</div>
                   </div>
                 ))}
@@ -1360,7 +1360,7 @@ export default function PaymentSystemsPage() {
                   },
                 ].map((sec) => (
                   <div key={sec.title} className={cn("border rounded p-3", sec.bg)}>
-                    <div className={cn("flex items-center gap-2 font-semibold mb-2", sec.color)}>
+                    <div className={cn("flex items-center gap-2 font-medium mb-2", sec.color)}>
                       <sec.icon className="w-3.5 h-3.5" />
                       {sec.title}
                     </div>
@@ -1476,14 +1476,14 @@ export default function PaymentSystemsPage() {
               <Card key={sys.name} className="bg-card border-border">
                 <CardContent className="pt-4 space-y-2">
                   <div className="flex items-center justify-between">
-                    <span className="text-xs font-semibold" style={{ color: sys.color }}>
+                    <span className="text-xs font-medium" style={{ color: sys.color }}>
                       {sys.name}
                     </span>
                     <Badge variant="outline" className="text-xs border-border text-muted-foreground">
                       {sys.year}
                     </Badge>
                   </div>
-                  <div className="text-xl font-bold text-foreground">{sys.stat}</div>
+                  <div className="text-xl font-medium text-foreground">{sys.stat}</div>
                   <p className="text-xs text-muted-foreground">{sys.note}</p>
                 </CardContent>
               </Card>
@@ -1554,7 +1554,7 @@ export default function PaymentSystemsPage() {
             </CardHeader>
             <CardContent className="grid grid-cols-1 sm:grid-cols-2 gap-4 text-xs text-muted-foreground">
               <div className="space-y-2">
-                <div className="text-muted-foreground font-semibold">Open Banking Layer</div>
+                <div className="text-muted-foreground font-medium">Open Banking Layer</div>
                 <p>
                   Regulated API access (PSD2 in EU, CDR in AU, open banking in UK) lets licensed Third
                   Party Providers (TPPs) initiate payments and access account data on behalf of consumers.
@@ -1566,7 +1566,7 @@ export default function PaymentSystemsPage() {
                 </div>
               </div>
               <div className="space-y-2">
-                <div className="text-muted-foreground font-semibold">Overlay Services (Zelle / Venmo Layer)</div>
+                <div className="text-muted-foreground font-medium">Overlay Services (Zelle / Venmo Layer)</div>
                 <p>
                   Consumer-facing apps built on top of underlying RTP rails. Zelle runs on RTP/FedNow;
                   Venmo settles via ACH (instant option via debit push).
@@ -1642,7 +1642,7 @@ export default function PaymentSystemsPage() {
                         transition={{ delay: i * 0.07 }}
                         className="border-b border-border/50 hover:bg-muted/30"
                       >
-                        <td className="px-3 py-2 font-semibold text-foreground">
+                        <td className="px-3 py-2 font-medium text-foreground">
                           {c.from} → {c.to}
                         </td>
                         <td className="px-3 py-2 text-primary">${c.annualBillion}B</td>
@@ -1675,7 +1675,7 @@ export default function PaymentSystemsPage() {
               ].map((m) => (
                 <div key={m.label} className="bg-muted/60 rounded-lg p-3">
                   <div className="text-xs text-muted-foreground">{m.label}</div>
-                  <div className={cn("text-xl font-bold", m.color)}>{m.value}</div>
+                  <div className={cn("text-xl font-medium", m.color)}>{m.value}</div>
                   <div className="text-xs text-muted-foreground">{m.sub}</div>
                 </div>
               ))}
@@ -1693,7 +1693,7 @@ export default function PaymentSystemsPage() {
               </CardHeader>
               <CardContent className="text-xs text-muted-foreground space-y-3">
                 <div className="bg-primary/10 border border-border rounded p-2">
-                  <div className="text-primary font-semibold mb-1">Ripple (XRP Ledger)</div>
+                  <div className="text-primary font-medium mb-1">Ripple (XRP Ledger)</div>
                   <ul className="space-y-1">
                     <li>• 3–5 second settlement vs 3–5 day SWIFT</li>
                     <li>• ODL (On-Demand Liquidity) — XRP as bridge currency</li>
@@ -1703,7 +1703,7 @@ export default function PaymentSystemsPage() {
                   </ul>
                 </div>
                 <div className="bg-primary/10 border border-border rounded p-2">
-                  <div className="text-primary font-semibold mb-1">Stellar (XLM)</div>
+                  <div className="text-primary font-medium mb-1">Stellar (XLM)</div>
                   <ul className="space-y-1">
                     <li>• Non-profit, open-source protocol</li>
                     <li>• 3–5 second finality, Stellar Consensus Protocol</li>
@@ -1723,7 +1723,7 @@ export default function PaymentSystemsPage() {
               </CardHeader>
               <CardContent className="text-xs text-muted-foreground space-y-3">
                 <div className="bg-green-500/10 border border-green-500/20 rounded p-2">
-                  <div className="text-green-400 font-semibold mb-1">Retail CBDC (General Public)</div>
+                  <div className="text-green-400 font-medium mb-1">Retail CBDC (General Public)</div>
                   <ul className="space-y-1">
                     <li>• Direct central bank liability to citizens</li>
                     <li>• Digital cash equivalent — no bank intermediary</li>
@@ -1733,7 +1733,7 @@ export default function PaymentSystemsPage() {
                   </ul>
                 </div>
                 <div className="bg-yellow-500/10 border border-yellow-500/20 rounded p-2">
-                  <div className="text-yellow-400 font-semibold mb-1">Wholesale CBDC (Interbank)</div>
+                  <div className="text-yellow-400 font-medium mb-1">Wholesale CBDC (Interbank)</div>
                   <ul className="space-y-1">
                     <li>• Restricted to financial institutions</li>
                     <li>• Tokenized central bank reserves</li>
@@ -1790,7 +1790,7 @@ export default function PaymentSystemsPage() {
                 },
               ].map((p) => (
                 <div key={p.name} className={cn("border rounded p-3 space-y-1.5", p.bg)}>
-                  <div className={cn("font-bold text-sm", p.color)}>{p.name}</div>
+                  <div className={cn("font-medium text-sm", p.color)}>{p.name}</div>
                   <Badge variant="outline" className={cn("text-xs border-border", p.color)}>
                     {p.status}
                   </Badge>
@@ -1843,7 +1843,7 @@ export default function PaymentSystemsPage() {
                 },
               ].map((ch) => (
                 <div key={ch.title} className="bg-muted/50 rounded p-2.5">
-                  <div className={cn("font-semibold mb-1", ch.color)}>{ch.title}</div>
+                  <div className={cn("font-medium mb-1", ch.color)}>{ch.title}</div>
                   <p className="text-muted-foreground">{ch.desc}</p>
                 </div>
               ))}

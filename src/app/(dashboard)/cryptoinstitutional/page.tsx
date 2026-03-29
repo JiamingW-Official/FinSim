@@ -848,7 +848,7 @@ function Tab2StablecoinContent() {
                 <span className="font-mono text-xs text-muted-foreground">{ev.date}</span>
                 <span
                   className={cn(
-                    "font-mono font-bold text-sm ml-auto",
+                    "font-mono font-medium text-sm ml-auto",
                     ev.severity === "Catastrophic"
                       ? "text-red-400"
                       : ev.severity === "Regulatory"
@@ -1155,7 +1155,7 @@ function Tab3PrimeBrokerageContent() {
                     style={{ backgroundColor: row.color }}
                   />
                 </div>
-                <span className="text-xs font-mono font-bold" style={{ color: row.color }}>
+                <span className="text-xs font-mono font-medium" style={{ color: row.color }}>
                   {row.ltv}% LTV
                 </span>
               </div>

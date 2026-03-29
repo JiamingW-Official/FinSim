@@ -610,7 +610,7 @@ function DealAnalysisTab() {
                           ].map((item) => (
                             <div key={item.label} className="bg-card border border-border rounded-lg p-3">
                               <div className="text-xs text-muted-foreground">{item.label}</div>
-                              <div className={`text-sm font-bold mt-0.5 ${item.color}`}>{item.value}</div>
+                              <div className={`text-sm font-medium mt-0.5 ${item.color}`}>{item.value}</div>
                             </div>
                           ));
                         })()}
@@ -989,7 +989,7 @@ function HistoricalPerformanceTab() {
   return (
     <div className="space-y-8">
       <div>
-        <h2 className="text-xl font-semibold text-foreground mb-1">Historical Performance</h2>
+        <h2 className="text-xl font-medium text-foreground mb-1">Historical Performance</h2>
         <p className="text-sm text-muted-foreground">
           Pre-merger vs. post-merger returns, the SPAC bubble cycle, and sector analysis.
         </p>
@@ -1079,7 +1079,7 @@ function HistoricalPerformanceTab() {
           { label: "Beat Traditional IPO", value: "22%", sub: "% of de-SPACs that outperformed", color: "text-emerald-400" },
         ].map((item) => (
           <div key={item.label} className="bg-card border border-border rounded-xl p-4">
-            <div className={`text-xl font-bold ${item.color}`}>{item.value}</div>
+            <div className={`text-xl font-medium ${item.color}`}>{item.value}</div>
             <div className="text-xs font-medium text-muted-foreground mt-0.5">{item.label}</div>
             <div className="text-xs text-muted-foreground mt-0.5">{item.sub}</div>
           </div>
@@ -1266,7 +1266,7 @@ function InvestorStrategyTab() {
   return (
     <div className="space-y-8">
       <div>
-        <h2 className="text-xl font-semibold text-foreground mb-1">Investor Strategy</h2>
+        <h2 className="text-xl font-medium text-foreground mb-1">Investor Strategy</h2>
         <p className="text-sm text-muted-foreground">
           Five proven SPAC investment approaches — from conservative arbitrage to aggressive warrant speculation.
         </p>
@@ -1454,7 +1454,7 @@ export default function SpacInvestingPage() {
           initial={{ opacity: 0, y: -12 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.35 }}
-          className="mb-8"
+          className="mb-8 border-l-4 border-l-primary p-6 rounded-lg bg-card/40"
         >
           <div className="flex items-center gap-3 mb-2">
             <div className="w-9 h-9 rounded-xl bg-primary/15 flex items-center justify-center">
@@ -1476,14 +1476,14 @@ export default function SpacInvestingPage() {
             ].map((stat) => (
               <div key={stat.label} className="bg-card border border-border rounded-lg px-3 py-1.5">
                 <span className="text-xs text-muted-foreground">{stat.label}: </span>
-                <span className={cn("text-xs font-semibold", stat.color)}>{stat.value}</span>
+                <span className={cn("text-xs font-medium", stat.color)}>{stat.value}</span>
               </div>
             ))}
           </div>
         </motion.div>
 
         {/* Tabs */}
-        <Tabs defaultValue="mechanics">
+        <Tabs defaultValue="mechanics" className="mt-8">
           <TabsList className="bg-card border border-border p-1 mb-6 flex flex-wrap gap-1 h-auto">
             {tabs.map((tab) => {
               const Icon = tab.icon;

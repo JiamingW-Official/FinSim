@@ -405,7 +405,7 @@ function FundamentalsTab() {
 
       {/* Law of large numbers chart */}
       <div className="rounded-lg border border-border bg-card p-4">
-        <div className="text-xs font-semibold text-muted-foreground mb-3">
+        <div className="text-xs font-medium text-muted-foreground mb-3">
           Law of Large Numbers — Loss Ratio Variance vs Pool Size
         </div>
         <LawOfLargeNumbersSVG />
@@ -417,7 +417,7 @@ function FundamentalsTab() {
 
       {/* Combined ratio */}
       <div className="rounded-lg border border-border bg-card p-4">
-        <div className="text-xs font-semibold text-muted-foreground mb-3">
+        <div className="text-xs font-medium text-muted-foreground mb-3">
           Combined Ratio by Insurer — Combined = Loss + Expense Ratio
         </div>
         <CombinedRatioSVG />
@@ -459,7 +459,7 @@ function FundamentalsTab() {
 
       {/* Insurance types grid */}
       <div className="rounded-lg border border-border bg-card p-4">
-        <div className="text-xs font-semibold text-muted-foreground mb-3">
+        <div className="text-xs font-medium text-muted-foreground mb-3">
           Major Insurance Sectors
         </div>
         <div className="grid grid-cols-2 md:grid-cols-3 gap-3">
@@ -508,7 +508,7 @@ function FundamentalsTab() {
             },
           ].map((sector) => (
             <div key={sector.name} className="rounded-md border border-border bg-muted/20 p-3">
-              <div className="text-xs font-semibold text-foreground">{sector.name}</div>
+              <div className="text-xs font-medium text-foreground">{sector.name}</div>
               <div className="text-xs text-muted-foreground mt-1">{sector.examples}</div>
               <div className="flex gap-2 mt-2 flex-wrap">
                 <span className="text-xs bg-muted px-1.5 py-0.5 rounded">
@@ -725,19 +725,19 @@ function LifeTab() {
         <table className="w-full text-sm">
           <thead>
             <tr className="border-b border-border bg-muted/30">
-              <th className="text-left px-4 py-2 text-xs font-semibold text-muted-foreground">
+              <th className="text-left px-4 py-2 text-xs font-medium text-muted-foreground">
                 Product
               </th>
-              <th className="text-left px-4 py-2 text-xs font-semibold text-muted-foreground">
+              <th className="text-left px-4 py-2 text-xs font-medium text-muted-foreground">
                 Coverage
               </th>
-              <th className="text-left px-4 py-2 text-xs font-semibold text-muted-foreground">
+              <th className="text-left px-4 py-2 text-xs font-medium text-muted-foreground">
                 Premium
               </th>
-              <th className="text-left px-4 py-2 text-xs font-semibold text-muted-foreground">
+              <th className="text-left px-4 py-2 text-xs font-medium text-muted-foreground">
                 Cash Value
               </th>
-              <th className="text-left px-4 py-2 text-xs font-semibold text-muted-foreground">
+              <th className="text-left px-4 py-2 text-xs font-medium text-muted-foreground">
                 Duration
               </th>
             </tr>
@@ -758,7 +758,7 @@ function LifeTab() {
 
       {/* Premium calculator */}
       <div className="rounded-lg border border-border bg-card p-4">
-        <div className="text-xs font-semibold text-muted-foreground mb-4">
+        <div className="text-xs font-medium text-muted-foreground mb-4">
           Term Life Premium Estimator
         </div>
         <div className="grid grid-cols-2 md:grid-cols-3 gap-4 mb-4">
@@ -807,16 +807,16 @@ function LifeTab() {
           <table className="w-full text-sm">
             <thead>
               <tr className="border-b border-border">
-                <th className="text-left px-3 py-1.5 text-xs font-semibold text-muted-foreground">
+                <th className="text-left px-3 py-1.5 text-xs font-medium text-muted-foreground">
                   Term
                 </th>
-                <th className="text-right px-3 py-1.5 text-xs font-semibold text-muted-foreground">
+                <th className="text-right px-3 py-1.5 text-xs font-medium text-muted-foreground">
                   Monthly
                 </th>
-                <th className="text-right px-3 py-1.5 text-xs font-semibold text-muted-foreground">
+                <th className="text-right px-3 py-1.5 text-xs font-medium text-muted-foreground">
                   Annual
                 </th>
-                <th className="text-right px-3 py-1.5 text-xs font-semibold text-muted-foreground">
+                <th className="text-right px-3 py-1.5 text-xs font-medium text-muted-foreground">
                   Total Paid
                 </th>
               </tr>
@@ -842,7 +842,7 @@ function LifeTab() {
 
       {/* DIME calculator */}
       <div className="rounded-lg border border-border bg-card p-4">
-        <div className="text-xs font-semibold text-muted-foreground mb-3">
+        <div className="text-xs font-medium text-muted-foreground mb-3">
           DIME Needs Analysis — Debt + Income + Mortgage + Education
         </div>
         <div className="grid grid-cols-2 md:grid-cols-3 gap-3 mb-4">
@@ -880,7 +880,7 @@ function LifeTab() {
 
       {/* Buy term + invest vs whole */}
       <div className="rounded-lg border border-border bg-card p-4">
-        <div className="text-xs font-semibold text-muted-foreground mb-3">
+        <div className="text-xs font-medium text-muted-foreground mb-3">
           Buy Term + Invest Difference vs Whole Life — 20-Year Projection
         </div>
         <TermVsWholeComparisonSVG />
@@ -1112,7 +1112,7 @@ function PCTab() {
 
       {/* Premium factors */}
       <div className="rounded-lg border border-border bg-card p-4">
-        <div className="text-xs font-semibold text-muted-foreground mb-3">
+        <div className="text-xs font-medium text-muted-foreground mb-3">
           Premium Multipliers by Risk Factor (Base = Clean Record / Good Credit)
         </div>
         <PremiumFactorSVG />
@@ -1172,7 +1172,7 @@ function PCTab() {
 
       {/* Claims process */}
       <div className="rounded-lg border border-border bg-card p-4">
-        <div className="text-xs font-semibold text-muted-foreground mb-3">
+        <div className="text-xs font-medium text-muted-foreground mb-3">
           Claims Process Timeline
         </div>
         <div className="flex flex-wrap gap-2 items-center">
@@ -1381,7 +1381,7 @@ function ReinsuranceTab() {
 
       {/* ILS / Cat bonds */}
       <div className="rounded-lg border border-border bg-card p-4">
-        <div className="text-xs font-semibold text-muted-foreground mb-3">
+        <div className="text-xs font-medium text-muted-foreground mb-3">
           ILS (Insurance-Linked Securities) — Cat Bond Spread vs Expected Loss
         </div>
         <div className="grid grid-cols-3 md:grid-cols-6 gap-2 mb-4">
@@ -1580,7 +1580,7 @@ function InsurTechTab() {
 
       {/* Telematics chart */}
       <div className="rounded-lg border border-border bg-card p-4">
-        <div className="text-xs font-semibold text-muted-foreground mb-3">
+        <div className="text-xs font-medium text-muted-foreground mb-3">
           Traditional vs Telematics Loss Ratios by Risk Segment
         </div>
         <ClaimsFrequencySVG />
@@ -1820,19 +1820,19 @@ function InvestmentTab() {
 
       {/* Asset allocation table */}
       <div className="rounded-lg border border-border bg-card p-4">
-        <div className="text-xs font-semibold text-muted-foreground mb-3">
+        <div className="text-xs font-medium text-muted-foreground mb-3">
           Typical Asset Allocation by Insurer Type
         </div>
         <div className="overflow-x-auto">
           <table className="w-full text-sm">
             <thead>
               <tr className="border-b border-border">
-                <th className="text-left px-3 py-2 text-xs font-semibold text-muted-foreground">Type</th>
-                <th className="text-right px-3 py-2 text-xs font-semibold text-muted-foreground">Bonds</th>
-                <th className="text-right px-3 py-2 text-xs font-semibold text-muted-foreground">Equities</th>
-                <th className="text-right px-3 py-2 text-xs font-semibold text-muted-foreground">Alts</th>
-                <th className="text-right px-3 py-2 text-xs font-semibold text-muted-foreground">Cash</th>
-                <th className="text-right px-3 py-2 text-xs font-semibold text-muted-foreground">Liab. Duration</th>
+                <th className="text-left px-3 py-2 text-xs font-medium text-muted-foreground">Type</th>
+                <th className="text-right px-3 py-2 text-xs font-medium text-muted-foreground">Bonds</th>
+                <th className="text-right px-3 py-2 text-xs font-medium text-muted-foreground">Equities</th>
+                <th className="text-right px-3 py-2 text-xs font-medium text-muted-foreground">Alts</th>
+                <th className="text-right px-3 py-2 text-xs font-medium text-muted-foreground">Cash</th>
+                <th className="text-right px-3 py-2 text-xs font-medium text-muted-foreground">Liab. Duration</th>
               </tr>
             </thead>
             <tbody>
@@ -1853,7 +1853,7 @@ function InvestmentTab() {
 
       {/* Duration matching */}
       <div className="rounded-lg border border-border bg-card p-4">
-        <div className="text-xs font-semibold text-muted-foreground mb-3">
+        <div className="text-xs font-medium text-muted-foreground mb-3">
           Duration Matching — Life Insurer Asset vs Liability Duration Profile
         </div>
         <DurationMatchingSVG />
@@ -1866,7 +1866,7 @@ function InvestmentTab() {
 
       {/* Stock performance */}
       <div className="rounded-lg border border-border bg-card p-4">
-        <div className="text-xs font-semibold text-muted-foreground mb-3">
+        <div className="text-xs font-medium text-muted-foreground mb-3">
           Major Insurer Stock Performance — 5-Year Rebased to 100
         </div>
         <StockPerformanceSVG />
@@ -1878,7 +1878,7 @@ function InvestmentTab() {
 
       {/* NAIC risk-based capital */}
       <div className="rounded-lg border border-border bg-card p-4">
-        <div className="text-xs font-semibold text-muted-foreground mb-3">
+        <div className="text-xs font-medium text-muted-foreground mb-3">
           NAIC Risk-Based Capital (RBC) Charges by Bond Quality
         </div>
         <div className="space-y-1.5">
@@ -1887,7 +1887,7 @@ function InvestmentTab() {
             const barW = Math.min(100, chargeNum * 3); // scale for display
             return (
               <div key={n.class} className="flex items-center gap-3">
-                <div className="w-14 text-xs font-mono font-semibold text-muted-foreground flex-shrink-0">
+                <div className="w-14 text-xs font-mono font-medium text-muted-foreground flex-shrink-0">
                   {n.class}
                 </div>
                 <div className="flex-1 flex items-center gap-2">
@@ -1972,8 +1972,14 @@ export default function InsurancePage() {
           </div>
         </div>
 
+        {/* Hero */}
+        <div className="rounded-xl border border-border bg-card border-l-4 border-l-primary p-6">
+          <h2 className="text-lg font-medium text-foreground mb-1">Insurance Industry Deep Dive</h2>
+          <p className="text-sm text-muted-foreground">Fundamentals, life insurance, P&amp;C, reinsurance, InsurTech, and investment strategies across the $7T industry.</p>
+        </div>
+
         {/* Tabs */}
-        <Tabs defaultValue="fundamentals">
+        <Tabs defaultValue="fundamentals" className="mt-8">
           <TabsList className="flex flex-wrap h-auto gap-1 mb-6 bg-muted/30 p-1 rounded-lg w-full">
             {tabs.map((tab) => (
               <TabsTrigger

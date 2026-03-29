@@ -490,7 +490,7 @@ function IPOTimelineTab() {
               <div className="flex items-start justify-between gap-3">
                 <div>
                   <div className="flex items-center gap-2">
-                    <span className="w-6 h-6 rounded-full flex items-center justify-center text-xs font-bold"
+                    <span className="w-6 h-6 rounded-full flex items-center justify-center text-xs font-medium"
                       style={{ backgroundColor: selectedStep.color + "30", color: selectedStep.color }}>
                       {selectedStep.id}
                     </span>
@@ -522,7 +522,7 @@ function IPOTimelineTab() {
                 </div>
                 <div className="space-y-4">
                   <div>
-                    <div className="text-xs font-semibold text-foreground/50 mb-2">Key Players</div>
+                    <div className="text-xs font-medium text-foreground/50 mb-2">Key Players</div>
                     <div className="flex flex-wrap gap-1">
                       {selectedStep.keyPlayers.map((p, i) => (
                         <span key={i} className="px-2 py-0.5 rounded-full text-xs border border-border text-foreground/60">
@@ -532,7 +532,7 @@ function IPOTimelineTab() {
                     </div>
                   </div>
                   <div>
-                    <div className="text-xs font-semibold text-foreground/50 mb-2">SEC Requirements</div>
+                    <div className="text-xs font-medium text-foreground/50 mb-2">SEC Requirements</div>
                     <p className="text-xs text-foreground/60 leading-relaxed">{selectedStep.secRequirements}</p>
                   </div>
                   <div className="flex items-start gap-2 bg-amber-500/10 border border-amber-500/20 rounded-lg p-3">
@@ -548,7 +548,7 @@ function IPOTimelineTab() {
 
       {/* SVG Gantt Chart */}
       <div className="bg-card border border-border rounded-xl p-5">
-        <h3 className="text-sm font-semibold text-foreground/80 mb-4">Typical IPO Timeline — Gantt Chart (weeks)</h3>
+        <h3 className="text-sm font-medium text-foreground/80 mb-4">Typical IPO Timeline — Gantt Chart (weeks)</h3>
         <div className="overflow-x-auto">
           <svg width={ganttWidth} height={TIMELINE_STEPS.length * rowHeight + 40} className="min-w-0">
             {/* Week labels */}
@@ -596,7 +596,7 @@ function IPOTimelineTab() {
       <div className="bg-card border border-border rounded-xl p-5">
         <button
           onClick={() => setShowS1(!showS1)}
-          className="flex items-center justify-between w-full text-sm font-semibold text-foreground/80"
+          className="flex items-center justify-between w-full text-sm font-medium text-foreground/80"
         >
           <span className="flex items-center gap-2">
             <FileText className="w-4 h-4 text-primary" />
@@ -618,7 +618,7 @@ function IPOTimelineTab() {
                   <div key={sec.item} className="bg-foreground/[0.03] border border-border/50 rounded-lg p-3">
                     <div className="flex items-center gap-2 mb-1">
                       <span className="text-xs font-mono text-primary">{sec.item}</span>
-                      <span className="text-xs font-semibold text-foreground/90">{sec.title}</span>
+                      <span className="text-xs font-medium text-foreground/90">{sec.title}</span>
                     </div>
                     <p className="text-xs text-foreground/55 leading-relaxed">{sec.description}</p>
                   </div>
@@ -631,7 +631,7 @@ function IPOTimelineTab() {
 
       {/* SEC Review Process */}
       <div className="bg-card border border-border rounded-xl p-5">
-        <h3 className="text-sm font-semibold text-foreground/80 mb-4 flex items-center gap-2">
+        <h3 className="text-sm font-medium text-foreground/80 mb-4 flex items-center gap-2">
           <Shield className="w-4 h-4 text-green-400" />
           SEC Review Process
         </h3>
@@ -643,8 +643,8 @@ function IPOTimelineTab() {
           ].map((item, i) => (
             <div key={i} className="flex-1 bg-green-500/5 border border-green-500/15 rounded-lg p-4">
               <div className="flex items-center gap-2 mb-2">
-                <span className="w-5 h-5 rounded-full bg-green-500/20 text-green-400 text-xs flex items-center justify-center font-bold">{i + 1}</span>
-                <span className="text-xs font-semibold text-green-400">{item.step}</span>
+                <span className="w-5 h-5 rounded-full bg-green-500/20 text-green-400 text-xs flex items-center justify-center font-medium">{i + 1}</span>
+                <span className="text-xs font-medium text-green-400">{item.step}</span>
                 <span className="text-xs text-foreground/40 ml-auto">{item.days}</span>
               </div>
               <p className="text-xs text-foreground/60 leading-relaxed">{item.desc}</p>
@@ -734,7 +734,7 @@ function BookBuildingTab() {
           {activeSection === "bookbuild" && (
             <div className="space-y-4">
               <div className="bg-card border border-border rounded-xl p-5">
-                <h3 className="text-sm font-semibold text-foreground/80 mb-4">Book Building — Demand Curve Construction</h3>
+                <h3 className="text-sm font-medium text-foreground/80 mb-4">Book Building — Demand Curve Construction</h3>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   {/* SVG demand curve */}
                   <div>
@@ -805,7 +805,7 @@ function BookBuildingTab() {
                           {i + 1}
                         </div>
                         <div>
-                          <div className="text-xs font-semibold text-foreground/80">{p.phase}</div>
+                          <div className="text-xs font-medium text-foreground/80">{p.phase}</div>
                           <p className="text-xs text-foreground/55 leading-relaxed">{p.desc}</p>
                         </div>
                       </div>
@@ -816,7 +816,7 @@ function BookBuildingTab() {
 
               {/* Retail vs Institutional */}
               <div className="bg-card border border-border rounded-xl p-5">
-                <h3 className="text-sm font-semibold text-foreground/80 mb-4">Retail vs Institutional Allocation</h3>
+                <h3 className="text-sm font-medium text-foreground/80 mb-4">Retail vs Institutional Allocation</h3>
                 <div className="grid grid-cols-2 md:grid-cols-4 gap-3 mb-4">
                   <StatChip label="Institutional" value="80–95%" color="blue" />
                   <StatChip label="Retail (typical)" value="5–15%" color="purple" />
@@ -825,7 +825,7 @@ function BookBuildingTab() {
                 </div>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                   <div className="bg-primary/5 border border-border rounded-lg p-4">
-                    <div className="text-xs font-semibold text-primary mb-2">Institutional Advantages</div>
+                    <div className="text-xs font-medium text-primary mb-2">Institutional Advantages</div>
                     <ul className="space-y-1 text-xs text-foreground/60">
                       <li className="flex items-start gap-1.5"><CheckCircle2 className="w-3 h-3 text-primary mt-0.5" />Priority allocation in hot deals</li>
                       <li className="flex items-start gap-1.5"><CheckCircle2 className="w-3 h-3 text-primary mt-0.5" />Can indicate at IPO price (firm commitment)</li>
@@ -834,7 +834,7 @@ function BookBuildingTab() {
                     </ul>
                   </div>
                   <div className="bg-primary/5 border border-border rounded-lg p-4">
-                    <div className="text-xs font-semibold text-primary mb-2">Retail Options</div>
+                    <div className="text-xs font-medium text-primary mb-2">Retail Options</div>
                     <ul className="space-y-1 text-xs text-foreground/60">
                       <li className="flex items-start gap-1.5"><ArrowRight className="w-3 h-3 text-primary mt-0.5" />Directed Share Programs (employees, customers)</li>
                       <li className="flex items-start gap-1.5"><ArrowRight className="w-3 h-3 text-primary mt-0.5" />Broker IPO allocations (Schwab, Fidelity, TD)</li>
@@ -847,7 +847,7 @@ function BookBuildingTab() {
 
               {/* Underpricing phenomenon */}
               <div className="bg-card border border-border rounded-xl p-5">
-                <h3 className="text-sm font-semibold text-foreground/80 mb-2">The Underpricing Phenomenon</h3>
+                <h3 className="text-sm font-medium text-foreground/80 mb-2">The Underpricing Phenomenon</h3>
                 <p className="text-xs text-foreground/60 mb-4 leading-relaxed">
                   Academic research documents persistent IPO underpricing globally — average first-day returns of ~15–20% in the US. This represents money
                   "left on the table" by issuers but benefits underwriters (investor relationships) and early institutional buyers.
@@ -867,7 +867,7 @@ function BookBuildingTab() {
           {activeSection === "greenshoe" && (
             <div className="space-y-4">
               <div className="bg-card border border-border rounded-xl p-5">
-                <h3 className="text-sm font-semibold text-foreground/80 mb-4">Greenshoe / Over-Allotment Option Mechanics</h3>
+                <h3 className="text-sm font-medium text-foreground/80 mb-4">Greenshoe / Over-Allotment Option Mechanics</h3>
                 <p className="text-xs text-foreground/60 mb-5 leading-relaxed">
                   Named after Green Shoe Manufacturing (first issuer in 1963), the greenshoe allows underwriters to sell up to 15% more shares than planned
                   and use the proceeds to stabilize the stock price post-IPO. It's the primary price stabilization tool.
@@ -937,7 +937,7 @@ function BookBuildingTab() {
           {activeSection === "pricing" && (
             <div className="space-y-4">
               <div className="bg-card border border-border rounded-xl p-5">
-                <h3 className="text-sm font-semibold text-foreground/80 mb-4">IPO Pricing Determinants</h3>
+                <h3 className="text-sm font-medium text-foreground/80 mb-4">IPO Pricing Determinants</h3>
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
                   {[
                     {
@@ -975,11 +975,11 @@ function BookBuildingTab() {
                     },
                   ].map((m) => (
                     <div key={m.method} className="border rounded-xl p-4" style={{ borderColor: m.color + "30", backgroundColor: m.color + "08" }}>
-                      <div className="text-sm font-semibold mb-3" style={{ color: m.color }}>{m.method}</div>
+                      <div className="text-sm font-medium mb-3" style={{ color: m.color }}>{m.method}</div>
                       <ol className="space-y-1.5 mb-3">
                         {m.steps.map((step, i) => (
                           <li key={i} className="flex items-start gap-2 text-xs text-foreground/65">
-                            <span className="text-xs font-bold flex-shrink-0 mt-0.5" style={{ color: m.color + "bb" }}>{i + 1}.</span>
+                            <span className="text-xs font-medium flex-shrink-0 mt-0.5" style={{ color: m.color + "bb" }}>{i + 1}.</span>
                             {step}
                           </li>
                         ))}
@@ -995,7 +995,7 @@ function BookBuildingTab() {
           {activeSection === "underwriter" && (
             <div className="space-y-4">
               <div className="bg-card border border-border rounded-xl p-5">
-                <h3 className="text-sm font-semibold text-foreground/80 mb-4">Underwriter Economics — The 7% Gross Spread</h3>
+                <h3 className="text-sm font-medium text-foreground/80 mb-4">Underwriter Economics — The 7% Gross Spread</h3>
                 <p className="text-xs text-foreground/60 mb-4 leading-relaxed">
                   For mid-size IPOs ($50M–$500M), the standard gross spread is 7% of total proceeds, split among the underwriting syndicate.
                   For large mega-IPOs, spreads compress to 3–5%.
@@ -1037,7 +1037,7 @@ function BookBuildingTab() {
 
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                   <div>
-                    <div className="text-xs font-semibold text-foreground/60 mb-2">Spread Economics Example ($500M IPO)</div>
+                    <div className="text-xs font-medium text-foreground/60 mb-2">Spread Economics Example ($500M IPO)</div>
                     <div className="space-y-2">
                       {[
                         { item: "Total Proceeds", value: "$500M", highlight: false },
@@ -1055,7 +1055,7 @@ function BookBuildingTab() {
                     </div>
                   </div>
                   <div>
-                    <div className="text-xs font-semibold text-foreground/60 mb-2">Syndicate Structure</div>
+                    <div className="text-xs font-medium text-foreground/60 mb-2">Syndicate Structure</div>
                     <div className="space-y-2">
                       {[
                         { role: "Book-Running Lead Manager", share: "40–60%", desc: "Builds the book, sets price, manages allocation" },
@@ -1122,7 +1122,7 @@ function MarketAnalysisTab() {
       {/* Notable IPOs Table */}
       <div className="bg-card border border-border rounded-xl overflow-hidden">
         <div className="p-4 border-b border-border/50">
-          <h3 className="text-sm font-semibold text-foreground/80">10 Notable IPOs — Performance Data</h3>
+          <h3 className="text-sm font-medium text-foreground/80">10 Notable IPOs — Performance Data</h3>
           <p className="text-xs text-foreground/45 mt-0.5">Click column headers to sort. 1-year returns are vs offer price.</p>
         </div>
         <div className="overflow-x-auto">
@@ -1160,7 +1160,7 @@ function MarketAnalysisTab() {
                 return (
                   <tr key={ipo.ticker} className="border-b border-border/50 hover:bg-muted/30 transition-colors">
                     <td className="px-4 py-2.5">
-                      <div className="font-semibold text-foreground/90">{ipo.company}</div>
+                      <div className="font-medium text-foreground/90">{ipo.company}</div>
                       <div className="text-foreground/40">{ipo.ticker}</div>
                     </td>
                     <td className="px-3 py-2.5 text-foreground/60">{ipo.sector}</td>
@@ -1195,7 +1195,7 @@ function MarketAnalysisTab() {
       <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
         {/* Vintage Year Bar Chart */}
         <div className="bg-card border border-border rounded-xl p-5">
-          <h3 className="text-sm font-semibold text-foreground/80 mb-1">IPO Vintage Year Avg Returns</h3>
+          <h3 className="text-sm font-medium text-foreground/80 mb-1">IPO Vintage Year Avg Returns</h3>
           <p className="text-xs text-foreground/40 mb-4">Average first-year return by cohort year</p>
           <svg width={VINTAGE_YEARS.length * (barW + barGap) + 20} height={chartH + 50} className="max-w-full">
             {/* Zero line */}
@@ -1232,7 +1232,7 @@ function MarketAnalysisTab() {
 
         {/* Lock-up Expiry SVG */}
         <div className="bg-card border border-border rounded-xl p-5">
-          <h3 className="text-sm font-semibold text-foreground/80 mb-1">Lock-Up Expiry Selling Pressure</h3>
+          <h3 className="text-sm font-medium text-foreground/80 mb-1">Lock-Up Expiry Selling Pressure</h3>
           <p className="text-xs text-foreground/40 mb-4">Relative sell volume around 180-day lock-up expiry (day 0)</p>
           <svg width={280} height={160} className="max-w-full">
             {/* Grid */}
@@ -1273,7 +1273,7 @@ function MarketAnalysisTab() {
       {/* Sector Concentration + Quiet Period */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
         <div className="bg-card border border-border rounded-xl p-5">
-          <h3 className="text-sm font-semibold text-foreground/80 mb-3">Sector Concentration Trends</h3>
+          <h3 className="text-sm font-medium text-foreground/80 mb-3">Sector Concentration Trends</h3>
           <div className="space-y-2">
             {[
               { sector: "Technology", pct2021: 38, pct2023: 28, trend: "down" },
@@ -1306,7 +1306,7 @@ function MarketAnalysisTab() {
         </div>
 
         <div className="bg-card border border-border rounded-xl p-5">
-          <h3 className="text-sm font-semibold text-foreground/80 mb-3 flex items-center gap-2">
+          <h3 className="text-sm font-medium text-foreground/80 mb-3 flex items-center gap-2">
             <Shield className="w-4 h-4 text-amber-400" />
             Quiet Period Rules
           </h3>
@@ -1318,7 +1318,7 @@ function MarketAnalysisTab() {
               { rule: "Gun-Jumping Risk", desc: "Pre-S-1 press releases, CEO speeches, or interviews can constitute 'conditioning the market' — SEC can delay registration as a penalty.", type: "pre" },
             ].map((r) => (
               <div key={r.rule} className={cn("rounded-lg p-3 border text-xs", r.type === "post" ? "bg-primary/5 border-border" : "bg-amber-500/5 border-amber-500/15")}>
-                <div className={cn("font-semibold mb-1", r.type === "post" ? "text-primary" : "text-amber-400")}>{r.rule}</div>
+                <div className={cn("font-medium mb-1", r.type === "post" ? "text-primary" : "text-amber-400")}>{r.rule}</div>
                 <p className="text-foreground/60 leading-relaxed">{r.desc}</p>
               </div>
             ))}
@@ -1346,7 +1346,7 @@ function AlternativesTab() {
       {/* 3-Way Comparison Table */}
       <div className="bg-card border border-border rounded-xl overflow-hidden">
         <div className="p-4 border-b border-border/50">
-          <h3 className="text-sm font-semibold text-foreground/80">Traditional IPO vs Direct Listing vs SPAC — 15 Dimensions</h3>
+          <h3 className="text-sm font-medium text-foreground/80">Traditional IPO vs Direct Listing vs SPAC — 15 Dimensions</h3>
           <p className="text-xs text-foreground/45 mt-0.5">Click a row to highlight the best option</p>
         </div>
         <div className="overflow-x-auto">
@@ -1397,7 +1397,7 @@ function AlternativesTab() {
 
       {/* Direct Listing Mechanics */}
       <div className="bg-card border border-border rounded-xl p-5">
-        <h3 className="text-sm font-semibold text-foreground/80 mb-4 flex items-center gap-2">
+        <h3 className="text-sm font-medium text-foreground/80 mb-4 flex items-center gap-2">
           <Zap className="w-4 h-4 text-green-400" />
           Direct Listing — How It Works
         </h3>
@@ -1409,7 +1409,7 @@ function AlternativesTab() {
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           <div>
-            <div className="text-xs font-semibold text-foreground/50 mb-3">Direct Listing Steps</div>
+            <div className="text-xs font-medium text-foreground/50 mb-3">Direct Listing Steps</div>
             <div className="space-y-3">
               {[
                 { step: "File S-1 Registration", desc: "Standard SEC registration. Existing shareholders register shares for resale. No new share issuance — no dilution." },
@@ -1419,9 +1419,9 @@ function AlternativesTab() {
                 { step: "Opening Auction", desc: "Market determines the opening price via Nasdaq's opening cross or NYSE's designated market maker. Pure price discovery." },
               ].map((s, i) => (
                 <div key={i} className="flex gap-3">
-                  <span className="w-5 h-5 rounded-full bg-green-500/20 text-green-400 text-xs flex items-center justify-center flex-shrink-0 mt-0.5 font-bold">{i + 1}</span>
+                  <span className="w-5 h-5 rounded-full bg-green-500/20 text-green-400 text-xs flex items-center justify-center flex-shrink-0 mt-0.5 font-medium">{i + 1}</span>
                   <div>
-                    <div className="text-xs font-semibold text-foreground/80">{s.step}</div>
+                    <div className="text-xs font-medium text-foreground/80">{s.step}</div>
                     <p className="text-xs text-foreground/55 leading-relaxed">{s.desc}</p>
                   </div>
                 </div>
@@ -1429,7 +1429,7 @@ function AlternativesTab() {
             </div>
           </div>
           <div>
-            <div className="text-xs font-semibold text-foreground/50 mb-3">Notable Direct Listings</div>
+            <div className="text-xs font-medium text-foreground/50 mb-3">Notable Direct Listings</div>
             <div className="space-y-2">
               {[
                 { company: "Spotify", ticker: "SPOT", year: 2018, ref: 132, open: 165.9, note: "First major direct listing. Reference $132, opened $165.90 — fully market-driven." },
@@ -1439,7 +1439,7 @@ function AlternativesTab() {
               ].map((dl) => (
                 <div key={dl.ticker} className="bg-green-500/5 border border-green-500/15 rounded-lg p-3">
                   <div className="flex justify-between items-center mb-1">
-                    <span className="text-xs font-semibold text-foreground/85">{dl.company} ({dl.ticker})</span>
+                    <span className="text-xs font-medium text-foreground/85">{dl.company} ({dl.ticker})</span>
                     <span className="text-xs text-foreground/40">{dl.year}</span>
                   </div>
                   <div className="flex gap-3 text-xs mb-1">
@@ -1456,14 +1456,14 @@ function AlternativesTab() {
 
       {/* SPAC Structure SVG */}
       <div className="bg-card border border-border rounded-xl p-5">
-        <h3 className="text-sm font-semibold text-foreground/80 mb-4 flex items-center gap-2">
+        <h3 className="text-sm font-medium text-foreground/80 mb-4 flex items-center gap-2">
           <Layers className="w-4 h-4 text-primary" />
           SPAC Structure & De-SPAC Transaction
         </h3>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           {/* SPAC SVG */}
           <div>
-            <div className="text-xs font-semibold text-foreground/50 mb-3">SPAC Lifecycle</div>
+            <div className="text-xs font-medium text-foreground/50 mb-3">SPAC Lifecycle</div>
             <svg width={340} height={320} className="max-w-full">
               {/* Stage 1: SPAC IPO */}
               <text x={170} y={18} textAnchor="middle" fill="#a855f7" fontSize={10} fontWeight="bold">Stage 1: SPAC IPO</text>
@@ -1520,7 +1520,7 @@ function AlternativesTab() {
           {/* De-SPAC steps + warrant mechanics */}
           <div className="space-y-4">
             <div>
-              <div className="text-xs font-semibold text-foreground/50 mb-3">De-SPAC Transaction Steps</div>
+              <div className="text-xs font-medium text-foreground/50 mb-3">De-SPAC Transaction Steps</div>
               <div className="space-y-2">
                 {[
                   { step: "Target LOI", desc: "SPAC signs non-binding Letter of Intent with target company. Exclusive negotiation period begins." },
@@ -1530,9 +1530,9 @@ function AlternativesTab() {
                   { step: "Merger Close + Listing", desc: "SPAC ticker changes to target ticker. Founder shares become registered. Warrants become exercisable." },
                 ].map((s, i) => (
                   <div key={i} className="flex gap-3">
-                    <span className="w-5 h-5 rounded-full bg-primary/20 text-primary text-xs flex items-center justify-center flex-shrink-0 mt-0.5 font-bold">{i + 1}</span>
+                    <span className="w-5 h-5 rounded-full bg-primary/20 text-primary text-xs flex items-center justify-center flex-shrink-0 mt-0.5 font-medium">{i + 1}</span>
                     <div>
-                      <div className="text-xs font-semibold text-foreground/80">{s.step}</div>
+                      <div className="text-xs font-medium text-foreground/80">{s.step}</div>
                       <p className="text-xs text-foreground/55 leading-relaxed">{s.desc}</p>
                     </div>
                   </div>
@@ -1540,7 +1540,7 @@ function AlternativesTab() {
               </div>
             </div>
             <div className="bg-amber-500/5 border border-amber-500/20 rounded-lg p-4">
-              <div className="text-xs font-semibold text-amber-400 mb-2">Warrant Mechanics</div>
+              <div className="text-xs font-medium text-amber-400 mb-2">Warrant Mechanics</div>
               <div className="space-y-1.5 text-xs text-foreground/60">
                 <div className="flex gap-2"><span className="text-foreground/40">Strike:</span>$11.50 per share (vs $10 IPO unit price)</div>
                 <div className="flex gap-2"><span className="text-foreground/40">Exercisable:</span>30 days after de-SPAC closes</div>
@@ -1555,7 +1555,7 @@ function AlternativesTab() {
 
       {/* SPAC Performance vs IPO SVG */}
       <div className="bg-card border border-border rounded-xl p-5">
-        <h3 className="text-sm font-semibold text-foreground/80 mb-1">SPAC vs Traditional IPO — 2-Year Average Returns by Cohort</h3>
+        <h3 className="text-sm font-medium text-foreground/80 mb-1">SPAC vs Traditional IPO — 2-Year Average Returns by Cohort</h3>
         <p className="text-xs text-foreground/40 mb-4">Returns measured from listing date; vs S&P 500 baseline</p>
         <div className="overflow-x-auto">
           <svg width={SPAC_PERFORMANCE.length * (perfBarW * 3 + perfGap * 2 + 14) + 50} height={perfBarH + 80} className="min-w-0">
@@ -1636,11 +1636,11 @@ export default function IPOMechanicsPage() {
             <Building2 className="w-5 h-5 text-primary" />
           </div>
           <div>
-            <h1 className="text-xl font-bold text-foreground">IPO Mechanics Deep Dive</h1>
+            <h1 className="text-xl font-medium text-foreground">IPO Mechanics Deep Dive</h1>
             <p className="text-xs text-foreground/45">Full process from filing to aftermarket · Book building · Alternatives</p>
           </div>
         </div>
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-3 rounded-xl border border-border bg-card border-l-4 border-l-primary p-6">
           <StatChip label="Avg Underwriter Spread" value="7% gross" color="blue" />
           <StatChip label="Avg First-Day Pop" value="+20%" color="green" />
           <StatChip label="Lock-Up Standard" value="180 days" color="amber" />
@@ -1649,7 +1649,7 @@ export default function IPOMechanicsPage() {
       </div>
 
       {/* Tabs */}
-      <Tabs defaultValue="timeline">
+      <Tabs defaultValue="timeline" className="mt-8">
         <TabsList className="bg-foreground/5 border border-border mb-5 flex-wrap h-auto gap-1 p-1">
           <TabsTrigger value="timeline" className="data-[state=active]:bg-primary/20 data-[state=active]:text-primary text-foreground/50 text-xs px-3 py-1.5">
             <Calendar className="w-3.5 h-3.5 mr-1.5" />

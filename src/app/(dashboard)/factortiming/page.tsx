@@ -658,7 +658,7 @@ function FactorDashboard() {
               </div>
               <div className="text-right text-xs text-muted-foreground">
                 <div>Crowding: <span className="font-semibold text-amber-400">{Math.round(sel.crowding * 100)}%</span></div>
-                <div className="mt-1">Trend: <span className="font-semibold text-muted-foreground">{sel.trend}</span></div>
+                <div className="mt-1">Trend: <span className="font-medium text-muted-foreground">{sel.trend}</span></div>
               </div>
             </div>
             <div className="mt-3 flex items-center gap-4">
@@ -682,7 +682,7 @@ function FactorDashboard() {
       {/* Chart */}
       <Card className="bg-card border-border">
         <CardHeader className="pb-2">
-          <CardTitle className="text-sm font-semibold text-muted-foreground flex items-center gap-2">
+          <CardTitle className="text-sm font-medium text-muted-foreground flex items-center gap-2">
             <BarChart3 className="w-4 h-4 text-primary" />
             Factor Z-Score &amp; Crowding
           </CardTitle>
@@ -698,7 +698,7 @@ function FactorDashboard() {
       {/* Signal table */}
       <Card className="bg-card border-border">
         <CardHeader className="pb-2">
-          <CardTitle className="text-sm font-semibold text-muted-foreground flex items-center gap-2">
+          <CardTitle className="text-sm font-medium text-muted-foreground flex items-center gap-2">
             <Target className="w-4 h-4 text-primary" />
             Factor Signal Table
           </CardTitle>
@@ -723,7 +723,7 @@ function FactorDashboard() {
                       <span className="font-medium text-foreground">{f.name}</span>
                     </div>
                   </td>
-                  <td className="text-right py-2 pr-3 font-mono font-semibold" style={{ color: f.zScore >= 0 ? "#10b981" : "#ef4444" }}>
+                  <td className="text-right py-2 pr-3 font-mono font-medium" style={{ color: f.zScore >= 0 ? "#10b981" : "#ef4444" }}>
                     {fmtZ(f.zScore)}
                   </td>
                   <td className="text-center py-2 pr-3">
@@ -767,7 +767,7 @@ function CrossAssetMomentum() {
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
         <Card className="bg-card border-border">
           <CardHeader className="pb-2">
-            <CardTitle className="text-sm font-semibold text-emerald-400 flex items-center gap-2">
+            <CardTitle className="text-sm font-medium text-emerald-400 flex items-center gap-2">
               <ArrowUpRight className="w-4 h-4" />
               Top 5 — Strongest Momentum
             </CardTitle>
@@ -778,13 +778,13 @@ function CrossAssetMomentum() {
                 <div>
                   <div className="flex items-center gap-2">
                     <div className="w-1.5 h-1.5 rounded-full" style={{ backgroundColor: assetClassColor(a.assetClass) }} />
-                    <span className="text-sm font-semibold text-foreground">{a.ticker}</span>
+                    <span className="text-sm font-medium text-foreground">{a.ticker}</span>
                     <span className="text-xs text-muted-foreground">{a.name}</span>
                   </div>
                   <div className="text-xs text-muted-foreground mt-0.5">{a.assetClass} · 3m: <span className="text-muted-foreground">{fmtPct(a.momentum3m)}</span></div>
                 </div>
                 <div className="flex items-center gap-2">
-                  <span className="text-sm font-bold text-emerald-400">{fmtPct(a.momentum12m)}</span>
+                  <span className="text-sm font-medium text-emerald-400">{fmtPct(a.momentum12m)}</span>
                   {signalBadge(a.signal)}
                 </div>
               </div>
@@ -794,7 +794,7 @@ function CrossAssetMomentum() {
 
         <Card className="bg-card border-border">
           <CardHeader className="pb-2">
-            <CardTitle className="text-sm font-semibold text-red-400 flex items-center gap-2">
+            <CardTitle className="text-sm font-medium text-red-400 flex items-center gap-2">
               <ArrowDownRight className="w-4 h-4" />
               Bottom 5 — Weakest Momentum
             </CardTitle>
@@ -805,13 +805,13 @@ function CrossAssetMomentum() {
                 <div>
                   <div className="flex items-center gap-2">
                     <div className="w-1.5 h-1.5 rounded-full" style={{ backgroundColor: assetClassColor(a.assetClass) }} />
-                    <span className="text-sm font-semibold text-foreground">{a.ticker}</span>
+                    <span className="text-sm font-medium text-foreground">{a.ticker}</span>
                     <span className="text-xs text-muted-foreground">{a.name}</span>
                   </div>
                   <div className="text-xs text-muted-foreground mt-0.5">{a.assetClass} · 3m: <span className="text-muted-foreground">{fmtPct(a.momentum3m)}</span></div>
                 </div>
                 <div className="flex items-center gap-2">
-                  <span className="text-sm font-bold text-red-400">{fmtPct(a.momentum12m)}</span>
+                  <span className="text-sm font-medium text-red-400">{fmtPct(a.momentum12m)}</span>
                   {signalBadge(a.signal)}
                 </div>
               </div>
@@ -823,7 +823,7 @@ function CrossAssetMomentum() {
       {/* Ranking chart */}
       <Card className="bg-card border-border">
         <CardHeader className="pb-2">
-          <CardTitle className="text-sm font-semibold text-muted-foreground flex items-center gap-2">
+          <CardTitle className="text-sm font-medium text-muted-foreground flex items-center gap-2">
             <Activity className="w-4 h-4 text-primary" />
             12-Month Momentum Ranking (All Assets)
           </CardTitle>
@@ -839,7 +839,7 @@ function CrossAssetMomentum() {
       {/* Full table */}
       <Card className="bg-card border-border">
         <CardHeader className="pb-2">
-          <CardTitle className="text-sm font-semibold text-muted-foreground flex items-center gap-2">
+          <CardTitle className="text-sm font-medium text-muted-foreground flex items-center gap-2">
             <Layers className="w-4 h-4 text-amber-400" />
             Full Cross-Asset Momentum Table
           </CardTitle>
@@ -859,14 +859,14 @@ function CrossAssetMomentum() {
             <tbody>
               {sorted.map((a) => (
                 <tr key={a.ticker} className="border-b border-border hover:bg-muted/40 transition-colors">
-                  <td className="py-2 pr-3 font-mono font-semibold text-foreground">{a.ticker}</td>
+                  <td className="py-2 pr-3 font-mono font-medium text-foreground">{a.ticker}</td>
                   <td className="py-2 pr-3 text-muted-foreground">{a.name}</td>
                   <td className="py-2 pr-3">
                     <span className="px-1.5 py-0.5 rounded text-xs font-medium" style={{ backgroundColor: assetClassColor(a.assetClass) + "22", color: assetClassColor(a.assetClass) }}>
                       {a.assetClass}
                     </span>
                   </td>
-                  <td className={cn("text-right py-2 pr-3 font-bold font-mono", a.momentum12m >= 0 ? "text-emerald-400" : "text-red-400")}>
+                  <td className={cn("text-right py-2 pr-3 font-medium font-mono", a.momentum12m >= 0 ? "text-emerald-400" : "text-red-400")}>
                     {fmtPct(a.momentum12m)}
                   </td>
                   <td className={cn("text-right py-2 pr-3 font-mono", a.momentum3m >= 0 ? "text-emerald-400/80" : "text-red-400/80")}>
@@ -894,7 +894,7 @@ function FactorCycle() {
       {/* Heatmap */}
       <Card className="bg-card border-border">
         <CardHeader className="pb-2">
-          <CardTitle className="text-sm font-semibold text-muted-foreground flex items-center gap-2">
+          <CardTitle className="text-sm font-medium text-muted-foreground flex items-center gap-2">
             <Layers className="w-4 h-4 text-primary" />
             Factor Performance by Economic Regime (annualised %)
           </CardTitle>
@@ -925,7 +925,7 @@ function FactorCycle() {
           };
           return (
             <div key={r} className="p-3 rounded-lg border border-border bg-card">
-              <div className="text-xs font-bold mb-1" style={{ color: clr[r] }}>
+              <div className="text-xs font-medium mb-1" style={{ color: clr[r] }}>
                 {r}
               </div>
               <p className="text-xs text-muted-foreground leading-relaxed">{desc[r]}</p>
@@ -937,7 +937,7 @@ function FactorCycle() {
       {/* Correlation matrix */}
       <Card className="bg-card border-border">
         <CardHeader className="pb-2">
-          <CardTitle className="text-sm font-semibold text-muted-foreground flex items-center gap-2">
+          <CardTitle className="text-sm font-medium text-muted-foreground flex items-center gap-2">
             <Scale className="w-4 h-4 text-primary" />
             Factor Correlation Matrix (trailing 3Y)
           </CardTitle>
@@ -958,7 +958,7 @@ function FactorCycle() {
               <tbody>
                 {factorNames.map((rowFactor) => (
                   <tr key={rowFactor} className="border-t border-border">
-                    <td className="py-2 pr-3 font-semibold text-muted-foreground whitespace-nowrap">{rowFactor}</td>
+                    <td className="py-2 pr-3 font-medium text-muted-foreground whitespace-nowrap">{rowFactor}</td>
                     {factorNames.map((colFactor) => {
                       if (rowFactor === colFactor) {
                         return (
@@ -976,7 +976,7 @@ function FactorCycle() {
                       return (
                         <td key={colFactor} className="py-2 pr-2 text-center">
                           <span
-                            className="font-mono font-semibold"
+                            className="font-mono font-medium"
                             style={{ color: corrColor(v) }}
                           >
                             {v >= 0 ? "+" : ""}
@@ -999,7 +999,7 @@ function FactorCycle() {
       {/* Crowding indicators */}
       <Card className="bg-card border-border">
         <CardHeader className="pb-2">
-          <CardTitle className="text-sm font-semibold text-muted-foreground flex items-center gap-2">
+          <CardTitle className="text-sm font-medium text-muted-foreground flex items-center gap-2">
             <AlertTriangle className="w-4 h-4 text-amber-400" />
             Crowding Indicators
           </CardTitle>
@@ -1011,7 +1011,7 @@ function FactorCycle() {
               const riskColor = f.crowding > 0.6 ? "text-red-400" : f.crowding > 0.4 ? "text-amber-400" : "text-emerald-400";
               return (
                 <div key={f.name} className="flex items-center gap-3">
-                  <div className="w-20 text-xs text-muted-foreground font-semibold">{f.name}</div>
+                  <div className="w-20 text-xs text-muted-foreground font-medium">{f.name}</div>
                   <div className="flex-1 h-2 bg-muted rounded-full overflow-hidden">
                     <div
                       className="h-full rounded-full transition-all"
@@ -1021,7 +1021,7 @@ function FactorCycle() {
                       }}
                     />
                   </div>
-                  <div className={cn("w-14 text-xs font-bold text-right", riskColor)}>{risk}</div>
+                  <div className={cn("w-14 text-xs font-medium text-right", riskColor)}>{risk}</div>
                   <div className="w-8 text-xs text-right text-muted-foreground">{Math.round(f.crowding * 100)}%</div>
                 </div>
               );
@@ -1051,7 +1051,7 @@ function TacticalAllocation() {
       {/* MA rules table */}
       <Card className="bg-card border-border">
         <CardHeader className="pb-2">
-          <CardTitle className="text-sm font-semibold text-muted-foreground flex items-center gap-2">
+          <CardTitle className="text-sm font-medium text-muted-foreground flex items-center gap-2">
             <Activity className="w-4 h-4 text-primary" />
             200-Day Moving Average Rules — Current Signals
           </CardTitle>
@@ -1094,7 +1094,7 @@ function TacticalAllocation() {
                       </Badge>
                     )}
                   </td>
-                  <td className={cn("py-2 pr-3 text-right font-mono font-semibold", r.stratReturn >= 0 ? "text-emerald-400" : "text-red-400")}>
+                  <td className={cn("py-2 pr-3 text-right font-mono font-medium", r.stratReturn >= 0 ? "text-emerald-400" : "text-red-400")}>
                     {fmtPct(r.stratReturn)}
                   </td>
                   <td className={cn("py-2 text-right font-mono", r.bHReturn >= 0 ? "text-muted-foreground" : "text-red-400/70")}>
@@ -1111,20 +1111,20 @@ function TacticalAllocation() {
       <Card className="bg-card border-border">
         <CardHeader className="pb-2">
           <div className="flex items-start justify-between">
-            <CardTitle className="text-sm font-semibold text-muted-foreground flex items-center gap-2">
+            <CardTitle className="text-sm font-medium text-muted-foreground flex items-center gap-2">
               <TrendingUp className="w-4 h-4 text-primary" />
               200d MA Strategy vs Buy &amp; Hold (36-Month Sim)
             </CardTitle>
             <div className="flex items-center gap-3 text-xs">
               <div>
                 <span className="text-muted-foreground">Strategy: </span>
-                <span className={cn("font-bold", stratReturn >= 0 ? "text-emerald-400" : "text-red-400")}>
+                <span className={cn("font-medium", stratReturn >= 0 ? "text-emerald-400" : "text-red-400")}>
                   {fmtPct(stratReturn)}
                 </span>
               </div>
               <div>
                 <span className="text-muted-foreground">B&amp;H: </span>
-                <span className={cn("font-bold", bhReturn >= 0 ? "text-muted-foreground" : "text-red-400")}>
+                <span className={cn("font-medium", bhReturn >= 0 ? "text-muted-foreground" : "text-red-400")}>
                   {fmtPct(bhReturn)}
                 </span>
               </div>
@@ -1150,7 +1150,7 @@ function TacticalAllocation() {
             <CardContent className="p-4">
               <div className="flex items-center gap-2 mb-2">
                 {item.icon}
-                <span className="text-sm font-semibold text-foreground">{item.title}</span>
+                <span className="text-sm font-medium text-foreground">{item.title}</span>
               </div>
               <p className="text-xs text-muted-foreground leading-relaxed">{item.body}</p>
             </CardContent>
@@ -1181,7 +1181,7 @@ function Implementation() {
       {/* ETF universe table */}
       <Card className="bg-card border-border">
         <CardHeader className="pb-2">
-          <CardTitle className="text-sm font-semibold text-muted-foreground flex items-center gap-2">
+          <CardTitle className="text-sm font-medium text-muted-foreground flex items-center gap-2">
             <Zap className="w-4 h-4 text-yellow-400" />
             Factor ETF Universe
           </CardTitle>
@@ -1213,12 +1213,12 @@ function Implementation() {
                   <td className="py-2 pr-3">
                     <div className="flex items-center gap-2">
                       <ChevronRight className={cn("w-3 h-3 text-muted-foreground transition-transform", selected === e.ticker && "rotate-90")} />
-                      <span className="font-mono font-bold text-foreground">{e.ticker}</span>
+                      <span className="font-mono font-medium text-foreground">{e.ticker}</span>
                     </div>
                   </td>
                   <td className="py-2 pr-3">
                     <span
-                      className="px-1.5 py-0.5 rounded text-xs font-semibold"
+                      className="px-1.5 py-0.5 rounded text-xs font-medium"
                       style={{
                         backgroundColor: (factorColors[e.factor] ?? "#6b7280") + "22",
                         color: factorColors[e.factor] ?? "#6b7280",
@@ -1233,7 +1233,7 @@ function Implementation() {
                   <td className="py-2 pr-3 text-right">
                     <span className={e.taxDrag > 30 ? "text-amber-400" : "text-muted-foreground"}>{e.taxDrag}bps</span>
                   </td>
-                  <td className={cn("py-2 pr-3 text-right font-mono font-semibold", e.ytd >= 0 ? "text-emerald-400" : "text-red-400")}>
+                  <td className={cn("py-2 pr-3 text-right font-mono font-medium", e.ytd >= 0 ? "text-emerald-400" : "text-red-400")}>
                     {fmtPct(e.ytd)}
                   </td>
                   <td className="py-2 text-right text-muted-foreground">{e.inception}</td>
@@ -1257,9 +1257,9 @@ function Implementation() {
             <div className="flex items-start justify-between mb-3">
               <div>
                 <div className="flex items-center gap-2">
-                  <span className="font-mono font-bold text-lg text-foreground">{sel.ticker}</span>
+                  <span className="font-mono font-medium text-lg text-foreground">{sel.ticker}</span>
                   <span
-                    className="px-2 py-0.5 rounded text-xs font-semibold"
+                    className="px-2 py-0.5 rounded text-xs font-medium"
                     style={{
                       backgroundColor: (factorColors[sel.factor] ?? "#6b7280") + "22",
                       color: factorColors[sel.factor] ?? "#6b7280",
@@ -1271,7 +1271,7 @@ function Implementation() {
                 <div className="text-sm text-muted-foreground mt-0.5">{sel.name}</div>
               </div>
               <div className="text-right">
-                <div className={cn("text-lg font-bold", sel.ytd >= 0 ? "text-emerald-400" : "text-red-400")}>
+                <div className={cn("text-lg font-medium", sel.ytd >= 0 ? "text-emerald-400" : "text-red-400")}>
                   {fmtPct(sel.ytd)} YTD
                 </div>
                 <div className="text-xs text-muted-foreground">AUM: ${sel.aum}B</div>
@@ -1287,7 +1287,7 @@ function Implementation() {
               ].map((item) => (
                 <div key={item.label} className="text-center p-2 bg-card rounded border border-border">
                   <div className="text-xs text-muted-foreground mb-1">{item.label}</div>
-                  <div className="text-sm font-bold text-foreground">{item.value}</div>
+                  <div className="text-sm font-medium text-foreground">{item.value}</div>
                 </div>
               ))}
             </div>
@@ -1298,7 +1298,7 @@ function Implementation() {
       {/* ETF vs mutual fund comparison */}
       <Card className="bg-card border-border">
         <CardHeader className="pb-2">
-          <CardTitle className="text-sm font-semibold text-muted-foreground flex items-center gap-2">
+          <CardTitle className="text-sm font-medium text-muted-foreground flex items-center gap-2">
             <Info className="w-4 h-4 text-primary" />
             Factor ETF vs Mutual Fund: Key Trade-offs
           </CardTitle>
@@ -1324,7 +1324,7 @@ function Implementation() {
                 { dim: "Rebalance Frequency", etf: "Semi-annual reconstitution", fund: "Continuous / quarterly" },
               ].map((row) => (
                 <tr key={row.dim} className="border-b border-border hover:bg-muted/30 transition-colors">
-                  <td className="py-2 pr-3 font-semibold text-muted-foreground">{row.dim}</td>
+                  <td className="py-2 pr-3 font-medium text-muted-foreground">{row.dim}</td>
                   <td className="py-2 pr-3 text-muted-foreground">{row.etf}</td>
                   <td className="py-2 text-muted-foreground">{row.fund}</td>
                 </tr>
@@ -1337,7 +1337,7 @@ function Implementation() {
       {/* Cost breakdown visual */}
       <Card className="bg-card border-border">
         <CardHeader className="pb-2">
-          <CardTitle className="text-sm font-semibold text-muted-foreground flex items-center gap-2">
+          <CardTitle className="text-sm font-medium text-muted-foreground flex items-center gap-2">
             <DollarSign className="w-4 h-4 text-emerald-400" />
             Estimated Total Cost of Ownership (per $100k invested, 1 year)
           </CardTitle>
@@ -1351,8 +1351,8 @@ function Implementation() {
             return (
               <div key={e.ticker} className="space-y-1">
                 <div className="flex items-center justify-between text-xs">
-                  <span className="font-mono font-semibold text-muted-foreground">{e.ticker}</span>
-                  <span className="text-muted-foreground">Total: <span className="font-bold text-foreground">${total}/yr</span></span>
+                  <span className="font-mono font-medium text-muted-foreground">{e.ticker}</span>
+                  <span className="text-muted-foreground">Total: <span className="font-medium text-foreground">${total}/yr</span></span>
                 </div>
                 <div className="flex h-3 rounded-full overflow-hidden bg-muted gap-px">
                   <div

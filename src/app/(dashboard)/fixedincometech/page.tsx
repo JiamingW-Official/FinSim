@@ -617,7 +617,7 @@ function AlgoExecutionTab() {
           >
             <div className="flex items-center gap-2 mb-2">
               <selected.icon className={cn("w-4 h-4", selected.color)} />
-              <span className={cn("font-semibold text-sm", selected.color)}>{selected.label}</span>
+              <span className={cn("font-medium text-sm", selected.color)}>{selected.label}</span>
             </div>
             <p className="text-xs text-muted-foreground mb-3">{selected.description}</p>
             <div className="space-y-1 mb-3">
@@ -649,7 +649,7 @@ function AlgoExecutionTab() {
                   <p className="text-xs font-medium text-foreground">{m.label}</p>
                   <p className="text-xs text-muted-foreground">{m.desc}</p>
                 </div>
-                <span className={cn("text-sm font-mono font-semibold", m.positive ? "text-green-400" : "text-red-400")}>
+                <span className={cn("text-sm font-mono font-medium", m.positive ? "text-green-400" : "text-red-400")}>
                   {m.value}
                 </span>
               </div>
@@ -841,7 +841,7 @@ function BondPricingTab() {
             { factor: "Curvature (β₂)", desc: "Hump shape at medium maturities", color: "text-primary" },
           ].map((f) => (
             <div key={f.factor} className="p-2 rounded-lg bg-muted/30 border border-border">
-              <p className={cn("text-xs font-semibold", f.color)}>{f.factor}</p>
+              <p className={cn("text-xs font-medium", f.color)}>{f.factor}</p>
               <p className="text-xs text-muted-foreground mt-0.5">{f.desc}</p>
             </div>
           ))}
@@ -931,7 +931,7 @@ function BondPricingTab() {
             className="rounded-lg border border-border bg-muted/20 p-4"
           >
             <div className="flex items-center justify-between mb-2">
-              <span className={cn("font-semibold text-sm", selFV.color)}>{selFV.name}</span>
+              <span className={cn("font-medium text-sm", selFV.color)}>{selFV.name}</span>
               <div className="flex gap-3 text-xs text-muted-foreground">
                 <span>Latency: <span className="text-foreground">{selFV.latency}</span></span>
                 <span>Accuracy: <span className="text-foreground">{selFV.accuracy}%</span></span>
@@ -1040,7 +1040,7 @@ function CreditStructureTab() {
             {CREDIT_SPREAD_COMPONENTS.map((c) => (
               <div key={c.label} className="rounded-lg p-2" style={{ backgroundColor: c.color + "11", border: `1px solid ${c.color}33` }}>
                 <div className="flex justify-between items-center">
-                  <span className="text-xs font-semibold" style={{ color: c.color }}>{c.label}</span>
+                  <span className="text-xs font-medium" style={{ color: c.color }}>{c.label}</span>
                   <span className="text-xs font-mono" style={{ color: c.color }}>{c.bps} bps</span>
                 </div>
                 <p className="text-xs text-muted-foreground mt-0.5">{c.desc}</p>
@@ -1128,11 +1128,11 @@ function CreditStructureTab() {
         </div>
         <div className="grid grid-cols-2 gap-3 mt-3">
           <div className="p-2 rounded-lg bg-primary/10 border border-border">
-            <p className="text-xs font-semibold text-primary">Negative Basis (IG)</p>
+            <p className="text-xs font-medium text-primary">Negative Basis (IG)</p>
             <p className="text-xs text-muted-foreground mt-1">CDS tighter than bond — bond is "cheap" vs CDS. Dealers short CDS and buy bonds to capture the basis (negative basis trade).</p>
           </div>
           <div className="p-2 rounded-lg bg-orange-400/10 border border-orange-400/30">
-            <p className="text-xs font-semibold text-orange-400">Positive Basis (HY)</p>
+            <p className="text-xs font-medium text-orange-400">Positive Basis (HY)</p>
             <p className="text-xs text-muted-foreground mt-1">CDS wider than bond — protection is expensive. Typical in stressed credits where buying bond is difficult (liquidity) vs CDS.</p>
           </div>
         </div>
@@ -1169,7 +1169,7 @@ function CreditStructureTab() {
               },
             ].map((r) => (
               <div key={r.reg} className={cn("rounded-lg border p-2.5", r.bg, r.border)}>
-                <p className={cn("text-xs font-semibold", r.color)}>{r.reg}</p>
+                <p className={cn("text-xs font-medium", r.color)}>{r.reg}</p>
                 <p className="text-xs text-muted-foreground mt-0.5">{r.impact}</p>
                 <p className="text-xs text-foreground/70 mt-0.5 font-medium">{r.result}</p>
               </div>
@@ -1183,7 +1183,7 @@ function CreditStructureTab() {
               <div key={src.name} className="flex items-start gap-3 p-2 rounded-lg bg-muted/20 border border-border">
                 <src.icon className={cn("w-4 h-4 shrink-0 mt-0.5", src.color)} />
                 <div>
-                  <p className={cn("text-xs font-semibold", src.color)}>{src.name}</p>
+                  <p className={cn("text-xs font-medium", src.color)}>{src.name}</p>
                   <p className="text-xs text-muted-foreground mt-0.5">{src.signal}</p>
                   <p className="text-xs text-muted-foreground">Lead time: <span className="text-foreground">{src.lead}</span></p>
                 </div>
@@ -1232,7 +1232,7 @@ function CreditStructureTab() {
             },
           ].map((g) => (
             <div key={g.grade} className={cn("rounded-lg border p-3", g.bg, g.border)}>
-              <p className={cn("text-xs font-semibold mb-2", g.color)}>{g.grade}</p>
+              <p className={cn("text-xs font-medium mb-2", g.color)}>{g.grade}</p>
               <div className="space-y-1">
                 {g.traits.map((t) => (
                   <div key={t} className="flex items-start gap-2">

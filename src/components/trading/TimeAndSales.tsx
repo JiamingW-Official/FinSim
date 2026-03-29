@@ -129,9 +129,9 @@ export function TimeAndSales({ ticker, currentPrice }: TimeAndSalesProps) {
   const sellRatio = totalVolBuySell > 0 ? ((sellVolume / totalVolBuySell) * 100).toFixed(0) : "50";
 
   return (
-    <div className="rounded-lg border border-border bg-card overflow-hidden">
+    <div className="rounded-lg border border-border/40 bg-card overflow-hidden">
       {/* Header */}
-      <div className="flex items-center justify-between px-2 py-1.5 border-b border-border">
+      <div className="flex items-center justify-between px-2 py-1.5 border-b border-border/40">
         <span className="text-xs font-semibold text-muted-foreground">
           Time &amp; Sales
         </span>

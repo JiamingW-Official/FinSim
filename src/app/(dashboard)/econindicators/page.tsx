@@ -769,12 +769,12 @@ export default function EconIndicatorsPage() {
         </Badge>
       </motion.div>
 
-      {/* Key Metrics Row */}
+      {/* Key Metrics Row — Hero */}
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.4, delay: 0.1 }}
-        className="grid grid-cols-2 md:grid-cols-4 gap-4"
+        className="border-l-4 border-l-primary rounded-lg bg-card p-6 grid grid-cols-2 md:grid-cols-4 gap-4"
       >
         {keyMetrics.map((m, i) => {
           const Icon = m.icon;
@@ -810,6 +810,7 @@ export default function EconIndicatorsPage() {
 
       {/* Main Tabs */}
       <motion.div
+        className="mt-8"
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.4, delay: 0.2 }}
@@ -897,7 +898,7 @@ export default function EconIndicatorsPage() {
                           <p className="text-xs text-muted-foreground">Manufacturing</p>
                           <p
                             className={cn(
-                              "text-lg font-bold",
+                              "text-lg font-medium",
                               r.mfg >= 50 ? "text-green-400" : "text-red-400"
                             )}
                           >
@@ -908,7 +909,7 @@ export default function EconIndicatorsPage() {
                           <p className="text-xs text-muted-foreground">Services</p>
                           <p
                             className={cn(
-                              "text-lg font-bold",
+                              "text-lg font-medium",
                               r.svc >= 50 ? "text-green-400" : "text-red-400"
                             )}
                           >
@@ -1017,7 +1018,7 @@ export default function EconIndicatorsPage() {
                   </div>
                   <div className="mt-4 pt-4 border-t border-border flex items-center justify-between">
                     <span className="text-sm font-medium">Headline CPI YoY</span>
-                    <span className="text-xl font-bold text-amber-400">3.0%</span>
+                    <span className="text-xl font-medium text-amber-400">3.0%</span>
                   </div>
                   <div className="flex items-center justify-between mt-1">
                     <span className="text-sm font-medium">Core CPI YoY (ex-Food &amp; Energy)</span>

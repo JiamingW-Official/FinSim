@@ -589,7 +589,7 @@ function DarkPoolLandscapeTab() {
                   <EyeOff className="w-4 h-4" style={{ color: selectedPool.color }} />
                 </div>
                 <div>
-                  <div className="font-semibold text-foreground">{selectedPool.name}</div>
+                  <div className="font-medium text-foreground">{selectedPool.name}</div>
                   <div className="text-xs text-muted-foreground">
                     {selectedPool.operator} · Founded {selectedPool.founded} · {selectedPool.type}
                   </div>
@@ -629,7 +629,7 @@ function DarkPoolLandscapeTab() {
 
       {/* ATS vs Exchange comparison */}
       <div className="bg-muted/50 rounded-xl p-4 border border-border/50">
-        <h3 className="text-sm font-semibold text-foreground mb-4 flex items-center gap-2">
+        <h3 className="text-sm font-medium text-foreground mb-4 flex items-center gap-2">
           <Scale className="w-4 h-4 text-muted-foreground" />
           US Equity Volume Distribution (ATS vs Lit Exchanges)
         </h3>
@@ -646,7 +646,7 @@ function DarkPoolLandscapeTab() {
                   transition={{ duration: 0.8, ease: "easeOut" }}
                 />
               </div>
-              <div className="text-xs font-semibold text-foreground w-10 text-right tabular-nums">
+              <div className="text-xs font-medium text-foreground w-10 text-right tabular-nums">
                 {c.share}%
               </div>
             </div>
@@ -736,7 +736,7 @@ function WhyDarkPoolsTab() {
             <div className="mb-2" style={{ color: r.color }}>
               {r.icon}
             </div>
-            <div className="text-xs font-semibold text-foreground">{r.title}</div>
+            <div className="text-xs font-medium text-foreground">{r.title}</div>
           </motion.button>
         ))}
       </div>
@@ -764,7 +764,7 @@ function WhyDarkPoolsTab() {
                 {reasons[activeReason].icon}
               </span>
             </div>
-            <h3 className="text-base font-semibold text-foreground">
+            <h3 className="text-base font-medium text-foreground">
               {reasons[activeReason].title}
             </h3>
           </div>
@@ -778,7 +778,7 @@ function WhyDarkPoolsTab() {
                 className="bg-card/60 rounded-lg p-3 border border-border/40"
               >
                 <div
-                  className="text-sm font-bold tabular-nums"
+                  className="text-sm font-medium tabular-nums"
                   style={{ color: reasons[activeReason].color }}
                 >
                   {st.value}
@@ -792,7 +792,7 @@ function WhyDarkPoolsTab() {
 
       {/* Price improvement table */}
       <div className="bg-muted/50 rounded-xl p-4 border border-border/50">
-        <h3 className="text-sm font-semibold text-foreground mb-3 flex items-center gap-2">
+        <h3 className="text-sm font-medium text-foreground mb-3 flex items-center gap-2">
           <TrendingUp className="w-4 h-4 text-emerald-400" />
           Price Improvement Statistics by Pool
         </h3>
@@ -820,7 +820,7 @@ function WhyDarkPoolsTab() {
                 return (
                   <tr key={row.pool} className="hover:bg-muted/20">
                     <td className="py-2 text-foreground font-medium">{row.pool}</td>
-                    <td className="py-2 text-right tabular-nums text-emerald-400 font-semibold">
+                    <td className="py-2 text-right tabular-nums text-emerald-400 font-medium">
                       +{row.improvementBps.toFixed(1)}
                     </td>
                     <td className="py-2 text-right tabular-nums text-muted-foreground">
@@ -843,7 +843,7 @@ function WhyDarkPoolsTab() {
 
       {/* Info leakage visual */}
       <div className="bg-muted/50 rounded-xl p-4 border border-border/50">
-        <h3 className="text-sm font-semibold text-foreground mb-4 flex items-center gap-2">
+        <h3 className="text-sm font-medium text-foreground mb-4 flex items-center gap-2">
           <Info className="w-4 h-4 text-primary" />
           Information Leakage: Lit vs Dark Order Flow
         </h3>
@@ -955,10 +955,10 @@ function OrderTypesTab() {
         >
           <div className="bg-muted/50 rounded-xl p-4 border border-border/50">
             <div className="flex items-center justify-between mb-3">
-              <h3 className="font-semibold text-foreground">{order.name}</h3>
+              <h3 className="font-medium text-foreground">{order.name}</h3>
               <Badge
                 variant="outline"
-                className="text-xs font-bold border-border text-muted-foreground"
+                className="text-xs font-medium border-border text-muted-foreground"
               >
                 {order.abbr}
               </Badge>
@@ -967,19 +967,19 @@ function OrderTypesTab() {
             <div className="space-y-2">
               <div className="flex items-center justify-between text-xs">
                 <span className="text-muted-foreground">Price Impact</span>
-                <span className={cn("font-semibold", impactColor[order.priceImpact])}>
+                <span className={cn("font-medium", impactColor[order.priceImpact])}>
                   {order.priceImpact}
                 </span>
               </div>
               <div className="flex items-center justify-between text-xs">
                 <span className="text-muted-foreground">Complexity</span>
-                <span className={cn("font-semibold", complexityColor[order.complexity])}>
+                <span className={cn("font-medium", complexityColor[order.complexity])}>
                   {order.complexity}
                 </span>
               </div>
               <div className="flex items-center justify-between text-xs">
                 <span className="text-muted-foreground">Fill Probability</span>
-                <span className="font-semibold text-foreground">{order.fillProbability}</span>
+                <span className="font-medium text-foreground">{order.fillProbability}</span>
               </div>
               <div className="flex items-center justify-between text-xs">
                 <span className="text-muted-foreground">Dark Pool Friendly</span>
@@ -992,7 +992,7 @@ function OrderTypesTab() {
             </div>
           </div>
           <div className="bg-muted/50 rounded-xl p-4 border border-border/50">
-            <h4 className="text-xs font-semibold text-muted-foreground uppercase tracking-wide mb-2">
+            <h4 className="text-xs font-medium text-muted-foreground uppercase tracking-wide mb-2">
               Best Use Case
             </h4>
             <p className="text-sm text-muted-foreground mb-4">{order.useCase}</p>
@@ -1019,7 +1019,7 @@ function OrderTypesTab() {
                     );
                   })()}
                 </div>
-                <span className="text-xs text-primary font-semibold w-20 text-right">
+                <span className="text-xs text-primary font-medium w-20 text-right">
                   {order.fillProbability}
                 </span>
               </div>
@@ -1030,7 +1030,7 @@ function OrderTypesTab() {
 
       {/* Order routing decision tree SVG */}
       <div className="bg-muted/50 rounded-xl p-4 border border-border/50">
-        <h3 className="text-sm font-semibold text-foreground mb-4 flex items-center gap-2">
+        <h3 className="text-sm font-medium text-foreground mb-4 flex items-center gap-2">
           <Network className="w-4 h-4 text-primary" />
           Order Routing Decision Tree
         </h3>
@@ -1181,7 +1181,7 @@ function HFTInteractionTab() {
               >
                 <span style={{ color: c.color }}>{c.icon}</span>
               </div>
-              <h3 className="text-sm font-semibold text-foreground">{c.title}</h3>
+              <h3 className="text-sm font-medium text-foreground">{c.title}</h3>
             </div>
             <p className="text-xs text-muted-foreground leading-relaxed">{c.description}</p>
           </motion.div>
@@ -1198,7 +1198,7 @@ function HFTInteractionTab() {
 
       {/* Timeline */}
       <div className="bg-muted/50 rounded-xl p-4 border border-border/50">
-        <h3 className="text-sm font-semibold text-foreground mb-4 flex items-center gap-2">
+        <h3 className="text-sm font-medium text-foreground mb-4 flex items-center gap-2">
           <Clock className="w-4 h-4 text-primary" />
           HFT & Dark Pool Regulatory Timeline — click an event to expand
         </h3>
@@ -1268,7 +1268,7 @@ function HFTInteractionTab() {
                 <span className="text-xs text-muted-foreground w-8 shrink-0 tabular-nums">
                   {ev.year}
                 </span>
-                <span className="text-xs font-semibold text-foreground">{ev.title}</span>
+                <span className="text-xs font-medium text-foreground">{ev.title}</span>
                 <Badge
                   variant="outline"
                   className="ml-auto text-[11px] px-1.5 py-0 border-border"
@@ -1334,7 +1334,7 @@ function LitVsDarkTab() {
           >
             <div className="flex items-center gap-2 mb-2">
               <span style={{ color: c.color }}>{c.icon}</span>
-              <h3 className="text-sm font-semibold text-foreground">{c.title}</h3>
+              <h3 className="text-sm font-medium text-foreground">{c.title}</h3>
             </div>
             <p className="text-xs text-muted-foreground leading-relaxed">{c.text}</p>
           </div>
@@ -1343,7 +1343,7 @@ function LitVsDarkTab() {
 
       {/* Toxicity metrics comparison */}
       <div className="bg-muted/50 rounded-xl p-4 border border-border/50">
-        <h3 className="text-sm font-semibold text-foreground mb-4 flex items-center gap-2">
+        <h3 className="text-sm font-medium text-foreground mb-4 flex items-center gap-2">
           <BarChart3 className="w-4 h-4 text-primary" />
           Lit vs Dark: Key Microstructure Metrics
         </h3>
@@ -1412,7 +1412,7 @@ function LitVsDarkTab() {
 
       {/* Implementation shortfall breakdown SVG */}
       <div className="bg-muted/50 rounded-xl p-4 border border-border/50">
-        <h3 className="text-sm font-semibold text-foreground mb-4 flex items-center gap-2">
+        <h3 className="text-sm font-medium text-foreground mb-4 flex items-center gap-2">
           <BookOpen className="w-4 h-4 text-amber-400" />
           Implementation Shortfall Decomposition
         </h3>
@@ -1518,7 +1518,7 @@ function LitVsDarkTab() {
           >
             <div className="flex items-center gap-2 mb-3">
               <span style={{ color: card.color }}>{card.icon}</span>
-              <h3 className="text-sm font-semibold text-foreground">{card.title}</h3>
+              <h3 className="text-sm font-medium text-foreground">{card.title}</h3>
             </div>
             <ul className="space-y-1.5">
               {card.points.map((p) => (
@@ -1545,13 +1545,13 @@ export default function DarkPoolsPage() {
           initial={{ opacity: 0, y: -12 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.4 }}
-          className="flex items-start gap-4"
+          className="border-l-4 border-l-primary rounded-lg bg-card p-6 flex items-start gap-4"
         >
           <div className="w-12 h-12 rounded-xl bg-indigo-600/20 border border-indigo-500/30 flex items-center justify-center shrink-0">
             <EyeOff className="w-6 h-6 text-indigo-400" />
           </div>
           <div>
-            <h1 className="text-2xl font-bold text-foreground">
+            <h1 className="text-xl font-bold text-foreground">
               Dark Pools & Market Microstructure
             </h1>
             <p className="text-sm text-muted-foreground mt-1">
@@ -1561,7 +1561,7 @@ export default function DarkPoolsPage() {
         </motion.div>
 
         {/* Tabs */}
-        <Tabs defaultValue="landscape" className="space-y-4">
+        <Tabs defaultValue="landscape" className="mt-8 space-y-4">
           <TabsList className="bg-card/80 border border-border flex flex-wrap h-auto gap-1 p-1">
             {[
               { value: "landscape", label: "Dark Pool Landscape", icon: <Layers className="w-3.5 h-3.5" /> },

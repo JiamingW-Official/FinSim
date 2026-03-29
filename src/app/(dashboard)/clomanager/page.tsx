@@ -523,7 +523,7 @@ function CoverageTab() {
             { term: "Cure Period", desc: "Manager has limited time to restore compliance by selling assets or buying premium loans." },
           ].map((item) => (
             <div key={item.term} className="rounded-lg bg-foreground/5 p-3">
-              <p className="text-xs font-semibold text-foreground mb-1">{item.term}</p>
+              <p className="text-xs font-medium text-foreground mb-1">{item.term}</p>
               <p className="text-xs text-muted-foreground">{item.desc}</p>
             </div>
           ))}
@@ -592,7 +592,7 @@ function PortfolioTab() {
                   <td className="py-2 text-right text-muted-foreground">{fmt((l.balance / totalBal) * 100)}%</td>
                 </tr>
               ))}
-              <tr className="border-t border-border font-semibold text-foreground">
+              <tr className="border-t border-border font-medium text-foreground">
                 <td className="py-2 text-left" colSpan={2}>Totals / Averages</td>
                 <td className="py-2 text-right text-emerald-400 font-mono">{fmt(was, 0)}</td>
                 <td className="py-2 text-right text-muted-foreground">{wal}yr WAL</td>
@@ -820,7 +820,7 @@ function DefaultScenariosTab() {
                 : "border-border bg-foreground/5 hover:bg-muted/50"
             )}
           >
-            <p className="text-sm font-semibold text-foreground mb-1">{sc.label}</p>
+            <p className="text-sm font-medium text-foreground mb-1">{sc.label}</p>
             <p className="text-xs text-muted-foreground">Default: {sc.defaultRate}% · Recovery: {sc.recovery}%</p>
             <p className={cn(
               "text-sm font-bold mt-2",
@@ -901,7 +901,7 @@ function DefaultScenariosTab() {
                     <td className="py-2 text-right font-mono text-muted-foreground">{sc.defaultRate}%</td>
                     <td className="py-2 text-right font-mono text-muted-foreground">{sc.recovery}%</td>
                     <td className="py-2 text-right font-mono text-rose-400">${fmt(loss)}M</td>
-                    <td className={cn("py-2 text-right font-mono font-semibold", sc.equityIRR >= 10 ? "text-emerald-400" : sc.equityIRR >= 0 ? "text-amber-400" : "text-rose-400")}>
+                    <td className={cn("py-2 text-right font-mono font-medium", sc.equityIRR >= 10 ? "text-emerald-400" : sc.equityIRR >= 0 ? "text-amber-400" : "text-rose-400")}>
                       {sc.equityIRR >= 0 ? "+" : ""}{sc.equityIRR}%
                     </td>
                     <td className="py-2 text-right text-muted-foreground">{sc.firstLossPct}%</td>
@@ -1019,7 +1019,7 @@ function EquityReturnsTab() {
             const isNeg = d.irr < 0;
             return (
               <div key={d.label} className="flex flex-col items-center flex-1 h-full justify-end">
-                <span className={cn("text-xs font-bold mb-1", isNeg ? "text-rose-400" : d.irr >= 10 ? "text-emerald-400" : "text-amber-400")}>
+                <span className={cn("text-xs font-medium mb-1", isNeg ? "text-rose-400" : d.irr >= 10 ? "text-emerald-400" : "text-amber-400")}>
                   {d.irr >= 0 ? "+" : ""}{d.irr}%
                 </span>
                 <div
@@ -1043,8 +1043,8 @@ function EquityReturnsTab() {
             { name: "Incentive / Performance Fee", rate: `${incentiveFee}% above 12% hurdle`, desc: "Aligns manager with equity. Only earned once equity IRR exceeds the hurdle rate.", color: "text-emerald-300" },
           ].map((fee) => (
             <div key={fee.name} className="rounded-lg bg-foreground/5 p-3">
-              <p className={cn("text-xs font-semibold mb-1", fee.color)}>{fee.name}</p>
-              <p className="text-sm font-bold text-foreground mb-1">{fee.rate}</p>
+              <p className={cn("text-xs font-medium mb-1", fee.color)}>{fee.name}</p>
+              <p className="text-sm font-medium text-foreground mb-1">{fee.rate}</p>
               <p className="text-xs text-muted-foreground">{fee.desc}</p>
             </div>
           ))}
@@ -1075,11 +1075,11 @@ export default function CLOManagerPage() {
       transition={{ duration: 0.4 }}
       className="min-h-screen bg-background text-foreground"
     >
-      {/* Header */}
-      <div className="border-b border-border bg-card/60 px-6 py-5">
+      {/* HERO Header */}
+      <div className="border-b border-border border-l-4 border-l-primary bg-card/60 px-6 py-6">
         <div className="flex items-center gap-3 mb-1">
           <DollarSign className="h-6 w-6 text-primary" />
-          <h1 className="text-xl font-bold text-foreground">CLO Manager</h1>
+          <h1 className="text-xl font-semibold text-foreground">CLO Manager</h1>
           <Badge variant="outline" className="border-primary/40 text-primary text-xs">
             $500M CLO
           </Badge>

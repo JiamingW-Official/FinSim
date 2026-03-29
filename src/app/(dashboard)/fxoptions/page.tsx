@@ -411,7 +411,7 @@ function OptionsChainTable({ rows, expiry }: { rows: OptionRow[]; expiry: string
                 <td className="py-1.5 text-sky-400">{row.callDelta.toFixed(3)}</td>
                 <td className="py-1.5 text-primary">{row.callGamma.toFixed(4)}</td>
                 <td
-                  className={`py-1.5 text-center font-bold px-2 border-x border-border ${
+                  className={`py-1.5 text-center font-medium px-2 border-x border-border ${
                     isAtm ? "text-amber-400" : "text-foreground"
                   }`}
                 >
@@ -464,8 +464,8 @@ function RRButterflyTable() {
         </tbody>
       </table>
       <div className="mt-3 px-3 py-2 bg-card border border-border rounded text-xs text-muted-foreground leading-relaxed">
-        <span className="text-amber-400 font-semibold">25D RR</span> = IV(25D Call) − IV(25D Put). Positive → call skew (EUR/USD call demand).{" "}
-        <span className="text-primary font-semibold">25D Fly</span> = 0.5 × [IV(25D Call) + IV(25D Put)] − IV(ATM). Wing premium above ATM.
+        <span className="text-amber-400 font-medium">25D RR</span> = IV(25D Call) − IV(25D Put). Positive → call skew (EUR/USD call demand).{" "}
+        <span className="text-primary font-medium">25D Fly</span> = 0.5 × [IV(25D Call) + IV(25D Put)] − IV(ATM). Wing premium above ATM.
       </div>
     </div>
   );
@@ -633,7 +633,7 @@ function GKCalculator() {
     <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
       {/* Inputs */}
       <div className="space-y-3">
-        <h3 className="text-sm font-semibold text-foreground flex items-center gap-2">
+        <h3 className="text-sm font-medium text-foreground flex items-center gap-2">
           <DollarSign size={14} className="text-sky-400" /> Inputs
         </h3>
         <div className="grid grid-cols-2 gap-3">
@@ -720,7 +720,7 @@ function GKCalculator() {
 
       {/* Results */}
       <div className="space-y-3">
-        <h3 className="text-sm font-semibold text-foreground flex items-center gap-2">
+        <h3 className="text-sm font-medium text-foreground flex items-center gap-2">
           <Activity size={14} className="text-primary" /> Results
         </h3>
         <div className="bg-card border border-border rounded-lg p-4 space-y-2">
@@ -739,14 +739,14 @@ function GKCalculator() {
           ].map(({ label, val, color }) => (
             <div key={label} className="flex justify-between text-sm">
               <span className="text-muted-foreground">{label}</span>
-              <span className={`font-mono font-semibold ${color}`}>{val}</span>
+              <span className={`font-mono font-medium ${color}`}>{val}</span>
             </div>
           ))}
         </div>
         {/* Formula display */}
         <div className="bg-background border border-border rounded-lg p-3">
           <p className="text-xs text-muted-foreground leading-5 font-mono">
-            <span className="text-muted-foreground font-semibold">Garman-Kohlhagen (1983):</span>
+            <span className="text-muted-foreground font-medium">Garman-Kohlhagen (1983):</span>
             <br />
             C = S·e<sup>-rf·T</sup>·N(d₁) − K·e<sup>-rd·T</sup>·N(d₂)
             <br />
@@ -786,7 +786,7 @@ function CarryTradeTable() {
                 key={ct.pair}
                 className="border-b border-card hover:bg-muted/30 transition-colors"
               >
-                <td className="py-2 pl-3 font-semibold text-foreground">{ct.pair}</td>
+                <td className="py-2 pl-3 font-medium text-foreground">{ct.pair}</td>
                 <td className="py-2">
                   <Badge
                     variant="outline"
@@ -801,7 +801,7 @@ function CarryTradeTable() {
                 <td className="py-2 text-right font-mono text-red-400">
                   {ct.shortRate.toFixed(2)}%
                 </td>
-                <td className="py-2 text-right font-mono font-bold text-amber-400">
+                <td className="py-2 text-right font-mono font-medium text-amber-400">
                   +{ct.differential.toFixed(2)}%
                 </td>
                 <td className="py-2 text-right font-mono text-sky-400">
@@ -814,7 +814,7 @@ function CarryTradeTable() {
                   <span
                     className={
                       ct.sharpe >= 0.4
-                        ? "text-emerald-400 font-bold"
+                        ? "text-emerald-400 font-medium"
                         : ct.sharpe >= 0.2
                         ? "text-amber-400"
                         : "text-red-400"
@@ -853,7 +853,7 @@ function CarryTradeTable() {
       </div>
 
       <div className="bg-card border border-amber-500/20 rounded-lg p-3 text-xs text-muted-foreground leading-relaxed">
-        <span className="text-amber-400 font-semibold flex items-center gap-1 mb-1">
+        <span className="text-amber-400 font-medium flex items-center gap-1 mb-1">
           <Info size={12} /> Carry Trade Risk
         </span>
         Carry trades profit from interest rate differentials but are exposed to sudden currency reversals (unwinding risk). High-carry pairs often exhibit crash risk during risk-off episodes. Positive Sharpe does not guarantee future performance.
@@ -898,7 +898,7 @@ export default function FXOptionsPage() {
 
       {/* Spot Rates Strip */}
       <div>
-        <h2 className="text-xs font-semibold text-muted-foreground mb-3 flex items-center gap-1.5">
+        <h2 className="text-xs font-medium text-muted-foreground mb-3 flex items-center gap-1.5">
           <Activity size={12} /> Live Spot Rates
         </h2>
         <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-3">
@@ -1028,11 +1028,11 @@ export default function FXOptionsPage() {
               <VolSurfaceHeatmap />
               <div className="mt-4 grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs text-muted-foreground">
                 <div className="bg-card border border-border rounded p-3">
-                  <p className="text-muted-foreground font-semibold mb-1">Reading the Surface</p>
+                  <p className="text-muted-foreground font-medium mb-1">Reading the Surface</p>
                   <p>Each cell shows the implied volatility for a given delta strike and tenor. Higher vol (red) indicates more expensive options; lower vol (blue) signals cheaper options relative to the surface.</p>
                 </div>
                 <div className="bg-card border border-border rounded p-3">
-                  <p className="text-muted-foreground font-semibold mb-1">Skew &amp; Term Structure</p>
+                  <p className="text-muted-foreground font-medium mb-1">Skew &amp; Term Structure</p>
                   <p>Negative skew = puts more expensive than calls (left column higher). Positive term structure = longer dated options carry more vol — normal in FX due to event uncertainty compounding over time.</p>
                 </div>
               </div>

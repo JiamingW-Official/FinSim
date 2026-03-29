@@ -731,7 +731,7 @@ function RBFCalculator() {
             onChange={(e) => setMonthlyRev(Number(e.target.value))}
             className="w-full accent-indigo-500"
           />
-          <p className="mt-1 text-sm font-semibold text-foreground">
+          <p className="mt-1 text-sm font-medium text-foreground">
             ${(monthlyRev / 1000).toFixed(0)}K/mo
           </p>
         </div>
@@ -746,7 +746,7 @@ function RBFCalculator() {
             onChange={(e) => setShareRate(Number(e.target.value))}
             className="w-full accent-indigo-500"
           />
-          <p className="mt-1 text-sm font-semibold text-foreground">
+          <p className="mt-1 text-sm font-medium text-foreground">
             {shareRate}% of monthly revenue
           </p>
         </div>
@@ -780,7 +780,7 @@ function RBFCalculator() {
               </div>
               <div className="flex justify-between text-xs">
                 <span className="text-muted-foreground">Effective IRR</span>
-                <span className="font-semibold" style={{ color: sc.color }}>
+                <span className="font-medium" style={{ color: sc.color }}>
                   {sc.effectiveRate.toFixed(1)}%
                 </span>
               </div>
@@ -986,7 +986,7 @@ function RBFTab() {
                 className="rounded-lg border border-border bg-card p-3"
               >
                 <p className="text-xs text-muted-foreground">{m.label}</p>
-                <p className={cn("mt-1 text-lg font-semibold", m.col)}>
+                <p className={cn("mt-1 text-lg font-medium", m.col)}>
                   {m.value}
                 </p>
               </div>
@@ -1084,7 +1084,7 @@ function RBFTab() {
             >
               <div className="flex items-center gap-2">
                 <item.icon className={cn("h-4 w-4", item.color)} />
-                <span className={cn("text-sm font-semibold", item.color)}>
+                <span className={cn("text-sm font-medium", item.color)}>
                   {item.name}
                 </span>
               </div>
@@ -1305,7 +1305,7 @@ function GrowthEquityTab() {
                     i % 2 === 0 ? "bg-card" : "bg-muted/20"
                   )}
                 >
-                  <td className="px-4 py-3 font-semibold text-foreground">
+                  <td className="px-4 py-3 font-medium text-foreground">
                     {f.name}
                   </td>
                   <td className="px-4 py-3 font-mono text-emerald-400">
@@ -1369,7 +1369,7 @@ function ComparisonTab() {
                       i % 2 === 0 ? "bg-card" : "bg-muted/20"
                     )}
                   >
-                    <td className="px-3 py-2 font-semibold text-foreground">
+                    <td className="px-3 py-2 font-medium text-foreground">
                       {l.name}
                     </td>
                     <td className="px-3 py-2 text-muted-foreground">{l.type}</td>
@@ -1422,7 +1422,7 @@ function ComparisonTab() {
                 className="rounded-xl border border-border bg-card p-4 space-y-3"
               >
                 <div>
-                  <p className="text-xs font-semibold text-foreground">
+                  <p className="text-xs font-medium text-foreground">
                     {l.name}
                   </p>
                   <p className="text-xs text-muted-foreground">{l.type}</p>
@@ -1438,7 +1438,7 @@ function ComparisonTab() {
                   </div>
                   <div className="flex justify-between text-xs border-t border-border pt-1.5">
                     <span className="text-muted-foreground">Net Yield</span>
-                    <span className="text-foreground font-semibold font-mono">
+                    <span className="text-foreground font-medium font-mono">
                       ~{netYield}%
                     </span>
                   </div>
@@ -1536,7 +1536,7 @@ export default function VentureDebtPage() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.4, delay: 0.1 }}
-          className="grid grid-cols-4 gap-4"
+          className="grid grid-cols-4 gap-4 border-l-4 border-l-primary p-6 rounded-lg bg-card/40"
         >
           {KEY_METRICS.map((m) => (
             <StatCard key={m.label} {...m} />

@@ -695,7 +695,7 @@ function FactorModelsTab() {
                     onClick={() => setSelected(m)}
                   >
                     <td className="py-2 pr-4">
-                      <span className="font-semibold" style={{ color: m.color }}>
+                      <span className="font-medium" style={{ color: m.color }}>
                         {m.shortName}
                       </span>
                     </td>
@@ -759,7 +759,7 @@ function MomentumTab() {
               },
             ].map((c) => (
               <div key={c.title} className="bg-card/80 rounded-lg p-3 space-y-1">
-                <div className="font-semibold" style={{ color: c.color }}>
+                <div className="font-medium" style={{ color: c.color }}>
                   {c.title}
                 </div>
                 <p className="text-muted-foreground leading-relaxed">{c.desc}</p>
@@ -905,7 +905,7 @@ function MeanReversionTab() {
                   }`}
                 >
                   <div className="flex items-center justify-between">
-                    <span className="font-semibold text-sm text-foreground">
+                    <span className="font-medium text-sm text-foreground">
                       {p.ticker1} / {p.ticker2}
                     </span>
                     <div className="flex items-center gap-2 text-xs">
@@ -980,7 +980,7 @@ function StatArbTab() {
         {STAT_ARB_RESULTS.map((r, i) => (
           <Card key={r.name} className="bg-card border-border">
             <CardHeader className="pb-2">
-              <CardTitle className="text-sm font-semibold" style={{ color: r.color }}>
+              <CardTitle className="text-sm font-medium" style={{ color: r.color }}>
                 {r.name}
               </CardTitle>
             </CardHeader>
@@ -1180,7 +1180,7 @@ function MLSignalsTab() {
               ].map((m) => (
                 <div key={m.label} className="bg-card/80 rounded p-2">
                   <div className="text-muted-foreground">{m.label}</div>
-                  <div className="font-semibold mt-0.5" style={{ color: m.color }}>
+                  <div className="font-medium mt-0.5" style={{ color: m.color }}>
                     {m.val}
                   </div>
                 </div>

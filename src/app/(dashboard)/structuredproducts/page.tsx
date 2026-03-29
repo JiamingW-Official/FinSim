@@ -882,7 +882,7 @@ function CmosTab() {
           <div className="space-y-2">
             <div className="flex items-center gap-2">
               <TrendingUp className="w-4 h-4 text-red-400" />
-              <span className="text-sm font-semibold text-red-400">IO Strip</span>
+              <span className="text-sm font-medium text-red-400">IO Strip</span>
             </div>
             <ul className="text-sm text-foreground/60 space-y-1 ml-6 list-disc">
               <li>Value = PV of all interest payments</li>
@@ -895,7 +895,7 @@ function CmosTab() {
           <div className="space-y-2">
             <div className="flex items-center gap-2">
               <TrendingDown className="w-4 h-4 text-sky-400" />
-              <span className="text-sm font-semibold text-sky-400">PO Strip</span>
+              <span className="text-sm font-medium text-sky-400">PO Strip</span>
             </div>
             <ul className="text-sm text-foreground/60 space-y-1 ml-6 list-disc">
               <li>Value = PV of principal; bought at deep discount</li>
@@ -1239,7 +1239,7 @@ function EquityNotesTab() {
             };
             return (
               <div key={i} className="bg-black/20 rounded-lg p-3 space-y-1">
-                <span className={cn("font-semibold text-sm", colorMap[n.color])}>
+                <span className={cn("font-medium text-sm", colorMap[n.color])}>
                   {n.name}
                 </span>
                 <p className="text-xs text-foreground/60">{n.mechanics}</p>
@@ -1479,7 +1479,7 @@ function StructuredCreditTab() {
         <SectionTitle>Credit-Linked Notes vs Funded CDS</SectionTitle>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           <div className="space-y-2">
-            <p className="text-sm font-semibold text-sky-400">Credit-Linked Note (CLN)</p>
+            <p className="text-sm font-medium text-sky-400">Credit-Linked Note (CLN)</p>
             <ul className="text-sm text-foreground/60 space-y-1 ml-4 list-disc">
               <li>Funded instrument — investor posts full notional</li>
               <li>Embedded CDS: coupon = SOFR + credit premium</li>
@@ -1489,7 +1489,7 @@ function StructuredCreditTab() {
             </ul>
           </div>
           <div className="space-y-2">
-            <p className="text-sm font-semibold text-primary">Funded CDS (ISDA)</p>
+            <p className="text-sm font-medium text-primary">Funded CDS (ISDA)</p>
             <ul className="text-sm text-foreground/60 space-y-1 ml-4 list-disc">
               <li>Unfunded — no upfront cash exchange</li>
               <li>Bilateral counterparty risk; requires CSA/collateral</li>
@@ -1553,7 +1553,7 @@ export default function StructuredProductsPage() {
           initial={{ opacity: 0, y: -12 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.4 }}
-          className="mb-6"
+          className="mb-6 border-l-4 border-l-primary p-6 rounded-lg bg-card/40"
         >
           <div className="flex items-center gap-3 mb-2">
             <div className="w-8 h-8 rounded-lg bg-sky-500/20 border border-sky-500/30 flex items-center justify-center">
@@ -1570,7 +1570,7 @@ export default function StructuredProductsPage() {
         </motion.div>
 
         {/* Tabs */}
-        <Tabs value={activeTab} onValueChange={setActiveTab}>
+        <Tabs value={activeTab} onValueChange={setActiveTab} className="mt-8">
           <TabsList className="bg-foreground/5 border border-border h-auto p-1 flex flex-wrap gap-1 mb-6">
             {tabs.map((t) => (
               <TabsTrigger

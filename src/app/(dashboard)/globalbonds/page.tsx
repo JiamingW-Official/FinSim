@@ -1005,7 +1005,7 @@ function YieldCurveTab() {
       <div className="bg-muted/60 border border-border/50 rounded-lg p-3">
         <div className="flex items-center gap-2 mb-2">
           <span className="text-base">{flag}</span>
-          <span className="text-xs font-semibold text-foreground">{title}</span>
+          <span className="text-xs font-medium text-foreground">{title}</span>
           <span className="ml-auto text-xs text-muted-foreground">
             2Y / 5Y / 10Y / 30Y
           </span>
@@ -1122,7 +1122,7 @@ function YieldCurveTab() {
 
       {/* Overlay chart */}
       <div className="bg-muted/60 border border-border/50 rounded-lg p-4">
-        <h3 className="text-sm font-semibold text-foreground mb-3">
+        <h3 className="text-sm font-medium text-foreground mb-3">
           Yield Curve Overlay — US vs Germany vs Japan
         </h3>
         <div className="flex gap-4 mb-3">
@@ -1207,7 +1207,7 @@ function YieldCurveTab() {
 
       {/* Spread Analysis */}
       <div className="bg-muted/60 border border-border/50 rounded-lg p-4">
-        <h3 className="text-sm font-semibold text-foreground mb-3">
+        <h3 className="text-sm font-medium text-foreground mb-3">
           Curve Shape Analysis
         </h3>
         <div className="space-y-2.5">
@@ -1295,7 +1295,7 @@ function HedgedReturnsTab() {
             className="bg-muted/60 border border-border/50 rounded-lg p-3"
           >
             <div className="text-xs text-muted-foreground mb-1">{c.label}</div>
-            <div className={cn("font-bold text-sm", c.color)}>{c.val}</div>
+            <div className={cn("font-medium text-sm", c.color)}>{c.val}</div>
             <div className="text-xs text-muted-foreground mt-0.5">{c.sub}</div>
           </div>
         ))}
@@ -1386,7 +1386,7 @@ function HedgedReturnsTab() {
                   <td className="px-3 py-2.5 text-right">
                     <span
                       className={cn(
-                        "text-xs font-bold",
+                        "text-xs font-medium",
                         h.hedgedReturn < 0 ? "text-red-400" : "text-green-400"
                       )}
                     >
@@ -1422,7 +1422,7 @@ function HedgedReturnsTab() {
 
       {/* Visual comparison bar chart */}
       <div className="bg-muted/60 border border-border/50 rounded-lg p-4">
-        <h3 className="text-sm font-semibold text-foreground mb-4">
+        <h3 className="text-sm font-medium text-foreground mb-4">
           Unhedged vs Hedged Return Comparison
         </h3>
         <svg viewBox="0 0 600 180" className="w-full">
@@ -1569,14 +1569,14 @@ function EMBondsTab() {
               <c.icon className="w-3.5 h-3.5" />
               {c.label}
             </div>
-            <div className={cn("font-semibold text-sm", c.color)}>{c.val}</div>
+            <div className={cn("font-medium text-sm", c.color)}>{c.val}</div>
           </div>
         ))}
       </div>
 
       {/* EMBI Spread Bar Chart */}
       <div className="bg-muted/60 border border-border/50 rounded-lg p-4">
-        <h3 className="text-sm font-semibold text-foreground mb-4">
+        <h3 className="text-sm font-medium text-foreground mb-4">
           EMBI Spread by Country (bps over UST)
         </h3>
         <svg viewBox="0 0 680 220" className="w-full">
@@ -1721,7 +1721,7 @@ function EMBondsTab() {
                   <td className="px-3 py-2.5 text-right">
                     <span
                       className={cn(
-                        "text-xs font-bold",
+                        "text-xs font-medium",
                         em.embiSpread > 500
                           ? "text-red-400"
                           : em.embiSpread > 300
@@ -1737,7 +1737,7 @@ function EMBondsTab() {
                   <td className="px-3 py-2.5 text-right">
                     <span
                       className={cn(
-                        "text-xs font-semibold",
+                        "text-xs font-medium",
                         ratingColor(em.ratingClass)
                       )}
                     >
@@ -1786,7 +1786,7 @@ function EMBondsTab() {
 
       {/* Hard vs Local Currency comparison note */}
       <div className="bg-muted/60 border border-border/50 rounded-lg p-4">
-        <h3 className="text-sm font-semibold text-foreground mb-3">
+        <h3 className="text-sm font-medium text-foreground mb-3">
           Hard Currency vs Local Currency EM Bonds
         </h3>
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
@@ -1820,7 +1820,7 @@ function EMBondsTab() {
               key={panel.title}
               className={cn("rounded-lg p-3 border", panel.color)}
             >
-              <h4 className={cn("text-xs font-semibold mb-2", panel.textColor)}>
+              <h4 className={cn("text-xs font-medium mb-2", panel.textColor)}>
                 {panel.title}
               </h4>
               <ul className="space-y-1">
@@ -1850,7 +1850,7 @@ function CentralBankTab() {
     <div className="space-y-6">
       {/* Policy rate differential chart */}
       <div className="bg-muted/60 border border-border/50 rounded-lg p-4">
-        <h3 className="text-sm font-semibold text-foreground mb-4">
+        <h3 className="text-sm font-medium text-foreground mb-4">
           G6 Central Bank Policy Rates
         </h3>
         <svg viewBox="0 0 680 200" className="w-full">
@@ -1976,7 +1976,7 @@ function CentralBankTab() {
                   <div className="flex items-center gap-2">
                     <span className="text-lg">{cb.flag}</span>
                     <div>
-                      <div className="text-xs font-semibold text-foreground">
+                      <div className="text-xs font-medium text-foreground">
                         {cb.name}
                       </div>
                       <div className="text-xs text-muted-foreground">
@@ -2046,7 +2046,7 @@ function CentralBankTab() {
                   <div className="text-[11px] text-muted-foreground">QE/QT Status</div>
                   <div
                     className={cn(
-                      "text-xs font-semibold",
+                      "text-xs font-medium",
                       cb.qeStatus === "QT"
                         ? "text-red-400"
                         : cb.qeStatus === "QE"
@@ -2059,7 +2059,7 @@ function CentralBankTab() {
                 </div>
                 <div className="bg-muted/40 rounded p-2">
                   <div className="text-[11px] text-muted-foreground">Balance Sheet</div>
-                  <div className="text-xs font-semibold text-foreground">
+                  <div className="text-xs font-medium text-foreground">
                     ${cb.balanceSheetTrillion.toFixed(1)}T
                   </div>
                 </div>
@@ -2076,7 +2076,7 @@ function CentralBankTab() {
 
       {/* Divergence Analysis */}
       <div className="bg-muted/60 border border-border/50 rounded-lg p-4">
-        <h3 className="text-sm font-semibold text-foreground mb-3">
+        <h3 className="text-sm font-medium text-foreground mb-3">
           Policy Divergence Implications
         </h3>
         <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
@@ -2104,10 +2104,10 @@ function CentralBankTab() {
             },
           ].map((p) => (
             <div key={p.title} className={cn("border rounded-lg p-3", p.bg)}>
-              <div className={cn("text-xs font-semibold mb-1", p.color)}>
+              <div className={cn("text-xs font-medium mb-1", p.color)}>
                 {p.title}
               </div>
-              <div className={cn("text-lg font-bold mb-1", p.color)}>
+              <div className={cn("text-lg font-medium mb-1", p.color)}>
                 {p.diff}
               </div>
               <p className="text-xs text-muted-foreground">{p.desc}</p>
@@ -2167,7 +2167,7 @@ export default function GlobalBondsPage() {
               <div className="w-7 h-7 rounded-lg bg-primary/20 flex items-center justify-center">
                 <Globe className="w-4 h-4 text-primary" />
               </div>
-              <h1 className="text-xl font-bold text-foreground">
+              <h1 className="text-xl font-medium text-foreground">
                 Global Bond Markets
               </h1>
             </div>

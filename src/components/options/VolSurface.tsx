@@ -773,7 +773,7 @@ export function VolSurface({ spotPrice, hv = 0.25, ivRank = 50 }: VolSurfaceProp
               {/* Hover tooltip */}
               {tooltip && (
                 <div
-                  className="pointer-events-none absolute z-10 rounded border border-border bg-card/95 px-2 py-1.5 shadow-sm"
+                  className="pointer-events-none absolute z-10 rounded border border-border/40 bg-card/95 px-2 py-1.5 shadow-sm"
                   style={{
                     left: tooltip.x + 10,
                     top: tooltip.y - 30,

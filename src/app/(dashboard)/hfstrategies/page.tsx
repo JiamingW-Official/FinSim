@@ -747,7 +747,7 @@ function EventDrivenTab() {
                         <tr key={d.target} className="border-b border-border/40 hover:bg-muted/20 transition-colors">
                           <td className="py-2 pr-3 text-muted-foreground">{d.acquirer}</td>
                           <td className="py-2 pr-3 text-foreground font-medium">{d.target}</td>
-                          <td className="py-2 pr-3 text-green-400 font-semibold">${d.spread.toFixed(2)}</td>
+                          <td className="py-2 pr-3 text-green-400 font-medium">${d.spread.toFixed(2)}</td>
                           <td className="py-2 pr-3 text-muted-foreground">{d.expectedClose}</td>
                           <td className="py-2 pr-3">
                             <div className="flex items-center gap-2">
@@ -797,7 +797,7 @@ function EventDrivenTab() {
                           <td className="py-2 pr-3 text-foreground font-medium">{d.issuer}</td>
                           <td className="py-2 pr-3 text-muted-foreground">{d.coupon.toFixed(3)}%</td>
                           <td className="py-2 pr-3 text-muted-foreground">{d.maturity}</td>
-                          <td className="py-2 pr-3 text-red-400 font-semibold">{d.currentYield.toFixed(1)}%</td>
+                          <td className="py-2 pr-3 text-red-400 font-medium">{d.currentYield.toFixed(1)}%</td>
                           <td className="py-2 pr-3 text-red-300">{d.spread}</td>
                           <td className="py-2 pr-3">
                             <div className="flex items-center gap-2">
@@ -842,7 +842,7 @@ function EventDrivenTab() {
                         <p className="text-xs text-muted-foreground mt-1.5">{ss.catalyst}</p>
                       </div>
                       <div className="text-right">
-                        <div className="text-sm font-semibold text-green-400">{ss.upside}</div>
+                        <div className="text-sm font-medium text-green-400">{ss.upside}</div>
                         <div className="flex items-center justify-end gap-1.5 mt-1">
                           <Progress value={ss.probability} className="w-16 h-1" />
                           <span className="text-xs text-muted-foreground">{ss.probability}%</span>
@@ -925,7 +925,7 @@ function RelativeValueTab() {
                           <td className="py-2 pr-3 text-muted-foreground">{c.conversionPremium.toFixed(1)}%</td>
                           <td className="py-2 pr-3 text-muted-foreground">{c.theoreticalValue.toFixed(1)}</td>
                           <td className="py-2 pr-3 text-muted-foreground">{c.marketPrice.toFixed(1)}</td>
-                          <td className={`py-2 pr-3 font-semibold ${c.mispricing < 0 ? "text-green-400" : "text-red-400"}`}>
+                          <td className={`py-2 pr-3 font-medium ${c.mispricing < 0 ? "text-green-400" : "text-red-400"}`}>
                             {c.mispricing > 0 ? "+" : ""}{c.mispricing.toFixed(1)}
                           </td>
                           <td className="py-2 pr-3 text-primary">{c.delta.toFixed(2)}</td>
@@ -965,7 +965,7 @@ function RelativeValueTab() {
                           {d.riskRating} Risk
                         </Badge>
                         <div className="text-xs text-muted-foreground">Current: <span className="text-foreground">{d.currentSpread}bps</span></div>
-                        <div className="text-xs text-green-400 font-semibold">Edge: +{d.edge}bps</div>
+                        <div className="text-xs text-green-400 font-medium">Edge: +{d.edge}bps</div>
                       </div>
                     </div>
                     <div className="mt-2">
@@ -1006,12 +1006,12 @@ function RelativeValueTab() {
                         <tr key={p.name} className="border-b border-border/40 hover:bg-muted/20 transition-colors">
                           <td className="py-2 pr-3 text-foreground font-medium">{p.name}</td>
                           <td className="py-2 pr-3 text-primary">{p.correlation.toFixed(3)}</td>
-                          <td className={`py-2 pr-3 font-semibold ${Math.abs(p.zScore) > 1.5 ? "text-amber-400" : "text-muted-foreground"}`}>
+                          <td className={`py-2 pr-3 font-medium ${Math.abs(p.zScore) > 1.5 ? "text-amber-400" : "text-muted-foreground"}`}>
                             {p.zScore > 0 ? "+" : ""}{p.zScore.toFixed(2)}
                           </td>
                           <td className="py-2 pr-3 text-muted-foreground">{p.halfLife}d</td>
                           <td className="py-2 pr-3 text-primary text-[11px]">{p.signal}</td>
-                          <td className={`py-2 font-semibold ${p.expectedReturn > 1 ? "text-green-400" : "text-muted-foreground"}`}>{p.expectedReturn.toFixed(1)}%</td>
+                          <td className={`py-2 font-medium ${p.expectedReturn > 1 ? "text-green-400" : "text-muted-foreground"}`}>{p.expectedReturn.toFixed(1)}%</td>
                         </tr>
                       ))}
                     </tbody>
@@ -1083,7 +1083,7 @@ function PerformanceTab() {
                 <div key={item.label}>
                   <div className="flex justify-between text-xs mb-1">
                     <span className="text-muted-foreground">{item.label}</span>
-                    <span style={{ color: item.color }} className="font-semibold">+{item.value.toFixed(2)}%</span>
+                    <span style={{ color: item.color }} className="font-medium">+{item.value.toFixed(2)}%</span>
                   </div>
                   <Progress value={Math.max(0, item.pct)} className="h-2" />
                 </div>
@@ -1092,15 +1092,15 @@ function PerformanceTab() {
             <div className="mt-4 pt-3 border-t border-border">
               <div className="flex justify-between text-xs">
                 <span className="text-muted-foreground">Total Attributed Return</span>
-                <span className="text-green-400 font-semibold">+{totalFactorReturn.toFixed(2)}%</span>
+                <span className="text-green-400 font-medium">+{totalFactorReturn.toFixed(2)}%</span>
               </div>
               <div className="flex justify-between text-xs mt-1">
                 <span className="text-muted-foreground">Information Ratio (alpha)</span>
-                <span className="text-green-400 font-semibold">{(alpha / 1.82).toFixed(2)}</span>
+                <span className="text-green-400 font-medium">{(alpha / 1.82).toFixed(2)}</span>
               </div>
               <div className="flex justify-between text-xs mt-1">
                 <span className="text-muted-foreground">Portfolio Beta (equity)</span>
-                <span className="text-primary font-semibold">0.38</span>
+                <span className="text-primary font-medium">0.38</span>
               </div>
             </div>
           </CardContent>
@@ -1135,7 +1135,7 @@ function PerformanceTab() {
                 className={`rounded-md p-2 text-center border ${r >= 0 ? "bg-green-950/40 border-green-900/40" : "bg-red-950/40 border-red-900/40"}`}
               >
                 <div className="text-[11px] text-muted-foreground mb-0.5">M{i + 1}</div>
-                <div className={`text-xs font-semibold ${r >= 0 ? "text-green-400" : "text-red-400"}`}>
+                <div className={`text-xs font-medium ${r >= 0 ? "text-green-400" : "text-red-400"}`}>
                   {r > 0 ? "+" : ""}{r.toFixed(1)}%
                 </div>
               </div>
@@ -1175,7 +1175,7 @@ function PerformanceTab() {
             ].map((m) => (
               <div key={m.label} className="bg-muted/40 rounded-lg p-2.5 border border-border/30">
                 <div className="text-xs text-muted-foreground mb-0.5">{m.label}</div>
-                <div className={`text-sm font-semibold ${m.positive === true ? "text-green-400" : m.positive === false ? "text-red-400" : "text-foreground"}`}>
+                <div className={`text-sm font-medium ${m.positive === true ? "text-green-400" : m.positive === false ? "text-red-400" : "text-foreground"}`}>
                   {m.value}
                 </div>
               </div>
@@ -1220,7 +1220,7 @@ export default function HFStrategiesPage() {
 
         {/* Fund overview bar */}
         <motion.div initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.4, delay: 0.1 }}>
-          <div className="grid grid-cols-2 sm:grid-cols-6 gap-2 p-3 bg-card/40 rounded-xl border border-border/60">
+          <div className="grid grid-cols-2 sm:grid-cols-6 gap-2 p-6 bg-card/40 rounded-xl border border-border/60 border-l-4 border-l-primary">
             {[
               { label: "Strategy", value: "Multi-Strat", icon: <Layers className="w-3.5 h-3.5" /> },
               { label: "Gross Leverage", value: "1.8×", icon: <BarChart3 className="w-3.5 h-3.5" /> },
@@ -1234,14 +1234,14 @@ export default function HFStrategiesPage() {
                   {item.icon}
                   <span className="text-xs">{item.label}</span>
                 </div>
-                <span className="text-sm font-semibold text-foreground">{item.value}</span>
+                <span className="text-sm font-medium text-foreground">{item.value}</span>
               </div>
             ))}
           </div>
         </motion.div>
 
         {/* Main tabs */}
-        <Tabs defaultValue="longshort">
+        <Tabs defaultValue="longshort" className="mt-8">
           <TabsList className="bg-card/60 border border-border/60 flex-wrap h-auto gap-1 p-1">
             <TabsTrigger value="longshort" className="text-xs data-[state=active]:bg-muted data-[state=active]:text-foreground">
               <Scale className="w-3.5 h-3.5 mr-1" />Long/Short Equity

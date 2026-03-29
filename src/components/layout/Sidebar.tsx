@@ -214,7 +214,7 @@ function NavLink({
       {badge != null && badge > 0 && (
         <span
           className={cn(
-            "absolute flex h-3.5 min-w-[14px] items-center justify-center rounded-full bg-primary px-0.5 text-[11px] font-bold leading-none text-primary-foreground",
+            "absolute flex h-3.5 min-w-[14px] items-center justify-center rounded-full bg-primary px-0.5 text-[11px] font-medium leading-none text-primary-foreground",
             collapsed ? "right-0.5 top-0.5" : "right-2 top-1/2 -translate-y-1/2 ml-auto",
           )}
         >
@@ -232,7 +232,7 @@ function NavLink({
         <TooltipContent side="right" sideOffset={10} className="text-xs font-medium">
           <span>{item.label}</span>
           {item.badgeText && (
-            <span className="ml-1.5 rounded bg-primary/15 px-1 py-0.5 text-[7px] font-bold uppercase text-primary">
+            <span className="ml-1.5 rounded bg-primary/15 px-1 py-0.5 text-[7px] font-medium uppercase text-primary">
               {item.badgeText}
             </span>
           )}
@@ -384,7 +384,7 @@ export function Sidebar() {
           collapsed ? "h-8 w-8" : "mx-2.5 h-8 gap-1.5 px-2",
         )}
       >
-        <span className="text-[13px] font-bold tracking-tight text-primary/80 select-none">
+        <span className="text-[13px] font-semibold tracking-tight text-primary/80 select-none">
           FS
         </span>
         {!collapsed && (

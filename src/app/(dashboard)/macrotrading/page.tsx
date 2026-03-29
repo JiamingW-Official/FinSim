@@ -813,7 +813,7 @@ function RateCyclePlaybook() {
             <CycleWheel currentPhase={CURRENT_PHASE} />
             <div className="flex items-center justify-center gap-2 mt-2">
               <span className="text-xs text-muted-foreground">Current Phase:</span>
-              <span className="text-sm font-semibold text-emerald-400">{CURRENT_PHASE}</span>
+              <span className="text-sm font-medium text-emerald-400">{CURRENT_PHASE}</span>
             </div>
           </CardContent>
         </Card>
@@ -956,7 +956,7 @@ function CrossAssetSignals() {
                   {dirIcon}
                   <div className="flex-1 min-w-0">
                     <div className="flex flex-wrap items-center gap-2 mb-1.5">
-                      <span className="text-sm font-semibold text-foreground">{sig.driver}</span>
+                      <span className="text-sm font-medium text-foreground">{sig.driver}</span>
                       <span
                         className={cn(
                           "text-xs font-medium px-2 py-0.5 rounded-full",
@@ -1115,7 +1115,7 @@ function TradeIdeas() {
                   <div className="flex items-start gap-3 flex-1 min-w-0">
                     <div
                       className={cn(
-                        "mt-0.5 rounded-md border px-2 py-0.5 text-xs font-semibold uppercase shrink-0",
+                        "mt-0.5 rounded-md border px-2 py-0.5 text-xs font-medium uppercase shrink-0",
                         dirBg,
                         dirColor
                       )}
@@ -1124,7 +1124,7 @@ function TradeIdeas() {
                     </div>
                     <div className="min-w-0">
                       <div className="flex flex-wrap items-center gap-2 mb-0.5">
-                        <span className="text-sm font-semibold text-foreground">{idea.title}</span>
+                        <span className="text-sm font-medium text-foreground">{idea.title}</span>
                         <ConvictionBadge level={idea.conviction} />
                       </div>
                       <span className="text-xs text-muted-foreground">{idea.asset}</span>
@@ -1272,7 +1272,7 @@ export default function MacroTradingPage() {
         {/* Header */}
         <div className="flex items-start justify-between gap-4">
           <div>
-            <h1 className="text-xl font-semibold text-foreground flex items-center gap-2">
+            <h1 className="text-xl font-medium text-foreground flex items-center gap-2">
               <Globe className="w-5 h-5 text-sky-400" />
               Macro Trading
             </h1>

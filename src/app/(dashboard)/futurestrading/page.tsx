@@ -713,11 +713,11 @@ function HedgeRatioCalc() {
           </div>
           <div>
             <p className="text-xs text-muted-foreground">Notional Hedged</p>
-            <p className="text-lg font-bold text-foreground mt-1">${(contracts * notionalPerContract / 1e6).toFixed(2)}M</p>
+            <p className="text-lg font-medium text-foreground mt-1">${(contracts * notionalPerContract / 1e6).toFixed(2)}M</p>
           </div>
           <div>
             <p className="text-xs text-muted-foreground">Hedge Ratio</p>
-            <p className={`text-lg font-bold mt-1 ${Math.abs(hedgeRatio - 1) < 0.05 ? "text-green-400" : "text-amber-400"}`}>
+            <p className={`text-lg font-medium mt-1 ${Math.abs(hedgeRatio - 1) < 0.05 ? "text-green-400" : "text-amber-400"}`}>
               {(hedgeRatio * 100).toFixed(1)}%
             </p>
           </div>
@@ -824,19 +824,19 @@ function FuturesBasicsTab() {
               <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
                 <div className="space-y-1">
                   <p className="text-xs text-muted-foreground">Leverage</p>
-                  <p className="text-lg font-bold text-orange-400">{(selectedContract.notional / selectedContract.margin).toFixed(1)}×</p>
+                  <p className="text-lg font-medium text-orange-400">{(selectedContract.notional / selectedContract.margin).toFixed(1)}×</p>
                 </div>
                 <div className="space-y-1">
                   <p className="text-xs text-muted-foreground">Margin Rate</p>
-                  <p className="text-lg font-bold text-foreground">{((selectedContract.margin / selectedContract.notional) * 100).toFixed(1)}%</p>
+                  <p className="text-lg font-medium text-foreground">{((selectedContract.margin / selectedContract.notional) * 100).toFixed(1)}%</p>
                 </div>
                 <div className="space-y-1">
                   <p className="text-xs text-muted-foreground">1% Move P&L</p>
-                  <p className="text-lg font-bold text-green-400">+${(selectedContract.notional * 0.01).toFixed(0)}</p>
+                  <p className="text-lg font-medium text-green-400">+${(selectedContract.notional * 0.01).toFixed(0)}</p>
                 </div>
                 <div className="space-y-1">
                   <p className="text-xs text-muted-foreground">Maintenance Margin</p>
-                  <p className="text-lg font-bold text-foreground">${Math.round(selectedContract.margin * 0.75).toLocaleString()}</p>
+                  <p className="text-lg font-medium text-foreground">${Math.round(selectedContract.margin * 0.75).toLocaleString()}</p>
                 </div>
               </div>
               <div className="mt-3 pt-3 border-t border-border/50">
@@ -1003,17 +1003,17 @@ function ContangoTab() {
                 <div className="grid grid-cols-3 gap-3 text-center text-xs">
                   <div>
                     <p className="text-muted-foreground">Spot Return</p>
-                    <p className="text-primary font-bold">+{row.spotReturn}%</p>
+                    <p className="text-primary font-medium">+{row.spotReturn}%</p>
                   </div>
                   <div>
                     <p className="text-muted-foreground">Roll Drag/Yield</p>
-                    <p className={`font-bold ${row.rollDrag < 0 ? "text-red-400" : "text-green-400"}`}>
+                    <p className={`font-medium ${row.rollDrag < 0 ? "text-red-400" : "text-green-400"}`}>
                       {row.rollDrag > 0 ? "+" : ""}{row.rollDrag}%
                     </p>
                   </div>
                   <div>
                     <p className="text-muted-foreground">Total Return</p>
-                    <p className={`font-bold ${row.color}`}>{row.totalReturn > 0 ? "+" : ""}{row.totalReturn}%</p>
+                    <p className={`font-medium ${row.color}`}>{row.totalReturn > 0 ? "+" : ""}{row.totalReturn}%</p>
                   </div>
                 </div>
                 <Progress value={Math.abs(row.rollDrag / row.spotReturn) * 100} className="h-1 mt-2 opacity-40" />
@@ -1097,10 +1097,10 @@ function BasisTab() {
 
           <div className="rounded-lg border border-border p-4 bg-muted/20 space-y-3">
             <div className="flex justify-between items-start">
-              <h3 className={`font-semibold ${selectedSpread.color}`}>{selectedSpread.name}</h3>
+              <h3 className={`font-medium ${selectedSpread.color}`}>{selectedSpread.name}</h3>
               <div className="text-right">
                 <p className="text-xs text-muted-foreground">Current Value</p>
-                <p className={`text-lg font-bold ${selectedSpread.currentValue < 0 ? "text-red-400" : "text-green-400"}`}>
+                <p className={`text-lg font-medium ${selectedSpread.currentValue < 0 ? "text-red-400" : "text-green-400"}`}>
                   {selectedSpread.currentValue > 0 ? "+" : ""}{selectedSpread.currentValue} {selectedSpread.unit}
                 </p>
               </div>
@@ -1133,17 +1133,17 @@ function BasisTab() {
             <div className="grid grid-cols-3 gap-3 text-center text-sm">
               <div className="rounded p-3 bg-muted/40 border border-border">
                 <p className="text-muted-foreground text-xs">Crude Input</p>
-                <p className="text-orange-400 font-bold text-lg">$82.00</p>
+                <p className="text-orange-400 font-medium text-lg">$82.00</p>
                 <p className="text-muted-foreground text-xs">3 × 42 gal/bbl</p>
               </div>
               <div className="rounded p-3 bg-muted/40 border border-border">
                 <p className="text-muted-foreground text-xs">Gasoline Output</p>
-                <p className="text-green-400 font-bold text-lg">$2.68/gal</p>
+                <p className="text-green-400 font-medium text-lg">$2.68/gal</p>
                 <p className="text-muted-foreground text-xs">2 × 42 gal → $225.12</p>
               </div>
               <div className="rounded p-3 bg-muted/40 border border-border">
                 <p className="text-muted-foreground text-xs">HO Output</p>
-                <p className="text-primary font-bold text-lg">$2.74/gal</p>
+                <p className="text-primary font-medium text-lg">$2.74/gal</p>
                 <p className="text-muted-foreground text-xs">1 × 42 gal → $115.08</p>
               </div>
             </div>
@@ -1190,7 +1190,7 @@ function HedgingTab() {
           <CardContent className="pt-4 pb-4">
             <div className="flex items-center gap-2 mb-2">
               <Shield className="w-4 h-4 text-green-400" />
-              <h3 className="font-semibold text-foreground text-sm">Short Hedge</h3>
+              <h3 className="font-medium text-foreground text-sm">Short Hedge</h3>
             </div>
             <p className="text-xs text-muted-foreground">
               Used by producers (farmers, miners, oil companies) who own the underlying asset and fear price decline. <span className="text-foreground">SELL futures</span> to lock in a selling price. If spot falls, futures gain offsets cash market loss.
@@ -1204,7 +1204,7 @@ function HedgingTab() {
           <CardContent className="pt-4 pb-4">
             <div className="flex items-center gap-2 mb-2">
               <Shield className="w-4 h-4 text-primary" />
-              <h3 className="font-semibold text-foreground text-sm">Long Hedge</h3>
+              <h3 className="font-medium text-foreground text-sm">Long Hedge</h3>
             </div>
             <p className="text-xs text-muted-foreground">
               Used by consumers who need to buy the underlying asset in the future and fear price increases. <span className="text-foreground">BUY futures</span> to lock in a purchase price. If spot rises, futures gain offsets higher cash cost.
@@ -1249,19 +1249,19 @@ function HedgingTab() {
           <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
             <div className="rounded p-3 bg-muted/40 border border-border text-center">
               <p className="text-xs text-muted-foreground">Current Cash Price</p>
-              <p className="text-lg font-bold text-foreground">${scenario.cashPrice.toFixed(2)}</p>
+              <p className="text-lg font-medium text-foreground">${scenario.cashPrice.toFixed(2)}</p>
             </div>
             <div className="rounded p-3 bg-muted/40 border border-border text-center">
               <p className="text-xs text-muted-foreground">Futures Price</p>
-              <p className="text-lg font-bold text-foreground">${scenario.futuresPrice.toFixed(2)}</p>
+              <p className="text-lg font-medium text-foreground">${scenario.futuresPrice.toFixed(2)}</p>
             </div>
             <div className="rounded p-3 bg-muted/40 border border-border text-center">
               <p className="text-xs text-muted-foreground">Contracts</p>
-              <p className="text-lg font-bold text-primary">{scenario.contracts}</p>
+              <p className="text-lg font-medium text-primary">{scenario.contracts}</p>
             </div>
             <div className="rounded p-3 bg-muted/40 border border-border text-center">
               <p className="text-xs text-muted-foreground">Basis Risk</p>
-              <p className="text-lg font-bold text-amber-400">±${scenario.basisRisk.toFixed(2)}</p>
+              <p className="text-lg font-medium text-amber-400">±${scenario.basisRisk.toFixed(2)}</p>
             </div>
           </div>
 
@@ -1271,21 +1271,21 @@ function HedgingTab() {
             <div className="grid grid-cols-1 md:grid-cols-3 gap-3 text-sm">
               <div className={`rounded p-3 border ${cashPnL < 0 ? "border-red-500/30 bg-red-500/10" : "border-green-500/30 bg-green-500/10"}`}>
                 <p className="text-xs text-muted-foreground">Cash Market P&L</p>
-                <p className={`text-lg font-bold ${cashPnL < 0 ? "text-red-400" : "text-green-400"}`}>
+                <p className={`text-lg font-medium ${cashPnL < 0 ? "text-red-400" : "text-green-400"}`}>
                   {cashPnL >= 0 ? "+" : ""}${Math.abs(cashPnL / 1000).toFixed(0)}K
                 </p>
                 <p className="text-xs text-muted-foreground mt-1">{cashPnL < 0 ? "Loss from adverse price move" : "Gain from favorable price move"}</p>
               </div>
               <div className={`rounded p-3 border ${futuresPnL > 0 ? "border-green-500/30 bg-green-500/10" : "border-red-500/30 bg-red-500/10"}`}>
                 <p className="text-xs text-muted-foreground">Futures Hedge P&L</p>
-                <p className={`text-lg font-bold ${futuresPnL > 0 ? "text-green-400" : "text-red-400"}`}>
+                <p className={`text-lg font-medium ${futuresPnL > 0 ? "text-green-400" : "text-red-400"}`}>
                   {futuresPnL >= 0 ? "+" : ""}${Math.abs(futuresPnL / 1000).toFixed(0)}K
                 </p>
                 <p className="text-xs text-muted-foreground mt-1">{futuresPnL > 0 ? "Futures offset the loss" : "Opportunity cost of hedge"}</p>
               </div>
               <div className={`rounded p-3 border ${Math.abs(netPnL) < 5000 ? "border-border bg-primary/10" : netPnL > 0 ? "border-green-500/30 bg-green-500/10" : "border-amber-500/30 bg-amber-500/10"}`}>
                 <p className="text-xs text-muted-foreground">Net P&L (Residual)</p>
-                <p className={`text-lg font-bold ${Math.abs(netPnL) < 5000 ? "text-primary" : netPnL > 0 ? "text-green-400" : "text-amber-400"}`}>
+                <p className={`text-lg font-medium ${Math.abs(netPnL) < 5000 ? "text-primary" : netPnL > 0 ? "text-green-400" : "text-amber-400"}`}>
                   {netPnL >= 0 ? "+" : ""}${Math.abs(netPnL / 1000).toFixed(0)}K
                 </p>
                 <p className="text-xs text-muted-foreground mt-1">Basis risk residual</p>
@@ -1293,7 +1293,7 @@ function HedgingTab() {
             </div>
             <div className="mt-3 rounded p-2 bg-primary/5 border border-primary/20 flex items-center justify-between">
               <p className="text-xs text-muted-foreground">Effective {scenario.type === "short" ? "Sale" : "Purchase"} Price</p>
-              <p className="text-foreground font-bold">${effectivePrice.toFixed(2)} <span className="text-xs text-muted-foreground ml-1">(target was ${scenario.targetPrice.toFixed(2)})</span></p>
+              <p className="text-foreground font-medium">${effectivePrice.toFixed(2)} <span className="text-xs text-muted-foreground ml-1">(target was ${scenario.targetPrice.toFixed(2)})</span></p>
             </div>
           </div>
         </CardContent>
@@ -1389,7 +1389,7 @@ function SpeculativeTab() {
             <CardContent className="pt-4 pb-4">
               <div className="flex items-center gap-2 mb-3">
                 {s.icon}
-                <h3 className="font-semibold text-foreground text-sm">{s.title}</h3>
+                <h3 className="font-medium text-foreground text-sm">{s.title}</h3>
               </div>
               <ul className="space-y-1.5">
                 {s.points.map((pt) => (
@@ -1474,19 +1474,19 @@ function SpeculativeTab() {
           <div className="grid grid-cols-3 gap-3 text-center text-xs">
             <div className="rounded p-2 bg-green-500/10 border border-green-500/20">
               <p className="text-muted-foreground">Best Month</p>
-              <p className="text-green-400 font-bold">{bestMonth.month}</p>
+              <p className="text-green-400 font-medium">{bestMonth.month}</p>
               <p className="text-green-400">+{bestMonth[selectedCommodity]}%</p>
             </div>
             <div className="rounded p-2 bg-muted/40 border border-border">
               <p className="text-muted-foreground">Avg Monthly</p>
-              <p className={`font-bold ${avgReturn >= 0 ? "text-green-400" : "text-red-400"}`}>
+              <p className={`font-medium ${avgReturn >= 0 ? "text-green-400" : "text-red-400"}`}>
                 {avgReturn >= 0 ? "+" : ""}{avgReturn.toFixed(2)}%
               </p>
               <p className="text-muted-foreground">({(avgReturn * 12).toFixed(1)}% ann.)</p>
             </div>
             <div className="rounded p-2 bg-red-500/10 border border-red-500/20">
               <p className="text-muted-foreground">Worst Month</p>
-              <p className="text-red-400 font-bold">{worstMonth.month}</p>
+              <p className="text-red-400 font-medium">{worstMonth.month}</p>
               <p className="text-red-400">{worstMonth[selectedCommodity]}%</p>
             </div>
           </div>
@@ -1574,7 +1574,7 @@ export default function FuturesTradingPage() {
                 <CardContent className="pt-2 pb-2 px-3">
                   <p className="text-xs text-muted-foreground">{stat.label}</p>
                   <div className="flex items-center justify-between mt-0.5">
-                    <p className="text-sm font-bold text-foreground">{stat.value}</p>
+                    <p className="text-sm font-medium text-foreground">{stat.value}</p>
                     <span className={`text-xs font-medium ${stat.up ? "text-emerald-400" : "text-red-400"}`}>{stat.change}</span>
                   </div>
                 </CardContent>

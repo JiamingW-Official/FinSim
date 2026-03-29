@@ -303,7 +303,7 @@ function FoStructureTab() {
             </div>
             <div className="flex justify-between text-sm">
               <span className="text-muted-foreground">Staffing</span>
-              <span className="font-semibold text-foreground">{sel.staff}</span>
+              <span className="font-medium text-foreground">{sel.staff}</span>
             </div>
           </CardContent>
         </Card>
@@ -359,7 +359,7 @@ function FoStructureTab() {
                 className="flex flex-col items-center rounded-lg border border-border bg-foreground/5 p-3 text-center"
               >
                 <Icon className="mb-1.5 h-5 w-5 text-indigo-400" />
-                <div className="text-xs font-semibold text-foreground">{cost}</div>
+                <div className="text-xs font-medium text-foreground">{cost}</div>
                 <div className="mt-0.5 text-xs text-muted-foreground">{label}</div>
               </div>
             ))}
@@ -538,25 +538,25 @@ function EstateTab() {
               <div className="mt-4 space-y-3">
                 <div className="flex justify-between text-sm">
                   <span className="text-muted-foreground">Gross Estate</span>
-                  <span className="text-foreground font-semibold">{fmtM(estateValue)}</span>
+                  <span className="text-foreground font-medium">{fmtM(estateValue)}</span>
                 </div>
                 <div className="flex justify-between text-sm">
                   <span className="text-muted-foreground">Federal Exemption (2024)</span>
-                  <span className="text-emerald-400 font-semibold">
+                  <span className="text-emerald-400 font-medium">
                     -${Math.min(federalExemption, estateValue).toFixed(2)}M
                   </span>
                 </div>
                 <div className="flex justify-between text-sm border-t border-border pt-2">
                   <span className="text-muted-foreground">Taxable Amount</span>
-                  <span className="text-foreground font-semibold">{fmtM(taxableEstate)}</span>
+                  <span className="text-foreground font-medium">{fmtM(taxableEstate)}</span>
                 </div>
                 <div className="flex justify-between text-sm">
                   <span className="text-muted-foreground">Estate Tax (40%)</span>
                   <span className="text-red-400 font-bold">{fmtM(estateTaxOwed)}</span>
                 </div>
                 <div className="flex justify-between text-sm border-t border-border pt-2">
-                  <span className="text-muted-foreground font-semibold">Heirs Receive</span>
-                  <span className="text-emerald-400 font-bold">{fmtM(afterTaxEstate)}</span>
+                  <span className="text-muted-foreground font-medium">Heirs Receive</span>
+                  <span className="text-emerald-400 font-medium">{fmtM(afterTaxEstate)}</span>
                 </div>
               </div>
             </div>
@@ -614,7 +614,7 @@ function EstateTab() {
       </Card>
 
       <div className="space-y-2">
-        <div className="text-xs font-semibold text-muted-foreground mb-3">
+        <div className="text-xs font-medium text-muted-foreground mb-3">
           Estate Planning Vehicles
         </div>
         {ESTATE_TOOLS.map((tool) => {
@@ -636,7 +636,7 @@ function EstateTab() {
                 onClick={() => setExpandedTool(isOpen ? null : tool.name)}
               >
                 <div className="flex items-center gap-3">
-                  <span className="text-sm font-semibold text-foreground">{tool.name}</span>
+                  <span className="text-sm font-medium text-foreground">{tool.name}</span>
                   <Badge className={`text-xs border ${complexityColor}`}>
                     {tool.complexity}
                   </Badge>
@@ -787,7 +787,7 @@ function PhilanthropyTab() {
               <div key={v.name} className="rounded-lg border border-border bg-foreground/5 p-3">
                 <div className="flex items-center gap-2 mb-2">
                   <Heart className="h-3.5 w-3.5 text-pink-400" />
-                  <span className="text-sm font-semibold text-foreground">{v.name}</span>
+                  <span className="text-sm font-medium text-foreground">{v.name}</span>
                   <Badge className="ml-auto text-xs border border-border bg-muted/50 text-muted-foreground">
                     Setup: {v.setup}
                   </Badge>
@@ -818,12 +818,12 @@ function PhilanthropyTab() {
                 className="flex items-center gap-3 rounded-lg border border-border bg-foreground/5 p-2.5"
               >
                 <div className="flex-1 min-w-0">
-                  <div className="text-xs font-semibold text-foreground truncate">{g.org}</div>
+                  <div className="text-xs font-medium text-foreground truncate">{g.org}</div>
                   <div className="text-xs text-muted-foreground">
                     {g.area} · {g.yr}
                   </div>
                 </div>
-                <div className="text-sm font-bold text-emerald-400">${g.amount}M</div>
+                <div className="text-sm font-medium text-emerald-400">${g.amount}M</div>
               </div>
             ))}
           </CardContent>
@@ -914,7 +914,7 @@ function DirectInvestingTab() {
           <Card key={label} className="border-border bg-foreground/5">
             <CardContent className="pt-4">
               <div className="text-xs text-muted-foreground">{label}</div>
-              <div className="mt-1 text-lg font-bold text-indigo-400">{value}</div>
+              <div className="mt-1 text-lg font-medium text-indigo-400">{value}</div>
               <div className="text-xs text-muted-foreground">{sub}</div>
             </CardContent>
           </Card>
@@ -954,7 +954,7 @@ function DirectInvestingTab() {
                       <td className="py-2 pr-3 text-muted-foreground">{ci.sponsor}</td>
                       <td className="py-2 text-right text-foreground">${ci.check}M</td>
                       <td
-                        className={`py-2 text-right font-semibold ${
+                        className={`py-2 text-right font-medium ${
                           ci.status === "Pipeline" ? "text-muted-foreground" : posColor(ci.irr)
                         }`}
                       >
@@ -997,7 +997,7 @@ function DirectInvestingTab() {
                   <div className="h-2.5 w-2.5 rounded-full" style={{ backgroundColor: color }} />
                   <span className="text-xs font-medium text-foreground">{channel}</span>
                 </div>
-                <div className="text-lg font-bold" style={{ color }}>
+                <div className="text-lg font-medium" style={{ color }}>
                   {pct}%
                 </div>
                 <div className="text-xs text-muted-foreground">{deals} deals YTD</div>
@@ -1134,7 +1134,7 @@ function LiquidityTab() {
                   className="h-3 w-3 rounded-full"
                   style={{ backgroundColor: bucket.color }}
                 />
-                <span className="font-semibold text-foreground text-sm">
+                <span className="font-medium text-foreground text-sm">
                   {bucket.label} — {bucket.tier}
                 </span>
                 <Badge className="ml-auto text-xs border border-border bg-foreground/10 text-muted-foreground">
@@ -1143,14 +1143,14 @@ function LiquidityTab() {
               </div>
               <div className="flex justify-between text-sm mb-3">
                 <span className="text-muted-foreground">Allocation</span>
-                <span className="font-bold text-foreground">
+                <span className="font-medium text-foreground">
                   {fmtM(bucket.amount)} (
                   {((bucket.amount / total) * 100).toFixed(0)}%)
                 </span>
               </div>
               <div className="flex justify-between text-sm mb-3">
                 <span className="text-muted-foreground">Target Yield</span>
-                <span className="font-bold text-emerald-400">{bucket.targetYield}</span>
+                <span className="font-medium text-emerald-400">{bucket.targetYield}</span>
               </div>
               <div className="space-y-1">
                 {bucket.instruments.map((inst) => (
@@ -1205,9 +1205,9 @@ function LiquidityTab() {
               <div key={label} className="rounded-lg border border-border bg-foreground/5 p-4">
                 <div className="flex items-center gap-2 mb-2">
                   <Icon className="h-4 w-4 text-indigo-400" />
-                  <span className="text-sm font-semibold text-foreground">{label}</span>
+                  <span className="text-sm font-medium text-foreground">{label}</span>
                 </div>
-                <div className="text-lg font-bold text-emerald-400 mb-1">{amount}</div>
+                <div className="text-lg font-medium text-emerald-400 mb-1">{amount}</div>
                 <div className="text-xs text-muted-foreground mb-1">
                   Rate: <span className="text-amber-400">{rate}</span>
                 </div>
@@ -1246,7 +1246,7 @@ export default function FamilyOfficePage() {
             <Building2 className="h-5 w-5 text-indigo-400" />
           </div>
           <div>
-            <h1 className="text-xl font-bold text-foreground">
+            <h1 className="text-xl font-medium text-foreground">
               Family Office & UHNW Wealth Management
             </h1>
             <p className="text-sm text-muted-foreground">
@@ -1267,7 +1267,7 @@ export default function FamilyOfficePage() {
                 <Icon className={`h-4 w-4 ${color}`} />
                 <div>
                   <div className="text-xs text-muted-foreground">{label}</div>
-                  <div className={`text-sm font-bold ${color}`}>{value}</div>
+                  <div className={`text-sm font-medium ${color}`}>{value}</div>
                 </div>
               </CardContent>
             </Card>

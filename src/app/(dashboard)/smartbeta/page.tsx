@@ -286,11 +286,11 @@ function FactorCard({ factor, rank }: { factor: FactorMetric; rank: number }) {
             </div>
             <div>
               <p className="text-xs text-muted-foreground">Volatility</p>
-              <p className="text-sm font-bold">{factor.volatility}%</p>
+              <p className="text-sm font-medium">{factor.volatility}%</p>
             </div>
             <div>
               <p className="text-xs text-muted-foreground">Max DD</p>
-              <p className="text-sm font-bold text-red-400">{factor.maxDD}%</p>
+              <p className="text-sm font-medium text-red-400">{factor.maxDD}%</p>
             </div>
           </div>
         </CardContent>
@@ -493,7 +493,7 @@ function ETFComparisonTable() {
               transition={{ delay: idx * 0.04 }}
               className="border-b border-border/50 hover:bg-muted/30 transition-colors"
             >
-              <td className="p-2 font-bold font-mono" style={{ color: etf.color }}>{etf.ticker}</td>
+              <td className="p-2 font-medium font-mono" style={{ color: etf.color }}>{etf.ticker}</td>
               <td className="p-2 text-xs text-muted-foreground max-w-[200px] truncate">{etf.name}</td>
               <td className="p-2">
                 <Badge variant="outline" className="text-xs" style={{ color: etf.color, borderColor: etf.color + "66" }}>{etf.factor}</Badge>
@@ -503,10 +503,10 @@ function ETFComparisonTable() {
               <td className={cn("p-2 text-right font-mono font-semibold", etf.ytdReturn >= 0 ? "text-emerald-400" : "text-red-400")}>
                 {etf.ytdReturn > 0 ? "+" : ""}{etf.ytdReturn}%
               </td>
-              <td className={cn("p-2 text-right font-mono font-semibold", etf.oneYearReturn >= 0 ? "text-emerald-400" : "text-red-400")}>
+              <td className={cn("p-2 text-right font-mono font-medium", etf.oneYearReturn >= 0 ? "text-emerald-400" : "text-red-400")}>
                 {etf.oneYearReturn > 0 ? "+" : ""}{etf.oneYearReturn}%
               </td>
-              <td className={cn("p-2 text-right font-mono font-semibold", etf.threeYearReturn >= 0 ? "text-emerald-400" : "text-red-400")}>
+              <td className={cn("p-2 text-right font-mono font-medium", etf.threeYearReturn >= 0 ? "text-emerald-400" : "text-red-400")}>
                 {etf.threeYearReturn > 0 ? "+" : ""}{etf.threeYearReturn}%
               </td>
             </motion.tr>
@@ -553,7 +553,7 @@ function FactorExposureAnalyzer() {
             <div className="space-y-2">
               {selectedHoldings.map((h) => (
                 <div key={h.ticker} className="flex items-center gap-3">
-                  <span className="font-mono font-bold text-xs w-14 text-primary">{h.ticker}</span>
+                  <span className="font-mono font-medium text-xs w-14 text-primary">{h.ticker}</span>
                   <div className="flex-1 bg-muted/30 rounded-full h-2">
                     <div className="h-2 rounded-full bg-primary/70" style={{ width: `${h.weight * 4}px` }} />
                   </div>
@@ -584,7 +584,7 @@ function FactorExposureAnalyzer() {
                       <span className="text-xs font-medium" style={{ color: getFactorColor(fid) }}>
                         {FACTOR_DISPLAY_NAMES[fid]}
                       </span>
-                      <span className={cn("text-xs font-mono font-bold", isPos ? "text-emerald-400" : "text-red-400")}>
+                      <span className={cn("text-xs font-mono font-medium", isPos ? "text-emerald-400" : "text-red-400")}>
                         {isPos ? "+" : ""}{exp.toFixed(2)}
                       </span>
                     </div>
@@ -634,7 +634,7 @@ function FactorExposureAnalyzer() {
             <tbody>
               {selectedHoldings.map((h) => (
                 <tr key={h.ticker} className="border-b border-border/30 hover:bg-muted/20">
-                  <td className="p-2 font-mono font-bold text-primary">{h.ticker}</td>
+                  <td className="p-2 font-mono font-medium text-primary">{h.ticker}</td>
                   {exposureFactors.map((fid) => {
                     const v = TICKER_EXPOSURES[h.ticker]?.[fid] ?? 0;
                     const bg = v > 0.5 ? getFactorColor(fid) + "33" : v < -0.5 ? "#ef444422" : "";
@@ -752,7 +752,7 @@ function RollingCorrelationChart() {
             <div className="flex items-start gap-2">
               <Info className="h-4 w-4 text-amber-400 mt-0.5 shrink-0" />
               <div>
-                <p className="text-xs font-semibold text-amber-400">Value-Momentum Diversification</p>
+                <p className="text-xs font-medium text-amber-400">Value-Momentum Diversification</p>
                 <p className="text-xs text-muted-foreground mt-0.5">
                   Value and Momentum have historically been negatively correlated (-0.3 avg), making them powerful complements in a multi-factor portfolio.
                 </p>
@@ -765,7 +765,7 @@ function RollingCorrelationChart() {
             <div className="flex items-start gap-2">
               <Zap className="h-4 w-4 text-primary mt-0.5 shrink-0" />
               <div>
-                <p className="text-xs font-semibold text-primary">Quality-Low Vol Overlap</p>
+                <p className="text-xs font-medium text-primary">Quality-Low Vol Overlap</p>
                 <p className="text-xs text-muted-foreground mt-0.5">
                   Quality and Low Vol tend to move together (0.65 correlation), especially during market stress, reducing diversification benefit of combining them.
                 </p>
@@ -817,13 +817,13 @@ export default function SmartBetaPage() {
 
         {/* Intro blurb */}
         <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.1 }}>
-          <Card className="border-border bg-muted/20">
+          <Card className="border-border bg-muted/20 border-l-4 border-l-primary">
             <CardContent className="p-4">
               <div className="grid grid-cols-1 md:grid-cols-3 gap-4 text-sm">
                 <div className="flex items-start gap-2">
                   <BarChart3 className="h-4 w-4 text-primary mt-0.5 shrink-0" />
                   <div>
-                    <p className="font-semibold">What is Smart Beta?</p>
+                    <p className="font-medium">What is Smart Beta?</p>
                     <p className="text-xs text-muted-foreground mt-1">
                       Smart beta ETFs use alternative index construction rules (factor tilts) instead of pure market-cap weighting to systematically capture documented return premia.
                     </p>
@@ -832,7 +832,7 @@ export default function SmartBetaPage() {
                 <div className="flex items-start gap-2">
                   <Activity className="h-4 w-4 text-emerald-400 mt-0.5 shrink-0" />
                   <div>
-                    <p className="font-semibold">Factor Premia</p>
+                    <p className="font-medium">Factor Premia</p>
                     <p className="text-xs text-muted-foreground mt-1">
                       Academic research (Fama-French, Carhart) identified persistent return premia: value, size, momentum, quality, and low volatility — each with distinct economic rationale.
                     </p>
@@ -841,7 +841,7 @@ export default function SmartBetaPage() {
                 <div className="flex items-start gap-2">
                   <RefreshCw className="h-4 w-4 text-amber-400 mt-0.5 shrink-0" />
                   <div>
-                    <p className="font-semibold">Factor Cyclicality</p>
+                    <p className="font-medium">Factor Cyclicality</p>
                     <p className="text-xs text-muted-foreground mt-1">
                       No single factor wins every year. Factors rotate with economic regimes — diversifying across factors smooths the performance cycle.
                     </p>
@@ -854,7 +854,7 @@ export default function SmartBetaPage() {
 
         {/* Factor metrics grid */}
         <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.15 }}>
-          <h2 className="text-sm font-semibold text-muted-foreground mb-3">Factor Premium Summary (Long-Run)</h2>
+          <h2 className="text-sm font-medium text-muted-foreground mb-3">Factor Premium Summary (Long-Run)</h2>
           <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-3">
             {nonMarketFactors.map((f, i) => (
               <FactorCard key={f.id} factor={f} rank={i} />
@@ -919,21 +919,21 @@ export default function SmartBetaPage() {
                 <Card className="border-border">
                   <CardContent className="p-4">
                     <p className="text-xs text-muted-foreground">Avg Expense Ratio</p>
-                    <p className="text-xl font-bold text-primary mt-1">0.20%</p>
+                    <p className="text-xl font-medium text-primary mt-1">0.20%</p>
                     <p className="text-xs text-muted-foreground mt-1">vs 0.03% for plain market ETFs</p>
                   </CardContent>
                 </Card>
                 <Card className="border-border">
                   <CardContent className="p-4">
                     <p className="text-xs text-muted-foreground">Total AUM Tracked</p>
-                    <p className="text-xl font-bold text-emerald-400 mt-1">$115.8B</p>
+                    <p className="text-xl font-medium text-emerald-400 mt-1">$115.8B</p>
                     <p className="text-xs text-muted-foreground mt-1">across 10 factor ETFs shown</p>
                   </CardContent>
                 </Card>
                 <Card className="border-border">
                   <CardContent className="p-4">
                     <p className="text-xs text-muted-foreground">Best 1Y Return</p>
-                    <p className="text-xl font-bold text-amber-400 mt-1">+28.6%</p>
+                    <p className="text-xl font-medium text-amber-400 mt-1">+28.6%</p>
                     <p className="text-xs text-muted-foreground mt-1">QMOM (Momentum)</p>
                   </CardContent>
                 </Card>
@@ -1046,7 +1046,7 @@ function FactorBacktester() {
                 <div key={fid}>
                   <div className="flex items-center justify-between mb-1">
                     <span className="text-xs font-medium" style={{ color: getFactorColor(fid) }}>{f?.name}</span>
-                    <span className="text-xs font-mono font-bold">{weights[fid]}%</span>
+                    <span className="text-xs font-mono font-medium">{weights[fid]}%</span>
                   </div>
                   <input
                     type="range"
@@ -1063,7 +1063,7 @@ function FactorBacktester() {
             <div className="pt-2 border-t border-border">
               <div className="flex items-center justify-between">
                 <span className="text-xs text-muted-foreground">Total allocation</span>
-                <span className={cn("text-xs font-bold", total === 100 ? "text-emerald-400" : "text-amber-400")}>
+                <span className={cn("text-xs font-medium", total === 100 ? "text-emerald-400" : "text-amber-400")}>
                   {total}%
                 </span>
               </div>
@@ -1138,12 +1138,12 @@ function FactorBacktester() {
               <div className="grid grid-cols-2 gap-3">
                 <div className="rounded-lg bg-muted/30 p-3">
                   <p className="text-xs text-muted-foreground">Portfolio Final Value</p>
-                  <p className="text-lg font-bold text-primary">{portfolioReturns.finalVal.toFixed(1)}</p>
+                  <p className="text-lg font-medium text-primary">{portfolioReturns.finalVal.toFixed(1)}</p>
                   <p className="text-xs text-muted-foreground">Starting 100</p>
                 </div>
                 <div className="rounded-lg bg-muted/30 p-3">
                   <p className="text-xs text-muted-foreground">vs Benchmark</p>
-                  <p className={cn("text-lg font-bold", portfolioReturns.finalVal >= marketFinalVal ? "text-emerald-400" : "text-red-400")}>
+                  <p className={cn("text-lg font-medium", portfolioReturns.finalVal >= marketFinalVal ? "text-emerald-400" : "text-red-400")}>
                     {portfolioReturns.finalVal >= marketFinalVal ? "+" : ""}
                     {(portfolioReturns.finalVal - marketFinalVal).toFixed(1)}
                   </p>
@@ -1151,13 +1151,13 @@ function FactorBacktester() {
                 </div>
                 <div className="rounded-lg bg-muted/30 p-3">
                   <p className="text-xs text-muted-foreground">Annualized Return</p>
-                  <p className="text-lg font-bold">
+                  <p className="text-lg font-medium">
                     {((Math.pow(portfolioReturns.finalVal / 100, 1 / 10) - 1) * 100).toFixed(1)}%
                   </p>
                 </div>
                 <div className="rounded-lg bg-muted/30 p-3">
                   <p className="text-xs text-muted-foreground">Rebalance</p>
-                  <p className="text-lg font-bold capitalize">{rebalance}</p>
+                  <p className="text-lg font-medium capitalize">{rebalance}</p>
                   <p className="text-xs text-muted-foreground">
                     Cost est: {rebalance === "quarterly" ? "0.05" : "0.02"}%/yr
                   </p>
@@ -1174,7 +1174,7 @@ function FactorBacktester() {
           <div className="flex items-start gap-2">
             <Info className="h-4 w-4 text-primary mt-0.5 shrink-0" />
             <div className="space-y-1">
-              <p className="text-xs font-semibold">Backtester Notes</p>
+              <p className="text-xs font-medium">Backtester Notes</p>
               <p className="text-xs text-muted-foreground">
                 Returns are simulated based on historical factor premium research data. Past factor premiums do not guarantee future results. Transaction costs, taxes, and factor crowding effects are not fully modeled. The backtest assumes perfect rebalancing execution.
               </p>

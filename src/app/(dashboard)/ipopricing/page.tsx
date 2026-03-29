@@ -316,7 +316,7 @@ function ValuationMethodsTab() {
             </ul>
           </div>
           <div className="rounded-lg border border-emerald-500/30 bg-emerald-900/10 p-4">
-            <p className="text-xs font-semibold text-emerald-300 mb-3">Mature / Industrial / Consumer</p>
+            <p className="text-xs font-medium text-emerald-300 mb-3">Mature / Industrial / Consumer</p>
             <ul className="space-y-1.5 text-xs text-muted-foreground">
               {[
                 "Primary metrics: EV/EBITDA (8–15×), P/E (15–25×)",
@@ -351,10 +351,10 @@ function ValuationMethodsTab() {
                 row.bold ? "border border-border bg-foreground/10" : "bg-foreground/[0.03]"
               )}
             >
-              <span className={cn("text-muted-foreground", row.bold && "font-semibold text-sm")}>{row.label}</span>
+              <span className={cn("text-muted-foreground", row.bold && "font-medium text-sm")}>{row.label}</span>
               <span
                 className={cn(
-                  "font-mono font-semibold",
+                  "font-mono font-medium",
                   row.color === "emerald" && "text-emerald-400",
                   row.color === "rose" && "text-rose-400",
                   row.color === "amber" && "text-amber-400",
@@ -396,9 +396,9 @@ function ValuationMethodsTab() {
                 </tr>
               ))}
               <tr className="border-t border-border bg-foreground/5">
-                <td className="py-2 pr-4 text-foreground font-semibold">Total Fully Diluted</td>
-                <td className="py-2 text-right font-mono text-foreground font-semibold">{totalShares.toLocaleString()}</td>
-                <td className="py-2 text-right font-mono text-foreground font-semibold">100.0%</td>
+                <td className="py-2 pr-4 text-foreground font-medium">Total Fully Diluted</td>
+                <td className="py-2 text-right font-mono text-foreground font-medium">{totalShares.toLocaleString()}</td>
+                <td className="py-2 text-right font-mono text-foreground font-medium">100.0%</td>
               </tr>
             </tbody>
           </table>
@@ -434,7 +434,7 @@ function ValuationMethodsTab() {
               <div key={f.title} className="rounded-lg border border-border bg-foreground/[0.03] p-4">
                 <div className="flex items-center gap-2 mb-2">
                   <Icon className={cn("w-4 h-4", colorMap[f.color])} />
-                  <span className="text-xs font-semibold text-foreground">{f.title}</span>
+                  <span className="text-xs font-medium text-foreground">{f.title}</span>
                 </div>
                 <p className="text-xs text-muted-foreground">{f.desc}</p>
               </div>
@@ -448,7 +448,7 @@ function ValuationMethodsTab() {
         <SectionHeading title="SEC S-1 Registration & JOBS Act Confidential Filing" sub="IPO regulatory process overview" />
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           <div>
-            <p className="text-xs font-semibold text-muted-foreground mb-3">Traditional S-1 Filing Timeline</p>
+            <p className="text-xs font-medium text-muted-foreground mb-3">Traditional S-1 Filing Timeline</p>
             <div className="space-y-2">
               {[
                 { step: "1", label: "Draft S-1 preparation", time: "8–16 weeks", note: "Audited financials, risk factors, MD&A" },
@@ -472,7 +472,7 @@ function ValuationMethodsTab() {
             </div>
           </div>
           <div>
-            <p className="text-xs font-semibold text-muted-foreground mb-3">JOBS Act (2012) — Confidential Filing</p>
+            <p className="text-xs font-medium text-muted-foreground mb-3">JOBS Act (2012) — Confidential Filing</p>
             <div className="space-y-2 text-xs text-muted-foreground">
               <p>Emerging Growth Companies (EGCs) with &lt;$1.07B revenue may file a draft S-1 confidentially with the SEC.</p>
               <div className="space-y-2 mt-3">
@@ -715,7 +715,7 @@ function BookbuildingTab() {
         <div className="space-y-2">
           {greenshoeSteps.map((s, i) => (
             <div key={i} className="flex gap-3 items-start">
-              <div className="w-5 h-5 rounded-full bg-emerald-700 flex items-center justify-center text-xs font-bold text-foreground flex-shrink-0 mt-0.5">
+              <div className="w-5 h-5 rounded-full bg-emerald-700 flex items-center justify-center text-xs font-medium text-foreground flex-shrink-0 mt-0.5">
                 {i + 1}
               </div>
               <p className="text-xs text-muted-foreground">{s.step}</p>
@@ -991,7 +991,7 @@ function UnderpricingTab() {
                 <div className="flex items-center justify-between">
                   <div className="flex items-center gap-2">
                     <Icon className={cn("w-4 h-4", colorMap[t.color].split(" ")[0])} />
-                    <span className="text-xs font-semibold text-foreground">{t.name}</span>
+                    <span className="text-xs font-medium text-foreground">{t.name}</span>
                   </div>
                   {isOpen ? <ChevronUp className="w-4 h-4 text-muted-foreground" /> : <ChevronDown className="w-4 h-4 text-muted-foreground" />}
                 </div>
@@ -1033,14 +1033,14 @@ function UnderpricingTab() {
               <div className="flex items-center justify-center gap-2">
                 <div>
                   <p className="text-xs text-muted-foreground">IPO</p>
-                  <p className={cn("text-lg font-bold", d.ipoReturn < 0 ? "text-rose-400" : "text-emerald-400")}>
+                  <p className={cn("text-lg font-medium", d.ipoReturn < 0 ? "text-rose-400" : "text-emerald-400")}>
                     {d.ipoReturn > 0 ? "+" : ""}{d.ipoReturn}%
                   </p>
                 </div>
                 <span className="text-muted-foreground text-xs">vs</span>
                 <div>
                   <p className="text-xs text-muted-foreground">Bench</p>
-                  <p className="text-lg font-bold text-emerald-400">+{d.benchReturn}%</p>
+                  <p className="text-lg font-medium text-emerald-400">+{d.benchReturn}%</p>
                 </div>
               </div>
             </div>
@@ -1061,7 +1061,7 @@ function UnderpricingTab() {
         <SectionHeading title="Institutional Flipping vs. Retail Holding" sub="Asymmetric behavior between investor types on IPO day" />
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           <div className="rounded-lg border border-border bg-muted/30 p-4">
-            <p className="text-xs font-semibold text-primary mb-2">Institutional Investors — Early Flip</p>
+            <p className="text-xs font-medium text-primary mb-2">Institutional Investors — Early Flip</p>
             <ul className="space-y-1.5 text-xs text-muted-foreground">
               {[
                 "Receive outsized IPO allocations (50–70% of deal)",
@@ -1075,7 +1075,7 @@ function UnderpricingTab() {
             </ul>
           </div>
           <div className="rounded-lg border border-amber-500/30 bg-amber-900/10 p-4">
-            <p className="text-xs font-semibold text-amber-300 mb-2">Retail Investors — Long Hold</p>
+            <p className="text-xs font-medium text-amber-300 mb-2">Retail Investors — Long Hold</p>
             <ul className="space-y-1.5 text-xs text-muted-foreground">
               {[
                 "Receive minimal allocation (5–10% of deal total)",
@@ -1241,7 +1241,7 @@ function PostIPOTab() {
         <SectionHeading title="Lockup Mechanics, Waivers & Short Interest Buildup" />
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
           <div className="rounded-lg border border-border/50 bg-foreground/[0.03] p-3">
-            <p className="text-xs font-semibold text-muted-foreground mb-2">Lockup Waiver Triggers</p>
+            <p className="text-xs font-medium text-muted-foreground mb-2">Lockup Waiver Triggers</p>
             <ul className="space-y-1.5 text-xs text-muted-foreground">
               {[
                 "Underwriter discretion: waive for strategic secondary",
@@ -1252,7 +1252,7 @@ function PostIPOTab() {
             </ul>
           </div>
           <div className="rounded-lg border border-rose-700/40 bg-rose-900/10 p-3">
-            <p className="text-xs font-semibold text-rose-300 mb-2">Short Interest Dynamics</p>
+            <p className="text-xs font-medium text-rose-300 mb-2">Short Interest Dynamics</p>
             <ul className="space-y-1.5 text-xs text-muted-foreground">
               {[
                 "Short float often 5–15% pre-lockup expiry",
@@ -1263,7 +1263,7 @@ function PostIPOTab() {
             </ul>
           </div>
           <div className="rounded-lg border border-border bg-muted/30 p-3">
-            <p className="text-xs font-semibold text-primary mb-2">Block Trade Mechanics</p>
+            <p className="text-xs font-medium text-primary mb-2">Block Trade Mechanics</p>
             <ul className="space-y-1.5 text-xs text-muted-foreground">
               {[
                 "Large insider sales via block trades (not open market)",
@@ -1310,7 +1310,7 @@ function PostIPOTab() {
       <div className="rounded-xl border border-amber-500/30 bg-amber-900/10 p-5">
         <div className="flex items-center gap-2 mb-3">
           <AlertTriangle className="w-4 h-4 text-amber-400" />
-          <h3 className="text-sm font-semibold text-amber-300">{dutchAuctionLesson.title}</h3>
+          <h3 className="text-sm font-medium text-amber-300">{dutchAuctionLesson.title}</h3>
         </div>
         <div className="space-y-1.5">
           {dutchAuctionLesson.points.map((p, i) => (
@@ -1376,7 +1376,7 @@ function PostIPOTab() {
         <SectionHeading title="Secondary Offerings & Follow-On Mechanics" sub="Post-IPO capital raises and insider liquidity events" />
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           <div>
-            <p className="text-xs font-semibold text-muted-foreground mb-3">Types of Follow-On Offerings</p>
+            <p className="text-xs font-medium text-muted-foreground mb-3">Types of Follow-On Offerings</p>
             <div className="space-y-2">
               {[
                 {
@@ -1408,7 +1408,7 @@ function PostIPOTab() {
             </div>
           </div>
           <div>
-            <p className="text-xs font-semibold text-muted-foreground mb-3">Shelf Registration (S-3 / F-3)</p>
+            <p className="text-xs font-medium text-muted-foreground mb-3">Shelf Registration (S-3 / F-3)</p>
             <div className="space-y-1.5 text-xs text-muted-foreground">
               {[
                 "File once, sell repeatedly over 3-year window without new registration",
@@ -1477,8 +1477,14 @@ export default function IPOPricingPage() {
           </div>
         </motion.div>
 
+        {/* Hero */}
+        <div className="rounded-xl border border-border bg-card border-l-4 border-l-primary p-6">
+          <h2 className="text-lg font-medium text-foreground mb-1">IPO Pricing Deep Dive</h2>
+          <p className="text-sm text-muted-foreground">Valuation methods, bookbuilding mechanics, underpricing dynamics, and post-IPO lockup analysis.</p>
+        </div>
+
         {/* Tabs */}
-        <Tabs defaultValue="valuation">
+        <Tabs defaultValue="valuation" className="mt-8">
           <TabsList className="grid w-full grid-cols-4 mb-6 bg-card border border-border">
             <TabsTrigger value="valuation" className="text-xs">
               Valuation Methods

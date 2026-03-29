@@ -705,7 +705,7 @@ function Tab2DigitalScoring() {
           ].map((seg) => (
             <div key={seg.segment} className="rounded-lg border border-border bg-foreground/5 p-3 space-y-2">
               <div className="flex items-center justify-between">
-                <span className="text-xs font-semibold text-foreground">{seg.segment}</span>
+                <span className="text-xs font-medium text-foreground">{seg.segment}</span>
                 <Badge className="bg-amber-500/20 text-amber-300 border-amber-500/30 text-xs">{seg.size}</Badge>
               </div>
               <p className="text-xs text-muted-foreground"><span className="text-rose-400 font-medium">Barrier: </span>{seg.barrier}</p>
@@ -960,7 +960,7 @@ function Tab3EmbeddedFinance() {
                   <p className="text-xs text-muted-foreground">{row.note}</p>
                 </div>
                 <div className="text-right">
-                  <p className="text-sm font-bold text-foreground">{row.value}</p>
+                  <p className="text-sm font-medium text-foreground">{row.value}</p>
                   <p className="text-xs text-emerald-400">{row.lift} vs {row.base}</p>
                 </div>
               </div>
@@ -1267,7 +1267,7 @@ function Tab4RiskRegulation() {
                 <div key={item.event} className="rounded-lg border border-border bg-foreground/5 p-3">
                   <div className="flex items-center gap-2 mb-1">
                     <Badge className={cn("text-xs", severityColor)}>{item.date}</Badge>
-                    <span className="text-xs font-semibold text-foreground">{item.event}</span>
+                    <span className="text-xs font-medium text-foreground">{item.event}</span>
                   </div>
                   <p className="text-xs text-muted-foreground">{item.detail}</p>
                 </div>
@@ -1303,11 +1303,11 @@ function Tab4RiskRegulation() {
             { step: "4", title: "Delinquency Spiral", desc: "Multiple missed payments, collections, credit damage — but none visible across BNPL lenders until too late", icon: <XCircle size={14} /> },
           ].map((item) => (
             <div key={item.step} className="rounded-lg border border-border bg-foreground/5 p-3 text-center space-y-2">
-              <div className="w-7 h-7 rounded-full bg-rose-500/20 border border-rose-500/30 flex items-center justify-center mx-auto text-rose-400 text-xs font-bold">
+              <div className="w-7 h-7 rounded-full bg-rose-500/20 border border-rose-500/30 flex items-center justify-center mx-auto text-rose-400 text-xs font-medium">
                 {item.step}
               </div>
               <div className="text-rose-400">{item.icon}</div>
-              <p className="text-xs font-semibold text-foreground">{item.title}</p>
+              <p className="text-xs font-medium text-foreground">{item.title}</p>
               <p className="text-xs text-muted-foreground">{item.desc}</p>
             </div>
           ))}
@@ -1343,14 +1343,14 @@ export default function BNPLLendingPage() {
   return (
     <div className="min-h-screen bg-background text-foreground">
       <div className="max-w-6xl mx-auto px-4 py-6">
-        {/* Header */}
-        <div className="mb-6">
+        {/* HERO Header */}
+        <div className="mb-8 border-l-4 border-l-primary rounded-xl bg-card p-6">
           <div className="flex items-center gap-3 mb-2">
             <div className="w-9 h-9 rounded-xl bg-primary/20 border border-border flex items-center justify-center">
               <CreditCard size={18} className="text-primary" />
             </div>
             <div>
-              <h1 className="text-xl font-bold text-foreground">BNPL &amp; Digital Lending</h1>
+              <h1 className="text-xl font-semibold text-foreground">BNPL &amp; Digital Lending</h1>
               <p className="text-xs text-muted-foreground">Buy Now Pay Later business models, digital credit scoring, embedded finance &amp; consumer lending disruption</p>
             </div>
           </div>

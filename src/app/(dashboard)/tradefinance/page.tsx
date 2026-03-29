@@ -677,7 +677,7 @@ function LettersOfCreditTab() {
                       key={item.term}
                       className="border-l-2 border-primary/40 pl-3"
                     >
-                      <div className="text-xs font-semibold text-primary">
+                      <div className="text-xs font-medium text-primary">
                         {item.term}
                       </div>
                       <div className="text-xs text-foreground/55 mt-0.5">
@@ -1243,7 +1243,7 @@ function SupplyChainFinanceTab() {
             >
               <span
                 className={cn(
-                  "font-semibold text-sm",
+                  "font-medium text-sm",
                   p.name.includes("collapsed")
                     ? "text-red-400"
                     : "text-foreground"
@@ -1769,7 +1769,7 @@ function DocumentaryCollectionsTab() {
           <div className="bg-red-500/10 border border-red-500/20 rounded-xl p-4">
             <div className="flex items-center gap-2 mb-3">
               <Globe className="w-4 h-4 text-red-400" />
-              <span className="text-sm font-semibold text-red-300">
+              <span className="text-sm font-medium text-red-300">
                 Political Risk
               </span>
             </div>
@@ -1784,7 +1784,7 @@ function DocumentaryCollectionsTab() {
           <div className="bg-amber-500/10 border border-amber-500/20 rounded-xl p-4">
             <div className="flex items-center gap-2 mb-3">
               <Building2 className="w-4 h-4 text-amber-400" />
-              <span className="text-sm font-semibold text-amber-300">
+              <span className="text-sm font-medium text-amber-300">
                 Commercial Risk
               </span>
             </div>
@@ -1805,7 +1805,7 @@ function DocumentaryCollectionsTab() {
           {ecas.map((e) => (
             <div key={e.name} className="px-4 py-3">
               <div className="flex items-center justify-between mb-1 flex-wrap gap-1">
-                <span className="font-semibold text-sm text-foreground">
+                <span className="font-medium text-sm text-foreground">
                   {e.name}
                 </span>
                 <span className="text-xs text-foreground/40">{e.focus}</span>
@@ -1967,7 +1967,7 @@ function BlockchainCard({
     <div className="bg-foreground/5 rounded-xl p-4">
       <div className="flex items-start justify-between mb-2">
         <div>
-          <div className="font-semibold text-sm text-foreground">{name}</div>
+          <div className="font-medium text-sm text-foreground">{name}</div>
           <div className="text-xs text-foreground/40 mt-0.5">{tech}</div>
         </div>
         <span
@@ -2195,7 +2195,7 @@ function FintechDigitalTab() {
             >
               <span
                 className={cn(
-                  "font-semibold",
+                  "font-medium",
                   e.adoption === "Defunct" ? "text-red-400" : "text-foreground"
                 )}
               >
@@ -2259,7 +2259,7 @@ function FintechDigitalTab() {
             <div key={item.tool} className="flex gap-3">
               <CheckCircle className="w-4 h-4 text-emerald-400 mt-0.5 shrink-0" />
               <div>
-                <div className="text-xs font-semibold text-foreground">
+                <div className="text-xs font-medium text-foreground">
                   {item.tool}
                 </div>
                 <div className="text-xs text-foreground/50">{item.benefit}</div>
@@ -2347,7 +2347,7 @@ function FintechDigitalTab() {
               },
             ].map((item) => (
               <div key={item.platform} className="bg-foreground/5 rounded-lg p-3">
-                <div className="text-xs font-semibold text-primary mb-1">
+                <div className="text-xs font-medium text-primary mb-1">
                   {item.platform}
                 </div>
                 <div className="text-xs text-foreground/50">{item.capability}</div>
@@ -2396,7 +2396,7 @@ function FintechDigitalTab() {
                   colorMap[item.color]
                 )}
               >
-                <div className="text-xs font-semibold">{item.name}</div>
+                <div className="text-xs font-medium">{item.name}</div>
                 <div className="text-xs text-foreground/50 mt-0.5">{item.desc}</div>
               </div>
             );
@@ -2434,7 +2434,7 @@ export default function TradeFinancePage() {
           initial={{ opacity: 0, y: -16 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.4 }}
-          className="mb-8"
+          className="mb-8 border-l-4 border-l-primary p-6 rounded-lg bg-card/40"
         >
           <div className="flex items-center gap-3 mb-2">
             <div className="w-9 h-9 rounded-lg bg-sky-500/15 border border-sky-500/30 flex items-center justify-center">
@@ -2460,7 +2460,7 @@ export default function TradeFinancePage() {
                 className="bg-foreground/5 rounded-lg px-3 py-1.5 flex items-center gap-2"
               >
                 <span className="text-xs text-foreground/40">{kpi.label}</span>
-                <span className="text-xs font-semibold text-sky-400">
+                <span className="text-xs font-medium text-sky-400">
                   {kpi.value}
                 </span>
               </div>

@@ -578,21 +578,21 @@ function DBvsDCTab() {
           </CardHeader>
           <CardContent className="space-y-4">
             <div className="p-3 rounded-lg bg-card/60 border border-border">
-              <p className="text-sm font-semibold text-primary mb-1">Cash Balance Plan</p>
+              <p className="text-sm font-medium text-primary mb-1">Cash Balance Plan</p>
               <p className="text-xs text-muted-foreground">
                 Hybrid DB: employer credits hypothetical account with pay credits (5–8% salary) + interest credits (tied to Treasury rates).
                 Employee bears no investment risk; benefit is portable as a lump sum.
               </p>
             </div>
             <div className="p-3 rounded-lg bg-card/60 border border-border">
-              <p className="text-sm font-semibold text-primary mb-1">Career Average Plan</p>
+              <p className="text-sm font-medium text-primary mb-1">Career Average Plan</p>
               <p className="text-xs text-muted-foreground">
                 DB variant: benefit = X% × each year&apos;s actual salary × years of service.
                 Lower liability risk for sponsor vs final-pay plans. Common in public sector.
               </p>
             </div>
             <div className="p-3 rounded-lg bg-card/60 border border-border">
-              <p className="text-sm font-semibold text-emerald-400 mb-1">Pension Equity Plan</p>
+              <p className="text-sm font-medium text-emerald-400 mb-1">Pension Equity Plan</p>
               <p className="text-xs text-muted-foreground">
                 Credits % of final salary for each year worked, expressed as a lump sum.
                 Bridges DB security with DC portability — growing in preference among mid-career workers.
@@ -612,12 +612,12 @@ function DBvsDCTab() {
             <div className="space-y-4">
               {/* Cliff vesting */}
               <div>
-                <p className="text-xs font-semibold text-amber-400 mb-2">Cliff Vesting (5-Year)</p>
+                <p className="text-xs font-medium text-amber-400 mb-2">Cliff Vesting (5-Year)</p>
                 <div className="flex gap-1.5">
                   {CLIFF_VESTING.years.map((yr, i) => (
                     <div key={yr} className="flex-1 text-center">
                       <div
-                        className={`h-10 rounded flex items-center justify-center text-xs font-bold ${
+                        className={`h-10 rounded flex items-center justify-center text-xs font-medium ${
                           CLIFF_VESTING.vestedPct[i] === 100
                             ? "bg-emerald-500/80 text-foreground"
                             : "bg-muted text-muted-foreground"
@@ -632,7 +632,7 @@ function DBvsDCTab() {
               </div>
               {/* Graded vesting */}
               <div>
-                <p className="text-xs font-semibold text-primary mb-2">Graded Vesting (6-Year)</p>
+                <p className="text-xs font-medium text-primary mb-2">Graded Vesting (6-Year)</p>
                 <div className="flex gap-1">
                   {GRADED_VESTING.years.map((yr, i) => (
                     <div key={yr} className="flex-1 text-center">
@@ -641,7 +641,7 @@ function DBvsDCTab() {
                           className="rounded-t bg-primary/70 flex items-end justify-center"
                           style={{ height: `${Math.max(GRADED_VESTING.vestedPct[i], 8)}%` }}
                         >
-                          <span className="text-xs font-bold text-foreground pb-1">
+                          <span className="text-xs font-medium text-foreground pb-1">
                             {GRADED_VESTING.vestedPct[i]}%
                           </span>
                         </div>
@@ -679,11 +679,11 @@ function DBvsDCTab() {
               <div className="space-y-2 text-xs">
                 <div className="flex justify-between p-2 rounded bg-card/50">
                   <span className="text-muted-foreground">CalPERS (CA)</span>
-                  <span className="text-primary font-semibold">$500B AUM</span>
+                  <span className="text-primary font-medium">$500B AUM</span>
                 </div>
                 <div className="flex justify-between p-2 rounded bg-card/50">
                   <span className="text-muted-foreground">NY State Teachers</span>
-                  <span className="text-primary font-semibold">$135B AUM</span>
+                  <span className="text-primary font-medium">$135B AUM</span>
                 </div>
                 <div className="flex justify-between p-2 rounded bg-card/50">
                   <span className="text-muted-foreground">Typical benefit formula</span>
@@ -707,11 +707,11 @@ function DBvsDCTab() {
               <div className="space-y-2 text-xs">
                 <div className="flex justify-between p-2 rounded bg-card/50">
                   <span className="text-muted-foreground">Boeing Pension</span>
-                  <span className="text-primary font-semibold">~$68B AUM</span>
+                  <span className="text-primary font-medium">~$68B AUM</span>
                 </div>
                 <div className="flex justify-between p-2 rounded bg-card/50">
                   <span className="text-muted-foreground">AT&T Pension</span>
-                  <span className="text-primary font-semibold">~$55B AUM</span>
+                  <span className="text-primary font-medium">~$55B AUM</span>
                 </div>
                 <div className="flex justify-between p-2 rounded bg-card/50">
                   <span className="text-muted-foreground">PBGC coverage</span>
@@ -727,8 +727,8 @@ function DBvsDCTab() {
                 </div>
                 <div className="p-2 rounded bg-card/60 border border-border mt-2">
                   <p className="text-muted-foreground">
-                    <span className="text-amber-400 font-semibold">Frozen plan</span>: new benefit accruals cease; existing benefits preserved.
-                    <span className="text-red-400 font-semibold ml-2">Terminated plan</span>: plan wound up; assets distributed or PBGC takes over.
+                    <span className="text-amber-400 font-medium">Frozen plan</span>: new benefit accruals cease; existing benefits preserved.
+                    <span className="text-red-400 font-medium ml-2">Terminated plan</span>: plan wound up; assets distributed or PBGC takes over.
                   </p>
                 </div>
               </div>
@@ -745,7 +745,7 @@ function DBvsDCTab() {
           </CardHeader>
           <CardContent className="space-y-3">
             <div>
-              <p className="text-xs font-semibold text-primary mb-2">ERISA Key Protections</p>
+              <p className="text-xs font-medium text-primary mb-2">ERISA Key Protections</p>
               <div className="space-y-1.5">
                 {[
                   "Fiduciary duty — plan managers must act in participants' best interest",
@@ -762,7 +762,7 @@ function DBvsDCTab() {
               </div>
             </div>
             <div>
-              <p className="text-xs font-semibold text-amber-400 mb-2">DC Growth Drivers</p>
+              <p className="text-xs font-medium text-amber-400 mb-2">DC Growth Drivers</p>
               <div className="space-y-1.5">
                 {[
                   "Revenue Act 1978 — created 401(k) provisions",
@@ -837,7 +837,7 @@ function LDITab() {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             <div>
               <p className="text-xs text-muted-foreground mb-3">
-                <span className="text-foreground font-semibold">PBO (Projected Benefit Obligation)</span> = Present value of all future pension benefits earned to date,
+                <span className="text-foreground font-medium">PBO (Projected Benefit Obligation)</span> = Present value of all future pension benefits earned to date,
                 discounting by the yield on high-quality corporate bonds (AA-rated, per ASC 715 / IAS 19).
               </p>
               <div className="p-3 rounded-lg bg-card/60 border border-border mb-3">
@@ -852,7 +852,7 @@ function LDITab() {
                     <span className="text-xs text-muted-foreground w-20">{sc.label}</span>
                     <span className="text-xs text-muted-foreground">DR: {sc.discountRate}%</span>
                     <span className="text-xs text-muted-foreground">PBO: ${sc.pbo}B</span>
-                    <span className="text-xs font-semibold ml-auto" style={{ color: sc.color }}>
+                    <span className="text-xs font-medium ml-auto" style={{ color: sc.color }}>
                       {sc.fundedStatus.toFixed(1)}%
                     </span>
                   </div>
@@ -933,13 +933,13 @@ function LDITab() {
                     </div>
                     <div className="flex rounded overflow-hidden h-5">
                       <div
-                        className="bg-primary flex items-center justify-center text-xs text-foreground font-bold"
+                        className="bg-primary flex items-center justify-center text-xs text-foreground font-medium"
                         style={{ width: `${stage.rs}%` }}
                       >
                         {stage.rs > 15 ? `${stage.rs}%` : ""}
                       </div>
                       <div
-                        className="bg-emerald-500 flex items-center justify-center text-xs text-foreground font-bold"
+                        className="bg-emerald-500 flex items-center justify-center text-xs text-foreground font-medium"
                         style={{ width: `${stage.hedge}%` }}
                       >
                         {stage.hedge > 15 ? `${stage.hedge}%` : ""}
@@ -955,21 +955,21 @@ function LDITab() {
             </div>
             <div className="space-y-3">
               <div className="p-3 rounded-lg bg-card/60 border border-border">
-                <p className="text-xs font-semibold text-primary mb-1">Interest Rate Swap Overlay</p>
+                <p className="text-xs font-medium text-primary mb-1">Interest Rate Swap Overlay</p>
                 <p className="text-xs text-muted-foreground">
                   Plan sells floating, receives fixed on a notional equal to liability duration. A $1B pension with 15yr liability duration
                   may overlay $500M notional swaps, extending effective duration to 10yr without selling equities.
                 </p>
               </div>
               <div className="p-3 rounded-lg bg-card/60 border border-amber-800/40">
-                <p className="text-xs font-semibold text-amber-400 mb-1">UK LDI Crisis — Sept 2022</p>
+                <p className="text-xs font-medium text-amber-400 mb-1">UK LDI Crisis — Sept 2022</p>
                 <p className="text-xs text-muted-foreground">
                   UK gilt yields spiked 150bps in days after the mini-budget. Leveraged LDI funds (common in UK) faced massive margin calls
                   on gilt repos. Bank of England intervened with £65B emergency gilt purchase. Lesson: LDI leverage amplifies tail risk.
                 </p>
               </div>
               <div className="p-3 rounded-lg bg-card/60 border border-border">
-                <p className="text-xs font-semibold text-emerald-400 mb-1">Contributions vs Returns</p>
+                <p className="text-xs font-medium text-emerald-400 mb-1">Contributions vs Returns</p>
                 <p className="text-xs text-muted-foreground">
                   Mature funded plans: 60–70% of total fund value comes from investment returns over time.
                   Contributions matter most in early accumulation; market returns dominate long-run outcomes.
@@ -977,7 +977,7 @@ function LDITab() {
               </div>
               <div className="p-3 rounded-lg bg-card/60 border border-border">
                 <div className="flex items-center justify-between text-xs mb-1">
-                  <span className="font-semibold text-primary">PBGC Variable Premium</span>
+                  <span className="font-medium text-primary">PBGC Variable Premium</span>
                 </div>
                 <p className="text-xs text-muted-foreground">
                   $52 per $1,000 of unfunded vested benefits. A plan with $500M unfunded VB pays $26M/year in variable premium
@@ -1018,17 +1018,17 @@ function LDITab() {
             </div>
             <div className="flex-1 space-y-2 text-xs">
               <p className="text-muted-foreground">
-                When interest rates <span className="text-red-400 font-semibold">fall by 1%</span>, liabilities increase ~15% ($750M on $5B PBO)
+                When interest rates <span className="text-red-400 font-medium">fall by 1%</span>, liabilities increase ~15% ($750M on $5B PBO)
                 while a 5yr-duration asset portfolio increases only ~5% ($230M on $4.6B). Net funded status deteriorates by ~$520M.
               </p>
               <p className="text-muted-foreground">
-                LDI goal: <span className="text-emerald-400 font-semibold">match asset duration to liability duration</span> so that interest rate movements affect both sides equally — eliminating surplus volatility.
+                LDI goal: <span className="text-emerald-400 font-medium">match asset duration to liability duration</span> so that interest rate movements affect both sides equally — eliminating surplus volatility.
               </p>
               <div className="flex gap-2 flex-wrap mt-2">
                 {ldiSpectrum.map((l) => (
                   <div key={l.label} className="flex items-center gap-1.5 px-2 py-1 rounded bg-card/60 border border-border">
                     <div className="w-2 h-2 rounded-full" style={{ background: l.color }}></div>
-                    <span style={{ color: l.color }} className="font-semibold">{l.pct}%</span>
+                    <span style={{ color: l.color }} className="font-medium">{l.pct}%</span>
                     <span className="text-muted-foreground">{l.label}</span>
                     <span className="text-muted-foreground">({l.desc})</span>
                   </div>
@@ -1112,10 +1112,10 @@ function ActuarialTab() {
               <tbody>
                 {MORTALITY_TABLES.map((row, i) => (
                   <tr key={row.table} className={i % 2 === 0 ? "bg-card/30" : ""}>
-                    <td className="py-2 pr-4 font-semibold text-foreground">{row.table}</td>
+                    <td className="py-2 pr-4 font-medium text-foreground">{row.table}</td>
                     <td className="py-2 pr-4 text-muted-foreground">{row.year}</td>
-                    <td className="py-2 pr-4 text-primary font-semibold">{row.lifeExpectancy65M} yrs</td>
-                    <td className="py-2 pr-4 text-pink-400 font-semibold">{row.lifeExpectancy65F} yrs</td>
+                    <td className="py-2 pr-4 text-primary font-medium">{row.lifeExpectancy65M} yrs</td>
+                    <td className="py-2 pr-4 text-pink-400 font-medium">{row.lifeExpectancy65F} yrs</td>
                     <td className="py-2 text-xs text-muted-foreground">{row.description}</td>
                   </tr>
                 ))}
@@ -1126,7 +1126,7 @@ function ActuarialTab() {
             <div className="flex items-start gap-2">
               <AlertCircle className="w-4 h-4 text-amber-400 flex-shrink-0 mt-0.5" />
               <p className="text-xs text-amber-300">
-                <span className="font-semibold">Longevity Risk:</span> Every 10-year underestimation of life expectancy increases pension liability by approximately 20%.
+                <span className="font-medium">Longevity Risk:</span> Every 10-year underestimation of life expectancy increases pension liability by approximately 20%.
                 The Society of Actuaries (SOA) updates improvement scales annually; UK plans use CMI projections.
                 Longevity swaps and buy-ins are growing tools for hedging this risk.
               </p>
@@ -1152,7 +1152,7 @@ function ActuarialTab() {
                   className="w-full flex items-center justify-between p-3 rounded-lg bg-card/60 border border-border hover:border-primary/60 transition-colors"
                 >
                   <div className="flex items-center gap-3">
-                    <div className={`px-2 py-0.5 rounded text-xs font-semibold ${
+                    <div className={`px-2 py-0.5 rounded text-xs font-medium ${
                       assumption.sensitivity === "Very High" ? "bg-red-900/60 text-red-400" :
                       assumption.sensitivity === "High" ? "bg-amber-900/60 text-amber-400" :
                       assumption.sensitivity === "Medium" ? "bg-muted text-primary" :
@@ -1163,7 +1163,7 @@ function ActuarialTab() {
                     <span className="text-sm text-foreground font-medium">{assumption.name}</span>
                   </div>
                   <div className="flex items-center gap-3">
-                    <span className="text-sm font-semibold text-primary">{assumption.currentValue}</span>
+                    <span className="text-sm font-medium text-primary">{assumption.currentValue}</span>
                     <span className="text-xs text-muted-foreground">{assumption.range}</span>
                   </div>
                 </button>
@@ -1194,21 +1194,21 @@ function ActuarialTab() {
           </CardHeader>
           <CardContent className="space-y-3 text-xs">
             <div className="p-3 rounded bg-card/60 border border-border">
-              <p className="font-semibold text-primary mb-1">5-Year Average Value</p>
+              <p className="font-medium text-primary mb-1">5-Year Average Value</p>
               <p className="text-muted-foreground">
                 Actuarial asset value = average of market values over last 5 years.
                 Dampens volatility in contribution requirements — market crashes spread over 5yr. Risk: slow to reflect recovery.
               </p>
             </div>
             <div className="p-3 rounded bg-card/60 border border-border">
-              <p className="font-semibold text-primary mb-1">Market Value of Assets (MVA)</p>
+              <p className="font-medium text-primary mb-1">Market Value of Assets (MVA)</p>
               <p className="text-muted-foreground">
                 IRS requires MVA for at-risk plans under PPA 2006. Creates volatile contribution requirements
                 but most transparent. GAAP accounting (ASC 715) requires MVA for balance sheet funded status.
               </p>
             </div>
             <div className="p-3 rounded bg-card/60 border border-border">
-              <p className="font-semibold text-emerald-400 mb-1">Actuarial Gains/Losses</p>
+              <p className="font-medium text-emerald-400 mb-1">Actuarial Gains/Losses</p>
               <p className="text-muted-foreground">
                 Differences between actual vs assumed experience (returns, mortality, salaries) become actuarial
                 gains/losses. Under ASC 715: recognized in OCI immediately, then amortized via corridor method
@@ -1248,7 +1248,7 @@ function ActuarialTab() {
                 },
               ].map((item) => (
                 <div key={item.label} className={`p-3 rounded border ${item.bgColor}`}>
-                  <p className={`font-semibold ${item.color} mb-1`}>{item.label}</p>
+                  <p className={`font-medium ${item.color} mb-1`}>{item.label}</p>
                   <p className="text-muted-foreground">{item.desc}</p>
                 </div>
               ))}
@@ -1405,8 +1405,8 @@ function InvestmentStrategyTab() {
                     <div className="w-3 h-3 rounded-sm mt-0.5 flex-shrink-0" style={{ background: seg.color }}></div>
                     <div>
                       <div className="flex items-center gap-2">
-                        <span className="text-xs font-semibold text-foreground">{seg.label}</span>
-                        <span className="text-xs font-bold" style={{ color: seg.color }}>{seg.pct}%</span>
+                        <span className="text-xs font-medium text-foreground">{seg.label}</span>
+                        <span className="text-xs font-medium" style={{ color: seg.color }}>{seg.pct}%</span>
                       </div>
                       <p className="text-xs text-muted-foreground">{seg.description}</p>
                     </div>
@@ -1475,7 +1475,7 @@ function InvestmentStrategyTab() {
                 <div key={i} className="flex items-start gap-2 p-2 rounded bg-card/50">
                   <CheckCircle className="w-3 h-3 text-amber-400 flex-shrink-0 mt-0.5" />
                   <div>
-                    <span className="text-amber-300 font-semibold">{item.label}: </span>
+                    <span className="text-amber-300 font-medium">{item.label}: </span>
                     <span className="text-muted-foreground">{item.desc}</span>
                   </div>
                 </div>
@@ -1495,7 +1495,7 @@ function InvestmentStrategyTab() {
             <div className="flex items-center gap-3 mb-2">
               <span className="text-2xl">🇳🇴</span>
               <div>
-                <p className="font-semibold text-foreground">Government Pension Fund Global</p>
+                <p className="font-medium text-foreground">Government Pension Fund Global</p>
                 <p className="text-muted-foreground">$1.8T AUM — largest in the world</p>
               </div>
             </div>
@@ -1512,7 +1512,7 @@ function InvestmentStrategyTab() {
                 <div key={item.key} className="flex items-start gap-2">
                   <ArrowRight className="w-3 h-3 text-primary mt-0.5 flex-shrink-0" />
                   <span>
-                    <span className="text-muted-foreground font-semibold">{item.key}: </span>
+                    <span className="text-muted-foreground font-medium">{item.key}: </span>
                     <span className="text-muted-foreground">{item.val}</span>
                   </span>
                 </div>
@@ -1533,7 +1533,7 @@ function InvestmentStrategyTab() {
         <CardContent>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
             <div>
-              <p className="text-xs font-semibold text-primary mb-3">Liability-Matching Glide Path</p>
+              <p className="text-xs font-medium text-primary mb-3">Liability-Matching Glide Path</p>
               <div className="space-y-2">
                 {[
                   { funded: "< 80%", strategy: "Growth-oriented; 70% RS / 30% hedge", color: "text-red-400" },
@@ -1543,7 +1543,7 @@ function InvestmentStrategyTab() {
                 ].map((row) => (
                   <div key={row.funded} className="p-2 rounded bg-card/60 border border-border">
                     <div className="flex items-center justify-between mb-0.5">
-                      <span className={`text-xs font-bold ${row.color}`}>{row.funded}</span>
+                      <span className={`text-xs font-medium ${row.color}`}>{row.funded}</span>
                     </div>
                     <p className="text-xs text-muted-foreground">{row.strategy}</p>
                   </div>
@@ -1551,7 +1551,7 @@ function InvestmentStrategyTab() {
               </div>
             </div>
             <div>
-              <p className="text-xs font-semibold text-primary mb-3">Risk Factor Approach</p>
+              <p className="text-xs font-medium text-primary mb-3">Risk Factor Approach</p>
               <div className="space-y-2 text-xs">
                 {[
                   { factor: "Growth", exposures: "Equities, PE, HY credit, EM debt", alloc: "45%" },
@@ -1562,7 +1562,7 @@ function InvestmentStrategyTab() {
                   <div key={row.factor} className="flex items-start gap-2 p-2 rounded bg-card/60">
                     <Percent className="w-3 h-3 text-primary mt-0.5 flex-shrink-0" />
                     <div>
-                      <span className="text-primary font-semibold">{row.factor} ({row.alloc}): </span>
+                      <span className="text-primary font-medium">{row.factor} ({row.alloc}): </span>
                       <span className="text-muted-foreground">{row.exposures}</span>
                     </div>
                   </div>
@@ -1570,10 +1570,10 @@ function InvestmentStrategyTab() {
               </div>
             </div>
             <div>
-              <p className="text-xs font-semibold text-amber-400 mb-3">ESG & Investment Committee</p>
+              <p className="text-xs font-medium text-amber-400 mb-3">ESG & Investment Committee</p>
               <div className="space-y-2 text-xs">
                 <div className="p-2 rounded bg-card/60 border border-border">
-                  <p className="text-amber-300 font-semibold mb-1">ESG Evolution</p>
+                  <p className="text-amber-300 font-medium mb-1">ESG Evolution</p>
                   <p className="text-muted-foreground">
                     Pre-2020: ESG seen as constraint on returns (breach of fiduciary duty).
                     Post-2020: DOL clarified ESG factors can be considered if material to risk/return.
@@ -1581,7 +1581,7 @@ function InvestmentStrategyTab() {
                   </p>
                 </div>
                 <div className="p-2 rounded bg-card/60 border border-border">
-                  <p className="text-primary font-semibold mb-1">Investment Committee</p>
+                  <p className="text-primary font-medium mb-1">Investment Committee</p>
                   <div className="space-y-1">
                     {[
                       "Sets IPS (Investment Policy Statement) and SAA",

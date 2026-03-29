@@ -768,7 +768,7 @@ export default function LongShortPage() {
                         it.value >= 0 ? "border-emerald-500/20 bg-emerald-500/5" : "border-red-500/20 bg-red-500/5",
                       )}>
                         <div className="text-muted-foreground text-xs">{it.label}</div>
-                        <div className={cn("font-semibold", it.value >= 0 ? "text-emerald-400" : "text-red-400")}>
+                        <div className={cn("font-medium", it.value >= 0 ? "text-emerald-400" : "text-red-400")}>
                           {it.value >= 0 ? "+" : ""}${(it.value / 1000).toFixed(1)}k
                         </div>
                       </div>
@@ -786,19 +786,19 @@ export default function LongShortPage() {
                 <CardContent className="space-y-3 text-xs">
                   <div className="flex justify-between items-center pb-2 border-b border-border/50">
                     <span className="text-muted-foreground flex items-center gap-1.5"><TrendingUp className="w-3.5 h-3.5 text-emerald-400" />Long Book P&L</span>
-                    <span className={cn("font-semibold", metrics.longPnl >= 0 ? "text-emerald-400" : "text-red-400")}>
+                    <span className={cn("font-medium", metrics.longPnl >= 0 ? "text-emerald-400" : "text-red-400")}>
                       {metrics.longPnl >= 0 ? "+" : ""}${(metrics.longPnl / 1000).toFixed(1)}k
                     </span>
                   </div>
                   <div className="flex justify-between items-center pb-2 border-b border-border/50">
                     <span className="text-muted-foreground flex items-center gap-1.5"><TrendingDown className="w-3.5 h-3.5 text-red-400" />Short Book P&L</span>
-                    <span className={cn("font-semibold", metrics.shortPnl >= 0 ? "text-emerald-400" : "text-red-400")}>
+                    <span className={cn("font-medium", metrics.shortPnl >= 0 ? "text-emerald-400" : "text-red-400")}>
                       {metrics.shortPnl >= 0 ? "+" : ""}${(metrics.shortPnl / 1000).toFixed(1)}k
                     </span>
                   </div>
                   <div className="flex justify-between items-center">
                     <span className="text-foreground font-medium">Total P&L</span>
-                    <span className={cn("font-semibold text-sm", metrics.totalPnl >= 0 ? "text-emerald-400" : "text-red-400")}>
+                    <span className={cn("font-medium text-sm", metrics.totalPnl >= 0 ? "text-emerald-400" : "text-red-400")}>
                       {metrics.totalPnl >= 0 ? "+" : ""}${(metrics.totalPnl / 1000).toFixed(1)}k
                     </span>
                   </div>
@@ -820,7 +820,7 @@ export default function LongShortPage() {
                   ].map(({ label, value, color }) => (
                     <div key={label} className="flex justify-between items-center">
                       <span className="text-muted-foreground">{label}</span>
-                      <span className={cn("font-semibold", color)}>{value}</span>
+                      <span className={cn("font-medium", color)}>{value}</span>
                     </div>
                   ))}
                 </CardContent>
@@ -935,7 +935,7 @@ export default function LongShortPage() {
                 ].map(({ label, value, color }) => (
                   <div key={label} className="flex justify-between">
                     <span className="text-muted-foreground">{label}</span>
-                    <span className={cn("font-semibold", color)}>{value}</span>
+                    <span className={cn("font-medium", color)}>{value}</span>
                   </div>
                 ))}
               </CardContent>
@@ -1057,7 +1057,7 @@ export default function LongShortPage() {
                           <td className={cn("px-4 py-2 text-right", r.shortPnl >= 0 ? "text-emerald-400" : "text-red-400")}>
                             {r.shortPnl >= 0 ? "+" : ""}${(r.shortPnl / 1e6).toFixed(2)}M
                           </td>
-                          <td className={cn("px-4 py-2 text-right font-semibold", r.netPnl >= 0 ? "text-emerald-400" : "text-red-400")}>
+                          <td className={cn("px-4 py-2 text-right font-medium", r.netPnl >= 0 ? "text-emerald-400" : "text-red-400")}>
                             {r.netPnl >= 0 ? "+" : ""}${(r.netPnl / 1e6).toFixed(2)}M
                           </td>
                           <td className={cn("px-4 py-2 text-right", navImpact >= 0 ? "text-emerald-400" : "text-red-400")}>

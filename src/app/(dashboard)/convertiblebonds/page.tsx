@@ -432,10 +432,10 @@ export default function ConvertibleBondsPage() {
       transition={{ duration: 0.4, ease: "easeOut" }}
       className="min-h-screen bg-background text-foreground p-4 md:p-6 space-y-6"
     >
-      {/* Header */}
-      <div className="flex items-start justify-between flex-wrap gap-3">
+      {/* HERO Header */}
+      <div className="flex items-start justify-between flex-wrap gap-3 border-l-4 border-l-primary rounded-xl bg-card p-6">
         <div>
-          <h1 className="text-2xl font-bold tracking-tight text-foreground">Convertible Bonds</h1>
+          <h1 className="text-xl font-semibold tracking-tight text-foreground">Convertible Bonds</h1>
           <p className="text-sm text-foreground/50 mt-1">Hybrid instruments combining fixed-income safety with equity upside optionality</p>
         </div>
         <div className="flex gap-2 flex-wrap">
@@ -446,7 +446,7 @@ export default function ConvertibleBondsPage() {
           ].map((s) => (
             <div key={s.label} className="rounded-lg border border-border bg-foreground/5 px-3 py-2 text-center">
               <div className="text-xs text-muted-foreground/60">{s.label}</div>
-              <div className="text-sm font-bold text-amber-400">{s.value}</div>
+              <div className="text-sm font-medium text-amber-400">{s.value}</div>
             </div>
           ))}
         </div>
@@ -514,7 +514,7 @@ export default function ConvertibleBondsPage() {
                         <td className="py-2.5 pr-3 text-foreground/70">{cb.coupon.toFixed(2)}%</td>
                         <td className="py-2.5 pr-3 font-mono text-foreground/80">${fmt2(cb.conversionPrice)}</td>
                         <td className="py-2.5 pr-3 font-mono text-foreground/80">${fmt2(cb.stockPrice)}</td>
-                        <td className={cn("py-2.5 pr-3 font-mono font-bold", d.conversionPremium > 0 ? "text-emerald-400" : "text-rose-400")}>
+                        <td className={cn("py-2.5 pr-3 font-mono font-medium", d.conversionPremium > 0 ? "text-emerald-400" : "text-rose-400")}>
                           {d.conversionPremium.toFixed(1)}%
                         </td>
                         <td className="py-2.5 pr-3 font-mono text-sky-400">{d.delta.toFixed(2)}</td>
@@ -554,7 +554,7 @@ export default function ConvertibleBondsPage() {
         <TabsContent value="parity" className="data-[state=inactive]:hidden mt-4 space-y-4">
           <Card className="bg-foreground/5 border-border">
             <CardHeader className="pb-2">
-              <CardTitle className="text-base font-semibold text-foreground/90 flex items-center gap-2">
+              <CardTitle className="text-base font-medium text-foreground/90 flex items-center gap-2">
                 <TrendingUp className="w-4 h-4 text-amber-400" />
                 Parity, Investment Floor & CB Price Curve
               </CardTitle>
@@ -571,7 +571,7 @@ export default function ConvertibleBondsPage() {
                 ].map((s) => (
                   <div key={s.label} className="rounded-lg bg-foreground/5 border border-border p-3">
                     <div className="text-xs text-muted-foreground/60">{s.label}</div>
-                    <div className={cn("text-lg font-bold font-mono", s.color)}>{s.value}</div>
+                    <div className={cn("text-lg font-medium font-mono", s.color)}>{s.value}</div>
                   </div>
                 ))}
               </div>
@@ -586,10 +586,10 @@ export default function ConvertibleBondsPage() {
               </CardTitle>
             </CardHeader>
             <CardContent className="space-y-2 text-xs text-foreground/60">
-              <p><span className="text-primary font-semibold">Purple curve</span> = CB market price. Bounded below by the investment floor and above tracks parity with a diminishing premium.</p>
-              <p><span className="text-emerald-400 font-semibold">Green dashed line</span> = Parity (intrinsic conversion value = stock / conv. price × par). CB trades above this by the conversion premium.</p>
-              <p><span className="text-amber-400 font-semibold">Amber dashed line</span> = Investment value floor (present value of bond cash flows). Acts as a downside cushion.</p>
-              <p>The <span className="text-foreground/80 font-semibold">convexity</span> of the CB price curve is what makes converts attractive: limited downside (floor) with equity-like upside participation.</p>
+              <p><span className="text-primary font-medium">Purple curve</span> = CB market price. Bounded below by the investment floor and above tracks parity with a diminishing premium.</p>
+              <p><span className="text-emerald-400 font-medium">Green dashed line</span> = Parity (intrinsic conversion value = stock / conv. price × par). CB trades above this by the conversion premium.</p>
+              <p><span className="text-amber-400 font-medium">Amber dashed line</span> = Investment value floor (present value of bond cash flows). Acts as a downside cushion.</p>
+              <p>The <span className="text-foreground/80 font-medium">convexity</span> of the CB price curve is what makes converts attractive: limited downside (floor) with equity-like upside participation.</p>
             </CardContent>
           </Card>
         </TabsContent>
@@ -622,7 +622,7 @@ export default function ConvertibleBondsPage() {
                   Greeks — {selectedCb.ticker}
                 </CardTitle>
                 <p className="text-xs text-muted-foreground/60">
-                  Classification: <span className={cn("font-semibold", selectedDerived.classification === "equity-like" ? "text-emerald-400" : selectedDerived.classification === "busted" ? "text-rose-400" : "text-amber-400")}>{selectedDerived.classification}</span>
+                  Classification: <span className={cn("font-medium", selectedDerived.classification === "equity-like" ? "text-emerald-400" : selectedDerived.classification === "busted" ? "text-rose-400" : "text-amber-400")}>{selectedDerived.classification}</span>
                 </p>
               </CardHeader>
               <CardContent className="space-y-4">
@@ -666,19 +666,19 @@ export default function ConvertibleBondsPage() {
               </CardHeader>
               <CardContent className="space-y-3 text-xs text-foreground/60">
                 <div className="rounded-lg bg-sky-500/5 border border-sky-500/15 p-3">
-                  <div className="text-sky-400 font-semibold mb-1">Delta — Dampened</div>
+                  <div className="text-sky-400 font-medium mb-1">Delta — Dampened</div>
                   <p>Equity call delta is purely a function of moneyness and time. CB delta is lower because the credit spread introduces a floor that reduces equity optionality when out-of-the-money.</p>
                 </div>
                 <div className="rounded-lg bg-primary/5 border border-border p-3">
-                  <div className="text-primary font-semibold mb-1">Gamma — Credit-Modified</div>
+                  <div className="text-primary font-medium mb-1">Gamma — Credit-Modified</div>
                   <p>CB gamma peaks near the conversion price but is reduced by credit risk — as the stock falls the issuer distress risk increases, compressing optionality non-linearly.</p>
                 </div>
                 <div className="rounded-lg bg-emerald-500/5 border border-emerald-500/15 p-3">
-                  <div className="text-emerald-400 font-semibold mb-1">Vega — Long Vol</div>
+                  <div className="text-emerald-400 font-medium mb-1">Vega — Long Vol</div>
                   <p>CBs are naturally long volatility. Higher implied vol increases option value embedded in the convert, benefiting holders. This is the core of CB arbitrage strategies.</p>
                 </div>
                 <div className="rounded-lg bg-rose-500/5 border border-rose-500/15 p-3">
-                  <div className="text-rose-400 font-semibold mb-1">Theta — Coupon Offset</div>
+                  <div className="text-rose-400 font-medium mb-1">Theta — Coupon Offset</div>
                   <p>Unlike pure options, CB theta is partially offset by coupon income. Net time decay is usually mild for balanced converts with reasonable coupons.</p>
                 </div>
               </CardContent>
@@ -695,7 +695,7 @@ export default function ConvertibleBondsPage() {
             ].map((g) => (
               <div key={g.label} className="rounded-xl border border-border bg-foreground/5 p-4 text-center">
                 <div className="text-xs text-muted-foreground/60 mb-1">{g.label}</div>
-                <div className={cn("text-xl font-bold font-mono", g.color)}>{g.value}</div>
+                <div className={cn("text-xl font-medium font-mono", g.color)}>{g.value}</div>
                 <div className="text-xs text-foreground/30 mt-1">{g.sub}</div>
               </div>
             ))}
@@ -729,7 +729,7 @@ export default function ConvertibleBondsPage() {
                       <div className="grid grid-cols-2 gap-2 text-xs">
                         <div>
                           <div className="text-muted-foreground/60">Coupon</div>
-                          <div className="text-emerald-400 font-bold">{mc.coupon}%</div>
+                          <div className="text-emerald-400 font-medium">{mc.coupon}%</div>
                         </div>
                         <div>
                           <div className="text-muted-foreground/60">Stock Now</div>
@@ -817,7 +817,7 @@ export default function ConvertibleBondsPage() {
               </CardHeader>
               <CardContent className="space-y-3 text-xs">
                 <div className="rounded-lg bg-amber-500/5 border border-amber-500/20 p-3 space-y-2">
-                  <div className="font-semibold text-amber-400 mb-1">Leg Structure</div>
+                  <div className="font-medium text-amber-400 mb-1">Leg Structure</div>
                   <div className="flex justify-between">
                     <span className="text-foreground/60">Long CB notional</span>
                     <span className="text-foreground/90 font-mono">$1,000,000</span>
@@ -868,7 +868,7 @@ export default function ConvertibleBondsPage() {
                   <tbody>
                     {arbScenarios.map((sc) => (
                       <tr key={sc.stockMove} className="border-b border-border/50">
-                        <td className={cn("py-2 pr-3 font-mono font-bold", sc.stockMove > 0 ? "text-emerald-400" : sc.stockMove < 0 ? "text-rose-400" : "text-foreground/50")}>
+                        <td className={cn("py-2 pr-3 font-mono font-medium", sc.stockMove > 0 ? "text-emerald-400" : sc.stockMove < 0 ? "text-rose-400" : "text-foreground/50")}>
                           {sc.stockMove > 0 ? "+" : ""}{sc.stockMove}%
                         </td>
                         <td className={cn("py-2 pr-3 font-mono", pnlColor(sc.cbPnl))}>
@@ -877,7 +877,7 @@ export default function ConvertibleBondsPage() {
                         <td className={cn("py-2 pr-3 font-mono", pnlColor(sc.hedgePnl))}>
                           {sc.hedgePnl >= 0 ? "+" : ""}{sc.hedgePnl.toFixed(2)}
                         </td>
-                        <td className={cn("py-2 font-mono font-bold", pnlColor(sc.netPnl))}>
+                        <td className={cn("py-2 font-mono font-medium", pnlColor(sc.netPnl))}>
                           {sc.netPnl >= 0 ? "+" : ""}{sc.netPnl.toFixed(2)}
                         </td>
                       </tr>
@@ -913,7 +913,7 @@ export default function ConvertibleBondsPage() {
                   { title: "Correlation Breakdown", color: "text-pink-400", desc: "Delta hedge assumes stable correlation between CB price and stock. In crisis scenarios this breaks down — both can fall simultaneously (correlation to 1)." },
                 ].map((r) => (
                   <div key={r.title} className="rounded-lg bg-foreground/[0.03] border border-border p-3">
-                    <div className={cn("font-semibold mb-1", r.color)}>{r.title}</div>
+                    <div className={cn("font-medium mb-1", r.color)}>{r.title}</div>
                     <p className="text-foreground/50">{r.desc}</p>
                   </div>
                 ))}
@@ -944,7 +944,7 @@ export default function ConvertibleBondsPage() {
               </CardHeader>
               <CardContent className="space-y-3 text-xs text-foreground/60">
                 <div className="rounded-lg bg-emerald-500/5 border border-emerald-500/20 p-3">
-                  <div className="text-emerald-400 font-semibold mb-1">Issuer Perspective</div>
+                  <div className="text-emerald-400 font-medium mb-1">Issuer Perspective</div>
                   <ul className="space-y-1 list-disc list-inside">
                     <li>Lower coupon vs straight debt (investor pays for optionality)</li>
                     <li>Avoids immediate dilution — equity issued only if stock rises</li>
@@ -953,7 +953,7 @@ export default function ConvertibleBondsPage() {
                   </ul>
                 </div>
                 <div className="rounded-lg bg-sky-500/5 border border-sky-500/20 p-3">
-                  <div className="text-sky-400 font-semibold mb-1">Investor Perspective</div>
+                  <div className="text-sky-400 font-medium mb-1">Investor Perspective</div>
                   <ul className="space-y-1 list-disc list-inside">
                     <li>Downside protection via investment floor</li>
                     <li>Equity participation if stock rises significantly</li>
@@ -962,7 +962,7 @@ export default function ConvertibleBondsPage() {
                   </ul>
                 </div>
                 <div className="rounded-lg bg-amber-500/5 border border-amber-500/20 p-3">
-                  <div className="text-amber-400 font-semibold mb-1">Market Dynamics</div>
+                  <div className="text-amber-400 font-medium mb-1">Market Dynamics</div>
                   <p>CB issuance tends to spike when equity volatility is high (converts are expensive = issuers pay less coupon) and during growth phases when companies prefer deferred equity dilution.</p>
                 </div>
               </CardContent>
@@ -986,7 +986,7 @@ export default function ConvertibleBondsPage() {
                 { term: "Delta Hedge Ratio", def: "Shares to short per CB to neutralize equity exposure. Equal to CB delta × conversion ratio. Requires dynamic rebalancing." },
               ].map((g) => (
                 <div key={g.term} className="rounded-lg bg-foreground/[0.03] border border-border p-3">
-                  <div className="text-amber-400 font-semibold mb-1">{g.term}</div>
+                  <div className="text-amber-400 font-medium mb-1">{g.term}</div>
                   <p className="text-foreground/50">{g.def}</p>
                 </div>
               ))}

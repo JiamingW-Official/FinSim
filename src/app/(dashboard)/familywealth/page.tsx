@@ -737,7 +737,7 @@ function EducationFundingTab() {
           <div key={v.name} className="rounded-lg border border-border bg-card p-4">
             <div className="flex items-start justify-between mb-3">
               <div>
-                <span className="font-semibold text-sm text-foreground">{v.name}</span>
+                <span className="font-medium text-sm text-foreground">{v.name}</span>
                 <p className="text-xs text-muted-foreground mt-0.5">{v.bestFor}</p>
               </div>
               <Badge
@@ -908,7 +908,7 @@ function PhilanthropyTab() {
                   </div>
                   <div>
                     <div className="flex items-center gap-2">
-                      <span className="font-semibold text-sm text-foreground">{v.name}</span>
+                      <span className="font-medium text-sm text-foreground">{v.name}</span>
                       {v.highlight && (
                         <Badge variant="outline" className="text-xs border-green-500/30 text-green-400 px-1.5 py-0">
                           Most Popular
@@ -1121,7 +1121,7 @@ function BusinessRealEstateTab() {
                   <Icon className="w-4 h-4" />
                 </div>
                 <div>
-                  <div className="font-semibold text-sm text-foreground">{e.name}</div>
+                  <div className="font-medium text-sm text-foreground">{e.name}</div>
                   <div className="text-xs text-muted-foreground">{e.type}</div>
                 </div>
               </div>

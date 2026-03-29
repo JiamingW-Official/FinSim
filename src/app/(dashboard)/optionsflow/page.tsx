@@ -589,7 +589,7 @@ export default function OptionsFlowPage() {
                 </span>
               </div>
 
-              <Card className="border-border bg-card">
+              <Card className="border-border bg-card border-l-4 border-l-primary">
                 <CardContent className="p-0">
                   <div className="overflow-x-auto">
                     <table className="w-full text-sm">
@@ -620,7 +620,7 @@ export default function OptionsFlowPage() {
                             <td className="px-4 py-2.5 font-semibold text-foreground">{trade.ticker}</td>
                             <td className="px-4 py-2.5">
                               <span
-                                className={`text-xs font-bold px-2 py-0.5 rounded ${
+                                className={`text-xs font-medium px-2 py-0.5 rounded ${
                                   trade.type === "CALL"
                                     ? "bg-emerald-500/15 text-emerald-400"
                                     : "bg-red-500/15 text-red-400"
@@ -658,7 +658,7 @@ export default function OptionsFlowPage() {
               </Card>
 
               {/* Info note */}
-              <div className="flex items-start gap-2 p-3 rounded-lg bg-primary/5 border border-border text-xs text-muted-foreground">
+              <div className="mt-8 flex items-start gap-2 p-3 rounded-lg bg-primary/5 border border-border text-xs text-muted-foreground">
                 <Info className="w-3.5 h-3.5 text-primary mt-0.5 flex-shrink-0" />
                 <span>
                   <strong className="text-primary">Unusual activity</strong> is flagged when a trade has contract volume significantly above open interest or when premium size is outsized relative to historical norms for that ticker. This may indicate informed institutional positioning.
@@ -707,7 +707,7 @@ export default function OptionsFlowPage() {
                             <td className="px-4 py-2.5 text-right font-mono text-xs">${print.price}</td>
                             <td className="px-4 py-2.5 text-right">
                               <span
-                                className={`text-xs font-semibold ${
+                                className={`text-xs font-medium ${
                                   print.advPct > 8 ? "text-amber-400" : "text-foreground"
                                 }`}
                               >
@@ -758,7 +758,7 @@ export default function OptionsFlowPage() {
                   <Card key={stat.label} className="border-border bg-card">
                     <CardContent className="pt-3 pb-3">
                       <p className="text-xs text-muted-foreground">{stat.label}</p>
-                      <p className={`text-lg font-bold ${stat.color}`}>{stat.value}</p>
+                      <p className={`text-lg font-medium ${stat.color}`}>{stat.value}</p>
                     </CardContent>
                   </Card>
                 ))}
@@ -804,7 +804,7 @@ export default function OptionsFlowPage() {
                       },
                     ].map((item) => (
                       <div key={item.label} className={`p-2 rounded border ${item.border} bg-background/40`}>
-                        <p className={`text-xs font-semibold ${item.color} mb-1`}>{item.label}</p>
+                        <p className={`text-xs font-medium ${item.color} mb-1`}>{item.label}</p>
                         <p className="text-xs text-muted-foreground">{item.desc}</p>
                       </div>
                     ))}
@@ -846,10 +846,10 @@ export default function OptionsFlowPage() {
                               <Clock className="w-3 h-3 inline mr-1 opacity-60" />
                               {sweep.time}
                             </td>
-                            <td className="px-4 py-2.5 font-semibold text-foreground">{sweep.ticker}</td>
+                            <td className="px-4 py-2.5 font-medium text-foreground">{sweep.ticker}</td>
                             <td className="px-4 py-2.5">
                               <span
-                                className={`text-xs font-bold px-2 py-0.5 rounded ${
+                                className={`text-xs font-medium px-2 py-0.5 rounded ${
                                   sweep.type === "CALL"
                                     ? "bg-emerald-500/15 text-emerald-400"
                                     : "bg-red-500/15 text-red-400"
@@ -861,7 +861,7 @@ export default function OptionsFlowPage() {
                             <td className="px-4 py-2.5 text-right font-mono text-xs">${sweep.strike}</td>
                             <td className="px-4 py-2.5 text-xs text-muted-foreground font-mono">{sweep.expiry}</td>
                             <td className="px-4 py-2.5 text-right text-xs font-mono">{sweep.legs}</td>
-                            <td className="px-4 py-2.5 text-right font-semibold text-amber-400 font-mono text-xs">
+                            <td className="px-4 py-2.5 text-right font-medium text-amber-400 font-mono text-xs">
                               ${sweep.premium}M
                             </td>
                             <td className="px-4 py-2.5">
@@ -955,7 +955,7 @@ export default function OptionsFlowPage() {
                     <Card key={s.sector} className="border-border bg-card">
                       <CardContent className="pt-3 pb-3">
                         <p className="text-xs text-muted-foreground mb-1">{s.sector}</p>
-                        <p className={`text-base font-bold ${isBullish ? "text-emerald-400" : "text-red-400"}`}>
+                        <p className={`text-base font-medium ${isBullish ? "text-emerald-400" : "text-red-400"}`}>
                           {bullPct}% bullish
                         </p>
                         <p className="text-xs text-muted-foreground">

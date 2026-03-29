@@ -700,7 +700,7 @@ function RecoveryModelTab({ tranches: initialTranches }: { tranches: WaterfallTr
                   <div className="flex items-center gap-3 text-xs font-mono">
                     <span className="text-foreground/50">${t.recovered}M / ${t.amount}M</span>
                     <span
-                      className="font-bold w-12 text-right"
+                      className="font-medium w-12 text-right"
                       style={{ color: t.color }}
                     >
                       {fmtPct(t.recoveryRate, 0)}
@@ -805,7 +805,7 @@ function CapitalStructureTab({ layers }: { layers: CapitalStructureLayer[] }) {
                 className="rounded-lg border border-border bg-foreground/5 p-4 space-y-3"
               >
                 <div className="flex items-center justify-between">
-                  <h3 className="text-base font-bold text-foreground">{selected.tranche}</h3>
+                  <h3 className="text-base font-medium text-foreground">{selected.tranche}</h3>
                   {selected.isFulcrum && (
                     <Badge className="bg-yellow-500/20 text-yellow-300 border-yellow-500/30 text-xs border">
                       Fulcrum Security
@@ -868,7 +868,7 @@ function CapitalStructureTab({ layers }: { layers: CapitalStructureLayer[] }) {
                   <div className="flex items-center gap-2">
                     <div className="w-2 h-2 rounded-full" style={{ backgroundColor: layer.color }} />
                     <span className="text-foreground/70">{layer.tranche}</span>
-                    {layer.isFulcrum && <span className="text-yellow-400 text-xs font-bold">[F]</span>}
+                    {layer.isFulcrum && <span className="text-yellow-400 text-xs font-medium">[F]</span>}
                   </div>
                   <div className="flex items-center gap-4">
                     <span className="text-foreground/40 font-mono">{layer.oid}¢</span>
@@ -1168,8 +1168,8 @@ export default function DistressedDebtPage() {
         </p>
       </div>
 
-      {/* Key metrics */}
-      <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
+      {/* Key metrics — Hero */}
+      <div className="border-l-4 border-l-primary rounded-lg bg-card p-6 grid grid-cols-2 sm:grid-cols-4 gap-3">
         <MetricCard
           label="Market Size"
           value="$1.2T"
@@ -1201,7 +1201,7 @@ export default function DistressedDebtPage() {
       </div>
 
       {/* Tabs */}
-      <Tabs defaultValue="opportunities">
+      <Tabs defaultValue="opportunities" className="mt-8">
         <TabsList className="bg-foreground/5 border border-border">
           <TabsTrigger value="opportunities" className="data-[state=active]:bg-foreground/10 text-xs sm:text-sm">
             Opportunities

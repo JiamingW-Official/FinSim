@@ -560,7 +560,7 @@ function LBOModeling() {
                   : "border-border bg-foreground/5 hover:bg-muted/50"
               )}
             >
-              <p className="text-xs font-semibold text-foreground truncate">{t.name}</p>
+              <p className="text-xs font-medium text-foreground truncate">{t.name}</p>
               <p className="text-xs text-muted-foreground mt-0.5">{t.sector}</p>
               <div className="flex gap-2 mt-2 text-xs">
                 <span className="text-muted-foreground">Rev: <strong className="text-foreground">${t.revenue}M</strong></span>
@@ -655,7 +655,7 @@ function LBOModeling() {
 
         {/* Equity bridge */}
         <div className="mt-4 rounded-xl border border-border bg-foreground/5 p-4">
-          <p className="text-xs font-semibold text-muted-foreground mb-3">Equity Bridge</p>
+          <p className="text-xs font-medium text-muted-foreground mb-3">Equity Bridge</p>
           <svg viewBox="0 0 600 120" className="w-full">
             {[
               { label: "Entry Equity", value: result.entryEquity, color: "#8b5cf6" },
@@ -744,7 +744,7 @@ function LBOModeling() {
                       <td key={ex} className="py-2 px-3">
                         <span
                           className={cn(
-                            "block text-center rounded px-2 py-1 font-semibold",
+                            "block text-center rounded px-2 py-1 font-medium",
                             irrSensColor(res.irr)
                           )}
                         >
@@ -914,7 +914,7 @@ function ValueCreation() {
             },
           ].map((section) => (
             <div key={section.title} className="rounded-xl border border-border bg-foreground/5 p-4">
-              <p className={cn("text-sm font-semibold mb-3", section.color)}>{section.title}</p>
+              <p className={cn("text-sm font-medium mb-3", section.color)}>{section.title}</p>
               <ul className="space-y-2">
                 {section.items.map((item) => (
                   <li key={item} className="flex items-start gap-2 text-xs text-muted-foreground">
@@ -935,7 +935,7 @@ function ValueCreation() {
           {BOLT_ONS.map((bo) => (
             <div key={bo.name} className="rounded-xl border border-border bg-foreground/5 p-4 flex flex-col md:flex-row md:items-center gap-3">
               <div className="flex-1">
-                <p className="text-sm font-semibold text-foreground">{bo.name}</p>
+                <p className="text-sm font-medium text-foreground">{bo.name}</p>
                 <p className="text-xs text-muted-foreground mt-0.5">Acquired Year {bo.year}</p>
               </div>
               <div className="flex flex-wrap gap-4 text-xs">
@@ -968,15 +968,15 @@ function ValueCreation() {
         <SectionTitle><Users className="w-4 h-4" /> Management Incentive Plan (MIP)</SectionTitle>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
           <div className="rounded-xl border border-border bg-foreground/5 p-4">
-            <p className="text-sm font-semibold text-amber-400 mb-2">Sweet Equity</p>
+            <p className="text-sm font-medium text-amber-400 mb-2">Sweet Equity</p>
             <p className="text-xs text-muted-foreground leading-relaxed">Management co-invests at same entry price but receives disproportionate upside above hurdle. Typical pool: 15–20% of equity. Vesting: 20% per year over 5 years.</p>
           </div>
           <div className="rounded-xl border border-border bg-foreground/5 p-4">
-            <p className="text-sm font-semibold text-primary mb-2">IRR Hurdles</p>
+            <p className="text-sm font-medium text-primary mb-2">IRR Hurdles</p>
             <p className="text-xs text-muted-foreground leading-relaxed">Management equity kicks in above 8% preferred return. Accelerated participation above 20% IRR. Full vesting on change-of-control event regardless of time served.</p>
           </div>
           <div className="rounded-xl border border-border bg-foreground/5 p-4">
-            <p className="text-sm font-semibold text-emerald-400 mb-2">Annual Bonus</p>
+            <p className="text-sm font-medium text-emerald-400 mb-2">Annual Bonus</p>
             <p className="text-xs text-muted-foreground leading-relaxed">Cash bonus tied to EBITDA, revenue, and cash conversion targets. Typically 30–100% of base salary. Clawback if restatement within 3 years.</p>
           </div>
         </div>
@@ -997,7 +997,7 @@ function ValueCreation() {
               )}
             >
               <div className="flex items-center justify-between mb-2">
-                <p className={cn("text-sm font-semibold", opt.highlight ? "text-emerald-300" : "text-foreground")}>
+                <p className={cn("text-sm font-medium", opt.highlight ? "text-emerald-300" : "text-foreground")}>
                   {opt.route}
                 </p>
                 {opt.highlight && (
@@ -1110,7 +1110,7 @@ function FundEconomics() {
         <SectionTitle><DollarSign className="w-4 h-4" /> Management Fee Structure</SectionTitle>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           <div className="rounded-xl border border-border bg-foreground/5 p-4">
-            <p className="text-sm font-semibold text-foreground mb-2">Commitment Period (Years 1–5)</p>
+            <p className="text-sm font-medium text-foreground mb-2">Commitment Period (Years 1–5)</p>
             <p className="text-xs text-muted-foreground leading-relaxed">
               2.0% × <strong className="text-primary">${committedCapital}M committed capital</strong> ={" "}
               <strong className="text-amber-300">${(committedCapital * 0.02).toFixed(0)}M/yr</strong> management fee.
@@ -1118,7 +1118,7 @@ function FundEconomics() {
             </p>
           </div>
           <div className="rounded-xl border border-border bg-foreground/5 p-4">
-            <p className="text-sm font-semibold text-foreground mb-2">Harvest Period (Years 6–10)</p>
+            <p className="text-sm font-medium text-foreground mb-2">Harvest Period (Years 6–10)</p>
             <p className="text-xs text-muted-foreground leading-relaxed">
               Fee step-down to 1.5% × <strong className="text-primary">invested capital</strong>.
               As realizations return capital, fee base shrinks. GPs typically reduce to 1.5% after commitment period ends.
@@ -1132,24 +1132,24 @@ function FundEconomics() {
         <SectionTitle><Layers className="w-4 h-4" /> Distribution Waterfall Structures</SectionTitle>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           <div className="rounded-xl border border-amber-500/30 bg-amber-500/10 p-4">
-            <p className="text-sm font-semibold text-amber-300 mb-2">European (Whole-Fund)</p>
+            <p className="text-sm font-medium text-amber-300 mb-2">European (Whole-Fund)</p>
             <ol className="space-y-2 text-xs text-muted-foreground">
-              <li className="flex gap-2"><span className="text-amber-400 font-bold">1.</span> Return 100% of invested capital to LPs</li>
-              <li className="flex gap-2"><span className="text-amber-400 font-bold">2.</span> Return 100% of management fees and fund expenses</li>
-              <li className="flex gap-2"><span className="text-amber-400 font-bold">3.</span> Pay 8% preferred return (compounded annually) to LPs</li>
-              <li className="flex gap-2"><span className="text-amber-400 font-bold">4.</span> GP catch-up: GP receives 20% until 20/80 split on all profits</li>
-              <li className="flex gap-2"><span className="text-amber-400 font-bold">5.</span> 80% LP / 20% GP on remaining profits (carried interest)</li>
+              <li className="flex gap-2"><span className="text-amber-400 font-medium">1.</span> Return 100% of invested capital to LPs</li>
+              <li className="flex gap-2"><span className="text-amber-400 font-medium">2.</span> Return 100% of management fees and fund expenses</li>
+              <li className="flex gap-2"><span className="text-amber-400 font-medium">3.</span> Pay 8% preferred return (compounded annually) to LPs</li>
+              <li className="flex gap-2"><span className="text-amber-400 font-medium">4.</span> GP catch-up: GP receives 20% until 20/80 split on all profits</li>
+              <li className="flex gap-2"><span className="text-amber-400 font-medium">5.</span> 80% LP / 20% GP on remaining profits (carried interest)</li>
             </ol>
             <p className="text-xs text-muted-foreground mt-2 italic">LP-friendly: GP only gets carry after full fund returns hurdle</p>
           </div>
           <div className="rounded-xl border border-border bg-primary/10 p-4">
-            <p className="text-sm font-semibold text-primary mb-2">American (Deal-by-Deal)</p>
+            <p className="text-sm font-medium text-primary mb-2">American (Deal-by-Deal)</p>
             <ol className="space-y-2 text-xs text-muted-foreground">
-              <li className="flex gap-2"><span className="text-primary font-bold">1.</span> Return invested capital for <em>that specific deal</em></li>
-              <li className="flex gap-2"><span className="text-primary font-bold">2.</span> 8% pref on capital invested in that deal</li>
-              <li className="flex gap-2"><span className="text-primary font-bold">3.</span> GP catch-up on deal profits</li>
-              <li className="flex gap-2"><span className="text-primary font-bold">4.</span> 80/20 split on remaining deal profits</li>
-              <li className="flex gap-2"><span className="text-primary font-bold">5.</span> Clawback provision applies if later deals underperform</li>
+              <li className="flex gap-2"><span className="text-primary font-medium">1.</span> Return invested capital for <em>that specific deal</em></li>
+              <li className="flex gap-2"><span className="text-primary font-medium">2.</span> 8% pref on capital invested in that deal</li>
+              <li className="flex gap-2"><span className="text-primary font-medium">3.</span> GP catch-up on deal profits</li>
+              <li className="flex gap-2"><span className="text-primary font-medium">4.</span> 80/20 split on remaining deal profits</li>
+              <li className="flex gap-2"><span className="text-primary font-medium">5.</span> Clawback provision applies if later deals underperform</li>
             </ol>
             <p className="text-xs text-muted-foreground mt-2 italic">GP-friendly: early carry on winning deals before full fund close</p>
           </div>
@@ -1177,7 +1177,7 @@ function FundEconomics() {
                   "border-b border-border/50 hover:bg-muted/30 transition-colors",
                   irr === targetIRR ? "bg-primary/10" : ""
                 )}>
-                  <td className="py-2 pr-4 font-semibold text-foreground">{irr}%</td>
+                  <td className="py-2 pr-4 font-medium text-foreground">{irr}%</td>
                   <td className="text-right py-2 pr-4 text-muted-foreground">${sc.grossValue.toFixed(0)}M</td>
                   <td className="text-right py-2 pr-4 text-amber-400">${sc.gpCarry.toFixed(0)}M</td>
                   <td className="text-right py-2 pr-4 text-emerald-400">${sc.lpProfit.toFixed(0)}M</td>
@@ -1284,7 +1284,7 @@ function DealSourcing() {
                     className="h-full rounded-lg flex items-center justify-end pr-2"
                     style={{ backgroundColor: stage.color }}
                   >
-                    <span className="text-xs font-semibold text-foreground">{stage.count}</span>
+                    <span className="text-xs font-medium text-foreground">{stage.count}</span>
                   </motion.div>
                 </div>
                 <div className="w-12 text-xs text-muted-foreground text-right flex-shrink-0">{stage.pct}%</div>
@@ -1301,7 +1301,7 @@ function DealSourcing() {
           {SOURCING_CHANNELS.map((ch) => (
             <div key={ch.channel} className="rounded-xl border border-border bg-foreground/5 p-4">
               <div className="flex items-center justify-between mb-2">
-                <p className="text-sm font-semibold text-foreground">{ch.channel}</p>
+                <p className="text-sm font-medium text-foreground">{ch.channel}</p>
                 <Badge className="text-xs" style={{ backgroundColor: ch.color + "33", color: ch.color, borderColor: ch.color + "55" }}>
                   {ch.dealShare}% of deals
                 </Badge>
@@ -1346,12 +1346,12 @@ function DealSourcing() {
                 transition={{ delay: i * 0.06 }}
                 className="relative flex gap-4 pl-14"
               >
-                <div className="absolute left-3 top-2 w-6 h-6 rounded-full bg-primary border-2 border-border flex items-center justify-center text-xs font-bold text-foreground z-10">
+                <div className="absolute left-3 top-2 w-6 h-6 rounded-full bg-primary border-2 border-border flex items-center justify-center text-xs font-medium text-foreground z-10">
                   {i + 1}
                 </div>
                 <div className="rounded-xl border border-border bg-foreground/5 p-3 flex-1">
                   <div className="flex items-center justify-between mb-1">
-                    <p className="text-sm font-semibold text-foreground">{step.step}</p>
+                    <p className="text-sm font-medium text-foreground">{step.step}</p>
                     <Badge className="bg-muted text-muted-foreground text-xs border-border">{step.days}</Badge>
                   </div>
                   <p className="text-xs text-muted-foreground">{step.description}</p>
@@ -1413,7 +1413,7 @@ function DealSourcing() {
             },
           ].map((section) => (
             <div key={section.title} className="rounded-xl border border-border bg-foreground/5 p-4">
-              <p className={cn("text-sm font-semibold mb-3 flex items-center gap-2", section.color)}>
+              <p className={cn("text-sm font-medium mb-3 flex items-center gap-2", section.color)}>
                 <section.icon className="w-4 h-4" />
                 {section.title}
               </p>
@@ -1478,7 +1478,7 @@ function DealSourcing() {
             <div key={phase.phase} className={cn("rounded-xl border p-4", phase.color)}>
               <div className="mb-3">
                 <Badge className="bg-muted text-muted-foreground text-xs border-border mb-1">{phase.phase}</Badge>
-                <p className={cn("text-sm font-semibold", phase.titleColor)}>{phase.title}</p>
+                <p className={cn("text-sm font-medium", phase.titleColor)}>{phase.title}</p>
               </div>
               <ul className="space-y-1.5">
                 {phase.items.map((item) => (

@@ -895,13 +895,14 @@ export default function AdvancedTAPage() {
 
   return (
     <div className="min-h-screen bg-background p-4 md:p-6">
-      <motion.div initial={{ opacity: 0, y: -8 }} animate={{ opacity: 1, y: 0 }} className="mb-6">
+      {/* HERO header */}
+      <motion.div initial={{ opacity: 0, y: -8 }} animate={{ opacity: 1, y: 0 }} className="mb-8 border-l-4 border-l-primary rounded-xl bg-card p-6">
         <div className="flex items-center gap-3 mb-1">
           <div className="p-2 rounded-lg bg-primary/10">
             <Activity className="w-5 h-5 text-primary" />
           </div>
           <div>
-            <h1 className="text-2xl font-bold text-foreground">Advanced Technical Analysis</h1>
+            <h1 className="text-xl font-semibold text-foreground">Advanced Technical Analysis</h1>
             <p className="text-sm text-muted-foreground">Professional strategies, systems design, and backtested results</p>
           </div>
         </div>
@@ -1003,7 +1004,7 @@ export default function AdvancedTAPage() {
                       {item.tf}
                     </Badge>
                     <div>
-                      <p className="text-xs font-semibold text-foreground">{item.role}</p>
+                      <p className="text-xs font-medium text-foreground">{item.role}</p>
                       <p className="text-xs text-muted-foreground">{item.desc}</p>
                     </div>
                   </div>
@@ -1024,7 +1025,7 @@ export default function AdvancedTAPage() {
                 <div className="flex items-center justify-between mb-3">
                   <div className="flex items-center gap-2">
                     <Activity className={cn("w-4 h-4", ind.color)} />
-                    <h3 className="font-semibold text-sm">{ind.title}</h3>
+                    <h3 className="font-medium text-sm">{ind.title}</h3>
                   </div>
                   {expandedIndicator === i ? (
                     <ChevronUp className="w-4 h-4 text-muted-foreground" />
@@ -1074,7 +1075,7 @@ export default function AdvancedTAPage() {
                 <Card className={cn("p-4 border h-full", section.color.replace("text-", "border-").replace("-400", "-500/30"))}>
                   <div className={cn("flex items-center gap-2 mb-3 p-2 rounded-lg w-fit", section.bgColor)}>
                     <span className={section.color}>{section.icon}</span>
-                    <h3 className={cn("font-semibold text-sm", section.color)}>{section.title}</h3>
+                    <h3 className={cn("font-medium text-sm", section.color)}>{section.title}</h3>
                   </div>
                   <ul className="space-y-2">
                     {section.points.map((point, j) => (
@@ -1093,7 +1094,7 @@ export default function AdvancedTAPage() {
           <Card className="p-4 border-border/50">
             <div className="flex items-center gap-2 mb-3">
               <Award className="w-4 h-4 text-yellow-400" />
-              <h3 className="font-semibold text-sm">Expectancy by Win Rate / Average R</h3>
+              <h3 className="font-medium text-sm">Expectancy by Win Rate / Average R</h3>
             </div>
             <p className="text-xs text-muted-foreground mb-3">
               Expectancy = (Win% × Avg Win) − (Loss% × Avg Loss). A system with 35% win rate can outperform a 65% win rate system if the average R is large enough.
@@ -1118,7 +1119,7 @@ export default function AdvancedTAPage() {
                 <Card className={cn("p-4 border", r.color)}>
                   <div className="flex items-center gap-2 mb-2">
                     {r.icon}
-                    <h3 className="font-semibold text-sm">{r.regime} Market</h3>
+                    <h3 className="font-medium text-sm">{r.regime} Market</h3>
                   </div>
                   <p className="text-xs text-muted-foreground mb-2">{r.condition}</p>
                   <div className="p-2 rounded bg-background/40 mb-2">
@@ -1144,7 +1145,7 @@ export default function AdvancedTAPage() {
           <Card className="p-4 border-border/50">
             <div className="flex items-center gap-2 mb-3">
               <GitBranch className="w-4 h-4 text-primary" />
-              <h3 className="font-semibold text-sm">Adaptive Parameters by Regime</h3>
+              <h3 className="font-medium text-sm">Adaptive Parameters by Regime</h3>
             </div>
             <div className="max-w-sm mb-3">
               <RegimeAdaptiveSvg />
@@ -1176,7 +1177,7 @@ export default function AdvancedTAPage() {
                 <div key={i} className="p-3 rounded bg-muted/20 border border-border/30">
                   <div className={cn("flex items-center gap-1 mb-2", item.color)}>
                     {item.icon}
-                    <p className="text-xs font-semibold">{item.label}</p>
+                    <p className="text-xs font-medium">{item.label}</p>
                   </div>
                   <p className="text-xs text-muted-foreground">{item.high}</p>
                   <p className="text-xs text-muted-foreground mt-1 pt-1 border-t border-border/30">{item.low}</p>
@@ -1194,7 +1195,7 @@ export default function AdvancedTAPage() {
                 <div className="flex items-start justify-between mb-2">
                   <div className="flex items-center gap-2">
                     <Layers className="w-4 h-4 text-primary shrink-0" />
-                    <h3 className="font-semibold text-sm">{concept.title}</h3>
+                    <h3 className="font-medium text-sm">{concept.title}</h3>
                   </div>
                   <Badge className={cn("text-xs shrink-0", concept.badgeColor)}>{concept.badge}</Badge>
                 </div>
@@ -1243,7 +1244,7 @@ export default function AdvancedTAPage() {
             >
               <Card className="p-4 border-border/50">
                 <div className="flex items-center justify-between mb-3">
-                  <h3 className="font-semibold text-sm" style={{ color: STRATEGIES[selectedStrategy].color }}>
+                  <h3 className="font-medium text-sm" style={{ color: STRATEGIES[selectedStrategy].color }}>
                     {STRATEGIES[selectedStrategy].name}
                   </h3>
                   <div className="flex gap-2">
@@ -1278,7 +1279,7 @@ export default function AdvancedTAPage() {
           <Card className="p-4 border-border/50">
             <div className="flex items-center gap-2 mb-3">
               <TrendingDown className="w-4 h-4 text-red-400" />
-              <h3 className="font-semibold text-sm">Drawdown & Performance Comparison</h3>
+              <h3 className="font-medium text-sm">Drawdown & Performance Comparison</h3>
             </div>
             <div className="overflow-x-auto">
               <table className="w-full text-xs">
@@ -1326,7 +1327,7 @@ export default function AdvancedTAPage() {
           <Card className="p-4 border-border/50">
             <div className="flex items-center gap-2 mb-3">
               <Layers className="w-4 h-4 text-muted-foreground" />
-              <h3 className="font-semibold text-sm">Strategy Return Correlation Matrix</h3>
+              <h3 className="font-medium text-sm">Strategy Return Correlation Matrix</h3>
             </div>
             <p className="text-xs text-muted-foreground mb-3">
               Low inter-strategy correlation provides diversification benefit. Combining uncorrelated strategies reduces overall portfolio drawdown even when individual strategies are in drawdown.

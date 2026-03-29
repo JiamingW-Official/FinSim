@@ -570,7 +570,7 @@ function AssetClassesTab() {
                   className="w-3 h-3 rounded-full flex-shrink-0"
                   style={{ backgroundColor: tier.color }}
                 />
-                <span className="font-semibold text-foreground">{tier.tier}</span>
+                <span className="font-medium text-foreground">{tier.tier}</span>
                 <span className="text-xs font-bold" style={{ color: tier.color }}>
                   {tier.returnTarget}
                 </span>
@@ -592,15 +592,15 @@ function AssetClassesTab() {
         </SectionTitle>
         <div className="grid md:grid-cols-3 gap-4">
           <InfoBox variant="blue">
-            <div className="font-semibold mb-1">CPI-Indexed Tariffs</div>
+            <div className="font-medium mb-1">CPI-Indexed Tariffs</div>
             Revenue automatically adjusted to CPI or CPI+X. Common in toll roads, water utilities, and airports. Provides direct inflation pass-through to investors.
           </InfoBox>
           <InfoBox variant="emerald">
-            <div className="font-semibold mb-1">Concession Agreements</div>
+            <div className="font-medium mb-1">Concession Agreements</div>
             Long-term government-granted rights (20–99 years) with embedded escalation clauses. Contractual certainty insulates against short-term macro volatility.
           </InfoBox>
           <InfoBox variant="purple">
-            <div className="font-semibold mb-1">Regulated Asset Base (RAB)</div>
+            <div className="font-medium mb-1">Regulated Asset Base (RAB)</div>
             Regulator sets allowed return on invested capital (WACC). Asset base revalued with inflation, preserving real value. Used in UK water, energy networks.
           </InfoBox>
         </div>
@@ -786,14 +786,14 @@ function ProjectFinanceTab() {
         </SectionTitle>
         <div className="grid md:grid-cols-2 gap-4">
           <InfoBox variant="blue">
-            <div className="font-semibold mb-1">Debt Service Coverage Ratio (DSCR)</div>
+            <div className="font-medium mb-1">Debt Service Coverage Ratio (DSCR)</div>
             <div className="font-mono bg-black/20 rounded p-2 my-2 text-center text-base">
               DSCR = CFADS / Debt Service
             </div>
             CFADS = Cash Flow Available for Debt Service (EBITDA minus taxes, capex, working capital). Lenders typically require minimum 1.20–1.30x. Lock-up typically triggers at 1.10x — distributions blocked until ratio recovers.
           </InfoBox>
           <InfoBox variant="amber">
-            <div className="font-semibold mb-1">Covenant Cascade</div>
+            <div className="font-medium mb-1">Covenant Cascade</div>
             <div className="space-y-1 mt-1">
               {[
                 { level: "≥ 1.30x", status: "Cash sweep / equity distribution permitted", color: "#22c55e" },
@@ -823,7 +823,7 @@ function ProjectFinanceTab() {
                 <Badge variant="outline" className="font-mono text-xs">{ra.name}</Badge>
                 <span className="text-xs text-muted-foreground">{ra.months}</span>
               </div>
-              <div className="text-xs font-semibold text-foreground mb-1">{ra.full}</div>
+              <div className="text-xs font-medium text-foreground mb-1">{ra.full}</div>
               <p className="text-xs text-muted-foreground leading-relaxed">{ra.purpose}</p>
             </div>
           ))}
@@ -846,7 +846,7 @@ function ProjectFinanceTab() {
                   {m.riskBearing} risk
                 </span>
               </div>
-              <div className="text-xs font-semibold text-foreground mb-1">{m.full}</div>
+              <div className="text-xs font-medium text-foreground mb-1">{m.full}</div>
               <p className="text-xs text-muted-foreground leading-relaxed">{m.desc}</p>
             </div>
           ))}
@@ -996,7 +996,7 @@ function EnergyTransitionTab() {
       </div>
 
       <InfoBox variant="amber">
-        <div className="font-semibold mb-1">The Energy Transition Investment Imperative</div>
+        <div className="font-medium mb-1">The Energy Transition Investment Imperative</div>
         The IEA estimates $4T/year in clean energy investment is required by 2030 to keep global warming below 1.5°C. Current annual spend of ~$1.7T leaves a $2.3T gap — representing the single largest infrastructure opportunity in history. Private capital must fill what public budgets cannot.
       </InfoBox>
 
@@ -1160,7 +1160,7 @@ function EnergyTransitionTab() {
           {POLICY_SUPPORT.map((policy) => (
             <div key={policy.name} className="rounded-xl border border-border bg-muted/30 p-4">
               <div className="flex items-center gap-2 mb-2">
-                <span className="text-sm font-semibold text-foreground">{policy.name}</span>
+                <span className="text-sm font-medium text-foreground">{policy.name}</span>
                 <Badge
                   variant="outline"
                   className="text-xs"
@@ -1178,7 +1178,7 @@ function EnergyTransitionTab() {
       {/* Demand growth + stranded asset risk */}
       <div className="grid md:grid-cols-2 gap-4">
         <InfoBox variant="emerald">
-          <div className="font-semibold mb-2">New Demand Centers</div>
+          <div className="font-medium mb-2">New Demand Centers</div>
           <div className="space-y-1">
             {[
               { label: "Data Centers", detail: "AI buildout driving 30% annual power demand growth" },
@@ -1194,7 +1194,7 @@ function EnergyTransitionTab() {
           </div>
         </InfoBox>
         <InfoBox variant="amber">
-          <div className="font-semibold mb-2">Stranded Asset Risk (Fossil Fuel)</div>
+          <div className="font-medium mb-2">Stranded Asset Risk (Fossil Fuel)</div>
           <p className="text-xs leading-relaxed mb-2">
             Coal-fired power plants face 15–30 year asset life curtailments. Pipelines dependent on fossil fuel volumes face declining utilization. Gas distribution networks may face regulated writedowns as building electrification accelerates.
           </p>
@@ -1306,13 +1306,13 @@ function InstitutionalTab() {
               />
               <div className="flex-1">
                 <div className="flex items-center gap-2 flex-wrap">
-                  <span className="font-semibold text-foreground">{fm.name}</span>
+                  <span className="font-medium text-foreground">{fm.name}</span>
                   <span className="text-xs text-muted-foreground">{fm.hq}</span>
                 </div>
                 <div className="text-xs text-muted-foreground mt-0.5">{fm.focus}</div>
               </div>
               <div className="flex-shrink-0 text-right">
-                <div className="text-lg font-bold" style={{ color: fm.color }}>${fm.aum}B</div>
+                <div className="text-lg font-medium" style={{ color: fm.color }}>${fm.aum}B</div>
                 <div className="text-xs text-muted-foreground">AUM</div>
               </div>
             </div>
@@ -1499,11 +1499,11 @@ function InstitutionalTab() {
             </div>
             <div className="flex-1 space-y-3">
               <InfoBox variant="blue">
-                <div className="font-semibold mb-1">Diversification Benefit</div>
+                <div className="font-medium mb-1">Diversification Benefit</div>
                 Adding 10–15% unlisted infrastructure to a 60/40 portfolio reduces volatility by ~1.5–2pp while improving returns by ~0.8pp. The benefit comes from low correlation to public equities (0.42) and the inflation-hedging properties of contracted cashflows.
               </InfoBox>
               <InfoBox variant="emerald">
-                <div className="font-semibold mb-1">Co-Investment Opportunities</div>
+                <div className="font-medium mb-1">Co-Investment Opportunities</div>
                 Large LPs can negotiate co-investment rights alongside fund GP — participating directly in deals at zero or reduced carry. Reduces blended fee from 1.5%+10% toward 0.8%+5%. Requires in-house deal capability and fast decision-making.
               </InfoBox>
             </div>
@@ -1517,7 +1517,7 @@ function InstitutionalTab() {
           <Globe size={14} /> Listed vs Unlisted Infrastructure Comparison
         </SectionTitle>
         <div className="rounded-xl border border-border bg-muted/30 overflow-hidden">
-          <div className="grid grid-cols-4 bg-foreground/10 text-xs font-semibold text-muted-foreground px-4 py-2">
+          <div className="grid grid-cols-4 bg-foreground/10 text-xs font-medium text-muted-foreground px-4 py-2">
             <span>Attribute</span>
             <span className="text-center text-primary">Listed</span>
             <span className="text-center text-emerald-400">Unlisted</span>
@@ -1602,7 +1602,7 @@ function InstitutionalTab() {
               <div key={fee.type} className="rounded-xl border border-border bg-muted/30 p-3">
                 <div className="flex items-center gap-2 mb-2">
                   <div className="w-2 h-2 rounded-full flex-shrink-0" style={{ backgroundColor: fee.color }} />
-                  <span className="text-sm font-semibold text-foreground">{fee.type}</span>
+                  <span className="text-sm font-medium text-foreground">{fee.type}</span>
                 </div>
                 <div className="grid grid-cols-2 gap-1 text-xs">
                   <span className="text-muted-foreground">Mgmt fee:</span>
@@ -1662,8 +1662,14 @@ export default function InfraInvestingPage() {
         </div>
       </motion.div>
 
+      {/* Hero */}
+      <div className="rounded-xl border border-border bg-card border-l-4 border-l-primary p-6">
+        <h2 className="text-lg font-medium text-foreground mb-1">Asset Classes &amp; Project Finance</h2>
+        <p className="text-sm text-muted-foreground">Explore infrastructure asset classes, project finance structures, energy transition investments, and institutional allocation strategies.</p>
+      </div>
+
       {/* Tabs */}
-      <Tabs value={activeTab} onValueChange={setActiveTab}>
+      <Tabs value={activeTab} onValueChange={setActiveTab} className="mt-8">
         <TabsList className="grid grid-cols-4 w-full bg-foreground/5 border border-border h-10 mb-6">
           <TabsTrigger value="asset-classes" className="text-xs data-[state=active]:bg-primary data-[state=active]:text-primary-foreground">
             Asset Classes

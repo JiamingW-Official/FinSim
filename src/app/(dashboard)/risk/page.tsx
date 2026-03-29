@@ -508,14 +508,14 @@ function OverviewTab() {
           <div className="grid grid-cols-2 gap-3">
             <div className="rounded-lg border border-red-500/20 bg-red-500/5 p-3">
               <p className="text-xs text-muted-foreground">95% Confidence</p>
-              <p className="mt-1 text-xl font-bold text-red-500">
+              <p className="mt-1 text-xl font-medium text-red-500">
                 ${stats.var95.toLocaleString("en-US", { maximumFractionDigits: 0 })}
               </p>
               <p className="text-xs text-muted-foreground">{stats.var95Pct.toFixed(2)}% of portfolio</p>
             </div>
             <div className="rounded-lg border border-red-700/20 bg-red-700/5 p-3">
               <p className="text-xs text-muted-foreground">99% Confidence</p>
-              <p className="mt-1 text-xl font-bold text-red-700">
+              <p className="mt-1 text-xl font-medium text-red-700">
                 ${stats.var99.toLocaleString("en-US", { maximumFractionDigits: 0 })}
               </p>
               <p className="text-xs text-muted-foreground">{stats.var99Pct.toFixed(2)}% of portfolio</p>
@@ -618,7 +618,7 @@ function ScenariosTab() {
       {/* Custom scenario builder */}
       <Card>
         <CardHeader className="pb-2">
-          <CardTitle className="text-sm font-semibold">Custom Scenario Builder — What If?</CardTitle>
+          <CardTitle className="text-sm font-medium">Custom Scenario Builder — What If?</CardTitle>
         </CardHeader>
         <CardContent className="space-y-4">
           <div className="grid grid-cols-1 gap-4 sm:grid-cols-3">
@@ -662,20 +662,20 @@ function ScenariosTab() {
             <div className="grid grid-cols-3 gap-2 text-xs">
               <div>
                 <p className="text-muted-foreground">Price shock</p>
-                <p className="font-semibold text-red-500">${customImpact.toLocaleString("en-US", { maximumFractionDigits: 0 })}</p>
+                <p className="font-medium text-red-500">${customImpact.toLocaleString("en-US", { maximumFractionDigits: 0 })}</p>
               </div>
               <div>
                 <p className="text-muted-foreground">Rate impact</p>
-                <p className="font-semibold text-red-500">${rateImpact.toLocaleString("en-US", { maximumFractionDigits: 0 })}</p>
+                <p className="font-medium text-red-500">${rateImpact.toLocaleString("en-US", { maximumFractionDigits: 0 })}</p>
               </div>
               <div>
                 <p className="text-muted-foreground">Vol impact</p>
-                <p className="font-semibold text-red-500">${vixImpact.toLocaleString("en-US", { maximumFractionDigits: 0 })}</p>
+                <p className="font-medium text-red-500">${vixImpact.toLocaleString("en-US", { maximumFractionDigits: 0 })}</p>
               </div>
             </div>
             <div className="flex items-center justify-between border-t border-border/40 pt-2">
               <span className="text-xs font-medium">Total Estimated Loss</span>
-              <span className="text-sm font-bold text-red-500">
+              <span className="text-sm font-medium text-red-500">
                 ${totalCustomImpact.toLocaleString("en-US", { maximumFractionDigits: 0 })}
                 &nbsp;({((totalCustomImpact / pv) * 100).toFixed(1)}%)
               </span>
@@ -752,7 +752,7 @@ function PositionSizingTab() {
       {/* Kelly */}
       <Card>
         <CardHeader className="pb-2">
-          <CardTitle className="text-sm font-semibold">Kelly Criterion Calculator</CardTitle>
+          <CardTitle className="text-sm font-medium">Kelly Criterion Calculator</CardTitle>
         </CardHeader>
         <CardContent className="space-y-4">
           <div className="grid grid-cols-1 gap-4 sm:grid-cols-3">
@@ -786,18 +786,18 @@ function PositionSizingTab() {
           <div className="grid grid-cols-3 gap-3">
             <div className="rounded-lg border border-border/50 p-3 text-center">
               <p className="text-[11px] text-muted-foreground">Full Kelly</p>
-              <p className="text-lg font-bold">{(kellyFraction * 100).toFixed(1)}%</p>
+              <p className="text-lg font-medium">{(kellyFraction * 100).toFixed(1)}%</p>
               <p className="text-xs text-muted-foreground">${fullKellyDollar.toLocaleString("en-US", { maximumFractionDigits: 0 })}</p>
             </div>
             <div className="rounded-lg border border-primary/30 bg-primary/5 p-3 text-center">
               <p className="text-[11px] text-muted-foreground">Half Kelly</p>
-              <p className="text-lg font-bold text-primary">{(kellyFraction * 50).toFixed(1)}%</p>
+              <p className="text-lg font-medium text-primary">{(kellyFraction * 50).toFixed(1)}%</p>
               <p className="text-xs text-muted-foreground">${halfKellyDollar.toLocaleString("en-US", { maximumFractionDigits: 0 })}</p>
               <p className="text-xs text-muted-foreground mt-0.5">{halfKellyShares} shares @ ${pricePerShare}</p>
             </div>
             <div className="rounded-lg border border-border/50 p-3 text-center">
               <p className="text-[11px] text-muted-foreground">Quarter Kelly</p>
-              <p className="text-lg font-bold">{(kellyFraction * 25).toFixed(1)}%</p>
+              <p className="text-lg font-medium">{(kellyFraction * 25).toFixed(1)}%</p>
               <p className="text-xs text-muted-foreground">${quarterKellyDollar.toLocaleString("en-US", { maximumFractionDigits: 0 })}</p>
             </div>
           </div>
@@ -812,7 +812,7 @@ function PositionSizingTab() {
       {/* Fixed Fractional */}
       <Card>
         <CardHeader className="pb-2">
-          <CardTitle className="text-sm font-semibold">Fixed Fractional Position Sizing</CardTitle>
+          <CardTitle className="text-sm font-medium">Fixed Fractional Position Sizing</CardTitle>
         </CardHeader>
         <CardContent className="space-y-4">
           <div className="grid grid-cols-2 gap-3 sm:grid-cols-4">
@@ -852,11 +852,11 @@ function PositionSizingTab() {
           <div className="grid grid-cols-2 gap-3">
             <div className="rounded-lg border border-border/50 p-3">
               <p className="text-xs text-muted-foreground">Position Size</p>
-              <p className="text-xl font-bold">${ffPositionSize.toLocaleString("en-US", { maximumFractionDigits: 0 })}</p>
+              <p className="text-xl font-medium">${ffPositionSize.toLocaleString("en-US", { maximumFractionDigits: 0 })}</p>
             </div>
             <div className="rounded-lg border border-border/50 p-3">
               <p className="text-xs text-muted-foreground">Number of Shares</p>
-              <p className="text-xl font-bold">{ffShares.toLocaleString()}</p>
+              <p className="text-xl font-medium">{ffShares.toLocaleString()}</p>
               <p className="text-xs text-muted-foreground">Max loss: ${riskDollar.toFixed(0)}</p>
             </div>
           </div>
@@ -866,7 +866,7 @@ function PositionSizingTab() {
       {/* ATR sizing */}
       <Card>
         <CardHeader className="pb-2">
-          <CardTitle className="text-sm font-semibold">ATR-Based Position Sizing</CardTitle>
+          <CardTitle className="text-sm font-medium">ATR-Based Position Sizing</CardTitle>
         </CardHeader>
         <CardContent className="space-y-4">
           <p className="text-xs text-muted-foreground">
@@ -906,12 +906,12 @@ function PositionSizingTab() {
           <div className="grid grid-cols-2 gap-3">
             <div className="rounded-lg border border-border/50 p-3">
               <p className="text-xs text-muted-foreground">Stop Distance</p>
-              <p className="text-xl font-bold">${(atr * atrMultiplier).toFixed(2)}</p>
+              <p className="text-xl font-medium">${(atr * atrMultiplier).toFixed(2)}</p>
               <p className="text-xs text-muted-foreground">ATR × {atrMultiplier}</p>
             </div>
             <div className="rounded-lg border border-border/50 p-3">
               <p className="text-xs text-muted-foreground">Shares to Buy</p>
-              <p className="text-xl font-bold">{atrShares}</p>
+              <p className="text-xl font-medium">{atrShares}</p>
               <p className="text-xs text-muted-foreground">
                 ${atrPositionSize.toLocaleString("en-US", { maximumFractionDigits: 0 })} position
               </p>
@@ -985,7 +985,7 @@ function DrawdownTab() {
     <div className="space-y-4">
       <Card>
         <CardHeader className="pb-2">
-          <CardTitle className="text-sm font-semibold">Equity Curve with Drawdown Overlay</CardTitle>
+          <CardTitle className="text-sm font-medium">Equity Curve with Drawdown Overlay</CardTitle>
         </CardHeader>
         <CardContent>
           <EquityCurveChart snapshots={snapshots} initialCapital={INITIAL_CAPITAL} />
@@ -998,14 +998,14 @@ function DrawdownTab() {
 
       <Card>
         <CardHeader className="pb-2">
-          <CardTitle className="text-sm font-semibold">Drawdown Statistics</CardTitle>
+          <CardTitle className="text-sm font-medium">Drawdown Statistics</CardTitle>
         </CardHeader>
         <CardContent>
           <div className="grid grid-cols-2 gap-3 sm:grid-cols-3">
             {ddStats.map((s) => (
               <div key={s.label} className="rounded-lg border border-border/50 p-3">
                 <p className="text-[11px] text-muted-foreground">{s.label}</p>
-                <p className="mt-1 text-base font-semibold">{s.value}</p>
+                <p className="mt-1 text-base font-medium">{s.value}</p>
                 <p className="text-[11px] text-muted-foreground">{s.sub}</p>
               </div>
             ))}
@@ -1015,7 +1015,7 @@ function DrawdownTab() {
 
       <Card>
         <CardHeader className="pb-2">
-          <CardTitle className="text-sm font-semibold">Underwater Plot — % Below All-Time High</CardTitle>
+          <CardTitle className="text-sm font-medium">Underwater Plot — % Below All-Time High</CardTitle>
         </CardHeader>
         <CardContent>
           <UnderwaterPlot snapshots={snapshots} initialCapital={INITIAL_CAPITAL} />
@@ -1064,24 +1064,24 @@ function StressTestsTab() {
             <Card key={s.name} className="overflow-hidden">
               <CardContent className="p-4 space-y-2">
                 <div className="flex items-start justify-between gap-2">
-                  <p className="text-sm font-semibold leading-tight">{s.name}</p>
+                  <p className="text-sm font-medium leading-tight">{s.name}</p>
                   <span className={`shrink-0 rounded-full px-2 py-0.5 text-xs font-medium ${rl.cls}`}>{rl.label}</span>
                 </div>
                 <p className="text-[11px] text-muted-foreground leading-relaxed">{s.context}</p>
                 <div className="border-t border-border/40 pt-2 space-y-1">
                   <div className="flex justify-between text-xs">
                     <span className="text-muted-foreground">Market Drop</span>
-                    <span className="font-semibold text-red-500">{s.drop}%</span>
+                    <span className="font-medium text-red-500">{s.drop}%</span>
                   </div>
                   <div className="flex justify-between text-xs">
                     <span className="text-muted-foreground">Portfolio Impact</span>
-                    <span className="font-semibold text-red-500">
+                    <span className="font-medium text-red-500">
                       ${dollarImpact.toLocaleString("en-US", { maximumFractionDigits: 0 })}
                     </span>
                   </div>
                   <div className="flex justify-between text-xs">
                     <span className="text-muted-foreground">Remaining Value</span>
-                    <span className="font-semibold">
+                    <span className="font-medium">
                       ${newPortfolioValue.toLocaleString("en-US", { maximumFractionDigits: 0 })}
                     </span>
                   </div>
@@ -1106,7 +1106,7 @@ function StressTestsTab() {
       {/* Custom stress test */}
       <Card>
         <CardHeader className="pb-2">
-          <CardTitle className="text-sm font-semibold">Custom Stress Test</CardTitle>
+          <CardTitle className="text-sm font-medium">Custom Stress Test</CardTitle>
         </CardHeader>
         <CardContent className="space-y-3">
           <div className="space-y-2">
@@ -1134,19 +1134,19 @@ function StressTestsTab() {
               <p className="text-xs font-medium">Stress Test Result</p>
               <div className="flex justify-between text-sm">
                 <span className="text-muted-foreground">Estimated Loss</span>
-                <span className="font-bold text-red-500">
+                <span className="font-medium text-red-500">
                   ${customResult.toLocaleString("en-US", { maximumFractionDigits: 0 })}
                 </span>
               </div>
               <div className="flex justify-between text-sm">
                 <span className="text-muted-foreground">Portfolio After Shock</span>
-                <span className="font-bold">
+                <span className="font-medium">
                   ${(pv + customResult).toLocaleString("en-US", { maximumFractionDigits: 0 })}
                 </span>
               </div>
               <div className="flex justify-between text-sm">
                 <span className="text-muted-foreground">Recovery Needed</span>
-                <span className="font-bold">
+                <span className="font-medium">
                   +{customPct > 0 ? ((100 / (100 - customPct) - 1) * 100).toFixed(1) : "0"}%
                 </span>
               </div>
@@ -1202,7 +1202,7 @@ export default function RiskPage() {
     <div className="flex flex-col gap-4 p-4 md:p-6">
       <div className="flex items-center justify-between">
         <div>
-          <h1 className="text-xl font-bold">Risk Management</h1>
+          <h1 className="text-xl font-medium">Risk Management</h1>
           <p className="mt-0.5 text-sm text-muted-foreground">
             Portfolio risk analytics, position sizing, and stress testing
           </p>

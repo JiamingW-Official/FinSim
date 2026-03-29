@@ -551,7 +551,7 @@ function RollYieldCalculator() {
         <Card className="bg-muted/30 border-border">
           <CardContent className="pt-4">
             <p className="text-xs text-muted-foreground mb-1">Roll Cost</p>
-            <p className={cn("text-xl font-bold", rollCost > 0 ? "text-red-400" : "text-emerald-400")}>
+            <p className={cn("text-xl font-medium", rollCost > 0 ? "text-red-400" : "text-emerald-400")}>
               {rollCost > 0 ? "-" : "+"}${Math.abs(rollCost).toFixed(2)}
             </p>
             <p className="text-xs text-muted-foreground mt-1">
@@ -628,7 +628,7 @@ function StorageCarryModel() {
             {STORAGE_COMPONENTS.map((c) => (
               <div key={c.label} className="text-center p-2 rounded-lg" style={{ background: c.color + "18" }}>
                 <p className="text-xs text-muted-foreground">{c.label}</p>
-                <p className="font-bold text-sm" style={{ color: c.color }}>
+                <p className="font-medium text-sm" style={{ color: c.color }}>
                   {c.pctAnnual > 0 ? "+" : ""}{c.pctAnnual.toFixed(1)}%/yr
                 </p>
               </div>
@@ -636,17 +636,17 @@ function StorageCarryModel() {
           </div>
           <div className="mt-3 flex items-center justify-between p-2 rounded-lg bg-background/50 border border-border">
             <span className="text-xs text-muted-foreground">Net carry cost (annualized)</span>
-            <span className={cn("font-bold text-sm", totalCarry > 0 ? "text-red-400" : "text-emerald-400")}>
+            <span className={cn("font-medium text-sm", totalCarry > 0 ? "text-red-400" : "text-emerald-400")}>
               {totalCarry > 0 ? "+" : ""}{totalCarry.toFixed(1)}%/yr
             </span>
           </div>
           <div className="mt-2 flex items-center justify-between p-2 rounded-lg bg-background/50 border border-border">
             <span className="text-xs text-muted-foreground">Implied 12M forward (theory)</span>
-            <span className="font-bold text-sm text-amber-400">${impliedFwdPrice.toFixed(2)}</span>
+            <span className="font-medium text-sm text-amber-400">${impliedFwdPrice.toFixed(2)}</span>
           </div>
           <div className="mt-2 flex items-center justify-between p-2 rounded-lg bg-background/50 border border-border">
             <span className="text-xs text-muted-foreground">Actual 12M futures price</span>
-            <span className="font-bold text-sm text-foreground">${CURVE_PRICES[11].toFixed(2)}</span>
+            <span className="font-medium text-sm text-foreground">${CURVE_PRICES[11].toFixed(2)}</span>
           </div>
         </CardContent>
       </Card>
@@ -665,7 +665,7 @@ function StorageCarryModel() {
           {/* Inventory bar */}
           <div className="relative h-3 bg-muted rounded-full overflow-hidden mb-1">
             <div
-              className="absolute left-0 top-0 h-full rounded-full bg-gradient-to-r from-emerald-500 to-amber-500 transition-all"
+              className="absolute left-0 top-0 h-full rounded-full bg-amber-500 transition-all"
               style={{ width: `${INVENTORY_LEVEL}%` }}
             />
           </div>
@@ -683,7 +683,7 @@ function StorageCarryModel() {
               </p>
             </div>
             <div className="p-3 rounded-lg border border-red-500/30 bg-red-500/5">
-              <p className="text-xs font-semibold text-red-400 mb-1">High Inventory</p>
+              <p className="text-xs font-medium text-red-400 mb-1">High Inventory</p>
               <p className="text-xs text-muted-foreground">
                 Ample supply reduces convenience yield. Storage costs dominate. Futures trade
                 at premium to spot (contango). Negative roll yield for long holders.
@@ -755,7 +755,7 @@ function StrategyComparison() {
               <CardContent>
                 <p className="text-xs text-muted-foreground mb-3">{strat.description}</p>
                 <div className="space-y-1 mb-2">
-                  <p className="text-xs font-semibold text-emerald-400">Pros</p>
+                  <p className="text-xs font-medium text-emerald-400">Pros</p>
                   {strat.pros.map((p) => (
                     <p key={p} className="text-xs text-muted-foreground flex gap-1">
                       <span className="text-emerald-400 mt-px">+</span> {p}
@@ -763,7 +763,7 @@ function StrategyComparison() {
                   ))}
                 </div>
                 <div className="space-y-1">
-                  <p className="text-xs font-semibold text-red-400">Cons</p>
+                  <p className="text-xs font-medium text-red-400">Cons</p>
                   {strat.cons.map((c) => (
                     <p key={c} className="text-xs text-muted-foreground flex gap-1">
                       <span className="text-red-400 mt-px">−</span> {c}
@@ -798,7 +798,7 @@ function MetricChip({
           <Icon className="h-3.5 w-3.5 text-muted-foreground" />
           <span className="text-xs text-muted-foreground">{label}</span>
         </div>
-        <p className={cn("text-base font-bold leading-tight", valueClass ?? "text-foreground")}>
+        <p className={cn("text-base font-medium leading-tight", valueClass ?? "text-foreground")}>
           {value}
         </p>
       </CardContent>
@@ -833,11 +833,11 @@ export default function CommodityTermPage() {
 
   return (
     <div className="p-4 md:p-6 space-y-6 max-w-6xl mx-auto">
-      {/* Header */}
+      {/* HERO Header */}
       <FadeIn>
-        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-l-4 border-l-primary rounded-xl bg-card p-6">
           <div>
-            <h1 className="text-xl font-bold text-foreground">
+            <h1 className="text-xl font-semibold text-foreground">
               Commodity Term Structure &amp; Roll Yield
             </h1>
             <p className="text-sm text-muted-foreground mt-0.5">
@@ -845,7 +845,7 @@ export default function CommodityTermPage() {
             </p>
           </div>
           <div className="flex items-center gap-2">
-            <Badge className={cn("text-xs font-semibold", isContango ? "bg-red-500/20 text-red-400" : "bg-emerald-500/20 text-emerald-400")}>
+            <Badge className={cn("text-xs font-medium", isContango ? "bg-red-500/20 text-red-400" : "bg-emerald-500/20 text-emerald-400")}>
               {isContango ? "CONTANGO" : "BACKWARDATION"}
             </Badge>
             <Badge className="bg-amber-500/20 text-amber-400 text-xs">WTI Crude</Badge>
@@ -981,21 +981,21 @@ export default function CommodityTermPage() {
           <CardContent className="pt-4 pb-4">
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 text-xs">
               <div>
-                <p className="font-semibold text-amber-400 mb-1">Contango</p>
+                <p className="font-medium text-amber-400 mb-1">Contango</p>
                 <p className="text-muted-foreground">
                   Futures price {">"} spot price. Occurs when storage costs exceed convenience yield.
                   Long futures holders pay a rolling penalty each month. Common in oil when inventories are high.
                 </p>
               </div>
               <div>
-                <p className="font-semibold text-emerald-400 mb-1">Backwardation</p>
+                <p className="font-medium text-emerald-400 mb-1">Backwardation</p>
                 <p className="text-muted-foreground">
                   Spot price {">"} futures price. Occurs when current demand outstrips immediate supply.
                   Rolling forward earns a positive yield. Natural state for commodities with high convenience yield.
                 </p>
               </div>
               <div>
-                <p className="font-semibold text-primary mb-1">Roll Optimization</p>
+                <p className="font-medium text-primary mb-1">Roll Optimization</p>
                 <p className="text-muted-foreground">
                   By selecting contracts with the smallest contango premium, sophisticated ETFs and funds
                   can reduce roll drag by 50–80%, significantly improving long-term performance vs. naive rolling.

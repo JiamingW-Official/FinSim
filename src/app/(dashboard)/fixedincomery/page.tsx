@@ -751,11 +751,11 @@ export default function FixedIncomeRVPage() {
                     </div>
                     <div className="rounded bg-muted/50 p-2">
                       <div className="text-muted-foreground mb-0.5">10Y Yield</div>
-                      <div className="font-semibold">{curve10Y.yield.toFixed(2)}%</div>
+                      <div className="font-medium">{curve10Y.yield.toFixed(2)}%</div>
                     </div>
                     <div className="rounded bg-muted/50 p-2">
                       <div className="text-muted-foreground mb-0.5">DV01 Ratio</div>
-                      <div className="font-semibold">{dv01Ratio_2y10y}x</div>
+                      <div className="font-medium">{dv01Ratio_2y10y}x</div>
                     </div>
                   </div>
                   <div className="mt-2 text-xs text-muted-foreground">
@@ -787,15 +787,15 @@ export default function FixedIncomeRVPage() {
                   <div className="grid grid-cols-3 gap-2 text-[11px]">
                     <div className="rounded bg-muted/50 p-2">
                       <div className="text-muted-foreground mb-0.5">5s30s Slope</div>
-                      <div className="font-semibold">+{slope5s30s} bps</div>
+                      <div className="font-medium">+{slope5s30s} bps</div>
                     </div>
                     <div className="rounded bg-muted/50 p-2">
                       <div className="text-muted-foreground mb-0.5">2Y DV01</div>
-                      <div className="font-semibold">${curve2Y.dv01.toLocaleString()}</div>
+                      <div className="font-medium">${curve2Y.dv01.toLocaleString()}</div>
                     </div>
                     <div className="rounded bg-muted/50 p-2">
                       <div className="text-muted-foreground mb-0.5">10Y DV01</div>
-                      <div className="font-semibold">${curve10Y.dv01.toLocaleString()}</div>
+                      <div className="font-medium">${curve10Y.dv01.toLocaleString()}</div>
                     </div>
                   </div>
                 </div>
@@ -824,19 +824,19 @@ export default function FixedIncomeRVPage() {
                   <div className="grid grid-cols-4 gap-2 text-[11px]">
                     <div className="rounded bg-muted/50 p-2">
                       <div className="text-muted-foreground mb-0.5">2Y Wing</div>
-                      <div className="font-semibold">{BUTTERFLY_CONFIG.shortWingYield.toFixed(2)}%</div>
+                      <div className="font-medium">{BUTTERFLY_CONFIG.shortWingYield.toFixed(2)}%</div>
                     </div>
                     <div className="rounded bg-muted/50 p-2">
                       <div className="text-muted-foreground mb-0.5">5Y Belly</div>
-                      <div className="font-semibold text-yellow-400">{BUTTERFLY_CONFIG.bellyYield.toFixed(2)}%</div>
+                      <div className="font-medium text-yellow-400">{BUTTERFLY_CONFIG.bellyYield.toFixed(2)}%</div>
                     </div>
                     <div className="rounded bg-muted/50 p-2">
                       <div className="text-muted-foreground mb-0.5">10Y Wing</div>
-                      <div className="font-semibold">{BUTTERFLY_CONFIG.longWingYield.toFixed(2)}%</div>
+                      <div className="font-medium">{BUTTERFLY_CONFIG.longWingYield.toFixed(2)}%</div>
                     </div>
                     <div className="rounded bg-muted/50 p-2">
                       <div className="text-muted-foreground mb-0.5">Fly Value</div>
-                      <div className={cn("font-semibold", Number(butterflyValue) > 0 ? "text-emerald-400" : "text-red-400")}>
+                      <div className={cn("font-medium", Number(butterflyValue) > 0 ? "text-emerald-400" : "text-red-400")}>
                         {Number(butterflyValue) > 0 ? "+" : ""}{butterflyValue}%
                       </div>
                     </div>
@@ -888,12 +888,12 @@ export default function FixedIncomeRVPage() {
                           transition={{ delay: i * 0.04 }}
                           className="border-b border-border/30 hover:bg-muted/20"
                         >
-                          <td className="py-2 pr-3 font-mono font-semibold text-foreground">{r.rating}</td>
+                          <td className="py-2 pr-3 font-mono font-medium text-foreground">{r.rating}</td>
                           <td className="py-2 pr-3 text-muted-foreground">{r.sector}</td>
                           <td className="py-2 pr-3 font-mono">{r.oas}</td>
                           <td className="py-2 pr-3 font-mono text-muted-foreground">{r.history1y}</td>
                           <td className="py-2 pr-3 font-mono text-muted-foreground">{r.history3y}</td>
-                          <td className={cn("py-2 pr-3 font-mono font-semibold", zColor(r.zScore))}>
+                          <td className={cn("py-2 pr-3 font-mono font-medium", zColor(r.zScore))}>
                             {r.zScore > 0 ? "+" : ""}{r.zScore}σ
                           </td>
                           <td className="py-2">
@@ -1130,7 +1130,7 @@ export default function FixedIncomeRVPage() {
                           <td className="py-2 pr-3 font-mono">{s.currentSpread}</td>
                           <td className="py-2 pr-3 font-mono text-muted-foreground">{s.sixMonthAvg}</td>
                           <td className="py-2 pr-3 font-mono text-muted-foreground">{s.leverage.toFixed(1)}x</td>
-                          <td className={cn("py-2 pr-3 font-mono font-semibold", signalColor(s.signal))}>
+                          <td className={cn("py-2 pr-3 font-mono font-medium", signalColor(s.signal))}>
                             {s.spreadPerTurnLev.toFixed(1)}
                           </td>
                           <td className="py-2">
@@ -1151,7 +1151,7 @@ export default function FixedIncomeRVPage() {
               <div className="rounded-xl bg-card/60 border border-border/50 p-4">
                 <div className="flex items-center gap-2 mb-3">
                   <TrendingUp className="w-3.5 h-3.5 text-emerald-400" />
-                  <span className="text-xs font-semibold text-emerald-400">Overweight Recommendation</span>
+                  <span className="text-xs font-medium text-emerald-400">Overweight Recommendation</span>
                 </div>
                 <div className="space-y-2 text-xs text-muted-foreground">
                   <div className="flex items-start gap-2">
@@ -1172,7 +1172,7 @@ export default function FixedIncomeRVPage() {
               <div className="rounded-xl bg-card/60 border border-border/50 p-4">
                 <div className="flex items-center gap-2 mb-3">
                   <TrendingDown className="w-3.5 h-3.5 text-red-400" />
-                  <span className="text-xs font-semibold text-red-400">Underweight / Trim</span>
+                  <span className="text-xs font-medium text-red-400">Underweight / Trim</span>
                 </div>
                 <div className="space-y-2 text-xs text-muted-foreground">
                   <div className="flex items-start gap-2">
@@ -1238,11 +1238,11 @@ export default function FixedIncomeRVPage() {
                             transition={{ delay: i * 0.06 }}
                             className="border-b border-border/30 hover:bg-muted/20"
                           >
-                            <td className="py-2 pr-3 font-semibold text-foreground">{row.tenor}</td>
+                            <td className="py-2 pr-3 font-medium text-foreground">{row.tenor}</td>
                             <td className="py-2 pr-3 font-mono">{row.yield.toFixed(2)}%</td>
                             <td className="py-2 pr-3 font-mono text-indigo-400">+{row.carryBps}</td>
                             <td className="py-2 pr-3 font-mono text-orange-400">+{row.rollBps}</td>
-                            <td className="py-2 pr-3 font-mono font-semibold text-muted-foreground">+{row.totalReturnBps}</td>
+                            <td className="py-2 pr-3 font-mono font-medium text-muted-foreground">+{row.totalReturnBps}</td>
                             <td className="py-2 pr-3 font-mono text-muted-foreground">{annualized}%</td>
                           </motion.tr>
                         );
@@ -1272,7 +1272,7 @@ export default function FixedIncomeRVPage() {
               <div className="rounded-xl bg-card/60 border border-border/50 p-4">
                 <div className="flex items-center gap-2 mb-2">
                   <DollarSign className="w-3.5 h-3.5 text-indigo-400" />
-                  <span className="text-xs font-semibold text-indigo-400">Carry</span>
+                  <span className="text-xs font-medium text-indigo-400">Carry</span>
                 </div>
                 <p className="text-xs text-muted-foreground">
                   The yield earned on holding a bond over a period (net of financing cost). In a normal upward-sloping
@@ -1282,7 +1282,7 @@ export default function FixedIncomeRVPage() {
               <div className="rounded-xl bg-card/60 border border-border/50 p-4">
                 <div className="flex items-center gap-2 mb-2">
                   <BarChart3 className="w-3.5 h-3.5 text-orange-400" />
-                  <span className="text-xs font-semibold text-orange-400">Roll-Down</span>
+                  <span className="text-xs font-medium text-orange-400">Roll-Down</span>
                 </div>
                 <p className="text-xs text-muted-foreground">
                   Price appreciation as a bond "rolls down" the yield curve toward maturity. A 5Y bond held for 6M
@@ -1292,7 +1292,7 @@ export default function FixedIncomeRVPage() {
               <div className="rounded-xl bg-card/60 border border-border/50 p-4">
                 <div className="flex items-center gap-2 mb-2">
                   <Activity className="w-3.5 h-3.5 text-muted-foreground" />
-                  <span className="text-xs font-semibold text-muted-foreground">Riding the Curve</span>
+                  <span className="text-xs font-medium text-muted-foreground">Riding the Curve</span>
                 </div>
                 <p className="text-xs text-muted-foreground">
                   Combined strategy of maximizing carry + roll-down. Most effective in a stable, upward-sloping curve.

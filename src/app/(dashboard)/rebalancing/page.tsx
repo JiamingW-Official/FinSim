@@ -825,7 +825,7 @@ export default function RebalancingPage() {
                     </div>
                     <div className="border-t border-border pt-2 flex justify-between text-sm">
                       <span className="text-muted-foreground font-medium">Selected Savings</span>
-                      <span className="text-emerald-400 font-bold">{fmt$(totalHarvestSavings)}</span>
+                      <span className="text-emerald-400 font-medium">{fmt$(totalHarvestSavings)}</span>
                     </div>
                   </CardContent>
                 </Card>
@@ -1059,7 +1059,7 @@ export default function RebalancingPage() {
                             </td>
                             <td className="px-2 py-2 text-muted-foreground leading-tight">{rule.reason}</td>
                             <td className="px-4 py-2 text-right">
-                              <span className={`font-bold ${rule.score >= 85 ? "text-emerald-400" : rule.score >= 70 ? "text-amber-400" : "text-red-400"}`}>
+                              <span className={`font-medium ${rule.score >= 85 ? "text-emerald-400" : rule.score >= 70 ? "text-amber-400" : "text-red-400"}`}>
                                 {rule.score}
                               </span>
                             </td>

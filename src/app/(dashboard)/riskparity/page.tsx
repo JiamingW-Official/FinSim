@@ -347,11 +347,11 @@ function LeverageDisplay() {
         </div>
         <div className="rounded-lg bg-muted/40 p-3">
           <div className="text-xs text-muted-foreground mb-1">Margin Used</div>
-          <div className="font-mono font-bold text-muted-foreground">{margin}%</div>
+          <div className="font-mono font-medium text-muted-foreground">{margin}%</div>
         </div>
         <div className="rounded-lg bg-muted/40 p-3">
           <div className="text-xs text-muted-foreground mb-1">Unlevered Vol</div>
-          <div className="font-mono font-bold text-muted-foreground">{portfolioNatVol}%</div>
+          <div className="font-mono font-medium text-muted-foreground">{portfolioNatVol}%</div>
         </div>
       </div>
       <p className="text-xs text-muted-foreground leading-relaxed">
@@ -649,7 +649,7 @@ export default function RiskParityPage() {
                   ].map(s => (
                     <div key={s.label} className="rounded-lg bg-muted/40 p-2">
                       <div className="text-muted-foreground">{s.label}</div>
-                      <div className={`font-mono font-bold text-base ${s.color}`}>{s.value}</div>
+                      <div className={`font-mono font-medium text-base ${s.color}`}>{s.value}</div>
                       <div className="text-muted-foreground text-xs">final value</div>
                     </div>
                   ))}

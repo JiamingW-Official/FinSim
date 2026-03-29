@@ -584,7 +584,7 @@ function DistressedTab() {
           {definitions.map((d) => (
             <div key={d.term} className="rounded-lg border border-border/50 bg-foreground/[0.03] p-3 text-center">
               <InfoPill text={d.term} color={d.color} />
-              <p className="text-sm font-bold text-foreground mt-2">{d.price}</p>
+              <p className="text-sm font-medium text-foreground mt-2">{d.price}</p>
               <p className="text-xs text-muted-foreground">{d.spread}</p>
             </div>
           ))}
@@ -608,7 +608,7 @@ function DistressedTab() {
           </svg>
           <div className="text-xs text-muted-foreground space-y-2 flex-1">
             <p>
-              The <span className="text-amber-300 font-semibold">fulcrum security</span> sits at the enterprise value line — it receives partial recovery and converts to equity in the reorganized company.
+              The <span className="text-amber-300 font-medium">fulcrum security</span> sits at the enterprise value line — it receives partial recovery and converts to equity in the reorganized company.
             </p>
             <p>
               In this example: Secured debt ($300M) is fully covered by $380M EV. The Mezz tranche ($150M) is the fulcrum — it gets ~$80M recovery (~53¢/$) and converts the remainder to equity.
@@ -629,7 +629,7 @@ function DistressedTab() {
           ].map((item) => (
             <div key={item.label} className="rounded-lg border border-border/50 bg-foreground/[0.03] p-4">
               <InfoPill text={item.label} color={item.color} />
-              <p className="text-sm font-bold text-foreground mt-2">{item.value}</p>
+              <p className="text-sm font-medium text-foreground mt-2">{item.value}</p>
               <p className="text-xs text-muted-foreground mt-1">{item.desc}</p>
             </div>
           ))}
@@ -645,7 +645,7 @@ function DistressedTab() {
               <ArrowRight className="w-4 h-4 text-primary mt-0.5 shrink-0" />
               <div className="flex-1">
                 <div className="flex items-center gap-2">
-                  <p className="text-xs font-semibold text-foreground">{s.type}</p>
+                  <p className="text-xs font-medium text-foreground">{s.type}</p>
                   <InfoPill text={s.irr} color="emerald" />
                 </div>
                 <p className="text-xs text-muted-foreground mt-0.5">{s.desc}</p>
@@ -762,7 +762,7 @@ function MarketDynamicsTab() {
             <div key={y.label}>
               <div className="flex items-center justify-between mb-1">
                 <span className="text-xs text-muted-foreground">{y.label}</span>
-                <span className="text-xs font-semibold" style={{ color: y.color }}>{y.yield.toFixed(1)}%</span>
+                <span className="text-xs font-medium" style={{ color: y.color }}>{y.yield.toFixed(1)}%</span>
               </div>
               <div className="relative h-4 rounded bg-foreground/5">
                 <div className="h-full rounded" style={{ width: `${(y.yield / 18) * 100}%`, background: y.color, opacity: 0.75 }} />
@@ -783,7 +783,7 @@ function MarketDynamicsTab() {
             <div key={d.label}>
               <div className="flex items-center justify-between mb-1">
                 <span className="text-xs text-muted-foreground">{d.label}</span>
-                <span className="text-xs font-semibold" style={{ color: d.color }}>{d.rate.toFixed(1)}%</span>
+                <span className="text-xs font-medium" style={{ color: d.color }}>{d.rate.toFixed(1)}%</span>
               </div>
               <div className="relative h-4 rounded bg-foreground/5">
                 <div className="h-full rounded" style={{ width: `${(d.rate / 6) * 100}%`, background: d.color, opacity: 0.75 }} />
@@ -837,7 +837,7 @@ function MarketDynamicsTab() {
                 <AlertTriangle className={cn("w-3.5 h-3.5 mt-0.5 shrink-0", risk.color === "rose" ? "text-rose-400" : risk.color === "amber" ? "text-amber-400" : "text-primary")} />
                 <div>
                   <div className="flex items-center gap-2">
-                    <p className="text-xs font-semibold text-foreground">{risk.risk}</p>
+                    <p className="text-xs font-medium text-foreground">{risk.risk}</p>
                     <InfoPill text={risk.severity} color={risk.color} />
                   </div>
                   <p className="text-xs text-muted-foreground mt-1">{risk.detail}</p>
@@ -911,7 +911,7 @@ export default function PrivateCreditPage() {
             <Briefcase className="w-5 h-5 text-primary" />
           </div>
           <div>
-            <h1 className="text-xl font-bold text-foreground">Private Credit Markets</h1>
+            <h1 className="text-xl font-medium text-foreground">Private Credit Markets</h1>
             <p className="text-sm text-muted-foreground mt-0.5">
               Direct lending, mezzanine finance, distressed debt, special situations, and the $1.7T rise of private credit as an asset class
             </p>

@@ -784,10 +784,10 @@ export function TradeReplay() {
     <div className="flex h-full overflow-hidden">
       {/* ── Left panel: Trade selection ── */}
       <div
-        className="flex flex-col border-r border-border bg-card overflow-y-auto shrink-0"
+        className="flex flex-col border-r border-border/40 bg-card overflow-y-auto shrink-0"
         style={{ width: 280 }}
       >
-        <div className="px-3 py-2 border-b border-border">
+        <div className="px-3 py-2 border-b border-border/40">
           <p className="text-xs font-semibold text-muted-foreground">
             Recent Trades
           </p>

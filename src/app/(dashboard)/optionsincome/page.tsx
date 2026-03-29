@@ -257,7 +257,7 @@ function CoveredCallTab() {
 
       {/* Sliders */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-        <div className="rounded-lg border border-border bg-card p-4 space-y-4">
+        <div className="rounded-lg border border-border border-l-4 border-l-primary bg-card p-6 space-y-4">
           <SectionTitle>Parameters</SectionTitle>
           {[
             { label: `Spot Price: $${spotPrice}`, min: 50, max: 500, val: spotPrice, set: setSpotPrice, step: 1 },
@@ -537,7 +537,7 @@ function IronCondorTab() {
                   </span>
                 </div>
               ))}
-              <div className="border-t border-border pt-1.5 flex justify-between font-semibold">
+              <div className="border-t border-border pt-1.5 flex justify-between font-medium">
                 <span className="text-muted-foreground">Net Credit</span>
                 <span className="text-green-400">+${netCredit.toFixed(2)}</span>
               </div>
@@ -707,7 +707,7 @@ function CalendarSpreadTab() {
                 <span className="text-green-400">BUY {backDte}DTE {isCall ? "Call" : "Put"} ${K.toFixed(1)}</span>
                 <span className="text-red-400">-${backPrem.toFixed(2)}</span>
               </div>
-              <div className="border-t border-border pt-1.5 flex justify-between font-semibold">
+              <div className="border-t border-border pt-1.5 flex justify-between font-medium">
                 <span className="text-muted-foreground">Net Debit</span>
                 <span className="text-red-400">-${netDebit.toFixed(2)}</span>
               </div>
@@ -722,7 +722,7 @@ function CalendarSpreadTab() {
           </div>
 
           <div className={`rounded-lg border p-3 text-xs ${isContango ? "border-green-500/20 bg-green-500/5 text-green-300" : "border-amber-500/20 bg-amber-500/5 text-amber-300"}`}>
-            <div className="font-semibold mb-1">
+            <div className="font-medium mb-1">
               {isContango ? "Front IV > Back IV — Ideal contango structure" : "Back IV > Front IV — Consider waiting for event"}
             </div>
             <div className="text-muted-foreground">
@@ -942,7 +942,7 @@ function StrategyComparisonTab() {
                 >
                   <td className="px-4 py-2.5 font-medium text-foreground">{s.name}</td>
                   <td className="px-4 py-2.5 text-right">
-                    <span className={`font-mono font-semibold ${s.annualYield > 20 ? "text-green-400" : s.annualYield > 10 ? "text-green-300" : "text-muted-foreground"}`}>
+                    <span className={`font-mono font-medium ${s.annualYield > 20 ? "text-green-400" : s.annualYield > 10 ? "text-green-300" : "text-muted-foreground"}`}>
                       {s.annualYield.toFixed(1)}%
                     </span>
                   </td>
@@ -990,7 +990,7 @@ function StrategyComparisonTab() {
               ].map(({ label, val, color }) => (
                 <div key={label} className="text-center">
                   <div className="text-xs text-muted-foreground mb-0.5">{label}</div>
-                  <div className={`text-xs font-mono font-semibold ${color}`}>{val}</div>
+                  <div className={`text-xs font-mono font-medium ${color}`}>{val}</div>
                 </div>
               ))}
             </div>
@@ -1068,7 +1068,7 @@ export default function OptionsIncomePage() {
               <TrendingUp size={16} className="text-green-400" />
             </div>
             <div>
-              <h1 className="text-xl font-semibold text-foreground">Options Income Strategies</h1>
+              <h1 className="text-xl font-medium text-foreground">Options Income Strategies</h1>
               <p className="text-sm text-muted-foreground">Education & simulator for premium-selling strategies</p>
             </div>
           </div>

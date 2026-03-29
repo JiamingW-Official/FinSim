@@ -821,7 +821,7 @@ function AccountTab() {
       </Card>
 
       <Card className="border-destructive/20 space-y-3">
-        <div className="flex items-center gap-2 text-sm font-bold text-destructive">
+        <div className="flex items-center gap-2 text-sm font-medium text-destructive">
           <AlertTriangle className="h-4 w-4" />
           Danger Zone
         </div>
@@ -909,7 +909,7 @@ function DataTab() {
   return (
     <div className="space-y-4">
       <Card>
-        <div className="mb-2 text-xs font-bold text-muted-foreground">
+        <div className="mb-2 text-xs font-medium text-muted-foreground">
           Import / Export
         </div>
         <DataManager />
@@ -968,19 +968,19 @@ function DataTab() {
         <div className="flex flex-wrap gap-x-8 gap-y-1 text-xs text-muted-foreground mb-4">
           <span>
             Version{" "}
-            <span className="font-semibold text-foreground">v3.3.0</span>
+            <span className="font-medium text-foreground">v3.3.0</span>
           </span>
           <span>
             Build date{" "}
-            <span className="font-semibold text-foreground">2026-03-27</span>
+            <span className="font-medium text-foreground">2026-03-27</span>
           </span>
           <span>
             Platform{" "}
-            <span className="font-semibold text-foreground">Next.js 16 / Turbopack</span>
+            <span className="font-medium text-foreground">Next.js 16 / Turbopack</span>
           </span>
         </div>
         <Separator className="opacity-30 mb-4" />
-        <div className="text-xs font-bold text-muted-foreground mb-2">
+        <div className="text-xs font-medium text-muted-foreground mb-2">
           Features
         </div>
         <ul className="space-y-1.5">
@@ -1006,12 +1006,12 @@ export default function SettingsPage() {
     <div className="flex h-full flex-col overflow-y-auto">
       <div className="space-y-5 p-6 max-w-2xl">
         {/* Header */}
-        <div className="flex items-center gap-3">
+        <div className="flex items-center gap-3 border-l-4 border-l-primary p-6 rounded-lg bg-card/40">
           <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-muted">
             <Settings className="h-4 w-4 text-muted-foreground" />
           </div>
           <div>
-            <h1 className="text-lg font-bold">Settings</h1>
+            <h1 className="text-lg font-medium">Settings</h1>
             <p className="text-xs text-muted-foreground">
               Customize your trading experience
             </p>
@@ -1019,7 +1019,7 @@ export default function SettingsPage() {
           <div className="flex-1" />
           <div className="flex items-center gap-1.5 rounded-md border border-border bg-card px-2.5 py-1.5">
             <Shield className="h-3 w-3 text-primary" />
-            <span className="text-xs font-semibold text-primary">
+            <span className="text-xs font-medium text-primary">
               Lv.{level} {title}
             </span>
           </div>

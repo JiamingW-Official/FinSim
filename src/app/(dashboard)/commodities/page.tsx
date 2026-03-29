@@ -820,7 +820,7 @@ function MetalsTab() {
             {criticalMinerals.map((m) => (
               <div key={m.name} className="flex items-center gap-3 text-xs">
                 <div className="w-20 shrink-0">
-                  <div className="text-foreground font-semibold">{m.name}</div>
+                  <div className="text-foreground font-medium">{m.name}</div>
                   <div className="text-muted-foreground">{m.use}</div>
                 </div>
                 <div className="flex-1">
@@ -1209,7 +1209,7 @@ function FuturesCurveTab() {
           </CardHeader>
           <CardContent className="text-xs text-muted-foreground space-y-2">
             <p>Spot price &gt; Futures price. Indicates near-term scarcity or supply tightness.</p>
-            <p><span className="text-emerald-400 font-semibold">Roll yield: Positive</span> — rolling to cheaper deferred contracts generates return</p>
+            <p><span className="text-emerald-400 font-medium">Roll yield: Positive</span> — rolling to cheaper deferred contracts generates return</p>
             <p>Examples: WTI during OPEC cuts, Soybeans during drought, Copper during China demand surge</p>
           </CardContent>
         </Card>
@@ -1219,7 +1219,7 @@ function FuturesCurveTab() {
           </CardHeader>
           <CardContent className="text-xs text-muted-foreground space-y-2">
             <p>Futures price &gt; Spot price. Reflects storage costs, financing, and convenience yield.</p>
-            <p><span className="text-red-400 font-semibold">Roll yield: Negative</span> — rolling to more expensive contracts erodes return</p>
+            <p><span className="text-red-400 font-medium">Roll yield: Negative</span> — rolling to more expensive contracts erodes return</p>
             <p>Examples: Natural Gas in summer, Gold (reflect rate cost), Corn in good supply years</p>
           </CardContent>
         </Card>
@@ -1312,17 +1312,17 @@ function FuturesCurveTab() {
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 text-sm">
             <div className="p-3 bg-muted/50 rounded-lg">
               <div className="text-muted-foreground text-xs mb-1">Long Jan 2027</div>
-              <div className="text-xl font-bold text-foreground">$4.12</div>
+              <div className="text-xl font-medium text-foreground">$4.12</div>
               <div className="text-xs text-muted-foreground mt-1">Winter peak demand</div>
             </div>
             <div className="p-3 bg-muted/50 rounded-lg">
               <div className="text-muted-foreground text-xs mb-1">Short Jul 2026</div>
-              <div className="text-xl font-bold text-foreground">$3.18</div>
+              <div className="text-xl font-medium text-foreground">$3.18</div>
               <div className="text-xs text-muted-foreground mt-1">Summer injection season</div>
             </div>
             <div className="p-3 bg-emerald-900/20 border border-emerald-800 rounded-lg">
               <div className="text-muted-foreground text-xs mb-1">Calendar Spread</div>
-              <div className="text-xl font-bold text-emerald-400">+$0.94</div>
+              <div className="text-xl font-medium text-emerald-400">+$0.94</div>
               <div className="text-xs text-muted-foreground mt-1">Seasonal premium (avg: $0.65)</div>
             </div>
           </div>
@@ -1469,7 +1469,7 @@ function TradeIdeaCard({ idea }: { idea: TradeIdea }) {
               {idea.direction}
             </Badge>
             <div>
-              <div className="text-foreground font-semibold">{idea.name}</div>
+              <div className="text-foreground font-medium">{idea.name}</div>
               <div className="text-muted-foreground text-xs">{idea.ticker} · {idea.timeframe}</div>
             </div>
           </div>
@@ -1486,7 +1486,7 @@ function TradeIdeaCard({ idea }: { idea: TradeIdea }) {
               {idea.conviction}
             </Badge>
             <div className="text-right">
-              <div className="text-amber-400 font-bold">{idea.rr.toFixed(2)}:1</div>
+              <div className="text-amber-400 font-medium">{idea.rr.toFixed(2)}:1</div>
               <div className="text-muted-foreground text-xs">R:R</div>
             </div>
             {open ? <ChevronUp className="w-4 h-4 text-muted-foreground" /> : <ChevronDown className="w-4 h-4 text-muted-foreground" />}
@@ -1715,7 +1715,7 @@ function TradeIdeasTab() {
   return (
     <div className="space-y-6">
       <div>
-        <h2 className="text-sm font-semibold text-muted-foreground mb-3">Active Trade Ideas</h2>
+        <h2 className="text-sm font-medium text-muted-foreground mb-3">Active Trade Ideas</h2>
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-3">
           {TRADE_IDEAS.map((idea) => (
             <TradeIdeaCard key={idea.id} idea={idea} />
@@ -1804,10 +1804,10 @@ export default function CommoditiesPage() {
 
   return (
     <div className="min-h-screen bg-background text-foreground p-4 lg:p-6">
-      {/* Header */}
-      <div className="flex items-start justify-between mb-6 flex-wrap gap-4">
+      {/* HERO Header */}
+      <div className="flex items-start justify-between mb-8 flex-wrap gap-4 border-l-4 border-l-primary rounded-xl bg-card p-6">
         <div>
-          <h1 className="text-2xl font-bold text-foreground">Commodities Markets</h1>
+          <h1 className="text-xl font-semibold text-foreground">Commodities Markets</h1>
           <p className="text-muted-foreground text-sm mt-1">
             Energy · Metals · Agriculture · Softs — 24 markets, futures curves, and trade ideas
           </p>
@@ -1840,7 +1840,7 @@ export default function CommoditiesPage() {
         ].map((item) => (
           <div key={item.label} className="bg-card border border-border rounded-lg p-2 text-center">
             <div className="text-muted-foreground text-xs">{item.label}</div>
-            <div className="text-foreground font-semibold text-sm">{item.val}</div>
+            <div className="text-foreground font-medium text-sm">{item.val}</div>
             <div className={`text-xs font-mono ${item.up ? "text-emerald-400" : "text-red-400"}`}>{item.chg}</div>
           </div>
         ))}

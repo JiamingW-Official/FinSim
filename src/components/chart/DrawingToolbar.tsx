@@ -150,7 +150,7 @@ export function DrawingToolbar() {
   };
 
   return (
-    <div className="flex flex-col items-center gap-0.5 border-r border-border bg-card px-1 py-1.5">
+    <div className="flex flex-col items-center gap-0.5 border-r border-border/40 bg-card px-1 py-1.5">
       {TOOLS.map(({ tool, title, icon }) => (
         <Tooltip key={tool}>
           <TooltipTrigger asChild>

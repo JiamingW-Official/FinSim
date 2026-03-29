@@ -691,13 +691,13 @@ export default function NeobanksPage() {
               <motion.div key="bm" initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="space-y-6">
 
                 {/* Comparison Table */}
-                <Card className="bg-card border-border">
+                <Card className="bg-card border-border border-l-4 border-l-primary">
                   <CardHeader className="pb-3">
-                    <CardTitle className="text-sm font-semibold text-foreground flex items-center gap-2">
+                    <CardTitle className="text-lg font-semibold text-foreground flex items-center gap-2">
                       <Users className="w-4 h-4 text-indigo-400" /> Neobank Profiles — Key Metrics
                     </CardTitle>
                   </CardHeader>
-                  <CardContent>
+                  <CardContent className="p-6">
                     <div className="overflow-x-auto">
                       <table className="w-full text-xs">
                         <thead>
@@ -749,7 +749,7 @@ export default function NeobanksPage() {
                 </Card>
 
                 {/* Revenue Breakdown + Product Roadmap */}
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div className="mt-8 grid grid-cols-1 md:grid-cols-2 gap-6">
                   <Card className="bg-card border-border">
                     <CardHeader className="pb-3">
                       <CardTitle className="text-sm font-semibold text-foreground">
@@ -794,7 +794,7 @@ export default function NeobanksPage() {
                               )}
                             </div>
                             <div className="pb-3">
-                              <p className="text-xs font-semibold text-muted-foreground mb-1">{stage.year}</p>
+                              <p className="text-xs font-medium text-muted-foreground mb-1">{stage.year}</p>
                               <div className="flex flex-wrap gap-1">
                                 {stage.features.map((f) => (
                                   <Badge
@@ -825,7 +825,7 @@ export default function NeobanksPage() {
                 {/* CAC Calculator */}
                 <Card className="bg-card border-border">
                   <CardHeader className="pb-3">
-                    <CardTitle className="text-sm font-semibold text-foreground flex items-center gap-2">
+                    <CardTitle className="text-sm font-medium text-foreground flex items-center gap-2">
                       <TrendingUp className="w-4 h-4 text-indigo-400" /> CAC Payback Period Calculator
                     </CardTitle>
                   </CardHeader>
@@ -834,7 +834,7 @@ export default function NeobanksPage() {
                       <div>
                         <div className="flex justify-between text-xs mb-2">
                           <span className="text-muted-foreground">Customer Acquisition Cost (CAC)</span>
-                          <span className="text-foreground font-semibold">${cac}</span>
+                          <span className="text-foreground font-medium">${cac}</span>
                         </div>
                         <Slider
                           min={5}
@@ -852,7 +852,7 @@ export default function NeobanksPage() {
                       <div>
                         <div className="flex justify-between text-xs mb-2">
                           <span className="text-muted-foreground">Monthly Revenue per Active User</span>
-                          <span className="text-foreground font-semibold">${monthlyRevPerUser}</span>
+                          <span className="text-foreground font-medium">${monthlyRevPerUser}</span>
                         </div>
                         <Slider
                           min={1}
@@ -895,7 +895,7 @@ export default function NeobanksPage() {
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   <Card className="bg-card border-border">
                     <CardHeader className="pb-3">
-                      <CardTitle className="text-sm font-semibold text-foreground">
+                      <CardTitle className="text-sm font-medium text-foreground">
                         Cohort Retention by Year
                       </CardTitle>
                     </CardHeader>
@@ -909,7 +909,7 @@ export default function NeobanksPage() {
 
                   <Card className="bg-card border-border">
                     <CardHeader className="pb-3">
-                      <CardTitle className="text-sm font-semibold text-foreground">
+                      <CardTitle className="text-sm font-medium text-foreground">
                         Engagement Funnel
                       </CardTitle>
                     </CardHeader>
@@ -925,7 +925,7 @@ export default function NeobanksPage() {
                 {/* Breakeven insight */}
                 <Card className="bg-card border-border">
                   <CardHeader className="pb-3">
-                    <CardTitle className="text-sm font-semibold text-foreground flex items-center gap-2">
+                    <CardTitle className="text-sm font-medium text-foreground flex items-center gap-2">
                       <Shield className="w-4 h-4 text-emerald-400" /> Breakeven Analysis — Key Levers
                     </CardTitle>
                   </CardHeader>
@@ -953,7 +953,7 @@ export default function NeobanksPage() {
                       ].map((item) => (
                         <div key={item.lever} className="bg-muted rounded-lg p-4 space-y-2">
                           <div className="flex items-center justify-between">
-                            <p className="text-sm font-semibold text-foreground">{item.lever}</p>
+                            <p className="text-sm font-medium text-foreground">{item.lever}</p>
                             <Badge
                               variant="outline"
                               className={`text-xs border-${item.color}-500/40 text-${item.color}-400`}
@@ -979,7 +979,7 @@ export default function NeobanksPage() {
                 {/* Cost-to-Income Ratio */}
                 <Card className="bg-card border-border">
                   <CardHeader className="pb-3">
-                    <CardTitle className="text-sm font-semibold text-foreground flex items-center gap-2">
+                    <CardTitle className="text-sm font-medium text-foreground flex items-center gap-2">
                       <BarChart3 className="w-4 h-4 text-indigo-400" /> Cost-to-Income Ratio (CIR) — Traditional vs Neobank
                     </CardTitle>
                   </CardHeader>
@@ -995,7 +995,7 @@ export default function NeobanksPage() {
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   <Card className="bg-card border-border">
                     <CardHeader className="pb-3">
-                      <CardTitle className="text-sm font-semibold text-foreground">
+                      <CardTitle className="text-sm font-medium text-foreground">
                         Net Interest Margin (NIM) Comparison
                       </CardTitle>
                     </CardHeader>
@@ -1039,7 +1039,7 @@ export default function NeobanksPage() {
 
                   <Card className="bg-card border-border">
                     <CardHeader className="pb-3">
-                      <CardTitle className="text-sm font-semibold text-foreground">
+                      <CardTitle className="text-sm font-medium text-foreground">
                         Digital vs Branch Acquisition Cost
                       </CardTitle>
                     </CardHeader>
@@ -1084,7 +1084,7 @@ export default function NeobanksPage() {
                 {/* Feature Cadence */}
                 <Card className="bg-card border-border">
                   <CardHeader className="pb-3">
-                    <CardTitle className="text-sm font-semibold text-foreground flex items-center gap-2">
+                    <CardTitle className="text-sm font-medium text-foreground flex items-center gap-2">
                       <Zap className="w-4 h-4 text-amber-400" /> Speed of Innovation — Feature Releases per Year
                     </CardTitle>
                   </CardHeader>
@@ -1100,7 +1100,7 @@ export default function NeobanksPage() {
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   <Card className="bg-card border-border">
                     <CardHeader className="pb-3">
-                      <CardTitle className="text-sm font-semibold text-foreground flex items-center gap-2">
+                      <CardTitle className="text-sm font-medium text-foreground flex items-center gap-2">
                         <Shield className="w-4 h-4 text-red-400" /> Regulatory Capital Requirements
                       </CardTitle>
                     </CardHeader>
@@ -1126,7 +1126,7 @@ export default function NeobanksPage() {
 
                   <Card className="bg-card border-border">
                     <CardHeader className="pb-3">
-                      <CardTitle className="text-sm font-semibold text-foreground flex items-center gap-2">
+                      <CardTitle className="text-sm font-medium text-foreground flex items-center gap-2">
                         <ArrowRight className="w-4 h-4 text-emerald-400" /> Embedded Finance Advantage
                       </CardTitle>
                     </CardHeader>
@@ -1169,7 +1169,7 @@ export default function NeobanksPage() {
                 {/* Global Users Chart */}
                 <Card className="bg-card border-border">
                   <CardHeader className="pb-3">
-                    <CardTitle className="text-sm font-semibold text-foreground flex items-center gap-2">
+                    <CardTitle className="text-sm font-medium text-foreground flex items-center gap-2">
                       <Globe className="w-4 h-4 text-indigo-400" /> Global Neobank Users (Millions, 2018–2024)
                     </CardTitle>
                   </CardHeader>
@@ -1185,7 +1185,7 @@ export default function NeobanksPage() {
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   <Card className="bg-card border-border">
                     <CardHeader className="pb-3">
-                      <CardTitle className="text-sm font-semibold text-foreground">
+                      <CardTitle className="text-sm font-medium text-foreground">
                         Market Penetration by Region
                       </CardTitle>
                     </CardHeader>
@@ -1199,7 +1199,7 @@ export default function NeobanksPage() {
 
                   <Card className="bg-card border-border">
                     <CardHeader className="pb-3">
-                      <CardTitle className="text-sm font-semibold text-foreground flex items-center gap-2">
+                      <CardTitle className="text-sm font-medium text-foreground flex items-center gap-2">
                         <TrendingUp className="w-4 h-4 text-emerald-400" /> Profitability Timeline
                       </CardTitle>
                     </CardHeader>
@@ -1212,7 +1212,7 @@ export default function NeobanksPage() {
                               <span className="text-xs text-muted-foreground w-16 flex-shrink-0">{p.name}</span>
                               <div className="flex-1 flex items-center gap-2">
                                 <div
-                                  className="h-7 rounded-lg flex items-center justify-center text-xs font-semibold text-foreground px-3"
+                                  className="h-7 rounded-lg flex items-center justify-center text-xs font-medium text-foreground px-3"
                                   style={{
                                     background: isFuture ? "#334155" : p.color,
                                     minWidth: 80,
@@ -1241,7 +1241,7 @@ export default function NeobanksPage() {
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
                   <Card className="bg-card border-border">
                     <CardHeader className="pb-2">
-                      <CardTitle className="text-sm font-semibold text-foreground flex items-center gap-1.5">
+                      <CardTitle className="text-sm font-medium text-foreground flex items-center gap-1.5">
                         <BarChart3 className="w-4 h-4 text-amber-400" /> Consolidation Predictions
                       </CardTitle>
                     </CardHeader>
@@ -1265,7 +1265,7 @@ export default function NeobanksPage() {
 
                   <Card className="bg-card border-border">
                     <CardHeader className="pb-2">
-                      <CardTitle className="text-sm font-semibold text-foreground flex items-center gap-1.5">
+                      <CardTitle className="text-sm font-medium text-foreground flex items-center gap-1.5">
                         <DollarSign className="w-4 h-4 text-emerald-400" /> BNPL Integration
                       </CardTitle>
                     </CardHeader>
@@ -1289,7 +1289,7 @@ export default function NeobanksPage() {
 
                   <Card className="bg-card border-border">
                     <CardHeader className="pb-2">
-                      <CardTitle className="text-sm font-semibold text-foreground flex items-center gap-1.5">
+                      <CardTitle className="text-sm font-medium text-foreground flex items-center gap-1.5">
                         <Zap className="w-4 h-4 text-primary" /> Banking-as-a-Service (BaaS)
                       </CardTitle>
                     </CardHeader>
@@ -1315,7 +1315,7 @@ export default function NeobanksPage() {
                 {/* Key takeaways */}
                 <Card className="bg-card border-border">
                   <CardHeader className="pb-3">
-                    <CardTitle className="text-sm font-semibold text-foreground">Key Takeaways</CardTitle>
+                    <CardTitle className="text-sm font-medium text-foreground">Key Takeaways</CardTitle>
                   </CardHeader>
                   <CardContent>
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs">
@@ -1342,7 +1342,7 @@ export default function NeobanksPage() {
                         },
                       ].map((item) => (
                         <div key={item.title} className={`border-l-2 pl-3 ${item.color}`}>
-                          <p className="font-semibold text-foreground mb-1">{item.title}</p>
+                          <p className="font-medium text-foreground mb-1">{item.title}</p>
                           <p className="text-muted-foreground leading-relaxed">{item.desc}</p>
                         </div>
                       ))}

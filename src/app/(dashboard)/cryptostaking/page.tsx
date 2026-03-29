@@ -518,7 +518,7 @@ function ValidatorCostModel() {
         </div>
         <div className="rounded-lg border border-border bg-card/50 p-3">
           <p className="text-xs text-muted-foreground">Monthly net profit</p>
-          <p className={`text-lg font-bold ${netProfit > 0 ? "text-green-500" : "text-red-500"}`}>${fmt(netProfit, 0)}</p>
+          <p className={`text-lg font-medium ${netProfit > 0 ? "text-green-500" : "text-red-500"}`}>${fmt(netProfit, 0)}</p>
           <p className="text-xs text-muted-foreground">After opex ~${totalCost}/mo</p>
         </div>
       </div>
@@ -960,7 +960,7 @@ export default function CryptoStakingPage() {
                       },
                     ].map(({ step, label, desc, color }) => (
                       <div key={step} className="flex gap-3 rounded border border-border bg-card/40 p-2">
-                        <div className={`font-bold ${color} flex-shrink-0 w-4`}>{step}</div>
+                        <div className={`font-medium ${color} flex-shrink-0 w-4`}>{step}</div>
                         <div>
                           <div className={`font-medium mb-0.5 ${color}`}>{label}</div>
                           <p className="text-muted-foreground leading-relaxed">{desc}</p>
@@ -998,7 +998,7 @@ export default function CryptoStakingPage() {
                     { label: "Top builder market share", value: "~35%", sub: "beaverbuild" },
                   ].map((s) => (
                     <div key={s.label} className="rounded-lg border border-border bg-card/40 p-3">
-                      <div className="text-xl font-bold text-foreground">{s.value}</div>
+                      <div className="text-xl font-medium text-foreground">{s.value}</div>
                       <div className="text-xs text-muted-foreground mt-1">{s.label}</div>
                       <div className="text-xs text-muted-foreground/60 mt-0.5">{s.sub}</div>
                     </div>

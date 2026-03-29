@@ -587,11 +587,11 @@ export default function BondsPage() {
 
   return (
     <div className="flex h-full flex-col overflow-hidden">
-      {/* Header */}
-      <div className="flex items-center gap-3 border-b border-border/50 px-6 py-4">
+      {/* HERO Header */}
+      <div className="flex items-center gap-3 border-b border-border/50 border-l-4 border-l-primary px-6 py-4">
         <Landmark className="h-5 w-5 text-primary" />
         <div>
-          <h1 className="text-base font-semibold leading-none">Fixed Income Simulator</h1>
+          <h1 className="text-lg font-semibold leading-none">Fixed Income Simulator</h1>
           <p className="mt-1 text-xs text-muted-foreground">
             Bonds, yield curves, credit analysis &amp; portfolio construction
           </p>
@@ -663,7 +663,7 @@ export default function BondsPage() {
                   isFlat ? "border-amber-500/30 bg-amber-500/5" :
                   "border-green-500/30 bg-green-500/5",
                 )}>
-                  <div className="text-xs font-semibold text-muted-foreground mb-1">
+                  <div className="text-xs font-medium text-muted-foreground mb-1">
                     10Y – 2Y Spread
                   </div>
                   <div className={cn("text-2xl font-bold tabular-nums",
@@ -679,7 +679,7 @@ export default function BondsPage() {
                 {yieldCurve.current.map(p => (
                   <div key={p.label} className="flex items-center justify-between rounded-md border border-border/40 bg-card px-3 py-1.5">
                     <span className="text-xs text-muted-foreground">{p.label} Treasury</span>
-                    <span className="text-xs font-semibold tabular-nums text-foreground">{p.ytm.toFixed(3)}%</span>
+                    <span className="text-xs font-medium tabular-nums text-foreground">{p.ytm.toFixed(3)}%</span>
                   </div>
                 ))}
               </div>
@@ -694,7 +694,7 @@ export default function BondsPage() {
                 "High Yield Bonds";
               return (
                 <div key={type} className="mb-5">
-                  <h3 className={cn("mb-3 text-xs font-semibold",
+                  <h3 className={cn("mb-3 text-xs font-medium",
                     type === "treasury" ? "text-primary" :
                     type === "corporate-ig" ? "text-primary" :
                     "text-red-400"
@@ -716,8 +716,8 @@ export default function BondsPage() {
                         >
                           <div className="mb-2 flex items-start justify-between">
                             <div>
-                              <div className="text-xs font-semibold text-muted-foreground">{b.ticker}</div>
-                              <div className="mt-0.5 text-xs font-semibold text-foreground leading-tight">{b.name}</div>
+                              <div className="text-xs font-medium text-muted-foreground">{b.ticker}</div>
+                              <div className="mt-0.5 text-xs font-medium text-foreground leading-tight">{b.name}</div>
                             </div>
                             <span className={cn("rounded px-1.5 py-0.5 text-[11px] font-bold", rc)}>
                               {b.creditRating}
@@ -726,27 +726,27 @@ export default function BondsPage() {
                           <div className="grid grid-cols-2 gap-1.5 text-xs">
                             <div className="flex flex-col">
                               <span className="text-muted-foreground">Coupon</span>
-                              <span className="font-semibold text-foreground">{b.coupon.toFixed(2)}%</span>
+                              <span className="font-medium text-foreground">{b.coupon.toFixed(2)}%</span>
                             </div>
                             <div className="flex flex-col">
                               <span className="text-muted-foreground">YTM</span>
-                              <span className="font-semibold text-primary">{b.ytm.toFixed(3)}%</span>
+                              <span className="font-medium text-primary">{b.ytm.toFixed(3)}%</span>
                             </div>
                             <div className="flex flex-col">
                               <span className="text-muted-foreground">Price</span>
-                              <span className="font-semibold text-foreground">${b.price.toFixed(2)}</span>
+                              <span className="font-medium text-foreground">${b.price.toFixed(2)}</span>
                             </div>
                             <div className="flex flex-col">
                               <span className="text-muted-foreground">Duration</span>
-                              <span className="font-semibold text-foreground">{b.duration.toFixed(2)}yr</span>
+                              <span className="font-medium text-foreground">{b.duration.toFixed(2)}yr</span>
                             </div>
                             <div className="flex flex-col">
                               <span className="text-muted-foreground">Maturity</span>
-                              <span className="font-semibold text-foreground">{b.maturityDate.slice(0, 7)}</span>
+                              <span className="font-medium text-foreground">{b.maturityDate.slice(0, 7)}</span>
                             </div>
                             <div className="flex flex-col">
                               <span className="text-muted-foreground">Yield Chg</span>
-                              <span className={cn("font-semibold tabular-nums flex items-center gap-0.5",
+                              <span className={cn("font-medium tabular-nums flex items-center gap-0.5",
                                 isRising ? "text-red-400" : "text-green-400")}>
                                 {isRising ? <TrendingUp className="h-2.5 w-2.5" /> : <TrendingDown className="h-2.5 w-2.5" />}
                                 {b.yieldChange1d >= 0 ? "+" : ""}{(b.yieldChange1d * 100).toFixed(1)} bps
@@ -773,7 +773,7 @@ export default function BondsPage() {
             <div className="grid grid-cols-1 gap-5 lg:grid-cols-2">
               {/* Inputs */}
               <div className="rounded-lg border border-border/50 bg-card p-5">
-                <h3 className="mb-4 text-sm font-semibold">Bond Parameters</h3>
+                <h3 className="mb-4 text-sm font-medium">Bond Parameters</h3>
                 <div className="space-y-4">
                   <div>
                     <label className="mb-1.5 block text-xs font-medium text-muted-foreground">Face Value ($)</label>
@@ -820,7 +820,7 @@ export default function BondsPage() {
               {/* Outputs */}
               <div className="flex flex-col gap-4">
                 <div className="rounded-lg border border-border/50 bg-card p-5">
-                  <h3 className="mb-4 text-sm font-semibold">Calculated Metrics</h3>
+                  <h3 className="mb-4 text-sm font-medium">Calculated Metrics</h3>
                   <div className="grid grid-cols-2 gap-3">
                     {[
                       { label: "Bond Price", value: `$${calcOutputs.price.toFixed(4)}`, highlight: true, sub: `${calcOutputs.price > calcFace ? "Premium" : calcOutputs.price < calcFace ? "Discount" : "At Par"}` },
@@ -833,7 +833,7 @@ export default function BondsPage() {
                       <div key={label} className={cn("rounded-md border p-3",
                         highlight ? "border-primary/30 bg-primary/5" : "border-border/40 bg-muted/20")}>
                         <div className="text-[11px] font-medium text-muted-foreground">{label}</div>
-                        <div className={cn("mt-1 text-sm font-bold tabular-nums", highlight ? "text-primary" : "text-foreground")}>
+                        <div className={cn("mt-1 text-sm font-medium tabular-nums", highlight ? "text-primary" : "text-foreground")}>
                           {value}
                         </div>
                         {sub && <div className="mt-0.5 text-[11px] text-muted-foreground/60">{sub}</div>}
@@ -844,7 +844,7 @@ export default function BondsPage() {
 
                 {/* Duration visual explainer */}
                 <div className="rounded-lg border border-border/50 bg-card p-4">
-                  <h4 className="mb-3 text-xs font-semibold text-muted-foreground">
+                  <h4 className="mb-3 text-xs font-medium text-muted-foreground">
                     Duration Impact — Rate Scenarios
                   </h4>
                   <div className="space-y-2">
@@ -864,7 +864,7 @@ export default function BondsPage() {
                               background: delta < 0 ? "rgba(34,197,94,0.4)" : delta > 0 ? "rgba(239,68,68,0.4)" : "rgba(99,102,241,0.4)",
                             }} />
                           </div>
-                          <div className={cn("w-24 text-right text-xs font-semibold tabular-nums",
+                          <div className={cn("w-24 text-right text-xs font-medium tabular-nums",
                             chg > 0 ? "text-green-400" : chg < 0 ? "text-red-400" : "text-primary")}>
                             ${price.toFixed(2)} ({chg >= 0 ? "+" : ""}{chg.toFixed(2)}%)
                           </div>
@@ -882,7 +882,7 @@ export default function BondsPage() {
             {/* Price-yield chart */}
             <div className="mt-5 rounded-lg border border-border/50 bg-card p-5">
               <div className="mb-3 flex items-center justify-between">
-                <span className="text-xs font-semibold text-muted-foreground">
+                <span className="text-xs font-medium text-muted-foreground">
                   Price–Yield Relationship (Convex Curve, 1%–15%)
                 </span>
                 <span className="text-xs text-muted-foreground/60">
@@ -901,7 +901,7 @@ export default function BondsPage() {
             <div className="mb-5 grid grid-cols-1 gap-5 lg:grid-cols-3">
               <div className="col-span-2 rounded-lg border border-border/50 bg-card p-5">
                 <div className="mb-3 flex items-center justify-between">
-                  <span className="text-xs font-semibold text-muted-foreground">
+                  <span className="text-xs font-medium text-muted-foreground">
                     Yield Curve — Historical Comparison
                   </span>
                   <div className="flex items-center gap-3 text-[11px] text-muted-foreground/60">
@@ -925,10 +925,10 @@ export default function BondsPage() {
                   isInverted ? "border-red-500/30 bg-red-500/5" :
                   isFlat ? "border-amber-500/30 bg-amber-500/5" :
                   "border-green-500/30 bg-green-500/5")}>
-                  <div className="text-xs font-semibold text-muted-foreground mb-1">
+                  <div className="text-xs font-medium text-muted-foreground mb-1">
                     Current Regime
                   </div>
-                  <div className={cn("text-xl font-bold",
+                  <div className={cn("text-xl font-medium",
                     isInverted ? "text-red-400" : isFlat ? "text-amber-400" : "text-green-400")}>
                     {curveRegime}
                   </div>
@@ -943,7 +943,7 @@ export default function BondsPage() {
 
                 {/* Curve shape guide */}
                 <div className="rounded-lg border border-border/50 bg-card p-4">
-                  <div className="text-xs font-semibold text-muted-foreground mb-3">Shape Guide</div>
+                  <div className="text-xs font-medium text-muted-foreground mb-3">Shape Guide</div>
                   <div className="space-y-2.5">
                     {[
                       { shape: "Normal", color: "text-green-400", bg: "bg-green-500", desc: "Long > Short — growth & inflation expected" },
@@ -954,7 +954,7 @@ export default function BondsPage() {
                       <div key={s.shape} className="flex items-start gap-2">
                         <div className={cn("mt-1 h-1.5 w-1.5 shrink-0 rounded-full", s.bg)} />
                         <div>
-                          <span className={cn("text-xs font-semibold", s.color)}>{s.shape}</span>
+                          <span className={cn("text-xs font-medium", s.color)}>{s.shape}</span>
                           <span className="ml-1.5 text-[11px] text-muted-foreground">{s.desc}</span>
                         </div>
                       </div>
@@ -967,7 +967,7 @@ export default function BondsPage() {
             {/* Spread analysis */}
             <div className="mb-5 grid grid-cols-1 gap-5 lg:grid-cols-2">
               <div className="rounded-lg border border-border/50 bg-card p-5">
-                <h3 className="mb-4 text-sm font-semibold">Spread Analysis (bps)</h3>
+                <h3 className="mb-4 text-sm font-medium">Spread Analysis (bps)</h3>
                 <SpreadBarSVG />
                 <div className="mt-4 grid grid-cols-2 gap-2 text-xs">
                   {[
@@ -980,14 +980,14 @@ export default function BondsPage() {
                   ].map(s => (
                     <div key={s.label} className="rounded-md border border-border/40 bg-muted/20 px-3 py-2">
                       <div className="text-muted-foreground">{s.label}</div>
-                      <div className={cn("mt-0.5 font-bold tabular-nums", s.color)}>{s.value}</div>
+                      <div className={cn("mt-0.5 font-medium tabular-nums", s.color)}>{s.value}</div>
                     </div>
                   ))}
                 </div>
               </div>
 
               <div className="rounded-lg border border-border/50 bg-card p-5">
-                <h3 className="mb-4 text-sm font-semibold">Spread Interpretation</h3>
+                <h3 className="mb-4 text-sm font-medium">Spread Interpretation</h3>
                 <div className="space-y-3">
                   {[
                     {
@@ -1020,7 +1020,7 @@ export default function BondsPage() {
                       <div key={item.title} className="flex items-start gap-2.5">
                         <Icon className={cn("h-3.5 w-3.5 mt-0.5 shrink-0", item.color)} />
                         <div>
-                          <div className={cn("text-xs font-semibold", item.color)}>{item.title}</div>
+                          <div className={cn("text-xs font-medium", item.color)}>{item.title}</div>
                           <div className="mt-0.5 text-[11px] text-muted-foreground leading-relaxed">{item.desc}</div>
                         </div>
                       </div>
@@ -1038,13 +1038,13 @@ export default function BondsPage() {
             <div className="grid grid-cols-1 gap-5 lg:grid-cols-3">
               {/* Bond selector */}
               <div className="rounded-lg border border-border/50 bg-card p-5">
-                <h3 className="mb-3 text-sm font-semibold">Bond Universe</h3>
+                <h3 className="mb-3 text-sm font-medium">Bond Universe</h3>
 
                 {/* Target duration slider */}
                 <div className="mb-4 rounded-md border border-border/40 bg-muted/20 p-3">
                   <div className="mb-2 flex items-center justify-between text-xs">
                     <span className="text-muted-foreground">Target Portfolio Duration</span>
-                    <span className="font-bold text-primary">{targetDuration.toFixed(1)} yrs</span>
+                    <span className="font-medium text-primary">{targetDuration.toFixed(1)} yrs</span>
                   </div>
                   <input
                     type="range" min={1} max={15} step={0.5} value={targetDuration}
@@ -1066,9 +1066,9 @@ export default function BondsPage() {
                         inPortfolio ? "border-primary/40 bg-primary/5" : "border-border/40 bg-card hover:bg-accent/30",
                       )}>
                         <div className="flex items-center gap-2">
-                          <span className={cn("rounded px-1 py-0.5 text-[11px] font-bold", tl.cls)}>{tl.label}</span>
+                          <span className={cn("rounded px-1 py-0.5 text-[11px] font-medium", tl.cls)}>{tl.label}</span>
                           <div>
-                            <div className="text-xs font-semibold text-foreground">{b.ticker}</div>
+                            <div className="text-xs font-medium text-foreground">{b.ticker}</div>
                             <div className="text-[11px] text-muted-foreground">{b.maturityYears}yr · {b.ytm.toFixed(2)}% YTM</div>
                           </div>
                         </div>
@@ -1101,8 +1101,8 @@ export default function BondsPage() {
                       { label: "Annual Coupon / $100k", value: `$${portfolioMetrics.totalCouponPer100k.toLocaleString("en-US", { maximumFractionDigits: 0 })}`, color: "text-foreground" },
                     ].map(m => (
                       <div key={m.label} className="rounded-lg border border-border/50 bg-card px-4 py-3">
-                        <div className="text-[11px] font-semibold text-muted-foreground">{m.label}</div>
-                        <div className={cn("mt-1 text-base font-bold tabular-nums", m.color)}>{m.value}</div>
+                        <div className="text-[11px] font-medium text-muted-foreground">{m.label}</div>
+                        <div className={cn("mt-1 text-base font-medium tabular-nums", m.color)}>{m.value}</div>
                       </div>
                     ))}
                   </div>
@@ -1122,7 +1122,7 @@ export default function BondsPage() {
                         <thead>
                           <tr className="border-b border-border/50 bg-muted/30">
                             {["Bond", "Weight %", "Dur Contrib", "Yield Contrib", "Remove"].map(h => (
-                              <th key={h} className="px-3 py-2.5 text-left text-[11px] font-semibold text-muted-foreground whitespace-nowrap">
+                              <th key={h} className="px-3 py-2.5 text-left text-[11px] font-medium text-muted-foreground whitespace-nowrap">
                                 {h}
                               </th>
                             ))}
@@ -1139,7 +1139,7 @@ export default function BondsPage() {
                             return (
                               <tr key={h.bondId} className="border-b border-border/20 hover:bg-accent/20">
                                 <td className="px-3 py-2.5">
-                                  <div className="font-semibold text-foreground">{bond.ticker}</div>
+                                  <div className="font-medium text-foreground">{bond.ticker}</div>
                                   <div className="text-[11px] text-muted-foreground">{bond.name}</div>
                                 </td>
                                 <td className="px-3 py-2.5">
@@ -1169,7 +1169,7 @@ export default function BondsPage() {
                 {/* Maturity ladder SVG */}
                 {portfolio.length > 0 && (
                   <div className="rounded-lg border border-border/50 bg-card p-5">
-                    <h4 className="mb-3 text-xs font-semibold text-muted-foreground">
+                    <h4 className="mb-3 text-xs font-medium text-muted-foreground">
                       Bond Maturity Ladder
                     </h4>
                     <MaturityLadderSVG />
@@ -1195,7 +1195,7 @@ export default function BondsPage() {
                         ? <ShieldCheck className="h-4 w-4 text-green-400" />
                         : <AlertTriangle className="h-4 w-4 text-amber-400" />}
                       <div>
-                        <div className="text-xs font-semibold text-foreground">
+                        <div className="text-xs font-medium text-foreground">
                           Duration Gap: {(portfolioMetrics.wAvgDuration - targetDuration).toFixed(2)} yrs
                         </div>
                         <div className="mt-0.5 text-xs text-muted-foreground">
@@ -1223,7 +1223,7 @@ export default function BondsPage() {
               <div className="mb-4 flex items-start gap-2.5 rounded-lg border border-amber-500/30 bg-amber-500/5 p-4">
                 <AlertTriangle className="h-4 w-4 text-amber-400 mt-0.5 shrink-0" />
                 <div>
-                  <div className="text-xs font-semibold text-amber-400">Fallen Angel Risk Detected</div>
+                  <div className="text-xs font-medium text-amber-400">Fallen Angel Risk Detected</div>
                   <div className="mt-0.5 text-xs text-muted-foreground">
                     One or more investment-grade bonds have deteriorating credit metrics and may be at risk of downgrade to high yield.
                     "Fallen angels" can trigger forced selling by index funds, causing price dislocation.
@@ -1257,15 +1257,15 @@ export default function BondsPage() {
                         <CreditGaugeSVG score={ca.score} />
                         <div>
                           <div className="flex items-center gap-1.5">
-                            <span className={cn("rounded px-1 py-0.5 text-[11px] font-bold", tl.cls)}>{tl.label}</span>
-                            <span className={cn("rounded px-1 py-0.5 text-[11px] font-bold", rc)}>{bond.creditRating}</span>
+                            <span className={cn("rounded px-1 py-0.5 text-[11px] font-medium", tl.cls)}>{tl.label}</span>
+                            <span className={cn("rounded px-1 py-0.5 text-[11px] font-medium", rc)}>{bond.creditRating}</span>
                           </div>
-                          <div className="mt-0.5 text-xs font-semibold text-foreground leading-tight">{bond.name}</div>
+                          <div className="mt-0.5 text-xs font-medium text-foreground leading-tight">{bond.name}</div>
                           <div className="text-[11px] text-muted-foreground">{bond.sector}</div>
                         </div>
                       </div>
                       {ca.atRisk && (
-                        <span className="rounded-full bg-red-500/15 px-2 py-0.5 text-[11px] font-semibold text-red-400">
+                        <span className="rounded-full bg-red-500/15 px-2 py-0.5 text-[11px] font-medium text-red-400">
                           AT RISK
                         </span>
                       )}
@@ -1291,7 +1291,7 @@ export default function BondsPage() {
                       ].map(m => (
                         <div key={m.label} className="rounded border border-border/30 bg-muted/20 px-2 py-1.5">
                           <div className="text-muted-foreground">{m.label}</div>
-                          <div className={cn("mt-0.5 font-semibold tabular-nums", m.color || "text-foreground")}>{m.value}</div>
+                          <div className={cn("mt-0.5 font-medium tabular-nums", m.color || "text-foreground")}>{m.value}</div>
                         </div>
                       ))}
                     </div>
@@ -1300,7 +1300,7 @@ export default function BondsPage() {
                     <div className="mt-3 rounded border border-border/30 bg-muted/20 px-3 py-2">
                       <div className="flex items-center justify-between">
                         <span className="text-[11px] text-muted-foreground">Altman Z-Score</span>
-                        <span className={cn("text-xs font-bold tabular-nums", zColor)}>
+                        <span className={cn("text-xs font-medium tabular-nums", zColor)}>
                           {ca.zScore.toFixed(2)} — {zLabel}
                         </span>
                       </div>
@@ -1319,7 +1319,7 @@ export default function BondsPage() {
                     <div className="mt-2">
                       <div className="mb-1 flex justify-between text-[11px]">
                         <span className="text-muted-foreground">Credit Score</span>
-                        <span className={cn("font-bold", ca.score >= 70 ? "text-green-400" : ca.score >= 50 ? "text-amber-400" : "text-red-400")}>
+                        <span className={cn("font-medium", ca.score >= 70 ? "text-green-400" : ca.score >= 50 ? "text-amber-400" : "text-red-400")}>
                           {ca.score}/100
                         </span>
                       </div>
@@ -1337,7 +1337,7 @@ export default function BondsPage() {
 
             {/* Credit metric legend */}
             <div className="mt-5 rounded-lg border border-border/50 bg-card p-5">
-              <h3 className="mb-3 text-sm font-semibold">Credit Metric Benchmarks</h3>
+              <h3 className="mb-3 text-sm font-medium">Credit Metric Benchmarks</h3>
               <div className="grid grid-cols-1 gap-3 sm:grid-cols-3">
                 {[
                   {
@@ -1366,11 +1366,11 @@ export default function BondsPage() {
                   },
                 ].map(g => (
                   <div key={g.metric}>
-                    <div className="mb-2 text-xs font-semibold text-muted-foreground">{g.metric}</div>
+                    <div className="mb-2 text-xs font-medium text-muted-foreground">{g.metric}</div>
                     <div className="space-y-1.5">
                       {g.thresholds.map(t => (
                         <div key={t.label} className="flex items-start gap-2">
-                          <span className={cn("mt-0.5 text-xs font-bold w-14 shrink-0 tabular-nums", t.color)}>{t.label}</span>
+                          <span className={cn("mt-0.5 text-xs font-medium w-14 shrink-0 tabular-nums", t.color)}>{t.label}</span>
                           <span className="text-[11px] text-muted-foreground">{t.desc}</span>
                         </div>
                       ))}

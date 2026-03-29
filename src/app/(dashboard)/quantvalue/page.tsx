@@ -576,7 +576,7 @@ function MagicFormula() {
                 <td className="px-3 py-2 text-right text-muted-foreground">#{st.roicRank}</td>
                 <td className="px-3 py-2 text-right text-amber-400">{st.earningsYield.toFixed(1)}%</td>
                 <td className="px-3 py-2 text-right text-muted-foreground">#{st.eyRank}</td>
-                <td className="px-3 py-2 text-right font-bold text-foreground">#{st.combinedRank}</td>
+                <td className="px-3 py-2 text-right font-medium text-foreground">#{st.combinedRank}</td>
               </tr>
             ))}
           </tbody>
@@ -618,22 +618,22 @@ function AcquirersMultiple() {
       <div className="grid grid-cols-4 gap-3">
         <div className="bg-card border border-border rounded-lg p-3">
           <p className="text-xs text-muted-foreground">Cheapest AM</p>
-          <p className="text-xl font-bold text-emerald-400 mt-1">{sorted[0]?.acquirerMultiple.toFixed(1)}x</p>
+          <p className="text-xl font-medium text-emerald-400 mt-1">{sorted[0]?.acquirerMultiple.toFixed(1)}x</p>
           <p className="text-xs text-muted-foreground mt-0.5">{sorted[0]?.ticker}</p>
         </div>
         <div className="bg-card border border-border rounded-lg p-3">
           <p className="text-xs text-muted-foreground">Avg AM (top 5)</p>
-          <p className="text-xl font-bold text-primary mt-1">{avgAM.toFixed(1)}x</p>
+          <p className="text-xl font-medium text-primary mt-1">{avgAM.toFixed(1)}x</p>
           <p className="text-xs text-muted-foreground mt-0.5">Cheapest decile</p>
         </div>
         <div className="bg-card border border-border rounded-lg p-3">
           <p className="text-xs text-muted-foreground">Avg P/E (top 5)</p>
-          <p className="text-xl font-bold text-amber-400 mt-1">{avgPE.toFixed(1)}x</p>
+          <p className="text-xl font-medium text-amber-400 mt-1">{avgPE.toFixed(1)}x</p>
           <p className="text-xs text-muted-foreground mt-0.5">P/E by comparison</p>
         </div>
         <div className="bg-card border border-border rounded-lg p-3">
           <p className="text-xs text-muted-foreground">AM/PE Divergence</p>
-          <p className={cn("text-xl font-bold mt-1", avgPE - avgAM > 3 ? "text-red-400" : "text-muted-foreground")}>
+          <p className={cn("text-xl font-medium mt-1", avgPE - avgAM > 3 ? "text-red-400" : "text-muted-foreground")}>
             {(avgPE - avgAM).toFixed(1)}x
           </p>
           <p className="text-xs text-muted-foreground mt-0.5">Debt burden signal</p>
@@ -697,7 +697,7 @@ function AcquirersMultiple() {
                   <td className="px-3 py-2 text-muted-foreground text-xs">{st.sector}</td>
                   <td className="px-3 py-2 text-right text-muted-foreground">${st.ev.toFixed(0)}M</td>
                   <td className="px-3 py-2 text-right text-muted-foreground">${st.operatingEarnings.toFixed(0)}M</td>
-                  <td className={cn("px-3 py-2 text-right font-bold", isTopDecile ? "text-emerald-400" : "text-muted-foreground")}>
+                  <td className={cn("px-3 py-2 text-right font-medium", isTopDecile ? "text-emerald-400" : "text-muted-foreground")}>
                     {st.acquirerMultiple.toFixed(1)}x
                   </td>
                   <td className="px-3 py-2 text-right text-amber-400">{st.pe.toFixed(1)}x</td>
@@ -812,7 +812,7 @@ function QualityValueBlend() {
           {selectedStock ? (
             <div className="space-y-3">
               <div className="flex items-center justify-between">
-                <span className="font-mono text-primary font-bold text-lg">{selectedStock.ticker}</span>
+                <span className="font-mono text-primary font-medium text-lg">{selectedStock.ticker}</span>
                 <button onClick={() => setSelected(null)} className="text-muted-foreground hover:text-muted-foreground text-xs">✕ close</button>
               </div>
               <p className="text-sm text-muted-foreground">{selectedStock.company}</p>
@@ -895,7 +895,7 @@ function QualityValueBlend() {
                 <td className="px-3 py-2 text-muted-foreground">{st.company}</td>
                 <td className="px-3 py-2 text-right text-primary">{st.valueScore.toFixed(1)}</td>
                 <td className="px-3 py-2 text-right text-emerald-400">{st.qualityScore.toFixed(1)}</td>
-                <td className="px-3 py-2 text-right font-bold text-amber-400">{st.compositeScore.toFixed(1)}</td>
+                <td className="px-3 py-2 text-right font-medium text-amber-400">{st.compositeScore.toFixed(1)}</td>
                 <td className="px-3 py-2 text-right text-muted-foreground">{st.pb.toFixed(2)}x</td>
                 <td className="px-3 py-2 text-right text-muted-foreground">{st.evEbitda.toFixed(1)}x</td>
                 <td className="px-3 py-2 text-right text-muted-foreground">{st.roic.toFixed(1)}%</td>
@@ -974,7 +974,7 @@ function BacktestedPerformance() {
         ].map((k) => (
           <div key={k.label} className="bg-card border border-border rounded-lg p-3">
             <p className="text-xs text-muted-foreground">{k.label}</p>
-            <p className={cn("text-xl font-bold mt-1", k.color)}>{k.value}</p>
+            <p className={cn("text-xl font-medium mt-1", k.color)}>{k.value}</p>
           </div>
         ))}
       </div>

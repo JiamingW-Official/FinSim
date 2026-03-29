@@ -679,7 +679,7 @@ function Tab2InstitutionalSolutions() {
               className="mt-3 overflow-hidden"
             >
               <div className="rounded-lg border border-indigo-500/30 bg-indigo-500/10 p-3">
-                <p className="text-indigo-300 font-semibold text-xs mb-1">{selectedCustodian.name} — Notable Detail</p>
+                <p className="text-indigo-300 font-medium text-xs mb-1">{selectedCustodian.name} — Notable Detail</p>
                 <p className="text-indigo-200 text-xs">{selectedCustodian.notable}</p>
                 <p className="text-muted-foreground text-xs mt-1">Insurance: {selectedCustodian.insurance} | Founded: {selectedCustodian.founded}</p>
               </div>
@@ -695,7 +695,7 @@ function Tab2InstitutionalSolutions() {
         </SectionTitle>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           <div className="rounded-lg border border-emerald-500/20 bg-emerald-500/5 p-3">
-            <p className="text-emerald-400 font-semibold text-xs mb-2 flex items-center gap-1.5">
+            <p className="text-emerald-400 font-medium text-xs mb-2 flex items-center gap-1.5">
               <ShieldCheck size={12} /> Segregated Accounts
             </p>
             <ul className="space-y-1.5">
@@ -714,7 +714,7 @@ function Tab2InstitutionalSolutions() {
             </ul>
           </div>
           <div className="rounded-lg border border-amber-500/20 bg-amber-500/5 p-3">
-            <p className="text-amber-400 font-semibold text-xs mb-2 flex items-center gap-1.5">
+            <p className="text-amber-400 font-medium text-xs mb-2 flex items-center gap-1.5">
               <Database size={12} /> Omnibus Accounts
             </p>
             <ul className="space-y-1.5">
@@ -752,7 +752,7 @@ function Tab2InstitutionalSolutions() {
               <div key={i} className="flex items-center justify-between text-xs border-b border-border/50 pb-1.5">
                 <span className="text-muted-foreground">{row.label}</span>
                 <div className="text-right">
-                  <span className="text-emerald-400 font-semibold">{row.value}</span>
+                  <span className="text-emerald-400 font-medium">{row.value}</span>
                   <span className="text-muted-foreground ml-2">{row.note}</span>
                 </div>
               </div>
@@ -790,7 +790,7 @@ function Tab2InstitutionalSolutions() {
             <div key={i} className="rounded-lg border border-border bg-foreground/5 p-3">
               <div className="flex items-center gap-2 mb-1.5">
                 <span className="text-indigo-400">{svc.icon}</span>
-                <p className="text-xs font-semibold text-foreground">{svc.service}</p>
+                <p className="text-xs font-medium text-foreground">{svc.service}</p>
               </div>
               <p className="text-xs text-muted-foreground">{svc.desc}</p>
             </div>
@@ -937,7 +937,7 @@ function Tab3RegulatoryFramework() {
                   {evt.year}
                 </Badge>
                 <div className="flex-1">
-                  <span className="text-xs font-semibold text-foreground">{evt.event}</span>
+                  <span className="text-xs font-medium text-foreground">{evt.event}</span>
                   <span className="text-xs text-muted-foreground ml-2">— {evt.body}</span>
                 </div>
                 {evt.impact === "positive" ? (
@@ -974,7 +974,7 @@ function Tab3RegulatoryFramework() {
               <div className="flex items-start justify-between gap-3">
                 <div>
                   <div className="flex items-center gap-2 mb-1">
-                    <span className="text-xs font-semibold text-foreground">{reg.state}</span>
+                    <span className="text-xs font-medium text-foreground">{reg.state}</span>
                     <Badge className={cn(
                       "text-xs",
                       reg.status === "active" ? "bg-emerald-500/20 text-emerald-300 border-emerald-500/30"
@@ -1094,7 +1094,7 @@ function HacksTimelineSVG() {
             <span className="text-xs text-muted-foreground capitalize">{t}</span>
           </div>
         ))}
-        <div className="ml-auto text-xs text-rose-400 font-semibold">${totalLoss.toLocaleString()}M+ total losses</div>
+        <div className="ml-auto text-xs text-rose-400 font-medium">${totalLoss.toLocaleString()}M+ total losses</div>
       </div>
       <svg viewBox={`0 0 ${svgW} ${svgH}`} className="w-full" style={{ height: 200 }}>
         {/* Y-axis gridlines */}
@@ -1205,7 +1205,7 @@ function Tab4SecurityInsurance() {
           {INSURANCE_TYPES.map((ins, i) => (
             <div key={i} className="rounded-lg border border-border bg-foreground/5 p-3">
               <div className="flex items-center justify-between mb-2">
-                <span className="text-xs font-semibold text-foreground">{ins.type}</span>
+                <span className="text-xs font-medium text-foreground">{ins.type}</span>
                 <Badge className="bg-emerald-500/20 text-emerald-300 border-emerald-500/30 text-xs">{ins.maxCoverage}</Badge>
               </div>
               <p className="text-xs text-muted-foreground mb-1.5">{ins.desc}</p>
@@ -1228,7 +1228,7 @@ function Tab4SecurityInsurance() {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-3">
           {SOC2_CONTROLS.map((cat, i) => (
             <div key={i} className="rounded-lg border border-indigo-500/20 bg-indigo-500/5 p-3">
-              <p className="text-xs font-semibold text-indigo-400 mb-2">{cat.category}</p>
+              <p className="text-xs font-medium text-indigo-400 mb-2">{cat.category}</p>
               <ul className="space-y-1">
                 {cat.controls.map((ctrl, j) => (
                   <li key={j} className="flex items-start gap-1.5 text-xs text-muted-foreground">
@@ -1309,14 +1309,14 @@ export default function DigitalCustodyPage() {
         initial={{ opacity: 0, y: -12 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.4 }}
-        className="mb-6"
+        className="mb-6 border-l-4 border-l-primary rounded-lg bg-card p-6"
       >
         <div className="flex items-center gap-3 mb-2">
           <div className="p-2 rounded-xl bg-indigo-500/20 border border-indigo-500/30">
             <Lock size={20} className="text-indigo-400" />
           </div>
           <div>
-            <h1 className="text-2xl font-bold text-foreground">Digital Asset Custody</h1>
+            <h1 className="text-xl font-bold text-foreground">Digital Asset Custody</h1>
             <p className="text-sm text-muted-foreground">Institutional crypto custody solutions, MPC technology, regulatory requirements, and insurance</p>
           </div>
         </div>
@@ -1336,7 +1336,7 @@ export default function DigitalCustodyPage() {
       </motion.div>
 
       {/* Tabs */}
-      <Tabs defaultValue="architecture">
+      <Tabs defaultValue="architecture" className="mt-8">
         <TabsList className="bg-foreground/5 border border-border mb-6 flex-wrap h-auto gap-1">
           <TabsTrigger value="architecture" className="data-[state=active]:bg-indigo-600 data-[state=active]:text-foreground text-xs">
             <Lock size={12} className="mr-1.5" /> Custody Architecture

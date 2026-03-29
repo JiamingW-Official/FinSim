@@ -196,9 +196,9 @@ export function OrderBookDisplay({ ticker, currentPrice }: OrderBookDisplayProps
   const bps = spreadBps(book.spread, book.midpoint);
 
   return (
-    <div className="rounded-lg border border-border bg-card overflow-hidden">
+    <div className="rounded-lg border border-border/40 bg-card overflow-hidden">
       {/* Header */}
-      <div className="flex items-center justify-between px-2 py-1.5 border-b border-border">
+      <div className="flex items-center justify-between px-2 py-1.5 border-b border-border/40">
         <span className="text-xs font-semibold text-muted-foreground">
           Level 2 Order Book
         </span>
@@ -213,7 +213,7 @@ export function OrderBookDisplay({ ticker, currentPrice }: OrderBookDisplayProps
       </div>
 
       {/* Mid price */}
-      <div className="flex items-center justify-center py-1.5 border-b border-border bg-muted/20">
+      <div className="flex items-center justify-center py-1.5 border-b border-border/40 bg-muted/20">
         <span className="text-sm font-semibold font-mono tabular-nums text-foreground">
           {formatPrice(book.midpoint)}
         </span>
@@ -254,7 +254,7 @@ export function OrderBookDisplay({ ticker, currentPrice }: OrderBookDisplayProps
       </div>
 
       {/* Footer totals */}
-      <div className="flex items-center justify-between px-2 py-1 border-t border-border text-[11px] font-mono tabular-nums text-muted-foreground">
+      <div className="flex items-center justify-between px-2 py-1 border-t border-border/40 text-[11px] font-mono tabular-nums text-muted-foreground">
         <span>
           Bid Vol: <span className="text-emerald-500">{formatSize(totalBidVol)}</span>
         </span>
@@ -265,7 +265,7 @@ export function OrderBookDisplay({ ticker, currentPrice }: OrderBookDisplayProps
       </div>
 
       {/* Tape section */}
-      <div className="border-t border-border">
+      <div className="border-t border-border/40">
         <div className="px-2 py-1 border-b border-border/50">
           <span className="text-[11px] font-semibold text-muted-foreground">
             Last Trades

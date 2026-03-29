@@ -391,7 +391,7 @@ function MarketOverviewTab() {
                       {row.rating}
                     </span>
                   </td>
-                  <td className="py-1.5 text-right font-mono font-semibold text-foreground">
+                  <td className="py-1.5 text-right font-mono font-medium text-foreground">
                     {row.yield10y.toFixed(2)}%
                   </td>
                   <td className={cn("py-1.5 text-right font-mono", row.change1m >= 0 ? "text-red-400" : "text-emerald-400")}>
@@ -408,7 +408,7 @@ function MarketOverviewTab() {
 
       {/* Negative yield history */}
       <FadeCard>
-        <h3 className="mb-3 text-sm font-semibold text-foreground/80">10Y Yield History — Japan &amp; Germany (2016–2026)</h3>
+        <h3 className="mb-3 text-sm font-medium text-foreground/80">10Y Yield History — Japan &amp; Germany (2016–2026)</h3>
         <p className="mb-3 text-xs text-foreground/40">
           Both countries had extended periods of negative yields. Japan maintained negative rates until 2024; Germany peaked at −0.45% in 2020.
         </p>
@@ -482,7 +482,7 @@ function EMBondsTab() {
         <FadeCard className="border-border bg-primary/5">
           <div className="flex items-center gap-2 mb-2">
             <DollarSign size={14} className="text-primary" />
-            <span className="text-sm font-semibold text-primary">Hard Currency (HC) Bonds</span>
+            <span className="text-sm font-medium text-primary">Hard Currency (HC) Bonds</span>
           </div>
           <ul className="space-y-1 text-xs text-foreground/60">
             <li>• Denominated in USD (or EUR/GBP) — eliminates local FX risk</li>
@@ -495,7 +495,7 @@ function EMBondsTab() {
         <FadeCard className="border-emerald-500/20 bg-emerald-500/5">
           <div className="flex items-center gap-2 mb-2">
             <Globe size={14} className="text-emerald-400" />
-            <span className="text-sm font-semibold text-emerald-300">Local Currency (LC) Bonds</span>
+            <span className="text-sm font-medium text-emerald-300">Local Currency (LC) Bonds</span>
           </div>
           <ul className="space-y-1 text-xs text-foreground/60">
             <li>• Denominated in local currency — adds FX exposure</li>
@@ -510,7 +510,7 @@ function EMBondsTab() {
       {/* Spread bar chart */}
       <FadeCard>
         <div className="mb-4 flex items-center justify-between">
-          <h3 className="text-sm font-semibold text-foreground/80">
+          <h3 className="text-sm font-medium text-foreground/80">
             {view === "hard" ? "Hard Currency Spread vs US Treasuries (bps)" : "Local Currency 10Y Yield (%)"}
           </h3>
           <div className="flex gap-1">
@@ -571,7 +571,7 @@ function EMBondsTab() {
 
       {/* Default history */}
       <FadeCard>
-        <h3 className="mb-3 text-sm font-semibold text-foreground/80">EM Sovereign Default &amp; Restructuring History</h3>
+        <h3 className="mb-3 text-sm font-medium text-foreground/80">EM Sovereign Default &amp; Restructuring History</h3>
         <div className="overflow-x-auto">
           <table className="w-full text-xs">
             <thead>
@@ -605,19 +605,19 @@ function EMBondsTab() {
         <FadeCard>
           <div className="flex items-center gap-2 mb-3">
             <ShieldCheck size={14} className="text-primary" />
-            <h3 className="text-sm font-semibold text-foreground/80">IMF Program Mechanics</h3>
+            <h3 className="text-sm font-medium text-foreground/80">IMF Program Mechanics</h3>
           </div>
           <div className="space-y-2 text-xs text-foreground/60">
             <div className="flex gap-2">
-              <span className="text-primary font-semibold w-20 shrink-0">SBA</span>
+              <span className="text-primary font-medium w-20 shrink-0">SBA</span>
               <span>Stand-By Arrangement: short-term 12–24 month support; conditionality includes fiscal consolidation, FX flexibility</span>
             </div>
             <div className="flex gap-2">
-              <span className="text-primary font-semibold w-20 shrink-0">EFF</span>
+              <span className="text-primary font-medium w-20 shrink-0">EFF</span>
               <span>Extended Fund Facility: 3-year structural reform programs for deeper imbalances</span>
             </div>
             <div className="flex gap-2">
-              <span className="text-primary font-semibold w-20 shrink-0">RSF</span>
+              <span className="text-primary font-medium w-20 shrink-0">RSF</span>
               <span>Resilience &amp; Sustainability Facility: new climate/pandemic resilience instrument</span>
             </div>
             <div className="rounded bg-foreground/5 p-2 mt-2">
@@ -629,11 +629,11 @@ function EMBondsTab() {
         <FadeCard>
           <div className="flex items-center gap-2 mb-3">
             <Layers size={14} className="text-primary" />
-            <h3 className="text-sm font-semibold text-foreground/80">JPMorgan Index Inclusion Criteria</h3>
+            <h3 className="text-sm font-medium text-foreground/80">JPMorgan Index Inclusion Criteria</h3>
           </div>
           <div className="space-y-3 text-xs text-foreground/60">
             <div>
-              <p className="text-primary font-semibold mb-1">EMBI Global (Hard Currency)</p>
+              <p className="text-primary font-medium mb-1">EMBI Global (Hard Currency)</p>
               <ul className="space-y-0.5">
                 <li>• Min outstanding $500M per bond</li>
                 <li>• Residual maturity &gt; 2.5 years</li>
@@ -642,7 +642,7 @@ function EMBondsTab() {
               </ul>
             </div>
             <div>
-              <p className="text-emerald-300 font-semibold mb-1">GBI-EM Global Diversified (Local Currency)</p>
+              <p className="text-emerald-300 font-medium mb-1">GBI-EM Global Diversified (Local Currency)</p>
               <ul className="space-y-0.5">
                 <li>• Market accessible to foreign investors</li>
                 <li>• Min market cap $25B</li>
@@ -702,7 +702,7 @@ function CurrencyHedgingTab() {
           <FadeCard key={c.title} className="border-border">
             <div className="flex items-center gap-2 mb-2">
               <c.icon size={14} className={c.color} />
-              <span className="text-sm font-semibold text-foreground/80">{c.title}</span>
+              <span className="text-sm font-medium text-foreground/80">{c.title}</span>
             </div>
             <p className="text-xs text-foreground/50">{c.body}</p>
           </FadeCard>
@@ -711,7 +711,7 @@ function CurrencyHedgingTab() {
 
       {/* Hedged vs unhedged bar chart */}
       <FadeCard>
-        <h3 className="mb-4 text-sm font-semibold text-foreground/80">Hedged vs Unhedged Return by Currency Pair (vs USD baseline ~4.25%)</h3>
+        <h3 className="mb-4 text-sm font-medium text-foreground/80">Hedged vs Unhedged Return by Currency Pair (vs USD baseline ~4.25%)</h3>
         <div className="overflow-x-auto">
           <svg width={chartW} height={chartH} viewBox={`0 0 ${chartW} ${chartH}`}>
             {/* Gridlines */}
@@ -781,7 +781,7 @@ function CurrencyHedgingTab() {
 
       {/* Hedge cost table */}
       <FadeCard>
-        <h3 className="mb-3 text-sm font-semibold text-foreground/80">FX Hedging Cost by Currency Pair</h3>
+        <h3 className="mb-3 text-sm font-medium text-foreground/80">FX Hedging Cost by Currency Pair</h3>
         <div className="overflow-x-auto">
           <table className="w-full text-xs">
             <thead>
@@ -807,7 +807,7 @@ function CurrencyHedgingTab() {
                     )}
                     onClick={() => setSelectedPair(h.pair)}
                   >
-                    <td className="py-1.5 font-semibold text-foreground">{h.pair}</td>
+                    <td className="py-1.5 font-medium text-foreground">{h.pair}</td>
                     <td className={cn("py-1.5 text-right font-mono", h.rateDiff < 0 ? "text-red-400" : "text-emerald-400")}>
                       {h.rateDiff > 0 ? "+" : ""}{h.rateDiff.toFixed(2)}%
                     </td>
@@ -816,7 +816,7 @@ function CurrencyHedgingTab() {
                     </td>
                     <td className="py-1.5 text-right font-mono text-foreground">{h.unhedgedRet.toFixed(2)}%</td>
                     <td className="py-1.5 text-right font-mono text-foreground">{h.hedgedRet.toFixed(2)}%</td>
-                    <td className={cn("py-1.5 text-right font-mono font-semibold", netBenefit >= 0 ? "text-emerald-400" : "text-red-400")}>
+                    <td className={cn("py-1.5 text-right font-mono font-medium", netBenefit >= 0 ? "text-emerald-400" : "text-red-400")}>
                       {netBenefit >= 0 ? "+" : ""}{netBenefit.toFixed(2)}%
                     </td>
                   </tr>
@@ -839,28 +839,28 @@ function CurrencyHedgingTab() {
           <FadeCard className="border-border bg-primary/5">
             <div className="flex items-center gap-2 mb-3">
               <ArrowUpDown size={14} className="text-primary" />
-              <h3 className="text-sm font-semibold text-primary">{selected.pair} Hedge Analysis</h3>
+              <h3 className="text-sm font-medium text-primary">{selected.pair} Hedge Analysis</h3>
             </div>
             <div className="grid grid-cols-2 gap-4 text-xs sm:grid-cols-4">
               <div>
                 <p className="text-foreground/40 mb-0.5">Interest Rate Diff</p>
-                <p className={cn("font-semibold", selected.rateDiff < 0 ? "text-red-300" : "text-emerald-300")}>
+                <p className={cn("font-medium", selected.rateDiff < 0 ? "text-red-300" : "text-emerald-300")}>
                   {selected.rateDiff > 0 ? "+" : ""}{selected.rateDiff.toFixed(2)}% p.a.
                 </p>
               </div>
               <div>
                 <p className="text-foreground/40 mb-0.5">Hedging Cost</p>
-                <p className={cn("font-semibold", selected.hedgeCost < 0 ? "text-red-300" : "text-yellow-300")}>
+                <p className={cn("font-medium", selected.hedgeCost < 0 ? "text-red-300" : "text-yellow-300")}>
                   {selected.hedgeCost > 0 ? "+" : ""}{selected.hedgeCost.toFixed(2)}% p.a.
                 </p>
               </div>
               <div>
                 <p className="text-foreground/40 mb-0.5">Unhedged Return</p>
-                <p className="font-semibold text-foreground">{selected.unhedgedRet.toFixed(2)}%</p>
+                <p className="font-medium text-foreground">{selected.unhedgedRet.toFixed(2)}%</p>
               </div>
               <div>
                 <p className="text-foreground/40 mb-0.5">Hedged Return</p>
-                <p className={cn("font-semibold", selected.hedgedRet > selected.unhedgedRet ? "text-emerald-300" : "text-foreground")}>
+                <p className={cn("font-medium", selected.hedgedRet > selected.unhedgedRet ? "text-emerald-300" : "text-foreground")}>
                   {selected.hedgedRet.toFixed(2)}%
                 </p>
               </div>
@@ -879,7 +879,7 @@ function CurrencyHedgingTab() {
         <FadeCard>
           <div className="flex items-center gap-2 mb-2">
             <ShieldCheck size={14} className="text-emerald-400" />
-            <span className="text-sm font-semibold text-foreground/80">Strategic Currency Exposure</span>
+            <span className="text-sm font-medium text-foreground/80">Strategic Currency Exposure</span>
           </div>
           <ul className="space-y-1 text-xs text-foreground/50">
             <li>• Fully hedge developed market bonds to remove FX noise</li>
@@ -892,7 +892,7 @@ function CurrencyHedgingTab() {
         <FadeCard>
           <div className="flex items-center gap-2 mb-2">
             <TrendingUp size={14} className="text-yellow-400" />
-            <span className="text-sm font-semibold text-foreground/80">Tactical Currency Overlay</span>
+            <span className="text-sm font-medium text-foreground/80">Tactical Currency Overlay</span>
           </div>
           <ul className="space-y-1 text-xs text-foreground/50">
             <li>• Active managers may leave EM currencies unhedged for alpha</li>
@@ -950,7 +950,7 @@ function PortfolioConstructionTab() {
       <div className="grid grid-cols-1 gap-6 lg:grid-cols-2">
         {/* Efficient frontier */}
         <FadeCard>
-          <h3 className="mb-2 text-sm font-semibold text-foreground/80">Efficient Frontier — Global Bond Portfolios</h3>
+          <h3 className="mb-2 text-sm font-medium text-foreground/80">Efficient Frontier — Global Bond Portfolios</h3>
           <p className="mb-3 text-xs text-foreground/40">Expected 5Y return vs annualized volatility. Hedged global diversification improves Sharpe ratio.</p>
           <svg width="100%" viewBox={`0 0 ${efW} ${efH}`} className="overflow-visible">
             {/* Grid */}
@@ -1021,7 +1021,7 @@ function PortfolioConstructionTab() {
 
         {/* Correlation matrix */}
         <FadeCard>
-          <h3 className="mb-3 text-sm font-semibold text-foreground/80">Correlation Matrix — Global Bond Sectors</h3>
+          <h3 className="mb-3 text-sm font-medium text-foreground/80">Correlation Matrix — Global Bond Sectors</h3>
           <p className="mb-3 text-xs text-foreground/40">Lower correlations improve portfolio efficiency. EM Local Currency adds most diversification.</p>
           <div className="overflow-x-auto">
             <table className="text-xs border-collapse">
@@ -1063,7 +1063,7 @@ function PortfolioConstructionTab() {
 
       {/* Duration strategies */}
       <FadeCard>
-        <h3 className="mb-4 text-sm font-semibold text-foreground/80">Duration Strategy Comparison — Ladder vs Barbell vs Bullet</h3>
+        <h3 className="mb-4 text-sm font-medium text-foreground/80">Duration Strategy Comparison — Ladder vs Barbell vs Bullet</h3>
         <div className="grid grid-cols-1 gap-4 sm:grid-cols-3">
           {[
             {
@@ -1089,7 +1089,7 @@ function PortfolioConstructionTab() {
             },
           ].map((strat) => (
             <div key={strat.name} className="rounded-lg border border-border bg-foreground/5 p-3">
-              <p className="font-semibold text-sm mb-3" style={{ color: strat.color }}>{strat.name}</p>
+              <p className="font-medium text-sm mb-3" style={{ color: strat.color }}>{strat.name}</p>
               {/* Mini bar chart */}
               <div className="flex items-end gap-0.5 h-10 mb-3">
                 {strat.bars.map((h, i) => (
@@ -1128,7 +1128,7 @@ function PortfolioConstructionTab() {
         <FadeCard>
           <div className="flex items-center gap-2 mb-3">
             <Activity size={14} className="text-yellow-400" />
-            <h3 className="text-sm font-semibold text-foreground/80">Liquidity Tiers in Global Fixed Income</h3>
+            <h3 className="text-sm font-medium text-foreground/80">Liquidity Tiers in Global Fixed Income</h3>
           </div>
           <div className="space-y-2">
             {[
@@ -1152,23 +1152,23 @@ function PortfolioConstructionTab() {
         <FadeCard>
           <div className="flex items-center gap-2 mb-3">
             <Building2 size={14} className="text-emerald-400" />
-            <h3 className="text-sm font-semibold text-foreground/80">ESG Integration in Fixed Income</h3>
+            <h3 className="text-sm font-medium text-foreground/80">ESG Integration in Fixed Income</h3>
           </div>
           <div className="space-y-3 text-xs text-foreground/50">
             <div>
-              <p className="text-emerald-300 font-semibold mb-1">Green / Social / Sustainability Bonds</p>
+              <p className="text-emerald-300 font-medium mb-1">Green / Social / Sustainability Bonds</p>
               <p>Use-of-proceeds bonds with ring-fenced ESG projects. Now $4T+ market. "Greenium" of 3–8bps vs conventional bonds for AAA issuers.</p>
             </div>
             <div>
-              <p className="text-primary font-semibold mb-1">ESG-Integrated Scoring</p>
+              <p className="text-primary font-medium mb-1">ESG-Integrated Scoring</p>
               <p>MSCI, Sustainalytics, ISS ratings applied to bond issuers. Higher ESG scores correlate with lower default probability and credit spread tightening.</p>
             </div>
             <div>
-              <p className="text-yellow-300 font-semibold mb-1">Sovereign ESG Factors</p>
+              <p className="text-yellow-300 font-medium mb-1">Sovereign ESG Factors</p>
               <p>Governance quality (rule of law, corruption), environmental exposure (climate vulnerability), social metrics (inequality, labor) integrated into EM sovereign analysis.</p>
             </div>
             <div>
-              <p className="text-primary font-semibold mb-1">Multi-Currency Benchmark Tracking</p>
+              <p className="text-primary font-medium mb-1">Multi-Currency Benchmark Tracking</p>
               <p>Managers track Bloomberg Global AGG or FTSE WGBI. Currency, duration, and sector buckets all managed vs benchmark weights with ±20–30% active share limits.</p>
             </div>
           </div>

@@ -713,7 +713,7 @@ function IPOValuationTab() {
             ].map((row) => (
               <div key={row.period} className="flex justify-between text-xs">
                 <span className="text-muted-foreground">{row.period}</span>
-                <span className={cn("font-mono font-semibold", row.color)}>{row.perf}</span>
+                <span className={cn("font-mono font-medium", row.color)}>{row.perf}</span>
               </div>
             ))}
           </div>
@@ -763,7 +763,7 @@ function IPOValuationTab() {
                     <td className="pr-3 text-muted-foreground">{ipo.sector}</td>
                     <td className="pr-3 font-mono">${ipo.offerPrice}</td>
                     <td className="pr-3 font-mono">${ipo.currentPrice}</td>
-                    <td className={cn("pr-3 font-mono font-semibold", ret >= 0 ? "text-green-400" : "text-red-400")}>
+                    <td className={cn("pr-3 font-mono font-medium", ret >= 0 ? "text-green-400" : "text-red-400")}>
                       {ret > 0 ? "+" : ""}{ret.toFixed(1)}%
                     </td>
                     <td className={cn("pr-3 font-mono", firstDay >= 0 ? "text-green-300" : "text-red-300")}>
@@ -820,7 +820,7 @@ function SPACTab() {
                     {i + 1}
                   </div>
                   <div>
-                    <div className="text-xs font-semibold text-foreground">{item.step}</div>
+                    <div className="text-xs font-medium text-foreground">{item.step}</div>
                     <div className="text-xs text-muted-foreground leading-relaxed">{item.desc}</div>
                   </div>
                 </div>
@@ -903,7 +903,7 @@ function SPACTab() {
                     </td>
                     <td className="pr-3 font-mono">${sp.trustValue.toFixed(2)}</td>
                     <td className="pr-3 font-mono">${sp.currentPrice.toFixed(2)}</td>
-                    <td className={cn("pr-3 font-mono font-semibold", prem >= 0 ? "text-green-400" : "text-red-400")}>
+                    <td className={cn("pr-3 font-mono font-medium", prem >= 0 ? "text-green-400" : "text-red-400")}>
                       {prem > 0 ? "+" : ""}{prem.toFixed(1)}%
                     </td>
                     <td className="pr-3 text-muted-foreground">{sp.deadlineMonths}mo</td>
@@ -1015,7 +1015,7 @@ function SecondaryOfferingsTab() {
             <div key={ot.name} className={cn("rounded-xl border bg-muted/50 p-4", borderMap[cardColor])}>
               <div className="flex items-center gap-2 mb-2">
                 <span className={iconColorMap[cardColor]}>{ot.icon}</span>
-                <span className="text-sm font-semibold text-foreground">{ot.name}</span>
+                <span className="text-sm font-medium text-foreground">{ot.name}</span>
                 <span className={cn("ml-auto text-xs rounded-full border px-2 py-0.5 capitalize", typeColor(ot.type))}>
                   {ot.type}
                 </span>
@@ -1067,7 +1067,7 @@ function DCMTab() {
               { step: "Settlement (T+3)", desc: "Bonds delivered to investors via DTC/Euroclear. Company receives proceeds" },
             ].map((item, i) => (
               <div key={i} className="flex gap-2.5">
-                <div className="mt-0.5 w-5 h-5 rounded-full bg-muted flex-shrink-0 flex items-center justify-center text-primary text-xs font-bold">{i + 1}</div>
+                <div className="mt-0.5 w-5 h-5 rounded-full bg-muted flex-shrink-0 flex items-center justify-center text-primary text-xs font-medium">{i + 1}</div>
                 <div>
                   <span className="text-xs font-medium text-foreground">{item.step}: </span>
                   <span className="text-xs text-muted-foreground">{item.desc}</span>
@@ -1198,7 +1198,7 @@ function ECMAnalyticsTab() {
             {LEAGUE_TABLE.map((entry) => (
               <div key={entry.rank} className="flex items-center gap-2">
                 <div className={cn(
-                  "w-5 h-5 rounded-full flex items-center justify-center text-xs font-bold flex-shrink-0",
+                  "w-5 h-5 rounded-full flex items-center justify-center text-xs font-medium flex-shrink-0",
                   entry.rank <= 3 ? "bg-amber-500/20 text-amber-300" : "bg-muted text-muted-foreground"
                 )}>
                   {entry.rank}
@@ -1241,7 +1241,7 @@ function ECMAnalyticsTab() {
                   <div key={ind.label} className="flex items-center gap-2 text-xs">
                     <div className={cn("w-2 h-2 rounded-full flex-shrink-0", dotColor)} />
                     <span className="text-muted-foreground w-36">{ind.label}</span>
-                    <span className="font-mono font-semibold text-foreground w-20">{ind.value}</span>
+                    <span className="font-mono font-medium text-foreground w-20">{ind.value}</span>
                     <span className="text-muted-foreground">{ind.note}</span>
                   </div>
                 );
@@ -1314,18 +1314,18 @@ function ECMAnalyticsTab() {
 export default function CapitalMarketsPage() {
   return (
     <div className="min-h-screen bg-background text-foreground p-4 md:p-6">
-      {/* Header */}
+      {/* HERO Header */}
       <motion.div
         initial={{ opacity: 0, y: -12 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.4 }}
-        className="mb-6"
+        className="mb-8 border-l-4 border-l-primary rounded-xl bg-card p-6"
       >
         <div className="flex items-center gap-3 mb-1">
           <div className="w-8 h-8 rounded-lg bg-primary/20 border border-primary/40 flex items-center justify-center">
             <Building2 className="w-4 h-4 text-primary" />
           </div>
-          <h1 className="text-2xl font-bold text-foreground">Capital Markets</h1>
+          <h1 className="text-xl font-semibold text-foreground">Capital Markets</h1>
           <span className="ml-2 text-xs bg-muted/60 border border-border text-primary rounded-full px-2 py-0.5">
             IPO · SPAC · DCM · ECM
           </span>

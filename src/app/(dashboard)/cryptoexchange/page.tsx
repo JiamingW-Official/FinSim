@@ -953,7 +953,7 @@ export default function CryptoExchangePage() {
                   </div>
                 </div>
                 <Button
-                  className={cn("w-full font-semibold", orderSide === "buy" ? "bg-green-600 hover:bg-green-700" : "bg-red-600 hover:bg-red-700")}
+                  className={cn("w-full font-medium", orderSide === "buy" ? "bg-green-600 hover:bg-green-700" : "bg-red-600 hover:bg-red-700")}
                 >
                   {orderSide === "buy" ? "Buy" : "Sell"} {selectedPair.split("/")[0]}
                 </Button>
@@ -994,7 +994,7 @@ export default function CryptoExchangePage() {
                 <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
                   <div className="bg-muted/50 rounded-lg p-3">
                     <div className="text-xs text-muted-foreground mb-1">Funding Rate</div>
-                    <div className={cn("text-sm font-mono font-semibold", fundingRate >= 0 ? "text-red-400" : "text-green-400")}>
+                    <div className={cn("text-sm font-mono font-medium", fundingRate >= 0 ? "text-red-400" : "text-green-400")}>
                       {fundingRate >= 0 ? "+" : ""}{(fundingRate * 100).toFixed(4)}%
                     </div>
                     <div className="text-xs text-muted-foreground mt-0.5">
@@ -1003,15 +1003,15 @@ export default function CryptoExchangePage() {
                   </div>
                   <div className="bg-muted/50 rounded-lg p-3">
                     <div className="text-xs text-muted-foreground mb-1">Open Interest</div>
-                    <div className="text-sm font-mono font-semibold text-foreground">{fmtCompact(openInterest[openInterest.length - 1])}</div>
+                    <div className="text-sm font-mono font-medium text-foreground">{fmtCompact(openInterest[openInterest.length - 1])}</div>
                   </div>
                   <div className="bg-muted/50 rounded-lg p-3">
                     <div className="text-xs text-muted-foreground mb-1">24h Volume</div>
-                    <div className="text-sm font-mono font-semibold text-foreground">{fmtCompact(perpPair === "BTC/USDT" ? 28_400_000_000 : 14_200_000_000)}</div>
+                    <div className="text-sm font-mono font-medium text-foreground">{fmtCompact(perpPair === "BTC/USDT" ? 28_400_000_000 : 14_200_000_000)}</div>
                   </div>
                   <div className="bg-muted/50 rounded-lg p-3">
                     <div className="text-xs text-muted-foreground mb-1">Mark Price</div>
-                    <div className="text-sm font-mono font-semibold text-foreground">{fmtPrice(perpPrice * 1.0002)}</div>
+                    <div className="text-sm font-mono font-medium text-foreground">{fmtPrice(perpPrice * 1.0002)}</div>
                   </div>
                 </div>
               </div>
@@ -1051,11 +1051,11 @@ export default function CryptoExchangePage() {
                 </div>
                 <div className="flex justify-between text-xs mt-2">
                   <div className="text-center">
-                    <div className="text-green-400 font-semibold text-sm">{longPct.toFixed(1)}%</div>
+                    <div className="text-green-400 font-medium text-sm">{longPct.toFixed(1)}%</div>
                     <div className="text-muted-foreground">Longs</div>
                   </div>
                   <div className="text-center">
-                    <div className="text-red-400 font-semibold text-sm">{(100 - longPct).toFixed(1)}%</div>
+                    <div className="text-red-400 font-medium text-sm">{(100 - longPct).toFixed(1)}%</div>
                     <div className="text-muted-foreground">Shorts</div>
                   </div>
                 </div>
@@ -1067,7 +1067,7 @@ export default function CryptoExchangePage() {
                 <div className="mb-3">
                   <div className="flex items-center justify-between mb-2">
                     <span className="text-xs text-muted-foreground">Leverage</span>
-                    <span className="text-sm font-bold text-amber-400">{leverage}x</span>
+                    <span className="text-sm font-medium text-amber-400">{leverage}x</span>
                   </div>
                   <input
                     type="range"
@@ -1124,7 +1124,7 @@ export default function CryptoExchangePage() {
                   </div>
                   <div className="flex justify-between">
                     <span className="text-muted-foreground">Liq. Price ({orderSide === "buy" ? "Long" : "Short"})</span>
-                    <span className="text-red-400 font-mono font-semibold">{fmtPrice(liqPrice)}</span>
+                    <span className="text-red-400 font-mono font-medium">{fmtPrice(liqPrice)}</span>
                   </div>
                   <div className="flex justify-between">
                     <span className="text-muted-foreground">Liq. Distance</span>
@@ -1134,13 +1134,13 @@ export default function CryptoExchangePage() {
                 <div className="flex gap-2 mt-3">
                   <button
                     onClick={() => setOrderSide("buy")}
-                    className={cn("flex-1 py-2 rounded-lg text-sm font-semibold transition-all", orderSide === "buy" ? "bg-green-600 text-foreground" : "bg-muted text-muted-foreground hover:text-green-400")}
+                    className={cn("flex-1 py-2 rounded-lg text-sm font-medium transition-all", orderSide === "buy" ? "bg-green-600 text-foreground" : "bg-muted text-muted-foreground hover:text-green-400")}
                   >
                     Long {leverage}x
                   </button>
                   <button
                     onClick={() => setOrderSide("sell")}
-                    className={cn("flex-1 py-2 rounded-lg text-sm font-semibold transition-all", orderSide === "sell" ? "bg-red-600 text-foreground" : "bg-muted text-muted-foreground hover:text-red-400")}
+                    className={cn("flex-1 py-2 rounded-lg text-sm font-medium transition-all", orderSide === "sell" ? "bg-red-600 text-foreground" : "bg-muted text-muted-foreground hover:text-red-400")}
                   >
                     Short {leverage}x
                   </button>
@@ -1165,7 +1165,7 @@ export default function CryptoExchangePage() {
                   )}
                 >
                   <div className="text-xs text-muted-foreground mb-1">{sector}</div>
-                  <div className={cn("text-sm font-bold font-mono", avg >= 0 ? "text-green-400" : "text-red-400")}>
+                  <div className={cn("text-sm font-medium font-mono", avg >= 0 ? "text-green-400" : "text-red-400")}>
                     {avg >= 0 ? "+" : ""}{avg}%
                   </div>
                 </div>
@@ -1296,12 +1296,12 @@ export default function CryptoExchangePage() {
               {newListings.map((listing) => (
                 <div key={listing.symbol} className="bg-muted/60 rounded-lg p-3 border border-border/50">
                   <div className="flex items-center justify-between mb-2">
-                    <span className="text-sm font-bold text-foreground">{listing.symbol}</span>
+                    <span className="text-sm font-medium text-foreground">{listing.symbol}</span>
                     <Badge variant="outline" className="text-xs border-amber-500/40 text-amber-400 px-1 py-0">NEW</Badge>
                   </div>
                   <div className="text-xs text-muted-foreground mb-2">{listing.name}</div>
                   <div className="text-xs text-muted-foreground mb-1">Listed: {listing.listDate}</div>
-                  <div className={cn("text-sm font-bold font-mono", listing.change >= 0 ? "text-green-400" : "text-red-400")}>
+                  <div className={cn("text-sm font-medium font-mono", listing.change >= 0 ? "text-green-400" : "text-red-400")}>
                     {listing.change >= 0 ? "+" : ""}{listing.change}%
                   </div>
                   <div className="text-xs text-muted-foreground">Since listing</div>
@@ -1364,7 +1364,7 @@ export default function CryptoExchangePage() {
                       </td>
                       <td className="py-2 pr-4 text-foreground font-medium">{pool.pair}</td>
                       <td className="py-2 pr-4 text-right font-mono text-muted-foreground">{fmtCompact(pool.tvl)}</td>
-                      <td className="py-2 pr-4 text-right font-mono text-green-400 font-semibold">{pool.apy.toFixed(1)}%</td>
+                      <td className="py-2 pr-4 text-right font-mono text-green-400 font-medium">{pool.apy.toFixed(1)}%</td>
                       <td className="py-2 text-right font-mono">
                         <span className={cn("px-1.5 py-0.5 rounded text-xs", pool.volumeTvlRatio > 0.5 ? "bg-green-900/40 text-green-400" : "bg-muted text-muted-foreground")}>
                           {pool.volumeTvlRatio.toFixed(2)}x
@@ -1407,7 +1407,7 @@ export default function CryptoExchangePage() {
                       >
                         {y.risk}
                       </Badge>
-                      <span className="text-green-400 font-bold font-mono text-sm">{y.apy.toFixed(1)}%</span>
+                      <span className="text-green-400 font-medium font-mono text-sm">{y.apy.toFixed(1)}%</span>
                     </div>
                   </div>
                 ))}
@@ -1454,12 +1454,12 @@ export default function CryptoExchangePage() {
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
             <div className="bg-card border border-border rounded-xl p-4">
               <div className="text-xs text-muted-foreground mb-1">Total Value</div>
-              <div className="text-xl font-bold text-foreground font-mono">${totalPortfolioValue.toFixed(2)}</div>
+              <div className="text-xl font-medium text-foreground font-mono">${totalPortfolioValue.toFixed(2)}</div>
               <div className="text-xs text-muted-foreground mt-1">Starting: $10,000.00</div>
             </div>
             <div className="bg-card border border-border rounded-xl p-4">
               <div className="text-xs text-muted-foreground mb-1">Total P&L</div>
-              <div className={cn("text-xl font-bold font-mono", totalPnl >= 0 ? "text-green-400" : "text-red-400")}>
+              <div className={cn("text-xl font-medium font-mono", totalPnl >= 0 ? "text-green-400" : "text-red-400")}>
                 {totalPnl >= 0 ? "+" : ""}${totalPnl.toFixed(2)}
               </div>
               <div className={cn("text-xs", totalPnlPct >= 0 ? "text-green-500" : "text-red-500")}>
@@ -1468,12 +1468,12 @@ export default function CryptoExchangePage() {
             </div>
             <div className="bg-card border border-border rounded-xl p-4">
               <div className="text-xs text-muted-foreground mb-1">USDT Balance</div>
-              <div className="text-xl font-bold text-foreground font-mono">${wallet.usdt.toFixed(2)}</div>
+              <div className="text-xl font-medium text-foreground font-mono">${wallet.usdt.toFixed(2)}</div>
               <div className="text-xs text-muted-foreground mt-1">Available</div>
             </div>
             <div className="bg-card border border-border rounded-xl p-4">
               <div className="text-xs text-muted-foreground mb-1">Total Fees Paid</div>
-              <div className="text-xl font-bold text-foreground font-mono">
+              <div className="text-xl font-medium text-foreground font-mono">
                 ${(feesPaid.exchange + feesPaid.gas + feesPaid.bridge).toFixed(2)}
               </div>
               <div className="text-xs text-muted-foreground mt-1">All-time</div>
@@ -1511,7 +1511,7 @@ export default function CryptoExchangePage() {
                     <tr key={h.token} className="border-b border-border/50 hover:bg-muted/30">
                       <td className="py-3 pr-4">
                         <div className="flex items-center gap-2">
-                          <div className="w-6 h-6 rounded-full bg-muted flex items-center justify-center text-muted-foreground text-xs font-bold">
+                          <div className="w-6 h-6 rounded-full bg-muted flex items-center justify-center text-muted-foreground text-xs font-medium">
                             {h.token[0]}
                           </div>
                           <span className="text-foreground font-medium">{h.token}</span>
@@ -1522,7 +1522,7 @@ export default function CryptoExchangePage() {
                       <td className="py-3 pr-4 text-right font-mono text-foreground">${h.currentPrice.toLocaleString()}</td>
                       <td className="py-3 pr-4 text-right font-mono text-foreground">${value.toFixed(2)}</td>
                       <td className="py-3 text-right">
-                        <div className={cn("font-mono font-semibold", pnl >= 0 ? "text-green-400" : "text-red-400")}>
+                        <div className={cn("font-mono font-medium", pnl >= 0 ? "text-green-400" : "text-red-400")}>
                           {pnl >= 0 ? "+" : ""}${pnl.toFixed(2)}
                         </div>
                         <div className={cn("text-xs", pnl >= 0 ? "text-green-500" : "text-red-500")}>
@@ -1536,7 +1536,7 @@ export default function CryptoExchangePage() {
                 <tr className="border-b border-border/50">
                   <td className="py-3 pr-4">
                     <div className="flex items-center gap-2">
-                      <div className="w-6 h-6 rounded-full bg-emerald-900 flex items-center justify-center text-emerald-400 text-xs font-bold">$</div>
+                      <div className="w-6 h-6 rounded-full bg-emerald-900 flex items-center justify-center text-emerald-400 text-xs font-medium">$</div>
                       <span className="text-foreground font-medium">USDT</span>
                     </div>
                   </td>
@@ -1575,7 +1575,7 @@ export default function CryptoExchangePage() {
                 })}
                 <div className="pt-2 border-t border-border flex justify-between text-sm">
                   <span className="text-muted-foreground">Total</span>
-                  <span className="font-mono font-semibold text-foreground">${(feesPaid.exchange + feesPaid.gas + feesPaid.bridge).toFixed(2)}</span>
+                  <span className="font-mono font-medium text-foreground">${(feesPaid.exchange + feesPaid.gas + feesPaid.bridge).toFixed(2)}</span>
                 </div>
               </div>
             </div>
@@ -1596,7 +1596,7 @@ export default function CryptoExchangePage() {
                       <span className="text-muted-foreground font-mono">{trade.amount}</span>
                       <span className="text-muted-foreground font-mono">@${trade.price.toLocaleString()}</span>
                       {trade.pnl !== null && (
-                        <span className={cn("font-mono font-semibold", trade.pnl >= 0 ? "text-green-400" : "text-red-400")}>
+                        <span className={cn("font-mono font-medium", trade.pnl >= 0 ? "text-green-400" : "text-red-400")}>
                           {trade.pnl >= 0 ? "+" : ""}${trade.pnl.toFixed(2)}
                         </span>
                       )}

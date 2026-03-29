@@ -496,11 +496,11 @@ function StrategyCard({
         </div>
         <div className="flex flex-col items-center gap-0.5">
           <span className="text-[11px] text-muted-foreground">Best Yr</span>
-          <span className="text-xs font-bold tabular-nums text-emerald-400">+{strategy.bestYear}%</span>
+          <span className="text-xs font-medium tabular-nums text-emerald-400">+{strategy.bestYear}%</span>
         </div>
         <div className="flex flex-col items-center gap-0.5">
           <span className="text-[11px] text-muted-foreground">Worst Yr</span>
-          <span className="text-xs font-bold tabular-nums text-rose-400">{strategy.worstYear}%</span>
+          <span className="text-xs font-medium tabular-nums text-rose-400">{strategy.worstYear}%</span>
         </div>
       </div>
 
@@ -588,7 +588,7 @@ function SavedStrategyRow({ strategy, onEdit, onBacktest, onDelete, onExport, se
         }`}
         aria-label="Select for comparison"
       >
-        {selected && <span className="flex h-full w-full items-center justify-center text-[11px] text-foreground font-bold">✓</span>}
+        {selected && <span className="flex h-full w-full items-center justify-center text-[11px] text-foreground font-medium">✓</span>}
       </button>
 
       <div className="flex-1 min-w-0">
@@ -607,7 +607,7 @@ function SavedStrategyRow({ strategy, onEdit, onBacktest, onDelete, onExport, se
         {strategy.lastBacktestSharpe != null && (
           <div className="text-center">
             <div className="text-[11px] text-muted-foreground">Sharpe</div>
-            <div className={`text-xs font-bold tabular-nums ${strategy.lastBacktestSharpe >= 1 ? "text-primary" : "text-amber-400"}`}>
+            <div className={`text-xs font-medium tabular-nums ${strategy.lastBacktestSharpe >= 1 ? "text-primary" : "text-amber-400"}`}>
               {strategy.lastBacktestSharpe.toFixed(2)}
             </div>
           </div>
@@ -615,7 +615,7 @@ function SavedStrategyRow({ strategy, onEdit, onBacktest, onDelete, onExport, se
         {strategy.lastBacktestReturn != null && (
           <div className="text-center">
             <div className="text-[11px] text-muted-foreground">Return</div>
-            <div className={`text-xs font-bold tabular-nums ${strategy.lastBacktestReturn >= 0 ? "text-emerald-400" : "text-rose-400"}`}>
+            <div className={`text-xs font-medium tabular-nums ${strategy.lastBacktestReturn >= 0 ? "text-emerald-400" : "text-rose-400"}`}>
               {strategy.lastBacktestReturn >= 0 ? "+" : ""}{strategy.lastBacktestReturn.toFixed(1)}%
             </div>
           </div>
@@ -688,11 +688,11 @@ function ComparePanel({ a, b, onClose }: { a: StoredStrategy; b: StoredStrategy;
 
       <div className="grid grid-cols-[1fr_auto_1fr] gap-4 text-center">
         <div className="rounded-lg border border-border/50 bg-foreground/[0.02] px-3 py-2">
-          <span className="text-xs font-semibold text-primary">{a.name}</span>
+          <span className="text-xs font-medium text-primary">{a.name}</span>
         </div>
         <span className="flex items-center text-xs text-muted-foreground">vs</span>
         <div className="rounded-lg border border-border/50 bg-foreground/[0.02] px-3 py-2">
-          <span className="text-xs font-semibold text-primary">{b.name}</span>
+          <span className="text-xs font-medium text-primary">{b.name}</span>
         </div>
       </div>
 
@@ -824,12 +824,12 @@ export default function StrategiesPage() {
   return (
     <div className="flex h-full flex-col">
       {/* Header */}
-      <div className="flex items-center gap-3 border-b border-border/50 bg-black/30 px-6 py-3">
+      <div className="flex items-center gap-3 border-b border-border/50 bg-black/30 px-6 py-6 border-l-4 border-l-primary">
         <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-primary/15">
           <BookMarked className="h-4 w-4 text-primary" />
         </div>
         <div>
-          <h1 className="text-sm font-bold text-foreground">Strategy Library</h1>
+          <h1 className="text-sm font-medium text-foreground">Strategy Library</h1>
           <p className="text-xs text-muted-foreground">Browse, customize, and build trading strategies</p>
         </div>
         <div className="ml-auto flex items-center gap-3 text-xs text-muted-foreground">
@@ -1011,7 +1011,7 @@ export default function StrategiesPage() {
                 {/* Save to Library button row */}
                 <div className="flex items-center justify-between">
                   <div>
-                    <h2 className="text-sm font-bold text-foreground">Visual Strategy Builder</h2>
+                    <h2 className="text-sm font-medium text-foreground">Visual Strategy Builder</h2>
                     <p className="text-xs text-muted-foreground mt-0.5">
                       Define entry/exit conditions, then save to your library
                     </p>
@@ -1119,7 +1119,7 @@ function StrategyBuilderWrapper({
           </span>
           <button
             onClick={handleCommitSave}
-            className="flex items-center gap-1.5 rounded-lg bg-emerald-600 px-3 py-1.5 text-xs font-semibold text-foreground hover:bg-emerald-500 transition-colors"
+            className="flex items-center gap-1.5 rounded-lg bg-emerald-600 px-3 py-1.5 text-xs font-medium text-foreground hover:bg-emerald-500 transition-colors"
           >
             <Save className="h-3.5 w-3.5" />
             Save to Library

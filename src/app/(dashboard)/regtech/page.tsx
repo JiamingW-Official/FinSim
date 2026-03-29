@@ -714,7 +714,7 @@ function ROICalculator() {
         </div>
         <div className="text-center">
           <p className="text-xs text-muted-foreground">ROI / Payback</p>
-          <p className="text-lg font-bold text-primary">{roi}% / {payback}mo</p>
+          <p className="text-lg font-medium text-primary">{roi}% / {payback}mo</p>
         </div>
       </div>
     </div>
@@ -736,7 +736,7 @@ function AMLKYCTab() {
         ].map((kpi) => (
           <div key={kpi.label} className="bg-card rounded-xl border border-border p-4">
             <div className="flex items-center gap-2 mb-1">{kpi.icon}<p className="text-xs text-muted-foreground">{kpi.label}</p></div>
-            <p className={`text-xl font-bold ${kpi.color}`}>{kpi.value}</p>
+            <p className={`text-xl font-medium ${kpi.color}`}>{kpi.value}</p>
           </div>
         ))}
       </div>
@@ -764,7 +764,7 @@ function AMLKYCTab() {
 
       {/* KYC Comparison */}
       <div className="bg-card rounded-xl border border-border p-5">
-        <h3 className="text-sm font-semibold text-foreground mb-4 flex items-center gap-2">
+        <h3 className="text-sm font-medium text-foreground mb-4 flex items-center gap-2">
           <Users className="w-4 h-4 text-primary" />
           KYC Onboarding Time Comparison
         </h3>
@@ -794,7 +794,7 @@ function AMLKYCTab() {
 
       {/* Customer Risk Score Factors */}
       <div className="bg-card rounded-xl border border-border p-5">
-        <h3 className="text-sm font-semibold text-foreground mb-4 flex items-center gap-2">
+        <h3 className="text-sm font-medium text-foreground mb-4 flex items-center gap-2">
           <BarChart2 className="w-4 h-4 text-primary" />
           Customer Risk Scoring Model — 10 Factors
         </h3>
@@ -819,7 +819,7 @@ function AMLKYCTab() {
 
       {/* AML Fines Table */}
       <div className="bg-card rounded-xl border border-border p-5 overflow-x-auto">
-        <h3 className="text-sm font-semibold text-foreground mb-4 flex items-center gap-2">
+        <h3 className="text-sm font-medium text-foreground mb-4 flex items-center gap-2">
           <AlertTriangle className="w-4 h-4 text-amber-400" />
           Top AML/Sanctions Fines in History
         </h3>
@@ -837,7 +837,7 @@ function AMLKYCTab() {
               <tr key={row.bank} className="border-b border-border hover:bg-muted/40 transition-colors">
                 <td className="py-2 font-medium text-foreground">{row.bank}</td>
                 <td className="py-2 text-muted-foreground">{row.year}</td>
-                <td className="py-2 text-right text-amber-400 font-bold">{row.fine.toLocaleString()}</td>
+                <td className="py-2 text-right text-amber-400 font-medium">{row.fine.toLocaleString()}</td>
                 <td className="py-2 pl-4 text-muted-foreground">{row.reason}</td>
               </tr>
             ))}
@@ -861,14 +861,14 @@ function RegulatoryReportingTab() {
         ].map((kpi) => (
           <div key={kpi.label} className="bg-card rounded-xl border border-border p-4">
             <div className="flex items-center gap-2 mb-1">{kpi.icon}<p className="text-xs text-muted-foreground">{kpi.label}</p></div>
-            <p className={`text-xl font-bold ${kpi.color}`}>{kpi.value}</p>
+            <p className={`text-xl font-medium ${kpi.color}`}>{kpi.value}</p>
           </div>
         ))}
       </div>
 
       {/* Reporting Timeline */}
       <div className="bg-card rounded-xl border border-border p-5">
-        <h3 className="text-sm font-semibold text-foreground mb-4 flex items-center gap-2">
+        <h3 className="text-sm font-medium text-foreground mb-4 flex items-center gap-2">
           <Clock className="w-4 h-4 text-primary" />
           Regulatory Reporting Timeline — COREP / FINREP / MiFID II / EMIR
         </h3>
@@ -877,7 +877,7 @@ function RegulatoryReportingTab() {
 
       {/* Data Lineage Diagram */}
       <div className="bg-card rounded-xl border border-border p-5">
-        <h3 className="text-sm font-semibold text-foreground mb-4 flex items-center gap-2">
+        <h3 className="text-sm font-medium text-foreground mb-4 flex items-center gap-2">
           <Database className="w-4 h-4 text-primary" />
           Data Lineage for Regulatory Reporting
         </h3>
@@ -924,7 +924,7 @@ function RegulatoryReportingTab() {
 
       {/* Rule Changes Chart */}
       <div className="bg-card rounded-xl border border-border p-5">
-        <h3 className="text-sm font-semibold text-foreground mb-4 flex items-center gap-2">
+        <h3 className="text-sm font-medium text-foreground mb-4 flex items-center gap-2">
           <TrendingUp className="w-4 h-4 text-primary" />
           Global Regulatory Rule Changes per Year (2010–2024)
         </h3>
@@ -936,7 +936,7 @@ function RegulatoryReportingTab() {
 
       {/* Compliance Cost Trend */}
       <div className="bg-card rounded-xl border border-border p-5">
-        <h3 className="text-sm font-semibold text-foreground mb-4 flex items-center gap-2">
+        <h3 className="text-sm font-medium text-foreground mb-4 flex items-center gap-2">
           <DollarSign className="w-4 h-4 text-rose-400" />
           Cost of Compliance as % of Revenue (2015–2024)
         </h3>
@@ -965,14 +965,14 @@ function SanctionsTab() {
         ].map((kpi) => (
           <div key={kpi.label} className="bg-card rounded-xl border border-border p-4">
             <div className="flex items-center gap-2 mb-1">{kpi.icon}<p className="text-xs text-muted-foreground">{kpi.label}</p></div>
-            <p className={`text-xl font-bold ${kpi.color}`}>{kpi.value}</p>
+            <p className={`text-xl font-medium ${kpi.color}`}>{kpi.value}</p>
           </div>
         ))}
       </div>
 
       {/* Sanction List Sizes */}
       <div className="bg-card rounded-xl border border-border p-5">
-        <h3 className="text-sm font-semibold text-foreground mb-4 flex items-center gap-2">
+        <h3 className="text-sm font-medium text-foreground mb-4 flex items-center gap-2">
           <Globe className="w-4 h-4 text-primary" />
           Global Sanctions List Sizes
         </h3>
@@ -1001,7 +1001,7 @@ function SanctionsTab() {
       {/* Name Matching Algorithms */}
       <div className="bg-card rounded-xl border border-border overflow-hidden">
         <div className="p-5 border-b border-border">
-          <h3 className="text-sm font-semibold text-foreground flex items-center gap-2">
+          <h3 className="text-sm font-medium text-foreground flex items-center gap-2">
             <Search className="w-4 h-4 text-primary" />
             Name Matching Algorithms Comparison
           </h3>
@@ -1022,17 +1022,17 @@ function SanctionsTab() {
                 <tr key={algo.name} className="border-t border-border hover:bg-muted/40 transition-colors">
                   <td className="px-4 py-3 font-medium text-foreground">{algo.name}</td>
                   <td className="px-4 py-3 text-right">
-                    <span className={`font-bold ${algo.precision >= 90 ? "text-green-400" : algo.precision >= 80 ? "text-amber-400" : "text-red-400"}`}>
+                    <span className={`font-medium ${algo.precision >= 90 ? "text-green-400" : algo.precision >= 80 ? "text-amber-400" : "text-red-400"}`}>
                       {algo.precision}%
                     </span>
                   </td>
                   <td className="px-4 py-3 text-right">
-                    <span className={`font-bold ${algo.recall >= 90 ? "text-green-400" : algo.recall >= 80 ? "text-amber-400" : "text-red-400"}`}>
+                    <span className={`font-medium ${algo.recall >= 90 ? "text-green-400" : algo.recall >= 80 ? "text-amber-400" : "text-red-400"}`}>
                       {algo.recall}%
                     </span>
                   </td>
                   <td className="px-4 py-3 text-right">
-                    <span className={`font-bold ${algo.fpr <= 5 ? "text-green-400" : algo.fpr <= 15 ? "text-amber-400" : "text-red-400"}`}>
+                    <span className={`font-medium ${algo.fpr <= 5 ? "text-green-400" : algo.fpr <= 15 ? "text-amber-400" : "text-red-400"}`}>
                       {algo.fpr}%
                     </span>
                   </td>
@@ -1046,7 +1046,7 @@ function SanctionsTab() {
 
       {/* Real-time vs Batch */}
       <div className="bg-card rounded-xl border border-border p-5">
-        <h3 className="text-sm font-semibold text-foreground mb-4 flex items-center gap-2">
+        <h3 className="text-sm font-medium text-foreground mb-4 flex items-center gap-2">
           <Zap className="w-4 h-4 text-primary" />
           Real-Time vs Batch Screening Comparison
         </h3>
@@ -1070,7 +1070,7 @@ function SanctionsTab() {
             <div key={item.mode} className={`rounded-xl border ${item.color} bg-muted/50 p-4`}>
               <div className="flex items-center gap-2 mb-3">
                 {item.icon}
-                <span className="text-sm font-semibold text-foreground">{item.mode}</span>
+                <span className="text-sm font-medium text-foreground">{item.mode}</span>
               </div>
               <div className="space-y-1 mb-3">
                 {item.pros.map((p) => (
@@ -1096,7 +1096,7 @@ function SanctionsTab() {
       {/* PEP + Adverse Media */}
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
         <div className="bg-card rounded-xl border border-border p-5">
-          <h3 className="text-sm font-semibold text-foreground mb-3 flex items-center gap-2">
+          <h3 className="text-sm font-medium text-foreground mb-3 flex items-center gap-2">
             <Users className="w-4 h-4 text-primary" />
             PEP Screening
           </h3>
@@ -1128,7 +1128,7 @@ function SanctionsTab() {
           </div>
         </div>
         <div className="bg-card rounded-xl border border-border p-5">
-          <h3 className="text-sm font-semibold text-foreground mb-3 flex items-center gap-2">
+          <h3 className="text-sm font-medium text-foreground mb-3 flex items-center gap-2">
             <Eye className="w-4 h-4 text-primary" />
             Adverse Media Monitoring
           </h3>
@@ -1176,14 +1176,14 @@ function MarketFutureTab() {
         ].map((kpi) => (
           <div key={kpi.label} className="bg-card rounded-xl border border-border p-4">
             <div className="flex items-center gap-2 mb-1">{kpi.icon}<p className="text-xs text-muted-foreground">{kpi.label}</p></div>
-            <p className={`text-xl font-bold ${kpi.color}`}>{kpi.value}</p>
+            <p className={`text-xl font-medium ${kpi.color}`}>{kpi.value}</p>
           </div>
         ))}
       </div>
 
       {/* Funding by Sector Donut */}
       <div className="bg-card rounded-xl border border-border p-5">
-        <h3 className="text-sm font-semibold text-foreground mb-4 flex items-center gap-2">
+        <h3 className="text-sm font-medium text-foreground mb-4 flex items-center gap-2">
           <DollarSign className="w-4 h-4 text-primary" />
           RegTech Funding by Sector
         </h3>
@@ -1193,7 +1193,7 @@ function MarketFutureTab() {
       {/* Top Vendors */}
       <div className="bg-card rounded-xl border border-border overflow-hidden">
         <div className="p-5 border-b border-border">
-          <h3 className="text-sm font-semibold text-foreground flex items-center gap-2">
+          <h3 className="text-sm font-medium text-foreground flex items-center gap-2">
             <Building2 className="w-4 h-4 text-primary" />
             Top RegTech Vendors
           </h3>
@@ -1232,7 +1232,7 @@ function MarketFutureTab() {
 
       {/* AI/NLP in Regulatory Interpretation */}
       <div className="bg-card rounded-xl border border-border p-5">
-        <h3 className="text-sm font-semibold text-foreground mb-4 flex items-center gap-2">
+        <h3 className="text-sm font-medium text-foreground mb-4 flex items-center gap-2">
           <Cpu className="w-4 h-4 text-primary" />
           AI/NLP in Regulatory Interpretation
         </h3>
@@ -1290,7 +1290,7 @@ function MarketFutureTab() {
 
       {/* Regulatory Sandbox Participation */}
       <div className="bg-card rounded-xl border border-border p-5">
-        <h3 className="text-sm font-semibold text-foreground mb-4 flex items-center gap-2">
+        <h3 className="text-sm font-medium text-foreground mb-4 flex items-center gap-2">
           <ShieldCheck className="w-4 h-4 text-primary" />
           Regulatory Sandbox Participation
         </h3>
@@ -1316,7 +1316,7 @@ function MarketFutureTab() {
       {/* SupTech & Talent Gap */}
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
         <div className="bg-card rounded-xl border border-border p-5">
-          <h3 className="text-sm font-semibold text-foreground mb-3 flex items-center gap-2">
+          <h3 className="text-sm font-medium text-foreground mb-3 flex items-center gap-2">
             <Eye className="w-4 h-4 text-primary" />
             SupTech (Supervisory Tech) Adoption
           </h3>
@@ -1346,7 +1346,7 @@ function MarketFutureTab() {
           </div>
         </div>
         <div className="bg-card rounded-xl border border-border p-5">
-          <h3 className="text-sm font-semibold text-foreground mb-3 flex items-center gap-2">
+          <h3 className="text-sm font-medium text-foreground mb-3 flex items-center gap-2">
             <Users className="w-4 h-4 text-amber-400" />
             Talent Gap Challenge
           </h3>

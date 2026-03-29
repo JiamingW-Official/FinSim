@@ -457,9 +457,9 @@ export default function DebtCapitalMarketsPage() {
         </div>
       </motion.div>
 
-      {/* Key Metrics */}
+      {/* Key Metrics — Hero */}
       <motion.div {...fadeUp} transition={{ delay: 0.05, duration: 0.4 }}>
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
+        <div className="border-l-4 border-l-primary rounded-lg bg-card p-6 grid grid-cols-2 md:grid-cols-4 gap-3">
           <MetricChip
             label="IG Credit Spread (bps)"
             value={`${metrics.igSpread}`}
@@ -492,7 +492,7 @@ export default function DebtCapitalMarketsPage() {
       </motion.div>
 
       {/* Tabs */}
-      <motion.div {...fadeUp} transition={{ delay: 0.1, duration: 0.4 }}>
+      <motion.div {...fadeUp} transition={{ delay: 0.1, duration: 0.4 }} className="mt-8">
         <Tabs defaultValue="issuance" className="space-y-4">
           <TabsList className="bg-card border border-border h-auto flex-wrap gap-1 p-1">
             <TabsTrigger value="issuance" className="text-xs gap-1.5">
@@ -591,7 +591,7 @@ export default function DebtCapitalMarketsPage() {
           <TabsContent value="pricing" className="space-y-4">
             <Card className="bg-card border-border">
               <CardHeader className="pb-2">
-                <CardTitle className="text-sm font-semibold flex items-center gap-2">
+                <CardTitle className="text-sm font-medium flex items-center gap-2">
                   <Clock size={15} className="text-primary" />
                   Bond Issuance Process
                 </CardTitle>
@@ -615,7 +615,7 @@ export default function DebtCapitalMarketsPage() {
                         onClick={() => setActiveStep(activeStep === i ? null : i)}
                       >
                         <div className={`${step.color} mb-2`}>{step.icon}</div>
-                        <p className={`text-xs font-semibold ${activeStep === i ? step.color : "text-foreground"}`}>
+                        <p className={`text-xs font-medium ${activeStep === i ? step.color : "text-foreground"}`}>
                           {step.label}
                         </p>
                         <p className="text-xs text-muted-foreground mt-0.5">{step.duration}</p>
@@ -636,7 +636,7 @@ export default function DebtCapitalMarketsPage() {
                     transition={{ duration: 0.2 }}
                     className={`mt-4 p-4 rounded-xl border ${PRICING_STEPS[activeStep].bgColor} border-current`}
                   >
-                    <h3 className={`text-sm font-semibold ${PRICING_STEPS[activeStep].color} mb-1`}>
+                    <h3 className={`text-sm font-medium ${PRICING_STEPS[activeStep].color} mb-1`}>
                       {PRICING_STEPS[activeStep].label} — {PRICING_STEPS[activeStep].duration}
                     </h3>
                     <p className="text-sm text-foreground/80">{PRICING_STEPS[activeStep].description}</p>
@@ -665,7 +665,7 @@ export default function DebtCapitalMarketsPage() {
                     <div key={c.title} className="bg-muted/20 rounded-lg p-3 border border-border">
                       <div className="flex items-center gap-1.5 mb-1">
                         {c.icon}
-                        <p className="text-xs font-semibold text-foreground">{c.title}</p>
+                        <p className="text-xs font-medium text-foreground">{c.title}</p>
                       </div>
                       <p className="text-xs text-muted-foreground">{c.desc}</p>
                     </div>
@@ -680,7 +680,7 @@ export default function DebtCapitalMarketsPage() {
             <div className="grid md:grid-cols-2 gap-4">
               <Card className="bg-card border-border">
                 <CardHeader className="pb-2">
-                  <CardTitle className="text-sm font-semibold flex items-center gap-2">
+                  <CardTitle className="text-sm font-medium flex items-center gap-2">
                     <BookOpen size={15} className="text-primary" />
                     Demand Curve — $3B IG Deal
                   </CardTitle>
@@ -696,7 +696,7 @@ export default function DebtCapitalMarketsPage() {
                     ].map((stat) => (
                       <div key={stat.label} className="bg-muted/30 rounded-lg p-2 text-center">
                         <p className="text-xs text-muted-foreground">{stat.label}</p>
-                        <p className="text-sm font-semibold text-foreground mt-0.5">{stat.value}</p>
+                        <p className="text-sm font-medium text-foreground mt-0.5">{stat.value}</p>
                       </div>
                     ))}
                   </div>
@@ -705,7 +705,7 @@ export default function DebtCapitalMarketsPage() {
 
               <Card className="bg-card border-border">
                 <CardHeader className="pb-2">
-                  <CardTitle className="text-sm font-semibold flex items-center gap-2">
+                  <CardTitle className="text-sm font-medium flex items-center gap-2">
                     <Users size={15} className="text-primary" />
                     Syndicate Desk Roles
                   </CardTitle>
@@ -724,7 +724,7 @@ export default function DebtCapitalMarketsPage() {
                         <div className="flex items-center gap-2">
                           <span className={role.color}>{role.icon}</span>
                           <div>
-                            <p className="text-sm font-semibold text-foreground">{role.role}</p>
+                            <p className="text-sm font-medium text-foreground">{role.role}</p>
                             <p className="text-xs text-muted-foreground">{role.aka}</p>
                           </div>
                         </div>
@@ -760,7 +760,7 @@ export default function DebtCapitalMarketsPage() {
             {/* Allocation explainer */}
             <Card className="bg-card border-border">
               <CardHeader className="pb-2">
-                <CardTitle className="text-sm font-semibold flex items-center gap-2">
+                <CardTitle className="text-sm font-medium flex items-center gap-2">
                   <Layers size={15} className="text-amber-400" />
                   Allocation Principles
                 </CardTitle>
@@ -774,8 +774,8 @@ export default function DebtCapitalMarketsPage() {
                     { pct: "5–15%", bucket: "Retail / Private Bank", note: "Via selling group concession" },
                   ].map((b) => (
                     <div key={b.bucket} className="bg-muted/20 rounded-lg p-3 border border-border text-center">
-                      <p className="text-lg font-bold text-primary">{b.pct}</p>
-                      <p className="text-xs font-semibold text-foreground mt-1">{b.bucket}</p>
+                      <p className="text-lg font-medium text-primary">{b.pct}</p>
+                      <p className="text-xs font-medium text-foreground mt-1">{b.bucket}</p>
                       <p className="text-xs text-muted-foreground mt-0.5">{b.note}</p>
                     </div>
                   ))}
@@ -788,7 +788,7 @@ export default function DebtCapitalMarketsPage() {
           <TabsContent value="leagues" className="space-y-4">
             <Card className="bg-card border-border">
               <CardHeader className="pb-2">
-                <CardTitle className="text-sm font-semibold flex items-center gap-2">
+                <CardTitle className="text-sm font-medium flex items-center gap-2">
                   <Award size={15} className="text-amber-400" />
                   DCM League Tables — YTD 2026
                 </CardTitle>
@@ -809,14 +809,14 @@ export default function DebtCapitalMarketsPage() {
                         <tr key={row.rank} className="border-b border-border/50 hover:bg-muted/10 transition-colors">
                           <td className="px-4 py-2.5">
                             {row.rank <= 3 ? (
-                              <span className={`font-bold text-xs ${row.rank === 1 ? "text-amber-400" : row.rank === 2 ? "text-muted-foreground" : "text-amber-700"}`}>
+                              <span className={`font-medium text-xs ${row.rank === 1 ? "text-amber-400" : row.rank === 2 ? "text-muted-foreground" : "text-amber-700"}`}>
                                 {row.rank}
                               </span>
                             ) : (
                               <span className="text-xs text-muted-foreground">{row.rank}</span>
                             )}
                           </td>
-                          <td className="px-4 py-2.5 font-semibold text-foreground">{row.bank}</td>
+                          <td className="px-4 py-2.5 font-medium text-foreground">{row.bank}</td>
                           <td className="px-4 py-2.5 text-muted-foreground">{row.igVol}</td>
                           <td className="px-4 py-2.5 text-muted-foreground">{row.hyVol}</td>
                           <td className="px-4 py-2.5 font-medium text-foreground">{row.totalVol}</td>
@@ -844,7 +844,7 @@ export default function DebtCapitalMarketsPage() {
             <div className="grid md:grid-cols-2 gap-4">
               <Card className="bg-card border-border">
                 <CardHeader className="pb-2">
-                  <CardTitle className="text-sm font-semibold flex items-center gap-2">
+                  <CardTitle className="text-sm font-medium flex items-center gap-2">
                     <TrendingUp size={15} className="text-green-400" />
                     Spread Context
                   </CardTitle>
@@ -879,7 +879,7 @@ export default function DebtCapitalMarketsPage() {
 
               <Card className="bg-card border-border">
                 <CardHeader className="pb-2">
-                  <CardTitle className="text-sm font-semibold flex items-center gap-2">
+                  <CardTitle className="text-sm font-medium flex items-center gap-2">
                     <Globe size={15} className="text-primary" />
                     Key DCM Concepts
                   </CardTitle>
@@ -894,7 +894,7 @@ export default function DebtCapitalMarketsPage() {
                       { term: "Change of Control Put", def: "Investor can put bonds back at 101 if M&A changes issuer's credit profile" },
                     ].map((item) => (
                       <div key={item.term} className="border-b border-border/40 pb-2 last:border-0 last:pb-0">
-                        <p className="text-xs font-semibold text-foreground">{item.term}</p>
+                        <p className="text-xs font-medium text-foreground">{item.term}</p>
                         <p className="text-xs text-muted-foreground mt-0.5">{item.def}</p>
                       </div>
                     ))}

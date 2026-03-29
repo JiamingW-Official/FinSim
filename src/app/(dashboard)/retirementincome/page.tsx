@@ -247,7 +247,7 @@ function WithdrawalStrategiesTab() {
       <Card className="p-4 bg-card border-border">
         <div className="flex items-center gap-2 mb-4">
           <BarChart3 className="w-4 h-4 text-primary" />
-          <span className="font-semibold text-sm text-foreground">
+          <span className="font-medium text-sm text-foreground">
             Safe Withdrawal Rate Calculator
           </span>
         </div>
@@ -326,7 +326,7 @@ function WithdrawalStrategiesTab() {
       <Card className="p-4 bg-card border-border">
         <div className="flex items-center gap-2 mb-3">
           <Activity className="w-4 h-4 text-primary" />
-          <span className="font-semibold text-sm text-foreground">
+          <span className="font-medium text-sm text-foreground">
             Dynamic Withdrawal Strategies
           </span>
         </div>
@@ -359,7 +359,7 @@ function WithdrawalStrategiesTab() {
                 )}
               />
               <div>
-                <p className={cn("text-xs font-semibold", strat.colorCls)}>
+                <p className={cn("text-xs font-medium", strat.colorCls)}>
                   {strat.name}
                 </p>
                 <p className="text-xs text-muted-foreground mt-0.5">
@@ -375,7 +375,7 @@ function WithdrawalStrategiesTab() {
       <Card className="p-4 bg-card border-border">
         <div className="flex items-center gap-2 mb-3">
           <BarChart3 className="w-4 h-4 text-primary" />
-          <span className="font-semibold text-sm text-foreground">
+          <span className="font-medium text-sm text-foreground">
             Monte Carlo Fan Chart — 100 Paths, 30 Years
           </span>
         </div>
@@ -489,7 +489,7 @@ function WithdrawalStrategiesTab() {
       <Card className="p-4 bg-card border-border">
         <div className="flex items-center gap-2 mb-3">
           <Target className="w-4 h-4 text-primary" />
-          <span className="font-semibold text-sm text-foreground">
+          <span className="font-medium text-sm text-foreground">
             Success Rate vs Withdrawal Rate
           </span>
         </div>
@@ -617,7 +617,7 @@ function SequenceRiskTab() {
           <AlertTriangle className="w-5 h-5 text-red-400" />
         </div>
         <div>
-          <h2 className="text-lg font-semibold text-foreground">
+          <h2 className="text-lg font-medium text-foreground">
             Sequence of Returns Risk
           </h2>
           <p className="text-sm text-muted-foreground">
@@ -630,7 +630,7 @@ function SequenceRiskTab() {
       <Card className="p-4 bg-card border-border">
         <div className="flex items-center gap-2 mb-3">
           <Info className="w-4 h-4 text-primary" />
-          <span className="font-semibold text-sm text-foreground">
+          <span className="font-medium text-sm text-foreground">
             Why Sequence Matters
           </span>
         </div>
@@ -645,7 +645,7 @@ function SequenceRiskTab() {
         </p>
         <div className="grid grid-cols-2 gap-3 text-xs">
           <div className="rounded-lg bg-green-500/10 p-3">
-            <p className="font-semibold text-green-400 mb-1">
+            <p className="font-medium text-green-400 mb-1">
               Early Bull, Late Bear
             </p>
             <p className="text-muted-foreground">
@@ -654,7 +654,7 @@ function SequenceRiskTab() {
             </p>
           </div>
           <div className="rounded-lg bg-red-500/10 p-3">
-            <p className="font-semibold text-red-400 mb-1">
+            <p className="font-medium text-red-400 mb-1">
               Early Bear, Late Bull
             </p>
             <p className="text-muted-foreground">
@@ -669,7 +669,7 @@ function SequenceRiskTab() {
       <Card className="p-4 bg-card border-border">
         <div className="flex items-center gap-2 mb-3">
           <BarChart3 className="w-4 h-4 text-primary" />
-          <span className="font-semibold text-sm text-foreground">
+          <span className="font-medium text-sm text-foreground">
             Same Average Return — Different Sequence
           </span>
           <Badge className="text-xs bg-muted/50 text-muted-foreground">
@@ -769,7 +769,7 @@ function SequenceRiskTab() {
         <div className="grid grid-cols-2 gap-3 mt-2 text-xs">
           <div className="text-center">
             <p className="text-muted-foreground">Early Bull final value</p>
-            <p className="font-semibold text-green-400">
+            <p className="font-medium text-green-400">
               {fmtK(bullPath[bullPath.length - 1])}
             </p>
           </div>
@@ -777,7 +777,7 @@ function SequenceRiskTab() {
             <p className="text-muted-foreground">Early Bear final value</p>
             <p
               className={cn(
-                "font-semibold",
+                "font-medium",
                 bearPath[bearPath.length - 1] === 0
                   ? "text-red-400"
                   : "text-yellow-400"
@@ -795,7 +795,7 @@ function SequenceRiskTab() {
       <Card className="p-4 bg-card border-border">
         <div className="flex items-center gap-2 mb-3">
           <Shield className="w-4 h-4 text-primary" />
-          <span className="font-semibold text-sm text-foreground">
+          <span className="font-medium text-sm text-foreground">
             Mitigation Strategies
           </span>
         </div>
@@ -824,7 +824,7 @@ function SequenceRiskTab() {
               key={strat.name}
               className={cn("rounded-lg p-3", strat.bgCls)}
             >
-              <p className={cn("text-xs font-semibold mb-1", strat.colorCls)}>
+              <p className={cn("text-xs font-medium mb-1", strat.colorCls)}>
                 {strat.name}
               </p>
               <p className="text-xs text-muted-foreground">{strat.desc}</p>
@@ -837,7 +837,7 @@ function SequenceRiskTab() {
       <Card className="p-4 bg-card border-border">
         <div className="flex items-center gap-2 mb-4">
           <Layers className="w-4 h-4 text-primary" />
-          <span className="font-semibold text-sm text-foreground">
+          <span className="font-medium text-sm text-foreground">
             The Bucket Strategy
           </span>
         </div>
@@ -852,7 +852,7 @@ function SequenceRiskTab() {
                 }}
               >
                 <p
-                  className="text-xs font-semibold"
+                  className="text-xs font-medium"
                   style={{ color: b.color }}
                 >
                   Bucket {i + 1}
@@ -861,7 +861,7 @@ function SequenceRiskTab() {
                   {b.years}
                 </p>
                 <p
-                  className="text-lg font-bold mt-1"
+                  className="text-lg font-medium mt-1"
                   style={{ color: b.color }}
                 >
                   {b.alloc}%
@@ -906,7 +906,7 @@ function SequenceRiskTab() {
           })()}
         </svg>
         <p className="text-xs text-muted-foreground mt-3">
-          <span className="font-semibold text-foreground">
+          <span className="font-medium text-foreground">
             Rebalancing rule:{" "}
           </span>
           When Bucket 1 falls below 6 months of expenses, liquidate from Bucket
@@ -977,7 +977,7 @@ function SocialSecurityTab() {
           <Landmark className="w-5 h-5 text-primary" />
         </div>
         <div>
-          <h2 className="text-lg font-semibold text-foreground">
+          <h2 className="text-lg font-medium text-foreground">
             Social Security Optimization
           </h2>
           <p className="text-sm text-muted-foreground">
@@ -1018,11 +1018,11 @@ function SocialSecurityTab() {
             key={opt.age}
             className={cn("p-3 border-border text-center", opt.bgCls)}
           >
-            <p className={cn("text-xs font-semibold", opt.colorCls)}>
+            <p className={cn("text-xs font-medium", opt.colorCls)}>
               Age {opt.age}
             </p>
             <p className="text-xs text-muted-foreground">{opt.label}</p>
-            <p className={cn("text-xl font-bold mt-1", opt.colorCls)}>
+            <p className={cn("text-xl font-medium mt-1", opt.colorCls)}>
               {fmtK(opt.monthly)}/mo
             </p>
             <Badge
@@ -1038,7 +1038,7 @@ function SocialSecurityTab() {
       <Card className="p-4 bg-card border-border">
         <div className="flex items-center gap-2 mb-3">
           <BarChart3 className="w-4 h-4 text-primary" />
-          <span className="font-semibold text-sm text-foreground">
+          <span className="font-medium text-sm text-foreground">
             Cumulative Lifetime Benefits — Breakeven Analysis
           </span>
         </div>
@@ -1173,14 +1173,14 @@ function SocialSecurityTab() {
         <div className="grid grid-cols-2 gap-3 mt-2 text-xs">
           <div className="rounded-lg bg-muted/20 p-2">
             <p className="text-muted-foreground">62 vs 66 breakeven</p>
-            <p className="font-semibold text-foreground">Age {be6266}</p>
+            <p className="font-medium text-foreground">Age {be6266}</p>
             <p className="text-muted-foreground">
               Live past this — age 66 wins
             </p>
           </div>
           <div className="rounded-lg bg-muted/20 p-2">
             <p className="text-muted-foreground">66 vs 70 breakeven</p>
-            <p className="font-semibold text-foreground">Age {be6670}</p>
+            <p className="font-medium text-foreground">Age {be6670}</p>
             <p className="text-muted-foreground">
               Live past this — age 70 wins
             </p>
@@ -1193,7 +1193,7 @@ function SocialSecurityTab() {
         <Card className="p-4 bg-card border-border">
           <div className="flex items-center gap-2 mb-3">
             <CheckCircle className="w-4 h-4 text-green-400" />
-            <span className="font-semibold text-sm text-foreground">
+            <span className="font-medium text-sm text-foreground">
               Spousal Benefit Strategies
             </span>
           </div>
@@ -1219,13 +1219,13 @@ function SocialSecurityTab() {
         <Card className="p-4 bg-card border-border">
           <div className="flex items-center gap-2 mb-3">
             <AlertTriangle className="w-4 h-4 text-amber-400" />
-            <span className="font-semibold text-sm text-foreground">
+            <span className="font-medium text-sm text-foreground">
               Taxability and Offsets
             </span>
           </div>
           <div className="space-y-2 text-xs">
             <div className="rounded-lg bg-amber-500/10 p-2">
-              <p className="font-semibold text-amber-400 mb-1">
+              <p className="font-medium text-amber-400 mb-1">
                 Taxable Thresholds
               </p>
               <p className="text-muted-foreground">
@@ -1237,7 +1237,7 @@ function SocialSecurityTab() {
               </p>
             </div>
             <div className="rounded-lg bg-red-500/10 p-2">
-              <p className="font-semibold text-red-400 mb-1">
+              <p className="font-medium text-red-400 mb-1">
                 Government Pension Offset (GPO)
               </p>
               <p className="text-muted-foreground">
@@ -1246,7 +1246,7 @@ function SocialSecurityTab() {
               </p>
             </div>
             <div className="rounded-lg bg-primary/10 p-2">
-              <p className="font-semibold text-primary mb-1">
+              <p className="font-medium text-primary mb-1">
                 Earnings Test (before FRA)
               </p>
               <p className="text-muted-foreground">
@@ -1262,7 +1262,7 @@ function SocialSecurityTab() {
       <Card className="p-4 bg-card border-border">
         <div className="flex items-center gap-2 mb-3">
           <Activity className="w-4 h-4 text-primary" />
-          <span className="font-semibold text-sm text-foreground">
+          <span className="font-medium text-sm text-foreground">
             Income Replacement Rate by Claiming Strategy
           </span>
         </div>
@@ -1404,7 +1404,7 @@ function IncomeFlooringTab() {
           <Umbrella className="w-5 h-5 text-primary" />
         </div>
         <div>
-          <h2 className="text-lg font-semibold text-foreground">
+          <h2 className="text-lg font-medium text-foreground">
             Income Flooring
           </h2>
           <p className="text-sm text-muted-foreground">
@@ -1418,13 +1418,13 @@ function IncomeFlooringTab() {
       <Card className="p-4 bg-card border-border">
         <div className="flex items-center gap-2 mb-3">
           <Layers className="w-4 h-4 text-primary" />
-          <span className="font-semibold text-sm text-foreground">
+          <span className="font-medium text-sm text-foreground">
             Floor-and-Upside Framework
           </span>
         </div>
         <div className="grid grid-cols-2 gap-4">
           <div className="rounded-lg bg-primary/10 border border-border p-3">
-            <p className="text-xs font-semibold text-primary mb-2">
+            <p className="text-xs font-medium text-primary mb-2">
               Income Floor (Guaranteed)
             </p>
             <p className="text-xs text-muted-foreground mb-2">
@@ -1449,7 +1449,7 @@ function IncomeFlooringTab() {
             </ul>
           </div>
           <div className="rounded-lg bg-primary/10 border border-border p-3">
-            <p className="text-xs font-semibold text-primary mb-2">
+            <p className="text-xs font-medium text-primary mb-2">
               Upside Portfolio (Growth)
             </p>
             <p className="text-xs text-muted-foreground mb-2">
@@ -1480,7 +1480,7 @@ function IncomeFlooringTab() {
       <Card className="p-4 bg-card border-border">
         <div className="flex items-center gap-2 mb-3">
           <BarChart3 className="w-4 h-4 text-primary" />
-          <span className="font-semibold text-sm text-foreground">
+          <span className="font-medium text-sm text-foreground">
             Annuity Types Comparison
           </span>
         </div>
@@ -1506,7 +1506,7 @@ function IncomeFlooringTab() {
               {annuities.map((ann) => (
                 <tr key={ann.name} className="border-b border-border/50">
                   <td className="py-2">
-                    <p className="font-semibold text-foreground">{ann.name}</p>
+                    <p className="font-medium text-foreground">{ann.name}</p>
                     <p className="text-muted-foreground">{ann.full}</p>
                   </td>
                   <td className="py-2 text-right font-medium text-green-400">
@@ -1551,7 +1551,7 @@ function IncomeFlooringTab() {
           <div>
             <div className="flex items-center gap-2 mb-2">
               <CheckCircle className="w-3.5 h-3.5 text-green-400" />
-              <span className="font-semibold text-xs text-foreground">
+              <span className="font-medium text-xs text-foreground">
                 Case FOR Annuities
               </span>
             </div>
@@ -1576,7 +1576,7 @@ function IncomeFlooringTab() {
           <div>
             <div className="flex items-center gap-2 mb-2">
               <XCircle className="w-3.5 h-3.5 text-red-400" />
-              <span className="font-semibold text-xs text-foreground">
+              <span className="font-medium text-xs text-foreground">
                 Case AGAINST Annuities
               </span>
             </div>
@@ -1605,7 +1605,7 @@ function IncomeFlooringTab() {
       <Card className="p-4 bg-card border-border">
         <div className="flex items-center gap-2 mb-3">
           <Activity className="w-4 h-4 text-primary" />
-          <span className="font-semibold text-sm text-foreground">
+          <span className="font-medium text-sm text-foreground">
             Annuity Payout Rates vs 10-Year Treasury
           </span>
         </div>
@@ -1714,7 +1714,7 @@ function IncomeFlooringTab() {
       <Card className="p-4 bg-card border-border">
         <div className="flex items-center gap-2 mb-3">
           <Target className="w-4 h-4 text-primary" />
-          <span className="font-semibold text-sm text-foreground">
+          <span className="font-medium text-sm text-foreground">
             Income Certainty vs Flexibility Tradeoff
           </span>
         </div>
@@ -1811,7 +1811,7 @@ function IncomeFlooringTab() {
       <Card className="p-4 bg-card border-border">
         <div className="flex items-center gap-2 mb-3">
           <Clock className="w-4 h-4 text-primary" />
-          <span className="font-semibold text-sm text-foreground">
+          <span className="font-medium text-sm text-foreground">
             Longevity Risk Insurance — Deferred Income Annuity (DIA)
           </span>
         </div>
@@ -1845,14 +1845,14 @@ function IncomeFlooringTab() {
               className="rounded-lg bg-muted/20 p-2 text-center"
             >
               <p className="text-muted-foreground">{stat.label}</p>
-              <p className={cn("font-bold text-sm mt-0.5", stat.colorCls)}>
+              <p className={cn("font-medium text-sm mt-0.5", stat.colorCls)}>
                 {stat.value}
               </p>
             </div>
           ))}
         </div>
         <div className="mt-3 rounded-lg bg-primary/10 border border-border p-3 text-xs text-muted-foreground">
-          <span className="font-semibold text-primary">
+          <span className="font-medium text-primary">
             QLAC (Qualified Longevity Annuity Contract):{" "}
           </span>
           IRS allows up to the lesser of $200,000 or 25% of IRA balance to be
@@ -1889,7 +1889,7 @@ export default function RetirementIncomePage() {
             <DollarSign className="w-6 h-6 text-primary" />
           </div>
           <div>
-            <h1 className="text-xl font-bold text-foreground">
+            <h1 className="text-xl font-medium text-foreground">
               Retirement Income Planning
             </h1>
             <p className="text-sm text-muted-foreground">

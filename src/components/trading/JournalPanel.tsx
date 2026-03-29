@@ -104,7 +104,7 @@ export function JournalPanel() {
 
       {/* Filters */}
       {showFilters && (
-        <div className="flex flex-wrap gap-1 border border-border rounded-lg p-2 bg-muted/20">
+        <div className="flex flex-wrap gap-1 border border-border/40 rounded-lg p-2 bg-muted/20">
           <button
             onClick={() => setFilterTag(null)}
             className={cn(

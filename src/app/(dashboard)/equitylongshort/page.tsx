@@ -324,7 +324,7 @@ function PortfolioStructureTab() {
               <tbody>
                 {SHORT_BOOK.map((st) => (
                   <tr key={st.ticker} className="border-b border-border hover:bg-muted/40">
-                    <td className="px-3 py-1.5 font-semibold text-foreground">{st.ticker}</td>
+                    <td className="px-3 py-1.5 font-medium text-foreground">{st.ticker}</td>
                     <td className="px-3 py-1.5 text-right text-red-400">{st.weight}%</td>
                     <td className="px-3 py-1.5 text-right text-muted-foreground">{st.beta.toFixed(2)}</td>
                     <td className="px-3 py-1.5 text-muted-foreground">{st.sector}</td>
@@ -335,7 +335,7 @@ function PortfolioStructureTab() {
             <div className="px-3 py-3 border-t border-border space-y-1">
               <div className="flex justify-between text-xs">
                 <span className="text-muted-foreground">Net Beta Contribution</span>
-                <span className="text-sky-400 font-semibold">{netBeta.toFixed(2)}</span>
+                <span className="text-sky-400 font-medium">{netBeta.toFixed(2)}</span>
               </div>
               <div className="flex justify-between text-xs">
                 <span className="text-muted-foreground">Effective Market Sensitivity</span>
@@ -495,7 +495,7 @@ function ShortSellingTab() {
                   )}
                 </div>
                 <div className="bg-muted/50 rounded-lg px-3 py-2 flex-1 min-w-[160px] max-w-[220px] mb-2">
-                  <div className="text-xs font-semibold text-foreground mb-0.5">{item.label}</div>
+                  <div className="text-xs font-medium text-foreground mb-0.5">{item.label}</div>
                   <div className="text-xs text-muted-foreground leading-relaxed">{item.desc}</div>
                 </div>
               </div>
@@ -678,7 +678,7 @@ function ShortSellingTab() {
                   >
                     {risk.severity.toUpperCase()}
                   </Badge>
-                  <span className="text-xs font-semibold text-foreground">{risk.title}</span>
+                  <span className="text-xs font-medium text-foreground">{risk.title}</span>
                 </div>
                 <p className="text-xs text-muted-foreground leading-relaxed">{risk.desc}</p>
               </div>
@@ -753,14 +753,14 @@ function PairsTradingTab() {
         <CardContent>
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <div className="bg-amber-950/20 border border-amber-800/30 rounded-lg p-3">
-              <div className="text-xs font-semibold text-amber-400 mb-1">Correlation</div>
+              <div className="text-xs font-medium text-amber-400 mb-1">Correlation</div>
               <p className="text-xs text-muted-foreground leading-relaxed">
                 Two series move together on a short-term basis. Can break down permanently.
                 AAPL and MSFT are correlated (r ≈ 0.85) but their spread can diverge indefinitely.
               </p>
             </div>
             <div className="bg-emerald-950/20 border border-emerald-800/30 rounded-lg p-3">
-              <div className="text-xs font-semibold text-emerald-400 mb-1">Cointegration</div>
+              <div className="text-xs font-medium text-emerald-400 mb-1">Cointegration</div>
               <p className="text-xs text-muted-foreground leading-relaxed">
                 A linear combination of two non-stationary series is stationary.
                 Spread = P_A − β × P_B is mean-reverting with half-life τ. This is what pairs trading exploits.
@@ -861,14 +861,14 @@ function PairsTradingTab() {
         <CardContent>
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
             <div className="bg-emerald-950/20 border border-emerald-800/30 rounded-lg p-3">
-              <div className="text-xs font-semibold text-emerald-400 mb-1">Convergence (Expected)</div>
+              <div className="text-xs font-medium text-emerald-400 mb-1">Convergence (Expected)</div>
               <p className="text-xs text-muted-foreground leading-relaxed">
                 Spread reverts to mean. Both legs profit — long leg rises and short leg falls.
                 Half-life typically 5–20 days for sector pairs. Alpha = spread width − transaction costs − borrow.
               </p>
             </div>
             <div className="bg-red-950/20 border border-red-800/30 rounded-lg p-3">
-              <div className="text-xs font-semibold text-red-400 mb-1">Divergence (Tail Risk)</div>
+              <div className="text-xs font-medium text-red-400 mb-1">Divergence (Tail Risk)</div>
               <p className="text-xs text-muted-foreground leading-relaxed">
                 Spread widens further after entry (structural break, M&amp;A, earnings shock).
                 Both legs lose simultaneously. Cointegration can break permanently — use stop-loss at ±3σ.
@@ -1012,7 +1012,7 @@ function FundEconomicsTab() {
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-4">
             <div className="bg-muted/50 rounded-lg p-4">
               <div className="text-2xl font-bold text-amber-400 mb-1">2%</div>
-              <div className="text-xs font-semibold text-foreground mb-1">Management Fee</div>
+              <div className="text-xs font-medium text-foreground mb-1">Management Fee</div>
               <p className="text-xs text-muted-foreground leading-relaxed">
                 Annual fee on AUM (gross assets). Paid monthly regardless of performance.
                 On a $1B fund = $20M/yr. Covers salaries, research, prime brokerage, overhead.
@@ -1021,7 +1021,7 @@ function FundEconomicsTab() {
             </div>
             <div className="bg-muted/50 rounded-lg p-4">
               <div className="text-2xl font-bold text-indigo-400 mb-1">20%</div>
-              <div className="text-xs font-semibold text-foreground mb-1">Performance Fee (Carry)</div>
+              <div className="text-xs font-medium text-foreground mb-1">Performance Fee (Carry)</div>
               <p className="text-xs text-muted-foreground leading-relaxed">
                 20% of profits above hurdle rate (typically LIBOR/SOFR + 200bps or 8%).
                 Only charged when fund exceeds high watermark. Aligns manager with investor
@@ -1056,7 +1056,7 @@ function FundEconomicsTab() {
                         <td className="px-2 py-1.5 text-red-400">−{row.mgmt}%</td>
                         <td className="px-2 py-1.5 text-orange-400">−{row.trading}%</td>
                         <td className="px-2 py-1.5 text-amber-400">−{perfFee.toFixed(1)}%</td>
-                        <td className={cn("px-2 py-1.5 font-bold", net >= 5 ? "text-emerald-400" : net >= 0 ? "text-amber-400" : "text-red-400")}>
+                        <td className={cn("px-2 py-1.5 font-medium", net >= 5 ? "text-emerald-400" : net >= 0 ? "text-amber-400" : "text-red-400")}>
                           {net >= 0 ? "+" : ""}{net.toFixed(1)}%
                         </td>
                       </tr>
@@ -1214,15 +1214,15 @@ function FundEconomicsTab() {
           <CardContent>
             <div className="space-y-2 text-xs text-muted-foreground leading-relaxed">
               <p>
-                <span className="text-rose-400 font-semibold">Market impact:</span> Large orders move prices against the fund.
+                <span className="text-rose-400 font-medium">Market impact:</span> Large orders move prices against the fund.
                 A $10B L/S fund trading 1,000 names needs liquidity — alpha erodes at scale.
               </p>
               <p>
-                <span className="text-amber-400 font-semibold">Crowding:</span> As more capital chases statistical arbitrage,
+                <span className="text-amber-400 font-medium">Crowding:</span> As more capital chases statistical arbitrage,
                 spreads compress. The alpha edge narrows — "capacity constrained" strategies may close to new investors.
               </p>
               <p>
-                <span className="text-sky-400 font-semibold">Fund of Funds fee drag:</span> Adding a FoF layer costs another
+                <span className="text-sky-400 font-medium">Fund of Funds fee drag:</span> Adding a FoF layer costs another
                 1/10 (1% mgmt + 10% perf). Net-net investors may pay 3.5% annual drag before net alpha.
               </p>
             </div>
@@ -1243,9 +1243,9 @@ function FundEconomicsTab() {
                 { label: "− Management Fee (2%)", value: "−2%", color: "text-red-400" },
                 { label: "− Trading Costs (1%)", value: "−1%", color: "text-orange-400" },
                 { label: "− Performance Fee (20% of 6%)", value: "−1.2%", color: "text-amber-400" },
-                { label: "= Net Alpha to Investor", value: "+10.8%", color: "text-sky-400 font-bold" },
+                { label: "= Net Alpha to Investor", value: "+10.8%", color: "text-sky-400 font-medium" },
                 { label: "Portfolio Volatility (σ)", value: "12%", color: "text-muted-foreground" },
-                { label: "Net Sharpe ≈ (10.8 − 5) / 12", value: "≈ 0.48", color: "text-indigo-400 font-bold" },
+                { label: "Net Sharpe ≈ (10.8 − 5) / 12", value: "≈ 0.48", color: "text-indigo-400 font-medium" },
               ].map((row) => (
                 <div key={row.label} className="flex justify-between items-center text-xs border-b border-border/50 pb-1">
                   <span className="text-muted-foreground">{row.label}</span>
@@ -1281,7 +1281,7 @@ export default function EquityLongShortPage() {
             <Scale className="w-5 h-5 text-indigo-400" />
           </div>
           <div>
-            <h1 className="text-xl font-bold text-foreground">Equity Long/Short Strategies</h1>
+            <h1 className="text-xl font-medium text-foreground">Equity Long/Short Strategies</h1>
             <p className="text-xs text-muted-foreground">
               Fundamental L/S · Pairs Trading · Short Selling · Hedge Fund Alpha Economics
             </p>

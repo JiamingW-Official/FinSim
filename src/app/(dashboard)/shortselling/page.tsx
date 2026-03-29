@@ -666,20 +666,20 @@ function EMHCard({ form, idx }: { form: EMHForm; idx: number }) {
       </CardHeader>
       <CardContent className="space-y-3 text-sm">
         <div>
-          <span className="text-xs text-muted-foreground font-semibold">Definition</span>
+          <span className="text-xs text-muted-foreground font-medium">Definition</span>
           <p className="text-muted-foreground mt-1">{form.definition}</p>
         </div>
         <div>
-          <span className="text-xs text-muted-foreground font-semibold">Implication</span>
+          <span className="text-xs text-muted-foreground font-medium">Implication</span>
           <p className="text-muted-foreground mt-1">{form.implication}</p>
         </div>
         <div className="grid grid-cols-2 gap-2">
           <div className="rounded-lg bg-green-500/10 border border-green-500/20 p-2">
-            <p className="text-xs text-green-400 font-semibold mb-1">Supporting</p>
+            <p className="text-xs text-green-400 font-medium mb-1">Supporting</p>
             <p className="text-xs text-muted-foreground">{form.evidence}</p>
           </div>
           <div className="rounded-lg bg-red-500/10 border border-red-500/20 p-2">
-            <p className="text-xs text-red-400 font-semibold mb-1">Anomalies</p>
+            <p className="text-xs text-red-400 font-medium mb-1">Anomalies</p>
             <p className="text-xs text-muted-foreground">{form.counterEvidence}</p>
           </div>
         </div>
@@ -727,13 +727,13 @@ export default function ShortSellingPage() {
   return (
     <div className="min-h-screen bg-background text-foreground">
       {/* Header */}
-      <div className="border-b border-border bg-card/60 px-6 py-5 backdrop-blur-sm">
+      <div className="border-b border-border bg-card/60 px-6 py-6 backdrop-blur-sm border-l-4 border-l-primary">
         <div className="max-w-6xl mx-auto flex items-center gap-3">
           <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-red-500/10 border border-red-500/20">
             <TrendingDown className="w-5 h-5 text-red-400" />
           </div>
           <div>
-            <h1 className="text-lg font-semibold text-foreground">Short Selling</h1>
+            <h1 className="text-lg font-medium text-foreground">Short Selling</h1>
             <p className="text-xs text-muted-foreground">Mechanics, thesis frameworks, risk management & market efficiency</p>
           </div>
           <div className="ml-auto hidden md:flex items-center gap-2">
@@ -811,7 +811,7 @@ export default function ShortSellingPage() {
                     ].map((item) => (
                       <div key={item.step} className={`rounded-xl border ${item.color} ${item.bg} p-4`}>
                         <div className={`text-2xl font-bold mb-1 ${item.color.split(" ")[1]}`}>{item.step}</div>
-                        <div className={`font-semibold text-sm mb-1.5 ${item.color.split(" ")[1]}`}>{item.title}</div>
+                        <div className={`font-medium text-sm mb-1.5 ${item.color.split(" ")[1]}`}>{item.title}</div>
                         <p className="text-xs text-muted-foreground">{item.desc}</p>
                       </div>
                     ))}
@@ -909,15 +909,15 @@ export default function ShortSellingPage() {
                   <ShortPnLChart />
                   <div className="space-y-3 flex-1">
                     <div className="rounded-lg bg-green-500/10 border border-green-500/20 p-3">
-                      <p className="text-xs text-green-400 font-semibold mb-1">Maximum Profit</p>
+                      <p className="text-xs text-green-400 font-medium mb-1">Maximum Profit</p>
                       <p className="text-sm text-muted-foreground">100% — only if stock goes to zero (rare). Entry price × shares = max gain.</p>
                     </div>
                     <div className="rounded-lg bg-red-500/10 border border-red-500/20 p-3">
-                      <p className="text-xs text-red-400 font-semibold mb-1">Unlimited Loss</p>
+                      <p className="text-xs text-red-400 font-medium mb-1">Unlimited Loss</p>
                       <p className="text-sm text-muted-foreground">No theoretical ceiling. A stock at $10 can go to $1,000. This is the fundamental asymmetry of shorting.</p>
                     </div>
                     <div className="rounded-lg bg-amber-500/10 border border-amber-500/20 p-3">
-                      <p className="text-xs text-amber-400 font-semibold mb-1">Additional Costs</p>
+                      <p className="text-xs text-amber-400 font-medium mb-1">Additional Costs</p>
                       <p className="text-sm text-muted-foreground">Borrow fees, dividends passed through to lender, margin interest, and potential forced buy-ins.</p>
                     </div>
                   </div>
@@ -1006,7 +1006,7 @@ export default function ShortSellingPage() {
                       <Target className="w-4 h-4 text-primary" />
                       Interactive Conviction Scorer
                     </CardTitle>
-                    <div className={`px-3 py-1.5 rounded-lg border text-sm font-semibold ${conviction.bg} ${conviction.color}`}>
+                    <div className={`px-3 py-1.5 rounded-lg border text-sm font-medium ${conviction.bg} ${conviction.color}`}>
                       {thesisScore}/100 — {conviction.label}
                     </div>
                   </div>
@@ -1075,7 +1075,7 @@ export default function ShortSellingPage() {
                     ].map((c) => (
                       <div key={c.catalyst} className="rounded-lg border border-amber-500/20 bg-amber-500/5 p-3">
                         <div className="flex items-center justify-between mb-1">
-                          <span className="text-sm font-semibold text-amber-300">{c.catalyst}</span>
+                          <span className="text-sm font-medium text-amber-300">{c.catalyst}</span>
                           <Badge variant="outline" className={`text-xs ${c.urgency === "High" ? "border-red-500/30 text-red-400" : "border-amber-500/30 text-amber-400"}`}>
                             {c.urgency}
                           </Badge>
@@ -1096,7 +1096,7 @@ export default function ShortSellingPage() {
               <div className="rounded-xl border border-red-500/30 bg-red-500/8 p-5 flex gap-4">
                 <AlertTriangle className="w-5 h-5 text-red-400 shrink-0 mt-0.5" />
                 <div>
-                  <p className="font-semibold text-red-300 mb-1">The Fundamental Asymmetry</p>
+                  <p className="font-medium text-red-300 mb-1">The Fundamental Asymmetry</p>
                   <p className="text-sm text-muted-foreground">
                     A long position can lose 100%. A short position can lose 1,000%+ if the stock rises 10x. This unlimited upside risk is what makes short selling categorically different from buying stocks — and why position sizing is more critical than any thesis.
                   </p>
@@ -1230,7 +1230,7 @@ export default function ShortSellingPage() {
                       const titleMap: Record<string, string> = { red: "text-red-300", amber: "text-amber-300", indigo: "text-indigo-300" };
                       return (
                         <div key={c.challenge} className={`rounded-xl border ${borderMap[c.color]} ${bgMap[c.color]} p-4`}>
-                          <p className={`font-semibold text-sm mb-2 ${titleMap[c.color]}`}>{c.challenge}</p>
+                          <p className={`font-medium text-sm mb-2 ${titleMap[c.color]}`}>{c.challenge}</p>
                           <p className="text-xs text-muted-foreground mb-3">{c.desc}</p>
                           <div className="rounded bg-foreground/5 p-2">
                             <p className="text-xs text-muted-foreground italic">{c.example}</p>
@@ -1272,7 +1272,7 @@ export default function ShortSellingPage() {
                       <thead>
                         <tr className="border-b border-border">
                           {["Firm", "Founded", "Notable", "Style", "Avg Gain Per Short"].map((h) => (
-                            <th key={h} className="text-left px-3 py-2 text-xs text-muted-foreground font-semibold">
+                            <th key={h} className="text-left px-3 py-2 text-xs text-muted-foreground font-medium">
                               {h}
                             </th>
                           ))}
@@ -1293,7 +1293,7 @@ export default function ShortSellingPage() {
                             <td className="px-3 py-2.5">
                               <Badge variant="outline" className="text-xs border-indigo-500/30 text-indigo-300">{row.style}</Badge>
                             </td>
-                            <td className="px-3 py-2.5 text-green-400 font-semibold">{row.avg}</td>
+                            <td className="px-3 py-2.5 text-green-400 font-medium">{row.avg}</td>
                           </tr>
                         ))}
                       </tbody>
@@ -1312,7 +1312,7 @@ export default function ShortSellingPage() {
                 <div className="flex items-start gap-3">
                   <Scale className="w-5 h-5 text-indigo-400 shrink-0 mt-0.5" />
                   <div>
-                    <p className="font-semibold text-indigo-300 mb-1">Efficient Market Hypothesis (Fama, 1970)</p>
+                    <p className="font-medium text-indigo-300 mb-1">Efficient Market Hypothesis (Fama, 1970)</p>
                     <p className="text-sm text-muted-foreground">
                       In an efficient market, security prices at any time fully reflect all available information. If EMH holds in its strongest form, no consistent alpha is achievable — short selling is just as futile as long-side stock picking. However, short sellers argue their activity IS what makes markets more efficient by correcting overpriced stocks.
                     </p>
@@ -1338,7 +1338,7 @@ export default function ShortSellingPage() {
                 <CardContent>
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                     <div>
-                      <p className="text-sm font-semibold text-muted-foreground mb-3">Documented Anomalies (Alpha Sources)</p>
+                      <p className="text-sm font-medium text-muted-foreground mb-3">Documented Anomalies (Alpha Sources)</p>
                       <div className="space-y-2">
                         {[
                           { anomaly: "Momentum (12-1)", desc: "Past 12-month winners outperform. Jegadeesh & Titman 1993.", strength: "Strong" },
@@ -1355,7 +1355,7 @@ export default function ShortSellingPage() {
                               {item.strength}
                             </Badge>
                             <div>
-                              <p className="text-xs font-semibold text-muted-foreground">{item.anomaly}</p>
+                              <p className="text-xs font-medium text-muted-foreground">{item.anomaly}</p>
                               <p className="text-xs text-muted-foreground">{item.desc}</p>
                             </div>
                           </div>
@@ -1363,7 +1363,7 @@ export default function ShortSellingPage() {
                       </div>
                     </div>
                     <div>
-                      <p className="text-sm font-semibold text-muted-foreground mb-3">Limits to Arbitrage (Why Anomalies Persist)</p>
+                      <p className="text-sm font-medium text-muted-foreground mb-3">Limits to Arbitrage (Why Anomalies Persist)</p>
                       <div className="space-y-2">
                         {[
                           { limit: "Noise Trader Risk", desc: "Mispricing can worsen before correcting — rational arb can lose before being right." },
@@ -1375,7 +1375,7 @@ export default function ShortSellingPage() {
                           <div key={item.limit} className="flex gap-2 p-2.5 rounded-lg bg-foreground/5 border border-border/50">
                             <div className="w-1.5 h-1.5 rounded-full bg-red-500/80 shrink-0 mt-1.5" />
                             <div>
-                              <p className="text-xs font-semibold text-muted-foreground">{item.limit}</p>
+                              <p className="text-xs font-medium text-muted-foreground">{item.limit}</p>
                               <p className="text-xs text-muted-foreground">{item.desc}</p>
                             </div>
                           </div>
@@ -1420,10 +1420,10 @@ export default function ShortSellingPage() {
                       },
                     ].map((item) => (
                       <div key={item.title} className="rounded-xl border border-border bg-foreground/5 p-4">
-                        <p className="text-sm font-semibold text-foreground mb-2">{item.title}</p>
+                        <p className="text-sm font-medium text-foreground mb-2">{item.title}</p>
                         <p className="text-xs text-muted-foreground mb-3">{item.desc}</p>
                         <div className={`rounded-lg p-2.5 ${item.positive ? "bg-green-500/10 border border-green-500/20" : "bg-red-500/10 border border-red-500/20"}`}>
-                          <div className={`text-xl font-bold ${item.positive ? "text-green-400" : "text-red-400"}`}>{item.stat}</div>
+                          <div className={`text-xl font-medium ${item.positive ? "text-green-400" : "text-red-400"}`}>{item.stat}</div>
                           <div className="text-xs text-muted-foreground">{item.statLabel}</div>
                         </div>
                       </div>
@@ -1434,7 +1434,7 @@ export default function ShortSellingPage() {
 
               {/* Academic consensus summary */}
               <div className="rounded-xl border border-border/50 bg-card/50 p-5">
-                <p className="text-sm font-semibold text-muted-foreground mb-3">Academic Consensus</p>
+                <p className="text-sm font-medium text-muted-foreground mb-3">Academic Consensus</p>
                 <div className="space-y-2">
                   {[
                     { point: "Markets are largely efficient in weak and semi-strong forms for large-cap liquid stocks traded by sophisticated investors." },

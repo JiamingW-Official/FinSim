@@ -581,7 +581,7 @@ function MacroRegimeTab() {
                   <ArrowDownRight className="w-3 h-3 text-red-400" />
                 )}
               </div>
-              <p className="text-lg font-bold text-foreground">{m.value}</p>
+              <p className="text-lg font-medium text-foreground">{m.value}</p>
               <p className="text-xs text-muted-foreground">{m.label}</p>
               <p className="text-xs text-muted-foreground">{m.sub}</p>
             </CardContent>
@@ -626,7 +626,7 @@ function CentralBanksTab() {
                     </div>
                   </td>
                   <td className="py-3 pr-3 text-right">
-                    <span className="font-mono font-bold text-foreground">{cb.currentRate.toFixed(2)}%</span>
+                    <span className="font-mono font-medium text-foreground">{cb.currentRate.toFixed(2)}%</span>
                   </td>
                   <td className="py-3 pr-3 text-right">
                     {cb.lastChangeDir === "up" ? (
@@ -694,7 +694,7 @@ function CentralBanksTab() {
             ].map((d, i) => (
               <div key={i} className="bg-muted/50 rounded-lg p-3">
                 <p className="text-xs text-muted-foreground mb-1">{d.title}</p>
-                <p className={cn("text-xl font-bold font-mono", d.color)}>{d.value}</p>
+                <p className={cn("text-xl font-medium font-mono", d.color)}>{d.value}</p>
                 <p className="text-xs text-muted-foreground mt-1">{d.note}</p>
               </div>
             ))}
@@ -723,11 +723,11 @@ function CentralBanksTab() {
               const ytdColor = c.ytd.startsWith("+") ? "text-green-400" : "text-red-400";
               return (
                 <div key={i} className="bg-muted/50 rounded-lg p-3 text-center">
-                  <p className="font-bold text-foreground text-sm">{c.currency}</p>
-                  <p className={cn("text-lg font-mono font-bold", ytdColor)}>{c.ytd}</p>
+                  <p className="font-medium text-foreground text-sm">{c.currency}</p>
+                  <p className={cn("text-lg font-mono font-medium", ytdColor)}>{c.ytd}</p>
                   <p className="text-xs text-muted-foreground">YTD vs basket</p>
                   <p className="text-xs text-muted-foreground mt-1">Intervention: {c.interv}</p>
-                  <p className={cn("text-xs font-semibold mt-0.5", riskColor)}>Risk: {c.risk}</p>
+                  <p className={cn("text-xs font-medium mt-0.5", riskColor)}>Risk: {c.risk}</p>
                 </div>
               );
             })}
@@ -745,7 +745,7 @@ function CrossAssetTab() {
     <div className="space-y-4">
       <div className="flex items-center gap-2">
         <Layers className="w-5 h-5 text-muted-foreground" />
-        <span className="text-sm font-semibold text-foreground">Cross-Asset Correlation Matrix (30-day rolling)</span>
+        <span className="text-sm font-medium text-foreground">Cross-Asset Correlation Matrix (30-day rolling)</span>
       </div>
 
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-4">
@@ -805,7 +805,7 @@ function CrossAssetTab() {
             })}
 
             <div className="mt-4 p-3 rounded-lg bg-muted/50">
-              <p className="text-xs text-muted-foreground font-semibold mb-1">Regime Insight</p>
+              <p className="text-xs text-muted-foreground font-medium mb-1">Regime Insight</p>
               <p className="text-xs text-muted-foreground leading-snug">
                 SPX/TLT correlation shift signals key regime transition. Positive correlation indicates
                 risk-off dynamics; negative suggests inflation-driven repricing.
@@ -833,8 +833,8 @@ function CrossAssetTab() {
               const pos = a.ret >= 0;
               return (
                 <div key={i} className="bg-muted/50 rounded-lg p-3 text-center">
-                  <p className="font-bold text-muted-foreground text-sm">{a.short}</p>
-                  <p className={cn("text-xl font-bold font-mono", pos ? "text-green-400" : "text-red-400")}>
+                  <p className="font-medium text-muted-foreground text-sm">{a.short}</p>
+                  <p className={cn("text-xl font-medium font-mono", pos ? "text-green-400" : "text-red-400")}>
                     {pos ? "+" : ""}{a.ret.toFixed(1)}%
                   </p>
                   <p className="text-xs text-muted-foreground">Vol {a.vol.toFixed(1)}%</p>
@@ -853,7 +853,7 @@ function PositioningTab() {
     <div className="space-y-4">
       <div className="flex items-center gap-2">
         <BarChart2 className="w-5 h-5 text-orange-400" />
-        <span className="text-sm font-semibold text-foreground">Global Portfolio Positioning (COT-Style)</span>
+        <span className="text-sm font-medium text-foreground">Global Portfolio Positioning (COT-Style)</span>
       </div>
 
       <Card className="bg-card/60 border-border overflow-x-auto">
@@ -884,7 +884,7 @@ function PositioningTab() {
                   >
                     <td className="py-2.5 pr-3">
                       <div>
-                        <p className="font-semibold text-foreground text-xs">{p.short}</p>
+                        <p className="font-medium text-foreground text-xs">{p.short}</p>
                         <p className="text-xs text-muted-foreground hidden sm:block">{p.name}</p>
                       </div>
                     </td>
@@ -1009,7 +1009,7 @@ function PositioningTab() {
               const riskColor = t.risk === "high" ? "#ef4444" : "#f59e0b";
               return (
                 <div key={i} className="bg-muted/50 rounded-lg p-3">
-                  <p className="text-xs font-semibold text-foreground mb-1">{t.trade}</p>
+                  <p className="text-xs font-medium text-foreground mb-1">{t.trade}</p>
                   <div className="flex items-center gap-2 mb-1">
                     <div className="flex-1 h-1.5 bg-muted rounded-full overflow-hidden">
                       <div
@@ -1049,7 +1049,7 @@ export default function GlobalMacroDashPage() {
         <div>
           <div className="flex items-center gap-2 mb-1">
             <Globe className="w-6 h-6 text-primary" />
-            <h1 className="text-xl font-bold text-foreground">Global Macro Dashboard</h1>
+            <h1 className="text-xl font-medium text-foreground">Global Macro Dashboard</h1>
           </div>
           <p className="text-sm text-muted-foreground">
             Cross-asset correlations · Central bank policy · Macro regimes · Positioning intelligence

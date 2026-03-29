@@ -506,8 +506,9 @@ export default function AlgoTradingPage() {
 
   return (
     <div className="min-h-screen bg-background text-foreground p-4 md:p-6 space-y-6">
-      {/* Header */}
+      {/* HERO Header */}
       <motion.div {...fadeUp}>
+        <div className="border-l-4 border-l-primary rounded-xl bg-card p-6">
         <div className="flex items-center gap-3 mb-1">
           <div className="p-2 rounded-lg bg-indigo-500/10 border border-indigo-500/20">
             <Zap className="w-5 h-5 text-indigo-400" />
@@ -538,7 +539,10 @@ export default function AlgoTradingPage() {
             </Card>
           ))}
         </div>
+        </div>
       </motion.div>
+
+      <div className="mt-8" />
 
       {/* Tabs */}
       <motion.div {...fadeUp} transition={{ delay: 0.1, duration: 0.4 }}>
@@ -632,13 +636,13 @@ export default function AlgoTradingPage() {
                 <Card className="bg-card/60 border-border">
                   <CardContent className="p-3">
                     <div className="text-xs text-muted-foreground mb-1">Avg Execution Price</div>
-                    <div className="text-base font-semibold text-amber-400 tabular-nums">${AVG_ACTUAL.toFixed(3)}</div>
+                    <div className="text-base font-medium text-amber-400 tabular-nums">${AVG_ACTUAL.toFixed(3)}</div>
                   </CardContent>
                 </Card>
                 <Card className="bg-card/60 border-border">
                   <CardContent className="p-3">
                     <div className="text-xs text-muted-foreground mb-1">Implementation Shortfall</div>
-                    <div className={cn("text-base font-semibold tabular-nums", IMPL_SHORTFALL_BPS >= 0 ? "text-red-400" : "text-emerald-400")}>
+                    <div className={cn("text-base font-medium tabular-nums", IMPL_SHORTFALL_BPS >= 0 ? "text-red-400" : "text-emerald-400")}>
                       {IMPL_SHORTFALL_BPS > 0 ? "+" : ""}{IMPL_SHORTFALL_BPS} bps
                     </div>
                   </CardContent>
@@ -873,7 +877,7 @@ export default function AlgoTradingPage() {
                       {k.icon}
                       <span className="text-xs text-muted-foreground">{k.label}</span>
                     </div>
-                    <div className={cn("text-lg font-semibold tabular-nums", k.col)}>{k.value}</div>
+                    <div className={cn("text-lg font-medium tabular-nums", k.col)}>{k.value}</div>
                   </CardContent>
                 </Card>
               ))}

@@ -964,8 +964,8 @@ export default function AlgoBuilderPage() {
 
   return (
     <div className="min-h-screen bg-background text-foreground">
-      {/* Header */}
-      <div className="border-b border-border bg-background/95 backdrop-blur sticky top-0 z-20 px-6 py-4">
+      {/* HERO Header */}
+      <div className="border-b border-border border-l-4 border-l-primary bg-background/95 backdrop-blur sticky top-0 z-20 px-6 py-4">
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-3">
             <div className="p-2 rounded-lg bg-primary/10 border border-primary/20">
@@ -1109,7 +1109,7 @@ export default function AlgoBuilderPage() {
                               {meta.icon} {meta.label}
                             </span>
                             <span className={cn(
-                              "text-xs font-bold px-1.5 py-0.5 rounded",
+                              "text-xs font-medium px-1.5 py-0.5 rounded",
                               signal.rating === "A" ? "bg-emerald-500/20 text-emerald-400" :
                               signal.rating === "B" ? "bg-primary/20 text-primary" :
                               "bg-red-500/20 text-red-400"
@@ -1150,11 +1150,11 @@ export default function AlgoBuilderPage() {
                           <div className="text-xs text-muted-foreground">Avg Return</div>
                         </div>
                         <div>
-                          <div className="text-xs font-semibold text-red-400">{signal.maxDrawdown}%</div>
+                          <div className="text-xs font-medium text-red-400">{signal.maxDrawdown}%</div>
                           <div className="text-xs text-muted-foreground">Max DD</div>
                         </div>
                         <div>
-                          <div className="text-xs font-semibold text-muted-foreground">{signal.tradesPerYear}</div>
+                          <div className="text-xs font-medium text-muted-foreground">{signal.tradesPerYear}</div>
                           <div className="text-xs text-muted-foreground">Trades/Yr</div>
                         </div>
                       </div>
@@ -1225,7 +1225,7 @@ export default function AlgoBuilderPage() {
                 {/* Selected Signals */}
                 {selectedSignals.length > 0 && (
                   <Card className="p-5">
-                    <h3 className="text-sm font-semibold mb-4 flex items-center gap-2">
+                    <h3 className="text-sm font-medium mb-4 flex items-center gap-2">
                       <Zap size={14} className="text-primary" /> Active Signals
                     </h3>
                     <div className="space-y-2">
@@ -1254,7 +1254,7 @@ export default function AlgoBuilderPage() {
 
                 {/* Entry Logic */}
                 <Card className="p-5">
-                  <h3 className="text-sm font-semibold mb-4 flex items-center gap-2">
+                  <h3 className="text-sm font-medium mb-4 flex items-center gap-2">
                     <ArrowUpRight size={14} className="text-emerald-400" /> Entry Logic
                   </h3>
                   <div className="flex gap-3 mb-4">
@@ -1277,7 +1277,7 @@ export default function AlgoBuilderPage() {
 
                 {/* Exit Logic */}
                 <Card className="p-5">
-                  <h3 className="text-sm font-semibold mb-4 flex items-center gap-2">
+                  <h3 className="text-sm font-medium mb-4 flex items-center gap-2">
                     <ArrowDownRight size={14} className="text-red-400" /> Exit Rules
                   </h3>
                   <div className="grid grid-cols-2 gap-3 mb-4">
@@ -1366,7 +1366,7 @@ export default function AlgoBuilderPage() {
 
                 {/* Universe & Rebalancing */}
                 <Card className="p-5">
-                  <h3 className="text-sm font-semibold mb-4 flex items-center gap-2">
+                  <h3 className="text-sm font-medium mb-4 flex items-center gap-2">
                     <Filter size={14} className="text-primary" /> Universe & Rebalancing
                   </h3>
                   <div className="grid grid-cols-2 gap-4">
@@ -1423,7 +1423,7 @@ export default function AlgoBuilderPage() {
 
                 {/* Position Sizing */}
                 <Card className="p-5">
-                  <h3 className="text-sm font-semibold mb-4 flex items-center gap-2">
+                  <h3 className="text-sm font-medium mb-4 flex items-center gap-2">
                     <Gauge size={14} className="text-primary" /> Position Sizing
                   </h3>
                   <div className="grid grid-cols-3 gap-3">
@@ -1453,7 +1453,7 @@ export default function AlgoBuilderPage() {
 
                 {/* Transaction Cost Model */}
                 <Card className="p-5">
-                  <h3 className="text-sm font-semibold mb-3 flex items-center gap-2">
+                  <h3 className="text-sm font-medium mb-3 flex items-center gap-2">
                     <Settings size={14} className="text-muted-foreground" /> Transaction Cost Model
                   </h3>
                   <div className="grid grid-cols-3 gap-3 text-xs">
@@ -1476,7 +1476,7 @@ export default function AlgoBuilderPage() {
               {/* Right: Plain English Preview */}
               <div className="space-y-4">
                 <Card className="p-5 sticky top-24">
-                  <h3 className="text-sm font-semibold mb-3 flex items-center gap-2">
+                  <h3 className="text-sm font-medium mb-3 flex items-center gap-2">
                     <Bot size={14} className="text-primary" /> Strategy Description
                   </h3>
                   <p className="text-xs text-muted-foreground leading-relaxed">{strategyEnglish}</p>
@@ -1567,7 +1567,7 @@ export default function AlgoBuilderPage() {
                           { label: "Annual Turnover", value: `${backtestResult.annualTurnover}%`, color: "text-muted-foreground" },
                         ].map(metric => (
                           <Card key={metric.label} className="p-3">
-                            <div className={cn("text-lg font-bold font-mono", metric.color)}>{metric.value}</div>
+                            <div className={cn("text-lg font-medium font-mono", metric.color)}>{metric.value}</div>
                             <div className="text-xs text-muted-foreground mt-0.5">{metric.label}</div>
                           </Card>
                         ))}
@@ -1576,7 +1576,7 @@ export default function AlgoBuilderPage() {
                       {/* Strategy vs Benchmark */}
                       <Card className="p-5">
                         <div className="flex items-center justify-between mb-4">
-                          <h3 className="text-sm font-semibold flex items-center gap-2">
+                          <h3 className="text-sm font-medium flex items-center gap-2">
                             <BarChart2 size={14} /> Equity Curve vs SPY
                           </h3>
                           <div className="flex gap-3 text-xs">
@@ -1597,13 +1597,13 @@ export default function AlgoBuilderPage() {
 
                       {/* Monthly Heatmap */}
                       <Card className="p-5">
-                        <h3 className="text-sm font-semibold mb-4">Monthly Returns Heatmap</h3>
+                        <h3 className="text-sm font-medium mb-4">Monthly Returns Heatmap</h3>
                         <MonthlyHeatmap data={backtestResult.monthlyReturns} />
                       </Card>
 
                       {/* Rolling 12-Month */}
                       <Card className="p-5">
-                        <h3 className="text-sm font-semibold mb-3">Rolling 12-Month Returns</h3>
+                        <h3 className="text-sm font-medium mb-3">Rolling 12-Month Returns</h3>
                         <Rolling12mChart data={backtestResult.rolling12m} />
                         <div className="flex gap-4 text-xs text-muted-foreground mt-2">
                           <span className="flex items-center gap-1"><span className="w-3 h-1.5 bg-emerald-400/30 inline-block rounded" /> Positive periods</span>
@@ -1615,15 +1615,15 @@ export default function AlgoBuilderPage() {
                       <div className="grid grid-cols-3 gap-4">
                         <Card className="p-4">
                           <div className="text-xs text-muted-foreground mb-1">Avg Drawdown</div>
-                          <div className="text-lg font-bold font-mono text-amber-400">{backtestResult.avgDrawdown.toFixed(1)}%</div>
+                          <div className="text-lg font-medium font-mono text-amber-400">{backtestResult.avgDrawdown.toFixed(1)}%</div>
                         </Card>
                         <Card className="p-4">
                           <div className="text-xs text-muted-foreground mb-1">Avg Recovery Time</div>
-                          <div className="text-lg font-bold font-mono text-primary">{backtestResult.recoveryDays} days</div>
+                          <div className="text-lg font-medium font-mono text-primary">{backtestResult.recoveryDays} days</div>
                         </Card>
                         <Card className="p-4">
                           <div className="text-xs text-muted-foreground mb-1">Alpha vs SPY</div>
-                          <div className="text-lg font-bold font-mono text-emerald-400">
+                          <div className="text-lg font-medium font-mono text-emerald-400">
                             +{(backtestResult.totalReturn - backtestResult.spyReturn).toFixed(1)}%
                           </div>
                         </Card>
@@ -1647,7 +1647,7 @@ export default function AlgoBuilderPage() {
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
               {/* Factor Exposures */}
               <Card className="p-5">
-                <h3 className="text-sm font-semibold mb-4 flex items-center gap-2">
+                <h3 className="text-sm font-medium mb-4 flex items-center gap-2">
                   <GitCompare size={14} className="text-primary" /> Factor Exposures
                 </h3>
                 <p className="text-xs text-muted-foreground mb-4">Bars show β exposure; whiskers show 95% confidence interval</p>
@@ -1656,7 +1656,7 @@ export default function AlgoBuilderPage() {
 
               {/* Regime Analysis */}
               <Card className="p-5">
-                <h3 className="text-sm font-semibold mb-4 flex items-center gap-2">
+                <h3 className="text-sm font-medium mb-4 flex items-center gap-2">
                   <Activity size={14} className="text-amber-400" /> Regime Performance
                 </h3>
                 <div className="space-y-3">
@@ -1685,7 +1685,7 @@ export default function AlgoBuilderPage() {
 
               {/* Tail Risk Metrics */}
               <Card className="p-5">
-                <h3 className="text-sm font-semibold mb-4 flex items-center gap-2">
+                <h3 className="text-sm font-medium mb-4 flex items-center gap-2">
                   <AlertTriangle size={14} className="text-red-400" /> Tail Risk Metrics
                 </h3>
                 <div className="grid grid-cols-2 gap-3">
@@ -1699,7 +1699,7 @@ export default function AlgoBuilderPage() {
                     { label: "Kurtosis", value: tailMetrics.kurtosis.toFixed(2), desc: "Fat-tail measure (normal = 3)" },
                   ].map(m => (
                     <div key={m.label} className="p-3 rounded bg-muted/30 border border-border">
-                      <div className="text-base font-bold font-mono text-red-400">{m.value}</div>
+                      <div className="text-base font-medium font-mono text-red-400">{m.value}</div>
                       <div className="text-xs text-foreground mt-0.5">{m.label}</div>
                       <div className="text-xs text-muted-foreground mt-0.5">{m.desc}</div>
                     </div>
@@ -1709,7 +1709,7 @@ export default function AlgoBuilderPage() {
 
               {/* Stress Tests */}
               <Card className="p-5">
-                <h3 className="text-sm font-semibold mb-4 flex items-center gap-2">
+                <h3 className="text-sm font-medium mb-4 flex items-center gap-2">
                   <Shield size={14} className="text-primary" /> Historical Stress Tests
                 </h3>
                 <div className="space-y-4">
@@ -1763,7 +1763,7 @@ export default function AlgoBuilderPage() {
 
               {/* Diversification / Correlation */}
               <Card className="p-5 lg:col-span-2">
-                <h3 className="text-sm font-semibold mb-4 flex items-center gap-2">
+                <h3 className="text-sm font-medium mb-4 flex items-center gap-2">
                   <Layers size={14} className="text-emerald-400" /> Risk Factor Correlation & Diversification
                 </h3>
                 <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
@@ -1778,7 +1778,7 @@ export default function AlgoBuilderPage() {
                     return (
                       <div key={f.factor} className="p-3 rounded border border-border text-center">
                         <div className="text-xs text-muted-foreground mb-2">{f.factor}</div>
-                        <div className={cn("text-xl font-bold font-mono", color)}>
+                        <div className={cn("text-xl font-medium font-mono", color)}>
                           {f.corr > 0 ? "+" : ""}{f.corr.toFixed(2)}
                         </div>
                         <div className="text-xs text-muted-foreground mt-1">Diversification: {f.benefit}</div>
@@ -1828,7 +1828,7 @@ export default function AlgoBuilderPage() {
               {/* Signal Table */}
               <div className="lg:col-span-2">
                 <Card className="p-4">
-                  <h3 className="text-sm font-semibold mb-3">Active Signals</h3>
+                  <h3 className="text-sm font-medium mb-3">Active Signals</h3>
                   <div className="overflow-x-auto">
                     <table className="w-full text-xs">
                       <thead>
@@ -1848,7 +1848,7 @@ export default function AlgoBuilderPage() {
                               exit={{ opacity: 0 }}
                               className="border-b border-border/40 hover:bg-muted/20 transition-colors"
                             >
-                              <td className="py-2 pr-3 font-mono font-semibold">{sig.ticker}</td>
+                              <td className="py-2 pr-3 font-mono font-medium">{sig.ticker}</td>
                               <td className="py-2 pr-3 text-muted-foreground max-w-[160px] truncate">{sig.signalType}</td>
                               <td className="py-2 pr-3">
                                 <span className={cn(
@@ -1890,7 +1890,7 @@ export default function AlgoBuilderPage() {
               <div className="space-y-4">
                 {/* Signal Strength Distribution */}
                 <Card className="p-4">
-                  <h3 className="text-sm font-semibold mb-3">Signal Strength Distribution</h3>
+                  <h3 className="text-sm font-medium mb-3">Signal Strength Distribution</h3>
                   <SignalHistogram signals={liveSignals} />
                   <div className="flex justify-between text-xs text-muted-foreground mt-1">
                     <span className="text-red-400">Weak</span>
@@ -1901,12 +1901,12 @@ export default function AlgoBuilderPage() {
 
                 {/* Portfolio Construction */}
                 <Card className="p-4">
-                  <h3 className="text-sm font-semibold mb-3">Portfolio Recommendations</h3>
+                  <h3 className="text-sm font-medium mb-3">Portfolio Recommendations</h3>
                   {liveSignals.length > 0 ? (
                     <div className="space-y-2">
                       {liveSignals.slice(0, 5).map(sig => (
                         <div key={sig.id} className="flex items-center gap-2 text-xs">
-                          <span className="font-mono font-semibold w-12">{sig.ticker}</span>
+                          <span className="font-mono font-medium w-12">{sig.ticker}</span>
                           <span className={cn(
                             "text-xs px-1.5 py-0.5 rounded w-14 text-center",
                             sig.direction === "long" ? "bg-emerald-500/20 text-emerald-400" : "bg-red-500/20 text-red-400"
@@ -1930,7 +1930,7 @@ export default function AlgoBuilderPage() {
 
                 {/* Expected Portfolio Metrics */}
                 <Card className="p-4">
-                  <h3 className="text-sm font-semibold mb-3">Expected Portfolio (Next Rebalance)</h3>
+                  <h3 className="text-sm font-medium mb-3">Expected Portfolio (Next Rebalance)</h3>
                   {(() => {
                     const r = mulberry32(liveSeed);
                     return [

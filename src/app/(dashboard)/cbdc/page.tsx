@@ -451,7 +451,7 @@ function FundamentalsTab() {
                   >
                     <div className="px-3 pb-3">
                       <InfoBox variant="blue">
-                        <span className="font-semibold">Trade-off: </span>{choice.tradeoff}
+                        <span className="font-medium">Trade-off: </span>{choice.tradeoff}
                       </InfoBox>
                     </div>
                   </motion.div>
@@ -859,7 +859,7 @@ function GlobalTrackerTab() {
             <div className="flex items-center justify-between mb-1.5">
               <div className="flex items-center gap-1.5">
                 <span className="text-lg">{c.flag}</span>
-                <span className="text-sm font-semibold text-foreground">{c.country}</span>
+                <span className="text-sm font-medium text-foreground">{c.country}</span>
               </div>
               <StageBadge stage={c.stage} />
             </div>
@@ -1045,7 +1045,7 @@ function MonetaryPolicyTab() {
             )}>
               <div className="flex items-center gap-2 mb-2">
                 {item.icon}
-                <span className="text-sm font-semibold text-foreground">{item.title}</span>
+                <span className="text-sm font-medium text-foreground">{item.title}</span>
               </div>
               <p className="text-xs text-muted-foreground leading-relaxed mb-2">{item.desc}</p>
               <div className="text-xs text-muted-foreground italic border-l-2 border-border pl-2">{item.example}</div>
@@ -1103,7 +1103,7 @@ function MonetaryPolicyTab() {
           </div>
         </div>
         <InfoBox variant="blue" >
-          <span className="font-semibold">Key insight: </span>CBDC compresses monetary policy transmission from 6–18 months to potentially 4–12 weeks, giving central banks unprecedented speed and precision — but also amplifying the risk of policy errors.
+          <span className="font-medium">Key insight: </span>CBDC compresses monetary policy transmission from 6–18 months to potentially 4–12 weeks, giving central banks unprecedented speed and precision — but also amplifying the risk of policy errors.
         </InfoBox>
       </div>
 
@@ -1134,7 +1134,7 @@ function MonetaryPolicyTab() {
             item.color === "rose" ? "border-rose-500/30 bg-rose-500/5" : "border-amber-500/30 bg-amber-500/5"
           )}>
             <div className="flex items-center justify-between mb-1">
-              <span className="text-sm font-semibold text-foreground">{item.title}</span>
+              <span className="text-sm font-medium text-foreground">{item.title}</span>
               <Badge className={cn("text-xs", item.color === "rose" ? "bg-rose-500/20 text-rose-300 border-rose-500/30" : "bg-amber-500/20 text-amber-300 border-amber-500/30")}>
                 {item.risk} Risk
               </Badge>
@@ -1359,7 +1359,7 @@ function CrossBorderTab() {
           ].map((proj) => (
             <div key={proj.name} className="rounded-lg border border-border bg-foreground/[0.03] p-3">
               <div className="flex items-center justify-between mb-1.5">
-                <span className="text-sm font-semibold text-foreground">{proj.name}</span>
+                <span className="text-sm font-medium text-foreground">{proj.name}</span>
                 <Badge className={cn("text-xs", proj.statusColor === "emerald" ? "bg-emerald-500/20 text-emerald-300 border-emerald-500/30" : proj.statusColor === "blue" ? "bg-primary/20 text-primary border-border" : "bg-amber-500/20 text-amber-300 border-amber-500/30")}>
                   {proj.status}
                 </Badge>
@@ -1448,7 +1448,7 @@ function CrossBorderTab() {
 
       {/* FX Settlement explainer */}
       <InfoBox variant="blue">
-        <span className="font-semibold">T+0 FX Settlement: </span>
+        <span className="font-medium">T+0 FX Settlement: </span>
         Current FX settlement occurs at T+2 via CLS (Continuous Linked Settlement), creating a 2-day FX principal risk of $6.6 trillion daily. CBDC-based atomic PvP (Payment-vs-Payment) eliminates FX settlement risk entirely — each leg of the trade executes simultaneously or not at all. For emerging market currencies outside CLS, this is transformative.
       </InfoBox>
     </div>
@@ -1467,19 +1467,19 @@ export default function CBDCPage() {
   return (
     <div className="min-h-screen bg-background text-foreground">
       <div className="max-w-6xl mx-auto px-4 py-8">
-        {/* Header */}
+        {/* HERO Header */}
         <motion.div
           initial={{ opacity: 0, y: -16 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.35 }}
-          className="mb-6"
+          className="mb-8 border-l-4 border-l-primary rounded-xl bg-card p-6"
         >
           <div className="flex items-center gap-3 mb-2">
             <div className="w-10 h-10 rounded-xl bg-indigo-500/20 border border-indigo-500/30 flex items-center justify-center">
               <Banknote className="w-5 h-5 text-indigo-400" />
             </div>
             <div>
-              <h1 className="text-2xl font-bold text-foreground">Central Bank Digital Currencies</h1>
+              <h1 className="text-xl font-semibold text-foreground">Central Bank Digital Currencies</h1>
               <p className="text-sm text-muted-foreground">CBDC design, global adoption, monetary policy &amp; cross-border payments</p>
             </div>
           </div>

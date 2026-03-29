@@ -793,7 +793,7 @@ function CapTableTab() {
       {/* Cap table */}
       <div className="rounded-xl bg-card border border-border overflow-hidden">
         <div className="flex items-center justify-between p-4 border-b border-border">
-          <p className="text-sm font-semibold text-foreground">Cap Table</p>
+          <p className="text-sm font-medium text-foreground">Cap Table</p>
           <div className="flex items-center gap-2">
             <span className="text-xs text-muted-foreground">
               {totalShares.toLocaleString()} total shares
@@ -890,7 +890,7 @@ function CapTableTab() {
         {nextRound ? (
           <div className="flex items-center justify-between">
             <div>
-              <p className="text-sm font-semibold text-foreground mb-1">
+              <p className="text-sm font-medium text-foreground mb-1">
                 Next: {nextRound.name} Round
               </p>
               <p className="text-xs text-muted-foreground">
@@ -960,7 +960,7 @@ function TermSheetTab() {
 
       {/* Worked example box */}
       <div className="rounded-xl bg-card border border-border p-4">
-        <p className="text-sm font-semibold text-foreground mb-3 flex items-center gap-2">
+        <p className="text-sm font-medium text-foreground mb-3 flex items-center gap-2">
           <Calculator className="w-4 h-4 text-indigo-400" />
           Worked Example: Series A Term Sheet
         </p>
@@ -977,7 +977,7 @@ function TermSheetTab() {
           ].map((item) => (
             <div key={item.label} className="bg-muted rounded-lg p-2.5 border border-border">
               <p className="text-muted-foreground mb-1">{item.label}</p>
-              <p className="font-semibold text-foreground">{item.value}</p>
+              <p className="font-medium text-foreground">{item.value}</p>
             </div>
           ))}
         </div>
@@ -1013,7 +1013,7 @@ function TermSheetTab() {
               >
                 <div className="flex items-center gap-3">
                   <div className="text-indigo-400">{item.icon}</div>
-                  <span className="text-sm font-semibold text-foreground">{item.term}</span>
+                  <span className="text-sm font-medium text-foreground">{item.term}</span>
                   <span
                     className={cn(
                       "text-xs px-2 py-0.5 rounded-full border font-medium",
@@ -1105,7 +1105,7 @@ function ValuationTab() {
                 : {}
             }
           >
-            <p className="text-sm font-semibold mb-1" style={selected.name === m.name ? { color: m.color } : {}}>
+            <p className="text-sm font-medium mb-1" style={selected.name === m.name ? { color: m.color } : {}}>
               {m.name}
             </p>
             <p className="text-xs text-muted-foreground">{m.stage}</p>
@@ -1133,7 +1133,7 @@ function ValuationTab() {
                 {selected.steps.map((step, i) => (
                   <li key={i} className="flex gap-2 text-xs text-muted-foreground">
                     <span
-                      className="flex-shrink-0 w-4 h-4 rounded-full flex items-center justify-center text-foreground text-xs font-bold"
+                      className="flex-shrink-0 w-4 h-4 rounded-full flex items-center justify-center text-foreground text-xs font-medium"
                       style={{ backgroundColor: selected.color }}
                     >
                       {i + 1}
@@ -1166,7 +1166,7 @@ function ValuationTab() {
           {/* Interactive calculator for VC method */}
           {selected.name === "VC Method" && (
             <div className="rounded-lg border border-border bg-muted p-4 space-y-4">
-              <p className="text-xs font-semibold text-muted-foreground uppercase tracking-wide">
+              <p className="text-xs font-medium text-muted-foreground uppercase tracking-wide">
                 VC Method Calculator
               </p>
               <div className="grid grid-cols-2 gap-4">
@@ -1207,7 +1207,7 @@ function ValuationTab() {
                 ].map((item) => (
                   <div key={item.label} className="bg-card rounded-lg p-2.5 text-center">
                     <p className="text-xs text-muted-foreground mb-1">{item.label}</p>
-                    <p className="text-sm font-bold text-foreground">{item.value}</p>
+                    <p className="text-sm font-medium text-foreground">{item.value}</p>
                   </div>
                 ))}
               </div>
@@ -1217,7 +1217,7 @@ function ValuationTab() {
           {/* Interactive calculator for Revenue Multiple */}
           {selected.name === "Revenue Multiple" && (
             <div className="rounded-lg border border-border bg-muted p-4 space-y-4">
-              <p className="text-xs font-semibold text-muted-foreground uppercase tracking-wide">
+              <p className="text-xs font-medium text-muted-foreground uppercase tracking-wide">
                 Revenue Multiple Calculator
               </p>
               <div className="grid grid-cols-2 gap-4">
@@ -1261,7 +1261,7 @@ function ValuationTab() {
 
       {/* Sensitivity table */}
       <div className="rounded-xl border border-border bg-card p-4">
-        <p className="text-sm font-semibold text-foreground mb-3">
+        <p className="text-sm font-medium text-foreground mb-3">
           VC Method Sensitivity Table — Pre-Money ($M)
         </p>
         <p className="text-xs text-muted-foreground mb-3">
@@ -1370,7 +1370,7 @@ function EmployeeOptionsTab() {
           >
             <div className="flex items-center justify-between mb-3">
               <div>
-                <p className="text-sm font-bold text-foreground">{opt.name}</p>
+                <p className="text-sm font-medium text-foreground">{opt.name}</p>
                 <p className="text-xs text-muted-foreground">{opt.fullName}</p>
               </div>
               <Badge
@@ -1405,7 +1405,7 @@ function EmployeeOptionsTab() {
 
       {/* Options calculator */}
       <div className="rounded-xl bg-card border border-border p-5 space-y-4">
-        <p className="text-sm font-semibold text-foreground flex items-center gap-2">
+        <p className="text-sm font-medium text-foreground flex items-center gap-2">
           <Calculator className="w-4 h-4 text-indigo-400" />
           Option Value Calculator
         </p>
@@ -1470,7 +1470,7 @@ function EmployeeOptionsTab() {
               <p className="text-xs text-muted-foreground mb-1">{item.label}</p>
               <p
                 className={cn(
-                  "text-sm font-bold",
+                  "text-sm font-medium",
                   item.highlight ? "text-emerald-400" : "text-foreground"
                 )}
               >
@@ -1485,7 +1485,7 @@ function EmployeeOptionsTab() {
       {/* Vesting schedule visualizer */}
       <div className="rounded-xl bg-card border border-border p-4 space-y-4">
         <div className="flex items-center justify-between">
-          <p className="text-sm font-semibold text-foreground">Vesting Schedule Visualizer</p>
+          <p className="text-sm font-medium text-foreground">Vesting Schedule Visualizer</p>
           <div className="flex gap-2">
             {VESTING_SCHEDULES.map((sch, i) => (
               <button
@@ -1612,13 +1612,13 @@ export default function StartupFundingPage() {
     <div className="min-h-screen bg-background text-foreground">
       <div className="max-w-6xl mx-auto px-4 py-6">
         {/* Header */}
-        <div className="mb-6">
+        <div className="mb-6 border-l-4 border-l-primary p-6 rounded-lg bg-card/40">
           <div className="flex items-center gap-3 mb-2">
             <div className="w-10 h-10 rounded-xl bg-indigo-600/20 border border-indigo-500/30 flex items-center justify-center">
               <Briefcase className="w-5 h-5 text-indigo-400" />
             </div>
             <div>
-              <h1 className="text-2xl font-bold text-foreground">Startup Funding</h1>
+              <h1 className="text-xl font-bold text-foreground">Startup Funding</h1>
               <p className="text-sm text-muted-foreground">
                 Funding rounds, cap tables, term sheets, valuation methods, employee equity
               </p>
@@ -1647,7 +1647,7 @@ export default function StartupFundingPage() {
         </div>
 
         {/* Tabs */}
-        <Tabs defaultValue="stages">
+        <Tabs defaultValue="stages" className="mt-8">
           <TabsList className="bg-card border border-border mb-6 flex-wrap h-auto gap-1 p-1">
             {[
               { value: "stages", label: "Funding Stages", icon: <TrendingUp className="w-3.5 h-3.5" /> },
