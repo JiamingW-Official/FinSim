@@ -177,7 +177,7 @@ function MarketRow({
   return (
     <button
       onClick={() => onSelect(market)}
-      className="group flex w-full items-center gap-3 rounded px-2 py-2 text-left transition-colors hover:bg-muted/30"
+      className="group flex w-full items-center gap-3 rounded px-2 py-2 text-left transition-colors duration-150 hover:bg-muted/30"
     >
       {/* Category pill */}
       <span className={cn("shrink-0 rounded px-1.5 py-0.5 text-[10px] font-medium leading-none", CATEGORY_COLORS[market.category])}>
@@ -386,7 +386,7 @@ function MarketDetailDrawer({
             <button
               onClick={() => setOrderSide("yes")}
               className={cn(
-                "rounded-lg py-2 text-xs font-semibold transition-colors",
+                "rounded-lg py-2 text-xs font-semibold transition-all duration-100 active:scale-95",
                 orderSide === "yes"
                   ? "bg-emerald-500/20 text-emerald-500 ring-1 ring-emerald-500/30"
                   : "bg-emerald-500/8 text-emerald-500/60 hover:bg-emerald-500/12",
@@ -397,7 +397,7 @@ function MarketDetailDrawer({
             <button
               onClick={() => setOrderSide("no")}
               className={cn(
-                "rounded-lg py-2 text-xs font-semibold transition-colors",
+                "rounded-lg py-2 text-xs font-semibold transition-all duration-100 active:scale-95",
                 orderSide === "no"
                   ? "bg-red-500/20 text-red-500 ring-1 ring-red-500/30"
                   : "bg-red-500/8 text-red-500/60 hover:bg-red-500/12",

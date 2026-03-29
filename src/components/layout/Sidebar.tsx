@@ -175,7 +175,7 @@ function NavLink({
       href={item.href}
       aria-label={item.label}
       className={cn(
-        "group relative flex items-center rounded-md transition-colors duration-150 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-primary/50",
+        "group relative flex items-center rounded-md transition-colors duration-150 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-primary/30",
         collapsed
           ? "h-9 w-10 justify-center"
           : "h-8 w-full gap-2 px-2.5",
@@ -269,7 +269,7 @@ function SectionToggle({
       type="button"
       onClick={onToggle}
       className={cn(
-        "group flex w-full items-center rounded-md transition-colors duration-150 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-primary/50",
+        "group flex w-full items-center rounded-md transition-colors duration-150 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-primary/30",
         sidebarCollapsed
           ? "h-9 w-10 justify-center"
           : "h-7 gap-2 px-2.5",

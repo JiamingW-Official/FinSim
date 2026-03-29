@@ -549,7 +549,7 @@ export function LivePnLDashboard() {
               const isPos = pos.unrealizedPnL >= 0;
               const value = pos.currentPrice * pos.quantity;
               return (
-                <div key={`${pos.ticker}-${pos.side}`} className="space-y-0.5">
+                <div key={`${pos.ticker}-${pos.side}`} className="space-y-0.5 rounded-md px-1.5 py-1 -mx-1.5 transition-colors duration-150 hover:bg-muted/20">
                   {/* Row header */}
                   <div className="flex items-center justify-between text-xs">
                     <div className="flex items-center gap-1.5">

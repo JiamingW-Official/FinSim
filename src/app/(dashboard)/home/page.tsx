@@ -452,7 +452,7 @@ export default function HomePage() {
             { label: "Predictions", href: "/predictions", Icon: Target },
             { label: "Portfolio", href: "/portfolio", Icon: PieChart },
           ].map(({ label, href, Icon }) => (
-            <Link key={href} href={href} className="group flex items-center gap-1.5 text-sm text-muted-foreground transition-colors hover:text-foreground">
+            <Link key={href} href={href} className="group flex items-center gap-1.5 rounded-md px-2 py-1 text-sm text-muted-foreground transition-all duration-150 hover:bg-muted/40 hover:text-foreground active:scale-[0.98] cursor-pointer">
               <Icon className="h-3.5 w-3.5" />
               <span>{label}</span>
               <ChevronRight className="h-3 w-3 opacity-0 transition-opacity group-hover:opacity-100" />

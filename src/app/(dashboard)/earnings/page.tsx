@@ -422,7 +422,7 @@ function CalendarTab() {
   const weekDays = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-8">
       {/* HERO — Next Earnings Event */}
       {upcoming.length > 0 && (
         <div className="rounded-xl border border-border bg-card border-l-4 border-l-primary p-6 space-y-3">
@@ -463,28 +463,28 @@ function CalendarTab() {
         </div>
       )}
 
-      {/* Compact list — Remaining Upcoming Earnings */}
+      {/* Compact list — Remaining Upcoming Earnings (crushed) */}
       {upcoming.length > 1 && (
         <div>
-          <h2 className="text-xs font-semibold text-muted-foreground mb-2 flex items-center gap-2">
-            <Clock className="h-3.5 w-3.5" />
+          <h2 className="text-[11px] font-medium text-muted-foreground mb-1.5 flex items-center gap-1.5">
+            <Clock className="h-3 w-3" />
             Other Upcoming Earnings
           </h2>
-          <div className="space-y-1">
+          <div className="space-y-0.5">
             {upcoming.slice(1).map((e, i) => (
               <div
                 key={i}
-                className="bg-card border border-border rounded-md px-3 py-2 flex items-center gap-3 text-xs"
+                className="bg-card/50 border border-border/50 rounded px-2.5 py-1.5 flex items-center gap-2.5 text-[11px]"
               >
-                <div className={cn("px-1.5 py-0.5 rounded text-[11px] font-bold", catColor(e.category))}>
+                <div className={cn("px-1.5 py-0.5 rounded text-[11px] font-medium", catColor(e.category))}>
                   {e.ticker}
                 </div>
                 <span className="text-muted-foreground truncate flex-1">{e.company}</span>
                 <span className="text-[11px] text-muted-foreground">{e.day}</span>
                 <span className="text-[11px] text-muted-foreground">{e.time === "BMO" ? "BMO" : "AMC"}</span>
-                <span className="font-mono text-foreground">Est ${e.epsEstimate.toFixed(2)}</span>
-                <span className="font-mono text-amber-400">&plusmn;{e.impliedMove}%</span>
-                <span className={cn("font-mono", e.beatRate >= 70 ? "text-emerald-400" : e.beatRate >= 55 ? "text-amber-400" : "text-red-400")}>
+                <span className="font-mono text-muted-foreground">Est ${e.epsEstimate.toFixed(2)}</span>
+                <span className="font-mono text-amber-400/70">&plusmn;{e.impliedMove}%</span>
+                <span className={cn("font-mono", e.beatRate >= 70 ? "text-emerald-400/70" : e.beatRate >= 55 ? "text-amber-400/70" : "text-red-400/70")}>
                   {e.beatRate}%
                 </span>
               </div>
@@ -709,10 +709,10 @@ function EarningsAnalysisTab() {
     : "Iron Condor — moderate beat history; collect range-bound premium around ±implied move.";
 
   return (
-    <div className="space-y-4">
+    <div className="space-y-6">
       {/* Ticker selector */}
       <div className="flex items-center gap-3">
-        <span className="text-sm text-muted-foreground">Select ticker:</span>
+        <span className="text-xs text-muted-foreground">Select ticker:</span>
         <div className="flex flex-wrap gap-1.5">
           {TICKERS.map(({ ticker }) => (
             <button
@@ -779,9 +779,9 @@ function EarningsAnalysisTab() {
       </div>
 
       {/* Earnings quality + strategy */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-        <div className="bg-card border border-border rounded-lg p-3 space-y-2">
-          <div className="text-xs font-semibold text-foreground">Earnings Quality Score</div>
+      <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mt-2">
+        <div className="border-l-4 border-l-primary bg-card rounded-lg p-4 space-y-2">
+          <div className="text-xs font-medium text-foreground">Earnings Quality Score</div>
           <div className="flex items-center gap-3">
             <div className={cn(
               "text-2xl font-bold tabular-nums",
@@ -875,7 +875,7 @@ function AnalystRatingsTab() {
   const contrarian = ratings.filter((r) => r.sellCount / r.analysts > 0.4 && r.upsidePct > 0);
 
   return (
-    <div className="space-y-4">
+    <div className="space-y-6">
       {/* Consensus table */}
       <div className="bg-card border border-border rounded-lg overflow-hidden">
         <div className="px-3 py-2 border-b border-border">
@@ -1211,11 +1211,13 @@ export default function EarningsPage() {
   return (
     <div className="flex flex-col h-full overflow-hidden">
       {/* Header */}
-      <div className="shrink-0 border-b border-border px-4 py-3 flex items-center gap-3">
-        <Calendar className="h-5 w-5 text-primary" />
+      <div className="shrink-0 border-b border-border px-4 py-4 flex items-center gap-3">
+        <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-primary/10">
+          <Calendar className="h-4.5 w-4.5 text-primary" />
+        </div>
         <div>
           <h1 className="text-base font-bold text-foreground">Earnings Calendar</h1>
-          <p className="text-xs text-muted-foreground">Calendar, analyst ratings, earnings history &amp; trading strategies</p>
+          <p className="text-[11px] text-muted-foreground">Calendar, analyst ratings, earnings history &amp; trading strategies</p>
         </div>
       </div>
 

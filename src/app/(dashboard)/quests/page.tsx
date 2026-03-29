@@ -88,98 +88,80 @@ function SimpleQuestCard({
       animate={{ opacity: 1, y: 0 }}
       transition={{ delay, duration: 0.25 }}
       className={cn(
-        "bg-card/50 rounded-lg p-3 cursor-pointer hover:bg-muted/50 transition-colors",
-        isComplete && "opacity-75 bg-emerald-500/5",
-        pct > 0 && !isComplete && "bg-primary/[0.03]",
+        "rounded-lg cursor-pointer transition-colors",
+        isComplete
+          ? "bg-card/30 opacity-60 p-2"
+          : pct > 0
+            ? "border-l-4 border-l-primary bg-card p-4 hover:bg-muted/50"
+            : "bg-card/50 p-3 hover:bg-muted/50",
       )}
     >
-      <div className="flex items-start justify-between gap-3">
-        <div className="flex-1 min-w-0">
-          {/* Title row */}
-          <div className="flex items-center gap-2 flex-wrap">
-            <h3
-              className={cn(
-                "text-sm font-bold truncate",
-                isComplete ? "text-emerald-300" : "text-foreground",
-              )}
-            >
-              {quest.title}
-            </h3>
-            <span
-              className={cn(
-                "shrink-0 rounded border px-1.5 py-0.5 text-[11px] font-bold uppercase tracking-wide",
-                timeBadgeClass,
-              )}
-            >
-              {timeLabel}
-            </span>
-            {isComplete && (
-              <span className="shrink-0 text-xs font-bold text-emerald-400">
-                Complete
-              </span>
-            )}
-          </div>
-
-          <p className="mt-0.5 text-xs text-muted-foreground line-clamp-2">
-            {quest.description}
-          </p>
-
-          {/* Progress bar */}
-          <div className="mt-2 space-y-1">
-            <div className="flex items-center justify-between text-xs">
-              <span className="text-muted-foreground">
-                {quest.id === "daily_60_winrate"
-                  ? `${progress}% / ${quest.target}%`
-                  : `${progress} / ${quest.target}`}
-              </span>
-              <span
+      {isComplete ? (
+        /* Crushed completed quest — single-line */
+        <div className="flex items-center gap-2">
+          <span className="text-[11px] text-emerald-400/70 truncate flex-1">{quest.title}</span>
+          <span className="text-[11px] text-muted-foreground/50">{timeLabel}</span>
+          <span className="text-[11px] text-emerald-400/50 tabular-nums">{quest.xpReward} XP</span>
+        </div>
+      ) : (
+        <div className="flex items-start justify-between gap-3">
+          <div className="flex-1 min-w-0">
+            {/* Title row */}
+            <div className="flex items-center gap-2 flex-wrap">
+              <h3
                 className={cn(
-                  "font-bold tabular-nums",
-                  isComplete ? "text-emerald-400" : "text-muted-foreground",
+                  "truncate",
+                  pct > 0 ? "text-sm font-bold" : "text-xs font-medium text-foreground",
                 )}
               >
-                {Math.round(pct)}%
+                {quest.title}
+              </h3>
+              <span
+                className={cn(
+                  "shrink-0 rounded border px-1.5 py-0.5 text-[11px] font-medium uppercase tracking-wide",
+                  timeBadgeClass,
+                )}
+              >
+                {timeLabel}
               </span>
             </div>
-            <div className="h-1.5 w-full overflow-hidden rounded-full bg-muted">
-              <motion.div
-                className={cn(
-                  "h-full rounded-full",
-                  isComplete ? "bg-emerald-500" : "bg-primary",
-                )}
-                initial={{ width: 0 }}
-                animate={{ width: `${pct}%` }}
-                transition={{ duration: 0.5, ease: "easeOut", delay: delay + 0.1 }}
-              />
+
+            <p className="mt-0.5 text-[11px] text-muted-foreground line-clamp-1">
+              {quest.description}
+            </p>
+
+            {/* Progress bar */}
+            <div className="mt-2 space-y-1">
+              <div className="flex items-center justify-between text-[11px]">
+                <span className="text-muted-foreground">
+                  {quest.id === "daily_60_winrate"
+                    ? `${progress}% / ${quest.target}%`
+                    : `${progress} / ${quest.target}`}
+                </span>
+                <span className="font-medium tabular-nums text-muted-foreground">
+                  {Math.round(pct)}%
+                </span>
+              </div>
+              <div className="h-1.5 w-full overflow-hidden rounded-full bg-muted">
+                <motion.div
+                  className="h-full rounded-full bg-primary"
+                  initial={{ width: 0 }}
+                  animate={{ width: `${pct}%` }}
+                  transition={{ duration: 0.5, ease: "easeOut", delay: delay + 0.1 }}
+                />
+              </div>
             </div>
           </div>
-        </div>
 
-        {/* XP chip */}
-        <div
-          className={cn(
-            "shrink-0 flex items-center gap-1 rounded-full border px-2 py-1",
-            isComplete
-              ? "border-emerald-500/20 bg-emerald-500/10"
-              : "border-border bg-muted/30",
-          )}
-        >
-          <Zap
-            className={cn(
-              "h-3 w-3",
-              isComplete ? "text-emerald-400" : "text-amber-400",
-            )}
-          />
-          <span
-            className={cn(
-              "text-xs font-bold tabular-nums",
-              isComplete ? "text-emerald-400" : "text-amber-400",
-            )}
-          >
-            {quest.xpReward} XP
-          </span>
+          {/* XP chip */}
+          <div className="shrink-0 flex items-center gap-1 rounded-full border border-border bg-muted/30 px-2 py-1">
+            <Zap className="h-3 w-3 text-amber-400" />
+            <span className="text-[11px] font-medium tabular-nums text-amber-400">
+              {quest.xpReward} XP
+            </span>
+          </div>
         </div>
-      </div>
+      )}
     </motion.div>
   );
 }
@@ -262,7 +244,7 @@ function ActiveQuestsTab() {
             type="button"
             onClick={() => setSub(t.id)}
             className={cn(
-              "rounded-md px-3 py-1.5 text-xs font-bold transition-colors",
+              "rounded-md px-3 py-1.5 text-xs font-medium transition-colors",
               sub === t.id
                 ? "bg-primary text-primary-foreground"
                 : "bg-muted text-muted-foreground hover:text-foreground hover:bg-muted/80",
@@ -403,11 +385,11 @@ function BranchGrid() {
             )}
           >
             <div className="flex items-center gap-2 mb-2">
-              <span className={cn("text-sm font-bold", isUnlocked ? branch.color : "text-muted-foreground")}>
+              <span className={cn("text-xs font-medium", isUnlocked ? branch.color : "text-muted-foreground")}>
                 {branch.name}
               </span>
               {!isUnlocked && (
-                <span className="text-[11px] font-bold uppercase tracking-wide text-muted-foreground border border-border rounded px-1 py-0.5">
+                <span className="text-[11px] font-medium uppercase tracking-wide text-muted-foreground border border-border rounded px-1 py-0.5">
                   {branch.unlockAt} quests to unlock
                 </span>
               )}
@@ -435,7 +417,7 @@ function BranchGrid() {
                   >
                     <div
                       className={cn(
-                        "h-6 w-6 rounded-full border flex items-center justify-center text-[11px] font-bold",
+                        "h-5 w-5 rounded-full border flex items-center justify-center text-[11px] font-medium",
                         isUnlocked
                           ? cn("border-current", branch.color)
                           : "border-border text-muted-foreground",
@@ -448,7 +430,7 @@ function BranchGrid() {
                     </span>
                     <span
                       className={cn(
-                        "text-[11px] font-bold",
+                        "text-[11px] font-medium",
                         isUnlocked ? "text-amber-400" : "text-muted-foreground",
                       )}
                     >
@@ -551,7 +533,7 @@ export default function QuestsPage() {
             transition={{ delay: 0.3, type: "spring", stiffness: 400, damping: 15 }}
           >
             <Trophy className="h-3 w-3 text-primary" />
-            <span className="text-xs font-bold text-primary">
+            <span className="text-xs font-medium text-primary">
               {totalCompleted} completed
             </span>
           </motion.div>
@@ -560,43 +542,43 @@ export default function QuestsPage() {
         {/* Stats strip — flow cards (borderless, content-like) */}
         <div className="mt-3 flex items-center gap-2 flex-wrap">
           <motion.div
-            className="flex items-center gap-1.5 bg-transparent p-3"
+            className="flex items-center gap-1.5 bg-transparent p-2"
             initial={{ opacity: 0, y: 8 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.1 }}
           >
             <Zap className="h-3.5 w-3.5 text-amber-400" />
-            <span className="text-[11px] font-bold tabular-nums text-amber-400">
+            <span className="text-[11px] font-medium tabular-nums text-amber-400">
               {completedDailyCount}/{DAILY_QUESTS.length}
             </span>
-            <span className="text-xs text-muted-foreground">daily</span>
+            <span className="text-[11px] text-muted-foreground">daily</span>
           </motion.div>
 
           <motion.div
-            className="flex items-center gap-1.5 bg-transparent p-3"
+            className="flex items-center gap-1.5 bg-transparent p-2"
             initial={{ opacity: 0, y: 8 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.13 }}
           >
             <CalendarDays className="h-3.5 w-3.5 text-primary" />
-            <span className="text-[11px] font-bold tabular-nums text-primary">
+            <span className="text-[11px] font-medium tabular-nums text-primary">
               {completedWeeklyCount}/{WEEKLY_QUESTS.length}
             </span>
-            <span className="text-xs text-muted-foreground">weekly</span>
+            <span className="text-[11px] text-muted-foreground">weekly</span>
           </motion.div>
 
           {dailyStreak > 0 && (
             <motion.div
-              className="flex items-center gap-1.5 bg-transparent p-3"
+              className="flex items-center gap-1.5 bg-transparent p-2"
               initial={{ opacity: 0, y: 8 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.16 }}
             >
               <Flame className="h-3.5 w-3.5 text-orange-400" />
-              <span className="text-[11px] font-bold tabular-nums text-orange-400">
+              <span className="text-[11px] font-medium tabular-nums text-orange-400">
                 {dailyStreak}
               </span>
-              <span className="text-xs text-muted-foreground">day streak</span>
+              <span className="text-[11px] text-muted-foreground">day streak</span>
             </motion.div>
           )}
         </div>
@@ -659,7 +641,7 @@ function TabButton({
       type="button"
       onClick={onClick}
       className={cn(
-        "relative flex items-center gap-1.5 whitespace-nowrap px-4 py-2.5 text-sm font-bold transition-colors",
+        "relative flex items-center gap-1.5 whitespace-nowrap px-4 py-2.5 text-xs font-medium transition-colors",
         active
           ? "text-foreground"
           : "text-muted-foreground hover:text-foreground",

@@ -229,60 +229,93 @@ function DifficultyBadge({ difficulty }: { difficulty: "Easy" | "Medium" | "Hard
 function WeeklyTab() {
   const weeklyCountdown = useSundayCountdown();
 
+  // Find the challenge with highest progress as "active hero"
+  const sorted = [...WEEKLY_CHALLENGES].sort((a, b) => b.progress - a.progress);
+  const heroChallenge = sorted[0];
+  const rest = sorted.slice(1);
+
   return (
     <div className="space-y-3">
       {/* Header info — flow card (borderless, content-like) */}
-      <div className="flex items-center justify-between bg-transparent p-3">
+      <div className="flex items-center justify-between bg-transparent p-2">
         <div className="flex items-center gap-2">
           <Clock className="h-3.5 w-3.5 text-muted-foreground" />
           <span className="text-[11px] text-muted-foreground">Resets Sunday</span>
         </div>
-        <span className="text-[11px] font-bold tabular-nums text-primary">{weeklyCountdown} left</span>
+        <span className="text-[11px] font-medium tabular-nums text-primary">{weeklyCountdown} left</span>
       </div>
 
-      {WEEKLY_CHALLENGES.map((challenge, i) => (
+      {/* Hero — most progressed weekly challenge */}
+      <motion.div
+        className="border-l-4 border-l-primary bg-card rounded-lg p-6"
+        initial={{ opacity: 0, y: 8 }}
+        animate={{ opacity: 1, y: 0 }}
+      >
+        <div className="flex items-start gap-3 mb-3">
+          <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-primary/10">
+            {heroChallenge.category === "Profit" && <Zap className="h-4 w-4 text-primary" />}
+            {heroChallenge.category === "Consistency" && <Flame className="h-4 w-4 text-primary" />}
+            {heroChallenge.category === "Diversification" && <Star className="h-4 w-4 text-primary" />}
+          </div>
+          <div className="flex-1 min-w-0">
+            <div className="flex items-center gap-2 flex-wrap mb-1">
+              <span className="text-sm font-bold">{heroChallenge.title}</span>
+              <DifficultyBadge difficulty={heroChallenge.difficulty} />
+            </div>
+            <p className="text-xs text-muted-foreground leading-relaxed">{heroChallenge.description}</p>
+          </div>
+          <div className="shrink-0 text-right">
+            <div className="text-lg font-bold text-primary">+{heroChallenge.xpReward}</div>
+            <div className="text-[11px] text-muted-foreground">XP</div>
+          </div>
+        </div>
+        <div className="space-y-1.5">
+          <div className="flex items-center justify-between">
+            <span className="text-xs text-muted-foreground">Target: {heroChallenge.target}</span>
+            <span className="text-xs font-bold tabular-nums">{heroChallenge.progress}%</span>
+          </div>
+          <div className="h-2 rounded-full bg-muted/30 overflow-hidden">
+            <motion.div
+              className="h-full rounded-full bg-primary"
+              initial={{ width: 0 }}
+              animate={{ width: `${heroChallenge.progress}%` }}
+              transition={{ delay: 0.2, duration: 0.6 }}
+            />
+          </div>
+        </div>
+      </motion.div>
+
+      {/* Remaining — compact secondary cards */}
+      {rest.map((challenge, i) => (
         <motion.div
           key={challenge.id}
-          className="bg-card/50 rounded-lg p-3 cursor-pointer hover:bg-muted/50 transition-colors"
+          className="bg-card/50 rounded-lg p-2.5 cursor-pointer hover:bg-muted/50 transition-colors"
           initial={{ opacity: 0, y: 8 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: i * 0.08 }}
+          transition={{ delay: (i + 1) * 0.08 }}
         >
-          <div className="flex items-start gap-3 mb-3">
-            <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-primary/10">
-              {challenge.category === "Profit" && <Zap className="h-4 w-4 text-primary" />}
-              {challenge.category === "Consistency" && <Flame className="h-4 w-4 text-primary" />}
-              {challenge.category === "Diversification" && <Star className="h-4 w-4 text-primary" />}
+          <div className="flex items-center gap-2.5">
+            <div className="flex h-7 w-7 shrink-0 items-center justify-center rounded-md bg-primary/10">
+              {challenge.category === "Profit" && <Zap className="h-3.5 w-3.5 text-primary" />}
+              {challenge.category === "Consistency" && <Flame className="h-3.5 w-3.5 text-primary" />}
+              {challenge.category === "Diversification" && <Star className="h-3.5 w-3.5 text-primary" />}
             </div>
-
             <div className="flex-1 min-w-0">
-              <div className="flex items-center gap-2 flex-wrap mb-1">
-                <span className="text-sm font-bold">{challenge.title}</span>
+              <div className="flex items-center gap-2">
+                <span className="text-xs font-medium truncate">{challenge.title}</span>
                 <DifficultyBadge difficulty={challenge.difficulty} />
               </div>
-              <p className="text-[11px] text-muted-foreground leading-relaxed">{challenge.description}</p>
+              <div className="h-1.5 mt-1.5 rounded-full bg-muted/30 overflow-hidden">
+                <motion.div
+                  className="h-full rounded-full bg-primary"
+                  initial={{ width: 0 }}
+                  animate={{ width: `${challenge.progress}%` }}
+                  transition={{ delay: 0.3 + i * 0.1, duration: 0.6 }}
+                />
+              </div>
             </div>
-
-            <div className="shrink-0 text-right">
-              <div className="text-sm font-bold text-primary">+{challenge.xpReward}</div>
-              <div className="text-[11px] text-muted-foreground">XP</div>
-            </div>
-          </div>
-
-          {/* Progress */}
-          <div className="space-y-1.5">
-            <div className="flex items-center justify-between">
-              <span className="text-xs text-muted-foreground">Target: {challenge.target}</span>
-              <span className="text-xs font-bold tabular-nums">{challenge.progress}%</span>
-            </div>
-            <div className="h-2 rounded-full bg-muted/30 overflow-hidden">
-              <motion.div
-                className="h-full rounded-full bg-primary"
-                initial={{ width: 0 }}
-                animate={{ width: `${challenge.progress}%` }}
-                transition={{ delay: 0.3 + i * 0.1, duration: 0.6 }}
-              />
-            </div>
+            <span className="text-[11px] font-medium tabular-nums text-muted-foreground">{challenge.progress}%</span>
+            <span className="text-[11px] font-medium text-primary">+{challenge.xpReward}</span>
           </div>
         </motion.div>
       ))}
@@ -391,72 +424,69 @@ function HistoryTab() {
     <div className="space-y-5">
       {/* Summary — flow cards (borderless, content-like) */}
       <div className="grid grid-cols-3 gap-2">
-        <div className="bg-transparent p-3 text-center">
-          <div className="text-xl font-bold tabular-nums text-primary">{history.length}</div>
-          <div className="text-[11px] font-bold uppercase tracking-wide text-muted-foreground mt-0.5">Completed</div>
+        <div className="bg-transparent p-2 text-center">
+          <div className="text-lg font-bold tabular-nums text-primary">{history.length}</div>
+          <div className="text-[11px] font-medium uppercase tracking-wide text-muted-foreground mt-0.5">Completed</div>
         </div>
-        <div className="bg-transparent p-3 text-center">
-          <div className="text-xl font-bold tabular-nums text-emerald-400">{successCount}</div>
-          <div className="text-[11px] font-bold uppercase tracking-wide text-muted-foreground mt-0.5">Full Clear</div>
+        <div className="bg-transparent p-2 text-center">
+          <div className="text-lg font-bold tabular-nums text-emerald-400">{successCount}</div>
+          <div className="text-[11px] font-medium uppercase tracking-wide text-muted-foreground mt-0.5">Full Clear</div>
         </div>
-        <div className="bg-transparent p-3 text-center">
-          <div className="text-xl font-bold tabular-nums text-amber-400">+{totalXP}</div>
-          <div className="text-[11px] font-bold uppercase tracking-wide text-muted-foreground mt-0.5">XP Earned</div>
+        <div className="bg-transparent p-2 text-center">
+          <div className="text-lg font-bold tabular-nums text-amber-400">+{totalXP}</div>
+          <div className="text-[11px] font-medium uppercase tracking-wide text-muted-foreground mt-0.5">XP Earned</div>
         </div>
       </div>
 
-      {/* History table — console card (heavy, dark) */}
-      <div className="bg-card border border-border rounded-lg p-4 overflow-hidden">
-        <div className="grid grid-cols-[1fr_4rem_4rem_3rem_3rem] gap-2 px-3 py-2 border-b border-border/50">
-          <span className="text-[11px] font-bold text-muted-foreground">Challenge</span>
-          <span className="text-[11px] font-bold text-muted-foreground">Date</span>
-          <span className="text-[11px] font-bold text-muted-foreground text-right">XP</span>
-          <span className="text-[11px] font-bold text-muted-foreground text-center">Score</span>
-          <span className="text-[11px] font-bold text-muted-foreground text-center">Result</span>
+      {/* History table — console card (muted, crushed) */}
+      <div className="bg-card border border-border rounded-lg p-3 overflow-hidden opacity-80">
+        <div className="grid grid-cols-[1fr_4rem_4rem_3rem_3rem] gap-2 px-2 py-1.5 border-b border-border/50">
+          <span className="text-[11px] font-medium text-muted-foreground">Challenge</span>
+          <span className="text-[11px] font-medium text-muted-foreground">Date</span>
+          <span className="text-[11px] font-medium text-muted-foreground text-right">XP</span>
+          <span className="text-[11px] font-medium text-muted-foreground text-center">Score</span>
+          <span className="text-[11px] font-medium text-muted-foreground text-center">Result</span>
         </div>
 
         {history.map((entry, i) => (
-          <motion.div
+          <div
             key={entry.id}
             className={cn(
-              "grid grid-cols-[1fr_4rem_4rem_3rem_3rem] gap-2 items-center px-3 py-2.5",
+              "grid grid-cols-[1fr_4rem_4rem_3rem_3rem] gap-2 items-center px-2 py-1.5",
               i % 2 === 0 ? "bg-muted/5" : "",
               "border-b border-border/20 last:border-0",
             )}
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: i * 0.04 }}
           >
             <div className="min-w-0">
-              <span className="text-[11px] font-bold truncate block">{entry.name}</span>
+              <span className="text-[11px] font-medium truncate block text-muted-foreground">{entry.name}</span>
               <span className={cn(
-                "text-[11px] font-bold uppercase",
-                entry.type === "daily" && "text-primary/70",
-                entry.type === "weekly" && "text-amber-400/70",
-                entry.type === "event" && "text-orange-400/70",
-                entry.type === "scenario" && "text-muted-foreground",
+                "text-[11px] uppercase",
+                entry.type === "daily" && "text-primary/50",
+                entry.type === "weekly" && "text-amber-400/50",
+                entry.type === "event" && "text-orange-400/50",
+                entry.type === "scenario" && "text-muted-foreground/50",
               )}>
                 {TYPE_LABELS[entry.type]}
               </span>
             </div>
 
-            <span className="text-xs text-muted-foreground tabular-nums">{entry.date.slice(5)}</span>
+            <span className="text-[11px] text-muted-foreground/70 tabular-nums">{entry.date.slice(5)}</span>
 
             <span className={cn(
-              "text-[11px] font-bold tabular-nums text-right",
-              entry.xpEarned > 0 ? "text-primary" : "text-muted-foreground/50",
+              "text-[11px] tabular-nums text-right",
+              entry.xpEarned > 0 ? "text-primary/70" : "text-muted-foreground/40",
             )}>
               {entry.xpEarned > 0 ? `+${entry.xpEarned}` : "—"}
             </span>
 
-            <span className="text-[11px] font-bold tabular-nums text-center">{entry.score}</span>
+            <span className="text-[11px] tabular-nums text-center text-muted-foreground">{entry.score}</span>
 
             <div className="flex justify-center">
-              {entry.result === "success" && <CheckCircle2 className="h-3.5 w-3.5 text-emerald-400" />}
-              {entry.result === "partial" && <Star className="h-3.5 w-3.5 text-amber-400" />}
-              {entry.result === "fail" && <Lock className="h-3.5 w-3.5 text-red-400/50" />}
+              {entry.result === "success" && <CheckCircle2 className="h-3 w-3 text-emerald-400/60" />}
+              {entry.result === "partial" && <Star className="h-3 w-3 text-amber-400/60" />}
+              {entry.result === "fail" && <Lock className="h-3 w-3 text-red-400/40" />}
             </div>
-          </motion.div>
+          </div>
         ))}
       </div>
     </div>
@@ -653,36 +683,36 @@ export default function ChallengesPage() {
         {/* Stats strip — flow cards (borderless, content-like) */}
         <div className="flex items-center gap-2 mt-3 flex-wrap">
           <motion.div
-            className="flex items-center gap-1.5 bg-transparent p-3"
+            className="flex items-center gap-1.5 bg-transparent p-2"
             initial={{ opacity: 0, y: 8 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.1 }}
           >
             <Calendar className="h-3.5 w-3.5 text-primary" />
-            <span className="text-[11px] font-bold tabular-nums text-primary">{totalDailyCompleted}</span>
-            <span className="text-xs text-muted-foreground">daily</span>
+            <span className="text-[11px] font-medium tabular-nums text-primary">{totalDailyCompleted}</span>
+            <span className="text-[11px] text-muted-foreground">daily</span>
           </motion.div>
 
           <motion.div
-            className="flex items-center gap-1.5 bg-transparent p-3"
+            className="flex items-center gap-1.5 bg-transparent p-2"
             initial={{ opacity: 0, y: 8 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.15 }}
           >
             <Scroll className="h-3.5 w-3.5 text-amber-400" />
-            <span className="text-[11px] font-bold tabular-nums text-amber-400">{scenariosCompleted}/8</span>
-            <span className="text-xs text-muted-foreground">scenarios</span>
+            <span className="text-[11px] font-medium tabular-nums text-amber-400">{scenariosCompleted}/8</span>
+            <span className="text-[11px] text-muted-foreground">scenarios</span>
           </motion.div>
 
           {sRankCount > 0 && (
             <motion.div
-              className="flex items-center gap-1 bg-transparent p-3"
+              className="flex items-center gap-1 bg-transparent p-2"
               initial={{ opacity: 0, scale: 0 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ delay: 0.2, type: "spring", stiffness: 400, damping: 15 }}
             >
               <Star className="h-3 w-3 text-amber-400" />
-              <span className="text-amber-400 text-[11px] font-bold">S x{sRankCount}</span>
+              <span className="text-amber-400 text-[11px] font-medium">S x{sRankCount}</span>
             </motion.div>
           )}
 
@@ -733,7 +763,7 @@ export default function ChallengesPage() {
       </div>
 
       {/* Content */}
-      <div className="flex-1 overflow-y-auto px-4 py-4">
+      <div className="flex-1 overflow-y-auto px-4 py-6">
         {/* Daily Challenge Hero — only on daily tab */}
         {tab === "daily" && <DailyHeroCard countdown={dailyCountdown} />}
 

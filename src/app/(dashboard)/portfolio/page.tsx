@@ -315,91 +315,91 @@ export default function PortfolioPage() {
             <TabsList className="flex h-7 min-w-max w-full gap-0.5 rounded-md bg-muted/30 p-0.5">
               <TabsTrigger
                 value="overview"
-                className="flex-1 rounded text-[11px] h-6 whitespace-nowrap"
+                className="flex-1 rounded text-[11px] h-6 whitespace-nowrap transition-colors duration-150"
               >
                 Overview
               </TabsTrigger>
               <TabsTrigger
                 value="analytics"
-                className="flex-1 rounded text-[11px] h-6 whitespace-nowrap"
+                className="flex-1 rounded text-[11px] h-6 whitespace-nowrap transition-colors duration-150"
               >
                 Analytics
               </TabsTrigger>
               <TabsTrigger
                 value="rebalance"
-                className="flex-1 rounded text-[11px] h-6 whitespace-nowrap"
+                className="flex-1 rounded text-[11px] h-6 whitespace-nowrap transition-colors duration-150"
               >
                 Rebalance
               </TabsTrigger>
               <TabsTrigger
                 value="optimize"
-                className="flex-1 rounded text-[11px] h-6 whitespace-nowrap"
+                className="flex-1 rounded text-[11px] h-6 whitespace-nowrap transition-colors duration-150"
               >
                 Optimizer
               </TabsTrigger>
               <TabsTrigger
                 value="frontier"
-                className="flex-1 rounded text-[11px] h-6 whitespace-nowrap"
+                className="flex-1 rounded text-[11px] h-6 whitespace-nowrap transition-colors duration-150"
               >
                 Frontier
               </TabsTrigger>
               <TabsTrigger
                 value="income"
-                className="flex-1 rounded text-[11px] h-6 whitespace-nowrap"
+                className="flex-1 rounded text-[11px] h-6 whitespace-nowrap transition-colors duration-150"
               >
                 Income
               </TabsTrigger>
               <TabsTrigger
                 value="journal"
-                className="flex-1 rounded text-[11px] h-6 whitespace-nowrap"
+                className="flex-1 rounded text-[11px] h-6 whitespace-nowrap transition-colors duration-150"
               >
                 Journal
               </TabsTrigger>
               <TabsTrigger
                 value="achievements"
-                className="flex-1 rounded text-[11px] h-6 whitespace-nowrap"
+                className="flex-1 rounded text-[11px] h-6 whitespace-nowrap transition-colors duration-150"
               >
                 Awards
               </TabsTrigger>
               <TabsTrigger
                 value="deep"
-                className="flex-1 rounded text-[11px] h-6 whitespace-nowrap"
+                className="flex-1 rounded text-[11px] h-6 whitespace-nowrap transition-colors duration-150"
               >
                 Deep
               </TabsTrigger>
               <TabsTrigger
                 value="attribution"
-                className="flex-1 rounded text-[11px] h-6 whitespace-nowrap"
+                className="flex-1 rounded text-[11px] h-6 whitespace-nowrap transition-colors duration-150"
               >
                 Attribution
               </TabsTrigger>
               <TabsTrigger
                 value="advanced"
-                className="flex-1 rounded text-[11px] h-6 whitespace-nowrap"
+                className="flex-1 rounded text-[11px] h-6 whitespace-nowrap transition-colors duration-150"
               >
                 Analytics+
               </TabsTrigger>
               <TabsTrigger
                 value="stress"
-                className="flex-1 rounded text-[11px] h-6 whitespace-nowrap"
+                className="flex-1 rounded text-[11px] h-6 whitespace-nowrap transition-colors duration-150"
               >
                 Stress Test
               </TabsTrigger>
               <TabsTrigger
                 value="bl-optimizer"
-                className="flex-1 rounded text-[11px] h-6 whitespace-nowrap"
+                className="flex-1 rounded text-[11px] h-6 whitespace-nowrap transition-colors duration-150"
               >
                 BL Optimizer
               </TabsTrigger>
               <TabsTrigger
                 value="rebalance-tool"
-                className="flex-1 rounded text-[11px] h-6 whitespace-nowrap"
+                className="flex-1 rounded text-[11px] h-6 whitespace-nowrap transition-colors duration-150"
               >
                 Rebalance+
               </TabsTrigger>
               <TabsTrigger
                 value="attribution-plus"
-                className="flex-1 rounded text-[11px] h-6 whitespace-nowrap"
+                className="flex-1 rounded text-[11px] h-6 whitespace-nowrap transition-colors duration-150"
               >
                 Attribution+
               </TabsTrigger>

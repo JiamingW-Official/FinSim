@@ -131,7 +131,7 @@ function BrowseTab() {
                 style={{ minHeight: 100 }}
               >
                 {/* Front */}
-                <div className="card-flip-front rounded-lg border border-border bg-card p-8 flex flex-col gap-2">
+                <div className="card-flip-front rounded-lg border border-border bg-card p-4 flex flex-col gap-1.5">
                   <div className="flex items-center justify-between">
                     {cat && (
                       <span
@@ -168,7 +168,7 @@ function BrowseTab() {
                 </div>
 
                 {/* Back */}
-                <div className="card-flip-back rounded-lg border border-primary/20 bg-card p-8 flex flex-col gap-2">
+                <div className="card-flip-back rounded-lg border border-primary/20 bg-card p-4 flex flex-col gap-1.5">
                   {cat && (
                     <span
                       className={cn(
@@ -290,8 +290,19 @@ function StatsTab() {
   };
 
   return (
-    <div className="flex flex-col gap-4">
-      {/* Summary cards */}
+    <div className="flex flex-col gap-3">
+      {/* Cards due — hero element */}
+      <div className="border-l-4 border-l-primary rounded-lg bg-card p-5">
+        <p className="text-xs font-medium text-muted-foreground">
+          Cards due for review
+        </p>
+        <p className="mt-1 text-2xl font-bold tabular-nums text-foreground">
+          {dueCount}
+        </p>
+        <p className="text-[11px] text-muted-foreground">unseen cards remaining</p>
+      </div>
+
+      {/* Summary cards — compact secondary */}
       <div className="grid grid-cols-2 gap-1.5 sm:grid-cols-4">
         <StatCard label="Today" value={String(todayCards)} sub="cards reviewed" />
         <StatCard
@@ -323,17 +334,6 @@ function StatsTab() {
                 : "text-muted-foreground"
           }
         />
-      </div>
-
-      {/* Cards due */}
-      <div className="rounded-lg border border-border/50 bg-card px-3 py-2">
-        <p className="text-xs font-bold text-muted-foreground">
-          Cards due for review
-        </p>
-        <p className="mt-1 text-2xl font-bold tabular-nums text-foreground">
-          {dueCount}
-        </p>
-        <p className="text-xs text-muted-foreground">unseen cards remaining</p>
       </div>
 
       {/* 30-day heatmap */}
@@ -409,11 +409,11 @@ function StatCard({
   valueColor?: string;
 }) {
   return (
-    <div className="flex flex-col gap-0.5 rounded-lg border border-border/50 bg-card px-2 py-2">
-      <span className="text-[11px] font-bold text-muted-foreground">
+    <div className="flex flex-col gap-0.5 rounded-lg border border-border/50 bg-card px-2 py-1.5">
+      <span className="text-[11px] font-medium text-muted-foreground">
         {label}
       </span>
-      <span className={cn("text-sm font-bold tabular-nums", valueColor)}>
+      <span className={cn("text-xs font-medium tabular-nums", valueColor)}>
         {value}
       </span>
       <span className="text-[11px] text-muted-foreground">{sub}</span>
@@ -438,16 +438,16 @@ export default function FlashcardsPage() {
   return (
     <div className="flex h-full flex-col overflow-hidden">
       {/* Header */}
-      <div className="flex items-center justify-between border-b border-border/50 bg-card px-4 py-3 shrink-0">
-        <div className="flex items-center gap-2.5">
-          <div className="flex h-8 w-8 items-center justify-center rounded-md bg-muted">
-            <Brain className="h-4 w-4 text-foreground" />
+      <div className="border-b border-border px-4 py-4 shrink-0">
+        <div className="flex items-center gap-3">
+          <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-primary/10">
+            <Brain className="h-4.5 w-4.5 text-primary" />
           </div>
           <div>
-            <h1 className="text-sm font-semibold tracking-tight">Flashcards</h1>
-            <p className="text-muted-foreground text-xs">
+            <h1 className="text-base font-bold tracking-tight">Flashcards</h1>
+            <p className="text-[11px] text-muted-foreground">
               {FLASHCARDS.length} cards &middot; {overallMastery}% mastery &middot;{" "}
-              {totalReviewed} lifetime reviews
+              {totalReviewed} reviews
             </p>
           </div>
         </div>
@@ -470,14 +470,18 @@ export default function FlashcardsPage() {
           </TabsTrigger>
         </TabsList>
 
-        {/* Study Tab */}
+        {/* Study Tab — hero: flashcard is dominant, stats are secondary */}
         <TabsContent
           value="study"
           className="flex flex-1 flex-col overflow-hidden data-[state=inactive]:hidden m-0 mt-0"
         >
-          <div className="flex flex-1 flex-col gap-6 overflow-y-auto px-4 py-3">
-            <SessionStatsPanel stats={sessionStats} />
-            <div className="flex flex-1 flex-col">
+          <div className="flex flex-1 flex-col overflow-y-auto px-4 py-4">
+            {/* Session stats — compact inline bar */}
+            <div className="mb-2 opacity-70">
+              <SessionStatsPanel stats={sessionStats} />
+            </div>
+            {/* Flashcard — hero prominence */}
+            <div className="flex flex-1 flex-col mt-4">
               <AdaptiveFlashcards onSessionStats={setSessionStats} />
             </div>
           </div>
