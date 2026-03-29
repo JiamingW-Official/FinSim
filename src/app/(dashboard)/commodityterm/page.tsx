@@ -825,10 +825,6 @@ function RollYieldTab() {
 
 // ── Main Page ──────────────────────────────────────────────────────────────────
 
-const annualRollYield = useMemo(() => {
-  return rollYield(CURVE_PRICES[0], CURVE_PRICES[1], 28);
-}, []);
-
 export default function CommodityTermPage() {
   const [tab, setTab] = useState("curve");
 
