@@ -755,7 +755,7 @@ export default function BehavioralLabPage() {
   const allAnswered = QUIZ_QUESTIONS.every((q) => quizAnswers[q.id] !== undefined);
 
   return (
-    <div className="min-h-screen bg-[#0a0a0f] text-white p-4 md:p-6">
+    <div className="min-h-screen bg-background text-foreground p-4 md:p-6">
       {/* Header */}
       <div className="mb-6">
         <div className="flex items-center gap-3 mb-2">
@@ -1166,7 +1166,7 @@ export default function BehavioralLabPage() {
                           title="Anchor"
                         />
                         <div
-                          className="absolute top-0 h-full w-1 bg-white"
+                          className="absolute top-0 h-full w-1 bg-foreground"
                           style={{ left: `${((exp2Estimate[0]) / 1500) * 100}%` }}
                           title="Your estimate"
                         />

@@ -202,7 +202,7 @@ function TradeResultCard({
       <div className="flex gap-2 border-t border-border px-4 py-3">
         <button
           onClick={handleCopy}
-          className="flex flex-1 items-center justify-center gap-1.5 rounded-lg bg-primary py-2 text-[11px] font-bold text-white transition-colors hover:bg-primary/90 active:bg-primary/80"
+          className="flex flex-1 items-center justify-center gap-1.5 rounded-lg bg-primary py-2 text-[11px] font-bold text-primary-foreground transition-colors hover:bg-primary/90 active:bg-primary/80"
         >
           <Copy className="h-3.5 w-3.5" />
           Copy Share Text
@@ -271,7 +271,7 @@ function StreakShareCard({
       <div className="flex gap-2 border-t border-border px-4 py-3">
         <button
           onClick={handleCopy}
-          className="flex flex-1 items-center justify-center gap-1.5 rounded-lg bg-primary py-2 text-[11px] font-bold text-white transition-colors hover:bg-primary/90"
+          className="flex flex-1 items-center justify-center gap-1.5 rounded-lg bg-primary py-2 text-[11px] font-bold text-primary-foreground transition-colors hover:bg-primary/90"
         >
           <Copy className="h-3.5 w-3.5" />
           Copy Share Text
@@ -345,7 +345,7 @@ function LevelUpShareCard({
       <div className="flex gap-2 border-t border-border px-4 py-3">
         <button
           onClick={handleCopy}
-          className="flex flex-1 items-center justify-center gap-1.5 rounded-lg bg-primary py-2 text-[11px] font-bold text-white transition-colors hover:bg-primary/90"
+          className="flex flex-1 items-center justify-center gap-1.5 rounded-lg bg-primary py-2 text-[11px] font-bold text-primary-foreground transition-colors hover:bg-primary/90"
         >
           <Copy className="h-3.5 w-3.5" />
           Copy Share Text
@@ -419,7 +419,7 @@ function PortfolioMilestoneCard({
       <div className="flex gap-2 border-t border-border px-4 py-3">
         <button
           onClick={handleCopy}
-          className="flex flex-1 items-center justify-center gap-1.5 rounded-lg bg-primary py-2 text-[11px] font-bold text-white transition-colors hover:bg-primary/90"
+          className="flex flex-1 items-center justify-center gap-1.5 rounded-lg bg-primary py-2 text-[11px] font-bold text-primary-foreground transition-colors hover:bg-primary/90"
         >
           <Copy className="h-3.5 w-3.5" />
           Copy Share Text

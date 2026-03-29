@@ -558,7 +558,7 @@ function ResearchProcessTab() {
               "p-3 rounded-lg border text-left transition-all",
               activeStep === step.id
                 ? colorMap[step.color]
-                : "bg-white/5 border-white/10 hover:border-white/20"
+                : "bg-foreground/5 border-border hover:border-border"
             )}
           >
             <div className="flex items-center gap-2 mb-1">
@@ -566,15 +566,15 @@ function ResearchProcessTab() {
                 className={cn(
                   "text-xs font-bold w-5 h-5 rounded-full flex items-center justify-center",
                   activeStep === step.id
-                    ? dotColorMap[step.color] + " text-white"
-                    : "bg-white/10 text-white/50"
+                    ? dotColorMap[step.color] + " text-foreground"
+                    : "bg-foreground/10 text-muted-foreground"
                 )}
               >
                 {i + 1}
               </span>
-              <span className="text-xs text-white/50">{step.duration}</span>
+              <span className="text-xs text-muted-foreground">{step.duration}</span>
             </div>
-            <div className="text-sm font-medium text-white/90 leading-tight">
+            <div className="text-sm font-medium text-foreground/90 leading-tight">
               {step.title}
             </div>
           </motion.button>
@@ -597,26 +597,26 @@ function ResearchProcessTab() {
           <div className="flex items-center gap-3">
             {active.icon}
             <div>
-              <div className="text-base font-semibold text-white">
+              <div className="text-base font-semibold text-foreground">
                 {active.title}
               </div>
-              <div className="text-xs text-white/50">
+              <div className="text-xs text-muted-foreground">
                 Typical duration: {active.duration}
               </div>
             </div>
           </div>
-          <p className="text-sm text-white/75 leading-relaxed">
+          <p className="text-sm text-foreground/75 leading-relaxed">
             {active.description}
           </p>
           <div>
-            <div className="text-xs font-semibold text-white/50 uppercase tracking-wide mb-2">
+            <div className="text-xs font-semibold text-muted-foreground uppercase tracking-wide mb-2">
               Key Outputs
             </div>
             <div className="grid grid-cols-2 gap-2">
               {active.outputs.map((o) => (
                 <div
                   key={o}
-                  className="flex items-center gap-2 text-sm text-white/80"
+                  className="flex items-center gap-2 text-sm text-foreground/80"
                 >
                   <CheckCircle2 className="w-3.5 h-3.5 shrink-0 opacity-60" />
                   {o}
@@ -629,7 +629,7 @@ function ResearchProcessTab() {
 
       {/* Report Types */}
       <div>
-        <div className="text-sm font-semibold text-white/60 uppercase tracking-wide mb-3 flex items-center gap-2">
+        <div className="text-sm font-semibold text-muted-foreground uppercase tracking-wide mb-3 flex items-center gap-2">
           <FileText className="w-4 h-4" /> Report Types
         </div>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
@@ -642,19 +642,19 @@ function ResearchProcessTab() {
               )}
             >
               <div className="flex items-center justify-between">
-                <span className="text-sm font-semibold text-white/90">
+                <span className="text-sm font-semibold text-foreground/90">
                   {rt.name}
                 </span>
-                <span className="text-xs text-white/40 font-mono">
+                <span className="text-xs text-foreground/40 font-mono">
                   {rt.pages}
                 </span>
               </div>
-              <div className="text-xs text-white/50 italic">{rt.trigger}</div>
+              <div className="text-xs text-muted-foreground italic">{rt.trigger}</div>
               <div className="flex flex-wrap gap-1 mt-1">
                 {rt.sections.map((sec) => (
                   <span
                     key={sec}
-                    className="text-xs bg-white/5 rounded px-2 py-0.5 text-white/60"
+                    className="text-xs bg-foreground/5 rounded px-2 py-0.5 text-muted-foreground"
                   >
                     {sec}
                   </span>
@@ -673,7 +673,7 @@ function ResearchProcessTab() {
             Regulation FD — Fair Disclosure
           </span>
         </div>
-        <p className="text-sm text-white/65 leading-relaxed">
+        <p className="text-sm text-foreground/65 leading-relaxed">
           Reg FD (2000) prohibits companies from selectively disclosing material
           non-public information to select analysts or investors. All material
           disclosures must be made simultaneously to the public. Analysts may
@@ -702,7 +702,7 @@ function ResearchProcessTab() {
                 {col.label}
               </div>
               {col.items.map((item) => (
-                <div key={item} className="text-xs text-white/50 leading-5">
+                <div key={item} className="text-xs text-muted-foreground leading-5">
                   {item}
                 </div>
               ))}
@@ -726,8 +726,8 @@ function FinancialModelTab() {
   return (
     <div className="space-y-6">
       {/* 3-Statement Model Flow SVG */}
-      <div className="rounded-xl border border-white/10 bg-white/3 p-5">
-        <div className="text-sm font-semibold text-white/60 uppercase tracking-wide mb-4">
+      <div className="rounded-xl border border-border bg-foreground/[0.03] p-5">
+        <div className="text-sm font-semibold text-muted-foreground uppercase tracking-wide mb-4">
           3-Statement Model — Integration Flow
         </div>
         <svg viewBox="0 0 640 220" className="w-full" style={{ height: 220 }}>
@@ -868,14 +868,14 @@ function FinancialModelTab() {
             WC Δ
           </text>
         </svg>
-        <p className="text-xs text-white/40 text-center mt-2">
+        <p className="text-xs text-foreground/40 text-center mt-2">
           Net Income flows from IS to both BS (retained earnings) and CF (operating section). Cash from CF reconciles to BS cash balance.
         </p>
       </div>
 
       {/* Revenue Build */}
-      <div className="rounded-xl border border-white/10 bg-white/3 p-5">
-        <div className="text-sm font-semibold text-white/60 uppercase tracking-wide mb-4">
+      <div className="rounded-xl border border-border bg-foreground/[0.03] p-5">
+        <div className="text-sm font-semibold text-muted-foreground uppercase tracking-wide mb-4">
           Revenue Build — Volume × Price × Mix
         </div>
         <div className="grid grid-cols-3 gap-3">
@@ -906,13 +906,13 @@ function FinancialModelTab() {
                 colorMap[item.color]
               )}
             >
-              <div className="text-sm font-bold text-white/90">{item.label}</div>
-              <div className="text-xs text-white/55 leading-relaxed">
+              <div className="text-sm font-bold text-foreground/90">{item.label}</div>
+              <div className="text-xs text-foreground/55 leading-relaxed">
                 {item.description}
               </div>
               <div className="space-y-1">
                 {item.drivers.map((d) => (
-                  <div key={d} className="flex items-center gap-1.5 text-xs text-white/60">
+                  <div key={d} className="flex items-center gap-1.5 text-xs text-muted-foreground">
                     <ChevronRight className="w-3 h-3 shrink-0" />
                     {d}
                   </div>
@@ -924,8 +924,8 @@ function FinancialModelTab() {
       </div>
 
       {/* FCF Bridge Waterfall SVG */}
-      <div className="rounded-xl border border-white/10 bg-white/3 p-5">
-        <div className="text-sm font-semibold text-white/60 uppercase tracking-wide mb-4">
+      <div className="rounded-xl border border-border bg-foreground/[0.03] p-5">
+        <div className="text-sm font-semibold text-muted-foreground uppercase tracking-wide mb-4">
           FCF Bridge — EBITDA to Free Cash Flow ($M)
         </div>
         <svg viewBox="0 0 640 200" className="w-full" style={{ height: 200 }}>
@@ -986,15 +986,15 @@ function FinancialModelTab() {
       </div>
 
       {/* Scenario Analysis */}
-      <div className="rounded-xl border border-white/10 bg-white/3 p-5">
-        <div className="text-sm font-semibold text-white/60 uppercase tracking-wide mb-4">
+      <div className="rounded-xl border border-border bg-foreground/[0.03] p-5">
+        <div className="text-sm font-semibold text-muted-foreground uppercase tracking-wide mb-4">
           Scenario Analysis — Bear / Base / Bull
         </div>
         <div className="overflow-x-auto">
           <table className="w-full text-sm">
             <thead>
-              <tr className="border-b border-white/10">
-                <th className="text-left py-2 pr-4 text-white/40 font-normal text-xs">
+              <tr className="border-b border-border">
+                <th className="text-left py-2 pr-4 text-foreground/40 font-normal text-xs">
                   Assumption
                 </th>
                 <th className="text-center py-2 px-3 text-rose-400 font-semibold text-xs">
@@ -1013,11 +1013,11 @@ function FinancialModelTab() {
                 <tr
                   key={row.label}
                   className={cn(
-                    "border-b border-white/5",
-                    i % 2 === 0 ? "bg-white/1" : ""
+                    "border-b border-border/50",
+                    i % 2 === 0 ? "bg-foreground/[0.01]" : ""
                   )}
                 >
-                  <td className="py-2 pr-4 text-white/70 text-xs">{row.label}</td>
+                  <td className="py-2 pr-4 text-foreground/70 text-xs">{row.label}</td>
                   <td className="text-center py-2 px-3 text-rose-300 font-mono text-xs">
                     {row.bear}
                   </td>
@@ -1029,8 +1029,8 @@ function FinancialModelTab() {
                   </td>
                 </tr>
               ))}
-              <tr className="bg-white/5">
-                <td className="py-2 pr-4 text-white/90 text-xs font-semibold">
+              <tr className="bg-foreground/5">
+                <td className="py-2 pr-4 text-foreground/90 text-xs font-semibold">
                   Implied Price Target
                 </td>
                 <td className="text-center py-2 px-3 text-rose-300 font-mono text-xs font-bold">
@@ -1049,19 +1049,19 @@ function FinancialModelTab() {
       </div>
 
       {/* Sensitivity Table */}
-      <div className="rounded-xl border border-white/10 bg-white/3 p-5">
-        <div className="text-sm font-semibold text-white/60 uppercase tracking-wide mb-4">
+      <div className="rounded-xl border border-border bg-foreground/[0.03] p-5">
+        <div className="text-sm font-semibold text-muted-foreground uppercase tracking-wide mb-4">
           DCF Sensitivity — WACC vs. Terminal Growth Rate (Price, $)
         </div>
         <div className="overflow-x-auto">
           <table className="w-full text-xs">
             <thead>
-              <tr className="border-b border-white/10">
-                <th className="text-left py-1.5 pr-3 text-white/30 font-normal">
+              <tr className="border-b border-border">
+                <th className="text-left py-1.5 pr-3 text-foreground/30 font-normal">
                   WACC ↓ / TGR →
                 </th>
                 {tgrs.map((tgr) => (
-                  <th key={tgr} className="text-center py-1.5 px-2 text-white/50 font-semibold">
+                  <th key={tgr} className="text-center py-1.5 px-2 text-muted-foreground font-semibold">
                     {tgr}%
                   </th>
                 ))}
@@ -1069,8 +1069,8 @@ function FinancialModelTab() {
             </thead>
             <tbody>
               {waccs.map((wacc) => (
-                <tr key={wacc} className="border-b border-white/5">
-                  <td className="py-1.5 pr-3 text-white/60 font-semibold">{wacc}%</td>
+                <tr key={wacc} className="border-b border-border/50">
+                  <td className="py-1.5 pr-3 text-muted-foreground font-semibold">{wacc}%</td>
                   {tgrs.map((tgr) => {
                     const cell = sensitivityCells.find(
                       (c) => c.wacc === wacc && c.tgr === tgr
@@ -1089,7 +1089,7 @@ function FinancialModelTab() {
                             ? "text-emerald-300"
                             : diff < -20
                             ? "text-rose-300"
-                            : "text-white/70"
+                            : "text-foreground/70"
                         )}
                       >
                         ${val}
@@ -1101,7 +1101,7 @@ function FinancialModelTab() {
             </tbody>
           </table>
         </div>
-        <div className="text-xs text-white/30 mt-2">
+        <div className="text-xs text-foreground/30 mt-2">
           Highlighted cell = base case assumption (WACC 9.5%, TGR 2.5%). Green = &gt;$20 above base; Red = &gt;$20 below base.
         </div>
       </div>
@@ -1124,8 +1124,8 @@ function ValuationFrameworkTab() {
   return (
     <div className="space-y-6">
       {/* Method weight visualization */}
-      <div className="rounded-xl border border-white/10 bg-white/3 p-5">
-        <div className="text-sm font-semibold text-white/60 uppercase tracking-wide mb-4">
+      <div className="rounded-xl border border-border bg-foreground/[0.03] p-5">
+        <div className="text-sm font-semibold text-muted-foreground uppercase tracking-wide mb-4">
           Multi-Method Valuation — Weights & Implied Prices
         </div>
         <div className="space-y-3">
@@ -1137,8 +1137,8 @@ function ValuationFrameworkTab() {
                     className="w-2.5 h-2.5 rounded-full"
                     style={{ background: method.color }}
                   />
-                  <span className="text-white/80 font-medium">{method.name}</span>
-                  <span className="text-white/35">{method.weight}% weight</span>
+                  <span className="text-foreground/80 font-medium">{method.name}</span>
+                  <span className="text-foreground/35">{method.weight}% weight</span>
                 </div>
                 <span
                   className="font-mono font-semibold"
@@ -1148,7 +1148,7 @@ function ValuationFrameworkTab() {
                 </span>
               </div>
               <div className="flex items-center gap-2">
-                <div className="flex-1 h-2 bg-white/10 rounded-full overflow-hidden">
+                <div className="flex-1 h-2 bg-foreground/10 rounded-full overflow-hidden">
                   <motion.div
                     initial={{ width: 0 }}
                     animate={{
@@ -1160,14 +1160,14 @@ function ValuationFrameworkTab() {
                   />
                 </div>
               </div>
-              <div className="text-xs text-white/35 pl-4">{method.description}</div>
+              <div className="text-xs text-foreground/35 pl-4">{method.description}</div>
             </div>
           ))}
         </div>
 
         {/* Weight donut-style bar */}
-        <div className="mt-4 pt-4 border-t border-white/10">
-          <div className="text-xs text-white/40 mb-2">Weight distribution</div>
+        <div className="mt-4 pt-4 border-t border-border">
+          <div className="text-xs text-foreground/40 mb-2">Weight distribution</div>
           <div className="flex h-3 rounded-full overflow-hidden gap-0.5">
             {VALUATION_METHODS.map((m) => (
               <div
@@ -1182,7 +1182,7 @@ function ValuationFrameworkTab() {
           </div>
           <div className="flex gap-3 mt-2 flex-wrap">
             {VALUATION_METHODS.map((m) => (
-              <div key={m.name} className="flex items-center gap-1 text-xs text-white/50">
+              <div key={m.name} className="flex items-center gap-1 text-xs text-muted-foreground">
                 <span
                   className="w-2 h-2 rounded-sm"
                   style={{ background: m.color }}
@@ -1194,17 +1194,17 @@ function ValuationFrameworkTab() {
         </div>
 
         {/* Price target derivation */}
-        <div className="mt-4 pt-4 border-t border-white/10 grid grid-cols-3 gap-4 text-center">
+        <div className="mt-4 pt-4 border-t border-border grid grid-cols-3 gap-4 text-center">
           <div>
-            <div className="text-xs text-white/40 mb-1">Current Price</div>
-            <div className="text-xl font-bold text-white">${currentPrice}</div>
+            <div className="text-xs text-foreground/40 mb-1">Current Price</div>
+            <div className="text-xl font-bold text-foreground">${currentPrice}</div>
           </div>
           <div>
-            <div className="text-xs text-white/40 mb-1">12-Mo Price Target</div>
+            <div className="text-xs text-foreground/40 mb-1">12-Mo Price Target</div>
             <div className="text-xl font-bold text-primary">${weightedPT}</div>
           </div>
           <div>
-            <div className="text-xs text-white/40 mb-1">Upside / Downside</div>
+            <div className="text-xs text-foreground/40 mb-1">Upside / Downside</div>
             <div
               className={cn(
                 "text-xl font-bold",
@@ -1219,14 +1219,14 @@ function ValuationFrameworkTab() {
       </div>
 
       {/* Peer Group Table */}
-      <div className="rounded-xl border border-white/10 bg-white/3 p-5">
-        <div className="text-sm font-semibold text-white/60 uppercase tracking-wide mb-4">
+      <div className="rounded-xl border border-border bg-foreground/[0.03] p-5">
+        <div className="text-sm font-semibold text-muted-foreground uppercase tracking-wide mb-4">
           Peer Group Comparison
         </div>
         <div className="overflow-x-auto">
           <table className="w-full text-xs">
             <thead>
-              <tr className="border-b border-white/10">
+              <tr className="border-b border-border">
                 {[
                   "Ticker",
                   "Price",
@@ -1239,7 +1239,7 @@ function ValuationFrameworkTab() {
                 ].map((h) => (
                   <th
                     key={h}
-                    className="text-right first:text-left py-2 px-2 text-white/40 font-normal"
+                    className="text-right first:text-left py-2 px-2 text-foreground/40 font-normal"
                   >
                     {h}
                   </th>
@@ -1251,7 +1251,7 @@ function ValuationFrameworkTab() {
                 <tr
                   key={c.ticker}
                   className={cn(
-                    "border-b border-white/5",
+                    "border-b border-border/50",
                     c.isTarget
                       ? "bg-primary/10 font-semibold"
                       : "hover:bg-muted/30"
@@ -1261,7 +1261,7 @@ function ValuationFrameworkTab() {
                     <span
                       className={cn(
                         "font-mono",
-                        c.isTarget ? "text-primary" : "text-white/80"
+                        c.isTarget ? "text-primary" : "text-foreground/80"
                       )}
                     >
                       {c.ticker}
@@ -1272,19 +1272,19 @@ function ValuationFrameworkTab() {
                       </span>
                     )}
                   </td>
-                  <td className="text-right py-2 px-2 font-mono text-white/70">
+                  <td className="text-right py-2 px-2 font-mono text-foreground/70">
                     ${c.price}
                   </td>
-                  <td className="text-right py-2 px-2 font-mono text-white/70">
+                  <td className="text-right py-2 px-2 font-mono text-foreground/70">
                     {c.mktCap}
                   </td>
-                  <td className="text-right py-2 px-2 font-mono text-white/70">
+                  <td className="text-right py-2 px-2 font-mono text-foreground/70">
                     {c.pe}x
                   </td>
-                  <td className="text-right py-2 px-2 font-mono text-white/70">
+                  <td className="text-right py-2 px-2 font-mono text-foreground/70">
                     {c.evEbitda}x
                   </td>
-                  <td className="text-right py-2 px-2 font-mono text-white/70">
+                  <td className="text-right py-2 px-2 font-mono text-foreground/70">
                     {c.evRev}x
                   </td>
                   <td className="text-right py-2 px-2 font-mono text-emerald-300">
@@ -1296,43 +1296,43 @@ function ValuationFrameworkTab() {
                 </tr>
               ))}
               {/* Median row */}
-              <tr className="bg-white/5 border-t border-white/15">
-                <td className="py-2 px-2 text-left text-white/50 font-semibold">
+              <tr className="bg-foreground/5 border-t border-border">
+                <td className="py-2 px-2 text-left text-muted-foreground font-semibold">
                   Median (ex-TGT)
                 </td>
-                <td className="text-right py-2 px-2 text-white/50">—</td>
-                <td className="text-right py-2 px-2 font-mono text-white/60">
+                <td className="text-right py-2 px-2 text-muted-foreground">—</td>
+                <td className="text-right py-2 px-2 font-mono text-muted-foreground">
                   {(
                     [45.2, 67.8, 19.1, 52.3, 22.7].sort((a, b) => a - b)[2]
                   ).toFixed(1)}
                 </td>
-                <td className="text-right py-2 px-2 font-mono text-white/60">
+                <td className="text-right py-2 px-2 font-mono text-muted-foreground">
                   {[22.4, 26.3, 14.7, 24.1, 16.8].sort((a, b) => a - b)[2]}x
                 </td>
-                <td className="text-right py-2 px-2 font-mono text-white/60">
+                <td className="text-right py-2 px-2 font-mono text-muted-foreground">
                   {[15.8, 17.2, 9.8, 16.1, 11.4].sort((a, b) => a - b)[2]}x
                 </td>
-                <td className="text-right py-2 px-2 font-mono text-white/60">
+                <td className="text-right py-2 px-2 font-mono text-muted-foreground">
                   {[3.1, 3.8, 1.9, 3.3, 2.2].sort((a, b) => a - b)[2]}x
                 </td>
-                <td className="text-right py-2 px-2 font-mono text-white/60">
+                <td className="text-right py-2 px-2 font-mono text-muted-foreground">
                   {[11.3, 14.1, 4.8, 12.6, 6.1].sort((a, b) => a - b)[2]}%
                 </td>
-                <td className="text-right py-2 px-2 font-mono text-white/60">
+                <td className="text-right py-2 px-2 font-mono text-muted-foreground">
                   {[26.4, 28.7, 18.3, 24.9, 20.5].sort((a, b) => a - b)[2]}%
                 </td>
               </tr>
             </tbody>
           </table>
         </div>
-        <div className="text-xs text-white/30 mt-2">
+        <div className="text-xs text-foreground/30 mt-2">
           ★ = Target company. Median excludes target. Discount/premium vs. peers drives multiple selection.
         </div>
       </div>
 
       {/* Premium/Discount Justification */}
-      <div className="rounded-xl border border-white/10 bg-white/3 p-5">
-        <div className="text-sm font-semibold text-white/60 uppercase tracking-wide mb-4">
+      <div className="rounded-xl border border-border bg-foreground/[0.03] p-5">
+        <div className="text-sm font-semibold text-muted-foreground uppercase tracking-wide mb-4">
           Premium / Discount Justification Matrix
         </div>
         <div className="grid grid-cols-2 gap-3">
@@ -1376,18 +1376,18 @@ function ValuationFrameworkTab() {
           ].map((row) => (
             <div
               key={row.factor}
-              className="flex items-start gap-3 rounded-lg border border-white/8 bg-white/3 p-3"
+              className="flex items-start gap-3 rounded-lg border border-border/50 bg-foreground/[0.03] p-3"
             >
               {row.dir === "up" ? (
                 <TrendingUp className="w-4 h-4 text-emerald-400 shrink-0 mt-0.5" />
               ) : row.dir === "down" ? (
                 <TrendingDown className="w-4 h-4 text-rose-400 shrink-0 mt-0.5" />
               ) : (
-                <Activity className="w-4 h-4 text-white/40 shrink-0 mt-0.5" />
+                <Activity className="w-4 h-4 text-foreground/40 shrink-0 mt-0.5" />
               )}
               <div>
                 <div className="flex items-center gap-2">
-                  <span className="text-xs font-semibold text-white/80">
+                  <span className="text-xs font-semibold text-foreground/80">
                     {row.factor}
                   </span>
                   <span
@@ -1397,20 +1397,20 @@ function ValuationFrameworkTab() {
                         ? "bg-emerald-500/15 text-emerald-400"
                         : row.dir === "down"
                         ? "bg-rose-500/15 text-rose-400"
-                        : "bg-white/10 text-white/50"
+                        : "bg-foreground/10 text-muted-foreground"
                     )}
                   >
                     {row.assessment}
                   </span>
                 </div>
-                <div className="text-xs text-white/45 mt-0.5 leading-relaxed">
+                <div className="text-xs text-foreground/45 mt-0.5 leading-relaxed">
                   {row.rationale}
                 </div>
               </div>
             </div>
           ))}
         </div>
-        <div className="mt-4 rounded-lg border border-border bg-primary/5 p-3 text-xs text-white/60 leading-relaxed">
+        <div className="mt-4 rounded-lg border border-border bg-primary/5 p-3 text-xs text-muted-foreground leading-relaxed">
           <Info className="w-3.5 h-3.5 inline mr-1.5 text-primary" />
           <strong className="text-primary">Net conclusion:</strong> Mixed premium/discount factors suggest applying a modest 10–15% discount to peer median multiples. EV/EBITDA target: 11.5x–12.5x (peer median 15.8x). Justifies Price Target of ~$136 (base case).
         </div>
@@ -1448,15 +1448,15 @@ function BuyVsSellSideTab() {
   return (
     <div className="space-y-6">
       {/* Comparison table */}
-      <div className="rounded-xl border border-white/10 bg-white/3 p-5">
-        <div className="text-sm font-semibold text-white/60 uppercase tracking-wide mb-4">
+      <div className="rounded-xl border border-border bg-foreground/[0.03] p-5">
+        <div className="text-sm font-semibold text-muted-foreground uppercase tracking-wide mb-4">
           Buy-Side vs. Sell-Side — 9 Dimensions
         </div>
         <div className="overflow-x-auto">
           <table className="w-full text-xs">
             <thead>
-              <tr className="border-b border-white/10">
-                <th className="text-left py-2 pr-4 text-white/30 font-normal w-1/4">
+              <tr className="border-b border-border">
+                <th className="text-left py-2 pr-4 text-foreground/30 font-normal w-1/4">
                   Dimension
                 </th>
                 <th className="text-left py-2 px-3 text-emerald-400 font-semibold w-3/8">
@@ -1472,20 +1472,20 @@ function BuyVsSellSideTab() {
                 <tr
                   key={dim.dimension}
                   className={cn(
-                    "border-b border-white/5",
-                    i % 2 === 0 ? "bg-white/1" : ""
+                    "border-b border-border/50",
+                    i % 2 === 0 ? "bg-foreground/[0.01]" : ""
                   )}
                 >
                   <td className="py-2.5 pr-4">
-                    <div className="flex items-center gap-1.5 text-white/50 font-medium">
+                    <div className="flex items-center gap-1.5 text-muted-foreground font-medium">
                       {dim.icon}
                       {dim.dimension}
                     </div>
                   </td>
-                  <td className="py-2.5 px-3 text-white/70 leading-relaxed">
+                  <td className="py-2.5 px-3 text-foreground/70 leading-relaxed">
                     {dim.buySide}
                   </td>
-                  <td className="py-2.5 px-3 text-white/70 leading-relaxed">
+                  <td className="py-2.5 px-3 text-foreground/70 leading-relaxed">
                     {dim.sellSide}
                   </td>
                 </tr>
@@ -1496,11 +1496,11 @@ function BuyVsSellSideTab() {
       </div>
 
       {/* Research Budget Trend SVG */}
-      <div className="rounded-xl border border-white/10 bg-white/3 p-5">
-        <div className="text-sm font-semibold text-white/60 uppercase tracking-wide mb-1">
+      <div className="rounded-xl border border-border bg-foreground/[0.03] p-5">
+        <div className="text-sm font-semibold text-muted-foreground uppercase tracking-wide mb-1">
           Global Research Budget Trends ($B) — MiFID II Impact
         </div>
-        <div className="text-xs text-white/35 mb-4">
+        <div className="text-xs text-foreground/35 mb-4">
           MiFID II (Jan 2018) required unbundling of research from trading commissions, accelerating sell-side budget cuts while buy-side built internal teams.
         </div>
         <svg viewBox={`0 0 ${svgW} ${svgH}`} className="w-full" style={{ height: svgH }}>
@@ -1606,8 +1606,8 @@ function BuyVsSellSideTab() {
       </div>
 
       {/* Analyst Career Paths */}
-      <div className="rounded-xl border border-white/10 bg-white/3 p-5">
-        <div className="text-sm font-semibold text-white/60 uppercase tracking-wide mb-4">
+      <div className="rounded-xl border border-border bg-foreground/[0.03] p-5">
+        <div className="text-sm font-semibold text-muted-foreground uppercase tracking-wide mb-4">
           Analyst Career Paths
         </div>
         <div className="grid grid-cols-2 gap-3">
@@ -1628,10 +1628,10 @@ function BuyVsSellSideTab() {
                       )}
                     </div>
                     <div className="pb-2">
-                      <div className="text-xs font-semibold text-white/80">
+                      <div className="text-xs font-semibold text-foreground/80">
                         {stage.title}
                       </div>
-                      <div className="text-xs text-white/35">
+                      <div className="text-xs text-foreground/35">
                         Yr {stage.years}
                       </div>
                       <div className="flex flex-wrap gap-1 mt-1">
@@ -1667,10 +1667,10 @@ function BuyVsSellSideTab() {
                       )}
                     </div>
                     <div className="pb-2">
-                      <div className="text-xs font-semibold text-white/80">
+                      <div className="text-xs font-semibold text-foreground/80">
                         {stage.title}
                       </div>
-                      <div className="text-xs text-white/35">
+                      <div className="text-xs text-foreground/35">
                         Yr {stage.years}
                       </div>
                       <div className="flex flex-wrap gap-1 mt-1">
@@ -1701,7 +1701,7 @@ function BuyVsSellSideTab() {
               Conflicts of Interest
             </span>
           </div>
-          <div className="space-y-3 text-xs text-white/65 leading-relaxed">
+          <div className="space-y-3 text-xs text-foreground/65 leading-relaxed">
             {[
               {
                 title: "IB Revenue Pressure",
@@ -1737,7 +1737,7 @@ function BuyVsSellSideTab() {
               Consensus vs. Variant Perception
             </span>
           </div>
-          <div className="space-y-3 text-xs text-white/65 leading-relaxed">
+          <div className="space-y-3 text-xs text-foreground/65 leading-relaxed">
             {[
               {
                 title: "The Variant Perception Edge",
@@ -1773,7 +1773,7 @@ function BuyVsSellSideTab() {
 // ── Main Page ────────────────────────────────────────────────────────────────
 export default function EquityResearch2Page() {
   return (
-    <div className="min-h-screen bg-[#0a0f1a] text-white">
+    <div className="min-h-screen bg-background text-foreground">
       <div className="max-w-5xl mx-auto px-4 py-8 space-y-6">
         {/* Header */}
         <motion.div
@@ -1786,10 +1786,10 @@ export default function EquityResearch2Page() {
               <Search className="w-5 h-5 text-primary" />
             </div>
             <div>
-              <h1 className="text-2xl font-bold text-white">
+              <h1 className="text-2xl font-bold text-foreground">
                 Equity Research Deep Dive
               </h1>
-              <p className="text-sm text-white/45">
+              <p className="text-sm text-foreground/45">
                 Sell-side process · Financial modeling · Valuation · Buy vs. Sell-Side
               </p>
             </div>
@@ -1817,7 +1817,7 @@ export default function EquityResearch2Page() {
 
         {/* Tabs */}
         <Tabs defaultValue="process" className="w-full">
-          <TabsList className="grid grid-cols-4 w-full bg-white/5 border border-white/10 rounded-lg h-10">
+          <TabsList className="grid grid-cols-4 w-full bg-foreground/5 border border-border rounded-lg h-10">
             <TabsTrigger
               value="process"
               className="text-xs data-[state=active]:bg-primary/20 data-[state=active]:text-primary rounded-md"

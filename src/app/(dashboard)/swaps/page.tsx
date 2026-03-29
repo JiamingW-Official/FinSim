@@ -137,7 +137,7 @@ function MetricCard({
   positive?: boolean;
 }) {
   return (
-    <div className="bg-white/5 rounded-lg p-3 flex flex-col gap-1">
+    <div className="bg-foreground/5 rounded-lg p-3 flex flex-col gap-1">
       <span className="text-[11px] text-white/40 uppercase tracking-wide">{label}</span>
       <span
         className={cn(
@@ -193,7 +193,7 @@ function NumberInput({
   return (
     <div className="flex flex-col gap-1">
       <label className="text-xs text-white/50">{label}</label>
-      <div className="flex items-center bg-white/5 border border-white/10 rounded-lg px-3 h-9 gap-1">
+      <div className="flex items-center bg-foreground/5 border border-border rounded-lg px-3 h-9 gap-1">
         {prefix && <span className="text-white/40 text-sm">{prefix}</span>}
         <input
           type="number"
@@ -227,7 +227,7 @@ function SelectInput({
       <select
         value={value}
         onChange={(e) => onChange(e.target.value)}
-        className="bg-white/5 border border-white/10 rounded-lg px-3 h-9 text-sm text-white outline-none"
+        className="bg-foreground/5 border border-border rounded-lg px-3 h-9 text-sm text-white outline-none"
       >
         {options.map((o) => (
           <option key={o.value} value={o.value} className="bg-card">
@@ -380,7 +380,7 @@ function IRSPricer() {
       </div>
 
       {/* Market shift / MtM */}
-      <div className="bg-white/5 rounded-xl p-4 space-y-3">
+      <div className="bg-foreground/5 rounded-xl p-4 space-y-3">
         <SectionTitle>Mark-to-Market Sensitivity</SectionTitle>
         <div className="flex items-center gap-4">
           <span className="text-xs text-white/50 w-32">Rate shift (bps)</span>
@@ -422,7 +422,7 @@ function IRSPricer() {
       </div>
 
       {/* Cash Flow Schedule SVG */}
-      <div className="bg-white/5 rounded-xl p-4 space-y-3">
+      <div className="bg-foreground/5 rounded-xl p-4 space-y-3">
         <SectionTitle>Cash Flow Schedule (PV, first {results.cashFlows.length} periods)</SectionTitle>
         <svg
           width="100%"
@@ -572,7 +572,7 @@ function SwapCurveBuilder() {
   return (
     <div className="space-y-6">
       {/* Curve SVG */}
-      <div className="bg-white/5 rounded-xl p-4 space-y-3">
+      <div className="bg-foreground/5 rounded-xl p-4 space-y-3">
         <SectionTitle>SOFR OIS Curve + Implied Forwards</SectionTitle>
         <svg width="100%" viewBox={`0 0 ${W} ${H}`} className="overflow-visible">
           {/* Grid lines */}
@@ -673,7 +673,7 @@ function SwapCurveBuilder() {
       </div>
 
       {/* Bootstrap table */}
-      <div className="bg-white/5 rounded-xl p-4 space-y-3 overflow-x-auto">
+      <div className="bg-foreground/5 rounded-xl p-4 space-y-3 overflow-x-auto">
         <SectionTitle>Bootstrapped Discount Factors</SectionTitle>
         <table className="w-full text-sm">
           <thead>
@@ -688,7 +688,7 @@ function SwapCurveBuilder() {
             {forwardRates.map((r, i) => (
               <tr
                 key={i}
-                className="border-t border-white/5 hover:bg-muted/30 cursor-pointer transition-colors"
+                className="border-t border-border/50 hover:bg-muted/30 cursor-pointer transition-colors"
                 onClick={() => setSelectedIdx(selectedIdx === i ? null : i)}
               >
                 <td className="py-1.5 pr-4 text-white/80 font-medium">{r.label}</td>
@@ -708,7 +708,7 @@ function SwapCurveBuilder() {
       </div>
 
       {/* Basis spreads */}
-      <div className="bg-white/5 rounded-xl p-4 space-y-3">
+      <div className="bg-foreground/5 rounded-xl p-4 space-y-3">
         <SectionTitle>Basis Swap Spreads (bps)</SectionTitle>
         <div className="grid grid-cols-2 gap-3">
           {basisSpreads.map((b, i) => (
@@ -869,7 +869,7 @@ function CDSPricer() {
       </div>
 
       {/* Survival Probability Curve */}
-      <div className="bg-white/5 rounded-xl p-4 space-y-2">
+      <div className="bg-foreground/5 rounded-xl p-4 space-y-2">
         <SectionTitle>Survival Probability Curve</SectionTitle>
         <svg width="100%" viewBox={`0 0 ${W} ${H}`}>
           {/* Grid */}
@@ -911,7 +911,7 @@ function CDSPricer() {
       </div>
 
       {/* P&L Slider */}
-      <div className="bg-white/5 rounded-xl p-4 space-y-3">
+      <div className="bg-foreground/5 rounded-xl p-4 space-y-3">
         <SectionTitle>CDS P&amp;L — Spread Widening/Tightening</SectionTitle>
         <div className="flex items-center gap-4">
           <span className="text-xs text-white/50 w-36">Spread shift (bps)</span>
@@ -947,7 +947,7 @@ function CDSPricer() {
       </div>
 
       {/* CDX indices */}
-      <div className="bg-white/5 rounded-xl p-4 space-y-3">
+      <div className="bg-foreground/5 rounded-xl p-4 space-y-3">
         <SectionTitle>CDX Index Snapshot</SectionTitle>
         <div className="grid grid-cols-2 gap-3">
           <div className="bg-emerald-500/10 border border-emerald-500/20 rounded-lg p-3 space-y-1">
@@ -1074,7 +1074,7 @@ function TRSPage() {
               onClick={() => setUseEquity(false)}
               className={cn(
                 "flex-1 h-9 rounded-lg text-sm transition-colors",
-                !useEquity ? "bg-sky-600 text-white" : "bg-white/5 text-white/50 hover:bg-muted/50",
+                !useEquity ? "bg-sky-600 text-white" : "bg-foreground/5 text-white/50 hover:bg-muted/50",
               )}
             >
               Fixed Income
@@ -1083,7 +1083,7 @@ function TRSPage() {
               onClick={() => setUseEquity(true)}
               className={cn(
                 "flex-1 h-9 rounded-lg text-sm transition-colors",
-                useEquity ? "bg-sky-600 text-white" : "bg-white/5 text-white/50 hover:bg-muted/50",
+                useEquity ? "bg-sky-600 text-white" : "bg-foreground/5 text-white/50 hover:bg-muted/50",
               )}
             >
               Equity TRS
@@ -1117,7 +1117,7 @@ function TRSPage() {
       </div>
 
       {/* P&L scenarios chart */}
-      <div className="bg-white/5 rounded-xl p-4 space-y-3">
+      <div className="bg-foreground/5 rounded-xl p-4 space-y-3">
         <SectionTitle>Leveraged P&amp;L by Asset Return Scenario</SectionTitle>
         <svg width="100%" viewBox={`0 0 ${W} ${H}`}>
           <line x1={pad.l} y1={midY} x2={W - pad.r} y2={midY} stroke="rgba(255,255,255,0.2)" strokeWidth={1} />
@@ -1147,7 +1147,7 @@ function TRSPage() {
       </div>
 
       {/* Structure explanation */}
-      <div className="bg-white/5 rounded-xl p-4 space-y-3">
+      <div className="bg-foreground/5 rounded-xl p-4 space-y-3">
         <SectionTitle>TRS Structure &amp; Regulatory Context</SectionTitle>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm text-white/70">
           <div className="space-y-2">
@@ -1242,13 +1242,13 @@ function SwaptionsPage() {
           <div className="flex gap-2">
             <button
               onClick={() => setIsPayer(true)}
-              className={cn("flex-1 h-9 rounded-lg text-sm", isPayer ? "bg-sky-600 text-white" : "bg-white/5 text-white/50 hover:bg-muted/50")}
+              className={cn("flex-1 h-9 rounded-lg text-sm", isPayer ? "bg-sky-600 text-white" : "bg-foreground/5 text-white/50 hover:bg-muted/50")}
             >
               Payer
             </button>
             <button
               onClick={() => setIsPayer(false)}
-              className={cn("flex-1 h-9 rounded-lg text-sm", !isPayer ? "bg-sky-600 text-white" : "bg-white/5 text-white/50 hover:bg-muted/50")}
+              className={cn("flex-1 h-9 rounded-lg text-sm", !isPayer ? "bg-sky-600 text-white" : "bg-foreground/5 text-white/50 hover:bg-muted/50")}
             >
               Receiver
             </button>
@@ -1331,7 +1331,7 @@ function SwaptionsPage() {
       </div>
 
       {/* Vol surface heatmap */}
-      <div className="bg-white/5 rounded-xl p-4 space-y-3 overflow-x-auto">
+      <div className="bg-foreground/5 rounded-xl p-4 space-y-3 overflow-x-auto">
         <SectionTitle>Implied Swaption Vol Surface (%)</SectionTitle>
         <svg
           width={SWAP_TENORS.length * cellW + 60}
@@ -1574,14 +1574,14 @@ function InflationSwapsPage() {
 
       {/* Inflation cap/floor */}
       <div className="grid grid-cols-2 gap-3">
-        <div className="bg-white/5 rounded-xl p-4 space-y-2">
+        <div className="bg-foreground/5 rounded-xl p-4 space-y-2">
           <div className="text-xs text-white/40 uppercase tracking-wide">Inflation Cap (≥{capStrike}% CPI)</div>
           <div className="text-xl font-bold text-amber-300">
             ${(results.capPV / 1000).toFixed(0)}K
           </div>
           <p className="text-xs text-white/50">Protects against CPI above {capStrike}% — e.g. pension paying real benefits</p>
         </div>
-        <div className="bg-white/5 rounded-xl p-4 space-y-2">
+        <div className="bg-foreground/5 rounded-xl p-4 space-y-2">
           <div className="text-xs text-white/40 uppercase tracking-wide">Inflation Floor (≤{floorStrike}% CPI)</div>
           <div className="text-xl font-bold text-sky-300">
             ${(results.floorPV / 1000).toFixed(0)}K
@@ -1591,7 +1591,7 @@ function InflationSwapsPage() {
       </div>
 
       {/* Inflation swap curve */}
-      <div className="bg-white/5 rounded-xl p-4 space-y-3">
+      <div className="bg-foreground/5 rounded-xl p-4 space-y-3">
         <SectionTitle>Market-Implied Inflation Expectations Curve</SectionTitle>
         <svg width="100%" viewBox={`0 0 ${W} ${H}`}>
           {[2.4, 2.6, 2.8, 3.0].map((r) => {
@@ -1633,7 +1633,7 @@ function InflationSwapsPage() {
       </div>
 
       {/* TIPS breakeven */}
-      <div className="bg-white/5 rounded-xl p-4 space-y-3 overflow-x-auto">
+      <div className="bg-foreground/5 rounded-xl p-4 space-y-3 overflow-x-auto">
         <SectionTitle>TIPS Breakeven Inflation (nominal − TIPS yield)</SectionTitle>
         <table className="w-full text-sm">
           <thead>
@@ -1651,7 +1651,7 @@ function InflationSwapsPage() {
               const swapRate = INFL_TENORS.find((t) => t.label === row.label)?.rate ?? breakeven;
               const basis = breakeven - swapRate;
               return (
-                <tr key={i} className="border-t border-white/5">
+                <tr key={i} className="border-t border-border/50">
                   <td className="py-1.5 pr-4 text-white/80 font-medium">{row.label}</td>
                   <td className="py-1.5 pr-4 text-right tabular-nums text-sky-300">{row.tipsYield.toFixed(2)}%</td>
                   <td className="py-1.5 pr-4 text-right tabular-nums text-white/60">{row.nominalYield.toFixed(2)}%</td>
@@ -1689,9 +1689,9 @@ export default function SwapsPage() {
   const [activeTab, setActiveTab] = useState("irs");
 
   return (
-    <div className="min-h-screen bg-background text-white">
+    <div className="min-h-screen bg-background text-foreground">
       {/* Header */}
-      <div className="border-b border-white/10 bg-card/60 backdrop-blur px-6 py-4">
+      <div className="border-b border-border bg-card/60 backdrop-blur px-6 py-4">
         <div className="flex items-center gap-3">
           <div className="w-8 h-8 rounded-lg bg-sky-600/20 border border-sky-500/30 flex items-center justify-center">
             <ArrowLeftRight className="w-4 h-4 text-sky-400" />
@@ -1707,7 +1707,7 @@ export default function SwapsPage() {
 
       <div className="px-6 py-6 max-w-6xl mx-auto space-y-6">
         <Tabs value={activeTab} onValueChange={setActiveTab}>
-          <TabsList className="bg-white/5 border border-white/10 p-1 flex-wrap h-auto gap-1">
+          <TabsList className="bg-foreground/5 border border-border p-1 flex-wrap h-auto gap-1">
             {TABS.map((tab) => (
               <TabsTrigger
                 key={tab.id}

@@ -37,17 +37,17 @@ export default function MonteCarloPanel({ result, startingCapital }: MonteCarloP
       </div>
 
       {/* Range */}
-      <div className="flex items-center gap-3 rounded-lg border border-white/5 bg-white/5 px-4 py-3">
+      <div className="flex items-center gap-3 rounded-lg border border-border bg-muted/30 px-4 py-3">
         <div className="flex-1 text-center">
           <div className="text-[11px] uppercase text-muted-foreground/70">Worst Case</div>
           <div className="text-sm font-bold text-rose-400">{dist.min > 0 ? "+" : ""}{dist.min}%</div>
         </div>
-        <div className="h-8 w-px bg-white/10" />
+        <div className="h-8 w-px bg-foreground/10" />
         <div className="flex-1 text-center">
           <div className="text-[11px] uppercase text-muted-foreground/70">Median</div>
           <div className="text-sm font-bold text-foreground">{dist.median > 0 ? "+" : ""}{dist.median}%</div>
         </div>
-        <div className="h-8 w-px bg-white/10" />
+        <div className="h-8 w-px bg-foreground/10" />
         <div className="flex-1 text-center">
           <div className="text-[11px] uppercase text-muted-foreground/70">Best Case</div>
           <div className="text-sm font-bold text-emerald-400">{dist.max > 0 ? "+" : ""}{dist.max}%</div>
@@ -86,7 +86,7 @@ export default function MonteCarloPanel({ result, startingCapital }: MonteCarloP
             const idx = Math.floor((pct / 100) * (sorted.length - 1));
             const val = sorted[idx] ?? 0;
             return (
-              <div key={pct} className="rounded-lg border border-white/5 bg-white/5 p-2 text-center">
+              <div key={pct} className="rounded-lg border border-border bg-muted/30 p-2 text-center">
                 <div className="text-[11px] text-muted-foreground/70">P{pct}</div>
                 <div className="text-xs font-bold text-rose-400">{val.toFixed(1)}%</div>
               </div>
@@ -100,7 +100,7 @@ export default function MonteCarloPanel({ result, startingCapital }: MonteCarloP
 
 function StatCard({ label, value, good }: { label: string; value: string; good?: boolean }) {
   return (
-    <div className="rounded-lg border border-white/5 bg-white/5 px-3 py-2">
+    <div className="rounded-lg border border-border bg-muted/30 px-3 py-2">
       <div className="text-[11px] text-muted-foreground/70">{label}</div>
       <div className={`text-sm font-bold ${good === undefined ? "text-foreground" : good ? "text-emerald-400" : "text-rose-400"}`}>
         {value}

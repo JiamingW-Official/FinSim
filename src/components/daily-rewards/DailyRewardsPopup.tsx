@@ -299,7 +299,7 @@ export function DailyRewardsPopup() {
                     whileHover={{ scale: 1.02 }}
                     whileTap={{ scale: 0.96 }}
                     className={cn(
-                      "w-full rounded-xl py-3 text-sm font-bold text-white transition-all",
+                      "w-full rounded-xl py-3 text-sm font-bold text-primary-foreground transition-all",
                       isDay7
                         ? "bg-amber-500 hover:bg-amber-400"
                         : "bg-primary hover:brightness-110",

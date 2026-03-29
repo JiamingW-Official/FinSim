@@ -62,7 +62,7 @@ export function ResetConfirmDialog({
                 soundEngine.playError();
                 onConfirm();
               }}
-              className="flex-1 bg-destructive text-xs font-semibold text-white hover:bg-destructive/90"
+              className="flex-1 bg-destructive text-xs font-semibold text-destructive-foreground hover:bg-destructive/90"
             >
               {confirmLabel}
             </Button>

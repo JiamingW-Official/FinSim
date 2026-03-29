@@ -1448,7 +1448,7 @@ function CentralBankBalanceSheets() {
                   />
                   {/* Peak marker */}
                   <div
-                    className="absolute top-0 h-full w-0.5 bg-white/30"
+                    className="absolute top-0 h-full w-0.5 bg-foreground/30"
                     style={{ left: `${(cb.peak / 150) * 100}%` }}
                   />
                 </div>

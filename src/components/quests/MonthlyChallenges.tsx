@@ -109,7 +109,7 @@ export function MonthlyChallenges() {
       <motion.div
         initial={{ opacity: 0, y: -8 }}
         animate={{ opacity: 1, y: 0 }}
-        className="flex items-center justify-between rounded-lg border border-white/5 bg-white/[0.02] px-4 py-2.5"
+        className="flex items-center justify-between rounded-lg border border-border/50 bg-foreground/[0.02] px-4 py-2.5"
       >
         <div className="flex items-center gap-2 text-xs text-muted-foreground">
           <CalendarDays className="h-3.5 w-3.5" />
@@ -141,7 +141,7 @@ export function MonthlyChallenges() {
                   ? "border-green-500/20 bg-green-500/5"
                   : isComplete
                     ? "border-amber-500/30 bg-amber-500/5"
-                    : "border-white/5 bg-white/[0.02]",
+                    : "border-border/50 bg-foreground/[0.02]",
               )}
             >
               {/* Top row */}
@@ -154,7 +154,7 @@ export function MonthlyChallenges() {
                       ? "border-green-500/30 bg-green-500/10 text-green-400"
                       : isComplete
                         ? "border-amber-500/30 bg-amber-500/10 text-amber-400"
-                        : "border-white/5 bg-white/[0.03] text-muted-foreground",
+                        : "border-border/50 bg-foreground/[0.03] text-muted-foreground",
                   )}
                 >
                   {isClaimed ? <Check className="h-5 w-5" /> : (ICON_MAP[challenge.icon] ?? <Star className="h-5 w-5" />)}
@@ -232,7 +232,7 @@ export function MonthlyChallenges() {
                 </div>
 
                 {/* Large progress bar */}
-                <div className="h-2.5 w-full overflow-hidden rounded-full bg-white/5">
+                <div className="h-2.5 w-full overflow-hidden rounded-full bg-foreground/5">
                   <motion.div
                     className={cn(
                       "h-full rounded-full",

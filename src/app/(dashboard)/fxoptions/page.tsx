@@ -317,7 +317,7 @@ function SpotRateCard({ rate }: { rate: SpotRate }) {
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.4 }}
     >
-      <Card className="bg-[#0f172a] border-[#1e293b] hover:border-[#334155] transition-colors">
+      <Card className="bg-card border-border hover:border-border transition-colors">
         <CardContent className="pt-4 pb-3 px-4">
           <div className="flex items-center justify-between mb-2">
             <span className="text-xs font-semibold text-muted-foreground tracking-wider">
@@ -372,20 +372,20 @@ function OptionsChainTable({ rows, expiry }: { rows: OptionRow[]; expiry: string
             <th colSpan={5} className="text-emerald-400 py-2 text-left pl-2">
               — CALLS ({expiry}) —
             </th>
-            <th className="text-muted-foreground font-bold text-center py-2 px-2 border-x border-[#1e293b]">
+            <th className="text-muted-foreground font-bold text-center py-2 px-2 border-x border-border">
               STRIKE
             </th>
             <th colSpan={5} className="text-red-400 py-2 text-right pr-2">
               — PUTS ({expiry}) —
             </th>
           </tr>
-          <tr className="text-muted-foreground border-b border-[#1e293b]">
+          <tr className="text-muted-foreground border-b border-border">
             <th className="text-left py-1 pl-2">Bid</th>
             <th className="text-left py-1">Ask</th>
             <th className="text-left py-1">IV%</th>
             <th className="text-left py-1">Δ</th>
             <th className="text-left py-1">Γ</th>
-            <th className="text-center py-1 px-2 border-x border-[#1e293b]">—</th>
+            <th className="text-center py-1 px-2 border-x border-border">—</th>
             <th className="text-right py-1">Γ</th>
             <th className="text-right py-1">Δ</th>
             <th className="text-right py-1">IV%</th>
@@ -399,10 +399,10 @@ function OptionsChainTable({ rows, expiry }: { rows: OptionRow[]; expiry: string
             return (
               <tr
                 key={row.strike}
-                className={`border-b border-[#0f172a] transition-colors ${
+                className={`border-b border-card transition-colors ${
                   isAtm
-                    ? "bg-[#1e3a5f]/40"
-                    : "hover:bg-[#1e293b]/30"
+                    ? "bg-primary/20/40"
+                    : "hover:bg-muted/30"
                 }`}
               >
                 <td className="py-1.5 pl-2 text-emerald-300">{row.callBid}</td>
@@ -411,7 +411,7 @@ function OptionsChainTable({ rows, expiry }: { rows: OptionRow[]; expiry: string
                 <td className="py-1.5 text-sky-400">{row.callDelta.toFixed(3)}</td>
                 <td className="py-1.5 text-primary">{row.callGamma.toFixed(4)}</td>
                 <td
-                  className={`py-1.5 text-center font-bold px-2 border-x border-[#1e293b] ${
+                  className={`py-1.5 text-center font-bold px-2 border-x border-border ${
                     isAtm ? "text-amber-400" : "text-foreground"
                   }`}
                 >
@@ -439,7 +439,7 @@ function RRButterflyTable() {
     <div className="overflow-x-auto">
       <table className="w-full text-sm font-mono border-separate border-spacing-0">
         <thead>
-          <tr className="text-muted-foreground border-b border-[#1e293b] text-xs">
+          <tr className="text-muted-foreground border-b border-border text-xs">
             <th className="text-left py-2 pl-3">Expiry</th>
             <th className="text-right py-2">ATM Vol (%)</th>
             <th className="text-right py-2">25D RR (%)</th>
@@ -448,7 +448,7 @@ function RRButterflyTable() {
         </thead>
         <tbody>
           {rrButterfly.map((row) => (
-            <tr key={row.expiry} className="border-b border-[#0f172a] hover:bg-[#1e293b]/30 transition-colors">
+            <tr key={row.expiry} className="border-b border-card hover:bg-muted/30 transition-colors">
               <td className="py-2 pl-3 text-foreground font-semibold">{row.expiry}</td>
               <td className="py-2 text-right text-amber-400">{row.atm.toFixed(3)}</td>
               <td
@@ -463,7 +463,7 @@ function RRButterflyTable() {
           ))}
         </tbody>
       </table>
-      <div className="mt-3 px-3 py-2 bg-[#0f172a] border border-[#1e293b] rounded text-xs text-muted-foreground leading-relaxed">
+      <div className="mt-3 px-3 py-2 bg-card border border-border rounded text-xs text-muted-foreground leading-relaxed">
         <span className="text-amber-400 font-semibold">25D RR</span> = IV(25D Call) − IV(25D Put). Positive → call skew (EUR/USD call demand).{" "}
         <span className="text-primary font-semibold">25D Fly</span> = 0.5 × [IV(25D Call) + IV(25D Put)] − IV(ATM). Wing premium above ATM.
       </div>
@@ -626,7 +626,7 @@ function GKCalculator() {
   }
 
   const inputCls =
-    "w-full bg-[#0f172a] border border-[#334155] rounded px-2 py-1.5 text-sm font-mono text-white focus:outline-none focus:border-sky-500";
+    "w-full bg-card border border-border rounded px-2 py-1.5 text-sm font-mono text-white focus:outline-none focus:border-sky-500";
   const labelCls = "text-xs text-muted-foreground mb-1 block";
 
   return (
@@ -703,7 +703,7 @@ function GKCalculator() {
             size="sm"
             variant={inputs.optionType === "call" ? "default" : "outline"}
             onClick={() => setField("optionType", "call")}
-            className={inputs.optionType === "call" ? "bg-emerald-600 hover:bg-emerald-700 text-white" : "border-[#334155] text-muted-foreground hover:bg-[#1e293b]"}
+            className={inputs.optionType === "call" ? "bg-emerald-600 hover:bg-emerald-700 text-white" : "border-border text-muted-foreground hover:bg-muted"}
           >
             Call
           </Button>
@@ -711,7 +711,7 @@ function GKCalculator() {
             size="sm"
             variant={inputs.optionType === "put" ? "default" : "outline"}
             onClick={() => setField("optionType", "put")}
-            className={inputs.optionType === "put" ? "bg-red-600 hover:bg-red-700 text-white" : "border-[#334155] text-muted-foreground hover:bg-[#1e293b]"}
+            className={inputs.optionType === "put" ? "bg-red-600 hover:bg-red-700 text-white" : "border-border text-muted-foreground hover:bg-muted"}
           >
             Put
           </Button>
@@ -723,8 +723,8 @@ function GKCalculator() {
         <h3 className="text-sm font-semibold text-foreground flex items-center gap-2">
           <Activity size={14} className="text-primary" /> Results
         </h3>
-        <div className="bg-[#0f172a] border border-[#1e293b] rounded-lg p-4 space-y-2">
-          <div className="flex justify-between items-center border-b border-[#1e293b] pb-2 mb-3">
+        <div className="bg-card border border-border rounded-lg p-4 space-y-2">
+          <div className="flex justify-between items-center border-b border-border pb-2 mb-3">
             <span className="text-muted-foreground text-sm">Option Price</span>
             <span className="text-2xl font-mono font-bold text-white">
               {result.price.toFixed(5)}
@@ -744,7 +744,7 @@ function GKCalculator() {
           ))}
         </div>
         {/* Formula display */}
-        <div className="bg-[#0a0f1e] border border-[#1e293b] rounded-lg p-3">
+        <div className="bg-background border border-border rounded-lg p-3">
           <p className="text-xs text-muted-foreground leading-5 font-mono">
             <span className="text-muted-foreground font-semibold">Garman-Kohlhagen (1983):</span>
             <br />
@@ -769,7 +769,7 @@ function CarryTradeTable() {
       <div className="overflow-x-auto">
         <table className="w-full text-sm border-separate border-spacing-0">
           <thead>
-            <tr className="text-muted-foreground text-xs border-b border-[#1e293b]">
+            <tr className="text-muted-foreground text-xs border-b border-border">
               <th className="text-left py-2 pl-3">Pair</th>
               <th className="text-left py-2">Long CCY</th>
               <th className="text-right py-2">Long Rate</th>
@@ -784,7 +784,7 @@ function CarryTradeTable() {
             {sorted.map((ct) => (
               <tr
                 key={ct.pair}
-                className="border-b border-[#0f172a] hover:bg-[#1e293b]/30 transition-colors"
+                className="border-b border-card hover:bg-muted/30 transition-colors"
               >
                 <td className="py-2 pl-3 font-semibold text-white">{ct.pair}</td>
                 <td className="py-2">
@@ -852,7 +852,7 @@ function CarryTradeTable() {
         </svg>
       </div>
 
-      <div className="bg-[#0f172a] border border-amber-500/20 rounded-lg p-3 text-xs text-muted-foreground leading-relaxed">
+      <div className="bg-card border border-amber-500/20 rounded-lg p-3 text-xs text-muted-foreground leading-relaxed">
         <span className="text-amber-400 font-semibold flex items-center gap-1 mb-1">
           <Info size={12} /> Carry Trade Risk
         </span>
@@ -871,7 +871,7 @@ export default function FXOptionsPage() {
 
   return (
     <motion.div
-      className="min-h-screen bg-[#060d1a] text-foreground p-4 md:p-6 space-y-6"
+      className="min-h-screen bg-background text-foreground p-4 md:p-6 space-y-6"
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.5 }}
@@ -910,7 +910,7 @@ export default function FXOptionsPage() {
 
       {/* Main Tabs */}
       <Tabs defaultValue="chain" className="w-full">
-        <TabsList className="bg-[#0f172a] border border-[#1e293b] h-auto flex-wrap gap-0.5 p-1">
+        <TabsList className="bg-card border border-border h-auto flex-wrap gap-0.5 p-1">
           <TabsTrigger
             value="chain"
             className="data-[state=active]:bg-sky-600/20 data-[state=active]:text-sky-300 text-muted-foreground text-xs"
@@ -950,7 +950,7 @@ export default function FXOptionsPage() {
 
         {/* Options Chain */}
         <TabsContent value="chain" className="data-[state=inactive]:hidden mt-4">
-          <Card className="bg-[#0c1526] border-[#1e293b]">
+          <Card className="bg-card border-border">
             <CardHeader className="pb-3">
               <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
                 <CardTitle className="text-base text-white">
@@ -970,7 +970,7 @@ export default function FXOptionsPage() {
                       className={
                         selectedExpiry === e
                           ? "bg-sky-600 hover:bg-sky-700 text-white h-6 text-xs px-2"
-                          : "border-[#334155] text-muted-foreground hover:bg-[#1e293b] h-6 text-xs px-2"
+                          : "border-border text-muted-foreground hover:bg-muted h-6 text-xs px-2"
                       }
                     >
                       {e}
@@ -1000,7 +1000,7 @@ export default function FXOptionsPage() {
 
         {/* RR & Butterfly */}
         <TabsContent value="rr" className="data-[state=inactive]:hidden mt-4">
-          <Card className="bg-[#0c1526] border-[#1e293b]">
+          <Card className="bg-card border-border">
             <CardHeader className="pb-3">
               <CardTitle className="text-base text-white flex items-center gap-2">
                 <Activity size={16} className="text-primary" />
@@ -1016,7 +1016,7 @@ export default function FXOptionsPage() {
 
         {/* Vol Surface */}
         <TabsContent value="surface" className="data-[state=inactive]:hidden mt-4">
-          <Card className="bg-[#0c1526] border-[#1e293b]">
+          <Card className="bg-card border-border">
             <CardHeader className="pb-3">
               <CardTitle className="text-base text-white flex items-center gap-2">
                 <BarChart2 size={16} className="text-amber-400" />
@@ -1027,11 +1027,11 @@ export default function FXOptionsPage() {
             <CardContent>
               <VolSurfaceHeatmap />
               <div className="mt-4 grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs text-muted-foreground">
-                <div className="bg-[#0f172a] border border-[#1e293b] rounded p-3">
+                <div className="bg-card border border-border rounded p-3">
                   <p className="text-muted-foreground font-semibold mb-1">Reading the Surface</p>
                   <p>Each cell shows the implied volatility for a given delta strike and tenor. Higher vol (red) indicates more expensive options; lower vol (blue) signals cheaper options relative to the surface.</p>
                 </div>
-                <div className="bg-[#0f172a] border border-[#1e293b] rounded p-3">
+                <div className="bg-card border border-border rounded p-3">
                   <p className="text-muted-foreground font-semibold mb-1">Skew &amp; Term Structure</p>
                   <p>Negative skew = puts more expensive than calls (left column higher). Positive term structure = longer dated options carry more vol — normal in FX due to event uncertainty compounding over time.</p>
                 </div>
@@ -1042,7 +1042,7 @@ export default function FXOptionsPage() {
 
         {/* G-K Pricer */}
         <TabsContent value="gk" className="data-[state=inactive]:hidden mt-4">
-          <Card className="bg-[#0c1526] border-[#1e293b]">
+          <Card className="bg-card border-border">
             <CardHeader className="pb-3">
               <CardTitle className="text-base text-white flex items-center gap-2">
                 <DollarSign size={16} className="text-sky-400" />
@@ -1057,7 +1057,7 @@ export default function FXOptionsPage() {
 
         {/* Carry Trades */}
         <TabsContent value="carry" className="data-[state=inactive]:hidden mt-4">
-          <Card className="bg-[#0c1526] border-[#1e293b]">
+          <Card className="bg-card border-border">
             <CardHeader className="pb-3">
               <CardTitle className="text-base text-white flex items-center gap-2">
                 <TrendingUp size={16} className="text-amber-400" />

@@ -55,7 +55,7 @@ function StatCard({
       ? "text-rose-400"
       : "text-white";
   return (
-    <div className="rounded-xl border border-white/10 bg-white/5 p-4">
+    <div className="rounded-xl border border-border bg-foreground/5 p-4">
       <p className="text-xs text-muted-foreground mb-1">{label}</p>
       <p className={cn("text-xl font-bold", valClass)}>{value}</p>
       {sub && <p className="text-xs text-muted-foreground mt-1">{sub}</p>}
@@ -196,7 +196,7 @@ function LPLedTab() {
       </div>
 
       {/* Discount Chart */}
-      <div className="rounded-xl border border-white/10 bg-white/5 p-5">
+      <div className="rounded-xl border border-border bg-foreground/5 p-5">
         <SectionHeading
           title="Secondary Market Discount to NAV (2018–2024)"
           sub="Discount (%) to reported NAV — crisis years see deeper discounts"
@@ -264,13 +264,13 @@ function LPLedTab() {
       </div>
 
       {/* Seller motivations */}
-      <div className="rounded-xl border border-white/10 bg-white/5 p-5">
+      <div className="rounded-xl border border-border bg-foreground/5 p-5">
         <SectionHeading title="Why LPs Sell" sub="Click to expand each motivation" />
         <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
           {sellerReasons.map((r, i) => (
             <button
               key={i}
-              className="text-left rounded-lg border border-white/10 bg-black/20 p-3 hover:border-white/20 transition-all"
+              className="text-left rounded-lg border border-border bg-black/20 p-3 hover:border-border transition-all"
               onClick={() => setExpandedSeller(expandedSeller === i ? null : i)}
             >
               <div className="flex items-center gap-2 mb-1">
@@ -296,7 +296,7 @@ function LPLedTab() {
                     exit={{ height: 0, opacity: 0 }}
                     className="overflow-hidden"
                   >
-                    <p className="mt-2 text-xs text-emerald-300 border-t border-white/10 pt-2">
+                    <p className="mt-2 text-xs text-emerald-300 border-t border-border pt-2">
                       Example: {r.example}
                     </p>
                   </motion.div>
@@ -308,7 +308,7 @@ function LPLedTab() {
       </div>
 
       {/* Pricing methodology */}
-      <div className="rounded-xl border border-white/10 bg-white/5 p-5">
+      <div className="rounded-xl border border-border bg-foreground/5 p-5">
         <SectionHeading title="Secondary Pricing Methodology" sub="How buyers value LP interests" />
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
           {[
@@ -331,7 +331,7 @@ function LPLedTab() {
               color: "emerald",
             },
           ].map((step) => (
-            <div key={step.step} className="rounded-lg border border-white/10 p-4">
+            <div key={step.step} className="rounded-lg border border-border p-4">
               <div className="flex items-center gap-2 mb-2">
                 <span
                   className={cn(
@@ -354,7 +354,7 @@ function LPLedTab() {
       </div>
 
       {/* Bid-Ask by Vintage */}
-      <div className="rounded-xl border border-white/10 bg-white/5 p-5">
+      <div className="rounded-xl border border-border bg-foreground/5 p-5">
         <SectionHeading
           title="Bid-Ask Spread by Vintage Year"
           sub="% of NAV — wider spreads for older/uncertain vintages"
@@ -392,7 +392,7 @@ function LPLedTab() {
       </div>
 
       {/* Trade Types */}
-      <div className="rounded-xl border border-white/10 bg-white/5 p-5">
+      <div className="rounded-xl border border-border bg-foreground/5 p-5">
         <SectionHeading title="Portfolio vs Single Fund vs Stapled" />
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
           {[
@@ -421,7 +421,7 @@ function LPLedTab() {
               cons: ["New capital required", "Longer lock-up"],
             },
           ].map((t) => (
-            <div key={t.title} className="rounded-lg border border-white/10 p-4">
+            <div key={t.title} className="rounded-lg border border-border p-4">
               <div className="flex items-center gap-2 mb-2">
                 <span className="text-sm font-semibold text-white">{t.title}</span>
                 <InfoPill text={t.pill} color={t.pillColor} />
@@ -447,13 +447,13 @@ function LPLedTab() {
       </div>
 
       {/* Top Buyers */}
-      <div className="rounded-xl border border-white/10 bg-white/5 p-5">
+      <div className="rounded-xl border border-border bg-foreground/5 p-5">
         <SectionHeading title="Top Secondary Buyers" sub="Leading institutional secondary market participants" />
         <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
           {buyers.map((b) => (
             <div
               key={b.name}
-              className="flex items-center justify-between rounded-lg bg-black/20 border border-white/5 px-3 py-2"
+              className="flex items-center justify-between rounded-lg bg-black/20 border border-border/50 px-3 py-2"
             >
               <div>
                 <p className="text-sm font-medium text-white">{b.name}</p>
@@ -466,7 +466,7 @@ function LPLedTab() {
       </div>
 
       {/* Due Diligence */}
-      <div className="rounded-xl border border-white/10 bg-white/5 p-5">
+      <div className="rounded-xl border border-border bg-foreground/5 p-5">
         <SectionHeading title="Secondary Buyer Due Diligence Process" />
         <div className="space-y-3">
           {[
@@ -508,11 +508,11 @@ function LPLedTab() {
           ].map((p) => (
             <div
               key={p.phase}
-              className="flex gap-4 rounded-lg border border-white/5 bg-black/20 p-3"
+              className="flex gap-4 rounded-lg border border-border/50 bg-black/20 p-3"
             >
               <div className="flex flex-col items-center">
                 <span className="text-xs font-bold text-primary">{p.phase}</span>
-                <div className="flex-1 w-0.5 bg-white/10 mt-1" />
+                <div className="flex-1 w-0.5 bg-foreground/10 mt-1" />
               </div>
               <div className="flex-1">
                 <div className="flex items-center justify-between mb-1">
@@ -585,7 +585,7 @@ function GPLedTab() {
       </div>
 
       {/* CV Mechanics SVG Diagram */}
-      <div className="rounded-xl border border-white/10 bg-white/5 p-5">
+      <div className="rounded-xl border border-border bg-foreground/5 p-5">
         <SectionHeading
           title="Continuation Vehicle (CV) Mechanics"
           sub="How GP transfers best assets from maturing fund to new vehicle"
@@ -642,7 +642,7 @@ function GPLedTab() {
       </div>
 
       {/* GP-Led Market Growth */}
-      <div className="rounded-xl border border-white/10 bg-white/5 p-5">
+      <div className="rounded-xl border border-border bg-foreground/5 p-5">
         <SectionHeading
           title="GP-Led Share of Secondary Market (2015–2023)"
           sub="GP-led transactions grew from ~12% to ~50% of total secondary volume"
@@ -697,7 +697,7 @@ function GPLedTab() {
       </div>
 
       {/* CV Types Comparison */}
-      <div className="rounded-xl border border-white/10 bg-white/5 p-5">
+      <div className="rounded-xl border border-border bg-foreground/5 p-5">
         <SectionHeading title="Single-Asset vs Multi-Asset Continuation Vehicles" />
         <div className="flex gap-2 mb-4">
           <button
@@ -804,7 +804,7 @@ function GPLedTab() {
       </div>
 
       {/* Preferred Equity */}
-      <div className="rounded-xl border border-white/10 bg-white/5 p-5">
+      <div className="rounded-xl border border-border bg-foreground/5 p-5">
         <SectionHeading
           title="Preferred Equity in GP-Led Context"
           sub="Hybrid solution for GPs needing partial liquidity"
@@ -830,7 +830,7 @@ function GPLedTab() {
               color: "violet",
             },
           ].map((c) => (
-            <div key={c.title} className="rounded-lg border border-white/10 p-3">
+            <div key={c.title} className="rounded-lg border border-border p-3">
               <p
                 className={cn(
                   "text-sm font-semibold mb-2",
@@ -850,14 +850,14 @@ function GPLedTab() {
       </div>
 
       {/* Secondary Advisors */}
-      <div className="rounded-xl border border-white/10 bg-white/5 p-5">
+      <div className="rounded-xl border border-border bg-foreground/5 p-5">
         <SectionHeading
           title="GP-Led Secondary Advisors"
           sub="Investment banks managing GP-led auction processes"
         />
         <div className="grid grid-cols-2 md:grid-cols-3 gap-2">
           {advisors.map((a) => (
-            <div key={a.name} className="rounded-lg bg-black/20 border border-white/5 px-3 py-2">
+            <div key={a.name} className="rounded-lg bg-black/20 border border-border/50 px-3 py-2">
               <p className="text-sm font-semibold text-white">{a.name}</p>
               <p className="text-xs text-muted-foreground">{a.role}</p>
             </div>
@@ -959,7 +959,7 @@ function NAVFinancingTab() {
       </div>
 
       {/* Market Growth */}
-      <div className="rounded-xl border border-white/10 bg-white/5 p-5">
+      <div className="rounded-xl border border-border bg-foreground/5 p-5">
         <SectionHeading
           title="NAV Financing Market Growth ($B Outstanding)"
           sub="Rapid expansion driven by rate environment and LP demand for liquidity"
@@ -999,13 +999,13 @@ function NAVFinancingTab() {
       </div>
 
       {/* Use Cases */}
-      <div className="rounded-xl border border-white/10 bg-white/5 p-5">
+      <div className="rounded-xl border border-border bg-foreground/5 p-5">
         <SectionHeading title="NAV Loan Use Cases + Risks" sub="Click to expand risk details" />
         <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
           {useCases.map((u, i) => (
             <button
               key={i}
-              className="text-left rounded-lg border border-white/10 bg-black/20 p-3 hover:border-white/20 transition-all"
+              className="text-left rounded-lg border border-border bg-black/20 p-3 hover:border-border transition-all"
               onClick={() => setExpandedUseCase(expandedUseCase === i ? null : i)}
             >
               <div className="flex items-center gap-2 mb-1">
@@ -1035,12 +1035,12 @@ function NAVFinancingTab() {
       </div>
 
       {/* Structure Details */}
-      <div className="rounded-xl border border-white/10 bg-white/5 p-5">
+      <div className="rounded-xl border border-border bg-foreground/5 p-5">
         <SectionHeading title="NAV Facility Structure vs Subscription Line" />
         <div className="overflow-x-auto">
           <table className="w-full text-xs">
             <thead>
-              <tr className="border-b border-white/10">
+              <tr className="border-b border-border">
                 <th className="text-left text-muted-foreground py-2 pr-4">Attribute</th>
                 <th className="text-left text-primary py-2 pr-4">NAV Facility</th>
                 <th className="text-left text-emerald-300 py-2">Subscription Line</th>
@@ -1057,7 +1057,7 @@ function NAVFinancingTab() {
                 { attr: "Primary use", nav: "Distributions / follow-ons", sub: "Bridge capital calls" },
                 { attr: "LP disclosure", nav: "Increasingly required", sub: "Standard disclosure" },
               ].map((r) => (
-                <tr key={r.attr} className="border-b border-white/5">
+                <tr key={r.attr} className="border-b border-border/50">
                   <td className="text-muted-foreground py-2 pr-4">{r.attr}</td>
                   <td className="text-foreground py-2 pr-4">{r.nav}</td>
                   <td className="text-foreground py-2">{r.sub}</td>
@@ -1069,7 +1069,7 @@ function NAVFinancingTab() {
       </div>
 
       {/* Covenant Structure */}
-      <div className="rounded-xl border border-white/10 bg-white/5 p-5">
+      <div className="rounded-xl border border-border bg-foreground/5 p-5">
         <SectionHeading title="NAV Loan Covenant Structure" />
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           <div className="space-y-2">
@@ -1128,13 +1128,13 @@ function NAVFinancingTab() {
       </div>
 
       {/* Providers */}
-      <div className="rounded-xl border border-white/10 bg-white/5 p-5">
+      <div className="rounded-xl border border-border bg-foreground/5 p-5">
         <SectionHeading title="NAV Loan Providers" />
         <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
           {providers.map((p) => (
             <div
               key={p.name}
-              className="flex items-center justify-between rounded-lg bg-black/20 border border-white/5 px-3 py-2"
+              className="flex items-center justify-between rounded-lg bg-black/20 border border-border/50 px-3 py-2"
             >
               <div>
                 <p className="text-sm font-medium text-white">{p.name}</p>
@@ -1280,7 +1280,7 @@ function MarketDynamicsTab() {
       </div>
 
       {/* Market Growth */}
-      <div className="rounded-xl border border-white/10 bg-white/5 p-5">
+      <div className="rounded-xl border border-border bg-foreground/5 p-5">
         <SectionHeading
           title="Secondary Market Volume Growth ($B, 2000–2024)"
           sub="26x growth in two decades; 2020 COVID dip quickly recovered"
@@ -1331,7 +1331,7 @@ function MarketDynamicsTab() {
       </div>
 
       {/* Pricing Cycle */}
-      <div className="rounded-xl border border-white/10 bg-white/5 p-5">
+      <div className="rounded-xl border border-border bg-foreground/5 p-5">
         <SectionHeading
           title="Secondary Market Pricing Cycle (% of NAV)"
           sub="2021 peak premium, 2022–23 discount, 2024 recovery"
@@ -1401,7 +1401,7 @@ function MarketDynamicsTab() {
       </div>
 
       {/* Bid-Ask by Asset Class */}
-      <div className="rounded-xl border border-white/10 bg-white/5 p-5">
+      <div className="rounded-xl border border-border bg-foreground/5 p-5">
         <SectionHeading
           title="Secondary Pricing by Asset Class (% of NAV)"
           sub="Infrastructure and private credit trade closest to NAV; VC widest discount"
@@ -1423,7 +1423,7 @@ function MarketDynamicsTab() {
                   style={{ left: "0%", width: `${(a.ask - 60) * 2.5}%` }}
                 />
                 <div
-                  className="absolute h-6 bg-white/20 w-px"
+                  className="absolute h-6 bg-foreground/20 w-px"
                   style={{ left: `${(100 - 60) * 2.5}%` }}
                 />
               </div>
@@ -1437,7 +1437,7 @@ function MarketDynamicsTab() {
       </div>
 
       {/* J-Curve Mitigation */}
-      <div className="rounded-xl border border-white/10 bg-white/5 p-5">
+      <div className="rounded-xl border border-border bg-foreground/5 p-5">
         <SectionHeading
           title="J-Curve: Primary vs Secondary Fund Returns"
           sub="Secondaries skip early negative years — buying seasoned portfolios already past J-curve trough"
@@ -1497,7 +1497,7 @@ function MarketDynamicsTab() {
       </div>
 
       {/* Fund Construction */}
-      <div className="rounded-xl border border-white/10 bg-white/5 p-5">
+      <div className="rounded-xl border border-border bg-foreground/5 p-5">
         <SectionHeading title="Secondary Fund Portfolio Construction" />
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           <div>
@@ -1511,7 +1511,7 @@ function MarketDynamicsTab() {
                 { axis: "Company Count", target: "300–1,000+ companies", detail: "Extreme diversification via layering" },
                 { axis: "Deal Size", target: "Mix of large/mid/small", detail: "Large for pricing; small for yield" },
               ].map((d) => (
-                <div key={d.axis} className="flex gap-2 rounded bg-black/20 border border-white/5 p-2">
+                <div key={d.axis} className="flex gap-2 rounded bg-black/20 border border-border/50 p-2">
                   <div className="w-28 flex-shrink-0">
                     <p className="text-xs font-medium text-muted-foreground">{d.axis}</p>
                     <p className="text-xs text-primary">{d.target}</p>
@@ -1523,7 +1523,7 @@ function MarketDynamicsTab() {
           </div>
           <div>
             <p className="text-xs font-semibold text-muted-foreground mb-3">Secondary vs Primary Performance</p>
-            <div className="rounded-lg border border-white/10 bg-black/20 p-4 mb-3">
+            <div className="rounded-lg border border-border bg-black/20 p-4 mb-3">
               <p className="text-xs text-muted-foreground mb-3">
                 Secondaries historically outperform primaries by ~200bps net IRR, driven by:
               </p>
@@ -1555,7 +1555,7 @@ function MarketDynamicsTab() {
       </div>
 
       {/* Liquidity Comparison */}
-      <div className="rounded-xl border border-white/10 bg-white/5 p-5">
+      <div className="rounded-xl border border-border bg-foreground/5 p-5">
         <SectionHeading
           title="Secondary Market Liquidity vs Other Asset Classes"
           sub="Relative liquidity spectrum"
@@ -1584,7 +1584,7 @@ function MarketDynamicsTab() {
       </div>
 
       {/* LP Portfolio Management */}
-      <div className="rounded-xl border border-white/10 bg-white/5 p-5">
+      <div className="rounded-xl border border-border bg-foreground/5 p-5">
         <SectionHeading title="Using Secondaries for LP Portfolio Management" />
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
           {[
@@ -1616,7 +1616,7 @@ function MarketDynamicsTab() {
               ],
             },
           ].map((section) => (
-            <div key={section.title} className="rounded-lg border border-white/10 p-4">
+            <div key={section.title} className="rounded-lg border border-border p-4">
               <div className="flex items-center gap-2 mb-3">
                 <span className="text-muted-foreground">{section.icon}</span>
                 <span className="text-sm font-semibold text-white">{section.title}</span>

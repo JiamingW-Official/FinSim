@@ -18,8 +18,8 @@ const FEATURES = [
     icon: BookOpen,
     title: "Trading Academy",
     desc: "650+ bite-sized lessons across stocks, options, crypto, and more. Learn concepts, practice on the simulator, then review your trades.",
-    color: "text-blue-400",
-    bg: "bg-blue-500/10",
+    color: "text-primary",
+    bg: "bg-primary/10",
   },
   {
     icon: Activity,

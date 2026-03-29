@@ -344,10 +344,10 @@ function ProviderComparisonTable() {
 
   return (
     <div className="space-y-6">
-      <div className="overflow-x-auto rounded-xl border border-white/10">
+      <div className="overflow-x-auto rounded-xl border border-border">
         <table className="w-full text-sm">
           <thead>
-            <tr className="border-b border-white/10 bg-white/5">
+            <tr className="border-b border-border bg-foreground/5">
               {["Provider", "Methodology", "Scale", "Coverage", "Update Freq", "E%", "S%", "G%"].map((h) => (
                 <th key={h} className="px-4 py-3 text-left text-xs font-semibold text-muted-foreground">
                   {h}
@@ -360,8 +360,8 @@ function ProviderComparisonTable() {
               <tr
                 key={p.abbr}
                 onClick={() => setSelected(selected === p.abbr ? null : p.abbr)}
-                className={`border-b border-white/5 cursor-pointer transition-colors ${
-                  selected === p.abbr ? "bg-white/10" : "hover:bg-muted/30"
+                className={`border-b border-border/50 cursor-pointer transition-colors ${
+                  selected === p.abbr ? "bg-foreground/10" : "hover:bg-muted/30"
                 }`}
               >
                 <td className="px-4 py-3">
@@ -400,7 +400,7 @@ function ProviderComparisonTable() {
             initial={{ opacity: 0, y: -8 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -8 }}
-            className="rounded-xl border border-white/10 bg-white/5 p-4 space-y-2"
+            className="rounded-xl border border-border bg-foreground/5 p-4 space-y-2"
           >
             <div className="flex items-center gap-2 mb-3">
               <span className="w-3 h-3 rounded-full" style={{ background: sel.color }} />
@@ -429,7 +429,7 @@ function ProviderCorrelationScatter() {
   const PAD = 40;
 
   return (
-    <Card className="bg-card/60 border-white/10">
+    <Card className="bg-card/60 border-border">
       <CardHeader className="pb-2">
         <CardTitle className="text-base text-white flex items-center gap-2">
           <BarChart2 className="w-4 h-4 text-primary" />
@@ -521,7 +521,7 @@ function SourceDataBreakdown() {
   });
 
   return (
-    <Card className="bg-card/60 border-white/10">
+    <Card className="bg-card/60 border-border">
       <CardHeader className="pb-2">
         <CardTitle className="text-base text-white">Source Data Breakdown</CardTitle>
       </CardHeader>
@@ -556,7 +556,7 @@ function SourceDataBreakdown() {
 
 function ESGWeightBarChart() {
   return (
-    <Card className="bg-card/60 border-white/10">
+    <Card className="bg-card/60 border-border">
       <CardHeader className="pb-2">
         <CardTitle className="text-base text-white">E / S / G Weight Differences Across Providers</CardTitle>
       </CardHeader>
@@ -596,10 +596,10 @@ function ESGWeightBarChart() {
 
 function FrameworkMatrix() {
   return (
-    <div className="overflow-x-auto rounded-xl border border-white/10">
+    <div className="overflow-x-auto rounded-xl border border-border">
       <table className="w-full text-sm">
         <thead>
-          <tr className="border-b border-white/10 bg-white/5">
+          <tr className="border-b border-border bg-foreground/5">
             {["Framework", "Focus", "Mandatory?", "Geography", "Key Topics"].map((h) => (
               <th key={h} className="px-4 py-3 text-left text-xs font-semibold text-muted-foreground">
                 {h}
@@ -609,7 +609,7 @@ function FrameworkMatrix() {
         </thead>
         <tbody>
           {FRAMEWORKS.map((f) => (
-            <tr key={f.abbr} className="border-b border-white/5 hover:bg-muted/30 transition-colors">
+            <tr key={f.abbr} className="border-b border-border/50 hover:bg-muted/30 transition-colors">
               <td className="px-4 py-3">
                 <div className="flex items-center gap-2">
                   <span className="w-2 h-2 rounded-full" style={{ background: f.color }} />
@@ -631,7 +631,7 @@ function FrameworkMatrix() {
               <td className="px-4 py-3">
                 <div className="flex flex-wrap gap-1">
                   {f.topics.map((t) => (
-                    <span key={t} className="text-[11px] bg-white/5 text-muted-foreground rounded px-1.5 py-0.5 border border-white/10">
+                    <span key={t} className="text-[11px] bg-foreground/5 text-muted-foreground rounded px-1.5 py-0.5 border border-border">
                       {t}
                     </span>
                   ))}
@@ -647,7 +647,7 @@ function FrameworkMatrix() {
 
 function Scope123Diagram() {
   return (
-    <Card className="bg-card/60 border-white/10">
+    <Card className="bg-card/60 border-border">
       <CardHeader className="pb-2">
         <CardTitle className="text-base text-white flex items-center gap-2">
           <Zap className="w-4 h-4 text-amber-400" />
@@ -703,7 +703,7 @@ function Scope123Diagram() {
 
 function DoubleMaterialityCard() {
   return (
-    <Card className="bg-card/60 border-white/10">
+    <Card className="bg-card/60 border-border">
       <CardHeader className="pb-2">
         <CardTitle className="text-base text-white">Double Materiality Concept (EU CSRD)</CardTitle>
       </CardHeader>
@@ -724,7 +724,7 @@ function DoubleMaterialityCard() {
             </p>
           </div>
         </div>
-        <div className="mt-3 p-3 rounded-lg bg-white/5 border border-white/10 text-xs text-muted-foreground">
+        <div className="mt-3 p-3 rounded-lg bg-foreground/5 border border-border text-xs text-muted-foreground">
           <span className="text-white font-semibold">CSRD scope:</span> ~50,000 EU companies from 2025–2028 phased rollout.
           Requires assurance (limited initially, reasonable by 2028) by an approved auditor.
         </div>
@@ -734,7 +734,7 @@ function DoubleMaterialityCard() {
             { label: "SFDR Art. 8", desc: "Promotes E/S characteristics", color: "bg-primary/20 text-primary" },
             { label: "SFDR Art. 9", desc: "Sustainable investment objective", color: "bg-emerald-500/20 text-emerald-300" },
           ].map((item) => (
-            <div key={item.label} className={`rounded p-2 ${item.color} border border-white/10`}>
+            <div key={item.label} className={`rounded p-2 ${item.color} border border-border`}>
               <div className="font-bold">{item.label}</div>
               <div className="text-xs opacity-80 mt-0.5">{item.desc}</div>
             </div>
@@ -755,7 +755,7 @@ function CDPScoringCard() {
     { grade: "F", label: "No Response", desc: "Failed to respond to CDP", color: "#ef4444" },
   ];
   return (
-    <Card className="bg-card/60 border-white/10">
+    <Card className="bg-card/60 border-border">
       <CardHeader className="pb-2">
         <CardTitle className="text-base text-white flex items-center gap-2">
           <Award className="w-4 h-4 text-emerald-400" />
@@ -808,7 +808,7 @@ function GreenwashTaxonomyCard() {
     },
   ];
   return (
-    <Card className="bg-card/60 border-white/10">
+    <Card className="bg-card/60 border-border">
       <CardHeader className="pb-2">
         <CardTitle className="text-base text-white flex items-center gap-2">
           <Eye className="w-4 h-4 text-red-400" />
@@ -848,7 +848,7 @@ function GreenwashCasesTable() {
     s === "Critical" ? "bg-red-500/20 text-red-300" : s === "High" ? "bg-orange-500/20 text-orange-300" : "bg-yellow-500/20 text-yellow-300";
 
   return (
-    <Card className="bg-card/60 border-white/10">
+    <Card className="bg-card/60 border-border">
       <CardHeader className="pb-2">
         <CardTitle className="text-base text-white">High-Profile Greenwashing Cases</CardTitle>
       </CardHeader>
@@ -856,7 +856,7 @@ function GreenwashCasesTable() {
         <div className="overflow-x-auto">
           <table className="w-full text-xs">
             <thead>
-              <tr className="border-b border-white/10 bg-white/5">
+              <tr className="border-b border-border bg-foreground/5">
                 {["Company", "Year", "Regulator", "Allegation", "Fine/Outcome", "Severity"].map((h) => (
                   <th key={h} className="px-3 py-2 text-left text-muted-foreground font-semibold">
                     {h}
@@ -866,7 +866,7 @@ function GreenwashCasesTable() {
             </thead>
             <tbody>
               {GREENWASH_CASES.map((c) => (
-                <tr key={c.company} className="border-b border-white/5 hover:bg-muted/30">
+                <tr key={c.company} className="border-b border-border/50 hover:bg-muted/30">
                   <td className="px-3 py-2 font-semibold text-white max-w-[120px]">{c.company}</td>
                   <td className="px-3 py-2 text-muted-foreground">{c.year}</td>
                   <td className="px-3 py-2 text-muted-foreground">{c.regulator}</td>
@@ -901,7 +901,7 @@ function GreenwashSignalChecklist() {
     { signal: "Supply chain ESG assessment covers <30% of Tier 1 suppliers", risk: "Medium" },
   ];
   return (
-    <Card className="bg-card/60 border-white/10">
+    <Card className="bg-card/60 border-border">
       <CardHeader className="pb-2">
         <CardTitle className="text-base text-white flex items-center gap-2">
           <Search className="w-4 h-4 text-amber-400" />
@@ -929,7 +929,7 @@ function GreenwashSignalChecklist() {
 
 function ImpactVsESGWashing() {
   return (
-    <Card className="bg-card/60 border-white/10">
+    <Card className="bg-card/60 border-border">
       <CardHeader className="pb-2">
         <CardTitle className="text-base text-white">Impact Washing vs ESG Washing</CardTitle>
       </CardHeader>
@@ -951,11 +951,11 @@ function ImpactVsESGWashing() {
           </div>
         </div>
         <div className="mt-3 grid grid-cols-2 gap-2 text-xs">
-          <div className="rounded bg-white/5 p-2 border border-white/10">
+          <div className="rounded bg-foreground/5 p-2 border border-border">
             <div className="text-muted-foreground font-semibold mb-1">Science-Based vs Aspiration</div>
             <p className="text-muted-foreground text-xs">SBTi validates targets consistent with 1.5°C or well-below 2°C scenarios. Aspirational targets lack this rigor.</p>
           </div>
-          <div className="rounded bg-white/5 p-2 border border-white/10">
+          <div className="rounded bg-foreground/5 p-2 border border-border">
             <div className="text-muted-foreground font-semibold mb-1">AI Greenwashing Detection</div>
             <p className="text-muted-foreground text-xs">NLP tools (ESG Book, Clarity AI) scan filings and news for greenwashing signals via sentiment and consistency analysis.</p>
           </div>
@@ -977,7 +977,7 @@ function IntegrationSpectrum() {
     { label: "Impact Investing", desc: "Intentional, measurable positive outcomes", color: "#8b5cf6" },
   ];
   return (
-    <Card className="bg-card/60 border-white/10">
+    <Card className="bg-card/60 border-border">
       <CardHeader className="pb-2">
         <CardTitle className="text-base text-white flex items-center gap-2">
           <TrendingUp className="w-4 h-4 text-emerald-400" />
@@ -1016,7 +1016,7 @@ function IntegrationSpectrum() {
 
 function SectorMaterialityMatrix() {
   return (
-    <Card className="bg-card/60 border-white/10">
+    <Card className="bg-card/60 border-border">
       <CardHeader className="pb-2">
         <CardTitle className="text-base text-white flex items-center gap-2">
           <BarChart2 className="w-4 h-4 text-primary" />
@@ -1073,7 +1073,7 @@ function PRIGrowthChart() {
   const area = `${line} L${pts[pts.length - 1].x},${PAD.t + iH} L${pts[0].x},${PAD.t + iH} Z`;
 
   return (
-    <Card className="bg-card/60 border-white/10">
+    <Card className="bg-card/60 border-border">
       <CardHeader className="pb-2">
         <CardTitle className="text-base text-white flex items-center gap-2">
           <Globe className="w-4 h-4 text-primary" />
@@ -1132,7 +1132,7 @@ function ActiveOwnershipCard() {
     { label: "Board ESG Oversight", value: "82%", sub: "S&P 500 companies", color: "#8b5cf6" },
   ];
   return (
-    <Card className="bg-card/60 border-white/10">
+    <Card className="bg-card/60 border-border">
       <CardHeader className="pb-2">
         <CardTitle className="text-base text-white flex items-center gap-2">
           <Users className="w-4 h-4 text-primary" />
@@ -1142,7 +1142,7 @@ function ActiveOwnershipCard() {
       <CardContent>
         <div className="grid grid-cols-2 gap-3 mb-4">
           {stats.map((st) => (
-            <div key={st.label} className="rounded-lg bg-white/5 border border-white/10 p-3">
+            <div key={st.label} className="rounded-lg bg-foreground/5 border border-border p-3">
               <div className="text-2xl font-bold" style={{ color: st.color }}>
                 {st.value}
               </div>
@@ -1176,7 +1176,7 @@ export default function ESGDataPage() {
   const [activeTab, setActiveTab] = useState("providers");
 
   return (
-    <div className="min-h-screen bg-background text-white p-4 md:p-6">
+    <div className="min-h-screen bg-background text-foreground p-4 md:p-6">
       {/* Header */}
       <motion.div
         initial={{ opacity: 0, y: -12 }}
@@ -1204,7 +1204,7 @@ export default function ESGDataPage() {
           ].map((chip) => (
             <span
               key={chip.label}
-              className={`flex items-center gap-1.5 text-xs px-2.5 py-1 rounded-full bg-white/5 border border-white/10 ${chip.color}`}
+              className={`flex items-center gap-1.5 text-xs px-2.5 py-1 rounded-full bg-foreground/5 border border-border ${chip.color}`}
             >
               {chip.icon}
               {chip.label}
@@ -1215,7 +1215,7 @@ export default function ESGDataPage() {
 
       {/* Tabs */}
       <Tabs value={activeTab} onValueChange={setActiveTab}>
-        <TabsList className="bg-white/5 border border-white/10 mb-6 flex-wrap h-auto gap-1 p-1">
+        <TabsList className="bg-foreground/5 border border-border mb-6 flex-wrap h-auto gap-1 p-1">
           {[
             { value: "providers", label: "ESG Rating Providers", icon: <BarChart2 className="w-3.5 h-3.5" /> },
             { value: "frameworks", label: "Disclosure Frameworks", icon: <FileText className="w-3.5 h-3.5" /> },
@@ -1225,7 +1225,7 @@ export default function ESGDataPage() {
             <TabsTrigger
               key={tab.value}
               value={tab.value}
-              className="flex items-center gap-1.5 text-xs data-[state=active]:bg-white/15 data-[state=active]:text-white text-muted-foreground"
+              className="flex items-center gap-1.5 text-xs data-[state=active]:bg-foreground/15 data-[state=active]:text-white text-muted-foreground"
             >
               {tab.icon}
               {tab.label}
@@ -1251,7 +1251,7 @@ export default function ESGDataPage() {
           <ESGWeightBarChart />
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-            <Card className="bg-card/60 border-white/10">
+            <Card className="bg-card/60 border-border">
               <CardHeader className="pb-2">
                 <CardTitle className="text-sm text-white flex items-center gap-2">
                   <Info className="w-4 h-4 text-primary" />
@@ -1267,7 +1267,7 @@ export default function ESGDataPage() {
                   { provider: "Bloomberg", freq: "Annual disclosure cycle", lag: "Aligned with company fiscal year end" },
                   { provider: "ISS ESG", freq: "Annual + controversy alerts", lag: "60 days post-disclosure" },
                 ].map((r) => (
-                  <div key={r.provider} className="flex gap-2 border-b border-white/5 pb-1 last:border-0">
+                  <div key={r.provider} className="flex gap-2 border-b border-border/50 pb-1 last:border-0">
                     <span className="text-muted-foreground font-semibold w-24 shrink-0">{r.provider}</span>
                     <span className="text-muted-foreground flex-1">{r.freq}</span>
                     <span className="text-muted-foreground shrink-0 text-xs">{r.lag}</span>
@@ -1276,7 +1276,7 @@ export default function ESGDataPage() {
               </CardContent>
             </Card>
 
-            <Card className="bg-card/60 border-white/10">
+            <Card className="bg-card/60 border-border">
               <CardHeader className="pb-2">
                 <CardTitle className="text-sm text-white flex items-center gap-2">
                   <Shield className="w-4 h-4 text-red-400" />
@@ -1291,7 +1291,7 @@ export default function ESGDataPage() {
                   { sector: "Gambling", msci: "Controversy overlay", sus: "Product flag", sp: "Indirect exposure" },
                   { sector: "Nuclear", msci: "Separate flag", sus: "Country/capacity flag", sp: "Social acceptance scored" },
                 ].map((r) => (
-                  <div key={r.sector} className="flex gap-2 border-b border-white/5 pb-1 last:border-0">
+                  <div key={r.sector} className="flex gap-2 border-b border-border/50 pb-1 last:border-0">
                     <span className="text-red-300 font-semibold w-20 shrink-0">{r.sector}</span>
                     <span className="text-muted-foreground flex-1 text-xs">{r.msci} | {r.sus} | {r.sp}</span>
                   </div>
@@ -1319,7 +1319,7 @@ export default function ESGDataPage() {
 
           <DoubleMaterialityCard />
 
-          <Card className="bg-card/60 border-white/10">
+          <Card className="bg-card/60 border-border">
             <CardHeader className="pb-2">
               <CardTitle className="text-sm text-white flex items-center gap-2">
                 <FileText className="w-4 h-4 text-amber-400" />
@@ -1328,7 +1328,7 @@ export default function ESGDataPage() {
             </CardHeader>
             <CardContent>
               <div className="relative">
-                <div className="absolute left-4 top-0 bottom-0 w-0.5 bg-white/10" />
+                <div className="absolute left-4 top-0 bottom-0 w-0.5 bg-foreground/10" />
                 {[
                   { date: "Mar 2022", event: "SEC proposes climate disclosure rule", status: "done" },
                   { date: "Mar 2024", event: "Final rule adopted — Scope 1, 2 mandatory; Scope 3 dropped", status: "done" },
@@ -1355,7 +1355,7 @@ export default function ESGDataPage() {
           </Card>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-            <Card className="bg-card/60 border-white/10">
+            <Card className="bg-card/60 border-border">
               <CardHeader className="pb-2">
                 <CardTitle className="text-sm text-white">EU Taxonomy: 6 Environmental Objectives</CardTitle>
               </CardHeader>
@@ -1383,7 +1383,7 @@ export default function ESGDataPage() {
               </CardContent>
             </Card>
 
-            <Card className="bg-card/60 border-white/10">
+            <Card className="bg-card/60 border-border">
               <CardHeader className="pb-2">
                 <CardTitle className="text-sm text-white">Assurance Requirements</CardTitle>
               </CardHeader>
@@ -1422,7 +1422,7 @@ export default function ESGDataPage() {
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-            <Card className="bg-card/60 border-white/10">
+            <Card className="bg-card/60 border-border">
               <CardHeader className="pb-2">
                 <CardTitle className="text-sm text-white flex items-center gap-2">
                   <Shield className="w-4 h-4 text-primary" />
@@ -1451,7 +1451,7 @@ export default function ESGDataPage() {
               </CardContent>
             </Card>
 
-            <Card className="bg-card/60 border-white/10">
+            <Card className="bg-card/60 border-border">
               <CardHeader className="pb-2">
                 <CardTitle className="text-sm text-white flex items-center gap-2">
                   <Award className="w-4 h-4 text-emerald-400" />
@@ -1467,7 +1467,7 @@ export default function ESGDataPage() {
                   { org: "GRESB", role: "Real estate and infrastructure ESG benchmarking", cost: "$1.5K–$5K" },
                   { org: "B Lab", role: "B Corp certification (governance + impact)", cost: "$1K–$50K" },
                 ].map((v) => (
-                  <div key={v.org} className="flex gap-2 border-b border-white/5 pb-1.5 last:border-0">
+                  <div key={v.org} className="flex gap-2 border-b border-border/50 pb-1.5 last:border-0">
                     <div className="flex-1">
                       <div className="font-semibold text-white">{v.org}</div>
                       <div className="text-muted-foreground text-xs">{v.role}</div>
@@ -1498,7 +1498,7 @@ export default function ESGDataPage() {
           <PRIGrowthChart />
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-            <Card className="bg-card/60 border-white/10">
+            <Card className="bg-card/60 border-border">
               <CardHeader className="pb-2">
                 <CardTitle className="text-sm text-white flex items-center gap-2">
                   <TrendingUp className="w-4 h-4 text-emerald-400" />
@@ -1531,7 +1531,7 @@ export default function ESGDataPage() {
               </CardContent>
             </Card>
 
-            <Card className="bg-card/60 border-white/10">
+            <Card className="bg-card/60 border-border">
               <CardHeader className="pb-2">
                 <CardTitle className="text-sm text-white flex items-center gap-2">
                   <BarChart2 className="w-4 h-4 text-amber-400" />

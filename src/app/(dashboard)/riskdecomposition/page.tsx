@@ -1182,7 +1182,7 @@ function RiskBudgetingTab() {
               <span className="text-xs text-muted-foreground">Current (faded)</span>
             </div>
             <div className="flex items-center gap-1.5">
-              <div className="w-3 h-3 bg-indigo-500 rounded-sm border border-white/30" />
+              <div className="w-3 h-3 bg-indigo-500 rounded-sm border border-foreground/30" />
               <span className="text-xs text-muted-foreground">ERC Target (solid)</span>
             </div>
           </div>

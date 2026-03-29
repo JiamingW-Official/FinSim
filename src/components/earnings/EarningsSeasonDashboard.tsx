@@ -570,7 +570,7 @@ function SP500Tracker({ quarters, currentQ }: { quarters: QuarterSummary[]; curr
             initial={{ width: 0 }}
             animate={{ width: `${currentQ.reportedPct}%` }}
             transition={{ duration: 0.8, ease: "easeOut" }}
-            className="h-full rounded-full bg-blue-500"
+            className="h-full rounded-full bg-primary"
           />
         </div>
         <div className="grid grid-cols-3 gap-2 pt-1">

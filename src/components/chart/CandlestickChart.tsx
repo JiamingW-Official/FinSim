@@ -917,19 +917,19 @@ export function CandlestickChart() {
             <>
               <span className="text-muted-foreground">
                 O{" "}
-                <span className={cn(displayData.isUp ? "text-[#10b981]" : "text-[#ef4444]")}>
+                <span className={cn(displayData.isUp ? "text-profit" : "text-loss")}>
                   {formatCurrency(displayData.open)}
                 </span>
               </span>
               <span className="text-muted-foreground">
                 H{" "}
-                <span className={cn(displayData.isUp ? "text-[#10b981]" : "text-[#ef4444]")}>
+                <span className={cn(displayData.isUp ? "text-profit" : "text-loss")}>
                   {formatCurrency(displayData.high)}
                 </span>
               </span>
               <span className="text-muted-foreground">
                 L{" "}
-                <span className={cn(displayData.isUp ? "text-[#10b981]" : "text-[#ef4444]")}>
+                <span className={cn(displayData.isUp ? "text-profit" : "text-loss")}>
                   {formatCurrency(displayData.low)}
                 </span>
               </span>
@@ -940,7 +940,7 @@ export function CandlestickChart() {
             <span
               className={cn(
                 "font-medium",
-                displayData.isUp ? "text-[#10b981]" : "text-[#ef4444]",
+                displayData.isUp ? "text-profit" : "text-loss",
               )}
             >
               {formatCurrency(displayData.close)}

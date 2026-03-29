@@ -893,7 +893,7 @@ function CycleCard({
       className={`rounded-lg border p-4 cursor-pointer transition-colors ${
         selected
           ? "border-primary/50 bg-primary/5"
-          : "border-white/10 bg-white/[0.02] hover:bg-muted/30"
+          : "border-border bg-foreground/[0.02] hover:bg-muted/30"
       }`}
     >
       <div className="flex items-center justify-between">
@@ -957,7 +957,7 @@ function CycleCard({
                 </div>
               </div>
             </div>
-            <div className="mt-3 flex gap-4 text-xs text-muted-foreground border-t border-white/5 pt-3">
+            <div className="mt-3 flex gap-4 text-xs text-muted-foreground border-t border-border/50 pt-3">
               <span>
                 Start: <span className="text-white">{cycle.startYear}</span>
               </span>
@@ -1015,7 +1015,7 @@ export default function CommodityCyclesPage() {
       </motion.div>
 
       <Tabs defaultValue="supercycle">
-        <TabsList className="mb-6 flex flex-wrap gap-1 h-auto bg-white/5 p-1 rounded-lg">
+        <TabsList className="mb-6 flex flex-wrap gap-1 h-auto bg-foreground/5 p-1 rounded-lg">
           {[
             { value: "supercycle", label: "Super Cycle History", icon: <BarChart3 size={14} /> },
             { value: "energy", label: "Energy Complex", icon: <Flame size={14} /> },
@@ -1038,7 +1038,7 @@ export default function CommodityCyclesPage() {
         <TabsContent value="supercycle" className="data-[state=inactive]:hidden">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
             <div className="space-y-4">
-              <Card className="bg-white/[0.03] border-white/10">
+              <Card className="bg-foreground/[0.03] border-border">
                 <CardHeader className="pb-2">
                   <CardTitle className="text-sm font-semibold text-muted-foreground">
                     Commodity Index (Normalized to Start=100)
@@ -1052,7 +1052,7 @@ export default function CommodityCyclesPage() {
                 </CardContent>
               </Card>
 
-              <Card className="bg-white/[0.03] border-white/10">
+              <Card className="bg-foreground/[0.03] border-border">
                 <CardContent className="pt-4">
                   <div className="grid grid-cols-3 gap-3 text-center">
                     <div>
@@ -1096,7 +1096,7 @@ export default function CommodityCyclesPage() {
         <TabsContent value="energy" className="data-[state=inactive]:hidden">
           <div className="space-y-6">
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-              <Card className="bg-white/[0.03] border-white/10">
+              <Card className="bg-foreground/[0.03] border-border">
                 <CardHeader className="pb-2">
                   <CardTitle className="text-sm font-semibold text-muted-foreground flex items-center gap-2">
                     <Zap size={14} className="text-amber-400" />
@@ -1108,7 +1108,7 @@ export default function CommodityCyclesPage() {
                 </CardContent>
               </Card>
 
-              <Card className="bg-white/[0.03] border-white/10">
+              <Card className="bg-foreground/[0.03] border-border">
                 <CardHeader className="pb-2">
                   <CardTitle className="text-sm font-semibold text-muted-foreground">
                     OPEC+ Production Context
@@ -1149,7 +1149,7 @@ export default function CommodityCyclesPage() {
                           {suffix}
                         </span>
                       </div>
-                      <div className="h-1.5 bg-white/5 rounded-full overflow-hidden">
+                      <div className="h-1.5 bg-foreground/5 rounded-full overflow-hidden">
                         <div
                           className="h-full rounded-full"
                           style={{
@@ -1164,7 +1164,7 @@ export default function CommodityCyclesPage() {
               </Card>
             </div>
 
-            <Card className="bg-white/[0.03] border-white/10">
+            <Card className="bg-foreground/[0.03] border-border">
               <CardHeader className="pb-2">
                 <CardTitle className="text-sm font-semibold text-muted-foreground">
                   Energy Complex — Market Data
@@ -1174,7 +1174,7 @@ export default function CommodityCyclesPage() {
                 <div className="overflow-x-auto">
                   <table className="w-full text-xs">
                     <thead>
-                      <tr className="border-b border-white/10 text-muted-foreground">
+                      <tr className="border-b border-border text-muted-foreground">
                         <th className="text-left py-2 pr-4">Commodity</th>
                         <th className="text-left py-2 pr-4">Type</th>
                         <th className="text-right py-2 pr-4">Price</th>
@@ -1188,13 +1188,13 @@ export default function CommodityCyclesPage() {
                       {ENERGY_ROWS.map((row) => (
                         <tr
                           key={row.name}
-                          className="border-b border-white/5 hover:bg-muted/30"
+                          className="border-b border-border/50 hover:bg-muted/30"
                         >
                           <td className="py-2 pr-4 font-medium text-white">
                             {row.name}
                           </td>
                           <td className="py-2 pr-4">
-                            <Badge className="text-xs bg-white/5 text-muted-foreground border-white/10">
+                            <Badge className="text-xs bg-foreground/5 text-muted-foreground border-border">
                               {row.type}
                             </Badge>
                           </td>
@@ -1271,7 +1271,7 @@ export default function CommodityCyclesPage() {
         <TabsContent value="metals" className="data-[state=inactive]:hidden">
           <div className="space-y-6">
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-              <Card className="bg-white/[0.03] border-white/10">
+              <Card className="bg-foreground/[0.03] border-border">
                 <CardHeader className="pb-2">
                   <CardTitle className="text-sm font-semibold text-muted-foreground">
                     Relative Price Performance (Indexed, 24 months)
@@ -1282,7 +1282,7 @@ export default function CommodityCyclesPage() {
                 </CardContent>
               </Card>
 
-              <Card className="bg-white/[0.03] border-white/10">
+              <Card className="bg-foreground/[0.03] border-border">
                 <CardHeader className="pb-2">
                   <CardTitle className="text-sm font-semibold text-muted-foreground">
                     EV Demand Drivers (per vehicle)
@@ -1304,7 +1304,7 @@ export default function CommodityCyclesPage() {
                           {kg} kg
                         </span>
                       </div>
-                      <div className="h-1.5 bg-white/5 rounded-full overflow-hidden mb-0.5">
+                      <div className="h-1.5 bg-foreground/5 rounded-full overflow-hidden mb-0.5">
                         <div
                           className="h-full rounded-full"
                           style={{
@@ -1321,7 +1321,7 @@ export default function CommodityCyclesPage() {
             </div>
 
             {/* Metals table */}
-            <Card className="bg-white/[0.03] border-white/10">
+            <Card className="bg-foreground/[0.03] border-border">
               <CardHeader className="pb-2">
                 <CardTitle className="text-sm font-semibold text-muted-foreground">
                   Metals Market Overview
@@ -1331,7 +1331,7 @@ export default function CommodityCyclesPage() {
                 <div className="overflow-x-auto">
                   <table className="w-full text-xs">
                     <thead>
-                      <tr className="border-b border-white/10 text-muted-foreground">
+                      <tr className="border-b border-border text-muted-foreground">
                         <th className="text-left py-2 pr-4">Metal</th>
                         <th className="text-right py-2 pr-4">Price</th>
                         <th className="text-right py-2 pr-4">YoY</th>
@@ -1344,7 +1344,7 @@ export default function CommodityCyclesPage() {
                       {METALS_ROWS.map((row) => (
                         <tr
                           key={row.name}
-                          className="border-b border-white/5 hover:bg-muted/30"
+                          className="border-b border-border/50 hover:bg-muted/30"
                         >
                           <td className="py-2 pr-4">
                             <span className="font-medium text-white">
@@ -1426,14 +1426,14 @@ export default function CommodityCyclesPage() {
                     "Iron ore remains tightly linked to China's property sector, which accounts for ~35% of steel demand. Ongoing property developer defaults and population decline put structural downward pressure on long-term pricing.",
                 },
               ].map(({ name, ticker, icon, insight }) => (
-                <Card key={name} className="bg-white/[0.03] border-white/10">
+                <Card key={name} className="bg-foreground/[0.03] border-border">
                   <CardContent className="pt-4">
                     <div className="flex items-center gap-2 mb-2">
                       <span className="text-lg">{icon}</span>
                       <span className="font-semibold text-white text-sm">
                         {name}
                       </span>
-                      <Badge className="text-xs bg-white/5 text-muted-foreground border-white/10">
+                      <Badge className="text-xs bg-foreground/5 text-muted-foreground border-border">
                         {ticker}
                       </Badge>
                     </div>
@@ -1451,7 +1451,7 @@ export default function CommodityCyclesPage() {
         <TabsContent value="agri" className="data-[state=inactive]:hidden">
           <div className="space-y-6">
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-              <Card className="bg-white/[0.03] border-white/10">
+              <Card className="bg-foreground/[0.03] border-border">
                 <CardHeader className="pb-2">
                   <CardTitle className="text-sm font-semibold text-muted-foreground flex items-center gap-2">
                     <Wheat size={14} className="text-amber-400" />
@@ -1466,7 +1466,7 @@ export default function CommodityCyclesPage() {
                 </CardContent>
               </Card>
 
-              <Card className="bg-white/[0.03] border-white/10">
+              <Card className="bg-foreground/[0.03] border-border">
                 <CardHeader className="pb-2">
                   <CardTitle className="text-sm font-semibold text-muted-foreground">
                     ENSO Impact on Agricultural Markets
@@ -1516,7 +1516,7 @@ export default function CommodityCyclesPage() {
             </div>
 
             {/* Agri table */}
-            <Card className="bg-white/[0.03] border-white/10">
+            <Card className="bg-foreground/[0.03] border-border">
               <CardHeader className="pb-2">
                 <CardTitle className="text-sm font-semibold text-muted-foreground">
                   Agricultural Complex — Market Data
@@ -1526,7 +1526,7 @@ export default function CommodityCyclesPage() {
                 <div className="overflow-x-auto">
                   <table className="w-full text-xs">
                     <thead>
-                      <tr className="border-b border-white/10 text-muted-foreground">
+                      <tr className="border-b border-border text-muted-foreground">
                         <th className="text-left py-2 pr-4">Commodity</th>
                         <th className="text-right py-2 pr-4">Price</th>
                         <th className="text-right py-2 pr-4">YoY</th>
@@ -1539,7 +1539,7 @@ export default function CommodityCyclesPage() {
                       {AGRI_ROWS.map((row) => (
                         <tr
                           key={row.name}
-                          className="border-b border-white/5 hover:bg-muted/30"
+                          className="border-b border-border/50 hover:bg-muted/30"
                         >
                           <td className="py-2 pr-4">
                             <span className="font-medium text-white">
@@ -1588,7 +1588,7 @@ export default function CommodityCyclesPage() {
             </Card>
 
             {/* Crop calendar visual */}
-            <Card className="bg-white/[0.03] border-white/10">
+            <Card className="bg-foreground/[0.03] border-border">
               <CardHeader className="pb-2">
                 <CardTitle className="text-sm font-semibold text-muted-foreground flex items-center gap-2">
                   <Globe size={14} className="text-primary" />
@@ -1682,15 +1682,15 @@ export default function CommodityCyclesPage() {
                   </div>
                   <div className="flex gap-4 text-xs text-muted-foreground mt-1">
                     <span className="flex items-center gap-1">
-                      <span className="w-3 h-2 rounded-sm bg-white/30 inline-block" />
+                      <span className="w-3 h-2 rounded-sm bg-foreground/30 inline-block" />
                       Planting
                     </span>
                     <span className="flex items-center gap-1">
-                      <span className="w-3 h-2 rounded-sm bg-white/15 inline-block" />
+                      <span className="w-3 h-2 rounded-sm bg-foreground/15 inline-block" />
                       Growing
                     </span>
                     <span className="flex items-center gap-1">
-                      <span className="w-3 h-2 rounded-sm bg-white/60 inline-block" />
+                      <span className="w-3 h-2 rounded-sm bg-foreground/60 inline-block" />
                       Harvest
                     </span>
                   </div>
@@ -1704,7 +1704,7 @@ export default function CommodityCyclesPage() {
         <TabsContent value="vehicles" className="data-[state=inactive]:hidden">
           <div className="space-y-6">
             {/* Quick compare table */}
-            <Card className="bg-white/[0.03] border-white/10">
+            <Card className="bg-foreground/[0.03] border-border">
               <CardHeader className="pb-2">
                 <CardTitle className="text-sm font-semibold text-muted-foreground flex items-center gap-2">
                   <DollarSign size={14} className="text-emerald-400" />
@@ -1715,7 +1715,7 @@ export default function CommodityCyclesPage() {
                 <div className="overflow-x-auto">
                   <table className="w-full text-xs">
                     <thead>
-                      <tr className="border-b border-white/10 text-muted-foreground">
+                      <tr className="border-b border-border text-muted-foreground">
                         <th className="text-left py-2 pr-4">Vehicle</th>
                         <th className="text-left py-2 pr-4">Type</th>
                         <th className="text-right py-2 pr-4">AUM / Mkt Cap</th>
@@ -1728,7 +1728,7 @@ export default function CommodityCyclesPage() {
                       {INVESTMENT_VEHICLES.map((v) => (
                         <tr
                           key={v.ticker}
-                          className="border-b border-white/5 hover:bg-muted/30"
+                          className="border-b border-border/50 hover:bg-muted/30"
                         >
                           <td className="py-2 pr-4">
                             <span className="font-medium text-white">
@@ -1782,7 +1782,7 @@ export default function CommodityCyclesPage() {
                 <motion.div
                   key={v.ticker}
                   layout
-                  className="rounded-lg border border-white/10 bg-white/[0.02] overflow-hidden"
+                  className="rounded-lg border border-border bg-foreground/[0.02] overflow-hidden"
                 >
                   <button
                     className="w-full flex items-center justify-between p-4 hover:bg-muted/30 transition-colors"
@@ -1838,7 +1838,7 @@ export default function CommodityCyclesPage() {
                         transition={{ duration: 0.2 }}
                         className="overflow-hidden"
                       >
-                        <div className="px-4 pb-4 grid grid-cols-1 md:grid-cols-3 gap-4 border-t border-white/10 pt-4">
+                        <div className="px-4 pb-4 grid grid-cols-1 md:grid-cols-3 gap-4 border-t border-border pt-4">
                           <div>
                             <p className="text-xs text-muted-foreground mb-1.5 uppercase tracking-wide">
                               Exposure

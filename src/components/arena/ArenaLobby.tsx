@@ -136,7 +136,7 @@ export function ArenaLobby({ onSelectType }: ArenaLobbyProps) {
                 {Object.entries(config.scoringWeights).map(([key, weight]) => (
                   <div key={key} className="flex items-center gap-2">
                     <span className="text-[11px] w-12 text-muted-foreground/70 capitalize">{key === "riskControl" ? "Risk" : key}</span>
-                    <div className="flex-1 h-1 rounded-full bg-white/5">
+                    <div className="flex-1 h-1 rounded-full bg-foreground/5">
                       <motion.div
                         className={cn("h-full rounded-full", WEIGHT_COLORS[key] ?? "bg-muted")}
                         initial={{ width: 0 }}
@@ -199,7 +199,7 @@ function RecentMatches() {
             initial={{ opacity: 0, x: -8 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ delay: i * 0.03 }}
-            className="flex items-center gap-3 rounded-lg border border-white/[0.03] bg-white/[0.01] px-3 py-1.5 text-xs"
+            className="flex items-center gap-3 rounded-lg border border-foreground/[0.03] bg-foreground/[0.01] px-3 py-1.5 text-xs"
           >
             <span className={cn(
               "flex h-5 w-5 items-center justify-center rounded text-xs font-bold",

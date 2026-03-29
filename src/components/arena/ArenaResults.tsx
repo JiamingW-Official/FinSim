@@ -153,7 +153,7 @@ export function ArenaResults({ result, onPlayAgain, onBackToLobby }: ArenaResult
             initial={{ opacity: 0, x: -20 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ delay: 0.5 + i * 0.08 }}
-            className="flex items-center gap-2.5 rounded-lg border border-white/5 bg-white/[0.02] px-3 py-2"
+            className="flex items-center gap-2.5 rounded-lg border border-border bg-muted/10 px-3 py-2"
           >
             <span className="text-muted-foreground">{cat.icon}</span>
             <span className="text-[11px] text-muted-foreground w-14">{cat.label}</span>
@@ -316,7 +316,7 @@ function StatRow({
   opponentColor?: string;
 }) {
   return (
-    <div className="flex items-center gap-3 rounded-lg border border-white/5 bg-white/[0.02] px-3 py-1.5">
+    <div className="flex items-center gap-3 rounded-lg border border-border bg-muted/10 px-3 py-1.5">
       <span className="text-muted-foreground">{icon}</span>
       <span className="text-[11px] text-muted-foreground flex-1">{label}</span>
       <span className={cn("text-xs font-bold tabular-nums", valueColor)}>{value}</span>

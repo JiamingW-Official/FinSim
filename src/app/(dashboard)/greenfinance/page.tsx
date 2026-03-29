@@ -300,7 +300,7 @@ function StatCard({ label, value, sub, highlight }: {
     highlight === "neg" ? "text-rose-400" :
     "text-white";
   return (
-    <div className="rounded-xl border border-white/10 bg-white/5 p-4">
+    <div className="rounded-xl border border-border bg-foreground/5 p-4">
       <p className="text-xs text-muted-foreground mb-1">{label}</p>
       <p className={cn("text-xl font-bold", valClass)}>{value}</p>
       {sub && <p className="text-xs text-muted-foreground mt-1">{sub}</p>}
@@ -473,7 +473,7 @@ function GreeniumCalculator() {
         </div>
       </div>
 
-      <div className="rounded-lg border border-white/10 bg-white/5 p-4">
+      <div className="rounded-lg border border-border bg-foreground/5 p-4">
         <p className="text-xs font-semibold text-muted-foreground mb-2">Issuer Breakeven Analysis</p>
         <p className="text-xs text-muted-foreground">
           To justify the additional green certification costs (~$300K–$500K for framework + audit + reporting),
@@ -544,7 +544,7 @@ export default function GreenFinancePage() {
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.4 }}
-      className="min-h-screen bg-background text-white p-4 md:p-6 space-y-6"
+      className="min-h-screen bg-background text-foreground p-4 md:p-6 space-y-6"
     >
       {/* Header */}
       <div className="flex items-center gap-3">
@@ -567,7 +567,7 @@ export default function GreenFinancePage() {
 
       {/* Main Tabs */}
       <Tabs defaultValue="bonds">
-        <TabsList className="bg-card border border-white/10 flex flex-wrap gap-1 h-auto p-1">
+        <TabsList className="bg-card border border-border flex flex-wrap gap-1 h-auto p-1">
           <TabsTrigger value="bonds" className="data-[state=active]:bg-emerald-600 data-[state=active]:text-white text-xs">
             <BarChart2 size={12} className="mr-1" /> Bond Market
           </TabsTrigger>
@@ -592,7 +592,7 @@ export default function GreenFinancePage() {
         <TabsContent value="bonds" className={cn("mt-4 space-y-4", "data-[state=inactive]:hidden")}>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             {/* Bond list */}
-            <Card className="bg-card border-white/10">
+            <Card className="bg-card border-border">
               <CardHeader className="pb-3">
                 <CardTitle className="text-sm text-foreground">Active Green Bond Universe</CardTitle>
               </CardHeader>
@@ -605,7 +605,7 @@ export default function GreenFinancePage() {
                       "w-full text-left rounded-lg border p-3 transition-all",
                       selectedBond === bond
                         ? "border-emerald-500/60 bg-emerald-500/10"
-                        : "border-white/10 bg-white/5 hover:border-white/20"
+                        : "border-border bg-foreground/5 hover:border-border"
                     )}
                   >
                     <div className="flex items-center justify-between mb-1">
@@ -653,7 +653,7 @@ export default function GreenFinancePage() {
                         { label: "Certification", value: selectedBond.certification },
                         { label: "Credit Rating", value: selectedBond.rating },
                       ].map((row) => (
-                        <div key={row.label} className="rounded bg-white/5 p-2">
+                        <div key={row.label} className="rounded bg-foreground/5 p-2">
                           <p className="text-xs text-muted-foreground">{row.label}</p>
                           <p className="text-xs font-semibold text-white">{row.value}</p>
                         </div>
@@ -675,7 +675,7 @@ export default function GreenFinancePage() {
                   </CardContent>
                 </Card>
               ) : (
-                <Card className="bg-card border-white/10">
+                <Card className="bg-card border-border">
                   <CardContent className="p-6 text-center text-muted-foreground">
                     <Info size={28} className="mx-auto mb-2 opacity-40" />
                     <p className="text-xs">Select a bond from the list to view details</p>
@@ -684,7 +684,7 @@ export default function GreenFinancePage() {
               )}
 
               {/* Market summary */}
-              <Card className="bg-card border-white/10">
+              <Card className="bg-card border-border">
                 <CardHeader className="pb-2">
                   <CardTitle className="text-xs text-muted-foreground">Market Summary</CardTitle>
                 </CardHeader>
@@ -713,7 +713,7 @@ export default function GreenFinancePage() {
 
         {/* ── Tab 2: Greenium Calculator ── */}
         <TabsContent value="greenium" className={cn("mt-4", "data-[state=inactive]:hidden")}>
-          <Card className="bg-card border-white/10">
+          <Card className="bg-card border-border">
             <CardHeader className="pb-3">
               <CardTitle className="text-sm text-foreground flex items-center gap-2">
                 <DollarSign size={16} className="text-emerald-400" />
@@ -732,7 +732,7 @@ export default function GreenFinancePage() {
 
         {/* ── Tab 3: EU Taxonomy ── */}
         <TabsContent value="taxonomy" className={cn("mt-4 space-y-4", "data-[state=inactive]:hidden")}>
-          <Card className="bg-card border-white/10">
+          <Card className="bg-card border-border">
             <CardHeader className="pb-2">
               <CardTitle className="text-sm text-foreground flex items-center gap-2">
                 <Globe size={16} className="text-primary" />
@@ -752,7 +752,7 @@ export default function GreenFinancePage() {
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
             {TAXONOMY_OBJECTIVES.map((obj) => (
-              <div key={obj.id} className="rounded-lg border border-white/10 bg-white/5 p-3">
+              <div key={obj.id} className="rounded-lg border border-border bg-foreground/5 p-3">
                 <div className="flex items-center justify-between mb-2">
                   <span className="text-xs font-semibold" style={{ color: obj.color }}>{obj.label}</span>
                 </div>
@@ -783,7 +783,7 @@ export default function GreenFinancePage() {
         <TabsContent value="carbon" className={cn("mt-4 space-y-4", "data-[state=inactive]:hidden")}>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             {/* ETS chart */}
-            <Card className="bg-card border-white/10">
+            <Card className="bg-card border-border">
               <CardHeader className="pb-2">
                 <CardTitle className="text-sm text-foreground">EU ETS Carbon Price — 12 Months</CardTitle>
                 <p className="text-xs text-muted-foreground">EU Emission Allowance (EUA) price in €/tCO₂e</p>
@@ -798,7 +798,7 @@ export default function GreenFinancePage() {
             </Card>
 
             {/* VCM vs Compliance */}
-            <Card className="bg-card border-white/10">
+            <Card className="bg-card border-border">
               <CardHeader className="pb-2">
                 <CardTitle className="text-sm text-foreground">Compliance vs Voluntary Carbon Markets</CardTitle>
               </CardHeader>
@@ -832,14 +832,14 @@ export default function GreenFinancePage() {
           </div>
 
           {/* Carbon credit types */}
-          <Card className="bg-card border-white/10">
+          <Card className="bg-card border-border">
             <CardHeader className="pb-2">
               <CardTitle className="text-sm text-foreground">Carbon Credit Types</CardTitle>
             </CardHeader>
             <CardContent className="p-3 pt-0">
               <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-3">
                 {CARBON_CREDITS.map((credit) => (
-                  <div key={credit.abbr} className="rounded-lg border border-white/10 bg-white/5 p-3">
+                  <div key={credit.abbr} className="rounded-lg border border-border bg-foreground/5 p-3">
                     <div className="flex items-center justify-between mb-2">
                       <span className="text-xs font-bold text-white">{credit.abbr}</span>
                       <Badge className={cn(
@@ -876,7 +876,7 @@ export default function GreenFinancePage() {
 
         {/* ── Tab 5: Sustainable Finance Instruments ── */}
         <TabsContent value="instruments" className={cn("mt-4", "data-[state=inactive]:hidden")}>
-          <Card className="bg-card border-white/10">
+          <Card className="bg-card border-border">
             <CardHeader className="pb-3">
               <CardTitle className="text-sm text-foreground">Sustainable Finance Instruments Comparison</CardTitle>
               <p className="text-xs text-muted-foreground">
@@ -887,7 +887,7 @@ export default function GreenFinancePage() {
             <CardContent className="p-3 pt-0 overflow-x-auto">
               <table className="w-full text-xs border-collapse min-w-[560px]">
                 <thead>
-                  <tr className="border-b border-white/10">
+                  <tr className="border-b border-border">
                     <th className="text-left p-2 text-muted-foreground font-medium">Instrument</th>
                     <th className="text-left p-2 text-muted-foreground font-medium">Structure</th>
                     <th className="text-left p-2 text-muted-foreground font-medium">Use of Proceeds</th>
@@ -912,7 +912,7 @@ export default function GreenFinancePage() {
                       orange: "bg-orange-500/10",
                     };
                     return (
-                      <tr key={i} className={cn("border-b border-white/5 hover:bg-muted/30 transition-colors")}>
+                      <tr key={i} className={cn("border-b border-border/50 hover:bg-muted/30 transition-colors")}>
                         <td className="p-2">
                           <span className={cn(
                             "inline-block px-2 py-0.5 rounded text-xs font-bold",
@@ -958,7 +958,7 @@ export default function GreenFinancePage() {
 
         {/* ── Tab 6: Portfolio Alignment ── */}
         <TabsContent value="portfolio" className={cn("mt-4 space-y-4", "data-[state=inactive]:hidden")}>
-          <Card className="bg-card border-white/10">
+          <Card className="bg-card border-border">
             <CardHeader className="pb-2">
               <CardTitle className="text-sm text-foreground flex items-center gap-2">
                 <Shield size={16} className="text-primary" />
@@ -975,7 +975,7 @@ export default function GreenFinancePage() {
           </Card>
 
           {/* Sector temperature */}
-          <Card className="bg-card border-white/10">
+          <Card className="bg-card border-border">
             <CardHeader className="pb-2">
               <CardTitle className="text-sm text-foreground">Implied Temperature Rise by Sector</CardTitle>
               <p className="text-xs text-muted-foreground">Based on current emissions trajectory — Paris target is 1.5°C</p>

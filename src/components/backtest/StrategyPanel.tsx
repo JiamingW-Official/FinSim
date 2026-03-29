@@ -640,7 +640,7 @@ function ExitSlider({
           className={`relative h-4 w-7 rounded-full transition-colors ${enabled ? c.toggle : "bg-muted"}`}
         >
           <span
-            className={`absolute top-0.5 h-3 w-3 rounded-full bg-white shadow transition-transform ${enabled ? "translate-x-3.5" : "translate-x-0.5"}`}
+            className={`absolute top-0.5 h-3 w-3 rounded-full bg-foreground shadow transition-transform ${enabled ? "translate-x-3.5" : "translate-x-0.5"}`}
           />
         </button>
       </div>

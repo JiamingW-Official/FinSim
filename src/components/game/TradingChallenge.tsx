@@ -944,7 +944,7 @@ function StrategyBattleScreen({ onFinish }: { onFinish: (score: number) => void 
                 className={cn(
                   "rounded-lg border p-2.5 text-xs font-semibold transition-all",
                   playerStrategy === bot.id
-                    ? "border-white/40 bg-white/10 text-white"
+                    ? "border-foreground/40 bg-foreground/10 text-foreground"
                     : "border-border bg-card text-muted-foreground hover:border-border hover:text-foreground"
                 )}
               >

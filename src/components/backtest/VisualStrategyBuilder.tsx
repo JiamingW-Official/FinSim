@@ -453,7 +453,7 @@ export default function VisualStrategyBuilder({ savedStrategies, onSaveStrategy,
               step={5}
               value={positionSize}
               onChange={(e) => setPositionSize(parseInt(e.target.value, 10))}
-              className="h-1.5 w-full cursor-pointer appearance-none rounded-full bg-white/10 accent-blue-500"
+              className="h-1.5 w-full cursor-pointer appearance-none rounded-full bg-foreground/10 accent-blue-500"
             />
             <div className="flex justify-between text-[11px] text-muted-foreground/70">
               <span>5%</span>

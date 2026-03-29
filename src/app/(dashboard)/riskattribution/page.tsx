@@ -243,7 +243,7 @@ function StatCard({
       ? "text-rose-400"
       : "text-white";
   return (
-    <div className="rounded-xl border border-white/10 bg-white/5 p-4">
+    <div className="rounded-xl border border-border bg-foreground/5 p-4">
       <p className="text-xs text-muted-foreground mb-1">{label}</p>
       <p className={cn("text-xl font-bold", valClass)}>{value}</p>
       {sub && <p className="text-xs text-muted-foreground mt-1">{sub}</p>}
@@ -292,7 +292,7 @@ function BHBTab() {
         <StatCard label="Total Active Return" value={pct(totalActive)} highlight={totalActive >= 0 ? "pos" : "neg"} sub="Portfolio vs benchmark" />
       </div>
 
-      <div className="rounded-xl border border-white/10 bg-white/5 p-4">
+      <div className="rounded-xl border border-border bg-foreground/5 p-4">
         <SectionHeading title="Active Return by Sector" sub="Stacked bars: allocation (indigo) + selection (cyan) + interaction (amber)" />
         <svg viewBox={`0 0 ${chartW} ${chartH}`} className="w-full">
           {/* grid */}
@@ -337,10 +337,10 @@ function BHBTab() {
         </svg>
       </div>
 
-      <div className="rounded-xl border border-white/10 bg-white/5 overflow-auto">
+      <div className="rounded-xl border border-border bg-foreground/5 overflow-auto">
         <table className="w-full text-xs">
           <thead>
-            <tr className="border-b border-white/10">
+            <tr className="border-b border-border">
               {["Sector", "Port Wt", "Bmk Wt", "Port Ret", "Bmk Ret", "Alloc", "Sel", "Inter", "Total"].map((h) => (
                 <th key={h} className="px-3 py-2 text-left text-muted-foreground font-medium whitespace-nowrap">{h}</th>
               ))}
@@ -348,7 +348,7 @@ function BHBTab() {
           </thead>
           <tbody>
             {BHB_DATA.map((row) => (
-              <tr key={row.sector} className="border-b border-white/5 hover:bg-muted/30 transition-colors">
+              <tr key={row.sector} className="border-b border-border/50 hover:bg-muted/30 transition-colors">
                 <td className="px-3 py-2 text-foreground font-medium">{row.sector}</td>
                 <td className="px-3 py-2 text-muted-foreground">{(row.pw * 100).toFixed(1)}%</td>
                 <td className="px-3 py-2 text-muted-foreground">{(row.bw * 100).toFixed(1)}%</td>
@@ -420,7 +420,7 @@ function FactorTab() {
         ))}
       </div>
 
-      <div className="rounded-xl border border-white/10 bg-white/5 p-4">
+      <div className="rounded-xl border border-border bg-foreground/5 p-4">
         <SectionHeading title="Factor Contribution Waterfall" sub="Cumulative return decomposition by risk factor" />
         <svg viewBox={`0 0 ${chartW} ${chartH}`} className="w-full">
           {yticks.map((tick) => {
@@ -489,10 +489,10 @@ function FactorTab() {
         </svg>
       </div>
 
-      <div className="rounded-xl border border-white/10 bg-white/5 overflow-auto">
+      <div className="rounded-xl border border-border bg-foreground/5 overflow-auto">
         <table className="w-full text-xs">
           <thead>
-            <tr className="border-b border-white/10">
+            <tr className="border-b border-border">
               {["Factor", "Beta Exposure", "Factor Return", "Contribution", "% of Total"].map((h) => (
                 <th key={h} className="px-3 py-2 text-left text-muted-foreground font-medium">{h}</th>
               ))}
@@ -500,7 +500,7 @@ function FactorTab() {
           </thead>
           <tbody>
             {FACTOR_DATA.map((f) => (
-              <tr key={f.name} className="border-b border-white/5 hover:bg-muted/30 transition-colors">
+              <tr key={f.name} className="border-b border-border/50 hover:bg-muted/30 transition-colors">
                 <td className="px-3 py-2">
                   <span className="flex items-center gap-2">
                     <span className="w-2.5 h-2.5 rounded-full shrink-0" style={{ background: f.color }} />
@@ -515,7 +515,7 @@ function FactorTab() {
                 </td>
               </tr>
             ))}
-            <tr className="border-t border-white/20">
+            <tr className="border-t border-border">
               <td className="px-3 py-2 text-white font-bold" colSpan={3}>Total Portfolio Return</td>
               <td className={cn("px-3 py-2 font-mono font-bold", pctColor(totalReturn))}>{pct(totalReturn)}</td>
               <td className="px-3 py-2 font-mono text-muted-foreground">100%</td>
@@ -573,7 +573,7 @@ function ActiveShareTab() {
 
   return (
     <div className="space-y-6">
-      <div className="rounded-xl border border-white/10 bg-white/5 p-5">
+      <div className="rounded-xl border border-border bg-foreground/5 p-5">
         <SectionHeading title="Conviction Level Simulator" sub="Drag the slider to adjust portfolio concentration" />
         <div className="flex items-center gap-4 mb-6">
           <span className="text-xs text-muted-foreground w-20">Conviction</span>
@@ -592,7 +592,7 @@ function ActiveShareTab() {
           <StatCard label="Active Share" value={`${activeShare.toFixed(1)}%`} sub="Deviation from benchmark" />
           <StatCard label="Tracking Error" value={`${trackingError.toFixed(2)}%`} sub="Annualised volatility of alpha" />
           <StatCard label="Information Ratio" value={irVal(conviction)} sub="Alpha per unit of TE" highlight="neutral" />
-          <div className="rounded-xl border border-white/10 bg-white/5 p-4">
+          <div className="rounded-xl border border-border bg-foreground/5 p-4">
             <p className="text-xs text-muted-foreground mb-1">Classification</p>
             <p className={cn("text-base font-bold", zoneColor)}>{zone}</p>
             {activeShare < 60 && (
@@ -704,7 +704,7 @@ function RiskContribTab() {
         />
       </div>
 
-      <div className="rounded-xl border border-white/10 bg-white/5 p-4">
+      <div className="rounded-xl border border-border bg-foreground/5 p-4">
         <SectionHeading title="Risk Contribution by Position" sub="Sorted by % contribution to total portfolio risk" />
         <svg viewBox={`0 0 ${chartW} ${chartH}`} className="w-full">
           {[0, 0.05, 0.1, 0.15, 0.2, 0.25].map((tick) => {
@@ -736,10 +736,10 @@ function RiskContribTab() {
         </svg>
       </div>
 
-      <div className="rounded-xl border border-white/10 bg-white/5 overflow-auto">
+      <div className="rounded-xl border border-border bg-foreground/5 overflow-auto">
         <table className="w-full text-xs">
           <thead>
-            <tr className="border-b border-white/10">
+            <tr className="border-b border-border">
               {["#", "Ticker", "Weight", "Standalone Vol", "MCTR", "% Risk Contrib", "Risk Bar"].map((h) => (
                 <th key={h} className="px-3 py-2 text-left text-muted-foreground font-medium whitespace-nowrap">{h}</th>
               ))}
@@ -747,7 +747,7 @@ function RiskContribTab() {
           </thead>
           <tbody>
             {POSITIONS.map((pos, i) => (
-              <tr key={pos.ticker} className="border-b border-white/5 hover:bg-muted/30 transition-colors">
+              <tr key={pos.ticker} className="border-b border-border/50 hover:bg-muted/30 transition-colors">
                 <td className="px-3 py-2 text-muted-foreground">{i + 1}</td>
                 <td className="px-3 py-2 text-white font-bold">{pos.ticker}</td>
                 <td className="px-3 py-2 font-mono text-muted-foreground">{(pos.weight * 100).toFixed(1)}%</td>
@@ -757,7 +757,7 @@ function RiskContribTab() {
                 </td>
                 <td className="px-3 py-2 font-mono font-bold text-foreground">{(pos.pctContrib * 100).toFixed(2)}%</td>
                 <td className="px-3 py-2 w-28">
-                  <div className="h-2 rounded-full bg-white/10 overflow-hidden">
+                  <div className="h-2 rounded-full bg-foreground/10 overflow-hidden">
                     <div
                       className="h-full rounded-full bg-indigo-500"
                       style={{ width: `${Math.min(100, pos.pctContrib / POSITIONS[0].pctContrib * 100)}%` }}
@@ -792,7 +792,7 @@ function ScenarioTab() {
 
   return (
     <div className="space-y-6">
-      <div className="rounded-xl border border-white/10 bg-white/5 p-4">
+      <div className="rounded-xl border border-border bg-foreground/5 p-4">
         <SectionHeading title="Macro Scenario Impact" sub="Estimated portfolio vs benchmark response to stress scenarios" />
         <svg viewBox={`0 0 ${chartW} ${chartH}`} className="w-full">
           <line x1={padL + zero} y1={padT} x2={padL + zero} y2={chartH - padB} stroke="#ffffff40" strokeWidth={1} />
@@ -840,7 +840,7 @@ function ScenarioTab() {
         {SCENARIOS.map((sc) => {
           const excess = sc.portfolioImpact - sc.benchmarkImpact;
           return (
-            <div key={sc.name} className="rounded-xl border border-white/10 bg-white/5 p-4">
+            <div key={sc.name} className="rounded-xl border border-border bg-foreground/5 p-4">
               <div className="flex items-start justify-between gap-4">
                 <div>
                   <p className="text-sm font-semibold text-white">{sc.name}</p>
@@ -863,7 +863,7 @@ function ScenarioTab() {
                   </div>
                 </div>
               </div>
-              <div className="mt-2 h-1.5 rounded-full bg-white/10 overflow-hidden">
+              <div className="mt-2 h-1.5 rounded-full bg-foreground/10 overflow-hidden">
                 <div
                   className={cn("h-full rounded-full transition-all", excess >= 0 ? "bg-emerald-500" : "bg-rose-500")}
                   style={{ width: `${Math.min(100, Math.abs(excess) / 0.05 * 50)}%` }}
@@ -929,7 +929,7 @@ function HistoryTab() {
         />
       </div>
 
-      <div className="rounded-xl border border-white/10 bg-white/5 p-4">
+      <div className="rounded-xl border border-border bg-foreground/5 p-4">
         <SectionHeading title="Cumulative Attribution — 12 Months" sub="Alpha (white) · Allocation (indigo) · Selection (cyan)" />
         <svg viewBox={`0 0 ${chartW} ${chartH}`} className="w-full">
           {Array.from({ length: yticks }, (_, i) => {
@@ -995,10 +995,10 @@ function HistoryTab() {
         </div>
       </div>
 
-      <div className="rounded-xl border border-white/10 bg-white/5 overflow-auto">
+      <div className="rounded-xl border border-border bg-foreground/5 overflow-auto">
         <table className="w-full text-xs">
           <thead>
-            <tr className="border-b border-white/10">
+            <tr className="border-b border-border">
               {["Month", "Cum. Alpha", "Alloc Effect", "Sel Effect", "Monthly Delta"].map((h) => (
                 <th key={h} className="px-3 py-2 text-left text-muted-foreground font-medium">{h}</th>
               ))}
@@ -1009,7 +1009,7 @@ function HistoryTab() {
               const prev = i > 0 ? HISTORY[i - 1].cumAlpha : 0;
               const delta = h.cumAlpha - prev;
               return (
-                <tr key={h.month} className="border-b border-white/5 hover:bg-muted/30 transition-colors">
+                <tr key={h.month} className="border-b border-border/50 hover:bg-muted/30 transition-colors">
                   <td className="px-3 py-2 text-muted-foreground font-medium">{h.month} &apos;25</td>
                   <td className={cn("px-3 py-2 font-mono font-bold", pctColor(h.cumAlpha))}>{pct(h.cumAlpha)}</td>
                   <td className={cn("px-3 py-2 font-mono", pctColor(h.allocEffect))}>{pct(h.allocEffect)}</td>
@@ -1087,12 +1087,12 @@ export default function RiskAttributionPage() {
 
       {/* Tabs */}
       <Tabs defaultValue="bhb">
-        <TabsList className="grid grid-cols-3 md:grid-cols-6 h-auto gap-1 bg-white/5 p-1 rounded-xl border border-white/10">
+        <TabsList className="grid grid-cols-3 md:grid-cols-6 h-auto gap-1 bg-foreground/5 p-1 rounded-xl border border-border">
           {TABS.map(({ id, label, icon: Icon }) => (
             <TabsTrigger
               key={id}
               value={id}
-              className="flex items-center gap-1.5 text-xs py-2 data-[state=active]:bg-white/10 data-[state=active]:text-white"
+              className="flex items-center gap-1.5 text-xs py-2 data-[state=active]:bg-foreground/10 data-[state=active]:text-white"
             >
               <Icon className="w-3.5 h-3.5 shrink-0" />
               <span className="hidden sm:inline">{label}</span>

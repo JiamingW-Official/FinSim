@@ -85,7 +85,7 @@ function StatCard({
       ? "text-amber-400"
       : "text-white";
   return (
-    <div className="rounded-xl border border-white/10 bg-white/5 p-4 flex flex-col gap-1">
+    <div className="rounded-xl border border-border bg-foreground/5 p-4 flex flex-col gap-1">
       <div className="flex items-center gap-1.5">
         {icon && <span className="text-muted-foreground">{icon}</span>}
         <span className="text-xs text-muted-foreground">{label}</span>
@@ -137,7 +137,7 @@ function CompareRow({
   better: 1 | 2 | "tie";
 }) {
   return (
-    <tr className="border-b border-white/5">
+    <tr className="border-b border-border/50">
       <td className="py-2.5 px-3 text-xs text-muted-foreground">{label}</td>
       <td
         className={cn(
@@ -349,7 +349,7 @@ function LiquidityTab() {
       {/* Concentrated Liquidity */}
       <div>
         <SectionTitle><Layers size={14} className="text-primary" />Uniswap V3 Concentrated Liquidity</SectionTitle>
-        <div className="rounded-xl border border-white/10 bg-white/5 p-4">
+        <div className="rounded-xl border border-border bg-foreground/5 p-4">
           <p className="text-xs text-muted-foreground mb-4">
             V3 allows LPs to provide liquidity within custom price ranges (ticks). Capital concentrates at the current price, achieving up to <span className="text-primary font-semibold">4000x capital efficiency</span> vs V2. Positions become NFTs representing unique tick ranges.
           </p>
@@ -360,13 +360,13 @@ function LiquidityTab() {
         </div>
 
         {/* Capital efficiency comparison */}
-        <div className="mt-4 rounded-xl border border-white/10 bg-white/5 p-4">
+        <div className="mt-4 rounded-xl border border-border bg-foreground/5 p-4">
           <div className="text-xs font-semibold text-muted-foreground mb-3">Capital Efficiency vs V2 Baseline</div>
           <div className="space-y-2">
             {efficiencyData.map((d, i) => (
               <div key={i} className="flex items-center gap-3">
                 <div className="w-36 text-xs text-muted-foreground truncate">{d.label}</div>
-                <div className="flex-1 h-5 bg-white/5 rounded overflow-hidden relative">
+                <div className="flex-1 h-5 bg-foreground/5 rounded overflow-hidden relative">
                   <div
                     className="h-full rounded transition-all"
                     style={{
@@ -388,10 +388,10 @@ function LiquidityTab() {
       {/* CLMM vs AMM Comparison */}
       <div>
         <SectionTitle><BarChart3 size={14} className="text-primary" />CLMM vs Classic AMM Comparison</SectionTitle>
-        <div className="rounded-xl border border-white/10 bg-white/5 overflow-hidden">
+        <div className="rounded-xl border border-border bg-foreground/5 overflow-hidden">
           <table className="w-full">
             <thead>
-              <tr className="border-b border-white/10 bg-white/5">
+              <tr className="border-b border-border bg-foreground/5">
                 <th className="py-2.5 px-3 text-left text-xs font-semibold text-muted-foreground">Feature</th>
                 <th className="py-2.5 px-3 text-center text-xs font-semibold text-indigo-400">Classic AMM (V2)</th>
                 <th className="py-2.5 px-3 text-center text-xs font-semibold text-primary">CLMM (V3)</th>
@@ -415,7 +415,7 @@ function LiquidityTab() {
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
         <div>
           <SectionTitle><Droplets size={14} className="text-muted-foreground" />Curve Stableswap Invariant</SectionTitle>
-          <div className="rounded-xl border border-white/10 bg-white/5 p-4 space-y-3">
+          <div className="rounded-xl border border-border bg-foreground/5 p-4 space-y-3">
             <p className="text-xs text-muted-foreground">
               Curve blends the constant-product formula (x·y=k) with constant-sum (x+y=k) via amplification parameter A. Near the price peg, behavior is nearly constant-sum (minimal slippage). Far from peg, it reverts to constant-product to prevent drain.
             </p>
@@ -431,7 +431,7 @@ function LiquidityTab() {
         </div>
         <div>
           <SectionTitle><Layers size={14} className="text-emerald-400" />Balancer Weighted Pools</SectionTitle>
-          <div className="rounded-xl border border-white/10 bg-white/5 p-4 space-y-3">
+          <div className="rounded-xl border border-border bg-foreground/5 p-4 space-y-3">
             <p className="text-xs text-muted-foreground">
               Balancer generalizes AMMs to N assets with arbitrary weights. A pool can be 80% ETH / 20% DAI, functioning as an auto-rebalancing index. Managed Pools allow dynamic weight changes (used for liquidity bootstrapping launches).
             </p>
@@ -455,7 +455,7 @@ function LiquidityTab() {
       {/* veTokenomics */}
       <div>
         <SectionTitle><Lock size={14} className="text-primary" />veTokenomics (Vote-Escrowed Model)</SectionTitle>
-        <div className="rounded-xl border border-white/10 bg-white/5 p-4">
+        <div className="rounded-xl border border-border bg-foreground/5 p-4">
           <p className="text-xs text-muted-foreground mb-4">
             Pioneered by Curve (veCRV), veTokenomics aligns long-term holders with protocol governance. Tokens locked longer receive more voting power and higher yield boosts — creating supply sink mechanics and reducing mercenary farming.
           </p>
@@ -480,7 +480,7 @@ function LiquidityTab() {
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
         <div>
           <SectionTitle><Coins size={14} className="text-amber-400" />Protocol-Owned Liquidity (POL)</SectionTitle>
-          <div className="rounded-xl border border-white/10 bg-white/5 p-4 space-y-3">
+          <div className="rounded-xl border border-border bg-foreground/5 p-4 space-y-3">
             <p className="text-xs text-muted-foreground">
               Olympus DAO introduced <span className="text-amber-300">bonding</span>: users sell LP tokens to the protocol at a discount for vested OHM. Protocol accumulates its own liquidity permanently — removing dependence on mercenary LPs. The model failed due to hyperinflation (7000% APY) — but POL as a concept remains influential.
             </p>
@@ -525,7 +525,7 @@ function LiquidityTab() {
                     <span className="text-xs font-semibold text-foreground">{m.name}</span>
                   </div>
                   <div className="flex items-center gap-2">
-                    <Badge className="bg-white/5 text-muted-foreground border-white/10 text-xs">{m.annualRevenue}</Badge>
+                    <Badge className="bg-foreground/5 text-muted-foreground border-border text-xs">{m.annualRevenue}</Badge>
                     <ChevronDown size={12} className={cn("text-muted-foreground transition-transform", expandedMev === i && "rotate-180")} />
                   </div>
                 </div>
@@ -537,7 +537,7 @@ function LiquidityTab() {
                       exit={{ height: 0, opacity: 0 }}
                       className="overflow-hidden"
                     >
-                      <p className="text-xs text-muted-foreground mt-2 pt-2 border-t border-white/10">{m.desc}</p>
+                      <p className="text-xs text-muted-foreground mt-2 pt-2 border-t border-border">{m.desc}</p>
                     </motion.div>
                   )}
                 </AnimatePresence>
@@ -684,7 +684,7 @@ function RWATab() {
       {/* Pipeline */}
       <div>
         <SectionTitle><ArrowRight size={14} className="text-indigo-400" />RWA Tokenization Pipeline</SectionTitle>
-        <div className="rounded-xl border border-white/10 bg-white/5 p-4">
+        <div className="rounded-xl border border-border bg-foreground/5 p-4">
           <RWAPipelineSVG />
           <div className="grid grid-cols-1 md:grid-cols-2 gap-3 mt-4">
             <InfoBox variant="blue">
@@ -702,7 +702,7 @@ function RWATab() {
       {/* Growth chart */}
       <div>
         <SectionTitle><TrendingUp size={14} className="text-indigo-400" />RWA Market Growth</SectionTitle>
-        <div className="rounded-xl border border-white/10 bg-white/5 p-4">
+        <div className="rounded-xl border border-border bg-foreground/5 p-4">
           <RWAGrowthChart />
         </div>
       </div>
@@ -710,10 +710,10 @@ function RWATab() {
       {/* Protocol table */}
       <div>
         <SectionTitle><Building2 size={14} className="text-emerald-400" />Major RWA Protocols</SectionTitle>
-        <div className="rounded-xl border border-white/10 bg-white/5 overflow-x-auto">
+        <div className="rounded-xl border border-border bg-foreground/5 overflow-x-auto">
           <table className="w-full min-w-[580px]">
             <thead>
-              <tr className="border-b border-white/10 bg-white/5">
+              <tr className="border-b border-border bg-foreground/5">
                 <th className="py-2.5 px-3 text-left text-xs font-semibold text-muted-foreground">Protocol</th>
                 <th className="py-2.5 px-3 text-left text-xs font-semibold text-muted-foreground">Focus</th>
                 <th className="py-2.5 px-3 text-center text-xs font-semibold text-muted-foreground">TVL</th>
@@ -724,7 +724,7 @@ function RWATab() {
             </thead>
             <tbody>
               {RWA_PROTOCOLS.map((p) => (
-                <tr key={p.name} className="border-b border-white/5 hover:bg-muted/30 transition-colors">
+                <tr key={p.name} className="border-b border-border/50 hover:bg-muted/30 transition-colors">
                   <td className="py-2.5 px-3 text-xs font-semibold text-foreground">{p.name}</td>
                   <td className="py-2.5 px-3 text-xs text-muted-foreground">{p.focus}</td>
                   <td className="py-2.5 px-3 text-xs text-center text-emerald-400">{p.tvl}</td>
@@ -752,7 +752,7 @@ function RWATab() {
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
         <div>
           <SectionTitle><DollarSign size={14} className="text-emerald-400" />On-Chain Treasury Yield Capture</SectionTitle>
-          <div className="rounded-xl border border-white/10 bg-white/5 p-4 space-y-3">
+          <div className="rounded-xl border border-border bg-foreground/5 p-4 space-y-3">
             <p className="text-xs text-muted-foreground">
               Protocols like USDM (Mountain Protocol) and stUSDT (Justin Sun) hold short-dated US Treasury bills and rebate yield to token holders. Unlike Tether/USDC which capture yield entirely, these pass-through products let DeFi users earn risk-free rates on-chain.
             </p>
@@ -763,7 +763,7 @@ function RWATab() {
                 { label: "OUSG (Ondo)", apy: "5.1%", asset: "BlackRock SHV ETF", chain: "Ethereum" },
                 { label: "BUIDL (BlackRock)", apy: "~5.0%", asset: "Direct T-bills + repo", chain: "Ethereum" },
               ].map((t) => (
-                <div key={t.label} className="flex items-center justify-between bg-white/5 rounded p-2">
+                <div key={t.label} className="flex items-center justify-between bg-foreground/5 rounded p-2">
                   <div>
                     <span className="text-xs font-semibold text-foreground">{t.label}</span>
                     <span className="text-xs text-muted-foreground ml-2">{t.asset}</span>
@@ -779,7 +779,7 @@ function RWATab() {
         </div>
         <div>
           <SectionTitle><Shield size={14} className="text-amber-400" />Regulatory & Risk Considerations</SectionTitle>
-          <div className="rounded-xl border border-white/10 bg-white/5 p-4 space-y-2">
+          <div className="rounded-xl border border-border bg-foreground/5 p-4 space-y-2">
             {[
               { title: "Securities Laws", desc: "Most tokenized assets qualify as securities under Howey Test. Require broker-dealer license or Reg D/S exemption.", color: "rose" },
               { title: "SPV Legal Risk", desc: "Token value depends on courts upholding SPV ownership claims in borrower jurisdiction — tested in Maple default cases.", color: "amber" },
@@ -957,7 +957,7 @@ function IntentTab() {
       {/* Intent paradigm */}
       <div>
         <SectionTitle><Zap size={14} className="text-emerald-400" />Intent vs Transaction Paradigm</SectionTitle>
-        <div className="rounded-xl border border-white/10 bg-white/5 p-4">
+        <div className="rounded-xl border border-border bg-foreground/5 p-4">
           <IntentParadigmSVG />
           <InfoBox variant="emerald">
             Intents separate <span className="font-semibold">what</span> the user wants (outcome) from <span className="font-semibold">how</span> it is achieved (execution path). Specialized solvers/fillers compete to provide best execution, capturing a small profit while giving users better prices than they could achieve independently.
@@ -968,7 +968,7 @@ function IntentTab() {
       {/* CoW Protocol */}
       <div>
         <SectionTitle><RefreshCw size={14} className="text-primary" />CoW Protocol: Batch Auction Architecture</SectionTitle>
-        <div className="rounded-xl border border-white/10 bg-white/5 p-4">
+        <div className="rounded-xl border border-border bg-foreground/5 p-4">
           <CowBatchSVG />
           <div className="grid grid-cols-1 md:grid-cols-3 gap-3 mt-4">
             <InfoBox variant="blue">
@@ -990,10 +990,10 @@ function IntentTab() {
       {/* Intent protocols table */}
       <div>
         <SectionTitle><BarChart3 size={14} className="text-indigo-400" />Intent-Based Protocol Comparison</SectionTitle>
-        <div className="rounded-xl border border-white/10 bg-white/5 overflow-x-auto">
+        <div className="rounded-xl border border-border bg-foreground/5 overflow-x-auto">
           <table className="w-full min-w-[540px]">
             <thead>
-              <tr className="border-b border-white/10 bg-white/5">
+              <tr className="border-b border-border bg-foreground/5">
                 <th className="py-2.5 px-3 text-left text-xs font-semibold text-muted-foreground">Protocol</th>
                 <th className="py-2.5 px-3 text-left text-xs font-semibold text-muted-foreground">Mechanism</th>
                 <th className="py-2.5 px-3 text-center text-xs font-semibold text-muted-foreground">MEV</th>
@@ -1003,7 +1003,7 @@ function IntentTab() {
             </thead>
             <tbody>
               {INTENT_PROTOCOLS.map((p) => (
-                <tr key={p.name} className="border-b border-white/5 hover:bg-muted/30 transition-colors">
+                <tr key={p.name} className="border-b border-border/50 hover:bg-muted/30 transition-colors">
                   <td className="py-2.5 px-3 text-xs font-semibold text-foreground">{p.name}</td>
                   <td className="py-2.5 px-3 text-xs text-muted-foreground">{p.mechanism}</td>
                   <td className="py-2.5 px-3 text-center">
@@ -1028,7 +1028,7 @@ function IntentTab() {
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
         <div>
           <SectionTitle><Cpu size={14} className="text-amber-400" />Account Abstraction (ERC-4337)</SectionTitle>
-          <div className="rounded-xl border border-white/10 bg-white/5 p-4">
+          <div className="rounded-xl border border-border bg-foreground/5 p-4">
             <AA4337SVG />
             <div className="mt-3 space-y-2">
               {[
@@ -1047,7 +1047,7 @@ function IntentTab() {
         </div>
         <div>
           <SectionTitle><Network size={14} className="text-primary" />Cross-Chain Bridge Security Taxonomy</SectionTitle>
-          <div className="rounded-xl border border-white/10 bg-white/5 p-4 space-y-3">
+          <div className="rounded-xl border border-border bg-foreground/5 p-4 space-y-3">
             <p className="text-xs text-muted-foreground mb-2">Over $2.8B lost to bridge hacks 2021–2024. Security models differ fundamentally:</p>
             {[
               {
@@ -1081,7 +1081,7 @@ function IntentTab() {
                 risk: "Medium",
               },
             ].map((b) => (
-              <div key={b.type} className="rounded-lg border border-white/10 bg-white/5 p-2.5">
+              <div key={b.type} className="rounded-lg border border-border bg-foreground/5 p-2.5">
                 <div className="flex items-center justify-between mb-1">
                   <span className="text-xs font-semibold text-foreground">{b.type}</span>
                   <Badge className={cn("text-xs",
@@ -1103,12 +1103,12 @@ function IntentTab() {
       {/* Order Flow Auctions */}
       <div>
         <SectionTitle><DollarSign size={14} className="text-emerald-400" />Order Flow Auctions (OFA) Economics</SectionTitle>
-        <div className="rounded-xl border border-white/10 bg-white/5 p-4">
+        <div className="rounded-xl border border-border bg-foreground/5 p-4">
           <p className="text-xs text-muted-foreground mb-3">
             OFAs create markets for order flow — wallets (MetaMask, Rabby) sell exclusive right to fill user trades to market makers via auction. Market makers bid for flow and return <span className="text-emerald-300">price improvement</span> to users rather than extracting MEV.
           </p>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
-            <div className="rounded-lg border border-white/10 bg-white/5 p-3">
+            <div className="rounded-lg border border-border bg-foreground/5 p-3">
               <div className="text-xs font-semibold text-foreground mb-1.5">Flow Auction Participants</div>
               <ul className="space-y-1 text-xs text-muted-foreground">
                 <li><span className="text-indigo-400">Wallet</span> — routes orders to auction house</li>
@@ -1117,7 +1117,7 @@ function IntentTab() {
                 <li><span className="text-indigo-400">User</span> — receives price improvement rebate</li>
               </ul>
             </div>
-            <div className="rounded-lg border border-white/10 bg-white/5 p-3">
+            <div className="rounded-lg border border-border bg-foreground/5 p-3">
               <div className="text-xs font-semibold text-foreground mb-1.5">Value Distribution</div>
               <ul className="space-y-1 text-xs text-muted-foreground">
                 <li>User: <span className="text-emerald-400">60–80%</span> of MEV recovered</li>
@@ -1126,7 +1126,7 @@ function IntentTab() {
                 <li>Total MEV redirected: ~$400M/yr</li>
               </ul>
             </div>
-            <div className="rounded-lg border border-white/10 bg-white/5 p-3">
+            <div className="rounded-lg border border-border bg-foreground/5 p-3">
               <div className="text-xs font-semibold text-foreground mb-1.5">Active OFA Systems</div>
               <ul className="space-y-1 text-xs text-muted-foreground">
                 <li><span className="text-primary">MEV Blocker</span> — CoW Protocol</li>
@@ -1293,7 +1293,7 @@ function RestakingTab() {
       {/* EigenLayer mechanics */}
       <div>
         <SectionTitle><Layers size={14} className="text-primary" />EigenLayer Restaking Architecture</SectionTitle>
-        <div className="rounded-xl border border-white/10 bg-white/5 p-4">
+        <div className="rounded-xl border border-border bg-foreground/5 p-4">
           <RestakingSVG />
           <div className="mt-4 grid grid-cols-1 md:grid-cols-2 gap-3">
             <InfoBox variant="blue">
@@ -1311,7 +1311,7 @@ function RestakingTab() {
       {/* Yield composition */}
       <div>
         <SectionTitle><Percent size={14} className="text-emerald-400" />Restaking Yield Composition</SectionTitle>
-        <div className="rounded-xl border border-white/10 bg-white/5 p-4">
+        <div className="rounded-xl border border-border bg-foreground/5 p-4">
           <p className="text-xs text-muted-foreground mb-3">Estimated breakdown of total LRT yield (~9.5% gross APY for diversified restaking)</p>
           <YieldCompositionBar />
           <div className="mt-3 grid grid-cols-2 md:grid-cols-4 gap-2">
@@ -1321,7 +1321,7 @@ function RestakingTab() {
               { label: "AVS Fees", value: "~2.3%", note: "Service fees" },
               { label: "LRT Incentives", value: "~1.6%", note: "Protocol tokens" },
             ].map((item) => (
-              <div key={item.label} className="rounded-lg border border-white/10 bg-white/5 p-2.5">
+              <div key={item.label} className="rounded-lg border border-border bg-foreground/5 p-2.5">
                 <div className="text-xs text-muted-foreground">{item.label}</div>
                 <div className="text-sm font-bold text-emerald-400">{item.value}</div>
                 <div className="text-xs text-muted-foreground">{item.note}</div>
@@ -1334,10 +1334,10 @@ function RestakingTab() {
       {/* LRT table */}
       <div>
         <SectionTitle><Coins size={14} className="text-primary" />Liquid Restaking Tokens (LRTs)</SectionTitle>
-        <div className="rounded-xl border border-white/10 bg-white/5 overflow-x-auto">
+        <div className="rounded-xl border border-border bg-foreground/5 overflow-x-auto">
           <table className="w-full min-w-[540px]">
             <thead>
-              <tr className="border-b border-white/10 bg-white/5">
+              <tr className="border-b border-border bg-foreground/5">
                 <th className="py-2.5 px-3 text-left text-xs font-semibold text-muted-foreground">Protocol</th>
                 <th className="py-2.5 px-3 text-center text-xs font-semibold text-muted-foreground">Token</th>
                 <th className="py-2.5 px-3 text-center text-xs font-semibold text-muted-foreground">TVL</th>
@@ -1348,7 +1348,7 @@ function RestakingTab() {
             </thead>
             <tbody>
               {LRTS.map((l) => (
-                <tr key={l.token} className="border-b border-white/5 hover:bg-muted/30 transition-colors">
+                <tr key={l.token} className="border-b border-border/50 hover:bg-muted/30 transition-colors">
                   <td className="py-2.5 px-3 text-xs font-semibold text-foreground">{l.name}</td>
                   <td className="py-2.5 px-3 text-center">
                     <Badge className="bg-primary/20 text-primary border-border text-xs">{l.token}</Badge>
@@ -1379,7 +1379,7 @@ function RestakingTab() {
           {institutionalBarriers.map((barrier, i) => (
             <motion.div
               key={barrier.title}
-              className="rounded-xl border border-white/10 bg-white/5 cursor-pointer"
+              className="rounded-xl border border-border bg-foreground/5 cursor-pointer"
               onClick={() => setExpandedInst(expandedInst === i ? null : i)}
             >
               <div className="flex items-center justify-between p-3">
@@ -1404,7 +1404,7 @@ function RestakingTab() {
                     exit={{ height: 0, opacity: 0 }}
                     className="overflow-hidden"
                   >
-                    <div className="px-3 pb-3 text-xs text-muted-foreground border-t border-white/5 pt-2">
+                    <div className="px-3 pb-3 text-xs text-muted-foreground border-t border-border/50 pt-2">
                       {barrier.desc}
                     </div>
                   </motion.div>
@@ -1419,7 +1419,7 @@ function RestakingTab() {
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
         <div>
           <SectionTitle><Lock size={14} className="text-primary" />Permissioned DeFi Pools</SectionTitle>
-          <div className="rounded-xl border border-white/10 bg-white/5 p-4 space-y-3">
+          <div className="rounded-xl border border-border bg-foreground/5 p-4 space-y-3">
             <p className="text-xs text-muted-foreground">
               Permissioned pools offer DeFi yield mechanics within a KYC/AML framework — bridging institutional compliance with on-chain efficiency.
             </p>
@@ -1445,7 +1445,7 @@ function RestakingTab() {
                 status: "Emerging",
               },
             ].map((pool) => (
-              <div key={pool.name} className="rounded-lg border border-white/10 bg-white/5 p-2.5">
+              <div key={pool.name} className="rounded-lg border border-border bg-foreground/5 p-2.5">
                 <div className="flex items-center justify-between mb-1">
                   <span className="text-xs font-semibold text-foreground">{pool.name}</span>
                   <Badge className={cn("text-xs",
@@ -1463,7 +1463,7 @@ function RestakingTab() {
         </div>
         <div>
           <SectionTitle><Shield size={14} className="text-emerald-400" />DeFi Insurance Protocols</SectionTitle>
-          <div className="rounded-xl border border-white/10 bg-white/5 p-4 space-y-3">
+          <div className="rounded-xl border border-border bg-foreground/5 p-4 space-y-3">
             <p className="text-xs text-muted-foreground mb-2">
               On-chain insurance provides partial coverage for smart contract exploits, oracle failures, and stablecoin depegs. Coverage is limited relative to total DeFi TVL.
             </p>
@@ -1493,7 +1493,7 @@ function RestakingTab() {
                 notable: "Luna/UST depeg payout 2022",
               },
             ].map((ins) => (
-              <div key={ins.name} className="rounded-lg border border-white/10 bg-white/5 p-2.5 space-y-1">
+              <div key={ins.name} className="rounded-lg border border-border bg-foreground/5 p-2.5 space-y-1">
                 <div className="flex items-center justify-between">
                   <span className="text-xs font-semibold text-foreground">{ins.name}</span>
                   <Badge className="bg-emerald-500/20 text-emerald-300 border-emerald-500/30 text-xs">Cover: {ins.cover}</Badge>
@@ -1542,14 +1542,14 @@ export default function DeFi2Page() {
         </div>
         <div className="flex flex-wrap gap-2 mt-3">
           {["Concentrated Liquidity", "veTokenomics", "RWA", "Intent Orders", "EigenLayer", "Institutional DeFi"].map((tag) => (
-            <Badge key={tag} className="bg-white/5 text-muted-foreground border-white/10 text-xs">{tag}</Badge>
+            <Badge key={tag} className="bg-foreground/5 text-muted-foreground border-border text-xs">{tag}</Badge>
           ))}
         </div>
       </motion.div>
 
       {/* Tabs */}
       <Tabs defaultValue="liquidity">
-        <TabsList className="bg-white/5 border border-white/10 mb-6 flex-wrap h-auto gap-1 p-1">
+        <TabsList className="bg-foreground/5 border border-border mb-6 flex-wrap h-auto gap-1 p-1">
           <TabsTrigger value="liquidity" className="data-[state=active]:bg-indigo-500/20 data-[state=active]:text-indigo-300 text-xs">
             <Droplets size={13} className="mr-1.5" />Liquidity Innovations
           </TabsTrigger>

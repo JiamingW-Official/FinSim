@@ -56,9 +56,9 @@ function StatCard({
       ? "text-emerald-400"
       : highlight === "neg"
       ? "text-rose-400"
-      : "text-white";
+      : "text-foreground";
   return (
-    <div className="rounded-xl border border-white/10 bg-white/5 p-4">
+    <div className="rounded-xl border border-border bg-muted/30 p-4">
       <p className="text-xs text-muted-foreground mb-1">{label}</p>
       <p className={cn("text-xl font-bold", valClass)}>{value}</p>
       {sub && <p className="text-xs text-muted-foreground mt-1">{sub}</p>}
@@ -209,7 +209,7 @@ function DealStructureTab() {
       </div>
 
       {/* Anatomy SVG — borrower flow */}
-      <div className="rounded-xl border border-white/10 bg-white/5 p-5">
+      <div className="rounded-xl border border-border bg-muted/30 p-5">
         <SectionHeading
           title="Syndicated Loan Anatomy"
           sub="How a large corporate loan is arranged and distributed"
@@ -276,13 +276,13 @@ function DealStructureTab() {
       </div>
 
       {/* Commitment tiers */}
-      <div className="rounded-xl border border-white/10 bg-white/5 p-5">
+      <div className="rounded-xl border border-border bg-muted/30 p-5">
         <SectionHeading title="Commitment Amounts by Bank Tier" sub="Illustrative $500M facility" />
         <div className="space-y-3">
           {commitments.map((c) => (
             <div key={c.tier} className="flex items-center gap-3">
               <div className="w-48 text-xs text-muted-foreground shrink-0">{c.tier}</div>
-              <div className="flex-1 h-5 bg-white/5 rounded overflow-hidden">
+              <div className="flex-1 h-5 bg-foreground/5 rounded overflow-hidden">
                 <div
                   className="h-full rounded"
                   style={{ width: `${c.pct}%`, backgroundColor: c.color }}
@@ -295,11 +295,11 @@ function DealStructureTab() {
       </div>
 
       {/* Loan types */}
-      <div className="rounded-xl border border-white/10 bg-white/5 p-5">
+      <div className="rounded-xl border border-border bg-muted/30 p-5">
         <SectionHeading title="Facility Types" sub="Common tranches within a syndicated credit agreement" />
         <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
           {loanTypes.map((lt) => (
-            <div key={lt.name} className="rounded-lg border border-white/10 bg-white/5 p-3">
+            <div key={lt.name} className="rounded-lg border border-border bg-muted/30 p-3">
               <InfoPill text={lt.name} color={lt.color} />
               <p className="text-xs text-muted-foreground mt-2">{lt.desc}</p>
             </div>
@@ -308,13 +308,13 @@ function DealStructureTab() {
       </div>
 
       {/* Agent roles */}
-      <div className="rounded-xl border border-white/10 bg-white/5 p-5">
+      <div className="rounded-xl border border-border bg-muted/30 p-5">
         <SectionHeading title="Agent Bank Roles" sub="Operational infrastructure of a syndicated facility" />
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           {agentRoles.map((a) => {
             const Icon = a.icon;
             return (
-              <div key={a.role} className="rounded-lg border border-white/10 bg-white/5 p-4">
+              <div key={a.role} className="rounded-lg border border-border bg-muted/30 p-4">
                 <div className="flex items-center gap-2 mb-3">
                   <Icon size={16} className={a.color} />
                   <span className="text-sm font-semibold text-white">{a.role}</span>
@@ -334,12 +334,12 @@ function DealStructureTab() {
       </div>
 
       {/* IG vs Leveraged */}
-      <div className="rounded-xl border border-white/10 bg-white/5 p-5">
+      <div className="rounded-xl border border-border bg-muted/30 p-5">
         <SectionHeading title="Investment Grade vs Leveraged Lending" sub="Key structural differences" />
         <div className="overflow-x-auto">
           <table className="w-full text-xs">
             <thead>
-              <tr className="border-b border-white/10">
+              <tr className="border-b border-border">
                 <th className="py-2 pr-4 text-left text-muted-foreground font-medium">Attribute</th>
                 <th className="py-2 pr-4 text-left text-emerald-400 font-medium">Investment Grade</th>
                 <th className="py-2 text-left text-amber-400 font-medium">Leveraged</th>
@@ -347,7 +347,7 @@ function DealStructureTab() {
             </thead>
             <tbody>
               {igVsLev.map((row, i) => (
-                <tr key={row.attr} className={cn("border-b border-white/5", i % 2 === 0 ? "bg-white/[0.02]" : "")}>
+                <tr key={row.attr} className={cn("border-b border-border/50", i % 2 === 0 ? "bg-foreground/[0.02]" : "")}>
                   <td className="py-2 pr-4 text-muted-foreground">{row.attr}</td>
                   <td className="py-2 pr-4 text-emerald-300/80">{row.ig}</td>
                   <td className="py-2 text-amber-300/80">{row.lev}</td>
@@ -359,11 +359,11 @@ function DealStructureTab() {
       </div>
 
       {/* Deal economics */}
-      <div className="rounded-xl border border-white/10 bg-white/5 p-5">
+      <div className="rounded-xl border border-border bg-muted/30 p-5">
         <SectionHeading title="Typical Deal Economics" sub="Fee waterfall from borrower to syndicate" />
         <div className="space-y-2">
           {economics.map((e) => (
-            <div key={e.fee} className="flex items-start gap-3 rounded-lg border border-white/5 bg-white/[0.03] p-3">
+            <div key={e.fee} className="flex items-start gap-3 rounded-lg border border-border/50 bg-foreground/[0.03] p-3">
               <InfoPill text={e.fee} color={e.color} />
               <div className="flex-1 min-w-0">
                 <div className="flex flex-wrap gap-2 items-center">
@@ -378,11 +378,11 @@ function DealStructureTab() {
       </div>
 
       {/* Cross-provisions */}
-      <div className="rounded-xl border border-white/10 bg-white/5 p-5">
+      <div className="rounded-xl border border-border bg-muted/30 p-5">
         <SectionHeading title="Cross-Default, Cross-Acceleration & Intercreditor" sub="Contractual protection mechanisms" />
         <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
           {crossProv.map((cp) => (
-            <div key={cp.name} className="rounded-lg border border-white/10 bg-white/5 p-3">
+            <div key={cp.name} className="rounded-lg border border-border bg-muted/30 p-3">
               <InfoPill text={cp.name} color={cp.color} />
               <p className="text-xs text-muted-foreground mt-2">{cp.desc}</p>
             </div>
@@ -480,14 +480,14 @@ function PricingMechanicsTab() {
       </div>
 
       {/* SOFR transition */}
-      <div className="rounded-xl border border-white/10 bg-white/5 p-5">
+      <div className="rounded-xl border border-border bg-muted/30 p-5">
         <SectionHeading
           title="SOFR Transition (Post-LIBOR)"
           sub="Secured Overnight Financing Rate replaced USD LIBOR on June 30, 2023"
         />
         <div className="grid grid-cols-1 md:grid-cols-3 gap-3 mb-4">
           {sofr.map((s) => (
-            <div key={s.tenor} className="rounded-lg border border-white/10 bg-white/5 p-4 text-center">
+            <div key={s.tenor} className="rounded-lg border border-border bg-muted/30 p-4 text-center">
               <div className="text-xs text-muted-foreground mb-1">{s.tenor}</div>
               <div className="text-2xl font-bold" style={{ color: s.color }}>{s.rate.toFixed(2)}%</div>
               <div className="text-xs text-muted-foreground mt-1">CME Term SOFR</div>
@@ -502,7 +502,7 @@ function PricingMechanicsTab() {
       </div>
 
       {/* Spread chart */}
-      <div className="rounded-xl border border-white/10 bg-white/5 p-5">
+      <div className="rounded-xl border border-border bg-muted/30 p-5">
         <SectionHeading
           title="Credit Spread by Rating — SOFR Margin (bps)"
           sub="Indicative ranges; investment grade (left) vs leveraged (right)"
@@ -599,23 +599,23 @@ function PricingMechanicsTab() {
       </div>
 
       {/* OID Mechanics */}
-      <div className="rounded-xl border border-white/10 bg-white/5 p-5">
+      <div className="rounded-xl border border-border bg-muted/30 p-5">
         <SectionHeading
           title="OID — Original Issue Discount"
           sub="Loan sold below par; discount increases lender's all-in yield"
         />
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-4">
-          <div className="rounded-lg border border-white/10 bg-white/5 p-3">
+          <div className="rounded-lg border border-border bg-muted/30 p-3">
             <div className="text-xs text-muted-foreground mb-1">Face Value</div>
             <div className="text-xl font-bold text-white">${faceVal}M</div>
             <div className="text-xs text-muted-foreground">Par amount</div>
           </div>
-          <div className="rounded-lg border border-white/10 bg-white/5 p-3">
+          <div className="rounded-lg border border-border bg-muted/30 p-3">
             <div className="text-xs text-muted-foreground mb-1">Issue Price</div>
             <div className="text-xl font-bold text-amber-400">98.5¢</div>
             <div className="text-xs text-muted-foreground">Lender pays ${faceVal - oidDiscount}M</div>
           </div>
-          <div className="rounded-lg border border-white/10 bg-white/5 p-3">
+          <div className="rounded-lg border border-border bg-muted/30 p-3">
             <div className="text-xs text-muted-foreground mb-1">OID Yield Boost</div>
             <div className="text-xl font-bold text-emerald-400">+{oidAllInBps}bps</div>
             <div className="text-xs text-muted-foreground">On 5yr maturity assumption</div>
@@ -628,7 +628,7 @@ function PricingMechanicsTab() {
       </div>
 
       {/* Margin ratchet */}
-      <div className="rounded-xl border border-white/10 bg-white/5 p-5">
+      <div className="rounded-xl border border-border bg-muted/30 p-5">
         <SectionHeading
           title="Margin Ratchet"
           sub="Spread steps down as borrower deleverages — click a level"
@@ -642,11 +642,11 @@ function PricingMechanicsTab() {
                 "w-full flex items-center gap-3 rounded-lg border p-3 text-left transition-colors",
                 selectedRatchet === i
                   ? "border-primary/50 bg-muted/40"
-                  : "border-white/10 bg-white/5 hover:bg-muted/30"
+                  : "border-border bg-muted/30 hover:bg-muted/30"
               )}
             >
               <div className="w-24 text-xs font-mono text-muted-foreground">{rl.leverage}</div>
-              <div className="flex-1 h-3 bg-white/5 rounded overflow-hidden">
+              <div className="flex-1 h-3 bg-foreground/5 rounded overflow-hidden">
                 <div
                   className="h-full rounded bg-primary transition-all"
                   style={{ width: `${(rl.spread / 600) * 100}%` }}
@@ -676,11 +676,11 @@ function PricingMechanicsTab() {
       </div>
 
       {/* Financial maintenance covenants */}
-      <div className="rounded-xl border border-white/10 bg-white/5 p-5">
+      <div className="rounded-xl border border-border bg-muted/30 p-5">
         <SectionHeading title="Financial Maintenance Covenants" sub="Quarterly tests — breach triggers event of default" />
         <div className="grid grid-cols-1 md:grid-cols-3 gap-3 mb-4">
           {covenants.map((c) => (
-            <div key={c.name} className="rounded-lg border border-white/10 bg-white/5 p-3">
+            <div key={c.name} className="rounded-lg border border-border bg-muted/30 p-3">
               <InfoPill text={c.name} color={c.color} />
               <div className="mt-2 space-y-1">
                 <div className="flex justify-between text-xs">
@@ -840,7 +840,7 @@ function SyndicationProcessTab() {
       </div>
 
       {/* Timeline */}
-      <div className="rounded-xl border border-white/10 bg-white/5 p-5">
+      <div className="rounded-xl border border-border bg-muted/30 p-5">
         <SectionHeading
           title="Syndication Process Timeline"
           sub="Click each step for detail"
@@ -853,8 +853,8 @@ function SyndicationProcessTab() {
               className={cn(
                 "rounded-lg border px-3 py-2 text-xs font-medium transition-colors",
                 activeStep === i
-                  ? "border-opacity-80 bg-white/10"
-                  : "border-white/10 bg-white/5 hover:bg-muted/30"
+                  ? "border-opacity-80 bg-foreground/10"
+                  : "border-border bg-muted/30 hover:bg-muted/30"
               )}
               style={activeStep === i ? { borderColor: t.color, color: t.color } : { color: "#94a3b8" }}
             >
@@ -870,7 +870,7 @@ function SyndicationProcessTab() {
               initial={{ opacity: 0, y: 6 }}
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -6 }}
-              className="rounded-lg border border-white/10 bg-white/5 p-4"
+              className="rounded-lg border border-border bg-muted/30 p-4"
               style={{ borderColor: timeline[activeStep].color + "40" }}
             >
               <div className="text-sm font-semibold mb-1" style={{ color: timeline[activeStep].color }}>
@@ -883,11 +883,11 @@ function SyndicationProcessTab() {
       </div>
 
       {/* Syndication types */}
-      <div className="rounded-xl border border-white/10 bg-white/5 p-5">
+      <div className="rounded-xl border border-border bg-muted/30 p-5">
         <SectionHeading title="Syndication Structures" sub="Risk allocation between MLA and borrower" />
         <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
           {syndicationTypes.map((st) => (
-            <div key={st.type} className="rounded-lg border border-white/10 bg-white/5 p-4">
+            <div key={st.type} className="rounded-lg border border-border bg-muted/30 p-4">
               <div className="flex items-center justify-between mb-2">
                 <InfoPill text={st.type} color={st.color} />
                 <span className="text-xs text-muted-foreground">Risk: <span className="text-muted-foreground">{st.risk}</span></span>
@@ -899,11 +899,11 @@ function SyndicationProcessTab() {
       </div>
 
       {/* Flex language */}
-      <div className="rounded-xl border border-white/10 bg-white/5 p-5">
+      <div className="rounded-xl border border-border bg-muted/30 p-5">
         <SectionHeading title="Flex Language Mechanics" sub="Price discovery and market clearing tools" />
         <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
           {flexTypes.map((fl) => (
-            <div key={fl.name} className="rounded-lg border border-white/10 bg-white/5 p-3">
+            <div key={fl.name} className="rounded-lg border border-border bg-muted/30 p-3">
               <div className="flex items-center justify-between mb-1">
                 <InfoPill text={fl.name} color={fl.color} />
                 <span className="text-xs text-muted-foreground">{fl.dir}</span>
@@ -915,11 +915,11 @@ function SyndicationProcessTab() {
       </div>
 
       {/* Secondary market */}
-      <div className="rounded-xl border border-white/10 bg-white/5 p-5">
+      <div className="rounded-xl border border-border bg-muted/30 p-5">
         <SectionHeading title="Secondary Loan Market" sub="Active trading market; largest in leveraged loans" />
         <div className="grid grid-cols-1 md:grid-cols-3 gap-3 mb-4">
           {secondaryMarket.map((sm) => (
-            <div key={sm.category} className="rounded-lg border border-white/10 bg-white/5 p-3">
+            <div key={sm.category} className="rounded-lg border border-border bg-muted/30 p-3">
               <InfoPill text={sm.category} color={sm.color} />
               <div className="mt-2 space-y-1 text-xs">
                 <div className="flex justify-between">
@@ -934,7 +934,7 @@ function SyndicationProcessTab() {
             </div>
           ))}
         </div>
-        <div className="rounded-lg bg-white/5 border border-white/10 p-3">
+        <div className="rounded-lg bg-foreground/5 border border-border p-3">
           <div className="text-xs font-semibold text-muted-foreground mb-2">LSTA Standard Documentation</div>
           <ul className="space-y-1">
             {lstaFeatures.map((f) => (
@@ -1050,7 +1050,7 @@ function MarketDynamicsTab() {
       </div>
 
       {/* Volume bar chart */}
-      <div className="rounded-xl border border-white/10 bg-white/5 p-5">
+      <div className="rounded-xl border border-border bg-muted/30 p-5">
         <SectionHeading
           title="Global Syndicated Loan Volume (2015–2024)"
           sub="$ Trillions; includes IG, leveraged, and investment grade revolvers"
@@ -1120,13 +1120,13 @@ function MarketDynamicsTab() {
       {/* Proceeds breakdown & sector side by side */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
         {/* Proceeds */}
-        <div className="rounded-xl border border-white/10 bg-white/5 p-5">
+        <div className="rounded-xl border border-border bg-muted/30 p-5">
           <SectionHeading title="Use of Proceeds" sub="2024 mix" />
           <div className="space-y-2">
             {proceeds.map((p) => (
               <div key={p.label} className="flex items-center gap-3">
                 <div className="w-28 text-xs text-muted-foreground shrink-0">{p.label}</div>
-                <div className="flex-1 h-4 bg-white/5 rounded overflow-hidden">
+                <div className="flex-1 h-4 bg-foreground/5 rounded overflow-hidden">
                   <div
                     className="h-full rounded"
                     style={{ width: `${p.pct}%`, backgroundColor: p.color }}
@@ -1139,13 +1139,13 @@ function MarketDynamicsTab() {
         </div>
 
         {/* Sectors */}
-        <div className="rounded-xl border border-white/10 bg-white/5 p-5">
+        <div className="rounded-xl border border-border bg-muted/30 p-5">
           <SectionHeading title="Sector Concentration" sub="Share of leveraged loan volume" />
           <div className="space-y-2">
             {sectors.map((sec) => (
               <div key={sec.name} className="flex items-center gap-3">
                 <div className="w-28 text-xs text-muted-foreground shrink-0">{sec.name}</div>
-                <div className="flex-1 h-4 bg-white/5 rounded overflow-hidden">
+                <div className="flex-1 h-4 bg-foreground/5 rounded overflow-hidden">
                   <div
                     className="h-full rounded"
                     style={{ width: `${sec.share * 4}%`, backgroundColor: sec.color }}
@@ -1159,7 +1159,7 @@ function MarketDynamicsTab() {
       </div>
 
       {/* Covenant-lite evolution */}
-      <div className="rounded-xl border border-white/10 bg-white/5 p-5">
+      <div className="rounded-xl border border-border bg-muted/30 p-5">
         <SectionHeading
           title="Covenant-Lite Evolution (2010–2024)"
           sub="% of leveraged loans with no financial maintenance covenants"
@@ -1202,7 +1202,7 @@ function MarketDynamicsTab() {
       </div>
 
       {/* Institutional investor takeover */}
-      <div className="rounded-xl border border-white/10 bg-white/5 p-5">
+      <div className="rounded-xl border border-border bg-muted/30 p-5">
         <SectionHeading
           title="Institutional Investor Takeover — Leveraged Loan Holders"
           sub="Non-bank institutional investors now dominate leveraged loan markets"
@@ -1211,7 +1211,7 @@ function MarketDynamicsTab() {
           {institutionalShift.map((inv) => (
             <div key={inv.investor} className="flex items-center gap-3">
               <div className="w-52 text-xs text-muted-foreground shrink-0">{inv.investor}</div>
-              <div className="flex-1 h-4 bg-white/5 rounded overflow-hidden">
+              <div className="flex-1 h-4 bg-foreground/5 rounded overflow-hidden">
                 <div
                   className="h-full rounded"
                   style={{ width: `${inv.share}%`, backgroundColor: inv.color }}
@@ -1229,14 +1229,14 @@ function MarketDynamicsTab() {
       </div>
 
       {/* ESG-linked loans */}
-      <div className="rounded-xl border border-white/10 bg-white/5 p-5">
+      <div className="rounded-xl border border-border bg-muted/30 p-5">
         <SectionHeading
           title="ESG-Linked Loan Mechanics"
           sub="Sustainability performance targets (SPTs) tied to margin"
         />
         <div className="grid grid-cols-1 md:grid-cols-3 gap-3 mb-4">
           {esgFeatures.map((e) => (
-            <div key={e.feature} className="rounded-lg border border-white/10 bg-white/5 p-3">
+            <div key={e.feature} className="rounded-lg border border-border bg-muted/30 p-3">
               <InfoPill text={e.feature} color={e.color} />
               <p className="text-xs text-muted-foreground mt-2">{e.desc}</p>
             </div>
@@ -1251,7 +1251,7 @@ function MarketDynamicsTab() {
       </div>
 
       {/* Relationship vs transaction */}
-      <div className="rounded-xl border border-white/10 bg-white/5 p-5">
+      <div className="rounded-xl border border-border bg-muted/30 p-5">
         <SectionHeading
           title="Relationship Banking vs Transaction Banking"
           sub="Fundamental tension in syndicated lending"
@@ -1300,7 +1300,7 @@ export default function SyndicatedLendingPage() {
   ];
 
   return (
-    <div className="min-h-screen bg-background text-white p-4 md:p-6">
+    <div className="min-h-screen bg-background text-foreground p-4 md:p-6">
       {/* Header */}
       <motion.div
         initial={{ opacity: 0, y: -12 }}
@@ -1329,14 +1329,14 @@ export default function SyndicatedLendingPage() {
 
       {/* Tabs */}
       <Tabs defaultValue="structure" className="space-y-4">
-        <TabsList className="grid grid-cols-2 md:grid-cols-4 bg-card border border-white/10 h-auto p-1 gap-1">
+        <TabsList className="grid grid-cols-2 md:grid-cols-4 bg-card border border-border h-auto p-1 gap-1">
           {tabs.map((t) => {
             const Icon = t.icon;
             return (
               <TabsTrigger
                 key={t.value}
                 value={t.value}
-                className="flex items-center gap-1.5 text-xs data-[state=active]:bg-white/10 data-[state=active]:text-white text-muted-foreground py-2 px-3"
+                className="flex items-center gap-1.5 text-xs data-[state=active]:bg-foreground/10 data-[state=active]:text-white text-muted-foreground py-2 px-3"
               >
                 <Icon size={13} />
                 {t.label}

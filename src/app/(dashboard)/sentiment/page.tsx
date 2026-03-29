@@ -900,7 +900,7 @@ export default function SentimentPage() {
   }, []);
 
   return (
-    <div className="min-h-screen bg-[#0a0f1a] text-foreground p-4 space-y-4">
+    <div className="min-h-screen bg-background text-foreground p-4 space-y-4">
       {/* Header */}
       <motion.div
         initial={{ opacity: 0, y: -12 }}

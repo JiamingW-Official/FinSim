@@ -543,7 +543,7 @@ function TVLDashboard({ protocols }: { protocols: ProtocolTVL[] }) {
             className={cn(
               "rounded-full px-3 py-1 text-xs font-medium border transition-colors",
               catFilter === cat
-                ? "text-white border-transparent"
+                ? "text-primary-foreground border-transparent"
                 : "border-border/50 text-muted-foreground hover:bg-accent/50",
             )}
             style={catFilter === cat ? { background: CATEGORY_COLORS[cat] } : {}}
@@ -585,7 +585,7 @@ function TVLDashboard({ protocols }: { protocols: ProtocolTVL[] }) {
                   </td>
                   <td className="py-2.5 px-3 hidden lg:table-cell">
                     <span
-                      className="rounded-full px-2 py-0.5 text-xs font-medium text-white"
+                      className="rounded-full px-2 py-0.5 text-xs font-medium text-primary-foreground"
                       style={{ background: CATEGORY_COLORS[p.category] }}
                     >
                       {p.category}

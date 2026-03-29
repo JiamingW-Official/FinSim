@@ -276,7 +276,7 @@ function calcNetGreeks(legs: Leg[], spot: number): NetGreeks {
 function GreeksPill({ label, value, decimals = 2 }: { label: string; value: number; decimals?: number }) {
   const color = value > 0 ? "text-green-400" : value < 0 ? "text-red-400" : "text-muted-foreground";
   return (
-    <div className="flex flex-col items-center bg-white/5 rounded-lg px-3 py-2 min-w-[60px]">
+    <div className="flex flex-col items-center bg-foreground/5 rounded-lg px-3 py-2 min-w-[60px]">
       <span className="text-xs text-muted-foreground uppercase tracking-wide">{label}</span>
       <span className={`text-sm font-mono font-semibold ${color}`}>{value.toFixed(decimals)}</span>
     </div>
@@ -538,13 +538,13 @@ function StrategyBuilderTab() {
                 type="number"
                 value={spot}
                 onChange={(e) => setSpot(Number(e.target.value))}
-                className="ml-1 w-20 bg-white/10 rounded px-2 py-0.5 text-white text-xs"
+                className="ml-1 w-20 bg-foreground/10 rounded px-2 py-0.5 text-foreground text-xs"
               />
             </label>
             <button
               onClick={addLeg}
               disabled={legs.length >= 4}
-              className="text-xs bg-primary hover:bg-primary disabled:opacity-40 text-white px-3 py-1 rounded"
+              className="text-xs bg-primary hover:bg-primary disabled:opacity-40 text-primary-foreground px-3 py-1 rounded"
             >
               + Add Leg
             </button>
@@ -558,7 +558,7 @@ function StrategyBuilderTab() {
               initial={{ opacity: 0, y: -10 }}
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, x: -20 }}
-              className="bg-white/5 border border-white/10 rounded-xl p-4 space-y-3"
+              className="bg-foreground/5 border border-border rounded-xl p-4 space-y-3"
             >
               <div className="flex items-center justify-between">
                 <span className="text-xs font-medium text-muted-foreground">Leg {idx + 1}</span>
@@ -577,7 +577,7 @@ function StrategyBuilderTab() {
                       <button
                         key={d}
                         onClick={() => updateLeg(leg.id, { direction: d })}
-                        className={`flex-1 text-xs py-1 rounded ${leg.direction === d ? (d === "long" ? "bg-green-600 text-white" : "bg-red-600 text-white") : "bg-white/5 text-muted-foreground hover:bg-muted/50"}`}
+                        className={`flex-1 text-xs py-1 rounded ${leg.direction === d ? (d === "long" ? "bg-green-600 text-primary-foreground" : "bg-red-600 text-primary-foreground") : "bg-foreground/5 text-muted-foreground hover:bg-muted/50"}`}
                       >
                         {d}
                       </button>
@@ -593,7 +593,7 @@ function StrategyBuilderTab() {
                       <button
                         key={t}
                         onClick={() => updateLeg(leg.id, { type: t })}
-                        className={`flex-1 text-xs py-1 rounded ${leg.type === t ? "bg-primary text-white" : "bg-white/5 text-muted-foreground hover:bg-muted/50"}`}
+                        className={`flex-1 text-xs py-1 rounded ${leg.type === t ? "bg-primary text-primary-foreground" : "bg-foreground/5 text-muted-foreground hover:bg-muted/50"}`}
                       >
                         {t}
                       </button>
@@ -608,7 +608,7 @@ function StrategyBuilderTab() {
                     type="number"
                     value={leg.strike}
                     onChange={(e) => updateLeg(leg.id, { strike: Number(e.target.value) })}
-                    className="mt-1 w-full bg-white/10 rounded px-2 py-1 text-white text-xs"
+                    className="mt-1 w-full bg-foreground/10 rounded px-2 py-1 text-foreground text-xs"
                   />
                 </div>
 
@@ -619,7 +619,7 @@ function StrategyBuilderTab() {
                     type="number"
                     value={leg.expiry}
                     onChange={(e) => updateLeg(leg.id, { expiry: Number(e.target.value) })}
-                    className="mt-1 w-full bg-white/10 rounded px-2 py-1 text-white text-xs"
+                    className="mt-1 w-full bg-foreground/10 rounded px-2 py-1 text-foreground text-xs"
                   />
                 </div>
 
@@ -632,7 +632,7 @@ function StrategyBuilderTab() {
                     max={10}
                     value={leg.qty}
                     onChange={(e) => updateLeg(leg.id, { qty: Number(e.target.value) })}
-                    className="mt-1 w-full bg-white/10 rounded px-2 py-1 text-white text-xs"
+                    className="mt-1 w-full bg-foreground/10 rounded px-2 py-1 text-foreground text-xs"
                   />
                 </div>
 
@@ -644,7 +644,7 @@ function StrategyBuilderTab() {
                     step={1}
                     value={Math.round(leg.iv * 100)}
                     onChange={(e) => updateLeg(leg.id, { iv: Number(e.target.value) / 100 })}
-                    className="mt-1 w-full bg-white/10 rounded px-2 py-1 text-white text-xs"
+                    className="mt-1 w-full bg-foreground/10 rounded px-2 py-1 text-foreground text-xs"
                   />
                 </div>
               </div>
@@ -653,7 +653,7 @@ function StrategyBuilderTab() {
         </AnimatePresence>
 
         {legs.length === 0 && (
-          <div className="text-center py-10 text-muted-foreground text-sm border border-dashed border-white/10 rounded-xl">
+          <div className="text-center py-10 text-muted-foreground text-sm border border-dashed border-border rounded-xl">
             Click &ldquo;+ Add Leg&rdquo; to build a position
           </div>
         )}
@@ -661,7 +661,7 @@ function StrategyBuilderTab() {
 
       {/* Right: Payoff + Stats */}
       <div className="space-y-4">
-        <div className="bg-white/5 border border-white/10 rounded-xl p-4">
+        <div className="bg-foreground/5 border border-border rounded-xl p-4">
           <h3 className="text-sm font-semibold text-foreground mb-3">Payoff at Expiry</h3>
           {legs.length > 0 ? (
             <PayoffSVG legs={legs} spot={spot} />
@@ -674,19 +674,19 @@ function StrategyBuilderTab() {
           <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="space-y-4">
             {/* Stats */}
             <div className="grid grid-cols-3 gap-2">
-              <div className="bg-white/5 rounded-xl p-3 text-center">
+              <div className="bg-foreground/5 rounded-xl p-3 text-center">
                 <div className="text-xs text-muted-foreground uppercase">Max Profit</div>
                 <div className="text-sm font-semibold text-green-400">
                   {maxProfit >= 99999 ? "Unlimited" : `$${maxProfit.toFixed(0)}`}
                 </div>
               </div>
-              <div className="bg-white/5 rounded-xl p-3 text-center">
+              <div className="bg-foreground/5 rounded-xl p-3 text-center">
                 <div className="text-xs text-muted-foreground uppercase">Max Loss</div>
                 <div className="text-sm font-semibold text-red-400">
                   {maxLoss <= -99999 ? "Unlimited" : `$${maxLoss.toFixed(0)}`}
                 </div>
               </div>
-              <div className="bg-white/5 rounded-xl p-3 text-center">
+              <div className="bg-foreground/5 rounded-xl p-3 text-center">
                 <div className="text-xs text-muted-foreground uppercase">P&L Now</div>
                 <div className={`text-sm font-semibold ${pnlAtSpot >= 0 ? "text-green-400" : "text-red-400"}`}>
                   ${pnlAtSpot.toFixed(0)}
@@ -695,7 +695,7 @@ function StrategyBuilderTab() {
             </div>
 
             {/* Breakevens */}
-            <div className="bg-white/5 rounded-xl p-3">
+            <div className="bg-foreground/5 rounded-xl p-3">
               <div className="text-xs text-muted-foreground uppercase mb-1">Breakeven Points</div>
               {breakevens.length === 0 ? (
                 <span className="text-muted-foreground text-xs">No breakeven in price range</span>
@@ -754,7 +754,7 @@ function StrategyCard({ strategy }: { strategy: StrategyInfo }) {
   return (
     <motion.div
       layout
-      className="bg-white/5 border border-white/10 rounded-xl overflow-hidden"
+      className="bg-foreground/5 border border-border rounded-xl overflow-hidden"
     >
       <button
         onClick={() => setExpanded(!expanded)}
@@ -762,7 +762,7 @@ function StrategyCard({ strategy }: { strategy: StrategyInfo }) {
       >
         <div className="flex items-center gap-3">
           <div>
-            <div className="font-medium text-sm text-white">{strategy.name}</div>
+            <div className="font-medium text-sm text-foreground">{strategy.name}</div>
             <div className="text-xs text-muted-foreground mt-0.5 line-clamp-1">{strategy.description.slice(0, 70)}...</div>
           </div>
         </div>
@@ -786,7 +786,7 @@ function StrategyCard({ strategy }: { strategy: StrategyInfo }) {
             transition={{ duration: 0.2 }}
             className="overflow-hidden"
           >
-            <div className="px-4 pb-4 border-t border-white/10 pt-4 grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div className="px-4 pb-4 border-t border-border pt-4 grid grid-cols-1 md:grid-cols-2 gap-4">
               {/* Payoff */}
               <div>
                 <div className="text-xs text-muted-foreground uppercase mb-2">Payoff Diagram (Spot=$100)</div>
@@ -808,12 +808,12 @@ function StrategyCard({ strategy }: { strategy: StrategyInfo }) {
                   </div>
                 </div>
 
-                <div className="bg-white/5 rounded p-2 text-xs">
+                <div className="bg-foreground/5 rounded p-2 text-xs">
                   <div className="text-xs text-muted-foreground uppercase mb-1">Ideal Conditions</div>
                   <div className="text-muted-foreground">{strategy.idealConditions}</div>
                 </div>
 
-                <div className="bg-white/5 rounded p-2 text-xs">
+                <div className="bg-foreground/5 rounded p-2 text-xs">
                   <div className="text-xs text-muted-foreground uppercase mb-1">Implied Move Needed</div>
                   <div className="text-amber-300">{strategy.impliedMoveNeeded}</div>
                 </div>
@@ -846,7 +846,7 @@ function StrategyLibraryTab() {
             key={cat}
             onClick={() => setCategory(cat)}
             className={`text-xs px-4 py-2 rounded-full border transition-colors ${
-              category === cat ? CAT_COLORS[cat] : "border-white/10 text-muted-foreground hover:text-muted-foreground"
+              category === cat ? CAT_COLORS[cat] : "border-border text-muted-foreground hover:text-muted-foreground"
             }`}
           >
             {CAT_LABELS[cat]}
@@ -957,10 +957,10 @@ function RollCard({ scenario }: { scenario: RollScenario }) {
     : `-$${(Math.abs(scenario.creditDebit) * 100).toFixed(0)} debit`;
 
   return (
-    <div className="bg-white/5 border border-white/10 rounded-xl p-5 space-y-4">
+    <div className="bg-foreground/5 border border-border rounded-xl p-5 space-y-4">
       <div className="flex items-start justify-between gap-4">
         <div>
-          <h4 className="font-semibold text-white text-sm">{scenario.title}</h4>
+          <h4 className="font-semibold text-foreground text-sm">{scenario.title}</h4>
           <p className="text-xs text-muted-foreground mt-1">{scenario.description}</p>
         </div>
         <span className={`text-sm font-mono font-bold whitespace-nowrap ${creditColor}`}>{creditLabel}</span>
@@ -970,12 +970,12 @@ function RollCard({ scenario }: { scenario: RollScenario }) {
       <div className="grid grid-cols-2 gap-3">
         <div className="bg-red-500/10 border border-red-500/20 rounded-lg p-3">
           <div className="text-xs text-red-400 uppercase mb-1">Original Position</div>
-          <div className="text-xs text-white font-medium">{scenario.original.label}</div>
+          <div className="text-xs text-foreground font-medium">{scenario.original.label}</div>
           <div className="text-xs text-muted-foreground mt-1">Premium: ${(scenario.original.premium * 100).toFixed(0)}</div>
         </div>
         <div className="bg-green-500/10 border border-green-500/20 rounded-lg p-3">
           <div className="text-xs text-green-400 uppercase mb-1">Rolled Position</div>
-          <div className="text-xs text-white font-medium">{scenario.rolled.label}</div>
+          <div className="text-xs text-foreground font-medium">{scenario.rolled.label}</div>
           <div className="text-xs text-muted-foreground mt-1">Premium: ${(scenario.rolled.premium * 100).toFixed(0)}</div>
         </div>
       </div>
@@ -1005,15 +1005,15 @@ function RollingStrategiesTab() {
 
   return (
     <div className="space-y-6">
-      <div className="bg-white/5 border border-white/10 rounded-xl p-4">
-        <h3 className="text-sm font-semibold text-white mb-2">When to Roll a Position</h3>
+      <div className="bg-foreground/5 border border-border rounded-xl p-4">
+        <h3 className="text-sm font-semibold text-foreground mb-2">When to Roll a Position</h3>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-3 text-xs">
           {[
             { trigger: "Short option is ITM", action: "Roll up/down and out for credit", color: "text-red-400" },
             { trigger: "7-10 DTE remaining", action: "Roll to next month (theta accelerates)", color: "text-amber-400" },
             { trigger: "50-75% max profit", action: "Close or roll to lock in gains", color: "text-green-400" },
           ].map((item, i) => (
-            <div key={i} className="bg-white/5 rounded-lg p-3">
+            <div key={i} className="bg-foreground/5 rounded-lg p-3">
               <div className={`font-medium mb-1 ${item.color}`}>{item.trigger}</div>
               <div className="text-muted-foreground">{item.action}</div>
             </div>
@@ -1057,11 +1057,11 @@ function IVCrushViz({ ivBefore, ivAfter }: { ivBefore: number; ivAfter: number }
   return (
     <div className="space-y-2">
       <div className="flex justify-between text-xs text-muted-foreground">
-        <span>IV Before: <span className="text-white font-medium">{ivBefore}%</span></span>
-        <span>IV After: <span className="text-white font-medium">{ivAfter}%</span></span>
+        <span>IV Before: <span className="text-foreground font-medium">{ivBefore}%</span></span>
+        <span>IV After: <span className="text-foreground font-medium">{ivAfter}%</span></span>
         <span className="text-red-400 font-semibold">-{crushPct.toFixed(0)}% crush</span>
       </div>
-      <div className="h-3 bg-white/5 rounded-full overflow-hidden">
+      <div className="h-3 bg-foreground/5 rounded-full overflow-hidden">
         <motion.div
           initial={{ width: "100%" }}
           animate={{ width: `${(ivAfter / ivBefore) * 100}%` }}
@@ -1098,8 +1098,8 @@ function EarningsPlaysTab() {
   return (
     <div className="space-y-6">
       {/* IV Crush explainer */}
-      <div className="bg-white/5 border border-white/10 rounded-xl p-5 space-y-4">
-        <h3 className="text-sm font-semibold text-white">IV Crush Effect After Earnings</h3>
+      <div className="bg-foreground/5 border border-border rounded-xl p-5 space-y-4">
+        <h3 className="text-sm font-semibold text-foreground">IV Crush Effect After Earnings</h3>
         <IVCrushViz ivBefore={60} ivAfter={28} />
         <p className="text-xs text-muted-foreground">
           IV spikes before earnings as market prices in uncertainty. After the report, regardless of beat or miss,
@@ -1111,8 +1111,8 @@ function EarningsPlaysTab() {
             { strategy: "Iron Condor", ivCrush: "Helps (+15 to +30%)", catalyst: "Profits if stock stays rangebound" },
             { strategy: "Covered Call", ivCrush: "Neutral (short already)", catalyst: "Collect premium pre-earnings" },
           ].map((row, i) => (
-            <div key={i} className="bg-white/5 rounded-lg p-3 space-y-1">
-              <div className="font-medium text-white">{row.strategy}</div>
+            <div key={i} className="bg-foreground/5 rounded-lg p-3 space-y-1">
+              <div className="font-medium text-foreground">{row.strategy}</div>
               <div className="text-muted-foreground">IV Crush: {row.ivCrush}</div>
               <div className="text-muted-foreground">{row.catalyst}</div>
             </div>
@@ -1121,21 +1121,21 @@ function EarningsPlaysTab() {
       </div>
 
       {/* Expected Move Calculator */}
-      <div className="bg-white/5 border border-white/10 rounded-xl p-5">
-        <h3 className="text-sm font-semibold text-white mb-3">Expected Move Calculator</h3>
+      <div className="bg-foreground/5 border border-border rounded-xl p-5">
+        <h3 className="text-sm font-semibold text-foreground mb-3">Expected Move Calculator</h3>
         <div className="grid grid-cols-2 gap-4">
           <div>
             <div className="text-xs text-muted-foreground mb-2">ATM Straddle = Market&apos;s Expected Move</div>
-            <div className="bg-white/5 rounded-lg p-3 space-y-2">
+            <div className="bg-foreground/5 rounded-lg p-3 space-y-2">
               <div className="flex justify-between text-xs">
                 <span className="text-muted-foreground">ATM Call Premium:</span>
-                <span className="text-white">${bsCall(100, 100, 1, ivBefore).price.toFixed(2)}</span>
+                <span className="text-foreground">${bsCall(100, 100, 1, ivBefore).price.toFixed(2)}</span>
               </div>
               <div className="flex justify-between text-xs">
                 <span className="text-muted-foreground">ATM Put Premium:</span>
-                <span className="text-white">${bsPut(100, 100, 1, ivBefore).price.toFixed(2)}</span>
+                <span className="text-foreground">${bsPut(100, 100, 1, ivBefore).price.toFixed(2)}</span>
               </div>
-              <div className="flex justify-between text-xs font-semibold border-t border-white/10 pt-2">
+              <div className="flex justify-between text-xs font-semibold border-t border-border pt-2">
                 <span className="text-muted-foreground">Total Straddle:</span>
                 <span className="text-amber-400">${straddleCost.toFixed(2)}</span>
               </div>
@@ -1158,14 +1158,14 @@ function EarningsPlaysTab() {
       </div>
 
       {/* Historical reactions table */}
-      <div className="bg-white/5 border border-white/10 rounded-xl overflow-hidden">
-        <div className="p-4 border-b border-white/10">
-          <h3 className="text-sm font-semibold text-white">Historical Earnings Reactions</h3>
+      <div className="bg-foreground/5 border border-border rounded-xl overflow-hidden">
+        <div className="p-4 border-b border-border">
+          <h3 className="text-sm font-semibold text-foreground">Historical Earnings Reactions</h3>
           <p className="text-xs text-muted-foreground mt-1">Avg move, straddle cost as % of stock price, and typical beat/miss reactions</p>
         </div>
         <div className="overflow-x-auto">
           <table className="w-full text-xs">
-            <thead className="bg-white/5">
+            <thead className="bg-foreground/5">
               <tr>
                 {["Ticker", "Avg Move", "IV Rank", "Straddle %", "Beat Reaction", "Miss Reaction", "Best Play"].map((h) => (
                   <th key={h} className="px-4 py-2 text-left text-muted-foreground font-medium">{h}</th>
@@ -1181,9 +1181,9 @@ function EarningsPlaysTab() {
                   <tr
                     key={s.ticker}
                     onClick={() => setSelectedTicker(s.ticker)}
-                    className={`border-t border-white/5 cursor-pointer transition-colors ${selectedTicker === s.ticker ? "bg-primary/10" : "hover:bg-muted/30"}`}
+                    className={`border-t border-border/50 cursor-pointer transition-colors ${selectedTicker === s.ticker ? "bg-primary/10" : "hover:bg-muted/30"}`}
                   >
-                    <td className="px-4 py-2.5 font-semibold text-white">{s.ticker}</td>
+                    <td className="px-4 py-2.5 font-semibold text-foreground">{s.ticker}</td>
                     <td className="px-4 py-2.5 text-amber-400">±{s.avgMove}%</td>
                     <td className="px-4 py-2.5">
                       <span className={`${s.ivRank > 70 ? "text-red-400" : s.ivRank > 50 ? "text-amber-400" : "text-green-400"}`}>{s.ivRank}</span>
@@ -1201,8 +1201,8 @@ function EarningsPlaysTab() {
       </div>
 
       {/* IV Rank Playbook */}
-      <div className="bg-white/5 border border-white/10 rounded-xl p-5">
-        <h3 className="text-sm font-semibold text-white mb-3">IV Rank Playbook for Earnings</h3>
+      <div className="bg-foreground/5 border border-border rounded-xl p-5">
+        <h3 className="text-sm font-semibold text-foreground mb-3">IV Rank Playbook for Earnings</h3>
         <div className="grid grid-cols-3 gap-4">
           {[
             { range: "IV Rank < 30", label: "Low IV", color: "text-green-400 bg-green-500/10", strategies: ["Long Straddle", "Long Strangle"], reason: "Options are cheap — pay for vol before IV spikes pre-earnings" },
@@ -1303,8 +1303,8 @@ function PortfolioHedgingTab() {
   return (
     <div className="space-y-6">
       {/* Portfolio Beta Calculator */}
-      <div className="bg-white/5 border border-white/10 rounded-xl p-5">
-        <h3 className="text-sm font-semibold text-white mb-3">Portfolio Beta Calculator</h3>
+      <div className="bg-foreground/5 border border-border rounded-xl p-5">
+        <h3 className="text-sm font-semibold text-foreground mb-3">Portfolio Beta Calculator</h3>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           <div>
             <div className="flex items-center justify-between mb-2">
@@ -1322,7 +1322,7 @@ function PortfolioHedgingTab() {
             <div className="overflow-x-auto">
               <table className="w-full text-xs">
                 <thead>
-                  <tr className="text-muted-foreground border-b border-white/10">
+                  <tr className="text-muted-foreground border-b border-border">
                     <th className="text-left py-1">Ticker</th>
                     <th className="text-right py-1">Weight %</th>
                     <th className="text-right py-1">Beta</th>
@@ -1331,8 +1331,8 @@ function PortfolioHedgingTab() {
                 </thead>
                 <tbody>
                   {positions.map((p) => (
-                    <tr key={p.ticker} className="border-b border-white/5">
-                      <td className="py-1.5 text-white font-medium">{p.ticker}</td>
+                    <tr key={p.ticker} className="border-b border-border/50">
+                      <td className="py-1.5 text-foreground font-medium">{p.ticker}</td>
                       <td className="text-right text-muted-foreground">{p.weight}%</td>
                       <td className="text-right text-muted-foreground">{p.beta}</td>
                       <td className="text-right text-amber-400">{((p.weight * p.beta) / 100).toFixed(3)}</td>
@@ -1340,7 +1340,7 @@ function PortfolioHedgingTab() {
                   ))}
                 </tbody>
                 <tfoot>
-                  <tr className="border-t border-white/10 font-semibold">
+                  <tr className="border-t border-border font-semibold">
                     <td className="py-2 text-muted-foreground">Total</td>
                     <td className="text-right text-muted-foreground">100%</td>
                     <td className="text-right text-amber-400">{portfolioBeta.toFixed(2)}</td>
@@ -1358,11 +1358,11 @@ function PortfolioHedgingTab() {
               <div className="grid grid-cols-2 gap-2 text-xs">
                 <div>
                   <div className="text-muted-foreground">Notional to Hedge</div>
-                  <div className="text-white font-medium">${notionalToHedge.toLocaleString(undefined, { maximumFractionDigits: 0 })}</div>
+                  <div className="text-foreground font-medium">${notionalToHedge.toLocaleString(undefined, { maximumFractionDigits: 0 })}</div>
                 </div>
                 <div>
                   <div className="text-muted-foreground">SPX Contracts Needed</div>
-                  <div className="text-white font-medium">{contractsNeeded} contracts</div>
+                  <div className="text-foreground font-medium">{contractsNeeded} contracts</div>
                 </div>
                 <div>
                   <div className="text-muted-foreground">Hedge Cost</div>
@@ -1381,7 +1381,7 @@ function PortfolioHedgingTab() {
                 <select
                   value={putStrike}
                   onChange={(e) => setPutStrike(Number(e.target.value))}
-                  className="mt-1 w-full bg-white/10 text-white text-xs rounded px-2 py-1"
+                  className="mt-1 w-full bg-foreground/10 text-foreground text-xs rounded px-2 py-1"
                 >
                   <option value={1.0}>ATM (0%)</option>
                   <option value={0.97}>3% OTM</option>
@@ -1395,7 +1395,7 @@ function PortfolioHedgingTab() {
                 <select
                   value={putDTE}
                   onChange={(e) => setPutDTE(Number(e.target.value))}
-                  className="mt-1 w-full bg-white/10 text-white text-xs rounded px-2 py-1"
+                  className="mt-1 w-full bg-foreground/10 text-foreground text-xs rounded px-2 py-1"
                 >
                   <option value={30}>30 days</option>
                   <option value={60}>60 days</option>
@@ -1409,16 +1409,16 @@ function PortfolioHedgingTab() {
       </div>
 
       {/* Collar Construction */}
-      <div className="bg-white/5 border border-white/10 rounded-xl p-5">
-        <h3 className="text-sm font-semibold text-white mb-3">Zero-Cost Collar Construction</h3>
+      <div className="bg-foreground/5 border border-border rounded-xl p-5">
+        <h3 className="text-sm font-semibold text-foreground mb-3">Zero-Cost Collar Construction</h3>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-          <div className="bg-white/5 rounded-lg p-3 space-y-2 text-xs">
+          <div className="bg-foreground/5 rounded-lg p-3 space-y-2 text-xs">
             <div className="text-xs text-muted-foreground uppercase">Buy Put (Protection)</div>
             <div>Strike: ${spxPutStrike.toFixed(0)} ({((1 - putStrike) * 100).toFixed(0)}% OTM)</div>
             <div>Cost: ${(spxPutContract.price * 100).toFixed(0)}/contract</div>
             <div>Delta: {spxPutContract.delta.toFixed(3)}</div>
           </div>
-          <div className="bg-white/5 rounded-lg p-3 space-y-2 text-xs">
+          <div className="bg-foreground/5 rounded-lg p-3 space-y-2 text-xs">
             <div className="text-xs text-muted-foreground uppercase">Sell Call (Finance)</div>
             <div>Strike: ${(spxPrice * 1.05).toFixed(0)} (5% OTM)</div>
             <div>Credit: ${(atmCall.price * 100).toFixed(0)}/contract</div>
@@ -1435,8 +1435,8 @@ function PortfolioHedgingTab() {
       </div>
 
       {/* Put decay curve */}
-      <div className="bg-white/5 border border-white/10 rounded-xl p-5">
-        <h3 className="text-sm font-semibold text-white mb-3">Protective Put Theta Decay</h3>
+      <div className="bg-foreground/5 border border-border rounded-xl p-5">
+        <h3 className="text-sm font-semibold text-foreground mb-3">Protective Put Theta Decay</h3>
         <svg width={tdW} height={tdH}>
           <path d={tdPath} fill="none" stroke="#f87171" strokeWidth={2} />
           <line x1={40} y1={16} x2={40} y2={16 + tdCH} stroke="#374151" strokeWidth={1} />
@@ -1454,16 +1454,16 @@ function PortfolioHedgingTab() {
       </div>
 
       {/* VIX calls as tail hedge */}
-      <div className="bg-white/5 border border-white/10 rounded-xl p-5 space-y-3">
-        <h3 className="text-sm font-semibold text-white">VIX Calls as Tail Hedge</h3>
+      <div className="bg-foreground/5 border border-border rounded-xl p-5 space-y-3">
+        <h3 className="text-sm font-semibold text-foreground">VIX Calls as Tail Hedge</h3>
         <div className="grid grid-cols-2 md:grid-cols-4 gap-3 text-xs">
           {[
             { label: "VIX Spot", value: "16.4", color: "text-green-400" },
-            { label: "VIX 30C Cost", value: "$0.85", color: "text-white" },
+            { label: "VIX 30C Cost", value: "$0.85", color: "text-foreground" },
             { label: "Correlation to SPX", value: "-0.78", color: "text-red-400" },
             { label: "Sizing (% of port)", value: "0.5-1%", color: "text-amber-400" },
           ].map((item, i) => (
-            <div key={i} className="bg-white/5 rounded-lg p-3">
+            <div key={i} className="bg-foreground/5 rounded-lg p-3">
               <div className="text-muted-foreground">{item.label}</div>
               <div className={`text-sm font-semibold mt-1 ${item.color}`}>{item.value}</div>
             </div>
@@ -1530,8 +1530,8 @@ function ThetaDecayCurve() {
   const sy = (v: number) => pad.top + ch2 - (v / maxVal) * ch2;
 
   return (
-    <div className="bg-white/5 border border-white/10 rounded-xl p-4">
-      <h4 className="text-sm font-semibold text-white mb-3">Theta Decay Curve — ATM vs OTM</h4>
+    <div className="bg-foreground/5 border border-border rounded-xl p-4">
+      <h4 className="text-sm font-semibold text-foreground mb-3">Theta Decay Curve — ATM vs OTM</h4>
       <svg width={W2} height={H2}>
         {curves.map(({ label, K, color }) => {
           const path = dteSeries
@@ -1623,16 +1623,16 @@ function GammaScalpingSim() {
     simData.map((d, i) => `${i === 0 ? "M" : "L"} ${sx(d.day).toFixed(1)} ${sy2(d[key]).toFixed(1)}`).join(" ");
 
   return (
-    <div className="bg-white/5 border border-white/10 rounded-xl p-4 space-y-3">
+    <div className="bg-foreground/5 border border-border rounded-xl p-4 space-y-3">
       <div className="flex items-center justify-between">
-        <h4 className="text-sm font-semibold text-white">Gamma Scalping Simulation</h4>
+        <h4 className="text-sm font-semibold text-foreground">Gamma Scalping Simulation</h4>
         <div className="flex items-center gap-2 text-xs">
           <span className="text-muted-foreground">Hedge every</span>
           {[1, 3, 5, 10].map((n) => (
             <button
               key={n}
               onClick={() => setHedgeInterval(n)}
-              className={`px-2 py-0.5 rounded ${hedgeInterval === n ? "bg-primary text-white" : "bg-white/10 text-muted-foreground"}`}
+              className={`px-2 py-0.5 rounded ${hedgeInterval === n ? "bg-primary text-primary-foreground" : "bg-foreground/10 text-muted-foreground"}`}
             >
               {n}d
             </button>
@@ -1696,13 +1696,13 @@ function GreekManagementTab() {
   return (
     <div className="space-y-6">
       {/* Risk Dashboard */}
-      <div className="bg-white/5 border border-white/10 rounded-xl p-5">
-        <h3 className="text-sm font-semibold text-white mb-4">Portfolio Greeks Risk Dashboard</h3>
+      <div className="bg-foreground/5 border border-border rounded-xl p-5">
+        <h3 className="text-sm font-semibold text-foreground mb-4">Portfolio Greeks Risk Dashboard</h3>
 
         <div className="overflow-x-auto mb-4">
           <table className="w-full text-xs">
             <thead>
-              <tr className="text-muted-foreground border-b border-white/10">
+              <tr className="text-muted-foreground border-b border-border">
                 {["Position", "Strategy", "Delta", "Gamma", "Theta/day", "Vega/1%"].map((h) => (
                   <th key={h} className="text-left py-1.5 px-2">{h}</th>
                 ))}
@@ -1710,8 +1710,8 @@ function GreekManagementTab() {
             </thead>
             <tbody>
               {PORTFOLIO_POSITIONS.map((p) => (
-                <tr key={p.id} className="border-b border-white/5">
-                  <td className="py-2 px-2 text-white font-medium">{p.ticker}</td>
+                <tr key={p.id} className="border-b border-border/50">
+                  <td className="py-2 px-2 text-foreground font-medium">{p.ticker}</td>
                   <td className="py-2 px-2 text-muted-foreground">{p.strategy}</td>
                   <td className={`py-2 px-2 font-mono ${p.delta > 0 ? "text-green-400" : "text-red-400"}`}>{p.delta > 0 ? "+" : ""}{p.delta.toFixed(1)}</td>
                   <td className={`py-2 px-2 font-mono ${p.gamma > 0 ? "text-green-400" : "text-red-400"}`}>{p.gamma > 0 ? "+" : ""}{p.gamma.toFixed(2)}</td>
@@ -1721,7 +1721,7 @@ function GreekManagementTab() {
               ))}
             </tbody>
             <tfoot>
-              <tr className="border-t border-white/10 font-semibold text-white">
+              <tr className="border-t border-border font-semibold text-foreground">
                 <td className="py-2 px-2" colSpan={2}>NET PORTFOLIO</td>
                 <td className={`py-2 px-2 font-mono ${totals.delta > 0 ? "text-green-400" : "text-red-400"}`}>{totals.delta > 0 ? "+" : ""}{totals.delta.toFixed(1)}</td>
                 <td className={`py-2 px-2 font-mono ${totals.gamma > 0 ? "text-green-400" : "text-red-400"}`}>{totals.gamma > 0 ? "+" : ""}{totals.gamma.toFixed(2)}</td>
@@ -1738,7 +1738,7 @@ function GreekManagementTab() {
             const positions_sorted = [...PORTFOLIO_POSITIONS].sort((a, b) => Math.abs(b[greek]) - Math.abs(a[greek]));
             const maxVal = Math.max(...PORTFOLIO_POSITIONS.map((p) => Math.abs(p[greek])));
             return (
-              <div key={greek} className="bg-white/5 rounded-lg p-3">
+              <div key={greek} className="bg-foreground/5 rounded-lg p-3">
                 <div className="text-xs text-muted-foreground uppercase mb-2 capitalize">{greek} by Position</div>
                 {positions_sorted.map((p) => {
                   const barWidth = (Math.abs(p[greek]) / maxVal) * 100;
@@ -1749,7 +1749,7 @@ function GreekManagementTab() {
                         <span className="text-muted-foreground">{p.ticker}</span>
                         <span className={isPos ? "text-green-400" : "text-red-400"}>{p[greek].toFixed(1)}</span>
                       </div>
-                      <div className="h-2 bg-white/5 rounded-full overflow-hidden">
+                      <div className="h-2 bg-foreground/5 rounded-full overflow-hidden">
                         <div
                           className={`h-full rounded-full ${isPos ? "bg-green-500" : "bg-red-500"}`}
                           style={{ width: `${barWidth}%` }}
@@ -1765,8 +1765,8 @@ function GreekManagementTab() {
       </div>
 
       {/* Delta neutral explainer */}
-      <div className="bg-white/5 border border-white/10 rounded-xl p-5 space-y-3">
-        <h3 className="text-sm font-semibold text-white">Delta Neutral Strategies</h3>
+      <div className="bg-foreground/5 border border-border rounded-xl p-5 space-y-3">
+        <h3 className="text-sm font-semibold text-foreground">Delta Neutral Strategies</h3>
         <div className="grid grid-cols-3 gap-3 text-xs">
           {[
             {
@@ -1788,8 +1788,8 @@ function GreekManagementTab() {
               use: "Premium sellers wanting market-neutral income",
             },
           ].map((item, i) => (
-            <div key={i} className="bg-white/5 rounded-lg p-3 space-y-2">
-              <div className="font-medium text-white">{item.name}</div>
+            <div key={i} className="bg-foreground/5 rounded-lg p-3 space-y-2">
+              <div className="font-medium text-foreground">{item.name}</div>
               <div>
                 <div className="text-xs text-muted-foreground uppercase">Delta Equation</div>
                 <div className="text-muted-foreground mt-0.5">{item.delta}</div>
@@ -1808,8 +1808,8 @@ function GreekManagementTab() {
       </div>
 
       {/* Vega Risk Chart */}
-      <div className="bg-white/5 border border-white/10 rounded-xl p-4">
-        <h4 className="text-sm font-semibold text-white mb-3">Portfolio Vega Risk: P&L vs IV Change</h4>
+      <div className="bg-foreground/5 border border-border rounded-xl p-4">
+        <h4 className="text-sm font-semibold text-foreground mb-3">Portfolio Vega Risk: P&L vs IV Change</h4>
         <svg width={vegaW} height={vegaH}>
           <line x1={vegaPad.left} y1={vegaZeroY} x2={vegaW - vegaPad.right} y2={vegaZeroY} stroke="#374151" strokeDasharray="3 3" strokeWidth={1} />
           <path d={vegaPath} fill="none" stroke={totals.vega >= 0 ? "#34d399" : "#f87171"} strokeWidth={2} />
@@ -1851,7 +1851,7 @@ export default function OptionsStrategiesPage() {
   const [activeTab, setActiveTab] = useState("builder");
 
   return (
-    <div className="min-h-screen bg-[#0a0a0f] text-white">
+    <div className="min-h-screen bg-background text-foreground">
       <div className="max-w-7xl mx-auto px-4 py-6">
         {/* Header */}
         <motion.div
@@ -1863,7 +1863,7 @@ export default function OptionsStrategiesPage() {
             <div className="w-8 h-8 rounded-lg bg-primary/20 flex items-center justify-center">
               <BarChart2 className="w-4 h-4 text-primary" />
             </div>
-            <h1 className="text-xl font-bold text-white">Options Strategies</h1>
+            <h1 className="text-xl font-bold text-foreground">Options Strategies</h1>
           </div>
           <p className="text-sm text-muted-foreground ml-11">
             Advanced simulator — build positions, explore 20 strategies, master Greeks and portfolio hedging
@@ -1871,15 +1871,15 @@ export default function OptionsStrategiesPage() {
         </motion.div>
 
         {/* Tab navigation */}
-        <div className="flex gap-1 flex-wrap mb-6 bg-white/5 rounded-xl p-1">
+        <div className="flex gap-1 flex-wrap mb-6 bg-foreground/5 rounded-xl p-1">
           {TABS.map(({ id, label, icon: Icon }) => (
             <button
               key={id}
               onClick={() => setActiveTab(id)}
               className={`flex items-center gap-1.5 px-3 py-2 rounded-lg text-xs font-medium transition-all ${
                 activeTab === id
-                  ? "bg-primary text-white shadow-sm"
-                  : "text-muted-foreground hover:text-white hover:bg-muted/30"
+                  ? "bg-primary text-primary-foreground shadow-sm"
+                  : "text-muted-foreground hover:text-foreground hover:bg-muted/30"
               }`}
             >
               <Icon className="w-3.5 h-3.5" />

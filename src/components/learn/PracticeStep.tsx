@@ -95,9 +95,9 @@ function LegacyPractice({
           animate={{ opacity: 1, scale: 1 }}
           className="flex flex-col gap-3"
         >
-          <div className="flex items-center gap-2 rounded-lg bg-[#10b981]/10 border border-[#10b981]/20 p-3">
-            <CheckCircle2 className="h-5 w-5 text-[#10b981]" />
-            <span className="text-sm font-medium text-[#10b981]">Nice work!</span>
+          <div className="flex items-center gap-2 rounded-lg bg-profit/10 border border-profit/20 p-3">
+            <CheckCircle2 className="h-5 w-5 text-profit" />
+            <span className="text-sm font-medium text-profit">Nice work!</span>
           </div>
           <button
             type="button"

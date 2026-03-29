@@ -223,7 +223,7 @@ export function ThemeCustomizer({ open, onClose }: ThemeCustomizerProps) {
                       >
                         {isActive && (
                           <Check
-                            className="h-3.5 w-3.5 text-white drop-shadow"
+                            className="h-3.5 w-3.5 text-primary-foreground drop-shadow"
                             strokeWidth={3}
                           />
                         )}

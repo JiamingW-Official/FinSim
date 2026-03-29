@@ -253,7 +253,7 @@ export function QuizStepComponent({ step, onCorrect, onWrong }: QuizStepProps) {
                     "rounded-full px-2 py-0.5 text-[10px] font-black",
                     speedTier === "lightning"
                       ? "bg-amber-400/20 text-amber-400"
-                      : "bg-blue-400/20 text-blue-400",
+                      : "bg-primary/20 text-primary",
                   )}
                 >
                   {speedLabel}

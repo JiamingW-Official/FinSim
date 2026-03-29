@@ -395,7 +395,7 @@ export default function DerivPricingLabPage() {
   );
 
   return (
-    <div className="min-h-screen bg-[#0a0a0f] text-white p-6 space-y-6">
+    <div className="min-h-screen bg-background text-foreground p-6 space-y-6">
       {/* Header */}
       <motion.div
         initial={{ opacity: 0, y: -16 }}
@@ -428,7 +428,7 @@ export default function DerivPricingLabPage() {
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.4, delay: 0.1 }}
       >
-        <Card className="bg-[#111118] border-[#1e1e2e]">
+        <Card className="bg-card border-border">
           <CardContent className="p-4">
             <p className="text-xs text-muted-foreground mb-4 font-medium">
               Shared Option Parameters — all tabs update in real time
@@ -486,7 +486,7 @@ export default function DerivPricingLabPage() {
         transition={{ duration: 0.4, delay: 0.2 }}
       >
         <Tabs defaultValue="bs">
-          <TabsList className="bg-[#111118] border border-[#1e1e2e] mb-6">
+          <TabsList className="bg-card border border-border mb-6">
             <TabsTrigger value="bs" className="data-[state=active]:bg-primary/20 data-[state=active]:text-primary gap-2">
               <FlaskConical className="w-3.5 h-3.5" />
               Black-Scholes
@@ -523,7 +523,7 @@ export default function DerivPricingLabPage() {
             </div>
 
             {/* d1/d2 explanation */}
-            <Card className="bg-[#111118] border-[#1e1e2e]">
+            <Card className="bg-card border-border">
               <CardContent className="p-4 flex gap-8 flex-wrap">
                 <div>
                   <p className="text-xs text-muted-foreground mb-1">d₁</p>
@@ -551,7 +551,7 @@ export default function DerivPricingLabPage() {
             </Card>
 
             {/* Payoff Diagram */}
-            <Card className="bg-[#111118] border-[#1e1e2e]">
+            <Card className="bg-card border-border">
               <CardHeader className="pb-2">
                 <CardTitle className="text-sm font-medium text-muted-foreground flex items-center gap-2">
                   <BarChart3 className="w-4 h-4 text-primary" />
@@ -565,7 +565,7 @@ export default function DerivPricingLabPage() {
 
             {/* Vol Smile + Sensitivity Heatmap side by side */}
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-              <Card className="bg-[#111118] border-[#1e1e2e]">
+              <Card className="bg-card border-border">
                 <CardHeader className="pb-2">
                   <CardTitle className="text-sm font-medium text-muted-foreground flex items-center gap-2">
                     <Activity className="w-4 h-4 text-sky-400" />
@@ -577,7 +577,7 @@ export default function DerivPricingLabPage() {
                 </CardContent>
               </Card>
 
-              <Card className="bg-[#111118] border-[#1e1e2e]">
+              <Card className="bg-card border-border">
                 <CardHeader className="pb-2">
                   <CardTitle className="text-sm font-medium text-muted-foreground flex items-center gap-2">
                     <Target className="w-4 h-4 text-amber-400" />
@@ -594,21 +594,21 @@ export default function DerivPricingLabPage() {
           {/* ── Binomial Tree Tab ───────────────────────────────────────── */}
           <TabsContent value="binomial" className="space-y-6">
             <div className="grid grid-cols-3 gap-4">
-              <Card className="bg-[#111118] border-[#1e1e2e]">
+              <Card className="bg-card border-border">
                 <CardContent className="p-4">
                   <p className="text-xs text-muted-foreground mb-1">Risk-Neutral Prob (p)</p>
                   <p className="text-2xl font-semibold text-sky-300">{(binomial.riskNeutralP * 100).toFixed(2)}%</p>
                   <p className="text-xs text-muted-foreground mt-1">p = (e^(rΔt) − d) / (u − d)</p>
                 </CardContent>
               </Card>
-              <Card className="bg-[#111118] border-[#1e1e2e]">
+              <Card className="bg-card border-border">
                 <CardContent className="p-4">
                   <p className="text-xs text-muted-foreground mb-1">Up Factor (u)</p>
                   <p className="text-2xl font-semibold text-emerald-300">{binomial.u.toFixed(4)}</p>
                   <p className="text-xs text-muted-foreground mt-1">u = e^(σ√Δt)</p>
                 </CardContent>
               </Card>
-              <Card className="bg-[#111118] border-[#1e1e2e]">
+              <Card className="bg-card border-border">
                 <CardContent className="p-4">
                   <p className="text-xs text-muted-foreground mb-1">Down Factor (d)</p>
                   <p className="text-2xl font-semibold text-rose-300">{binomial.d.toFixed(4)}</p>
@@ -618,11 +618,11 @@ export default function DerivPricingLabPage() {
             </div>
 
             <div className="grid grid-cols-2 gap-4">
-              <Card className="bg-[#111118] border-[#1e1e2e] p-4">
+              <Card className="bg-card border-border p-4">
                 <p className="text-xs text-muted-foreground mb-1">Binomial Call Price</p>
                 <p className="text-2xl font-bold text-emerald-400">${binomial.callPrice.toFixed(4)}</p>
               </Card>
-              <Card className="bg-[#111118] border-[#1e1e2e] p-4">
+              <Card className="bg-card border-border p-4">
                 <p className="text-xs text-muted-foreground mb-1">Black-Scholes Call Price</p>
                 <p className="text-2xl font-bold text-primary">${bs.callPrice.toFixed(4)}</p>
                 <p className="text-xs text-muted-foreground mt-1">
@@ -631,7 +631,7 @@ export default function DerivPricingLabPage() {
               </Card>
             </div>
 
-            <Card className="bg-[#111118] border-[#1e1e2e]">
+            <Card className="bg-card border-border">
               <CardHeader className="pb-2">
                 <CardTitle className="text-sm font-medium text-muted-foreground flex items-center gap-2">
                   <GitBranch className="w-4 h-4 text-sky-400" />
@@ -643,7 +643,7 @@ export default function DerivPricingLabPage() {
               </CardContent>
             </Card>
 
-            <Card className="bg-[#111118] border-[#1e1e2e]">
+            <Card className="bg-card border-border">
               <CardContent className="p-4">
                 <div className="flex items-start gap-3">
                   <Info className="w-4 h-4 text-sky-400 mt-0.5 shrink-0" />
@@ -660,7 +660,7 @@ export default function DerivPricingLabPage() {
           {/* ── Monte Carlo Tab ─────────────────────────────────────────── */}
           <TabsContent value="mc" className="space-y-6">
             {/* Path count control */}
-            <Card className="bg-[#111118] border-[#1e1e2e]">
+            <Card className="bg-card border-border">
               <CardContent className="p-4">
                 <div className="flex items-center gap-6">
                   <div className="flex-1">
@@ -685,7 +685,7 @@ export default function DerivPricingLabPage() {
 
             {/* Prices + CIs */}
             <div className="grid grid-cols-2 gap-4">
-              <Card className="bg-[#111118] border-[#1e1e2e]">
+              <Card className="bg-card border-border">
                 <CardContent className="p-4">
                   <p className="text-xs text-muted-foreground mb-1">MC Call Price</p>
                   <p className="text-2xl font-bold text-emerald-400">${mc.callPrice.toFixed(4)}</p>
@@ -697,7 +697,7 @@ export default function DerivPricingLabPage() {
                   </p>
                 </CardContent>
               </Card>
-              <Card className="bg-[#111118] border-[#1e1e2e]">
+              <Card className="bg-card border-border">
                 <CardContent className="p-4">
                   <p className="text-xs text-muted-foreground mb-1">MC Put Price</p>
                   <p className="text-2xl font-bold text-rose-400">${mc.putPrice.toFixed(4)}</p>
@@ -712,7 +712,7 @@ export default function DerivPricingLabPage() {
             </div>
 
             {/* Spaghetti paths */}
-            <Card className="bg-[#111118] border-[#1e1e2e]">
+            <Card className="bg-card border-border">
               <CardHeader className="pb-2">
                 <CardTitle className="text-sm font-medium text-muted-foreground flex items-center gap-2">
                   <Shuffle className="w-4 h-4 text-emerald-400" />
@@ -726,7 +726,7 @@ export default function DerivPricingLabPage() {
 
             {/* Histogram + Convergence */}
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-              <Card className="bg-[#111118] border-[#1e1e2e]">
+              <Card className="bg-card border-border">
                 <CardHeader className="pb-2">
                   <CardTitle className="text-sm font-medium text-muted-foreground flex items-center gap-2">
                     <BarChart3 className="w-4 h-4 text-sky-400" />
@@ -738,7 +738,7 @@ export default function DerivPricingLabPage() {
                 </CardContent>
               </Card>
 
-              <Card className="bg-[#111118] border-[#1e1e2e]">
+              <Card className="bg-card border-border">
                 <CardHeader className="pb-2">
                   <CardTitle className="text-sm font-medium text-muted-foreground flex items-center gap-2">
                     <Activity className="w-4 h-4 text-primary" />
@@ -754,7 +754,7 @@ export default function DerivPricingLabPage() {
 
           {/* ── Exotics Tab ─────────────────────────────────────────────── */}
           <TabsContent value="exotics" className="space-y-4">
-            <Card className="bg-[#111118] border-[#1e1e2e]">
+            <Card className="bg-card border-border">
               <CardContent className="p-4 flex items-start gap-3">
                 <Sparkles className="w-4 h-4 text-amber-400 mt-0.5 shrink-0" />
                 <p className="text-sm text-muted-foreground">
@@ -772,7 +772,7 @@ export default function DerivPricingLabPage() {
             </div>
 
             {/* Comparison bar chart */}
-            <Card className="bg-[#111118] border-[#1e1e2e]">
+            <Card className="bg-card border-border">
               <CardHeader className="pb-2">
                 <CardTitle className="text-sm font-medium text-muted-foreground flex items-center gap-2">
                   <BarChart3 className="w-4 h-4 text-amber-400" />
@@ -1315,7 +1315,7 @@ function ConvergenceChart({ data, bsPrice }: { data: { n: number; callEst: numbe
 function ExoticCard({ ex, vanillaCall }: { ex: ExoticResult; vanillaCall: number }) {
   const cheaper = ex.price < vanillaCall;
   return (
-    <Card className="bg-[#111118] border-[#1e1e2e]">
+    <Card className="bg-card border-border">
       <CardHeader className="pb-2">
         <CardTitle className="text-sm font-medium text-muted-foreground flex items-center gap-2">
           <Zap className="w-4 h-4 text-amber-400" />
@@ -1346,7 +1346,7 @@ function ExoticCard({ ex, vanillaCall }: { ex: ExoticResult; vanillaCall: number
             <span>$0</span>
             <span>${(Math.max(ex.price, vanillaCall) * 1.1).toFixed(2)}</span>
           </div>
-          <div className="relative h-4 bg-[#1e1e2e] rounded overflow-hidden">
+          <div className="relative h-4 bg-muted rounded overflow-hidden">
             <div
               className="absolute left-0 top-0 h-full bg-primary/40 rounded"
               style={{ width: `${clamp((vanillaCall / (Math.max(ex.price, vanillaCall) * 1.1)) * 100, 0, 100)}%` }}

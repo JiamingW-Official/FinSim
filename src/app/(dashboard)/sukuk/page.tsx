@@ -1189,7 +1189,7 @@ function ComparisonTab() {
 
 export default function SukukPage() {
   return (
-    <div className="min-h-screen bg-background text-white">
+    <div className="min-h-screen bg-background text-foreground">
       <div className="max-w-5xl mx-auto px-4 py-8">
         {/* Header */}
         <motion.div

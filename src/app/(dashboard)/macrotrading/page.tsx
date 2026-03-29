@@ -484,14 +484,14 @@ function RegimeDashboard() {
                         "rounded-lg p-3 border transition-all",
                         r.bgColor,
                         r.borderColor,
-                        active ? "ring-2 ring-white/20 scale-[1.02]" : "opacity-70"
+                        active ? "ring-2 ring-foreground/20 scale-[1.02]" : "opacity-70"
                       )}
                       animate={active ? { scale: 1.02 } : { scale: 1 }}
                     >
                       <div className="flex items-center justify-between mb-1">
                         <span className={cn("text-sm font-semibold", r.color)}>{r.name}</span>
                         {active && (
-                          <Badge className="text-xs px-1.5 py-0 bg-white/10 text-white border-white/20">
+                          <Badge className="text-xs px-1.5 py-0 bg-foreground/10 text-white border-border">
                             Current
                           </Badge>
                         )}
@@ -840,7 +840,7 @@ function RateCyclePlaybook() {
                       {phase}
                     </span>
                     {phase === CURRENT_PHASE && (
-                      <Badge className="text-xs px-1.5 bg-white/10 text-white border-white/20">
+                      <Badge className="text-xs px-1.5 bg-foreground/10 text-white border-border">
                         Now
                       </Badge>
                     )}

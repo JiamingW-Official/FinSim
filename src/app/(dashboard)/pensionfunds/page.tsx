@@ -554,7 +554,7 @@ function DBvsDCTab() {
                   </div>
                   <div className="h-2 bg-muted rounded-full overflow-hidden">
                     <motion.div
-                      className="h-full bg-blue-500 rounded-full"
+                      className="h-full bg-primary rounded-full"
                       initial={{ width: 0 }}
                       animate={{ width: `${(sys.assets / maxAssets) * 100}%` }}
                       transition={{ duration: 0.8, delay: 0.1 }}

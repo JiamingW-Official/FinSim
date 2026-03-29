@@ -583,7 +583,7 @@ export default function CryptoMarketIntelligence() {
                 className={cn(
                   "flex items-center justify-between px-3 py-1.5 rounded-lg text-xs transition-all",
                   i === currentBTCBand
-                    ? "ring-1 ring-white/30 bg-white/5 font-semibold"
+                    ? "ring-1 ring-foreground/30 bg-foreground/5 font-semibold"
                     : "opacity-60"
                 )}
                 style={{ borderLeft: `3px solid ${band.color}` }}
@@ -591,7 +591,7 @@ export default function CryptoMarketIntelligence() {
                 <span style={{ color: band.color }}>{band.label}</span>
                 <span className="text-muted-foreground">{band.range}</span>
                 {i === currentBTCBand && (
-                  <span className="ml-1 text-xs bg-white/10 px-1.5 py-0.5 rounded text-white">Now</span>
+                  <span className="ml-1 text-xs bg-foreground/10 px-1.5 py-0.5 rounded text-foreground">Now</span>
                 )}
               </div>
             ))}
@@ -631,7 +631,7 @@ export default function CryptoMarketIntelligence() {
                   <div className="h-full" style={{ width: "50%", background: "linear-gradient(to right, #f59e0b, #eab308)" }} />
                   <div className="h-full" style={{ width: "50%", background: "linear-gradient(to right, #22c55e, #10b981)" }} />
                 </div>
-                <div className="absolute top-1/2 -translate-y-1/2 w-3 h-3 bg-white rounded-full shadow-sm"
+                <div className="absolute top-1/2 -translate-y-1/2 w-3 h-3 bg-foreground rounded-full shadow-sm"
                   style={{ left: `calc(${altcoinSeasonIndex}% - 6px)` }} />
               </div>
               <div className="flex justify-between text-xs mt-1">

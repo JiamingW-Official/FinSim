@@ -679,7 +679,7 @@ export default function IBDealsPage() {
 
   // ── Render ─────────────────────────────────────────────────────────────────
   return (
-    <div className="min-h-screen bg-[#0a0a0a] text-white p-6">
+    <div className="min-h-screen bg-background text-foreground p-6">
       <motion.div
         initial={{ opacity: 0, y: -16 }}
         animate={{ opacity: 1, y: 0 }}
@@ -1930,7 +1930,7 @@ export default function IBDealsPage() {
                         <td className="px-3 py-2">
                           <div className="w-32 bg-muted rounded-full h-2 overflow-hidden">
                             <div
-                              className="h-full bg-blue-500 rounded-full"
+                              className="h-full bg-primary rounded-full"
                               style={{ width: `${(row.total / maxTotal) * 100}%` }}
                             />
                           </div>

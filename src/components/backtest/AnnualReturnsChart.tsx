@@ -90,7 +90,7 @@ export default function AnnualReturnsChart({ result }: Props) {
 
   return (
     <div className="space-y-2">
-      <div className="overflow-hidden rounded-lg border border-white/5 bg-black/20 p-2">
+      <div className="overflow-hidden rounded-lg border border-border/50 bg-black/20 p-2">
         <svg viewBox={`0 0 ${svgW} ${svgH}`} className="w-full" style={{ height: 145 }}>
           {/* Horizontal grid */}
           {tickVals.map((v) => {

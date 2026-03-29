@@ -566,7 +566,7 @@ function ActiveScenario({ scenario, bars, onComplete, onBack }: ActiveScenarioPr
               onClick={() => setSpeed(s)}
               className={cn(
                 "rounded px-2 py-1 text-xs font-bold transition-colors",
-                speed === s ? "bg-white/10 text-foreground" : "text-muted-foreground/70 hover:text-muted-foreground",
+                speed === s ? "bg-foreground/10 text-foreground" : "text-muted-foreground/70 hover:text-muted-foreground",
               )}
             >
               {s === 5 ? <FastForward className="h-3 w-3" /> : `${s}x`}

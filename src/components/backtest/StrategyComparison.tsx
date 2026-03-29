@@ -63,7 +63,7 @@ interface MetricRowProps {
 
 function MetricRow({ label, values, winnerIdx, higherIsBetter = true }: MetricRowProps) {
   return (
-    <tr className="border-b border-white/5">
+    <tr className="border-b border-border/50">
       <td className="py-1.5 pr-2 text-xs text-muted-foreground">{label}</td>
       {values.map((v, i) => (
         <td
@@ -227,7 +227,7 @@ export default function StrategyComparison({ baseConfig }: Props) {
       {/* Overlay equity curves */}
       <div>
         <h4 className="mb-1.5 text-xs font-semibold text-muted-foreground">Equity Curves (Overlay)</h4>
-        <div className="overflow-hidden rounded-lg border border-white/5 bg-black/20 p-2">
+        <div className="overflow-hidden rounded-lg border border-border/50 bg-black/20 p-2">
           <OverlayEquityCurve results={results} startingCapital={baseConfig.startingCapital} />
         </div>
       </div>
@@ -235,10 +235,10 @@ export default function StrategyComparison({ baseConfig }: Props) {
       {/* Metrics comparison table */}
       <div>
         <h4 className="mb-1.5 text-xs font-semibold text-muted-foreground">Metrics Comparison</h4>
-        <div className="overflow-hidden rounded-lg border border-white/5 bg-black/20">
+        <div className="overflow-hidden rounded-lg border border-border/50 bg-black/20">
           <table className="w-full">
             <thead>
-              <tr className="border-b border-white/5">
+              <tr className="border-b border-border/50">
                 <th className="py-2 pr-2 text-left text-[11px] font-medium text-muted-foreground/70">Metric</th>
                 {RSI_CONFIGS.map((cfg, i) => (
                   <th key={i} className="py-2 text-center text-[11px] font-medium" style={{ color: COLORS[i].line }}>

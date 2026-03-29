@@ -78,7 +78,7 @@ function StatCard({
       ? "text-rose-400"
       : "text-white";
   return (
-    <div className="rounded-xl border border-white/10 bg-white/5 p-4 flex flex-col gap-1">
+    <div className="rounded-xl border border-border bg-foreground/5 p-4 flex flex-col gap-1">
       <span className="text-xs text-muted-foreground">{label}</span>
       <span className={cn("text-xl font-bold", valClass)}>{value}</span>
       {sub && <span className="text-xs text-muted-foreground">{sub}</span>}
@@ -249,7 +249,7 @@ function PropertyAnalyzer() {
     <div className="space-y-6">
       {/* Inputs */}
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-        <div className="rounded-xl border border-white/10 bg-white/5 p-5 space-y-4">
+        <div className="rounded-xl border border-border bg-foreground/5 p-5 space-y-4">
           <SectionTitle><Calculator className="w-4 h-4" />Property Inputs</SectionTitle>
           {(
             [
@@ -269,7 +269,7 @@ function PropertyAnalyzer() {
                 step={step}
                 min={min}
                 onChange={(e) => set(key, parseFloat(e.target.value) || 0)}
-                className="w-32 rounded-lg border border-white/10 bg-card px-3 py-1.5 text-sm text-white text-right focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+                className="w-32 rounded-lg border border-border bg-card px-3 py-1.5 text-sm text-white text-right focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
               />
             </div>
           ))}
@@ -282,7 +282,7 @@ function PropertyAnalyzer() {
               min={0}
               max={30}
               onChange={(e) => set("vacancy", parseFloat(e.target.value) || 0)}
-              className="w-32 rounded-lg border border-white/10 bg-card px-3 py-1.5 text-sm text-white text-right focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+              className="w-32 rounded-lg border border-border bg-card px-3 py-1.5 text-sm text-white text-right focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
             />
           </div>
           <div className="flex items-center justify-between gap-4">
@@ -294,7 +294,7 @@ function PropertyAnalyzer() {
               min={5}
               max={100}
               onChange={(e) => set("downPct", parseFloat(e.target.value) || 20)}
-              className="w-32 rounded-lg border border-white/10 bg-card px-3 py-1.5 text-sm text-white text-right focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+              className="w-32 rounded-lg border border-border bg-card px-3 py-1.5 text-sm text-white text-right focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
             />
           </div>
         </div>
@@ -308,7 +308,7 @@ function PropertyAnalyzer() {
             <StatCard label="DSCR" value={calc.dscr.toFixed(2) + "x"} highlight={calc.dscr >= 1.25 ? "pos" : calc.dscr >= 1.0 ? "neutral" : "neg"} sub="NOI / Debt Service" />
           </div>
 
-          <div className="rounded-xl border border-white/10 bg-white/5 p-4 space-y-2">
+          <div className="rounded-xl border border-border bg-foreground/5 p-4 space-y-2">
             <SectionTitle><DollarSign className="w-4 h-4" />Income Statement</SectionTitle>
             {[
               { label: "Gross Rent (annual)", val: calc.annualGross, sign: 1 },
@@ -319,14 +319,14 @@ function PropertyAnalyzer() {
               { label: "Debt Service (annual)", val: -calc.annualDebtService, sign: -1 },
               { label: "Cash Flow After Debt", val: calc.cashFlow, sign: 1, bold: true },
             ].map(({ label, val, bold }) => (
-              <div key={label} className={cn("flex justify-between text-sm", bold ? "font-semibold border-t border-white/10 pt-1 mt-1" : "")}>
+              <div key={label} className={cn("flex justify-between text-sm", bold ? "font-semibold border-t border-border pt-1 mt-1" : "")}>
                 <span className="text-muted-foreground">{label}</span>
                 <span className={posNegClass(val)}>{fmtM(val)}</span>
               </div>
             ))}
           </div>
 
-          <div className="rounded-xl border border-white/10 bg-white/5 p-4 space-y-1">
+          <div className="rounded-xl border border-border bg-foreground/5 p-4 space-y-1">
             <div className="flex justify-between text-sm">
               <span className="text-muted-foreground">Loan Amount (80% LTV)</span>
               <span className="text-white">{fmtM(calc.loanAmount)}</span>
@@ -348,7 +348,7 @@ function PropertyAnalyzer() {
       </div>
 
       {/* Appreciation SVG */}
-      <div className="rounded-xl border border-white/10 bg-white/5 p-5">
+      <div className="rounded-xl border border-border bg-foreground/5 p-5">
         <SectionTitle><TrendingUp className="w-4 h-4" />10-Year Appreciation & Equity Build-Up (4% annual growth)</SectionTitle>
         <svg viewBox={`0 0 ${W} ${H}`} className="w-full" preserveAspectRatio="xMidYMid meet">
           {/* Grid lines */}
@@ -558,7 +558,7 @@ function MarketComparisons() {
             onClick={() => setSort(key)}
             className={cn(
               "rounded-lg px-3 py-1.5 text-xs font-medium transition-colors",
-              sort === key ? "bg-primary text-white" : "bg-white/5 text-muted-foreground hover:bg-muted/50"
+              sort === key ? "bg-primary text-white" : "bg-foreground/5 text-muted-foreground hover:bg-muted/50"
             )}
           >
             {label}
@@ -567,11 +567,11 @@ function MarketComparisons() {
       </div>
 
       {/* Table */}
-      <div className="rounded-xl border border-white/10 bg-white/5 overflow-hidden">
+      <div className="rounded-xl border border-border bg-foreground/5 overflow-hidden">
         <div className="overflow-x-auto">
           <table className="w-full text-sm">
             <thead>
-              <tr className="bg-white/5 text-xs text-muted-foreground uppercase">
+              <tr className="bg-foreground/5 text-xs text-muted-foreground uppercase">
                 <th className="px-3 py-2 text-left">Metro</th>
                 <th className="px-3 py-2 text-right">Median Price</th>
                 <th className="px-3 py-2 text-right">P/Rent</th>
@@ -592,7 +592,7 @@ function MarketComparisons() {
                     initial={{ opacity: 0, x: -10 }}
                     animate={{ opacity: 1, x: 0 }}
                     transition={{ delay: i * 0.02 }}
-                    className="border-t border-white/5 hover:bg-muted/30 transition-colors"
+                    className="border-t border-border/50 hover:bg-muted/30 transition-colors"
                   >
                     <td className="px-3 py-2 font-medium text-white">
                       {m.city}, {m.state}
@@ -632,7 +632,7 @@ function MarketComparisons() {
       </div>
 
       {/* Rent vs Buy */}
-      <div className="rounded-xl border border-white/10 bg-white/5 p-5">
+      <div className="rounded-xl border border-border bg-foreground/5 p-5">
         <SectionTitle><Calculator className="w-4 h-4" />Rent vs. Buy Calculator (10-Year Net Cost)</SectionTitle>
         <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-4">
           {[
@@ -650,7 +650,7 @@ function MarketComparisons() {
                 onChange={(e) =>
                   setRentVsBuy((p) => ({ ...p, [key]: parseFloat(e.target.value) || 0 }))
                 }
-                className="w-full rounded-lg border border-white/10 bg-card px-3 py-1.5 text-sm text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+                className="w-full rounded-lg border border-border bg-card px-3 py-1.5 text-sm text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
               />
             </div>
           ))}
@@ -761,11 +761,11 @@ function REITAnalysis() {
       </div>
 
       {/* REIT table */}
-      <div className="rounded-xl border border-white/10 bg-white/5 overflow-hidden">
+      <div className="rounded-xl border border-border bg-foreground/5 overflow-hidden">
         <div className="overflow-x-auto">
           <table className="w-full text-sm">
             <thead>
-              <tr className="bg-white/5 text-xs text-muted-foreground uppercase">
+              <tr className="bg-foreground/5 text-xs text-muted-foreground uppercase">
                 <th className="px-3 py-2 text-left">Ticker</th>
                 <th className="px-3 py-2 text-left">Sector</th>
                 <th className="px-3 py-2 text-right">Div Yield</th>
@@ -781,7 +781,7 @@ function REITAnalysis() {
                 <tr
                   key={r.ticker}
                   onClick={() => setSelected(r.ticker === selected ? null : r.ticker)}
-                  className={cn("border-t border-white/5 cursor-pointer transition-colors", selected === r.ticker ? "bg-primary/20" : "hover:bg-muted/30")}
+                  className={cn("border-t border-border/50 cursor-pointer transition-colors", selected === r.ticker ? "bg-primary/20" : "hover:bg-muted/30")}
                 >
                   <td className="px-3 py-2 font-mono font-bold text-white">{r.ticker}</td>
                   <td className="px-3 py-2">
@@ -843,7 +843,7 @@ function REITAnalysis() {
       </AnimatePresence>
 
       {/* FFO bar chart */}
-      <div className="rounded-xl border border-white/10 bg-white/5 p-5">
+      <div className="rounded-xl border border-border bg-foreground/5 p-5">
         <SectionTitle><BarChart3 className="w-4 h-4" />FFO per Share by REIT</SectionTitle>
         <svg viewBox={`0 0 ${W3} ${H3}`} className="w-full" preserveAspectRatio="xMidYMid meet">
           {[0, 0.5, 1].map((t) => (
@@ -865,7 +865,7 @@ function REITAnalysis() {
 
       {/* Education: FFO vs Earnings */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-        <div className="rounded-xl border border-white/10 bg-white/5 p-4 space-y-2">
+        <div className="rounded-xl border border-border bg-foreground/5 p-4 space-y-2">
           <SectionTitle><Info className="w-4 h-4" />Why FFO Instead of EPS?</SectionTitle>
           <p className="text-xs text-muted-foreground leading-relaxed">
             REITs own depreciating assets on paper — GAAP requires large depreciation charges that reduce net income, but real estate often <em>appreciates</em> in value.
@@ -877,7 +877,7 @@ function REITAnalysis() {
             <strong className="text-white">AFFO</strong> (Adjusted FFO) further subtracts recurring capex — the gold standard for dividend sustainability analysis.
           </p>
         </div>
-        <div className="rounded-xl border border-white/10 bg-white/5 p-4 space-y-2">
+        <div className="rounded-xl border border-border bg-foreground/5 p-4 space-y-2">
           <SectionTitle><Building2 className="w-4 h-4" />REIT vs Direct Real Estate</SectionTitle>
           {[
             { factor: "Liquidity", reit: "High — stock exchange", direct: "Low — months to sell" },
@@ -954,7 +954,7 @@ function CommercialRE() {
             key={s.type}
             initial={{ opacity: 0, y: 8 }}
             animate={{ opacity: 1, y: 0 }}
-            className="rounded-xl border border-white/10 bg-white/5 p-4 space-y-2"
+            className="rounded-xl border border-border bg-foreground/5 p-4 space-y-2"
           >
             <div className="flex items-center justify-between">
               <div className="flex items-center gap-2">
@@ -988,7 +988,7 @@ function CommercialRE() {
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
         {/* DSCR Calculator */}
-        <div className="rounded-xl border border-white/10 bg-white/5 p-5 space-y-4">
+        <div className="rounded-xl border border-border bg-foreground/5 p-5 space-y-4">
           <SectionTitle><Calculator className="w-4 h-4" />DSCR Calculator</SectionTitle>
           {[
             { key: "noi" as const, label: "Annual NOI ($)" },
@@ -1001,7 +1001,7 @@ function CommercialRE() {
                 value={dscrInputs[key]}
                 step={10000}
                 onChange={(e) => setDscrInputs((p) => ({ ...p, [key]: parseFloat(e.target.value) || 0 }))}
-                className="w-32 rounded-lg border border-white/10 bg-card px-3 py-1.5 text-sm text-white text-right focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+                className="w-32 rounded-lg border border-border bg-card px-3 py-1.5 text-sm text-white text-right focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
               />
             </div>
           ))}
@@ -1017,7 +1017,7 @@ function CommercialRE() {
         </div>
 
         {/* 5/25 Commercial Mortgage */}
-        <div className="rounded-xl border border-white/10 bg-white/5 p-5 space-y-4">
+        <div className="rounded-xl border border-border bg-foreground/5 p-5 space-y-4">
           <SectionTitle><Building2 className="w-4 h-4" />Commercial Mortgage (5/25 Structure)</SectionTitle>
           {[
             { key: "loanAmount" as const, label: "Loan Amount ($)", step: 100000 },
@@ -1031,7 +1031,7 @@ function CommercialRE() {
                 value={mortInputs[key]}
                 step={step}
                 onChange={(e) => setMortInputs((p) => ({ ...p, [key]: parseFloat(e.target.value) || 0 }))}
-                className="w-32 rounded-lg border border-white/10 bg-card px-3 py-1.5 text-sm text-white text-right focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+                className="w-32 rounded-lg border border-border bg-card px-3 py-1.5 text-sm text-white text-right focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
               />
             </div>
           ))}
@@ -1150,7 +1150,7 @@ function DevelopmentTab() {
     <div className="space-y-6">
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
         {/* Ground-up Development */}
-        <div className="rounded-xl border border-white/10 bg-white/5 p-5 space-y-4">
+        <div className="rounded-xl border border-border bg-foreground/5 p-5 space-y-4">
           <SectionTitle><Building2 className="w-4 h-4" />Ground-Up Development Costs</SectionTitle>
           {[
             { key: "landCost" as const, label: "Land Cost ($)" },
@@ -1165,7 +1165,7 @@ function DevelopmentTab() {
                 value={devInputs[key]}
                 step={10000}
                 onChange={(e) => setDevInputs((p) => ({ ...p, [key]: parseFloat(e.target.value) || 0 }))}
-                className="w-32 rounded-lg border border-white/10 bg-card px-3 py-1.5 text-sm text-white text-right focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+                className="w-32 rounded-lg border border-border bg-card px-3 py-1.5 text-sm text-white text-right focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
               />
             </div>
           ))}
@@ -1204,7 +1204,7 @@ function DevelopmentTab() {
         </div>
 
         {/* BRRRR */}
-        <div className="rounded-xl border border-white/10 bg-white/5 p-5 space-y-4">
+        <div className="rounded-xl border border-border bg-foreground/5 p-5 space-y-4">
           <SectionTitle><RefreshCw className="w-4 h-4" />BRRRR Strategy</SectionTitle>
           <p className="text-xs text-muted-foreground">Buy → Rehab → Rent → Refinance → Repeat</p>
           {[
@@ -1221,7 +1221,7 @@ function DevelopmentTab() {
                 value={brrrrInputs[key]}
                 step={step}
                 onChange={(e) => setBrrrrInputs((p) => ({ ...p, [key]: parseFloat(e.target.value) || 0 }))}
-                className="w-32 rounded-lg border border-white/10 bg-card px-3 py-1.5 text-sm text-white text-right focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+                className="w-32 rounded-lg border border-border bg-card px-3 py-1.5 text-sm text-white text-right focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
               />
             </div>
           ))}
@@ -1244,12 +1244,12 @@ function DevelopmentTab() {
       </div>
 
       {/* Renovation ROI */}
-      <div className="rounded-xl border border-white/10 bg-white/5 p-5">
+      <div className="rounded-xl border border-border bg-foreground/5 p-5">
         <SectionTitle><TrendingUp className="w-4 h-4" />Renovation ROI — Which Improvements Add the Most Value</SectionTitle>
         <div className="overflow-x-auto">
           <table className="w-full text-sm">
             <thead>
-              <tr className="text-xs text-muted-foreground uppercase border-b border-white/10">
+              <tr className="text-xs text-muted-foreground uppercase border-b border-border">
                 <th className="px-3 py-2 text-left">Improvement</th>
                 <th className="px-3 py-2 text-right">Cost</th>
                 <th className="px-3 py-2 text-right">Value Added</th>
@@ -1261,7 +1261,7 @@ function DevelopmentTab() {
               {renos
                 .sort((a, b) => b.roi - a.roi)
                 .map((r) => (
-                  <tr key={r.item} className="border-t border-white/5 hover:bg-muted/30 transition-colors">
+                  <tr key={r.item} className="border-t border-border/50 hover:bg-muted/30 transition-colors">
                     <td className="px-3 py-2 text-muted-foreground">{r.item}</td>
                     <td className="px-3 py-2 text-right text-muted-foreground">{fmtUSD(r.cost)}</td>
                     <td className="px-3 py-2 text-right text-emerald-400">{fmtUSD(r.addedVal)}</td>
@@ -1271,7 +1271,7 @@ function DevelopmentTab() {
                       </span>
                     </td>
                     <td className="px-3 py-2">
-                      <div className="h-2 rounded-full bg-white/10 w-32 overflow-hidden">
+                      <div className="h-2 rounded-full bg-foreground/10 w-32 overflow-hidden">
                         <div className={cn("h-full rounded-full", r.roi >= 100 ? "bg-emerald-500" : r.roi >= 75 ? "bg-amber-500" : "bg-rose-500")} style={{ width: `${Math.min(100, r.roi)}%` }} />
                       </div>
                     </td>
@@ -1283,7 +1283,7 @@ function DevelopmentTab() {
       </div>
 
       {/* IRR Model */}
-      <div className="rounded-xl border border-white/10 bg-white/5 p-5">
+      <div className="rounded-xl border border-border bg-foreground/5 p-5">
         <SectionTitle><BarChart3 className="w-4 h-4" />Value-Add IRR Model</SectionTitle>
         <div className="grid grid-cols-6 gap-2 mb-3">
           {irrFlows.cashFlows.map((cf, i) => (
@@ -1391,7 +1391,7 @@ function PortfolioStrategy() {
       {/* Risk-return + allocation */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
         {/* Risk-return scatter */}
-        <div className="rounded-xl border border-white/10 bg-white/5 p-5">
+        <div className="rounded-xl border border-border bg-foreground/5 p-5">
           <SectionTitle><BarChart3 className="w-4 h-4" />Core → Opportunistic Risk/Return</SectionTitle>
           <svg viewBox={`0 0 ${W4} ${H4}`} className="w-full">
             {[0, 5, 10, 15, 20].map((r) => (
@@ -1428,7 +1428,7 @@ function PortfolioStrategy() {
         </div>
 
         {/* Sector allocation donut */}
-        <div className="rounded-xl border border-white/10 bg-white/5 p-5">
+        <div className="rounded-xl border border-border bg-foreground/5 p-5">
           <SectionTitle><Layers className="w-4 h-4" />Recommended Sector Allocation</SectionTitle>
           <div className="flex items-center gap-4">
             <svg viewBox="0 0 160 160" className="w-36 h-36 shrink-0">
@@ -1443,7 +1443,7 @@ function PortfolioStrategy() {
                 <div key={s.name} className="flex items-center gap-2">
                   <div className="w-2.5 h-2.5 rounded-full shrink-0" style={{ backgroundColor: s.color }} />
                   <span className="text-xs text-muted-foreground flex-1">{s.name}</span>
-                  <div className="h-1.5 rounded-full bg-white/10 w-20 overflow-hidden">
+                  <div className="h-1.5 rounded-full bg-foreground/10 w-20 overflow-hidden">
                     <div className="h-full rounded-full" style={{ width: `${s.pct}%`, backgroundColor: s.color }} />
                   </div>
                   <span className="text-xs text-muted-foreground w-8 text-right">{s.pct}%</span>
@@ -1455,7 +1455,7 @@ function PortfolioStrategy() {
       </div>
 
       {/* Leverage effects */}
-      <div className="rounded-xl border border-white/10 bg-white/5 p-5 space-y-4">
+      <div className="rounded-xl border border-border bg-foreground/5 p-5 space-y-4">
         <SectionTitle><Percent className="w-4 h-4" />Leverage Effects on Returns</SectionTitle>
         <div className="flex items-center gap-4 mb-2">
           <label className="text-xs text-muted-foreground w-24">LTV: {ltv}%</label>
@@ -1487,7 +1487,7 @@ function PortfolioStrategy() {
             return (
               <div key={ltvTest} className="flex items-center gap-3 text-xs">
                 <span className="text-muted-foreground w-14">{ltvTest}% LTV</span>
-                <div className="flex-1 h-4 rounded-full bg-white/10 overflow-hidden relative">
+                <div className="flex-1 h-4 rounded-full bg-foreground/10 overflow-hidden relative">
                   <div className={cn("absolute inset-y-0 left-0 rounded-full transition-all", coc > 5.5 ? "bg-emerald-500/60" : coc >= 0 ? "bg-amber-500/60" : "bg-rose-500/60")} style={{ width: `${Math.max(0, Math.min(100, coc * 5))}%` }} />
                 </div>
                 <span className={cn("w-16 text-right font-medium", coc > 5.5 ? "text-emerald-400" : coc >= 0 ? "text-amber-400" : "text-rose-400")}>{fmtPct(coc)} CoC</span>
@@ -1499,7 +1499,7 @@ function PortfolioStrategy() {
 
       {/* 1031 + Portfolio diversification */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-        <div className="rounded-xl border border-white/10 bg-white/5 p-4 space-y-2">
+        <div className="rounded-xl border border-border bg-foreground/5 p-4 space-y-2">
           <SectionTitle><RefreshCw className="w-4 h-4" />1031 Exchange</SectionTitle>
           {[
             { rule: "45 Days", desc: "To identify replacement properties after closing" },
@@ -1515,7 +1515,7 @@ function PortfolioStrategy() {
             </div>
           ))}
         </div>
-        <div className="rounded-xl border border-white/10 bg-white/5 p-4 space-y-2">
+        <div className="rounded-xl border border-border bg-foreground/5 p-4 space-y-2">
           <SectionTitle><MapPin className="w-4 h-4" />Geographic Diversification</SectionTitle>
           {[
             { pct: "1 Market", risk: "Extreme concentration risk — local recession wipes portfolio" },
@@ -1527,7 +1527,7 @@ function PortfolioStrategy() {
               <span className="text-muted-foreground">{risk}</span>
             </div>
           ))}
-          <div className="pt-2 border-t border-white/10 space-y-1 text-xs text-muted-foreground">
+          <div className="pt-2 border-t border-border space-y-1 text-xs text-muted-foreground">
             <p><strong className="text-white">Portfolio allocation target:</strong> Real estate 10-20% of total portfolio for most investors.</p>
             <p>Real estate correlation with equities is low (~0.15) over long periods, providing genuine diversification benefit.</p>
             <p><strong className="text-white">Concentration risk:</strong> Single-family investors often have 80%+ of net worth in one property — opposite of diversification.</p>
@@ -1553,7 +1553,7 @@ const TABS = [
 
 export default function RealEstatePage() {
   return (
-    <div className="min-h-screen bg-background text-white">
+    <div className="min-h-screen bg-background text-foreground">
       <div className="max-w-7xl mx-auto px-4 py-6 space-y-6">
         {/* Header */}
         <motion.div initial={{ opacity: 0, y: -16 }} animate={{ opacity: 1, y: 0 }} className="flex items-start justify-between flex-wrap gap-4">
@@ -1583,7 +1583,7 @@ export default function RealEstatePage() {
 
         {/* Tabs */}
         <Tabs defaultValue="analyzer" className="space-y-6">
-          <TabsList className="flex flex-wrap gap-1 h-auto bg-white/5 p-1 rounded-xl border border-white/10">
+          <TabsList className="flex flex-wrap gap-1 h-auto bg-foreground/5 p-1 rounded-xl border border-border">
             {TABS.map(({ id, label, icon }) => (
               <TabsTrigger
                 key={id}

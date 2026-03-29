@@ -849,7 +849,7 @@ function QualityValueBlend() {
                     <div className="flex-1">
                       <div className="h-1.5 bg-muted rounded-full overflow-hidden">
                         <div
-                          className="h-full bg-blue-500 rounded-full"
+                          className="h-full bg-primary rounded-full"
                           style={{ width: `${st.compositeScore}%` }}
                         />
                       </div>

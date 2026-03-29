@@ -163,7 +163,7 @@ function DeltaHedgingTab() {
   return (
     <div className="space-y-6">
       {/* Header */}
-      <div className="rounded-xl border border-white/10 bg-white/5 p-5">
+      <div className="rounded-xl border border-border bg-foreground/5 p-5">
         <h2 className="text-lg font-semibold text-white mb-3 flex items-center gap-2">
           <ArrowUpDown className="w-5 h-5 text-primary" />
           Delta Hedging Fundamentals
@@ -194,7 +194,7 @@ function DeltaHedgingTab() {
       </div>
 
       {/* Stock path + hedge adjustment SVG */}
-      <div className="rounded-xl border border-white/10 bg-white/5 p-5">
+      <div className="rounded-xl border border-border bg-foreground/5 p-5">
         <div className="flex items-center justify-between mb-4">
           <h3 className="text-white font-medium">Stock Path with Hedge Rebalances</h3>
           <div className="flex items-center gap-3 text-xs text-muted-foreground">
@@ -266,7 +266,7 @@ function DeltaHedgingTab() {
       </div>
 
       {/* Transaction cost vs hedge frequency */}
-      <div className="rounded-xl border border-white/10 bg-white/5 p-5">
+      <div className="rounded-xl border border-border bg-foreground/5 p-5">
         <h3 className="text-white font-medium mb-4">Transaction Cost vs Hedge Frequency Tradeoff</h3>
         <svg viewBox="0 0 560 160" className="w-full" style={{ height: 160 }}>
           {[0, 0.25, 0.5, 0.75, 1].map((t) => (
@@ -294,12 +294,12 @@ function DeltaHedgingTab() {
       </div>
 
       {/* Gamma vs Theta daily grid */}
-      <div className="rounded-xl border border-white/10 bg-white/5 p-5">
+      <div className="rounded-xl border border-border bg-foreground/5 p-5">
         <h3 className="text-white font-medium mb-4">Gamma vs Theta Daily P&amp;L Grid ($ per 100-share lot)</h3>
         <div className="overflow-x-auto">
           <table className="w-full text-xs">
             <thead>
-              <tr className="text-muted-foreground border-b border-white/10">
+              <tr className="text-muted-foreground border-b border-border">
                 <th className="text-left py-2 pr-4">DTE / ΔS%</th>
                 {["1%", "2%", "3%", "4%", "5%"].map((h) => (
                   <th key={h} className="text-center py-2 px-3">{h}</th>
@@ -308,7 +308,7 @@ function DeltaHedgingTab() {
             </thead>
             <tbody>
               {[30, 21, 14, 7, 1].map((dte, row) => (
-                <tr key={dte} className="border-b border-white/5">
+                <tr key={dte} className="border-b border-border/50">
                   <td className="py-2 pr-4 text-muted-foreground font-medium">{dte} DTE</td>
                   {gridData[row].map((cell, col) => (
                     <td key={col} className="py-2 px-3 text-center">
@@ -378,7 +378,7 @@ function GammaPnLTab() {
   return (
     <div className="space-y-6">
       {/* Key concept */}
-      <div className="rounded-xl border border-white/10 bg-white/5 p-5">
+      <div className="rounded-xl border border-border bg-foreground/5 p-5">
         <h2 className="text-lg font-semibold text-white mb-3 flex items-center gap-2">
           <Zap className="w-5 h-5 text-emerald-400" />
           Gamma P&amp;L Decomposition
@@ -389,7 +389,7 @@ function GammaPnLTab() {
             <div className="bg-muted rounded-lg p-3 font-mono text-sm space-y-1">
               <div className="text-emerald-400">Gamma P&amp;L = ½ × Γ × (ΔS)²</div>
               <div className="text-red-400">Theta Decay = Θ × Δt</div>
-              <div className="text-primary border-t border-white/10 pt-1 mt-1">Net = Gamma − |Theta|</div>
+              <div className="text-primary border-t border-border pt-1 mt-1">Net = Gamma − |Theta|</div>
             </div>
             <div className="mt-3 text-xs text-muted-foreground space-y-1">
               <div>• Breakeven realized vol: σ_R = σ_IV when Γ-income = Θ-decay</div>
@@ -429,7 +429,7 @@ function GammaPnLTab() {
       </div>
 
       {/* Gamma scalping simulation */}
-      <div className="rounded-xl border border-white/10 bg-white/5 p-5">
+      <div className="rounded-xl border border-border bg-foreground/5 p-5">
         <div className="flex items-center justify-between mb-4">
           <h3 className="text-white font-medium">Gamma Scalping Simulation (ATM Call, 30 DTE)</h3>
           <div className={`text-sm font-mono font-semibold px-3 py-1 rounded-full ${simulation.finalPnL >= 0 ? "bg-emerald-500/20 text-emerald-400" : "bg-red-500/20 text-red-400"}`}>
@@ -470,7 +470,7 @@ function GammaPnLTab() {
         <div className="mt-4 overflow-x-auto">
           <table className="w-full text-xs">
             <thead>
-              <tr className="text-muted-foreground border-b border-white/10">
+              <tr className="text-muted-foreground border-b border-border">
                 <th className="text-left py-1.5 pr-3">Bar</th>
                 <th className="text-right py-1.5 pr-3">Price</th>
                 <th className="text-right py-1.5 pr-3">Delta</th>
@@ -480,7 +480,7 @@ function GammaPnLTab() {
             </thead>
             <tbody>
               {simulation.hedgeEvents.slice(0, 15).map((ev) => (
-                <tr key={ev.idx} className="border-b border-white/5 hover:bg-muted/30">
+                <tr key={ev.idx} className="border-b border-border/50 hover:bg-muted/30">
                   <td className="py-1.5 pr-3 text-muted-foreground">{ev.idx}</td>
                   <td className="py-1.5 pr-3 text-right font-mono text-white">${ev.price.toFixed(2)}</td>
                   <td className="py-1.5 pr-3 text-right font-mono text-primary">{ev.delta.toFixed(3)}</td>
@@ -498,7 +498,7 @@ function GammaPnLTab() {
       </div>
 
       {/* P&L scatter: delta adjustment vs P&L */}
-      <div className="rounded-xl border border-white/10 bg-white/5 p-5">
+      <div className="rounded-xl border border-border bg-foreground/5 p-5">
         <h3 className="text-white font-medium mb-4">P&amp;L vs Hedge Adjustment Size (|ΔS|)</h3>
         <svg viewBox="0 0 560 160" className="w-full" style={{ height: 160 }}>
           <line x1={40} x2={530} y1={80} y2={80} stroke="#ffffff20" />
@@ -562,7 +562,7 @@ function VolArbitrageTab() {
   return (
     <div className="space-y-6">
       {/* Strategy selector */}
-      <div className="rounded-xl border border-white/10 bg-white/5 p-5">
+      <div className="rounded-xl border border-border bg-foreground/5 p-5">
         <h2 className="text-lg font-semibold text-white mb-4 flex items-center gap-2">
           <TrendingUp className="w-5 h-5 text-primary" />
           Volatility Arbitrage Strategies
@@ -575,7 +575,7 @@ function VolArbitrageTab() {
               className={`p-3 rounded-lg border text-left transition-all ${
                 selectedStrategy === i
                   ? `border-${st.color}-500/60 bg-${st.color}-500/20`
-                  : "border-white/10 bg-white/5 hover:bg-muted/50"
+                  : "border-border bg-foreground/5 hover:bg-muted/50"
               }`}
             >
               <div className={`text-sm font-medium ${selectedStrategy === i ? `text-${st.color}-300` : "text-muted-foreground"}`}>{st.name}</div>
@@ -617,7 +617,7 @@ function VolArbitrageTab() {
       </div>
 
       {/* IV vs RV chart */}
-      <div className="rounded-xl border border-white/10 bg-white/5 p-5">
+      <div className="rounded-xl border border-border bg-foreground/5 p-5">
         <div className="flex items-center justify-between mb-4">
           <h3 className="text-white font-medium">2-Year Implied Vol vs Realized Vol</h3>
           <div className="text-xs text-muted-foreground bg-amber-500/10 border border-amber-500/20 rounded px-2 py-1">
@@ -665,12 +665,12 @@ function VolArbitrageTab() {
       </div>
 
       {/* Vol Surface */}
-      <div className="rounded-xl border border-white/10 bg-white/5 p-5">
+      <div className="rounded-xl border border-border bg-foreground/5 p-5">
         <h3 className="text-white font-medium mb-4">Vol Surface — Implied Vol by Strike &amp; Expiry</h3>
         <div className="overflow-x-auto">
           <table className="w-full text-xs">
             <thead>
-              <tr className="text-muted-foreground border-b border-white/10">
+              <tr className="text-muted-foreground border-b border-border">
                 <th className="text-left py-2 pr-4">Strike</th>
                 {surfaceExpiries.map((e) => (
                   <th key={e} className="text-center py-2 px-3">{e}</th>
@@ -679,7 +679,7 @@ function VolArbitrageTab() {
             </thead>
             <tbody>
               {surfaceStrikes.map((k, ki) => (
-                <tr key={k} className="border-b border-white/5">
+                <tr key={k} className="border-b border-border/50">
                   <td className={`py-2 pr-4 font-medium ${k === 100 ? "text-amber-300" : "text-muted-foreground"}`}>
                     {k === 100 ? "★ " : ""}{k}
                   </td>
@@ -705,7 +705,7 @@ function VolArbitrageTab() {
       </div>
 
       {/* Vanna/Charm effects */}
-      <div className="rounded-xl border border-white/10 bg-white/5 p-5">
+      <div className="rounded-xl border border-border bg-foreground/5 p-5">
         <h3 className="text-white font-medium mb-3">Vanna &amp; Charm Effects Near Expiry</h3>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm">
           <div className="bg-indigo-500/10 border border-indigo-500/20 rounded-lg p-3">
@@ -749,7 +749,7 @@ function MMRiskTab() {
   return (
     <div className="space-y-6">
       {/* Book overview */}
-      <div className="rounded-xl border border-white/10 bg-white/5 p-5">
+      <div className="rounded-xl border border-border bg-foreground/5 p-5">
         <h2 className="text-lg font-semibold text-white mb-4 flex items-center gap-2">
           <Shield className="w-5 h-5 text-primary" />
           Market Maker Book Management
@@ -771,7 +771,7 @@ function MMRiskTab() {
       </div>
 
       {/* Risk limits */}
-      <div className="rounded-xl border border-white/10 bg-white/5 p-5">
+      <div className="rounded-xl border border-border bg-foreground/5 p-5">
         <h3 className="text-white font-medium mb-4">Risk Limits Dashboard</h3>
         <div className="space-y-3">
           {Object.values(riskLimits).map((rl) => {
@@ -780,7 +780,7 @@ function MMRiskTab() {
             return (
               <div key={rl.label} className="flex items-center gap-4">
                 <div className="w-32 text-sm text-muted-foreground">{rl.label}</div>
-                <div className="flex-1 h-3 bg-white/10 rounded-full overflow-hidden">
+                <div className="flex-1 h-3 bg-foreground/10 rounded-full overflow-hidden">
                   <motion.div
                     className={`h-full ${barColor} rounded-full`}
                     initial={{ width: 0 }}
@@ -806,7 +806,7 @@ function MMRiskTab() {
       </div>
 
       {/* Daily P&L breakdown chart */}
-      <div className="rounded-xl border border-white/10 bg-white/5 p-5">
+      <div className="rounded-xl border border-border bg-foreground/5 p-5">
         <h3 className="text-white font-medium mb-4">Daily Greeks P&amp;L Breakdown (20 days)</h3>
         <svg viewBox={`0 0 ${W} ${H}`} className="w-full" style={{ height: H }}>
           {[0, 0.25, 0.5, 0.75, 1].map((t) => (
@@ -861,7 +861,7 @@ function MMRiskTab() {
       </div>
 
       {/* Gap risk and pin risk */}
-      <div className="rounded-xl border border-white/10 bg-white/5 p-5">
+      <div className="rounded-xl border border-border bg-foreground/5 p-5">
         <h3 className="text-white font-medium mb-4">Pin Risk at Expiry</h3>
         <svg viewBox="0 0 560 140" className="w-full" style={{ height: 140 }}>
           {/* Probability distribution */}
@@ -899,11 +899,11 @@ function MMRiskTab() {
       </div>
 
       {/* Stress scenarios */}
-      <div className="rounded-xl border border-white/10 bg-white/5 p-5">
+      <div className="rounded-xl border border-border bg-foreground/5 p-5">
         <h3 className="text-white font-medium mb-4">Stress Scenarios — P&amp;L Impact ($)</h3>
         <div className="space-y-2">
           {stressScenarios.map((sc) => (
-            <div key={sc.name} className="grid grid-cols-6 gap-2 text-xs py-2 border-b border-white/5 items-center">
+            <div key={sc.name} className="grid grid-cols-6 gap-2 text-xs py-2 border-b border-border/50 items-center">
               <div className={`text-${sc.color}-300 font-medium col-span-1`}>{sc.name}</div>
               <div className="text-right font-mono">
                 <span className="text-muted-foreground text-xs">Δ </span>
@@ -946,7 +946,7 @@ function MMRiskTab() {
 
       {/* Key risk concepts */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-        <div className="rounded-xl border border-white/10 bg-white/5 p-4">
+        <div className="rounded-xl border border-border bg-foreground/5 p-4">
           <div className="flex items-center gap-2 mb-2">
             <AlertTriangle className="w-4 h-4 text-red-400" />
             <span className="text-white text-sm font-medium">Gap Risk</span>
@@ -955,7 +955,7 @@ function MMRiskTab() {
             Overnight price gaps bypass continuous hedging — the delta hedge becomes stale. Short gamma books suffer most. Managed via position limits on earnings/events and overnight gamma exposure caps.
           </p>
         </div>
-        <div className="rounded-xl border border-white/10 bg-white/5 p-4">
+        <div className="rounded-xl border border-border bg-foreground/5 p-4">
           <div className="flex items-center gap-2 mb-2">
             <CheckCircle2 className="w-4 h-4 text-emerald-400" />
             <span className="text-white text-sm font-medium">Best Practices</span>
@@ -995,14 +995,14 @@ export default function GammaScalpingPage() {
           </div>
           <div className="flex flex-wrap gap-2 mt-3">
             {["Long Gamma", "Delta-Neutral", "Vol Arbitrage", "Market Making", "Realized vs Implied"].map((tag) => (
-              <span key={tag} className="text-xs px-2 py-0.5 rounded-full bg-white/5 border border-white/10 text-muted-foreground">{tag}</span>
+              <span key={tag} className="text-xs px-2 py-0.5 rounded-full bg-foreground/5 border border-border text-muted-foreground">{tag}</span>
             ))}
           </div>
         </motion.div>
 
         {/* Tabs */}
         <Tabs defaultValue="delta" className="w-full">
-          <TabsList className="grid w-full grid-cols-2 md:grid-cols-4 mb-6 bg-white/5 border border-white/10 rounded-xl p-1 h-auto gap-1">
+          <TabsList className="grid w-full grid-cols-2 md:grid-cols-4 mb-6 bg-foreground/5 border border-border rounded-xl p-1 h-auto gap-1">
             {[
               { value: "delta", label: "Delta Hedging", icon: ArrowUpDown },
               { value: "gamma", label: "Gamma P&L", icon: Zap },
@@ -1012,7 +1012,7 @@ export default function GammaScalpingPage() {
               <TabsTrigger
                 key={value}
                 value={value}
-                className="flex items-center gap-2 text-xs py-2 data-[state=active]:bg-white/10 data-[state=active]:text-white rounded-lg text-muted-foreground"
+                className="flex items-center gap-2 text-xs py-2 data-[state=active]:bg-foreground/10 data-[state=active]:text-white rounded-lg text-muted-foreground"
               >
                 <Icon className="w-3.5 h-3.5" />
                 {label}

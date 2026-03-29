@@ -244,7 +244,7 @@ export function OptionsOrderEntry({ spotPrice, analytics }: OptionsOrderEntryPro
               className={cn(
                 "flex-1 rounded-lg px-3 py-2 text-[11px] font-bold transition-colors",
                 canAfford
-                  ? "bg-orange-500 text-white hover:bg-orange-600 active:bg-orange-700"
+                  ? "bg-orange-500 text-primary-foreground hover:bg-orange-600 active:bg-orange-700"
                   : "cursor-not-allowed bg-orange-500/30 text-orange-400/50",
               )}
               whileHover={canAfford ? { scale: 1.02 } : {}}

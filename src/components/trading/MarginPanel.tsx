@@ -69,7 +69,7 @@ export function MarginPanel() {
       className={cn(
         "rounded-md border p-3 space-y-2.5",
         isMarginCall
-          ? "border-[#ef4444]/50 bg-[#ef4444]/5"
+          ? "border-loss/50 bg-loss/5"
           : "border-border/40 bg-muted/20",
       )}
     >
@@ -85,14 +85,14 @@ export function MarginPanel() {
               initial={{ scale: 0.8, opacity: 0 }}
               animate={{ scale: [1, 1.05, 1], opacity: 1 }}
               transition={{ repeat: Infinity, duration: 1.2 }}
-              className="rounded bg-[#ef4444] px-1.5 py-0.5 text-xs font-bold text-white"
+              className="rounded bg-loss px-1.5 py-0.5 text-xs font-bold text-white"
             >
               MARGIN CALL!
             </motion.span>
           </AnimatePresence>
         )}
         {isMarginWarning && !isMarginCall && (
-          <span className="rounded bg-[#f59e0b]/20 px-1.5 py-0.5 text-xs font-semibold text-[#f59e0b]">
+          <span className="rounded bg-warning/20 px-1.5 py-0.5 text-xs font-semibold text-warning">
             WARNING
           </span>
         )}
@@ -100,7 +100,7 @@ export function MarginPanel() {
 
       {/* Margin call explanation */}
       {isMarginCall && (
-        <div className="flex items-start gap-1.5 rounded-md bg-[#ef4444]/10 px-2 py-1.5 text-xs text-[#ef4444]">
+        <div className="flex items-start gap-1.5 rounded-md bg-loss/10 px-2 py-1.5 text-xs text-loss">
           <AlertTriangle className="mt-0.5 h-3 w-3 shrink-0" />
           <span>
             Equity ({formatCurrency(equity)}) is below 25% maintenance requirement ({formatCurrency(maintenanceRequirement)}).
@@ -116,7 +116,7 @@ export function MarginPanel() {
             <DollarSign className="h-3 w-3" />
             Account Equity
           </span>
-          <span className={cn("tabular-nums font-medium", equity < 0 ? "text-[#ef4444]" : "")}>
+          <span className={cn("tabular-nums font-medium", equity < 0 ? "text-loss" : "")}>
             {formatCurrency(equity)}
           </span>
         </div>
@@ -133,14 +133,14 @@ export function MarginPanel() {
             <TrendingDown className="h-3 w-3" />
             Short Notional
           </span>
-          <span className="tabular-nums font-medium text-[#a855f7]">{formatCurrency(shortNotional)}</span>
+          <span className="tabular-nums font-medium text-short">{formatCurrency(shortNotional)}</span>
         </div>
         <div className="flex items-center justify-between">
           <span className="text-muted-foreground">Maint. Requirement</span>
           <span
             className={cn(
               "tabular-nums font-medium",
-              isMarginCall ? "text-[#ef4444]" : "text-muted-foreground",
+              isMarginCall ? "text-loss" : "text-muted-foreground",
             )}
           >
             {formatCurrency(maintenanceRequirement)}
@@ -148,7 +148,7 @@ export function MarginPanel() {
         </div>
         <div className="flex items-center justify-between">
           <span className="text-muted-foreground">Daily Borrow Interest</span>
-          <span className="tabular-nums text-[#f59e0b]">
+          <span className="tabular-nums text-warning">
             {formatCurrency(totalDailyInterest)}/day
           </span>
         </div>
@@ -180,8 +180,8 @@ export function MarginPanel() {
         </div>
         <div className="mt-0.5 flex justify-between text-[11px] text-muted-foreground/60">
           <span>0%</span>
-          <span className="text-[#f59e0b]">Warning 60%</span>
-          <span className="text-[#ef4444]">Limit 100%</span>
+          <span className="text-warning">Warning 60%</span>
+          <span className="text-loss">Limit 100%</span>
         </div>
       </div>
 
@@ -197,9 +197,9 @@ export function MarginPanel() {
                 key={`${p.ticker}-short`}
                 className="flex items-center justify-between rounded bg-muted/40 px-2 py-1 text-xs"
               >
-                <span className="font-semibold text-[#a855f7]">{p.ticker}</span>
+                <span className="font-semibold text-short">{p.ticker}</span>
                 <span className="text-muted-foreground">{p.quantity} sh</span>
-                <span className="tabular-nums text-[#f59e0b]">{rate.toFixed(2)}%/yr</span>
+                <span className="tabular-nums text-warning">{rate.toFixed(2)}%/yr</span>
                 <span className="tabular-nums text-muted-foreground">
                   {formatCurrency(dailyCost)}/day
                 </span>

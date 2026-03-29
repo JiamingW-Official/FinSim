@@ -1432,7 +1432,7 @@ export function QuestTree() {
         >
           <div className="flex items-center gap-2.5">
             <div className="h-6 w-6 rounded-md bg-amber-500 flex items-center justify-center">
-              <Clock className="h-3.5 w-3.5 text-white" />
+              <Clock className="h-3.5 w-3.5 text-primary-foreground" />
             </div>
             <div className="text-left">
               <p className="text-xs font-bold text-foreground">

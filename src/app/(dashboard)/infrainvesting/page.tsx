@@ -74,9 +74,9 @@ function StatCard({
       ? "text-emerald-400"
       : highlight === "neg"
       ? "text-rose-400"
-      : "text-white";
+      : "text-foreground";
   return (
-    <div className="rounded-xl border border-white/10 bg-white/5 p-4 flex flex-col gap-1">
+    <div className="rounded-xl border border-border bg-muted/30 p-4 flex flex-col gap-1">
       <span className="text-xs text-muted-foreground">{label}</span>
       <span className={cn("text-xl font-bold", valClass)}>{value}</span>
       {sub && <span className="text-xs text-muted-foreground">{sub}</span>}
@@ -305,7 +305,7 @@ function AssetClassesTab() {
         <SectionTitle>
           <Layers size={14} /> Infrastructure Taxonomy
         </SectionTitle>
-        <div className="rounded-xl border border-white/10 bg-white/5 p-4 overflow-x-auto">
+        <div className="rounded-xl border border-border bg-muted/30 p-4 overflow-x-auto">
           <svg viewBox={`0 0 ${svgW} ${svgH}`} className="w-full max-w-2xl mx-auto" style={{ minWidth: 500 }}>
             {/* Title */}
             <text x={svgW / 2} y={22} textAnchor="middle" fill="#e2e8f0" fontSize={13} fontWeight={600}>
@@ -393,11 +393,11 @@ function AssetClassesTab() {
                 "rounded-xl border p-3 text-left transition-colors",
                 selectedSector === sec.name
                   ? "border-primary/60 bg-primary/15"
-                  : "border-white/10 bg-white/5 hover:border-white/20"
+                  : "border-border bg-muted/30 hover:border-border"
               )}
             >
               <div className="text-2xl mb-1">{sec.icon}</div>
-              <div className="text-sm font-semibold text-white">{sec.name}</div>
+              <div className="text-sm font-semibold text-foreground">{sec.name}</div>
               <div className="text-xs text-muted-foreground mt-0.5">{sec.segment}</div>
               <div className="flex items-center justify-between mt-2">
                 <span className="text-xs text-emerald-400 font-medium">{sec.yieldTarget}</span>
@@ -420,13 +420,13 @@ function AssetClassesTab() {
               initial={{ opacity: 0, y: -8 }}
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -8 }}
-              className="mt-3 rounded-xl border border-white/15 bg-white/5 p-4"
+              className="mt-3 rounded-xl border border-border bg-foreground/5 p-4"
             >
               <div className="flex items-start gap-3">
                 <span className="text-2xl">{selected.icon}</span>
                 <div className="flex-1">
                   <div className="flex items-center gap-2 mb-1">
-                    <span className="font-semibold text-white">{selected.name}</span>
+                    <span className="font-semibold text-foreground">{selected.name}</span>
                     <Badge variant="outline" className="text-xs">{selected.segment}</Badge>
                   </div>
                   <p className="text-sm text-muted-foreground leading-relaxed">{selected.desc}</p>
@@ -448,7 +448,7 @@ function AssetClassesTab() {
           <SectionTitle>
             <TrendingUp size={14} /> Global Infrastructure AUM 2015–2024
           </SectionTitle>
-          <div className="rounded-xl border border-white/10 bg-white/5 p-4">
+          <div className="rounded-xl border border-border bg-muted/30 p-4">
             <svg viewBox={`0 0 ${aumW} ${aumH}`} className="w-full">
               {/* Grid */}
               {[400, 600, 800, 1000, 1200].map((v) => (
@@ -498,7 +498,7 @@ function AssetClassesTab() {
           <SectionTitle>
             <Activity size={14} /> Return vs Volatility Scatter
           </SectionTitle>
-          <div className="rounded-xl border border-white/10 bg-white/5 p-4">
+          <div className="rounded-xl border border-border bg-muted/30 p-4">
             <svg viewBox={`0 0 ${scW} ${scH}`} className="w-full">
               {/* Grid */}
               {[5, 8, 11, 14, 17].map((v) => (
@@ -563,14 +563,14 @@ function AssetClassesTab() {
           {RISK_TIERS.map((tier) => (
             <div
               key={tier.tier}
-              className="rounded-xl border border-white/10 bg-white/5 p-4 flex flex-col md:flex-row md:items-center gap-3"
+              className="rounded-xl border border-border bg-muted/30 p-4 flex flex-col md:flex-row md:items-center gap-3"
             >
               <div className="flex items-center gap-3 min-w-[160px]">
                 <div
                   className="w-3 h-3 rounded-full flex-shrink-0"
                   style={{ backgroundColor: tier.color }}
                 />
-                <span className="font-semibold text-white">{tier.tier}</span>
+                <span className="font-semibold text-foreground">{tier.tier}</span>
                 <span className="text-xs font-bold" style={{ color: tier.color }}>
                   {tier.returnTarget}
                 </span>
@@ -678,7 +678,7 @@ function ProjectFinanceTab() {
         <SectionTitle>
           <Layers size={14} /> SPV / Project Finance Structure
         </SectionTitle>
-        <div className="rounded-xl border border-white/10 bg-white/5 p-4 overflow-x-auto">
+        <div className="rounded-xl border border-border bg-muted/30 p-4 overflow-x-auto">
           <svg viewBox={`0 0 ${spvW} ${spvH}`} className="w-full" style={{ minWidth: 480 }}>
             {/* Equity Sponsors */}
             <rect x={10} y={10} width={110} height={50} rx={8} fill="#6366f120" stroke="#6366f1" strokeWidth={1.5} />
@@ -744,7 +744,7 @@ function ProjectFinanceTab() {
         <SectionTitle>
           <Activity size={14} /> Construction vs Operations Phase Risk
         </SectionTitle>
-        <div className="rounded-xl border border-white/10 bg-white/5 p-4 overflow-x-auto">
+        <div className="rounded-xl border border-border bg-muted/30 p-4 overflow-x-auto">
           <svg viewBox={`0 0 ${phW} ${phH}`} className="w-full" style={{ minWidth: 400 }}>
             {/* Phase blocks */}
             <rect x={10} y={20} width={220} height={100} rx={8} fill="#f43f5e18" stroke="#f43f5e" strokeWidth={1.5} />
@@ -818,7 +818,7 @@ function ProjectFinanceTab() {
         </SectionTitle>
         <div className="grid md:grid-cols-3 gap-3">
           {RESERVE_ACCOUNTS.map((ra) => (
-            <div key={ra.name} className="rounded-xl border border-white/10 bg-white/5 p-4">
+            <div key={ra.name} className="rounded-xl border border-border bg-muted/30 p-4">
               <div className="flex items-center gap-2 mb-2">
                 <Badge variant="outline" className="font-mono text-xs">{ra.name}</Badge>
                 <span className="text-xs text-muted-foreground">{ra.months}</span>
@@ -837,7 +837,7 @@ function ProjectFinanceTab() {
         </SectionTitle>
         <div className="grid md:grid-cols-3 gap-3">
           {PPP_MODELS.map((m) => (
-            <div key={m.name} className="rounded-xl border border-white/10 bg-white/5 p-4">
+            <div key={m.name} className="rounded-xl border border-border bg-muted/30 p-4">
               <div className="flex items-center gap-2 mb-2">
                 <Badge style={{ backgroundColor: m.color + "33", borderColor: m.color + "66", color: m.color }}>
                   {m.name}
@@ -863,7 +863,7 @@ function ProjectFinanceTab() {
             <button
               key={item.item}
               onClick={() => setExpandedPhase(expandedPhase === item.item ? null : item.item)}
-              className="rounded-lg border border-white/10 bg-white/5 p-3 text-left hover:border-white/20 transition-colors flex items-start gap-2"
+              className="rounded-lg border border-border bg-muted/30 p-3 text-left hover:border-border transition-colors flex items-start gap-2"
             >
               <span className="text-base flex-shrink-0">{item.icon}</span>
               <div className="flex-1">
@@ -1005,7 +1005,7 @@ function EnergyTransitionTab() {
         <SectionTitle>
           <Sun size={14} /> LCOE Convergence: Renewables vs. Conventional ($/MWh)
         </SectionTitle>
-        <div className="rounded-xl border border-white/10 bg-white/5 p-4 overflow-x-auto">
+        <div className="rounded-xl border border-border bg-muted/30 p-4 overflow-x-auto">
           <svg viewBox={`0 0 ${lcoeW} ${lcoeH}`} className="w-full" style={{ minWidth: 420 }}>
             {/* Grid */}
             {[0, 50, 100, 150, 200, 250, 300].map((v) => (
@@ -1078,7 +1078,7 @@ function EnergyTransitionTab() {
           <SectionTitle>
             <Zap size={14} /> Battery Storage Cost Curve ($/kWh)
           </SectionTitle>
-          <div className="rounded-xl border border-white/10 bg-white/5 p-4">
+          <div className="rounded-xl border border-border bg-muted/30 p-4">
             <svg viewBox={`0 0 ${batW} ${batH}`} className="w-full">
               {[0, 200, 400, 600, 800, 1000].map((v) => (
                 <g key={v}>
@@ -1125,7 +1125,7 @@ function EnergyTransitionTab() {
           <SectionTitle>
             <Globe size={14} /> Annual Investment Opportunity Sizing ($B)
           </SectionTitle>
-          <div className="rounded-xl border border-white/10 bg-white/5 p-4">
+          <div className="rounded-xl border border-border bg-muted/30 p-4">
             <svg viewBox={`0 0 ${oppW} ${oppH}`} className="w-full">
               {OPPORTUNITY_SIZING.map((item, i) => {
                 const barWidth = (item.value / 1000) * oppInnerW;
@@ -1158,9 +1158,9 @@ function EnergyTransitionTab() {
         </SectionTitle>
         <div className="grid md:grid-cols-2 gap-3">
           {POLICY_SUPPORT.map((policy) => (
-            <div key={policy.name} className="rounded-xl border border-white/10 bg-white/5 p-4">
+            <div key={policy.name} className="rounded-xl border border-border bg-muted/30 p-4">
               <div className="flex items-center gap-2 mb-2">
-                <span className="text-sm font-semibold text-white">{policy.name}</span>
+                <span className="text-sm font-semibold text-foreground">{policy.name}</span>
                 <Badge
                   variant="outline"
                   className="text-xs"
@@ -1298,7 +1298,7 @@ function InstitutionalTab() {
           {FUND_MANAGERS.map((fm) => (
             <div
               key={fm.name}
-              className="rounded-xl border border-white/10 bg-white/5 p-4 flex flex-col md:flex-row md:items-center gap-3"
+              className="rounded-xl border border-border bg-muted/30 p-4 flex flex-col md:flex-row md:items-center gap-3"
             >
               <div
                 className="w-2 h-10 rounded flex-shrink-0 hidden md:block"
@@ -1306,7 +1306,7 @@ function InstitutionalTab() {
               />
               <div className="flex-1">
                 <div className="flex items-center gap-2 flex-wrap">
-                  <span className="font-semibold text-white">{fm.name}</span>
+                  <span className="font-semibold text-foreground">{fm.name}</span>
                   <span className="text-xs text-muted-foreground">{fm.hq}</span>
                 </div>
                 <div className="text-xs text-muted-foreground mt-0.5">{fm.focus}</div>
@@ -1327,7 +1327,7 @@ function InstitutionalTab() {
           <SectionTitle>
             <PiggyBank size={14} /> Pension Fund Infrastructure Allocations
           </SectionTitle>
-          <div className="rounded-xl border border-white/10 bg-white/5 p-4 space-y-3">
+          <div className="rounded-xl border border-border bg-muted/30 p-4 space-y-3">
             {PENSION_ALLOC.map((pf) => {
               const currentW = (pf.allocation / 25) * 100;
               const targetW = (pf.target / 25) * 100;
@@ -1337,7 +1337,7 @@ function InstitutionalTab() {
                     <span className="text-foreground font-medium">{pf.fund}</span>
                     <span className="text-muted-foreground">{pf.country} · ${pf.aum}B AUM</span>
                   </div>
-                  <div className="relative h-4 bg-white/10 rounded-full overflow-hidden">
+                  <div className="relative h-4 bg-foreground/10 rounded-full overflow-hidden">
                     <div
                       className="absolute inset-y-0 left-0 bg-primary/70 rounded-full"
                       style={{ width: `${currentW}%` }}
@@ -1365,7 +1365,7 @@ function InstitutionalTab() {
           <SectionTitle>
             <TrendingDown size={14} /> J-Curve: Cumulative Capital Position
           </SectionTitle>
-          <div className="rounded-xl border border-white/10 bg-white/5 p-4">
+          <div className="rounded-xl border border-border bg-muted/30 p-4">
             <svg viewBox={`0 0 ${jcW} ${jcH}`} className="w-full">
               {/* Grid */}
               {[-100, 0, 100, 200, 300, 400].map((v) => (
@@ -1452,7 +1452,7 @@ function InstitutionalTab() {
         <SectionTitle>
           <BarChart3 size={14} /> Infrastructure in 60/40 Portfolio Context
         </SectionTitle>
-        <div className="rounded-xl border border-white/10 bg-white/5 p-4">
+        <div className="rounded-xl border border-border bg-muted/30 p-4">
           <div className="flex flex-col md:flex-row gap-6 items-start">
             <div className="flex-shrink-0">
               <svg viewBox={`0 0 ${psW} ${psH}`} className="w-full" style={{ maxWidth: 400 }}>
@@ -1516,8 +1516,8 @@ function InstitutionalTab() {
         <SectionTitle>
           <Globe size={14} /> Listed vs Unlisted Infrastructure Comparison
         </SectionTitle>
-        <div className="rounded-xl border border-white/10 bg-white/5 overflow-hidden">
-          <div className="grid grid-cols-4 bg-white/10 text-xs font-semibold text-muted-foreground px-4 py-2">
+        <div className="rounded-xl border border-border bg-muted/30 overflow-hidden">
+          <div className="grid grid-cols-4 bg-foreground/10 text-xs font-semibold text-muted-foreground px-4 py-2">
             <span>Attribute</span>
             <span className="text-center text-primary">Listed</span>
             <span className="text-center text-emerald-400">Unlisted</span>
@@ -1528,7 +1528,7 @@ function InstitutionalTab() {
               key={row.attribute}
               className={cn(
                 "grid grid-cols-4 px-4 py-2.5 text-xs items-center",
-                i % 2 === 0 ? "bg-white/5" : "bg-transparent"
+                i % 2 === 0 ? "bg-foreground/5" : "bg-transparent"
               )}
             >
               <span className="text-muted-foreground font-medium">{row.attribute}</span>
@@ -1552,7 +1552,7 @@ function InstitutionalTab() {
             {BENCHMARK_INDICES.map((idx) => (
               <div
                 key={idx.name}
-                className="rounded-lg border border-white/10 bg-white/5 p-3 flex items-start gap-3"
+                className="rounded-lg border border-border bg-muted/30 p-3 flex items-start gap-3"
               >
                 <Badge
                   variant="outline"
@@ -1599,10 +1599,10 @@ function InstitutionalTab() {
                 color: "#3b82f6",
               },
             ].map((fee) => (
-              <div key={fee.type} className="rounded-xl border border-white/10 bg-white/5 p-3">
+              <div key={fee.type} className="rounded-xl border border-border bg-muted/30 p-3">
                 <div className="flex items-center gap-2 mb-2">
                   <div className="w-2 h-2 rounded-full flex-shrink-0" style={{ backgroundColor: fee.color }} />
-                  <span className="text-sm font-semibold text-white">{fee.type}</span>
+                  <span className="text-sm font-semibold text-foreground">{fee.type}</span>
                 </div>
                 <div className="grid grid-cols-2 gap-1 text-xs">
                   <span className="text-muted-foreground">Mgmt fee:</span>
@@ -1642,7 +1642,7 @@ export default function InfraInvestingPage() {
             <Building2 size={20} className="text-primary" />
           </div>
           <div>
-            <h1 className="text-2xl font-bold text-white">Infrastructure Investing</h1>
+            <h1 className="text-2xl font-bold text-foreground">Infrastructure Investing</h1>
             <p className="text-sm text-muted-foreground">
               Asset classes · Project finance · Energy transition · Institutional allocation
             </p>
@@ -1655,7 +1655,7 @@ export default function InfraInvestingPage() {
             { icon: <Globe size={12} />, label: "$1.1T AUM" },
             { icon: <Zap size={12} />, label: "Energy Transition" },
           ].map(({ icon, label }) => (
-            <Badge key={label} variant="outline" className="text-xs flex items-center gap-1 text-muted-foreground border-white/15">
+            <Badge key={label} variant="outline" className="text-xs flex items-center gap-1 text-muted-foreground border-border">
               {icon} {label}
             </Badge>
           ))}
@@ -1664,17 +1664,17 @@ export default function InfraInvestingPage() {
 
       {/* Tabs */}
       <Tabs value={activeTab} onValueChange={setActiveTab}>
-        <TabsList className="grid grid-cols-4 w-full bg-white/5 border border-white/10 h-10 mb-6">
-          <TabsTrigger value="asset-classes" className="text-xs data-[state=active]:bg-primary data-[state=active]:text-white">
+        <TabsList className="grid grid-cols-4 w-full bg-foreground/5 border border-border h-10 mb-6">
+          <TabsTrigger value="asset-classes" className="text-xs data-[state=active]:bg-primary data-[state=active]:text-primary-foreground">
             Asset Classes
           </TabsTrigger>
-          <TabsTrigger value="project-finance" className="text-xs data-[state=active]:bg-primary data-[state=active]:text-white">
+          <TabsTrigger value="project-finance" className="text-xs data-[state=active]:bg-primary data-[state=active]:text-primary-foreground">
             Project Finance
           </TabsTrigger>
-          <TabsTrigger value="energy-transition" className="text-xs data-[state=active]:bg-primary data-[state=active]:text-white">
+          <TabsTrigger value="energy-transition" className="text-xs data-[state=active]:bg-primary data-[state=active]:text-primary-foreground">
             Energy Transition
           </TabsTrigger>
-          <TabsTrigger value="institutional" className="text-xs data-[state=active]:bg-primary data-[state=active]:text-white">
+          <TabsTrigger value="institutional" className="text-xs data-[state=active]:bg-primary data-[state=active]:text-primary-foreground">
             Institutional
           </TabsTrigger>
         </TabsList>

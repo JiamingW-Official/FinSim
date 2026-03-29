@@ -82,7 +82,7 @@ export default function TradeDistributionChart({ trades }: Props) {
   return (
     <div className="space-y-2">
       {/* SVG Chart */}
-      <div className="overflow-hidden rounded-lg border border-white/5 bg-black/20 p-2">
+      <div className="overflow-hidden rounded-lg border border-border/50 bg-black/20 p-2">
         <svg viewBox={`0 0 ${svgW} ${svgH}`} className="w-full" style={{ height: 130 }}>
           {/* Y-axis ticks */}
           {yTicks.map((tick) => {
@@ -186,7 +186,7 @@ export default function TradeDistributionChart({ trades }: Props) {
 
       {/* Skewness / Kurtosis */}
       <div className="grid grid-cols-2 gap-2">
-        <div className="rounded-lg border border-white/5 bg-white/5 px-3 py-2">
+        <div className="rounded-lg border border-border bg-muted/30 px-3 py-2">
           <div className="text-[11px] text-muted-foreground/70">Skewness</div>
           <div className={`text-sm font-bold ${skewness > 0 ? "text-emerald-400" : "text-rose-400"}`}>
             {skewness.toFixed(3)}
@@ -195,7 +195,7 @@ export default function TradeDistributionChart({ trades }: Props) {
             {Math.abs(skewness) < 0.5 ? "Roughly symmetric" : skewness > 0 ? "Right-tailed (positive)" : "Left-tailed (negative)"}
           </div>
         </div>
-        <div className="rounded-lg border border-white/5 bg-white/5 px-3 py-2">
+        <div className="rounded-lg border border-border bg-muted/30 px-3 py-2">
           <div className="text-[11px] text-muted-foreground/70">Excess Kurtosis</div>
           <div className={`text-sm font-bold ${kurtosis > 0 ? "text-amber-400" : "text-foreground"}`}>
             {kurtosis.toFixed(3)}

@@ -209,7 +209,7 @@ function StatCard({
     highlight === "pos" ? "text-emerald-400" :
     highlight === "neg" ? "text-rose-400" : "text-white";
   return (
-    <div className="rounded-xl border border-white/10 bg-white/5 p-4">
+    <div className="rounded-xl border border-border bg-foreground/5 p-4">
       <p className="text-xs text-muted-foreground mb-1">{label}</p>
       <p className={cn("text-xl font-bold", valClass)}>{value}</p>
       {sub && <p className="text-xs text-muted-foreground mt-1">{sub}</p>}
@@ -249,7 +249,7 @@ function FactorPerfTab() {
               "px-3 py-1.5 rounded-lg text-xs font-medium transition-colors",
               period === p
                 ? "bg-indigo-600 text-white"
-                : "bg-white/5 text-muted-foreground hover:bg-muted/50"
+                : "bg-foreground/5 text-muted-foreground hover:bg-muted/50"
             )}
           >
             {periodLabels[p].split(" ")[0]}
@@ -258,7 +258,7 @@ function FactorPerfTab() {
       </div>
 
       {/* Animated bar chart */}
-      <div className="rounded-xl border border-white/10 bg-white/5 p-5">
+      <div className="rounded-xl border border-border bg-foreground/5 p-5">
         <SectionHeading title={periodLabels[period]} sub="Annualized factor returns vs market-cap benchmark" />
         <div className="space-y-4">
           {FACTORS.map((f, idx) => {
@@ -275,7 +275,7 @@ function FactorPerfTab() {
                     {fmtPct(val)}
                   </span>
                 </div>
-                <div className="h-5 rounded bg-white/5 overflow-hidden">
+                <div className="h-5 rounded bg-foreground/5 overflow-hidden">
                   <motion.div
                     key={period + f.name}
                     initial={{ width: 0 }}
@@ -292,11 +292,11 @@ function FactorPerfTab() {
       </div>
 
       {/* Metrics table */}
-      <div className="rounded-xl border border-white/10 bg-white/5 p-5 overflow-x-auto">
+      <div className="rounded-xl border border-border bg-foreground/5 p-5 overflow-x-auto">
         <SectionHeading title="Risk-Adjusted Metrics" sub="Sharpe ratio, max drawdown, and market beta" />
         <table className="w-full text-sm">
           <thead>
-            <tr className="text-xs text-muted-foreground border-b border-white/10">
+            <tr className="text-xs text-muted-foreground border-b border-border">
               <th className="text-left pb-2">Factor</th>
               <th className="text-right pb-2">Sharpe</th>
               <th className="text-right pb-2">Max DD</th>
@@ -358,7 +358,7 @@ function ExposureAnalyzerTab() {
 
   return (
     <div className="space-y-6">
-      <div className="rounded-xl border border-white/10 bg-white/5 p-5">
+      <div className="rounded-xl border border-border bg-foreground/5 p-5">
         <SectionHeading
           title="Factor Loading Heatmap"
           sub="Z-scores relative to universe — green = positive exposure, red = negative exposure"
@@ -366,7 +366,7 @@ function ExposureAnalyzerTab() {
         <div className="overflow-x-auto">
           <table className="w-full text-sm">
             <thead>
-              <tr className="text-xs text-muted-foreground border-b border-white/10">
+              <tr className="text-xs text-muted-foreground border-b border-border">
                 <th className="text-left pb-2 pr-4">Ticker</th>
                 <th className="text-left pb-2 pr-3">Sector</th>
                 {FACTOR_KEYS.map((k) => (
@@ -380,7 +380,7 @@ function ExposureAnalyzerTab() {
                   key={stock.ticker}
                   className={cn(
                     "cursor-pointer transition-colors hover:bg-muted/30",
-                    selected?.ticker === stock.ticker && "bg-white/10"
+                    selected?.ticker === stock.ticker && "bg-foreground/10"
                   )}
                   onClick={() => setSelected(selected?.ticker === stock.ticker ? null : stock)}
                 >
@@ -442,7 +442,7 @@ function ExposureAnalyzerTab() {
               const z = selected[k];
               const label = z >= 1.5 ? "Strong +" : z >= 0.5 ? "Moderate +" : z >= -0.5 ? "Neutral" : z >= -1.5 ? "Moderate −" : "Strong −";
               return (
-                <div key={k} className="rounded-lg border border-white/10 bg-white/5 p-3 text-center">
+                <div key={k} className="rounded-lg border border-border bg-foreground/5 p-3 text-center">
                   <p className="text-xs text-muted-foreground mb-1">{FACTOR_LABELS[k]}</p>
                   <p
                     className="text-lg font-bold tabular-nums"
@@ -501,7 +501,7 @@ function FactorCycleTab() {
 
   return (
     <div className="space-y-6">
-      <div className="rounded-xl border border-white/10 bg-white/5 p-5">
+      <div className="rounded-xl border border-border bg-foreground/5 p-5">
         <SectionHeading
           title="36-Month Rolling Factor Performance"
           sub="Cumulative return of each factor over simulated 3-year window"
@@ -517,7 +517,7 @@ function FactorCycleTab() {
                 hoveredFactor === null || hoveredFactor === f.name
                   ? "opacity-100"
                   : "opacity-30",
-                "bg-white/5 border border-white/10 hover:bg-muted/50"
+                "bg-foreground/5 border border-border hover:bg-muted/50"
               )}
               onMouseEnter={() => setHoveredFactor(f.name)}
               onMouseLeave={() => setHoveredFactor(null)}
@@ -589,15 +589,15 @@ function FactorCycleTab() {
 
       {/* Cycle insights */}
       <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-        <div className="rounded-xl border border-white/10 bg-white/5 p-4">
+        <div className="rounded-xl border border-border bg-foreground/5 p-4">
           <p className="text-xs text-muted-foreground mb-2 font-medium">Regime Dependency</p>
           <p className="text-sm text-muted-foreground">Value outperforms in early recovery; Momentum dominates late-cycle expansion; Quality leads in downturns.</p>
         </div>
-        <div className="rounded-xl border border-white/10 bg-white/5 p-4">
+        <div className="rounded-xl border border-border bg-foreground/5 p-4">
           <p className="text-xs text-muted-foreground mb-2 font-medium">Factor Crashes</p>
           <p className="text-sm text-muted-foreground">Momentum is prone to sharp reversals (2009, 2020). Diversifying across factors smooths the cycle.</p>
         </div>
-        <div className="rounded-xl border border-white/10 bg-white/5 p-4">
+        <div className="rounded-xl border border-border bg-foreground/5 p-4">
           <p className="text-xs text-muted-foreground mb-2 font-medium">Correlation Shifts</p>
           <p className="text-sm text-muted-foreground">Value and Momentum are historically negatively correlated (~-0.4), making them natural diversifiers.</p>
         </div>
@@ -677,7 +677,7 @@ function TiltBuilderTab() {
         />
       </div>
 
-      <div className="rounded-xl border border-white/10 bg-white/5 p-5">
+      <div className="rounded-xl border border-border bg-foreground/5 p-5">
         <SectionHeading title="Factor Weight Sliders" sub="Adjust your portfolio's factor tilt — 100% total recommended" />
         <div className="space-y-5">
           {FACTORS.map((f) => (
@@ -703,7 +703,7 @@ function TiltBuilderTab() {
       </div>
 
       {/* Comparison bars */}
-      <div className="rounded-xl border border-white/10 bg-white/5 p-5">
+      <div className="rounded-xl border border-border bg-foreground/5 p-5">
         <SectionHeading title="Your Portfolio vs Benchmark" sub="Side-by-side comparison of key metrics" />
         <div className="space-y-4">
           {[
@@ -720,7 +720,7 @@ function TiltBuilderTab() {
                   <span className="text-muted-foreground">Bench: {row.displayBench ?? row.bench.toFixed(1)}{row.suffix}</span>
                 </span>
               </div>
-              <div className="relative h-4 rounded bg-white/5 overflow-hidden">
+              <div className="relative h-4 rounded bg-foreground/5 overflow-hidden">
                 <div
                   className="absolute h-full rounded bg-muted/60"
                   style={{ width: `${Math.min(100, (row.bench / row.max) * 100)}%` }}
@@ -779,7 +779,7 @@ function FamaFrenchTab() {
 
   return (
     <div className="space-y-6">
-      <div className="rounded-xl border border-white/10 bg-white/5 p-5">
+      <div className="rounded-xl border border-border bg-foreground/5 p-5">
         <SectionHeading
           title="Fama-French 3-Factor Regression"
           sub="Rᵢ − Rᶠ = α + β·(Rₘ − Rᶠ) + s·SMB + h·HML + ε"
@@ -799,7 +799,7 @@ function FamaFrenchTab() {
                 "px-3 py-1.5 rounded-lg text-xs font-medium transition-colors",
                 selectedTicker.ticker === t.ticker
                   ? "bg-indigo-600 text-white"
-                  : "bg-white/5 text-muted-foreground hover:bg-muted/50"
+                  : "bg-foreground/5 text-muted-foreground hover:bg-muted/50"
               )}
             >
               {t.ticker}
@@ -816,7 +816,7 @@ function FamaFrenchTab() {
             { label: "HML Loading (h)", value: selectedTicker.hml, suffix: "", colorClass: selectedTicker.hml > 0 ? "text-amber-400" : "text-primary", desc: "Value tilt", showSign: true },
             { label: "R² (fit)", value: selectedTicker.r2 * 100, suffix: "%", colorClass: "text-white", desc: "Model explanatory power", showSign: false },
           ].map((coef) => (
-            <div key={coef.label} className="rounded-xl border border-white/10 bg-white/5 p-3 text-center">
+            <div key={coef.label} className="rounded-xl border border-border bg-foreground/5 p-3 text-center">
               <p className="text-xs text-muted-foreground mb-1">{coef.label}</p>
               <p className={cn("text-xl font-bold tabular-nums", coef.colorClass)}>
                 {coef.showSign && coef.value >= 0 ? "+" : ""}{coef.value.toFixed(2)}{coef.suffix}
@@ -854,7 +854,7 @@ function FamaFrenchTab() {
                               "w-full rounded-t",
                               barColors[coefDef.key],
                               val < 0 ? "opacity-35" : "opacity-80",
-                              isSelected && "ring-2 ring-white/40"
+                              isSelected && "ring-2 ring-foreground/40"
                             )}
                             style={{ minHeight: 2 }}
                           />
@@ -874,15 +874,15 @@ function FamaFrenchTab() {
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-        <div className="rounded-xl border border-white/10 bg-white/5 p-4">
+        <div className="rounded-xl border border-border bg-foreground/5 p-4">
           <p className="text-xs text-amber-400 font-semibold mb-1">SMB — Size Factor</p>
           <p className="text-xs text-muted-foreground">Positive SMB loading = small-cap exposure. Historically ~3% annual premium but highly variable. Negative = large-cap tilt (tech, mega-caps).</p>
         </div>
-        <div className="rounded-xl border border-white/10 bg-white/5 p-4">
+        <div className="rounded-xl border border-border bg-foreground/5 p-4">
           <p className="text-xs text-primary font-semibold mb-1">HML — Value Factor</p>
           <p className="text-xs text-muted-foreground">Positive HML = value tilt (high book-to-price). Negative = growth/glamour tilt. TSLA shows -1.42 HML — extreme growth premium.</p>
         </div>
-        <div className="rounded-xl border border-white/10 bg-white/5 p-4">
+        <div className="rounded-xl border border-border bg-foreground/5 p-4">
           <p className="text-xs text-emerald-400 font-semibold mb-1">Alpha Interpretation</p>
           <p className="text-xs text-muted-foreground">Alpha above zero after controlling for 3 factors suggests genuine stock-selection skill or undiscovered risk. TSLA&apos;s +8.3% may reflect momentum/narrative premium.</p>
         </div>
@@ -933,11 +933,11 @@ function SmartBetaTab() {
         <StatCard label="Best YTD" value={fmtPct(Math.max(...ETFS.map((e) => e.ytdReturn)))} sub="MTUM Momentum" highlight="pos" />
       </div>
 
-      <div className="rounded-xl border border-white/10 bg-white/5 p-5 overflow-x-auto">
+      <div className="rounded-xl border border-border bg-foreground/5 p-5 overflow-x-auto">
         <SectionHeading title="Smart Beta ETF Comparison" sub="Click column headers to sort — factor exposures are beta coefficients" />
         <table className="w-full text-sm">
           <thead>
-            <tr className="text-xs text-muted-foreground border-b border-white/10">
+            <tr className="text-xs text-muted-foreground border-b border-border">
               <th className="text-left pb-2 pr-3">ETF</th>
               <th className="text-left pb-2 pr-3">Strategy</th>
               <th className="text-right pb-2 px-2 cursor-pointer select-none hover:text-white" onClick={() => handleSort("er")}>ER<SortIcon col="er" /></th>
@@ -959,7 +959,7 @@ function SmartBetaTab() {
                   </div>
                 </td>
                 <td className="py-2.5 pr-3">
-                  <Badge className="text-xs bg-white/10 text-muted-foreground border-white/10">{etf.strategy}</Badge>
+                  <Badge className="text-xs bg-foreground/10 text-muted-foreground border-border">{etf.strategy}</Badge>
                 </td>
                 <td className="py-2.5 px-2 text-right text-muted-foreground">{etf.er.toFixed(2)}%</td>
                 <td className="py-2.5 px-2 text-right text-muted-foreground">{fmtB(etf.aum)}</td>
@@ -1010,7 +1010,7 @@ function SmartBetaTab() {
             ],
           },
         ].map((card) => (
-          <div key={card.title} className="rounded-xl border border-white/10 bg-white/5 p-4">
+          <div key={card.title} className="rounded-xl border border-border bg-foreground/5 p-4">
             <p className={cn("text-sm font-semibold mb-2", card.color)}>{card.title}</p>
             <ul className="space-y-1">
               {card.pts.map((pt) => (
@@ -1062,7 +1062,7 @@ export default function FactorInvestingPage() {
 
       {/* Overview stats */}
       <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-        <Card className="border-white/10 bg-white/5">
+        <Card className="border-border bg-foreground/5">
           <CardContent className="p-4">
             <div className="flex items-center gap-2 mb-1">
               <DollarSign className="h-4 w-4 text-indigo-400" />
@@ -1072,7 +1072,7 @@ export default function FactorInvestingPage() {
             <p className="text-xs text-muted-foreground mt-0.5">Global smart beta ETFs</p>
           </CardContent>
         </Card>
-        <Card className="border-white/10 bg-white/5">
+        <Card className="border-border bg-foreground/5">
           <CardContent className="p-4">
             <div className="flex items-center gap-2 mb-1">
               <Target className="h-4 w-4 text-emerald-400" />
@@ -1082,7 +1082,7 @@ export default function FactorInvestingPage() {
             <p className="text-xs text-muted-foreground mt-0.5">Annualized over market-cap</p>
           </CardContent>
         </Card>
-        <Card className="border-white/10 bg-white/5">
+        <Card className="border-border bg-foreground/5">
           <CardContent className="p-4">
             <div className="flex items-center gap-2 mb-1">
               <Layers className="h-4 w-4 text-amber-400" />
@@ -1092,7 +1092,7 @@ export default function FactorInvestingPage() {
             <p className="text-xs text-muted-foreground mt-0.5">Fama &amp; French 3-Factor</p>
           </CardContent>
         </Card>
-        <Card className="border-white/10 bg-white/5">
+        <Card className="border-border bg-foreground/5">
           <CardContent className="p-4">
             <div className="flex items-center gap-2 mb-1">
               <Activity className="h-4 w-4 text-rose-400" />
@@ -1106,7 +1106,7 @@ export default function FactorInvestingPage() {
 
       {/* Main tabs */}
       <Tabs defaultValue="performance">
-        <TabsList className="bg-white/5 border border-white/10 w-full flex-wrap h-auto gap-1 p-1">
+        <TabsList className="bg-foreground/5 border border-border w-full flex-wrap h-auto gap-1 p-1">
           <TabsTrigger value="performance" className="text-xs">
             <BarChart3 className="h-3 w-3 mr-1" />
             Performance

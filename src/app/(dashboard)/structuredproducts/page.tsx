@@ -92,7 +92,7 @@ function MetricCard({
     violet: "text-primary",
   };
   return (
-    <div className="bg-white/5 rounded-lg p-3 flex flex-col gap-1">
+    <div className="bg-foreground/5 rounded-lg p-3 flex flex-col gap-1">
       <span className="text-[11px] text-white/40 uppercase tracking-wide">
         {label}
       </span>
@@ -120,7 +120,7 @@ function ExpandableCard({
 }) {
   const [open, setOpen] = useState(defaultOpen);
   return (
-    <div className="bg-white/5 border border-white/10 rounded-xl overflow-hidden">
+    <div className="bg-foreground/5 border border-border rounded-xl overflow-hidden">
       <button
         onClick={() => setOpen((v) => !v)}
         className="w-full flex items-center justify-between px-4 py-3 text-sm font-medium text-white hover:bg-muted/30 transition-colors"
@@ -512,7 +512,7 @@ function AbsMbsTab() {
       </div>
 
       {/* Securitization flow */}
-      <div className="bg-white/5 border border-white/10 rounded-xl p-4">
+      <div className="bg-foreground/5 border border-border rounded-xl p-4">
         <SectionTitle>Securitization Process</SectionTitle>
         <SecuritizationFlowSVG />
         <p className="text-xs text-white/40 mt-2">
@@ -523,12 +523,12 @@ function AbsMbsTab() {
       </div>
 
       {/* Asset classes table */}
-      <div className="bg-white/5 border border-white/10 rounded-xl p-4">
+      <div className="bg-foreground/5 border border-border rounded-xl p-4">
         <SectionTitle>ABS / MBS Asset Classes</SectionTitle>
         <div className="overflow-x-auto">
           <table className="w-full text-xs">
             <thead>
-              <tr className="border-b border-white/10">
+              <tr className="border-b border-border">
                 {["Type", "Collateral", "Avg Life", "Prepay Risk", "Rating Range"].map(
                   (h) => (
                     <th
@@ -545,7 +545,7 @@ function AbsMbsTab() {
               {assetClasses.map((row, i) => (
                 <tr
                   key={i}
-                  className="border-b border-white/5 hover:bg-muted/30 transition-colors"
+                  className="border-b border-border/50 hover:bg-muted/30 transition-colors"
                 >
                   <td className="py-2 pr-3 font-medium text-white">{row.type}</td>
                   <td className="py-2 pr-3 text-white/60">{row.collateral}</td>
@@ -572,7 +572,7 @@ function AbsMbsTab() {
 
       {/* Tranche waterfall */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-        <div className="bg-white/5 border border-white/10 rounded-xl p-4">
+        <div className="bg-foreground/5 border border-border rounded-xl p-4">
           <SectionTitle>Tranche Waterfall</SectionTitle>
           <TranchWaterfallSVG />
           <p className="text-xs text-white/40 mt-2">
@@ -580,14 +580,14 @@ function AbsMbsTab() {
             OC = overcollateralization level; CE = credit enhancement.
           </p>
         </div>
-        <div className="bg-white/5 border border-white/10 rounded-xl p-4">
+        <div className="bg-foreground/5 border border-border rounded-xl p-4">
           <SectionTitle>Market Size by Type</SectionTitle>
           <ABSMarketPieSVG />
         </div>
       </div>
 
       {/* Credit Enhancements */}
-      <div className="bg-white/5 border border-white/10 rounded-xl p-4">
+      <div className="bg-foreground/5 border border-border rounded-xl p-4">
         <SectionTitle>Credit Enhancement Mechanisms</SectionTitle>
         <div className="space-y-2">
           {enhancements.map((e, i) => (
@@ -847,7 +847,7 @@ function CmosTab() {
       </div>
 
       {/* CMO tranche types */}
-      <div className="bg-white/5 border border-white/10 rounded-xl p-4">
+      <div className="bg-foreground/5 border border-border rounded-xl p-4">
         <SectionTitle>CMO Tranche Types</SectionTitle>
         <div className="space-y-3">
           {trancheTypes.map((t, i) => (
@@ -865,7 +865,7 @@ function CmosTab() {
       </div>
 
       {/* PAC Band SVG */}
-      <div className="bg-white/5 border border-white/10 rounded-xl p-4">
+      <div className="bg-foreground/5 border border-border rounded-xl p-4">
         <SectionTitle>PAC Band Stability vs Support Tranche Variability</SectionTitle>
         <PACBandSVG />
         <p className="text-xs text-white/40 mt-2">
@@ -876,7 +876,7 @@ function CmosTab() {
       </div>
 
       {/* IO vs PO */}
-      <div className="bg-white/5 border border-white/10 rounded-xl p-4">
+      <div className="bg-foreground/5 border border-border rounded-xl p-4">
         <SectionTitle>IO vs PO: Inverse Price Behavior</SectionTitle>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           <div className="space-y-2">
@@ -909,12 +909,12 @@ function CmosTab() {
       </div>
 
       {/* CMBS conduit vs SASB */}
-      <div className="bg-white/5 border border-white/10 rounded-xl p-4">
+      <div className="bg-foreground/5 border border-border rounded-xl p-4">
         <SectionTitle>CMBS: Conduit vs Single-Asset Single-Borrower (SASB)</SectionTitle>
         <div className="overflow-x-auto">
           <table className="w-full text-xs">
             <thead>
-              <tr className="border-b border-white/10">
+              <tr className="border-b border-border">
                 <th className="text-left py-2 pr-3 text-white/40 font-medium">Feature</th>
                 <th className="text-left py-2 pr-3 text-sky-400 font-medium">Conduit</th>
                 <th className="text-left py-2 text-amber-400 font-medium">SASB</th>
@@ -922,7 +922,7 @@ function CmosTab() {
             </thead>
             <tbody>
               {cmbs.map((row, i) => (
-                <tr key={i} className="border-b border-white/5 hover:bg-muted/30">
+                <tr key={i} className="border-b border-border/50 hover:bg-muted/30">
                   <td className="py-2 pr-3 text-white/60 font-medium">{row.feature}</td>
                   <td className="py-2 pr-3 text-white/70">{row.conduit}</td>
                   <td className="py-2 text-white/70">{row.sasb}</td>
@@ -1181,7 +1181,7 @@ function EquityNotesTab() {
       </div>
 
       {/* Principal-protected note mechanics */}
-      <div className="bg-white/5 border border-white/10 rounded-xl p-4">
+      <div className="bg-foreground/5 border border-border rounded-xl p-4">
         <SectionTitle>Principal-Protected Note Mechanics</SectionTitle>
         <div className="flex flex-col md:flex-row gap-4">
           <div className="flex-1 space-y-3 text-sm text-white/70">
@@ -1205,7 +1205,7 @@ function EquityNotesTab() {
       </div>
 
       {/* Autocallable payoff SVG */}
-      <div className="bg-white/5 border border-white/10 rounded-xl p-4">
+      <div className="bg-foreground/5 border border-border rounded-xl p-4">
         <SectionTitle>Autocallable / Barrier Note Payoff Scenarios</SectionTitle>
         <AutocallablePayoffSVG />
         <div className="grid grid-cols-3 gap-3 mt-3">
@@ -1225,7 +1225,7 @@ function EquityNotesTab() {
       </div>
 
       {/* Note types */}
-      <div className="bg-white/5 border border-white/10 rounded-xl p-4">
+      <div className="bg-foreground/5 border border-border rounded-xl p-4">
         <SectionTitle>Structured Note Types</SectionTitle>
         <div className="space-y-3">
           {noteTypes.map((n, i) => {
@@ -1254,12 +1254,12 @@ function EquityNotesTab() {
       </div>
 
       {/* Cost of structuring */}
-      <div className="bg-white/5 border border-white/10 rounded-xl p-4">
+      <div className="bg-foreground/5 border border-border rounded-xl p-4">
         <SectionTitle>Cost of Structuring (Typical)</SectionTitle>
         <div className="overflow-x-auto">
           <table className="w-full text-xs">
             <thead>
-              <tr className="border-b border-white/10">
+              <tr className="border-b border-border">
                 <th className="text-left py-2 pr-3 text-white/40 font-medium">Cost Item</th>
                 <th className="text-left py-2 pr-3 text-white/40 font-medium">Amount</th>
                 <th className="text-left py-2 text-white/40 font-medium">Notes</th>
@@ -1267,7 +1267,7 @@ function EquityNotesTab() {
             </thead>
             <tbody>
               {costsTable.map((row, i) => (
-                <tr key={i} className={cn("border-b border-white/5", i === costsTable.length - 1 && "border-amber-500/30 bg-amber-500/5")}>
+                <tr key={i} className={cn("border-b border-border/50", i === costsTable.length - 1 && "border-amber-500/30 bg-amber-500/5")}>
                   <td className="py-2 pr-3 text-white/80">{row.item}</td>
                   <td className="py-2 pr-3 text-amber-400 font-medium">{row.value}</td>
                   <td className="py-2 text-white/50">{row.note}</td>
@@ -1404,12 +1404,12 @@ function StructuredCreditTab() {
       </div>
 
       {/* CDO vs CLO */}
-      <div className="bg-white/5 border border-white/10 rounded-xl p-4">
+      <div className="bg-foreground/5 border border-border rounded-xl p-4">
         <SectionTitle>CDO vs CLO: Anatomy Comparison</SectionTitle>
         <div className="overflow-x-auto">
           <table className="w-full text-xs">
             <thead>
-              <tr className="border-b border-white/10">
+              <tr className="border-b border-border">
                 <th className="text-left py-2 pr-3 text-white/40 font-medium">Feature</th>
                 <th className="text-left py-2 pr-3 text-amber-400 font-medium">CDO</th>
                 <th className="text-left py-2 text-sky-400 font-medium">CLO</th>
@@ -1417,7 +1417,7 @@ function StructuredCreditTab() {
             </thead>
             <tbody>
               {cdoCloComparison.map((row, i) => (
-                <tr key={i} className="border-b border-white/5 hover:bg-muted/30">
+                <tr key={i} className="border-b border-border/50 hover:bg-muted/30">
                   <td className="py-2 pr-3 text-white/60 font-medium">{row.feature}</td>
                   <td className="py-2 pr-3 text-white/70">{row.cdo}</td>
                   <td className="py-2 text-white/70">{row.clo}</td>
@@ -1464,7 +1464,7 @@ function StructuredCreditTab() {
       </div>
 
       {/* Correlation trading SVG */}
-      <div className="bg-white/5 border border-white/10 rounded-xl p-4">
+      <div className="bg-foreground/5 border border-border rounded-xl p-4">
         <SectionTitle>Correlation Trading: Senior vs Equity Tranche Sensitivity</SectionTitle>
         <CorrelationTradingSVG />
         <p className="text-xs text-white/40 mt-2">
@@ -1475,7 +1475,7 @@ function StructuredCreditTab() {
       </div>
 
       {/* Credit Linked Notes */}
-      <div className="bg-white/5 border border-white/10 rounded-xl p-4">
+      <div className="bg-foreground/5 border border-border rounded-xl p-4">
         <SectionTitle>Credit-Linked Notes vs Funded CDS</SectionTitle>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           <div className="space-y-2">
@@ -1502,7 +1502,7 @@ function StructuredCreditTab() {
       </div>
 
       {/* Post-crisis reforms */}
-      <div className="bg-white/5 border border-white/10 rounded-xl p-4">
+      <div className="bg-foreground/5 border border-border rounded-xl p-4">
         <SectionTitle>Post-Crisis Reforms & Market Structure</SectionTitle>
         <div className="space-y-3">
           {postCrisis.map((item, i) => (
@@ -1546,7 +1546,7 @@ export default function StructuredProductsPage() {
   ];
 
   return (
-    <div className="min-h-screen bg-[#0a0a0f] text-white">
+    <div className="min-h-screen bg-background text-foreground">
       <div className="max-w-5xl mx-auto px-4 py-6">
         {/* Header */}
         <motion.div
@@ -1571,7 +1571,7 @@ export default function StructuredProductsPage() {
 
         {/* Tabs */}
         <Tabs value={activeTab} onValueChange={setActiveTab}>
-          <TabsList className="bg-white/5 border border-white/10 h-auto p-1 flex flex-wrap gap-1 mb-6">
+          <TabsList className="bg-foreground/5 border border-border h-auto p-1 flex flex-wrap gap-1 mb-6">
             {tabs.map((t) => (
               <TabsTrigger
                 key={t.id}

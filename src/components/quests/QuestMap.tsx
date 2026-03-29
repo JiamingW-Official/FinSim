@@ -222,7 +222,7 @@ export function QuestMap() {
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ delay: 0.5 }}
-        className="flex items-center justify-between rounded-lg border border-white/5 bg-white/[0.02] px-4 py-2.5"
+        className="flex items-center justify-between rounded-lg border border-border/50 bg-foreground/[0.02] px-4 py-2.5"
       >
         <span className="text-xs text-muted-foreground">Total quests completed</span>
         <div className="flex items-center gap-2">

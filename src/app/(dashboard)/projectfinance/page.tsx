@@ -72,7 +72,7 @@ function StatCard({
       ? "text-rose-400"
       : "text-white";
   return (
-    <div className="rounded-xl border border-white/10 bg-white/5 p-4 flex flex-col gap-1">
+    <div className="rounded-xl border border-border bg-foreground/5 p-4 flex flex-col gap-1">
       <span className="text-xs text-muted-foreground">{label}</span>
       <span className={cn("text-xl font-bold", valClass)}>{value}</span>
       {sub && <span className="text-xs text-muted-foreground">{sub}</span>}
@@ -372,7 +372,7 @@ function WaterfallBar({
   return (
     <div className="flex items-center gap-3">
       <span className="text-xs text-muted-foreground w-36 shrink-0 text-right">{label}</span>
-      <div className="flex-1 h-6 rounded bg-white/5 overflow-hidden">
+      <div className="flex-1 h-6 rounded bg-foreground/5 overflow-hidden">
         <div
           className="h-full rounded transition-all duration-300"
           style={{ width: `${pct}%`, background: color }}
@@ -416,7 +416,7 @@ function TabSPVStructure() {
                 "px-3 py-1.5 rounded-full text-xs font-medium border transition-all",
                 selectedSector === i
                   ? "border-cyan-500 bg-cyan-500/20 text-muted-foreground"
-                  : "border-white/10 bg-white/5 text-muted-foreground hover:border-white/20"
+                  : "border-border bg-foreground/5 text-muted-foreground hover:border-border"
               )}
             >
               {ps.name}
@@ -431,7 +431,7 @@ function TabSPVStructure() {
           <Layers size={14} />
           SPV / ProjectCo Structure
         </SectionTitle>
-        <div className="rounded-xl border border-white/10 bg-white/5 p-4">
+        <div className="rounded-xl border border-border bg-foreground/5 p-4">
           <SPVDiagram />
         </div>
       </div>
@@ -442,7 +442,7 @@ function TabSPVStructure() {
           <DollarSign size={14} />
           Capital Structure Waterfall
         </SectionTitle>
-        <div className="rounded-xl border border-white/10 bg-white/5 p-4 space-y-3">
+        <div className="rounded-xl border border-border bg-foreground/5 p-4 space-y-3">
           <WaterfallBar label="Total CAPEX" value={sec.capex} maxValue={sec.capex} color="#71717a" />
           <WaterfallBar label="Senior Debt" value={debtAmt} maxValue={sec.capex} color="#34d399" />
           <WaterfallBar label="Equity (Sponsors)" value={equityAmt} maxValue={sec.capex} color="#a78bfa" />
@@ -462,10 +462,10 @@ function TabSPVStructure() {
           <FileText size={14} />
           Contractual Framework
         </SectionTitle>
-        <div className="overflow-x-auto rounded-xl border border-white/10">
+        <div className="overflow-x-auto rounded-xl border border-border">
           <table className="w-full text-xs">
             <thead>
-              <tr className="border-b border-white/10 bg-white/5">
+              <tr className="border-b border-border bg-foreground/5">
                 <th className="px-4 py-2 text-left text-muted-foreground font-medium">Contract</th>
                 <th className="px-4 py-2 text-left text-muted-foreground font-medium">Counterparty</th>
                 <th className="px-4 py-2 text-left text-muted-foreground font-medium">Purpose</th>
@@ -474,7 +474,7 @@ function TabSPVStructure() {
             </thead>
             <tbody>
               {CONTRACTUAL_FRAMEWORK.map((row, i) => (
-                <tr key={i} className="border-b border-white/5 hover:bg-muted/30 transition-colors">
+                <tr key={i} className="border-b border-border/50 hover:bg-muted/30 transition-colors">
                   <td className="px-4 py-2 text-muted-foreground font-medium">{row.contract}</td>
                   <td className="px-4 py-2 text-muted-foreground">{row.counterparty}</td>
                   <td className="px-4 py-2 text-muted-foreground">{row.purpose}</td>
@@ -776,7 +776,7 @@ function TabCashFlowModel() {
   return (
     <div className="space-y-6">
       {/* Slider controls */}
-      <div className="rounded-xl border border-white/10 bg-white/5 p-4 space-y-4">
+      <div className="rounded-xl border border-border bg-foreground/5 p-4 space-y-4">
         <SectionTitle>
           <Activity size={14} />
           Model Inputs
@@ -816,7 +816,7 @@ function TabCashFlowModel() {
           <BarChart3 size={14} />
           20-Year Cash Flow Projection
         </SectionTitle>
-        <div className="rounded-xl border border-white/10 bg-white/5 p-4">
+        <div className="rounded-xl border border-border bg-foreground/5 p-4">
           <CashFlowWaterfallSVG data={cashFlows} />
         </div>
       </div>
@@ -827,7 +827,7 @@ function TabCashFlowModel() {
           <TrendingUp size={14} />
           DSCR Coverage by Year
         </SectionTitle>
-        <div className="rounded-xl border border-white/10 bg-white/5 p-4">
+        <div className="rounded-xl border border-border bg-foreground/5 p-4">
           <DSCRBarChart data={cashFlows} />
         </div>
       </div>
@@ -838,10 +838,10 @@ function TabCashFlowModel() {
           <FileText size={14} />
           Annual Cash Flow Summary
         </SectionTitle>
-        <div className="overflow-x-auto rounded-xl border border-white/10">
+        <div className="overflow-x-auto rounded-xl border border-border">
           <table className="w-full text-xs">
             <thead>
-              <tr className="border-b border-white/10 bg-white/5">
+              <tr className="border-b border-border bg-foreground/5">
                 <th className="px-3 py-2 text-left text-muted-foreground">Year</th>
                 <th className="px-3 py-2 text-right text-muted-foreground">Phase</th>
                 <th className="px-3 py-2 text-right text-muted-foreground">Revenue</th>
@@ -854,7 +854,7 @@ function TabCashFlowModel() {
             </thead>
             <tbody>
               {cashFlows.map((row) => (
-                <tr key={row.year} className="border-b border-white/5 hover:bg-muted/30 transition-colors">
+                <tr key={row.year} className="border-b border-border/50 hover:bg-muted/30 transition-colors">
                   <td className="px-3 py-1.5 text-muted-foreground font-medium">Y{row.year}</td>
                   <td className="px-3 py-1.5 text-right">
                     <Badge
@@ -987,7 +987,7 @@ function RiskMeter({ value, max = 100 }: { value: number; max?: number }) {
   const color = pct >= 70 ? "#34d399" : pct >= 50 ? "#facc15" : "#f87171";
   return (
     <div className="flex items-center gap-2">
-      <div className="flex-1 h-2 rounded-full bg-white/10 overflow-hidden">
+      <div className="flex-1 h-2 rounded-full bg-foreground/10 overflow-hidden">
         <div
           className="h-full rounded-full transition-all duration-300"
           style={{ width: `${pct}%`, background: color }}
@@ -1015,7 +1015,7 @@ function TabRiskAllocation() {
           {RISK_MATRIX.map((row, i) => (
             <motion.div
               key={row.category}
-              className="rounded-xl border border-white/10 bg-white/5 overflow-hidden cursor-pointer"
+              className="rounded-xl border border-border bg-foreground/5 overflow-hidden cursor-pointer"
               onClick={() => setExpanded(expanded === i ? null : i)}
             >
               <div className="flex items-center gap-3 px-4 py-3">
@@ -1047,7 +1047,7 @@ function TabRiskAllocation() {
                     animate={{ height: "auto", opacity: 1 }}
                     exit={{ height: 0, opacity: 0 }}
                     transition={{ duration: 0.2 }}
-                    className="border-t border-white/10 px-4 py-3 space-y-3"
+                    className="border-t border-border px-4 py-3 space-y-3"
                   >
                     <div>
                       <span className="text-xs text-muted-foreground font-medium uppercase tracking-wide">Key Risks</span>
@@ -1082,7 +1082,7 @@ function TabRiskAllocation() {
         </SectionTitle>
         <div className="space-y-3">
           {POLITICAL_RISK_TOOLS.map((tool) => (
-            <div key={tool.org} className="rounded-xl border border-white/10 bg-white/5 p-4">
+            <div key={tool.org} className="rounded-xl border border-border bg-foreground/5 p-4">
               <div className="flex items-start justify-between mb-2">
                 <div>
                   <span className="text-sm font-semibold text-muted-foreground">{tool.org}</span>
@@ -1132,7 +1132,7 @@ function TabRiskAllocation() {
           ].map((item) => (
             <div
               key={item.title}
-              className="rounded-xl border border-white/10 bg-white/5 p-4"
+              className="rounded-xl border border-border bg-foreground/5 p-4"
               style={{ borderTopColor: item.color, borderTopWidth: 2 }}
             >
               <h4 className="text-sm font-semibold mb-2" style={{ color: item.color }}>
@@ -1376,7 +1376,7 @@ function TabDealMetrics() {
           <Target size={14} />
           Key Project Finance Metrics
         </SectionTitle>
-        <div className="rounded-xl border border-white/10 bg-white/5 p-4">
+        <div className="rounded-xl border border-border bg-foreground/5 p-4">
           <div className="grid grid-cols-3 sm:grid-cols-5 gap-4 justify-items-center">
             <div className="text-center">
               <GaugeSVG value={metrics.projectIRR} min={6} max={16} label="Project IRR" unit="%" color="#22d3ee" />
@@ -1417,10 +1417,10 @@ function TabDealMetrics() {
           <Percent size={14} />
           Typical Debt Tenor &amp; Pricing by Sector
         </SectionTitle>
-        <div className="overflow-x-auto rounded-xl border border-white/10">
+        <div className="overflow-x-auto rounded-xl border border-border">
           <table className="w-full text-xs">
             <thead>
-              <tr className="border-b border-white/10 bg-white/5">
+              <tr className="border-b border-border bg-foreground/5">
                 <th className="px-4 py-2 text-left text-muted-foreground">Sector</th>
                 <th className="px-4 py-2 text-right text-muted-foreground">Debt Tenor</th>
                 <th className="px-4 py-2 text-right text-muted-foreground">Margin (bps)</th>
@@ -1430,7 +1430,7 @@ function TabDealMetrics() {
             </thead>
             <tbody>
               {SECTOR_DEBT_TABLE.map((row, i) => (
-                <tr key={i} className="border-b border-white/5 hover:bg-muted/30 transition-colors">
+                <tr key={i} className="border-b border-border/50 hover:bg-muted/30 transition-colors">
                   <td className="px-4 py-2 text-muted-foreground font-medium">{row.sector}</td>
                   <td className="px-4 py-2 text-right text-muted-foreground">{row.tenor}</td>
                   <td className="px-4 py-2 text-right text-amber-400">{row.margin}</td>
@@ -1454,7 +1454,7 @@ function TabDealMetrics() {
           <StatCard label="Debt Tenor" value={`${metrics.debtTenor} yrs`} sub="Post-refi extension" />
           <StatCard label="Equity Uplift" value={fmtPct((metrics.refiGain / 600) * 100)} sub="IRR improvement" highlight="pos" />
         </div>
-        <div className="rounded-xl border border-white/10 bg-white/5 p-4">
+        <div className="rounded-xl border border-border bg-foreground/5 p-4">
           <RefinancingAnalysisSVG />
         </div>
       </div>
@@ -1465,10 +1465,10 @@ function TabDealMetrics() {
           <ArrowRight size={14} />
           PPP vs Merchant Project Comparison
         </SectionTitle>
-        <div className="overflow-x-auto rounded-xl border border-white/10">
+        <div className="overflow-x-auto rounded-xl border border-border">
           <table className="w-full text-xs">
             <thead>
-              <tr className="border-b border-white/10 bg-white/5">
+              <tr className="border-b border-border bg-foreground/5">
                 <th className="px-4 py-2 text-left text-muted-foreground">Metric</th>
                 <th className="px-4 py-2 text-center text-muted-foreground">PPP / Contracted</th>
                 <th className="px-4 py-2 text-center text-amber-400">Merchant / Market</th>
@@ -1476,7 +1476,7 @@ function TabDealMetrics() {
             </thead>
             <tbody>
               {PPP_VS_MERCHANT.map((row, i) => (
-                <tr key={i} className="border-b border-white/5 hover:bg-muted/30 transition-colors">
+                <tr key={i} className="border-b border-border/50 hover:bg-muted/30 transition-colors">
                   <td className="px-4 py-2 text-muted-foreground">{row.metric}</td>
                   <td className="px-4 py-2 text-center text-muted-foreground">{row.ppp}</td>
                   <td className="px-4 py-2 text-center text-amber-300">{row.merchant}</td>
@@ -1523,7 +1523,7 @@ export default function ProjectFinancePage() {
 
       {/* Tabs */}
       <Tabs defaultValue="spv" className="space-y-4">
-        <TabsList className="bg-white/5 border border-white/10 flex-wrap h-auto gap-1 p-1">
+        <TabsList className="bg-foreground/5 border border-border flex-wrap h-auto gap-1 p-1">
           <TabsTrigger value="spv" className="data-[state=active]:bg-cyan-500/20 data-[state=active]:text-muted-foreground">
             <Layers size={14} className="mr-1.5" />
             SPV Structure

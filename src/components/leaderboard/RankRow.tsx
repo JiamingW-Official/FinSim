@@ -64,7 +64,7 @@ export function RankRow({ entry, dimConfig, index }: RankRowProps) {
       {/* Avatar */}
       <div
         className={cn(
-          "flex h-8 w-8 shrink-0 items-center justify-center rounded-lg text-xs font-bold text-white",
+          "flex h-8 w-8 shrink-0 items-center justify-center rounded-lg text-xs font-bold text-primary-foreground",
           entry.isUser ? "bg-primary" : colorClass,
         )}
       >

@@ -579,7 +579,7 @@ function AssetAllocationMonitor({ classes }: { classes: AssetClass[] }) {
                 <div className="relative h-1.5 overflow-hidden rounded-full bg-muted">
                   {/* Target marker */}
                   <div
-                    className="absolute top-0 h-full w-0.5 bg-white/40"
+                    className="absolute top-0 h-full w-0.5 bg-foreground/40"
                     style={{ left: `${Math.min(100, (c.target / 50) * 100)}%` }}
                   />
                   <div

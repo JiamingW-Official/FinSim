@@ -235,7 +235,7 @@ function StatCard({
       ? "text-rose-400"
       : "text-white";
   return (
-    <div className="rounded-xl border border-white/10 bg-white/5 p-4">
+    <div className="rounded-xl border border-border bg-foreground/5 p-4">
       <p className="text-xs text-muted-foreground mb-1">{label}</p>
       <p className={cn("text-xl font-bold", valClass)}>{value}</p>
       {sub && <p className="text-xs text-muted-foreground mt-1">{sub}</p>}
@@ -326,7 +326,7 @@ function StructureTab() {
       </div>
 
       {/* Waterfall SVG */}
-      <div className="rounded-xl border border-white/10 bg-white/5 p-4">
+      <div className="rounded-xl border border-border bg-foreground/5 p-4">
         <SectionHeading title="Capital Structure Waterfall" sub="Senior to junior priority of payments" />
         <div className="overflow-x-auto">
           <svg width={W} height={H} viewBox={`0 0 ${W} ${H}`} className="text-white">
@@ -385,12 +385,12 @@ function StructureTab() {
       </div>
 
       {/* Tranche detail table */}
-      <div className="rounded-xl border border-white/10 bg-white/5 p-4">
+      <div className="rounded-xl border border-border bg-foreground/5 p-4">
         <SectionHeading title="Tranche Summary" />
         <div className="overflow-x-auto">
           <table className="w-full text-xs">
             <thead>
-              <tr className="border-b border-white/10 text-muted-foreground">
+              <tr className="border-b border-border text-muted-foreground">
                 <th className="py-2 text-left">Tranche</th>
                 <th className="py-2 text-right">Size</th>
                 <th className="py-2 text-right">% Capital</th>
@@ -401,7 +401,7 @@ function StructureTab() {
             </thead>
             <tbody>
               {TRANCHES.map((t) => (
-                <tr key={t.name} className="border-b border-white/5 hover:bg-muted/30">
+                <tr key={t.name} className="border-b border-border/50 hover:bg-muted/30">
                   <td className="py-2 font-semibold">
                     <span className={cn("inline-block w-2 h-2 rounded-full mr-2", t.color)} />
                     {t.name}
@@ -433,7 +433,7 @@ function CoverageTab() {
 
   function TestGroup({ tests, title }: { tests: CoverageTest[]; title: string }) {
     return (
-      <div className="rounded-xl border border-white/10 bg-white/5 p-4">
+      <div className="rounded-xl border border-border bg-foreground/5 p-4">
         <SectionHeading title={title} />
         <div className="space-y-4">
           {tests.map((t) => {
@@ -513,7 +513,7 @@ function CoverageTab() {
       </div>
 
       {/* Glossary */}
-      <div className="rounded-xl border border-white/10 bg-white/5 p-4">
+      <div className="rounded-xl border border-border bg-foreground/5 p-4">
         <SectionHeading title="Test Mechanics" />
         <div className="grid gap-3 sm:grid-cols-2">
           {[
@@ -522,7 +522,7 @@ function CoverageTab() {
             { term: "Reinvestment Trigger", desc: "If OC test fails, manager cannot reinvest proceeds — must pay down notes sequentially." },
             { term: "Cure Period", desc: "Manager has limited time to restore compliance by selling assets or buying premium loans." },
           ].map((item) => (
-            <div key={item.term} className="rounded-lg bg-white/5 p-3">
+            <div key={item.term} className="rounded-lg bg-foreground/5 p-3">
               <p className="text-xs font-semibold text-white mb-1">{item.term}</p>
               <p className="text-xs text-muted-foreground">{item.desc}</p>
             </div>
@@ -565,12 +565,12 @@ function PortfolioTab() {
       </div>
 
       {/* Loan table */}
-      <div className="rounded-xl border border-white/10 bg-white/5 p-4">
+      <div className="rounded-xl border border-border bg-foreground/5 p-4">
         <SectionHeading title="Collateral Pool" sub="8 loan positions" />
         <div className="overflow-x-auto">
           <table className="w-full text-xs">
             <thead>
-              <tr className="border-b border-white/10 text-muted-foreground">
+              <tr className="border-b border-border text-muted-foreground">
                 <th className="py-2 text-left">Issuer</th>
                 <th className="py-2 text-left">Industry</th>
                 <th className="py-2 text-right">Spread (bps)</th>
@@ -582,7 +582,7 @@ function PortfolioTab() {
             </thead>
             <tbody>
               {LOANS.map((l) => (
-                <tr key={l.issuer} className="border-b border-white/5 hover:bg-muted/30">
+                <tr key={l.issuer} className="border-b border-border/50 hover:bg-muted/30">
                   <td className="py-2 font-medium text-foreground max-w-[140px] truncate">{l.issuer}</td>
                   <td className="py-2 text-muted-foreground">{l.industry}</td>
                   <td className="py-2 text-right text-emerald-400 font-mono">{l.spread}</td>
@@ -592,7 +592,7 @@ function PortfolioTab() {
                   <td className="py-2 text-right text-muted-foreground">{fmt((l.balance / totalBal) * 100)}%</td>
                 </tr>
               ))}
-              <tr className="border-t border-white/20 font-semibold text-foreground">
+              <tr className="border-t border-border font-semibold text-foreground">
                 <td className="py-2 text-left" colSpan={2}>Totals / Averages</td>
                 <td className="py-2 text-right text-emerald-400 font-mono">{fmt(was, 0)}</td>
                 <td className="py-2 text-right text-muted-foreground">{wal}yr WAL</td>
@@ -607,7 +607,7 @@ function PortfolioTab() {
 
       <div className="grid gap-4 lg:grid-cols-2">
         {/* Loan balance bars */}
-        <div className="rounded-xl border border-white/10 bg-white/5 p-4">
+        <div className="rounded-xl border border-border bg-foreground/5 p-4">
           <SectionHeading title="Position Size" sub="$M balance" />
           <div className="space-y-2">
             {[...LOANS].sort((a, b) => b.balance - a.balance).map((l) => (
@@ -626,7 +626,7 @@ function PortfolioTab() {
         </div>
 
         {/* Industry distribution */}
-        <div className="rounded-xl border border-white/10 bg-white/5 p-4">
+        <div className="rounded-xl border border-border bg-foreground/5 p-4">
           <SectionHeading title="Industry Concentration" sub="% of pool balance" />
           <div className="space-y-2">
             {indEntries.map(([ind, bal], idx) => (
@@ -691,7 +691,7 @@ function ReinvestmentTab() {
       </div>
 
       {/* Sliders */}
-      <div className="rounded-xl border border-white/10 bg-white/5 p-4 space-y-5">
+      <div className="rounded-xl border border-border bg-foreground/5 p-4 space-y-5">
         <SectionHeading title="Reinvestment Assumptions" sub="Adjust to see impact on returns" />
 
         <div>
@@ -753,12 +753,12 @@ function ReinvestmentTab() {
       </div>
 
       {/* Note repayment schedule table */}
-      <div className="rounded-xl border border-white/10 bg-white/5 p-4">
+      <div className="rounded-xl border border-border bg-foreground/5 p-4">
         <SectionHeading title="Projected Cash Flow Schedule" sub="Simplified illustration" />
         <div className="overflow-x-auto">
           <table className="w-full text-xs">
             <thead>
-              <tr className="border-b border-white/10 text-muted-foreground">
+              <tr className="border-b border-border text-muted-foreground">
                 <th className="py-2 text-left">Year</th>
                 <th className="py-2 text-center">Phase</th>
                 <th className="py-2 text-right">Prepay Rate</th>
@@ -768,7 +768,7 @@ function ReinvestmentTab() {
             </thead>
             <tbody>
               {schedule.map((row) => (
-                <tr key={row.yr} className="border-b border-white/5 hover:bg-muted/30">
+                <tr key={row.yr} className="border-b border-border/50 hover:bg-muted/30">
                   <td className="py-2 font-mono text-muted-foreground">Yr {row.yr}</td>
                   <td className="py-2 text-center">
                     <Badge variant="outline" className={cn("text-xs", row.yr <= reinvestPeriod ? "border-primary/40 text-primary" : "border-amber-500/40 text-amber-400")}>
@@ -817,7 +817,7 @@ function DefaultScenariosTab() {
               "rounded-xl border p-4 text-left transition-all",
               selectedScenario === idx
                 ? "border-primary/60 bg-muted/40"
-                : "border-white/10 bg-white/5 hover:bg-muted/50"
+                : "border-border bg-foreground/5 hover:bg-muted/50"
             )}
           >
             <p className="text-sm font-semibold text-white mb-1">{sc.label}</p>
@@ -841,7 +841,7 @@ function DefaultScenariosTab() {
       </div>
 
       {/* Tranche impairment table */}
-      <div className="rounded-xl border border-white/10 bg-white/5 p-4">
+      <div className="rounded-xl border border-border bg-foreground/5 p-4">
         <SectionHeading title="Tranche Impairment Analysis" sub={`Scenario: ${scen.label} (${scen.defaultRate}% default, ${scen.recovery}% recovery)`} />
         <div className="space-y-3">
           {TRANCHES.map((t) => {
@@ -877,12 +877,12 @@ function DefaultScenariosTab() {
       </div>
 
       {/* Scenario comparison */}
-      <div className="rounded-xl border border-white/10 bg-white/5 p-4">
+      <div className="rounded-xl border border-border bg-foreground/5 p-4">
         <SectionHeading title="Cross-Scenario Comparison" />
         <div className="overflow-x-auto">
           <table className="w-full text-xs">
             <thead>
-              <tr className="border-b border-white/10 text-muted-foreground">
+              <tr className="border-b border-border text-muted-foreground">
                 <th className="py-2 text-left">Scenario</th>
                 <th className="py-2 text-right">Default Rate</th>
                 <th className="py-2 text-right">Recovery</th>
@@ -896,7 +896,7 @@ function DefaultScenariosTab() {
                 const lgd = (1 - sc.recovery / 100) * sc.defaultRate / 100;
                 const loss = lgd * TOTAL_ASSETS;
                 return (
-                  <tr key={sc.label} className="border-b border-white/5 hover:bg-muted/30">
+                  <tr key={sc.label} className="border-b border-border/50 hover:bg-muted/30">
                     <td className="py-2 font-medium text-foreground">{sc.label}</td>
                     <td className="py-2 text-right font-mono text-muted-foreground">{sc.defaultRate}%</td>
                     <td className="py-2 text-right font-mono text-muted-foreground">{sc.recovery}%</td>
@@ -967,7 +967,7 @@ function EquityReturnsTab() {
       </div>
 
       {/* NAV chart */}
-      <div className="rounded-xl border border-white/10 bg-white/5 p-4">
+      <div className="rounded-xl border border-border bg-foreground/5 p-4">
         <SectionHeading title="Equity NAV Over Time" sub="Indexed to 100 at closing (20 quarters)" />
         <div className="overflow-x-auto">
           <svg width={W} height={H} viewBox={`0 0 ${W} ${H}`}>
@@ -1011,7 +1011,7 @@ function EquityReturnsTab() {
       </div>
 
       {/* IRR by scenario bars */}
-      <div className="rounded-xl border border-white/10 bg-white/5 p-4">
+      <div className="rounded-xl border border-border bg-foreground/5 p-4">
         <SectionHeading title="IRR Waterfall by Scenario" sub="Equity tranche returns" />
         <div className="flex items-end gap-6 h-32 px-4">
           {irrData.map((d) => {
@@ -1034,7 +1034,7 @@ function EquityReturnsTab() {
       </div>
 
       {/* Fee structure breakdown */}
-      <div className="rounded-xl border border-white/10 bg-white/5 p-4">
+      <div className="rounded-xl border border-border bg-foreground/5 p-4">
         <SectionHeading title="Fee Structure" sub="CLO manager compensation" />
         <div className="grid gap-3 sm:grid-cols-3">
           {[
@@ -1042,7 +1042,7 @@ function EquityReturnsTab() {
             { name: "Subordinate Management Fee", rate: `${subMgmtFee}% p.a.`, desc: "Paid after coverage tests pass. Junior to note coupons but senior to equity.", color: "text-amber-300" },
             { name: "Incentive / Performance Fee", rate: `${incentiveFee}% above 12% hurdle`, desc: "Aligns manager with equity. Only earned once equity IRR exceeds the hurdle rate.", color: "text-emerald-300" },
           ].map((fee) => (
-            <div key={fee.name} className="rounded-lg bg-white/5 p-3">
+            <div key={fee.name} className="rounded-lg bg-foreground/5 p-3">
               <p className={cn("text-xs font-semibold mb-1", fee.color)}>{fee.name}</p>
               <p className="text-sm font-bold text-white mb-1">{fee.rate}</p>
               <p className="text-xs text-muted-foreground">{fee.desc}</p>
@@ -1073,10 +1073,10 @@ export default function CLOManagerPage() {
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.4 }}
-      className="min-h-screen bg-background text-white"
+      className="min-h-screen bg-background text-foreground"
     >
       {/* Header */}
-      <div className="border-b border-white/10 bg-card/60 px-6 py-5">
+      <div className="border-b border-border bg-card/60 px-6 py-5">
         <div className="flex items-center gap-3 mb-1">
           <DollarSign className="h-6 w-6 text-primary" />
           <h1 className="text-xl font-bold text-white">CLO Manager</h1>
@@ -1092,7 +1092,7 @@ export default function CLOManagerPage() {
       {/* Content */}
       <div className="px-6 py-6">
         <Tabs defaultValue="structure">
-          <TabsList className="flex flex-wrap gap-1 h-auto mb-6 bg-card/60 border border-white/10 p-1 rounded-xl">
+          <TabsList className="flex flex-wrap gap-1 h-auto mb-6 bg-card/60 border border-border p-1 rounded-xl">
             {TABS.map(({ id, label, icon: Icon }) => (
               <TabsTrigger
                 key={id}

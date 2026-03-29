@@ -260,7 +260,7 @@ function AccountBar({
       <div className="relative h-5 w-full overflow-hidden rounded bg-muted">
         {/* Equity portion */}
         <div
-          className="absolute left-0 top-0 h-full bg-[#10b981]/70 flex items-center justify-center"
+          className="absolute left-0 top-0 h-full bg-profit/70 flex items-center justify-center"
           style={{ width: `${equityPct}%` }}
         >
           {equityPct > 10 && (
@@ -272,29 +272,29 @@ function AccountBar({
         {/* Margin used portion */}
         {usedPct > 0 && (
           <div
-            className="absolute top-0 h-full bg-[#a855f7]/60"
+            className="absolute top-0 h-full bg-short/60"
             style={{ left: `${equityPct}%`, width: `${usedPct}%` }}
           />
         )}
         {/* Maintenance threshold marker */}
         {maintPct > 0 && (
           <div
-            className="absolute top-0 h-full w-0.5 bg-[#ef4444]"
+            className="absolute top-0 h-full w-0.5 bg-loss"
             style={{ left: `${maintPct}%` }}
           />
         )}
       </div>
       <div className="flex items-center gap-3 text-[11px] text-muted-foreground">
         <span className="flex items-center gap-1">
-          <span className="inline-block h-2 w-2 rounded-sm bg-[#10b981]/70" />
+          <span className="inline-block h-2 w-2 rounded-sm bg-profit/70" />
           Equity
         </span>
         <span className="flex items-center gap-1">
-          <span className="inline-block h-2 w-2 rounded-sm bg-[#a855f7]/60" />
+          <span className="inline-block h-2 w-2 rounded-sm bg-short/60" />
           Margin Used
         </span>
         <span className="flex items-center gap-1">
-          <span className="inline-block h-0.5 w-3 bg-[#ef4444]" />
+          <span className="inline-block h-0.5 w-3 bg-loss" />
           Maint. Floor
         </span>
       </div>
@@ -588,7 +588,7 @@ export function MarginDashboard() {
       <div
         className={cn(
           "flex items-center justify-between px-3 py-2 border-b border-border/40",
-          isMarginCall ? "bg-[#ef4444]/10" : "bg-muted/10",
+          isMarginCall ? "bg-loss/10" : "bg-muted/10",
         )}
       >
         <span className="flex items-center gap-1.5 text-xs font-bold tracking-wide text-foreground">
@@ -600,13 +600,13 @@ export function MarginDashboard() {
             <motion.span
               animate={{ scale: [1, 1.05, 1] }}
               transition={{ repeat: Infinity, duration: 1.2 }}
-              className="rounded bg-[#ef4444] px-1.5 py-0.5 text-[11px] font-bold text-white"
+              className="rounded bg-loss px-1.5 py-0.5 text-[11px] font-bold text-white"
             >
               MARGIN CALL
             </motion.span>
           )}
           {isMarginWarning && (
-            <span className="rounded bg-[#f59e0b]/20 px-1.5 py-0.5 text-[11px] font-semibold text-[#f59e0b]">
+            <span className="rounded bg-warning/20 px-1.5 py-0.5 text-[11px] font-semibold text-warning">
               WARN
             </span>
           )}
@@ -639,7 +639,7 @@ export function MarginDashboard() {
               <div className="px-3 pb-3 space-y-3">
                 {/* Margin Call alert */}
                 {isMarginCall && (
-                  <div className="flex items-start gap-1.5 rounded-md bg-[#ef4444]/10 border border-[#ef4444]/30 px-2 py-2 text-xs text-[#ef4444]">
+                  <div className="flex items-start gap-1.5 rounded-md bg-loss/10 border border-loss/30 px-2 py-2 text-xs text-loss">
                     <AlertTriangle className="mt-0.5 h-3 w-3 shrink-0" />
                     <span>
                       Equity ({formatCurrency(equity)}) is below 25%
@@ -664,7 +664,7 @@ export function MarginDashboard() {
                     <span
                       className={cn(
                         "tabular-nums font-semibold",
-                        equity < 0 ? "text-[#ef4444]" : "text-foreground",
+                        equity < 0 ? "text-loss" : "text-foreground",
                       )}
                     >
                       {formatCurrency(equity)}
@@ -674,7 +674,7 @@ export function MarginDashboard() {
                     <span className="text-muted-foreground text-xs">
                       Buying Power (RegT 2×)
                     </span>
-                    <span className="tabular-nums text-xs text-[#10b981]">
+                    <span className="tabular-nums text-xs text-profit">
                       {formatCurrency(buyingPowerRegT)}
                     </span>
                   </div>
@@ -682,7 +682,7 @@ export function MarginDashboard() {
                     <span className="text-muted-foreground text-xs">
                       Portfolio Margin (6×)
                     </span>
-                    <span className="tabular-nums text-xs text-[#a855f7]">
+                    <span className="tabular-nums text-xs text-short">
                       {formatCurrency(buyingPowerPortfolio)}
                     </span>
                   </div>
@@ -701,7 +701,7 @@ export function MarginDashboard() {
                     <span
                       className={cn(
                         "tabular-nums text-xs",
-                        isMarginCall ? "text-[#ef4444]" : "text-muted-foreground",
+                        isMarginCall ? "text-loss" : "text-muted-foreground",
                       )}
                     >
                       {formatCurrency(maintenanceReq)}
@@ -711,7 +711,7 @@ export function MarginDashboard() {
                     <span className="text-muted-foreground text-xs">
                       Buying Power Left
                     </span>
-                    <span className="tabular-nums text-xs text-[#10b981]">
+                    <span className="tabular-nums text-xs text-profit">
                       {formatCurrency(buyingPowerRemaining)}
                     </span>
                   </div>
@@ -719,7 +719,7 @@ export function MarginDashboard() {
                     <span className="text-muted-foreground text-xs">
                       Daily Interest (8% APR)
                     </span>
-                    <span className="tabular-nums text-xs text-[#f59e0b]">
+                    <span className="tabular-nums text-xs text-warning">
                       {formatCurrency(dailyInterest)}/day
                     </span>
                   </div>
@@ -795,7 +795,7 @@ export function MarginDashboard() {
                           className="rounded-md border border-border/30 bg-muted/20 p-2 space-y-2"
                         >
                           <div className="flex items-center justify-between">
-                            <span className="font-bold text-xs text-[#a855f7]">
+                            <span className="font-bold text-xs text-short">
                               {p.ticker}
                             </span>
                             <RiskMeter score={squeezeScore} />
@@ -836,7 +836,7 @@ export function MarginDashboard() {
                               <span className="text-muted-foreground">
                                 Borrow Rate
                               </span>
-                              <span className="tabular-nums text-[#f59e0b]">
+                              <span className="tabular-nums text-warning">
                                 {p.rate.toFixed(2)}%/yr
                               </span>
                             </div>
@@ -844,7 +844,7 @@ export function MarginDashboard() {
                               <span className="text-muted-foreground">
                                 Daily Cost
                               </span>
-                              <span className="tabular-nums text-[#f59e0b]">
+                              <span className="tabular-nums text-warning">
                                 {formatCurrency(p.daily)}/d
                               </span>
                             </div>
@@ -858,9 +858,9 @@ export function MarginDashboard() {
                                     className={cn(
                                       "tabular-nums",
                                       info.daysToCover >= 5
-                                        ? "text-[#ef4444]"
+                                        ? "text-loss"
                                         : info.daysToCover >= 2
-                                          ? "text-[#f59e0b]"
+                                          ? "text-warning"
                                           : "",
                                     )}
                                   >
@@ -875,10 +875,10 @@ export function MarginDashboard() {
                                     className={cn(
                                       "tabular-nums font-semibold",
                                       squeezeScore >= 7
-                                        ? "text-[#ef4444]"
+                                        ? "text-loss"
                                         : squeezeScore >= 4
-                                          ? "text-[#f59e0b]"
-                                          : "text-[#10b981]",
+                                          ? "text-warning"
+                                          : "text-profit",
                                     )}
                                   >
                                     {squeezeScore.toFixed(1)}/10
@@ -927,14 +927,14 @@ export function MarginDashboard() {
                               key={info.ticker}
                               className={cn(
                                 "border-b border-border/20",
-                                isActive && "bg-[#a855f7]/5",
+                                isActive && "bg-short/5",
                               )}
                             >
                               <td
                                 className={cn(
                                   "py-0.5 font-semibold",
                                   isActive
-                                    ? "text-[#a855f7]"
+                                    ? "text-short"
                                     : "text-muted-foreground",
                                 )}
                               >
@@ -947,9 +947,9 @@ export function MarginDashboard() {
                                 className={cn(
                                   "text-right tabular-nums",
                                   info.borrowRatePct >= 5
-                                    ? "text-[#ef4444]"
+                                    ? "text-loss"
                                     : info.borrowRatePct >= 2
-                                      ? "text-[#f59e0b]"
+                                      ? "text-warning"
                                       : "text-muted-foreground",
                                 )}
                               >
@@ -962,7 +962,7 @@ export function MarginDashboard() {
                                 className={cn(
                                   "text-right tabular-nums",
                                   info.daysToCover >= 3
-                                    ? "text-[#f59e0b]"
+                                    ? "text-warning"
                                     : "text-muted-foreground",
                                 )}
                               >
@@ -972,10 +972,10 @@ export function MarginDashboard() {
                                 className={cn(
                                   "text-right tabular-nums font-medium",
                                   info.squeezeScore >= 7
-                                    ? "text-[#ef4444]"
+                                    ? "text-loss"
                                     : info.squeezeScore >= 4
-                                      ? "text-[#f59e0b]"
-                                      : "text-[#10b981]",
+                                      ? "text-warning"
+                                      : "text-profit",
                                 )}
                               >
                                 {info.squeezeScore.toFixed(1)}
@@ -1028,10 +1028,10 @@ export function MarginDashboard() {
                       className={cn(
                         "tabular-nums font-bold",
                         currentLeverage >= 4
-                          ? "text-[#ef4444]"
+                          ? "text-loss"
                           : currentLeverage >= 2.5
-                            ? "text-[#f59e0b]"
-                            : "text-[#10b981]",
+                            ? "text-warning"
+                            : "text-profit",
                       )}
                     >
                       {currentLeverage.toFixed(2)}×
@@ -1060,7 +1060,7 @@ export function MarginDashboard() {
                     <span
                       className={cn(
                         "tabular-nums text-xs",
-                        riskAdjReturn >= 0 ? "text-[#10b981]" : "text-[#ef4444]",
+                        riskAdjReturn >= 0 ? "text-profit" : "text-loss",
                       )}
                     >
                       {(riskAdjReturn * 100).toFixed(1)}%/×
@@ -1073,7 +1073,7 @@ export function MarginDashboard() {
                     <span
                       className={cn(
                         "tabular-nums text-xs",
-                        returnPct >= 0 ? "text-[#10b981]" : "text-[#ef4444]",
+                        returnPct >= 0 ? "text-profit" : "text-loss",
                       )}
                     >
                       {(returnPct * 100).toFixed(2)}%
@@ -1098,10 +1098,10 @@ export function MarginDashboard() {
                       </span>
                     </div>
                     <div className="flex justify-between">
-                      <span className="text-muted-foreground text-[#10b981]">
+                      <span className="text-muted-foreground text-profit">
                         1/4 Kelly (rec.)
                       </span>
-                      <span className="tabular-nums font-semibold text-[#10b981]">
+                      <span className="tabular-nums font-semibold text-profit">
                         {isFinite(kellyFractional)
                           ? `${(kellyFractional * 100).toFixed(0)}%`
                           : "N/A"}
@@ -1165,9 +1165,9 @@ export function MarginDashboard() {
                       className={cn(
                         "tabular-nums font-bold",
                         shockPct < -20
-                          ? "text-[#ef4444]"
+                          ? "text-loss"
                           : shockPct < -10
-                            ? "text-[#f59e0b]"
+                            ? "text-warning"
                             : "text-muted-foreground",
                       )}
                     >
@@ -1200,11 +1200,11 @@ export function MarginDashboard() {
                         "tabular-nums font-bold",
                         correctedShockedEquity < maintenanceReq &&
                           maintenanceReq > 0
-                          ? "text-[#ef4444]"
+                          ? "text-loss"
                           : correctedShockedEquity < maintenanceReq * 1.5 &&
                               maintenanceReq > 0
-                            ? "text-[#f59e0b]"
-                            : "text-[#10b981]",
+                            ? "text-warning"
+                            : "text-profit",
                       )}
                     >
                       {formatCurrency(correctedShockedEquity)}
@@ -1212,7 +1212,7 @@ export function MarginDashboard() {
                   </div>
                   <div className="flex items-center justify-between col-span-2">
                     <span className="text-muted-foreground">Loss</span>
-                    <span className="tabular-nums text-[#ef4444]">
+                    <span className="tabular-nums text-loss">
                       {formatCurrency(
                         Math.min(0, correctedShockedEquity - equity),
                       )}
@@ -1225,10 +1225,10 @@ export function MarginDashboard() {
                         className={cn(
                           "text-xs font-semibold px-1.5 py-0.5 rounded",
                           correctedShockedEquity < maintenanceReq
-                            ? "bg-[#ef4444]/20 text-[#ef4444]"
+                            ? "bg-loss/20 text-loss"
                             : correctedShockedEquity < maintenanceReq * 1.5
-                              ? "bg-[#f59e0b]/20 text-[#f59e0b]"
-                              : "bg-[#10b981]/20 text-[#10b981]",
+                              ? "bg-warning/20 text-warning"
+                              : "bg-profit/20 text-profit",
                         )}
                       >
                         {correctedShockedEquity < maintenanceReq
@@ -1243,7 +1243,7 @@ export function MarginDashboard() {
 
                 {/* Margin call trigger drop */}
                 {marginCallDrop !== null && (
-                  <div className="rounded-md bg-[#ef4444]/10 border border-[#ef4444]/30 px-2 py-2 text-xs text-[#ef4444]">
+                  <div className="rounded-md bg-loss/10 border border-loss/30 px-2 py-2 text-xs text-loss">
                     <AlertTriangle className="inline h-3 w-3 mr-1" />
                     Margin call triggers at approximately{" "}
                     <span className="font-bold">
@@ -1272,7 +1272,7 @@ export function MarginDashboard() {
                             className={cn(
                               "font-semibold",
                               p.side === "short"
-                                ? "text-[#a855f7]"
+                                ? "text-short"
                                 : "text-foreground",
                             )}
                           >
@@ -1305,7 +1305,7 @@ export function MarginDashboard() {
                           <span className="font-semibold text-foreground">
                             {s.label} ({s.year})
                           </span>
-                          <span className="text-[#ef4444] font-bold">
+                          <span className="text-loss font-bold">
                             -{s.maxDrop}%
                           </span>
                         </div>
@@ -1375,7 +1375,7 @@ export function MarginDashboard() {
                         key={item.step}
                         className="flex gap-2 rounded bg-muted/30 px-2 py-1.5"
                       >
-                        <span className="font-bold text-[#a855f7] shrink-0 w-12">
+                        <span className="font-bold text-short shrink-0 w-12">
                           {item.step}
                         </span>
                         <span className="text-muted-foreground leading-snug">
@@ -1389,7 +1389,7 @@ export function MarginDashboard() {
                 {/* Unique risks */}
                 <div className="space-y-1.5">
                   <div className="font-semibold text-xs text-foreground flex items-center gap-1">
-                    <AlertTriangle className="h-3 w-3 text-[#f59e0b]" />
+                    <AlertTriangle className="h-3 w-3 text-warning" />
                     Risks Unique to Short Selling
                   </div>
                   {[
@@ -1416,9 +1416,9 @@ export function MarginDashboard() {
                   ].map((item) => (
                     <div
                       key={item.risk}
-                      className="rounded-md border border-[#f59e0b]/20 bg-[#f59e0b]/5 px-2 py-1.5"
+                      className="rounded-md border border-warning/20 bg-warning/5 px-2 py-1.5"
                     >
-                      <div className="font-semibold text-[#f59e0b] mb-0.5">
+                      <div className="font-semibold text-warning mb-0.5">
                         {item.risk}
                       </div>
                       <p className="text-muted-foreground leading-snug">
@@ -1446,14 +1446,14 @@ export function MarginDashboard() {
                     Burry paid ~$100M in annual premiums for 2 years while
                     markets continued rising and investors demanded he unwind.
                     When the housing market collapsed in 2007–2008, his fund
-                    returned <span className="text-[#10b981] font-bold">489%</span> — a
+                    returned <span className="text-profit font-bold">489%</span> — a
                     $700M profit on a $1B fund.
                   </p>
                   <div className="flex gap-2 text-[11px]">
                     <span className="rounded bg-muted/40 px-1.5 py-0.5 text-muted-foreground">
                       Instrument: CDS on MBS tranches
                     </span>
-                    <span className="rounded bg-[#10b981]/10 px-1.5 py-0.5 text-[#10b981]">
+                    <span className="rounded bg-profit/10 px-1.5 py-0.5 text-profit">
                       +489% return
                     </span>
                   </div>

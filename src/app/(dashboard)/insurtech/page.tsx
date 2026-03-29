@@ -693,7 +693,7 @@ function BusinessModelsTab() {
             <div className="flex items-center gap-2">
               <div className="flex-1 h-1 bg-muted rounded-full overflow-hidden">
                 <div
-                  className="h-full rounded-full bg-blue-500"
+                  className="h-full rounded-full bg-primary"
                   style={{ width: `${(cat.fundingBn / 13) * 100}%` }}
                 />
               </div>

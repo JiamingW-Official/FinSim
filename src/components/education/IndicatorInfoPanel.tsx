@@ -49,11 +49,11 @@ export function IndicatorInfoPanel() {
                   {explanation.howToRead}
                 </p>
                 <div className="flex items-center gap-4">
-                  <span className="inline-flex items-center gap-1 text-xs text-[#10b981]">
+                  <span className="inline-flex items-center gap-1 text-xs text-profit">
                     <TrendingUp className="h-2.5 w-2.5" />
                     {explanation.bullSignal}
                   </span>
-                  <span className="inline-flex items-center gap-1 text-xs text-[#ef4444]">
+                  <span className="inline-flex items-center gap-1 text-xs text-loss">
                     <TrendingDown className="h-2.5 w-2.5" />
                     {explanation.bearSignal}
                   </span>

@@ -86,7 +86,7 @@ export function QuestCard({ quest, progress, onClaim }: QuestCardProps) {
               ? "bg-emerald-500/15 text-emerald-400"
               : isComplete
                 ? "bg-primary/15 text-primary"
-                : "bg-white/5 text-muted-foreground",
+                : "bg-foreground/5 text-muted-foreground",
           )}
           animate={isComplete && !isClaimed ? { scale: [1, 1.1, 1] } : {}}
           transition={{ duration: 1.5, repeat: Infinity, type: "tween" }}
@@ -147,7 +147,7 @@ export function QuestCard({ quest, progress, onClaim }: QuestCardProps) {
 
           {/* Progress bar */}
           {!isClaimed && (
-            <div className="mt-1.5 h-1 w-full overflow-hidden rounded-full bg-white/5">
+            <div className="mt-1.5 h-1 w-full overflow-hidden rounded-full bg-foreground/5">
               <motion.div
                 className={cn(
                   "h-full rounded-full",
@@ -183,7 +183,7 @@ export function QuestCard({ quest, progress, onClaim }: QuestCardProps) {
               whileHover={{ scale: 1.08 }}
               whileTap={{ scale: 0.9 }}
               onClick={handleClaim}
-              className="quest-claim flex items-center gap-1 rounded-lg bg-primary px-3 py-1.5 text-xs font-bold text-white shadow-sm transition-colors hover:bg-primary"
+              className="quest-claim flex items-center gap-1 rounded-lg bg-primary px-3 py-1.5 text-xs font-bold text-primary-foreground shadow-sm transition-colors hover:bg-primary"
             >
               <Gift className="h-3 w-3" />
               Claim

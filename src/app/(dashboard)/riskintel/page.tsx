@@ -1247,7 +1247,7 @@ export default function RiskIntelPage() {
                                   key={j}
                                   onClick={() => !isDiag && setSelectedCell(isSelected ? null : { i, j })}
                                   className={`w-9 h-9 text-center font-mono rounded-sm transition-all cursor-pointer ${
-                                    isSelected ? "ring-2 ring-white ring-offset-1 ring-offset-background" : ""
+                                    isSelected ? "ring-2 ring-foreground ring-offset-1 ring-offset-background" : ""
                                   } ${isDiag ? "cursor-default" : "hover:opacity-80"}`}
                                   style={{ backgroundColor: corrColor(v) }}
                                   title={`${row.ticker} / ${POSITIONS[j].ticker}: ${v.toFixed(2)}`}

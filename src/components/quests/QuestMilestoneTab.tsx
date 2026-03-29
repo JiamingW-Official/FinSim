@@ -51,14 +51,14 @@ export function QuestMilestoneTab() {
               "rounded-xl border p-4 transition-all",
               isChainComplete
                 ? "border-emerald-500/20 bg-emerald-500/5"
-                : "border-white/5 bg-white/[0.02]",
+                : "border-border/50 bg-foreground/[0.02]",
             )}
           >
             {/* Chain header */}
             <div className="flex items-center gap-2.5 mb-4">
               <div className={cn(
                 "flex h-8 w-8 items-center justify-center rounded-lg",
-                isChainComplete ? "bg-emerald-500/15 text-emerald-400" : "bg-white/5",
+                isChainComplete ? "bg-emerald-500/15 text-emerald-400" : "bg-foreground/5",
                 chain.color,
               )}>
                 {CHAIN_ICONS[chain.icon] ?? <Star className="h-4 w-4" />}
@@ -66,7 +66,7 @@ export function QuestMilestoneTab() {
               <div className="flex-1 min-w-0">
                 <h3 className={cn("text-sm font-bold", chain.color)}>{chain.name}</h3>
                 {/* Progress bar for the chain */}
-                <div className="mt-1 h-1 w-full overflow-hidden rounded-full bg-white/5">
+                <div className="mt-1 h-1 w-full overflow-hidden rounded-full bg-foreground/5">
                   <motion.div
                     className={cn(
                       "h-full rounded-full",
@@ -147,7 +147,7 @@ export function QuestMilestoneTab() {
 
                       {/* Tooltip */}
                       <div className="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 hidden group-hover:block z-10 pointer-events-none">
-                        <div className="rounded-lg border border-white/10 bg-card px-3 py-2 shadow-sm whitespace-nowrap">
+                        <div className="rounded-lg border border-border bg-card px-3 py-2 shadow-sm whitespace-nowrap">
                           <p className="text-xs font-bold text-foreground">{quest.name}</p>
                           <p className="text-xs text-muted-foreground mt-0.5">{quest.description}</p>
                           <div className="flex items-center gap-1 mt-1">

@@ -48,7 +48,7 @@ export function CandlestickDiagram() {
             Low
           </motion.text>
         </svg>
-        <span className="text-xs font-semibold text-[#10b981]">Bullish</span>
+        <span className="text-xs font-semibold text-profit">Bullish</span>
       </div>
 
       {/* Red (bearish) candle */}
@@ -94,7 +94,7 @@ export function CandlestickDiagram() {
             Low
           </motion.text>
         </svg>
-        <span className="text-xs font-semibold text-[#ef4444]">Bearish</span>
+        <span className="text-xs font-semibold text-loss">Bearish</span>
       </div>
     </div>
   );

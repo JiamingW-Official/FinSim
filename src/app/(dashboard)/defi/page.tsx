@@ -92,7 +92,7 @@ function StatCard({
       ? "text-amber-400"
       : "text-white";
   return (
-    <div className="rounded-xl border border-white/10 bg-white/5 p-4 flex flex-col gap-1">
+    <div className="rounded-xl border border-border bg-foreground/5 p-4 flex flex-col gap-1">
       <div className="flex items-center gap-1.5">
         {icon && <span className="text-muted-foreground">{icon}</span>}
         <span className="text-xs text-muted-foreground">{label}</span>
@@ -269,7 +269,7 @@ function YieldDashboard() {
       </div>
 
       {/* TVL trend chart */}
-      <div className="rounded-xl border border-white/10 bg-white/5 p-4">
+      <div className="rounded-xl border border-border bg-foreground/5 p-4">
         <div className="flex items-center justify-between mb-3">
           <SectionTitle>DeFi Ecosystem TVL — 12 Months</SectionTitle>
         </div>
@@ -318,7 +318,7 @@ function YieldDashboard() {
               "px-2 py-1 rounded text-xs border transition-colors",
               filterProtocol === p
                 ? "border-indigo-500 bg-indigo-500/20 text-indigo-300"
-                : "border-white/10 bg-white/5 text-muted-foreground hover:border-white/20"
+                : "border-border bg-foreground/5 text-muted-foreground hover:border-border"
             )}
           >
             {p}
@@ -333,7 +333,7 @@ function YieldDashboard() {
               "px-2 py-1 rounded text-xs border transition-colors",
               filterType === t
                 ? "border-primary bg-primary/20 text-primary"
-                : "border-white/10 bg-white/5 text-muted-foreground hover:border-white/20"
+                : "border-border bg-foreground/5 text-muted-foreground hover:border-border"
             )}
           >
             {t.toUpperCase()}
@@ -348,7 +348,7 @@ function YieldDashboard() {
               "px-2 py-1 rounded text-xs border transition-colors",
               filterAPY === a
                 ? "border-emerald-500 bg-emerald-500/20 text-emerald-300"
-                : "border-white/10 bg-white/5 text-muted-foreground hover:border-white/20"
+                : "border-border bg-foreground/5 text-muted-foreground hover:border-border"
             )}
           >
             {a}
@@ -363,7 +363,7 @@ function YieldDashboard() {
               "px-2 py-1 rounded text-xs border transition-colors",
               filterRisk === r
                 ? "border-rose-500 bg-rose-500/20 text-rose-300"
-                : "border-white/10 bg-white/5 text-muted-foreground hover:border-white/20"
+                : "border-border bg-foreground/5 text-muted-foreground hover:border-border"
             )}
           >
             {r}
@@ -375,7 +375,7 @@ function YieldDashboard() {
             "px-3 py-1 rounded text-xs border transition-colors ml-2",
             realYield
               ? "border-amber-500 bg-amber-500/20 text-amber-300"
-              : "border-white/10 bg-white/5 text-muted-foreground hover:border-white/20"
+              : "border-border bg-foreground/5 text-muted-foreground hover:border-border"
           )}
         >
           {realYield ? "Real Yield ON" : "Real Yield OFF"}
@@ -383,10 +383,10 @@ function YieldDashboard() {
       </div>
 
       {/* Opportunities table */}
-      <div className="rounded-xl border border-white/10 bg-white/5 overflow-x-auto">
+      <div className="rounded-xl border border-border bg-foreground/5 overflow-x-auto">
         <table className="w-full text-sm">
           <thead>
-            <tr className="border-b border-white/10 text-xs text-muted-foreground">
+            <tr className="border-b border-border text-xs text-muted-foreground">
               <th className="text-left p-3">Protocol</th>
               <th className="text-left p-3">Pair</th>
               <th className="text-left p-3">Type</th>
@@ -407,7 +407,7 @@ function YieldDashboard() {
                   initial={{ opacity: 0, y: 4 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: idx * 0.02 }}
-                  className="border-b border-white/5 hover:bg-muted/30 transition-colors"
+                  className="border-b border-border/50 hover:bg-muted/30 transition-colors"
                 >
                   <td className="p-3 font-medium text-foreground">{opp.protocol}</td>
                   <td className="p-3 text-muted-foreground">{opp.pair}</td>
@@ -510,7 +510,7 @@ function LiquidityPoolSimulator() {
     <div className="space-y-6">
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
         {/* Inputs */}
-        <div className="rounded-xl border border-white/10 bg-white/5 p-4 space-y-4">
+        <div className="rounded-xl border border-border bg-foreground/5 p-4 space-y-4">
           <SectionTitle>LP Configuration</SectionTitle>
           <div>
             <label className="text-xs text-muted-foreground mb-1 block">Token Pair</label>
@@ -523,7 +523,7 @@ function LiquidityPoolSimulator() {
                     "px-3 py-1.5 rounded-lg text-xs border transition-colors",
                     selectedPair === i
                       ? "border-indigo-500 bg-indigo-500/20 text-indigo-300"
-                      : "border-white/10 bg-white/5 text-muted-foreground hover:border-white/20"
+                      : "border-border bg-foreground/5 text-muted-foreground hover:border-border"
                   )}
                 >
                   {p.label}
@@ -542,7 +542,7 @@ function LiquidityPoolSimulator() {
                     "px-3 py-1.5 rounded-lg text-xs border transition-colors",
                     lpAmount === v
                       ? "border-emerald-500 bg-emerald-500/20 text-emerald-300"
-                      : "border-white/10 bg-white/5 text-muted-foreground hover:border-white/20"
+                      : "border-border bg-foreground/5 text-muted-foreground hover:border-border"
                   )}
                 >
                   {fmtUSD(v, 0)}
@@ -557,7 +557,7 @@ function LiquidityPoolSimulator() {
                 "px-3 py-1.5 rounded-lg text-xs border transition-colors",
                 v3Mode
                   ? "border-primary bg-primary/20 text-primary"
-                  : "border-white/10 bg-white/5 text-muted-foreground hover:border-white/20"
+                  : "border-border bg-foreground/5 text-muted-foreground hover:border-border"
               )}
             >
               {v3Mode ? "Uniswap V3 (Concentrated)" : "Uniswap V2 (Full Range)"}
@@ -597,7 +597,7 @@ function LiquidityPoolSimulator() {
         </div>
 
         {/* IL Formula Visualization */}
-        <div className="rounded-xl border border-white/10 bg-white/5 p-4">
+        <div className="rounded-xl border border-border bg-foreground/5 p-4">
           <SectionTitle>IL Formula: IL = 2√r/(1+r) - 1</SectionTitle>
           <svg viewBox={`0 0 ${ilCurveW} ${ilCurveH + 20}`} className="w-full h-36">
             {/* Zero line */}
@@ -638,13 +638,13 @@ function LiquidityPoolSimulator() {
       </div>
 
       {/* Scenario table */}
-      <div className="rounded-xl border border-white/10 bg-white/5 overflow-x-auto">
-        <div className="p-4 border-b border-white/10">
+      <div className="rounded-xl border border-border bg-foreground/5 overflow-x-auto">
+        <div className="p-4 border-b border-border">
           <SectionTitle>Price Change Scenarios — {pair.label} @ {fmtUSD(lpAmount, 0)} Deposit</SectionTitle>
         </div>
         <table className="w-full text-sm">
           <thead>
-            <tr className="border-b border-white/10 text-xs text-muted-foreground uppercase">
+            <tr className="border-b border-border text-xs text-muted-foreground uppercase">
               <th className="text-left p-3">Price Change</th>
               <th className="text-right p-3">IL %</th>
               <th className="text-right p-3">IL (USD)</th>
@@ -655,7 +655,7 @@ function LiquidityPoolSimulator() {
           </thead>
           <tbody>
             {scenarios.map((sc) => (
-              <tr key={sc.ratio} className="border-b border-white/5 hover:bg-muted/30">
+              <tr key={sc.ratio} className="border-b border-border/50 hover:bg-muted/30">
                 <td className="p-3">
                   <span className={cn("font-medium", sc.ratio < 1 ? "text-rose-400" : sc.ratio > 1 ? "text-emerald-400" : "text-muted-foreground")}>
                     {sc.ratio === 1 ? "No change" : sc.ratio > 1 ? `+${((sc.ratio - 1) * 100).toFixed(0)}%` : `-${((1 - sc.ratio) * 100).toFixed(0)}%`}
@@ -788,7 +788,7 @@ function StakingCalculator() {
               "p-3 rounded-xl border text-left transition-colors",
               selectedAsset === i
                 ? "border-indigo-500 bg-indigo-500/20"
-                : "border-white/10 bg-white/5 hover:border-white/20"
+                : "border-border bg-foreground/5 hover:border-border"
             )}
           >
             <div className="font-bold text-sm text-foreground">{opt.symbol}</div>
@@ -800,9 +800,9 @@ function StakingCalculator() {
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
         {/* Config */}
-        <div className="rounded-xl border border-white/10 bg-white/5 p-4 space-y-4">
+        <div className="rounded-xl border border-border bg-foreground/5 p-4 space-y-4">
           <SectionTitle>Staking Configuration</SectionTitle>
-          <div className="p-3 rounded-lg bg-white/5 border border-white/10">
+          <div className="p-3 rounded-lg bg-foreground/5 border border-border">
             <p className="text-sm font-medium text-foreground">{asset.name} ({asset.symbol})</p>
             <p className="text-xs text-muted-foreground mt-1">{asset.description}</p>
             <div className="grid grid-cols-2 gap-2 mt-2 text-xs">
@@ -820,7 +820,7 @@ function StakingCalculator() {
                 "w-full p-3 rounded-lg border text-left transition-colors",
                 useLiquidStaking
                   ? "border-cyan-500 bg-cyan-500/10"
-                  : "border-white/10 bg-white/5 hover:border-white/20"
+                  : "border-border bg-foreground/5 hover:border-border"
               )}
             >
               <div className="flex items-center justify-between">
@@ -845,7 +845,7 @@ function StakingCalculator() {
                     "px-3 py-1.5 rounded text-xs border transition-colors",
                     amount === v
                       ? "border-emerald-500 bg-emerald-500/20 text-emerald-300"
-                      : "border-white/10 bg-white/5 text-muted-foreground hover:border-white/20"
+                      : "border-border bg-foreground/5 text-muted-foreground hover:border-border"
                   )}
                 >
                   {fmtUSD(v, 0)}
@@ -882,7 +882,7 @@ function StakingCalculator() {
       </div>
 
       {/* Compound chart */}
-      <div className="rounded-xl border border-white/10 bg-white/5 p-4">
+      <div className="rounded-xl border border-border bg-foreground/5 p-4">
         <SectionTitle>Monthly vs Annual Compounding — {years} Year Projection</SectionTitle>
         <svg viewBox={`0 0 ${chartW} ${chartH + 20}`} className="w-full h-32">
           <defs>
@@ -899,7 +899,7 @@ function StakingCalculator() {
       </div>
 
       {/* Alternatives */}
-      <div className="rounded-xl border border-white/10 bg-white/5 p-4">
+      <div className="rounded-xl border border-border bg-foreground/5 p-4">
         <SectionTitle>Staking vs Alternatives ({fmtUSD(amount, 0)} Investment)</SectionTitle>
         <div className="space-y-2">
           {ALTERNATIVES.map((alt) => {
@@ -909,7 +909,7 @@ function StakingCalculator() {
             return (
               <div key={alt.label} className="flex items-center gap-3">
                 <span className="w-32 text-xs text-muted-foreground shrink-0">{alt.label}</span>
-                <div className="flex-1 bg-white/5 rounded h-5 relative overflow-hidden">
+                <div className="flex-1 bg-foreground/5 rounded h-5 relative overflow-hidden">
                   <div
                     className="h-full bg-indigo-500/40 rounded"
                     style={{ width: `${barW}%` }}
@@ -926,7 +926,7 @@ function StakingCalculator() {
       </div>
 
       {/* Slashing risk */}
-      <div className="rounded-xl border border-white/10 bg-white/5 p-4">
+      <div className="rounded-xl border border-border bg-foreground/5 p-4">
         <SectionTitle><AlertTriangle size={14} className="text-amber-400" /> Slashing Risk Scenarios</SectionTitle>
         <div className="overflow-x-auto">
           <table className="w-full text-sm">
@@ -939,7 +939,7 @@ function StakingCalculator() {
             </thead>
             <tbody>
               {slashScenarios.map((sc) => (
-                <tr key={sc.behavior} className="border-t border-white/5">
+                <tr key={sc.behavior} className="border-t border-border/50">
                   <td className="p-2 text-muted-foreground">{sc.behavior}</td>
                   <td className="p-2 text-right text-amber-400">{sc.probability}</td>
                   <td className="p-2 text-right text-rose-400">{sc.slash}</td>
@@ -1034,7 +1034,7 @@ function LendingAnalyzer() {
               "px-3 py-2 rounded-lg text-xs border transition-colors",
               selectedMarket === i
                 ? "border-indigo-500 bg-indigo-500/20 text-indigo-200"
-                : "border-white/10 bg-white/5 text-muted-foreground hover:border-white/20"
+                : "border-border bg-foreground/5 text-muted-foreground hover:border-border"
             )}
           >
             {m.protocol} — {m.asset}
@@ -1050,7 +1050,7 @@ function LendingAnalyzer() {
       </div>
 
       {/* Utilization rate model */}
-      <div className="rounded-xl border border-white/10 bg-white/5 p-4">
+      <div className="rounded-xl border border-border bg-foreground/5 p-4">
         <SectionTitle>Utilization Rate Model — {market.protocol} {market.asset}</SectionTitle>
         <svg viewBox={`0 0 ${utilizationCurveW} ${utilizationCurveH + 20}`} className="w-full h-32">
           {/* Kink line */}
@@ -1075,7 +1075,7 @@ function LendingAnalyzer() {
       </div>
 
       {/* Health factor calculator */}
-      <div className="rounded-xl border border-white/10 bg-white/5 p-4">
+      <div className="rounded-xl border border-border bg-foreground/5 p-4">
         <SectionTitle><Calculator size={14} /> Health Factor Calculator</SectionTitle>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           <div className="space-y-4">
@@ -1083,7 +1083,7 @@ function LendingAnalyzer() {
               <label className="text-xs text-muted-foreground mb-1 block">Collateral Value (USD)</label>
               <div className="flex gap-2 flex-wrap">
                 {[5000, 10000, 25000, 50000].map((v) => (
-                  <button key={v} onClick={() => setCollateral(v)} className={cn("px-2 py-1 rounded text-xs border transition-colors", collateral === v ? "border-emerald-500 bg-emerald-500/20 text-emerald-300" : "border-white/10 bg-white/5 text-muted-foreground")}>
+                  <button key={v} onClick={() => setCollateral(v)} className={cn("px-2 py-1 rounded text-xs border transition-colors", collateral === v ? "border-emerald-500 bg-emerald-500/20 text-emerald-300" : "border-border bg-foreground/5 text-muted-foreground")}>
                     {fmtUSD(v, 0)}
                   </button>
                 ))}
@@ -1093,7 +1093,7 @@ function LendingAnalyzer() {
               <label className="text-xs text-muted-foreground mb-1 block">Borrow Amount (USD)</label>
               <div className="flex gap-2 flex-wrap">
                 {[1000, 3000, 5000, 7000].map((v) => (
-                  <button key={v} onClick={() => setBorrowAmount(v)} className={cn("px-2 py-1 rounded text-xs border transition-colors", borrowAmount === v ? "border-rose-500 bg-rose-500/20 text-rose-300" : "border-white/10 bg-white/5 text-muted-foreground")}>
+                  <button key={v} onClick={() => setBorrowAmount(v)} className={cn("px-2 py-1 rounded text-xs border transition-colors", borrowAmount === v ? "border-rose-500 bg-rose-500/20 text-rose-300" : "border-border bg-foreground/5 text-muted-foreground")}>
                     {fmtUSD(v, 0)}
                   </button>
                 ))}
@@ -1101,7 +1101,7 @@ function LendingAnalyzer() {
             </div>
           </div>
           <div className="space-y-3">
-            <div className="p-4 rounded-lg border border-white/10 bg-white/5">
+            <div className="p-4 rounded-lg border border-border bg-foreground/5">
               <div className="text-xs text-muted-foreground mb-1">Health Factor</div>
               <div className={cn("text-2xl font-bold", healthFactor >= 2 ? "text-emerald-400" : healthFactor >= 1.3 ? "text-amber-400" : "text-rose-400")}>
                 {healthFactor.toFixed(2)}
@@ -1120,7 +1120,7 @@ function LendingAnalyzer() {
       </div>
 
       {/* Recursive lending */}
-      <div className="rounded-xl border border-white/10 bg-white/5 p-4">
+      <div className="rounded-xl border border-border bg-foreground/5 p-4">
         <SectionTitle><RefreshCw size={14} /> Recursive Lending (Leverage Loop)</SectionTitle>
         <div className="space-y-3">
           <div>
@@ -1151,7 +1151,7 @@ function LendingAnalyzer() {
       </div>
 
       {/* Flash loans */}
-      <div className="rounded-xl border border-white/10 bg-white/5 p-4">
+      <div className="rounded-xl border border-border bg-foreground/5 p-4">
         <SectionTitle><Zap size={14} className="text-yellow-400" /> Flash Loan Mechanics</SectionTitle>
         <p className="text-xs text-muted-foreground mb-3">
           Flash loans are uncollateralized loans that must be borrowed and repaid within a single transaction block. If repayment fails, the entire transaction reverts.
@@ -1165,7 +1165,7 @@ function LendingAnalyzer() {
             { step: "5", action: "Keep arbitrage profit (all in 1 transaction)", color: "text-primary" },
           ].map((s) => (
             <div key={s.step} className="flex items-center gap-2">
-              <span className="w-5 h-5 rounded-full bg-white/10 text-muted-foreground flex items-center justify-center shrink-0">{s.step}</span>
+              <span className="w-5 h-5 rounded-full bg-foreground/10 text-muted-foreground flex items-center justify-center shrink-0">{s.step}</span>
               <span className={s.color}>{s.action}</span>
             </div>
           ))}
@@ -1173,11 +1173,11 @@ function LendingAnalyzer() {
       </div>
 
       {/* Protocol hacks */}
-      <div className="rounded-xl border border-white/10 bg-white/5 p-4">
+      <div className="rounded-xl border border-border bg-foreground/5 p-4">
         <SectionTitle><AlertTriangle size={14} className="text-rose-400" /> Historical Protocol Hacks</SectionTitle>
         <div className="space-y-2">
           {PROTOCOL_HACKS.map((hack) => (
-            <div key={hack.protocol} className="flex items-center gap-3 p-2 rounded-lg border border-white/5">
+            <div key={hack.protocol} className="flex items-center gap-3 p-2 rounded-lg border border-border/50">
               <div className="flex-1">
                 <span className="text-sm font-medium text-foreground">{hack.protocol}</span>
                 <span className="text-xs text-muted-foreground ml-2">{hack.date}</span>
@@ -1321,7 +1321,7 @@ function YieldStrategyBuilder() {
             onClick={() => setSelected(i)}
             className={cn(
               "p-3 rounded-xl border text-left transition-colors",
-              selected === i ? COLOR_MAP[st.color] : "border-white/10 bg-white/5 hover:border-white/20"
+              selected === i ? COLOR_MAP[st.color] : "border-border bg-foreground/5 hover:border-border"
             )}
           >
             <div className="font-bold text-xs text-foreground">{st.label}</div>
@@ -1341,7 +1341,7 @@ function YieldStrategyBuilder() {
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
         {/* Strategy steps */}
-        <div className="rounded-xl border border-white/10 bg-white/5 p-4">
+        <div className="rounded-xl border border-border bg-foreground/5 p-4">
           <SectionTitle>{strategy.label} — Strategy Steps</SectionTitle>
           <p className="text-xs text-muted-foreground mb-4">{strategy.description}</p>
           <div className="space-y-3">
@@ -1351,9 +1351,9 @@ function YieldStrategyBuilder() {
                 initial={{ opacity: 0, x: -10 }}
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ delay: i * 0.05 }}
-                className="flex items-center gap-3 p-2 rounded-lg bg-white/5 border border-white/5"
+                className="flex items-center gap-3 p-2 rounded-lg bg-foreground/5 border border-border/50"
               >
-                <span className="w-6 h-6 rounded-full bg-white/10 text-muted-foreground text-xs flex items-center justify-center shrink-0">{i + 1}</span>
+                <span className="w-6 h-6 rounded-full bg-foreground/10 text-muted-foreground text-xs flex items-center justify-center shrink-0">{i + 1}</span>
                 <div className="flex-1">
                   <div className="text-sm text-foreground">{step.action}</div>
                   <div className="text-xs text-muted-foreground">{step.protocol}</div>
@@ -1365,7 +1365,7 @@ function YieldStrategyBuilder() {
               </motion.div>
             ))}
           </div>
-          <div className="mt-3 p-2 rounded-lg bg-white/5 border border-white/10 text-xs">
+          <div className="mt-3 p-2 rounded-lg bg-foreground/5 border border-border text-xs">
             <div className="flex justify-between">
               <span className="text-muted-foreground">Risk-Adj. Return (Sharpe-equiv)</span>
               <span className={cn("font-bold", strategy.sharpe >= 1.5 ? "text-emerald-400" : strategy.sharpe >= 0.8 ? "text-amber-400" : "text-rose-400")}>
@@ -1376,7 +1376,7 @@ function YieldStrategyBuilder() {
         </div>
 
         {/* APY comparison bars */}
-        <div className="rounded-xl border border-white/10 bg-white/5 p-4">
+        <div className="rounded-xl border border-border bg-foreground/5 p-4">
           <SectionTitle>Strategy APY Comparison</SectionTitle>
           <svg viewBox={`0 0 ${chartW} ${chartH + 20}`} className="w-full h-28">
             {PRESET_STRATEGIES.map((st, i) => {
@@ -1416,7 +1416,7 @@ function YieldStrategyBuilder() {
               <label className="text-xs text-muted-foreground mb-1 block">Investment: {fmtUSD(investment, 0)}</label>
               <div className="flex gap-2 flex-wrap">
                 {[10000, 50000, 100000, 500000].map((v) => (
-                  <button key={v} onClick={() => setInvestment(v)} className={cn("px-2 py-1 rounded text-xs border transition-colors", investment === v ? "border-emerald-500 bg-emerald-500/20 text-emerald-300" : "border-white/10 bg-white/5 text-muted-foreground")}>
+                  <button key={v} onClick={() => setInvestment(v)} className={cn("px-2 py-1 rounded text-xs border transition-colors", investment === v ? "border-emerald-500 bg-emerald-500/20 text-emerald-300" : "border-border bg-foreground/5 text-muted-foreground")}>
                     {fmtB(v)}
                   </button>
                 ))}
@@ -1526,7 +1526,7 @@ function ProtocolRankings() {
               "px-3 py-1.5 rounded text-xs border transition-colors",
               sortBy === s.key
                 ? "border-indigo-500 bg-indigo-500/20 text-indigo-300"
-                : "border-white/10 bg-white/5 text-muted-foreground hover:border-white/20"
+                : "border-border bg-foreground/5 text-muted-foreground hover:border-border"
             )}
           >
             {s.label}
@@ -1535,13 +1535,13 @@ function ProtocolRankings() {
       </div>
 
       {/* TVL leaderboard */}
-      <div className="rounded-xl border border-white/10 bg-white/5 overflow-x-auto">
-        <div className="p-4 border-b border-white/10">
+      <div className="rounded-xl border border-border bg-foreground/5 overflow-x-auto">
+        <div className="p-4 border-b border-border">
           <SectionTitle>DeFi Protocol Leaderboard — Top 15 by TVL</SectionTitle>
         </div>
         <table className="w-full text-sm">
           <thead>
-            <tr className="border-b border-white/10 text-xs text-muted-foreground uppercase">
+            <tr className="border-b border-border text-xs text-muted-foreground uppercase">
               <th className="text-left p-3">#</th>
               <th className="text-left p-3">Protocol</th>
               <th className="text-left p-3">Category</th>
@@ -1558,7 +1558,7 @@ function ProtocolRankings() {
               <>
                 <tr
                   key={p.name}
-                  className="border-b border-white/5 hover:bg-muted/30 transition-colors cursor-pointer"
+                  className="border-b border-border/50 hover:bg-muted/30 transition-colors cursor-pointer"
                   onClick={() => setExpandedRow(expandedRow === idx ? null : idx)}
                 >
                   <td className="p-3 text-muted-foreground font-mono">{p.rank}</td>
@@ -1567,11 +1567,11 @@ function ProtocolRankings() {
                     <div className="text-xs text-muted-foreground">{p.token}</div>
                   </td>
                   <td className="p-3">
-                    <Badge className="bg-white/10 text-muted-foreground border-white/10 text-xs">{p.category}</Badge>
+                    <Badge className="bg-foreground/10 text-muted-foreground border-border text-xs">{p.category}</Badge>
                   </td>
                   <td className="p-3 text-right">
                     <div className="text-foreground">{fmtB(p.tvl)}</div>
-                    <div className="w-full bg-white/5 h-1 rounded mt-1">
+                    <div className="w-full bg-foreground/5 h-1 rounded mt-1">
                       <div className="h-full bg-indigo-500/60 rounded" style={{ width: `${(p.tvl / maxTVL) * 100}%` }} />
                     </div>
                   </td>
@@ -1580,7 +1580,7 @@ function ProtocolRankings() {
                   </td>
                   <td className="p-3 text-right">
                     <div className="text-foreground">{fmtB(p.rev30d)}</div>
-                    <div className="w-full bg-white/5 h-1 rounded mt-1">
+                    <div className="w-full bg-foreground/5 h-1 rounded mt-1">
                       <div className="h-full bg-emerald-500/60 rounded" style={{ width: `${(p.rev30d / maxRev) * 100}%` }} />
                     </div>
                   </td>
@@ -1606,7 +1606,7 @@ function ProtocolRankings() {
                       animate={{ opacity: 1 }}
                       exit={{ opacity: 0 }}
                     >
-                      <td colSpan={9} className="px-6 py-3 bg-white/5">
+                      <td colSpan={9} className="px-6 py-3 bg-foreground/5">
                         <p className="text-xs text-muted-foreground">
                           <span className="text-muted-foreground font-medium">Protocol Moat: </span>{p.moat}
                         </p>
@@ -1625,13 +1625,13 @@ function ProtocolRankings() {
       </div>
 
       {/* Revenue by category */}
-      <div className="rounded-xl border border-white/10 bg-white/5 p-4">
+      <div className="rounded-xl border border-border bg-foreground/5 p-4">
         <SectionTitle>Revenue by Category (30 days)</SectionTitle>
         <div className="space-y-2">
           {cats.map(([cat, rev]) => (
             <div key={cat} className="flex items-center gap-3">
               <span className="w-28 text-xs text-muted-foreground shrink-0">{cat}</span>
-              <div className="flex-1 bg-white/5 rounded h-5 relative overflow-hidden">
+              <div className="flex-1 bg-foreground/5 rounded h-5 relative overflow-hidden">
                 <div
                   className="h-full bg-indigo-500/40 rounded transition-all"
                   style={{ width: `${(rev / maxCatRev) * 100}%` }}
@@ -1646,12 +1646,12 @@ function ProtocolRankings() {
       </div>
 
       {/* DeFi vs CeFi comparison */}
-      <div className="rounded-xl border border-white/10 bg-white/5 p-4">
+      <div className="rounded-xl border border-border bg-foreground/5 p-4">
         <SectionTitle>DeFi vs CeFi Rate Comparison</SectionTitle>
         <div className="overflow-x-auto">
           <table className="w-full text-sm">
             <thead>
-              <tr className="text-xs text-muted-foreground uppercase border-b border-white/10">
+              <tr className="text-xs text-muted-foreground uppercase border-b border-border">
                 <th className="text-left p-2">Product</th>
                 <th className="text-right p-2">DeFi Rate</th>
                 <th className="text-right p-2">CeFi Rate</th>
@@ -1661,7 +1661,7 @@ function ProtocolRankings() {
             </thead>
             <tbody>
               {DEFI_VS_CEFI.map((row) => (
-                <tr key={row.product} className="border-b border-white/5 hover:bg-muted/30">
+                <tr key={row.product} className="border-b border-border/50 hover:bg-muted/30">
                   <td className="p-2 text-foreground">{row.product}</td>
                   <td className="p-2 text-right">
                     {row.defiRate > 0 ? (
@@ -1744,7 +1744,7 @@ export default function DefiPage() {
 
         {/* Tabs */}
         <Tabs defaultValue="yield">
-          <TabsList className="bg-card border border-white/10 h-auto flex-wrap gap-1 p-1">
+          <TabsList className="bg-card border border-border h-auto flex-wrap gap-1 p-1">
             {[
               { value: "yield", label: "Yield Dashboard", icon: <BarChart3 size={13} /> },
               { value: "lp", label: "LP Simulator", icon: <Droplets size={13} /> },

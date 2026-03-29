@@ -84,8 +84,8 @@ export function PendingOrders() {
                     className={cn(
                       "px-1.5 py-0 text-xs",
                       order.side === "buy"
-                        ? "border-[#10b981]/30 text-[#10b981]"
-                        : "border-[#ef4444]/30 text-[#ef4444]",
+                        ? "border-profit/30 text-profit"
+                        : "border-loss/30 text-loss",
                     )}
                   >
                     {order.side.toUpperCase()}

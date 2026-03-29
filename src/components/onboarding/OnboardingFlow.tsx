@@ -166,7 +166,7 @@ export function OnboardingFlow() {
             <button
               onClick={handleNext}
               className={cn(
-                "w-full rounded-lg px-6 py-2.5 text-sm font-semibold text-white transition-colors",
+                "w-full rounded-lg px-6 py-2.5 text-sm font-semibold text-primary-foreground transition-colors",
                 "bg-emerald-600 hover:bg-emerald-700 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-500 focus-visible:ring-offset-2"
               )}
             >

@@ -38,7 +38,7 @@ export function StatusBar() {
           <span
             className={cn(
               "font-medium tabular-nums",
-              totalPnL >= 0 ? "text-[#10b981]" : "text-[#ef4444]",
+              totalPnL >= 0 ? "text-profit" : "text-loss",
             )}
           >
             {formatCurrency(animatedPnL)} ({formatPercent(totalPnLPercent)})
@@ -64,10 +64,10 @@ export function StatusBar() {
           <div
             className={cn(
               "h-1.5 w-1.5 rounded-full transition-colors",
-              isPlaying ? "bg-[#10b981] pulse-dot" : "bg-[#6b7280]",
+              isPlaying ? "bg-profit pulse-dot" : "bg-muted-foreground",
             )}
           />
-          <span className={cn(isPlaying && "text-[#10b981]")}>
+          <span className={cn(isPlaying && "text-profit")}>
             {isPlaying ? "Playing" : "Paused"}
           </span>
         </div>

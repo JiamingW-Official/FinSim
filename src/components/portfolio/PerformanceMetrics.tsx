@@ -72,33 +72,33 @@ export function PerformanceMetrics() {
       <MetricCard
         label="Total Return"
         value={`${formatCurrency(totalReturn)} (${formatPercent(totalReturnPercent)})`}
-        color={totalReturn >= 0 ? "text-[#10b981]" : "text-[#ef4444]"}
+        color={totalReturn >= 0 ? "text-profit" : "text-loss"}
       />
       <MetricCard
         label="Win Rate"
         value={`${winRate.toFixed(1)}%`}
-        color={winRate >= 50 ? "text-[#10b981]" : "text-[#ef4444]"}
+        color={winRate >= 50 ? "text-profit" : "text-loss"}
       />
       <MetricCard label="Total Trades" value={String(stats.totalTrades)} />
       <MetricCard
         label="Avg Win"
         value={avgWin > 0 ? formatCurrency(avgWin) : "—"}
-        color="text-[#10b981]"
+        color="text-profit"
       />
       <MetricCard
         label="Avg Loss"
         value={avgLoss < 0 ? formatCurrency(avgLoss) : "—"}
-        color="text-[#ef4444]"
+        color="text-loss"
       />
       <MetricCard
         label="Profit Factor"
         value={profitFactor === Infinity ? "∞" : profitFactor.toFixed(2)}
-        color={profitFactor >= 1 ? "text-[#10b981]" : "text-[#ef4444]"}
+        color={profitFactor >= 1 ? "text-profit" : "text-loss"}
       />
       <MetricCard
         label="Max Drawdown"
         value={`-${maxDrawdown.toFixed(2)}%`}
-        color="text-[#ef4444]"
+        color="text-loss"
       />
       <MetricCard
         label="Total Fees"

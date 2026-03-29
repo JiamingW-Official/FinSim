@@ -61,14 +61,14 @@ export function TradeConfirmDialog({
         <div
           className={cn(
             "rounded-t-lg px-4 py-3",
-            isBuy ? "bg-[#10b981]/10" : "bg-[#ef4444]/10",
+            isBuy ? "bg-profit/10" : "bg-loss/10",
           )}
         >
           <DialogHeader>
             <DialogTitle
               className={cn(
                 "text-sm font-bold",
-                isBuy ? "text-[#10b981]" : "text-[#ef4444]",
+                isBuy ? "text-profit" : "text-loss",
               )}
             >
               CONFIRM {isBuy ? "BUY" : "SELL"} ORDER
@@ -142,8 +142,8 @@ export function TradeConfirmDialog({
               className={cn(
                 "flex-1 text-xs font-semibold text-white",
                 isBuy
-                  ? "bg-[#10b981] hover:bg-[#059669]"
-                  : "bg-[#ef4444] hover:bg-[#dc2626]",
+                  ? "bg-profit hover:bg-profit/80"
+                  : "bg-loss hover:bg-loss/80",
               )}
             >
               Confirm {isBuy ? "BUY" : "SELL"}

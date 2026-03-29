@@ -224,7 +224,7 @@ function MatchCard({ match }: { match: BracketMatch }) {
             key={p.id}
             className={cn(
               "flex items-center gap-1.5 px-2.5 py-1.5 transition-colors",
-              idx === 0 && "border-b border-white/[0.04]",
+              idx === 0 && "border-b border-foreground/[0.04]",
               isWinner && match.winner !== null && "bg-teal-500/10",
               p.isPlayer && "ring-inset ring-1 ring-teal-500/30",
             )}
@@ -444,7 +444,7 @@ export function TournamentTab() {
                 <div className="rounded-lg border border-border/30 bg-muted/10 p-3">
                   <div className="text-[11px] text-muted-foreground mb-2">Win probability vs QF opponent</div>
                   <div className="flex items-center gap-3">
-                    <div className="flex-1 h-2 rounded-full bg-white/[0.04] overflow-hidden">
+                    <div className="flex-1 h-2 rounded-full bg-foreground/[0.04] overflow-hidden">
                       <div
                         className="h-full rounded-full bg-teal-500 transition-all duration-300"
                         style={{ width: `${prob * 100}%` }}
@@ -478,7 +478,7 @@ export function TournamentTab() {
                   "rounded-lg border p-3 transition-colors",
                   canEnter
                     ? "border-border/30 bg-muted/10 hover:bg-muted/30"
-                    : "border-white/[0.03] bg-white/[0.01] opacity-60",
+                    : "border-foreground/[0.03] bg-foreground/[0.01] opacity-60",
                 )}
               >
                 <div className="flex items-center justify-between mb-1">
@@ -512,7 +512,7 @@ export function TournamentTab() {
         <div className="rounded-lg border border-border/30 overflow-hidden">
           <table className="w-full text-[11px]">
             <thead>
-              <tr className="border-b border-white/[0.04] bg-muted/10">
+              <tr className="border-b border-foreground/[0.04] bg-muted/10">
                 {["Tournament", "Place", "Prize", "ELO"].map((h) => (
                   <th key={h} className="px-3 py-2 text-left font-bold text-muted-foreground">{h}</th>
                 ))}
@@ -522,7 +522,7 @@ export function TournamentTab() {
               {pastResults.map((r, i) => (
                 <tr
                   key={i}
-                  className={cn("border-b border-white/[0.03] last:border-0", i % 2 === 0 ? "bg-transparent" : "bg-white/[0.01]")}
+                  className={cn("border-b border-foreground/[0.03] last:border-0", i % 2 === 0 ? "bg-transparent" : "bg-foreground/[0.01]")}
                 >
                   <td className="px-3 py-2 text-muted-foreground truncate max-w-[100px]">{r.name}</td>
                   <td className="px-3 py-2 font-bold text-foreground">{placementLabel(r.placement)}</td>

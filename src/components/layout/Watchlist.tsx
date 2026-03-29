@@ -117,9 +117,9 @@ export function Watchlist() {
                         className={cn(
                           "flex items-center justify-end gap-0.5 text-xs tabular-nums",
                           priceChange > 0
-                            ? "text-[#10b981]"
+                            ? "text-profit"
                             : priceChange < 0
-                              ? "text-[#ef4444]"
+                              ? "text-loss"
                               : "text-muted-foreground",
                         )}
                       >

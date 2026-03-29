@@ -1023,7 +1023,7 @@ export default function ReplayPage() {
         </div>
 
         {/* Chart */}
-        <div className="relative flex-1 overflow-hidden bg-[#0a0e17]">
+        <div className="relative flex-1 overflow-hidden bg-background">
           <ReplayChart bars={displayBars} />
         </div>
 

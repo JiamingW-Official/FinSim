@@ -56,10 +56,10 @@ export function IndicatorDiagram() {
       </svg>
       <div className="flex items-center gap-4 text-xs">
         <span className="flex items-center gap-1">
-          <span className="inline-block h-0.5 w-4 bg-[#10b981]" /> Price
+          <span className="inline-block h-0.5 w-4 bg-profit" /> Price
         </span>
         <span className="flex items-center gap-1">
-          <span className="inline-block h-0.5 w-4 border-t-2 border-dashed border-[#f59e0b]" /> SMA
+          <span className="inline-block h-0.5 w-4 border-t-2 border-dashed border-warning" /> SMA
         </span>
       </div>
     </div>

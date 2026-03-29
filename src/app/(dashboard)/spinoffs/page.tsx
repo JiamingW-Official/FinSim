@@ -330,7 +330,7 @@ function SpinoffMechanicsTab() {
   return (
     <div className="space-y-6">
       {/* Header */}
-      <div className="rounded-xl border border-white/10 bg-white/5 p-5">
+      <div className="rounded-xl border border-border bg-foreground/5 p-5">
         <h2 className="text-lg font-semibold text-white mb-1">Corporate Restructuring Methods</h2>
         <p className="text-sm text-white/50">
           Companies separate business units through three primary mechanisms, each with distinct tax, legal, and financial implications.
@@ -342,7 +342,7 @@ function SpinoffMechanicsTab() {
         {txTypes.map((tx) => (
           <div
             key={tx.id}
-            className={cn("rounded-xl border bg-white/5 overflow-hidden", tx.borderColor)}
+            className={cn("rounded-xl border bg-foreground/5 overflow-hidden", tx.borderColor)}
           >
             <button
               className="w-full flex items-center justify-between px-5 py-4 text-left"
@@ -424,7 +424,7 @@ function SpinoffMechanicsTab() {
       </div>
 
       {/* Section 355 Requirements */}
-      <div className="rounded-xl border border-white/10 bg-white/5 p-5">
+      <div className="rounded-xl border border-border bg-foreground/5 p-5">
         <h3 className="text-sm font-semibold text-white mb-1 flex items-center gap-2">
           <CheckCircle2 className="w-4 h-4 text-emerald-400" />
           IRC Section 355 — Tax-Free Spinoff Requirements
@@ -432,7 +432,7 @@ function SpinoffMechanicsTab() {
         <p className="text-xs text-white/50 mb-3">All 5 conditions must be met for shareholders to receive spinoff shares tax-free.</p>
         <div className="space-y-2">
           {section355.map((r, i) => (
-            <div key={i} className="flex items-start gap-3 p-2 rounded-lg bg-white/5">
+            <div key={i} className="flex items-start gap-3 p-2 rounded-lg bg-foreground/5">
               <div className="w-5 h-5 rounded-full bg-emerald-500/20 border border-emerald-500/40 flex items-center justify-center text-xs text-emerald-400 shrink-0 mt-0.5">
                 {i + 1}
               </div>
@@ -446,11 +446,11 @@ function SpinoffMechanicsTab() {
       </div>
 
       {/* Why Companies Spin Off */}
-      <div className="rounded-xl border border-white/10 bg-white/5 p-5">
+      <div className="rounded-xl border border-border bg-foreground/5 p-5">
         <h3 className="text-sm font-semibold text-white mb-3">Why Companies Spin Off Units</h3>
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
           {spinoffReasons.map((r, i) => (
-            <div key={i} className="flex items-start gap-3 p-3 rounded-lg bg-white/5 border border-white/8">
+            <div key={i} className="flex items-start gap-3 p-3 rounded-lg bg-foreground/5 border border-border/50">
               <div className="mt-0.5 shrink-0">{r.icon}</div>
               <div>
                 <div className="text-xs font-semibold text-white/90 mb-0.5">{r.title}</div>
@@ -560,7 +560,7 @@ function ShareholderDistributionSVG() {
     { label: "When-Issued", sub: "Trading Begins", x: 430 },
   ];
   return (
-    <div className="rounded-xl border border-white/10 bg-white/5 p-5">
+    <div className="rounded-xl border border-border bg-foreground/5 p-5">
       <h3 className="text-sm font-semibold text-white mb-3 flex items-center gap-2">
         <Info className="w-4 h-4 text-primary" />
         Shareholder Distribution Timeline
@@ -614,7 +614,7 @@ function SOTPTab() {
 
   return (
     <div className="space-y-5">
-      <div className="rounded-xl border border-white/10 bg-white/5 p-5">
+      <div className="rounded-xl border border-border bg-foreground/5 p-5">
         <h2 className="text-lg font-semibold text-white mb-1">Sum-of-Parts (SOTP) Calculator</h2>
         <p className="text-sm text-white/50">
           Value each business unit independently using EV/EBITDA multiples. Compare to conglomerate market cap.
@@ -628,7 +628,7 @@ function SOTPTab() {
           const ev = ebitda * seg.evMultiple;
           const revShare = (seg.revenue / totalRev) * 100;
           return (
-            <div key={i} className="rounded-xl border border-white/10 bg-white/5 p-4 space-y-3">
+            <div key={i} className="rounded-xl border border-border bg-foreground/5 p-4 space-y-3">
               <div className="flex items-center justify-between">
                 <div className="flex items-center gap-2">
                   <div className="w-2.5 h-2.5 rounded-full" style={{ backgroundColor: colors[i] }} />
@@ -690,7 +690,7 @@ function SOTPTab() {
       </div>
 
       {/* Corp Adjustments */}
-      <div className="rounded-xl border border-white/10 bg-white/5 p-4">
+      <div className="rounded-xl border border-border bg-foreground/5 p-4">
         <h3 className="text-xs font-semibold text-white/60 uppercase tracking-wide mb-3">Corporate Adjustments</h3>
         <div className="grid grid-cols-2 gap-4">
           <div>
@@ -775,7 +775,7 @@ function SOTPSummaryChart({
   const labelW = 130;
 
   return (
-    <div className="rounded-xl border border-white/10 bg-white/5 p-5">
+    <div className="rounded-xl border border-border bg-foreground/5 p-5">
       <h3 className="text-sm font-semibold text-white mb-3">Segment EV Breakdown</h3>
       <svg viewBox={`0 0 ${W} ${H}`} className="w-full" style={{ height: H }}>
         {sotp.map((seg, i) => {
@@ -795,7 +795,7 @@ function SOTPSummaryChart({
       </svg>
 
       <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 mt-3">
-        <div className="rounded-lg bg-white/5 p-3 text-center">
+        <div className="rounded-lg bg-foreground/5 p-3 text-center">
           <div className="text-xs text-white/40 mb-1">SOTP EV</div>
           <div className="text-base font-bold text-white">${(totalSotpEV / 1000).toFixed(1)}B</div>
         </div>
@@ -803,7 +803,7 @@ function SOTPSummaryChart({
           <div className="text-xs text-red-400 mb-1">Cong. Discount (15%)</div>
           <div className="text-base font-bold text-red-400">−${(conglomerateDiscountEV / 1000).toFixed(1)}B</div>
         </div>
-        <div className="rounded-lg bg-white/5 p-3 text-center">
+        <div className="rounded-lg bg-foreground/5 p-3 text-center">
           <div className="text-xs text-white/40 mb-1">SOTP / Share</div>
           <div className="text-base font-bold text-emerald-400">${sotpPerShare.toFixed(2)}</div>
         </div>
@@ -833,7 +833,7 @@ function HoldingCoDiscountSVG({ totalSotpEV, conglomerateDiscountEV, netDebt, so
   const mktW = Math.max(20, (marketCapAssumed / sotpEquity) * navW) | 0;
 
   return (
-    <div className="rounded-xl border border-white/10 bg-white/5 p-5">
+    <div className="rounded-xl border border-border bg-foreground/5 p-5">
       <h3 className="text-sm font-semibold text-white mb-1">NAV vs Market Cap — Holding Company Analysis</h3>
       <p className="text-xs text-white/40 mb-3">Conglomerates typically trade at 10–20% discount to intrinsic NAV.</p>
       <svg viewBox={`0 0 ${W} ${H}`} className="w-full" style={{ height: H }}>
@@ -883,7 +883,7 @@ function HistoricalPerformanceTab() {
 
   return (
     <div className="space-y-5">
-      <div className="rounded-xl border border-white/10 bg-white/5 p-5">
+      <div className="rounded-xl border border-border bg-foreground/5 p-5">
         <h2 className="text-lg font-semibold text-white mb-1">Famous Spinoff Performance</h2>
         <p className="text-sm text-white/50">1-year and 3-year returns post-spinoff vs S&P 500. Data reflects historical records.</p>
       </div>
@@ -898,18 +898,18 @@ function HistoricalPerformanceTab() {
           <div className="text-xs text-primary mb-1">Avg Parent 1Y Return</div>
           <div className="text-2xl font-bold text-primary">+{avgParent1Y.toFixed(1)}%</div>
         </div>
-        <div className="rounded-xl border border-white/10 bg-white/5 p-4 text-center">
+        <div className="rounded-xl border border-border bg-foreground/5 p-4 text-center">
           <div className="text-xs text-white/40 mb-1">Avg S&P 500 1Y</div>
           <div className="text-2xl font-bold text-white">+{avgSP1Y.toFixed(1)}%</div>
         </div>
       </div>
 
       {/* Table */}
-      <div className="rounded-xl border border-white/10 bg-white/5 overflow-hidden">
+      <div className="rounded-xl border border-border bg-foreground/5 overflow-hidden">
         <div className="overflow-x-auto">
           <table className="w-full text-xs">
             <thead>
-              <tr className="border-b border-white/10 bg-white/5">
+              <tr className="border-b border-border bg-foreground/5">
                 <th className="text-left px-4 py-3 text-white/40 font-medium">Parent → SpinCo</th>
                 <th className="text-center px-3 py-3 text-white/40 font-medium cursor-pointer hover:text-white/70" onClick={() => toggleSort("year")}>
                   Year {sortKey === "year" ? (sortDir === "desc" ? "↓" : "↑") : ""}
@@ -929,7 +929,7 @@ function HistoricalPerformanceTab() {
               {sorted.map((row, i) => {
                 const vssp = row.spinoff1Y - row.sp500_1Y;
                 return (
-                  <tr key={i} className="border-b border-white/5 hover:bg-muted/30 transition-colors">
+                  <tr key={i} className="border-b border-border/50 hover:bg-muted/30 transition-colors">
                     <td className="px-4 py-3">
                       <div className="text-white/90 font-medium">{row.parent} → <span className="text-primary">{row.spinoff}</span></div>
                       <div className="text-white/30 mt-0.5">{row.parentTicker} → {row.spinoffTicker}</div>
@@ -993,7 +993,7 @@ function PerformanceScatter({ data }: { data: SpinoffRecord[] }) {
   const ticks = [-30, -10, 10, 30, 50, 70, 90, 120, 150];
 
   return (
-    <div className="rounded-xl border border-white/10 bg-white/5 p-5">
+    <div className="rounded-xl border border-border bg-foreground/5 p-5">
       <h3 className="text-sm font-semibold text-white mb-1">Parent vs SpinCo 1Y Returns (Scatter)</h3>
       <p className="text-xs text-white/40 mb-3">Points above diagonal = SpinCo outperformed parent.</p>
       <svg viewBox={`0 0 ${W} ${H}`} className="w-full" style={{ height: H }}>
@@ -1098,7 +1098,7 @@ function InvestingStrategyTab() {
 
   return (
     <div className="space-y-5">
-      <div className="rounded-xl border border-white/10 bg-white/5 p-5">
+      <div className="rounded-xl border border-border bg-foreground/5 p-5">
         <h2 className="text-lg font-semibold text-white mb-1">Spinoff Investing Strategy</h2>
         <p className="text-sm text-white/50">Spinoffs have historically outperformed broad market indices. Here is why and how to capitalize.</p>
       </div>
@@ -1107,11 +1107,11 @@ function InvestingStrategyTab() {
       <SpinoffIndexChart data={chartData} outperformance={outperformance} />
 
       {/* Why Outperform */}
-      <div className="rounded-xl border border-white/10 bg-white/5 p-5">
+      <div className="rounded-xl border border-border bg-foreground/5 p-5">
         <h3 className="text-sm font-semibold text-white mb-3">Why Spinoffs Outperform</h3>
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
           {whyOutperform.map((item, i) => (
-            <div key={i} className="flex items-start gap-3 p-3 rounded-lg bg-white/5 border border-white/8">
+            <div key={i} className="flex items-start gap-3 p-3 rounded-lg bg-foreground/5 border border-border/50">
               <div className="mt-0.5 shrink-0">{item.icon}</div>
               <div>
                 <div className="text-xs font-semibold text-white/90 mb-1">{item.title}</div>
@@ -1123,7 +1123,7 @@ function InvestingStrategyTab() {
       </div>
 
       {/* Timing Strategies */}
-      <div className="rounded-xl border border-white/10 bg-white/5 p-5">
+      <div className="rounded-xl border border-border bg-foreground/5 p-5">
         <h3 className="text-sm font-semibold text-white mb-3">When to Buy</h3>
         <div className="space-y-3">
           {timingStrategies.map((strat, i) => {
@@ -1221,7 +1221,7 @@ function SpinoffIndexChart({ data, outperformance }: { data: ChartPoint[]; outpe
   const yTicks = [100, 150, 200, 250, 300, 350];
 
   return (
-    <div className="rounded-xl border border-white/10 bg-white/5 p-5">
+    <div className="rounded-xl border border-border bg-foreground/5 p-5">
       <div className="flex items-start justify-between mb-3">
         <div>
           <h3 className="text-sm font-semibold text-white">Spinoff Index vs S&P 500 (10 Years)</h3>
@@ -1276,7 +1276,7 @@ function SpinoffIndexChart({ data, outperformance }: { data: ChartPoint[]; outpe
 
 export default function SpinoffsPage() {
   return (
-    <div className="min-h-screen bg-[#0a0a0f] text-white">
+    <div className="min-h-screen bg-background text-foreground">
       <div className="max-w-5xl mx-auto px-4 py-8">
         {/* Header */}
         <div className="mb-8">
@@ -1293,17 +1293,17 @@ export default function SpinoffsPage() {
 
         {/* Tabs */}
         <Tabs defaultValue="mechanics" className="space-y-5">
-          <TabsList className="bg-white/5 border border-white/10 p-1 rounded-xl h-auto flex flex-wrap gap-1">
-            <TabsTrigger value="mechanics" className="rounded-lg text-xs px-4 py-2 data-[state=active]:bg-white/10 data-[state=active]:text-white text-white/50">
+          <TabsList className="bg-foreground/5 border border-border p-1 rounded-xl h-auto flex flex-wrap gap-1">
+            <TabsTrigger value="mechanics" className="rounded-lg text-xs px-4 py-2 data-[state=active]:bg-foreground/10 data-[state=active]:text-white text-white/50">
               Spinoff Mechanics
             </TabsTrigger>
-            <TabsTrigger value="sotp" className="rounded-lg text-xs px-4 py-2 data-[state=active]:bg-white/10 data-[state=active]:text-white text-white/50">
+            <TabsTrigger value="sotp" className="rounded-lg text-xs px-4 py-2 data-[state=active]:bg-foreground/10 data-[state=active]:text-white text-white/50">
               SOTP Valuation
             </TabsTrigger>
-            <TabsTrigger value="history" className="rounded-lg text-xs px-4 py-2 data-[state=active]:bg-white/10 data-[state=active]:text-white text-white/50">
+            <TabsTrigger value="history" className="rounded-lg text-xs px-4 py-2 data-[state=active]:bg-foreground/10 data-[state=active]:text-white text-white/50">
               Historical Performance
             </TabsTrigger>
-            <TabsTrigger value="strategy" className="rounded-lg text-xs px-4 py-2 data-[state=active]:bg-white/10 data-[state=active]:text-white text-white/50">
+            <TabsTrigger value="strategy" className="rounded-lg text-xs px-4 py-2 data-[state=active]:bg-foreground/10 data-[state=active]:text-white text-white/50">
               Investing Strategy
             </TabsTrigger>
           </TabsList>

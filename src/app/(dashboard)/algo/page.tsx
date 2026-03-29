@@ -549,7 +549,7 @@ function ConditionEditor({
   const needsParam = !["macd_cross", "bb_lower"].includes(condition.type);
 
   return (
-    <div className="flex items-center gap-2 rounded-md border border-white/8 bg-card/60 px-3 py-2">
+    <div className="flex items-center gap-2 rounded-md border border-border/50 bg-card/60 px-3 py-2">
       <select
         value={condition.type}
         onChange={(e) => {
@@ -828,7 +828,7 @@ function MetricChip({
   positive?: boolean;
 }) {
   return (
-    <div className="flex flex-col gap-0.5 rounded-md border border-white/8 bg-card/60 px-3 py-2 min-w-[90px]">
+    <div className="flex flex-col gap-0.5 rounded-md border border-border/50 bg-card/60 px-3 py-2 min-w-[90px]">
       <span className="text-xs text-muted-foreground uppercase tracking-wide">{label}</span>
       <span className={cn("text-sm font-bold tabular-nums", positive === true ? "text-green-400" : positive === false ? "text-red-400" : "text-foreground")}>
         {value}
@@ -985,7 +985,7 @@ export default function AlgoPage() {
   return (
     <div className="flex h-full flex-col">
       {/* Header */}
-      <div className="flex items-center gap-3 border-b border-white/5 bg-black/30 px-6 py-3 shrink-0">
+      <div className="flex items-center gap-3 border-b border-border/50 bg-black/30 px-6 py-3 shrink-0">
         <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-primary/15">
           <Bot className="h-4 w-4 text-primary" />
         </div>
@@ -1004,7 +1004,7 @@ export default function AlgoPage() {
       </div>
 
       {/* Tab Bar */}
-      <div className="flex border-b border-white/5 bg-black/20 shrink-0">
+      <div className="flex border-b border-border/50 bg-black/20 shrink-0">
         {TABS.map((tab) => (
           <button
             key={tab.id}
@@ -1038,7 +1038,7 @@ export default function AlgoPage() {
                   <input
                     value={strategy.name}
                     onChange={(e) => setStrategy((s) => ({ ...s, name: e.target.value }))}
-                    className="w-full max-w-xs rounded-md border border-white/10 bg-card px-3 py-1.5 text-sm text-foreground outline-none focus-visible:ring-2 focus-visible:ring-ring"
+                    className="w-full max-w-xs rounded-md border border-border bg-card px-3 py-1.5 text-sm text-foreground outline-none focus-visible:ring-2 focus-visible:ring-ring"
                     placeholder="My Strategy"
                   />
                 </div>
@@ -1055,13 +1055,13 @@ export default function AlgoPage() {
               {/* Three-panel layout */}
               <div className="grid grid-cols-3 gap-4">
                 {/* Entry Rules */}
-                <Card className="border-white/8 bg-card/50 p-4 space-y-3">
+                <Card className="border-border/50 bg-card/50 p-4 space-y-3">
                   <div className="flex items-center justify-between">
                     <h2 className="text-xs font-bold text-foreground uppercase tracking-wide">Entry Rules</h2>
                     <select
                       value={strategy.entryLogic}
                       onChange={(e) => setStrategy((s) => ({ ...s, entryLogic: e.target.value as Logic }))}
-                      className="text-xs rounded border border-white/10 bg-muted px-2 py-0.5 text-muted-foreground"
+                      className="text-xs rounded border border-border bg-muted px-2 py-0.5 text-muted-foreground"
                     >
                       <option value="AND">AND</option>
                       <option value="OR">OR</option>
@@ -1084,20 +1084,20 @@ export default function AlgoPage() {
                   >
                     <Plus className="h-3 w-3" /> Add condition
                   </button>
-                  <div className="rounded-md border border-white/5 bg-black/20 p-2 text-xs text-muted-foreground">
+                  <div className="rounded-md border border-border/50 bg-black/20 p-2 text-xs text-muted-foreground">
                     <Info className="inline h-3 w-3 mr-1" />
                     Conditions joined by {strategy.entryLogic} logic
                   </div>
                 </Card>
 
                 {/* Exit Rules */}
-                <Card className="border-white/8 bg-card/50 p-4 space-y-3">
+                <Card className="border-border/50 bg-card/50 p-4 space-y-3">
                   <div className="flex items-center justify-between">
                     <h2 className="text-xs font-bold text-foreground uppercase tracking-wide">Exit Rules</h2>
                     <select
                       value={strategy.exitLogic}
                       onChange={(e) => setStrategy((s) => ({ ...s, exitLogic: e.target.value as Logic }))}
-                      className="text-xs rounded border border-white/10 bg-muted px-2 py-0.5 text-muted-foreground"
+                      className="text-xs rounded border border-border bg-muted px-2 py-0.5 text-muted-foreground"
                     >
                       <option value="AND">AND</option>
                       <option value="OR">OR</option>
@@ -1120,14 +1120,14 @@ export default function AlgoPage() {
                   >
                     <Plus className="h-3 w-3" /> Add condition
                   </button>
-                  <div className="rounded-md border border-white/5 bg-black/20 p-2 text-xs text-muted-foreground">
+                  <div className="rounded-md border border-border/50 bg-black/20 p-2 text-xs text-muted-foreground">
                     <Info className="inline h-3 w-3 mr-1" />
                     Exit fires when {strategy.exitLogic === "OR" ? "any" : "all"} conditions match
                   </div>
                 </Card>
 
                 {/* Position Sizing */}
-                <Card className="border-white/8 bg-card/50 p-4 space-y-4">
+                <Card className="border-border/50 bg-card/50 p-4 space-y-4">
                   <h2 className="text-xs font-bold text-foreground uppercase tracking-wide">Position Sizing</h2>
                   <div className="space-y-2">
                     {(
@@ -1162,7 +1162,7 @@ export default function AlgoPage() {
                         type="number"
                         value={strategy.sizingValue}
                         onChange={(e) => setStrategy((s) => ({ ...s, sizingValue: parseFloat(e.target.value) || 0 }))}
-                        className="w-full rounded-md border border-white/10 bg-muted px-3 py-1.5 text-sm text-foreground outline-none focus-visible:ring-2 focus-visible:ring-ring"
+                        className="w-full rounded-md border border-border bg-muted px-3 py-1.5 text-sm text-foreground outline-none focus-visible:ring-2 focus-visible:ring-ring"
                       />
                     </div>
                   )}
@@ -1175,7 +1175,7 @@ export default function AlgoPage() {
               </div>
 
               {/* Strategy Summary */}
-              <Card className="border-white/8 bg-card/50 p-4">
+              <Card className="border-border/50 bg-card/50 p-4">
                 <h2 className="mb-2 text-xs font-bold text-muted-foreground uppercase tracking-wide">Strategy Summary</h2>
                 <p className="text-sm text-foreground leading-relaxed">{summary}</p>
               </Card>
@@ -1250,7 +1250,7 @@ export default function AlgoPage() {
                   </div>
 
                   {/* Equity Curve */}
-                  <Card className="border-white/8 bg-card/50 p-4">
+                  <Card className="border-border/50 bg-card/50 p-4">
                     <h2 className="mb-3 text-xs font-bold text-muted-foreground uppercase tracking-wide">Equity Curve</h2>
                     <div className="flex items-center gap-4 mb-3">
                       <div className="flex items-center gap-1.5 text-xs text-muted-foreground">
@@ -1270,14 +1270,14 @@ export default function AlgoPage() {
                   </Card>
 
                   {/* Trade Log */}
-                  <Card className="border-white/8 bg-card/50 p-4">
+                  <Card className="border-border/50 bg-card/50 p-4">
                     <h2 className="mb-3 text-xs font-bold text-muted-foreground uppercase tracking-wide">
                       Trade Log ({result.trades.length} trades)
                     </h2>
                     <div className="overflow-x-auto">
                       <table className="w-full text-xs">
                         <thead>
-                          <tr className="border-b border-white/8 text-left text-muted-foreground">
+                          <tr className="border-b border-border/50 text-left text-muted-foreground">
                             <th className="pb-2 pr-4 font-medium">#</th>
                             <th className="pb-2 pr-4 font-medium">Entry Bar</th>
                             <th className="pb-2 pr-4 font-medium">Entry $</th>
@@ -1289,7 +1289,7 @@ export default function AlgoPage() {
                         </thead>
                         <tbody>
                           {result.trades.slice(0, 30).map((t, i) => (
-                            <tr key={i} className="border-b border-white/4 hover:bg-muted/30">
+                            <tr key={i} className="border-b border-border/50 hover:bg-muted/30">
                               <td className="py-1.5 pr-4 text-muted-foreground">{i + 1}</td>
                               <td className="py-1.5 pr-4 text-muted-foreground">{t.entryBar}</td>
                               <td className="py-1.5 pr-4 text-muted-foreground">${t.entryPrice.toFixed(2)}</td>
@@ -1315,7 +1315,7 @@ export default function AlgoPage() {
                   </Card>
 
                   {/* Buy & Hold comparison */}
-                  <Card className="border-white/8 bg-card/50 p-4">
+                  <Card className="border-border/50 bg-card/50 p-4">
                     <h2 className="mb-2 text-xs font-bold text-muted-foreground uppercase tracking-wide">vs Buy &amp; Hold</h2>
                     <div className="flex items-end gap-8">
                       <div>
@@ -1361,7 +1361,7 @@ export default function AlgoPage() {
                   const libSeed = strSeed(lib.id);
                   const libReturn = (mulberry32(libSeed)() * 0.4 - 0.05 + lib.avgReturn / 100);
                   return (
-                    <Card key={lib.id} className="border-white/8 bg-card/50 p-4 space-y-3 hover:border-border transition-colors">
+                    <Card key={lib.id} className="border-border/50 bg-card/50 p-4 space-y-3 hover:border-border transition-colors">
                       <div className="flex items-start justify-between">
                         <div>
                           <h3 className="text-sm font-bold text-foreground">{lib.name}</h3>
@@ -1403,7 +1403,7 @@ export default function AlgoPage() {
           <div className="p-6">
             <div className="mx-auto max-w-4xl space-y-6">
               {/* Parameter Sweep */}
-              <Card className="border-white/8 bg-card/50 p-4 space-y-4">
+              <Card className="border-border/50 bg-card/50 p-4 space-y-4">
                 <h2 className="text-xs font-bold text-foreground uppercase tracking-wide">Parameter Sweep</h2>
                 <div className="flex items-center gap-4">
                   <div>
@@ -1411,7 +1411,7 @@ export default function AlgoPage() {
                     <select
                       value={optParam}
                       onChange={(e) => setOptParam(e.target.value as typeof optParam)}
-                      className="rounded-md border border-white/10 bg-muted px-3 py-1.5 text-xs text-muted-foreground outline-none"
+                      className="rounded-md border border-border bg-muted px-3 py-1.5 text-xs text-muted-foreground outline-none"
                     >
                       <option value="rsi">RSI Period (if RSI condition)</option>
                       <option value="ma">MA Period (if MA condition)</option>
@@ -1463,13 +1463,13 @@ export default function AlgoPage() {
               </Card>
 
               {/* Walk-Forward */}
-              <Card className="border-white/8 bg-card/50 p-4 space-y-4">
+              <Card className="border-border/50 bg-card/50 p-4 space-y-4">
                 <h2 className="text-xs font-bold text-foreground uppercase tracking-wide">Walk-Forward Testing</h2>
                 <p className="text-[11px] text-muted-foreground">
                   Strategy performance on in-sample (first 80%) vs out-of-sample (last 20%) data.
                 </p>
                 <div className="grid grid-cols-2 gap-4">
-                  <div className="rounded-md border border-white/8 bg-card/60 p-3 space-y-1.5">
+                  <div className="rounded-md border border-border/50 bg-card/60 p-3 space-y-1.5">
                     <p className="text-xs font-semibold uppercase tracking-wide text-muted-foreground">In-Sample (≈202 bars)</p>
                     <div className="space-y-0.5">
                       <div className="flex justify-between text-xs">
@@ -1492,7 +1492,7 @@ export default function AlgoPage() {
                       </div>
                     </div>
                   </div>
-                  <div className="rounded-md border border-white/8 bg-card/60 p-3 space-y-1.5">
+                  <div className="rounded-md border border-border/50 bg-card/60 p-3 space-y-1.5">
                     <p className="text-xs font-semibold uppercase tracking-wide text-muted-foreground">Out-of-Sample (≈50 bars)</p>
                     <div className="space-y-0.5">
                       <div className="flex justify-between text-xs">
@@ -1525,7 +1525,7 @@ export default function AlgoPage() {
               </Card>
 
               {/* Monte Carlo */}
-              <Card className="border-white/8 bg-card/50 p-4 space-y-4">
+              <Card className="border-border/50 bg-card/50 p-4 space-y-4">
                 <h2 className="text-xs font-bold text-foreground uppercase tracking-wide">Monte Carlo Simulation</h2>
                 <p className="text-[11px] text-muted-foreground">
                   Trade order shuffled 500 times to show distribution of possible outcomes.
@@ -1556,7 +1556,7 @@ export default function AlgoPage() {
                     </div>
                   </div>
                 ) : (
-                  <div className="h-24 flex items-center justify-center text-muted-foreground text-xs border border-white/5 rounded-md">
+                  <div className="h-24 flex items-center justify-center text-muted-foreground text-xs border border-border/50 rounded-md">
                     Run optimization to generate Monte Carlo distribution
                   </div>
                 )}

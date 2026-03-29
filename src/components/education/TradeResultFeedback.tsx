@@ -91,15 +91,15 @@ function FeedbackContent({
   if (type === "buy") {
     summary = `Bought ${quantity} ${ticker} at ${formatCurrency(price)}.${avgCost ? ` Avg cost: ${formatCurrency(avgCost)}.` : ""}`;
     tip = pickRandom(BUY_TIPS);
-    borderColor = "border-[#10b981]/30 bg-[#10b981]/5";
+    borderColor = "border-profit/30 bg-profit/5";
   } else if (pnl !== undefined && pnl >= 0) {
     summary = `Sold ${quantity} ${ticker} for ${formatCurrency(price)}. Profit: +${formatCurrency(pnl)} (${formatPercent(pnlPercent ?? 0)}).`;
     tip = pickRandom(PROFIT_TIPS);
-    borderColor = "border-[#10b981]/30 bg-[#10b981]/5";
+    borderColor = "border-profit/30 bg-profit/5";
   } else {
     summary = `Sold ${quantity} ${ticker} for ${formatCurrency(price)}. Loss: ${formatCurrency(pnl ?? 0)} (${formatPercent(pnlPercent ?? 0)}).`;
     tip = pickRandom(LOSS_TIPS);
-    borderColor = "border-[#ef4444]/30 bg-[#ef4444]/5";
+    borderColor = "border-loss/30 bg-loss/5";
   }
 
   return (

@@ -107,7 +107,7 @@ function PnlRaceBar({ yourPnl, oppPnl }: { yourPnl: number; oppPnl: number }) {
   return (
     <div className="flex items-center gap-2">
       <span className="text-xs font-bold text-muted-foreground w-6 text-right">YOU</span>
-      <div className="flex-1 relative h-5 rounded-full bg-white/[0.03] overflow-hidden flex">
+      <div className="flex-1 relative h-5 rounded-full bg-foreground/[0.03] overflow-hidden flex">
         {/* Left half — you */}
         <div className="w-1/2 flex justify-end">
           <motion.div
@@ -117,7 +117,7 @@ function PnlRaceBar({ yourPnl, oppPnl }: { yourPnl: number; oppPnl: number }) {
           />
         </div>
         {/* Center line */}
-        <div className="absolute left-1/2 top-0 bottom-0 w-px bg-white/15 z-10" />
+        <div className="absolute left-1/2 top-0 bottom-0 w-px bg-foreground/15 z-10" />
         {/* Right half — opp */}
         <div className="w-1/2 flex justify-start">
           <motion.div
@@ -532,7 +532,7 @@ export function DuelsTab() {
               </div>
               <div className="space-y-1.5">
                 {opponents.map((opp) => (
-                  <div key={opp.id} className="flex items-center gap-2 rounded-lg border border-white/[0.03] bg-white/[0.01] px-3 py-2 text-xs">
+                  <div key={opp.id} className="flex items-center gap-2 rounded-lg border border-foreground/[0.03] bg-foreground/[0.01] px-3 py-2 text-xs">
                     <ArenaRankBadge rank={opp.rank} size="xs" showLabel={false} />
                     <span className="flex-1 text-muted-foreground">{opp.name}</span>
                     <span className="tabular-nums text-muted-foreground">{opp.elo} ELO</span>

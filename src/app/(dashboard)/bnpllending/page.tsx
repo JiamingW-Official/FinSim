@@ -88,7 +88,7 @@ function StatCard({
       ? "text-amber-400"
       : "text-white";
   return (
-    <div className="rounded-xl border border-white/10 bg-white/5 p-4 flex flex-col gap-1">
+    <div className="rounded-xl border border-border bg-foreground/5 p-4 flex flex-col gap-1">
       <div className="flex items-center gap-1.5">
         {icon && <span className="text-muted-foreground">{icon}</span>}
         <span className="text-xs text-muted-foreground">{label}</span>
@@ -318,7 +318,7 @@ function Tab1BNPLModel() {
       </div>
 
       {/* Pay-in-4 Mechanics SVG */}
-      <div className="rounded-xl border border-white/10 bg-white/5 p-4">
+      <div className="rounded-xl border border-border bg-foreground/5 p-4">
         <SectionTitle>
           <CreditCard size={14} />
           Pay-in-4 Flow Mechanics
@@ -328,7 +328,7 @@ function Tab1BNPLModel() {
 
       {/* Revenue Model */}
       <div className="grid md:grid-cols-2 gap-4">
-        <div className="rounded-xl border border-white/10 bg-white/5 p-4">
+        <div className="rounded-xl border border-border bg-foreground/5 p-4">
           <SectionTitle>
             <DollarSign size={14} />
             Revenue Streams
@@ -345,7 +345,7 @@ function Tab1BNPLModel() {
                   <span className="text-xs text-muted-foreground font-medium">{r.label}</span>
                   <span className="text-xs text-muted-foreground">{r.pct}% of revenue</span>
                 </div>
-                <div className="h-1.5 rounded-full bg-white/10">
+                <div className="h-1.5 rounded-full bg-foreground/10">
                   <div className={cn("h-1.5 rounded-full", r.color)} style={{ width: `${r.pct}%` }} />
                 </div>
                 <p className="text-xs text-muted-foreground">{r.desc}</p>
@@ -354,7 +354,7 @@ function Tab1BNPLModel() {
           </div>
         </div>
 
-        <div className="rounded-xl border border-white/10 bg-white/5 p-4">
+        <div className="rounded-xl border border-border bg-foreground/5 p-4">
           <SectionTitle>
             <BarChart3 size={14} />
             Unit Economics — % of GMV
@@ -372,7 +372,7 @@ function Tab1BNPLModel() {
       </div>
 
       {/* Major Players Table */}
-      <div className="rounded-xl border border-white/10 bg-white/5 p-4">
+      <div className="rounded-xl border border-border bg-foreground/5 p-4">
         <SectionTitle>
           <Globe size={14} />
           Major Players Comparison
@@ -380,7 +380,7 @@ function Tab1BNPLModel() {
         <div className="overflow-x-auto">
           <table className="w-full text-xs">
             <thead>
-              <tr className="border-b border-white/10">
+              <tr className="border-b border-border">
                 {["Provider", "GMV (2024)", "Take Rate", "Credit Loss", "Model", "Positioning", "Profitable"].map((h) => (
                   <th key={h} className="text-left py-2 px-3 text-muted-foreground font-medium">{h}</th>
                 ))}
@@ -388,7 +388,7 @@ function Tab1BNPLModel() {
             </thead>
             <tbody>
               {BNPL_PLAYERS.map((p, i) => (
-                <tr key={p.name} className={cn("border-b border-white/5", i % 2 === 0 ? "bg-white/[0.02]" : "")}>
+                <tr key={p.name} className={cn("border-b border-border/50", i % 2 === 0 ? "bg-foreground/[0.02]" : "")}>
                   <td className="py-2.5 px-3 font-semibold text-white">{p.name}</td>
                   <td className="py-2.5 px-3 text-primary">{p.gmv}</td>
                   <td className="py-2.5 px-3 text-emerald-300">{p.takeRate}</td>
@@ -604,7 +604,7 @@ function Tab2DigitalScoring() {
 
       {/* Traditional vs Alt Data Comparison */}
       <div className="grid md:grid-cols-2 gap-4">
-        <div className="rounded-xl border border-white/10 bg-white/5 p-4">
+        <div className="rounded-xl border border-border bg-foreground/5 p-4">
           <SectionTitle>
             <Scale size={14} />
             Traditional Credit Scoring
@@ -622,7 +622,7 @@ function Tab2DigitalScoring() {
                   <span className="text-muted-foreground">{f.factor}</span>
                   <span className="text-muted-foreground">{f.weight}%</span>
                 </div>
-                <div className="h-1.5 rounded-full bg-white/10">
+                <div className="h-1.5 rounded-full bg-foreground/10">
                   <div className={cn("h-1.5 rounded-full", f.color)} style={{ width: `${f.weight * 2}%` }} />
                 </div>
               </div>
@@ -633,14 +633,14 @@ function Tab2DigitalScoring() {
           </InfoBox>
         </div>
 
-        <div className="rounded-xl border border-white/10 bg-white/5 p-4">
+        <div className="rounded-xl border border-border bg-foreground/5 p-4">
           <SectionTitle>
             <Activity size={14} />
             Alternative Data Features
           </SectionTitle>
           <div className="grid grid-cols-2 gap-3">
             {ALT_DATA_FEATURES.map((cat) => (
-              <div key={cat.category} className="rounded-lg border border-white/10 bg-white/5 p-3">
+              <div key={cat.category} className="rounded-lg border border-border bg-foreground/5 p-3">
                 <div className="flex items-center gap-1.5 mb-2 text-muted-foreground">
                   {cat.icon}
                   <span className="text-xs font-semibold">{cat.category}</span>
@@ -660,7 +660,7 @@ function Tab2DigitalScoring() {
       </div>
 
       {/* ML Pipeline */}
-      <div className="rounded-xl border border-white/10 bg-white/5 p-4">
+      <div className="rounded-xl border border-border bg-foreground/5 p-4">
         <SectionTitle>
           <Zap size={14} />
           Real-Time ML Decisioning Pipeline
@@ -680,7 +680,7 @@ function Tab2DigitalScoring() {
       </div>
 
       {/* Approval/Default Curves */}
-      <div className="rounded-xl border border-white/10 bg-white/5 p-4">
+      <div className="rounded-xl border border-border bg-foreground/5 p-4">
         <SectionTitle>
           <BarChart3 size={14} />
           ML vs Traditional: Approval Rate &amp; Default Rate by Credit Score
@@ -692,7 +692,7 @@ function Tab2DigitalScoring() {
       </div>
 
       {/* Thin File Problem */}
-      <div className="rounded-xl border border-white/10 bg-white/5 p-4">
+      <div className="rounded-xl border border-border bg-foreground/5 p-4">
         <SectionTitle>
           <AlertTriangle size={14} />
           The Thin-File Problem — 45M Unscoreable Americans
@@ -703,7 +703,7 @@ function Tab2DigitalScoring() {
             { segment: "Young Adults (18-25)", size: "~18M", barrier: "Never used credit; responsible cash users invisible to bureaus", solution: "Debit card spending patterns, subscription payments, rental history" },
             { segment: "Unbanked / Underbanked", size: "~12M", barrier: "Cash economy participants; pay bills but no digital trail", solution: "Rent-to-own data, utility payments, telco records, payday repayment" },
           ].map((seg) => (
-            <div key={seg.segment} className="rounded-lg border border-white/10 bg-white/5 p-3 space-y-2">
+            <div key={seg.segment} className="rounded-lg border border-border bg-foreground/5 p-3 space-y-2">
               <div className="flex items-center justify-between">
                 <span className="text-xs font-semibold text-white">{seg.segment}</span>
                 <Badge className="bg-amber-500/20 text-amber-300 border-amber-500/30 text-xs">{seg.size}</Badge>
@@ -893,7 +893,7 @@ function Tab3EmbeddedFinance() {
       </div>
 
       {/* Architecture SVG */}
-      <div className="rounded-xl border border-white/10 bg-white/5 p-4">
+      <div className="rounded-xl border border-border bg-foreground/5 p-4">
         <SectionTitle>
           <Layers size={14} />
           Embedded Lending Architecture
@@ -910,14 +910,14 @@ function Tab3EmbeddedFinance() {
       </div>
 
       {/* Case Studies */}
-      <div className="rounded-xl border border-white/10 bg-white/5 p-4">
+      <div className="rounded-xl border border-border bg-foreground/5 p-4">
         <SectionTitle>
           <Building2 size={14} />
           Platform Lending Case Studies
         </SectionTitle>
         <div className="space-y-4">
           {CASE_STUDIES.map((cs) => (
-            <div key={cs.company} className="rounded-lg border border-white/10 bg-white/5 p-4">
+            <div key={cs.company} className="rounded-lg border border-border bg-foreground/5 p-4">
               <div className="flex items-start justify-between mb-2">
                 <div>
                   <span className="text-sm font-bold text-white">{cs.company}</span>
@@ -942,7 +942,7 @@ function Tab3EmbeddedFinance() {
 
       {/* Cross-sell Economics */}
       <div className="grid md:grid-cols-2 gap-4">
-        <div className="rounded-xl border border-white/10 bg-white/5 p-4">
+        <div className="rounded-xl border border-border bg-foreground/5 p-4">
           <SectionTitle>
             <DollarSign size={14} />
             Cross-Sell Economics
@@ -954,7 +954,7 @@ function Tab3EmbeddedFinance() {
               { metric: "Default rate reduction", value: "1.1%", base: "3.2%", lift: "-66%", note: "platform data advantage" },
               { metric: "Cross-sell conversion", value: "31%", base: "8%", lift: "+3.9x", note: "existing customer vs cold outreach" },
             ].map((row) => (
-              <div key={row.metric} className="flex items-center justify-between py-2 border-b border-white/5">
+              <div key={row.metric} className="flex items-center justify-between py-2 border-b border-border/50">
                 <div>
                   <p className="text-xs text-muted-foreground font-medium">{row.metric}</p>
                   <p className="text-xs text-muted-foreground">{row.note}</p>
@@ -968,7 +968,7 @@ function Tab3EmbeddedFinance() {
           </div>
         </div>
 
-        <div className="rounded-xl border border-white/10 bg-white/5 p-4">
+        <div className="rounded-xl border border-border bg-foreground/5 p-4">
           <SectionTitle>
             <TrendingUp size={14} />
             Embedded Finance Market Growth 2020–2028
@@ -1201,7 +1201,7 @@ function Tab4RiskRegulation() {
       </div>
 
       {/* Debt Stacking SVG */}
-      <div className="rounded-xl border border-white/10 bg-white/5 p-4">
+      <div className="rounded-xl border border-border bg-foreground/5 p-4">
         <SectionTitle>
           <Layers size={14} />
           Consumer Debt Stacking Problem
@@ -1222,7 +1222,7 @@ function Tab4RiskRegulation() {
 
       {/* Default Rate Comparison */}
       <div className="grid md:grid-cols-2 gap-4">
-        <div className="rounded-xl border border-white/10 bg-white/5 p-4">
+        <div className="rounded-xl border border-border bg-foreground/5 p-4">
           <SectionTitle>
             <BarChart3 size={14} />
             Default Rate: BNPL vs Other Products
@@ -1230,7 +1230,7 @@ function Tab4RiskRegulation() {
           <DefaultRateComparisonSVG />
         </div>
 
-        <div className="rounded-xl border border-white/10 bg-white/5 p-4">
+        <div className="rounded-xl border border-border bg-foreground/5 p-4">
           <SectionTitle>
             <Lock size={14} />
             CFPB Regulatory Developments
@@ -1264,7 +1264,7 @@ function Tab4RiskRegulation() {
             ].map((item) => {
               const severityColor = item.severity === "high" ? "text-rose-400 border-rose-500/30 bg-rose-500/10" : item.severity === "medium" ? "text-amber-400 border-amber-500/30 bg-amber-500/10" : "text-primary border-border bg-primary/10";
               return (
-                <div key={item.event} className="rounded-lg border border-white/10 bg-white/5 p-3">
+                <div key={item.event} className="rounded-lg border border-border bg-foreground/5 p-3">
                   <div className="flex items-center gap-2 mb-1">
                     <Badge className={cn("text-xs", severityColor)}>{item.date}</Badge>
                     <span className="text-xs font-semibold text-white">{item.event}</span>
@@ -1278,7 +1278,7 @@ function Tab4RiskRegulation() {
       </div>
 
       {/* Credit Quality Distribution */}
-      <div className="rounded-xl border border-white/10 bg-white/5 p-4">
+      <div className="rounded-xl border border-border bg-foreground/5 p-4">
         <SectionTitle>
           <Users size={14} />
           Credit Quality: BNPL Users vs Prime Borrowers
@@ -1290,7 +1290,7 @@ function Tab4RiskRegulation() {
       </div>
 
       {/* Debt Spiral Mechanics */}
-      <div className="rounded-xl border border-white/10 bg-white/5 p-4">
+      <div className="rounded-xl border border-border bg-foreground/5 p-4">
         <SectionTitle>
           <AlertTriangle size={14} />
           Debt Spiral Mechanics
@@ -1302,7 +1302,7 @@ function Tab4RiskRegulation() {
             { step: "3", title: "Late Fee Cascade", desc: "BNPL charges $15 late fee. Consumer opens new BNPL account to cover groceries, compounding monthly obligations", icon: <TrendingDown size={14} /> },
             { step: "4", title: "Delinquency Spiral", desc: "Multiple missed payments, collections, credit damage — but none visible across BNPL lenders until too late", icon: <XCircle size={14} /> },
           ].map((item) => (
-            <div key={item.step} className="rounded-lg border border-white/10 bg-white/5 p-3 text-center space-y-2">
+            <div key={item.step} className="rounded-lg border border-border bg-foreground/5 p-3 text-center space-y-2">
               <div className="w-7 h-7 rounded-full bg-rose-500/20 border border-rose-500/30 flex items-center justify-center mx-auto text-rose-400 text-xs font-bold">
                 {item.step}
               </div>
@@ -1341,7 +1341,7 @@ export default function BNPLLendingPage() {
   const [activeTab, setActiveTab] = useState("model");
 
   return (
-    <div className="min-h-screen bg-background text-white">
+    <div className="min-h-screen bg-background text-foreground">
       <div className="max-w-6xl mx-auto px-4 py-6">
         {/* Header */}
         <div className="mb-6">
@@ -1370,12 +1370,12 @@ export default function BNPLLendingPage() {
 
         {/* Tabs */}
         <Tabs value={activeTab} onValueChange={setActiveTab}>
-          <TabsList className="bg-white/5 border border-white/10 mb-6 flex-wrap h-auto gap-1 p-1">
+          <TabsList className="bg-foreground/5 border border-border mb-6 flex-wrap h-auto gap-1 p-1">
             {TABS.map((tab) => (
               <TabsTrigger
                 key={tab.id}
                 value={tab.id}
-                className="flex items-center gap-1.5 text-xs data-[state=active]:bg-white/10 data-[state=active]:text-white"
+                className="flex items-center gap-1.5 text-xs data-[state=active]:bg-foreground/10 data-[state=active]:text-white"
               >
                 {tab.icon}
                 {tab.label}

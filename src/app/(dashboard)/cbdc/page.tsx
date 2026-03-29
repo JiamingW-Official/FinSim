@@ -88,7 +88,7 @@ function StatCard({
       ? "text-amber-400"
       : "text-white";
   return (
-    <div className="rounded-xl border border-white/10 bg-white/5 p-4 flex flex-col gap-1">
+    <div className="rounded-xl border border-border bg-foreground/5 p-4 flex flex-col gap-1">
       <div className="flex items-center gap-1.5">
         {icon && <span className="text-muted-foreground">{icon}</span>}
         <span className="text-xs text-muted-foreground">{label}</span>
@@ -205,7 +205,7 @@ function PrivacySpectrumSVG() {
   ];
 
   return (
-    <div className="rounded-xl border border-white/10 bg-white/5 p-4">
+    <div className="rounded-xl border border-border bg-foreground/5 p-4">
       <SectionTitle>
         <Eye className="w-3.5 h-3.5" />
         Privacy Spectrum — Payment Methods
@@ -273,7 +273,7 @@ function DisintermediationRiskSVG() {
   const startX = 40;
 
   return (
-    <div className="rounded-xl border border-white/10 bg-white/5 p-4">
+    <div className="rounded-xl border border-border bg-foreground/5 p-4">
       <SectionTitle>
         <Building2 className="w-3.5 h-3.5" />
         Disintermediation Risk — Bank Deposits vs CBDC Holdings
@@ -342,7 +342,7 @@ function FundamentalsTab() {
       </div>
 
       {/* CBDC Type Comparison */}
-      <div className="rounded-xl border border-white/10 bg-white/5 p-4">
+      <div className="rounded-xl border border-border bg-foreground/5 p-4">
         <SectionTitle>
           <Layers className="w-3.5 h-3.5" />
           CBDC Types — Retail vs Wholesale vs Synthetic
@@ -350,7 +350,7 @@ function FundamentalsTab() {
         <div className="overflow-x-auto">
           <table className="w-full text-xs">
             <thead>
-              <tr className="border-b border-white/10">
+              <tr className="border-b border-border">
                 <th className="py-2 pr-4 text-left text-muted-foreground font-medium">Attribute</th>
                 <th className="py-2 pr-4 text-left text-primary font-medium">Retail CBDC</th>
                 <th className="py-2 pr-4 text-left text-primary font-medium">Wholesale CBDC</th>
@@ -367,7 +367,7 @@ function FundamentalsTab() {
                 ["Disintermediation Risk", "High — replaces deposits", "Low — wholesale only", "Low — private issuer buffer"],
                 ["Examples", "e-CNY, digital euro, e-Rupee", "Project mBridge, Jura", "Narrow bank stablecoins"],
               ].map(([attr, retail, wholesale, synthetic], i) => (
-                <tr key={attr} className={cn("border-b border-white/5", i % 2 === 0 ? "bg-white/2" : "")}>
+                <tr key={attr} className={cn("border-b border-border/50", i % 2 === 0 ? "bg-foreground/[0.02]" : "")}>
                   <td className="py-2 pr-4 text-muted-foreground font-medium">{attr}</td>
                   <td className="py-2 pr-4 text-foreground">{retail}</td>
                   <td className="py-2 pr-4 text-foreground">{wholesale}</td>
@@ -416,14 +416,14 @@ function FundamentalsTab() {
       <DisintermediationRiskSVG />
 
       {/* Design Decisions Matrix */}
-      <div className="rounded-xl border border-white/10 bg-white/5 p-4">
+      <div className="rounded-xl border border-border bg-foreground/5 p-4">
         <SectionTitle>
           <BarChart3 className="w-3.5 h-3.5" />
           Design Decisions Matrix
         </SectionTitle>
         <div className="space-y-2">
           {DESIGN_CHOICES.map((choice, i) => (
-            <div key={choice.dimension} className="border border-white/8 rounded-lg overflow-hidden">
+            <div key={choice.dimension} className="border border-border/50 rounded-lg overflow-hidden">
               <button
                 className="w-full flex items-center justify-between px-3 py-2.5 hover:bg-muted/30 transition-colors"
                 onClick={() => setExpandedRow(expandedRow === i ? null : i)}
@@ -474,7 +474,7 @@ function FundamentalsTab() {
         <div className="overflow-x-auto">
           <table className="w-full text-xs">
             <thead>
-              <tr className="border-b border-white/10">
+              <tr className="border-b border-border">
                 <th className="py-1.5 pr-4 text-left text-muted-foreground">Tier</th>
                 <th className="py-1.5 pr-4 text-left text-muted-foreground">Holding Limit</th>
                 <th className="py-1.5 pr-4 text-left text-muted-foreground">Interest Rate</th>
@@ -487,7 +487,7 @@ function FundamentalsTab() {
                 ["Tier 2", "€2,001 – €5,000", "Policy rate – 1.5%", "Moderate savings discouraged"],
                 ["Tier 3", "> €5,000", "0% or penalty rate", "Large holdings penalised to prevent bank run"],
               ].map(([tier, limit, rate, purpose]) => (
-                <tr key={tier} className="border-b border-white/5">
+                <tr key={tier} className="border-b border-border/50">
                   <td className="py-1.5 pr-4 text-amber-300 font-medium">{tier}</td>
                   <td className="py-1.5 pr-4 text-foreground">{limit}</td>
                   <td className="py-1.5 pr-4 text-foreground">{rate}</td>
@@ -667,7 +667,7 @@ function WorldMapSVG({ selected, onSelect }: { selected: string | null; onSelect
   };
 
   return (
-    <div className="rounded-xl border border-white/10 bg-white/5 p-4">
+    <div className="rounded-xl border border-border bg-foreground/5 p-4">
       <div className="flex items-center justify-between mb-3">
         <SectionTitle>
           <Globe className="w-3.5 h-3.5" />
@@ -831,7 +831,7 @@ function GlobalTrackerTab() {
               "px-3 py-1 rounded-full text-xs capitalize border transition-colors",
               filter === f
                 ? "bg-primary/30 border-primary/50 text-primary"
-                : "border-white/10 text-muted-foreground hover:border-white/20"
+                : "border-border text-muted-foreground hover:border-border"
             )}
           >
             {f}
@@ -852,7 +852,7 @@ function GlobalTrackerTab() {
               "rounded-xl border p-3 cursor-pointer transition-colors",
               selected === c.country
                 ? "border-primary/50 bg-primary/10"
-                : "border-white/10 bg-white/5 hover:bg-muted/40"
+                : "border-border bg-foreground/5 hover:bg-muted/40"
             )}
             onClick={() => setSelected((prev) => (prev === c.country ? null : c.country))}
           >
@@ -889,7 +889,7 @@ function BankRunRiskSVG() {
   const H = 180;
 
   return (
-    <div className="rounded-xl border border-white/10 bg-white/5 p-4">
+    <div className="rounded-xl border border-border bg-foreground/5 p-4">
       <SectionTitle>
         <AlertTriangle className="w-3.5 h-3.5 text-amber-400" />
         Bank Run Risk Simulation — Deposit Flight to CBDC
@@ -953,7 +953,7 @@ function FinancialInclusionSVG() {
   const labelW = 130;
 
   return (
-    <div className="rounded-xl border border-white/10 bg-white/5 p-4">
+    <div className="rounded-xl border border-border bg-foreground/5 p-4">
       <SectionTitle>
         <Users className="w-3.5 h-3.5" />
         Financial Inclusion — Unbanked Population &amp; CBDC Potential Impact (%)
@@ -1000,7 +1000,7 @@ function MonetaryPolicyTab() {
       </div>
 
       {/* Programmable Money */}
-      <div className="rounded-xl border border-white/10 bg-white/5 p-4">
+      <div className="rounded-xl border border-border bg-foreground/5 p-4">
         <SectionTitle>
           <Zap className="w-3.5 h-3.5" />
           Programmable Money — CBDC Features
@@ -1048,7 +1048,7 @@ function MonetaryPolicyTab() {
                 <span className="text-sm font-semibold text-foreground">{item.title}</span>
               </div>
               <p className="text-xs text-muted-foreground leading-relaxed mb-2">{item.desc}</p>
-              <div className="text-xs text-muted-foreground italic border-l-2 border-white/10 pl-2">{item.example}</div>
+              <div className="text-xs text-muted-foreground italic border-l-2 border-border pl-2">{item.example}</div>
             </div>
           ))}
         </div>
@@ -1061,7 +1061,7 @@ function MonetaryPolicyTab() {
       <FinancialInclusionSVG />
 
       {/* Interest Rate Transmission */}
-      <div className="rounded-xl border border-white/10 bg-white/5 p-4">
+      <div className="rounded-xl border border-border bg-foreground/5 p-4">
         <SectionTitle>
           <Activity className="w-3.5 h-3.5" />
           Interest Rate Transmission — Traditional vs CBDC
@@ -1077,7 +1077,7 @@ function MonetaryPolicyTab() {
                 ["Consumer Spending Changes", "Months 3–6", "amber"],
                 ["Inflation Impact", "Months 6–18", "rose"],
               ].map(([step, time, color]) => (
-                <div key={step as string} className="flex items-center justify-between text-xs px-2 py-1.5 rounded bg-white/5">
+                <div key={step as string} className="flex items-center justify-between text-xs px-2 py-1.5 rounded bg-foreground/5">
                   <span className="text-muted-foreground">{step as string}</span>
                   <span className={cn("font-medium", color === "rose" ? "text-rose-400" : color === "amber" ? "text-amber-400" : "text-muted-foreground")}>{time as string}</span>
                 </div>
@@ -1094,7 +1094,7 @@ function MonetaryPolicyTab() {
                 ["Consumer Spending Shifts", "Days 1–7", "emerald"],
                 ["Inflation Impact", "Weeks 4–12", "blue"],
               ].map(([step, time, color]) => (
-                <div key={step as string} className="flex items-center justify-between text-xs px-2 py-1.5 rounded bg-white/5">
+                <div key={step as string} className="flex items-center justify-between text-xs px-2 py-1.5 rounded bg-foreground/5">
                   <span className="text-muted-foreground">{step as string}</span>
                   <span className={cn("font-medium", color === "emerald" ? "text-emerald-400" : color === "blue" ? "text-primary" : "text-muted-foreground")}>{time as string}</span>
                 </div>
@@ -1171,7 +1171,7 @@ function MBridgeFlowSVG() {
   ];
 
   return (
-    <div className="rounded-xl border border-white/10 bg-white/5 p-4">
+    <div className="rounded-xl border border-border bg-foreground/5 p-4">
       <SectionTitle>
         <Network className="w-3.5 h-3.5" />
         Project mBridge — Multi-CBDC Cross-Border Payment Platform
@@ -1262,7 +1262,7 @@ function CrossBorderTab() {
       <MBridgeFlowSVG />
 
       {/* Swift vs CBDC comparison */}
-      <div className="rounded-xl border border-white/10 bg-white/5 p-4">
+      <div className="rounded-xl border border-border bg-foreground/5 p-4">
         <SectionTitle>
           <ArrowLeftRight className="w-3.5 h-3.5" />
           SWIFT vs CBDC Cross-Border Comparison
@@ -1270,7 +1270,7 @@ function CrossBorderTab() {
         <div className="overflow-x-auto">
           <table className="w-full text-xs">
             <thead>
-              <tr className="border-b border-white/10">
+              <tr className="border-b border-border">
                 <th className="py-2 pr-4 text-left text-muted-foreground font-medium">Dimension</th>
                 <th className="py-2 pr-4 text-left text-primary font-medium">SWIFT Network</th>
                 <th className="py-2 text-left text-emerald-400 font-medium">Multi-CBDC Platform</th>
@@ -1289,7 +1289,7 @@ function CrossBorderTab() {
                 ["Adoption", "11,000+ financial institutions", "Pilot stage — 4 central banks"],
                 ["Governance", "Cooperative (Belgian HQ)", "BIS + member central banks"],
               ].map(([dim, swift, cbdc]) => (
-                <tr key={dim as string} className="border-b border-white/5 hover:bg-muted/30 transition-colors">
+                <tr key={dim as string} className="border-b border-border/50 hover:bg-muted/30 transition-colors">
                   <td className="py-2 pr-4 text-muted-foreground font-medium">{dim as string}</td>
                   <td className="py-2 pr-4 text-muted-foreground">{swift as string}</td>
                   <td className="py-2 text-muted-foreground">{cbdc as string}</td>
@@ -1301,7 +1301,7 @@ function CrossBorderTab() {
       </div>
 
       {/* BIS Projects */}
-      <div className="rounded-xl border border-white/10 bg-white/5 p-4">
+      <div className="rounded-xl border border-border bg-foreground/5 p-4">
         <SectionTitle>
           <Globe className="w-3.5 h-3.5" />
           BIS Innovation Hub — Key Cross-Border Projects
@@ -1357,7 +1357,7 @@ function CrossBorderTab() {
               desc: "Connects domestic instant payment systems (TIPS, PayNow, PromptPay, UPI) rather than building new CBDC rails. Lower implementation barrier via standardized API scheme.",
             },
           ].map((proj) => (
-            <div key={proj.name} className="rounded-lg border border-white/10 bg-white/3 p-3">
+            <div key={proj.name} className="rounded-lg border border-border bg-foreground/[0.03] p-3">
               <div className="flex items-center justify-between mb-1.5">
                 <span className="text-sm font-semibold text-foreground">{proj.name}</span>
                 <Badge className={cn("text-xs", proj.statusColor === "emerald" ? "bg-emerald-500/20 text-emerald-300 border-emerald-500/30" : proj.statusColor === "blue" ? "bg-primary/20 text-primary border-border" : "bg-amber-500/20 text-amber-300 border-amber-500/30")}>
@@ -1377,7 +1377,7 @@ function CrossBorderTab() {
       </div>
 
       {/* Correspondent banking replacement */}
-      <div className="rounded-xl border border-white/10 bg-white/5 p-4">
+      <div className="rounded-xl border border-border bg-foreground/5 p-4">
         <SectionTitle>
           <RefreshCw className="w-3.5 h-3.5" />
           Correspondent Banking Replacement — Payment Journey
@@ -1405,7 +1405,7 @@ function CrossBorderTab() {
                     "text-xs px-2 py-1 rounded",
                     node === "→"
                       ? "text-muted-foreground"
-                      : "border border-white/10 bg-white/5 text-muted-foreground"
+                      : "border border-border bg-foreground/5 text-muted-foreground"
                   )}
                 >
                   {node}
@@ -1485,14 +1485,14 @@ export default function CBDCPage() {
           </div>
           <div className="flex flex-wrap gap-2 mt-3">
             {["134 Countries Active", "11 Live CBDCs", "mBridge MVP 2024", "T+0 Settlement"].map((tag) => (
-              <Badge key={tag} className="bg-white/5 text-muted-foreground border-white/10 text-xs">{tag}</Badge>
+              <Badge key={tag} className="bg-foreground/5 text-muted-foreground border-border text-xs">{tag}</Badge>
             ))}
           </div>
         </motion.div>
 
         {/* Tabs */}
         <Tabs defaultValue="fundamentals">
-          <TabsList className="bg-white/5 border border-white/10 mb-6 h-auto flex-wrap gap-1 p-1">
+          <TabsList className="bg-foreground/5 border border-border mb-6 h-auto flex-wrap gap-1 p-1">
             <TabsTrigger value="fundamentals" className="data-[state=active]:bg-indigo-500/20 data-[state=active]:text-indigo-200 text-muted-foreground text-xs sm:text-sm">
               CBDC Fundamentals
             </TabsTrigger>

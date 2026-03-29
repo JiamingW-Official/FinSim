@@ -83,27 +83,27 @@ export function ShortSqueezeAlert({ className }: ShortSqueezeAlertProps) {
           transition={{ duration: 0.25 }}
           className={cn("rounded-md border p-3 space-y-2.5", className,
             isPotentialSqueeze
-              ? "border-[#f59e0b]/50 bg-[#f59e0b]/5"
+              ? "border-warning/50 bg-warning/5"
               : "border-border/40 bg-muted/20",
           )}
         >
           {/* Header */}
           <div className="flex items-center gap-1.5">
             {isPotentialSqueeze ? (
-              <Zap className="h-3.5 w-3.5 text-[#f59e0b]" />
+              <Zap className="h-3.5 w-3.5 text-warning" />
             ) : (
               <Info className="h-3.5 w-3.5 text-muted-foreground" />
             )}
             <span
               className={cn(
                 "text-xs font-semibold",
-                isPotentialSqueeze ? "text-[#f59e0b]" : "text-muted-foreground",
+                isPotentialSqueeze ? "text-warning" : "text-muted-foreground",
               )}
             >
               {isPotentialSqueeze ? "Potential Short Squeeze" : "Short Interest Monitor"}
             </span>
             {isExtremeShort && priceRising && (
-              <span className="ml-auto rounded bg-[#ef4444] px-1.5 py-0.5 text-[11px] font-bold text-white">
+              <span className="ml-auto rounded bg-loss px-1.5 py-0.5 text-[11px] font-bold text-white">
                 EXTREME
               </span>
             )}
@@ -111,7 +111,7 @@ export function ShortSqueezeAlert({ className }: ShortSqueezeAlertProps) {
 
           {/* Status line */}
           {isPotentialSqueeze && (
-            <div className="text-xs text-[#f59e0b] leading-snug">
+            <div className="text-xs text-warning leading-snug">
               {currentTicker} has {shortFloat.toFixed(1)}% short float and price is rising —
               short sellers may be forced to cover, amplifying upward momentum.
             </div>
@@ -124,8 +124,8 @@ export function ShortSqueezeAlert({ className }: ShortSqueezeAlertProps) {
               <span
                 className={cn(
                   "tabular-nums font-semibold",
-                  shortFloat >= 35 ? "text-[#ef4444]"
-                  : shortFloat >= 20 ? "text-[#f59e0b]"
+                  shortFloat >= 35 ? "text-loss"
+                  : shortFloat >= 20 ? "text-warning"
                   : "text-muted-foreground",
                 )}
               >
@@ -145,7 +145,7 @@ export function ShortSqueezeAlert({ className }: ShortSqueezeAlertProps) {
               <span
                 className={cn(
                   "tabular-nums font-medium",
-                  daysToCover >= 5 ? "text-[#ef4444]" : daysToCover >= 2 ? "text-[#f59e0b]" : "",
+                  daysToCover >= 5 ? "text-loss" : daysToCover >= 2 ? "text-warning" : "",
                 )}
               >
                 {daysToCover.toFixed(1)} days
@@ -156,7 +156,7 @@ export function ShortSqueezeAlert({ className }: ShortSqueezeAlertProps) {
               <span
                 className={cn(
                   "inline-flex items-center gap-0.5 font-medium",
-                  priceRising ? "text-[#10b981]" : "text-[#ef4444]",
+                  priceRising ? "text-profit" : "text-loss",
                 )}
               >
                 <TrendingUp
@@ -190,14 +190,14 @@ export function ShortSqueezeAlert({ className }: ShortSqueezeAlertProps) {
               />
               {/* 20% threshold marker */}
               <div
-                className="absolute top-0 h-full w-px bg-[#f59e0b]/80"
+                className="absolute top-0 h-full w-px bg-warning/80"
                 style={{ left: "20%" }}
               />
             </div>
             <div className="mt-0.5 flex justify-between text-[11px] text-muted-foreground/60">
               <span>0%</span>
-              <span className="text-[#f59e0b]">20% threshold</span>
-              <span className="text-[#ef4444]">35%+ extreme</span>
+              <span className="text-warning">20% threshold</span>
+              <span className="text-loss">35%+ extreme</span>
             </div>
           </div>
 
@@ -218,10 +218,10 @@ export function ShortSqueezeAlert({ className }: ShortSqueezeAlertProps) {
                   className="rounded-md border border-border/30 bg-muted/30 p-2 text-xs"
                 >
                   <div className="flex items-center justify-between mb-0.5">
-                    <span className="font-semibold text-[#f59e0b]">
+                    <span className="font-semibold text-warning">
                       {ex.ticker} ({ex.year})
                     </span>
-                    <span className="text-[#10b981] font-semibold">{ex.priceRun}</span>
+                    <span className="text-profit font-semibold">{ex.priceRun}</span>
                   </div>
                   <p className="text-muted-foreground leading-snug">{ex.description}</p>
                 </div>

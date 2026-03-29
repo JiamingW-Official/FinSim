@@ -583,7 +583,7 @@ export default function MacroDashboardPage() {
   const fadeIn = { initial: { opacity: 0, y: 16 }, animate: { opacity: 1, y: 0 }, transition: { duration: 0.35 } };
 
   return (
-    <div className="p-6 space-y-6 min-h-screen bg-background text-white">
+    <div className="p-6 space-y-6 min-h-screen bg-background text-foreground">
       {/* Header */}
       <motion.div {...fadeIn} className="flex items-center justify-between">
         <div>

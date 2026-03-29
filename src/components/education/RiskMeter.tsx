@@ -17,19 +17,19 @@ interface RiskMeterProps {
 type RiskLevel = "Very Low" | "Low" | "Moderate" | "High" | "Very High";
 
 const RISK_COLORS: Record<RiskLevel, string> = {
-  "Very Low": "bg-[#10b981]",
-  Low: "bg-[#34d399]",
-  Moderate: "bg-[#f59e0b]",
-  High: "bg-[#f97316]",
-  "Very High": "bg-[#ef4444]",
+  "Very Low": "bg-profit",
+  Low: "bg-profit-light",
+  Moderate: "bg-warning",
+  High: "bg-warning-strong",
+  "Very High": "bg-loss",
 };
 
 const RISK_TEXT_COLORS: Record<RiskLevel, string> = {
-  "Very Low": "text-[#10b981]",
-  Low: "text-[#34d399]",
-  Moderate: "text-[#f59e0b]",
-  High: "text-[#f97316]",
-  "Very High": "text-[#ef4444]",
+  "Very Low": "text-profit",
+  Low: "text-profit-light",
+  Moderate: "text-warning",
+  High: "text-warning-strong",
+  "Very High": "text-loss",
 };
 
 function calculateRiskLevel(

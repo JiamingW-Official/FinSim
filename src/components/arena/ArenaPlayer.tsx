@@ -241,7 +241,7 @@ export function ArenaPlayer({ config, opponent, onFinish, onCancel }: ArenaPlaye
 
   return (
     <div className={cn(
-      "flex h-full flex-col bg-[#0a0e17] transition-all",
+      "flex h-full flex-col bg-background transition-all",
       isUrgent && "ring-1 ring-inset ring-red-500/20",
     )}>
       {/* Critical time vignette overlay */}
@@ -257,7 +257,7 @@ export function ArenaPlayer({ config, opponent, onFinish, onCancel }: ArenaPlaye
       )}
 
       {/* ═══ Top HUD ═══ */}
-      <div className="flex flex-col border-b border-white/5 bg-black/60">
+      <div className="flex flex-col border-b border-border/50 bg-black/60">
         {/* Row 1: Timer + Controls */}
         <div className="flex items-center gap-2 px-3 py-1.5">
           {/* Timer */}
@@ -275,7 +275,7 @@ export function ArenaPlayer({ config, opponent, onFinish, onCancel }: ArenaPlaye
             {mm > 0 ? `${mm}:${String(ss).padStart(2, "0")}` : `${ss}s`}
           </motion.div>
 
-          <div className="flex items-center gap-1.5 rounded-lg border border-white/5 bg-white/[0.02] px-2 py-1">
+          <div className="flex items-center gap-1.5 rounded-lg border border-border bg-muted/10 px-2 py-1">
             <Zap className={cn("h-3 w-3", config.color)} />
             <span className={cn("text-xs font-bold", config.color)}>{config.name}</span>
           </div>
@@ -296,7 +296,7 @@ export function ArenaPlayer({ config, opponent, onFinish, onCancel }: ArenaPlaye
           </div>
 
           {/* Position badge */}
-          <div className="flex items-center gap-1 rounded-lg border border-white/5 bg-white/[0.02] px-2 py-1">
+          <div className="flex items-center gap-1 rounded-lg border border-border bg-muted/10 px-2 py-1">
             {sim.position ? (
               <>
                 {sim.position.side === "long"
@@ -312,7 +312,7 @@ export function ArenaPlayer({ config, opponent, onFinish, onCancel }: ArenaPlaye
           </div>
 
           {/* Trades count */}
-          <div className="rounded-lg border border-white/5 bg-white/[0.02] px-2 py-1 text-center">
+          <div className="rounded-lg border border-border bg-muted/10 px-2 py-1 text-center">
             <div className="text-xs font-bold tabular-nums text-muted-foreground">{sim.trades.length}</div>
             <div className="text-[11px] text-muted-foreground/70">trades</div>
           </div>
@@ -327,14 +327,14 @@ export function ArenaPlayer({ config, opponent, onFinish, onCancel }: ArenaPlaye
         </div>
 
         {/* Row 2: P&L Comparison Bar + Opponent */}
-        <div className="flex items-center gap-2 px-3 py-1 border-t border-white/[0.03]">
+        <div className="flex items-center gap-2 px-3 py-1 border-t border-border/30">
           {/* Player label */}
           <span className="text-[11px] font-bold text-muted-foreground w-8">YOU</span>
 
           {/* P&L comparison bar */}
-          <div className="flex-1 flex items-center h-4 rounded-full bg-white/[0.03] overflow-hidden relative">
+          <div className="flex-1 flex items-center h-4 rounded-full bg-foreground/[0.03] overflow-hidden relative">
             {/* Center line */}
-            <div className="absolute left-1/2 top-0 bottom-0 w-px bg-white/10 z-10" />
+            <div className="absolute left-1/2 top-0 bottom-0 w-px bg-foreground/10 z-10" />
 
             {/* Player bar (left side, grows right from center) */}
             <div className="w-1/2 flex justify-end">
@@ -435,7 +435,7 @@ export function ArenaPlayer({ config, opponent, onFinish, onCancel }: ArenaPlaye
             maxVisibleBars={120}
           />
         </div>
-        <div className="w-72 border-l border-white/5 overflow-y-auto">
+        <div className="w-72 border-l border-border/50 overflow-y-auto">
           <MiniTradePanel
             actionType="free-trade"
             currentPrice={sim.currentPrice}

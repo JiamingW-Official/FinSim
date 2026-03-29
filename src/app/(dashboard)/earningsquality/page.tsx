@@ -296,7 +296,7 @@ function MiniBar({ value, max, color }: { value: number; max: number; color: str
   const pct = Math.max(0, Math.min(100, (value / max) * 100));
   return (
     <div className="flex items-center gap-2">
-      <div className="h-1.5 w-20 rounded-full bg-white/5">
+      <div className="h-1.5 w-20 rounded-full bg-foreground/5">
         <div className={cn("h-full rounded-full", color)} style={{ width: `${pct}%` }} />
       </div>
       <span className="text-xs tabular-nums text-muted-foreground">{value.toFixed(0)}</span>
@@ -448,7 +448,7 @@ function BeneishVarBar({ value, threshold, label }: { value: number; threshold: 
   return (
     <div className="flex items-center gap-2">
       <span className="w-10 text-right text-xs text-muted-foreground">{label}</span>
-      <div className="h-1.5 w-32 rounded-full bg-white/5">
+      <div className="h-1.5 w-32 rounded-full bg-foreground/5">
         <div
           className={cn("h-full rounded-full transition-all", danger ? "bg-red-400" : "bg-emerald-400")}
           style={{ width: `${pct}%` }}
@@ -521,7 +521,7 @@ function ScreenerTab() {
           { label: "Expense Recognition", desc: "Conservative expense timing reduces earnings inflation", icon: <Layers size={14} /> },
           { label: "FCF vs Net Income", desc: "FCF/NI > 1 shows earnings backed by real cash flows", icon: <DollarSign size={14} /> },
         ].map(item => (
-          <div key={item.label} className="rounded-lg border border-white/5 bg-white/[0.03] p-3">
+          <div key={item.label} className="rounded-lg border border-border/50 bg-foreground/[0.03] p-3">
             <div className="mb-1 flex items-center gap-1.5 text-muted-foreground">{item.icon}<span className="text-xs font-medium">{item.label}</span></div>
             <p className="text-xs text-muted-foreground">{item.desc}</p>
           </div>
@@ -536,7 +536,7 @@ function ScreenerTab() {
             value={search}
             onChange={e => setSearch(e.target.value)}
             placeholder="Search ticker or name…"
-            className="w-full rounded border border-white/10 bg-white/5 py-1.5 pl-7 pr-3 text-xs text-muted-foreground placeholder-muted-foreground outline-none focus:border-white/20"
+            className="w-full rounded border border-border bg-foreground/5 py-1.5 pl-7 pr-3 text-xs text-muted-foreground placeholder-muted-foreground outline-none focus:border-border"
           />
         </div>
         <div className="flex items-center gap-1">
@@ -557,7 +557,7 @@ function ScreenerTab() {
       <div className="overflow-x-auto">
         <table className="w-full min-w-[700px] text-xs">
           <thead>
-            <tr className="border-b border-white/5">
+            <tr className="border-b border-border/50">
               {[
                 { key: null, label: "Ticker" },
                 { key: "overallScore" as SortKey, label: "Score" },
@@ -585,7 +585,7 @@ function ScreenerTab() {
                 initial={{ opacity: 0, y: 4 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: i * 0.02 }}
-                className="border-b border-white/[0.04] hover:bg-muted/30"
+                className="border-b border-border/50 hover:bg-muted/30"
               >
                 <td className="py-2 pr-3">
                   <div className="font-semibold text-foreground">{stock.ticker}</div>
@@ -613,7 +613,7 @@ function ScreenerTab() {
       </div>
 
       {/* Legend */}
-      <div className="rounded-lg border border-white/5 bg-white/[0.02] p-3 text-xs text-muted-foreground leading-relaxed">
+      <div className="rounded-lg border border-border/50 bg-foreground/[0.02] p-3 text-xs text-muted-foreground leading-relaxed">
         <strong className="text-muted-foreground">Score methodology:</strong> Weighted composite — Revenue Quality (30%) + Expense Recognition (25%) + FCF/NI alignment (30%) + Accruals penalty (15%). Scores 70+ indicate high-quality earnings; below 45 suggest significant accounting risk.
       </div>
     </div>
@@ -635,10 +635,10 @@ function AccrualTab() {
 
       {/* Formula cards */}
       <div className="flex gap-2">
-        <button onClick={() => setView("balance")} className={cn("rounded px-3 py-1.5 text-xs font-medium", view === "balance" ? "bg-indigo-600 text-white" : "text-muted-foreground border border-white/10 hover:text-foreground")}>
+        <button onClick={() => setView("balance")} className={cn("rounded px-3 py-1.5 text-xs font-medium", view === "balance" ? "bg-indigo-600 text-white" : "text-muted-foreground border border-border hover:text-foreground")}>
           Balance Sheet Method
         </button>
-        <button onClick={() => setView("cf")} className={cn("rounded px-3 py-1.5 text-xs font-medium", view === "cf" ? "bg-indigo-600 text-white" : "text-muted-foreground border border-white/10 hover:text-foreground")}>
+        <button onClick={() => setView("cf")} className={cn("rounded px-3 py-1.5 text-xs font-medium", view === "cf" ? "bg-indigo-600 text-white" : "text-muted-foreground border border-border hover:text-foreground")}>
           Cash Flow Method
         </button>
       </div>
@@ -646,7 +646,7 @@ function AccrualTab() {
       <AnimatePresence mode="wait">
         {view === "balance" ? (
           <motion.div key="balance" initial={{ opacity: 0, x: -8 }} animate={{ opacity: 1, x: 0 }} exit={{ opacity: 0, x: 8 }} transition={{ duration: 0.2 }}>
-            <div className="rounded-xl border border-white/5 bg-white/[0.03] p-5 space-y-4">
+            <div className="rounded-xl border border-border/50 bg-foreground/[0.03] p-5 space-y-4">
               <h3 className="text-sm font-semibold text-foreground">Balance Sheet Accruals (Sloan, 1996)</h3>
               <div className="rounded-lg bg-card p-4 font-mono text-xs text-muted-foreground space-y-1">
                 <div>ΔOperating Assets = ΔTotal Assets − ΔCash − ΔShort-term Investments</div>
@@ -660,7 +660,7 @@ function AccrualTab() {
                   { label: "Neutral Range", range: "−2% to +2%", interpretation: "Typical for well-run companies. No strong signal.", color: "text-muted-foreground" },
                   { label: "High Accrual Ratio", range: "> +5%", interpretation: "Earnings running ahead of cash. Mean reversion likely.", color: "text-red-400" },
                 ].map(item => (
-                  <div key={item.label} className="rounded-lg border border-white/5 bg-white/[0.02] p-3">
+                  <div key={item.label} className="rounded-lg border border-border/50 bg-foreground/[0.02] p-3">
                     <div className={cn("text-xs font-semibold mb-1", item.color)}>{item.label}</div>
                     <div className="text-xs text-muted-foreground mb-1">{item.range}</div>
                     <div className="text-xs text-muted-foreground">{item.interpretation}</div>
@@ -671,7 +671,7 @@ function AccrualTab() {
           </motion.div>
         ) : (
           <motion.div key="cf" initial={{ opacity: 0, x: 8 }} animate={{ opacity: 1, x: 0 }} exit={{ opacity: 0, x: -8 }} transition={{ duration: 0.2 }}>
-            <div className="rounded-xl border border-white/5 bg-white/[0.03] p-5 space-y-4">
+            <div className="rounded-xl border border-border/50 bg-foreground/[0.03] p-5 space-y-4">
               <h3 className="text-sm font-semibold text-foreground">Cash Flow Accruals (Dechow et al., 1998)</h3>
               <div className="rounded-lg bg-card p-4 font-mono text-xs text-muted-foreground space-y-1">
                 <div>CF-Accruals = Net Income − Operating Cash Flow − Investing Cash Flow</div>
@@ -688,7 +688,7 @@ function AccrualTab() {
       </AnimatePresence>
 
       {/* Decile return chart */}
-      <div className="rounded-xl border border-white/5 bg-white/[0.03] p-5">
+      <div className="rounded-xl border border-border/50 bg-foreground/[0.03] p-5">
         <h3 className="mb-1 text-sm font-semibold text-foreground">Historical Decile Returns by Accrual Level</h3>
         <p className="mb-4 text-xs text-muted-foreground">D1 = lowest accruals (highest quality). D10 = highest accruals. Annual return spread ~15pp.</p>
         <div className="flex justify-center">
@@ -762,7 +762,7 @@ function PiotroskiTab() {
           <button
             key={c.ticker}
             onClick={() => setSelectedIdx(i)}
-            className={cn("rounded px-3 py-1.5 text-xs font-medium transition-colors", selectedIdx === i ? "bg-indigo-600 text-white" : "border border-white/10 text-muted-foreground hover:text-foreground")}
+            className={cn("rounded px-3 py-1.5 text-xs font-medium transition-colors", selectedIdx === i ? "bg-indigo-600 text-white" : "border border-border text-muted-foreground hover:text-foreground")}
           >
             {c.ticker}
           </button>
@@ -771,7 +771,7 @@ function PiotroskiTab() {
 
       <div className="grid grid-cols-1 gap-4 lg:grid-cols-3">
         {/* F-Score summary */}
-        <div className="rounded-xl border border-white/5 bg-white/[0.03] p-5 flex flex-col items-center justify-center gap-2">
+        <div className="rounded-xl border border-border/50 bg-foreground/[0.03] p-5 flex flex-col items-center justify-center gap-2">
           <RadarChart company={company} />
           <div className={cn("text-2xl font-bold tabular-nums", fscoreColor)}>{company.fscore}</div>
           <div className="text-xs text-muted-foreground">{company.ticker} F-Score (out of 9)</div>
@@ -783,7 +783,7 @@ function PiotroskiTab() {
         {/* Factor breakdown */}
         <div className="col-span-2 space-y-4">
           {factorGroups.map(group => (
-            <div key={group.group} className="rounded-xl border border-white/5 bg-white/[0.03] p-4">
+            <div key={group.group} className="rounded-xl border border-border/50 bg-foreground/[0.03] p-4">
               <h3 className={cn("mb-3 text-xs font-semibold uppercase tracking-wide", group.color)}>{group.group}</h3>
               <div className="space-y-2">
                 {group.factors.map(factor => (
@@ -852,7 +852,7 @@ function BeneishTab() {
       </div>
 
       {/* M-Score formula */}
-      <div className="rounded-xl border border-white/5 bg-white/[0.03] p-5">
+      <div className="rounded-xl border border-border/50 bg-foreground/[0.03] p-5">
         <h3 className="mb-3 text-xs font-semibold text-muted-foreground uppercase tracking-wide">M-Score Formula</h3>
         <div className="rounded-lg bg-card p-4 font-mono text-xs text-muted-foreground leading-relaxed">
           <span className="text-indigo-400">M-Score</span> = −4.84 + 0.92(DSRI) + 0.528(GMI) + 0.404(AQI) + 0.892(SGI)<br />
@@ -871,7 +871,7 @@ function BeneishTab() {
           <button
             key={c.ticker}
             onClick={() => setSelectedIdx(i)}
-            className={cn("rounded px-3 py-1.5 text-xs font-medium transition-colors", selectedIdx === i ? "bg-indigo-600 text-white" : "border border-white/10 text-muted-foreground hover:text-foreground")}
+            className={cn("rounded px-3 py-1.5 text-xs font-medium transition-colors", selectedIdx === i ? "bg-indigo-600 text-white" : "border border-border text-muted-foreground hover:text-foreground")}
           >
             {c.ticker} {c.risk === "high" && <AlertTriangle size={9} className="inline text-red-400" />}
           </button>
@@ -880,7 +880,7 @@ function BeneishTab() {
 
       <div className="grid grid-cols-1 gap-4 lg:grid-cols-2">
         {/* Variable bars */}
-        <div className="rounded-xl border border-white/5 bg-white/[0.03] p-5 space-y-3">
+        <div className="rounded-xl border border-border/50 bg-foreground/[0.03] p-5 space-y-3">
           <div className="flex items-center justify-between">
             <h3 className="text-sm font-semibold text-foreground">{company.name}</h3>
             <RiskBadge risk={company.risk} />
@@ -895,7 +895,7 @@ function BeneishTab() {
         </div>
 
         {/* Variable descriptions */}
-        <div className="rounded-xl border border-white/5 bg-white/[0.03] p-5 space-y-3">
+        <div className="rounded-xl border border-border/50 bg-foreground/[0.03] p-5 space-y-3">
           <h3 className="text-sm font-semibold text-foreground">Variable Interpretation</h3>
           <div className="space-y-2.5">
             {variables.map(v => (
@@ -985,7 +985,7 @@ function CashFlowTab() {
           { label: "FCF Yield", formula: "FCF ÷ Market Cap", ideal: "> 4% attractive", color: "text-indigo-400" },
           { label: "Divergence", formula: "EPS Yield − FCF Yield", ideal: "< 1% is healthy", color: "text-muted-foreground" },
         ].map(item => (
-          <div key={item.label} className="rounded-lg border border-white/5 bg-white/[0.03] p-3">
+          <div key={item.label} className="rounded-lg border border-border/50 bg-foreground/[0.03] p-3">
             <div className={cn("text-xs font-semibold mb-1", item.color)}>{item.label}</div>
             <div className="font-mono text-xs text-muted-foreground mb-1">{item.formula}</div>
             <div className="text-xs text-muted-foreground">Ideal: {item.ideal}</div>
@@ -994,7 +994,7 @@ function CashFlowTab() {
       </div>
 
       {/* OCF/NI Distribution */}
-      <div className="rounded-xl border border-white/5 bg-white/[0.03] p-5">
+      <div className="rounded-xl border border-border/50 bg-foreground/[0.03] p-5">
         <h3 className="mb-3 text-sm font-semibold text-foreground">OCF/NI Distribution Across Sample</h3>
         <svg viewBox={`0 0 ${W} ${H + 20}`} className="w-full max-w-md">
           {ocfValues.map((v, i) => {
@@ -1021,7 +1021,7 @@ function CashFlowTab() {
       </div>
 
       {/* Divergence alert table */}
-      <div className="rounded-xl border border-white/5 bg-white/[0.03] p-5">
+      <div className="rounded-xl border border-border/50 bg-foreground/[0.03] p-5">
         <div className="mb-3 flex items-center justify-between">
           <h3 className="text-sm font-semibold text-foreground">FCF vs Earnings Yield Divergence Table</h3>
           <div className="flex items-center gap-1 text-xs text-amber-400">
@@ -1032,7 +1032,7 @@ function CashFlowTab() {
         <div className="overflow-x-auto">
           <table className="w-full min-w-[600px] text-xs">
             <thead>
-              <tr className="border-b border-white/5">
+              <tr className="border-b border-border/50">
                 {[
                   { key: "ticker" as keyof CashFlowStock, label: "Company" },
                   { key: "ocfNiRatio" as keyof CashFlowStock, label: "OCF/NI" },
@@ -1054,7 +1054,7 @@ function CashFlowTab() {
             </thead>
             <tbody>
               {sorted.map((stock, i) => (
-                <motion.tr key={stock.ticker} initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: i * 0.03 }} className={cn("border-b border-white/[0.04]", stock.alert ? "bg-amber-500/5" : "hover:bg-muted/30")}>
+                <motion.tr key={stock.ticker} initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: i * 0.03 }} className={cn("border-b border-border/50", stock.alert ? "bg-amber-500/5" : "hover:bg-muted/30")}>
                   <td className="py-2 pr-3">
                     <div className="font-semibold text-foreground">{stock.ticker}</div>
                     <div className="text-muted-foreground">{stock.name}</div>
@@ -1086,7 +1086,7 @@ function CashFlowTab() {
 
       {/* Capex breakdown note */}
       <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
-        <div className="rounded-lg border border-white/5 bg-white/[0.03] p-4">
+        <div className="rounded-lg border border-border/50 bg-foreground/[0.03] p-4">
           <h4 className="mb-2 text-xs font-semibold text-muted-foreground">Maintenance vs Growth Capex</h4>
           <p className="text-xs text-muted-foreground leading-relaxed">
             Maintenance capex keeps existing assets functional (essential, non-discretionary). Growth capex expands capacity or enters new markets.
@@ -1097,7 +1097,7 @@ function CashFlowTab() {
             True FCF = OCF − Maintenance Capex
           </div>
         </div>
-        <div className="rounded-lg border border-white/5 bg-white/[0.03] p-4">
+        <div className="rounded-lg border border-border/50 bg-foreground/[0.03] p-4">
           <h4 className="mb-2 text-xs font-semibold text-muted-foreground">Why FCF Yield Beats Earnings Yield</h4>
           <p className="text-xs text-muted-foreground leading-relaxed">
             Earnings are subject to accrual accounting, timing adjustments, and management discretion. FCF yield strips these away —
@@ -1135,7 +1135,7 @@ export default function EarningsQualityPage() {
             { label: "M-Score Accuracy", value: "76%", subLabel: "Manipulation detection rate", icon: <ShieldAlert size={14} className="text-amber-400" />, color: "text-amber-400" },
             { label: "FCF Premium", value: "~7%", subLabel: "High vs low FCF quality", icon: <DollarSign size={14} className="text-primary" />, color: "text-primary" },
           ].map(stat => (
-            <div key={stat.label} className="rounded-lg border border-white/5 bg-white/[0.03] p-3 flex items-start gap-3">
+            <div key={stat.label} className="rounded-lg border border-border/50 bg-foreground/[0.03] p-3 flex items-start gap-3">
               <div className="mt-0.5">{stat.icon}</div>
               <div>
                 <div className={cn("text-lg font-bold tabular-nums", stat.color)}>{stat.value}</div>
@@ -1148,7 +1148,7 @@ export default function EarningsQualityPage() {
 
         {/* Tabs */}
         <Tabs defaultValue="screener">
-          <TabsList className="mb-6 flex flex-wrap gap-1 bg-transparent border-b border-white/5 rounded-none pb-0 h-auto">
+          <TabsList className="mb-6 flex flex-wrap gap-1 bg-transparent border-b border-border/50 rounded-none pb-0 h-auto">
             {[
               { value: "screener", label: "Screener", icon: <Filter size={13} /> },
               { value: "accruals", label: "Accrual Analysis", icon: <Activity size={13} /> },

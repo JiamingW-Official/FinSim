@@ -614,7 +614,7 @@ function StatChip({
   up?: boolean;
 }) {
   return (
-    <div className="bg-card border border-white/8 rounded-xl p-4 flex flex-col gap-1">
+    <div className="bg-card border border-border/50 rounded-xl p-4 flex flex-col gap-1">
       <p className="text-xs text-muted-foreground">{label}</p>
       <p className="text-xl font-bold text-foreground">{value}</p>
       {chg !== undefined && (
@@ -633,7 +633,7 @@ function SectionCard({ title, children, className }: { title: string; children: 
       initial={{ opacity: 0, y: 12 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.35 }}
-      className={cn("bg-card/60 border border-white/8 rounded-2xl p-5", className)}
+      className={cn("bg-card/60 border border-border/50 rounded-2xl p-5", className)}
     >
       <h3 className="text-sm font-semibold text-muted-foreground mb-4">{title}</h3>
       {children}
@@ -720,7 +720,7 @@ function GdpTab() {
                   </span>
                 </div>
               ))}
-              <p className="text-xs text-muted-foreground mt-1 pt-2 border-t border-white/5">
+              <p className="text-xs text-muted-foreground mt-1 pt-2 border-t border-border/50">
                 Note: NX is negative — the US runs a trade deficit, effectively reducing GDP relative to a balanced trade scenario.
               </p>
             </div>
@@ -815,7 +815,7 @@ function GdpTab() {
       <SectionCard title="Leading Indicators for GDP">
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
           {LEADING_INDICATORS.map(li => (
-            <div key={li.name} className="bg-muted/60 border border-white/5 rounded-xl p-3.5">
+            <div key={li.name} className="bg-muted/60 border border-border/50 rounded-xl p-3.5">
               <div className="flex justify-between items-start mb-1">
                 <span className="text-sm font-semibold text-foreground">{li.name}</span>
                 <Badge className={cn("text-xs",
@@ -1023,7 +1023,7 @@ function LaborTab() {
                 </div>
                 <div className="w-full bg-muted rounded-full h-1.5 relative">
                   <div className="absolute left-0 h-1.5 rounded-full" style={{ width: `${(w.val / 8) * 100}%`, background: w.color }} />
-                  <div className="absolute h-3 w-0.5 bg-white/30 top-[-3px]" style={{ left: `${(w.benchmark / 8) * 100}%` }} />
+                  <div className="absolute h-3 w-0.5 bg-foreground/30 top-[-3px]" style={{ left: `${(w.benchmark / 8) * 100}%` }} />
                 </div>
                 <p className="text-xs text-muted-foreground mt-1">Benchmark: {w.benchmark}% | White line = sustainable growth</p>
               </div>
@@ -1059,7 +1059,7 @@ function LaborTab() {
           {JOLTS_DATA.map(j => {
             const up = j.series[j.series.length - 1] > j.series[0];
             return (
-              <div key={j.label} className="bg-muted/60 border border-white/5 rounded-xl p-3">
+              <div key={j.label} className="bg-muted/60 border border-border/50 rounded-xl p-3">
                 <p className="text-xs text-muted-foreground mb-1">{j.label}</p>
                 <p className="text-lg font-bold text-foreground">{j.value}{j.unit}</p>
                 <div className="mt-2">
@@ -1151,7 +1151,7 @@ function HousingTab() {
             { label: "Affordability Index",   val: "64.2",     warn: true    },
           ].map(({ label, val, warn, neutral }) => (
             <div key={label} className={cn("rounded-xl p-3.5 border",
-              warn ? "bg-red-500/10 border-red-500/20" : "bg-muted/50 border-white/5")}>
+              warn ? "bg-red-500/10 border-red-500/20" : "bg-muted/50 border-border/50")}>
               <p className="text-xs text-muted-foreground">{label}</p>
               <p className={cn("text-xl font-bold mt-1", warn ? "text-red-300" : "text-foreground")}>{val}</p>
             </div>
@@ -1223,7 +1223,7 @@ function GlobalTab() {
         <div className="overflow-x-auto">
           <table className="w-full text-xs">
             <thead>
-              <tr className="border-b border-white/5">
+              <tr className="border-b border-border/50">
                 <th className="text-left text-muted-foreground pb-2 pr-4 font-medium">Country</th>
                 <th className="text-center text-muted-foreground pb-2 px-2 font-medium">PMI</th>
                 <th className="text-left text-muted-foreground pb-2 pl-2 font-medium">Status</th>
@@ -1330,7 +1330,7 @@ function GlobalTab() {
               { label: "EM Net Inflows",           val: "-$42B",  pos: false },
               { label: "Europe Net Outflows",      val: "-$18B",  pos: false },
             ].map(({ label, val, pos }) => (
-              <div key={label} className="flex justify-between py-1.5 border-b border-white/5">
+              <div key={label} className="flex justify-between py-1.5 border-b border-border/50">
                 <span className="text-xs text-muted-foreground">{label}</span>
                 <span className={cn("text-xs font-semibold font-mono", pos ? "text-emerald-400" : "text-red-400")}>{val}</span>
               </div>
@@ -1343,7 +1343,7 @@ function GlobalTab() {
       <SectionCard title="Synchronized Global Business Cycle — Regional Status">
         <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
           {CYCLE_REGIONS.map(r => (
-            <div key={r.region} className="bg-muted/50 rounded-xl p-3 border border-white/5">
+            <div key={r.region} className="bg-muted/50 rounded-xl p-3 border border-border/50">
               <Globe className="w-4 h-4 mb-2" style={{ color: r.color }} />
               <p className="text-sm font-semibold text-foreground">{r.region}</p>
               <Badge className="mt-1.5 text-xs" style={{
@@ -1396,7 +1396,7 @@ export default function EconomicIndicatorsPage() {
   return (
     <div className="min-h-screen bg-background text-foreground">
       {/* Header */}
-      <div className="border-b border-white/8 px-6 py-5">
+      <div className="border-b border-border/50 px-6 py-5">
         <div className="max-w-7xl mx-auto">
           <div className="flex items-start justify-between gap-4">
             <div>
@@ -1437,7 +1437,7 @@ export default function EconomicIndicatorsPage() {
       {/* Tabs */}
       <div className="max-w-7xl mx-auto px-4 py-6">
         <Tabs value={activeTab} onValueChange={v => setActiveTab(v as TabId)}>
-          <TabsList className="bg-card/80 border border-white/8 rounded-xl p-1 mb-6 flex flex-wrap gap-1 h-auto">
+          <TabsList className="bg-card/80 border border-border/50 rounded-xl p-1 mb-6 flex flex-wrap gap-1 h-auto">
             {TABS.map(({ id, label, icon: Icon }) => (
               <TabsTrigger
                 key={id}

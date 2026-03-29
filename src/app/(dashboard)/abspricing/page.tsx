@@ -157,7 +157,7 @@ const ASSET_CLASS_LOSSES: AssetClassLoss[] = [
 
 function InfoCard({ title, children }: { title: string; children: React.ReactNode }) {
   return (
-    <div className="rounded-lg border border-white/10 bg-white/5 p-4">
+    <div className="rounded-lg border border-border bg-foreground/5 p-4">
       <p className="mb-2 text-xs font-semibold text-white/40">{title}</p>
       {children}
     </div>
@@ -187,7 +187,7 @@ function ABSStructureTab() {
   return (
     <div className="space-y-6">
       {/* Securitization SVG */}
-      <div className="rounded-xl border border-white/10 bg-white/5 p-4">
+      <div className="rounded-xl border border-border bg-foreground/5 p-4">
         <p className="mb-3 text-sm font-semibold text-white">Securitization Structure</p>
         <div className="overflow-x-auto">
           <svg viewBox={`0 0 ${W} ${H}`} className="w-full max-w-2xl" style={{ minWidth: 480 }}>
@@ -224,12 +224,12 @@ function ABSStructureTab() {
       </div>
 
       {/* Tranches Table */}
-      <div className="rounded-xl border border-white/10 bg-white/5 p-4">
+      <div className="rounded-xl border border-border bg-foreground/5 p-4">
         <p className="mb-3 text-sm font-semibold text-white">Tranche Summary</p>
         <div className="overflow-x-auto">
           <table className="w-full text-xs">
             <thead>
-              <tr className="border-b border-white/10 text-white/40">
+              <tr className="border-b border-border text-white/40">
                 <th className="py-2 text-left font-medium">Class</th>
                 <th className="py-2 text-center font-medium">Rating</th>
                 <th className="py-2 text-center font-medium">Size %</th>
@@ -241,7 +241,7 @@ function ABSStructureTab() {
             </thead>
             <tbody>
               {TRANCHES.map((t) => (
-                <tr key={t.name} className="border-b border-white/5 hover:bg-muted/30 transition-colors">
+                <tr key={t.name} className="border-b border-border/50 hover:bg-muted/30 transition-colors">
                   <td className="py-2 text-white/90">
                     <span className="inline-block w-2 h-2 rounded-full mr-2" style={{ backgroundColor: t.color }} />
                     {t.name}
@@ -272,7 +272,7 @@ function ABSStructureTab() {
       </div>
 
       {/* Waterfall Toggle */}
-      <div className="rounded-xl border border-white/10 bg-white/5 p-4">
+      <div className="rounded-xl border border-border bg-foreground/5 p-4">
         <button
           className="flex w-full items-center justify-between text-sm font-semibold text-white"
           onClick={() => setShowWaterfall(!showWaterfall)}
@@ -402,7 +402,7 @@ function PrepaymentModelsTab() {
   return (
     <div className="space-y-6">
       {/* PSA Speed Slider */}
-      <div className="rounded-xl border border-white/10 bg-white/5 p-4">
+      <div className="rounded-xl border border-border bg-foreground/5 p-4">
         <div className="flex items-center justify-between mb-3">
           <p className="text-sm font-semibold text-white">PSA Prepayment Speed</p>
           <Badge variant="outline" className="border-primary text-primary text-sm">
@@ -424,15 +424,15 @@ function PrepaymentModelsTab() {
           <span>700 PSA (Shock)</span>
         </div>
         <div className="mt-3 grid grid-cols-3 gap-3 text-xs">
-          <div className="rounded bg-white/5 p-2 text-center">
+          <div className="rounded bg-foreground/5 p-2 text-center">
             <p className="text-white/50">CPR at Month 1</p>
             <p className="text-white font-semibold">{psaCpr(1, psaSpeed).toFixed(2)}%</p>
           </div>
-          <div className="rounded bg-white/5 p-2 text-center">
+          <div className="rounded bg-foreground/5 p-2 text-center">
             <p className="text-white/50">CPR at Month 30</p>
             <p className="text-white font-semibold">{psaCpr(30, psaSpeed).toFixed(2)}%</p>
           </div>
-          <div className="rounded bg-white/5 p-2 text-center">
+          <div className="rounded bg-foreground/5 p-2 text-center">
             <p className="text-white/50">Computed WAL</p>
             <p className="text-primary font-semibold">{wal.toFixed(2)} yrs</p>
           </div>
@@ -440,7 +440,7 @@ function PrepaymentModelsTab() {
       </div>
 
       {/* Prepayment Curve SVG */}
-      <div className="rounded-xl border border-white/10 bg-white/5 p-4">
+      <div className="rounded-xl border border-border bg-foreground/5 p-4">
         <p className="mb-2 text-sm font-semibold text-white">CPR Curve (Months 1–360, {psaSpeed} PSA)</p>
         <div className="overflow-x-auto">
           <svg viewBox={`0 0 ${CURVE_W} ${CURVE_H + 20}`} className="w-full max-w-2xl" style={{ minWidth: 400 }}>
@@ -474,7 +474,7 @@ function PrepaymentModelsTab() {
       </div>
 
       {/* Scheduled vs Unscheduled Principal Bar Chart */}
-      <div className="rounded-xl border border-white/10 bg-white/5 p-4">
+      <div className="rounded-xl border border-border bg-foreground/5 p-4">
         <p className="mb-2 text-sm font-semibold text-white">Scheduled vs Unscheduled Principal (Months 1–120)</p>
         <div className="flex gap-4 mb-2 text-xs">
           <span className="flex items-center gap-1"><span className="inline-block w-3 h-2 rounded" style={{ background: "#3b82f6" }} /> Scheduled</span>
@@ -508,12 +508,12 @@ function PrepaymentModelsTab() {
       </div>
 
       {/* Prepayment Sensitivity Table */}
-      <div className="rounded-xl border border-white/10 bg-white/5 p-4">
+      <div className="rounded-xl border border-border bg-foreground/5 p-4">
         <p className="mb-3 text-sm font-semibold text-white">Prepayment Sensitivity — Class A Senior</p>
         <div className="overflow-x-auto">
           <table className="w-full text-xs">
             <thead>
-              <tr className="border-b border-white/10 text-white/40">
+              <tr className="border-b border-border text-white/40">
                 <th className="py-2 text-left font-medium">Scenario</th>
                 <th className="py-2 text-center font-medium">PSA Speed</th>
                 <th className="py-2 text-center font-medium">WAL (yr)</th>
@@ -524,7 +524,7 @@ function PrepaymentModelsTab() {
             </thead>
             <tbody>
               {PREPAY_SCENARIOS.map((s, i) => (
-                <tr key={i} className={cn("border-b border-white/5 hover:bg-muted/30 transition-colors", s.psa === psaSpeed ? "bg-primary/10" : "")}>
+                <tr key={i} className={cn("border-b border-border/50 hover:bg-muted/30 transition-colors", s.psa === psaSpeed ? "bg-primary/10" : "")}>
                   <td className="py-2 text-white/90">{s.label}</td>
                   <td className="py-2 text-center text-white/80">{s.psa}</td>
                   <td className="py-2 text-center text-white/80">{s.wal}</td>
@@ -625,7 +625,7 @@ function PricingYieldTab() {
       </div>
 
       {/* Floating-rate DM calculator */}
-      <div className="rounded-xl border border-white/10 bg-white/5 p-4">
+      <div className="rounded-xl border border-border bg-foreground/5 p-4">
         <p className="mb-3 text-sm font-semibold text-white">Discount Margin Calculator (Floating-Rate ABS)</p>
         <div className="grid gap-4 sm:grid-cols-3">
           <div>
@@ -656,7 +656,7 @@ function PricingYieldTab() {
             <p className="text-xs text-white text-center mt-1">{indexRate.toFixed(1)}%</p>
           </div>
         </div>
-        <div className="mt-4 rounded-lg bg-white/5 p-3 text-center">
+        <div className="mt-4 rounded-lg bg-foreground/5 p-3 text-center">
           <p className="text-xs text-white/50">Computed Discount Margin</p>
           <p className={cn("text-2xl font-bold mt-1", dm > margin ? "text-green-400" : dm < margin - 20 ? "text-red-400" : "text-primary")}>
             {dm.toFixed(0)} bps
@@ -668,7 +668,7 @@ function PricingYieldTab() {
       </div>
 
       {/* Yield Curve with ABS Spread */}
-      <div className="rounded-xl border border-white/10 bg-white/5 p-4">
+      <div className="rounded-xl border border-border bg-foreground/5 p-4">
         <p className="mb-2 text-sm font-semibold text-white">ABS Spread Over Treasuries</p>
         <div className="flex gap-4 mb-2 text-xs">
           <span className="flex items-center gap-1"><span className="inline-block w-4 h-0.5" style={{ background: "#64748b" }} /> Treasury</span>
@@ -703,7 +703,7 @@ function PricingYieldTab() {
 
       {/* Price/Yield Sensitivity + Duration */}
       <div className="grid gap-4 sm:grid-cols-2">
-        <div className="rounded-xl border border-white/10 bg-white/5 p-4">
+        <div className="rounded-xl border border-border bg-foreground/5 p-4">
           <p className="mb-2 text-sm font-semibold text-white">Price / Spread Sensitivity</p>
           <svg viewBox={`0 0 ${PY_W} ${PY_H + 10}`} className="w-full max-w-sm">
             <line x1={45} y1={20} x2={45} y2={PY_H - 25} stroke="#94a3b8" strokeWidth="1" />
@@ -777,7 +777,7 @@ function CreditEnhancementTab() {
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: i * 0.06 }}
-            className="rounded-lg border border-white/10 bg-white/5 p-3"
+            className="rounded-lg border border-border bg-foreground/5 p-3"
           >
             <div className="flex items-center gap-2 mb-1">
               <item.icon className={cn("h-4 w-4", item.color)} />
@@ -789,7 +789,7 @@ function CreditEnhancementTab() {
       </div>
 
       {/* Stress Test SVG */}
-      <div className="rounded-xl border border-white/10 bg-white/5 p-4">
+      <div className="rounded-xl border border-border bg-foreground/5 p-4">
         <div className="flex items-center justify-between mb-3">
           <p className="text-sm font-semibold text-white">Stress Test: Default Rate vs Attachment Points</p>
           <div className="flex items-center gap-2">
@@ -851,7 +851,7 @@ function CreditEnhancementTab() {
       </div>
 
       {/* Rating Agency Inputs */}
-      <div className="rounded-xl border border-white/10 bg-white/5 p-4">
+      <div className="rounded-xl border border-border bg-foreground/5 p-4">
         <p className="mb-3 text-sm font-semibold text-white">Rating Agency Key Assumptions (Auto ABS Example)</p>
         <div className="grid gap-3 sm:grid-cols-2">
           {[
@@ -864,7 +864,7 @@ function CreditEnhancementTab() {
             { label: "Excess Spread Credit", value: "50%", note: "Of projected spread" },
             { label: "Servicing Continuity", value: "Assumed", note: "Backup servicer required" },
           ].map((row, i) => (
-            <div key={i} className="flex items-center justify-between rounded bg-white/5 p-2 text-xs">
+            <div key={i} className="flex items-center justify-between rounded bg-foreground/5 p-2 text-xs">
               <span className="text-white/70">{row.label}</span>
               <div className="text-right">
                 <span className="text-white font-semibold">{row.value}</span>
@@ -876,12 +876,12 @@ function CreditEnhancementTab() {
       </div>
 
       {/* Historical Loss Rates by Asset Class */}
-      <div className="rounded-xl border border-white/10 bg-white/5 p-4">
+      <div className="rounded-xl border border-border bg-foreground/5 p-4">
         <p className="mb-3 text-sm font-semibold text-white">Historical Loss Rates by Asset Class</p>
         <div className="overflow-x-auto">
           <table className="w-full text-xs">
             <thead>
-              <tr className="border-b border-white/10 text-white/40">
+              <tr className="border-b border-border text-white/40">
                 <th className="py-2 text-left font-medium">Asset Class</th>
                 <th className="py-2 text-center font-medium">Avg Annual Loss</th>
                 <th className="py-2 text-center font-medium">Stress Loss (GFC)</th>
@@ -891,11 +891,11 @@ function CreditEnhancementTab() {
             </thead>
             <tbody>
               {ASSET_CLASS_LOSSES.map((row, i) => (
-                <tr key={i} className="border-b border-white/5 hover:bg-muted/30 transition-colors">
+                <tr key={i} className="border-b border-border/50 hover:bg-muted/30 transition-colors">
                   <td className="py-2 text-white/90">{row.assetClass}</td>
                   <td className="py-2 text-center">
                     <div className="flex items-center justify-center gap-1">
-                      <div className="w-16 h-1.5 rounded-full bg-white/10 overflow-hidden">
+                      <div className="w-16 h-1.5 rounded-full bg-foreground/10 overflow-hidden">
                         <div className="h-full rounded-full bg-primary" style={{ width: `${(row.avgLoss / 5) * 100}%` }} />
                       </div>
                       <span className="text-white/80">{row.avgLoss.toFixed(1)}%</span>
@@ -925,7 +925,7 @@ export default function ABSPricingPage() {
   const [activeTab, setActiveTab] = useState("structure");
 
   return (
-    <div className="min-h-screen bg-[#0a0a0f] text-white">
+    <div className="min-h-screen bg-background text-foreground">
       <div className="mx-auto max-w-5xl px-4 py-8">
         {/* Header */}
         <motion.div
@@ -953,7 +953,7 @@ export default function ABSPricingPage() {
               { label: "Excess Spread", value: "2.85%", icon: TrendingDown },
               { label: "CE Level (AAA)", value: "30%", icon: ShieldCheck },
             ].map((stat, i) => (
-              <div key={i} className="flex items-center gap-1.5 rounded-full border border-white/10 bg-white/5 px-3 py-1 text-xs">
+              <div key={i} className="flex items-center gap-1.5 rounded-full border border-border bg-foreground/5 px-3 py-1 text-xs">
                 <stat.icon className="h-3 w-3 text-white/40" />
                 <span className="text-white/50">{stat.label}:</span>
                 <span className="text-white font-medium">{stat.value}</span>
@@ -964,20 +964,20 @@ export default function ABSPricingPage() {
 
         {/* Tabs */}
         <Tabs value={activeTab} onValueChange={setActiveTab}>
-          <TabsList className="mb-6 grid w-full grid-cols-4 bg-white/5 border border-white/10">
-            <TabsTrigger value="structure" className="data-[state=active]:bg-white/10 text-xs sm:text-sm">
+          <TabsList className="mb-6 grid w-full grid-cols-4 bg-foreground/5 border border-border">
+            <TabsTrigger value="structure" className="data-[state=active]:bg-foreground/10 text-xs sm:text-sm">
               <Layers className="h-3.5 w-3.5 mr-1.5" />
               ABS Structure
             </TabsTrigger>
-            <TabsTrigger value="prepayment" className="data-[state=active]:bg-white/10 text-xs sm:text-sm">
+            <TabsTrigger value="prepayment" className="data-[state=active]:bg-foreground/10 text-xs sm:text-sm">
               <Activity className="h-3.5 w-3.5 mr-1.5" />
               Prepayment
             </TabsTrigger>
-            <TabsTrigger value="pricing" className="data-[state=active]:bg-white/10 text-xs sm:text-sm">
+            <TabsTrigger value="pricing" className="data-[state=active]:bg-foreground/10 text-xs sm:text-sm">
               <Calculator className="h-3.5 w-3.5 mr-1.5" />
               Pricing & Yield
             </TabsTrigger>
-            <TabsTrigger value="credit" className="data-[state=active]:bg-white/10 text-xs sm:text-sm">
+            <TabsTrigger value="credit" className="data-[state=active]:bg-foreground/10 text-xs sm:text-sm">
               <ShieldCheck className="h-3.5 w-3.5 mr-1.5" />
               Credit Enhancement
             </TabsTrigger>
@@ -1008,7 +1008,7 @@ export default function ABSPricingPage() {
         </Tabs>
 
         {/* Footer info */}
-        <div className="mt-8 rounded-xl border border-white/5 bg-white/3 p-4">
+        <div className="mt-8 rounded-xl border border-border/50 bg-foreground/[0.03] p-4">
           <div className="flex items-start gap-2">
             <Info className="h-4 w-4 text-white/30 mt-0.5 shrink-0" />
             <p className="text-xs text-white/30">

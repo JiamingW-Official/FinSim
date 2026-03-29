@@ -598,7 +598,7 @@ function SwaptionGrid({
                     <button
                       onClick={() => onSelect(exp, ten)}
                       className={`w-14 h-10 rounded flex flex-col items-center justify-center transition-all ${
-                        isSelected ? "ring-2 ring-white/60" : ""
+                        isSelected ? "ring-2 ring-foreground/60" : ""
                       }`}
                       style={{ backgroundColor: volColor(cell.vol) + (isSelected ? "" : "bb") }}
                     >

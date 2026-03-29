@@ -273,8 +273,8 @@ function FoStructureTab() {
             onClick={() => setSelected(fo.id)}
             className={`rounded-xl border p-4 text-left transition-all ${
               selected === fo.id
-                ? "border-white/30 bg-white/10"
-                : "border-white/10 bg-white/5 hover:bg-muted/40"
+                ? "border-foreground/30 bg-foreground/10"
+                : "border-border bg-foreground/5 hover:bg-muted/40"
             }`}
           >
             <div
@@ -288,7 +288,7 @@ function FoStructureTab() {
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-        <Card className="border-white/10 bg-white/5">
+        <Card className="border-border bg-foreground/5">
           <CardHeader className="pb-2">
             <CardTitle className="text-sm text-muted-foreground">Key Metrics</CardTitle>
           </CardHeader>
@@ -308,7 +308,7 @@ function FoStructureTab() {
           </CardContent>
         </Card>
 
-        <Card className="border-white/10 bg-white/5">
+        <Card className="border-border bg-foreground/5">
           <CardHeader className="pb-2">
             <CardTitle className="text-sm text-emerald-400">Advantages</CardTitle>
           </CardHeader>
@@ -322,7 +322,7 @@ function FoStructureTab() {
           </CardContent>
         </Card>
 
-        <Card className="border-white/10 bg-white/5">
+        <Card className="border-border bg-foreground/5">
           <CardHeader className="pb-2">
             <CardTitle className="text-sm text-red-400">Disadvantages</CardTitle>
           </CardHeader>
@@ -337,7 +337,7 @@ function FoStructureTab() {
         </Card>
       </div>
 
-      <Card className="border-white/10 bg-white/5">
+      <Card className="border-border bg-foreground/5">
         <CardHeader className="pb-2">
           <CardTitle className="text-sm text-muted-foreground">
             Typical SFO Services Breakdown
@@ -356,7 +356,7 @@ function FoStructureTab() {
             ].map(({ label, cost, icon: Icon }) => (
               <div
                 key={label}
-                className="flex flex-col items-center rounded-lg border border-white/10 bg-white/5 p-3 text-center"
+                className="flex flex-col items-center rounded-lg border border-border bg-foreground/5 p-3 text-center"
               >
                 <Icon className="mb-1.5 h-5 w-5 text-indigo-400" />
                 <div className="text-xs font-semibold text-foreground">{cost}</div>
@@ -375,7 +375,7 @@ function AllocationTab() {
   return (
     <div className="space-y-6">
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-        <Card className="border-white/10 bg-white/5">
+        <Card className="border-border bg-foreground/5">
           <CardHeader className="pb-2">
             <CardTitle className="text-sm text-muted-foreground">
               Portfolio Allocation — $500M AUM
@@ -386,7 +386,7 @@ function AllocationTab() {
           </CardContent>
         </Card>
 
-        <Card className="border-white/10 bg-white/5">
+        <Card className="border-border bg-foreground/5">
           <CardHeader className="pb-2">
             <CardTitle className="text-sm text-muted-foreground">Asset Class Detail</CardTitle>
           </CardHeader>
@@ -412,7 +412,7 @@ function AllocationTab() {
                       </span>
                     </div>
                   </div>
-                  <div className="mt-0.5 h-1 w-full rounded-full bg-white/10">
+                  <div className="mt-0.5 h-1 w-full rounded-full bg-foreground/10">
                     <div
                       className="h-1 rounded-full"
                       style={{ width: `${ac.pct * 4}%`, backgroundColor: ac.color }}
@@ -432,7 +432,7 @@ function AllocationTab() {
           { label: "Sharpe Ratio", value: "1.42", sub: "3-year trailing", positive: true },
           { label: "Max Drawdown (3yr)", value: "-8.2%", sub: "COVID stress: -22%", positive: false },
         ].map(({ label, value, sub, positive }) => (
-          <Card key={label} className="border-white/10 bg-white/5">
+          <Card key={label} className="border-border bg-foreground/5">
             <CardContent className="pt-4">
               <div className="text-xs text-muted-foreground">{label}</div>
               <div
@@ -516,7 +516,7 @@ function EstateTab() {
 
   return (
     <div className="space-y-6">
-      <Card className="border-white/10 bg-white/5">
+      <Card className="border-border bg-foreground/5">
         <CardHeader className="pb-2">
           <CardTitle className="text-sm text-muted-foreground">Estate Tax Calculator (2024)</CardTitle>
         </CardHeader>
@@ -546,7 +546,7 @@ function EstateTab() {
                     -${Math.min(federalExemption, estateValue).toFixed(2)}M
                   </span>
                 </div>
-                <div className="flex justify-between text-sm border-t border-white/10 pt-2">
+                <div className="flex justify-between text-sm border-t border-border pt-2">
                   <span className="text-muted-foreground">Taxable Amount</span>
                   <span className="text-foreground font-semibold">{fmtM(taxableEstate)}</span>
                 </div>
@@ -554,7 +554,7 @@ function EstateTab() {
                   <span className="text-muted-foreground">Estate Tax (40%)</span>
                   <span className="text-red-400 font-bold">{fmtM(estateTaxOwed)}</span>
                 </div>
-                <div className="flex justify-between text-sm border-t border-white/10 pt-2">
+                <div className="flex justify-between text-sm border-t border-border pt-2">
                   <span className="text-muted-foreground font-semibold">Heirs Receive</span>
                   <span className="text-emerald-400 font-bold">{fmtM(afterTaxEstate)}</span>
                 </div>
@@ -629,7 +629,7 @@ function EstateTab() {
           return (
             <div
               key={tool.name}
-              className="rounded-xl border border-white/10 bg-white/5 overflow-hidden"
+              className="rounded-xl border border-border bg-foreground/5 overflow-hidden"
             >
               <button
                 className="flex w-full items-center justify-between px-4 py-3 text-left"
@@ -653,7 +653,7 @@ function EstateTab() {
                 </div>
               </button>
               {isOpen && (
-                <div className="border-t border-white/10 px-4 py-3 space-y-2">
+                <div className="border-t border-border px-4 py-3 space-y-2">
                   <p className="text-sm text-muted-foreground">{tool.desc}</p>
                   <div className="flex items-center gap-2">
                     <TrendingUp className="h-3.5 w-3.5 text-emerald-400" />
@@ -693,7 +693,7 @@ const GRANTS = [
 function PhilanthropyTab() {
   return (
     <div className="space-y-6">
-      <Card className="border-white/10 bg-white/5">
+      <Card className="border-border bg-foreground/5">
         <CardHeader className="pb-2">
           <CardTitle className="text-sm text-muted-foreground">Philanthropic Capital Funnel</CardTitle>
         </CardHeader>
@@ -749,7 +749,7 @@ function PhilanthropyTab() {
       </Card>
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-        <Card className="border-white/10 bg-white/5">
+        <Card className="border-border bg-foreground/5">
           <CardHeader className="pb-2">
             <CardTitle className="text-sm text-muted-foreground">Vehicle Comparison</CardTitle>
           </CardHeader>
@@ -784,7 +784,7 @@ function PhilanthropyTab() {
                 setup: "Medium",
               },
             ].map((v) => (
-              <div key={v.name} className="rounded-lg border border-white/10 bg-white/5 p-3">
+              <div key={v.name} className="rounded-lg border border-border bg-foreground/5 p-3">
                 <div className="flex items-center gap-2 mb-2">
                   <Heart className="h-3.5 w-3.5 text-pink-400" />
                   <span className="text-sm font-semibold text-foreground">{v.name}</span>
@@ -805,7 +805,7 @@ function PhilanthropyTab() {
           </CardContent>
         </Card>
 
-        <Card className="border-white/10 bg-white/5">
+        <Card className="border-border bg-foreground/5">
           <CardHeader className="pb-2">
             <CardTitle className="text-sm text-muted-foreground">
               Foundation Grant-Making 2023–2024
@@ -815,7 +815,7 @@ function PhilanthropyTab() {
             {GRANTS.map((g) => (
               <div
                 key={g.org}
-                className="flex items-center gap-3 rounded-lg border border-white/10 bg-white/5 p-2.5"
+                className="flex items-center gap-3 rounded-lg border border-border bg-foreground/5 p-2.5"
               >
                 <div className="flex-1 min-w-0">
                   <div className="text-xs font-semibold text-foreground truncate">{g.org}</div>
@@ -911,7 +911,7 @@ function DirectInvestingTab() {
           { label: "Deal Flow (YTD)", value: "47 deals", sub: "4 converted" },
           { label: "Avg Check Size", value: "$18M", sub: "Range: $8–30M" },
         ].map(({ label, value, sub }) => (
-          <Card key={label} className="border-white/10 bg-white/5">
+          <Card key={label} className="border-border bg-foreground/5">
             <CardContent className="pt-4">
               <div className="text-xs text-muted-foreground">{label}</div>
               <div className="mt-1 text-lg font-bold text-indigo-400">{value}</div>
@@ -921,7 +921,7 @@ function DirectInvestingTab() {
         ))}
       </div>
 
-      <Card className="border-white/10 bg-white/5">
+      <Card className="border-border bg-foreground/5">
         <CardHeader className="pb-2">
           <CardTitle className="text-sm text-muted-foreground">Co-Investment Portfolio</CardTitle>
         </CardHeader>
@@ -929,7 +929,7 @@ function DirectInvestingTab() {
           <div className="overflow-x-auto">
             <table className="w-full text-xs">
               <thead>
-                <tr className="border-b border-white/10 text-muted-foreground">
+                <tr className="border-b border-border text-muted-foreground">
                   <th className="pb-2 text-left font-medium">Deal</th>
                   <th className="pb-2 text-left font-medium">Type</th>
                   <th className="pb-2 text-left font-medium">Sponsor</th>
@@ -975,7 +975,7 @@ function DirectInvestingTab() {
         </CardContent>
       </Card>
 
-      <Card className="border-white/10 bg-white/5">
+      <Card className="border-border bg-foreground/5">
         <CardHeader className="pb-2">
           <CardTitle className="text-sm text-muted-foreground">Deal Flow Sourcing Channels</CardTitle>
         </CardHeader>
@@ -991,7 +991,7 @@ function DirectInvestingTab() {
             ].map(({ channel, pct, deals, color }) => (
               <div
                 key={channel}
-                className="rounded-lg border border-white/10 bg-white/5 p-3"
+                className="rounded-lg border border-border bg-foreground/5 p-3"
               >
                 <div className="flex items-center gap-2 mb-2">
                   <div className="h-2.5 w-2.5 rounded-full" style={{ backgroundColor: color }} />
@@ -1001,7 +1001,7 @@ function DirectInvestingTab() {
                   {pct}%
                 </div>
                 <div className="text-xs text-muted-foreground">{deals} deals YTD</div>
-                <div className="mt-1.5 h-1 w-full rounded-full bg-white/10">
+                <div className="mt-1.5 h-1 w-full rounded-full bg-foreground/10">
                   <div
                     className="h-1 rounded-full"
                     style={{ width: `${pct}%`, backgroundColor: color }}
@@ -1071,7 +1071,7 @@ function LiquidityTab() {
 
   return (
     <div className="space-y-6">
-      <Card className="border-white/10 bg-white/5">
+      <Card className="border-border bg-foreground/5">
         <CardHeader className="pb-2">
           <CardTitle className="text-sm text-muted-foreground">
             Liquidity Ladder — $500M Portfolio
@@ -1127,7 +1127,7 @@ function LiquidityTab() {
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
         {LIQUIDITY_LADDER.map((bucket) => (
-          <Card key={bucket.tier} className="border-white/10 bg-white/5">
+          <Card key={bucket.tier} className="border-border bg-foreground/5">
             <CardContent className="pt-4">
               <div className="flex items-center gap-2 mb-3">
                 <div
@@ -1137,7 +1137,7 @@ function LiquidityTab() {
                 <span className="font-semibold text-foreground text-sm">
                   {bucket.label} — {bucket.tier}
                 </span>
-                <Badge className="ml-auto text-xs border border-white/20 bg-white/10 text-muted-foreground">
+                <Badge className="ml-auto text-xs border border-border bg-foreground/10 text-muted-foreground">
                   {bucket.horizon}
                 </Badge>
               </div>
@@ -1171,7 +1171,7 @@ function LiquidityTab() {
         ))}
       </div>
 
-      <Card className="border-white/10 bg-white/5">
+      <Card className="border-border bg-foreground/5">
         <CardHeader className="pb-2">
           <CardTitle className="text-sm text-muted-foreground">
             Credit Facilities & Cash Flow Planning
@@ -1202,7 +1202,7 @@ function LiquidityTab() {
                 icon: Building2,
               },
             ].map(({ label, amount, rate, use, icon: Icon }) => (
-              <div key={label} className="rounded-lg border border-white/10 bg-white/5 p-4">
+              <div key={label} className="rounded-lg border border-border bg-foreground/5 p-4">
                 <div className="flex items-center gap-2 mb-2">
                   <Icon className="h-4 w-4 text-indigo-400" />
                   <span className="text-sm font-semibold text-foreground">{label}</span>
@@ -1262,7 +1262,7 @@ export default function FamilyOfficePage() {
             { label: "YTD Return", value: "+12.4%", icon: TrendingUp, color: "text-emerald-400" },
             { label: "Office Type", value: "SFO", icon: Globe, color: "text-amber-400" },
           ].map(({ label, value, icon: Icon, color }) => (
-            <Card key={label} className="border-white/10 bg-white/5">
+            <Card key={label} className="border-border bg-foreground/5">
               <CardContent className="flex items-center gap-3 pt-3 pb-3">
                 <Icon className={`h-4 w-4 ${color}`} />
                 <div>
@@ -1277,12 +1277,12 @@ export default function FamilyOfficePage() {
 
       {/* Tabs */}
       <Tabs defaultValue="structure">
-        <TabsList className="mb-4 flex flex-wrap gap-1 h-auto bg-white/5 p-1 rounded-xl">
+        <TabsList className="mb-4 flex flex-wrap gap-1 h-auto bg-foreground/5 p-1 rounded-xl">
           {tabs.map(({ id, label, icon: Icon }) => (
             <TabsTrigger
               key={id}
               value={id}
-              className="flex items-center gap-1.5 rounded-lg px-3 py-1.5 text-xs font-medium data-[state=active]:bg-white/15 data-[state=active]:text-white text-muted-foreground"
+              className="flex items-center gap-1.5 rounded-lg px-3 py-1.5 text-xs font-medium data-[state=active]:bg-foreground/15 data-[state=active]:text-white text-muted-foreground"
             >
               <Icon className="h-3.5 w-3.5" />
               {label}

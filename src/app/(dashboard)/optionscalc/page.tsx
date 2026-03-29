@@ -609,7 +609,7 @@ function MetricRow({ label, value, colored, info }: { label: string; value: stri
     ? value.startsWith("+") ? "text-emerald-400" : value.startsWith("-") ? "text-red-400" : "text-white"
     : "text-white";
   return (
-    <div className="flex items-center justify-between py-1.5 border-b border-white/5">
+    <div className="flex items-center justify-between py-1.5 border-b border-border/50">
       <span className="text-xs text-muted-foreground flex items-center gap-1">
         {label}
         {info && <Info size={10} className="text-muted-foreground" aria-label={info} />}
@@ -1365,7 +1365,7 @@ export default function OptionsCalcPage() {
   ];
 
   return (
-    <div className="min-h-screen bg-background text-white">
+    <div className="min-h-screen bg-background text-foreground">
       <div className="max-w-7xl mx-auto px-4 py-6 space-y-6">
         {/* Header */}
         <motion.div initial={{ opacity: 0, y: -16 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.4 }}>

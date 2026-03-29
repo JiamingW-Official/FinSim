@@ -112,7 +112,7 @@ export default function ArenaPage() {
   // Full-screen player mode
   if (phase === "playing" && selectedConfig && currentOpponent) {
     return (
-      <div className="fixed inset-0 z-40 bg-[#0a0e17]">
+      <div className="fixed inset-0 z-40 bg-background">
         <ArenaPlayer
           config={selectedConfig}
           opponent={currentOpponent}
@@ -127,7 +127,7 @@ export default function ArenaPage() {
   // Results overlay
   if (phase === "results" && matchResult) {
     return (
-      <div className="fixed inset-0 z-40 bg-[#0a0e17]">
+      <div className="fixed inset-0 z-40 bg-background">
         <ArenaResults
           result={matchResult}
           onPlayAgain={handlePlayAgain}

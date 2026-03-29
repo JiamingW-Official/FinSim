@@ -677,7 +677,7 @@ function MarketImpactSVG() {
 
 function OUFormulaCard() {
   return (
-    <Card className="bg-[#0f172a] border-[#1e293b]">
+    <Card className="bg-card border-border">
       <CardHeader className="pb-2">
         <CardTitle className="text-sm text-muted-foreground flex items-center gap-2">
           <Activity className="w-4 h-4 text-primary" />
@@ -685,22 +685,22 @@ function OUFormulaCard() {
         </CardTitle>
       </CardHeader>
       <CardContent className="space-y-3 text-xs">
-        <div className="bg-[#1e293b]/60 rounded-md px-3 py-2 font-mono text-muted-foreground text-[11px] leading-5">
+        <div className="bg-muted/60 rounded-md px-3 py-2 font-mono text-muted-foreground text-[11px] leading-5">
           <p>dS_t = κ(μ - S_t)dt + σ dW_t</p>
           <p className="text-muted-foreground mt-1">κ = mean-reversion speed, μ = long-run mean</p>
           <p className="text-muted-foreground">σ = diffusion, W_t = Brownian motion</p>
         </div>
         <div className="grid grid-cols-2 gap-2">
-          <div className="bg-[#1e293b]/40 rounded p-2">
+          <div className="bg-muted/40 rounded p-2">
             <p className="text-muted-foreground mb-0.5">Half-life of reversion</p>
             <p className="font-mono text-emerald-400">t₁/₂ = ln(2) / κ</p>
           </div>
-          <div className="bg-[#1e293b]/40 rounded p-2">
+          <div className="bg-muted/40 rounded p-2">
             <p className="text-muted-foreground mb-0.5">Entry threshold (±)</p>
             <p className="font-mono text-primary">|z| &gt; 2.0σ</p>
           </div>
         </div>
-        <div className="bg-[#1e293b]/40 rounded p-2">
+        <div className="bg-muted/40 rounded p-2">
           <p className="text-muted-foreground mb-0.5">Kalman Filter hedge ratio update</p>
           <p className="font-mono text-sky-400 text-xs">
             K_t = P_t H^T (H P_t H^T + R)⁻¹ ; β_t = β_{"{t-1}"} + K_t(y_t - H·β_{"{t-1}"})
@@ -738,7 +738,7 @@ function StatArbTab() {
       </div>
 
       {/* Z-Score chart */}
-      <Card className="bg-[#0f172a] border-[#1e293b]">
+      <Card className="bg-card border-border">
         <CardHeader className="pb-2">
           <CardTitle className="text-sm text-muted-foreground flex items-center gap-2">
             <Shuffle className="w-4 h-4 text-primary" />
@@ -765,7 +765,7 @@ function StatArbTab() {
       <OUFormulaCard />
 
       {/* Pairs performance table */}
-      <Card className="bg-[#0f172a] border-[#1e293b]">
+      <Card className="bg-card border-border">
         <CardHeader className="pb-2">
           <CardTitle className="text-sm text-muted-foreground flex items-center gap-2">
             <Target className="w-4 h-4 text-sky-400" />
@@ -776,7 +776,7 @@ function StatArbTab() {
           <div className="overflow-x-auto">
             <table className="w-full text-xs">
               <thead>
-                <tr className="border-b border-[#1e293b] text-muted-foreground">
+                <tr className="border-b border-border text-muted-foreground">
                   <th className="text-left px-4 py-2">Pair</th>
                   <th className="text-right px-3 py-2">Corr</th>
                   <th className="text-right px-3 py-2">Coint p</th>
@@ -790,7 +790,7 @@ function StatArbTab() {
                 {PAIRS.map((p) => (
                   <tr
                     key={`${p.ticker1}-${p.ticker2}`}
-                    className="border-b border-[#1e293b]/50 hover:bg-[#1e293b]/40 cursor-pointer transition-colors"
+                    className="border-b border-border/50 hover:bg-muted/40 cursor-pointer transition-colors"
                     onClick={() => setSelectedPair(selectedPair?.ticker1 === p.ticker1 ? null : p)}
                   >
                     <td className="px-4 py-2 text-foreground font-medium">
@@ -819,7 +819,7 @@ function StatArbTab() {
                 exit={{ opacity: 0, height: 0 }}
                 className="overflow-hidden"
               >
-                <div className="px-4 py-3 bg-[#1e293b]/40 border-t border-[#1e293b] grid grid-cols-3 gap-3 text-xs">
+                <div className="px-4 py-3 bg-muted/40 border-t border-border grid grid-cols-3 gap-3 text-xs">
                   <div>
                     <p className="text-muted-foreground">Cointegration Status</p>
                     <p className={`font-medium mt-0.5 ${selectedPair.cointegP < 0.05 ? "text-emerald-400" : "text-amber-400"}`}>
@@ -847,7 +847,7 @@ function StatArbTab() {
 
       {/* Distance vs Cointegration comparison */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-        <Card className="bg-[#0f172a] border-[#1e293b]">
+        <Card className="bg-card border-border">
           <CardHeader className="pb-2">
             <CardTitle className="text-sm text-muted-foreground">Distance Method</CardTitle>
           </CardHeader>
@@ -864,7 +864,7 @@ function StatArbTab() {
             </Badge>
           </CardContent>
         </Card>
-        <Card className="bg-[#0f172a] border-[#1e293b]">
+        <Card className="bg-card border-border">
           <CardHeader className="pb-2">
             <CardTitle className="text-sm text-muted-foreground">Cointegration Method</CardTitle>
           </CardHeader>
@@ -884,7 +884,7 @@ function StatArbTab() {
       </div>
 
       {/* PCA Stat Arb note */}
-      <Card className="bg-[#0f172a] border-[#1e293b]">
+      <Card className="bg-card border-border">
         <CardHeader className="pb-2">
           <CardTitle className="text-sm text-muted-foreground flex items-center gap-2">
             <Layers className="w-4 h-4 text-amber-400" />
@@ -902,7 +902,7 @@ function StatArbTab() {
               { label: "PC2 (Size)", var: "11.2%", color: "text-sky-400" },
               { label: "PC3 (Value)", var: "7.8%", color: "text-primary" },
             ].map(({ label, var: v, color }) => (
-              <div key={label} className="bg-[#1e293b]/40 rounded p-2 text-center">
+              <div key={label} className="bg-muted/40 rounded p-2 text-center">
                 <p className={`font-medium text-[11px] ${color}`}>{label}</p>
                 <p className="text-muted-foreground text-xs">Explains {v}</p>
               </div>
@@ -945,7 +945,7 @@ function MLFinanceTab() {
       </div>
 
       {/* Feature importance */}
-      <Card className="bg-[#0f172a] border-[#1e293b]">
+      <Card className="bg-card border-border">
         <CardHeader className="pb-2">
           <CardTitle className="text-sm text-muted-foreground flex items-center gap-2">
             <Brain className="w-4 h-4 text-primary" />
@@ -964,7 +964,7 @@ function MLFinanceTab() {
       </Card>
 
       {/* Model comparison */}
-      <Card className="bg-[#0f172a] border-[#1e293b]">
+      <Card className="bg-card border-border">
         <CardHeader className="pb-2">
           <CardTitle className="text-sm text-muted-foreground flex items-center gap-2">
             <BarChart3 className="w-4 h-4 text-sky-400" />
@@ -1002,7 +1002,7 @@ function MLFinanceTab() {
                 { label: "Sharpe", value: activeModel.sharpe.toFixed(2), color: "text-primary" },
                 { label: "Max DD", value: `${activeModel.maxDD.toFixed(1)}%`, color: "text-rose-400" },
               ].map(({ label, value, color }) => (
-                <div key={label} className="bg-[#1e293b]/50 rounded-lg p-3 text-center">
+                <div key={label} className="bg-muted/50 rounded-lg p-3 text-center">
                   <p className="text-muted-foreground text-xs mb-1">{label}</p>
                   <p className={`text-lg font-bold ${color}`}>{value}</p>
                 </div>
@@ -1010,7 +1010,7 @@ function MLFinanceTab() {
             </motion.div>
           </AnimatePresence>
 
-          <div className="bg-[#1e293b]/30 rounded p-3 text-xs space-y-1">
+          <div className="bg-muted/30 rounded p-3 text-xs space-y-1">
             <p className="text-muted-foreground">
               <span className="text-foreground">Features: </span>
               {activeModel.features.join(", ")}
@@ -1025,7 +1025,7 @@ function MLFinanceTab() {
 
       {/* Validation methods */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-        <Card className="bg-[#0f172a] border-[#1e293b]">
+        <Card className="bg-card border-border">
           <CardHeader className="pb-2">
             <CardTitle className="text-sm text-muted-foreground flex items-center gap-2">
               <AlertTriangle className="w-4 h-4 text-amber-400" />
@@ -1051,7 +1051,7 @@ function MLFinanceTab() {
           </CardContent>
         </Card>
 
-        <Card className="bg-[#0f172a] border-[#1e293b]">
+        <Card className="bg-card border-border">
           <CardHeader className="pb-2">
             <CardTitle className="text-sm text-muted-foreground flex items-center gap-2">
               <CheckCircle className="w-4 h-4 text-emerald-400" />
@@ -1059,15 +1059,15 @@ function MLFinanceTab() {
             </CardTitle>
           </CardHeader>
           <CardContent className="space-y-3 text-xs text-muted-foreground">
-            <div className="bg-[#1e293b]/40 rounded p-2">
+            <div className="bg-muted/40 rounded p-2">
               <p className="text-emerald-400 font-medium mb-1">Walk-Forward (Correct)</p>
               <p>Train on t₀→t; test on t+1→t+k. Roll forward. Respects time causality. Recommended for finance.</p>
             </div>
-            <div className="bg-[#1e293b]/40 rounded p-2">
+            <div className="bg-muted/40 rounded p-2">
               <p className="text-rose-400 font-medium mb-1">K-Fold (Problematic)</p>
               <p>Random fold splits leak future information into training set. Produces optimistic in-sample metrics.</p>
             </div>
-            <div className="bg-[#1e293b]/40 rounded p-2">
+            <div className="bg-muted/40 rounded p-2">
               <p className="text-sky-400 font-medium mb-1">Combinatorial Purged CV</p>
               <p>Removes overlapping windows and embargo periods. State-of-the-art for financial ML.</p>
             </div>
@@ -1077,7 +1077,7 @@ function MLFinanceTab() {
 
       {/* NLP + RL note */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-        <Card className="bg-[#0f172a] border-[#1e293b]">
+        <Card className="bg-card border-border">
           <CardHeader className="pb-2">
             <CardTitle className="text-sm text-muted-foreground">FinBERT Sentiment</CardTitle>
           </CardHeader>
@@ -1102,13 +1102,13 @@ function MLFinanceTab() {
           </CardContent>
         </Card>
 
-        <Card className="bg-[#0f172a] border-[#1e293b]">
+        <Card className="bg-card border-border">
           <CardHeader className="pb-2">
             <CardTitle className="text-sm text-muted-foreground">RL for Execution</CardTitle>
           </CardHeader>
           <CardContent className="text-xs text-muted-foreground space-y-2">
             <p>Agent learns execution policy to minimise implementation shortfall + market impact.</p>
-            <div className="bg-[#1e293b]/40 rounded p-2 font-mono text-xs text-muted-foreground">
+            <div className="bg-muted/40 rounded p-2 font-mono text-xs text-muted-foreground">
               <p>State: (inventory, time_remaining, spread, vol)</p>
               <p>Action: quantity_to_trade ∈ [0, max_slice]</p>
               <p>Reward: −(impact_cost + timing_risk)</p>
@@ -1121,7 +1121,7 @@ function MLFinanceTab() {
       </div>
 
       {/* MLOps */}
-      <Card className="bg-[#0f172a] border-[#1e293b]">
+      <Card className="bg-card border-border">
         <CardHeader className="pb-2">
           <CardTitle className="text-sm text-muted-foreground flex items-center gap-2">
             <SlidersHorizontal className="w-4 h-4 text-sky-400" />
@@ -1181,7 +1181,7 @@ function HFTMarketMakingTab() {
       </div>
 
       {/* AS Model */}
-      <Card className="bg-[#0f172a] border-[#1e293b]">
+      <Card className="bg-card border-border">
         <CardHeader className="pb-2">
           <CardTitle className="text-sm text-muted-foreground flex items-center gap-2">
             <Zap className="w-4 h-4 text-amber-400" />
@@ -1189,7 +1189,7 @@ function HFTMarketMakingTab() {
           </CardTitle>
         </CardHeader>
         <CardContent className="text-xs space-y-3">
-          <div className="bg-[#1e293b]/60 rounded-md px-3 py-2 font-mono text-muted-foreground text-[11px] leading-5">
+          <div className="bg-muted/60 rounded-md px-3 py-2 font-mono text-muted-foreground text-[11px] leading-5">
             <p>δ* = γ·σ²·(T-t) + (2/γ)·ln(1 + γ/κ)</p>
             <p className="text-muted-foreground mt-1">δ* = optimal half-spread</p>
             <p className="text-muted-foreground">γ = risk aversion, σ² = variance, κ = order arrival rate</p>
@@ -1201,7 +1201,7 @@ function HFTMarketMakingTab() {
               { label: "Time remaining ↓", effect: "Wider spread (urgency)", dir: "down" },
               { label: "Order flow ↑", effect: "Tighter spread, more fills", dir: "up" },
             ].map(({ label, effect, dir }) => (
-              <div key={label} className="bg-[#1e293b]/40 rounded p-2 text-center">
+              <div key={label} className="bg-muted/40 rounded p-2 text-center">
                 <div className="flex items-center justify-center gap-1 mb-1">
                   {dir === "up" ? (
                     <TrendingUp className="w-3 h-3 text-emerald-400" />
@@ -1218,7 +1218,7 @@ function HFTMarketMakingTab() {
       </Card>
 
       {/* Inventory chart */}
-      <Card className="bg-[#0f172a] border-[#1e293b]">
+      <Card className="bg-card border-border">
         <CardHeader className="pb-2">
           <CardTitle className="text-sm text-muted-foreground flex items-center gap-2">
             <Activity className="w-4 h-4 text-primary" />
@@ -1235,7 +1235,7 @@ function HFTMarketMakingTab() {
       </Card>
 
       {/* Regime table */}
-      <Card className="bg-[#0f172a] border-[#1e293b]">
+      <Card className="bg-card border-border">
         <CardHeader className="pb-2">
           <CardTitle className="text-sm text-muted-foreground flex items-center gap-2">
             <BarChart3 className="w-4 h-4 text-sky-400" />
@@ -1248,8 +1248,8 @@ function HFTMarketMakingTab() {
               key={r.regime}
               className={`rounded-lg p-3 border cursor-pointer transition-colors ${
                 selectedRegime.regime === r.regime
-                  ? "border-primary/50 bg-[#1e293b]/60"
-                  : "border-[#1e293b] hover:bg-[#1e293b]/30"
+                  ? "border-primary/50 bg-muted/60"
+                  : "border-border hover:bg-muted/30"
               }`}
               onClick={() => setSelectedRegime(r)}
             >
@@ -1275,7 +1275,7 @@ function HFTMarketMakingTab() {
 
       {/* Technology stack */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-        <Card className="bg-[#0f172a] border-[#1e293b]">
+        <Card className="bg-card border-border">
           <CardHeader className="pb-2">
             <CardTitle className="text-sm text-muted-foreground flex items-center gap-2">
               <Cpu className="w-4 h-4 text-sky-400" />
@@ -1291,7 +1291,7 @@ function HFTMarketMakingTab() {
               { stage: "Order encode + send", lat: "2 μs", tech: "Kernel bypass (DPDK)", color: "text-amber-400" },
               { stage: "Exchange ACK", lat: "30–200 μs", tech: "Co-location advantage", color: "text-primary" },
             ].map(({ stage, lat, tech, color }) => (
-              <div key={stage} className="flex items-center justify-between border-b border-[#1e293b]/50 pb-1">
+              <div key={stage} className="flex items-center justify-between border-b border-border/50 pb-1">
                 <span className="text-muted-foreground">{stage}</span>
                 <div className="text-right">
                   <span className={`font-mono font-medium ${color}`}>{lat}</span>
@@ -1302,7 +1302,7 @@ function HFTMarketMakingTab() {
           </CardContent>
         </Card>
 
-        <Card className="bg-[#0f172a] border-[#1e293b]">
+        <Card className="bg-card border-border">
           <CardHeader className="pb-2">
             <CardTitle className="text-sm text-muted-foreground flex items-center gap-2">
               <AlertTriangle className="w-4 h-4 text-rose-400" />
@@ -1331,12 +1331,12 @@ function HFTMarketMakingTab() {
       </div>
 
       {/* OBI signal */}
-      <Card className="bg-[#0f172a] border-[#1e293b]">
+      <Card className="bg-card border-border">
         <CardHeader className="pb-2">
           <CardTitle className="text-sm text-muted-foreground">Order Book Imbalance Signal</CardTitle>
         </CardHeader>
         <CardContent className="text-xs text-muted-foreground space-y-2">
-          <div className="bg-[#1e293b]/60 rounded px-3 py-2 font-mono text-[11px] text-muted-foreground">
+          <div className="bg-muted/60 rounded px-3 py-2 font-mono text-[11px] text-muted-foreground">
             OBI = (BidVol − AskVol) / (BidVol + AskVol) ∈ [−1, +1]
           </div>
           <p>
@@ -1349,7 +1349,7 @@ function HFTMarketMakingTab() {
               { range: "OBI ≈ 0", signal: "Symmetric quotes", color: "text-muted-foreground" },
               { range: "OBI &lt; −0.3", signal: "Lean bid (sell)", color: "text-rose-400" },
             ].map(({ range, signal, color }) => (
-              <div key={range} className="bg-[#1e293b]/40 rounded p-2 text-center">
+              <div key={range} className="bg-muted/40 rounded p-2 text-center">
                 <p className="font-mono text-xs text-muted-foreground">{range}</p>
                 <p className={`text-xs mt-0.5 font-medium ${color}`}>{signal}</p>
               </div>
@@ -1388,7 +1388,7 @@ function ExecutionTab() {
       </div>
 
       {/* AC optimal execution chart */}
-      <Card className="bg-[#0f172a] border-[#1e293b]">
+      <Card className="bg-card border-border">
         <CardHeader className="pb-2">
           <CardTitle className="text-sm text-muted-foreground flex items-center gap-2">
             <GitMerge className="w-4 h-4 text-emerald-400" />
@@ -1406,7 +1406,7 @@ function ExecutionTab() {
       </Card>
 
       {/* Market impact curve */}
-      <Card className="bg-[#0f172a] border-[#1e293b]">
+      <Card className="bg-card border-border">
         <CardHeader className="pb-2">
           <CardTitle className="text-sm text-muted-foreground flex items-center gap-2">
             <DollarSign className="w-4 h-4 text-amber-400" />
@@ -1421,7 +1421,7 @@ function ExecutionTab() {
               { q: "10% ADV", imp: "~18bp", note: "Large block" },
               { q: "25% ADV", imp: "~30bp", note: "Significant market move" },
             ].map(({ q, imp, note }) => (
-              <div key={q} className="bg-[#1e293b]/40 rounded p-2 text-center">
+              <div key={q} className="bg-muted/40 rounded p-2 text-center">
                 <p className="text-muted-foreground">{q}</p>
                 <p className="text-primary font-bold">{imp}</p>
                 <p className="text-muted-foreground text-xs">{note}</p>
@@ -1432,7 +1432,7 @@ function ExecutionTab() {
       </Card>
 
       {/* IS Breakdown */}
-      <Card className="bg-[#0f172a] border-[#1e293b]">
+      <Card className="bg-card border-border">
         <CardHeader className="pb-2">
           <CardTitle className="text-sm text-muted-foreground flex items-center gap-2">
             <Layers className="w-4 h-4 text-primary" />
@@ -1455,7 +1455,7 @@ function ExecutionTab() {
                     <span className="text-muted-foreground w-8">{pct}%</span>
                   </div>
                 </div>
-                <div className="h-2 bg-[#1e293b] rounded-full overflow-hidden">
+                <div className="h-2 bg-muted rounded-full overflow-hidden">
                   <div className={`h-full ${color} rounded-full`} style={{ width: `${pct}%` }} />
                 </div>
                 <p className="text-xs text-muted-foreground mt-0.5">{desc}</p>
@@ -1470,7 +1470,7 @@ function ExecutionTab() {
       </Card>
 
       {/* Algo comparison table */}
-      <Card className="bg-[#0f172a] border-[#1e293b]">
+      <Card className="bg-card border-border">
         <CardHeader className="pb-2">
           <CardTitle className="text-sm text-muted-foreground flex items-center gap-2">
             <Clock className="w-4 h-4 text-sky-400" />
@@ -1481,7 +1481,7 @@ function ExecutionTab() {
           <div className="overflow-x-auto">
             <table className="w-full text-xs">
               <thead>
-                <tr className="border-b border-[#1e293b] text-muted-foreground">
+                <tr className="border-b border-border text-muted-foreground">
                   <th className="text-left px-4 py-2">Algorithm</th>
                   <th className="text-left px-3 py-2">Objective</th>
                   <th className="text-left px-3 py-2">Best For</th>
@@ -1493,8 +1493,8 @@ function ExecutionTab() {
                 {EXEC_ALGOS.map((a) => (
                   <tr
                     key={a.name}
-                    className={`border-b border-[#1e293b]/50 cursor-pointer transition-colors ${
-                      selectedAlgo.name === a.name ? "bg-[#1e293b]/60" : "hover:bg-[#1e293b]/30"
+                    className={`border-b border-border/50 cursor-pointer transition-colors ${
+                      selectedAlgo.name === a.name ? "bg-muted/60" : "hover:bg-muted/30"
                     }`}
                     onClick={() => setSelectedAlgo(a)}
                   >
@@ -1520,7 +1520,7 @@ function ExecutionTab() {
 
       {/* Venue selection + dark pools */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-        <Card className="bg-[#0f172a] border-[#1e293b]">
+        <Card className="bg-card border-border">
           <CardHeader className="pb-2">
             <CardTitle className="text-sm text-muted-foreground">Venue Selection</CardTitle>
           </CardHeader>
@@ -1555,7 +1555,7 @@ function ExecutionTab() {
                 note: "Executes at NBBO midpoint; zero explicit spread cost",
               },
             ].map(({ venue, fill, impact, color, note }) => (
-              <div key={venue} className="border-b border-[#1e293b]/50 pb-2">
+              <div key={venue} className="border-b border-border/50 pb-2">
                 <div className="flex justify-between items-center">
                   <span className="text-muted-foreground font-medium">{venue}</span>
                   <div className="flex gap-2 text-right">
@@ -1569,22 +1569,22 @@ function ExecutionTab() {
           </CardContent>
         </Card>
 
-        <Card className="bg-[#0f172a] border-[#1e293b]">
+        <Card className="bg-card border-border">
           <CardHeader className="pb-2">
             <CardTitle className="text-sm text-muted-foreground">Pre/Post Trade Analytics</CardTitle>
           </CardHeader>
           <CardContent className="text-xs space-y-3 text-muted-foreground">
-            <div className="bg-[#1e293b]/40 rounded p-2">
+            <div className="bg-muted/40 rounded p-2">
               <p className="text-sky-400 font-medium mb-1">Pre-Trade Cost Estimate</p>
               <p>Estimate expected IS, market impact, and spread cost before order submission.
                 Input: order size, urgency, historical ADV, intraday vol profile.</p>
             </div>
-            <div className="bg-[#1e293b]/40 rounded p-2">
+            <div className="bg-muted/40 rounded p-2">
               <p className="text-primary font-medium mb-1">Post-Trade TCA Attribution</p>
               <p>Decompose realised IS into delay, impact, timing, commissions.
                 Compare vs VWAP, arrival price, close. Broker toxicity scored by adverse selection.</p>
             </div>
-            <div className="bg-[#1e293b]/40 rounded p-2">
+            <div className="bg-muted/40 rounded p-2">
               <p className="text-amber-400 font-medium mb-1">Broker Toxicity Score</p>
               <p>Measures fraction of fills where price moved adversely within 30s.
                 High toxicity suggests information leakage or predatory routing.</p>
@@ -1609,7 +1609,7 @@ export default function QuantStrategies2Page() {
   ];
 
   return (
-    <div className="min-h-screen bg-[#020817] text-foreground p-6">
+    <div className="min-h-screen bg-background text-foreground p-6">
       {/* Header */}
       <motion.div
         initial={{ opacity: 0, y: -16 }}
@@ -1638,7 +1638,7 @@ export default function QuantStrategies2Page() {
           ].map(({ label, value, color }) => (
             <div
               key={label}
-              className="flex items-center gap-2 bg-[#0f172a] border border-[#1e293b] rounded-lg px-3 py-1.5 text-xs"
+              className="flex items-center gap-2 bg-card border border-border rounded-lg px-3 py-1.5 text-xs"
             >
               <span className="text-muted-foreground">{label}</span>
               <span className={`font-bold ${color}`}>{value}</span>
@@ -1649,12 +1649,12 @@ export default function QuantStrategies2Page() {
 
       {/* Tabs */}
       <Tabs value={tab} onValueChange={setTab} className="w-full">
-        <TabsList className="bg-[#0f172a] border border-[#1e293b] p-1 h-auto flex flex-wrap gap-1 mb-4">
+        <TabsList className="bg-card border border-border p-1 h-auto flex flex-wrap gap-1 mb-4">
           {tabItems.map(({ id, label, icon: Icon }) => (
             <TabsTrigger
               key={id}
               value={id}
-              className="text-xs data-[state=active]:bg-[#1e293b] data-[state=active]:text-foreground text-muted-foreground px-3 py-1.5 flex items-center gap-1.5"
+              className="text-xs data-[state=active]:bg-muted data-[state=active]:text-foreground text-muted-foreground px-3 py-1.5 flex items-center gap-1.5"
             >
               <Icon className="w-3.5 h-3.5" />
               {label}

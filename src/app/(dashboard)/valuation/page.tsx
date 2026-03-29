@@ -650,7 +650,7 @@ function DCFTab() {
               }}
             />
             <div
-              className="absolute inset-y-0 w-0.5 bg-white/80"
+              className="absolute inset-y-0 w-0.5 bg-foreground/80"
               style={{
                 left: `${Math.min((projections.intrinsic / (projections.intrinsic * 1.5)) * 100, 95)}%`,
               }}

@@ -52,8 +52,8 @@ export function TradeJournal() {
                     className={cn(
                       "px-1.5 py-0 text-xs",
                       trade.side === "buy"
-                        ? "border-[#10b981]/30 text-[#10b981]"
-                        : "border-[#ef4444]/30 text-[#ef4444]",
+                        ? "border-profit/30 text-profit"
+                        : "border-loss/30 text-loss",
                     )}
                   >
                     {trade.side.toUpperCase()}
@@ -66,9 +66,9 @@ export function TradeJournal() {
                       className={cn(
                         "tabular-nums font-medium",
                         trade.realizedPnL > 0
-                          ? "text-[#10b981]"
+                          ? "text-profit"
                           : trade.realizedPnL < 0
-                            ? "text-[#ef4444]"
+                            ? "text-loss"
                             : "text-muted-foreground",
                       )}
                     >

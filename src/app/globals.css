@@ -47,45 +47,18 @@
   --radius-4xl: calc(var(--radius) + 16px);
   --color-profit: #10b981;
   --color-loss: #ef4444;
+  --color-warning: #f59e0b;
+  --color-warning-strong: #f97316;
+  --color-profit-light: #34d399;
+  --color-short: #a855f7;
 }
+
+/* ============================================
+   DESIGN TOKENS (always dark — no light mode)
+   ============================================ */
 
 :root {
   --radius: 0.5rem;
-  --background: #0a0e17;
-  --foreground: #e2e8f0;
-  --card: #0f1420;
-  --card-foreground: #e2e8f0;
-  --popover: #0f1420;
-  --popover-foreground: #e2e8f0;
-  --primary: #10b981;
-  --primary-foreground: #0a0e17;
-  --secondary: #1a2235;
-  --secondary-foreground: #e2e8f0;
-  --muted: #1a2235;
-  --muted-foreground: #6b7280;
-  --accent: #1a2235;
-  --accent-foreground: #e2e8f0;
-  --destructive: #ef4444;
-  --border: #1e293b;
-  --input: #1e293b;
-  --ring: #10b981;
-  --chart-1: #10b981;
-  --chart-2: #ef4444;
-  --chart-3: #3b82f6;
-  --chart-4: #f59e0b;
-  --chart-5: #8b5cf6;
-  --sidebar: #080b12;
-  --sidebar-foreground: #e2e8f0;
-  --sidebar-primary: #10b981;
-  --sidebar-primary-foreground: #0a0e17;
-  --sidebar-accent: #1a2235;
-  --sidebar-accent-foreground: #e2e8f0;
-  --sidebar-border: #1e293b;
-  --sidebar-ring: #10b981;
-}
-
-/* Always dark - no light mode */
-.dark {
   --background: #0a0e17;
   --foreground: #e2e8f0;
   --card: #0f1420;
@@ -138,200 +111,81 @@
 }
 
 /* ============================================
-   GLASSMORPHISM & PREMIUM UTILITIES
+   SURFACE UTILITIES
    ============================================ */
 
-/* Minimal surface utilities */
 .glass {
   background: rgba(15, 20, 32, 0.8);
   border: 1px solid rgba(30, 41, 59, 0.4);
-}
-
-.glass-card {
-  background: rgba(15, 20, 32, 0.85);
-  border: 1px solid rgba(30, 41, 59, 0.5);
 }
 
 .glass-subtle {
   background: rgba(15, 20, 32, 0.6);
 }
 
-/* Semantic color accents — no glow, just subtle background */
-.glow-green { background: rgba(16, 185, 129, 0.06); }
-.glow-red { background: rgba(239, 68, 68, 0.06); }
-.glow-amber { background: rgba(245, 158, 11, 0.06); }
-
-.hover-lift { transition: background-color 0.15s ease; }
-.hover-lift:hover { background: rgba(255, 255, 255, 0.03); }
-
-/* Simple border accents */
-.gradient-border-green { border: 1px solid rgba(16, 185, 129, 0.2); }
-.gradient-border-red { border: 1px solid rgba(239, 68, 68, 0.2); }
-
 /* ============================================
-   GAME-FEEL ANIMATIONS
+   INTERACTIVE HOVER EFFECTS
    ============================================ */
 
-/* Price flash — green pulse on price up */
+.card-hover-glow {
+  transition: background-color 0.15s ease, border-color 0.15s ease;
+}
+.card-hover-glow:hover {
+  background: rgba(255, 255, 255, 0.02);
+  border-color: rgba(255, 255, 255, 0.08);
+}
+
+/* ============================================
+   BADGE STYLES
+   ============================================ */
+
+.badge-premium {
+  background: rgba(16, 185, 129, 0.08);
+  border: 1px solid rgba(16, 185, 129, 0.25);
+}
+
+/* ============================================
+   PRICE & TRADE FLASH ANIMATIONS
+   ============================================ */
+
 .price-flash-up {
   animation: flash-green 0.4s ease-out;
 }
 
-/* Price flash — red pulse on price down */
 .price-flash-down {
   animation: flash-red 0.4s ease-out;
 }
 
 @keyframes flash-green {
-  0% { color: #10b981; }
+  0% { color: var(--primary); }
   100% { color: inherit; }
 }
 
 @keyframes flash-red {
-  0% { color: #ef4444; }
+  0% { color: var(--destructive); }
   100% { color: inherit; }
 }
 
-/* Pulsing dot for live/playing state */
-.pulse-dot {
-  animation: pulse-glow 1.5s ease-in-out infinite;
-}
-
-@keyframes pulse-glow {
-  0%, 100% { opacity: 1; }
-  50% { opacity: 0.4; }
-}
-
-/* Trade execution flash — buy (green border flash) */
 .trade-flash-buy {
   animation: trade-buy 0.6s ease-out;
 }
 
-/* Trade execution flash — sell (red border flash) */
 .trade-flash-sell {
   animation: trade-sell 0.6s ease-out;
 }
 
 @keyframes trade-buy {
-  0% {
-    background-color: rgba(16, 185, 129, 0.15);
-  }
-  100% {
-    background-color: transparent;
-  }
+  0% { background-color: rgba(16, 185, 129, 0.15); }
+  100% { background-color: transparent; }
 }
 
 @keyframes trade-sell {
-  0% {
-    background-color: rgba(239, 68, 68, 0.15);
-  }
-  100% {
-    background-color: transparent;
-  }
-}
-
-/* Achievement popup glow + bounce entrance */
-/* Achievement entrance — clean fade in */
-.achievement-glow {
-  animation: achievement-entrance 0.3s ease-out;
-}
-
-@keyframes achievement-entrance {
-  0% { opacity: 0; transform: translateY(8px); }
-  100% { opacity: 1; transform: translateY(0); }
-}
-
-/* Confetti — kept for lesson completion only */
-.achievement-confetti::before { display: none; }
-
-/* ============================================
-   XP & LEVEL-UP ANIMATIONS
-   ============================================ */
-
-/* Floating +XP text */
-.xp-float-up {
-  animation: xp-float 1.2s ease-out forwards;
-  pointer-events: none;
-}
-
-@keyframes xp-float {
-  0% { opacity: 1; transform: translateY(0); }
-  70% { opacity: 1; transform: translateY(-16px); }
-  100% { opacity: 0; transform: translateY(-24px); }
-}
-
-/* XP bar pulse when gaining XP */
-.xp-bar-pulse {
-  animation: xp-pulse 0.6s ease-out;
-}
-
-@keyframes xp-pulse {
-  0% { opacity: 0.7; }
-  100% { opacity: 1; }
-}
-
-/* Level-up overlay entrance */
-.level-up-entrance {
-  animation: level-up-in 0.5s ease-out;
-}
-
-@keyframes level-up-in {
-  0% { opacity: 0; transform: scale(0.7); }
-  60% { transform: scale(1.05); }
-  100% { opacity: 1; transform: scale(1); }
-}
-
-/* Level-up sparkle */
-.level-up-sparkle {
-  animation: sparkle 1.5s ease-in-out infinite;
-}
-
-@keyframes sparkle {
-  0%, 100% { opacity: 0.3; transform: scale(0.8) rotate(0deg); }
-  50% { opacity: 1; transform: scale(1.1) rotate(180deg); }
+  0% { background-color: rgba(239, 68, 68, 0.15); }
+  100% { background-color: transparent; }
 }
 
 /* ============================================
-   TABLE & ROW ANIMATIONS
-   ============================================ */
-
-.row-slide-in {
-  animation: row-enter 0.25s ease-out;
-}
-
-@keyframes row-enter {
-  0% { opacity: 0; transform: translateX(-8px); }
-  100% { opacity: 1; transform: translateX(0); }
-}
-
-/* ============================================
-   CHART TICKER TRANSITION
-   ============================================ */
-
-.chart-fade-overlay {
-  animation: chart-fade 0.4s ease-out forwards;
-}
-
-@keyframes chart-fade {
-  0% { opacity: 1; }
-  100% { opacity: 0; }
-}
-
-/* ============================================
-   PROXIMITY WARNINGS
-   ============================================ */
-
-.proximity-pulse {
-  animation: prox-pulse 1.5s ease-in-out infinite;
-}
-
-@keyframes prox-pulse {
-  0%, 100% { opacity: 1; }
-  50% { opacity: 0.6; }
-}
-
-/* ============================================
-   TRADE EXECUTION CHART FLASH
+   CHART BORDER FLASH (trade execution)
    ============================================ */
 
 .chart-border-flash-buy {
@@ -353,7 +207,76 @@
 }
 
 /* ============================================
-   CONFETTI ANIMATION (lesson complete)
+   PULSING DOT (live/playing state)
+   ============================================ */
+
+.pulse-dot {
+  animation: pulse-glow 1.5s ease-in-out infinite;
+}
+
+@keyframes pulse-glow {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.4; }
+}
+
+/* ============================================
+   CHART TICKER TRANSITION
+   ============================================ */
+
+.chart-fade-overlay {
+  animation: chart-fade 0.4s ease-out forwards;
+}
+
+@keyframes chart-fade {
+  0% { opacity: 1; }
+  100% { opacity: 0; }
+}
+
+/* ============================================
+   PROXIMITY WARNING PULSE
+   ============================================ */
+
+.proximity-pulse {
+  animation: prox-pulse 1.5s ease-in-out infinite;
+}
+
+@keyframes prox-pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.6; }
+}
+
+/* ============================================
+   XP & LEVEL-UP ANIMATIONS
+   ============================================ */
+
+.xp-float-up {
+  animation: xp-float 1.2s ease-out forwards;
+  pointer-events: none;
+}
+
+@keyframes xp-float {
+  0% { opacity: 1; transform: translateY(0); }
+  70% { opacity: 1; transform: translateY(-16px); }
+  100% { opacity: 0; transform: translateY(-24px); }
+}
+
+.xp-bar-pulse {
+  animation: xp-pulse 0.6s ease-out;
+}
+
+@keyframes xp-pulse {
+  0% { opacity: 0.7; }
+  100% { opacity: 1; }
+}
+
+/* ============================================
+   ACHIEVEMENT POPUP
+   ============================================ */
+
+.achievement-confetti::before { display: none; }
+
+/* ============================================
+   CONFETTI (lesson complete)
    ============================================ */
 
 @keyframes confetti-fall {
@@ -411,7 +334,7 @@
 }
 
 /* ============================================
-   LEARNING UI — Gold Shimmer Stars
+   LEARNING UI — Gold Shimmer
    ============================================ */
 
 @keyframes shimmer-gold {
@@ -442,9 +365,9 @@
   width: 12px;
   height: 12px;
   border-radius: 50%;
-  background: #10b981;
+  background: var(--primary);
   cursor: pointer;
-  border: 2px solid #0a0e17;
+  border: 2px solid var(--background);
   transition: transform 0.1s ease;
 }
 
@@ -460,201 +383,21 @@
   width: 12px;
   height: 12px;
   border-radius: 50%;
-  background: #10b981;
+  background: var(--primary);
   cursor: pointer;
-  border: 2px solid #0a0e17;
+  border: 2px solid var(--background);
 }
 
 .time-slider::-webkit-slider-runnable-track {
   height: 6px;
   border-radius: 3px;
-  background: #1e293b;
+  background: var(--border);
 }
 
 .time-slider::-moz-range-track {
   height: 6px;
   border-radius: 3px;
-  background: #1e293b;
-}
-
-/* ============================================
-   PREMIUM GRADIENT TEXT
-   ============================================ */
-
-.gradient-text-brand {
-  background: linear-gradient(135deg, #10b981, #34d399, #6ee7b7);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-}
-
-.gradient-text-gold {
-  background: linear-gradient(135deg, #f59e0b, #fbbf24, #fcd34d);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-}
-
-.gradient-text-rainbow {
-  background: linear-gradient(135deg, #10b981, #3b82f6, #8b5cf6, #ec4899);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-}
-
-/* ============================================
-   INTERACTIVE CARD HOVER EFFECTS
-   ============================================ */
-
-/* Card hover — minimal, no glow */
-.card-hover-glow {
-  transition: background-color 0.15s ease, border-color 0.15s ease;
-}
-.card-hover-glow:hover {
-  background: rgba(255, 255, 255, 0.02);
-  border-color: rgba(255, 255, 255, 0.08);
-}
-
-.card-hover-lift {
-  transition: background-color 0.15s ease;
-}
-.card-hover-lift:hover {
-  background: rgba(255, 255, 255, 0.02);
-}
-
-/* ============================================
-   SUBTLE BACKGROUND PATTERNS
-   ============================================ */
-
-.bg-grid-subtle {
-  background-image:
-    linear-gradient(rgba(30, 41, 59, 0.3) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(30, 41, 59, 0.3) 1px, transparent 1px);
-  background-size: 40px 40px;
-}
-
-.bg-noise {
-  position: relative;
-}
-.bg-noise::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  opacity: 0.015;
-  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
-  pointer-events: none;
-  z-index: 0;
-}
-
-/* ============================================
-   CUTE BOUNCE & WIGGLE ANIMATIONS
-   ============================================ */
-
-@keyframes bounce-cute {
-  0%, 100% { transform: translateY(0); }
-  25% { transform: translateY(-4px); }
-  50% { transform: translateY(0); }
-  75% { transform: translateY(-2px); }
-}
-
-.bounce-cute {
-  animation: bounce-cute 2s ease-in-out infinite;
-}
-
-@keyframes wiggle {
-  0%, 100% { transform: rotate(0deg); }
-  15% { transform: rotate(6deg); }
-  30% { transform: rotate(-6deg); }
-  45% { transform: rotate(3deg); }
-  60% { transform: rotate(-3deg); }
-  75% { transform: rotate(0deg); }
-}
-
-.wiggle {
-  animation: wiggle 2s ease-in-out infinite;
-}
-
-@keyframes float-gentle {
-  0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(-6px); }
-}
-
-.float-gentle {
-  animation: float-gentle 3s ease-in-out infinite;
-}
-
-@keyframes pulse-soft {
-  0%, 100% { opacity: 1; }
-  50% { opacity: 0.6; }
-}
-
-.pulse-soft {
-  animation: pulse-soft 2s ease-in-out infinite;
-}
-
-/* ============================================
-   PREMIUM RIBBON & BADGE STYLES
-   ============================================ */
-
-.badge-premium {
-  background: rgba(16, 185, 129, 0.08);
-  border: 1px solid rgba(16, 185, 129, 0.25);
-}
-
-.badge-gold {
-  background: rgba(245, 158, 11, 0.08);
-  border: 1px solid rgba(245, 158, 11, 0.25);
-}
-
-.badge-legendary {
-  background: rgba(139, 92, 246, 0.08);
-  border: 1px solid rgba(139, 92, 246, 0.25);
-}
-
-.badge-diamond {
-  background: rgba(6, 182, 212, 0.08);
-  border: 1px solid rgba(6, 182, 212, 0.25);
-}
-
-.badge-alpha {
-  background: rgba(139, 92, 246, 0.08);
-  border: 1px solid rgba(139, 92, 246, 0.3);
-}
-
-/* ============================================
-   LEADERBOARD
-   ============================================ */
-
-.glow-purple {
-  /* removed colored box-shadow for flat design */
-}
-
-.gradient-text-purple {
-  background: linear-gradient(135deg, #8b5cf6, #a78bfa, #c4b5fd);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-}
-
-@keyframes rank-highlight-pulse {
-  0%, 100% { border-color: rgba(139, 92, 246, 0.25); }
-  50% { border-color: rgba(139, 92, 246, 0.45); }
-}
-
-.rank-highlight {
-  animation: rank-highlight-pulse 2.5s ease-in-out infinite;
-  background: linear-gradient(135deg, rgba(139, 92, 246, 0.06), rgba(167, 139, 250, 0.03));
-  border: 1px solid rgba(139, 92, 246, 0.25);
-  border-radius: 0.75rem;
-}
-
-@keyframes medal-shimmer {
-  0%, 100% { filter: brightness(1); }
-  50% { filter: brightness(1.15); }
-}
-
-.medal-shimmer {
-  animation: medal-shimmer 3s ease-in-out infinite;
+  background: var(--border);
 }
 
 /* ============================================
@@ -710,7 +453,7 @@
 }
 
 /* ============================================
-   STREAK FIRE GLOW
+   STREAK FIRE
    ============================================ */
 
 @keyframes streak-fire-glow {
@@ -719,18 +462,6 @@
 }
 .streak-fire {
   animation: streak-fire-glow 1.5s ease-in-out infinite;
-}
-
-/* ============================================
-   DAILY REWARD GLOW
-   ============================================ */
-
-@keyframes daily-reward-pulse {
-  0%, 100% { opacity: 1; }
-  50% { opacity: 0.85; }
-}
-.daily-reward-glow {
-  animation: daily-reward-pulse 2s ease-in-out infinite;
 }
 
 /* ============================================
@@ -774,7 +505,7 @@
   width: 3px;
   height: 20px;
   border-radius: 0 3px 3px 0;
-  background: #10b981;
+  background: var(--primary);
 }
 
 /* ============================================
@@ -797,13 +528,13 @@
   background-origin: border-box;
   background-clip: padding-box, border-box;
   background-image:
-    linear-gradient(#0f1420, #0f1420),
+    linear-gradient(var(--card), var(--card)),
     conic-gradient(from var(--angle), #10b981, #3b82f6, #8b5cf6, #ec4899, #f59e0b, #10b981);
   animation: gradient-rotate 4s linear infinite;
 }
 
 /* ============================================
-   SECTION DIVIDER WITH GLOW
+   DIVIDER
    ============================================ */
 
 .divider-glow {
@@ -812,21 +543,28 @@
 }
 
 /* ============================================
-   MARKET MOOD ORB GLOWS
+   LEADERBOARD
    ============================================ */
 
-.orb-glow-green {}
-.orb-glow-red {}
-.orb-glow-amber {}
+@keyframes rank-highlight-pulse {
+  0%, 100% { border-color: rgba(139, 92, 246, 0.25); }
+  50% { border-color: rgba(139, 92, 246, 0.45); }
+}
 
-/* ============================================
-   TOOLTIP PREMIUM
-   ============================================ */
+.rank-highlight {
+  animation: rank-highlight-pulse 2.5s ease-in-out infinite;
+  background: linear-gradient(135deg, rgba(139, 92, 246, 0.06), rgba(167, 139, 250, 0.03));
+  border: 1px solid rgba(139, 92, 246, 0.25);
+  border-radius: 0.75rem;
+}
 
-.tooltip-premium {
-  background: rgba(15, 20, 32, 0.95);
-  border: 1px solid rgba(16, 185, 129, 0.2);
-  backdrop-filter: blur(12px);
+@keyframes medal-shimmer {
+  0%, 100% { filter: brightness(1); }
+  50% { filter: brightness(1.15); }
+}
+
+.medal-shimmer {
+  animation: medal-shimmer 3s ease-in-out infinite;
 }
 
 /* ============================================
@@ -838,10 +576,10 @@
   height: 6px;
 }
 ::-webkit-scrollbar-track {
-  background: #0a0e17;
+  background: var(--background);
 }
 ::-webkit-scrollbar-thumb {
-  background: #1e293b;
+  background: var(--border);
   border-radius: 3px;
 }
 ::-webkit-scrollbar-thumb:hover {
@@ -849,10 +587,9 @@
 }
 
 /* ============================================
-   QUEST / ARENA / SEASON ANIMATIONS
+   QUEST / ARENA / SEASON
    ============================================ */
 
-/* Quest claim button pop */
 .quest-claim {
   animation: quest-claim-pop 0.3s ease-out;
 }
@@ -863,12 +600,10 @@
   100% { transform: scale(1); opacity: 1; }
 }
 
-/* Arena timer pulse when <10s */
 .arena-timer {
   transition: all 0.3s ease;
 }
 
-/* Matchmaking radar sweep */
 .matchmaking-radar {
   position: relative;
   overflow: hidden;
@@ -891,12 +626,11 @@
   100% { transform: translate(-50%, -50%) rotate(360deg); }
 }
 
-/* Season tier unlock hover */
 .season-tier-unlock:not(:disabled):hover {
   background: rgba(245, 158, 11, 0.08);
 }
 
-/* Scrollbar hide for reward track */
+/* Scrollbar hide for horizontal tracks */
 .scrollbar-hide::-webkit-scrollbar {
   display: none;
 }

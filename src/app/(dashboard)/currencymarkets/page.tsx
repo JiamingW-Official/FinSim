@@ -237,7 +237,7 @@ const CRISES: CrisisEvent[] = (() => {
 function FxPairRow({ pair }: { pair: FxPair }) {
   const up = pair.change1d >= 0;
   return (
-    <tr className="border-b border-white/5 hover:bg-muted/30 transition-colors">
+    <tr className="border-b border-border/50 hover:bg-muted/30 transition-colors">
       <td className="py-3 px-4">
         <div className="flex items-center gap-2">
           <span className="text-base">{pair.flag1}{pair.flag2}</span>
@@ -545,7 +545,7 @@ export default function CurrencyMarketsPage() {
   const selectedCrisisData = selectedCrisis !== null ? CRISES[selectedCrisis] : null;
 
   return (
-    <div className="min-h-screen bg-[#0a0f1e] text-foreground p-4 md:p-6">
+    <div className="min-h-screen bg-background text-foreground p-4 md:p-6">
       {/* Header */}
       <div className="mb-6">
         <div className="flex items-center gap-3 mb-2">
@@ -566,7 +566,7 @@ export default function CurrencyMarketsPage() {
             { label: "Trading Sessions", value: "4 Zones", icon: Clock, color: "text-primary" },
             { label: "24h Market", value: "Mon–Fri", icon: Activity, color: "text-amber-400" },
           ].map((stat) => (
-            <Card key={stat.label} className="bg-white/[0.03] border-white/10">
+            <Card key={stat.label} className="bg-foreground/[0.03] border-border">
               <CardContent className="p-3 flex items-center gap-3">
                 <stat.icon className={cn("w-5 h-5 flex-shrink-0", stat.color)} />
                 <div>
@@ -581,7 +581,7 @@ export default function CurrencyMarketsPage() {
 
       {/* Tabs */}
       <Tabs defaultValue="structure" className="space-y-4">
-        <TabsList className="bg-white/[0.05] border border-white/10 p-1 flex flex-wrap gap-1 h-auto">
+        <TabsList className="bg-foreground/[0.05] border border-border p-1 flex flex-wrap gap-1 h-auto">
           <TabsTrigger value="structure" className="data-[state=active]:bg-primary data-[state=active]:text-white text-muted-foreground text-xs sm:text-sm">
             <Globe className="w-3 h-3 mr-1" /> FX Structure
           </TabsTrigger>
@@ -601,7 +601,7 @@ export default function CurrencyMarketsPage() {
           <div className="grid grid-cols-1 xl:grid-cols-3 gap-4">
             {/* Currency Pairs Table */}
             <div className="xl:col-span-2">
-              <Card className="bg-white/[0.03] border-white/10">
+              <Card className="bg-foreground/[0.03] border-border">
                 <CardHeader className="pb-2">
                   <CardTitle className="text-white text-base flex items-center gap-2">
                     <BarChart2 className="w-4 h-4 text-primary" />
@@ -612,7 +612,7 @@ export default function CurrencyMarketsPage() {
                   <div className="overflow-x-auto">
                     <table className="w-full text-sm">
                       <thead>
-                        <tr className="border-b border-white/10 text-muted-foreground text-xs">
+                        <tr className="border-b border-border text-muted-foreground text-xs">
                           <th className="py-2 px-4 text-left">Pair</th>
                           <th className="py-2 px-4 text-right">Spot</th>
                           <th className="py-2 px-4 text-right">Bid</th>
@@ -630,7 +630,7 @@ export default function CurrencyMarketsPage() {
                       </tbody>
                     </table>
                   </div>
-                  <div className="px-4 py-3 border-t border-white/5 text-xs text-muted-foreground">
+                  <div className="px-4 py-3 border-t border-border/50 text-xs text-muted-foreground">
                     Spread in pips (1 pip = 0.0001 for majors, 0.01 for JPY pairs). Prices are indicative.
                   </div>
                 </CardContent>
@@ -639,7 +639,7 @@ export default function CurrencyMarketsPage() {
 
             {/* Market Hours Wheel */}
             <div className="space-y-4">
-              <Card className="bg-white/[0.03] border-white/10">
+              <Card className="bg-foreground/[0.03] border-border">
                 <CardHeader className="pb-2">
                   <CardTitle className="text-white text-base flex items-center gap-2">
                     <Clock className="w-4 h-4 text-primary" />
@@ -663,7 +663,7 @@ export default function CurrencyMarketsPage() {
           </div>
 
           {/* Volume by Session */}
-          <Card className="bg-white/[0.03] border-white/10">
+          <Card className="bg-foreground/[0.03] border-border">
             <CardHeader className="pb-2">
               <CardTitle className="text-white text-base flex items-center gap-2">
                 <Activity className="w-4 h-4 text-emerald-400" />
@@ -706,7 +706,7 @@ export default function CurrencyMarketsPage() {
                 tags: ["Pip = 0.0001", "Standard Lot = 100K", "Leverage Risk"],
               },
             ].map((item) => (
-              <Card key={item.title} className="bg-white/[0.03] border-white/10">
+              <Card key={item.title} className="bg-foreground/[0.03] border-border">
                 <CardContent className="p-4">
                   <div className="flex items-center gap-2 mb-2">
                     <item.icon className={cn("w-4 h-4", item.color)} />
@@ -715,7 +715,7 @@ export default function CurrencyMarketsPage() {
                   <p className="text-muted-foreground text-xs leading-relaxed mb-3">{item.desc}</p>
                   <div className="flex flex-wrap gap-1">
                     {item.tags.map((t) => (
-                      <Badge key={t} variant="outline" className="text-xs border-white/10 text-muted-foreground">{t}</Badge>
+                      <Badge key={t} variant="outline" className="text-xs border-border text-muted-foreground">{t}</Badge>
                     ))}
                   </div>
                 </CardContent>
@@ -728,7 +728,7 @@ export default function CurrencyMarketsPage() {
         <TabsContent value="carry" className="space-y-4 data-[state=inactive]:hidden">
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-4">
             {/* Carry pair selector */}
-            <Card className="bg-white/[0.03] border-white/10">
+            <Card className="bg-foreground/[0.03] border-border">
               <CardHeader className="pb-2">
                 <CardTitle className="text-white text-base flex items-center gap-2">
                   <Zap className="w-4 h-4 text-amber-400" />
@@ -744,7 +744,7 @@ export default function CurrencyMarketsPage() {
                       "w-full flex items-center justify-between p-3 rounded-lg border transition-colors text-sm",
                       selectedCarry === i
                         ? "border-primary/50 bg-primary/10"
-                        : "border-white/5 bg-white/[0.02] hover:bg-muted/30"
+                        : "border-border/50 bg-foreground/[0.02] hover:bg-muted/30"
                     )}
                   >
                     <div className="flex items-center gap-2">
@@ -763,7 +763,7 @@ export default function CurrencyMarketsPage() {
                 ))}
 
                 {/* Leverage slider */}
-                <div className="pt-3 border-t border-white/5">
+                <div className="pt-3 border-t border-border/50">
                   <div className="flex justify-between text-xs text-muted-foreground mb-2">
                     <span>Leverage</span>
                     <span className="text-white font-mono">{leverage[0]}x</span>
@@ -782,7 +782,7 @@ export default function CurrencyMarketsPage() {
 
             {/* Carry metrics */}
             <div className="space-y-4">
-              <Card className="bg-white/[0.03] border-white/10">
+              <Card className="bg-foreground/[0.03] border-border">
                 <CardHeader className="pb-2">
                   <CardTitle className="text-white text-sm">
                     {selectedCarryPair.flag1}{selectedCarryPair.flag2} {selectedCarryPair.symbol} — Rate Differential
@@ -802,7 +802,7 @@ export default function CurrencyMarketsPage() {
                     </div>
                   </div>
 
-                  <div className="flex justify-between items-center py-2 border-t border-white/5">
+                  <div className="flex justify-between items-center py-2 border-t border-border/50">
                     <span className="text-muted-foreground text-sm">Net Differential</span>
                     <span className="text-amber-400 font-mono font-bold text-lg">+{selectedCarryPair.differential.toFixed(2)}%</span>
                   </div>
@@ -835,7 +835,7 @@ export default function CurrencyMarketsPage() {
               </Card>
 
               {/* Leveraged metrics */}
-              <Card className={cn("border", parseFloat(leveragedDD) < -15 ? "bg-red-500/5 border-red-500/20" : "bg-white/[0.03] border-white/10")}>
+              <Card className={cn("border", parseFloat(leveragedDD) < -15 ? "bg-red-500/5 border-red-500/20" : "bg-foreground/[0.03] border-border")}>
                 <CardHeader className="pb-2">
                   <CardTitle className="text-white text-sm flex items-center gap-2">
                     <Zap className="w-3 h-3 text-amber-400" />
@@ -864,7 +864,7 @@ export default function CurrencyMarketsPage() {
             </div>
 
             {/* Carry return chart */}
-            <Card className="bg-white/[0.03] border-white/10">
+            <Card className="bg-foreground/[0.03] border-border">
               <CardHeader className="pb-2">
                 <CardTitle className="text-white text-sm">30-Period Carry Return</CardTitle>
               </CardHeader>
@@ -876,7 +876,7 @@ export default function CurrencyMarketsPage() {
           </div>
 
           {/* Carry crash risk explainer */}
-          <Card className="bg-white/[0.03] border-white/10">
+          <Card className="bg-foreground/[0.03] border-border">
             <CardHeader className="pb-2">
               <CardTitle className="text-white text-base flex items-center gap-2">
                 <ShieldAlert className="w-4 h-4 text-red-400" />
@@ -909,7 +909,7 @@ export default function CurrencyMarketsPage() {
         {/* ─── Theory ────────────────────────────────────────────────────────── */}
         <TabsContent value="theory" className="space-y-4 data-[state=inactive]:hidden">
           {/* Big Mac Index */}
-          <Card className="bg-white/[0.03] border-white/10">
+          <Card className="bg-foreground/[0.03] border-border">
             <CardHeader className="pb-2">
               <CardTitle className="text-white text-base flex items-center gap-2">
                 <DollarSign className="w-4 h-4 text-amber-400" />
@@ -923,7 +923,7 @@ export default function CurrencyMarketsPage() {
               <div className="overflow-x-auto">
                 <table className="w-full text-sm">
                   <thead>
-                    <tr className="border-b border-white/10 text-muted-foreground text-xs">
+                    <tr className="border-b border-border text-muted-foreground text-xs">
                       <th className="py-2 px-3 text-left">Country</th>
                       <th className="py-2 px-3 text-right">Big Mac Price</th>
                       <th className="py-2 px-3 text-right">PPP Rate</th>
@@ -938,7 +938,7 @@ export default function CurrencyMarketsPage() {
                       const pct = Math.abs(row.valuation);
                       const barWidth = Math.min(100, pct * 2);
                       return (
-                        <tr key={row.country} className="border-b border-white/5 hover:bg-muted/30">
+                        <tr key={row.country} className="border-b border-border/50 hover:bg-muted/30">
                           <td className="py-2.5 px-3">
                             <span className="mr-2">{row.flag}</span>
                             <span className="text-foreground text-xs">{row.country}</span>
@@ -954,7 +954,7 @@ export default function CurrencyMarketsPage() {
                           </td>
                           <td className="py-2.5 px-3">
                             <div className="flex items-center gap-1">
-                              <div className="flex-1 h-2 bg-white/5 rounded-full overflow-hidden">
+                              <div className="flex-1 h-2 bg-foreground/5 rounded-full overflow-hidden">
                                 <div
                                   className={cn("h-full rounded-full", over ? "bg-amber-500" : "bg-primary")}
                                   style={{ width: `${barWidth}%` }}
@@ -981,7 +981,7 @@ export default function CurrencyMarketsPage() {
 
           {/* UIP and Taylor Rule */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-            <Card className="bg-white/[0.03] border-white/10">
+            <Card className="bg-foreground/[0.03] border-border">
               <CardHeader className="pb-2">
                 <CardTitle className="text-white text-sm flex items-center gap-2">
                   <Info className="w-4 h-4 text-primary" />
@@ -1013,7 +1013,7 @@ export default function CurrencyMarketsPage() {
               </CardContent>
             </Card>
 
-            <Card className="bg-white/[0.03] border-white/10">
+            <Card className="bg-foreground/[0.03] border-border">
               <CardHeader className="pb-2">
                 <CardTitle className="text-white text-sm flex items-center gap-2">
                   <Target className="w-4 h-4 text-emerald-400" />
@@ -1036,7 +1036,7 @@ export default function CurrencyMarketsPage() {
                     { pair: "GBP/USD", taylorGap: 0.3, dir: "GBP slightly favored" },
                     { pair: "AUD/USD", taylorGap: -0.5, dir: "USD favored" },
                   ].map((item) => (
-                    <div key={item.pair} className="flex items-center justify-between text-xs bg-white/[0.02] rounded px-2 py-1.5">
+                    <div key={item.pair} className="flex items-center justify-between text-xs bg-foreground/[0.02] rounded px-2 py-1.5">
                       <span className="font-mono text-white">{item.pair}</span>
                       <span className={cn("font-mono", item.taylorGap > 0 ? "text-amber-400" : "text-primary")}>
                         {item.taylorGap > 0 ? "+" : ""}{item.taylorGap}%
@@ -1050,7 +1050,7 @@ export default function CurrencyMarketsPage() {
           </div>
 
           {/* REER Chart */}
-          <Card className="bg-white/[0.03] border-white/10">
+          <Card className="bg-foreground/[0.03] border-border">
             <CardHeader className="pb-2">
               <CardTitle className="text-white text-base flex items-center gap-2">
                 <BarChart2 className="w-4 h-4 text-primary" />
@@ -1074,7 +1074,7 @@ export default function CurrencyMarketsPage() {
         {/* ─── Crises ────────────────────────────────────────────────────────── */}
         <TabsContent value="crises" className="space-y-4 data-[state=inactive]:hidden">
           {/* Crisis Timeline */}
-          <Card className="bg-white/[0.03] border-white/10">
+          <Card className="bg-foreground/[0.03] border-border">
             <CardHeader className="pb-2">
               <CardTitle className="text-white text-base flex items-center gap-2">
                 <AlertTriangle className="w-4 h-4 text-red-400" />
@@ -1084,7 +1084,7 @@ export default function CurrencyMarketsPage() {
             <CardContent>
               <div className="relative">
                 {/* Timeline line */}
-                <div className="absolute left-16 top-4 bottom-4 w-px bg-white/10" />
+                <div className="absolute left-16 top-4 bottom-4 w-px bg-foreground/10" />
 
                 <div className="space-y-3">
                   {CRISES.map((crisis, i) => (
@@ -1095,7 +1095,7 @@ export default function CurrencyMarketsPage() {
                         "w-full flex items-start gap-4 p-3 rounded-lg border text-left transition-colors",
                         selectedCrisis === i
                           ? "border-opacity-50 bg-opacity-10"
-                          : "border-white/5 bg-white/[0.01] hover:bg-muted/30"
+                          : "border-border/50 bg-foreground/[0.01] hover:bg-muted/30"
                       )}
                       style={selectedCrisis === i ? { borderColor: crisis.color + "80", backgroundColor: crisis.color + "0a" } : {}}
                       whileHover={{ x: 2 }}
@@ -1115,7 +1115,7 @@ export default function CurrencyMarketsPage() {
                         <div className="flex items-center gap-2 flex-wrap">
                           <span className="text-white font-semibold text-sm">{crisis.name}</span>
                           <span className="text-muted-foreground text-xs">{crisis.country}</span>
-                          <Badge variant="outline" className="text-xs border-white/10 text-muted-foreground">{crisis.currency}</Badge>
+                          <Badge variant="outline" className="text-xs border-border text-muted-foreground">{crisis.currency}</Badge>
                         </div>
                         <div className={cn("text-sm font-mono font-bold mt-0.5", crisis.peakDevaluation < 0 ? "text-red-400" : "text-emerald-400")}>
                           {crisis.peakDevaluation > 0 ? "+" : ""}{crisis.peakDevaluation}% peak move
@@ -1170,7 +1170,7 @@ export default function CurrencyMarketsPage() {
                         { label: "Speculative Short", value: selectedCrisis === 0 ? 4.2 : selectedCrisis === 1 ? 12.8 : selectedCrisis === 2 ? 5.6 : selectedCrisis === 3 ? 7.3 : 31, unit: "$Bn" },
                         { label: "FX Vol Spike", value: selectedCrisis === 0 ? 18 : selectedCrisis === 1 ? 35 : selectedCrisis === 2 ? 28 : selectedCrisis === 3 ? 22 : 42, unit: "%" },
                       ].map((ind) => (
-                        <div key={ind.label} className="bg-white/[0.03] border border-white/10 rounded-lg p-3">
+                        <div key={ind.label} className="bg-foreground/[0.03] border border-border rounded-lg p-3">
                           <div className="text-muted-foreground text-xs mb-1">{ind.label}</div>
                           <div className="font-mono font-bold text-white text-lg">{ind.value}{ind.unit}</div>
                         </div>
@@ -1183,7 +1183,7 @@ export default function CurrencyMarketsPage() {
           )}
 
           {/* Crisis Anatomy */}
-          <Card className="bg-white/[0.03] border-white/10">
+          <Card className="bg-foreground/[0.03] border-border">
             <CardHeader className="pb-2">
               <CardTitle className="text-white text-base flex items-center gap-2">
                 <BookOpen className="w-4 h-4 text-primary" />
@@ -1229,7 +1229,7 @@ export default function CurrencyMarketsPage() {
                   { title: "Central Bank Defense Tools", items: ["FX intervention (sell USD, buy local)", "Emergency rate hikes (100–1000bps)", "Capital controls on outflows", "IMF emergency credit lines", "Coordinated CB swap lines"] },
                   { title: "Post-Crisis Recovery", items: ["IMF conditionality programs", "Structural reform packages", "Debt restructuring / haircuts", "Gradual reserve rebuilding", "New monetary framework (inflation target)"] },
                 ].map((section) => (
-                  <div key={section.title} className="bg-white/[0.02] border border-white/5 rounded-lg p-3">
+                  <div key={section.title} className="bg-foreground/[0.02] border border-border/50 rounded-lg p-3">
                     <div className="text-muted-foreground text-xs font-semibold mb-2">{section.title}</div>
                     {section.items.map((item) => (
                       <div key={item} className="flex items-center gap-1.5 text-xs text-muted-foreground mb-1">

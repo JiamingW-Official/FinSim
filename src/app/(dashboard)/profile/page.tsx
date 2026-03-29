@@ -862,7 +862,7 @@ export default function ProfilePage() {
                     return (
                       <div key={i} className="flex items-center justify-between rounded-lg border border-border bg-background/50 px-3 py-2.5 hover:border-primary/30 transition-colors cursor-pointer">
                         <div className="flex items-center gap-2.5">
-                          <div className="flex h-6 w-6 items-center justify-center rounded-md text-xs font-bold text-white/70 bg-white/8">
+                          <div className="flex h-6 w-6 items-center justify-center rounded-md text-xs font-bold text-foreground/70 bg-foreground/[0.08]">
                             {i + 1}
                           </div>
                           <div>
@@ -897,15 +897,15 @@ export default function ProfilePage() {
                             </span>
                           </div>
                           <div className="flex gap-1.5 items-center">
-                            <div className="flex-1 h-1.5 rounded-full bg-white/8">
+                            <div className="flex-1 h-1.5 rounded-full bg-foreground/[0.08]">
                               <div
                                 className="h-full rounded-full transition-all"
                                 style={{ width: `${(branch.level / 4) * 100}%`, backgroundColor: branch.color }}
                               />
                             </div>
-                            <div className="flex-1 h-1.5 rounded-full bg-white/8">
+                            <div className="flex-1 h-1.5 rounded-full bg-foreground/[0.08]">
                               <div
-                                className="h-full rounded-full bg-white/25 transition-all"
+                                className="h-full rounded-full bg-foreground/25 transition-all"
                                 style={{ width: `${(avgLevel / 4) * 100}%` }}
                               />
                             </div>
@@ -919,7 +919,7 @@ export default function ProfilePage() {
                         You
                       </div>
                       <div className="flex items-center gap-1">
-                        <div className="w-2.5 h-1.5 rounded-full bg-white/25" />
+                        <div className="w-2.5 h-1.5 rounded-full bg-foreground/25" />
                         Avg user
                       </div>
                     </div>
@@ -1033,7 +1033,7 @@ export default function ProfilePage() {
                       </div>
                       <div className="ml-7 space-y-1.5">
                         {week.days.map((d, di) => (
-                          <div key={di} className="flex items-center justify-between rounded-md bg-white/3 px-2.5 py-1.5">
+                          <div key={di} className="flex items-center justify-between rounded-md bg-foreground/[0.03] px-2.5 py-1.5">
                             <div className="flex items-center gap-2">
                               <span className="text-[11px] font-medium text-muted-foreground w-6">{d.day}</span>
                               <span className="text-[11px]">{d.lesson}</span>
@@ -1145,7 +1145,7 @@ export default function ProfilePage() {
                       <span className="text-muted-foreground">Overall Percentile</span>
                       <span className="font-bold text-primary">Top {100 - communityPercentile}%</span>
                     </div>
-                    <div className="h-3 rounded-full bg-white/8 overflow-hidden">
+                    <div className="h-3 rounded-full bg-foreground/[0.08] overflow-hidden">
                       <motion.div
                         initial={{ width: 0 }}
                         animate={{ width: `${communityPercentile}%` }}
@@ -1299,7 +1299,7 @@ export default function ProfilePage() {
                       <span>{levelProgress.current} XP</span>
                       <span>{levelProgress.needed} XP</span>
                     </div>
-                    <div className="h-2.5 rounded-full bg-white/8 overflow-hidden">
+                    <div className="h-2.5 rounded-full bg-foreground/[0.08] overflow-hidden">
                       <motion.div
                         initial={{ width: 0 }}
                         animate={{ width: `${levelProgress.pct}%` }}

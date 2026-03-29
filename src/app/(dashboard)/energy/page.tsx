@@ -60,7 +60,7 @@ function SectionTitle({ children }: { children: React.ReactNode }) {
 
 function Card({ children, className }: { children: React.ReactNode; className?: string }) {
   return (
-    <div className={cn("rounded-xl border border-white/10 bg-white/5 p-4", className)}>
+    <div className={cn("rounded-xl border border-border bg-foreground/5 p-4", className)}>
       {children}
     </div>
   );
@@ -553,7 +553,7 @@ function Tab1() {
           <div className="overflow-x-auto">
             <table className="w-full text-xs">
               <thead>
-                <tr className="text-muted-foreground border-b border-white/10">
+                <tr className="text-muted-foreground border-b border-border">
                   <th className="text-left py-2">Category</th>
                   <th className="text-right py-2">2023</th>
                   <th className="text-right py-2">2024E</th>
@@ -614,7 +614,7 @@ function Tab1() {
           <div className="overflow-x-auto">
             <table className="w-full text-xs">
               <thead>
-                <tr className="text-muted-foreground border-b border-white/10">
+                <tr className="text-muted-foreground border-b border-border">
                   <th className="text-left py-2">Company</th>
                   <th className="text-right py-2">P/E</th>
                   <th className="text-right py-2">Div. Yield</th>
@@ -720,7 +720,7 @@ function Tab2() {
           <div className="overflow-x-auto">
             <table className="w-full text-xs">
               <thead>
-                <tr className="text-muted-foreground border-b border-white/10">
+                <tr className="text-muted-foreground border-b border-border">
                   <th className="text-left py-2">Basin</th>
                   <th className="text-right py-2">Reserve Life (yrs)</th>
                   <th className="text-right py-2">CO₂ (kg/bbl)</th>
@@ -787,7 +787,7 @@ function Tab2() {
                   "px-3 py-1 rounded-full text-xs font-medium transition-colors",
                   selectedOilPrice === p
                     ? "bg-amber-500 text-black"
-                    : "bg-white/5 text-muted-foreground hover:bg-muted/50"
+                    : "bg-foreground/5 text-muted-foreground hover:bg-muted/50"
                 )}
               >
                 ${p}/bbl
@@ -944,7 +944,7 @@ function Tab3() {
           <div className="overflow-x-auto">
             <table className="w-full text-xs">
               <thead>
-                <tr className="text-muted-foreground border-b border-white/10">
+                <tr className="text-muted-foreground border-b border-border">
                   <th className="text-left py-2">Ticker</th>
                   <th className="text-left py-2">Segment</th>
                   <th className="text-right py-2">Price</th>
@@ -1101,7 +1101,7 @@ function Tab4() {
           <div className="overflow-x-auto">
             <table className="w-full text-xs">
               <thead>
-                <tr className="text-muted-foreground border-b border-white/10">
+                <tr className="text-muted-foreground border-b border-border">
                   <th className="text-left py-2">Company</th>
                   <th className="text-right py-2">Allowed ROE</th>
                   <th className="text-right py-2">Rate Base Growth</th>
@@ -1260,7 +1260,7 @@ function Tab4() {
               { label: "Average wait for grid connection", value: "5.4", unit: "years", color: "text-amber-400" },
               { label: "US transmission investment (2024)", value: "$32B", unit: "per year", color: "text-emerald-400" },
             ].map((stat) => (
-              <div key={stat.label} className="p-3 rounded-lg bg-white/5">
+              <div key={stat.label} className="p-3 rounded-lg bg-foreground/5">
                 <div className={cn("text-2xl font-bold", stat.color)}>{stat.value}</div>
                 <div className="text-xs text-muted-foreground mt-1">{stat.unit}</div>
                 <div className="text-xs text-muted-foreground mt-1">{stat.label}</div>
@@ -1334,7 +1334,7 @@ function Tab5() {
           <div className="overflow-x-auto">
             <table className="w-full text-xs">
               <thead>
-                <tr className="text-muted-foreground border-b border-white/10">
+                <tr className="text-muted-foreground border-b border-border">
                   <th className="text-left py-2">Mineral</th>
                   <th className="text-left py-2">Use in Clean Energy</th>
                   <th className="text-right py-2">Top-3 Supply Conc.</th>
@@ -1553,7 +1553,7 @@ export default function EnergyPage() {
   return (
     <div className="min-h-screen bg-background text-foreground">
       {/* Header */}
-      <div className="border-b border-white/10 bg-background/80 backdrop-blur sticky top-0 z-10">
+      <div className="border-b border-border bg-background/80 backdrop-blur sticky top-0 z-10">
         <div className="max-w-7xl mx-auto px-4 py-4">
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-3">
@@ -1583,7 +1583,7 @@ export default function EnergyPage() {
       {/* Body */}
       <div className="max-w-7xl mx-auto px-4 py-6">
         <Tabs value={activeTab} onValueChange={setActiveTab}>
-          <TabsList className="bg-white/5 border border-white/10 mb-6 flex-wrap h-auto gap-1 p-1">
+          <TabsList className="bg-foreground/5 border border-border mb-6 flex-wrap h-auto gap-1 p-1">
             {[
               { value: "overview", label: "Market Overview", icon: <Flame className="w-3.5 h-3.5" /> },
               { value: "ep", label: "Upstream E&P", icon: <Droplets className="w-3.5 h-3.5" /> },

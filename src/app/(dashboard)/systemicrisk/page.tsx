@@ -695,7 +695,7 @@ function EWIBar({ row }: { row: EWIRow }) {
       </div>
       <div className="relative h-2 rounded-full bg-muted overflow-hidden mb-1">
         <div className="absolute top-0 left-0 h-full rounded-full" style={{ width: `${pct}%`, backgroundColor: col, opacity: 0.8 }} />
-        <div className="absolute top-0 h-full w-0.5 bg-white/40" style={{ left: `${threshPct}%` }} />
+        <div className="absolute top-0 h-full w-0.5 bg-foreground/40" style={{ left: `${threshPct}%` }} />
       </div>
       <p className="text-xs text-muted-foreground">{row.description}</p>
     </div>

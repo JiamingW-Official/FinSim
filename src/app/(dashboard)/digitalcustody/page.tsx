@@ -69,7 +69,7 @@ function StatCard({
       ? "text-amber-400"
       : "text-white";
   return (
-    <div className="rounded-xl border border-white/10 bg-white/5 p-4 flex flex-col gap-1">
+    <div className="rounded-xl border border-border bg-foreground/5 p-4 flex flex-col gap-1">
       <div className="flex items-center gap-1.5">
         {icon && <span className="text-muted-foreground">{icon}</span>}
         <span className="text-xs text-muted-foreground">{label}</span>
@@ -151,7 +151,7 @@ function WalletHierarchySVG() {
   const barSpacing = 40;
 
   return (
-    <div className="rounded-xl border border-white/10 bg-white/5 p-4">
+    <div className="rounded-xl border border-border bg-foreground/5 p-4">
       <SectionTitle>
         <Layers size={14} /> Hot / Warm / Cold Wallet Hierarchy
       </SectionTitle>
@@ -216,7 +216,7 @@ function WalletHierarchySVG() {
       </svg>
       <div className="grid grid-cols-3 gap-2 mt-2">
         {tiers.map((t) => (
-          <div key={t.label} className="rounded-lg border border-white/10 bg-white/5 p-2 text-center">
+          <div key={t.label} className="rounded-lg border border-border bg-foreground/5 p-2 text-center">
             <p className="text-xs text-muted-foreground font-semibold">{t.label}</p>
             <p className="text-xs text-muted-foreground mt-0.5">{t.sub}</p>
           </div>
@@ -241,7 +241,7 @@ function TransactionApprovalSVG() {
   const startX = 20;
 
   return (
-    <div className="rounded-xl border border-white/10 bg-white/5 p-4">
+    <div className="rounded-xl border border-border bg-foreground/5 p-4">
       <SectionTitle>
         <Activity size={14} /> Transaction Approval Workflow
       </SectionTitle>
@@ -380,13 +380,13 @@ function Tab1CustodyArchitecture() {
       <WalletHierarchySVG />
 
       {/* Key Management Methods */}
-      <div className="rounded-xl border border-white/10 bg-white/5 p-4">
+      <div className="rounded-xl border border-border bg-foreground/5 p-4">
         <SectionTitle>
           <Key size={14} /> Key Management Methods
         </SectionTitle>
         <div className="space-y-2">
           {keyMethods.map((m) => (
-            <div key={m.id} className="rounded-lg border border-white/10 bg-white/5 overflow-hidden">
+            <div key={m.id} className="rounded-lg border border-border bg-foreground/5 overflow-hidden">
               <button
                 className="w-full flex items-center gap-3 p-3 text-left"
                 onClick={() => setExpanded(expanded === m.id ? null : m.id)}
@@ -409,7 +409,7 @@ function Tab1CustodyArchitecture() {
                     transition={{ duration: 0.2 }}
                     className="overflow-hidden"
                   >
-                    <div className="px-4 pb-4 border-t border-white/10 pt-3">
+                    <div className="px-4 pb-4 border-t border-border pt-3">
                       <p className="text-xs text-muted-foreground mb-2">{m.desc}</p>
                       <ul className="space-y-1">
                         {m.details.map((d, i) => (
@@ -429,14 +429,14 @@ function Tab1CustodyArchitecture() {
       </div>
 
       {/* MPC vs Multi-sig comparison */}
-      <div className="rounded-xl border border-white/10 bg-white/5 p-4">
+      <div className="rounded-xl border border-border bg-foreground/5 p-4">
         <SectionTitle>
           <GitBranch size={14} /> MPC vs Multi-Sig Comparison
         </SectionTitle>
         <div className="overflow-x-auto">
           <table className="w-full text-xs">
             <thead>
-              <tr className="border-b border-white/10">
+              <tr className="border-b border-border">
                 <th className="text-left text-muted-foreground font-medium py-2 pr-4 w-40">Feature</th>
                 <th className="text-center text-muted-foreground font-medium py-2 px-3">MPC / TSS</th>
                 <th className="text-center text-primary font-medium py-2 px-3">Multi-Sig</th>
@@ -444,7 +444,7 @@ function Tab1CustodyArchitecture() {
             </thead>
             <tbody>
               {MPC_MULTISIG_ROWS.map((row, i) => (
-                <tr key={i} className="border-b border-white/5 hover:bg-muted/30 transition-colors">
+                <tr key={i} className="border-b border-border/50 hover:bg-muted/30 transition-colors">
                   <td className="text-muted-foreground py-2 pr-4 font-medium">{row.feature}</td>
                   <td className="text-center py-2 px-3">
                     <div className="flex items-center justify-center gap-1">
@@ -480,13 +480,13 @@ function Tab1CustodyArchitecture() {
       <TransactionApprovalSVG />
 
       {/* Air-Gap Security */}
-      <div className="rounded-xl border border-white/10 bg-white/5 p-4">
+      <div className="rounded-xl border border-border bg-foreground/5 p-4">
         <SectionTitle>
           <EyeOff size={14} /> Air-Gap Security Measures
         </SectionTitle>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
           {airGapMeasures.map((m, i) => (
-            <div key={i} className="flex items-start gap-2 rounded-lg bg-white/5 border border-white/10 p-2.5">
+            <div key={i} className="flex items-start gap-2 rounded-lg bg-foreground/5 border border-border p-2.5">
               <ShieldCheck size={13} className="text-emerald-400 mt-0.5 shrink-0" />
               <span className="text-xs text-muted-foreground">{m}</span>
             </div>
@@ -495,7 +495,7 @@ function Tab1CustodyArchitecture() {
       </div>
 
       {/* Key Derivation */}
-      <div className="rounded-xl border border-white/10 bg-white/5 p-4">
+      <div className="rounded-xl border border-border bg-foreground/5 p-4">
         <SectionTitle>
           <Key size={14} /> Address Generation & Key Derivation (BIP32/44/39)
         </SectionTitle>
@@ -627,14 +627,14 @@ function Tab2InstitutionalSolutions() {
       </div>
 
       {/* Custodians table */}
-      <div className="rounded-xl border border-white/10 bg-white/5 p-4">
+      <div className="rounded-xl border border-border bg-foreground/5 p-4">
         <SectionTitle>
           <Building2 size={14} /> Major Institutional Custodians
         </SectionTitle>
         <div className="overflow-x-auto">
           <table className="w-full text-xs">
             <thead>
-              <tr className="border-b border-white/10">
+              <tr className="border-b border-border">
                 <th className="text-left text-muted-foreground font-medium py-2 pr-3">Custodian</th>
                 <th className="text-left text-muted-foreground font-medium py-2 px-3">AUM</th>
                 <th className="text-left text-muted-foreground font-medium py-2 px-3">Technology</th>
@@ -648,7 +648,7 @@ function Tab2InstitutionalSolutions() {
               {CUSTODIANS.map((c, i) => (
                 <tr
                   key={i}
-                  className="border-b border-white/5 hover:bg-muted/30 cursor-pointer transition-colors"
+                  className="border-b border-border/50 hover:bg-muted/30 cursor-pointer transition-colors"
                   onClick={() => setSelectedCustodian(selectedCustodian?.name === c.name ? null : c)}
                 >
                   <td className="py-2 pr-3 font-semibold text-foreground">{c.name}</td>
@@ -689,7 +689,7 @@ function Tab2InstitutionalSolutions() {
       </div>
 
       {/* Segregated vs Omnibus */}
-      <div className="rounded-xl border border-white/10 bg-white/5 p-4">
+      <div className="rounded-xl border border-border bg-foreground/5 p-4">
         <SectionTitle>
           <Layers size={14} /> Segregated vs Omnibus Account Structures
         </SectionTitle>
@@ -737,7 +737,7 @@ function Tab2InstitutionalSolutions() {
 
       {/* Staking from Custody + DeFi Integration */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-        <div className="rounded-xl border border-white/10 bg-white/5 p-4">
+        <div className="rounded-xl border border-border bg-foreground/5 p-4">
           <SectionTitle>
             <Zap size={14} /> Staking from Custody
           </SectionTitle>
@@ -749,7 +749,7 @@ function Tab2InstitutionalSolutions() {
               { label: "Cosmos (ATOM)", value: "14–19%", note: "High inflation offset" },
               { label: "Slashing Insurance", value: "Available", note: "Unslashed, Nexus Mutual" },
             ].map((row, i) => (
-              <div key={i} className="flex items-center justify-between text-xs border-b border-white/5 pb-1.5">
+              <div key={i} className="flex items-center justify-between text-xs border-b border-border/50 pb-1.5">
                 <span className="text-muted-foreground">{row.label}</span>
                 <div className="text-right">
                   <span className="text-emerald-400 font-semibold">{row.value}</span>
@@ -759,7 +759,7 @@ function Tab2InstitutionalSolutions() {
             ))}
           </div>
         </div>
-        <div className="rounded-xl border border-white/10 bg-white/5 p-4">
+        <div className="rounded-xl border border-border bg-foreground/5 p-4">
           <SectionTitle>
             <Globe size={14} /> DeFi Integration via Custody
           </SectionTitle>
@@ -771,7 +771,7 @@ function Tab2InstitutionalSolutions() {
               { label: "BitGo DeFi", desc: "Aave/Compound/Uniswap via custodied EOA wallets" },
               { label: "Compliance Layer", desc: "Chainalysis/Elliptic checks on all DeFi interactions" },
             ].map((row, i) => (
-              <div key={i} className="rounded-md bg-white/5 border border-white/10 p-2">
+              <div key={i} className="rounded-md bg-foreground/5 border border-border p-2">
                 <p className="text-xs text-muted-foreground font-medium">{row.label}</p>
                 <p className="text-xs text-muted-foreground">{row.desc}</p>
               </div>
@@ -781,13 +781,13 @@ function Tab2InstitutionalSolutions() {
       </div>
 
       {/* Prime Brokerage */}
-      <div className="rounded-xl border border-white/10 bg-white/5 p-4">
+      <div className="rounded-xl border border-border bg-foreground/5 p-4">
         <SectionTitle>
           <Activity size={14} /> Prime Brokerage Services for Crypto
         </SectionTitle>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3">
           {PRIME_SERVICES.map((svc, i) => (
-            <div key={i} className="rounded-lg border border-white/10 bg-white/5 p-3">
+            <div key={i} className="rounded-lg border border-border bg-foreground/5 p-3">
               <div className="flex items-center gap-2 mb-1.5">
                 <span className="text-indigo-400">{svc.icon}</span>
                 <p className="text-xs font-semibold text-foreground">{svc.service}</p>
@@ -905,7 +905,7 @@ function Tab3RegulatoryFramework() {
       </div>
 
       {/* Regulatory Timeline */}
-      <div className="rounded-xl border border-white/10 bg-white/5 p-4">
+      <div className="rounded-xl border border-border bg-foreground/5 p-4">
         <SectionTitle>
           <Clock size={14} /> US Regulatory Evolution Timeline
         </SectionTitle>
@@ -919,7 +919,7 @@ function Tab3RegulatoryFramework() {
                   ? "border-emerald-500/20 bg-emerald-500/5 hover:bg-emerald-500/10"
                   : evt.impact === "negative"
                   ? "border-rose-500/20 bg-rose-500/5 hover:bg-rose-500/10"
-                  : "border-white/10 bg-white/5 hover:bg-muted/40"
+                  : "border-border bg-foreground/5 hover:bg-muted/40"
               )}
               onClick={() => setExpandedEvent(expandedEvent === i ? null : i)}
             >
@@ -964,13 +964,13 @@ function Tab3RegulatoryFramework() {
       </div>
 
       {/* State-by-State */}
-      <div className="rounded-xl border border-white/10 bg-white/5 p-4">
+      <div className="rounded-xl border border-border bg-foreground/5 p-4">
         <SectionTitle>
           <Globe size={14} /> State-by-State Regulatory Landscape
         </SectionTitle>
         <div className="space-y-2">
           {STATE_REGULATIONS.map((reg, i) => (
-            <div key={i} className="rounded-lg border border-white/10 bg-white/5 p-3">
+            <div key={i} className="rounded-lg border border-border bg-foreground/5 p-3">
               <div className="flex items-start justify-between gap-3">
                 <div>
                   <div className="flex items-center gap-2 mb-1">
@@ -994,7 +994,7 @@ function Tab3RegulatoryFramework() {
       </div>
 
       {/* EU MiCA */}
-      <div className="rounded-xl border border-white/10 bg-white/5 p-4">
+      <div className="rounded-xl border border-border bg-foreground/5 p-4">
         <SectionTitle>
           <Globe size={14} /> EU MiCA — Crypto Asset Service Provider (CASP) Authorization
         </SectionTitle>
@@ -1010,7 +1010,7 @@ function Tab3RegulatoryFramework() {
                 { label: "Insurance Required", value: "Professional indemnity insurance" },
                 { label: "Annual Report", value: "Audited financial statements required" },
               ].map((row, i) => (
-                <div key={i} className="flex justify-between text-xs border-b border-white/5 pb-1.5">
+                <div key={i} className="flex justify-between text-xs border-b border-border/50 pb-1.5">
                   <span className="text-muted-foreground">{row.label}</span>
                   <span className="text-foreground font-medium">{row.value}</span>
                 </div>
@@ -1083,7 +1083,7 @@ function HacksTimelineSVG() {
   const totalLoss = HACK_EVENTS.reduce((acc, e) => acc + e.loss, 0);
 
   return (
-    <div className="rounded-xl border border-white/10 bg-white/5 p-4">
+    <div className="rounded-xl border border-border bg-foreground/5 p-4">
       <SectionTitle>
         <TrendingDown size={14} /> Historical Exchange & Protocol Hacks (2014–2024)
       </SectionTitle>
@@ -1196,14 +1196,14 @@ function Tab4SecurityInsurance() {
       <HacksTimelineSVG />
 
       {/* Insurance Coverage Types */}
-      <div className="rounded-xl border border-white/10 bg-white/5 p-4">
+      <div className="rounded-xl border border-border bg-foreground/5 p-4">
         <SectionTitle>
           <Shield size={14} /> Insurance Market for Crypto Custody
         </SectionTitle>
         <p className="text-xs text-muted-foreground mb-3">The crypto insurance market has grown from ~$1B capacity in 2020 to $6B+ in 2024, though still far below the ~$100B+ of institutional AUM in custody. Coverage gaps remain significant.</p>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
           {INSURANCE_TYPES.map((ins, i) => (
-            <div key={i} className="rounded-lg border border-white/10 bg-white/5 p-3">
+            <div key={i} className="rounded-lg border border-border bg-foreground/5 p-3">
               <div className="flex items-center justify-between mb-2">
                 <span className="text-xs font-semibold text-foreground">{ins.type}</span>
                 <Badge className="bg-emerald-500/20 text-emerald-300 border-emerald-500/30 text-xs">{ins.maxCoverage}</Badge>
@@ -1220,7 +1220,7 @@ function Tab4SecurityInsurance() {
       </div>
 
       {/* SOC 2 Type II */}
-      <div className="rounded-xl border border-white/10 bg-white/5 p-4">
+      <div className="rounded-xl border border-border bg-foreground/5 p-4">
         <SectionTitle>
           <FileText size={14} /> SOC 2 Type II Audits — Trust Service Criteria
         </SectionTitle>
@@ -1243,7 +1243,7 @@ function Tab4SecurityInsurance() {
 
       {/* Penetration Testing + BCP/DR */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-        <div className="rounded-xl border border-white/10 bg-white/5 p-4">
+        <div className="rounded-xl border border-border bg-foreground/5 p-4">
           <SectionTitle>
             <Cpu size={14} /> Penetration Testing Requirements
           </SectionTitle>
@@ -1256,7 +1256,7 @@ function Tab4SecurityInsurance() {
               { label: "Remediation SLA", value: "Critical: 24–72h", note: "High: 7 days; Medium: 30 days" },
               { label: "Reports", value: "Provided to auditors", note: "Required for SOC 2 + insurance" },
             ].map((row, i) => (
-              <div key={i} className="flex items-center justify-between text-xs border-b border-white/5 pb-1.5">
+              <div key={i} className="flex items-center justify-between text-xs border-b border-border/50 pb-1.5">
                 <span className="text-muted-foreground">{row.label}</span>
                 <div className="text-right">
                   <span className="text-foreground font-medium">{row.value}</span>
@@ -1266,7 +1266,7 @@ function Tab4SecurityInsurance() {
             ))}
           </div>
         </div>
-        <div className="rounded-xl border border-white/10 bg-white/5 p-4">
+        <div className="rounded-xl border border-border bg-foreground/5 p-4">
           <SectionTitle>
             <RefreshCw size={14} /> Business Continuity & Disaster Recovery
           </SectionTitle>
@@ -1279,7 +1279,7 @@ function Tab4SecurityInsurance() {
               { label: "Failover Testing", value: "Semi-annual", note: "Full DR drill required" },
               { label: "Runbook Documentation", value: "Required", note: "All recovery procedures documented" },
             ].map((row, i) => (
-              <div key={i} className="flex items-center justify-between text-xs border-b border-white/5 pb-1.5">
+              <div key={i} className="flex items-center justify-between text-xs border-b border-border/50 pb-1.5">
                 <span className="text-muted-foreground">{row.label}</span>
                 <div className="text-right">
                   <span className="text-foreground font-medium">{row.value}</span>
@@ -1337,7 +1337,7 @@ export default function DigitalCustodyPage() {
 
       {/* Tabs */}
       <Tabs defaultValue="architecture">
-        <TabsList className="bg-white/5 border border-white/10 mb-6 flex-wrap h-auto gap-1">
+        <TabsList className="bg-foreground/5 border border-border mb-6 flex-wrap h-auto gap-1">
           <TabsTrigger value="architecture" className="data-[state=active]:bg-indigo-600 data-[state=active]:text-white text-xs">
             <Lock size={12} className="mr-1.5" /> Custody Architecture
           </TabsTrigger>

@@ -922,17 +922,17 @@ export default function MarketPulseWidget() {
   });
 
   return (
-    <div className="bg-[#0d1117] border border-[#21262d] rounded-xl overflow-hidden flex flex-col"
+    <div className="bg-card border border-border rounded-xl overflow-hidden flex flex-col"
       style={{ fontFamily: "'JetBrains Mono', 'Fira Code', 'Cascadia Code', monospace" }}>
       {/* Header */}
-      <div className="flex items-center justify-between px-4 py-2.5 border-b border-[#21262d] bg-[#161b22]">
+      <div className="flex items-center justify-between px-4 py-2.5 border-b border-border bg-muted">
         <div className="flex items-center gap-2">
           <div className="flex gap-1">
             <div className="w-2 h-2 rounded-full bg-red-500" />
             <div className="w-2 h-2 rounded-full bg-yellow-500" />
             <div className="w-2 h-2 rounded-full bg-green-500" />
           </div>
-          <span className="text-[11px] font-semibold text-[#e6edf3] tracking-wider uppercase">
+          <span className="text-[11px] font-semibold text-foreground tracking-wider uppercase">
             Market Pulse Terminal
           </span>
         </div>
@@ -945,12 +945,12 @@ export default function MarketPulseWidget() {
             <div className="w-1.5 h-1.5 rounded-full bg-emerald-400" />
             <span className="text-xs text-emerald-400 font-mono">LIVE</span>
           </motion.div>
-          <span className="text-xs text-[#8b949e] font-mono">{timeStr}</span>
+          <span className="text-xs text-muted-foreground font-mono">{timeStr}</span>
         </div>
       </div>
 
       {/* Tab bar */}
-      <div className="flex border-b border-[#21262d] bg-[#161b22] overflow-x-auto scrollbar-none">
+      <div className="flex border-b border-border bg-muted overflow-x-auto scrollbar-none">
         {TABS.map((tab) => (
           <button
             key={tab.id}
@@ -958,8 +958,8 @@ export default function MarketPulseWidget() {
             className={cn(
               "px-3 py-2 text-xs font-mono whitespace-nowrap transition-colors shrink-0",
               activeTab === tab.id
-                ? "text-[#e6edf3] border-b-2 border-primary -mb-px bg-[#0d1117]"
-                : "text-[#8b949e] hover:text-[#c9d1d9]",
+                ? "text-foreground border-b-2 border-primary -mb-px bg-card"
+                : "text-muted-foreground hover:text-foreground",
             )}
           >
             {tab.shortLabel}
@@ -988,9 +988,9 @@ export default function MarketPulseWidget() {
       </div>
 
       {/* Footer */}
-      <div className="px-4 py-1.5 border-t border-[#21262d] bg-[#161b22] flex items-center justify-between">
-        <span className="text-[11px] text-[#8b949e] font-mono">Simulated data — educational use only</span>
-        <span className="text-[11px] text-[#8b949e] font-mono">FinSim v2</span>
+      <div className="px-4 py-1.5 border-t border-border bg-muted flex items-center justify-between">
+        <span className="text-[11px] text-muted-foreground font-mono">Simulated data — educational use only</span>
+        <span className="text-[11px] text-muted-foreground font-mono">FinSim v2</span>
       </div>
     </div>
   );

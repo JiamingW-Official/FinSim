@@ -55,9 +55,9 @@ function StatCard({
       ? "text-emerald-400"
       : highlight === "neg"
       ? "text-rose-400"
-      : "text-white";
+      : "text-foreground";
   return (
-    <div className="rounded-xl border border-white/10 bg-white/5 p-4">
+    <div className="rounded-xl border border-border bg-muted/30 p-4">
       <p className="text-xs text-muted-foreground mb-1">{label}</p>
       <p className={cn("text-xl font-bold", valClass)}>{value}</p>
       {sub && <p className="text-xs text-muted-foreground mt-1">{sub}</p>}
@@ -70,7 +70,7 @@ function StatCard({
 function SectionHeading({ title, sub }: { title: string; sub?: string }) {
   return (
     <div className="mb-4">
-      <h3 className="text-base font-semibold text-white">{title}</h3>
+      <h3 className="text-base font-semibold text-foreground">{title}</h3>
       {sub && <p className="text-xs text-muted-foreground mt-0.5">{sub}</p>}
     </div>
   );
@@ -189,7 +189,7 @@ function DirectLendingTab() {
       </div>
 
       {/* Financing gap */}
-      <div className="rounded-xl border border-white/10 bg-white/5 p-5">
+      <div className="rounded-xl border border-border bg-muted/30 p-5">
         <SectionHeading
           title="Middle Market Financing Gap — Bank Retreat Post-GFC"
           sub="Banks' share of middle market lending vs private credit (2007–2023)"
@@ -216,7 +216,7 @@ function DirectLendingTab() {
       </div>
 
       {/* Leverage bars */}
-      <div className="rounded-xl border border-white/10 bg-white/5 p-5">
+      <div className="rounded-xl border border-border bg-muted/30 p-5">
         <SectionHeading
           title="EBITDA Leverage Multiples by Tranche Type"
           sub="Typical range for sponsor-backed middle market deals"
@@ -231,12 +231,12 @@ function DirectLendingTab() {
                   <span className="text-xs text-muted-foreground">{bar.label}</span>
                   <span className="text-xs text-muted-foreground">{bar.low}× – {bar.high}×</span>
                 </div>
-                <div className="relative h-5 rounded bg-white/5">
+                <div className="relative h-5 rounded bg-foreground/5">
                   <div
                     className={cn("absolute h-full rounded", bar.color)}
                     style={{ left: `${leftPct}%`, width: `${widthPct}%`, opacity: 0.8 }}
                   />
-                  <div className="absolute top-0 h-full border-l border-white/30" style={{ left: "50%" }} />
+                  <div className="absolute top-0 h-full border-l border-foreground/30" style={{ left: "50%" }} />
                   <span className="absolute top-0.5 text-[11px] text-muted-foreground" style={{ left: "50.5%" }}>5×</span>
                 </div>
               </div>
@@ -246,12 +246,12 @@ function DirectLendingTab() {
       </div>
 
       {/* BDC vs Private Fund */}
-      <div className="rounded-xl border border-white/10 bg-white/5 p-5">
+      <div className="rounded-xl border border-border bg-muted/30 p-5">
         <SectionHeading title="BDC vs. Private Credit Fund Structure" sub="Key structural differences for investors" />
         <div className="overflow-x-auto">
           <table className="w-full text-xs">
             <thead>
-              <tr className="border-b border-white/10">
+              <tr className="border-b border-border">
                 <th className="py-2 text-left text-muted-foreground font-medium w-32">Feature</th>
                 <th className="py-2 text-left text-primary font-medium">BDC (Publicly Traded)</th>
                 <th className="py-2 text-left text-primary font-medium">Private Credit Fund</th>
@@ -259,7 +259,7 @@ function DirectLendingTab() {
             </thead>
             <tbody>
               {bdcVsPrivate.map((row, i) => (
-                <tr key={row.attr} className={cn("border-b border-white/5", i % 2 === 0 ? "bg-white/[0.02]" : "")}>
+                <tr key={row.attr} className={cn("border-b border-border/50", i % 2 === 0 ? "bg-foreground/[0.02]" : "")}>
                   <td className="py-2 pr-4 text-muted-foreground font-medium">{row.attr}</td>
                   <td className="py-2 pr-4 text-muted-foreground">{row.bdc}</td>
                   <td className="py-2 text-muted-foreground">{row.pvt}</td>
@@ -271,12 +271,12 @@ function DirectLendingTab() {
       </div>
 
       {/* Unitranche vs 1L/2L */}
-      <div className="rounded-xl border border-white/10 bg-white/5 p-5">
+      <div className="rounded-xl border border-border bg-muted/30 p-5">
         <SectionHeading title="Unitranche vs. First Lien / Second Lien Split" sub="Structural trade-offs in deal architecture" />
         <div className="overflow-x-auto">
           <table className="w-full text-xs">
             <thead>
-              <tr className="border-b border-white/10">
+              <tr className="border-b border-border">
                 <th className="py-2 text-left text-muted-foreground font-medium w-32">Attribute</th>
                 <th className="py-2 text-left text-amber-400 font-medium">Unitranche</th>
                 <th className="py-2 text-left text-muted-foreground font-medium">1L / 2L Split</th>
@@ -284,7 +284,7 @@ function DirectLendingTab() {
             </thead>
             <tbody>
               {unitranche.map((row, i) => (
-                <tr key={row.attr} className={cn("border-b border-white/5", i % 2 === 0 ? "bg-white/[0.02]" : "")}>
+                <tr key={row.attr} className={cn("border-b border-border/50", i % 2 === 0 ? "bg-foreground/[0.02]" : "")}>
                   <td className="py-2 pr-4 text-muted-foreground font-medium">{row.attr}</td>
                   <td className="py-2 pr-4 text-amber-300">{row.uni}</td>
                   <td className="py-2 text-muted-foreground">{row.fl}</td>
@@ -296,11 +296,11 @@ function DirectLendingTab() {
       </div>
 
       {/* Lender-friendly terms */}
-      <div className="rounded-xl border border-white/10 bg-white/5 p-5">
+      <div className="rounded-xl border border-border bg-muted/30 p-5">
         <SectionHeading title="Lender-Friendly Terms & Protections" sub="Common provisions in private credit documentation" />
         <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
           {lenderTerms.map((item) => (
-            <div key={item.term} className="rounded-lg border border-white/5 bg-white/[0.03] p-3">
+            <div key={item.term} className="rounded-lg border border-border/50 bg-foreground/[0.03] p-3">
               <InfoPill text={item.term} color={item.color} />
               <p className="text-xs text-muted-foreground mt-2">{item.desc}</p>
             </div>
@@ -309,7 +309,7 @@ function DirectLendingTab() {
       </div>
 
       {/* Top lenders */}
-      <div className="rounded-xl border border-white/10 bg-white/5 p-5">
+      <div className="rounded-xl border border-border bg-muted/30 p-5">
         <SectionHeading title="Leading Direct Lenders" sub="Top platforms by AUM (approximate, 2024)" />
         <div className="space-y-3">
           {lenders.map((l, i) => (
@@ -320,7 +320,7 @@ function DirectLendingTab() {
                   <span className="text-sm font-medium text-foreground">{l.name}</span>
                   <span className="text-xs text-muted-foreground">{fmtB(l.aum)}</span>
                 </div>
-                <div className="relative h-2 rounded bg-white/5">
+                <div className="relative h-2 rounded bg-foreground/5">
                   <div className="h-full rounded bg-primary" style={{ width: `${(l.aum / 450) * 100}%`, opacity: 0.7 }} />
                 </div>
                 <p className="text-xs text-muted-foreground mt-0.5">{l.focus}</p>
@@ -387,7 +387,7 @@ function MezzanineTab() {
       </div>
 
       {/* Capital structure */}
-      <div className="rounded-xl border border-white/10 bg-white/5 p-5">
+      <div className="rounded-xl border border-border bg-muted/30 p-5">
         <SectionHeading title="Mezzanine Position in Capital Structure" sub="Click a layer to see details" />
         <div className="flex gap-6 flex-col md:flex-row">
           <div className="flex-1">
@@ -419,7 +419,7 @@ function MezzanineTab() {
                 initial={{ opacity: 0, x: 24 }}
                 animate={{ opacity: 1, x: 0 }}
                 exit={{ opacity: 0, x: 24 }}
-                className="flex-1 rounded-xl border border-white/10 bg-white/5 p-4 self-start"
+                className="flex-1 rounded-xl border border-border bg-muted/30 p-4 self-start"
               >
                 <p className="text-xs text-muted-foreground mb-1">Selected Layer</p>
                 <p className="text-base font-bold" style={{ color: capitalLayers[selected].color }}>
@@ -438,7 +438,7 @@ function MezzanineTab() {
       </div>
 
       {/* PIK vs cash pay */}
-      <div className="rounded-xl border border-white/10 bg-white/5 p-5">
+      <div className="rounded-xl border border-border bg-muted/30 p-5">
         <SectionHeading title="PIK vs. Cash Pay Mechanics" sub="How payment-in-kind accrual works" />
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           <div>
@@ -446,7 +446,7 @@ function MezzanineTab() {
             <p className="text-xs text-muted-foreground mt-2">
               Interest is paid in cash each quarter or semi-annually. Lower nominal rate (e.g., SOFR + 700 bps cash). Borrower must have sufficient free cash flow.
             </p>
-            <div className="mt-3 rounded bg-white/5 p-3 text-xs font-mono text-muted-foreground">
+            <div className="mt-3 rounded bg-foreground/5 p-3 text-xs font-mono text-muted-foreground">
               $100M × 11.5% = $11.5M/yr cash outflow
             </div>
           </div>
@@ -455,7 +455,7 @@ function MezzanineTab() {
             <p className="text-xs text-muted-foreground mt-2">
               Interest accrues to principal rather than being paid in cash. Higher effective rate compensates lender for reinvestment risk. Common in high-growth, acquisition-heavy strategies.
             </p>
-            <div className="mt-3 rounded bg-white/5 p-3 text-xs font-mono text-muted-foreground">
+            <div className="mt-3 rounded bg-foreground/5 p-3 text-xs font-mono text-muted-foreground">
               $100M × 4% PIK → $104M after Y1<br />
               $104M × 4% PIK → $108.16M after Y2
             </div>
@@ -464,7 +464,7 @@ function MezzanineTab() {
       </div>
 
       {/* IRR targets */}
-      <div className="rounded-xl border border-white/10 bg-white/5 p-5">
+      <div className="rounded-xl border border-border bg-muted/30 p-5">
         <SectionHeading title="IRR Targets by Private Credit Strategy" sub="Gross IRR before fees (typical market 2024)" />
         <div className="space-y-3">
           {irrTargets.map((t) => {
@@ -477,7 +477,7 @@ function MezzanineTab() {
                   <span className="text-xs text-muted-foreground">{t.strategy}</span>
                   <span className="text-xs font-semibold" style={{ color: t.color }}>{t.low}–{t.high}%</span>
                 </div>
-                <div className="relative h-4 rounded bg-white/5">
+                <div className="relative h-4 rounded bg-foreground/5">
                   <div className="absolute h-full rounded" style={{ left: `${left}%`, width: `${width}%`, background: t.color, opacity: 0.7 }} />
                 </div>
               </div>
@@ -487,11 +487,11 @@ function MezzanineTab() {
       </div>
 
       {/* Special situations */}
-      <div className="rounded-xl border border-white/10 bg-white/5 p-5">
+      <div className="rounded-xl border border-border bg-muted/30 p-5">
         <SectionHeading title="Special Situations Categories" sub="8 sub-strategies with typical return outcomes" />
         <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
           {specialSit.map((s) => (
-            <div key={s.category} className="rounded-lg border border-white/5 bg-white/[0.03] p-3">
+            <div key={s.category} className="rounded-lg border border-border/50 bg-foreground/[0.03] p-3">
               <div className="flex items-start justify-between gap-2">
                 <p className="text-xs font-semibold text-foreground">{s.category}</p>
                 <div className="flex gap-1.5 shrink-0">
@@ -550,7 +550,7 @@ function DistressedTab() {
       </div>
 
       {/* Distressed cycle */}
-      <div className="rounded-xl border border-white/10 bg-white/5 p-5">
+      <div className="rounded-xl border border-border bg-muted/30 p-5">
         <SectionHeading title="Distressed Debt Market Cycle" sub="Six phases from normal credit to post-reorganization emergence" />
         <svg viewBox={`0 0 ${CW} 110`} className="w-full" style={{ maxHeight: 130 }}>
           <text x={CW / 2} y={16} textAnchor="middle" fontSize={9} fill="#71717a">
@@ -578,13 +578,13 @@ function DistressedTab() {
       </div>
 
       {/* Definitions */}
-      <div className="rounded-xl border border-white/10 bg-white/5 p-5">
+      <div className="rounded-xl border border-border bg-muted/30 p-5">
         <SectionHeading title="Stressed vs. Distressed vs. Default" sub="Market pricing thresholds" />
         <div className="grid grid-cols-3 gap-4">
           {definitions.map((d) => (
-            <div key={d.term} className="rounded-lg border border-white/5 bg-white/[0.03] p-3 text-center">
+            <div key={d.term} className="rounded-lg border border-border/50 bg-foreground/[0.03] p-3 text-center">
               <InfoPill text={d.term} color={d.color} />
-              <p className="text-sm font-bold text-white mt-2">{d.price}</p>
+              <p className="text-sm font-bold text-foreground mt-2">{d.price}</p>
               <p className="text-xs text-muted-foreground">{d.spread}</p>
             </div>
           ))}
@@ -592,7 +592,7 @@ function DistressedTab() {
       </div>
 
       {/* Fulcrum security */}
-      <div className="rounded-xl border border-white/10 bg-white/5 p-5">
+      <div className="rounded-xl border border-border bg-muted/30 p-5">
         <SectionHeading title="Fulcrum Security Identification" sub="The tranche that converts to equity in the plan of reorganization" />
         <div className="flex gap-6 flex-col md:flex-row items-start">
           <svg viewBox="0 0 320 120" className="w-full md:w-72 shrink-0" style={{ maxHeight: 130 }}>
@@ -619,7 +619,7 @@ function DistressedTab() {
       </div>
 
       {/* DIP financing */}
-      <div className="rounded-xl border border-white/10 bg-white/5 p-5">
+      <div className="rounded-xl border border-border bg-muted/30 p-5">
         <SectionHeading title="Chapter 11 DIP Financing" sub="Debtor-in-Possession financing — highest priority, highest yield" />
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
           {[
@@ -627,9 +627,9 @@ function DistressedTab() {
             { label: "Pricing", value: "SOFR + 300–500 bps", desc: "Plus upfront fee 1–3%, commitment fee 50–75 bps", color: "blue" },
             { label: "Control Rights", value: "Milestones & covenants", desc: "DIP lender sets restructuring timeline and process milestones", color: "violet" },
           ].map((item) => (
-            <div key={item.label} className="rounded-lg border border-white/5 bg-white/[0.03] p-4">
+            <div key={item.label} className="rounded-lg border border-border/50 bg-foreground/[0.03] p-4">
               <InfoPill text={item.label} color={item.color} />
-              <p className="text-sm font-bold text-white mt-2">{item.value}</p>
+              <p className="text-sm font-bold text-foreground mt-2">{item.value}</p>
               <p className="text-xs text-muted-foreground mt-1">{item.desc}</p>
             </div>
           ))}
@@ -637,11 +637,11 @@ function DistressedTab() {
       </div>
 
       {/* Opportunistic credit */}
-      <div className="rounded-xl border border-white/10 bg-white/5 p-5">
+      <div className="rounded-xl border border-border bg-muted/30 p-5">
         <SectionHeading title="Opportunistic Credit Strategies" sub="Fallen angels, rating migrations, secondary purchases, and more" />
         <div className="space-y-3">
           {opCredit.map((s) => (
-            <div key={s.type} className="flex items-start gap-3 rounded-lg border border-white/5 bg-white/[0.03] p-3">
+            <div key={s.type} className="flex items-start gap-3 rounded-lg border border-border/50 bg-foreground/[0.03] p-3">
               <ArrowRight className="w-4 h-4 text-primary mt-0.5 shrink-0" />
               <div className="flex-1">
                 <div className="flex items-center gap-2">
@@ -730,7 +730,7 @@ function MarketDynamicsTab() {
       </div>
 
       {/* Market share area chart */}
-      <div className="rounded-xl border border-white/10 bg-white/5 p-5">
+      <div className="rounded-xl border border-border bg-muted/30 p-5">
         <SectionHeading
           title="Private Credit vs. Syndicated Loan Market Share"
           sub="Middle market sponsor-backed lending share shift (2010→2024)"
@@ -755,7 +755,7 @@ function MarketDynamicsTab() {
       </div>
 
       {/* Yield comparison */}
-      <div className="rounded-xl border border-white/10 bg-white/5 p-5">
+      <div className="rounded-xl border border-border bg-muted/30 p-5">
         <SectionHeading title="Yield Premium: Private vs. Public Credit" sub="Approximate all-in yields (2024 market)" />
         <div className="space-y-3">
           {yieldComparison.map((y) => (
@@ -764,7 +764,7 @@ function MarketDynamicsTab() {
                 <span className="text-xs text-muted-foreground">{y.label}</span>
                 <span className="text-xs font-semibold" style={{ color: y.color }}>{y.yield.toFixed(1)}%</span>
               </div>
-              <div className="relative h-4 rounded bg-white/5">
+              <div className="relative h-4 rounded bg-foreground/5">
                 <div className="h-full rounded" style={{ width: `${(y.yield / 18) * 100}%`, background: y.color, opacity: 0.75 }} />
               </div>
             </div>
@@ -776,7 +776,7 @@ function MarketDynamicsTab() {
       </div>
 
       {/* Default rates */}
-      <div className="rounded-xl border border-white/10 bg-white/5 p-5">
+      <div className="rounded-xl border border-border bg-muted/30 p-5">
         <SectionHeading title="Default Rate Comparison" sub="Private credit historically lower defaults than public HY" />
         <div className="space-y-3">
           {defaultRates.map((d) => (
@@ -785,7 +785,7 @@ function MarketDynamicsTab() {
                 <span className="text-xs text-muted-foreground">{d.label}</span>
                 <span className="text-xs font-semibold" style={{ color: d.color }}>{d.rate.toFixed(1)}%</span>
               </div>
-              <div className="relative h-4 rounded bg-white/5">
+              <div className="relative h-4 rounded bg-foreground/5">
                 <div className="h-full rounded" style={{ width: `${(d.rate / 6) * 100}%`, background: d.color, opacity: 0.75 }} />
               </div>
             </div>
@@ -797,7 +797,7 @@ function MarketDynamicsTab() {
       </div>
 
       {/* Institutional allocations */}
-      <div className="rounded-xl border border-white/10 bg-white/5 p-5">
+      <div className="rounded-xl border border-border bg-muted/30 p-5">
         <SectionHeading title="Institutional Portfolio Allocations to Private Credit" sub="Current vs. target allocations (2024 survey data)" />
         <div className="space-y-4">
           {allocations.map((a) => (
@@ -805,12 +805,12 @@ function MarketDynamicsTab() {
               <div className="flex items-center justify-between mb-1">
                 <span className="text-xs text-muted-foreground">{a.type}</span>
                 <div className="flex items-center gap-2 text-xs">
-                  <span className="text-muted-foreground">Current: <span className="text-white">{a.current}%</span></span>
+                  <span className="text-muted-foreground">Current: <span className="text-foreground">{a.current}%</span></span>
                   <span className="text-muted-foreground">→</span>
                   <span className="text-muted-foreground">Target: <span className="text-emerald-400">{a.target}%</span></span>
                 </div>
               </div>
-              <div className="relative h-5 rounded bg-white/5">
+              <div className="relative h-5 rounded bg-foreground/5">
                 <div className="absolute h-full rounded bg-muted" style={{ width: `${(a.current / 20) * 100}%`, opacity: 0.6 }} />
                 <div className="absolute h-1 top-2 rounded bg-emerald-400" style={{ width: `${(a.target / 20) * 100}%`, opacity: 0.8 }} />
               </div>
@@ -828,11 +828,11 @@ function MarketDynamicsTab() {
       </div>
 
       {/* Key risks */}
-      <div className="rounded-xl border border-white/10 bg-white/5 p-5">
+      <div className="rounded-xl border border-border bg-muted/30 p-5">
         <SectionHeading title="Key Risks in Private Credit" sub="Concentration, illiquidity, valuation opacity, and documentation creep" />
         <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
           {risks.map((risk) => (
-            <div key={risk.risk} className="rounded-lg border border-white/5 bg-white/[0.03] p-3">
+            <div key={risk.risk} className="rounded-lg border border-border/50 bg-foreground/[0.03] p-3">
               <div className="flex items-start gap-2">
                 <AlertTriangle className={cn("w-3.5 h-3.5 mt-0.5 shrink-0", risk.color === "rose" ? "text-rose-400" : risk.color === "amber" ? "text-amber-400" : "text-primary")} />
                 <div>
@@ -850,7 +850,7 @@ function MarketDynamicsTab() {
 
       {/* Regulatory tailwinds + vintage */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-        <div className="rounded-xl border border-white/10 bg-white/5 p-5">
+        <div className="rounded-xl border border-border bg-muted/30 p-5">
           <SectionHeading title="Regulatory Tailwinds" sub="Why banks retreat, private credit expands" />
           <div className="space-y-2 text-xs text-muted-foreground">
             {[
@@ -866,7 +866,7 @@ function MarketDynamicsTab() {
             ))}
           </div>
         </div>
-        <div className="rounded-xl border border-white/10 bg-white/5 p-5">
+        <div className="rounded-xl border border-border bg-muted/30 p-5">
           <SectionHeading title="Vintage Year Diversification" sub="Why spreading deployment across cycles matters" />
           <div className="space-y-2 text-xs text-muted-foreground">
             {[
@@ -903,15 +903,15 @@ export default function PrivateCreditPage() {
   const [activeTab, setActiveTab] = useState<TabId>("direct");
 
   return (
-    <div className="min-h-screen bg-background text-white">
+    <div className="min-h-screen bg-background text-foreground">
       {/* Header */}
-      <div className="border-b border-white/10 bg-card/60 backdrop-blur px-6 py-5">
+      <div className="border-b border-border bg-card/60 backdrop-blur px-6 py-5">
         <div className="max-w-6xl mx-auto flex items-start gap-4">
           <div className="rounded-xl bg-primary/20 p-2.5 border border-border">
             <Briefcase className="w-5 h-5 text-primary" />
           </div>
           <div>
-            <h1 className="text-xl font-bold text-white">Private Credit Markets</h1>
+            <h1 className="text-xl font-bold text-foreground">Private Credit Markets</h1>
             <p className="text-sm text-muted-foreground mt-0.5">
               Direct lending, mezzanine finance, distressed debt, special situations, and the $1.7T rise of private credit as an asset class
             </p>
@@ -928,14 +928,14 @@ export default function PrivateCreditPage() {
       {/* Content */}
       <div className="max-w-6xl mx-auto px-6 py-6">
         <Tabs value={activeTab} onValueChange={(v) => setActiveTab(v as TabId)}>
-          <TabsList className="grid grid-cols-2 md:grid-cols-4 mb-6 bg-card/60 border border-white/10 h-auto gap-1 p-1">
+          <TabsList className="grid grid-cols-2 md:grid-cols-4 mb-6 bg-card/60 border border-border h-auto gap-1 p-1">
             {tabs.map((tab) => {
               const Icon = tab.icon;
               return (
                 <TabsTrigger
                   key={tab.id}
                   value={tab.id}
-                  className="flex items-center gap-1.5 text-xs py-2 data-[state=active]:bg-primary data-[state=active]:text-white"
+                  className="flex items-center gap-1.5 text-xs py-2 data-[state=active]:bg-primary data-[state=active]:text-primary-foreground"
                 >
                   <Icon className="w-3.5 h-3.5 shrink-0" />
                   <span>{tab.label}</span>

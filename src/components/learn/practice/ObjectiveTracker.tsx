@@ -67,7 +67,7 @@ export function ObjectiveTracker({
               className={cn(
                 "inline-flex items-center gap-1.5 rounded-full px-2.5 py-1 text-[11px] font-medium transition-colors",
                 done
-                  ? "bg-[#10b981]/10 text-[#10b981]"
+                  ? "bg-profit/10 text-profit"
                   : "bg-muted/30 text-muted-foreground",
               )}
             >
@@ -105,7 +105,7 @@ export function ObjectiveTracker({
             transition={{ type: "spring", stiffness: 300, damping: 25 }}
             className="overflow-hidden"
           >
-            <div className="flex items-center justify-between rounded-xl bg-[#10b981]/10 border border-[#10b981]/20 px-3 py-2">
+            <div className="flex items-center justify-between rounded-xl bg-profit/10 border border-profit/20 px-3 py-2">
               <div className="flex items-center gap-2">
                 <motion.div
                   initial={{ rotate: -30, scale: 0 }}
@@ -115,14 +115,14 @@ export function ObjectiveTracker({
                 >
                   ✓
                 </motion.div>
-                <span className="text-xs font-semibold text-[#10b981]">
+                <span className="text-xs font-semibold text-profit">
                   All objectives complete!
                 </span>
               </div>
               <button
                 type="button"
                 onClick={onContinue}
-                className="rounded-lg bg-[#10b981] px-3 py-1.5 text-xs font-bold text-white transition-all hover:brightness-110 active:scale-[0.97]"
+                className="rounded-lg bg-profit px-3 py-1.5 text-xs font-bold text-white transition-all hover:brightness-110 active:scale-[0.97]"
               >
                 Continue
               </button>

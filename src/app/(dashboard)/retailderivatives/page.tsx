@@ -1318,7 +1318,7 @@ function RetailAlternativesTab() {
 
 export default function RetailDerivativesPage() {
   return (
-    <div className="min-h-screen bg-background text-white">
+    <div className="min-h-screen bg-background text-foreground">
       <div className="max-w-7xl mx-auto px-4 py-6 space-y-6">
         {/* Header */}
         <motion.div

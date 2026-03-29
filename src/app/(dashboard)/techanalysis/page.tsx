@@ -1492,7 +1492,7 @@ function VolumeAnalysisTab() {
           })()}
         </svg>
         <div className="flex gap-3 mt-2">
-          <div className="flex items-center gap-1.5"><div className="w-3 h-0.5 bg-white" /><span className="text-xs text-muted-foreground">Price</span></div>
+          <div className="flex items-center gap-1.5"><div className="w-3 h-0.5 bg-foreground" /><span className="text-xs text-muted-foreground">Price</span></div>
           <div className="flex items-center gap-1.5"><div className="w-3 h-0.5 bg-yellow-400" /><span className="text-xs text-muted-foreground">VWAP</span></div>
           <span className="text-xs text-muted-foreground ml-auto">Current VWAP: ${vwap[vwap.length - 1].toFixed(2)}</span>
         </div>

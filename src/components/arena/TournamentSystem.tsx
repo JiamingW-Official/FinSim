@@ -1065,7 +1065,7 @@ function HallOfFameSection({ playerElo, playerXP, joinedCount }: HallOfFameProps
                 "rounded-lg border p-3 transition-all",
                 badge.earned
                   ? "border-teal-500/25 bg-teal-500/5"
-                  : "border-white/[0.04] bg-white/[0.01] opacity-50",
+                  : "border-foreground/[0.04] bg-foreground/[0.01] opacity-50",
               )}
             >
               <div className="flex items-center gap-2 mb-1">

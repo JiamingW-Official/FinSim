@@ -198,7 +198,7 @@ function StatChip({
   color?: "default" | "green" | "red" | "amber" | "blue";
 }) {
   const colors = {
-    default: "bg-white/5 text-muted-foreground border-white/10",
+    default: "bg-foreground/5 text-muted-foreground border-border",
     green: "bg-emerald-500/10 text-emerald-400 border-emerald-500/20",
     red: "bg-red-500/10 text-red-400 border-red-500/20",
     amber: "bg-amber-500/10 text-amber-400 border-amber-500/20",
@@ -214,7 +214,7 @@ function StatChip({
 
 function SectionCard({ title, children, icon: Icon }: { title: string; children: React.ReactNode; icon?: React.ElementType }) {
   return (
-    <div className="rounded-xl border border-white/8 bg-white/3 p-4">
+    <div className="rounded-xl border border-border/50 bg-foreground/[0.03] p-4">
       {title && (
         <div className="flex items-center gap-2 mb-4">
           {Icon && <Icon className="w-4 h-4 text-primary" />}
@@ -277,7 +277,7 @@ function TipsMechanicsTab() {
               type="number"
               value={par}
               onChange={(e) => setPar(Math.max(100, +e.target.value))}
-              className="w-full rounded bg-white/5 border border-white/10 text-white text-sm px-2 py-1.5 focus:outline-none focus:border-primary/50"
+              className="w-full rounded bg-foreground/5 border border-border text-white text-sm px-2 py-1.5 focus:outline-none focus:border-primary/50"
             />
           </div>
           <div>
@@ -287,7 +287,7 @@ function TipsMechanicsTab() {
               step="0.1"
               value={couponRate}
               onChange={(e) => setCouponRate(Math.max(0, +e.target.value))}
-              className="w-full rounded bg-white/5 border border-white/10 text-white text-sm px-2 py-1.5 focus:outline-none focus:border-primary/50"
+              className="w-full rounded bg-foreground/5 border border-border text-white text-sm px-2 py-1.5 focus:outline-none focus:border-primary/50"
             />
           </div>
           <div>
@@ -296,7 +296,7 @@ function TipsMechanicsTab() {
               type="number"
               value={cpiStart}
               onChange={(e) => setCpiStart(Math.max(1, +e.target.value))}
-              className="w-full rounded bg-white/5 border border-white/10 text-white text-sm px-2 py-1.5 focus:outline-none focus:border-primary/50"
+              className="w-full rounded bg-foreground/5 border border-border text-white text-sm px-2 py-1.5 focus:outline-none focus:border-primary/50"
             />
           </div>
           <div>
@@ -305,7 +305,7 @@ function TipsMechanicsTab() {
               type="number"
               value={cpiCurrent}
               onChange={(e) => setCpiCurrent(Math.max(1, +e.target.value))}
-              className="w-full rounded bg-white/5 border border-white/10 text-white text-sm px-2 py-1.5 focus:outline-none focus:border-primary/50"
+              className="w-full rounded bg-foreground/5 border border-border text-white text-sm px-2 py-1.5 focus:outline-none focus:border-primary/50"
             />
           </div>
         </div>
@@ -318,7 +318,7 @@ function TipsMechanicsTab() {
               "flex items-center gap-2 text-xs px-3 py-1.5 rounded border transition-colors",
               deflationMode
                 ? "bg-amber-500/15 border-amber-500/30 text-amber-400"
-                : "bg-white/5 border-white/10 text-muted-foreground"
+                : "bg-foreground/5 border-border text-muted-foreground"
             )}
           >
             <AlertTriangle className="w-3 h-3" />
@@ -460,7 +460,7 @@ function TipsMechanicsTab() {
         <div className="overflow-x-auto">
           <table className="w-full text-xs">
             <thead>
-              <tr className="text-muted-foreground border-b border-white/8">
+              <tr className="text-muted-foreground border-b border-border/50">
                 <th className="text-left py-2 pr-3">Market</th>
                 <th className="text-left py-2 pr-3">Instrument</th>
                 <th className="text-right py-2 pr-3">Size</th>
@@ -472,7 +472,7 @@ function TipsMechanicsTab() {
             </thead>
             <tbody>
               {GLOBAL_LINKER_MARKETS.map((m) => (
-                <tr key={m.country} className="border-b border-white/4 hover:bg-muted/30 transition-colors">
+                <tr key={m.country} className="border-b border-border/50 hover:bg-muted/30 transition-colors">
                   <td className="py-2 pr-3 text-white font-medium">
                     {m.flag} {m.country}
                   </td>
@@ -564,7 +564,7 @@ function RealYieldsTab() {
               step="0.05"
               value={nominalYield}
               onChange={(e) => setNominalYield(Math.max(0, +e.target.value))}
-              className="w-full rounded bg-white/5 border border-white/10 text-white text-sm px-2 py-1.5 focus:outline-none focus:border-primary/50"
+              className="w-full rounded bg-foreground/5 border border-border text-white text-sm px-2 py-1.5 focus:outline-none focus:border-primary/50"
             />
           </div>
           <div>
@@ -574,7 +574,7 @@ function RealYieldsTab() {
               step="0.05"
               value={tipsYield}
               onChange={(e) => setTipsYield(+e.target.value)}
-              className="w-full rounded bg-white/5 border border-white/10 text-white text-sm px-2 py-1.5 focus:outline-none focus:border-primary/50"
+              className="w-full rounded bg-foreground/5 border border-border text-white text-sm px-2 py-1.5 focus:outline-none focus:border-primary/50"
             />
           </div>
           <div>
@@ -584,7 +584,7 @@ function RealYieldsTab() {
               step="0.05"
               value={inflationExp}
               onChange={(e) => setInflationExp(Math.max(0, +e.target.value))}
-              className="w-full rounded bg-white/5 border border-white/10 text-white text-sm px-2 py-1.5 focus:outline-none focus:border-primary/50"
+              className="w-full rounded bg-foreground/5 border border-border text-white text-sm px-2 py-1.5 focus:outline-none focus:border-primary/50"
             />
           </div>
         </div>
@@ -600,7 +600,7 @@ function RealYieldsTab() {
           />
         </div>
 
-        <div className="p-3 rounded bg-white/4 border border-white/8 space-y-1.5 text-xs">
+        <div className="p-3 rounded bg-foreground/[0.04] border border-border/50 space-y-1.5 text-xs">
           <div className="flex justify-between">
             <span className="text-muted-foreground">Fisher Equation:</span>
             <span className="text-white font-mono">(1 + r_nominal) = (1 + r_real) × (1 + inflation)</span>
@@ -820,7 +820,7 @@ function DurationRiskTab() {
               type="number"
               value={maturity}
               onChange={(e) => setMaturity(Math.max(1, +e.target.value))}
-              className="w-full rounded bg-white/5 border border-white/10 text-white text-sm px-2 py-1.5 focus:outline-none focus:border-primary/50"
+              className="w-full rounded bg-foreground/5 border border-border text-white text-sm px-2 py-1.5 focus:outline-none focus:border-primary/50"
             />
           </div>
           <div>
@@ -830,7 +830,7 @@ function DurationRiskTab() {
               step="0.1"
               value={coupon}
               onChange={(e) => setCoupon(Math.max(0, +e.target.value))}
-              className="w-full rounded bg-white/5 border border-white/10 text-white text-sm px-2 py-1.5 focus:outline-none focus:border-primary/50"
+              className="w-full rounded bg-foreground/5 border border-border text-white text-sm px-2 py-1.5 focus:outline-none focus:border-primary/50"
             />
           </div>
           <div>
@@ -840,7 +840,7 @@ function DurationRiskTab() {
               step="0.05"
               value={realYield}
               onChange={(e) => setRealYield(+e.target.value)}
-              className="w-full rounded bg-white/5 border border-white/10 text-white text-sm px-2 py-1.5 focus:outline-none focus:border-primary/50"
+              className="w-full rounded bg-foreground/5 border border-border text-white text-sm px-2 py-1.5 focus:outline-none focus:border-primary/50"
             />
           </div>
           <div>
@@ -850,7 +850,7 @@ function DurationRiskTab() {
               step="0.05"
               value={nominalYield}
               onChange={(e) => setNominalYield(+e.target.value)}
-              className="w-full rounded bg-white/5 border border-white/10 text-white text-sm px-2 py-1.5 focus:outline-none focus:border-primary/50"
+              className="w-full rounded bg-foreground/5 border border-border text-white text-sm px-2 py-1.5 focus:outline-none focus:border-primary/50"
             />
           </div>
           <div>
@@ -860,7 +860,7 @@ function DurationRiskTab() {
               step="0.05"
               value={inflation}
               onChange={(e) => setInflation(Math.max(0, +e.target.value))}
-              className="w-full rounded bg-white/5 border border-white/10 text-white text-sm px-2 py-1.5 focus:outline-none focus:border-primary/50"
+              className="w-full rounded bg-foreground/5 border border-border text-white text-sm px-2 py-1.5 focus:outline-none focus:border-primary/50"
             />
           </div>
         </div>
@@ -878,7 +878,7 @@ function DurationRiskTab() {
           <StatChip label="Real Dur < Mod Dur" value={`${modDur - realDur > 0 ? "−" : "+"}${Math.abs(modDur - realDur).toFixed(2)}y`} color="default" />
         </div>
 
-        <div className="mt-3 p-3 rounded bg-white/4 border border-white/8 text-xs text-muted-foreground space-y-1">
+        <div className="mt-3 p-3 rounded bg-foreground/[0.04] border border-border/50 text-xs text-muted-foreground space-y-1">
           <p><span className="text-primary">Modified Duration</span>: sensitivity to changes in real yields. A {modDur.toFixed(1)}y ModDur means ~{modDur.toFixed(1)}% price change per 100bps real yield shift.</p>
           <p><span className="text-primary">Real Duration</span>: further adjusted for inflation expectations — TIPS have lower interest rate risk in real terms than ModDur implies.</p>
           <p><span className="text-primary">Key insight</span>: TIPS carry inflation risk on the accreted principal, but this is the risk you <em>want</em> when hedging inflation.</p>
@@ -890,7 +890,7 @@ function DurationRiskTab() {
         <div className="overflow-x-auto">
           <table className="w-full text-xs">
             <thead>
-              <tr className="text-muted-foreground border-b border-white/8">
+              <tr className="text-muted-foreground border-b border-border/50">
                 <th className="text-left py-2 pr-3">Asset</th>
                 <th className="text-right py-2 pr-3">Inflation Beta</th>
                 <th className="text-right py-2 pr-3">Correlation</th>
@@ -899,7 +899,7 @@ function DurationRiskTab() {
             </thead>
             <tbody>
               {INFLATION_BETA_TABLE.map((row) => (
-                <tr key={row.asset} className="border-b border-white/4 hover:bg-muted/30 transition-colors">
+                <tr key={row.asset} className="border-b border-border/50 hover:bg-muted/30 transition-colors">
                   <td className="py-2 pr-3 text-white font-medium">{row.asset}</td>
                   <td className={cn("py-2 pr-3 text-right font-semibold font-mono", row.beta > 0.5 ? "text-emerald-400" : row.beta < 0 ? "text-red-400" : "text-amber-400")}>
                     {row.beta > 0 ? "+" : ""}{row.beta.toFixed(2)}
@@ -1052,7 +1052,7 @@ function InflationHedgingTab() {
                 "text-xs px-3 py-1.5 rounded border transition-colors",
                 selectedScenario === i
                   ? "bg-primary/20 border-primary/40 text-primary"
-                  : "bg-white/5 border-white/10 text-muted-foreground hover:bg-muted/30"
+                  : "bg-foreground/5 border-border text-muted-foreground hover:bg-muted/30"
               )}
             >
               {sc}
@@ -1063,7 +1063,7 @@ function InflationHedgingTab() {
         <div className="overflow-x-auto">
           <table className="w-full text-xs">
             <thead>
-              <tr className="border-b border-white/8">
+              <tr className="border-b border-border/50">
                 <th className="text-left py-2 pr-3 text-muted-foreground">Scenario</th>
                 {HEDGING_ASSETS.map((a) => (
                   <th key={a} className="text-center py-2 px-2 text-muted-foreground">{a}</th>
@@ -1075,7 +1075,7 @@ function InflationHedgingTab() {
                 <tr
                   key={sc}
                   className={cn(
-                    "border-b border-white/4 transition-colors",
+                    "border-b border-border/50 transition-colors",
                     si === selectedScenario ? "bg-primary/5" : "hover:bg-muted/30"
                   )}
                 >
@@ -1118,7 +1118,7 @@ function InflationHedgingTab() {
                 "text-xs px-3 py-1.5 rounded border transition-colors",
                 selectedScenario === i
                   ? "bg-primary/20 border-primary/40 text-primary"
-                  : "bg-white/5 border-white/10 text-muted-foreground hover:bg-muted/30"
+                  : "bg-foreground/5 border-border text-muted-foreground hover:bg-muted/30"
               )}
             >
               {sc}
@@ -1188,7 +1188,7 @@ function InflationHedgingTab() {
                 "text-xs px-3 py-1.5 rounded border transition-colors",
                 selectedScenario === i
                   ? "bg-primary/20 border-primary/40 text-primary"
-                  : "bg-white/5 border-white/10 text-muted-foreground hover:bg-muted/30"
+                  : "bg-foreground/5 border-border text-muted-foreground hover:bg-muted/30"
               )}
             >
               {r.scenario}
@@ -1213,10 +1213,10 @@ function InflationHedgingTab() {
             ].map(({ key, label, color }) => {
               const val = currentRec[key as keyof typeof currentRec] as number;
               return (
-                <div key={key} className="rounded-lg border border-white/8 bg-white/3 p-2 text-center">
+                <div key={key} className="rounded-lg border border-border/50 bg-foreground/[0.03] p-2 text-center">
                   <div className="text-[11px] text-muted-foreground mb-1">{label}</div>
                   <div className="text-lg font-bold" style={{ color }}>{val}%</div>
-                  <div className="w-full bg-white/5 rounded-full h-1.5 mt-1">
+                  <div className="w-full bg-foreground/5 rounded-full h-1.5 mt-1">
                     <div className="h-1.5 rounded-full" style={{ width: `${val}%`, backgroundColor: color, opacity: 0.8 }} />
                   </div>
                 </div>
@@ -1236,7 +1236,7 @@ function InflationHedgingTab() {
 
 export default function InflationLinkedPage() {
   return (
-    <div className="min-h-screen bg-[#0a0f1a] text-white p-4 sm:p-6">
+    <div className="min-h-screen bg-background text-foreground p-4 sm:p-6">
       <div className="max-w-5xl mx-auto">
         {/* Header */}
         <motion.div
@@ -1267,7 +1267,7 @@ export default function InflationLinkedPage() {
 
         {/* Tabs */}
         <Tabs defaultValue="mechanics">
-          <TabsList className="mb-4 bg-white/5 border border-white/10 p-1 rounded-lg flex-wrap h-auto gap-1">
+          <TabsList className="mb-4 bg-foreground/5 border border-border p-1 rounded-lg flex-wrap h-auto gap-1">
             <TabsTrigger value="mechanics" className="text-xs data-[state=active]:bg-primary data-[state=active]:text-white rounded">
               <Calculator className="w-3 h-3 mr-1.5" />
               TIPS Mechanics
@@ -1311,7 +1311,7 @@ export default function InflationLinkedPage() {
         </Tabs>
 
         {/* Footer disclaimer */}
-        <div className="mt-8 p-3 rounded-lg border border-white/6 bg-white/2 flex items-start gap-2">
+        <div className="mt-8 p-3 rounded-lg border border-border/50 bg-foreground/[0.02] flex items-start gap-2">
           <Info className="w-4 h-4 text-muted-foreground flex-shrink-0 mt-0.5" />
           <p className="text-xs text-muted-foreground">
             All yield data, breakevens, and returns are simulated for educational purposes. TIPS returns depend on actual realized CPI vs breakeven at purchase. Real past performance varies; consult a financial advisor before investing in inflation-linked securities.

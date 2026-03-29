@@ -208,8 +208,8 @@ export function PositionsTable() {
                       className={cn(
                         "mt-0.5 px-1 py-0 text-[11px] inline-flex items-center gap-0.5",
                         pos.side === "long"
-                          ? "border-[#10b981]/30 text-[#10b981]"
-                          : "border-[#a855f7]/30 text-[#a855f7]",
+                          ? "border-profit/30 text-profit"
+                          : "border-short/30 text-short",
                       )}
                     >
                       {pos.side === "short" && <ArrowDownLeft className="h-2 w-2" />}
@@ -221,7 +221,7 @@ export function PositionsTable() {
                   <td
                     className={cn(
                       "px-2 py-1.5 text-right tabular-nums",
-                      pos.unrealizedPnL >= 0 ? "text-[#10b981]" : "text-[#ef4444]",
+                      pos.unrealizedPnL >= 0 ? "text-profit" : "text-loss",
                     )}
                   >
                     <div className="flex items-center justify-end gap-0.5">
@@ -243,7 +243,7 @@ export function PositionsTable() {
                         className={cn(
                           "text-xs",
                           distToStop !== null && distToStop <= 1
-                            ? "text-[#ef4444] font-semibold"
+                            ? "text-loss font-semibold"
                             : distToStop !== null && distToStop <= 3
                             ? "text-amber-500"
                             : "text-muted-foreground",
@@ -263,7 +263,7 @@ export function PositionsTable() {
                         className={cn(
                           "text-xs",
                           distToStop <= 1
-                            ? "text-[#ef4444] font-semibold"
+                            ? "text-loss font-semibold"
                             : distToStop <= 3
                             ? "text-amber-500"
                             : "text-muted-foreground",
@@ -369,7 +369,7 @@ export function PositionsTable() {
                                     className={cn(
                                       "font-medium tabular-nums",
                                       distToStop !== null && distToStop <= 1
-                                        ? "text-[#ef4444]"
+                                        ? "text-loss"
                                         : distToStop !== null && distToStop <= 3
                                         ? "text-amber-500"
                                         : "",

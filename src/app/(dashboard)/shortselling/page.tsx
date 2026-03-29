@@ -539,7 +539,7 @@ function ShortPnLChart() {
 function RubricRow({ criterion }: { criterion: ThesisCriterion }) {
   const [expanded, setExpanded] = useState(false);
   return (
-    <div className="border-b border-white/5 last:border-0">
+    <div className="border-b border-border/50 last:border-0">
       <button
         onClick={() => setExpanded(!expanded)}
         className="w-full flex items-center gap-3 px-4 py-3 hover:bg-muted/30 transition-colors text-left"
@@ -629,7 +629,7 @@ function FamousShortCard({ short }: { short: FamousShort }) {
                 <p className="text-xs text-muted-foreground font-semibold mb-1">Outcome</p>
                 <p className="text-sm text-muted-foreground">{short.outcome}</p>
               </div>
-              <div className="rounded-lg bg-white/5 p-3 border border-white/10">
+              <div className="rounded-lg bg-foreground/5 p-3 border border-border">
                 <div className="flex gap-2">
                   <BookOpen className="w-3.5 h-3.5 text-indigo-400 shrink-0 mt-0.5" />
                   <p className="text-xs text-muted-foreground">{short.lesson}</p>
@@ -691,7 +691,7 @@ function EMHCard({ form, idx }: { form: EMHForm; idx: number }) {
 // ── Stat chip ─────────────────────────────────────────────────────────────────
 function StatChip({ label, value, sub }: { label: string; value: string; sub?: string }) {
   return (
-    <div className="rounded-xl border border-white/10 bg-white/5 px-4 py-3 text-center">
+    <div className="rounded-xl border border-border bg-foreground/5 px-4 py-3 text-center">
       <div className="text-lg font-bold text-foreground">{value}</div>
       <div className="text-xs text-muted-foreground">{label}</div>
       {sub && <div className="text-xs text-muted-foreground mt-0.5">{sub}</div>}
@@ -727,7 +727,7 @@ export default function ShortSellingPage() {
   return (
     <div className="min-h-screen bg-background text-foreground">
       {/* Header */}
-      <div className="border-b border-white/10 bg-card/60 px-6 py-5 backdrop-blur-sm">
+      <div className="border-b border-border bg-card/60 px-6 py-5 backdrop-blur-sm">
         <div className="max-w-6xl mx-auto flex items-center gap-3">
           <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-red-500/10 border border-red-500/20">
             <TrendingDown className="w-5 h-5 text-red-400" />
@@ -747,7 +747,7 @@ export default function ShortSellingPage() {
       {/* Tabs */}
       <div className="max-w-6xl mx-auto px-4 py-6">
         <Tabs value={activeTab} onValueChange={setActiveTab}>
-          <TabsList className="bg-card border border-white/10 mb-6 flex-wrap h-auto gap-1 p-1">
+          <TabsList className="bg-card border border-border mb-6 flex-wrap h-auto gap-1 p-1">
             {[
               { value: "mechanics", label: "Short Mechanics", icon: Activity },
               { value: "thesis", label: "Thesis Framework", icon: Target },
@@ -770,7 +770,7 @@ export default function ShortSellingPage() {
           <TabsContent value="mechanics" className="data-[state=inactive]:hidden">
             <div className="space-y-6">
               {/* Process flow */}
-              <Card className="border-white/10 bg-card/50">
+              <Card className="border-border bg-card/50">
                 <CardHeader>
                   <CardTitle className="flex items-center gap-2 text-base">
                     <Activity className="w-4 h-4 text-indigo-400" />
@@ -821,7 +821,7 @@ export default function ShortSellingPage() {
 
               {/* Short interest metrics */}
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <Card className="border-white/10 bg-card/50">
+                <Card className="border-border bg-card/50">
                   <CardHeader>
                     <CardTitle className="flex items-center gap-2 text-base">
                       <BarChart3 className="w-4 h-4 text-amber-400" />
@@ -855,7 +855,7 @@ export default function ShortSellingPage() {
                         alert: "Rising fast",
                       },
                     ].map((row) => (
-                      <div key={row.metric} className="rounded-lg bg-white/5 border border-white/8 p-3">
+                      <div key={row.metric} className="rounded-lg bg-foreground/5 border border-border/50 p-3">
                         <div className="flex items-center justify-between mb-1">
                           <span className="text-sm font-medium text-foreground">{row.metric}</span>
                           <Badge variant="outline" className="text-xs border-red-500/30 text-red-400">
@@ -870,7 +870,7 @@ export default function ShortSellingPage() {
                 </Card>
 
                 {/* Squeeze diagram */}
-                <Card className="border-white/10 bg-card/50">
+                <Card className="border-border bg-card/50">
                   <CardHeader>
                     <CardTitle className="flex items-center gap-2 text-base">
                       <Zap className="w-4 h-4 text-red-400" />
@@ -895,7 +895,7 @@ export default function ShortSellingPage() {
               </div>
 
               {/* P&L diagram */}
-              <Card className="border-white/10 bg-card/50">
+              <Card className="border-border bg-card/50">
                 <CardHeader>
                   <CardTitle className="flex items-center gap-2 text-base">
                     <DollarSign className="w-4 h-4 text-green-400" />
@@ -999,7 +999,7 @@ export default function ShortSellingPage() {
               </div>
 
               {/* Scoring rubric */}
-              <Card className="border-white/10 bg-card/50">
+              <Card className="border-border bg-card/50">
                 <CardHeader>
                   <div className="flex items-center justify-between">
                     <CardTitle className="flex items-center gap-2 text-base">
@@ -1014,7 +1014,7 @@ export default function ShortSellingPage() {
                 </CardHeader>
                 <CardContent className="p-0">
                   {THESIS_CRITERIA.map((criterion, idx) => (
-                    <div key={idx} className="border-b border-white/5 last:border-0">
+                    <div key={idx} className="border-b border-border/50 last:border-0">
                       <button
                         onClick={() => toggleThesis(idx)}
                         className="w-full flex items-center gap-3 px-4 py-3 hover:bg-muted/30 transition-colors text-left"
@@ -1058,7 +1058,7 @@ export default function ShortSellingPage() {
               </Card>
 
               {/* Catalysts */}
-              <Card className="border-white/10 bg-card/50">
+              <Card className="border-border bg-card/50">
                 <CardHeader>
                   <CardTitle className="flex items-center gap-2 text-base">
                     <Zap className="w-4 h-4 text-amber-400" />
@@ -1105,7 +1105,7 @@ export default function ShortSellingPage() {
 
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 {/* Position sizing */}
-                <Card className="border-white/10 bg-card/50">
+                <Card className="border-border bg-card/50">
                   <CardHeader>
                     <CardTitle className="flex items-center gap-2 text-base">
                       <Target className="w-4 h-4 text-indigo-400" />
@@ -1156,7 +1156,7 @@ export default function ShortSellingPage() {
                 </Card>
 
                 {/* Pairs trade */}
-                <Card className="border-white/10 bg-card/50">
+                <Card className="border-border bg-card/50">
                   <CardHeader>
                     <CardTitle className="flex items-center gap-2 text-base">
                       <TrendingDown className="w-4 h-4 text-green-400" />
@@ -1175,7 +1175,7 @@ export default function ShortSellingPage() {
                         { long: "JPM", short: "CS", sector: "Banks", thesis: "Best-in-class vs troubled", longBeta: 1.2, shortBeta: 1.4 },
                         { long: "TSLA", short: "RIVN", sector: "EV", thesis: "Scale vs cash burn", longBeta: 1.6, shortBeta: 1.8 },
                       ].map((pair) => (
-                        <div key={pair.thesis} className="flex items-center gap-2 bg-white/5 rounded-lg p-3">
+                        <div key={pair.thesis} className="flex items-center gap-2 bg-foreground/5 rounded-lg p-3">
                           <Badge variant="outline" className="border-green-500/30 text-green-300 text-xs">{pair.long}</Badge>
                           <TrendingUp className="w-3 h-3 text-green-400" />
                           <span className="text-xs text-muted-foreground">vs</span>
@@ -1196,7 +1196,7 @@ export default function ShortSellingPage() {
               </div>
 
               {/* Timing challenges */}
-              <Card className="border-white/10 bg-card/50">
+              <Card className="border-border bg-card/50">
                 <CardHeader>
                   <CardTitle className="flex items-center gap-2 text-base">
                     <AlertTriangle className="w-4 h-4 text-amber-400" />
@@ -1232,7 +1232,7 @@ export default function ShortSellingPage() {
                         <div key={c.challenge} className={`rounded-xl border ${borderMap[c.color]} ${bgMap[c.color]} p-4`}>
                           <p className={`font-semibold text-sm mb-2 ${titleMap[c.color]}`}>{c.challenge}</p>
                           <p className="text-xs text-muted-foreground mb-3">{c.desc}</p>
-                          <div className="rounded bg-white/5 p-2">
+                          <div className="rounded bg-foreground/5 p-2">
                             <p className="text-xs text-muted-foreground italic">{c.example}</p>
                           </div>
                         </div>
@@ -1262,7 +1262,7 @@ export default function ShortSellingPage() {
               </div>
 
               {/* Hall of Fame stats */}
-              <Card className="border-white/10 bg-card/50">
+              <Card className="border-border bg-card/50">
                 <CardHeader>
                   <CardTitle className="text-sm text-muted-foreground">Notable Short-Seller Firms</CardTitle>
                 </CardHeader>
@@ -1270,7 +1270,7 @@ export default function ShortSellingPage() {
                   <div className="overflow-x-auto">
                     <table className="w-full text-sm">
                       <thead>
-                        <tr className="border-b border-white/10">
+                        <tr className="border-b border-border">
                           {["Firm", "Founded", "Notable", "Style", "Avg Gain Per Short"].map((h) => (
                             <th key={h} className="text-left px-3 py-2 text-xs text-muted-foreground font-semibold">
                               {h}
@@ -1286,7 +1286,7 @@ export default function ShortSellingPage() {
                           { firm: "Muddy Waters", founded: "2010", notable: "Sino-Forest, Luckin Coffee", style: "China frauds", avg: "30–99%" },
                           { firm: "Citron Research", founded: "2001", notable: "Valeant, MOXC", style: "Consumer expose", avg: "20–80%" },
                         ].map((row) => (
-                          <tr key={row.firm} className="border-b border-white/5 hover:bg-muted/30 transition-colors">
+                          <tr key={row.firm} className="border-b border-border/50 hover:bg-muted/30 transition-colors">
                             <td className="px-3 py-2.5 text-foreground font-medium">{row.firm}</td>
                             <td className="px-3 py-2.5 text-muted-foreground">{row.founded}</td>
                             <td className="px-3 py-2.5 text-muted-foreground">{row.notable}</td>
@@ -1328,7 +1328,7 @@ export default function ShortSellingPage() {
               </div>
 
               {/* Anomalies vs efficiency debate */}
-              <Card className="border-white/10 bg-card/50">
+              <Card className="border-border bg-card/50">
                 <CardHeader>
                   <CardTitle className="flex items-center gap-2 text-base">
                     <Activity className="w-4 h-4 text-amber-400" />
@@ -1347,7 +1347,7 @@ export default function ShortSellingPage() {
                           { anomaly: "Quality Factor", desc: "High-profitability firms generate positive alpha.", strength: "Moderate" },
                           { anomaly: "Short-Side Overvaluation", desc: "High-short-interest stocks underperform by 1.5%/month on average.", strength: "Strong" },
                         ].map((item) => (
-                          <div key={item.anomaly} className="flex gap-2 p-2.5 rounded-lg bg-white/5 border border-white/8">
+                          <div key={item.anomaly} className="flex gap-2 p-2.5 rounded-lg bg-foreground/5 border border-border/50">
                             <Badge
                               variant="outline"
                               className={`text-xs shrink-0 h-fit ${item.strength === "Strong" ? "border-green-500/30 text-green-400" : "border-amber-500/30 text-amber-400"}`}
@@ -1372,7 +1372,7 @@ export default function ShortSellingPage() {
                           { limit: "Short Selling Constraints", desc: "Borrow cost, buy-in risk, and margin requirements limit short-side arbitrage capacity." },
                           { limit: "Implementation Shortfall", desc: "Transaction costs, market impact, and slippage erode anomaly profits in practice." },
                         ].map((item) => (
-                          <div key={item.limit} className="flex gap-2 p-2.5 rounded-lg bg-white/5 border border-white/8">
+                          <div key={item.limit} className="flex gap-2 p-2.5 rounded-lg bg-foreground/5 border border-border/50">
                             <div className="w-1.5 h-1.5 rounded-full bg-red-500/80 shrink-0 mt-1.5" />
                             <div>
                               <p className="text-xs font-semibold text-muted-foreground">{item.limit}</p>
@@ -1387,7 +1387,7 @@ export default function ShortSellingPage() {
               </Card>
 
               {/* Short selling's role in price discovery */}
-              <Card className="border-white/10 bg-card/50">
+              <Card className="border-border bg-card/50">
                 <CardHeader>
                   <CardTitle className="flex items-center gap-2 text-base">
                     <TrendingDown className="w-4 h-4 text-green-400" />
@@ -1419,7 +1419,7 @@ export default function ShortSellingPage() {
                         positive: false,
                       },
                     ].map((item) => (
-                      <div key={item.title} className="rounded-xl border border-white/10 bg-white/5 p-4">
+                      <div key={item.title} className="rounded-xl border border-border bg-foreground/5 p-4">
                         <p className="text-sm font-semibold text-foreground mb-2">{item.title}</p>
                         <p className="text-xs text-muted-foreground mb-3">{item.desc}</p>
                         <div className={`rounded-lg p-2.5 ${item.positive ? "bg-green-500/10 border border-green-500/20" : "bg-red-500/10 border border-red-500/20"}`}>

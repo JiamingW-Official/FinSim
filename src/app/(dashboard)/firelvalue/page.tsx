@@ -282,7 +282,7 @@ interface StatChipProps {
 }
 function StatChip({ label, value, color = "text-white", sub }: StatChipProps) {
   return (
-    <div className="flex flex-col items-center bg-white/5 rounded-lg px-3 py-2 min-w-[80px]">
+    <div className="flex flex-col items-center bg-foreground/5 rounded-lg px-3 py-2 min-w-[80px]">
       <span className="text-xs text-muted-foreground uppercase tracking-wide">{label}</span>
       <span className={cn("text-sm font-semibold", color)}>{value}</span>
       {sub && <span className="text-xs text-muted-foreground">{sub}</span>}

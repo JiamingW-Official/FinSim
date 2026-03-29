@@ -872,15 +872,15 @@ function VentureDebtTab() {
           <FinancingWaterfallChart />
           <div className="mt-2 flex flex-wrap gap-2 text-xs">
             <span className="flex items-center gap-1">
-              <span className="inline-block h-2.5 w-2.5 rounded-sm bg-[#60a5fa]" />
+              <span className="inline-block h-2.5 w-2.5 rounded-sm bg-chart-3" />
               <span className="text-muted-foreground">Equity rounds</span>
             </span>
             <span className="flex items-center gap-1">
-              <span className="inline-block h-2.5 w-2.5 rounded-sm bg-[#34d399]" />
+              <span className="inline-block h-2.5 w-2.5 rounded-sm bg-profit-light" />
               <span className="text-muted-foreground">Venture debt</span>
             </span>
             <span className="flex items-center gap-1">
-              <span className="inline-block h-2.5 w-2.5 rounded-sm bg-[#fb923c]" />
+              <span className="inline-block h-2.5 w-2.5 rounded-sm bg-warning-strong" />
               <span className="text-muted-foreground">Growth equity</span>
             </span>
           </div>

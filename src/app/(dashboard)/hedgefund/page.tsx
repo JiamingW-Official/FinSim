@@ -453,7 +453,7 @@ function StatChip({
   positive?: boolean;
 }) {
   return (
-    <div className="flex flex-col gap-0.5 rounded-md bg-white/5 px-3 py-2 min-w-[90px]">
+    <div className="flex flex-col gap-0.5 rounded-md bg-foreground/5 px-3 py-2 min-w-[90px]">
       <span className="text-xs text-muted-foreground uppercase tracking-wide">{label}</span>
       <span
         className={cn(
@@ -602,8 +602,8 @@ function StrategyExplorer() {
             className={cn(
               "text-left rounded-xl border p-3 transition-colors",
               selected === st.id
-                ? "border-transparent bg-white/10"
-                : "border-white/8 bg-white/3 hover:bg-muted/30"
+                ? "border-transparent bg-foreground/10"
+                : "border-border/50 bg-foreground/[0.03] hover:bg-muted/30"
             )}
             style={selected === st.id ? { boxShadow: `0 0 0 1.5px ${st.color}` } : undefined}
           >
@@ -642,7 +642,7 @@ function StrategyExplorer() {
             initial={{ opacity: 0, y: 12 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: 8 }}
-            className="rounded-xl border border-white/10 bg-white/4 p-5"
+            className="rounded-xl border border-border bg-foreground/[0.04] p-5"
           >
             <div className="flex flex-wrap items-start gap-4 mb-4">
               <div className="flex-1 min-w-0">
@@ -679,7 +679,7 @@ function StrategyExplorer() {
 
       {/* Two-column: chart + table */}
       <div className="grid grid-cols-1 xl:grid-cols-2 gap-6">
-        <Card className="bg-white/3 border-white/8">
+        <Card className="bg-foreground/[0.03] border-border/50">
           <CardHeader className="pb-2">
             <CardTitle className="text-sm text-muted-foreground">Risk-Return Scatter (Bubble Size = AUM)</CardTitle>
           </CardHeader>
@@ -688,14 +688,14 @@ function StrategyExplorer() {
           </CardContent>
         </Card>
 
-        <Card className="bg-white/3 border-white/8">
+        <Card className="bg-foreground/[0.03] border-border/50">
           <CardHeader className="pb-2">
             <CardTitle className="text-sm text-muted-foreground">Annual Returns by Strategy</CardTitle>
           </CardHeader>
           <CardContent className="pt-0 overflow-x-auto">
             <table className="w-full text-xs">
               <thead>
-                <tr className="border-b border-white/10">
+                <tr className="border-b border-border">
                   <th className="text-left py-2 pr-3 text-muted-foreground font-medium">Strategy</th>
                   {YEARS.map((y) => (
                     <th key={y} className="text-right py-2 px-2 text-muted-foreground font-medium">{y}</th>
@@ -704,7 +704,7 @@ function StrategyExplorer() {
               </thead>
               <tbody>
                 {STRATEGIES.map((st) => (
-                  <tr key={st.id} className="border-b border-white/5 hover:bg-muted/30 transition-colors">
+                  <tr key={st.id} className="border-b border-border/50 hover:bg-muted/30 transition-colors">
                     <td className="py-1.5 pr-3 text-muted-foreground whitespace-nowrap">
                       <span
                         className="inline-block w-1.5 h-1.5 rounded-full mr-1.5"
@@ -840,7 +840,7 @@ function LSEquitySimulator() {
 
       <div className="grid grid-cols-1 xl:grid-cols-2 gap-5">
         {/* Longs table */}
-        <Card className="bg-white/3 border-white/8">
+        <Card className="bg-foreground/[0.03] border-border/50">
           <CardHeader className="pb-2">
             <CardTitle className="text-sm text-muted-foreground flex items-center gap-2">
               <TrendingUp className="w-4 h-4 text-emerald-400" />
@@ -850,7 +850,7 @@ function LSEquitySimulator() {
           <CardContent className="pt-0 overflow-x-auto">
             <table className="w-full text-xs">
               <thead>
-                <tr className="border-b border-white/10">
+                <tr className="border-b border-border">
                   <th className="text-left py-1.5 text-muted-foreground">Ticker</th>
                   <th className="text-right py-1.5 text-muted-foreground">Shares</th>
                   <th className="text-right py-1.5 text-muted-foreground">Entry</th>
@@ -864,7 +864,7 @@ function LSEquitySimulator() {
                   const pl = p.shares * (p.currentPrice - p.entryPrice);
                   const plPct = ((p.currentPrice - p.entryPrice) / p.entryPrice) * 100;
                   return (
-                    <tr key={p.ticker} className="border-b border-white/5">
+                    <tr key={p.ticker} className="border-b border-border/50">
                       <td className="py-1.5 text-foreground font-medium">{p.ticker}</td>
                       <td className="py-1.5 text-right text-muted-foreground">{p.shares.toLocaleString()}</td>
                       <td className="py-1.5 text-right text-muted-foreground">${p.entryPrice.toFixed(1)}</td>
@@ -882,7 +882,7 @@ function LSEquitySimulator() {
         </Card>
 
         {/* Shorts table */}
-        <Card className="bg-white/3 border-white/8">
+        <Card className="bg-foreground/[0.03] border-border/50">
           <CardHeader className="pb-2">
             <CardTitle className="text-sm text-muted-foreground flex items-center gap-2">
               <TrendingDown className="w-4 h-4 text-red-400" />
@@ -892,7 +892,7 @@ function LSEquitySimulator() {
           <CardContent className="pt-0 overflow-x-auto">
             <table className="w-full text-xs">
               <thead>
-                <tr className="border-b border-white/10">
+                <tr className="border-b border-border">
                   <th className="text-left py-1.5 text-muted-foreground">Ticker</th>
                   <th className="text-right py-1.5 text-muted-foreground">Shares</th>
                   <th className="text-right py-1.5 text-muted-foreground">Entry</th>
@@ -906,7 +906,7 @@ function LSEquitySimulator() {
                   const pl = p.shares * (p.entryPrice - p.currentPrice);
                   const plPct = ((p.entryPrice - p.currentPrice) / p.entryPrice) * 100;
                   return (
-                    <tr key={p.ticker} className="border-b border-white/5">
+                    <tr key={p.ticker} className="border-b border-border/50">
                       <td className="py-1.5 text-foreground font-medium">{p.ticker}</td>
                       <td className="py-1.5 text-right text-muted-foreground">{p.shares.toLocaleString()}</td>
                       <td className="py-1.5 text-right text-muted-foreground">${p.entryPrice.toFixed(2)}</td>
@@ -926,7 +926,7 @@ function LSEquitySimulator() {
 
       {/* Pair trade + factor exposure */}
       <div className="grid grid-cols-1 xl:grid-cols-2 gap-5">
-        <Card className="bg-white/3 border-white/8">
+        <Card className="bg-foreground/[0.03] border-border/50">
           <CardHeader className="pb-2">
             <CardTitle className="text-sm text-muted-foreground">Pair Trade — Long AAPL / Short MSFT</CardTitle>
           </CardHeader>
@@ -946,7 +946,7 @@ function LSEquitySimulator() {
           </CardContent>
         </Card>
 
-        <Card className="bg-white/3 border-white/8">
+        <Card className="bg-foreground/[0.03] border-border/50">
           <CardHeader className="pb-2">
             <CardTitle className="text-sm text-muted-foreground">Factor Exposure & Portfolio Heat</CardTitle>
           </CardHeader>
@@ -964,7 +964,7 @@ function LSEquitySimulator() {
                   <span className="text-muted-foreground">{label}</span>
                   <span className="text-muted-foreground font-medium">{value.toFixed(1)}%</span>
                 </div>
-                <div className="h-1.5 rounded-full bg-white/8 overflow-hidden">
+                <div className="h-1.5 rounded-full bg-foreground/[0.08] overflow-hidden">
                   <div
                     className={cn("h-full rounded-full", color)}
                     style={{ width: `${Math.min(100, (Math.abs(value) / max) * 100)}%` }}
@@ -1074,7 +1074,7 @@ function GlobalMacroSimulator() {
           const progress = Math.min(100, Math.max(0, ((theme.current - theme.entry) / (theme.target - theme.entry)) * 100));
 
           return (
-            <Card key={theme.id} className="bg-white/3 border-white/8">
+            <Card key={theme.id} className="bg-foreground/[0.03] border-border/50">
               <CardContent className="p-4 space-y-3">
                 <div className="flex items-start justify-between gap-2">
                   <div>
@@ -1093,7 +1093,7 @@ function GlobalMacroSimulator() {
                 <p className="text-xs text-muted-foreground">{theme.thesis}</p>
                 <div className="grid grid-cols-4 gap-2 text-xs">
                   {[["Instrument", theme.instrument], ["Entry", `${theme.unit}${theme.entry}`], ["Current", `${theme.unit}${theme.current}`], ["Target", `${theme.unit}${theme.target}`]].map(([l, v]) => (
-                    <div key={l} className="bg-white/5 rounded px-2 py-1.5">
+                    <div key={l} className="bg-foreground/5 rounded px-2 py-1.5">
                       <div className="text-muted-foreground text-[11px] uppercase">{l}</div>
                       <div className="text-foreground font-medium truncate">{v}</div>
                     </div>
@@ -1104,7 +1104,7 @@ function GlobalMacroSimulator() {
                     <span>Entry → Target progress</span>
                     <span>{progress.toFixed(0)}%</span>
                   </div>
-                  <Progress value={progress} className="h-1.5 bg-white/10" />
+                  <Progress value={progress} className="h-1.5 bg-foreground/10" />
                 </div>
                 <div className="flex justify-between text-xs">
                   <span className="text-muted-foreground">Stop: <span className="text-red-400">{theme.unit}{theme.stop}</span></span>
@@ -1118,7 +1118,7 @@ function GlobalMacroSimulator() {
 
       {/* Regime + CB */}
       <div className="grid grid-cols-1 xl:grid-cols-2 gap-5">
-        <Card className="bg-white/3 border-white/8">
+        <Card className="bg-foreground/[0.03] border-border/50">
           <CardHeader className="pb-2">
             <CardTitle className="text-sm text-muted-foreground">Macro Regime Detector</CardTitle>
           </CardHeader>
@@ -1134,8 +1134,8 @@ function GlobalMacroSimulator() {
                     className={cn(
                       "w-full text-left rounded-lg border p-2.5 text-xs transition-colors",
                       activeRegime === i
-                        ? "border-transparent bg-white/10"
-                        : "border-white/8 hover:bg-muted/30"
+                        ? "border-transparent bg-foreground/10"
+                        : "border-border/50 hover:bg-muted/30"
                     )}
                     style={activeRegime === i ? { boxShadow: `0 0 0 1.5px ${r.color}` } : undefined}
                   >
@@ -1143,7 +1143,7 @@ function GlobalMacroSimulator() {
                     <div className="text-muted-foreground text-xs">{r.quadrant}</div>
                   </button>
                 ))}
-                <div className="mt-3 rounded-lg bg-white/5 p-3">
+                <div className="mt-3 rounded-lg bg-foreground/5 p-3">
                   <p className="text-xs text-muted-foreground uppercase tracking-wide mb-1.5">Recommended trades in {regime.name}</p>
                   {regime.trades.map((t) => (
                     <div key={t} className="flex items-center gap-1.5 text-xs text-muted-foreground py-0.5">
@@ -1157,13 +1157,13 @@ function GlobalMacroSimulator() {
           </CardContent>
         </Card>
 
-        <Card className="bg-white/3 border-white/8">
+        <Card className="bg-foreground/[0.03] border-border/50">
           <CardHeader className="pb-2">
             <CardTitle className="text-sm text-muted-foreground">Central Bank Positioning</CardTitle>
           </CardHeader>
           <CardContent className="pt-0 space-y-2">
             {CB_STANCES.map((cb) => (
-              <div key={cb.bank} className="rounded-lg bg-white/4 border border-white/8 p-3">
+              <div key={cb.bank} className="rounded-lg bg-foreground/[0.04] border border-border/50 p-3">
                 <div className="flex items-center justify-between mb-1">
                   <span className="text-xs font-semibold text-foreground">{cb.bank}</span>
                   <div className="flex items-center gap-2">
@@ -1271,14 +1271,14 @@ function EventDriven() {
   return (
     <div className="space-y-5">
       {/* Deal table */}
-      <Card className="bg-white/3 border-white/8">
+      <Card className="bg-foreground/[0.03] border-border/50">
         <CardHeader className="pb-2">
           <CardTitle className="text-sm text-muted-foreground">Active Merger Arb Positions</CardTitle>
         </CardHeader>
         <CardContent className="pt-0 overflow-x-auto">
           <table className="w-full text-xs">
             <thead>
-              <tr className="border-b border-white/10">
+              <tr className="border-b border-border">
                 <th className="text-left py-2 text-muted-foreground">Target</th>
                 <th className="text-left py-2 text-muted-foreground">Acquirer</th>
                 <th className="text-right py-2 text-muted-foreground">Offer</th>
@@ -1298,8 +1298,8 @@ function EventDriven() {
                   <tr
                     key={i}
                     className={cn(
-                      "border-b border-white/5 cursor-pointer transition-colors",
-                      selected === i ? "bg-white/8" : "hover:bg-muted/30"
+                      "border-b border-border/50 cursor-pointer transition-colors",
+                      selected === i ? "bg-foreground/[0.08]" : "hover:bg-muted/30"
                     )}
                     onClick={() => setSelected(i === selected ? null : i)}
                   >
@@ -1354,7 +1354,7 @@ function EventDriven() {
               const kelly = Math.max(0, (p * b - (1 - p)) / b) * 100;
 
               return (
-                <Card className="bg-white/3 border-white/8">
+                <Card className="bg-foreground/[0.03] border-border/50">
                   <CardContent className="p-5">
                     <h4 className="text-sm font-semibold text-foreground mb-3">
                       Deal Analysis — {deal.target} / {deal.acquirer}
@@ -1369,7 +1369,7 @@ function EventDriven() {
                       <StatChip label="Kelly Size" value={`${kelly.toFixed(1)}%`} />
                       <StatChip label="Type" value={deal.dealType} />
                     </div>
-                    <div className="rounded-lg bg-white/5 p-3 text-xs text-muted-foreground space-y-1">
+                    <div className="rounded-lg bg-foreground/5 p-3 text-xs text-muted-foreground space-y-1">
                       <p>
                         <span className="text-muted-foreground">Spread calc: </span>
                         Annualised Return = (${deal.offerPrice.toFixed(2)} − ${deal.currentPrice.toFixed(2)}) / ${deal.currentPrice.toFixed(2)} × 365 / {deal.daysToClose} = {annRet.toFixed(2)}% p.a.
@@ -1391,7 +1391,7 @@ function EventDriven() {
         )}
       </AnimatePresence>
 
-      <Card className="bg-white/3 border-white/8">
+      <Card className="bg-foreground/[0.03] border-border/50">
         <CardHeader className="pb-2">
           <CardTitle className="text-sm text-muted-foreground">Merger Arb — 10-Year Track Record</CardTitle>
         </CardHeader>
@@ -1491,14 +1491,14 @@ function CTASimulator() {
   return (
     <div className="space-y-5">
       {/* Signals table */}
-      <Card className="bg-white/3 border-white/8">
+      <Card className="bg-foreground/[0.03] border-border/50">
         <CardHeader className="pb-2">
           <CardTitle className="text-sm text-muted-foreground">Trend Following Signals & Position Sizing</CardTitle>
         </CardHeader>
         <CardContent className="pt-0 overflow-x-auto">
           <table className="w-full text-xs">
             <thead>
-              <tr className="border-b border-white/10">
+              <tr className="border-b border-border">
                 <th className="text-left py-2 text-muted-foreground">Market</th>
                 <th className="text-left py-2 text-muted-foreground">Asset</th>
                 <th className="text-right py-2 text-muted-foreground">12M Mom.</th>
@@ -1510,7 +1510,7 @@ function CTASimulator() {
             </thead>
             <tbody>
               {TREND_MARKETS.map((m) => (
-                <tr key={m.name} className="border-b border-white/5">
+                <tr key={m.name} className="border-b border-border/50">
                   <td className="py-1.5 text-foreground font-medium">{m.name}</td>
                   <td className="py-1.5 text-muted-foreground">{m.asset}</td>
                   <td className={cn("py-1.5 text-right font-medium", m.momentum12m >= 0 ? "text-emerald-400" : "text-red-400")}>
@@ -1533,7 +1533,7 @@ function CTASimulator() {
 
       {/* Parameter sweep */}
       <div className="grid grid-cols-1 xl:grid-cols-2 gap-5">
-        <Card className="bg-white/3 border-white/8">
+        <Card className="bg-foreground/[0.03] border-border/50">
           <CardHeader className="pb-2">
             <CardTitle className="text-sm text-muted-foreground">Parameter Sweep — Trend Period vs Sharpe</CardTitle>
           </CardHeader>
@@ -1547,14 +1547,14 @@ function CTASimulator() {
                     "flex-1 rounded-lg border py-2 text-sm font-medium transition-colors",
                     trendPeriod === p
                       ? "border-primary bg-primary/15 text-primary"
-                      : "border-white/8 text-muted-foreground hover:text-muted-foreground hover:bg-muted/30"
+                      : "border-border/50 text-muted-foreground hover:text-muted-foreground hover:bg-muted/30"
                   )}
                 >
                   {p}D
                 </button>
               ))}
             </div>
-            <div className="rounded-xl bg-white/5 p-5 flex items-center justify-center">
+            <div className="rounded-xl bg-foreground/5 p-5 flex items-center justify-center">
               <div className="text-center">
                 <div className="text-2xl font-bold text-primary mb-1">
                   {paramSharpe[trendPeriod].toFixed(2)}
@@ -1568,7 +1568,7 @@ function CTASimulator() {
                 { p: 50, note: "Standard momentum window, best risk-adjusted returns historically" },
                 { p: 100, note: "Fewer signals, lower turnover, slower to adapt to regime changes" },
               ].map(({ p, note }) => (
-                <div key={p} className={cn("text-xs p-2 rounded", trendPeriod === p ? "text-muted-foreground bg-white/6" : "text-muted-foreground")}>
+                <div key={p} className={cn("text-xs p-2 rounded", trendPeriod === p ? "text-muted-foreground bg-foreground/[0.06]" : "text-muted-foreground")}>
                   <span className="font-medium">{p}D: </span>{note}
                 </div>
               ))}
@@ -1576,7 +1576,7 @@ function CTASimulator() {
           </CardContent>
         </Card>
 
-        <Card className="bg-white/3 border-white/8">
+        <Card className="bg-foreground/[0.03] border-border/50">
           <CardHeader className="pb-2">
             <CardTitle className="text-sm text-muted-foreground">Crisis Alpha — CTA vs S&P 500</CardTitle>
           </CardHeader>
@@ -1669,7 +1669,7 @@ function FundEconomics() {
   return (
     <div className="space-y-5">
       {/* Interactive sliders */}
-      <Card className="bg-white/3 border-white/8">
+      <Card className="bg-foreground/[0.03] border-border/50">
         <CardHeader className="pb-2">
           <CardTitle className="text-sm text-muted-foreground">Fee Calculator (2&amp;20 Structure)</CardTitle>
         </CardHeader>
@@ -1725,7 +1725,7 @@ function FundEconomics() {
                   key={label}
                   className={cn(
                     "flex justify-between items-center rounded-lg px-3 py-2 text-xs",
-                    highlight ? "bg-emerald-400/8 border border-emerald-400/20" : "bg-white/4"
+                    highlight ? "bg-emerald-400/8 border border-emerald-400/20" : "bg-foreground/[0.04]"
                   )}
                 >
                   <span className="text-muted-foreground">{label}</span>
@@ -1748,14 +1748,14 @@ function FundEconomics() {
 
       {/* HWM table + break-even */}
       <div className="grid grid-cols-1 xl:grid-cols-2 gap-5">
-        <Card className="bg-white/3 border-white/8">
+        <Card className="bg-foreground/[0.03] border-border/50">
           <CardHeader className="pb-2">
             <CardTitle className="text-sm text-muted-foreground">High Water Mark — Investor Protection</CardTitle>
           </CardHeader>
           <CardContent className="pt-0">
             <table className="w-full text-xs mb-3">
               <thead>
-                <tr className="border-b border-white/10">
+                <tr className="border-b border-border">
                   <th className="text-left py-2 text-muted-foreground">Year</th>
                   <th className="text-right py-2 text-muted-foreground">NAV</th>
                   <th className="text-right py-2 text-muted-foreground">HWM</th>
@@ -1765,7 +1765,7 @@ function FundEconomics() {
               </thead>
               <tbody>
                 {hwmScenarios.map((row) => (
-                  <tr key={row.year} className="border-b border-white/5">
+                  <tr key={row.year} className="border-b border-border/50">
                     <td className="py-1.5 text-muted-foreground">{row.year}</td>
                     <td className={cn("py-1.5 text-right font-medium", row.nav >= row.hwm ? "text-emerald-400" : "text-red-400")}>
                       ${row.nav}
@@ -1785,14 +1785,14 @@ function FundEconomics() {
                 ))}
               </tbody>
             </table>
-            <div className="rounded-lg bg-white/5 p-3 text-xs text-muted-foreground">
+            <div className="rounded-lg bg-foreground/5 p-3 text-xs text-muted-foreground">
               HWM ensures GPs only collect performance fees on new profits. In Y2–Y3, despite negative/flat performance,
               no carry is charged. Fee resumes only once the fund surpasses prior peak NAV.
             </div>
           </CardContent>
         </Card>
 
-        <Card className="bg-white/3 border-white/8">
+        <Card className="bg-foreground/[0.03] border-border/50">
           <CardHeader className="pb-2">
             <CardTitle className="text-sm text-muted-foreground">Fund Economics — Break-Even &amp; Scale</CardTitle>
           </CardHeader>
@@ -1805,7 +1805,7 @@ function FundEconomics() {
 
             <table className="w-full text-xs">
               <thead>
-                <tr className="border-b border-white/10">
+                <tr className="border-b border-border">
                   <th className="text-left py-1.5 text-muted-foreground">AUM</th>
                   <th className="text-right py-1.5 text-muted-foreground">Mgmt Fee</th>
                   <th className="text-right py-1.5 text-muted-foreground">Perf Fee*</th>
@@ -1817,7 +1817,7 @@ function FundEconomics() {
                   const mf = aum * 0.02;
                   const pf = aum * 0.10 * 0.20; // assume 10% gross return, 5% hurdle
                   return (
-                    <tr key={aum} className="border-b border-white/5">
+                    <tr key={aum} className="border-b border-border/50">
                       <td className="py-1.5 text-muted-foreground">${aum.toLocaleString()}M</td>
                       <td className="py-1.5 text-right text-muted-foreground">${mf.toFixed(1)}M</td>
                       <td className="py-1.5 text-right text-amber-400">${pf.toFixed(1)}M</td>
@@ -1836,7 +1836,7 @@ function FundEconomics() {
                 { label: "Hurdle Rate", value: "5–8%", note: "LP must earn first" },
                 { label: "All-In Cost (LP)", value: "3–6% drag", note: "At avg performance" },
               ].map(({ label, value, note }) => (
-                <div key={label} className="rounded-lg bg-white/5 p-2.5">
+                <div key={label} className="rounded-lg bg-foreground/5 p-2.5">
                   <div className="text-muted-foreground text-xs mb-0.5">{label}</div>
                   <div className="text-foreground font-semibold">{value}</div>
                   <div className="text-muted-foreground text-xs">{note}</div>
@@ -1880,7 +1880,7 @@ export default function HedgeFundPage() {
 
         {/* Tabs */}
         <Tabs defaultValue="explorer">
-          <TabsList className="bg-white/5 border border-white/8 flex-wrap h-auto gap-0.5 p-1">
+          <TabsList className="bg-foreground/5 border border-border/50 flex-wrap h-auto gap-0.5 p-1">
             {[
               { value: "explorer", label: "Strategy Explorer", icon: <Layers className="w-3.5 h-3.5" /> },
               { value: "ls_equity", label: "L/S Equity", icon: <Scale className="w-3.5 h-3.5" /> },
@@ -1892,7 +1892,7 @@ export default function HedgeFundPage() {
               <TabsTrigger
                 key={value}
                 value={value}
-                className="flex items-center gap-1.5 text-xs data-[state=active]:bg-white/12 data-[state=active]:text-foreground text-muted-foreground"
+                className="flex items-center gap-1.5 text-xs data-[state=active]:bg-foreground/[0.12] data-[state=active]:text-foreground text-muted-foreground"
               >
                 {icon}
                 {label}
@@ -1921,7 +1921,7 @@ export default function HedgeFundPage() {
         </Tabs>
 
         {/* Footer note */}
-        <div className="flex items-start gap-2 rounded-xl bg-white/3 border border-white/8 p-4">
+        <div className="flex items-start gap-2 rounded-xl bg-foreground/[0.03] border border-border/50 p-4">
           <Info className="w-4 h-4 text-muted-foreground flex-shrink-0 mt-0.5" />
           <p className="text-xs text-muted-foreground">
             All data is simulated for educational purposes. Hedge fund strategies carry significant risks

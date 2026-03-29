@@ -160,7 +160,7 @@ export function PortfolioHeatmap() {
         </span>
         <span
           className={
-            totalPnL >= 0 ? "text-xs text-[#10b981]" : "text-xs text-[#ef4444]"
+            totalPnL >= 0 ? "text-xs text-profit" : "text-xs text-loss"
           }
         >
           {totalPnL >= 0 ? "+" : ""}{formatCurrency(totalPnL)}
@@ -245,8 +245,8 @@ export function PortfolioHeatmap() {
             <div
               className={
                 hoveredPos.unrealizedPnL >= 0
-                  ? "text-[#10b981]"
-                  : "text-[#ef4444]"
+                  ? "text-profit"
+                  : "text-loss"
               }
             >
               P&L: {formatCurrency(hoveredPos.unrealizedPnL)}{" "}

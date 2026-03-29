@@ -1452,7 +1452,7 @@ export default function SectorTimingDashboard() {
                         "flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-semibold border",
                         stance === "Overweight" ? "border-emerald-500/40 text-emerald-400 bg-emerald-500/10" :
                         stance === "Underweight" ? "border-red-500/40 text-red-400 bg-red-500/10" :
-                        "border-white/15 text-muted-foreground bg-white/5",
+                        "border-foreground/15 text-muted-foreground bg-foreground/5",
                       )}
                     >
                       {stance}: {count} sectors
@@ -1529,7 +1529,7 @@ export default function SectorTimingDashboard() {
                             </td>
                             <td className="py-1.5 px-2 text-right">
                               <div className="flex items-center gap-1.5 justify-end">
-                                <div className="w-16 bg-white/10 rounded-full h-1.5 overflow-hidden">
+                                <div className="w-16 bg-foreground/10 rounded-full h-1.5 overflow-hidden">
                                   <div
                                     className="h-full rounded-full"
                                     style={{

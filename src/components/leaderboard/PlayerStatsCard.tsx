@@ -69,7 +69,7 @@ export function PlayerStatsCard() {
         {/* Avatar */}
         <motion.div
           className={cn(
-            "flex h-12 w-12 shrink-0 items-center justify-center rounded-xl text-xl font-bold text-white bg-primary",
+            "flex h-12 w-12 shrink-0 items-center justify-center rounded-xl text-xl font-bold text-primary-foreground bg-primary",
             (league === "alpha" || league === "diamond") && "rotating-border",
           )}
           initial={{ scale: 0, rotate: -15 }}

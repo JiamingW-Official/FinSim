@@ -82,7 +82,7 @@ function StatCard({
       ? "text-rose-400"
       : "text-white";
   return (
-    <div className="rounded-xl border border-white/10 bg-white/5 p-4 flex flex-col gap-1">
+    <div className="rounded-xl border border-border bg-foreground/5 p-4 flex flex-col gap-1">
       <span className="text-xs text-muted-foreground">{label}</span>
       <span className={cn("text-xl font-bold", valClass)}>{value}</span>
       {sub && <span className="text-xs text-muted-foreground">{sub}</span>}
@@ -127,7 +127,7 @@ function MiniBar({
   return (
     <div className="flex items-center gap-2">
       {label && <span className="text-xs text-muted-foreground w-20 shrink-0 truncate">{label}</span>}
-      <div className="flex-1 h-2 bg-white/10 rounded-full overflow-hidden">
+      <div className="flex-1 h-2 bg-foreground/10 rounded-full overflow-hidden">
         <div
           className={cn("h-full rounded-full", color)}
           style={{ width: `${pct}%` }}
@@ -416,10 +416,10 @@ function SaasTab() {
         <SectionTitle>
           <BarChart3 className="w-4 h-4" /> SaaS Company Metrics
         </SectionTitle>
-        <div className="overflow-x-auto rounded-xl border border-white/10">
+        <div className="overflow-x-auto rounded-xl border border-border">
           <table className="w-full text-xs">
             <thead>
-              <tr className="border-b border-white/10 bg-white/5">
+              <tr className="border-b border-border bg-foreground/5">
                 <th className="text-left px-3 py-2.5 text-muted-foreground font-medium">Ticker</th>
                 <th className="text-right px-3 py-2.5 text-muted-foreground font-medium">ARR Growth</th>
                 <th className="text-right px-3 py-2.5 text-muted-foreground font-medium">NRR</th>
@@ -436,7 +436,7 @@ function SaasTab() {
                   key={c.ticker}
                   onClick={() => setSelected(selected === c.ticker ? null : c.ticker)}
                   className={cn(
-                    "border-b border-white/5 cursor-pointer transition-colors",
+                    "border-b border-border/50 cursor-pointer transition-colors",
                     selected === c.ticker
                       ? "bg-primary/10"
                       : "hover:bg-muted/30"
@@ -524,10 +524,10 @@ function SaasTab() {
           </SectionTitle>
           <div className="space-y-2">
             {sorted.map((c, i) => (
-              <div key={c.ticker} className="flex items-center gap-3 rounded-lg bg-white/5 px-3 py-2">
+              <div key={c.ticker} className="flex items-center gap-3 rounded-lg bg-foreground/5 px-3 py-2">
                 <span className="text-muted-foreground text-xs w-4">{i + 1}</span>
                 <span className="font-mono text-xs font-bold text-white w-12">{c.ticker}</span>
-                <div className="flex-1 h-1.5 bg-white/10 rounded-full overflow-hidden">
+                <div className="flex-1 h-1.5 bg-foreground/10 rounded-full overflow-hidden">
                   <div
                     className={cn("h-full rounded-full", c.nrr >= 120 ? "bg-emerald-500" : c.nrr >= 110 ? "bg-primary" : "bg-muted-foreground")}
                     style={{ width: `${Math.min(100, ((c.nrr - 100) / 35) * 100)}%` }}
@@ -546,7 +546,7 @@ function SaasTab() {
           <SectionTitle>
             <Activity className="w-4 h-4 text-primary" /> 2021 Cohort Revenue (Indexed to 100)
           </SectionTitle>
-          <div className="rounded-xl bg-white/5 border border-white/10 p-3">
+          <div className="rounded-xl bg-foreground/5 border border-border p-3">
             <svg viewBox="0 0 360 180" className="w-full">
               {/* Grid */}
               {[0, 50, 100, 150, 200, 250].map((v) => {
@@ -667,10 +667,10 @@ function AiInfraTab() {
         <SectionTitle>
           <Zap className="w-4 h-4 text-yellow-400" /> AI Hyperscaler Comparison
         </SectionTitle>
-        <div className="overflow-x-auto rounded-xl border border-white/10">
+        <div className="overflow-x-auto rounded-xl border border-border">
           <table className="w-full text-xs">
             <thead>
-              <tr className="border-b border-white/10 bg-white/5">
+              <tr className="border-b border-border bg-foreground/5">
                 <th className="text-left px-3 py-2.5 text-muted-foreground font-medium">Company</th>
                 <th className="text-right px-3 py-2.5 text-muted-foreground font-medium">AI Revenue</th>
                 <th className="text-right px-3 py-2.5 text-muted-foreground font-medium">AI Growth</th>
@@ -685,7 +685,7 @@ function AiInfraTab() {
                   key={h.ticker}
                   onClick={() => setActiveHyperscaler(activeHyperscaler === h.ticker ? null : h.ticker)}
                   className={cn(
-                    "border-b border-white/5 cursor-pointer transition-colors",
+                    "border-b border-border/50 cursor-pointer transition-colors",
                     activeHyperscaler === h.ticker ? "bg-orange-500/10" : "hover:bg-muted/30"
                   )}
                 >
@@ -720,7 +720,7 @@ function AiInfraTab() {
           <SectionTitle>
             <Cpu className="w-4 h-4 text-primary" /> AI Chip Market Share
           </SectionTitle>
-          <div className="rounded-xl bg-white/5 border border-white/10 p-4">
+          <div className="rounded-xl bg-foreground/5 border border-border p-4">
             {/* Donut */}
             <svg viewBox="0 0 200 200" className="w-40 h-40 mx-auto">
               {(() => {
@@ -764,7 +764,7 @@ function AiInfraTab() {
           <SectionTitle>
             <Cloud className="w-4 h-4 text-primary" /> Cloud Market Share (IaaS/PaaS)
           </SectionTitle>
-          <div className="rounded-xl bg-white/5 border border-white/10 p-4">
+          <div className="rounded-xl bg-foreground/5 border border-border p-4">
             <svg viewBox="0 0 200 200" className="w-40 h-40 mx-auto">
               {(() => {
                 let cumAngle = -90;
@@ -810,9 +810,9 @@ function AiInfraTab() {
         </SectionTitle>
         <div className="space-y-2">
           {AI_ADOPTION_STAGES.map((stage) => (
-            <div key={stage.stage} className="flex items-center gap-3 rounded-lg bg-white/5 px-3 py-2.5">
+            <div key={stage.stage} className="flex items-center gap-3 rounded-lg bg-foreground/5 px-3 py-2.5">
               <span className="text-xs font-semibold text-foreground w-32 shrink-0">{stage.stage}</span>
-              <div className="flex-1 h-2 bg-white/10 rounded-full overflow-hidden">
+              <div className="flex-1 h-2 bg-foreground/10 rounded-full overflow-hidden">
                 <div
                   className="h-full bg-primary rounded-full"
                   style={{ width: `${stage.pct}%` }}
@@ -877,7 +877,7 @@ function AiInfraTab() {
                   Score: {item.score}/100
                 </Badge>
               </div>
-              <div className="h-1.5 bg-white/10 rounded-full mb-2">
+              <div className="h-1.5 bg-foreground/10 rounded-full mb-2">
                 <div
                   className={cn("h-full rounded-full", item.color === "emerald" ? "bg-emerald-500" : item.color === "blue" ? "bg-primary" : "bg-amber-500")}
                   style={{ width: `${item.score}%` }}
@@ -943,7 +943,7 @@ function SemiCycleTab() {
                   ? "border-emerald-500/40 bg-emerald-500/10"
                   : i === 2
                   ? "border-rose-500/40 bg-rose-500/10"
-                  : "border-white/10 bg-white/5"
+                  : "border-border bg-foreground/5"
               )}
             >
               <div className="flex items-center gap-1.5 mb-1">
@@ -967,10 +967,10 @@ function SemiCycleTab() {
         <SectionTitle>
           <BarChart3 className="w-4 h-4" /> Key Semiconductor Companies
         </SectionTitle>
-        <div className="overflow-x-auto rounded-xl border border-white/10">
+        <div className="overflow-x-auto rounded-xl border border-border">
           <table className="w-full text-xs">
             <thead>
-              <tr className="border-b border-white/10 bg-white/5">
+              <tr className="border-b border-border bg-foreground/5">
                 <th className="text-left px-3 py-2.5 text-muted-foreground font-medium">Company</th>
                 <th className="text-left px-3 py-2.5 text-muted-foreground font-medium">Segment</th>
                 <th className="text-right px-3 py-2.5 text-muted-foreground font-medium">Rev Growth</th>
@@ -986,7 +986,7 @@ function SemiCycleTab() {
                   key={c.ticker}
                   onClick={() => setSelectedSemi(selectedSemi === c.ticker ? null : c.ticker)}
                   className={cn(
-                    "border-b border-white/5 cursor-pointer transition-colors",
+                    "border-b border-border/50 cursor-pointer transition-colors",
                     selectedSemi === c.ticker ? "bg-primary/10" : "hover:bg-muted/30"
                   )}
                 >
@@ -995,7 +995,7 @@ function SemiCycleTab() {
                     <span className="text-muted-foreground ml-1.5">{c.name}</span>
                   </td>
                   <td className="px-3 py-2.5">
-                    <Badge variant="outline" className="text-muted-foreground border-white/20 text-xs">
+                    <Badge variant="outline" className="text-muted-foreground border-border text-xs">
                       {c.segment}
                     </Badge>
                   </td>
@@ -1030,7 +1030,7 @@ function SemiCycleTab() {
         <SectionTitle>
           <BarChart3 className="w-4 h-4 text-emerald-400" /> Book-to-Bill Ratio
         </SectionTitle>
-        <div className="rounded-xl bg-white/5 border border-white/10 p-4">
+        <div className="rounded-xl bg-foreground/5 border border-border p-4">
           <svg viewBox="0 0 520 180" className="w-full">
             {/* Reference line at 1.0 */}
             {(() => {
@@ -1128,7 +1128,7 @@ function MegaCapTab() {
               "px-3 py-1.5 rounded-lg text-xs font-mono font-bold transition-colors",
               selected === c.ticker
                 ? "bg-primary text-white"
-                : "bg-white/5 text-muted-foreground hover:bg-muted/50 hover:text-foreground"
+                : "bg-foreground/5 text-muted-foreground hover:bg-muted/50 hover:text-foreground"
             )}
           >
             {c.ticker}
@@ -1148,7 +1148,7 @@ function MegaCapTab() {
         >
           {/* Left: metrics */}
           <div className="space-y-4">
-            <div className="rounded-xl border border-white/10 bg-white/5 p-4">
+            <div className="rounded-xl border border-border bg-foreground/5 p-4">
               <h4 className="font-bold text-white text-sm mb-3">{company.name} ({company.ticker})</h4>
               <div className="grid grid-cols-2 gap-2">
                 {[
@@ -1162,7 +1162,7 @@ function MegaCapTab() {
                   { label: "Buyback Yield", value: `${company.buybackYield}%`, cls: company.buybackYield > 1 ? "text-emerald-400" : "text-muted-foreground" },
                   { label: "Net Cash", value: fmtB(Math.abs(company.netCashB)), cls: company.netCashB >= 0 ? "text-emerald-400" : "text-rose-400" },
                 ].map((m) => (
-                  <div key={m.label} className="flex justify-between text-xs border-b border-white/5 py-1.5">
+                  <div key={m.label} className="flex justify-between text-xs border-b border-border/50 py-1.5">
                     <span className="text-muted-foreground">{m.label}</span>
                     <span className={cn("font-mono font-bold", m.cls ?? "text-foreground")}>{m.value}</span>
                   </div>
@@ -1178,7 +1178,7 @@ function MegaCapTab() {
           <div className="space-y-4">
             <div>
               <SectionTitle>Revenue Mix</SectionTitle>
-              <div className="rounded-xl bg-white/5 border border-white/10 p-4">
+              <div className="rounded-xl bg-foreground/5 border border-border p-4">
                 <svg viewBox="0 0 200 200" className="w-36 h-36 mx-auto">
                   {(() => {
                     let cumAngle = -90;
@@ -1224,10 +1224,10 @@ function MegaCapTab() {
         <SectionTitle>
           <BarChart3 className="w-4 h-4" /> Valuation Comparison
         </SectionTitle>
-        <div className="overflow-x-auto rounded-xl border border-white/10">
+        <div className="overflow-x-auto rounded-xl border border-border">
           <table className="w-full text-xs">
             <thead>
-              <tr className="border-b border-white/10 bg-white/5">
+              <tr className="border-b border-border bg-foreground/5">
                 <th className="text-left px-3 py-2.5 text-muted-foreground font-medium">Ticker</th>
                 <th className="text-right px-3 py-2.5 text-muted-foreground font-medium">Market Cap</th>
                 <th className="text-right px-3 py-2.5 text-muted-foreground font-medium">Rev Growth</th>
@@ -1244,7 +1244,7 @@ function MegaCapTab() {
                   key={c.ticker}
                   onClick={() => setSelected(c.ticker)}
                   className={cn(
-                    "border-b border-white/5 cursor-pointer transition-colors",
+                    "border-b border-border/50 cursor-pointer transition-colors",
                     selected === c.ticker ? "bg-primary/10" : "hover:bg-muted/30"
                   )}
                 >
@@ -1293,7 +1293,7 @@ function MegaCapTab() {
                 "rounded-xl border p-3",
                 item.risk === "High" ? "border-rose-500/30 bg-rose-500/5"
                 : item.risk === "Medium" ? "border-amber-500/30 bg-amber-500/5"
-                : "border-muted-foreground/30 bg-white/5"
+                : "border-muted-foreground/30 bg-foreground/5"
               )}
             >
               <div className="flex items-center justify-between mb-1.5">
@@ -1378,7 +1378,7 @@ function FintechTab() {
               "px-3 py-1.5 rounded-lg text-xs font-medium transition-colors border",
               activeCategory === cat
                 ? "bg-primary text-white border-primary"
-                : "bg-white/5 text-muted-foreground border-white/10 hover:bg-muted/50 hover:text-foreground"
+                : "bg-foreground/5 text-muted-foreground border-border hover:bg-muted/50 hover:text-foreground"
             )}
           >
             {cat}
@@ -1387,10 +1387,10 @@ function FintechTab() {
       </div>
 
       {/* Company table */}
-      <div className="overflow-x-auto rounded-xl border border-white/10">
+      <div className="overflow-x-auto rounded-xl border border-border">
         <table className="w-full text-xs">
           <thead>
-            <tr className="border-b border-white/10 bg-white/5">
+            <tr className="border-b border-border bg-foreground/5">
               <th className="text-left px-3 py-2.5 text-muted-foreground font-medium">Ticker</th>
               <th className="text-left px-3 py-2.5 text-muted-foreground font-medium">Category</th>
               <th className="text-right px-3 py-2.5 text-muted-foreground font-medium">Rev Growth</th>
@@ -1407,7 +1407,7 @@ function FintechTab() {
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 1 }}
                   exit={{ opacity: 0 }}
-                  className="border-b border-white/5 hover:bg-muted/30 transition-colors"
+                  className="border-b border-border/50 hover:bg-muted/30 transition-colors"
                 >
                   <td className="px-3 py-2.5">
                     <span className="font-mono font-bold text-white">{c.ticker}</span>
@@ -1448,12 +1448,12 @@ function FintechTab() {
           <SectionTitle>
             <DollarSign className="w-4 h-4 text-primary" /> Payment Take Rates (% of GMV)
           </SectionTitle>
-          <div className="rounded-xl bg-white/5 border border-white/10 p-4">
+          <div className="rounded-xl bg-foreground/5 border border-border p-4">
             <div className="space-y-3">
               {PAYMENT_TAKE_RATES.map((p) => (
                 <div key={p.name} className="flex items-center gap-3">
                   <span className="text-xs text-muted-foreground w-24 shrink-0">{p.name}</span>
-                  <div className="flex-1 h-2 bg-white/10 rounded-full overflow-hidden">
+                  <div className="flex-1 h-2 bg-foreground/10 rounded-full overflow-hidden">
                     <div
                       className="h-full rounded-full"
                       style={{ width: `${Math.min(100, (p.rate / 3) * 100)}%`, background: p.color }}
@@ -1474,7 +1474,7 @@ function FintechTab() {
           <SectionTitle>
             <Globe className="w-4 h-4 text-orange-400" /> Social Media ARPU (Annual, USD)
           </SectionTitle>
-          <div className="rounded-xl bg-white/5 border border-white/10 p-4">
+          <div className="rounded-xl bg-foreground/5 border border-border p-4">
             <svg viewBox="0 0 300 160" className="w-full">
               {[
                 { name: "Meta US/CA", arpu: 233, color: "#3b82f6" },
@@ -1521,7 +1521,7 @@ function FintechTab() {
 
 export default function TechSectorPage() {
   return (
-    <div className="min-h-screen bg-background text-white">
+    <div className="min-h-screen bg-background text-foreground">
       <div className="max-w-7xl mx-auto px-4 py-6 space-y-6">
         {/* Page header */}
         <motion.div
@@ -1561,7 +1561,7 @@ export default function TechSectorPage() {
             { label: "Cloud Growth", value: "+21%", sub: "IaaS/PaaS market", icon: <Cloud className="w-3.5 h-3.5 text-muted-foreground" /> },
             { label: "AI Capex 2025E", value: "$320B+", sub: "Hyperscaler spend", icon: <Zap className="w-3.5 h-3.5 text-yellow-400" /> },
           ].map((item) => (
-            <div key={item.label} className="rounded-xl border border-white/10 bg-white/5 p-3 flex gap-2.5 items-start">
+            <div key={item.label} className="rounded-xl border border-border bg-foreground/5 p-3 flex gap-2.5 items-start">
               <div className="mt-0.5">{item.icon}</div>
               <div>
                 <div className="text-xs text-muted-foreground">{item.label}</div>
@@ -1579,7 +1579,7 @@ export default function TechSectorPage() {
           transition={{ duration: 0.4, delay: 0.2 }}
         >
           <Tabs defaultValue="saas" className="space-y-4">
-            <TabsList className="bg-white/5 border border-white/10 h-auto flex-wrap gap-1 p-1">
+            <TabsList className="bg-foreground/5 border border-border h-auto flex-wrap gap-1 p-1">
               <TabsTrigger value="saas" className="data-[state=active]:bg-primary data-[state=active]:text-white text-muted-foreground text-xs">
                 SaaS Metrics
               </TabsTrigger>

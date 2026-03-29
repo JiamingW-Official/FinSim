@@ -675,7 +675,7 @@ function TrendIcon({ trend }: { trend: Trend }) {
 function ScoreBar({ score }: { score: number }) {
   const color = score >= 65 ? "#10b981" : score >= 40 ? "#f59e0b" : "#ef4444";
   return (
-    <div className="w-full bg-white/5 rounded-full h-1 mt-1">
+    <div className="w-full bg-foreground/5 rounded-full h-1 mt-1">
       <div className="h-1 rounded-full transition-all" style={{ width: `${score}%`, backgroundColor: color }} />
     </div>
   );
@@ -687,7 +687,7 @@ function SectionCard({ title, children, className }: { title: string; children: 
       initial={{ opacity: 0, y: 12 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.35 }}
-      className={cn("bg-white/[0.03] border border-white/10 rounded-xl p-4", className)}
+      className={cn("bg-foreground/[0.03] border border-border rounded-xl p-4", className)}
     >
       <h3 className="text-xs font-semibold text-muted-foreground mb-3">{title}</h3>
       {children}
@@ -719,7 +719,7 @@ function USDashboard({ data }: { data: ReturnType<typeof generateData> }) {
           </div>
           <div className="flex-1">
             <div className={cn("text-lg font-semibold", scoreColor)}>{scoreLabel}</div>
-            <div className="w-full bg-white/5 rounded-full h-3 mt-2">
+            <div className="w-full bg-foreground/5 rounded-full h-3 mt-2">
               <div
                 className="h-3 rounded-full transition-all"
                 style={{
@@ -756,7 +756,7 @@ function USDashboard({ data }: { data: ReturnType<typeof generateData> }) {
             initial={{ opacity: 0, scale: 0.95 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ delay: i * 0.04 }}
-            className="bg-white/[0.03] border border-white/10 rounded-lg p-3 hover:border-white/20 transition-colors"
+            className="bg-foreground/[0.03] border border-border rounded-lg p-3 hover:border-border transition-colors"
           >
             <div className="flex items-center justify-between mb-1">
               <span className="text-xs text-muted-foreground truncate">{ind.name}</span>
@@ -809,7 +809,7 @@ function FedWatch({ data }: { data: ReturnType<typeof generateData> }) {
               <span className="text-xs text-muted-foreground">Taylor Rule Rate</span>
               <span className="text-lg font-bold text-amber-400">{taylorRate}%</span>
             </div>
-            <div className="mt-3 p-2 bg-white/5 rounded-lg text-xs text-muted-foreground">
+            <div className="mt-3 p-2 bg-foreground/5 rounded-lg text-xs text-muted-foreground">
               <div className="font-semibold text-muted-foreground mb-1">Taylor Rule Formula</div>
               <code className="text-indigo-300">r* + π + 0.5(π-2%) + 0.5(GDP gap)</code>
               <div className="mt-1">= 2.5 + 3.1 + 0.5(1.1) + 0.5(-0.6) = {taylorRate}%</div>
@@ -826,7 +826,7 @@ function FedWatch({ data }: { data: ReturnType<typeof generateData> }) {
             {[{ label: "Hawks", count: hawks, color: "#ef4444" }, { label: "Neutral", count: neutral, color: "#6b7280" }, { label: "Doves", count: doves, color: "#10b981" }].map((v) => (
               <div key={v.label} className="flex items-center gap-2">
                 <span className="text-xs text-muted-foreground w-16">{v.label}</span>
-                <div className="flex-1 bg-white/5 rounded-full h-2">
+                <div className="flex-1 bg-foreground/5 rounded-full h-2">
                   <div className="h-2 rounded-full" style={{ width: `${(v.count / 12) * 100}%`, backgroundColor: v.color }} />
                 </div>
                 <span className="text-xs font-mono text-white w-4">{v.count}</span>
@@ -840,7 +840,7 @@ function FedWatch({ data }: { data: ReturnType<typeof generateData> }) {
             <div className="w-full h-3 rounded-full overflow-hidden bg-emerald-900/30 relative">
               <div className="absolute left-0 top-0 h-full bg-red-500/60 rounded-l-full" style={{ width: `${(hawks / 12) * 100}%` }} />
               <div className="absolute right-0 top-0 h-full bg-emerald-500/60 rounded-r-full" style={{ width: `${(doves / 12) * 100}%` }} />
-              <div className="absolute left-1/2 top-0 w-px h-full bg-white/30" />
+              <div className="absolute left-1/2 top-0 w-px h-full bg-foreground/30" />
             </div>
           </div>
         </SectionCard>
@@ -860,7 +860,7 @@ function FedWatch({ data }: { data: ReturnType<typeof generateData> }) {
                 }}>
                   {sp.sentiment}
                 </div>
-                <div className="w-12 bg-white/5 rounded-full h-1.5">
+                <div className="w-12 bg-foreground/5 rounded-full h-1.5">
                   <div
                     className="h-1.5 rounded-full"
                     style={{
@@ -880,7 +880,7 @@ function FedWatch({ data }: { data: ReturnType<typeof generateData> }) {
         <div className="overflow-x-auto">
           <table className="w-full text-xs">
             <thead>
-              <tr className="text-muted-foreground border-b border-white/10">
+              <tr className="text-muted-foreground border-b border-border">
                 <th className="text-left py-1.5 pr-4">Meeting</th>
                 <th className="text-right pr-3">Hike</th>
                 <th className="text-right pr-3">Hold</th>
@@ -890,7 +890,7 @@ function FedWatch({ data }: { data: ReturnType<typeof generateData> }) {
             </thead>
             <tbody>
               {fedMeetings.map((m, i) => (
-                <tr key={i} className="border-b border-white/5 hover:bg-muted/30 transition-colors">
+                <tr key={i} className="border-b border-border/50 hover:bg-muted/30 transition-colors">
                   <td className="py-1.5 pr-4 text-white font-medium">{m.date}</td>
                   <td className="text-right pr-3 text-red-400">{m.hikePct}%</td>
                   <td className="text-right pr-3 text-muted-foreground">{m.holdPct}%</td>
@@ -994,7 +994,7 @@ function GlobalComparison({ data }: { data: ReturnType<typeof generateData> }) {
         <div className="overflow-x-auto">
           <table className="w-full text-xs">
             <thead>
-              <tr className="text-muted-foreground border-b border-white/10">
+              <tr className="text-muted-foreground border-b border-border">
                 <th className="text-left py-1.5 w-32">Country</th>
                 {[
                   { key: "gdpGrowth", label: "GDP %" },
@@ -1020,7 +1020,7 @@ function GlobalComparison({ data }: { data: ReturnType<typeof generateData> }) {
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 1 }}
                   transition={{ delay: i * 0.03 }}
-                  className="border-b border-white/5 hover:bg-muted/30 transition-colors"
+                  className="border-b border-border/50 hover:bg-muted/30 transition-colors"
                 >
                   <td className="py-1.5 text-white">
                     {c.flag} {c.name}
@@ -1122,7 +1122,7 @@ function RecessionTab({ data }: { data: ReturnType<typeof generateData> }) {
             initial={{ opacity: 0, y: 8 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: i * 0.06 }}
-            className={cn("p-3 rounded-lg border text-xs", ri.triggered ? "border-red-500/20 bg-red-500/5" : "border-white/10 bg-white/[0.02]")}
+            className={cn("p-3 rounded-lg border text-xs", ri.triggered ? "border-red-500/20 bg-red-500/5" : "border-border bg-foreground/[0.02]")}
           >
             <div className="flex items-center justify-between mb-1">
               <span className="font-semibold text-white">{ri.name}</span>
@@ -1170,7 +1170,7 @@ function SectorDataTab({ data }: { data: ReturnType<typeof generateData> }) {
         <div className="overflow-x-auto">
           <table className="w-full text-xs">
             <thead>
-              <tr className="text-muted-foreground border-b border-white/10">
+              <tr className="text-muted-foreground border-b border-border">
                 <th className="text-left py-1.5 w-36">Sector</th>
                 <th className="text-right pr-4">Rev Growth</th>
                 <th className="text-right pr-4">Net Margin</th>
@@ -1188,7 +1188,7 @@ function SectorDataTab({ data }: { data: ReturnType<typeof generateData> }) {
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 1 }}
                   transition={{ delay: i * 0.04 }}
-                  className="border-b border-white/5 hover:bg-muted/30 transition-colors"
+                  className="border-b border-border/50 hover:bg-muted/30 transition-colors"
                 >
                   <td className="py-1.5 text-white flex items-center gap-1.5">
                     <span className="w-2 h-2 rounded-full shrink-0" style={{ backgroundColor: s.color }} />
@@ -1365,7 +1365,7 @@ export default function EconDataPage() {
   ];
 
   return (
-    <div className="min-h-screen bg-[#0a0a0f] text-white">
+    <div className="min-h-screen bg-background text-foreground">
       <div className="max-w-screen-2xl mx-auto px-4 py-6">
         {/* Header */}
         <motion.div
@@ -1385,14 +1385,14 @@ export default function EconDataPage() {
 
         {/* Tabs */}
         <Tabs value={activeTab} onValueChange={setActiveTab}>
-          <TabsList className="bg-white/[0.04] border border-white/10 rounded-xl p-1 mb-6 flex flex-wrap gap-1 h-auto">
+          <TabsList className="bg-foreground/[0.04] border border-border rounded-xl p-1 mb-6 flex flex-wrap gap-1 h-auto">
             {tabs.map((tab) => {
               const Icon = tab.icon;
               return (
                 <TabsTrigger
                   key={tab.id}
                   value={tab.id}
-                  className="flex items-center gap-1.5 px-3 py-2 rounded-lg text-xs font-medium text-muted-foreground data-[state=active]:bg-white/10 data-[state=active]:text-white transition-all"
+                  className="flex items-center gap-1.5 px-3 py-2 rounded-lg text-xs font-medium text-muted-foreground data-[state=active]:bg-foreground/10 data-[state=active]:text-white transition-all"
                 >
                   <Icon className="w-3.5 h-3.5" />
                   {tab.label}

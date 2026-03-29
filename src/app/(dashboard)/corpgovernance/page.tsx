@@ -391,7 +391,7 @@ function StatCard({
       ? "text-rose-400"
       : "text-white";
   return (
-    <div className="rounded-xl border border-white/10 bg-white/5 p-4">
+    <div className="rounded-xl border border-border bg-foreground/5 p-4">
       <p className="text-xs text-muted-foreground mb-1">{label}</p>
       <p className={cn("text-xl font-bold", valClass)}>{value}</p>
       {sub && <p className="text-xs text-muted-foreground mt-1">{sub}</p>}
@@ -403,7 +403,7 @@ function ScoreBar({ value, max = 100 }: { value: number; max?: number }) {
   const pct = (value / max) * 100;
   const color = value >= 80 ? "bg-emerald-500" : value >= 65 ? "bg-amber-500" : "bg-rose-500";
   return (
-    <div className="w-full h-1.5 rounded-full bg-white/10 overflow-hidden">
+    <div className="w-full h-1.5 rounded-full bg-foreground/10 overflow-hidden">
       <div className={cn("h-full rounded-full", color)} style={{ width: `${pct}%` }} />
     </div>
   );
@@ -542,7 +542,7 @@ function ProxyVoteSimulator() {
         return (
           <div key={res.id} className={cn(
             "rounded-xl border p-4 transition-colors",
-            voted ? "border-white/20 bg-white/5" : "border-white/10 bg-white/[0.02]"
+            voted ? "border-border bg-foreground/5" : "border-border bg-foreground/[0.02]"
           )}>
             <div className="flex items-start justify-between gap-3 mb-2">
               <div className="flex-1">
@@ -575,7 +575,7 @@ function ProxyVoteSimulator() {
                           : v === "Against"
                           ? "bg-rose-500 border-rose-500 text-white"
                           : "bg-muted-foreground border-muted-foreground text-white"
-                        : "border-white/10 text-muted-foreground hover:border-white/30 hover:text-white"
+                        : "border-border text-muted-foreground hover:border-border hover:text-white"
                     )}
                   >
                     {v}
@@ -590,7 +590,7 @@ function ProxyVoteSimulator() {
         <motion.div
           initial={{ opacity: 0, y: 8 }}
           animate={{ opacity: 1, y: 0 }}
-          className="rounded-xl border border-white/20 bg-white/5 p-4"
+          className="rounded-xl border border-border bg-foreground/5 p-4"
         >
           <p className="text-xs text-muted-foreground mb-2 font-semibold">Your Ballot Summary ({total}/{PROXY_RESOLUTIONS.length} voted)</p>
           <div className="flex gap-4">
@@ -662,7 +662,7 @@ export default function CorpGovernancePage() {
   const [expandedDefense, setExpandedDefense] = useState<string | null>(null);
 
   return (
-    <div className="min-h-screen bg-background text-white p-4 md:p-6">
+    <div className="min-h-screen bg-background text-foreground p-4 md:p-6">
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
@@ -690,7 +690,7 @@ export default function CorpGovernancePage() {
 
         {/* Tabs */}
         <Tabs defaultValue="board">
-          <TabsList className="bg-white/5 border border-white/10 flex-wrap h-auto gap-1 p-1">
+          <TabsList className="bg-foreground/5 border border-border flex-wrap h-auto gap-1 p-1">
             <TabsTrigger value="board" className="text-xs gap-1.5"><Users className="w-3 h-3" />Board Composition</TabsTrigger>
             <TabsTrigger value="activist" className="text-xs gap-1.5"><Target className="w-3 h-3" />Activist Campaigns</TabsTrigger>
             <TabsTrigger value="proxy" className="text-xs gap-1.5"><Vote className="w-3 h-3" />Proxy Vote Sim</TabsTrigger>
@@ -703,11 +703,11 @@ export default function CorpGovernancePage() {
           <TabsContent value="board" className={cn("mt-4", "data-[state=inactive]:hidden")}>
             <motion.div initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} className="space-y-4">
               <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
-                <div className="rounded-xl border border-white/10 bg-white/5 p-4">
+                <div className="rounded-xl border border-border bg-foreground/5 p-4">
                   <h3 className="text-sm font-semibold text-white mb-3">Governance Score by Company</h3>
                   <BoardBarChart companies={BOARD_COMPANIES} />
                 </div>
-                <div className="rounded-xl border border-white/10 bg-white/5 p-4">
+                <div className="rounded-xl border border-border bg-foreground/5 p-4">
                   <h3 className="text-sm font-semibold text-white mb-3">Company Detail</h3>
                   <div className="flex flex-wrap gap-1.5 mb-3">
                     {BOARD_COMPANIES.map((c) => (
@@ -718,7 +718,7 @@ export default function CorpGovernancePage() {
                           "text-xs px-2 py-1 rounded-md border transition-all",
                           selectedCompany.ticker === c.ticker
                             ? "bg-indigo-500 border-indigo-500 text-white"
-                            : "border-white/10 text-muted-foreground hover:border-white/30"
+                            : "border-border text-muted-foreground hover:border-border"
                         )}
                       >
                         {c.ticker}
@@ -748,11 +748,11 @@ export default function CorpGovernancePage() {
                   </div>
                 </div>
               </div>
-              <div className="rounded-xl border border-white/10 bg-white/5 p-4 overflow-x-auto">
+              <div className="rounded-xl border border-border bg-foreground/5 p-4 overflow-x-auto">
                 <h3 className="text-sm font-semibold text-white mb-3">Full Comparison Table</h3>
                 <table className="w-full text-xs min-w-[580px]">
                   <thead>
-                    <tr className="text-muted-foreground border-b border-white/10">
+                    <tr className="text-muted-foreground border-b border-border">
                       <th className="text-left pb-2 font-medium">Company</th>
                       <th className="text-center pb-2 font-medium">Size</th>
                       <th className="text-center pb-2 font-medium">Indep %</th>
@@ -765,7 +765,7 @@ export default function CorpGovernancePage() {
                   </thead>
                   <tbody>
                     {BOARD_COMPANIES.map((c) => (
-                      <tr key={c.ticker} className="border-b border-white/5 hover:bg-muted/30 transition-colors">
+                      <tr key={c.ticker} className="border-b border-border/50 hover:bg-muted/30 transition-colors">
                         <td className="py-2 font-medium text-white">{c.name} <span className="text-muted-foreground">({c.ticker})</span></td>
                         <td className="text-center py-2 text-muted-foreground">{c.boardSize}</td>
                         <td className={cn("text-center py-2 font-medium", scoreColor(c.independentPct))}>{c.independentPct}%</td>
@@ -792,7 +792,7 @@ export default function CorpGovernancePage() {
                 <StatCard label="Win Rate (activists)" value="60%" sub="of tracked campaigns" highlight="pos" />
               </div>
               {ACTIVIST_CAMPAIGNS.map((c) => (
-                <div key={c.fund + c.target} className="rounded-xl border border-white/10 bg-white/5 p-4">
+                <div key={c.fund + c.target} className="rounded-xl border border-border bg-foreground/5 p-4">
                   <div className="flex items-start justify-between gap-3 mb-2">
                     <div>
                       <div className="flex items-center gap-2 mb-1">
@@ -812,7 +812,7 @@ export default function CorpGovernancePage() {
                     <p className="text-xs text-muted-foreground mb-1.5">Key Demands:</p>
                     <div className="flex flex-wrap gap-1.5">
                       {c.demands.map((d) => (
-                        <span key={d} className="text-xs bg-white/5 border border-white/10 rounded-md px-2 py-0.5 text-muted-foreground">{d}</span>
+                        <span key={d} className="text-xs bg-foreground/5 border border-border rounded-md px-2 py-0.5 text-muted-foreground">{d}</span>
                       ))}
                     </div>
                   </div>
@@ -838,7 +838,7 @@ export default function CorpGovernancePage() {
             <motion.div initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} className="space-y-4">
               <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3">
                 {ESG_SCORES.map((e) => (
-                  <div key={e.ticker} className="rounded-xl border border-white/10 bg-white/5 p-4">
+                  <div key={e.ticker} className="rounded-xl border border-border bg-foreground/5 p-4">
                     <div className="flex items-center justify-between mb-2">
                       <div>
                         <p className="text-xs font-semibold text-white">{e.company}</p>
@@ -869,7 +869,7 @@ export default function CorpGovernancePage() {
                   </div>
                 ))}
               </div>
-              <div className="rounded-xl border border-white/10 bg-white/5 p-4">
+              <div className="rounded-xl border border-border bg-foreground/5 p-4">
                 <h3 className="text-sm font-semibold text-white mb-3">Score Interpretation</h3>
                 <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 text-xs">
                   <div className="flex items-start gap-2"><div className="w-2 h-2 rounded-full bg-emerald-500 mt-0.5 flex-shrink-0" /><div><p className="text-emerald-400 font-medium">80–100: Strong Governance</p><p className="text-muted-foreground mt-0.5">Majority independent board, pay tied to performance, robust shareholder rights, full disclosure</p></div></div>
@@ -889,7 +889,7 @@ export default function CorpGovernancePage() {
                 </p>
               </div>
               {TAKEOVER_DEFENSES.map((def) => (
-                <div key={def.name} className="rounded-xl border border-white/10 bg-white/5 overflow-hidden">
+                <div key={def.name} className="rounded-xl border border-border bg-foreground/5 overflow-hidden">
                   <button
                     className="w-full flex items-center justify-between p-4 text-left"
                     onClick={() => setExpandedDefense(expandedDefense === def.name ? null : def.name)}
@@ -908,7 +908,7 @@ export default function CorpGovernancePage() {
                       initial={{ opacity: 0, height: 0 }}
                       animate={{ opacity: 1, height: "auto" }}
                       exit={{ opacity: 0, height: 0 }}
-                      className="px-4 pb-4 border-t border-white/10"
+                      className="px-4 pb-4 border-t border-border"
                     >
                       <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-3">
                         <div>
@@ -944,29 +944,29 @@ export default function CorpGovernancePage() {
           <TabsContent value="ownership" className={cn("mt-4", "data-[state=inactive]:hidden")}>
             <motion.div initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} className="space-y-4">
               <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
-                <div className="rounded-xl border border-white/10 bg-white/5 p-4">
+                <div className="rounded-xl border border-border bg-foreground/5 p-4">
                   <h3 className="text-sm font-semibold text-white mb-4">Ownership Breakdown — Vertex Financial (VTXF)</h3>
                   <OwnershipDonut data={SHAREHOLDERS} />
                   <div className="mt-4 grid grid-cols-2 gap-3 text-xs">
-                    <div className="rounded-lg border border-white/10 bg-white/5 p-3">
+                    <div className="rounded-lg border border-border bg-foreground/5 p-3">
                       <p className="text-muted-foreground mb-1">Passive (Index)</p>
                       <p className="text-xl font-bold text-primary">
                         {SHAREHOLDERS.filter((s) => s.type === "Index").reduce((a, b) => a + b.pct, 0).toFixed(1)}%
                       </p>
                     </div>
-                    <div className="rounded-lg border border-white/10 bg-white/5 p-3">
+                    <div className="rounded-lg border border-border bg-foreground/5 p-3">
                       <p className="text-muted-foreground mb-1">Active Managers</p>
                       <p className="text-xl font-bold text-emerald-400">
                         {SHAREHOLDERS.filter((s) => s.type === "Active").reduce((a, b) => a + b.pct, 0).toFixed(1)}%
                       </p>
                     </div>
-                    <div className="rounded-lg border border-white/10 bg-white/5 p-3">
+                    <div className="rounded-lg border border-border bg-foreground/5 p-3">
                       <p className="text-muted-foreground mb-1">Hedge Funds</p>
                       <p className="text-xl font-bold text-amber-400">
                         {SHAREHOLDERS.filter((s) => s.type === "Hedge Fund").reduce((a, b) => a + b.pct, 0).toFixed(1)}%
                       </p>
                     </div>
-                    <div className="rounded-lg border border-white/10 bg-white/5 p-3">
+                    <div className="rounded-lg border border-border bg-foreground/5 p-3">
                       <p className="text-muted-foreground mb-1">Insiders</p>
                       <p className="text-xl font-bold text-primary">
                         {SHAREHOLDERS.filter((s) => s.type === "Insider").reduce((a, b) => a + b.pct, 0).toFixed(1)}%
@@ -974,7 +974,7 @@ export default function CorpGovernancePage() {
                     </div>
                   </div>
                 </div>
-                <div className="rounded-xl border border-white/10 bg-white/5 p-4">
+                <div className="rounded-xl border border-border bg-foreground/5 p-4">
                   <h3 className="text-sm font-semibold text-white mb-3">Top Shareholders</h3>
                   <div className="space-y-2">
                     {SHAREHOLDERS.sort((a, b) => b.pct - a.pct).map((sh, i) => (
@@ -986,7 +986,7 @@ export default function CorpGovernancePage() {
                             <span className="text-white font-semibold">{sh.pct}%</span>
                           </div>
                           <div className="flex items-center gap-2">
-                            <div className="flex-1 h-1 rounded-full bg-white/10 overflow-hidden">
+                            <div className="flex-1 h-1 rounded-full bg-foreground/10 overflow-hidden">
                               <div
                                 className={cn("h-full rounded-full", sh.type === "Index" ? "bg-primary" : sh.type === "Active" ? "bg-emerald-500" : sh.type === "Hedge Fund" ? "bg-amber-500" : "bg-primary")}
                                 style={{ width: `${(sh.pct / 9) * 100}%` }}
@@ -1000,7 +1000,7 @@ export default function CorpGovernancePage() {
                   </div>
                 </div>
               </div>
-              <div className="rounded-xl border border-white/10 bg-white/5 p-4">
+              <div className="rounded-xl border border-border bg-foreground/5 p-4">
                 <h3 className="text-sm font-semibold text-white mb-3">Voting Power Dynamics</h3>
                 <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 text-xs">
                   <div className="space-y-1.5">

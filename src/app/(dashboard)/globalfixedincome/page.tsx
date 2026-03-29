@@ -209,7 +209,7 @@ function FadeCard({
       initial={{ opacity: 0, y: 12 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.35 }}
-      className={cn("rounded-xl border border-white/10 bg-white/5 p-4", className)}
+      className={cn("rounded-xl border border-border bg-foreground/5 p-4", className)}
     >
       {children}
     </motion.div>
@@ -336,7 +336,7 @@ function MarketOverviewTab() {
             {GLOBAL_AGG.map((g) => (
               <div key={g.label} className="flex items-center gap-2">
                 <span className="w-28 text-xs text-white/60">{g.label}</span>
-                <div className="relative flex-1 h-4 rounded bg-white/5 overflow-hidden">
+                <div className="relative flex-1 h-4 rounded bg-foreground/5 overflow-hidden">
                   <motion.div
                     initial={{ width: 0 }}
                     animate={{ width: `${(g.pct / 22.5) * 100}%` }}
@@ -358,7 +358,7 @@ function MarketOverviewTab() {
         <div className="overflow-x-auto">
           <table className="w-full text-xs">
             <thead>
-              <tr className="text-white/40 border-b border-white/10">
+              <tr className="text-white/40 border-b border-border">
                 <th className="pb-2 text-left font-medium">Country</th>
                 <th className="pb-2 text-left font-medium">Rating</th>
                 <th className="pb-2 text-right font-medium">Yield</th>
@@ -369,7 +369,7 @@ function MarketOverviewTab() {
             </thead>
             <tbody>
               {YIELD_TABLE.map((row) => (
-                <tr key={row.country} className="border-b border-white/5 hover:bg-muted/30 transition-colors">
+                <tr key={row.country} className="border-b border-border/50 hover:bg-muted/30 transition-colors">
                   <td className="py-1.5 font-medium text-white">
                     {row.flag} {row.country}
                   </td>
@@ -543,7 +543,7 @@ function EMBondsTab() {
                 <span className="w-24 text-xs text-white/70">
                   {c.flag} {c.name}
                 </span>
-                <div className="relative flex-1 h-5 rounded bg-white/5 overflow-hidden">
+                <div className="relative flex-1 h-5 rounded bg-foreground/5 overflow-hidden">
                   <motion.div
                     initial={{ width: 0 }}
                     animate={{ width: `${Math.min(widthPct, 100)}%` }}
@@ -575,7 +575,7 @@ function EMBondsTab() {
         <div className="overflow-x-auto">
           <table className="w-full text-xs">
             <thead>
-              <tr className="text-white/40 border-b border-white/10">
+              <tr className="text-white/40 border-b border-border">
                 <th className="pb-2 text-left font-medium">Country</th>
                 <th className="pb-2 text-left font-medium">Year</th>
                 <th className="pb-2 text-left font-medium">Instrument</th>
@@ -586,7 +586,7 @@ function EMBondsTab() {
             </thead>
             <tbody>
               {DEFAULT_HISTORY.map((d) => (
-                <tr key={`${d.country}-${d.year}`} className="border-b border-white/5 hover:bg-muted/30 transition-colors">
+                <tr key={`${d.country}-${d.year}`} className="border-b border-border/50 hover:bg-muted/30 transition-colors">
                   <td className="py-2 font-medium text-white">{d.flag} {d.country}</td>
                   <td className="py-2 text-white/60">{d.year}</td>
                   <td className="py-2 text-white/50">{d.instrument}</td>
@@ -620,7 +620,7 @@ function EMBondsTab() {
               <span className="text-primary font-semibold w-20 shrink-0">RSF</span>
               <span>Resilience &amp; Sustainability Facility: new climate/pandemic resilience instrument</span>
             </div>
-            <div className="rounded bg-white/5 p-2 mt-2">
+            <div className="rounded bg-foreground/5 p-2 mt-2">
               <p className="text-white/50">IMF programs signal willingness to reform, often catalyzing private market access. Bond prices typically rally 10–30% on IMF approval.</p>
             </div>
           </div>
@@ -699,7 +699,7 @@ function CurrencyHedgingTab() {
             body: "Match FX forward maturity to bond duration. Rolling 3-month forwards for long-dated bonds introduces roll risk. Some managers use swaps for longer tenors.",
           },
         ].map((c) => (
-          <FadeCard key={c.title} className="border-white/10">
+          <FadeCard key={c.title} className="border-border">
             <div className="flex items-center gap-2 mb-2">
               <c.icon size={14} className={c.color} />
               <span className="text-sm font-semibold text-white/80">{c.title}</span>
@@ -785,7 +785,7 @@ function CurrencyHedgingTab() {
         <div className="overflow-x-auto">
           <table className="w-full text-xs">
             <thead>
-              <tr className="text-white/40 border-b border-white/10">
+              <tr className="text-white/40 border-b border-border">
                 <th className="pb-2 text-left font-medium">Pair</th>
                 <th className="pb-2 text-right font-medium">Rate Diff (vs USD)</th>
                 <th className="pb-2 text-right font-medium">Hedge Cost p.a.</th>
@@ -802,7 +802,7 @@ function CurrencyHedgingTab() {
                   <tr
                     key={h.pair}
                     className={cn(
-                      "border-b border-white/5 cursor-pointer transition-colors",
+                      "border-b border-border/50 cursor-pointer transition-colors",
                       isSelected ? "bg-primary/10" : "hover:bg-muted/30"
                     )}
                     onClick={() => setSelectedPair(h.pair)}
@@ -1088,7 +1088,7 @@ function PortfolioConstructionTab() {
               cons: ["Concentrated roll risk at maturity", "High reinvestment risk at maturity"],
             },
           ].map((strat) => (
-            <div key={strat.name} className="rounded-lg border border-white/10 bg-white/5 p-3">
+            <div key={strat.name} className="rounded-lg border border-border bg-foreground/5 p-3">
               <p className="font-semibold text-sm mb-3" style={{ color: strat.color }}>{strat.name}</p>
               {/* Mini bar chart */}
               <div className="flex items-end gap-0.5 h-10 mb-3">
@@ -1191,7 +1191,7 @@ export default function GlobalFixedIncomePage() {
   ];
 
   return (
-    <div className="min-h-screen bg-[#0f172a] text-white">
+    <div className="min-h-screen bg-background text-foreground">
       <div className="mx-auto max-w-7xl px-4 py-6">
         {/* Header */}
         <motion.div
@@ -1218,7 +1218,7 @@ export default function GlobalFixedIncomePage() {
 
         {/* Tabs */}
         <Tabs value={activeTab} onValueChange={setActiveTab}>
-          <TabsList className="mb-6 flex h-auto flex-wrap gap-1 bg-white/5 p-1">
+          <TabsList className="mb-6 flex h-auto flex-wrap gap-1 bg-foreground/5 p-1">
             {tabs.map((tab) => (
               <TabsTrigger
                 key={tab.id}

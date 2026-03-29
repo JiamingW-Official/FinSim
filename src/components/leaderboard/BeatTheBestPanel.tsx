@@ -271,7 +271,7 @@ function NPCRow({
         </span>
         <div
           className={cn(
-            "flex h-7 w-7 shrink-0 items-center justify-center rounded-md text-xs font-bold text-white",
+            "flex h-7 w-7 shrink-0 items-center justify-center rounded-md text-xs font-bold text-primary-foreground",
             color,
           )}
         >

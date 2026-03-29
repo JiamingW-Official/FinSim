@@ -207,7 +207,7 @@ export function MiniTradePanel({
               className="flex-1 flex items-center justify-center gap-1 rounded-lg bg-emerald-500 py-2 text-xs font-bold text-white uppercase tracking-wide transition-all hover:brightness-110 disabled:opacity-30 shadow-sm">
               <ArrowUpRight className="h-3 w-3" />
               Long {qty}
-              {enableKeyboard && <kbd className="ml-1 rounded bg-white/20 px-1 py-0.5 text-[11px] font-mono leading-none">W</kbd>}
+              {enableKeyboard && <kbd className="ml-1 rounded bg-foreground/20 px-1 py-0.5 text-[11px] font-mono leading-none">W</kbd>}
             </motion.button>
             <motion.button type="button" onClick={handleShort}
               disabled={isLong || cash < currentPrice * qty || allComplete || atEnd}
@@ -215,7 +215,7 @@ export function MiniTradePanel({
               className="flex-1 flex items-center justify-center gap-1 rounded-lg bg-red-500 py-2 text-xs font-bold text-white uppercase tracking-wide transition-all hover:brightness-110 disabled:opacity-30 shadow-sm">
               <ArrowDownRight className="h-3 w-3" />
               Short {qty}
-              {enableKeyboard && <kbd className="ml-1 rounded bg-white/20 px-1 py-0.5 text-[11px] font-mono leading-none">S</kbd>}
+              {enableKeyboard && <kbd className="ml-1 rounded bg-foreground/20 px-1 py-0.5 text-[11px] font-mono leading-none">S</kbd>}
             </motion.button>
           </div>
 

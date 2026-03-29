@@ -829,7 +829,7 @@ export default function CoveredBondsPage() {
   ] as const;
 
   return (
-    <div className="min-h-screen bg-background text-white p-4 md:p-6">
+    <div className="min-h-screen bg-background text-foreground p-4 md:p-6">
       {/* Header */}
       <div className="mb-6">
         <div className="flex items-center gap-3 mb-2">

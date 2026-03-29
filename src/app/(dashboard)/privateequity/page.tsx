@@ -78,7 +78,7 @@ function StatCard({
       ? "text-rose-400"
       : "text-white";
   return (
-    <div className="rounded-xl border border-white/10 bg-white/5 p-4 flex flex-col gap-1">
+    <div className="rounded-xl border border-border bg-foreground/5 p-4 flex flex-col gap-1">
       <span className="text-xs text-muted-foreground">{label}</span>
       <span className={cn("text-xl font-bold", valClass)}>{value}</span>
       {sub && <span className="text-xs text-muted-foreground">{sub}</span>}
@@ -228,7 +228,7 @@ function IndustryOverview() {
         <SectionTitle><Building2 className="w-4 h-4" /> Major PE Firms by AUM</SectionTitle>
         <div className="grid grid-cols-2 md:grid-cols-3 gap-3">
           {PE_FIRMS.map((f) => (
-            <div key={f.name} className="rounded-lg border border-white/10 bg-white/5 p-3">
+            <div key={f.name} className="rounded-lg border border-border bg-foreground/5 p-3">
               <div className="flex items-center justify-between mb-1">
                 <span className="text-sm font-semibold text-white">{f.name}</span>
                 <Badge className="bg-primary/20 text-primary border-border text-xs">
@@ -236,7 +236,7 @@ function IndustryOverview() {
                 </Badge>
               </div>
               <p className="text-xs text-muted-foreground">{f.focus}</p>
-              <div className="mt-2 h-1.5 rounded-full bg-white/10 overflow-hidden">
+              <div className="mt-2 h-1.5 rounded-full bg-foreground/10 overflow-hidden">
                 <div
                   className="h-full rounded-full bg-primary"
                   style={{ width: `${(f.aum / 1050) * 100}%` }}
@@ -250,7 +250,7 @@ function IndustryOverview() {
       {/* Buyout volume bar chart */}
       <div>
         <SectionTitle><BarChart3 className="w-4 h-4" /> Global Buyout Volume ($B) & Avg Entry Multiple</SectionTitle>
-        <div className="rounded-xl border border-white/10 bg-white/5 p-4">
+        <div className="rounded-xl border border-border bg-foreground/5 p-4">
           <svg viewBox="0 0 700 200" className="w-full" preserveAspectRatio="none">
             {/* Grid lines */}
             {[0, 0.25, 0.5, 0.75, 1].map((t) => (
@@ -329,7 +329,7 @@ function IndustryOverview() {
       {/* Vintage year heatmap */}
       <div>
         <SectionTitle><TrendingUp className="w-4 h-4" /> Vintage Year IRR Heatmap</SectionTitle>
-        <div className="rounded-xl border border-white/10 bg-white/5 p-4">
+        <div className="rounded-xl border border-border bg-foreground/5 p-4">
           <div className="flex flex-wrap gap-2">
             {VINTAGE_DATA.map((v) => (
               <div key={v.year} className="flex flex-col items-center gap-1">
@@ -371,7 +371,7 @@ function IndustryOverview() {
         <SectionTitle><Layers className="w-4 h-4" /> Strategy Comparison: Buyout PE vs VC vs Growth Equity</SectionTitle>
         <div className="space-y-3">
           {STRATEGY_COMPARISON.map((s) => (
-            <div key={s.name} className="rounded-xl border border-white/10 bg-white/5 p-4">
+            <div key={s.name} className="rounded-xl border border-border bg-foreground/5 p-4">
               <div className="flex items-center justify-between mb-2">
                 <span className="text-sm font-semibold text-white">{s.name}</span>
                 <div className="flex gap-2">
@@ -385,7 +385,7 @@ function IndustryOverview() {
                     <span className="text-muted-foreground">Risk</span>
                     <span className="text-rose-400">{s.risk}%</span>
                   </div>
-                  <div className="h-2 rounded-full bg-white/10 overflow-hidden">
+                  <div className="h-2 rounded-full bg-foreground/10 overflow-hidden">
                     <div className="h-full rounded-full bg-rose-500" style={{ width: `${s.risk}%` }} />
                   </div>
                 </div>
@@ -394,7 +394,7 @@ function IndustryOverview() {
                     <span className="text-muted-foreground">Return Potential</span>
                     <span className="text-emerald-400">{s.return}%</span>
                   </div>
-                  <div className="h-2 rounded-full bg-white/10 overflow-hidden">
+                  <div className="h-2 rounded-full bg-foreground/10 overflow-hidden">
                     <div className="h-full rounded-full bg-emerald-500" style={{ width: `${s.return}%` }} />
                   </div>
                 </div>
@@ -557,7 +557,7 @@ function LBOModeling() {
                 "rounded-lg border p-3 text-left transition-colors",
                 i === targetIdx
                   ? "border-primary bg-primary/15"
-                  : "border-white/10 bg-white/5 hover:bg-muted/50"
+                  : "border-border bg-foreground/5 hover:bg-muted/50"
               )}
             >
               <p className="text-xs font-semibold text-white truncate">{t.name}</p>
@@ -584,7 +584,7 @@ function LBOModeling() {
       {/* LBO Inputs */}
       <div>
         <SectionTitle><Calculator className="w-4 h-4" /> LBO Model Inputs</SectionTitle>
-        <div className="rounded-xl border border-white/10 bg-white/5 p-5 grid grid-cols-1 md:grid-cols-2 gap-5">
+        <div className="rounded-xl border border-border bg-foreground/5 p-5 grid grid-cols-1 md:grid-cols-2 gap-5">
           <SliderInput
             label="Entry Multiple (EV/EBITDA)"
             value={entryMult}
@@ -654,7 +654,7 @@ function LBOModeling() {
         </div>
 
         {/* Equity bridge */}
-        <div className="mt-4 rounded-xl border border-white/10 bg-white/5 p-4">
+        <div className="mt-4 rounded-xl border border-border bg-foreground/5 p-4">
           <p className="text-xs font-semibold text-muted-foreground mb-3">Equity Bridge</p>
           <svg viewBox="0 0 600 120" className="w-full">
             {[
@@ -690,7 +690,7 @@ function LBOModeling() {
         <div className="overflow-x-auto">
           <table className="w-full text-xs">
             <thead>
-              <tr className="border-b border-white/10 text-muted-foreground">
+              <tr className="border-b border-border text-muted-foreground">
                 <th className="text-left py-2 pr-4">Year</th>
                 <th className="text-right py-2 pr-4">EBITDA</th>
                 <th className="text-right py-2 pr-4">Interest</th>
@@ -700,7 +700,7 @@ function LBOModeling() {
             </thead>
             <tbody>
               {result.schedule.map((row) => (
-                <tr key={row.year} className="border-b border-white/5 hover:bg-muted/30 transition-colors">
+                <tr key={row.year} className="border-b border-border/50 hover:bg-muted/30 transition-colors">
                   <td className="py-2 pr-4 text-muted-foreground">Year {row.year}</td>
                   <td className="text-right py-2 pr-4 text-emerald-400">${row.ebitda.toFixed(1)}M</td>
                   <td className="text-right py-2 pr-4 text-rose-400">${row.interest.toFixed(1)}M</td>
@@ -716,7 +716,7 @@ function LBOModeling() {
       {/* IRR sensitivity table */}
       <div>
         <SectionTitle><BarChart3 className="w-4 h-4" /> IRR Sensitivity: Entry Multiple × Exit Multiple</SectionTitle>
-        <div className="rounded-xl border border-white/10 bg-white/5 p-4 overflow-x-auto">
+        <div className="rounded-xl border border-border bg-foreground/5 p-4 overflow-x-auto">
           <table className="w-full text-xs">
             <thead>
               <tr className="text-muted-foreground">
@@ -728,7 +728,7 @@ function LBOModeling() {
             </thead>
             <tbody>
               {entryMults.map((ent) => (
-                <tr key={ent} className="border-t border-white/10">
+                <tr key={ent} className="border-t border-border">
                   <td className="py-2 pr-4 text-muted-foreground font-medium">{ent.toFixed(1)}x</td>
                   {exitMults.map((ex) => {
                     const res = calcLBO(
@@ -818,7 +818,7 @@ function ValueCreation() {
       {/* Value creation waterfall */}
       <div>
         <SectionTitle><BarChart3 className="w-4 h-4" /> Sources of Return — Equity Value Waterfall</SectionTitle>
-        <div className="rounded-xl border border-white/10 bg-white/5 p-4">
+        <div className="rounded-xl border border-border bg-foreground/5 p-4">
           <svg viewBox="0 0 600 200" className="w-full">
             {/* Entry equity base */}
             <rect x={20} y={60} width={80} height={120} rx={4} fill="#6366f1" opacity={0.8} />
@@ -913,7 +913,7 @@ function ValueCreation() {
               color: "text-amber-400",
             },
           ].map((section) => (
-            <div key={section.title} className="rounded-xl border border-white/10 bg-white/5 p-4">
+            <div key={section.title} className="rounded-xl border border-border bg-foreground/5 p-4">
               <p className={cn("text-sm font-semibold mb-3", section.color)}>{section.title}</p>
               <ul className="space-y-2">
                 {section.items.map((item) => (
@@ -933,7 +933,7 @@ function ValueCreation() {
         <SectionTitle><Building2 className="w-4 h-4" /> Buy &amp; Build Strategy — Bolt-On Acquisitions</SectionTitle>
         <div className="space-y-3">
           {BOLT_ONS.map((bo) => (
-            <div key={bo.name} className="rounded-xl border border-white/10 bg-white/5 p-4 flex flex-col md:flex-row md:items-center gap-3">
+            <div key={bo.name} className="rounded-xl border border-border bg-foreground/5 p-4 flex flex-col md:flex-row md:items-center gap-3">
               <div className="flex-1">
                 <p className="text-sm font-semibold text-white">{bo.name}</p>
                 <p className="text-xs text-muted-foreground mt-0.5">Acquired Year {bo.year}</p>
@@ -967,15 +967,15 @@ function ValueCreation() {
       <div>
         <SectionTitle><Users className="w-4 h-4" /> Management Incentive Plan (MIP)</SectionTitle>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-          <div className="rounded-xl border border-white/10 bg-white/5 p-4">
+          <div className="rounded-xl border border-border bg-foreground/5 p-4">
             <p className="text-sm font-semibold text-amber-400 mb-2">Sweet Equity</p>
             <p className="text-xs text-muted-foreground leading-relaxed">Management co-invests at same entry price but receives disproportionate upside above hurdle. Typical pool: 15–20% of equity. Vesting: 20% per year over 5 years.</p>
           </div>
-          <div className="rounded-xl border border-white/10 bg-white/5 p-4">
+          <div className="rounded-xl border border-border bg-foreground/5 p-4">
             <p className="text-sm font-semibold text-primary mb-2">IRR Hurdles</p>
             <p className="text-xs text-muted-foreground leading-relaxed">Management equity kicks in above 8% preferred return. Accelerated participation above 20% IRR. Full vesting on change-of-control event regardless of time served.</p>
           </div>
-          <div className="rounded-xl border border-white/10 bg-white/5 p-4">
+          <div className="rounded-xl border border-border bg-foreground/5 p-4">
             <p className="text-sm font-semibold text-emerald-400 mb-2">Annual Bonus</p>
             <p className="text-xs text-muted-foreground leading-relaxed">Cash bonus tied to EBITDA, revenue, and cash conversion targets. Typically 30–100% of base salary. Clawback if restatement within 3 years.</p>
           </div>
@@ -993,7 +993,7 @@ function ValueCreation() {
                 "rounded-xl border p-4",
                 opt.highlight
                   ? "border-emerald-500/40 bg-emerald-500/10"
-                  : "border-white/10 bg-white/5"
+                  : "border-border bg-foreground/5"
               )}
             >
               <div className="flex items-center justify-between mb-2">
@@ -1076,7 +1076,7 @@ function FundEconomics() {
   return (
     <div className="space-y-8">
       {/* Controls */}
-      <div className="rounded-xl border border-white/10 bg-white/5 p-5 grid grid-cols-1 md:grid-cols-2 gap-5">
+      <div className="rounded-xl border border-border bg-foreground/5 p-5 grid grid-cols-1 md:grid-cols-2 gap-5">
         <SliderInput
           label="Fund Size (Committed Capital $M)"
           value={committedCapital}
@@ -1109,7 +1109,7 @@ function FundEconomics() {
       <div>
         <SectionTitle><DollarSign className="w-4 h-4" /> Management Fee Structure</SectionTitle>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-          <div className="rounded-xl border border-white/10 bg-white/5 p-4">
+          <div className="rounded-xl border border-border bg-foreground/5 p-4">
             <p className="text-sm font-semibold text-white mb-2">Commitment Period (Years 1–5)</p>
             <p className="text-xs text-muted-foreground leading-relaxed">
               2.0% × <strong className="text-primary">${committedCapital}M committed capital</strong> ={" "}
@@ -1117,7 +1117,7 @@ function FundEconomics() {
               Fee base is full committed capital regardless of deployment pace.
             </p>
           </div>
-          <div className="rounded-xl border border-white/10 bg-white/5 p-4">
+          <div className="rounded-xl border border-border bg-foreground/5 p-4">
             <p className="text-sm font-semibold text-white mb-2">Harvest Period (Years 6–10)</p>
             <p className="text-xs text-muted-foreground leading-relaxed">
               Fee step-down to 1.5% × <strong className="text-primary">invested capital</strong>.
@@ -1162,7 +1162,7 @@ function FundEconomics() {
         <div className="overflow-x-auto">
           <table className="w-full text-xs">
             <thead>
-              <tr className="border-b border-white/10 text-muted-foreground">
+              <tr className="border-b border-border text-muted-foreground">
                 <th className="text-left py-2 pr-4">Gross IRR</th>
                 <th className="text-right py-2 pr-4">Gross Value</th>
                 <th className="text-right py-2 pr-4">GP Carry</th>
@@ -1174,7 +1174,7 @@ function FundEconomics() {
             <tbody>
               {scenarios.map(({ irr, econ: sc }) => (
                 <tr key={irr} className={cn(
-                  "border-b border-white/5 hover:bg-muted/30 transition-colors",
+                  "border-b border-border/50 hover:bg-muted/30 transition-colors",
                   irr === targetIRR ? "bg-primary/10" : ""
                 )}>
                   <td className="py-2 pr-4 font-semibold text-white">{irr}%</td>
@@ -1271,12 +1271,12 @@ function DealSourcing() {
       {/* Deal funnel */}
       <div>
         <SectionTitle><Search className="w-4 h-4" /> Deal Conversion Funnel</SectionTitle>
-        <div className="rounded-xl border border-white/10 bg-white/5 p-4">
+        <div className="rounded-xl border border-border bg-foreground/5 p-4">
           <div className="space-y-2">
             {DEAL_FUNNEL.map((stage) => (
               <div key={stage.stage} className="flex items-center gap-3">
                 <div className="w-40 text-xs text-muted-foreground text-right flex-shrink-0">{stage.stage}</div>
-                <div className="flex-1 h-8 bg-white/5 rounded-lg overflow-hidden">
+                <div className="flex-1 h-8 bg-foreground/5 rounded-lg overflow-hidden">
                   <motion.div
                     initial={{ width: 0 }}
                     animate={{ width: `${(stage.count / maxCount) * 100}%` }}
@@ -1299,7 +1299,7 @@ function DealSourcing() {
         <SectionTitle><Briefcase className="w-4 h-4" /> Deal Sourcing Channels</SectionTitle>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           {SOURCING_CHANNELS.map((ch) => (
-            <div key={ch.channel} className="rounded-xl border border-white/10 bg-white/5 p-4">
+            <div key={ch.channel} className="rounded-xl border border-border bg-foreground/5 p-4">
               <div className="flex items-center justify-between mb-2">
                 <p className="text-sm font-semibold text-white">{ch.channel}</p>
                 <Badge className="text-xs" style={{ backgroundColor: ch.color + "33", color: ch.color, borderColor: ch.color + "55" }}>
@@ -1318,7 +1318,7 @@ function DealSourcing() {
                   </span>
                 </div>
               </div>
-              <div className="mt-2 h-1.5 rounded-full bg-white/10 overflow-hidden">
+              <div className="mt-2 h-1.5 rounded-full bg-foreground/10 overflow-hidden">
                 <div
                   className="h-full rounded-full"
                   style={{ width: `${ch.winRate}%`, backgroundColor: ch.color }}
@@ -1336,7 +1336,7 @@ function DealSourcing() {
       <div>
         <SectionTitle><FileText className="w-4 h-4" /> Deal Anatomy — CIM to Close</SectionTitle>
         <div className="relative">
-          <div className="absolute left-6 top-0 bottom-0 w-0.5 bg-white/10" />
+          <div className="absolute left-6 top-0 bottom-0 w-0.5 bg-foreground/10" />
           <div className="space-y-4">
             {DEAL_PROCESS.map((step, i) => (
               <motion.div
@@ -1349,7 +1349,7 @@ function DealSourcing() {
                 <div className="absolute left-3 top-2 w-6 h-6 rounded-full bg-primary border-2 border-border flex items-center justify-center text-xs font-bold text-white z-10">
                   {i + 1}
                 </div>
-                <div className="rounded-xl border border-white/10 bg-white/5 p-3 flex-1">
+                <div className="rounded-xl border border-border bg-foreground/5 p-3 flex-1">
                   <div className="flex items-center justify-between mb-1">
                     <p className="text-sm font-semibold text-white">{step.step}</p>
                     <Badge className="bg-muted text-muted-foreground text-xs border-border">{step.days}</Badge>
@@ -1412,7 +1412,7 @@ function DealSourcing() {
               color: "text-amber-400",
             },
           ].map((section) => (
-            <div key={section.title} className="rounded-xl border border-white/10 bg-white/5 p-4">
+            <div key={section.title} className="rounded-xl border border-border bg-foreground/5 p-4">
               <p className={cn("text-sm font-semibold mb-3 flex items-center gap-2", section.color)}>
                 <section.icon className="w-4 h-4" />
                 {section.title}
@@ -1502,7 +1502,7 @@ function DealSourcing() {
 
 export default function PrivateEquityPage() {
   return (
-    <div className="min-h-screen bg-background text-white">
+    <div className="min-h-screen bg-background text-foreground">
       <div className="max-w-7xl mx-auto px-4 py-8 space-y-6">
         {/* Header */}
         <motion.div
@@ -1529,7 +1529,7 @@ export default function PrivateEquityPage() {
 
         {/* Tabs */}
         <Tabs defaultValue="overview" className="w-full">
-          <TabsList className="bg-white/5 border border-white/10 flex-wrap h-auto gap-1 p-1">
+          <TabsList className="bg-foreground/5 border border-border flex-wrap h-auto gap-1 p-1">
             <TabsTrigger value="overview" className="data-[state=active]:bg-primary data-[state=active]:text-white text-xs">
               Industry Overview
             </TabsTrigger>
