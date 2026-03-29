@@ -164,14 +164,14 @@ export default function LearnPage() {
 
   return (
     <div className="flex h-full flex-col overflow-hidden">
-      {/* Header */}
-      <div className="flex items-center justify-between border-b border-border bg-card px-4 py-3 shrink-0">
+      {/* Header — quiet zone, generous vertical space */}
+      <div className="flex items-center justify-between border-b border-border bg-card px-5 py-4 shrink-0">
         <div className="flex items-center gap-2.5">
           <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-primary/10 border border-primary/20">
             <GraduationCap className="h-4 w-4 text-primary" />
           </div>
           <div>
-            <h1 className="text-sm font-semibold">Trading Academy</h1>
+            <h1 className="text-sm font-medium">Trading Academy</h1>
             <p className="text-[11px] text-muted-foreground">
               {completedCount}/{totalLessons} lessons complete
             </p>
@@ -181,7 +181,7 @@ export default function LearnPage() {
           {learningStreak > 0 && (
             <div className="flex items-center gap-1 rounded-full bg-amber-500/10 border border-amber-500/20 px-2 py-0.5">
               <Flame className="h-3.5 w-3.5 text-amber-500" />
-              <span className="text-[11px] font-bold text-amber-500">{learningStreak}</span>
+              <span className="text-[11px] font-medium text-amber-500">{learningStreak}</span>
             </div>
           )}
           <DailyGoal compact />
@@ -222,10 +222,10 @@ export default function LearnPage() {
                       <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-primary opacity-40" />
                       <span className="relative inline-flex h-2 w-2 rounded-full bg-primary" />
                     </div>
-                    <span className="text-xs font-bold text-primary uppercase tracking-widest">Up Next</span>
+                    <span className="text-[11px] font-medium text-primary uppercase tracking-widest">Up Next</span>
                   </div>
                   <p className="text-xl font-bold mb-1">{recommendedLesson.lesson.title}</p>
-                  <p className="text-base text-muted-foreground mb-4">{recommendedLesson.lesson.description}</p>
+                  <p className="text-base font-normal text-muted-foreground mb-4">{recommendedLesson.lesson.description}</p>
                   <div className="flex items-center gap-4 text-xs text-muted-foreground mb-6">
                     <span className="font-medium">{recommendedLesson.unit.title}</span>
                     <span className="flex items-center gap-1"><Clock className="h-3 w-3" />{recommendedLesson.lesson.duration ?? 10} min</span>
@@ -274,7 +274,7 @@ export default function LearnPage() {
                               )}
                               {isDone && <Check className="h-2.5 w-2.5 text-white" />}
                             </div>
-                            <span className={`text-xs font-semibold ${
+                            <span className={`text-xs font-normal ${
                               isActive ? "text-primary" : isDone ? "text-emerald-400" : "text-muted-foreground"
                             }`}>{step.label}</span>
                           </Link>
@@ -324,10 +324,10 @@ export default function LearnPage() {
                       <div className="flex items-center justify-between mb-1">
                         <div className="flex items-center gap-2">
                           {pathDone && <CheckCircle2 className="h-3 w-3 text-emerald-400" />}
-                          <span className="text-xs font-bold">{path.label}</span>
+                          <span className="text-sm font-semibold">{path.label}</span>
                           {isNextIncomplete && <span className="text-[10px] font-semibold text-primary bg-primary/10 px-1.5 py-0.5 rounded">Current</span>}
                         </div>
-                        <span className="text-[11px] font-bold tabular-nums text-muted-foreground">
+                        <span className="text-[11px] font-normal tabular-nums text-muted-foreground">
                           {pathCompleted}/{pathLessons.length}
                         </span>
                       </div>
@@ -351,7 +351,7 @@ export default function LearnPage() {
                 >
                   <Brain className="h-4 w-4 text-orange-400 shrink-0" />
                   <div className="min-w-0">
-                    <span className="text-xs font-semibold text-orange-400 block">Flashcards</span>
+                    <span className="text-xs font-medium text-orange-400 block">Flashcards</span>
                     <span className="text-[10px] text-muted-foreground">{flashcardToday}/10 today</span>
                   </div>
                 </button>
@@ -362,7 +362,7 @@ export default function LearnPage() {
                 >
                   <TrendingUp className="h-4 w-4 text-emerald-400 shrink-0" />
                   <div className="min-w-0">
-                    <span className="text-xs font-semibold text-emerald-400 block">Prediction</span>
+                    <span className="text-xs font-medium text-emerald-400 block">Prediction</span>
                     <span className="text-[10px] text-muted-foreground">{predictionToday > 0 ? `${predictionToday} today` : "Start playing"}</span>
                   </div>
                 </button>
@@ -373,7 +373,7 @@ export default function LearnPage() {
                 >
                   <History className="h-4 w-4 text-muted-foreground shrink-0" />
                   <div className="min-w-0">
-                    <span className="text-xs font-semibold block">Scenarios</span>
+                    <span className="text-xs font-medium block">Scenarios</span>
                     <span className="text-[10px] text-muted-foreground">Historical crashes</span>
                   </div>
                 </button>
@@ -384,7 +384,7 @@ export default function LearnPage() {
                 >
                   <Calculator className="h-4 w-4 text-muted-foreground shrink-0" />
                   <div className="min-w-0">
-                    <span className="text-xs font-semibold block">Calculator</span>
+                    <span className="text-xs font-medium block">Calculator</span>
                     <span className="text-[10px] text-muted-foreground">Compound interest</span>
                   </div>
                 </button>
@@ -476,7 +476,7 @@ export default function LearnPage() {
                               <UnitIconComp className="h-3 w-3" style={{ color: unit.color }} />
                             )}
                           </div>
-                          <span className="text-[11px] font-semibold truncate">{unit.title}</span>
+                          <span className="text-xs font-medium truncate">{unit.title}</span>
                         </div>
                         <div className="flex items-center gap-1.5">
                           <div className="flex-1 h-1 rounded-full bg-muted/30 overflow-hidden">
@@ -512,39 +512,39 @@ export default function LearnPage() {
                 <div className="rounded-md bg-muted/30 p-3">
                   <div className="flex items-center gap-2 mb-2">
                     <Trophy className="h-4 w-4 text-amber-400" />
-                    <span className="text-[11px] font-semibold">Lessons</span>
+                    <span className="text-[11px] font-normal text-muted-foreground/70">Lessons</span>
                   </div>
                   <p className="text-xl font-bold">{completedCount}</p>
-                  <p className="text-[11px] text-muted-foreground">of {totalLessons} completed</p>
+                  <p className="text-[11px] font-normal text-muted-foreground">of {totalLessons} completed</p>
                 </div>
                 <div className="rounded-md bg-muted/30 p-3">
                   <div className="flex items-center gap-2 mb-2">
                     <Zap className="h-4 w-4 text-primary" />
-                    <span className="text-[11px] font-semibold">XP Earned</span>
+                    <span className="text-[11px] font-normal text-muted-foreground/70">XP Earned</span>
                   </div>
-                  <p className="text-xl font-bold">{xp.toLocaleString()}</p>
-                  <p className="text-[11px] text-muted-foreground">total experience</p>
+                  <p className="text-xl font-normal tabular-nums">{xp.toLocaleString()}</p>
+                  <p className="text-[11px] font-normal text-muted-foreground">total experience</p>
                 </div>
                 <div className="rounded-md bg-muted/30 p-3">
                   <div className="flex items-center gap-2 mb-2">
                     <Flame className="h-4 w-4 text-amber-500" />
-                    <span className="text-[11px] font-semibold">Streak</span>
+                    <span className="text-[11px] font-normal text-muted-foreground/70">Streak</span>
                   </div>
-                  <p className="text-xl font-bold">{learningStreak}</p>
-                  <p className="text-[11px] text-muted-foreground">days in a row</p>
+                  <p className="text-xl font-normal tabular-nums">{learningStreak}</p>
+                  <p className="text-[11px] font-normal text-muted-foreground">days in a row</p>
                 </div>
                 <div className="rounded-md bg-muted/30 p-3">
                   <div className="flex items-center gap-2 mb-2">
                     <Brain className="h-4 w-4 text-orange-400" />
-                    <span className="text-[11px] font-semibold">Mastery</span>
+                    <span className="text-[11px] font-normal text-muted-foreground/70">Mastery</span>
                   </div>
-                  <p className="text-xl font-bold">{overallMastery}%</p>
-                  <p className="text-[11px] text-muted-foreground">flashcard mastery</p>
+                  <p className="text-xl font-normal tabular-nums">{overallMastery}%</p>
+                  <p className="text-[11px] font-normal text-muted-foreground">flashcard mastery</p>
                 </div>
               </div>
 
               {/* Unit-by-unit breakdown */}
-              <h3 className="text-xs font-bold text-muted-foreground uppercase tracking-wide flex items-center gap-1.5">
+              <h3 className="text-[11px] font-medium text-muted-foreground uppercase tracking-wide flex items-center gap-1.5">
                 <BarChart2 className="h-3 w-3" />
                 Unit Breakdown
               </h3>
@@ -573,7 +573,7 @@ export default function LearnPage() {
                           />
                         </div>
                       </div>
-                      <span className="text-xs font-bold text-muted-foreground shrink-0 w-8 text-right">
+                      <span className="text-xs font-normal tabular-nums text-muted-foreground shrink-0 w-8 text-right">
                         {pct}%
                       </span>
                     </div>
@@ -582,7 +582,7 @@ export default function LearnPage() {
               </div>
 
               {/* Full skill tree below */}
-              <h3 className="text-xs font-bold text-muted-foreground uppercase tracking-wide flex items-center gap-1.5">
+              <h3 className="text-[11px] font-medium text-muted-foreground uppercase tracking-wide flex items-center gap-1.5">
                 <GraduationCap className="h-3 w-3" />
                 Skill Tree
               </h3>

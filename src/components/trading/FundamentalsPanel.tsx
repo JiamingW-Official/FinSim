@@ -160,15 +160,15 @@ export function FundamentalsPanel() {
 
       {/* ── OVERVIEW TAB ── */}
       <TabsContent value="overview" className="flex-1 overflow-auto mt-0 p-3 space-y-3">
-        {/* Header */}
-        <div className="flex items-center justify-between">
+        {/* Quiet header — generous spacing before dense data */}
+        <div className="flex items-center justify-between pb-1">
           <div>
             <div className="text-sm font-bold text-foreground">{currentTicker}</div>
-            <div className="text-xs text-muted-foreground">{data.industry}</div>
+            <div className="text-xs text-muted-foreground mt-0.5">{data.industry}</div>
           </div>
           <div className="text-right">
             <div className="text-xs text-muted-foreground">{data.sector}</div>
-            <div className="text-xs font-semibold text-foreground">{data.marketCap}</div>
+            <div className="text-xs font-semibold text-foreground mt-0.5">{data.marketCap}</div>
           </div>
         </div>
 

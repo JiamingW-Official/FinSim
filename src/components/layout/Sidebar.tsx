@@ -175,30 +175,30 @@ function NavLink({
       href={item.href}
       aria-label={item.label}
       className={cn(
-        "group relative flex items-center rounded-md transition-colors duration-100 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary",
+        "group relative flex items-center rounded-md transition-colors duration-150 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-primary/50",
         collapsed
           ? "h-9 w-10 justify-center"
-          : "h-8 w-full gap-2.5 px-2.5",
+          : "h-8 w-full gap-2 px-2.5",
         isActive
-          ? "bg-accent text-primary"
-          : "text-muted-foreground/60 hover:bg-accent/50 hover:text-foreground/80",
+          ? "bg-primary/8 text-foreground font-medium"
+          : "text-muted-foreground/50 hover:bg-muted/20 hover:text-muted-foreground/80",
       )}
     >
       {/* Left-edge active indicator */}
       {isActive && (
-        <span className="absolute -left-[9px] top-1/2 -translate-y-1/2 h-4 w-0.5 rounded-r-full bg-primary" />
+        <span className="absolute -left-[9px] top-1/2 -translate-y-1/2 h-3.5 w-[2px] rounded-r-full bg-primary/70" />
       )}
 
       <item.icon className="h-4 w-4 shrink-0" />
 
       {/* Label — expanded only */}
       {!collapsed && (
-        <span className="flex-1 text-sm font-medium leading-none">{item.label}</span>
+        <span className={cn("flex-1 text-[13px] leading-none", isActive ? "font-medium" : "font-normal")}>{item.label}</span>
       )}
 
       {/* NEW badge text */}
       {!collapsed && item.badgeText && (
-        <span className="ml-auto rounded bg-primary/15 px-1 py-0.5 text-[11px] font-bold uppercase leading-none text-primary">
+        <span className="ml-auto rounded bg-primary/10 px-1 py-0.5 text-[9px] font-semibold uppercase leading-none text-primary/70">
           {item.badgeText}
         </span>
       )}
@@ -269,24 +269,24 @@ function SectionToggle({
       type="button"
       onClick={onToggle}
       className={cn(
-        "group flex w-full items-center rounded-md transition-colors duration-100 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary",
+        "group flex w-full items-center rounded-md transition-colors duration-150 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-primary/50",
         sidebarCollapsed
           ? "h-9 w-10 justify-center"
-          : "h-8 gap-2.5 px-2.5",
+          : "h-7 gap-2 px-2.5",
         hasActiveChild
-          ? "text-foreground/80"
-          : "text-muted-foreground/50 hover:bg-accent/50 hover:text-foreground/70",
+          ? "text-muted-foreground/60"
+          : "text-muted-foreground/40 hover:text-muted-foreground/60",
       )}
     >
-      <Icon className="h-4 w-4 shrink-0" />
+      <Icon className="h-3.5 w-3.5 shrink-0" />
       {!sidebarCollapsed && (
         <>
-          <span className="flex-1 text-left text-[10px] font-semibold uppercase tracking-wide leading-none">
+          <span className="flex-1 text-left text-[10px] font-medium uppercase tracking-wider leading-none">
             {label}
           </span>
           <ChevronDown
             className={cn(
-              "h-3 w-3 shrink-0 transition-transform duration-200",
+              "h-2.5 w-2.5 shrink-0 opacity-40 transition-transform duration-200",
               isOpen ? "rotate-0" : "-rotate-90",
             )}
           />
@@ -373,22 +373,22 @@ export function Sidebar() {
   return (
     <div
       className={cn(
-        "relative hidden md:flex flex-col border-r border-border/50 bg-sidebar py-3 transition-[width] duration-200 ease-in-out overflow-hidden",
+        "relative hidden md:flex flex-col border-r border-border/30 bg-sidebar py-3 transition-[width] duration-200 ease-in-out overflow-hidden",
         collapsed ? "w-14 items-center" : "w-[200px] items-stretch",
       )}
     >
       {/* Logo mark */}
       <div
         className={cn(
-          "mb-2 flex shrink-0 items-center justify-center rounded-md bg-primary/10",
-          collapsed ? "h-8 w-8" : "mx-2.5 h-8 gap-2 px-2",
+          "mb-2 flex shrink-0 items-center justify-center rounded-md bg-primary/5",
+          collapsed ? "h-8 w-8" : "mx-2.5 h-8 gap-1.5 px-2",
         )}
       >
-        <span className="text-[13px] font-bold tracking-tight text-primary select-none">
+        <span className="text-[13px] font-bold tracking-tight text-primary/80 select-none">
           FS
         </span>
         {!collapsed && (
-          <span className="text-sm font-semibold tracking-wide text-foreground/70 select-none">
+          <span className="text-[13px] font-medium tracking-wide text-foreground/50 select-none">
             FinSim
           </span>
         )}
@@ -423,9 +423,9 @@ export function Sidebar() {
 
         {/* ── Separator ────────────────────────────────────────────────── */}
         {collapsed ? (
-          <div className="my-2 h-px w-5 bg-border/40" />
+          <div className="my-3 h-px w-5 bg-border/10" />
         ) : (
-          <div className="my-2 h-px w-full bg-border/30" />
+          <div className="my-3 border-t border-border/10" />
         )}
 
         {/* ── EXPLORE: Collapsible secondary tools ─────────────────────── */}
@@ -453,9 +453,9 @@ export function Sidebar() {
 
         {/* ── Separator ────────────────────────────────────────────────── */}
         {collapsed ? (
-          <div className="my-2 h-px w-5 bg-border/40" />
+          <div className="my-3 h-px w-5 bg-border/10" />
         ) : (
-          <div className="my-2 h-px w-full bg-border/30" />
+          <div className="my-3 border-t border-border/10" />
         )}
 
         {/* ── ADVANCED: Collapsed by default, all remaining pages ──────── */}
@@ -480,8 +480,8 @@ export function Sidebar() {
             {ADVANCED_CATEGORIES.map((cat) => (
               <div key={cat.label} className={cn("flex flex-col", collapsed ? "items-center w-full" : "w-full")}>
                 {!collapsed && (
-                  <div className="mb-0.5 mt-2 px-1">
-                    <span className="text-[10px] font-semibold uppercase tracking-wide text-muted-foreground select-none">
+                  <div className="mb-0.5 mt-2.5 px-1">
+                    <span className="text-[10px] font-normal uppercase tracking-wider text-muted-foreground/35 select-none">
                       {cat.label}
                     </span>
                   </div>
@@ -494,16 +494,16 @@ export function Sidebar() {
 
         {/* ── Separator ────────────────────────────────────────────────── */}
         {collapsed ? (
-          <div className="my-2 h-px w-5 bg-border/40" />
+          <div className="my-3 h-px w-5 bg-border/10" />
         ) : (
-          <div className="my-2 h-px w-full bg-border/30" />
+          <div className="my-3 border-t border-border/10" />
         )}
 
         {/* ── LEARN & SOCIAL (always visible, compact) ─────────────────── */}
         <div className={cn("flex flex-col", collapsed ? "items-center w-full" : "w-full")}>
           {!collapsed && (
             <div className="mb-1 px-1">
-              <span className="text-[10px] font-semibold uppercase tracking-wide text-muted-foreground select-none">
+              <span className="text-[10px] font-normal uppercase tracking-wider text-muted-foreground/35 select-none">
                 Learn
               </span>
             </div>
@@ -512,15 +512,15 @@ export function Sidebar() {
         </div>
 
         {collapsed ? (
-          <div className="my-2 h-px w-5 bg-border/40" />
+          <div className="my-3 h-px w-5 bg-border/10" />
         ) : (
-          <div className="my-2 h-px w-full bg-border/30" />
+          <div className="my-3 border-t border-border/10" />
         )}
 
         <div className={cn("flex flex-col", collapsed ? "items-center w-full" : "w-full")}>
           {!collapsed && (
             <div className="mb-1 px-1">
-              <span className="text-[10px] font-semibold uppercase tracking-wide text-muted-foreground select-none">
+              <span className="text-[10px] font-normal uppercase tracking-wider text-muted-foreground/35 select-none">
                 Social
               </span>
             </div>
@@ -579,7 +579,7 @@ export function Sidebar() {
               <button
                 type="button"
                 onClick={toggleCollapsed}
-                className="flex h-9 w-10 items-center justify-center rounded-md text-muted-foreground/50 transition-colors hover:bg-accent/50 hover:text-foreground"
+                className="flex h-9 w-10 items-center justify-center rounded-md text-muted-foreground/30 transition-colors hover:bg-muted/20 hover:text-muted-foreground/60"
                 aria-label="Expand sidebar"
               >
                 <ChevronRight className="h-4 w-4" />
@@ -593,7 +593,7 @@ export function Sidebar() {
           <button
             type="button"
             onClick={toggleCollapsed}
-            className="flex h-8 w-full items-center gap-2.5 rounded-md px-2.5 text-muted-foreground/50 transition-colors hover:bg-accent/50 hover:text-foreground"
+            className="flex h-8 w-full items-center gap-2 rounded-md px-2.5 text-muted-foreground/30 transition-colors hover:bg-muted/20 hover:text-muted-foreground/60"
             aria-label="Collapse sidebar"
           >
             <ChevronLeft className="h-4 w-4 shrink-0" />

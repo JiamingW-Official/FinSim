@@ -163,8 +163,8 @@ export default function TradePage() {
         <AlphaBotAlerts />
         <PositionAlerts />
 
-        {/* ── Top view switcher ── */}
-        <div className="flex items-center gap-1 border-b border-border/40 bg-card/50 px-3 py-0.5 shrink-0">
+        {/* ── Top view switcher — quiet header zone ── */}
+        <div className="flex items-center gap-1 border-b border-border/40 bg-card/50 px-4 py-1.5 shrink-0">
           <button
             onClick={() => setMainView("trade")}
             className={cn(
@@ -294,9 +294,12 @@ export default function TradePage() {
           <ContextualTip />
           <NewsTicker />
 
-          {/* Bottom panel: footnote tier — compressed, minimal chrome */}
+          {/* Quiet buffer between chart (dense) and fundamentals */}
+          <div className="h-1.5 shrink-0" />
+
+          {/* Bottom panel: moderate density — starts quiet, data inside */}
           <div
-            className="h-32 shrink-0 overflow-hidden border-t border-border/30 mt-0.5"
+            className="h-32 shrink-0 overflow-hidden border-t border-border/30"
             data-tutorial="positions"
           >
             <Tabs defaultValue="fundamentals" className="h-full flex flex-col">

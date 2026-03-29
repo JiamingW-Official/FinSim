@@ -78,7 +78,7 @@ export function ChainStatsBar({ analytics, spotPrice, isLoading }: ChainStatsBar
   ];
 
   return (
-    <div className="flex shrink-0 items-center gap-4 overflow-x-auto border-b border-border bg-card px-4 py-1.5">
+    <div className="flex shrink-0 items-center gap-5 overflow-x-auto border-b border-border bg-card px-5 py-3">
       {/* Ticker + spot price */}
       <div className="flex shrink-0 items-center gap-2">
         <span className="text-xs font-bold text-muted-foreground">

@@ -295,7 +295,7 @@ export default function HomePage() {
           {/* Hero header — generous padding */}
           <div className="border-b border-border/30 px-8 py-5 flex items-center justify-between">
             <div>
-              <p className="text-xl font-semibold tracking-tight">{greeting}, Trader</p>
+              <p className="text-lg font-bold tracking-tight">{greeting}, Trader</p>
               <p className="text-sm text-muted-foreground mt-0.5">
                 {new Date().toLocaleDateString("en-US", { weekday: "long", month: "short", day: "numeric" })}
                 <span className="mx-2 text-border">|</span>
@@ -323,13 +323,13 @@ export default function HomePage() {
               </>
             ) : (
               <>
-                <span className={cn("shrink-0 rounded px-2.5 py-1 text-sm font-bold", marketPulse.regime === "Bull" ? "bg-emerald-500/15 text-emerald-400" : marketPulse.regime === "Bear" ? "bg-red-500/15 text-red-400" : "bg-amber-500/15 text-amber-400")}>
+                <span className={cn("shrink-0 rounded px-2.5 py-1 text-sm font-medium", marketPulse.regime === "Bull" ? "bg-emerald-500/15 text-emerald-400" : marketPulse.regime === "Bear" ? "bg-red-500/15 text-red-400" : "bg-amber-500/15 text-amber-400")}>
                   {marketPulse.regime}
                 </span>
                 <span className="shrink-0 text-sm text-muted-foreground">
-                  VIX <span className={cn("font-bold tabular-nums", marketPulse.vix > 25 ? "text-red-400" : marketPulse.vix > 18 ? "text-amber-400" : "text-emerald-400")}>{marketPulse.vix}</span>
+                  VIX <span className={cn("font-normal tabular-nums", marketPulse.vix > 25 ? "text-red-400" : marketPulse.vix > 18 ? "text-amber-400" : "text-emerald-400")}>{marketPulse.vix}</span>
                 </span>
-                <span className={cn("shrink-0 text-sm font-medium", marketPulse.fg >= 55 ? "text-emerald-400" : marketPulse.fg <= 35 ? "text-red-400" : "text-amber-400")}>
+                <span className={cn("shrink-0 text-sm font-normal", marketPulse.fg >= 55 ? "text-emerald-400" : marketPulse.fg <= 35 ? "text-red-400" : "text-amber-400")}>
                   F&G {marketPulse.fg}
                 </span>
                 <div className="h-4 w-px bg-border/40 shrink-0" />
@@ -337,11 +337,11 @@ export default function HomePage() {
                   const isUp = changePct >= 0;
                   return (
                     <div key={ticker} className="flex shrink-0 items-center gap-2">
-                      <span className="text-sm font-bold">{ticker}</span>
-                      <span className="text-sm tabular-nums text-muted-foreground">
+                      <span className="text-sm font-medium">{ticker}</span>
+                      <span className="text-sm font-normal tabular-nums text-muted-foreground">
                         {ticker === "BTC" ? `$${price.toLocaleString("en-US", { maximumFractionDigits: 0 })}` : ticker === "VIX" ? price.toFixed(2) : `$${price.toFixed(2)}`}
                       </span>
-                      <span className={cn("text-sm font-semibold tabular-nums", isUp ? "text-emerald-400" : "text-red-400")}>
+                      <span className={cn("text-sm font-normal tabular-nums", isUp ? "text-emerald-400" : "text-red-400")}>
                         {isUp ? "+" : ""}{changePct.toFixed(2)}%
                       </span>
                     </div>
@@ -354,22 +354,22 @@ export default function HomePage() {
           {/* Main hero body — generous py-8 */}
           <div className="grid grid-cols-1 gap-0 lg:grid-cols-3">
             <div className="border-b border-border/20 px-8 py-8 lg:border-b-0 lg:border-r lg:border-border/20 lg:col-span-2">
-              <p className="mb-4 text-sm font-semibold flex items-center gap-1.5">
+              <p className="mb-4 text-[11px] font-medium uppercase tracking-wide text-muted-foreground flex items-center gap-1.5">
                 Key Insights
-                <span className="rounded bg-primary/10 px-1.5 py-0.5 text-[11px] font-semibold text-primary">AI</span>
+                <span className="rounded bg-primary/10 px-1.5 py-0.5 text-[11px] font-medium text-primary normal-case tracking-normal">AI</span>
               </p>
               <ul className="space-y-3">
                 {morningBullets.map((bullet, i) => (
                   <li key={i} className="flex items-start gap-3">
                     <span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-primary/60" />
-                    <span className="text-base leading-relaxed text-foreground/90">{bullet}</span>
+                    <span className="text-base font-normal leading-relaxed text-foreground/90">{bullet}</span>
                   </li>
                 ))}
               </ul>
 
               {/* TODAY'S FOCUS -- largest text in the hero */}
               <div className="mt-6 rounded-lg border border-primary/20 bg-primary/5 px-5 py-4">
-                <p className="text-lg font-medium leading-snug text-foreground">{todayFocus}</p>
+                <p className="text-lg font-bold leading-snug text-foreground">{todayFocus}</p>
               </div>
 
               {/* Full-width CTA button */}
@@ -377,21 +377,21 @@ export default function HomePage() {
                 {completedLessons.length === 0 ? (
                   <Link href="/learn" className="block">
                     <div className="group flex items-center justify-center gap-3 rounded-lg bg-primary px-6 py-4 text-primary-foreground transition-colors hover:bg-primary/90">
-                      <span className="text-base font-semibold">Start your first lesson</span>
+                      <span className="text-base font-medium">Start your first lesson</span>
                       <ArrowRight className="h-5 w-5 shrink-0 transition-transform group-hover:translate-x-1" />
                     </div>
                   </Link>
                 ) : stats.totalTrades === 0 ? (
                   <Link href="/trade" className="block">
                     <div className="group flex items-center justify-center gap-3 rounded-lg bg-primary px-6 py-4 text-primary-foreground transition-colors hover:bg-primary/90">
-                      <span className="text-base font-semibold">Place your first practice trade</span>
+                      <span className="text-base font-medium">Place your first practice trade</span>
                       <ArrowRight className="h-5 w-5 shrink-0 transition-transform group-hover:translate-x-1" />
                     </div>
                   </Link>
                 ) : (
                   <Link href="/trade" className="block">
                     <div className="group flex items-center justify-center gap-3 rounded-lg bg-primary px-6 py-4 text-primary-foreground transition-colors hover:bg-primary/90">
-                      <span className="text-base font-semibold">Open trading terminal</span>
+                      <span className="text-base font-medium">Open trading terminal</span>
                       <ArrowRight className="h-5 w-5 shrink-0 transition-transform group-hover:translate-x-1" />
                     </div>
                   </Link>
@@ -401,19 +401,19 @@ export default function HomePage() {
 
             {/* Right column: Yesterday + Level — inside the hero */}
             <div className="px-8 py-8">
-              <p className="mb-4 text-xs font-medium uppercase tracking-wider text-muted-foreground">Yesterday</p>
+              <p className="mb-4 text-[11px] font-medium uppercase tracking-wide text-muted-foreground">Yesterday</p>
               <div className="space-y-3">
-                <div className="flex items-center justify-between"><span className="text-sm text-muted-foreground">Trades</span><span className="text-base font-bold tabular-nums">{yesterdaySummary.count}</span></div>
-                <div className="flex items-center justify-between"><span className="text-sm text-muted-foreground">Session P&L</span><span className={cn("text-base font-bold tabular-nums", yesterdaySummary.pnl >= 0 ? "text-emerald-400" : "text-red-400")}>{yesterdaySummary.pnl >= 0 ? "+" : ""}{formatCurrency(yesterdaySummary.pnl)}</span></div>
-                <div className="flex items-center justify-between"><span className="text-sm text-muted-foreground">Win rate</span><span className="text-base font-bold tabular-nums">{winRate.toFixed(1)}%</span></div>
-                <div className="flex items-center justify-between"><span className="text-sm text-muted-foreground">Streak</span><span className="text-base font-bold tabular-nums">{dailyStreakCount}d</span></div>
+                <div className="flex items-center justify-between"><span className="text-xs text-muted-foreground">Trades</span><span className="text-xs tabular-nums">{yesterdaySummary.count}</span></div>
+                <div className="flex items-center justify-between"><span className="text-xs text-muted-foreground">Session P&L</span><span className={cn("text-xs tabular-nums", yesterdaySummary.pnl >= 0 ? "text-emerald-400" : "text-red-400")}>{yesterdaySummary.pnl >= 0 ? "+" : ""}{formatCurrency(yesterdaySummary.pnl)}</span></div>
+                <div className="flex items-center justify-between"><span className="text-xs text-muted-foreground">Win rate</span><span className="text-xs tabular-nums">{winRate.toFixed(1)}%</span></div>
+                <div className="flex items-center justify-between"><span className="text-xs text-muted-foreground">Streak</span><span className="text-xs tabular-nums">{dailyStreakCount}d</span></div>
               </div>
 
               {/* Portfolio equity mini chart */}
               <div className="mt-6 border-t border-border/20 pt-4">
                 <div className="mb-2 flex items-baseline justify-between">
-                  <span className="text-sm text-muted-foreground">Portfolio</span>
-                  <span className="text-base font-bold tabular-nums">{formatCurrency(portfolioValue)}</span>
+                  <span className="text-xs font-normal text-muted-foreground">Portfolio</span>
+                  <span className="text-xs tabular-nums">{formatCurrency(portfolioValue)}</span>
                 </div>
                 <PortfolioEquityChart equityHistory={equityHistory} currentValue={portfolioValue} />
               </div>
@@ -428,18 +428,20 @@ export default function HomePage() {
         </div>
 
         {/* ═══════════════════════════════════════════
-            TIER 2 — ACTION ZONE (tiny, inline)
-            Large gap from hero (mt-8), tight internal gap
+            QUIET ZONE — breathing room after dense hero
         ═══════════════════════════════════════════ */}
-        <div className="mt-8 flex flex-wrap items-center gap-x-6 gap-y-1">
-          <span className="text-sm font-bold tabular-nums">{formatCurrency(portfolioValue)}</span>
-          <span className={cn("text-sm tabular-nums", totalPnLPct >= 0 ? "text-emerald-400" : "text-red-400")}>{totalPnLPct >= 0 ? "+" : ""}{totalPnLPct.toFixed(2)}%</span>
+        <div className="mt-12" />
+
+        {/* TIER 2 — ACTION ZONE (sparse, minimal) */}
+        <div className="flex flex-wrap items-center gap-x-6 gap-y-1">
+          <span className="text-[11px] font-medium uppercase tracking-wide tabular-nums">{formatCurrency(portfolioValue)}</span>
+          <span className={cn("text-[11px] font-medium uppercase tracking-wide tabular-nums", totalPnLPct >= 0 ? "text-emerald-400" : "text-red-400")}>{totalPnLPct >= 0 ? "+" : ""}{totalPnLPct.toFixed(2)}%</span>
           <span className="text-xs text-muted-foreground">|</span>
-          <span className="text-sm text-muted-foreground">Daily <span className={cn("font-bold tabular-nums", dailyPnL >= 0 ? "text-emerald-400" : "text-red-400")}>{dailyPnL >= 0 ? "+" : ""}{formatCurrency(dailyPnL)}</span></span>
+          <span className="text-[11px] font-medium uppercase tracking-wide text-muted-foreground">Daily <span className={cn("tabular-nums", dailyPnL >= 0 ? "text-emerald-400" : "text-red-400")}>{dailyPnL >= 0 ? "+" : ""}{formatCurrency(dailyPnL)}</span></span>
           <span className="text-xs text-muted-foreground">|</span>
-          <span className="text-sm text-muted-foreground">Lv.{level} <span className="font-bold tabular-nums text-foreground">{xp.toLocaleString()}</span> XP</span>
+          <span className="text-[11px] font-medium text-muted-foreground">Lv.{level} <span className="tabular-nums text-foreground">{xp.toLocaleString()}</span> XP</span>
           <span className="text-xs text-muted-foreground">|</span>
-          <span className="text-sm text-muted-foreground">Win <span className="font-bold tabular-nums text-foreground">{winRate.toFixed(1)}%</span> <span className="text-xs">({stats.totalTrades})</span></span>
+          <span className="text-[11px] font-medium text-muted-foreground">Win <span className="tabular-nums text-foreground">{winRate.toFixed(1)}%</span> <span className="text-xs">({stats.totalTrades})</span></span>
         </div>
 
         {/* Quick actions — small text links, not cards */}
@@ -459,42 +461,41 @@ export default function HomePage() {
         </div>
 
         {/* ═══════════════════════════════════════════
-            VISUAL BUFFER — divider between action & reference
+            QUIET ZONE — visual rest between action & reference
         ═══════════════════════════════════════════ */}
-        <div className="my-8 border-t border-border/10" />
+        <div className="my-10" />
 
         {/* ═══════════════════════════════════════════
-            TIER 3 — REFERENCE ZONE (footnote-sized)
-            text-xs, minimal borders, tight spacing
+            TIER 3 — REFERENCE: Market Intelligence (dense)
         ═══════════════════════════════════════════ */}
-        <div className="grid grid-cols-1 gap-1 lg:grid-cols-3">
-          {/* Market Pulse */}
-          <div className="rounded bg-muted/20 px-3 py-2">
-            <p className="mb-1.5 text-xs text-muted-foreground">Market Pulse</p>
+        <div className="grid grid-cols-1 gap-2 lg:grid-cols-3">
+          {/* Market Pulse — dense */}
+          <div className="rounded bg-muted/20 px-4 py-3">
+            <p className="mb-2 text-xs font-normal text-muted-foreground">Market Pulse</p>
             <div className="space-y-1">
               <div className="flex items-center justify-between">
                 <span className="text-xs text-muted-foreground">Regime</span>
-                <span className={cn("text-xs font-bold", marketPulse.regime === "Bull" ? "text-emerald-400" : marketPulse.regime === "Bear" ? "text-red-400" : "text-amber-400")}>{marketPulse.regime}</span>
+                <span className={cn("text-xs tabular-nums", marketPulse.regime === "Bull" ? "text-emerald-400" : marketPulse.regime === "Bear" ? "text-red-400" : "text-amber-400")}>{marketPulse.regime}</span>
               </div>
               <div className="flex items-center justify-between">
                 <span className="text-xs text-muted-foreground">VIX</span>
-                <span className={cn("text-xs font-bold tabular-nums", marketPulse.vix > 25 ? "text-red-400" : marketPulse.vix > 18 ? "text-amber-400" : "text-emerald-400")}>{marketPulse.vix}</span>
+                <span className={cn("text-xs tabular-nums", marketPulse.vix > 25 ? "text-red-400" : marketPulse.vix > 18 ? "text-amber-400" : "text-emerald-400")}>{marketPulse.vix}</span>
               </div>
               <div className="flex items-center justify-between">
                 <span className="text-xs text-muted-foreground">F&G</span>
-                <span className={cn("text-xs font-bold tabular-nums", marketPulse.fg >= 55 ? "text-emerald-400" : marketPulse.fg <= 35 ? "text-red-400" : "text-amber-400")}>{marketPulse.fg} {marketPulse.fgLabel}</span>
+                <span className={cn("text-xs tabular-nums", marketPulse.fg >= 55 ? "text-emerald-400" : marketPulse.fg <= 35 ? "text-red-400" : "text-amber-400")}>{marketPulse.fg} {marketPulse.fgLabel}</span>
               </div>
             </div>
           </div>
 
-          {/* Economic Calendar */}
-          <div className="rounded bg-muted/20 px-3 py-2">
-            <p className="mb-1.5 text-xs text-muted-foreground">Economic Calendar</p>
+          {/* Economic Calendar — dense */}
+          <div className="rounded bg-muted/20 px-4 py-3">
+            <p className="mb-2 text-xs font-normal text-muted-foreground">Economic Calendar</p>
             <div className="space-y-1">
               {ECONOMIC_EVENTS.slice(dayIndex % 4, (dayIndex % 4) + 3).map((ev, i) => (
                 <div key={i} className="flex items-center justify-between gap-2">
                   <div className="flex items-center gap-1 min-w-0">
-                    <span className={cn("shrink-0 text-[10px] font-bold", ev.impact === "HIGH" ? "text-red-400" : "text-amber-400")}>{ev.impact}</span>
+                    <span className={cn("shrink-0 text-[10px] font-medium", ev.impact === "HIGH" ? "text-red-400" : "text-amber-400")}>{ev.impact}</span>
                     <span className="truncate text-xs">{ev.name}</span>
                   </div>
                   <span className="shrink-0 text-[11px] text-muted-foreground">{ev.daysFromNow === 1 ? "Tmrw" : `${ev.daysFromNow}d`}</span>
@@ -503,13 +504,13 @@ export default function HomePage() {
             </div>
           </div>
 
-          {/* Options Volume */}
-          <div className="rounded bg-muted/20 px-3 py-2">
-            <p className="mb-1.5 text-xs text-muted-foreground">Active Options</p>
+          {/* Options Volume — dense */}
+          <div className="rounded bg-muted/20 px-4 py-3">
+            <p className="mb-2 text-xs font-normal text-muted-foreground">Active Options</p>
             <div className="space-y-0.5">
               {optionsVolume.slice(0, 4).map((item) => (
                 <div key={item.ticker} className="flex items-center gap-2 text-xs">
-                  <span className="w-10 font-bold">{item.ticker}</span>
+                  <span className="w-10 font-medium">{item.ticker}</span>
                   <div className="flex-1"><div className="h-0.5 overflow-hidden rounded-full bg-muted/30"><div className="h-full rounded-full bg-amber-500/60" style={{ width: `${(item.volume / optionsVolume[0].volume) * 100}%` }} /></div></div>
                   <span className="w-10 text-right font-mono text-[11px] text-muted-foreground tabular-nums">{(item.volume / 1000).toFixed(0)}K</span>
                   <span className={cn("w-8 text-right text-[11px] tabular-nums", item.callPutRatio > 1 ? "text-emerald-400" : "text-red-400")}>{item.callPutRatio}</span>
@@ -519,13 +520,13 @@ export default function HomePage() {
           </div>
         </div>
 
-        {/* Buffer between market intelligence and personal sections */}
-        <div className="my-6 border-t border-border/10" />
+        {/* QUIET ZONE — rest between market intelligence and personal data */}
+        <div className="my-10" />
 
-        {/* Recent trades + Positions — compressed row */}
-        <div className="grid grid-cols-1 gap-1 lg:grid-cols-3">
-          <div className="rounded bg-muted/20 px-3 py-2">
-            <div className="flex items-center justify-between mb-1"><p className="text-xs text-muted-foreground">Recent Trades</p>{tradeHistory.length > 0 && <Link href="/portfolio" className="text-[11px] text-primary hover:underline">All</Link>}</div>
+        {/* Personal data — moderate density */}
+        <div className="grid grid-cols-1 gap-3 lg:grid-cols-3">
+          <div className="rounded bg-muted/20 px-4 py-3">
+            <div className="flex items-center justify-between mb-1.5"><p className="text-xs text-muted-foreground">Recent Trades</p>{tradeHistory.length > 0 && <Link href="/portfolio" className="text-[11px] text-primary hover:underline">All</Link>}</div>
             {recentTrades.length === 0 ? (
               <p className="text-xs text-muted-foreground/60">No trades yet. <Link href="/trade" className="text-primary hover:underline">Start</Link></p>
             ) : (
@@ -537,17 +538,17 @@ export default function HomePage() {
                       <span className="font-medium">{trade.ticker}</span>
                       <span className="text-[11px] text-muted-foreground">{trade.side} x{trade.quantity}</span>
                     </div>
-                    <span className={cn("text-[11px] font-bold tabular-nums", trade.realizedPnL >= 0 ? "text-emerald-400" : "text-red-400")}>{trade.realizedPnL >= 0 ? "+" : ""}{formatCurrency(trade.realizedPnL)}</span>
+                    <span className={cn("text-[11px] tabular-nums", trade.realizedPnL >= 0 ? "text-emerald-400" : "text-red-400")}>{trade.realizedPnL >= 0 ? "+" : ""}{formatCurrency(trade.realizedPnL)}</span>
                   </div>
                 ))}
               </div>
             )}
           </div>
 
-          <div className="rounded bg-muted/20 px-3 py-2">
-            <div className="flex items-center justify-between mb-1"><p className="text-xs text-muted-foreground">Learning</p><Link href="/learn" className="text-[11px] text-primary hover:underline">Continue</Link></div>
+          <div className="rounded bg-muted/20 px-4 py-3">
+            <div className="flex items-center justify-between mb-1.5"><p className="text-xs text-muted-foreground">Learning</p><Link href="/learn" className="text-[11px] text-primary hover:underline">Continue</Link></div>
             <div className="flex items-baseline gap-2 mb-1">
-              <span className="text-xs font-bold tabular-nums">{learnProgress.completed}/{learnProgress.total}</span>
+              <span className="text-xs tabular-nums">{learnProgress.completed}/{learnProgress.total}</span>
               <span className="text-[11px] text-muted-foreground">lessons ({learnProgress.pct}%)</span>
             </div>
             {nextLesson && <p className="text-[11px] text-muted-foreground truncate">Next: <span className="text-foreground">{nextLesson.lesson.title}</span></p>}
@@ -557,8 +558,8 @@ export default function HomePage() {
             </div>
           </div>
 
-          <div className="rounded bg-muted/20 px-3 py-2">
-            <p className="text-xs text-muted-foreground mb-1">Activity</p>
+          <div className="rounded bg-muted/20 px-4 py-3">
+            <p className="text-xs text-muted-foreground mb-1.5">Activity</p>
             {activityFeed.length === 0 ? (
               <p className="text-[11px] text-muted-foreground/60">No recent activity</p>
             ) : (

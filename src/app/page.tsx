@@ -82,7 +82,7 @@ export default function LandingPage() {
       </nav>
 
       {/* Hero */}
-      <section className="max-w-5xl mx-auto px-6 pt-24 pb-12 text-center">
+      <section className="max-w-5xl mx-auto px-6 pt-28 sm:pt-32 pb-16 text-center">
         <motion.div
           className="inline-flex items-center gap-2 rounded-full border border-border bg-card px-4 py-1.5 mb-8"
           initial={{ opacity: 0, y: 12 }}
@@ -96,7 +96,7 @@ export default function LandingPage() {
         </motion.div>
 
         <motion.h1
-          className="text-4xl sm:text-5xl md:text-6xl font-semibold leading-[1.08] tracking-tight"
+          className="text-4xl sm:text-5xl font-semibold leading-[1.08] tracking-tight"
           initial={{ opacity: 0, y: 16 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, delay: 0.05 }}
@@ -125,14 +125,14 @@ export default function LandingPage() {
         >
           <Link
             href="/home"
-            className="inline-flex items-center gap-2 rounded-lg bg-primary px-8 py-3 text-sm font-semibold text-primary-foreground transition-colors hover:bg-primary/90"
+            className="inline-flex items-center justify-center gap-2 rounded-lg bg-primary h-11 px-8 text-sm font-semibold text-primary-foreground transition-colors hover:bg-primary/90"
           >
             Start Learning Free
             <ArrowRight className="h-4 w-4" />
           </Link>
           <Link
             href="/learn"
-            className="inline-flex items-center gap-2 rounded-lg border border-border bg-card px-6 py-3 text-sm font-medium text-foreground transition-colors hover:bg-muted"
+            className="inline-flex items-center justify-center gap-2 rounded-lg h-11 px-6 text-sm text-muted-foreground transition-colors hover:text-foreground hover:bg-muted"
           >
             Browse Lessons
           </Link>
@@ -271,7 +271,7 @@ export default function LandingPage() {
                           y={top}
                           width="10"
                           height={Math.max(bot - top, 1.5)}
-                          fill={c.bull ? color : color}
+                          fill={color}
                           rx="0.5"
                         />
                       </g>
@@ -375,10 +375,10 @@ export default function LandingPage() {
                 variants={fadeUp}
                 custom={i}
               >
-                <div className="text-2xl sm:text-3xl font-semibold tracking-tight">
+                <div className="text-lg sm:text-xl font-semibold tracking-tight tabular-nums">
                   {s.value}
                 </div>
-                <div className="text-xs text-muted-foreground mt-1">
+                <div className="text-sm text-muted-foreground mt-1 font-normal">
                   {s.label}
                 </div>
               </motion.div>
@@ -406,11 +406,15 @@ export default function LandingPage() {
           </p>
         </motion.div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-3 gap-5">
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
           {FEATURES.map((f, i) => (
             <motion.div
               key={f.title}
-              className={`rounded-xl border ${f.border} bg-card p-7 transition-colors hover:border-border`}
+              className={`rounded-xl border ${f.border} bg-card transition-colors hover:border-border ${
+                i === 0
+                  ? "sm:col-span-2 p-8 sm:p-10"
+                  : "p-7"
+              }`}
               initial="hidden"
               whileInView="visible"
               viewport={{ once: true, margin: "-40px" }}
@@ -418,12 +422,18 @@ export default function LandingPage() {
               custom={i + 1}
             >
               <div
-                className={`inline-flex h-10 w-10 items-center justify-center rounded-lg ${f.bg} mb-5`}
+                className={`inline-flex items-center justify-center rounded-lg ${f.bg} ${
+                  i === 0 ? "h-11 w-11 mb-5" : "h-10 w-10 mb-4"
+                }`}
               >
                 <f.icon className={`h-4.5 w-4.5 ${f.color}`} />
               </div>
-              <h3 className="text-sm font-semibold mb-2">{f.title}</h3>
-              <p className="text-xs text-muted-foreground leading-relaxed">
+              <h3 className={`font-semibold mb-2 ${i === 0 ? "text-base" : "text-sm"}`}>
+                {f.title}
+              </h3>
+              <p className={`text-muted-foreground leading-relaxed ${
+                i === 0 ? "text-sm max-w-lg" : "text-xs"
+              }`}>
                 {f.desc}
               </p>
             </motion.div>
@@ -472,10 +482,10 @@ export default function LandingPage() {
                 variants={fadeUp}
                 custom={i + 1}
               >
-                <div className="text-xs font-bold text-primary mb-3 tracking-widest">
+                <div className="text-xs font-medium text-primary/70 mb-3 tracking-widest">
                   {s.step}
                 </div>
-                <h3 className="text-base font-semibold mb-2">{s.title}</h3>
+                <h3 className="text-sm font-semibold mb-2">{s.title}</h3>
                 <p className="text-sm text-muted-foreground leading-relaxed">
                   {s.desc}
                 </p>
@@ -488,7 +498,7 @@ export default function LandingPage() {
       {/* Final CTA */}
       <section className="max-w-5xl mx-auto px-6 py-20">
         <motion.div
-          className="relative rounded-xl border border-primary/20 bg-primary/[0.03] p-12 sm:p-16 text-center overflow-hidden"
+          className="relative rounded-xl border border-border bg-primary/[0.03] p-12 sm:p-16 text-center overflow-hidden"
           initial={{ opacity: 0, y: 12 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}

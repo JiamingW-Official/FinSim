@@ -206,7 +206,7 @@ function ShortcutsButton() {
     <button
       type="button"
       onClick={openModal}
-      className="rounded p-1 text-muted-foreground transition-colors hover:text-foreground"
+      className="rounded p-1 text-muted-foreground/40 transition-colors hover:text-foreground/70"
       title="Keyboard shortcuts (?)"
       aria-label="Open keyboard shortcuts guide"
     >
@@ -245,7 +245,7 @@ function QuickActionsMenu() {
       <button
         type="button"
         onClick={() => setOpen((v) => !v)}
-        className="flex h-6 w-6 items-center justify-center rounded-md border border-border/60 bg-accent/40 text-muted-foreground transition-colors hover:bg-accent hover:text-foreground"
+        className="flex h-6 w-6 items-center justify-center rounded-md border border-border/30 text-muted-foreground/40 transition-colors hover:bg-muted/30 hover:text-foreground/70"
         title="Quick actions"
       >
         <Plus className="h-3.5 w-3.5" />
@@ -281,13 +281,13 @@ function SoundToggle() {
     <button
       type="button"
       onClick={toggleSound}
-      className="rounded p-1 text-muted-foreground transition-colors hover:text-foreground"
+      className="rounded p-1 text-muted-foreground/40 transition-colors hover:text-foreground/70"
       title={soundEnabled ? "Mute sounds" : "Enable sounds"}
     >
       {soundEnabled ? (
         <Volume2 className="h-3.5 w-3.5" />
       ) : (
-        <VolumeX className="h-3.5 w-3.5 text-muted-foreground/50" />
+        <VolumeX className="h-3.5 w-3.5 opacity-50" />
       )}
     </button>
   );
@@ -347,16 +347,16 @@ export function TopBar() {
   const [tickerQuery, setTickerQuery] = useState("");
 
   return (
-    <div className="relative glass flex h-10 items-center justify-between px-4 border-b border-border">
+    <div className="relative flex h-10 items-center justify-between px-4 border-b border-border/30 bg-background/80 backdrop-blur-sm">
       {/* ── Left ── */}
       <div className="flex items-center gap-4">
         {/* Logo */}
-        <span className="inline-flex items-center gap-1.5 select-none">
-          <span className="text-sm font-bold tracking-tight text-primary">FS</span>
-          <span className="text-sm font-semibold tracking-wide text-foreground/80">FinSim</span>
+        <span className="inline-flex items-center gap-1 select-none">
+          <span className="text-sm font-bold tracking-tight text-primary/70">FS</span>
+          <span className="text-sm font-medium tracking-wide text-foreground/50">FinSim</span>
         </span>
 
-        <div className="h-4 w-px bg-border" />
+        <div className="h-3.5 w-px bg-border/20" />
 
         {/* Ticker — clickable to open search */}
         <div className="relative">
@@ -415,12 +415,12 @@ export function TopBar() {
         <LearnStreakBadge />
         {pathname?.startsWith("/learn") && <HeartsDisplay compact />}
 
-        <div className="h-4 w-px bg-border" />
+        <div className="h-3.5 w-px bg-border/20" />
 
         {/* Market status */}
         <MarketStatusPill />
 
-        <div className="h-4 w-px bg-border" />
+        <div className="h-3.5 w-px bg-border/20" />
 
         {/* Actions cluster */}
         <SearchTrigger />
@@ -429,7 +429,7 @@ export function TopBar() {
         <SoundToggle />
         <QuickActionsMenu />
 
-        <div className="h-4 w-px bg-border" />
+        <div className="h-3.5 w-px bg-border/20" />
 
         {/* Simulated date */}
         {currentBar && (
@@ -438,7 +438,7 @@ export function TopBar() {
           </span>
         )}
 
-        <div className="h-4 w-px bg-border" />
+        <div className="h-3.5 w-px bg-border/20" />
 
         {/* Portfolio value + P&L badge */}
         <div className="flex items-center gap-2" data-tutorial="portfolio">

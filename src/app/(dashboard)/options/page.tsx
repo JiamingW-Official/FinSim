@@ -112,8 +112,8 @@ export default function OptionsPage() {
       {/* Stats bar */}
       <ChainStatsBar analytics={analytics} spotPrice={spotPrice} isLoading={isLoading} />
 
-      {/* Buffer between stats bar and chain table */}
-      <div className="h-6 shrink-0" />
+      {/* Quiet zone — breathing room between stats bar (dense) and chain table (dense) */}
+      <div className="h-4 shrink-0" />
 
       {/* 4-tab layout */}
       <Tabs
@@ -402,7 +402,7 @@ export default function OptionsPage() {
       <div className="md:hidden shrink-0 border-t border-border">
         <OptionsOrderEntry spotPrice={spotPrice} analytics={analytics} />
       </div>
-      <p className="shrink-0 border-t border-border/40 px-3 py-1.5 text-center text-[11px] text-muted-foreground/60">
+      <p className="shrink-0 border-t border-border/40 px-3 py-2.5 text-center text-[11px] text-muted-foreground/60">
         For educational purposes only. Not financial advice. All data is simulated.
       </p>
     </div>

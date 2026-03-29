@@ -256,8 +256,8 @@ export default function BacktestPage() {
 
   return (
     <div className="flex h-full flex-col">
-      {/* Header */}
-      <div className="flex items-center gap-3 border-b border-border bg-card/60 px-6 py-4">
+      {/* Header — quiet zone */}
+      <div className="flex items-center gap-3 border-b border-border bg-card/60 px-6 py-5">
         <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-primary/15">
           <FlaskConical className="h-4 w-4 text-primary" />
         </div>
