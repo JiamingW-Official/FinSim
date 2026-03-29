@@ -164,7 +164,7 @@ export default function TradePage() {
         <PositionAlerts />
 
         {/* ── Top view switcher — quiet header zone ── */}
-        <div className="flex items-center gap-1 border-b border-border/40 bg-card/50 px-4 py-1.5 shrink-0">
+        <div className="flex items-center gap-1 border-b border-border/20 bg-transparent px-4 py-1 shrink-0">
           <button
             onClick={() => setMainView("trade")}
             className={cn(
@@ -200,9 +200,9 @@ export default function TradePage() {
         {/* ── Trade view ── */}
         <div className={cn("flex flex-1 overflow-hidden", mainView !== "trade" && "hidden")}>
 
-        {/* ── Left sidebar (200px): Watchlist + PriceAlerts — subdued ── */}
+        {/* ── Left sidebar (200px): Watchlist + PriceAlerts — dimmed ── */}
         <div
-          className="relative flex flex-col border-r border-border/40 bg-card/40 shrink-0"
+          className="relative flex flex-col border-r border-border/20 bg-card/20 shrink-0"
           style={{ width: 200 }}
           data-tutorial="watchlist"
         >
@@ -336,48 +336,48 @@ export default function TradePage() {
           </div>
         </div>
 
-        {/* ── Right sidebar (260px): Order Entry — subdued, chart is king ── */}
+        {/* ── Right sidebar (260px): Order Entry — dimmed, chart is king ── */}
         <div
-          className="relative flex flex-col border-l border-border/40 bg-card/40 shrink-0"
+          className="relative flex flex-col border-l border-border/20 bg-card/20 shrink-0"
           style={{ width: 260 }}
           data-tutorial="order-entry"
         >
           <Tabs defaultValue="order" className="flex flex-col h-full">
             {/* Tab bar */}
-            <TabsList className="h-6 w-full justify-start rounded-none border-b border-border/30 bg-transparent px-1 shrink-0">
+            <TabsList className="h-6 w-full justify-start rounded-none border-b border-border/15 bg-transparent px-1 shrink-0">
               <TabsTrigger
                 value="order"
-                className="h-5 rounded-none border-b border-transparent px-1.5 text-[11px] text-muted-foreground/60 data-[state=active]:border-primary data-[state=active]:text-foreground data-[state=active]:bg-transparent"
+                className="h-5 rounded-none border-b border-transparent px-1.5 text-[10px] text-muted-foreground/40 data-[state=active]:border-primary/60 data-[state=active]:text-muted-foreground data-[state=active]:bg-transparent"
               >
                 Order
               </TabsTrigger>
               <TabsTrigger
                 value="positions"
-                className="h-5 rounded-none border-b border-transparent px-1.5 text-[11px] text-muted-foreground/60 data-[state=active]:border-primary data-[state=active]:text-foreground data-[state=active]:bg-transparent"
+                className="h-5 rounded-none border-b border-transparent px-1.5 text-[10px] text-muted-foreground/40 data-[state=active]:border-primary/60 data-[state=active]:text-muted-foreground data-[state=active]:bg-transparent"
               >
                 Positions
               </TabsTrigger>
               <TabsTrigger
                 value="pending"
-                className="h-5 rounded-none border-b border-transparent px-1.5 text-[11px] text-muted-foreground/60 data-[state=active]:border-primary data-[state=active]:text-foreground data-[state=active]:bg-transparent"
+                className="h-5 rounded-none border-b border-transparent px-1.5 text-[10px] text-muted-foreground/40 data-[state=active]:border-primary/60 data-[state=active]:text-muted-foreground data-[state=active]:bg-transparent"
               >
                 Orders{pendingCount > 0 && ` (${pendingCount})`}
               </TabsTrigger>
               <TabsTrigger
                 value="history"
-                className="h-5 rounded-none border-b border-transparent px-1.5 text-[11px] text-muted-foreground/60 data-[state=active]:border-primary data-[state=active]:text-foreground data-[state=active]:bg-transparent"
+                className="h-5 rounded-none border-b border-transparent px-1.5 text-[10px] text-muted-foreground/40 data-[state=active]:border-primary/60 data-[state=active]:text-muted-foreground data-[state=active]:bg-transparent"
               >
                 History
               </TabsTrigger>
               <TabsTrigger
                 value="execution"
-                className="h-5 rounded-none border-b border-transparent px-1.5 text-[11px] text-muted-foreground/60 data-[state=active]:border-primary data-[state=active]:text-foreground data-[state=active]:bg-transparent"
+                className="h-5 rounded-none border-b border-transparent px-1.5 text-[10px] text-muted-foreground/40 data-[state=active]:border-primary/60 data-[state=active]:text-muted-foreground data-[state=active]:bg-transparent"
               >
                 Exec
               </TabsTrigger>
               <TabsTrigger
                 value="margin"
-                className="h-5 rounded-none border-b border-transparent px-1.5 text-[11px] text-muted-foreground/60 data-[state=active]:border-primary data-[state=active]:text-foreground data-[state=active]:bg-transparent"
+                className="h-5 rounded-none border-b border-transparent px-1.5 text-[10px] text-muted-foreground/40 data-[state=active]:border-primary/60 data-[state=active]:text-muted-foreground data-[state=active]:bg-transparent"
               >
                 Margin
               </TabsTrigger>

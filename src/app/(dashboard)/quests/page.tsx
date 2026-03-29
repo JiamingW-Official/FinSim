@@ -111,7 +111,7 @@ function SimpleQuestCard({
               <h3
                 className={cn(
                   "truncate",
-                  pct > 0 ? "text-sm font-bold" : "text-xs font-medium text-foreground",
+                  pct > 0 ? "text-sm font-medium" : "text-xs font-normal text-foreground",
                 )}
               >
                 {quest.title}
@@ -280,17 +280,23 @@ function ActiveQuestsTab() {
 
 function QuestMapTab() {
   return (
-    <div className="space-y-6">
+    <div>
       {/* Skill tree header — hero card (dominant, accent) */}
       <div className="border-l-4 border-primary bg-card p-6 rounded-lg">
-        <p className="text-xs font-bold text-foreground mb-0.5">Skill Tree</p>
+        <p className="text-xs font-medium text-foreground mb-0.5">Skill Tree</p>
         <p className="text-[11px] text-muted-foreground">
           Complete quests to unlock new branches and milestones on your journey.
         </p>
       </div>
 
+      {/* Buffer — breathing after hero */}
+      <div className="mt-10" />
+
       {/* QuestMap component */}
       <QuestMap />
+
+      {/* Buffer — breathing before branch grid */}
+      <div className="mt-8" />
 
       {/* Branch overview grid */}
       <BranchGrid />
@@ -520,7 +526,7 @@ export default function QuestsPage() {
             <ScrollText className="h-5 w-5 text-primary" />
           </motion.div>
           <div>
-            <h1 className="text-lg font-bold">Quest Board</h1>
+            <h1 className="text-lg font-medium">Quest Board</h1>
             <p className="text-[11px] text-muted-foreground">
               Complete quests across all game modes to earn XP and unlock rewards
             </p>
@@ -599,8 +605,8 @@ export default function QuestsPage() {
         </div>
       </div>
 
-      {/* Content */}
-      <div className="flex-1 overflow-y-auto px-4 py-6">
+      {/* Content — generous top padding for breathing after tab bar */}
+      <div className="flex-1 overflow-y-auto px-4 pt-8 pb-6">
         <div className="mx-auto max-w-2xl">
           <AnimatePresence mode="wait">
             <motion.div

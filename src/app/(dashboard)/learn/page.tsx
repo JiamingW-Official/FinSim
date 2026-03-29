@@ -214,34 +214,34 @@ export default function LearnPage() {
           {/* ============ LEARNING PATH TAB ============ */}
           {activeTab === "path" && (
             <>
-              {/* === DOMINANT "Up Next" hero card === */}
+              {/* === DOMINANT "Up Next" hero card — MASSIVE === */}
               {recommendedLesson ? (
-                <div className="rounded-xl border-2 border-primary/40 bg-card p-8">
-                  <div className="flex items-center gap-2 mb-4">
-                    <div className="relative flex h-3 w-3 items-center justify-center">
+                <div className="rounded-xl border-2 border-primary/40 bg-card p-10">
+                  <div className="flex items-center gap-2 mb-5">
+                    <div className="relative flex h-3.5 w-3.5 items-center justify-center">
                       <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-primary opacity-40" />
-                      <span className="relative inline-flex h-2 w-2 rounded-full bg-primary" />
+                      <span className="relative inline-flex h-2.5 w-2.5 rounded-full bg-primary" />
                     </div>
-                    <span className="text-[11px] font-medium text-primary uppercase tracking-widest">Up Next</span>
+                    <span className="text-xs font-semibold text-primary uppercase tracking-widest">Up Next</span>
                   </div>
-                  <p className="text-xl font-bold mb-1">{recommendedLesson.lesson.title}</p>
-                  <p className="text-base font-normal text-muted-foreground mb-4">{recommendedLesson.lesson.description}</p>
+                  <p className="text-xl font-bold mb-1 leading-tight">{recommendedLesson.lesson.title}</p>
+                  <p className="text-sm font-normal text-muted-foreground mb-4 leading-relaxed">{recommendedLesson.lesson.description}</p>
                   <div className="flex items-center gap-4 text-xs text-muted-foreground mb-6">
                     <span className="font-medium">{recommendedLesson.unit.title}</span>
                     <span className="flex items-center gap-1"><Clock className="h-3 w-3" />{recommendedLesson.lesson.duration ?? 10} min</span>
-                    <span className="flex items-center gap-1 text-primary font-semibold"><Zap className="h-3 w-3" />+{recommendedLesson.lesson.xpReward} XP</span>
+                    <span className="flex items-center gap-1 text-primary font-medium"><Zap className="h-3 w-3" />+{recommendedLesson.lesson.xpReward} XP</span>
                   </div>
                   <Link
                     href={`/learn/${recommendedLesson.lesson.id}`}
-                    className="flex items-center justify-center gap-2 w-full rounded-lg bg-primary h-12 text-base font-semibold text-primary-foreground transition-colors hover:bg-primary/90"
+                    className="flex items-center justify-center gap-2 w-full rounded-lg bg-primary h-12 text-base font-medium text-primary-foreground transition-colors hover:bg-primary/90"
                   >
                     {completedCount > 0 ? "Continue Learning" : "Begin Your Journey"}
-                    <ArrowRight className="h-4 w-4" />
+                    <ArrowRight className="h-5 w-5" />
                   </Link>
                 </div>
               ) : (
-                <div className="rounded-xl border-2 border-emerald-500/40 bg-card p-8 text-center">
-                  <CheckCircle2 className="h-8 w-8 text-emerald-400 mx-auto mb-3" />
+                <div className="rounded-xl border-2 border-emerald-500/40 bg-card p-10 text-center">
+                  <CheckCircle2 className="h-10 w-10 text-emerald-400 mx-auto mb-4" />
                   <p className="text-xl font-bold mb-2">All Lessons Complete</p>
                   <p className="text-base text-muted-foreground">You have finished every lesson. Try a practice trade to reinforce your skills.</p>
                 </div>
@@ -261,26 +261,27 @@ export default function LearnPage() {
                     {steps.map((step, idx) => {
                       const isActive = idx === currentStep;
                       const isDone = idx < currentStep;
+                      const isFuture = idx > currentStep;
                       return (
-                        <div key={step.label} className="flex items-center gap-0">
+                        <div key={step.label} className={`flex items-center gap-0 ${isDone ? "opacity-40" : isFuture ? "opacity-20" : ""}`}>
                           <Link href={step.href} className="flex flex-col items-center gap-1">
                             <div className={`relative flex items-center justify-center rounded-full transition-transform ${
-                              isActive ? "h-5 w-5 scale-125 ring-2 ring-primary ring-offset-2 ring-offset-background" : "h-4 w-4"
+                              isActive ? "h-5 w-5 scale-125 ring-2 ring-primary ring-offset-2 ring-offset-background animate-pulse" : "h-3.5 w-3.5"
                             } ${
                               isActive ? "bg-primary" : isDone ? "bg-emerald-400" : "bg-muted-foreground/20"
                             }`}>
                               {isActive && (
                                 <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-primary opacity-30" />
                               )}
-                              {isDone && <Check className="h-2.5 w-2.5 text-white" />}
+                              {isDone && <Check className="h-2 w-2 text-white" />}
                             </div>
-                            <span className={`text-xs font-normal ${
-                              isActive ? "text-primary" : isDone ? "text-emerald-400" : "text-muted-foreground"
+                            <span className={`text-[11px] font-normal ${
+                              isActive ? "text-primary font-medium" : isDone ? "text-emerald-400" : "text-muted-foreground"
                             }`}>{step.label}</span>
                           </Link>
                           {idx < steps.length - 1 && (
                             <div className={`w-12 h-0.5 mx-3 rounded-full ${
-                              idx < currentStep ? "bg-emerald-400" : "bg-muted-foreground/15"
+                              idx < currentStep ? "bg-emerald-400/40" : "bg-muted-foreground/10"
                             }`} />
                           )}
                         </div>
@@ -290,16 +291,16 @@ export default function LearnPage() {
                 );
               })()}
 
-              {/* Inline stats as a single text line */}
-              <p className="text-xs text-muted-foreground text-center">
+              {/* Inline stats — crushed */}
+              <p className="text-[11px] text-muted-foreground/50 text-center">
                 {completedCount}/{totalLessons} lessons
                 {" \u00b7 "}
                 {xp.toLocaleString()} XP
                 {learningStreak > 0 && <>{" \u00b7 "}{learningStreak}-day streak</>}
               </p>
 
-              {/* === Large visual buffer === */}
-              <div className="mb-10" />
+              {/* === Large visual buffer — breathing after hero === */}
+              <div className="mt-10" />
 
               {/* Learning path sections — compact catalog */}
               {(() => {
@@ -318,14 +319,14 @@ export default function LearnPage() {
                     red: "bg-red-500",
                   };
                   return (
-                    <div key={path.label} className={`rounded-lg border bg-card p-3 transition-colors ${
-                      isNextIncomplete ? "border-primary hover:border-primary/80" : pathDone ? "border-emerald-500/30 opacity-60" : "border-border hover:border-primary/50"
+                    <div key={path.label} className={`rounded-lg border bg-card p-2.5 transition-colors ${
+                      isNextIncomplete ? "border-primary hover:border-primary/80" : pathDone ? "border-emerald-500/20 opacity-40" : "border-border/40 opacity-60 hover:opacity-80"
                     }`}>
                       <div className="flex items-center justify-between mb-1">
                         <div className="flex items-center gap-2">
                           {pathDone && <CheckCircle2 className="h-3 w-3 text-emerald-400" />}
-                          <span className="text-sm font-semibold">{path.label}</span>
-                          {isNextIncomplete && <span className="text-[10px] font-semibold text-primary bg-primary/10 px-1.5 py-0.5 rounded">Current</span>}
+                          <span className="text-xs font-medium">{path.label}</span>
+                          {isNextIncomplete && <span className="text-[10px] font-medium text-primary bg-primary/10 px-1.5 py-0.5 rounded">Current</span>}
                         </div>
                         <span className="text-[11px] font-normal tabular-nums text-muted-foreground">
                           {pathCompleted}/{pathLessons.length}
@@ -342,50 +343,53 @@ export default function LearnPage() {
                 });
               })()}
 
-              {/* Practice & Tools — compact row */}
-              <div className="grid grid-cols-2 gap-2 mt-2">
+              {/* Buffer before tools — breathing after path sections */}
+              <div className="mt-8" />
+
+              {/* Practice & Tools — crushed row */}
+              <div className="grid grid-cols-2 gap-1.5 opacity-60">
                 <button
                   type="button"
                   onClick={() => setActiveGame("flashcards")}
-                  className="flex items-center gap-2 rounded-md border border-orange-500/20 bg-orange-500/5 p-2 text-left transition-colors hover:bg-orange-500/10"
+                  className="flex items-center gap-1.5 rounded border border-orange-500/15 bg-transparent p-1.5 text-left transition-colors hover:bg-orange-500/5"
                 >
-                  <Brain className="h-4 w-4 text-orange-400 shrink-0" />
+                  <Brain className="h-3 w-3 text-orange-400/70 shrink-0" />
                   <div className="min-w-0">
-                    <span className="text-xs font-medium text-orange-400 block">Flashcards</span>
-                    <span className="text-[10px] text-muted-foreground">{flashcardToday}/10 today</span>
+                    <span className="text-[11px] font-medium text-orange-400/80 block">Flashcards</span>
+                    <span className="text-[10px] text-muted-foreground/60">{flashcardToday}/10 today</span>
                   </div>
                 </button>
                 <button
                   type="button"
                   onClick={() => setActiveGame("prediction")}
-                  className="flex items-center gap-2 rounded-md border border-emerald-500/20 bg-emerald-500/5 p-2 text-left transition-colors hover:bg-emerald-500/10"
+                  className="flex items-center gap-1.5 rounded border border-emerald-500/15 bg-transparent p-1.5 text-left transition-colors hover:bg-emerald-500/5"
                 >
-                  <TrendingUp className="h-4 w-4 text-emerald-400 shrink-0" />
+                  <TrendingUp className="h-3 w-3 text-emerald-400/70 shrink-0" />
                   <div className="min-w-0">
-                    <span className="text-xs font-medium text-emerald-400 block">Prediction</span>
-                    <span className="text-[10px] text-muted-foreground">{predictionToday > 0 ? `${predictionToday} today` : "Start playing"}</span>
+                    <span className="text-[11px] font-medium text-emerald-400/80 block">Prediction</span>
+                    <span className="text-[10px] text-muted-foreground/60">{predictionToday > 0 ? `${predictionToday} today` : "Start playing"}</span>
                   </div>
                 </button>
                 <button
                   type="button"
                   onClick={() => setActiveTool(activeTool === "scenario" ? null : "scenario")}
-                  className="flex items-center gap-2 rounded-md border border-border bg-muted/20 p-2 text-left transition-colors hover:bg-muted/30"
+                  className="flex items-center gap-1.5 rounded border border-border/30 bg-transparent p-1.5 text-left transition-colors hover:bg-muted/20"
                 >
-                  <History className="h-4 w-4 text-muted-foreground shrink-0" />
+                  <History className="h-3 w-3 text-muted-foreground/50 shrink-0" />
                   <div className="min-w-0">
-                    <span className="text-xs font-medium block">Scenarios</span>
-                    <span className="text-[10px] text-muted-foreground">Historical crashes</span>
+                    <span className="text-[11px] font-medium text-muted-foreground block">Scenarios</span>
+                    <span className="text-[10px] text-muted-foreground/50">Historical crashes</span>
                   </div>
                 </button>
                 <button
                   type="button"
                   onClick={() => setActiveTool(activeTool === "calculator" ? null : "calculator")}
-                  className="flex items-center gap-2 rounded-md border border-border bg-muted/20 p-2 text-left transition-colors hover:bg-muted/30"
+                  className="flex items-center gap-1.5 rounded border border-border/30 bg-transparent p-1.5 text-left transition-colors hover:bg-muted/20"
                 >
-                  <Calculator className="h-4 w-4 text-muted-foreground shrink-0" />
+                  <Calculator className="h-3 w-3 text-muted-foreground/50 shrink-0" />
                   <div className="min-w-0">
-                    <span className="text-xs font-medium block">Calculator</span>
-                    <span className="text-[10px] text-muted-foreground">Compound interest</span>
+                    <span className="text-[11px] font-medium text-muted-foreground block">Calculator</span>
+                    <span className="text-[10px] text-muted-foreground/50">Compound interest</span>
                   </div>
                 </button>
               </div>
@@ -514,7 +518,7 @@ export default function LearnPage() {
                     <Trophy className="h-4 w-4 text-amber-400" />
                     <span className="text-[11px] font-normal text-muted-foreground/70">Lessons</span>
                   </div>
-                  <p className="text-xl font-bold">{completedCount}</p>
+                  <p className="text-xl font-medium tabular-nums">{completedCount}</p>
                   <p className="text-[11px] font-normal text-muted-foreground">of {totalLessons} completed</p>
                 </div>
                 <div className="rounded-md bg-muted/30 p-3">

@@ -177,7 +177,7 @@ function MarketRow({
   return (
     <button
       onClick={() => onSelect(market)}
-      className="group flex w-full items-center gap-3 rounded px-2 py-2 text-left transition-colors duration-150 hover:bg-muted/30"
+      className="group flex w-full items-center gap-3 rounded px-2 py-2 text-left cursor-pointer hover:bg-muted/40 hover:-translate-y-0.5 transition-all duration-200"
     >
       {/* Category pill */}
       <span className={cn("shrink-0 rounded px-1.5 py-0.5 text-[10px] font-medium leading-none", CATEGORY_COLORS[market.category])}>
@@ -214,7 +214,7 @@ function MarketRow({
         {market.expiresInDays}d
       </span>
 
-      <ChevronRight className="h-3 w-3 shrink-0 text-muted-foreground/0 transition-colors group-hover:text-muted-foreground/40" />
+      <ChevronRight className="h-3 w-3 shrink-0 text-muted-foreground/0 transition-all group-hover:text-muted-foreground/60 group-hover:translate-x-0.5" />
     </button>
   );
 }
@@ -247,7 +247,7 @@ function PriceHistoryChart({ data, title }: { data: number[]; title: string }) {
   const lineColor = delta >= 0 ? "#10b981" : "#ef4444";
 
   return (
-    <div className="rounded-lg border border-border bg-card p-3">
+    <div className="bg-transparent p-0">
       <div className="mb-1.5 flex items-center justify-between">
         <span className="text-xs font-semibold text-muted-foreground">{title}</span>
         <span className={cn("font-mono tabular-nums text-xs font-semibold", delta >= 0 ? "text-emerald-500" : "text-red-500")}>
@@ -332,8 +332,8 @@ function MarketDetailDrawer({
         Back to markets
       </button>
 
-      {/* Header */}
-      <div className="mb-4 rounded-lg border border-border bg-card p-4">
+      {/* Header — HERO card */}
+      <div className="mb-4 border-l-4 border-l-primary rounded-lg bg-card p-6">
         <div className="mb-2 flex items-center gap-1.5 flex-wrap">
           <span className={cn("rounded px-1.5 py-0.5 text-[11px] font-medium", CATEGORY_COLORS[market.category])}>
             {CATEGORY_LABELS[market.category]}
@@ -341,45 +341,47 @@ function MarketDetailDrawer({
           <span className="text-xs text-muted-foreground">{difficultyLabel}</span>
           <span className="text-xs text-muted-foreground">{market.expiresInDays}d left</span>
         </div>
-        <h2 className="mb-2 text-sm font-semibold leading-snug text-foreground">{market.question}</h2>
-        <p className="text-[11px] leading-relaxed text-muted-foreground">{market.description}</p>
+        <h2 className="mb-2 text-sm font-medium leading-snug text-foreground">{market.question}</h2>
+        <p className="text-xs leading-relaxed text-muted-foreground">{market.description}</p>
       </div>
 
       {/* Resolution criteria */}
       <div className="mb-4 rounded-lg border border-border bg-muted/20 px-3 py-2.5">
-        <div className="mb-1 text-xs font-semibold text-muted-foreground">Resolution Criteria</div>
+        <div className="mb-1 text-xs font-medium text-muted-foreground">Resolution Criteria</div>
         <p className="text-[11px] leading-relaxed text-foreground/80">{market.resolutionCriteria}</p>
       </div>
 
       {/* Price history chart */}
-      <div className="mb-4">
+      <div className="mb-2">
         <PriceHistoryChart data={priceHistory} title="YES Probability History" />
       </div>
 
-      {/* Stats row */}
-      <div className="mb-4 grid grid-cols-3 gap-2">
-        {[
-          { label: "YES prob", value: `${market.initialProbability}%` },
-          { label: "Volume", value: `$${(volume / 1000).toFixed(1)}K` },
-          { label: "Closes", value: `${market.expiresInDays}d` },
-        ].map(({ label, value }) => (
-          <div key={label} className="rounded-lg border border-border bg-card px-3 py-2 text-center">
-            <div className="text-[11px] text-muted-foreground">{label}</div>
-            <div className="font-mono tabular-nums text-sm font-semibold text-foreground">{value}</div>
-          </div>
-        ))}
+      {/* Stats row — CONSOLE card (compact, tabular, crushed against chart) */}
+      <div className="mb-6 rounded-lg bg-card border border-border/40 p-3">
+        <div className="grid grid-cols-3 gap-2">
+          {[
+            { label: "YES prob", value: `${market.initialProbability}%` },
+            { label: "Volume", value: `$${(volume / 1000).toFixed(1)}K` },
+            { label: "Closes", value: `${market.expiresInDays}d` },
+          ].map(({ label, value }) => (
+            <div key={label} className="text-center">
+              <div className="text-[10px] text-muted-foreground uppercase tracking-wide">{label}</div>
+              <div className="font-mono tabular-nums text-xs font-semibold text-foreground">{value}</div>
+            </div>
+          ))}
+        </div>
       </div>
 
       {/* Order book */}
       <div className="mb-4">
-        <div className="mb-1.5 text-xs font-semibold text-muted-foreground">Order Book</div>
+        <div className="mb-1.5 text-xs font-medium text-muted-foreground">Order Book</div>
         <MarketDepth market={activeMarket} />
       </div>
 
       {/* Trade panel */}
       {!existingBet ? (
         <div className="mb-4 rounded-lg border border-border bg-card p-4">
-          <div className="mb-3 text-xs font-semibold text-foreground">Place a Prediction</div>
+          <div className="mb-3 text-xs font-medium text-foreground">Place a Prediction</div>
 
           {/* YES / NO toggle */}
           <div className="mb-3 grid grid-cols-2 gap-2">
@@ -471,7 +473,7 @@ function MarketDetailDrawer({
         </div>
       ) : (
         <div className="mb-4 rounded-lg border border-border bg-muted/20 px-3 py-3">
-          <div className="mb-1 text-xs font-semibold text-muted-foreground">Your Bet</div>
+          <div className="mb-1 text-xs font-medium text-muted-foreground">Your Bet</div>
           <div className="flex items-center gap-2 text-[11px]">
             <span className={cn("rounded px-1.5 py-0.5 font-semibold uppercase text-xs", existingBet.position === "yes" ? "bg-emerald-500/10 text-emerald-500" : "bg-red-500/10 text-red-500")}>
               {existingBet.position.toUpperCase()}
@@ -481,12 +483,12 @@ function MarketDetailDrawer({
         </div>
       )}
 
-      {/* Recent trades */}
-      <div className="mb-4">
-        <div className="mb-1.5 text-xs font-semibold text-muted-foreground">Recent Trades</div>
-        <div className="rounded-lg border border-border bg-card overflow-hidden">
+      {/* Recent trades — FLOW card (borderless, transparent) */}
+      <div className="mb-4 bg-transparent p-0">
+        <div className="mb-1.5 text-xs font-medium text-muted-foreground">Recent Trades</div>
+        <div className="divide-y divide-border/20">
           {recentTrades.map((trade, i) => (
-            <div key={i} className={cn("flex items-center justify-between px-3 py-2 text-[11px]", i < recentTrades.length - 1 ? "border-b border-border/50" : "")}>
+            <div key={i} className="flex items-center justify-between py-1.5 text-[11px]">
               <div className="flex items-center gap-2">
                 <span className={cn("rounded px-1 py-0.5 text-[11px] font-semibold", trade.side === "YES" ? "bg-emerald-500/10 text-emerald-500" : "bg-red-500/10 text-red-500")}>
                   {trade.side}
@@ -504,7 +506,7 @@ function MarketDetailDrawer({
 
       {/* Educational note */}
       <div className="mb-4 rounded-lg border border-border bg-muted/20 px-3 py-2.5">
-        <div className="mb-1 text-xs font-semibold text-muted-foreground">Why This Matters</div>
+        <div className="mb-1 text-xs font-medium text-muted-foreground">Why This Matters</div>
         <p className="text-[11px] leading-relaxed text-muted-foreground">{market.educationalNote}</p>
         <div className="mt-2 flex flex-wrap gap-1">
           {market.relatedConcepts.map((c) => (
@@ -546,20 +548,22 @@ function MyBetsTab() {
 
   return (
     <div className="space-y-6">
-      {/* Summary stats */}
-      <div className="grid grid-cols-2 gap-2 sm:grid-cols-5">
-        {[
-          { label: "Total Staked", value: `${totalStaked} pts` },
-          { label: "Total Won", value: `+${totalWon} pts`, color: "text-emerald-500" },
-          { label: "Total Lost", value: `-${totalLost} pts`, color: "text-red-500" },
-          { label: "Net P&L", value: `${netPnl >= 0 ? "+" : ""}${netPnl} pts`, color: netPnl >= 0 ? "text-emerald-500" : "text-red-500" },
-          { label: "ROI", value: `${roi >= 0 ? "+" : ""}${roi.toFixed(1)}%`, color: roi >= 0 ? "text-emerald-500" : "text-red-500" },
-        ].map(({ label, value, color }) => (
-          <div key={label} className="rounded-lg border border-border bg-card px-3 py-2">
-            <div className="text-[11px] text-muted-foreground">{label}</div>
-            <div className={cn("font-mono tabular-nums text-sm font-semibold", color ?? "text-foreground")}>{value}</div>
-          </div>
-        ))}
+      {/* Summary stats — CONSOLE card (compact, data-dense) */}
+      <div className="rounded-lg bg-card border border-border/40 p-3">
+        <div className="grid grid-cols-2 gap-2 sm:grid-cols-5">
+          {[
+            { label: "Total Staked", value: `${totalStaked} pts` },
+            { label: "Total Won", value: `+${totalWon} pts`, color: "text-emerald-500" },
+            { label: "Total Lost", value: `-${totalLost} pts`, color: "text-red-500" },
+            { label: "Net P&L", value: `${netPnl >= 0 ? "+" : ""}${netPnl} pts`, color: netPnl >= 0 ? "text-emerald-500" : "text-red-500" },
+            { label: "ROI", value: `${roi >= 0 ? "+" : ""}${roi.toFixed(1)}%`, color: roi >= 0 ? "text-emerald-500" : "text-red-500" },
+          ].map(({ label, value, color }) => (
+            <div key={label} className="px-2 py-1">
+              <div className="text-[10px] text-muted-foreground uppercase tracking-wide">{label}</div>
+              <div className={cn("font-mono tabular-nums text-xs font-semibold", color ?? "text-foreground")}>{value}</div>
+            </div>
+          ))}
+        </div>
       </div>
 
       {/* Accuracy tracker */}
@@ -571,7 +575,7 @@ function MyBetsTab() {
           <h2 className="mb-3 text-xs font-medium text-muted-foreground">
             Active Positions ({activeBets.length})
           </h2>
-          <div className="overflow-x-auto rounded-lg border border-border bg-card">
+          <div className="overflow-x-auto rounded-lg bg-card border border-border/40 p-0">
             <table className="w-full text-[11px] min-w-[480px]">
               <thead className="sticky top-0 z-10 bg-card">
                 <tr className="border-b border-border/50">
@@ -618,9 +622,9 @@ function MyBetsTab() {
         </div>
       )}
 
-      {/* Resolved bets — minimal */}
+      {/* Resolved bets — breathing room, nearly invisible */}
       {resolvedBets.length > 0 && (
-        <div className="mt-4 opacity-60">
+        <div className="mt-8 bg-transparent p-0 opacity-50">
           <h2 className="mb-1.5 text-[11px] font-normal text-muted-foreground/60">
             Resolved ({resolvedBets.length})
           </h2>
@@ -690,8 +694,8 @@ function CalibrationChartSection() {
   }
 
   return (
-    <div className="rounded-lg border border-border bg-card p-4">
-      <h3 className="mb-3 text-xs font-semibold text-muted-foreground">Predicted vs Actual Outcomes</h3>
+    <div className="rounded-lg bg-card border border-border/40 p-3">
+      <h3 className="mb-3 text-[10px] font-semibold text-muted-foreground uppercase tracking-wide">Predicted vs Actual Outcomes</h3>
       <svg width={w} height={h} viewBox={`0 0 ${w} ${h}`} className="w-full" style={{ maxWidth: w }} aria-hidden>
         {[0, 0.25, 0.5, 0.75, 1].map((v) => (
           <line key={`g-${v}`} x1={pad.left} x2={pad.left + plotW} y1={pad.top + plotH * (1 - v)} y2={pad.top + plotH * (1 - v)} stroke="currentColor" strokeOpacity={0.1} />
@@ -745,7 +749,7 @@ function PredictorTips() {
     <div className="space-y-3">
       <h2 className="text-xs font-medium text-muted-foreground">How to Be a Good Predictor</h2>
       {PREDICTOR_TIPS.map((tip, i) => (
-        <div key={i} className="rounded-lg border border-border bg-card px-4 py-3">
+        <div key={i} className="bg-transparent p-0 py-2">
           <div className="mb-1 flex items-center gap-2">
             <span className="flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-primary/10 text-xs font-bold text-primary">
               {i + 1}
@@ -839,7 +843,7 @@ export function PredictionsPageClient() {
             <TrendingUp className="h-4 w-4 text-foreground" />
           </div>
           <div className="min-w-0">
-            <h1 className="text-base font-semibold tracking-tight">Practice Prediction Markets</h1>
+            <h1 className="text-base font-medium tracking-tight">Practice Prediction Markets</h1>
             <p className="text-xs text-muted-foreground">
               Test your probability thinking with {PREDICTION_MARKETS.length} simulated markets — no real money involved
             </p>
@@ -987,7 +991,7 @@ export function PredictionsPageClient() {
                     <div className="mb-8">
                       <button
                         onClick={() => handleSelectMarket(featuredMarket)}
-                        className="group w-full rounded-xl border border-border bg-card p-6 sm:p-8 text-left transition-colors hover:bg-muted/10"
+                        className="group w-full border-l-4 border-l-primary rounded-lg bg-card p-6 sm:p-8 text-left transition-colors hover:bg-muted/10"
                       >
                         {/* Top meta */}
                         <div className="mb-3 flex items-center gap-2">
@@ -1063,8 +1067,8 @@ export function PredictionsPageClient() {
                     </div>
                   )}
 
-                  {/* Buffer between featured market and list */}
-                  <div className="my-6 border-t border-border/10" />
+                  {/* Buffer between featured hero and list — large breathing room */}
+                  <div className="mt-10" />
 
                   {/* ── ALL MARKETS — compact list ── */}
                   <div className="mb-2">

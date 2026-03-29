@@ -90,8 +90,8 @@ export default function ResultsPanel({ result, monteCarloResult, xpEarned, onSav
       <div className="flex-1 overflow-y-auto">
         {tab === "overview" && (
           <div className="p-6">
-            {/* ── Hero zone: Grade + Total Return ────────────────── */}
-            <div className="flex items-start gap-6">
+            {/* ── Hero zone: Grade + Total Return — HERO card ─── */}
+            <div className="flex items-start gap-6 border-l-4 border-l-primary rounded-lg bg-card p-6">
               {/* Grade badge — large and prominent */}
               <motion.div
                 initial={{ scale: 0, rotate: -10 }}
@@ -141,9 +141,9 @@ export default function ResultsPanel({ result, monteCarloResult, xpEarned, onSav
               <EquityCurveChart equityCurve={equityCurve} startingCapital={result.config.startingCapital} height={160} />
             </div>
 
-            {/* ── Detailed metrics grid ────────────────────────── */}
-            <div className="mt-8">
-              <h3 className="mb-2 text-xs font-semibold text-muted-foreground">Performance Metrics</h3>
+            {/* ── Detailed metrics grid — CONSOLE card ─────────── */}
+            <div className="mt-8 rounded-lg bg-card border border-border/40 p-3">
+              <h3 className="mb-2 text-[10px] font-semibold text-muted-foreground uppercase tracking-wide">Performance Metrics</h3>
               <div className="grid grid-cols-4 gap-2">
                 <CompactMetric label="Profit Factor" value={metrics.profitFactor > 100 ? "\u221e" : metrics.profitFactor.toFixed(2)} positive={metrics.profitFactor > 1} />
                 <CompactMetric label="Sortino" value={metrics.sortinoRatio.toFixed(2)} positive={metrics.sortinoRatio > 0} />
@@ -194,13 +194,13 @@ export default function ResultsPanel({ result, monteCarloResult, xpEarned, onSav
         )}
 
         {tab === "trades" && (
-          <div className="p-4">
+          <div className="p-4 bg-transparent">
             <h3 className="mb-2 text-xs font-semibold text-muted-foreground">
               All Trades ({trades.length})
             </h3>
             {trades.length > 0 ? (
               <div className="overflow-x-auto">
-                <table className="w-full text-xs">
+                <table className="w-full text-xs text-muted-foreground">
                   <thead>
                     <tr className="border-b border-border/40 text-left text-muted-foreground">
                       <th className="pb-1.5 pr-3 font-medium">Entry</th>

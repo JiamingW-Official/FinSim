@@ -47,7 +47,7 @@ export function ArenaLobby({ onSelectType }: ArenaLobbyProps) {
       <motion.div
         initial={{ opacity: 0, y: -12 }}
         animate={{ opacity: 1, y: 0 }}
-        className="rounded-xl border border-border/30 bg-card p-4"
+        className="rounded-lg bg-card border border-border/40 p-3 text-xs"
       >
         <div className="flex items-center gap-4">
           <ArenaRankBadge rank={rank} size="lg" />
@@ -110,9 +110,9 @@ export function ArenaLobby({ onSelectType }: ArenaLobbyProps) {
               whileTap={{ scale: 0.98 }}
               onClick={() => onSelectType(config)}
               className={cn(
-                "group relative overflow-hidden rounded-xl border p-4 text-left transition-all",
-                "border-border/30 hover:border-border",
-                "bg-muted/10 hover:bg-muted/30",
+                "group relative overflow-hidden rounded-lg p-4 text-left cursor-pointer",
+                "hover:bg-muted/40 hover:-translate-y-0.5 transition-all duration-200",
+                "border border-border/30",
               )}
             >
               {/* Colored top accent */}
@@ -185,21 +185,21 @@ function RecentMatches() {
     <motion.div
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
-      className="rounded-xl border border-border/30 bg-muted/10 p-4"
+      className="bg-transparent p-0"
     >
       <h3 className="text-xs font-bold text-muted-foreground mb-3 flex items-center gap-1.5">
         <Trophy className="h-3 w-3" />
         Recent Matches
       </h3>
 
-      <div className="space-y-2">
+      <div className="divide-y divide-border/20">
         {recent.map((m, i) => (
           <motion.div
             key={m.matchId}
             initial={{ opacity: 0, x: -8 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ delay: i * 0.03 }}
-            className="flex items-center gap-3 rounded-lg border border-foreground/[0.03] bg-foreground/[0.01] px-3 py-1.5 text-xs"
+            className="flex items-center gap-3 py-1.5 text-xs"
           >
             <span className={cn(
               "flex h-5 w-5 items-center justify-center rounded text-xs font-bold",

@@ -289,7 +289,7 @@ function WeeklyTab() {
       {rest.map((challenge, i) => (
         <motion.div
           key={challenge.id}
-          className="bg-card/50 rounded-lg p-2.5 cursor-pointer hover:bg-muted/50 transition-colors"
+          className="bg-transparent rounded-lg p-2.5 cursor-pointer hover:bg-muted/40 hover:-translate-y-0.5 transition-all duration-200"
           initial={{ opacity: 0, y: 8 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: (i + 1) * 0.08 }}
@@ -330,7 +330,7 @@ function EventCard({ event, index }: { event: SpecialEvent; index: number }) {
 
   return (
     <motion.div
-      className="rounded-xl border border-primary/20 bg-primary/5 overflow-hidden"
+      className="rounded-xl border border-primary/20 bg-primary/5 overflow-hidden cursor-pointer hover:bg-primary/8 hover:-translate-y-0.5 transition-all duration-200"
       initial={{ opacity: 0, y: 8 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ delay: index * 0.1 }}
@@ -425,21 +425,21 @@ function HistoryTab() {
       {/* Summary — flow cards (borderless, content-like) */}
       <div className="grid grid-cols-3 gap-2">
         <div className="bg-transparent p-2 text-center">
-          <div className="text-lg font-bold tabular-nums text-primary">{history.length}</div>
+          <div className="text-lg font-medium tabular-nums text-primary">{history.length}</div>
           <div className="text-[11px] font-medium uppercase tracking-wide text-muted-foreground mt-0.5">Completed</div>
         </div>
         <div className="bg-transparent p-2 text-center">
-          <div className="text-lg font-bold tabular-nums text-emerald-400">{successCount}</div>
+          <div className="text-lg font-medium tabular-nums text-emerald-400">{successCount}</div>
           <div className="text-[11px] font-medium uppercase tracking-wide text-muted-foreground mt-0.5">Full Clear</div>
         </div>
         <div className="bg-transparent p-2 text-center">
-          <div className="text-lg font-bold tabular-nums text-amber-400">+{totalXP}</div>
+          <div className="text-lg font-medium tabular-nums text-amber-400">+{totalXP}</div>
           <div className="text-[11px] font-medium uppercase tracking-wide text-muted-foreground mt-0.5">XP Earned</div>
         </div>
       </div>
 
-      {/* History table — console card (muted, crushed) */}
-      <div className="bg-card border border-border rounded-lg p-3 overflow-hidden opacity-80">
+      {/* History table — CONSOLE card (compact, tabular, data-dense) */}
+      <div className="bg-card border border-border/40 rounded-lg p-3 overflow-hidden text-xs">
         <div className="grid grid-cols-[1fr_4rem_4rem_3rem_3rem] gap-2 px-2 py-1.5 border-b border-border/50">
           <span className="text-[11px] font-medium text-muted-foreground">Challenge</span>
           <span className="text-[11px] font-medium text-muted-foreground">Date</span>
@@ -661,7 +661,7 @@ export default function ChallengesPage() {
             <Swords className="h-5 w-5 text-rose-400" />
           </motion.div>
           <div>
-            <h1 className="text-lg font-bold">Challenges</h1>
+            <h1 className="text-lg font-medium">Challenges</h1>
             <p className="text-[11px] text-muted-foreground">
               Test your skills &amp; earn rewards
             </p>
@@ -812,7 +812,7 @@ export default function ChallengesPage() {
               exit={{ opacity: 0 }}
               transition={{ duration: 0.12 }}
             >
-              <h3 className="text-xs font-bold uppercase tracking-wide text-muted-foreground mb-3">Scenario Challenges</h3>
+              <h3 className="text-xs font-medium uppercase tracking-wide text-muted-foreground mb-3">Scenario Challenges</h3>
               <ScenariosTab onSelectScenario={handleSelectScenario} />
             </motion.div>
           )}

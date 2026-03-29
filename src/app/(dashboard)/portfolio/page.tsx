@@ -201,15 +201,15 @@ export default function PortfolioPage() {
 
         {/* ── HERO: Equity Curve ── */}
         {hasTrades ? (
-          <div className="border-l-4 border-primary rounded-lg bg-card p-6 mb-3">
-            {/* Value + P&L headline */}
-            <div className="flex items-baseline gap-3 mb-4">
-              <span className="text-2xl font-bold tabular-nums">
+          <div className="border-l-4 border-primary rounded-lg bg-card p-8 mb-3">
+            {/* Value + P&L headline — MASSIVE */}
+            <div className="flex items-baseline gap-3 mb-6">
+              <span className="text-3xl font-bold tabular-nums">
                 {formatCurrency(portfolioValue)}
               </span>
               <span
                 className={cn(
-                  "text-sm font-normal tabular-nums",
+                  "text-base font-normal tabular-nums",
                   totalPnL >= 0 ? "text-emerald-400" : "text-red-400",
                 )}
               >
@@ -218,7 +218,7 @@ export default function PortfolioPage() {
               </span>
               <span
                 className={cn(
-                  "text-xs font-medium tabular-nums",
+                  "text-sm font-medium tabular-nums",
                   totalPnLPct >= 0 ? "text-emerald-400/70" : "text-red-400/70",
                 )}
               >
@@ -229,18 +229,18 @@ export default function PortfolioPage() {
                 Simulated
               </span>
             </div>
-            {/* Chart — dominant */}
-            <div className="min-h-[340px]">
+            {/* Chart — dominant, generous height */}
+            <div className="min-h-[380px]">
               <EquityCurve />
             </div>
           </div>
         ) : (
           /* ── EMPTY STATE: dominant fill ── */
-          <div className="flex flex-col items-center justify-center rounded-lg border border-dashed border-border bg-card/30 py-20 px-6 text-center mb-3">
-            <div className="mb-6 flex h-20 w-20 items-center justify-center rounded-full bg-muted/40">
-              <BarChart3 className="h-10 w-10 text-muted-foreground/40" />
+          <div className="flex flex-col items-center justify-center rounded-lg border border-dashed border-border bg-card/30 py-24 px-6 text-center mb-3">
+            <div className="mb-8 flex h-24 w-24 items-center justify-center rounded-full bg-muted/40">
+              <BarChart3 className="h-12 w-12 text-muted-foreground/40" />
             </div>
-            <p className="text-lg font-bold text-foreground mb-2">
+            <p className="text-xl font-bold text-foreground mb-2">
               Your portfolio story starts here
             </p>
             <p className="text-sm text-muted-foreground max-w-sm mb-6">
@@ -259,44 +259,44 @@ export default function PortfolioPage() {
 
         {/* ── INLINE STATS LINE ── */}
         {hasTrades && (
-          <div className="flex items-center gap-1.5 text-sm font-normal text-muted-foreground tabular-nums mb-8 px-1 flex-wrap">
+          <div className="flex items-center gap-1.5 text-[11px] font-normal text-muted-foreground/50 tabular-nums mb-8 px-1 flex-wrap">
             <span>
               Win Rate:{" "}
-              <span className="text-foreground">
+              <span className="text-muted-foreground">
                 {inlineStats.winRate.toFixed(0)}%
               </span>
             </span>
-            <span className="text-border">·</span>
+            <span className="text-border/40">·</span>
             <span>
               Sharpe:{" "}
-              <span className="text-foreground">
+              <span className="text-muted-foreground">
                 {inlineStats.sharpe.toFixed(2)}
               </span>
             </span>
-            <span className="text-border">·</span>
+            <span className="text-border/40">·</span>
             <span>
               Max DD:{" "}
-              <span className="text-foreground">
+              <span className="text-muted-foreground">
                 -{inlineStats.maxDrawdown.toFixed(1)}%
               </span>
             </span>
-            <span className="text-border">·</span>
+            <span className="text-border/40">·</span>
             <span>
-              <span className="text-foreground">
+              <span className="text-muted-foreground">
                 {inlineStats.totalTrades}
               </span>{" "}
               Trades
             </span>
-            <span className="text-border">·</span>
+            <span className="text-border/40">·</span>
             <span>
               Cash:{" "}
-              <span className="text-foreground">
+              <span className="text-muted-foreground">
                 {formatCurrency(cash)}
               </span>
             </span>
-            <span className="text-border">·</span>
+            <span className="text-border/40">·</span>
             <span>
-              <span className="text-foreground">
+              <span className="text-muted-foreground">
                 {positions.length}
               </span>{" "}
               Open
@@ -306,100 +306,100 @@ export default function PortfolioPage() {
       </div>
 
       {/* Quiet zone — breathing room between hero (dense) and tabs (moderate) */}
-      <div className="mb-10" />
+      <div className="mb-14" />
 
       {/* ── TABS: compact, subdued ── */}
       <div className="px-4 pb-4">
         <Tabs defaultValue="overview">
           <div className="mb-3 overflow-x-auto">
-            <TabsList className="flex h-7 min-w-max w-full gap-0.5 rounded-md bg-muted/30 p-0.5">
+            <TabsList className="flex h-6 min-w-max w-full gap-0.5 rounded-md bg-muted/20 p-0.5">
               <TabsTrigger
                 value="overview"
-                className="flex-1 rounded text-[11px] h-6 whitespace-nowrap transition-colors duration-150"
+                className="flex-1 rounded text-[10px] h-5 whitespace-nowrap transition-colors duration-150"
               >
                 Overview
               </TabsTrigger>
               <TabsTrigger
                 value="analytics"
-                className="flex-1 rounded text-[11px] h-6 whitespace-nowrap transition-colors duration-150"
+                className="flex-1 rounded text-[10px] h-5 whitespace-nowrap transition-colors duration-150"
               >
                 Analytics
               </TabsTrigger>
               <TabsTrigger
                 value="rebalance"
-                className="flex-1 rounded text-[11px] h-6 whitespace-nowrap transition-colors duration-150"
+                className="flex-1 rounded text-[10px] h-5 whitespace-nowrap transition-colors duration-150"
               >
                 Rebalance
               </TabsTrigger>
               <TabsTrigger
                 value="optimize"
-                className="flex-1 rounded text-[11px] h-6 whitespace-nowrap transition-colors duration-150"
+                className="flex-1 rounded text-[10px] h-5 whitespace-nowrap transition-colors duration-150"
               >
                 Optimizer
               </TabsTrigger>
               <TabsTrigger
                 value="frontier"
-                className="flex-1 rounded text-[11px] h-6 whitespace-nowrap transition-colors duration-150"
+                className="flex-1 rounded text-[10px] h-5 whitespace-nowrap transition-colors duration-150"
               >
                 Frontier
               </TabsTrigger>
               <TabsTrigger
                 value="income"
-                className="flex-1 rounded text-[11px] h-6 whitespace-nowrap transition-colors duration-150"
+                className="flex-1 rounded text-[10px] h-5 whitespace-nowrap transition-colors duration-150"
               >
                 Income
               </TabsTrigger>
               <TabsTrigger
                 value="journal"
-                className="flex-1 rounded text-[11px] h-6 whitespace-nowrap transition-colors duration-150"
+                className="flex-1 rounded text-[10px] h-5 whitespace-nowrap transition-colors duration-150"
               >
                 Journal
               </TabsTrigger>
               <TabsTrigger
                 value="achievements"
-                className="flex-1 rounded text-[11px] h-6 whitespace-nowrap transition-colors duration-150"
+                className="flex-1 rounded text-[10px] h-5 whitespace-nowrap transition-colors duration-150"
               >
                 Awards
               </TabsTrigger>
               <TabsTrigger
                 value="deep"
-                className="flex-1 rounded text-[11px] h-6 whitespace-nowrap transition-colors duration-150"
+                className="flex-1 rounded text-[10px] h-5 whitespace-nowrap transition-colors duration-150"
               >
                 Deep
               </TabsTrigger>
               <TabsTrigger
                 value="attribution"
-                className="flex-1 rounded text-[11px] h-6 whitespace-nowrap transition-colors duration-150"
+                className="flex-1 rounded text-[10px] h-5 whitespace-nowrap transition-colors duration-150"
               >
                 Attribution
               </TabsTrigger>
               <TabsTrigger
                 value="advanced"
-                className="flex-1 rounded text-[11px] h-6 whitespace-nowrap transition-colors duration-150"
+                className="flex-1 rounded text-[10px] h-5 whitespace-nowrap transition-colors duration-150"
               >
                 Analytics+
               </TabsTrigger>
               <TabsTrigger
                 value="stress"
-                className="flex-1 rounded text-[11px] h-6 whitespace-nowrap transition-colors duration-150"
+                className="flex-1 rounded text-[10px] h-5 whitespace-nowrap transition-colors duration-150"
               >
                 Stress Test
               </TabsTrigger>
               <TabsTrigger
                 value="bl-optimizer"
-                className="flex-1 rounded text-[11px] h-6 whitespace-nowrap transition-colors duration-150"
+                className="flex-1 rounded text-[10px] h-5 whitespace-nowrap transition-colors duration-150"
               >
                 BL Optimizer
               </TabsTrigger>
               <TabsTrigger
                 value="rebalance-tool"
-                className="flex-1 rounded text-[11px] h-6 whitespace-nowrap transition-colors duration-150"
+                className="flex-1 rounded text-[10px] h-5 whitespace-nowrap transition-colors duration-150"
               >
                 Rebalance+
               </TabsTrigger>
               <TabsTrigger
                 value="attribution-plus"
-                className="flex-1 rounded text-[11px] h-6 whitespace-nowrap transition-colors duration-150"
+                className="flex-1 rounded text-[10px] h-5 whitespace-nowrap transition-colors duration-150"
               >
                 Attribution+
               </TabsTrigger>

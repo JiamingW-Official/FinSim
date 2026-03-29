@@ -302,6 +302,9 @@ function StatsTab() {
         <p className="text-[11px] text-muted-foreground">unseen cards remaining</p>
       </div>
 
+      {/* Buffer — breathing after hero */}
+      <div className="mt-4" />
+
       {/* Summary cards — compact secondary */}
       <div className="grid grid-cols-2 gap-1.5 sm:grid-cols-4">
         <StatCard label="Today" value={String(todayCards)} sub="cards reviewed" />
@@ -338,7 +341,7 @@ function StatsTab() {
 
       {/* 30-day heatmap */}
       <div className="rounded-lg border border-border/50 bg-card p-4">
-        <h3 className="mb-3 text-xs font-semibold">30-Day Study Activity</h3>
+        <h3 className="mb-3 text-xs font-medium text-muted-foreground">30-Day Study Activity</h3>
         <div className="flex flex-wrap gap-1">
           {heatmapData.map((day) => (
             <div
@@ -366,7 +369,7 @@ function StatsTab() {
 
       {/* Performance by deck */}
       <div className="rounded-lg border border-border/50 bg-card p-3">
-        <h3 className="mb-2 text-xs font-semibold">Performance by Deck</h3>
+        <h3 className="mb-2 text-xs font-medium text-muted-foreground">Performance by Deck</h3>
         <div className="flex flex-col gap-2">
           {deckStats.map(({ cat, label, color, total, mastered, pct }) => (
             <div key={cat} className="flex flex-col gap-1">
@@ -444,7 +447,7 @@ export default function FlashcardsPage() {
             <Brain className="h-4.5 w-4.5 text-primary" />
           </div>
           <div>
-            <h1 className="text-base font-bold tracking-tight">Flashcards</h1>
+            <h1 className="text-base font-medium tracking-tight">Flashcards</h1>
             <p className="text-[11px] text-muted-foreground">
               {FLASHCARDS.length} cards &middot; {overallMastery}% mastery &middot;{" "}
               {totalReviewed} reviews
@@ -480,8 +483,10 @@ export default function FlashcardsPage() {
             <div className="mb-2 opacity-70">
               <SessionStatsPanel stats={sessionStats} />
             </div>
+            {/* Buffer — breathing between stats (dense) and flashcard (hero) */}
+            <div className="mt-6" />
             {/* Flashcard — hero prominence */}
-            <div className="flex flex-1 flex-col mt-4">
+            <div className="flex flex-1 flex-col">
               <AdaptiveFlashcards onSessionStats={setSessionStats} />
             </div>
           </div>

@@ -112,8 +112,8 @@ export default function OptionsPage() {
       {/* Stats bar */}
       <ChainStatsBar analytics={analytics} spotPrice={spotPrice} isLoading={isLoading} />
 
-      {/* Quiet zone — breathing room between stats bar (dense) and chain table (dense) */}
-      <div className="h-4 shrink-0" />
+      {/* Buffer zone — breathing room between stats bar (dense) and tabs */}
+      <div className="h-2 shrink-0" />
 
       {/* 4-tab layout */}
       <Tabs
@@ -145,8 +145,8 @@ export default function OptionsPage() {
             {/* Tab content */}
             {chain.length > 0 ? (
               <>
-                {/* Chains */}
-                <TabsContent value="chains" className="mt-0 flex flex-1 flex-col overflow-hidden data-[state=inactive]:hidden">
+                {/* Chains — CONSOLE card styling (dense, tabular) */}
+                <TabsContent value="chains" className="mt-0 flex flex-1 flex-col overflow-hidden data-[state=inactive]:hidden text-xs">
                   <ChainFiltersBar
                     filters={filters}
                     setFilters={setFilters}
@@ -165,8 +165,10 @@ export default function OptionsPage() {
                       selectedContract={selectedContract}
                     />
                   </div>
+                  {/* Buffer before bottom panel */}
+                  <div className="h-1.5 shrink-0" />
                   {/* Bottom panel */}
-                  <div className="h-52 shrink-0 border-t border-border">
+                  <div className="h-52 shrink-0 border-t border-border/40">
                     <Tabs
                       defaultValue={selectedLegs.length > 0 ? "payoff" : "positions"}
                       className="flex h-full flex-col"
@@ -196,8 +198,8 @@ export default function OptionsPage() {
                   </div>
                 </TabsContent>
 
-                {/* Strategy — more spacious than chain table */}
-                <TabsContent value="strategy" className="mt-0 flex-1 overflow-hidden data-[state=inactive]:hidden p-3">
+                {/* Strategy — INTERACTIVE card styling */}
+                <TabsContent value="strategy" className="mt-0 flex-1 overflow-hidden data-[state=inactive]:hidden p-4">
                   <StrategyBuilderV2
                     chain={chain}
                     spotPrice={spotPrice}
@@ -207,8 +209,8 @@ export default function OptionsPage() {
                   />
                 </TabsContent>
 
-                {/* Analysis — charts + vol surface + margin calc */}
-                <TabsContent value="analysis" className="mt-0 flex flex-1 flex-col overflow-hidden data-[state=inactive]:hidden pt-1">
+                {/* Analysis — FLOW card styling (borderless charts) */}
+                <TabsContent value="analysis" className="mt-0 flex flex-1 flex-col overflow-hidden data-[state=inactive]:hidden pt-0">
                   <div className="flex shrink-0 items-center gap-1 border-b border-border px-3 py-1">
                     <button
                       onClick={() => setAnalysisSubTab("charts")}
@@ -357,7 +359,7 @@ export default function OptionsPage() {
                 animate={{ x: 0, opacity: 1 }}
                 exit={{ x: 72, opacity: 0 }}
                 transition={{ type: "spring", damping: 22, stiffness: 280 }}
-                className="hidden md:block w-72 shrink-0 overflow-y-auto border-l border-border"
+                className="hidden md:block w-72 shrink-0 overflow-y-auto border-l-4 border-l-primary bg-card"
               >
                 <ContractDetail
                   contract={selectedContract}
@@ -374,7 +376,7 @@ export default function OptionsPage() {
                 animate={{ opacity: 1 }}
                 exit={{ opacity: 0 }}
                 transition={{ duration: 0.15 }}
-                className="hidden md:block w-64 shrink-0 overflow-y-auto border-l border-border"
+                className="hidden md:block w-64 shrink-0 overflow-y-auto border-l border-border/40 bg-card"
               >
                 <div className="flex items-center gap-2 border-b border-border px-3 py-2">
                   <motion.div

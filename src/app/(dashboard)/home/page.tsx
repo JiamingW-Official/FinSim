@@ -293,10 +293,10 @@ export default function HomePage() {
         ═══════════════════════════════════════════ */}
         <div className="rounded-lg border-l-4 border-primary bg-card overflow-hidden">
           {/* Hero header — generous padding */}
-          <div className="border-b border-border/30 px-8 py-5 flex items-center justify-between">
+          <div className="border-b border-border/30 px-8 py-6 flex items-center justify-between">
             <div>
-              <p className="text-lg font-bold tracking-tight">{greeting}, Trader</p>
-              <p className="text-sm text-muted-foreground mt-0.5">
+              <p className="text-2xl font-bold tracking-tight">{greeting}, Trader</p>
+              <p className="text-sm text-muted-foreground mt-1">
                 {new Date().toLocaleDateString("en-US", { weekday: "long", month: "short", day: "numeric" })}
                 <span className="mx-2 text-border">|</span>
                 Lv.{level} {title}
@@ -368,8 +368,8 @@ export default function HomePage() {
               </ul>
 
               {/* TODAY'S FOCUS -- largest text in the hero */}
-              <div className="mt-6 rounded-lg border border-primary/20 bg-primary/5 px-5 py-4">
-                <p className="text-lg font-bold leading-snug text-foreground">{todayFocus}</p>
+              <div className="mt-6 rounded-lg border border-primary/20 bg-primary/5 px-6 py-5">
+                <p className="text-xl font-medium leading-snug text-foreground">{todayFocus}</p>
               </div>
 
               {/* Full-width CTA button */}
@@ -430,32 +430,32 @@ export default function HomePage() {
         {/* ═══════════════════════════════════════════
             QUIET ZONE — breathing room after dense hero
         ═══════════════════════════════════════════ */}
-        <div className="mt-12" />
+        <div className="mt-16" />
 
-        {/* TIER 2 — ACTION ZONE (sparse, minimal) */}
-        <div className="flex flex-wrap items-center gap-x-6 gap-y-1">
-          <span className="text-[11px] font-medium uppercase tracking-wide tabular-nums">{formatCurrency(portfolioValue)}</span>
-          <span className={cn("text-[11px] font-medium uppercase tracking-wide tabular-nums", totalPnLPct >= 0 ? "text-emerald-400" : "text-red-400")}>{totalPnLPct >= 0 ? "+" : ""}{totalPnLPct.toFixed(2)}%</span>
-          <span className="text-xs text-muted-foreground">|</span>
-          <span className="text-[11px] font-medium uppercase tracking-wide text-muted-foreground">Daily <span className={cn("tabular-nums", dailyPnL >= 0 ? "text-emerald-400" : "text-red-400")}>{dailyPnL >= 0 ? "+" : ""}{formatCurrency(dailyPnL)}</span></span>
-          <span className="text-xs text-muted-foreground">|</span>
-          <span className="text-[11px] font-medium text-muted-foreground">Lv.{level} <span className="tabular-nums text-foreground">{xp.toLocaleString()}</span> XP</span>
-          <span className="text-xs text-muted-foreground">|</span>
-          <span className="text-[11px] font-medium text-muted-foreground">Win <span className="tabular-nums text-foreground">{winRate.toFixed(1)}%</span> <span className="text-xs">({stats.totalTrades})</span></span>
+        {/* TIER 2 — ACTION ZONE (crushed — metadata level) */}
+        <div className="flex flex-wrap items-center gap-x-4 gap-y-0.5 text-[11px] text-muted-foreground/50 tabular-nums">
+          <span>{formatCurrency(portfolioValue)}</span>
+          <span className="text-border/40">·</span>
+          <span className={totalPnLPct >= 0 ? "text-emerald-400/50" : "text-red-400/50"}>{totalPnLPct >= 0 ? "+" : ""}{totalPnLPct.toFixed(2)}%</span>
+          <span className="text-border/40">·</span>
+          <span>Daily {dailyPnL >= 0 ? "+" : ""}{formatCurrency(dailyPnL)}</span>
+          <span className="text-border/40">·</span>
+          <span>Lv.{level} {xp.toLocaleString()} XP</span>
+          <span className="text-border/40">·</span>
+          <span>Win {winRate.toFixed(1)}% ({stats.totalTrades})</span>
         </div>
 
-        {/* Quick actions — small text links, not cards */}
-        <div className="mt-2 flex flex-wrap items-center gap-x-4 gap-y-1">
+        {/* Quick actions — text-xs, crushed */}
+        <div className="mt-1 flex flex-wrap items-center gap-x-3 gap-y-0.5">
           {[
             { label: "Trade", href: "/trade", Icon: BarChart3 },
             { label: "Learn", href: "/learn", Icon: BookOpen },
             { label: "Predictions", href: "/predictions", Icon: Target },
             { label: "Portfolio", href: "/portfolio", Icon: PieChart },
           ].map(({ label, href, Icon }) => (
-            <Link key={href} href={href} className="group flex items-center gap-1.5 rounded-md px-2 py-1 text-sm text-muted-foreground transition-all duration-150 hover:bg-muted/40 hover:text-foreground active:scale-[0.98] cursor-pointer">
-              <Icon className="h-3.5 w-3.5" />
+            <Link key={href} href={href} className="group flex items-center gap-1 rounded px-1.5 py-0.5 text-xs text-muted-foreground/60 transition-colors hover:text-muted-foreground active:scale-[0.98] cursor-pointer">
+              <Icon className="h-3 w-3" />
               <span>{label}</span>
-              <ChevronRight className="h-3 w-3 opacity-0 transition-opacity group-hover:opacity-100" />
             </Link>
           ))}
         </div>
@@ -463,12 +463,12 @@ export default function HomePage() {
         {/* ═══════════════════════════════════════════
             QUIET ZONE — visual rest between action & reference
         ═══════════════════════════════════════════ */}
-        <div className="my-10" />
+        <div className="my-12" />
 
         {/* ═══════════════════════════════════════════
-            TIER 3 — REFERENCE: Market Intelligence (dense)
+            TIER 3 — REFERENCE: Market Intelligence (nearly invisible)
         ═══════════════════════════════════════════ */}
-        <div className="grid grid-cols-1 gap-2 lg:grid-cols-3">
+        <div className="grid grid-cols-1 gap-1.5 lg:grid-cols-3 opacity-50">
           {/* Market Pulse — dense */}
           <div className="rounded bg-muted/20 px-4 py-3">
             <p className="mb-2 text-xs font-normal text-muted-foreground">Market Pulse</p>
@@ -521,10 +521,10 @@ export default function HomePage() {
         </div>
 
         {/* QUIET ZONE — rest between market intelligence and personal data */}
-        <div className="my-10" />
+        <div className="my-8" />
 
-        {/* Personal data — moderate density */}
-        <div className="grid grid-cols-1 gap-3 lg:grid-cols-3">
+        {/* Personal data — nearly invisible reference */}
+        <div className="grid grid-cols-1 gap-1.5 lg:grid-cols-3 opacity-50">
           <div className="rounded bg-muted/20 px-4 py-3">
             <div className="flex items-center justify-between mb-1.5"><p className="text-xs text-muted-foreground">Recent Trades</p>{tradeHistory.length > 0 && <Link href="/portfolio" className="text-[11px] text-primary hover:underline">All</Link>}</div>
             {recentTrades.length === 0 ? (

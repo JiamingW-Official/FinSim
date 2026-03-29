@@ -262,7 +262,7 @@ export default function BacktestPage() {
           <FlaskConical className="h-4 w-4 text-primary" />
         </div>
         <div>
-          <h1 className="text-sm font-semibold text-foreground">Strategy Backtester</h1>
+          <h1 className="text-sm font-medium text-foreground">Strategy Backtester</h1>
           <p className="text-xs text-muted-foreground">Build, test, and optimize on simulated market data</p>
         </div>
         <span className="ml-4 rounded bg-muted/40 px-1.5 py-0.5 text-[11px] font-medium text-muted-foreground">
@@ -437,7 +437,7 @@ export default function BacktestPage() {
               <div className="mx-auto max-w-4xl space-y-6">
                 <div className="flex items-center justify-between">
                   <div>
-                    <h2 className="text-sm font-bold text-foreground">Earnings Event Analysis</h2>
+                    <h2 className="text-sm font-medium text-foreground">Earnings Event Analysis</h2>
                     <p className="text-xs text-muted-foreground">Historical earnings reactions and pattern detection</p>
                   </div>
                   <EarningsTickerSelect
@@ -474,7 +474,7 @@ export default function BacktestPage() {
             <div className="flex-1 overflow-y-auto p-6">
               <div className="mx-auto max-w-3xl space-y-4">
                 <div className="mb-4">
-                  <h2 className="text-sm font-bold text-foreground">Walk-Forward Analysis</h2>
+                  <h2 className="text-sm font-medium text-foreground">Walk-Forward Analysis</h2>
                   <p className="text-xs text-muted-foreground">
                     Measures how well in-sample performance translates to out-of-sample results across multiple folds
                   </p>
@@ -491,7 +491,7 @@ export default function BacktestPage() {
             <div className="flex-1 overflow-y-auto p-6">
               <div className="mx-auto max-w-4xl space-y-4">
                 <div className="mb-4">
-                  <h2 className="text-sm font-bold text-foreground">Parameter Optimization</h2>
+                  <h2 className="text-sm font-medium text-foreground">Parameter Optimization</h2>
                   <p className="text-xs text-muted-foreground">
                     Grid search over parameter combinations to find the highest Sharpe ratio
                   </p>

@@ -152,7 +152,7 @@ export default function ArenaPage() {
             <Crosshair className="h-5 w-5 text-primary" />
           </motion.div>
           <div>
-            <h1 className="text-lg font-bold">Practice Arena</h1>
+            <h1 className="text-lg font-medium">Practice Arena</h1>
             <p className="text-[11px] text-muted-foreground">
               Test your skills in simulated competitive challenges
             </p>
@@ -167,13 +167,13 @@ export default function ArenaPage() {
               <>
                 <ArenaRankBadge rank={rank} size="sm" />
                 <div>
-                  <p className="text-lg font-bold tabular-nums">{elo} ELO</p>
+                  <p className="text-lg font-medium tabular-nums">{elo} ELO</p>
                   <p className="text-[11px] text-muted-foreground">{totalMatches} matches played</p>
                 </div>
               </>
             ) : (
               <div>
-                <p className="text-sm font-bold text-foreground">Ready to compete?</p>
+                <p className="text-sm font-medium text-foreground">Ready to compete?</p>
                 <p className="text-[11px] text-muted-foreground">Complete your first match to earn a rank</p>
               </div>
             )}
@@ -197,7 +197,7 @@ export default function ArenaPage() {
               if (tab.id !== "modes") setPhase("lobby");
             }}
             className={cn(
-              "flex flex-1 items-center justify-center gap-1.5 border-b-2 px-3 py-2.5 text-xs font-bold transition-colors",
+              "flex flex-1 items-center justify-center gap-1.5 border-b-2 px-3 py-2.5 text-xs font-medium transition-colors",
               activeTab === tab.id
                 ? "border-primary text-primary"
                 : "border-transparent text-muted-foreground hover:text-foreground",

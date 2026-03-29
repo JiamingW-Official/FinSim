@@ -426,7 +426,7 @@ function CalendarTab() {
       {/* HERO — Next Earnings Event */}
       {upcoming.length > 0 && (
         <div className="rounded-xl border border-border bg-card border-l-4 border-l-primary p-6 space-y-3">
-          <h2 className="text-sm font-bold text-foreground flex items-center gap-2">
+          <h2 className="text-sm font-medium text-foreground flex items-center gap-2">
             <Clock className="h-4 w-4 text-primary" />
             Next Earnings Event
           </h2>
@@ -439,7 +439,7 @@ function CalendarTab() {
                     {e.ticker}
                   </div>
                   <div>
-                    <div className="text-base font-bold text-foreground">{e.company}</div>
+                    <div className="text-base font-medium text-foreground">{e.company}</div>
                     <div className="text-xs text-muted-foreground">{e.day} &middot; {e.time === "BMO" ? "Before Market Open" : "After Market Close"}</div>
                   </div>
                 </div>
@@ -453,7 +453,7 @@ function CalendarTab() {
                   ].map(({ label, value, color }) => (
                     <div key={label} className="rounded-lg border border-border bg-background p-3">
                       <p className="text-[11px] text-muted-foreground">{label}</p>
-                      <p className={cn("text-sm font-bold font-mono", color)}>{value}</p>
+                      <p className={cn("text-sm font-medium font-mono tabular-nums", color)}>{value}</p>
                     </div>
                   ))}
                 </div>
@@ -496,7 +496,7 @@ function CalendarTab() {
       {/* Monthly Calendar */}
       <div>
         <div className="flex items-center justify-between mb-3">
-          <h2 className="text-sm font-semibold text-foreground flex items-center gap-2">
+          <h2 className="text-sm font-medium text-foreground flex items-center gap-2">
             <Calendar className="h-4 w-4 text-primary" />
             {monthLabel} Earnings Calendar
           </h2>
@@ -879,7 +879,7 @@ function AnalystRatingsTab() {
       {/* Consensus table */}
       <div className="bg-card border border-border rounded-lg overflow-hidden">
         <div className="px-3 py-2 border-b border-border">
-          <span className="text-xs font-semibold text-foreground">Analyst Consensus — All Tickers</span>
+          <span className="text-xs font-medium text-foreground">Analyst Consensus — All Tickers</span>
         </div>
         <div className="overflow-x-auto">
           <table className="w-full text-xs">
@@ -953,7 +953,7 @@ function AnalystRatingsTab() {
       {/* Rating changes feed */}
       <div className="bg-card border border-border rounded-lg overflow-hidden">
         <div className="px-3 py-2 border-b border-border">
-          <span className="text-xs font-semibold text-foreground">Recent Rating Changes</span>
+          <span className="text-xs font-medium text-foreground">Recent Rating Changes</span>
         </div>
         <div className="divide-y divide-border/50">
           {ratingChanges.map((rc, i) => {
@@ -1216,7 +1216,7 @@ export default function EarningsPage() {
           <Calendar className="h-4.5 w-4.5 text-primary" />
         </div>
         <div>
-          <h1 className="text-base font-bold text-foreground">Earnings Calendar</h1>
+          <h1 className="text-base font-medium text-foreground">Earnings Calendar</h1>
           <p className="text-[11px] text-muted-foreground">Calendar, analyst ratings, earnings history &amp; trading strategies</p>
         </div>
       </div>
