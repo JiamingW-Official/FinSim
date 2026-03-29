@@ -751,7 +751,7 @@ function PredictorTips() {
       {PREDICTOR_TIPS.map((tip, i) => (
         <div key={i} className="bg-transparent p-0 py-2">
           <div className="mb-1 flex items-center gap-2">
-            <span className="flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-primary/10 text-xs font-bold text-primary">
+            <span className="flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-primary/10 text-xs font-medium text-primary">
               {i + 1}
             </span>
             <span className="text-xs font-semibold text-foreground">{tip.title}</span>
@@ -890,7 +890,7 @@ export function PredictionsPageClient() {
               {tab.icon}
               {tab.label}
               {tab.value === "bets" && activeBetCount > 0 && (
-                <span className="rounded-full bg-primary/20 px-1 text-[11px] font-bold text-primary">{activeBetCount}</span>
+                <span className="rounded-full bg-primary/20 px-1 text-[11px] font-medium text-primary">{activeBetCount}</span>
               )}
             </button>
           ))}

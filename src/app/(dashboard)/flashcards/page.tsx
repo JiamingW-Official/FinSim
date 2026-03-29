@@ -136,7 +136,7 @@ function BrowseTab() {
                     {cat && (
                       <span
                         className={cn(
-                          "text-[11px] font-bold",
+                          "text-[11px] font-medium",
                           cat.color,
                         )}
                       >
@@ -172,7 +172,7 @@ function BrowseTab() {
                   {cat && (
                     <span
                       className={cn(
-                        "text-[11px] font-bold",
+                        "text-[11px] font-medium",
                         cat.color,
                       )}
                     >

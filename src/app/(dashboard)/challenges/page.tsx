@@ -214,7 +214,7 @@ function useSundayCountdown(): string {
 function DifficultyBadge({ difficulty }: { difficulty: "Easy" | "Medium" | "Hard" }) {
   return (
     <span className={cn(
-      "rounded-md px-2 py-0.5 text-[11px] font-bold uppercase tracking-wide",
+      "rounded-md px-2 py-0.5 text-[11px] font-medium uppercase tracking-wide",
       difficulty === "Easy" && "bg-emerald-500/10 border border-emerald-500/20 text-emerald-400",
       difficulty === "Medium" && "bg-amber-500/10 border border-amber-500/20 text-amber-400",
       difficulty === "Hard" && "bg-red-500/10 border border-red-500/20 text-red-400",
@@ -259,20 +259,20 @@ function WeeklyTab() {
           </div>
           <div className="flex-1 min-w-0">
             <div className="flex items-center gap-2 flex-wrap mb-1">
-              <span className="text-sm font-bold">{heroChallenge.title}</span>
+              <span className="text-sm font-medium">{heroChallenge.title}</span>
               <DifficultyBadge difficulty={heroChallenge.difficulty} />
             </div>
             <p className="text-xs text-muted-foreground leading-relaxed">{heroChallenge.description}</p>
           </div>
           <div className="shrink-0 text-right">
-            <div className="text-lg font-bold text-primary">+{heroChallenge.xpReward}</div>
+            <div className="text-lg font-medium text-primary">+{heroChallenge.xpReward}</div>
             <div className="text-[11px] text-muted-foreground">XP</div>
           </div>
         </div>
         <div className="space-y-1.5">
           <div className="flex items-center justify-between">
             <span className="text-xs text-muted-foreground">Target: {heroChallenge.target}</span>
-            <span className="text-xs font-bold tabular-nums">{heroChallenge.progress}%</span>
+            <span className="text-xs font-medium tabular-nums">{heroChallenge.progress}%</span>
           </div>
           <div className="h-2 rounded-full bg-muted/30 overflow-hidden">
             <motion.div
@@ -339,20 +339,20 @@ function EventCard({ event, index }: { event: SpecialEvent; index: number }) {
       <div className="flex items-center justify-between px-4 py-3 border-b border-primary/10">
         <div className="flex items-center gap-2">
           <Sparkles className="h-4 w-4 text-primary" />
-          <span className="text-xs font-bold text-primary uppercase tracking-wide">Special Event</span>
+          <span className="text-xs font-medium text-primary uppercase tracking-wide">Special Event</span>
           {event.isNew && (
-            <span className="rounded-full bg-primary px-1.5 py-0.5 text-[11px] font-bold text-primary-foreground">NEW</span>
+            <span className="rounded-full bg-primary px-1.5 py-0.5 text-[11px] font-medium text-primary-foreground">NEW</span>
           )}
         </div>
         <div className="flex items-center gap-1.5 text-xs text-muted-foreground">
           <Clock className="h-3 w-3" />
-          <span className="font-bold">{remaining}</span>
+          <span className="font-medium">{remaining}</span>
         </div>
       </div>
 
       <div className="p-4 space-y-3">
         <div>
-          <h3 className="text-base font-bold">{event.title}</h3>
+          <h3 className="text-base font-medium">{event.title}</h3>
           <p className="text-xs text-muted-foreground">{event.subtitle}</p>
         </div>
 
@@ -360,7 +360,7 @@ function EventCard({ event, index }: { event: SpecialEvent; index: number }) {
 
         {/* Rules */}
         <div className="rounded-lg border border-border/50 bg-card/50 p-3 space-y-1.5">
-          <span className="text-[11px] font-bold text-muted-foreground">Rules</span>
+          <span className="text-[11px] font-medium text-muted-foreground">Rules</span>
           {event.rules.map((rule, i) => (
             <div key={i} className="flex items-start gap-2">
               <CheckCircle2 className="h-3 w-3 text-primary/60 shrink-0 mt-0.5" />
@@ -373,12 +373,12 @@ function EventCard({ event, index }: { event: SpecialEvent; index: number }) {
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-2">
             <Trophy className="h-3.5 w-3.5 text-amber-400" />
-            <span className="text-[11px] font-bold text-amber-400">+{event.xpReward} XP</span>
+            <span className="text-[11px] font-medium text-amber-400">+{event.xpReward} XP</span>
             <span className="text-xs text-muted-foreground">+ &quot;{event.badge}&quot; badge</span>
           </div>
           <button
             type="button"
-            className="rounded-lg bg-primary px-3 py-1.5 text-xs font-bold text-primary-foreground hover:bg-primary/90 transition-colors"
+            className="rounded-lg bg-primary px-3 py-1.5 text-xs font-medium text-primary-foreground hover:bg-primary/90 transition-colors"
           >
             Join Event
           </button>
@@ -543,17 +543,17 @@ function DailyHeroCard({ countdown }: { countdown: string }) {
           </div>
           <div className="min-w-0">
             <div className="flex items-center gap-2 mb-1">
-              <span className="text-[11px] font-bold uppercase tracking-wide text-primary">Today&apos;s Challenge</span>
+              <span className="text-[11px] font-medium uppercase tracking-wide text-primary">Today&apos;s Challenge</span>
               <DifficultyBadge difficulty={challenge.difficulty} />
             </div>
-            <h2 className="text-base font-bold mb-1">{challenge.title}</h2>
+            <h2 className="text-base font-medium mb-1">{challenge.title}</h2>
             <p className="text-sm text-muted-foreground">{challenge.description}</p>
           </div>
         </div>
 
         <div className="shrink-0 text-right space-y-2">
           <div>
-            <div className="text-lg font-bold text-primary">+{challenge.xpReward}</div>
+            <div className="text-lg font-medium text-primary">+{challenge.xpReward}</div>
             <div className="text-[11px] text-muted-foreground">XP reward</div>
           </div>
           <div className="flex items-center gap-1 text-[11px] text-muted-foreground">
@@ -567,7 +567,7 @@ function DailyHeroCard({ countdown }: { countdown: string }) {
         <span className="text-[11px] text-muted-foreground">0/1 daily challenges completed</span>
         <Link
           href="/trade"
-          className="inline-flex items-center gap-1.5 rounded-lg bg-primary px-4 py-2 text-xs font-bold text-primary-foreground hover:bg-primary/90 transition-colors"
+          className="inline-flex items-center gap-1.5 rounded-lg bg-primary px-4 py-2 text-xs font-medium text-primary-foreground hover:bg-primary/90 transition-colors"
         >
           Accept Challenge
           <ArrowRight className="h-3.5 w-3.5" />
@@ -674,7 +674,7 @@ export default function ChallengesPage() {
             transition={{ delay: 0.3, type: "spring", stiffness: 400, damping: 15 }}
           >
             <Zap className="h-3 w-3 text-primary" />
-            <span className="text-xs font-bold text-primary">
+            <span className="text-xs font-medium text-primary">
               {totalDailyCompleted + scenariosCompleted} total
             </span>
           </motion.div>
@@ -739,7 +739,7 @@ export default function ChallengesPage() {
               type="button"
               onClick={() => setTab(id)}
               className={cn(
-                "relative flex items-center gap-1.5 px-3 py-2.5 text-[11px] font-bold transition-colors whitespace-nowrap",
+                "relative flex items-center gap-1.5 px-3 py-2.5 text-[11px] font-medium transition-colors whitespace-nowrap",
                 tab === id
                   ? "text-foreground"
                   : "text-muted-foreground hover:text-foreground",

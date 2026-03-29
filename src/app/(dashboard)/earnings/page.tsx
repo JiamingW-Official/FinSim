@@ -435,7 +435,7 @@ function CalendarTab() {
             return (
               <div className="space-y-3">
                 <div className="flex items-center gap-3">
-                  <div className={cn("px-3 py-1 rounded-md text-sm font-bold", catColor(e.category))}>
+                  <div className={cn("px-3 py-1 rounded-md text-sm font-medium", catColor(e.category))}>
                     {e.ticker}
                   </div>
                   <div>
@@ -1044,7 +1044,7 @@ function EarningsStrategiesTab() {
                 className="w-full flex items-center justify-between px-4 py-3 hover:bg-muted/20 transition-colors text-left"
               >
                 <div className="flex items-center gap-3">
-                  <span className="text-xs font-bold text-primary bg-primary/10 w-6 h-6 rounded-full flex items-center justify-center shrink-0">{i + 1}</span>
+                  <span className="text-xs font-medium text-primary bg-primary/10 w-6 h-6 rounded-full flex items-center justify-center shrink-0">{i + 1}</span>
                   <div>
                     <div className="text-sm font-semibold text-foreground">{strat.name}</div>
                     <div className="text-xs text-muted-foreground mt-0.5">
