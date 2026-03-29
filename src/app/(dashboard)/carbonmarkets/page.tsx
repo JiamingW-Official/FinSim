@@ -1,1662 +1,1153 @@
 "use client";
 
-import { useState, useMemo } from "react";
+import { useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 import {
   Leaf,
   Globe,
+  ShieldCheck,
   TrendingUp,
-  TrendingDown,
+  BarChart2,
   AlertTriangle,
   CheckCircle,
-  BarChart2,
-  Info,
-  Zap,
-  Wind,
-  Droplets,
-  Shield,
-  FileText,
-  Target,
+  ChevronDown,
+  ChevronUp,
   Activity,
   DollarSign,
-  ArrowUpRight,
-  ArrowDownRight,
+  Target,
+  Layers,
 } from "lucide-react";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { motion } from "framer-motion";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { cn } from "@/lib/utils";
 
 // ── Seeded PRNG ────────────────────────────────────────────────────────────────
-
-let s = 682002;
+let s = 933;
 const rand = () => {
   s = (s * 1103515245 + 12345) & 0x7fffffff;
   return s / 0x7fffffff;
 };
+// Pre-generate stable values; consumed only if needed for extensions
+const _vals = Array.from({ length: 3000 }, () => rand());
+let _vi = 0;
+const _sv = () => _vals[_vi++ % _vals.length];
+void _sv; // suppress unused warning
 
-function randBetween(lo: number, hi: number) {
-  return lo + rand() * (hi - lo);
+// ── Format helpers ─────────────────────────────────────────────────────────────
+function fmtPct(n: number): string {
+  return (n >= 0 ? "+" : "") + n.toFixed(1) + "%";
+}
+const posColor = (v: number) => (v >= 0 ? "text-emerald-400" : "text-red-400");
+
+// ── EUA Price Chart 2018–2024 ──────────────────────────────────────────────────
+const EUA_PRICE_DATA: { year: string; price: number }[] = [
+  { year: "2018", price: 16 },
+  { year: "2019", price: 25 },
+  { year: "2020", price: 24 },
+  { year: "2021", price: 53 },
+  { year: "2022", price: 82 },
+  { year: "2023", price: 90 },
+  { year: "2024", price: 62 },
+];
+
+function EuaPriceChart() {
+  const W = 480;
+  const H = 160;
+  const PAD = { l: 40, r: 16, t: 16, b: 32 };
+  const chartW = W - PAD.l - PAD.r;
+  const chartH = H - PAD.t - PAD.b;
+  const maxP = 100;
+  const toX = (i: number) => PAD.l + (i / (EUA_PRICE_DATA.length - 1)) * chartW;
+  const toY = (v: number) => PAD.t + chartH - (v / maxP) * chartH;
+  const pts = EUA_PRICE_DATA.map((d, i) => `${toX(i)},${toY(d.price)}`).join(" ");
+  const area = [
+    `${toX(0)},${PAD.t + chartH}`,
+    ...EUA_PRICE_DATA.map((d, i) => `${toX(i)},${toY(d.price)}`),
+    `${toX(EUA_PRICE_DATA.length - 1)},${PAD.t + chartH}`,
+  ].join(" ");
+  return (
+    <svg viewBox={`0 0 ${W} ${H}`} className="w-full h-40">
+      <defs>
+        <linearGradient id="euaGrad" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0%" stopColor="#34d399" stopOpacity="0.3" />
+          <stop offset="100%" stopColor="#34d399" stopOpacity="0.02" />
+        </linearGradient>
+      </defs>
+      {[0, 25, 50, 75, 100].map((v) => (
+        <line key={`gl-${v}`} x1={PAD.l} x2={W - PAD.r} y1={toY(v)} y2={toY(v)} stroke="#27272a" strokeWidth="1" />
+      ))}
+      {[0, 25, 50, 75, 100].map((v) => (
+        <text key={`gy-${v}`} x={PAD.l - 4} y={toY(v) + 4} fill="#71717a" fontSize="9" textAnchor="end">
+          {`\u20AC${v}`}
+        </text>
+      ))}
+      <polygon points={area} fill="url(#euaGrad)" />
+      <polyline points={pts} fill="none" stroke="#34d399" strokeWidth="2" strokeLinejoin="round" />
+      {EUA_PRICE_DATA.map((d, i) => (
+        <circle key={`dot-${i}`} cx={toX(i)} cy={toY(d.price)} r="3" fill="#34d399" />
+      ))}
+      {EUA_PRICE_DATA.map((d, i) => (
+        <text key={`xl-${i}`} x={toX(i)} y={H - 4} fill="#71717a" fontSize="9" textAnchor="middle">
+          {d.year}
+        </text>
+      ))}
+      {EUA_PRICE_DATA.map((d, i) => (
+        <text key={`pl-${i}`} x={toX(i)} y={toY(d.price) - 6} fill="#a1a1aa" fontSize="8" textAnchor="middle">
+          {`\u20AC${d.price}`}
+        </text>
+      ))}
+    </svg>
+  );
 }
 
-// ── Interfaces ─────────────────────────────────────────────────────────────────
-
-interface MarketPricePoint {
-  month: string;
-  euets: number;
-  california: number;
-  rggi: number;
-  vcm: number;
+// ── Cap-and-Trade Mechanic SVG ─────────────────────────────────────────────────
+function CapTradeSVG() {
+  return (
+    <svg viewBox="0 0 480 160" className="w-full h-40">
+      <defs>
+        <marker id="ctA1" markerWidth="6" markerHeight="6" refX="6" refY="3" orient="auto">
+          <path d="M0,0 L6,3 L0,6 Z" fill="#6366f1" />
+        </marker>
+        <marker id="ctA2" markerWidth="6" markerHeight="6" refX="6" refY="3" orient="auto">
+          <path d="M0,0 L6,3 L0,6 Z" fill="#34d399" />
+        </marker>
+        <marker id="ctA3" markerWidth="6" markerHeight="6" refX="6" refY="3" orient="auto">
+          <path d="M0,0 L6,3 L0,6 Z" fill="#f59e0b" />
+        </marker>
+      </defs>
+      <rect x="10" y="60" width="80" height="40" rx="6" fill="#1e1e2e" stroke="#6366f1" strokeWidth="1.5" />
+      <text x="50" y="78" fill="#a5b4fc" fontSize="9" textAnchor="middle" fontWeight="bold">REGULATOR</text>
+      <text x="50" y="91" fill="#a5b4fc" fontSize="8" textAnchor="middle">Sets Cap</text>
+      <line x1="90" y1="80" x2="130" y2="80" stroke="#6366f1" strokeWidth="1.5" markerEnd="url(#ctA1)" />
+      <rect x="130" y="55" width="90" height="50" rx="6" fill="#1e1e2e" stroke="#34d399" strokeWidth="1.5" />
+      <text x="175" y="75" fill="#6ee7b7" fontSize="9" textAnchor="middle" fontWeight="bold">ALLOWANCES</text>
+      <text x="175" y="88" fill="#6ee7b7" fontSize="8" textAnchor="middle">Auctioned /</text>
+      <text x="175" y="98" fill="#6ee7b7" fontSize="8" textAnchor="middle">Free Alloc.</text>
+      <line x1="220" y1="80" x2="270" y2="80" stroke="#34d399" strokeWidth="1.5" markerEnd="url(#ctA2)" />
+      <rect x="270" y="55" width="90" height="50" rx="6" fill="#1e1e2e" stroke="#f59e0b" strokeWidth="1.5" />
+      <text x="315" y="75" fill="#fcd34d" fontSize="9" textAnchor="middle" fontWeight="bold">CARBON MKT</text>
+      <text x="315" y="88" fill="#fcd34d" fontSize="8" textAnchor="middle">Price Discovery</text>
+      <text x="315" y="98" fill="#fcd34d" fontSize="8" textAnchor="middle">EUA Trading</text>
+      <line x1="360" y1="80" x2="400" y2="80" stroke="#f59e0b" strokeWidth="1.5" markerEnd="url(#ctA3)" />
+      <rect x="400" y="55" width="70" height="50" rx="6" fill="#1e1e2e" stroke="#f87171" strokeWidth="1.5" />
+      <text x="435" y="75" fill="#fca5a5" fontSize="9" textAnchor="middle" fontWeight="bold">EMITTERS</text>
+      <text x="435" y="88" fill="#fca5a5" fontSize="8" textAnchor="middle">Surrender</text>
+      <text x="435" y="98" fill="#fca5a5" fontSize="8" textAnchor="middle">Allowances</text>
+      <text x="240" y="20" fill="#71717a" fontSize="9" textAnchor="middle">Annual Cap declining ~2.2% p.a.</text>
+      <line x1="130" y1="25" x2="360" y2="25" stroke="#27272a" strokeWidth="1" strokeDasharray="4,3" />
+    </svg>
+  );
 }
 
-interface CarbonMarket {
+// ── Regional ETS data ──────────────────────────────────────────────────────────
+interface EtsSystem {
   name: string;
-  abbr: string;
-  type: "Compliance" | "Voluntary";
   region: string;
-  currentPrice: number;
-  priceChange: number;
+  launched: number;
+  price: string;
   coverage: string;
-  sectorsCount: number;
-  annualVolume: number;
-  color: string;
+  sectors: string;
+  phase: string;
 }
-
-interface CreditType {
-  name: string;
-  standard: string;
-  type: "Compliance" | "Voluntary";
-  additionality: number;
-  permanence: number;
-  cobenefits: number;
-  verificationRigour: number;
-  avgPrice: number;
-  qualityScore: number;
-  description: string;
-}
-
-interface NetZeroSector {
-  sector: string;
-  strandedRisk: number;
-  transitionOpportunity: number;
-  capexRequired: string;
-  timelineYears: number;
-  parisAligned: boolean;
-  keyDriver: string;
-}
-
-interface ClimateEtf {
-  ticker: string;
-  name: string;
-  aum: number;
-  expenseRatio: number;
-  ytdReturn: number;
-  focus: string;
-  holdings: number;
-  inceptionYear: number;
-}
-
-interface TcfdScenario {
-  scenario: string;
-  temp: string;
-  physicalRisk: number;
-  transitionRisk: number;
-  financialImpact: string;
-  stranded: string;
-  description: string;
-  color: string;
-}
-
-// ── Static Data ────────────────────────────────────────────────────────────────
-
-const MARKETS: CarbonMarket[] = [
-  {
-    name: "EU Emissions Trading System",
-    abbr: "EU ETS",
-    type: "Compliance",
-    region: "European Union",
-    currentPrice: 68.4,
-    priceChange: 3.2,
-    coverage: "45% of EU emissions",
-    sectorsCount: 5,
-    annualVolume: 1590,
-    color: "#3b82f6",
-  },
-  {
-    name: "California Cap-and-Trade",
-    abbr: "CA CaT",
-    type: "Compliance",
-    region: "California, USA",
-    currentPrice: 38.7,
-    priceChange: -1.1,
-    coverage: "85% of CA emissions",
-    sectorsCount: 3,
-    annualVolume: 340,
-    color: "#f59e0b",
-  },
-  {
-    name: "Regional Greenhouse Gas Initiative",
-    abbr: "RGGI",
-    type: "Compliance",
-    region: "11 US States",
-    currentPrice: 14.2,
-    priceChange: 0.8,
-    coverage: "Power sector only",
-    sectorsCount: 1,
-    annualVolume: 180,
-    color: "#10b981",
-  },
-  {
-    name: "Voluntary Carbon Market",
-    abbr: "VCM",
-    type: "Voluntary",
-    region: "Global",
-    currentPrice: 5.1,
-    priceChange: -0.3,
-    coverage: "Broad economy",
-    sectorsCount: 12,
-    annualVolume: 2000,
-    color: "#8b5cf6",
-  },
+const ETS_SYSTEMS: EtsSystem[] = [
+  { name: "EU ETS", region: "European Union", launched: 2005, price: "EUR 60-65/t", coverage: "~40% EU GHG", sectors: "Power, Industry, Aviation, Shipping", phase: "Phase 4 (2021-30)" },
+  { name: "UK ETS", region: "United Kingdom", launched: 2021, price: "GBP 35-45/t", coverage: "~25% UK GHG", sectors: "Power, Industry, Aviation", phase: "Post-Brexit" },
+  { name: "CA Cap-Trade", region: "California, USA", launched: 2013, price: "$30-35/t", coverage: "~85% CA GHG", sectors: "Power, Industry, Transport, Fuel", phase: "2021-30 program" },
+  { name: "RGGI", region: "NE United States", launched: 2009, price: "$12-15/t", coverage: "~20% RGGI GHG", sectors: "Power sector only", phase: "2021-30 program" },
+  { name: "China ETS", region: "China", launched: 2021, price: "CNY 50-70/t", coverage: "~40% China GHG", sectors: "Power sector only (expanding)", phase: "Phase 1" },
 ];
 
-const CREDIT_TYPES: CreditType[] = [
-  {
-    name: "REDD+ Forest Credits",
-    standard: "Verra VCS",
-    type: "Voluntary",
-    additionality: 72,
-    permanence: 65,
-    cobenefits: 88,
-    verificationRigour: 78,
-    avgPrice: 8.4,
-    qualityScore: 76,
-    description: "Reduced emissions from deforestation and forest degradation in tropical regions.",
-  },
-  {
-    name: "Renewable Energy Credits",
-    standard: "Gold Standard",
-    type: "Voluntary",
-    additionality: 85,
-    permanence: 92,
-    cobenefits: 70,
-    verificationRigour: 90,
-    avgPrice: 12.3,
-    qualityScore: 84,
-    description: "Verified renewable energy generation displacing fossil fuel power.",
-  },
-  {
-    name: "Industrial Efficiency Credits",
-    standard: "Verra VCS",
-    type: "Voluntary",
-    additionality: 90,
-    permanence: 95,
-    cobenefits: 45,
-    verificationRigour: 88,
-    avgPrice: 6.7,
-    qualityScore: 80,
-    description: "Emission reductions from industrial process improvements and efficiency gains.",
-  },
-  {
-    name: "Direct Air Capture",
-    standard: "Puro Standard",
-    type: "Voluntary",
-    additionality: 98,
-    permanence: 99,
-    cobenefits: 38,
-    verificationRigour: 96,
-    avgPrice: 420,
-    qualityScore: 95,
-    description: "High-quality permanent carbon removal via engineered DAC technology.",
-  },
-  {
-    name: "EU ETS Allowances",
-    standard: "EU Directive",
-    type: "Compliance",
-    additionality: 95,
-    permanence: 98,
-    cobenefits: 50,
-    verificationRigour: 97,
-    avgPrice: 68.4,
-    qualityScore: 93,
-    description: "Regulatory allowances under the European Union Emissions Trading System.",
-  },
-  {
-    name: "Soil Carbon Credits",
-    standard: "American Carbon Registry",
-    type: "Voluntary",
-    additionality: 68,
-    permanence: 58,
-    cobenefits: 82,
-    verificationRigour: 72,
-    avgPrice: 4.2,
-    qualityScore: 68,
-    description: "Credits from improved agricultural practices that sequester carbon in soils.",
-  },
-];
-
-const NET_ZERO_SECTORS: NetZeroSector[] = [
-  {
-    sector: "Oil & Gas",
-    strandedRisk: 88,
-    transitionOpportunity: 45,
-    capexRequired: "$3.8T",
-    timelineYears: 10,
-    parisAligned: false,
-    keyDriver: "Stranded reserves, carbon price exposure",
-  },
-  {
-    sector: "Utilities",
-    strandedRisk: 72,
-    transitionOpportunity: 82,
-    capexRequired: "$5.2T",
-    timelineYears: 12,
-    parisAligned: true,
-    keyDriver: "Grid decarbonization, renewable buildout",
-  },
-  {
-    sector: "Autos & Transport",
-    strandedRisk: 65,
-    transitionOpportunity: 78,
-    capexRequired: "$2.1T",
-    timelineYears: 15,
-    parisAligned: true,
-    keyDriver: "EV transition, ICE phase-out regulations",
-  },
-  {
-    sector: "Steel & Cement",
-    strandedRisk: 70,
-    transitionOpportunity: 55,
-    capexRequired: "$1.4T",
-    timelineYears: 18,
-    parisAligned: false,
-    keyDriver: "Hard-to-abate, green hydrogen needed",
-  },
-  {
-    sector: "Real Estate",
-    strandedRisk: 48,
-    transitionOpportunity: 60,
-    capexRequired: "$900B",
-    timelineYears: 20,
-    parisAligned: true,
-    keyDriver: "Building retrofits, energy efficiency mandates",
-  },
-  {
-    sector: "Financials",
-    strandedRisk: 35,
-    transitionOpportunity: 72,
-    capexRequired: "N/A",
-    timelineYears: 8,
-    parisAligned: true,
-    keyDriver: "Portfolio alignment, green lending growth",
-  },
-  {
-    sector: "Clean Technology",
-    strandedRisk: 8,
-    transitionOpportunity: 97,
-    capexRequired: "$1.1T",
-    timelineYears: 5,
-    parisAligned: true,
-    keyDriver: "Beneficiary: solar, wind, battery, CCS",
-  },
-  {
-    sector: "Agriculture",
-    strandedRisk: 42,
-    transitionOpportunity: 58,
-    capexRequired: "$600B",
-    timelineYears: 25,
-    parisAligned: false,
-    keyDriver: "Methane reduction, carbon sequestration",
-  },
-];
-
-const CLIMATE_ETFS: ClimateEtf[] = [
-  {
-    ticker: "ICLN",
-    name: "iShares Global Clean Energy ETF",
-    aum: 3.1,
-    expenseRatio: 0.4,
-    ytdReturn: 12.4,
-    focus: "Global Clean Energy",
-    holdings: 103,
-    inceptionYear: 2008,
-  },
-  {
-    ticker: "QCLN",
-    name: "First Trust NASDAQ Clean Edge",
-    aum: 1.8,
-    expenseRatio: 0.58,
-    ytdReturn: 18.7,
-    focus: "US Clean Energy Tech",
-    holdings: 46,
-    inceptionYear: 2007,
-  },
-  {
-    ticker: "SMOG",
-    name: "VanEck Low Carbon Energy ETF",
-    aum: 0.28,
-    expenseRatio: 0.49,
-    ytdReturn: 9.1,
-    focus: "Low Carbon Transition",
-    holdings: 30,
-    inceptionYear: 2007,
-  },
-  {
-    ticker: "CLMA",
-    name: "iShares MSCI Climate Aware",
-    aum: 0.72,
-    expenseRatio: 0.15,
-    ytdReturn: 6.8,
-    focus: "Broad Climate Tilt",
-    holdings: 312,
-    inceptionYear: 2022,
-  },
-  {
-    ticker: "GRID",
-    name: "First Trust NASDAQ Clean Edge Smart Grid",
-    aum: 0.9,
-    expenseRatio: 0.58,
-    ytdReturn: 14.2,
-    focus: "Grid Infrastructure",
-    holdings: 68,
-    inceptionYear: 2009,
-  },
-  {
-    ticker: "ACES",
-    name: "ALPS Clean Energy ETF",
-    aum: 0.45,
-    expenseRatio: 0.55,
-    ytdReturn: 22.1,
-    focus: "N. America Clean Energy",
-    holdings: 30,
-    inceptionYear: 2018,
-  },
-];
-
-const TCFD_SCENARIOS: TcfdScenario[] = [
-  {
-    scenario: "1.5°C Aligned",
-    temp: "1.5°C",
-    physicalRisk: 22,
-    transitionRisk: 88,
-    financialImpact: "−12% to −28%",
-    stranded: "High fossil stranded",
-    description:
-      "Net-zero by 2050. Rapid policy tightening, high carbon prices ($150–250/t by 2040). Significant fossil fuel stranded assets. Clean energy winners.",
-    color: "#10b981",
-  },
-  {
-    scenario: "Orderly 2°C",
-    temp: "2°C",
-    physicalRisk: 38,
-    transitionRisk: 62,
-    financialImpact: "−6% to −18%",
-    stranded: "Moderate fossil risk",
-    description:
-      "Balanced transition. Carbon prices rise gradually ($80–120/t by 2040). Physical risks manageable. Mixed sector impacts with transition winners.",
-    color: "#f59e0b",
-  },
-  {
-    scenario: "Disorderly 2°C",
-    temp: "2°C delayed",
-    physicalRisk: 52,
-    transitionRisk: 78,
-    financialImpact: "−15% to −35%",
-    stranded: "Severe double-hit",
-    description:
-      "Delayed then abrupt policy shift. Worst of both worlds — physical damage accumulates then sudden policy shock. High financial instability risk.",
-    color: "#ef4444",
-  },
-  {
-    scenario: "Hot House 3°C+",
-    temp: "3°C+",
-    physicalRisk: 85,
-    transitionRisk: 18,
-    financialImpact: "−20% to −50%",
-    stranded: "Catastrophic physical",
-    description:
-      "Business as usual. Low near-term transition risk but catastrophic physical damage by 2070–2100. Infrastructure, agriculture, coastal assets devastated.",
-    color: "#7c3aed",
-  },
-];
-
-// ── Generate price history with seeded PRNG ────────────────────────────────────
-
-const PRICE_HISTORY: MarketPricePoint[] = (() => {
-  const months = [
-    "Jan", "Feb", "Mar", "Apr", "May", "Jun",
-    "Jul", "Aug", "Sep", "Oct", "Nov", "Dec",
-    "Jan'25", "Feb'25", "Mar'25",
+// ── Credit lifecycle SVG ───────────────────────────────────────────────────────
+function CreditLifecycleSVG() {
+  const steps = [
+    { label: "Project\nDev", color: "#6366f1" },
+    { label: "MRV\nMeasure", color: "#8b5cf6" },
+    { label: "3rd Party\nVerify", color: "#a855f7" },
+    { label: "Credit\nIssuance", color: "#34d399" },
+    { label: "Credit\nRetirement", color: "#f59e0b" },
   ];
-  let euets = 52;
-  let california = 32;
-  let rggi = 11;
-  let vcm = 6;
-  return months.map((month) => {
-    euets = Math.max(20, euets + randBetween(-4, 6));
-    california = Math.max(15, california + randBetween(-2, 3));
-    rggi = Math.max(8, rggi + randBetween(-1, 1.5));
-    vcm = Math.max(2, vcm + randBetween(-0.5, 0.8));
-    return {
-      month,
-      euets: +euets.toFixed(2),
-      california: +california.toFixed(2),
-      rggi: +rggi.toFixed(2),
-      vcm: +vcm.toFixed(2),
-    };
-  });
-})();
-
-// ── Helpers ────────────────────────────────────────────────────────────────────
-
-function scoreColor(score: number): string {
-  if (score >= 85) return "text-emerald-400";
-  if (score >= 70) return "text-green-400";
-  if (score >= 55) return "text-yellow-400";
-  return "text-red-400";
-}
-
-function riskColor(risk: number): string {
-  if (risk >= 75) return "#ef4444";
-  if (risk >= 50) return "#f59e0b";
-  if (risk >= 30) return "#3b82f6";
-  return "#10b981";
-}
-
-function oppColor(opp: number): string {
-  if (opp >= 75) return "#10b981";
-  if (opp >= 50) return "#3b82f6";
-  if (opp >= 30) return "#f59e0b";
-  return "#ef4444";
-}
-
-// ── Sub-components ─────────────────────────────────────────────────────────────
-
-function PriceHistoryChart({ data }: { data: MarketPricePoint[] }) {
-  const W = 700;
-  const H = 220;
-  const PAD = { top: 16, right: 16, bottom: 32, left: 48 };
-  const innerW = W - PAD.left - PAD.right;
-  const innerH = H - PAD.top - PAD.bottom;
-
-  const allVals = data.flatMap((d) => [d.euets, d.california, d.rggi, d.vcm]);
-  const minVal = Math.min(...allVals) * 0.9;
-  const maxVal = Math.max(...allVals) * 1.1;
-
-  const xScale = (i: number) => PAD.left + (i / (data.length - 1)) * innerW;
-  const yScale = (v: number) =>
-    PAD.top + innerH - ((v - minVal) / (maxVal - minVal)) * innerH;
-
-  function makePath(key: keyof Omit<MarketPricePoint, "month">) {
-    return data
-      .map((d, i) => `${i === 0 ? "M" : "L"}${xScale(i).toFixed(1)},${yScale(d[key]).toFixed(1)}`)
-      .join(" ");
-  }
-
-  const lines: { key: keyof Omit<MarketPricePoint, "month">; color: string; label: string }[] = [
-    { key: "euets", color: "#3b82f6", label: "EU ETS" },
-    { key: "california", color: "#f59e0b", label: "CA CaT" },
-    { key: "rggi", color: "#10b981", label: "RGGI" },
-    { key: "vcm", color: "#8b5cf6", label: "VCM" },
-  ];
-
-  const yTicks = 5;
-  const yTickVals = Array.from({ length: yTicks }, (_, i) =>
-    minVal + ((maxVal - minVal) * i) / (yTicks - 1)
-  );
-
-  const xStep = Math.ceil(data.length / 6);
-  const xLabels = data
-    .map((d, i) => ({ label: d.month, i }))
-    .filter((_, i) => i % xStep === 0);
-
+  const W = 480;
+  const H = 110;
+  const boxW = 72;
+  const boxH = 48;
+  const gap = (W - steps.length * boxW) / (steps.length + 1);
   return (
-    <div className="overflow-x-auto">
-      <svg viewBox={`0 0 ${W} ${H}`} className="w-full" style={{ minWidth: 340 }}>
-        {/* Grid lines */}
-        {yTickVals.map((v, i) => (
-          <g key={i}>
-            <line
-              x1={PAD.left}
-              x2={W - PAD.right}
-              y1={yScale(v)}
-              y2={yScale(v)}
-              stroke="#334155"
-              strokeDasharray="3 3"
-            />
-            <text
-              x={PAD.left - 6}
-              y={yScale(v) + 4}
-              textAnchor="end"
-              fontSize={9}
-              fill="#94a3b8"
-            >
-              ${v.toFixed(0)}
-            </text>
+    <svg viewBox={`0 0 ${W} ${H}`} className="w-full h-28">
+      <defs>
+        {steps.map((st, i) => (
+          <marker key={`lcm-${i}`} id={`arLC${i}`} markerWidth="6" markerHeight="6" refX="6" refY="3" orient="auto">
+            <path d="M0,0 L6,3 L0,6 Z" fill={st.color} />
+          </marker>
+        ))}
+      </defs>
+      {steps.map((st, i) => {
+        const cx = gap + i * (boxW + gap) + boxW / 2;
+        const cy = H / 2;
+        return (
+          <g key={`lcs-${i}`}>
+            <rect x={cx - boxW / 2} y={cy - boxH / 2} width={boxW} height={boxH} rx="6" fill="#18181b" stroke={st.color} strokeWidth="1.5" />
+            {st.label.split("\n").map((line, j) => (
+              <text key={`lct-${i}-${j}`} x={cx} y={cy - 6 + j * 14} fill={st.color} fontSize="8.5" textAnchor="middle" fontWeight="bold">{line}</text>
+            ))}
+            {i < steps.length - 1 && (
+              <line x1={cx + boxW / 2 + 2} y1={cy} x2={cx + boxW / 2 + gap - 4} y2={cy} stroke={steps[i + 1].color} strokeWidth="1.5" markerEnd={`url(#arLC${i + 1})`} />
+            )}
           </g>
-        ))}
-        {/* X labels */}
-        {xLabels.map(({ label, i }) => (
-          <text
-            key={i}
-            x={xScale(i)}
-            y={H - 6}
-            textAnchor="middle"
-            fontSize={9}
-            fill="#64748b"
-          >
-            {label}
-          </text>
-        ))}
-        {/* Lines */}
-        {lines.map((l) => (
-          <path
-            key={l.key}
-            d={makePath(l.key)}
-            fill="none"
-            stroke={l.color}
-            strokeWidth={2}
-          />
-        ))}
-        {/* Legend */}
-        {lines.map((l, i) => (
-          <g key={l.key} transform={`translate(${PAD.left + i * 90},${PAD.top})`}>
-            <rect width={20} height={3} y={5} fill={l.color} rx={1} />
-            <text x={24} y={11} fontSize={9} fill="#94a3b8">
-              {l.label}
-            </text>
-          </g>
-        ))}
-      </svg>
-    </div>
+        );
+      })}
+    </svg>
   );
 }
 
-function SectorTransitionChart({ sectors }: { sectors: NetZeroSector[] }) {
-  const W = 500;
-  const H = 340;
-  const PAD = { top: 20, right: 20, bottom: 40, left: 100 };
-  const innerW = W - PAD.left - PAD.right;
-  const innerH = H - PAD.top - PAD.bottom;
-  const barH = Math.floor(innerH / sectors.length) - 4;
-
+// ── Credit price bar chart ─────────────────────────────────────────────────────
+interface ProjectType { type: string; minPrice: number; maxPrice: number; color: string; }
+const PROJECT_TYPES: ProjectType[] = [
+  { type: "REDD+ Forest", minPrice: 5, maxPrice: 18, color: "#22c55e" },
+  { type: "Renewable Energy", minPrice: 3, maxPrice: 8, color: "#f59e0b" },
+  { type: "Methane Capture", minPrice: 8, maxPrice: 20, color: "#8b5cf6" },
+  { type: "Blue Carbon", minPrice: 15, maxPrice: 50, color: "#06b6d4" },
+  { type: "Cookstoves", minPrice: 6, maxPrice: 15, color: "#f97316" },
+  { type: "Soil Carbon", minPrice: 10, maxPrice: 35, color: "#a16207" },
+];
+function CreditPriceChart() {
+  const W = 480; const H = 180;
+  const PAD = { l: 110, r: 16, t: 16, b: 28 };
+  const chartW = W - PAD.l - PAD.r;
+  const chartH = H - PAD.t - PAD.b;
+  const maxP = 55;
+  const rowH = chartH / PROJECT_TYPES.length;
   return (
-    <div className="overflow-x-auto">
-      <svg viewBox={`0 0 ${W} ${H}`} className="w-full" style={{ minWidth: 300 }}>
-        {/* Y axis sector labels */}
-        {sectors.map((s, i) => {
-          const y = PAD.top + i * (innerH / sectors.length) + barH / 2 + 4;
-          return (
-            <text key={s.sector} x={PAD.left - 8} y={y} textAnchor="end" fontSize={9} fill="#94a3b8">
-              {s.sector}
-            </text>
-          );
-        })}
-        {/* X axis */}
-        <line x1={PAD.left} x2={PAD.left + innerW} y1={H - PAD.bottom} y2={H - PAD.bottom} stroke="#334155" />
-        {[0, 25, 50, 75, 100].map((v) => (
-          <g key={v}>
-            <line
-              x1={PAD.left + (v / 100) * innerW}
-              x2={PAD.left + (v / 100) * innerW}
-              y1={PAD.top}
-              y2={H - PAD.bottom}
-              stroke="#1e293b"
-            />
-            <text
-              x={PAD.left + (v / 100) * innerW}
-              y={H - PAD.bottom + 14}
-              textAnchor="middle"
-              fontSize={9}
-              fill="#64748b"
-            >
-              {v}%
-            </text>
+    <svg viewBox={`0 0 ${W} ${H}`} className="w-full h-48">
+      {[0, 10, 20, 30, 40, 50].map((v) => {
+        const x = PAD.l + (v / maxP) * chartW;
+        return (
+          <g key={`cg-${v}`}>
+            <line x1={x} y1={PAD.t} x2={x} y2={H - PAD.b} stroke="#27272a" strokeWidth="1" />
+            <text x={x} y={H - 10} fill="#71717a" fontSize="9" textAnchor="middle">${v}</text>
           </g>
-        ))}
-        {/* Bars */}
-        {sectors.map((s, i) => {
-          const rowY = PAD.top + i * (innerH / sectors.length);
-          const riskW = (s.strandedRisk / 100) * innerW;
-          const oppW = (s.transitionOpportunity / 100) * innerW;
-          return (
-            <g key={s.sector}>
-              {/* Stranded risk bar (top) */}
-              <rect
-                x={PAD.left}
-                y={rowY + 1}
-                width={riskW}
-                height={barH / 2 - 2}
-                fill={riskColor(s.strandedRisk)}
-                opacity={0.75}
-                rx={2}
-              />
-              {/* Transition opportunity bar (bottom) */}
-              <rect
-                x={PAD.left}
-                y={rowY + barH / 2 + 1}
-                width={oppW}
-                height={barH / 2 - 2}
-                fill={oppColor(s.transitionOpportunity)}
-                opacity={0.75}
-                rx={2}
-              />
-            </g>
-          );
-        })}
-        {/* Legend */}
-        <rect x={PAD.left} y={H - 10} width={12} height={6} fill="#ef4444" opacity={0.75} rx={1} />
-        <text x={PAD.left + 16} y={H - 4} fontSize={9} fill="#94a3b8">Stranded Risk</text>
-        <rect x={PAD.left + 110} y={H - 10} width={12} height={6} fill="#10b981" opacity={0.75} rx={1} />
-        <text x={PAD.left + 126} y={H - 4} fontSize={9} fill="#94a3b8">Transition Opportunity</text>
-      </svg>
-    </div>
+        );
+      })}
+      {PROJECT_TYPES.map((pt, i) => {
+        const y = PAD.t + i * rowH;
+        const x2 = PAD.l + (pt.maxPrice / maxP) * chartW;
+        return (
+          <g key={`cr-${i}`}>
+            <text x={PAD.l - 6} y={y + rowH / 2 + 4} fill="#a1a1aa" fontSize="9" textAnchor="end">{pt.type}</text>
+            <rect x={PAD.l} y={y + rowH * 0.25} width={x2 - PAD.l} height={rowH * 0.5} fill={pt.color} fillOpacity="0.7" rx="2" />
+            <text x={x2 + 4} y={y + rowH / 2 + 4} fill={pt.color} fontSize="8">${pt.minPrice}-${pt.maxPrice}</text>
+          </g>
+        );
+      })}
+    </svg>
   );
 }
 
-function TcfdScenarioChart({ scenarios }: { scenarios: TcfdScenario[] }) {
-  const W = 500;
-  const H = 200;
-  const PAD = { top: 20, right: 20, bottom: 36, left: 40 };
-  const innerW = W - PAD.left - PAD.right;
-  const innerH = H - PAD.top - PAD.bottom;
-  const groupW = innerW / scenarios.length;
-  const barW = groupW * 0.3;
-
+// ── Double-counting SVG ────────────────────────────────────────────────────────
+function DoubleCountingSVG() {
   return (
-    <div className="overflow-x-auto">
-      <svg viewBox={`0 0 ${W} ${H}`} className="w-full" style={{ minWidth: 300 }}>
-        {[0, 25, 50, 75, 100].map((v) => (
-          <g key={v}>
-            <line
-              x1={PAD.left}
-              x2={W - PAD.right}
-              y1={PAD.top + innerH - (v / 100) * innerH}
-              y2={PAD.top + innerH - (v / 100) * innerH}
-              stroke="#1e293b"
-            />
-            <text x={PAD.left - 4} y={PAD.top + innerH - (v / 100) * innerH + 4} textAnchor="end" fontSize={9} fill="#64748b">
-              {v}
-            </text>
-          </g>
-        ))}
-        {scenarios.map((sc, i) => {
-          const cx = PAD.left + i * groupW + groupW / 2;
-          const phY = PAD.top + innerH - (sc.physicalRisk / 100) * innerH;
-          const trY = PAD.top + innerH - (sc.transitionRisk / 100) * innerH;
-          const baseY = PAD.top + innerH;
-          return (
-            <g key={sc.scenario}>
-              <rect
-                x={cx - barW - 2}
-                y={phY}
-                width={barW}
-                height={baseY - phY}
-                fill="#ef4444"
-                opacity={0.7}
-                rx={2}
-              />
-              <rect
-                x={cx + 2}
-                y={trY}
-                width={barW}
-                height={baseY - trY}
-                fill="#3b82f6"
-                opacity={0.7}
-                rx={2}
-              />
-              <text x={cx} y={H - PAD.bottom + 12} textAnchor="middle" fontSize={8} fill={sc.color} fontWeight="600">
-                {sc.temp}
-              </text>
-              <text x={cx} y={H - PAD.bottom + 24} textAnchor="middle" fontSize={7.5} fill="#64748b">
-                {sc.scenario.split(" ")[0]}
-              </text>
-            </g>
-          );
-        })}
-        {/* Legend */}
-        <rect x={PAD.left} y={H - 4} width={10} height={5} fill="#ef4444" opacity={0.7} rx={1} />
-        <text x={PAD.left + 14} y={H} fontSize={9} fill="#94a3b8">Physical Risk</text>
-        <rect x={PAD.left + 100} y={H - 4} width={10} height={5} fill="#3b82f6" opacity={0.7} rx={1} />
-        <text x={PAD.left + 114} y={H} fontSize={9} fill="#94a3b8">Transition Risk</text>
-      </svg>
-    </div>
+    <svg viewBox="0 0 480 130" className="w-full h-32">
+      <defs>
+        <marker id="dcA" markerWidth="6" markerHeight="6" refX="6" refY="3" orient="auto">
+          <path d="M0,0 L6,3 L0,6 Z" fill="#f59e0b" />
+        </marker>
+      </defs>
+      <rect x="20" y="30" width="130" height="70" rx="8" fill="#1e1e2e" stroke="#6366f1" strokeWidth="1.5" />
+      <text x="85" y="52" fill="#a5b4fc" fontSize="10" textAnchor="middle" fontWeight="bold">Country A</text>
+      <text x="85" y="67" fill="#a5b4fc" fontSize="8" textAnchor="middle">(Credit Seller)</text>
+      <text x="85" y="82" fill="#a5b4fc" fontSize="8" textAnchor="middle">Claims -1 tCO2</text>
+      <text x="85" y="94" fill="#a5b4fc" fontSize="8" textAnchor="middle">in NDC</text>
+      <line x1="150" y1="65" x2="200" y2="65" stroke="#f59e0b" strokeWidth="2" markerEnd="url(#dcA)" />
+      <text x="175" y="58" fill="#fcd34d" fontSize="8" textAnchor="middle">Credit</text>
+      <text x="175" y="70" fill="#fcd34d" fontSize="8" textAnchor="middle">Transfer</text>
+      <rect x="200" y="30" width="130" height="70" rx="8" fill="#1e1e2e" stroke="#34d399" strokeWidth="1.5" />
+      <text x="265" y="52" fill="#6ee7b7" fontSize="10" textAnchor="middle" fontWeight="bold">Country B</text>
+      <text x="265" y="67" fill="#6ee7b7" fontSize="8" textAnchor="middle">(Credit Buyer)</text>
+      <text x="265" y="82" fill="#6ee7b7" fontSize="8" textAnchor="middle">Claims -1 tCO2</text>
+      <text x="265" y="94" fill="#6ee7b7" fontSize="8" textAnchor="middle">in NDC</text>
+      <rect x="350" y="15" width="122" height="100" rx="8" fill="#1e1e2e" stroke="#f87171" strokeWidth="1.5" />
+      <text x="411" y="38" fill="#fca5a5" fontSize="9" textAnchor="middle" fontWeight="bold">PROBLEM</text>
+      <text x="411" y="54" fill="#fca5a5" fontSize="8" textAnchor="middle">Same tonne</text>
+      <text x="411" y="66" fill="#fca5a5" fontSize="8" textAnchor="middle">counted TWICE</text>
+      <text x="411" y="82" fill="#f59e0b" fontSize="8" textAnchor="middle">Article 6 fix:</text>
+      <text x="411" y="94" fill="#f59e0b" fontSize="8" textAnchor="middle">Corresponding</text>
+      <text x="411" y="106" fill="#f59e0b" fontSize="8" textAnchor="middle">Adjustment</text>
+    </svg>
   );
 }
 
-// ── Main Page ──────────────────────────────────────────────────────────────────
-
-export default function CarbonMarketsPage() {
-  const [selectedMarket, setSelectedMarket] = useState<string>("EU ETS");
-  const [selectedCredit, setSelectedCredit] = useState<CreditType | null>(null);
-
-  const selectedMarketData = useMemo(
-    () => MARKETS.find((m) => m.abbr === selectedMarket) ?? MARKETS[0],
-    [selectedMarket]
-  );
-
-  const totalMarketVolume = useMemo(
-    () => MARKETS.reduce((a, m) => a + m.annualVolume, 0),
-    []
-  );
-
+// ── Carbon Price Forecast Chart ────────────────────────────────────────────────
+function PriceForecastChart() {
+  const W = 480; const H = 160;
+  const PAD = { l: 44, r: 16, t: 16, b: 32 };
+  const chartW = W - PAD.l - PAD.r;
+  const chartH = H - PAD.t - PAD.b;
+  const years = [2024, 2025, 2026, 2027, 2028, 2029, 2030];
+  const sdsData = [65, 78, 96, 115, 128, 138, 150];
+  const nzeData = [65, 90, 120, 160, 195, 225, 250];
+  const stepsData = [65, 70, 75, 82, 90, 100, 110];
+  const maxP = 280;
+  const toX = (i: number) => PAD.l + (i / (years.length - 1)) * chartW;
+  const toY = (v: number) => PAD.t + chartH - (v / maxP) * chartH;
+  const lpts = (data: number[]) => data.map((v, i) => `${toX(i)},${toY(v)}`).join(" ");
   return (
-    <div className="min-h-screen bg-background text-foreground p-4 space-y-4">
-      {/* Header */}
-      <motion.div
-        initial={{ opacity: 0, y: -12 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.35 }}
-        className="flex items-center gap-3"
+    <svg viewBox={`0 0 ${W} ${H}`} className="w-full h-44">
+      {[0, 50, 100, 150, 200, 250].map((v) => (
+        <g key={`pfg-${v}`}>
+          <line x1={PAD.l} x2={W - PAD.r} y1={toY(v)} y2={toY(v)} stroke="#27272a" strokeWidth="1" />
+          <text x={PAD.l - 4} y={toY(v) + 4} fill="#71717a" fontSize="9" textAnchor="end">${v}</text>
+        </g>
+      ))}
+      {years.map((y, i) => (
+        <text key={`pfy-${i}`} x={toX(i)} y={H - 4} fill="#71717a" fontSize="9" textAnchor="middle">{y}</text>
+      ))}
+      <polyline points={lpts(stepsData)} fill="none" stroke="#71717a" strokeWidth="1.5" strokeDasharray="4,3" />
+      <polyline points={lpts(sdsData)} fill="none" stroke="#f59e0b" strokeWidth="2" />
+      <polyline points={lpts(nzeData)} fill="none" stroke="#34d399" strokeWidth="2" />
+      <line x1="50" y1="18" x2="70" y2="18" stroke="#34d399" strokeWidth="2" />
+      <text x="74" y="22" fill="#6ee7b7" fontSize="9">NZE ($250/t)</text>
+      <line x1="160" y1="18" x2="180" y2="18" stroke="#f59e0b" strokeWidth="2" />
+      <text x="184" y="22" fill="#fcd34d" fontSize="9">SDS ($150/t)</text>
+      <line x1="270" y1="18" x2="290" y2="18" stroke="#71717a" strokeWidth="1.5" strokeDasharray="4,3" />
+      <text x="294" y="22" fill="#71717a" fontSize="9">STEPS ($110/t)</text>
+    </svg>
+  );
+}
+
+// ── MSR SVG ────────────────────────────────────────────────────────────────────
+function MsrSVG() {
+  return (
+    <svg viewBox="0 0 480 140" className="w-full h-36">
+      <defs>
+        <marker id="msrA1" markerWidth="6" markerHeight="6" refX="6" refY="3" orient="auto">
+          <path d="M0,0 L6,3 L0,6 Z" fill="#f87171" />
+        </marker>
+        <marker id="msrA2" markerWidth="6" markerHeight="6" refX="6" refY="3" orient="auto">
+          <path d="M0,0 L6,3 L0,6 Z" fill="#34d399" />
+        </marker>
+      </defs>
+      <rect x="20" y="20" width="120" height="60" rx="6" fill="#1e1e2e" stroke="#f87171" strokeWidth="1.5" />
+      <text x="80" y="42" fill="#fca5a5" fontSize="9" textAnchor="middle" fontWeight="bold">SURPLUS ZONE</text>
+      <text x="80" y="57" fill="#fca5a5" fontSize="8" textAnchor="middle">&gt;833M allowances</text>
+      <text x="80" y="70" fill="#fca5a5" fontSize="8" textAnchor="middle">in circulation</text>
+      <rect x="185" y="15" width="110" height="70" rx="6" fill="#1e1e2e" stroke="#6366f1" strokeWidth="2" />
+      <text x="240" y="38" fill="#a5b4fc" fontSize="10" textAnchor="middle" fontWeight="bold">MSR</text>
+      <text x="240" y="52" fill="#a5b4fc" fontSize="8" textAnchor="middle">Market Stability</text>
+      <text x="240" y="64" fill="#a5b4fc" fontSize="8" textAnchor="middle">Reserve</text>
+      <text x="240" y="76" fill="#a5b4fc" fontSize="8" textAnchor="middle">~2.7B allowances</text>
+      <rect x="340" y="20" width="120" height="60" rx="6" fill="#1e1e2e" stroke="#34d399" strokeWidth="1.5" />
+      <text x="400" y="42" fill="#6ee7b7" fontSize="9" textAnchor="middle" fontWeight="bold">DEFICIT ZONE</text>
+      <text x="400" y="57" fill="#6ee7b7" fontSize="8" textAnchor="middle">&lt;400M allowances</text>
+      <text x="400" y="70" fill="#6ee7b7" fontSize="8" textAnchor="middle">in circulation</text>
+      <line x1="140" y1="50" x2="183" y2="50" stroke="#f87171" strokeWidth="1.5" markerEnd="url(#msrA1)" />
+      <text x="162" y="44" fill="#f87171" fontSize="7" textAnchor="middle">Absorb 24%/yr</text>
+      <line x1="297" y1="50" x2="338" y2="50" stroke="#34d399" strokeWidth="1.5" markerEnd="url(#msrA2)" />
+      <text x="318" y="44" fill="#34d399" fontSize="7" textAnchor="middle">Release 100M/yr</text>
+      <rect x="155" y="100" width="170" height="30" rx="4" fill="#27272a" />
+      <text x="240" y="116" fill="#71717a" fontSize="8" textAnchor="middle">Excess MSR holdings cancelled from 2023</text>
+    </svg>
+  );
+}
+
+// ── VCM standards data ─────────────────────────────────────────────────────────
+interface VcmStandard { name: string; fullName: string; founded: number; credits: string; focus: string; color: string; }
+const VCM_STANDARDS: VcmStandard[] = [
+  { name: "Verra VCS", fullName: "Verified Carbon Standard", founded: 2005, credits: "1B+ credits", focus: "Largest registry; broad project types", color: "#22c55e" },
+  { name: "Gold Standard", fullName: "Gold Standard for Global Goals", founded: 2003, credits: "200M+ credits", focus: "SDG co-benefits focus; strict additionality", color: "#f59e0b" },
+  { name: "ACR", fullName: "American Carbon Registry", founded: 1996, credits: "100M+ credits", focus: "US-focused; compliance and voluntary", color: "#60a5fa" },
+  { name: "CAR", fullName: "Climate Action Reserve", founded: 2001, credits: "80M+ credits", focus: "North American protocols; CARB offset acceptance", color: "#a855f7" },
+];
+
+// ── Calyx ratings data ─────────────────────────────────────────────────────────
+const CALYX_RATINGS = [
+  { rating: "AAA", label: "Highest Integrity", color: "#22c55e", pct: 8 },
+  { rating: "AA", label: "Very High Integrity", color: "#4ade80", pct: 12 },
+  { rating: "A", label: "High Integrity", color: "#86efac", pct: 20 },
+  { rating: "BBB", label: "Good Integrity", color: "#fcd34d", pct: 25 },
+  { rating: "BB", label: "Moderate Integrity", color: "#fb923c", pct: 18 },
+  { rating: "B", label: "Below Average", color: "#f87171", pct: 11 },
+  { rating: "CCC/D", label: "Questionable", color: "#ef4444", pct: 6 },
+];
+
+// ── Permanence risk data ───────────────────────────────────────────────────────
+interface PermanenceRow { type: string; risk: number; color: string; note: string; }
+const PERMANENCE_DATA: PermanenceRow[] = [
+  { type: "REDD+ Tropical Forest", risk: 72, color: "#f87171", note: "Wildfire, deforestation reversal" },
+  { type: "Temperate Forest", risk: 58, color: "#fb923c", note: "Drought, beetle infestations" },
+  { type: "Blue Carbon (Mangrove)", risk: 65, color: "#60a5fa", note: "Storm surge, sea-level rise" },
+  { type: "Blue Carbon (Seagrass)", risk: 70, color: "#38bdf8", note: "Pollution, warming waters" },
+  { type: "Soil Carbon", risk: 50, color: "#a78bfa", note: "Tillage practice reversal" },
+  { type: "Renewable Energy", risk: 12, color: "#34d399", note: "Low -- energy generated, not stored" },
+  { type: "Methane Destruction", risk: 8, color: "#4ade80", note: "Very low -- immediate destruction" },
+];
+
+// ── Carbon ETF data ────────────────────────────────────────────────────────────
+interface CarbonFund { ticker: string; name: string; aum: string; exposure: string; ytd: number; expense: string; }
+const CARBON_FUNDS: CarbonFund[] = [
+  { ticker: "KRBN", name: "KraneShares Global Carbon Strategy ETF", aum: "$750M", exposure: "EUA + RGGI + CCA futures", ytd: -18.3, expense: "0.79%" },
+  { ticker: "CARB", name: "iPath Series B Carbon ETN", aum: "$35M", exposure: "EUA futures only", ytd: -14.7, expense: "0.45%" },
+  { ticker: "GRN", name: "iPath Global Carbon ETN", aum: "$28M", exposure: "EUA + certified", ytd: -16.2, expense: "0.75%" },
+  { ticker: "WCLD", name: "WisdomTree Carbon EUA Fund", aum: "$90M", exposure: "Physical EUA", ytd: -15.8, expense: "0.22%" },
+];
+
+// ── Reusable components ────────────────────────────────────────────────────────
+function InfoCard({ title, children }: { title: string; children: React.ReactNode }) {
+  const [open, setOpen] = useState(false);
+  return (
+    <div className="border border-zinc-800 rounded-lg overflow-hidden">
+      <button
+        className="w-full flex items-center justify-between px-4 py-3 bg-zinc-900 hover:bg-zinc-800 transition-colors text-left"
+        onClick={() => setOpen((v) => !v)}
       >
-        <div className="p-2 rounded-lg bg-emerald-500/10 border border-emerald-500/20">
-          <Leaf className="w-5 h-5 text-emerald-400" />
-        </div>
-        <div>
-          <h1 className="text-xl font-semibold tracking-tight">Carbon Markets &amp; Climate Finance</h1>
-          <p className="text-xs text-muted-foreground">
-            EU ETS · California Cap-and-Trade · RGGI · Voluntary Carbon Market · TCFD
-          </p>
-        </div>
-        <div className="ml-auto flex gap-2 flex-wrap justify-end">
-          {MARKETS.map((m) => (
-            <Badge
-              key={m.abbr}
-              variant={m.type === "Compliance" ? "default" : "secondary"}
-              className="text-xs"
-            >
-              {m.abbr}: ${m.currentPrice.toFixed(1)}/t
-            </Badge>
-          ))}
-        </div>
-      </motion.div>
+        <span className="text-sm font-medium text-zinc-200">{title}</span>
+        {open ? <ChevronUp className="w-4 h-4 text-zinc-400" /> : <ChevronDown className="w-4 h-4 text-zinc-400" />}
+      </button>
+      <AnimatePresence>
+        {open && (
+          <motion.div
+            initial={{ height: 0, opacity: 0 }}
+            animate={{ height: "auto", opacity: 1 }}
+            exit={{ height: 0, opacity: 0 }}
+            transition={{ duration: 0.2 }}
+            className="overflow-hidden"
+          >
+            <div className="px-4 py-3 bg-zinc-950 text-sm text-zinc-300 space-y-2">{children}</div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </div>
+  );
+}
 
-      {/* Tabs */}
-      <Tabs defaultValue="overview" className="space-y-4">
-        <TabsList className="flex flex-wrap gap-1 h-auto">
-          <TabsTrigger value="overview" className="text-xs">
-            <Globe className="w-3 h-3 mr-1" />
-            Market Overview
+function StatChip({ label, value, sub, color = "text-zinc-100" }: { label: string; value: string; sub?: string; color?: string }) {
+  return (
+    <div className="bg-zinc-900 border border-zinc-800 rounded-lg p-3 space-y-1">
+      <div className="text-xs text-zinc-500">{label}</div>
+      <div className={cn("text-lg font-bold font-mono", color)}>{value}</div>
+      {sub && <div className="text-xs text-zinc-500">{sub}</div>}
+    </div>
+  );
+}
+
+// ══════════════════════════════════════════════════════════════════════════════
+// TAB 1: Compliance Carbon Markets
+// ══════════════════════════════════════════════════════════════════════════════
+function ComplianceTab() {
+  const euPhases = [
+    { phase: "Phase 1", years: "2005-07", cap: "Grandfathering", price: "EUR 0-30/t", note: "Pilot; over-allocation crashed prices to near zero" },
+    { phase: "Phase 2", years: "2008-12", cap: "Slight reduction", price: "EUR 5-30/t", note: "Financial crisis caused surplus; ~2B tonne overhang" },
+    { phase: "Phase 3", years: "2013-20", cap: "EU-wide (-1.74%/yr)", price: "EUR 3-30/t", note: "Back-loading; MSR introduced 2019" },
+    { phase: "Phase 4", years: "2021-30", cap: "-2.2%/yr; MSR active", price: "EUR 25-100+/t", note: "REPowerEU raised LRF to 4.3%; aviation + shipping added" },
+  ];
+  const sectorCoverage = [
+    { name: "Power & Heat", pct: 38, color: "#f87171" },
+    { name: "Heavy Industry", pct: 30, color: "#fb923c" },
+    { name: "Aviation", pct: 14, color: "#fcd34d" },
+    { name: "Maritime Shipping", pct: 10, color: "#60a5fa" },
+    { name: "Other Industrial", pct: 8, color: "#a855f7" },
+  ];
+
+  return (
+    <div className="space-y-6">
+      <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
+        <StatChip label="EUA Price (Mar 2026)" value="EUR 62/t" sub="Per tonne CO2eq" color="text-emerald-400" />
+        <StatChip label="EU ETS Annual Cap" value="1.39 Bt" sub="2024 cap; declining" color="text-blue-400" />
+        <StatChip label="MSR Holdings" value="2.7 Bt" sub="Withheld from market" color="text-purple-400" />
+        <StatChip label="2025 Auction Revenue" value="EUR 37B" sub="EU member states" color="text-amber-400" />
+      </div>
+
+      <Card className="bg-zinc-900 border-zinc-800">
+        <CardHeader className="pb-2">
+          <CardTitle className="text-sm font-medium text-zinc-300 flex items-center gap-2">
+            <Activity className="w-4 h-4 text-indigo-400" />
+            Cap-and-Trade Mechanism
+          </CardTitle>
+        </CardHeader>
+        <CardContent>
+          <CapTradeSVG />
+          <p className="text-xs text-zinc-500 mt-2">
+            Regulators set an annual emission cap which declines each year. Allowances are auctioned or freely allocated to emitters, who must surrender one allowance per tonne of CO2 emitted. Those who reduce emissions below their allocation can sell surplus permits.
+          </p>
+        </CardContent>
+      </Card>
+
+      <Card className="bg-zinc-900 border-zinc-800">
+        <CardHeader className="pb-2">
+          <CardTitle className="text-sm font-medium text-zinc-300 flex items-center gap-2">
+            <TrendingUp className="w-4 h-4 text-emerald-400" />
+            EU Carbon Allowance (EUA) Price 2018-2024
+          </CardTitle>
+        </CardHeader>
+        <CardContent>
+          <EuaPriceChart />
+          <p className="text-xs text-zinc-500 mt-2">
+            EUA prices rose from single digits to over EUR 100/t in 2023, driven by the energy crisis and MSR tightening, before falling back on weaker industrial demand and gas price declines.
+          </p>
+        </CardContent>
+      </Card>
+
+      <Card className="bg-zinc-900 border-zinc-800">
+        <CardHeader className="pb-2">
+          <CardTitle className="text-sm font-medium text-zinc-300">EU ETS Phase Evolution</CardTitle>
+        </CardHeader>
+        <CardContent>
+          <div className="overflow-x-auto">
+            <table className="w-full text-xs">
+              <thead>
+                <tr className="border-b border-zinc-800">
+                  {["Phase", "Years", "Cap Design", "Price Range", "Key Developments"].map((h) => (
+                    <th key={h} className="text-left py-2 px-3 text-zinc-400 font-medium">{h}</th>
+                  ))}
+                </tr>
+              </thead>
+              <tbody>
+                {euPhases.map((row, i) => (
+                  <tr key={i} className="border-b border-zinc-800/60 hover:bg-zinc-800/30">
+                    <td className="py-2 px-3 text-indigo-400 font-medium">{row.phase}</td>
+                    <td className="py-2 px-3 text-zinc-300">{row.years}</td>
+                    <td className="py-2 px-3 text-zinc-400">{row.cap}</td>
+                    <td className="py-2 px-3 text-emerald-400 font-mono">{row.price}</td>
+                    <td className="py-2 px-3 text-zinc-400">{row.note}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        </CardContent>
+      </Card>
+
+      <Card className="bg-zinc-900 border-zinc-800">
+        <CardHeader className="pb-2">
+          <CardTitle className="text-sm font-medium text-zinc-300 flex items-center gap-2">
+            <ShieldCheck className="w-4 h-4 text-indigo-400" />
+            Market Stability Reserve (MSR) Mechanism
+          </CardTitle>
+        </CardHeader>
+        <CardContent>
+          <MsrSVG />
+          <p className="text-xs text-zinc-500 mt-2">
+            The MSR automatically adjusts supply by absorbing allowances when total supply exceeds 833M (at 24%/yr) and releasing 100M/yr when supply falls below 400M. Since 2023, excess MSR holdings above the prior year auction volume are permanently cancelled.
+          </p>
+        </CardContent>
+      </Card>
+
+      <Card className="bg-zinc-900 border-zinc-800">
+        <CardHeader className="pb-2">
+          <CardTitle className="text-sm font-medium text-zinc-300 flex items-center gap-2">
+            <Globe className="w-4 h-4 text-blue-400" />
+            Global ETS Comparison
+          </CardTitle>
+        </CardHeader>
+        <CardContent>
+          <div className="overflow-x-auto">
+            <table className="w-full text-xs">
+              <thead>
+                <tr className="border-b border-zinc-800">
+                  {["System", "Region", "Year", "Price", "GHG Coverage", "Sectors", "Status"].map((h) => (
+                    <th key={h} className="text-left py-2 px-3 text-zinc-400 font-medium">{h}</th>
+                  ))}
+                </tr>
+              </thead>
+              <tbody>
+                {ETS_SYSTEMS.map((ets, i) => (
+                  <tr key={i} className="border-b border-zinc-800/60 hover:bg-zinc-800/30">
+                    <td className="py-2 px-3 text-blue-400 font-medium">{ets.name}</td>
+                    <td className="py-2 px-3 text-zinc-300">{ets.region}</td>
+                    <td className="py-2 px-3 text-zinc-400">{ets.launched}</td>
+                    <td className="py-2 px-3 text-emerald-400 font-mono">{ets.price}</td>
+                    <td className="py-2 px-3 text-zinc-400">{ets.coverage}</td>
+                    <td className="py-2 px-3 text-zinc-400">{ets.sectors}</td>
+                    <td className="py-2 px-3 text-zinc-500">{ets.phase}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        </CardContent>
+      </Card>
+
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <Card className="bg-zinc-900 border-zinc-800">
+          <CardHeader className="pb-2">
+            <CardTitle className="text-sm font-medium text-zinc-300">EU ETS Sectoral Coverage</CardTitle>
+          </CardHeader>
+          <CardContent className="space-y-3">
+            {sectorCoverage.map((sec) => (
+              <div key={sec.name} className="space-y-1">
+                <div className="flex justify-between text-xs">
+                  <span className="text-zinc-300">{sec.name}</span>
+                  <span className="text-zinc-400">{sec.pct}%</span>
+                </div>
+                <div className="h-2 bg-zinc-800 rounded-full overflow-hidden">
+                  <motion.div initial={{ width: 0 }} animate={{ width: `${sec.pct}%` }} transition={{ duration: 0.8, ease: "easeOut" }} className="h-full rounded-full" style={{ backgroundColor: sec.color }} />
+                </div>
+              </div>
+            ))}
+          </CardContent>
+        </Card>
+
+        <Card className="bg-zinc-900 border-zinc-800">
+          <CardHeader className="pb-2">
+            <CardTitle className="text-sm font-medium text-zinc-300">Key Policy Mechanisms</CardTitle>
+          </CardHeader>
+          <CardContent className="space-y-3 text-xs">
+            {[
+              { label: "Free Allocation", desc: "Given to carbon-leakage-risk industries (cement, steel, chemicals). Being phased out 2026-34 alongside CBAM." },
+              { label: "CBAM (Carbon Border Adjustment)", desc: "From 2026, importers of steel/cement/aluminium/fertilisers must buy CBAM certificates at EUA price." },
+              { label: "EUA Futures Market", desc: "ICE exchange hosts most EUA futures liquidity. Dec expiry contract is benchmark; daily volume ~35-50M EUAs." },
+              { label: "Carbon Leakage Risk", desc: "Risk that ETS pushes production to non-regulated regions. High-risk sectors receive benchmark-based free allocation." },
+              { label: "ETS Linking", desc: "EU-Swiss ETS linked 2020. California-Quebec linked since 2014. Linked systems share one carbon price." },
+            ].map((item) => (
+              <div key={item.label} className="border-l-2 border-indigo-600 pl-3">
+                <div className="text-zinc-200 font-medium mb-0.5">{item.label}</div>
+                <div className="text-zinc-500">{item.desc}</div>
+              </div>
+            ))}
+          </CardContent>
+        </Card>
+      </div>
+    </div>
+  );
+}
+
+// ══════════════════════════════════════════════════════════════════════════════
+// TAB 2: Voluntary Carbon Markets
+// ══════════════════════════════════════════════════════════════════════════════
+function VoluntaryTab() {
+  const vcmVsCompliance = [
+    { aspect: "Purpose", voluntary: "Corporate net-zero pledges", compliance: "Legal regulatory requirement" },
+    { aspect: "Buyers", voluntary: "Companies, individuals", compliance: "Industrial emitters under cap" },
+    { aspect: "Standards", voluntary: "Verra, Gold Standard, ACR", compliance: "Government regulations" },
+    { aspect: "Price range", voluntary: "$3-50/tCO2", compliance: "$12-100+/tCO2" },
+    { aspect: "Verification", voluntary: "Third-party (SCS, DNV, BV)", compliance: "Regulatory/government" },
+    { aspect: "Fungibility", voluntary: "Limited (project-specific)", compliance: "Fully fungible within system" },
+    { aspect: "Retirement", voluntary: "Permanent registry cancellation", compliance: "Annual surrender to regulator" },
+  ];
+
+  return (
+    <div className="space-y-6">
+      <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
+        <StatChip label="VCM Size 2023" value="$2.0B" color="text-emerald-400" />
+        <StatChip label="VCM Target 2030" value="$50B" color="text-blue-400" />
+        <StatChip label="Credits Retired 2023" value="195Mt" color="text-amber-400" />
+        <StatChip label="REDD+ Share" value="~30%" color="text-green-400" />
+      </div>
+
+      <Card className="bg-zinc-900 border-zinc-800">
+        <CardHeader className="pb-2">
+          <CardTitle className="text-sm font-medium text-zinc-300 flex items-center gap-2">
+            <Layers className="w-4 h-4 text-purple-400" />
+            Carbon Credit Lifecycle
+          </CardTitle>
+        </CardHeader>
+        <CardContent>
+          <CreditLifecycleSVG />
+          <div className="grid grid-cols-5 gap-2 mt-3 text-center text-xs text-zinc-500">
+            {["Design PDD, baseline study, registry enrollment", "Measure, Report, Verify actual reductions", "Accredited auditor confirms claims", "Registry issues unique serial numbers", "Buyer cancels credit; removes from circulation"].map((d, i) => (
+              <div key={i}>{d}</div>
+            ))}
+          </div>
+        </CardContent>
+      </Card>
+
+      <Card className="bg-zinc-900 border-zinc-800">
+        <CardHeader className="pb-2">
+          <CardTitle className="text-sm font-medium text-zinc-300 flex items-center gap-2">
+            <BarChart2 className="w-4 h-4 text-amber-400" />
+            Carbon Credit Price Range by Project Type ($/tCO2)
+          </CardTitle>
+        </CardHeader>
+        <CardContent>
+          <CreditPriceChart />
+          <p className="text-xs text-zinc-500 mt-2">
+            Prices vary widely by co-benefits, project type, vintage, and standard. Blue carbon and high-quality nature-based solutions command premiums. Commodity renewable energy credits trade near floor prices.
+          </p>
+        </CardContent>
+      </Card>
+
+      <Card className="bg-zinc-900 border-zinc-800">
+        <CardHeader className="pb-2">
+          <CardTitle className="text-sm font-medium text-zinc-300">VCM vs Compliance Market Comparison</CardTitle>
+        </CardHeader>
+        <CardContent>
+          <div className="overflow-x-auto">
+            <table className="w-full text-xs">
+              <thead>
+                <tr className="border-b border-zinc-800">
+                  <th className="text-left py-2 px-3 text-zinc-400">Aspect</th>
+                  <th className="text-left py-2 px-3 text-emerald-400">Voluntary (VCM)</th>
+                  <th className="text-left py-2 px-3 text-blue-400">Compliance (ETS)</th>
+                </tr>
+              </thead>
+              <tbody>
+                {vcmVsCompliance.map((row, i) => (
+                  <tr key={i} className="border-b border-zinc-800/60 hover:bg-zinc-800/30">
+                    <td className="py-2 px-3 text-zinc-300 font-medium">{row.aspect}</td>
+                    <td className="py-2 px-3 text-zinc-400">{row.voluntary}</td>
+                    <td className="py-2 px-3 text-zinc-400">{row.compliance}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        </CardContent>
+      </Card>
+
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+        {VCM_STANDARDS.map((std) => (
+          <div key={std.name} className="border border-zinc-800 rounded-lg p-4 bg-zinc-900">
+            <div className="flex items-center gap-2 mb-2">
+              <div className="w-2 h-2 rounded-full" style={{ backgroundColor: std.color }} />
+              <span className="text-sm font-bold" style={{ color: std.color }}>{std.name}</span>
+              <Badge variant="outline" className="text-xs ml-auto">{std.founded}</Badge>
+            </div>
+            <div className="text-xs text-zinc-300 font-medium mb-1">{std.fullName}</div>
+            <div className="text-xs text-zinc-500 mb-2">{std.focus}</div>
+            <Badge className="text-xs" style={{ backgroundColor: std.color + "22", color: std.color, borderColor: std.color + "44" }}>
+              {std.credits} issued
+            </Badge>
+          </div>
+        ))}
+      </div>
+
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <InfoCard title="Article 6 Paris Agreement -- Corresponding Adjustments">
+          <p className="text-zinc-400">Article 6.4 establishes a UN-supervised carbon market. Credits traded internationally must be accompanied by a Corresponding Adjustment (CA) where the host country adjusts its NDC by the amount exported, preventing double counting.</p>
+          <p className="text-zinc-400 mt-2">Credits without CAs can still be used for corporate voluntary claims but cannot count toward national climate targets (ITMOs -- Internationally Transferred Mitigation Outcomes).</p>
+        </InfoCard>
+        <InfoCard title="ICVCM Core Carbon Principles (CCPs)">
+          <ul className="list-disc list-inside space-y-1 text-zinc-400">
+            <li>Effective governance of standard</li>
+            <li>Tracking (unique serial numbers)</li>
+            <li>Transparency (public disclosure)</li>
+            <li>Robust independent third-party validation and verification</li>
+            <li>Additionality (reductions would not occur without carbon finance)</li>
+            <li>Permanence (durable storage or adequate risk buffer)</li>
+            <li>Quantification (conservative, well-established methodologies)</li>
+            <li>No net harm, sustainable development, and net mitigation impact</li>
+          </ul>
+        </InfoCard>
+      </div>
+    </div>
+  );
+}
+
+// ══════════════════════════════════════════════════════════════════════════════
+// TAB 3: Credit Quality & Integrity
+// ══════════════════════════════════════════════════════════════════════════════
+function QualityTab() {
+  const additionalityTests = [
+    { test: "Financial Additionality", desc: "Without carbon revenue, project IRR is below hurdle rate. Common barrier for small renewables where grid parity already achieved.", pass: false },
+    { test: "Regulatory Surplus", desc: "Emission reduction must exceed legal requirements. If mandated by law, not additional. Key for industrial efficiency projects.", pass: true },
+    { test: "Common Practice Test", desc: "Similar projects without carbon finance are rare. If >20% of sector uses the technology without incentives, fails common practice.", pass: true },
+    { test: "Investment Analysis", desc: "Benchmark alternative scenario compared. Carbon revenue must be the deciding factor, not merely beneficial to finances.", pass: false },
+    { test: "Barrier Analysis", desc: "Demonstrate credible barriers (financial, technological, social) overcome specifically by carbon finance.", pass: true },
+  ];
+  const leakageTypes = [
+    { type: "Activity Shifting", example: "Protecting forest A causes deforestation at unprotected forest B. REDD+ jurisdictional accounting addresses this.", severity: "High" },
+    { type: "Market Leakage", example: "Reducing timber harvest raises timber prices, incentivizing harvest elsewhere. Typically 5-20% leakage deduction applied.", severity: "Medium" },
+    { type: "Upstream Leakage", example: "Shutting coal mine reduces supply; other mines increase output. Difficult to quantify; often excluded from project boundaries.", severity: "Medium" },
+    { type: "Carbon Leakage (ETS)", example: "Energy-intensive industry relocates from ETS zone to non-ETS region. CBAM mechanism designed to prevent this.", severity: "High" },
+  ];
+
+  return (
+    <div className="space-y-6">
+      <Card className="bg-zinc-900 border-zinc-800">
+        <CardHeader className="pb-2">
+          <CardTitle className="text-sm font-medium text-zinc-300 flex items-center gap-2">
+            <AlertTriangle className="w-4 h-4 text-amber-400" />
+            Permanence Risk by Project Type (higher bar = riskier)
+          </CardTitle>
+        </CardHeader>
+        <CardContent className="space-y-3">
+          {PERMANENCE_DATA.map((row) => (
+            <div key={row.type} className="space-y-1">
+              <div className="flex justify-between text-xs">
+                <span className="text-zinc-300">{row.type}</span>
+                <span className="text-zinc-500 text-right max-w-[200px]">{row.note}</span>
+              </div>
+              <div className="h-2 bg-zinc-800 rounded-full overflow-hidden">
+                <motion.div initial={{ width: 0 }} animate={{ width: `${row.risk}%` }} transition={{ duration: 0.8, ease: "easeOut" }} className="h-full rounded-full" style={{ backgroundColor: row.color }} />
+              </div>
+            </div>
+          ))}
+          <p className="text-xs text-zinc-500 mt-2">
+            Nature-based solutions carry high reversal risk from wildfires, storms, and land-use change. Buffer pools (20-30% of credits withheld) cover reversals.
+          </p>
+        </CardContent>
+      </Card>
+
+      <Card className="bg-zinc-900 border-zinc-800">
+        <CardHeader className="pb-2">
+          <CardTitle className="text-sm font-medium text-zinc-300 flex items-center gap-2">
+            <AlertTriangle className="w-4 h-4 text-red-400" />
+            The Double Counting Problem
+          </CardTitle>
+        </CardHeader>
+        <CardContent>
+          <DoubleCountingSVG />
+          <p className="text-xs text-zinc-500 mt-2">
+            Without corresponding adjustments, both the host country and credit buyer claim the same emission reduction. Article 6 requires host countries to apply corresponding adjustments to their NDC accounting for any credits exported internationally.
+          </p>
+        </CardContent>
+      </Card>
+
+      <Card className="bg-zinc-900 border-zinc-800">
+        <CardHeader className="pb-2">
+          <CardTitle className="text-sm font-medium text-zinc-300">Additionality Testing Methods</CardTitle>
+        </CardHeader>
+        <CardContent className="space-y-3">
+          {additionalityTests.map((test) => (
+            <div key={test.test} className="flex gap-3 text-xs">
+              <div className={cn("mt-0.5 shrink-0", test.pass ? "text-emerald-400" : "text-red-400")}>
+                {test.pass ? <CheckCircle className="w-4 h-4" /> : <AlertTriangle className="w-4 h-4" />}
+              </div>
+              <div>
+                <div className="text-zinc-200 font-medium">{test.test}</div>
+                <div className="text-zinc-500">{test.desc}</div>
+              </div>
+            </div>
+          ))}
+        </CardContent>
+      </Card>
+
+      <Card className="bg-zinc-900 border-zinc-800">
+        <CardHeader className="pb-2">
+          <CardTitle className="text-sm font-medium text-zinc-300">Leakage Types and Mitigation</CardTitle>
+        </CardHeader>
+        <CardContent className="space-y-3">
+          {leakageTypes.map((lt) => (
+            <div key={lt.type} className="border border-zinc-800 rounded p-3 space-y-1">
+              <div className="flex items-center gap-2">
+                <span className="text-xs font-medium text-zinc-200">{lt.type}</span>
+                <Badge
+                  className="text-xs ml-auto"
+                  style={{
+                    backgroundColor: lt.severity === "High" ? "#f8717122" : "#fb923c22",
+                    color: lt.severity === "High" ? "#f87171" : "#fb923c",
+                    borderColor: lt.severity === "High" ? "#f8717144" : "#fb923c44",
+                  }}
+                >
+                  {lt.severity} Risk
+                </Badge>
+              </div>
+              <div className="text-xs text-zinc-500">{lt.example}</div>
+            </div>
+          ))}
+        </CardContent>
+      </Card>
+
+      <Card className="bg-zinc-900 border-zinc-800">
+        <CardHeader className="pb-2">
+          <CardTitle className="text-sm font-medium text-zinc-300">Calyx Global Credit Rating Distribution</CardTitle>
+        </CardHeader>
+        <CardContent className="space-y-2">
+          {CALYX_RATINGS.map((r) => (
+            <div key={r.rating} className="space-y-1">
+              <div className="flex justify-between text-xs">
+                <span className="font-mono font-bold" style={{ color: r.color }}>{r.rating}</span>
+                <span className="text-zinc-400">{r.label}</span>
+                <span className="text-zinc-500">{r.pct}% of rated credits</span>
+              </div>
+              <div className="h-1.5 bg-zinc-800 rounded-full overflow-hidden">
+                <motion.div initial={{ width: 0 }} animate={{ width: `${r.pct * 4}%` }} transition={{ duration: 0.6, ease: "easeOut" }} className="h-full rounded-full" style={{ backgroundColor: r.color }} />
+              </div>
+            </div>
+          ))}
+          <p className="text-xs text-zinc-500 mt-2">
+            Only ~20% of VCM credits rated AAA/AA -- highlighting widespread quality concerns. Low-quality credits have faced scrutiny for overstated baselines and inadequate permanence provisions.
+          </p>
+        </CardContent>
+      </Card>
+
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <InfoCard title="Independent Verification Bodies (VVBs)">
+          <ul className="list-disc list-inside space-y-1 text-zinc-400">
+            <li><span className="text-zinc-300 font-medium">SCS Global Services</span> -- largest VVB; audits REDD+, agriculture, renewable</li>
+            <li><span className="text-zinc-300 font-medium">Bureau Veritas</span> -- global accreditation; strong in industrial projects</li>
+            <li><span className="text-zinc-300 font-medium">DNV</span> -- strong in maritime, energy, and Gold Standard projects</li>
+            <li><span className="text-zinc-300 font-medium">South Pole / Karbon</span> -- developer-verifier conflicts of interest flagged in press</li>
+          </ul>
+          <p className="text-zinc-500 mt-2 text-xs">VVBs must be ICROA-approved and accredited under each standard to issue validation/verification statements.</p>
+        </InfoCard>
+        <InfoCard title="Greenwashing vs Genuine Offsetting">
+          <p className="text-zinc-400">Red flags for greenwashing:</p>
+          <ul className="list-disc list-inside space-y-1 text-zinc-400 mt-1">
+            <li>Using cheap, low-quality offsets without internal emission reductions</li>
+            <li>Claiming "carbon neutral" without scope 3 accounting</li>
+            <li>Double-counting before Article 6 CAs established</li>
+            <li>Vintage manipulation (selling old, non-additional credits)</li>
+          </ul>
+          <p className="text-zinc-400 mt-2">Best practice: reduce first (SBTi targets), use high-quality offsets for residuals only, disclose project details, prioritize beyond-value-chain mitigation (BVCM) separately.</p>
+        </InfoCard>
+      </div>
+    </div>
+  );
+}
+
+// ══════════════════════════════════════════════════════════════════════════════
+// TAB 4: Investment Strategies
+// ══════════════════════════════════════════════════════════════════════════════
+function InvestmentTab() {
+  const arbitrageOps = [
+    { desc: "EU-UK price spread", current: "EUR 15-25", note: "Brexit divergence; partial alignment expected on re-linking" },
+    { desc: "EU-California spread", current: "EUR 30-35", note: "California price capped by floor/ceiling; structural discount" },
+    { desc: "Voluntary premium", current: "+$8-15", note: "AAA-rated NBS vs commodity renewable credits" },
+    { desc: "Seasonal basis", current: "Q1 rally", note: "Compliance deadline drives Q1 demand; Q3 often softer" },
+  ];
+  const politicalRisks = [
+    { risk: "Policy Reversal", example: "Australia abolished its carbon tax in 2014. ETS rules can be weakened or cap raised by new governments.", severity: 75 },
+    { risk: "Windfall Profit Tax", example: "EU debated capping EUA profits for power generators. Political pressure to suspend carbon pricing during energy crises.", severity: 60 },
+    { risk: "Over-Allocation", example: "EU Phase 1 and 2 crashed to near zero. Phase 3 required back-loading 900M allowances to avoid repeat.", severity: 55 },
+    { risk: "ETS Expansion Delay", example: "EU buildings and transport ETS (ETS II) delayed to 2027; political pushback on fuel cost pass-through.", severity: 45 },
+    { risk: "VCM Regulatory Risk", example: "SEC scrutiny of greenwashing claims; SBTi methodology disputes reducing corporate demand.", severity: 50 },
+  ];
+
+  return (
+    <div className="space-y-6">
+      <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
+        <StatChip label="KRBN YTD" value={fmtPct(-18.3)} sub="Global carbon ETF" color="text-red-400" />
+        <StatChip label="EUA vs S&P500 Corr" value="0.12" sub="Low correlation benefit" color="text-blue-400" />
+        <StatChip label="EUA Roll Yield" value="+2-4%" sub="Contango structure" color="text-emerald-400" />
+        <StatChip label="Carbon Beta" value="0.31" sub="vs MSCI World" color="text-purple-400" />
+      </div>
+
+      <Card className="bg-zinc-900 border-zinc-800">
+        <CardHeader className="pb-2">
+          <CardTitle className="text-sm font-medium text-zinc-300 flex items-center gap-2">
+            <TrendingUp className="w-4 h-4 text-emerald-400" />
+            Carbon Price Forecast Scenarios to 2030 ($/tCO2 equivalent)
+          </CardTitle>
+        </CardHeader>
+        <CardContent>
+          <PriceForecastChart />
+          <div className="grid grid-cols-3 gap-3 mt-3 text-xs">
+            <div className="border border-zinc-800 rounded p-2">
+              <div className="text-emerald-400 font-bold">NZE Scenario</div>
+              <div className="text-zinc-400">$250/t by 2030</div>
+              <div className="text-zinc-500">Net Zero Emissions pathway; rapid policy tightening globally</div>
+            </div>
+            <div className="border border-zinc-800 rounded p-2">
+              <div className="text-amber-400 font-bold">SDS Scenario</div>
+              <div className="text-zinc-400">$150/t by 2030</div>
+              <div className="text-zinc-500">Sustainable Development; Paris-aligned with current pledges</div>
+            </div>
+            <div className="border border-zinc-800 rounded p-2">
+              <div className="text-zinc-400 font-bold">STEPS Baseline</div>
+              <div className="text-zinc-400">$110/t by 2030</div>
+              <div className="text-zinc-500">Stated policies only; modest tightening of existing systems</div>
+            </div>
+          </div>
+        </CardContent>
+      </Card>
+
+      <Card className="bg-zinc-900 border-zinc-800">
+        <CardHeader className="pb-2">
+          <CardTitle className="text-sm font-medium text-zinc-300 flex items-center gap-2">
+            <DollarSign className="w-4 h-4 text-amber-400" />
+            Carbon-Focused ETFs and Funds
+          </CardTitle>
+        </CardHeader>
+        <CardContent>
+          <div className="overflow-x-auto">
+            <table className="w-full text-xs">
+              <thead>
+                <tr className="border-b border-zinc-800">
+                  {["Ticker", "Name", "AUM", "Exposure", "YTD", "Expense"].map((h) => (
+                    <th key={h} className="text-left py-2 px-3 text-zinc-400 font-medium">{h}</th>
+                  ))}
+                </tr>
+              </thead>
+              <tbody>
+                {CARBON_FUNDS.map((fund, i) => (
+                  <tr key={i} className="border-b border-zinc-800/60 hover:bg-zinc-800/30">
+                    <td className="py-2 px-3 text-blue-400 font-mono font-bold">{fund.ticker}</td>
+                    <td className="py-2 px-3 text-zinc-300">{fund.name}</td>
+                    <td className="py-2 px-3 text-zinc-400">{fund.aum}</td>
+                    <td className="py-2 px-3 text-zinc-400">{fund.exposure}</td>
+                    <td className={cn("py-2 px-3 font-mono", posColor(fund.ytd))}>{fmtPct(fund.ytd)}</td>
+                    <td className="py-2 px-3 text-zinc-500">{fund.expense}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        </CardContent>
+      </Card>
+
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <Card className="bg-zinc-900 border-zinc-800">
+          <CardHeader className="pb-2">
+            <CardTitle className="text-sm font-medium text-zinc-300">EUA Futures Market Structure</CardTitle>
+          </CardHeader>
+          <CardContent className="space-y-3 text-xs">
+            {[
+              { label: "Benchmark Contract", value: "ICE EUA Dec expiry; ~90% market share" },
+              { label: "Roll Yield", value: "Typical contango of 2-4% p.a. (cost of carry)" },
+              { label: "Seasonal Pattern", value: "Q1 demand surge (compliance deadline); Q3 typically soft" },
+              { label: "Market Hours", value: "7:00-17:00 CET; high volume at open/close" },
+              { label: "Open Interest", value: "~900M EUAs; dominated by financial investors" },
+              { label: "Backwardation Events", value: "Rare; occurred in 2022 energy crisis when spot premiums spiked" },
+              { label: "Margin", value: "ICE posts daily VaR-based margin; ~8-12% of notional" },
+            ].map((item) => (
+              <div key={item.label} className="flex justify-between gap-2">
+                <span className="text-zinc-400">{item.label}</span>
+                <span className="text-zinc-300 text-right">{item.value}</span>
+              </div>
+            ))}
+          </CardContent>
+        </Card>
+
+        <Card className="bg-zinc-900 border-zinc-800">
+          <CardHeader className="pb-2">
+            <CardTitle className="text-sm font-medium text-zinc-300">Carbon Arbitrage Opportunities</CardTitle>
+          </CardHeader>
+          <CardContent className="space-y-3">
+            {arbitrageOps.map((arb, i) => (
+              <div key={i} className="border border-zinc-800 rounded p-2 text-xs space-y-1">
+                <div className="flex justify-between items-center">
+                  <span className="text-zinc-200 font-medium">{arb.desc}</span>
+                  <Badge className="text-xs bg-emerald-900/40 text-emerald-400 border-emerald-700">{arb.current}</Badge>
+                </div>
+                <div className="text-zinc-500">{arb.note}</div>
+              </div>
+            ))}
+          </CardContent>
+        </Card>
+      </div>
+
+      <Card className="bg-zinc-900 border-zinc-800">
+        <CardHeader className="pb-2">
+          <CardTitle className="text-sm font-medium text-zinc-300 flex items-center gap-2">
+            <AlertTriangle className="w-4 h-4 text-red-400" />
+            Political Risk in Carbon Markets
+          </CardTitle>
+        </CardHeader>
+        <CardContent className="space-y-3">
+          {politicalRisks.map((pr) => (
+            <div key={pr.risk} className="space-y-1">
+              <div className="flex justify-between text-xs">
+                <span className="text-zinc-300 font-medium">{pr.risk}</span>
+                <span className="text-zinc-500">Risk Score: {pr.severity}/100</span>
+              </div>
+              <div className="h-1.5 bg-zinc-800 rounded-full overflow-hidden">
+                <motion.div initial={{ width: 0 }} animate={{ width: `${pr.severity}%` }} transition={{ duration: 0.7, ease: "easeOut" }} className="h-full rounded-full bg-red-500/70" />
+              </div>
+              <div className="text-xs text-zinc-500">{pr.example}</div>
+            </div>
+          ))}
+        </CardContent>
+      </Card>
+
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <InfoCard title="Physical vs Derivative Carbon Exposure">
+          <div className="space-y-2 text-zinc-400">
+            <div><span className="text-zinc-200 font-medium">Physical EUAs</span> -- held in EU Compliance Registry. No roll cost, no counterparty risk. Illiquid. Some ETP managers hold physically (e.g., WisdomTree EUA).</div>
+            <div><span className="text-zinc-200 font-medium">Futures (ETFs like KRBN)</span> -- liquid, exchange-traded, subject to roll cost (contango 2-4%/yr). Tracking error vs spot price.</div>
+            <div><span className="text-zinc-200 font-medium">Carbon Royalty Companies</span> -- invest in project development rights and receive a royalty on each credit issued. Lower volatility, exposure to VCM growth.</div>
+          </div>
+        </InfoCard>
+        <InfoCard title="2025-2026 Market Outlook">
+          <div className="space-y-2 text-zinc-400 text-xs">
+            <div><span className="text-zinc-200 font-medium">Bullish factors:</span> ETS II implementation 2027 (buildings/transport), CBAM full enforcement 2026, declining cap under LRF 4.3%, MSR cancellations, expanding China ETS to cement/steel.</div>
+            <div><span className="text-zinc-200 font-medium">Bearish risks:</span> Weak industrial output in Europe suppressing demand, political pressure on energy costs, potential ETS reform delay, warm winters reducing power sector demand.</div>
+            <div><span className="text-zinc-200 font-medium">Base case:</span> EUA price range EUR 55-80 in 2025-26, with upside breakout above EUR 100 if industrial recovery accelerates and MSR cancellation effect materialises.</div>
+          </div>
+        </InfoCard>
+      </div>
+
+      <Card className="bg-zinc-900 border-zinc-800">
+        <CardHeader className="pb-2">
+          <CardTitle className="text-sm font-medium text-zinc-300 flex items-center gap-2">
+            <Target className="w-4 h-4 text-blue-400" />
+            Transition Risk Hedging with Carbon
+          </CardTitle>
+        </CardHeader>
+        <CardContent className="text-xs space-y-3 text-zinc-400">
+          <p>Carbon prices and the transition to a low-carbon economy create systematic risks for carbon-intensive sectors. Investors can hedge transition risk by holding long carbon positions:</p>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
+            {[
+              { title: "Portfolio Hedge", desc: "Long carbon futures offset losses in carbon-intensive equity holdings when regulation tightens. Positive correlation with policy risk." },
+              { title: "Corporate Hedging", desc: "Energy-intensive companies buy EUA forwards to lock in compliance costs and reduce P&L volatility. Airlines hedge 50-70% of expected exposure." },
+              { title: "Carbon as Inflation Hedge", desc: "Carbon prices historically rise with energy costs. Low correlation (0.12) with broad equity, positive with commodities. Useful in real-asset portfolios." },
+            ].map((item) => (
+              <div key={item.title} className="border border-zinc-800 rounded p-3 space-y-1">
+                <div className="text-zinc-200 font-medium">{item.title}</div>
+                <div className="text-zinc-500">{item.desc}</div>
+              </div>
+            ))}
+          </div>
+        </CardContent>
+      </Card>
+    </div>
+  );
+}
+
+// ══════════════════════════════════════════════════════════════════════════════
+// PAGE
+// ══════════════════════════════════════════════════════════════════════════════
+export default function CarbonMarketsPage() {
+  return (
+    <div className="min-h-screen bg-zinc-950 text-zinc-100 p-4 md:p-6">
+      <div className="mb-6">
+        <div className="flex items-center gap-3 mb-2 flex-wrap">
+          <div className="p-2 rounded-lg bg-emerald-500/10 border border-emerald-500/20">
+            <Leaf className="w-6 h-6 text-emerald-400" />
+          </div>
+          <div>
+            <h1 className="text-2xl font-bold text-zinc-100">Carbon Markets</h1>
+            <p className="text-sm text-zinc-500">ETS compliance, voluntary credits, quality assessment, and investment strategies</p>
+          </div>
+          <div className="ml-auto flex gap-2 flex-wrap">
+            <Badge className="bg-emerald-900/40 text-emerald-400 border-emerald-700 text-xs">EUA EUR 62/t</Badge>
+            <Badge className="bg-blue-900/40 text-blue-400 border-blue-700 text-xs">VCM $2B market</Badge>
+            <Badge className="bg-amber-900/40 text-amber-400 border-amber-700 text-xs">2030 target $150-250/t</Badge>
+          </div>
+        </div>
+      </div>
+
+      <Tabs defaultValue="compliance">
+        <TabsList className="bg-zinc-900 border border-zinc-800 mb-6 flex flex-wrap gap-1 h-auto p-1">
+          <TabsTrigger value="compliance" className="data-[state=active]:bg-indigo-600 data-[state=active]:text-white text-xs px-3 py-1.5">
+            <Activity className="w-3 h-3 mr-1" />
+            Compliance Markets
           </TabsTrigger>
-          <TabsTrigger value="credits" className="text-xs">
+          <TabsTrigger value="voluntary" className="data-[state=active]:bg-emerald-600 data-[state=active]:text-white text-xs px-3 py-1.5">
             <Leaf className="w-3 h-3 mr-1" />
-            Carbon Credits
+            Voluntary Markets
           </TabsTrigger>
-          <TabsTrigger value="netzero" className="text-xs">
-            <Target className="w-3 h-3 mr-1" />
-            Net Zero Investing
+          <TabsTrigger value="quality" className="data-[state=active]:bg-amber-600 data-[state=active]:text-white text-xs px-3 py-1.5">
+            <ShieldCheck className="w-3 h-3 mr-1" />
+            Credit Quality
           </TabsTrigger>
-          <TabsTrigger value="etfs" className="text-xs">
-            <BarChart2 className="w-3 h-3 mr-1" />
-            Climate ETFs &amp; Funds
-          </TabsTrigger>
-          <TabsTrigger value="tcfd" className="text-xs">
-            <FileText className="w-3 h-3 mr-1" />
-            TCFD Framework
+          <TabsTrigger value="investment" className="data-[state=active]:bg-blue-600 data-[state=active]:text-white text-xs px-3 py-1.5">
+            <TrendingUp className="w-3 h-3 mr-1" />
+            Investment Strategies
           </TabsTrigger>
         </TabsList>
 
-        {/* ── Tab 1: Carbon Market Overview ── */}
-        <TabsContent value="overview" className="space-y-4">
-          {/* Market cards */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3">
-            {MARKETS.map((m) => (
-              <motion.div
-                key={m.abbr}
-                whileHover={{ scale: 1.02 }}
-                onClick={() => setSelectedMarket(m.abbr)}
-                className={`cursor-pointer rounded-xl border p-3 space-y-1 transition-colors ${
-                  selectedMarket === m.abbr
-                    ? "border-emerald-500/50 bg-emerald-500/5"
-                    : "border-border bg-card hover:border-border/80"
-                }`}
-              >
-                <div className="flex items-center justify-between">
-                  <span className="text-xs font-medium text-muted-foreground">{m.abbr}</span>
-                  <Badge variant={m.type === "Compliance" ? "default" : "secondary"} className="text-[10px]">
-                    {m.type}
-                  </Badge>
-                </div>
-                <div className="text-2xl font-bold" style={{ color: m.color }}>
-                  ${m.currentPrice.toFixed(1)}
-                  <span className="text-xs text-muted-foreground">/t CO₂e</span>
-                </div>
-                <div className="flex items-center gap-1">
-                  {m.priceChange >= 0 ? (
-                    <ArrowUpRight className="w-3 h-3 text-emerald-400" />
-                  ) : (
-                    <ArrowDownRight className="w-3 h-3 text-red-400" />
-                  )}
-                  <span
-                    className={`text-xs font-medium ${
-                      m.priceChange >= 0 ? "text-emerald-400" : "text-red-400"
-                    }`}
-                  >
-                    {m.priceChange >= 0 ? "+" : ""}
-                    {m.priceChange.toFixed(1)} today
-                  </span>
-                </div>
-                <p className="text-[10px] text-muted-foreground">{m.coverage}</p>
-                <p className="text-[10px] text-muted-foreground">
-                  Vol: {m.annualVolume.toLocaleString()}M t/yr
-                </p>
-              </motion.div>
-            ))}
-          </div>
-
-          {/* Price history chart */}
-          <Card>
-            <CardHeader className="pb-2">
-              <CardTitle className="text-sm">Carbon Price History — 15 Months</CardTitle>
-            </CardHeader>
-            <CardContent>
-              <PriceHistoryChart data={PRICE_HISTORY} />
-            </CardContent>
-          </Card>
-
-          {/* Price comparison table + selected detail */}
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-4">
-            <Card className="lg:col-span-2">
-              <CardHeader className="pb-2">
-                <CardTitle className="text-sm">Market Comparison Table</CardTitle>
-              </CardHeader>
-              <CardContent className="overflow-x-auto">
-                <table className="w-full text-xs">
-                  <thead>
-                    <tr className="border-b border-border">
-                      <th className="text-left py-2 text-muted-foreground font-medium">Market</th>
-                      <th className="text-right py-2 text-muted-foreground font-medium">Price</th>
-                      <th className="text-right py-2 text-muted-foreground font-medium">Chg</th>
-                      <th className="text-right py-2 text-muted-foreground font-medium">Ann. Vol (Mt)</th>
-                      <th className="text-right py-2 text-muted-foreground font-medium">Sectors</th>
-                      <th className="text-center py-2 text-muted-foreground font-medium">Type</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    {MARKETS.map((m) => (
-                      <tr
-                        key={m.abbr}
-                        className={`border-b border-border/50 hover:bg-muted/30 cursor-pointer transition-colors ${
-                          selectedMarket === m.abbr ? "bg-muted/40" : ""
-                        }`}
-                        onClick={() => setSelectedMarket(m.abbr)}
-                      >
-                        <td className="py-2">
-                          <div className="flex items-center gap-1">
-                            <div
-                              className="w-2 h-2 rounded-full"
-                              style={{ backgroundColor: m.color }}
-                            />
-                            <span className="font-medium">{m.abbr}</span>
-                          </div>
-                          <div className="text-muted-foreground text-[10px]">{m.region}</div>
-                        </td>
-                        <td className="text-right py-2 font-mono font-semibold">
-                          ${m.currentPrice.toFixed(1)}
-                        </td>
-                        <td
-                          className={`text-right py-2 font-mono ${
-                            m.priceChange >= 0 ? "text-emerald-400" : "text-red-400"
-                          }`}
-                        >
-                          {m.priceChange >= 0 ? "+" : ""}
-                          {m.priceChange.toFixed(1)}
-                        </td>
-                        <td className="text-right py-2 font-mono">{m.annualVolume.toLocaleString()}</td>
-                        <td className="text-right py-2">{m.sectorsCount}</td>
-                        <td className="text-center py-2">
-                          <Badge
-                            variant={m.type === "Compliance" ? "default" : "secondary"}
-                            className="text-[10px]"
-                          >
-                            {m.type}
-                          </Badge>
-                        </td>
-                      </tr>
-                    ))}
-                  </tbody>
-                </table>
-              </CardContent>
-            </Card>
-
-            <Card>
-              <CardHeader className="pb-2">
-                <CardTitle className="text-sm flex items-center gap-2">
-                  <div
-                    className="w-3 h-3 rounded-full"
-                    style={{ backgroundColor: selectedMarketData.color }}
-                  />
-                  {selectedMarketData.abbr} Detail
-                </CardTitle>
-              </CardHeader>
-              <CardContent className="space-y-3">
-                <div>
-                  <p className="text-xs text-muted-foreground">Full Name</p>
-                  <p className="text-xs font-medium">{selectedMarketData.name}</p>
-                </div>
-                <div>
-                  <p className="text-xs text-muted-foreground">Region</p>
-                  <p className="text-xs">{selectedMarketData.region}</p>
-                </div>
-                <div>
-                  <p className="text-xs text-muted-foreground">Coverage</p>
-                  <p className="text-xs">{selectedMarketData.coverage}</p>
-                </div>
-                <div>
-                  <p className="text-xs text-muted-foreground">Annual Volume</p>
-                  <p className="text-xs font-mono">{selectedMarketData.annualVolume.toLocaleString()}M tonnes CO₂e/yr</p>
-                </div>
-                <div>
-                  <p className="text-xs text-muted-foreground">Market Share of Volume</p>
-                  <div className="mt-1 h-2 bg-muted rounded-full overflow-hidden">
-                    <div
-                      className="h-full rounded-full"
-                      style={{
-                        width: `${(selectedMarketData.annualVolume / totalMarketVolume) * 100}%`,
-                        backgroundColor: selectedMarketData.color,
-                      }}
-                    />
-                  </div>
-                  <p className="text-[10px] text-muted-foreground mt-1">
-                    {((selectedMarketData.annualVolume / totalMarketVolume) * 100).toFixed(1)}% of shown markets
-                  </p>
-                </div>
-                <div className="border-t border-border pt-2">
-                  <p className="text-[11px] text-muted-foreground leading-relaxed">
-                    {selectedMarketData.type === "Compliance"
-                      ? "Compliance market — regulated by government. Participation mandatory for covered entities. Allowances have legal backstop."
-                      : "Voluntary market — driven by corporate net-zero commitments. Credit quality varies significantly. No government mandate."}
-                  </p>
-                </div>
-              </CardContent>
-            </Card>
-          </div>
+        <TabsContent value="compliance" className="data-[state=inactive]:hidden">
+          <motion.div initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.25 }}>
+            <ComplianceTab />
+          </motion.div>
         </TabsContent>
 
-        {/* ── Tab 2: Carbon Credits ── */}
-        <TabsContent value="credits" className="space-y-4">
-          {/* Concept cards */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
-            {[
-              {
-                icon: <CheckCircle className="w-4 h-4 text-emerald-400" />,
-                title: "Additionality",
-                desc: "Emission reduction would not have occurred without the carbon credit project. The core validity test — if it would have happened anyway, the credit is worthless.",
-                color: "text-emerald-400",
-              },
-              {
-                icon: <Shield className="w-4 h-4 text-blue-400" />,
-                title: "Permanence",
-                desc: "The carbon stored or avoided must be durable over time. Forestry credits risk reversal from fires or disease. DAC credits offer near-perfect permanence.",
-                color: "text-blue-400",
-              },
-              {
-                icon: <Globe className="w-4 h-4 text-amber-400" />,
-                title: "Co-Benefits",
-                desc: "Secondary benefits beyond carbon: biodiversity, community development, clean water, biodiversity, SDG alignment. Gold Standard requires social co-benefits.",
-                color: "text-amber-400",
-              },
-              {
-                icon: <FileText className="w-4 h-4 text-purple-400" />,
-                title: "Verra VCS",
-                desc: "Verified Carbon Standard — world's largest voluntary carbon market standard. Rigorous third-party verification. VCUs (Verified Carbon Units) issued upon project approval.",
-                color: "text-purple-400",
-              },
-              {
-                icon: <Activity className="w-4 h-4 text-rose-400" />,
-                title: "Gold Standard",
-                desc: "Highest rigour voluntary standard co-founded by WWF. Requires SDG co-benefits documentation. Used by corporates seeking premium quality credits.",
-                color: "text-rose-400",
-              },
-              {
-                icon: <Zap className="w-4 h-4 text-cyan-400" />,
-                title: "Leakage Risk",
-                desc: "When a project displaces emissions elsewhere rather than eliminating them. A protected forest may push logging to adjacent land. Registries apply leakage deductions.",
-                color: "text-cyan-400",
-              },
-            ].map((c) => (
-              <Card key={c.title} className="border-border/60">
-                <CardContent className="pt-4 space-y-1">
-                  <div className="flex items-center gap-2">
-                    {c.icon}
-                    <span className={`text-sm font-semibold ${c.color}`}>{c.title}</span>
-                  </div>
-                  <p className="text-xs text-muted-foreground leading-relaxed">{c.desc}</p>
-                </CardContent>
-              </Card>
-            ))}
-          </div>
-
-          {/* Quality scoring table */}
-          <Card>
-            <CardHeader className="pb-2">
-              <CardTitle className="text-sm">Carbon Credit Quality Scoring</CardTitle>
-            </CardHeader>
-            <CardContent className="overflow-x-auto">
-              <table className="w-full text-xs">
-                <thead>
-                  <tr className="border-b border-border">
-                    <th className="text-left py-2 text-muted-foreground font-medium">Credit Type</th>
-                    <th className="text-left py-2 text-muted-foreground font-medium">Standard</th>
-                    <th className="text-right py-2 text-muted-foreground font-medium">Additional.</th>
-                    <th className="text-right py-2 text-muted-foreground font-medium">Permanence</th>
-                    <th className="text-right py-2 text-muted-foreground font-medium">Co-Benefits</th>
-                    <th className="text-right py-2 text-muted-foreground font-medium">Verification</th>
-                    <th className="text-right py-2 text-muted-foreground font-medium">Avg Price</th>
-                    <th className="text-right py-2 text-muted-foreground font-medium">Quality</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {CREDIT_TYPES.map((c) => (
-                    <tr
-                      key={c.name}
-                      className="border-b border-border/50 hover:bg-muted/30 cursor-pointer transition-colors"
-                      onClick={() => setSelectedCredit(selectedCredit?.name === c.name ? null : c)}
-                    >
-                      <td className="py-2">
-                        <div className="font-medium">{c.name}</div>
-                        <Badge
-                          variant={c.type === "Compliance" ? "default" : "secondary"}
-                          className="text-[10px] mt-0.5"
-                        >
-                          {c.type}
-                        </Badge>
-                      </td>
-                      <td className="py-2 text-muted-foreground">{c.standard}</td>
-                      {[c.additionality, c.permanence, c.cobenefits, c.verificationRigour].map((v, vi) => (
-                        <td key={vi} className="text-right py-2">
-                          <span className={scoreColor(v)}>{v}%</span>
-                        </td>
-                      ))}
-                      <td className="text-right py-2 font-mono font-semibold">
-                        ${c.avgPrice < 100 ? c.avgPrice.toFixed(1) : c.avgPrice.toFixed(0)}
-                      </td>
-                      <td className="text-right py-2">
-                        <span className={`font-bold ${scoreColor(c.qualityScore)}`}>
-                          {c.qualityScore}
-                        </span>
-                      </td>
-                    </tr>
-                  ))}
-                </tbody>
-              </table>
-            </CardContent>
-          </Card>
-
-          {/* Selected credit detail */}
-          {selectedCredit && (
-            <motion.div
-              initial={{ opacity: 0, y: 8 }}
-              animate={{ opacity: 1, y: 0 }}
-              className="rounded-xl border border-border bg-card p-4 space-y-3"
-            >
-              <div className="flex items-center justify-between">
-                <h3 className="text-sm font-semibold">{selectedCredit.name}</h3>
-                <span className={`text-sm font-bold ${scoreColor(selectedCredit.qualityScore)}`}>
-                  Quality Score: {selectedCredit.qualityScore}/100
-                </span>
-              </div>
-              <p className="text-xs text-muted-foreground leading-relaxed">{selectedCredit.description}</p>
-              <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
-                {[
-                  { label: "Additionality", value: selectedCredit.additionality },
-                  { label: "Permanence", value: selectedCredit.permanence },
-                  { label: "Co-Benefits", value: selectedCredit.cobenefits },
-                  { label: "Verification", value: selectedCredit.verificationRigour },
-                ].map((m) => (
-                  <div key={m.label}>
-                    <p className="text-[10px] text-muted-foreground mb-1">{m.label}</p>
-                    <div className="h-1.5 bg-muted rounded-full overflow-hidden">
-                      <div
-                        className="h-full rounded-full"
-                        style={{
-                          width: `${m.value}%`,
-                          backgroundColor: m.value >= 80 ? "#10b981" : m.value >= 60 ? "#f59e0b" : "#ef4444",
-                        }}
-                      />
-                    </div>
-                    <p className={`text-xs font-medium mt-0.5 ${scoreColor(m.value)}`}>{m.value}%</p>
-                  </div>
-                ))}
-              </div>
-            </motion.div>
-          )}
+        <TabsContent value="voluntary" className="data-[state=inactive]:hidden">
+          <motion.div initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.25 }}>
+            <VoluntaryTab />
+          </motion.div>
         </TabsContent>
 
-        {/* ── Tab 3: Net Zero Investing ── */}
-        <TabsContent value="netzero" className="space-y-4">
-          {/* Paris / Net Zero info cards */}
-          <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
-            {[
-              {
-                icon: <Globe className="w-4 h-4 text-blue-400" />,
-                title: "Paris Agreement",
-                stat: "1.5°C",
-                desc: "Limit warming to well below 2°C, pursuing 1.5°C. Requires net-zero global CO₂ by ~2050. 195 parties signed. NDCs (Nationally Determined Contributions) updated every 5 years.",
-              },
-              {
-                icon: <Target className="w-4 h-4 text-emerald-400" />,
-                title: "Net Zero Pathways",
-                stat: "2050",
-                desc: "IEA NZE scenario requires no new fossil fuel development from 2021. Massive scale-up of solar, wind, EVs, hydrogen. Energy efficiency doubles. Carbon removal needed for residual emissions.",
-              },
-              {
-                icon: <AlertTriangle className="w-4 h-4 text-amber-400" />,
-                title: "Stranded Asset Risk",
-                stat: "$1T+",
-                desc: "Fossil fuel reserves that may become uneconomical before end of useful life. Carbon prices, regulations, and demand destruction can strand reserves. Largest holders face mark-down risk.",
-              },
-            ].map((c) => (
-              <Card key={c.title} className="border-border/60">
-                <CardContent className="pt-4 space-y-1">
-                  <div className="flex items-center gap-2">
-                    {c.icon}
-                    <span className="text-sm font-semibold">{c.title}</span>
-                    <span className="ml-auto text-lg font-bold text-muted-foreground">{c.stat}</span>
-                  </div>
-                  <p className="text-xs text-muted-foreground leading-relaxed">{c.desc}</p>
-                </CardContent>
-              </Card>
-            ))}
-          </div>
-
-          {/* Sector transition risk chart */}
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
-            <Card>
-              <CardHeader className="pb-2">
-                <CardTitle className="text-sm">Sector Stranded Risk vs Transition Opportunity</CardTitle>
-              </CardHeader>
-              <CardContent>
-                <SectorTransitionChart sectors={NET_ZERO_SECTORS} />
-              </CardContent>
-            </Card>
-
-            <Card>
-              <CardHeader className="pb-2">
-                <CardTitle className="text-sm">Sector Transition Detail</CardTitle>
-              </CardHeader>
-              <CardContent className="overflow-x-auto">
-                <table className="w-full text-xs">
-                  <thead>
-                    <tr className="border-b border-border">
-                      <th className="text-left py-1.5 text-muted-foreground font-medium">Sector</th>
-                      <th className="text-right py-1.5 text-muted-foreground font-medium">Stranded</th>
-                      <th className="text-right py-1.5 text-muted-foreground font-medium">Opp.</th>
-                      <th className="text-right py-1.5 text-muted-foreground font-medium">Capex</th>
-                      <th className="text-center py-1.5 text-muted-foreground font-medium">Paris</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    {NET_ZERO_SECTORS.map((s) => (
-                      <tr key={s.sector} className="border-b border-border/50 hover:bg-muted/20">
-                        <td className="py-1.5 font-medium">{s.sector}</td>
-                        <td className="text-right py-1.5">
-                          <span
-                            style={{ color: riskColor(s.strandedRisk) }}
-                            className="font-medium"
-                          >
-                            {s.strandedRisk}%
-                          </span>
-                        </td>
-                        <td className="text-right py-1.5">
-                          <span
-                            style={{ color: oppColor(s.transitionOpportunity) }}
-                            className="font-medium"
-                          >
-                            {s.transitionOpportunity}%
-                          </span>
-                        </td>
-                        <td className="text-right py-1.5 font-mono">{s.capexRequired}</td>
-                        <td className="text-center py-1.5">
-                          {s.parisAligned ? (
-                            <CheckCircle className="w-3.5 h-3.5 text-emerald-400 mx-auto" />
-                          ) : (
-                            <AlertTriangle className="w-3.5 h-3.5 text-amber-400 mx-auto" />
-                          )}
-                        </td>
-                      </tr>
-                    ))}
-                  </tbody>
-                </table>
-              </CardContent>
-            </Card>
-          </div>
-
-          {/* Key drivers */}
-          <Card>
-            <CardHeader className="pb-2">
-              <CardTitle className="text-sm">Transition Economy Key Drivers</CardTitle>
-            </CardHeader>
-            <CardContent>
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
-                {NET_ZERO_SECTORS.map((s) => (
-                  <div key={s.sector} className="flex items-start gap-2 p-2 rounded-lg bg-muted/20">
-                    <div
-                      className="w-2 h-2 rounded-full mt-1 flex-shrink-0"
-                      style={{ backgroundColor: riskColor(s.strandedRisk) }}
-                    />
-                    <div>
-                      <span className="text-xs font-semibold">{s.sector}</span>
-                      <p className="text-[10px] text-muted-foreground">{s.keyDriver}</p>
-                    </div>
-                    <div className="ml-auto text-[10px] text-muted-foreground whitespace-nowrap">
-                      {s.timelineYears}yr horizon
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </CardContent>
-          </Card>
+        <TabsContent value="quality" className="data-[state=inactive]:hidden">
+          <motion.div initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.25 }}>
+            <QualityTab />
+          </motion.div>
         </TabsContent>
 
-        {/* ── Tab 4: Climate ETFs & Funds ── */}
-        <TabsContent value="etfs" className="space-y-4">
-          {/* ETF comparison table */}
-          <Card>
-            <CardHeader className="pb-2">
-              <CardTitle className="text-sm">Climate ETF Comparison</CardTitle>
-            </CardHeader>
-            <CardContent className="overflow-x-auto">
-              <table className="w-full text-xs">
-                <thead>
-                  <tr className="border-b border-border">
-                    <th className="text-left py-2 text-muted-foreground font-medium">Ticker</th>
-                    <th className="text-left py-2 text-muted-foreground font-medium">Fund Name</th>
-                    <th className="text-right py-2 text-muted-foreground font-medium">AUM ($B)</th>
-                    <th className="text-right py-2 text-muted-foreground font-medium">ER (%)</th>
-                    <th className="text-right py-2 text-muted-foreground font-medium">YTD Ret</th>
-                    <th className="text-right py-2 text-muted-foreground font-medium">Holdings</th>
-                    <th className="text-right py-2 text-muted-foreground font-medium">Inception</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {CLIMATE_ETFS.map((e) => (
-                    <tr key={e.ticker} className="border-b border-border/50 hover:bg-muted/30 transition-colors">
-                      <td className="py-2">
-                        <span className="font-bold text-blue-400">{e.ticker}</span>
-                      </td>
-                      <td className="py-2">
-                        <div className="font-medium">{e.name}</div>
-                        <div className="text-[10px] text-muted-foreground">{e.focus}</div>
-                      </td>
-                      <td className="text-right py-2 font-mono">${e.aum.toFixed(2)}B</td>
-                      <td className="text-right py-2 font-mono">{e.expenseRatio.toFixed(2)}%</td>
-                      <td
-                        className={`text-right py-2 font-mono font-semibold ${
-                          e.ytdReturn >= 0 ? "text-emerald-400" : "text-red-400"
-                        }`}
-                      >
-                        {e.ytdReturn >= 0 ? "+" : ""}
-                        {e.ytdReturn.toFixed(1)}%
-                      </td>
-                      <td className="text-right py-2">{e.holdings}</td>
-                      <td className="text-right py-2 text-muted-foreground">{e.inceptionYear}</td>
-                    </tr>
-                  ))}
-                </tbody>
-              </table>
-            </CardContent>
-          </Card>
-
-          {/* Bond types */}
-          <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
-            {[
-              {
-                icon: <Leaf className="w-4 h-4 text-emerald-400" />,
-                title: "Green Bonds",
-                issuer: "Governments & Corporates",
-                size: "$600B+ issued in 2024",
-                desc: "Proceeds ring-fenced for environmental projects: renewable energy, clean transport, green buildings. Verified by Climate Bonds Initiative (CBI) framework.",
-                risk: "Low",
-                yield: "Treasury + 5–15bps",
-              },
-              {
-                icon: <Activity className="w-4 h-4 text-blue-400" />,
-                title: "Sustainability-Linked Bonds",
-                issuer: "Corporates",
-                size: "$180B+ issued in 2024",
-                desc: "Coupon steps up if issuer misses sustainability KPIs (e.g., emission reduction targets). Proceeds not ring-fenced. Greenwashing risk if KPIs are weak.",
-                risk: "Medium",
-                yield: "Credit spread ± step-up",
-              },
-              {
-                icon: <TrendingUp className="w-4 h-4 text-purple-400" />,
-                title: "Climate VC/PE",
-                issuer: "Venture & Private Equity",
-                size: "$40B+ deployed in 2024",
-                desc: "Early and growth-stage climate tech: solar, wind, EVs, grid tech, CCS, hydrogen, alternative proteins, climate adaptation. Long-horizon illiquid risk premium.",
-                risk: "High",
-                yield: "IRR target 15–25%",
-              },
-            ].map((b) => (
-              <Card key={b.title} className="border-border/60">
-                <CardContent className="pt-4 space-y-2">
-                  <div className="flex items-center gap-2">
-                    {b.icon}
-                    <span className="text-sm font-semibold">{b.title}</span>
-                  </div>
-                  <div className="flex justify-between text-[10px]">
-                    <span className="text-muted-foreground">{b.issuer}</span>
-                    <span className="font-medium">{b.size}</span>
-                  </div>
-                  <p className="text-xs text-muted-foreground leading-relaxed">{b.desc}</p>
-                  <div className="flex justify-between text-xs border-t border-border pt-2">
-                    <div>
-                      <span className="text-muted-foreground">Risk: </span>
-                      <span
-                        className={
-                          b.risk === "Low"
-                            ? "text-emerald-400"
-                            : b.risk === "Medium"
-                            ? "text-amber-400"
-                            : "text-red-400"
-                        }
-                      >
-                        {b.risk}
-                      </span>
-                    </div>
-                    <div>
-                      <span className="text-muted-foreground">Yield: </span>
-                      <span className="text-blue-400">{b.yield}</span>
-                    </div>
-                  </div>
-                </CardContent>
-              </Card>
-            ))}
-          </div>
-
-          {/* YTD performance bar chart SVG */}
-          <Card>
-            <CardHeader className="pb-2">
-              <CardTitle className="text-sm">Climate ETF YTD Returns</CardTitle>
-            </CardHeader>
-            <CardContent>
-              <div className="space-y-2">
-                {CLIMATE_ETFS.sort((a, b) => b.ytdReturn - a.ytdReturn).map((e) => (
-                  <div key={e.ticker} className="flex items-center gap-2">
-                    <span className="text-xs font-mono font-bold text-blue-400 w-12">{e.ticker}</span>
-                    <div className="flex-1 h-4 bg-muted rounded overflow-hidden">
-                      <div
-                        className="h-full rounded transition-all"
-                        style={{
-                          width: `${Math.min(100, (e.ytdReturn / 25) * 100)}%`,
-                          backgroundColor: e.ytdReturn >= 15 ? "#10b981" : e.ytdReturn >= 0 ? "#3b82f6" : "#ef4444",
-                        }}
-                      />
-                    </div>
-                    <span
-                      className={`text-xs font-mono w-14 text-right ${
-                        e.ytdReturn >= 0 ? "text-emerald-400" : "text-red-400"
-                      }`}
-                    >
-                      {e.ytdReturn >= 0 ? "+" : ""}
-                      {e.ytdReturn.toFixed(1)}%
-                    </span>
-                  </div>
-                ))}
-              </div>
-            </CardContent>
-          </Card>
-        </TabsContent>
-
-        {/* ── Tab 5: TCFD Framework ── */}
-        <TabsContent value="tcfd" className="space-y-4">
-          {/* TCFD pillars */}
-          <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
-            {[
-              {
-                icon: <Shield className="w-4 h-4 text-blue-400" />,
-                title: "Governance",
-                desc: "Board oversight of climate-related risks and opportunities. Management roles and responsibilities.",
-                color: "border-blue-500/30 bg-blue-500/5",
-              },
-              {
-                icon: <Target className="w-4 h-4 text-emerald-400" />,
-                title: "Strategy",
-                desc: "Climate risks & opportunities across time horizons. Resilience of strategy under different scenarios.",
-                color: "border-emerald-500/30 bg-emerald-500/5",
-              },
-              {
-                icon: <Activity className="w-4 h-4 text-amber-400" />,
-                title: "Risk Management",
-                desc: "Process for identifying, assessing, and managing climate-related risks. Integration into overall risk management.",
-                color: "border-amber-500/30 bg-amber-500/5",
-              },
-              {
-                icon: <BarChart2 className="w-4 h-4 text-purple-400" />,
-                title: "Metrics & Targets",
-                desc: "Metrics used to assess climate risk. Scope 1, 2, 3 emissions. Targets for managing climate-related risks.",
-                color: "border-purple-500/30 bg-purple-500/5",
-              },
-            ].map((p) => (
-              <div
-                key={p.title}
-                className={`rounded-xl border p-3 space-y-1.5 ${p.color}`}
-              >
-                <div className="flex items-center gap-1.5">
-                  {p.icon}
-                  <span className="text-xs font-semibold">{p.title}</span>
-                </div>
-                <p className="text-[10px] text-muted-foreground leading-relaxed">{p.desc}</p>
-              </div>
-            ))}
-          </div>
-
-          {/* Physical vs Transition risk */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-            <Card className="border-red-500/20">
-              <CardHeader className="pb-2">
-                <CardTitle className="text-xs flex items-center gap-1.5 text-red-400">
-                  <Droplets className="w-3.5 h-3.5" />
-                  Physical Risk
-                </CardTitle>
-              </CardHeader>
-              <CardContent className="space-y-2">
-                {[
-                  { type: "Acute", example: "Hurricanes, floods, wildfires destroying assets", impact: "High" },
-                  { type: "Chronic", example: "Sea level rise, heat stress, drought affecting operations", impact: "Medium" },
-                  { type: "Supply Chain", example: "Climate disruptions to suppliers/logistics", impact: "Medium" },
-                  { type: "Liability", example: "Litigation for climate-related losses", impact: "Low" },
-                ].map((r) => (
-                  <div key={r.type} className="flex items-start gap-2 text-xs">
-                    <Badge variant="destructive" className="text-[10px] shrink-0">
-                      {r.impact}
-                    </Badge>
-                    <div>
-                      <span className="font-medium">{r.type}: </span>
-                      <span className="text-muted-foreground">{r.example}</span>
-                    </div>
-                  </div>
-                ))}
-              </CardContent>
-            </Card>
-
-            <Card className="border-blue-500/20">
-              <CardHeader className="pb-2">
-                <CardTitle className="text-xs flex items-center gap-1.5 text-blue-400">
-                  <Wind className="w-3.5 h-3.5" />
-                  Transition Risk
-                </CardTitle>
-              </CardHeader>
-              <CardContent className="space-y-2">
-                {[
-                  { type: "Policy", example: "Carbon pricing, emissions caps, building standards", impact: "High" },
-                  { type: "Technology", example: "Disruption from clean energy / EV adoption curves", impact: "High" },
-                  { type: "Market", example: "Shifts in consumer/investor demand for green products", impact: "Medium" },
-                  { type: "Reputational", example: "Greenwashing scrutiny, fossil fuel divestment campaigns", impact: "Low" },
-                ].map((r) => (
-                  <div key={r.type} className="flex items-start gap-2 text-xs">
-                    <Badge
-                      variant={r.impact === "High" ? "default" : "secondary"}
-                      className="text-[10px] shrink-0"
-                    >
-                      {r.impact}
-                    </Badge>
-                    <div>
-                      <span className="font-medium">{r.type}: </span>
-                      <span className="text-muted-foreground">{r.example}</span>
-                    </div>
-                  </div>
-                ))}
-              </CardContent>
-            </Card>
-          </div>
-
-          {/* Scenario analysis */}
-          <Card>
-            <CardHeader className="pb-2">
-              <CardTitle className="text-sm">Climate Scenario Analysis</CardTitle>
-            </CardHeader>
-            <CardContent className="space-y-4">
-              <TcfdScenarioChart scenarios={TCFD_SCENARIOS} />
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 mt-2">
-                {TCFD_SCENARIOS.map((sc) => (
-                  <div
-                    key={sc.scenario}
-                    className="rounded-lg border p-3 space-y-1"
-                    style={{ borderColor: sc.color + "40" }}
-                  >
-                    <div className="flex items-center justify-between">
-                      <span className="text-xs font-semibold" style={{ color: sc.color }}>
-                        {sc.scenario}
-                      </span>
-                      <span className="text-xs font-mono text-muted-foreground">{sc.financialImpact}</span>
-                    </div>
-                    <div className="flex gap-4 text-[10px]">
-                      <span>
-                        <span className="text-red-400">Phys: </span>
-                        <span>{sc.physicalRisk}%</span>
-                      </span>
-                      <span>
-                        <span className="text-blue-400">Trans: </span>
-                        <span>{sc.transitionRisk}%</span>
-                      </span>
-                      <span className="text-muted-foreground">{sc.stranded}</span>
-                    </div>
-                    <p className="text-[10px] text-muted-foreground leading-relaxed">{sc.description}</p>
-                  </div>
-                ))}
-              </div>
-            </CardContent>
-          </Card>
-
-          {/* Disclosure requirements */}
-          <Card>
-            <CardHeader className="pb-2">
-              <CardTitle className="text-sm flex items-center gap-2">
-                <Info className="w-4 h-4 text-blue-400" />
-                TCFD Disclosure Requirements
-              </CardTitle>
-            </CardHeader>
-            <CardContent>
-              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
-                {[
-                  {
-                    req: "Scenario Analysis",
-                    detail: "Model portfolio under 1.5°C, 2°C, 3°C+ using NGFS scenarios. Quantify financial impacts on revenue, costs, and asset values.",
-                    mandatory: true,
-                  },
-                  {
-                    req: "Scope 1, 2, 3 Emissions",
-                    detail: "Disclose operational (Scope 1+2) and value chain (Scope 3) GHG emissions. Scope 3 is most material for most sectors.",
-                    mandatory: true,
-                  },
-                  {
-                    req: "Net Zero Targets",
-                    detail: "Science-based targets aligned with 1.5°C pathway. Interim 2030 targets required. No room for 'net zero by 2050' without near-term milestones.",
-                    mandatory: false,
-                  },
-                  {
-                    req: "TCFD-Aligned Reporting",
-                    detail: "Annual report disclosures across all four TCFD pillars. Mandatory in UK, EU, NZ, Singapore. Voluntary but expected in US/Canada.",
-                    mandatory: true,
-                  },
-                  {
-                    req: "Carbon Price Sensitivity",
-                    detail: "Model P&L impact of internal or external carbon prices of $50, $100, $150/t CO₂. Disclose breakeven and stranded asset thresholds.",
-                    mandatory: false,
-                  },
-                  {
-                    req: "Paris Alignment Metric",
-                    detail: "Portfolio temperature alignment score (e.g., 2.4°C implied). Tools: MSCI Climate VaR, TPI benchmark, PACTA sector alignment.",
-                    mandatory: false,
-                  },
-                ].map((r) => (
-                  <div key={r.req} className="rounded-lg bg-muted/20 p-3 space-y-1">
-                    <div className="flex items-center gap-2">
-                      {r.mandatory ? (
-                        <CheckCircle className="w-3.5 h-3.5 text-emerald-400 shrink-0" />
-                      ) : (
-                        <Info className="w-3.5 h-3.5 text-blue-400 shrink-0" />
-                      )}
-                      <span className="text-xs font-semibold">{r.req}</span>
-                      <Badge
-                        variant={r.mandatory ? "default" : "secondary"}
-                        className="text-[10px] ml-auto"
-                      >
-                        {r.mandatory ? "Mandatory" : "Voluntary"}
-                      </Badge>
-                    </div>
-                    <p className="text-[10px] text-muted-foreground leading-relaxed">{r.detail}</p>
-                  </div>
-                ))}
-              </div>
-            </CardContent>
-          </Card>
-
-          {/* Scope emissions explainer */}
-          <Card>
-            <CardHeader className="pb-2">
-              <CardTitle className="text-sm">GHG Emissions Scope Classification</CardTitle>
-            </CardHeader>
-            <CardContent>
-              <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
-                {[
-                  {
-                    scope: "Scope 1",
-                    label: "Direct Emissions",
-                    color: "#ef4444",
-                    pct: "~10%",
-                    examples: "Company-owned vehicles, on-site combustion, process emissions, fugitive emissions (methane leaks)",
-                    note: "Fully controlled by organization. Easiest to reduce.",
-                  },
-                  {
-                    scope: "Scope 2",
-                    label: "Indirect — Purchased Energy",
-                    color: "#f59e0b",
-                    pct: "~15%",
-                    examples: "Purchased electricity, heat, steam, cooling for operations",
-                    note: "Driven by energy mix of grid. Can be addressed via PPAs, RECs, on-site generation.",
-                  },
-                  {
-                    scope: "Scope 3",
-                    label: "Value Chain Emissions",
-                    color: "#3b82f6",
-                    pct: "~75%",
-                    examples: "Supplier emissions, business travel, employee commuting, product use & disposal, investments",
-                    note: "Largest category for most companies. Hardest to measure. Requires supplier engagement.",
-                  },
-                ].map((sc) => (
-                  <div
-                    key={sc.scope}
-                    className="rounded-lg border p-3 space-y-2"
-                    style={{ borderColor: sc.color + "40" }}
-                  >
-                    <div className="flex items-center justify-between">
-                      <span className="text-sm font-bold" style={{ color: sc.color }}>
-                        {sc.scope}
-                      </span>
-                      <span className="text-xs font-mono text-muted-foreground">{sc.pct} of total</span>
-                    </div>
-                    <p className="text-xs font-medium">{sc.label}</p>
-                    <p className="text-[10px] text-muted-foreground">
-                      <strong>Examples:</strong> {sc.examples}
-                    </p>
-                    <p className="text-[10px] text-blue-400 italic">{sc.note}</p>
-                  </div>
-                ))}
-              </div>
-            </CardContent>
-          </Card>
+        <TabsContent value="investment" className="data-[state=inactive]:hidden">
+          <motion.div initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.25 }}>
+            <InvestmentTab />
+          </motion.div>
         </TabsContent>
       </Tabs>
     </div>

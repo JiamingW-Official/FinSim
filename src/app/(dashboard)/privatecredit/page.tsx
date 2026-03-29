@@ -1,76 +1,54 @@
 "use client";
 
-import { useState, useMemo } from "react";
+import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import {
-  TrendingUp,
-  TrendingDown,
   DollarSign,
+  TrendingDown,
   BarChart3,
-  Building2,
-  Shield,
   Layers,
-  ArrowRight,
-  Info,
-  CheckCircle,
   AlertTriangle,
+  CheckCircle,
+  Info,
+  ArrowRight,
   Briefcase,
-  Percent,
-  FileText,
-  Activity,
-  Lock,
-  Unlock,
-  Star,
-  ChevronDown,
-  ChevronUp,
 } from "lucide-react";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { Badge } from "@/components/ui/badge";
 import { cn } from "@/lib/utils";
 
-// ── Seeded PRNG ───────────────────────────────────────────────────────────────
+// ── Seeded PRNG ────────────────────────────────────────────────────────────────
 
-let s = 742001;
+let s = 930;
 const rand = () => {
   s = (s * 1103515245 + 12345) & 0x7fffffff;
   return s / 0x7fffffff;
 };
-
 const RAND_POOL: number[] = [];
 for (let i = 0; i < 300; i++) RAND_POOL.push(rand());
-let ri = 0;
-const r = () => RAND_POOL[ri++ % RAND_POOL.length];
+let randIdx = 0;
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+const _r = () => RAND_POOL[randIdx++ % RAND_POOL.length];
 
-// ── Formatting helpers ────────────────────────────────────────────────────────
-
-function fmtT(n: number): string {
-  if (n >= 1) return `$${n.toFixed(1)}T`;
-  return `$${(n * 1000).toFixed(0)}B`;
-}
+// ── Helpers ───────────────────────────────────────────────────────────────────
 
 function fmtB(n: number): string {
-  if (n >= 1000) return `$${(n / 1000).toFixed(1)}T`;
-  return `$${n.toFixed(0)}B`;
+  if (Math.abs(n) >= 1_000) return `$${(n / 1_000).toFixed(1)}T`;
+  if (Math.abs(n) >= 1) return `$${n.toFixed(1)}B`;
+  return `$${(n * 1_000).toFixed(0)}M`;
 }
 
-function fmtPct(n: number, d = 1): string {
-  return `${n.toFixed(d)}%`;
-}
-
-// ── Shared components ─────────────────────────────────────────────────────────
+// ── StatCard ──────────────────────────────────────────────────────────────────
 
 function StatCard({
   label,
   value,
   sub,
   highlight,
-  icon: Icon,
 }: {
   label: string;
   value: string;
   sub?: string;
   highlight?: "pos" | "neg" | "neutral";
-  icon?: React.ElementType;
 }) {
   const valClass =
     highlight === "pos"
@@ -80,1277 +58,211 @@ function StatCard({
       : "text-white";
   return (
     <div className="rounded-xl border border-white/10 bg-white/5 p-4">
-      {Icon && (
-        <div className="mb-2 flex h-8 w-8 items-center justify-center rounded-lg bg-white/10">
-          <Icon className="h-4 w-4 text-white/60" />
-        </div>
-      )}
-      <p className="text-xs text-white/50">{label}</p>
-      <p className={cn("mt-1 text-xl font-semibold tabular-nums", valClass)}>
-        {value}
-      </p>
-      {sub && <p className="mt-0.5 text-xs text-white/40">{sub}</p>}
+      <p className="text-xs text-zinc-400 mb-1">{label}</p>
+      <p className={cn("text-xl font-bold", valClass)}>{value}</p>
+      {sub && <p className="text-xs text-zinc-500 mt-1">{sub}</p>}
     </div>
   );
 }
 
-function SectionHeader({
-  title,
-  subtitle,
-}: {
-  title: string;
-  subtitle?: string;
-}) {
+// ── SectionHeading ────────────────────────────────────────────────────────────
+
+function SectionHeading({ title, sub }: { title: string; sub?: string }) {
   return (
     <div className="mb-4">
-      <h2 className="text-lg font-semibold text-white">{title}</h2>
-      {subtitle && <p className="mt-0.5 text-sm text-white/50">{subtitle}</p>}
+      <h3 className="text-base font-semibold text-white">{title}</h3>
+      {sub && <p className="text-xs text-zinc-400 mt-0.5">{sub}</p>}
     </div>
   );
 }
 
-function InfoBox({
-  text,
-  variant = "info",
-}: {
-  text: string;
-  variant?: "info" | "warn" | "success";
-}) {
-  const styles = {
-    info: "border-blue-500/30 bg-blue-500/10 text-blue-300",
-    warn: "border-amber-500/30 bg-amber-500/10 text-amber-300",
-    success: "border-emerald-500/30 bg-emerald-500/10 text-emerald-300",
+// ── InfoPill ──────────────────────────────────────────────────────────────────
+
+function InfoPill({ text, color = "zinc" }: { text: string; color?: string }) {
+  const cls: Record<string, string> = {
+    zinc: "bg-zinc-800 text-zinc-300",
+    emerald: "bg-emerald-900/50 text-emerald-300",
+    amber: "bg-amber-900/50 text-amber-300",
+    rose: "bg-rose-900/50 text-rose-300",
+    blue: "bg-blue-900/50 text-blue-300",
+    violet: "bg-violet-900/50 text-violet-300",
+    orange: "bg-orange-900/50 text-orange-300",
   };
-  const Icon = variant === "warn" ? AlertTriangle : variant === "success" ? CheckCircle : Info;
   return (
-    <div className={cn("flex items-start gap-2 rounded-lg border p-3 text-xs", styles[variant])}>
-      <Icon className="mt-0.5 h-4 w-4 shrink-0" />
-      <span>{text}</span>
-    </div>
+    <span
+      className={cn(
+        "inline-block rounded-full px-2 py-0.5 text-xs font-medium",
+        cls[color] ?? cls.zinc
+      )}
+    >
+      {text}
+    </span>
   );
 }
 
-// ── Tab 1: Market Overview ────────────────────────────────────────────────────
-
-const AUM_DATA = [
-  { year: "2015", aum: 0.5 },
-  { year: "2016", aum: 0.62 },
-  { year: "2017", aum: 0.75 },
-  { year: "2018", aum: 0.88 },
-  { year: "2019", aum: 1.0 },
-  { year: "2020", aum: 1.1 },
-  { year: "2021", aum: 1.3 },
-  { year: "2022", aum: 1.5 },
-  { year: "2023", aum: 1.7 },
-  { year: "2024", aum: 2.1 },
-];
-
-const TOP_MANAGERS = [
-  { name: "Ares Management", aum: 420, strategy: "Direct Lending / Mezz", rating: "A" },
-  { name: "Blue Owl Capital", aum: 235, strategy: "Direct Lending / GP Finance", rating: "A" },
-  { name: "HPS Investment Partners", aum: 120, strategy: "Performing / Distressed", rating: "B+" },
-  { name: "Golub Capital", aum: 65, strategy: "Middle Market Lending", rating: "B+" },
-  { name: "Owl Rock / OBDC", aum: 54, strategy: "Corporate Direct Lending", rating: "B" },
-  { name: "Blackstone Credit", aum: 310, strategy: "Diversified Private Credit", rating: "A" },
-];
-
-function AUMChart() {
-  const maxAUM = Math.max(...AUM_DATA.map((d) => d.aum));
-  const W = 520;
-  const H = 180;
-  const PAD = { top: 20, right: 20, bottom: 30, left: 50 };
-  const innerW = W - PAD.left - PAD.right;
-  const innerH = H - PAD.top - PAD.bottom;
-
-  const xStep = innerW / (AUM_DATA.length - 1);
-  const yScale = (v: number) => innerH - (v / (maxAUM * 1.1)) * innerH;
-
-  const linePath = AUM_DATA.map((d, i) => {
-    const x = i * xStep;
-    const y = yScale(d.aum);
-    return `${i === 0 ? "M" : "L"} ${x.toFixed(1)} ${y.toFixed(1)}`;
-  }).join(" ");
-
-  const areaPath =
-    `${linePath} L ${((AUM_DATA.length - 1) * xStep).toFixed(1)} ${innerH} L 0 ${innerH} Z`;
-
-  const yTicks = [0, 0.5, 1.0, 1.5, 2.0];
-
-  return (
-    <div className="overflow-x-auto">
-      <svg viewBox={`0 0 ${W} ${H}`} className="w-full max-w-2xl" style={{ minWidth: 320 }}>
-        <defs>
-          <linearGradient id="pcAumGrad" x1="0" y1="0" x2="0" y2="1">
-            <stop offset="0%" stopColor="#6366f1" stopOpacity="0.4" />
-            <stop offset="100%" stopColor="#6366f1" stopOpacity="0.0" />
-          </linearGradient>
-        </defs>
-        <g transform={`translate(${PAD.left},${PAD.top})`}>
-          {/* Grid lines */}
-          {yTicks.map((tick) => {
-            const y = yScale(tick);
-            return (
-              <g key={tick}>
-                <line x1={0} y1={y} x2={innerW} y2={y} stroke="rgba(255,255,255,0.08)" strokeWidth={1} />
-                <text x={-8} y={y + 4} textAnchor="end" fontSize={9} fill="rgba(255,255,255,0.4)">
-                  {tick === 0 ? "$0" : `$${tick}T`}
-                </text>
-              </g>
-            );
-          })}
-
-          {/* Area fill */}
-          <path d={areaPath} fill="url(#pcAumGrad)" />
-
-          {/* Line */}
-          <path d={linePath} fill="none" stroke="#818cf8" strokeWidth={2} strokeLinejoin="round" />
-
-          {/* Data points */}
-          {AUM_DATA.map((d, i) => (
-            <circle
-              key={d.year}
-              cx={i * xStep}
-              cy={yScale(d.aum)}
-              r={3}
-              fill="#818cf8"
-              stroke="#1e1b4b"
-              strokeWidth={1.5}
-            />
-          ))}
-
-          {/* X axis labels */}
-          {AUM_DATA.map((d, i) => (
-            <text
-              key={d.year}
-              x={i * xStep}
-              y={innerH + 18}
-              textAnchor="middle"
-              fontSize={9}
-              fill="rgba(255,255,255,0.4)"
-            >
-              {d.year}
-            </text>
-          ))}
-        </g>
-      </svg>
-    </div>
-  );
-}
-
-function MarketOverviewTab() {
-  return (
-    <div className="space-y-6">
-      {/* Hero stats */}
-      <div className="grid grid-cols-2 gap-3 sm:grid-cols-4">
-        <StatCard label="Global AUM" value="$2.1T" sub="+24% YoY" highlight="pos" icon={DollarSign} />
-        <StatCard label="Middle Market Share" value="~65%" sub="$10M–$500M EBITDA" highlight="neutral" icon={Building2} />
-        <StatCard label="Avg. Yield Spread" value="+550bps" sub="over SOFR" highlight="pos" icon={Percent} />
-        <StatCard label="5-Year CAGR" value="17.2%" sub="vs. 4.8% bank lending" highlight="pos" icon={TrendingUp} />
-      </div>
-
-      <InfoBox
-        text="Private credit has grown from a niche asset class to a $2T+ market, largely displacing banks in middle-market lending following the 2008 financial crisis and subsequent bank regulatory tightening (Basel III/IV)."
-        variant="info"
-      />
-
-      {/* AUM Growth Chart */}
-      <div className="rounded-xl border border-white/10 bg-white/5 p-4">
-        <SectionHeader
-          title="Private Credit AUM Growth"
-          subtitle="Global assets under management ($T), 2015–2024"
-        />
-        <AUMChart />
-      </div>
-
-      {/* vs Bank Lending */}
-      <div className="rounded-xl border border-white/10 bg-white/5 p-4">
-        <SectionHeader title="Private Credit vs. Bank Lending" subtitle="Key structural differences" />
-        <div className="overflow-x-auto">
-          <table className="w-full text-sm">
-            <thead>
-              <tr className="border-b border-white/10">
-                <th className="pb-2 text-left text-xs font-medium text-white/50">Factor</th>
-                <th className="pb-2 text-left text-xs font-medium text-indigo-400">Private Credit</th>
-                <th className="pb-2 text-left text-xs font-medium text-white/50">Bank Lending</th>
-              </tr>
-            </thead>
-            <tbody className="divide-y divide-white/5">
-              {[
-                ["Borrower Size", "$10M–$500M EBITDA", ">$1B EBITDA (syndicated)"],
-                ["Speed to Close", "4–8 weeks", "12–20 weeks"],
-                ["Covenant Package", "Maintenance covenants", "Incurrence-only (cov-lite)"],
-                ["Hold-to-Maturity", "Yes (illiquid)", "Distribute/sell"],
-                ["Pricing", "SOFR + 500–700bps", "SOFR + 150–300bps"],
-                ["Flexibility", "Bespoke terms", "Standardized templates"],
-                ["Relationship", "Direct lender/borrower", "Agent bank intermediary"],
-              ].map(([f, pc, bank]) => (
-                <tr key={f}>
-                  <td className="py-2 text-xs text-white/60">{f}</td>
-                  <td className="py-2 text-xs font-medium text-indigo-300">{pc}</td>
-                  <td className="py-2 text-xs text-white/50">{bank}</td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
-        </div>
-      </div>
-
-      {/* Top Managers */}
-      <div className="rounded-xl border border-white/10 bg-white/5 p-4">
-        <SectionHeader title="Top Private Credit Managers" subtitle="Leading platforms by AUM" />
-        <div className="space-y-2">
-          {TOP_MANAGERS.map((m) => {
-            const pct = (m.aum / 420) * 100;
-            return (
-              <div key={m.name} className="flex items-center gap-3">
-                <div className="w-36 shrink-0 text-xs text-white/80">{m.name}</div>
-                <div className="flex-1">
-                  <div className="h-2 w-full overflow-hidden rounded-full bg-white/10">
-                    <motion.div
-                      className="h-full rounded-full bg-indigo-500"
-                      initial={{ width: 0 }}
-                      animate={{ width: `${pct}%` }}
-                      transition={{ duration: 0.8, delay: 0.1 }}
-                    />
-                  </div>
-                </div>
-                <div className="w-16 shrink-0 text-right text-xs text-white/60">
-                  {fmtB(m.aum)}
-                </div>
-                <Badge
-                  className={cn(
-                    "w-10 shrink-0 justify-center text-xs",
-                    m.rating === "A"
-                      ? "bg-emerald-500/20 text-emerald-400"
-                      : "bg-blue-500/20 text-blue-400"
-                  )}
-                >
-                  {m.rating}
-                </Badge>
-              </div>
-            );
-          })}
-        </div>
-        <p className="mt-3 text-xs text-white/40">
-          Rating reflects platform scale, diversification, and track record (FS internal scoring)
-        </p>
-      </div>
-
-      {/* Middle Market focus */}
-      <div className="grid grid-cols-1 gap-4 sm:grid-cols-3">
-        {[
-          {
-            title: "Middle Market Definition",
-            items: [
-              "EBITDA: $10M – $500M",
-              "Revenue: $50M – $2B",
-              "~200,000 US companies",
-              "Accounts for ~⅓ of US GDP",
-            ],
-            icon: Building2,
-            color: "text-indigo-400",
-          },
-          {
-            title: "Why Private Credit Wins",
-            items: [
-              "Too large for community banks",
-              "Too small for syndicated markets",
-              "Need speed and certainty",
-              "Want relationship-based terms",
-            ],
-            icon: Star,
-            color: "text-amber-400",
-          },
-          {
-            title: "Macro Tailwinds",
-            items: [
-              "Basel III capital constraints",
-              "Bank M&A reducing competitors",
-              "PE buyout activity growth",
-              "Floating rate in rising environment",
-            ],
-            icon: TrendingUp,
-            color: "text-emerald-400",
-          },
-        ].map((card) => (
-          <div key={card.title} className="rounded-xl border border-white/10 bg-white/5 p-4">
-            <div className="mb-3 flex items-center gap-2">
-              <card.icon className={cn("h-4 w-4", card.color)} />
-              <h3 className="text-sm font-semibold text-white">{card.title}</h3>
-            </div>
-            <ul className="space-y-1.5">
-              {card.items.map((item) => (
-                <li key={item} className="flex items-start gap-2 text-xs text-white/60">
-                  <ArrowRight className="mt-0.5 h-3 w-3 shrink-0 text-white/30" />
-                  {item}
-                </li>
-              ))}
-            </ul>
-          </div>
-        ))}
-      </div>
-    </div>
-  );
-}
-
-// ── Tab 2: Direct Lending ─────────────────────────────────────────────────────
-
-const LOAN_TYPES = [
-  {
-    name: "First Lien Senior Secured",
-    priority: 1,
-    spread: "450–550bps",
-    ltv: "35–45%",
-    recovery: "70–90%",
-    risk: "Low",
-    color: "emerald",
-    desc: "First claim on borrower assets; lowest risk in capital stack. Typically fully secured against hard assets and cash flows.",
-  },
-  {
-    name: "Second Lien",
-    priority: 2,
-    spread: "650–800bps",
-    ltv: "45–60%",
-    recovery: "40–65%",
-    risk: "Moderate",
-    color: "blue",
-    desc: "Subordinate to first lien; higher yield premium for incremental risk. Usually used to bridge equity gap in PE buyouts.",
-  },
-  {
-    name: "Unitranche",
-    priority: 3,
-    spread: "550–700bps",
-    ltv: "50–65%",
-    recovery: "55–75%",
-    risk: "Moderate",
-    color: "indigo",
-    desc: "Blended first/second lien in single instrument. Simplifies borrower's cap structure; uses Agreement Among Lenders (AAL).",
-  },
-  {
-    name: "Mezzanine",
-    priority: 4,
-    spread: "800–1100bps",
-    ltv: "60–75%",
-    recovery: "25–50%",
-    risk: "High",
-    color: "amber",
-    desc: "Subordinated debt with equity kicker (warrants). Hybrid risk/return; often PIK-able. Junior to all senior secured.",
-  },
-];
-
-function TermSheet() {
-  return (
-    <div className="rounded-xl border border-white/10 bg-white/5 p-4">
-      <SectionHeader title="Illustrative Term Sheet" subtitle="Middle market senior secured loan" />
-      <div className="overflow-x-auto">
-        <table className="w-full text-sm">
-          <tbody className="divide-y divide-white/5">
-            {[
-              ["Borrower", "Acme Industrial Holdings LLC"],
-              ["Facility Type", "Senior Secured First Lien Term Loan"],
-              ["Facility Size", "$125,000,000"],
-              ["Arranger / Lender", "Single-Lender (Club / Bilateral)"],
-              ["Maturity", "5 years from close (2024–2029)"],
-              ["Interest Rate", "SOFR + 550bps (floor: 100bps)"],
-              ["OID (Original Issue Discount)", "98.5 cents on dollar (150bps upfront)"],
-              ["Amortization", "1% per annum (quarterly)"],
-              ["PIK Toggle", "Available; SOFR + 625bps if elected"],
-              ["Call Protection", "102 (Y1), 101 (Y2), Par thereafter"],
-              ["Financial Covenants", "Total Net Leverage ≤ 5.5x; Fixed Charge Coverage ≥ 1.1x"],
-              ["Collateral", "All assets, equity pledge, IP, material subsidiaries"],
-              ["Reporting", "Monthly mgmt accounts; quarterly lender call"],
-              ["DSCR (Underwrite)", "1.35x (base case); 1.10x (downside)"],
-              ["Leverage (Underwrite)", "4.8x Total Net / 3.9x Senior Secured"],
-              ["Closing Fee", "100bps all-in to lender"],
-            ].map(([key, val]) => (
-              <tr key={key}>
-                <td className="py-2 pr-4 text-xs font-medium text-white/50 align-top">{key}</td>
-                <td className="py-2 text-xs text-white/80">{val}</td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
-      </div>
-    </div>
-  );
-}
+// ═══════════════════════════════════════════════════════════════════════════════
+// TAB 1 — DIRECT LENDING
+// ═══════════════════════════════════════════════════════════════════════════════
 
 function DirectLendingTab() {
-  const [expanded, setExpanded] = useState<string | null>(null);
+  const bankShare = [
+    { year: 2007, pct: 72 },
+    { year: 2009, pct: 61 },
+    { year: 2011, pct: 52 },
+    { year: 2013, pct: 44 },
+    { year: 2015, pct: 39 },
+    { year: 2017, pct: 34 },
+    { year: 2019, pct: 30 },
+    { year: 2021, pct: 26 },
+    { year: 2023, pct: 22 },
+  ];
+
+  const leverageBars = [
+    { label: "Senior / 1st Lien", low: 5.0, high: 7.0, color: "bg-blue-500" },
+    { label: "Unitranche", low: 5.5, high: 7.5, color: "bg-violet-500" },
+    { label: "Total (incl. Mezz)", low: 6.0, high: 8.0, color: "bg-amber-500" },
+  ];
+
+  const lenders = [
+    { name: "Ares Capital", aum: 420, focus: "Broad middle market" },
+    { name: "Blue Owl Credit", aum: 175, focus: "Software / tech-enabled" },
+    { name: "HPS Investment Partners", aum: 148, focus: "Upper middle market" },
+    { name: "Golub Capital", aum: 72, focus: "Sponsor-backed loans" },
+    { name: "Monroe Capital", aum: 18, focus: "Lower middle market" },
+  ];
+
+  const bdcVsPrivate = [
+    { attr: "Investor base", bdc: "Retail + institutional", pvt: "Institutional / QPs only" },
+    { attr: "Liquidity", bdc: "Exchange-traded (daily)", pvt: "Quarterly / semi-annual" },
+    { attr: "Leverage limit", bdc: "1:1 debt/equity (150%)", pvt: "No statutory limit" },
+    { attr: "Reporting", bdc: "SEC public filings", pvt: "LP reporting only" },
+    { attr: "Fee structure", bdc: "Mgmt 1.5% + 20% incentive", pvt: "Mgmt 1.5% + 20% carry" },
+    { attr: "Diversification", bdc: "70% qualifying assets rule", pvt: "Flexible (fund docs)" },
+  ];
+
+  const unitranche = [
+    { attr: "Complexity", uni: "Single lender / tranche", fl: "Two separate tranches" },
+    { attr: "Spread", uni: "SOFR + 550–700bps", fl: "1L: +400–500 / 2L: +700–900" },
+    { attr: "Closing speed", uni: "2–4 weeks", fl: "4–8 weeks" },
+    { attr: "Covenant package", uni: "Maintenance + incurrence", fl: "Incurrence-only typical" },
+    { attr: "PIK option", uni: "Yes (partial)", fl: "2L often PIK-toggle" },
+    { attr: "Borrower preference", uni: "Certainty of execution", fl: "Lower all-in cost" },
+  ];
+
+  const lenderTerms = [
+    { term: "MFN (Most Favored Nation)", desc: "If borrower raises cheaper debt from another lender, existing lender gets the same pricing.", color: "emerald" },
+    { term: "PIK Toggle", desc: "Borrower can elect to pay interest in-kind (additional debt) rather than cash, preserving liquidity.", color: "amber" },
+    { term: "Warrants", desc: "Option to purchase equity at a set price, giving the lender upside participation beyond interest income.", color: "violet" },
+    { term: "Equity Kickers", desc: "Small equity stake (1–5%) provided alongside debt, boosting total IRR to lender if exit is strong.", color: "blue" },
+    { term: "Maintenance Covenants", desc: "Borrower must maintain leverage and coverage ratios tested quarterly — unlike cov-lite broadly syndicated loans.", color: "rose" },
+    { term: "EBITDA Definition Control", desc: "Lender negotiates limited add-backs to EBITDA, preventing artificial covenant headroom.", color: "zinc" },
+  ];
+
+  // SVG — bank share decline
+  const W = 480;
+  const H = 148;
+  const pL = 36;
+  const pR = 12;
+  const pT = 14;
+  const pB = 28;
+  const cW = W - pL - pR;
+  const cH = H - pT - pB;
+  const xS = (i: number) => pL + (i / (bankShare.length - 1)) * cW;
+  const yS = (pct: number) => pT + cH - (pct / 100) * cH;
+
+  const bankPath = bankShare
+    .map((d, i) => `${i === 0 ? "M" : "L"}${xS(i).toFixed(1)},${yS(d.pct).toFixed(1)}`)
+    .join(" ");
+  const privPts = bankShare.map((d, i) => ({ x: xS(i), y: yS(100 - d.pct) }));
+  const privLine = privPts
+    .map((p, i) => `${i === 0 ? "M" : "L"}${p.x.toFixed(1)},${p.y.toFixed(1)}`)
+    .join(" ");
+  const privFill = `${privLine} L${xS(bankShare.length - 1).toFixed(1)},${(pT + cH).toFixed(1)} L${xS(0).toFixed(1)},${(pT + cH).toFixed(1)} Z`;
 
   return (
-    <div className="space-y-6">
-      <div className="grid grid-cols-2 gap-3 sm:grid-cols-4">
-        <StatCard label="Typical EBITDA Range" value="$10–300M" sub="middle market focus" icon={Building2} />
-        <StatCard label="Avg All-in Yield" value="10–13%" sub="SOFR + 500–700bps" highlight="pos" icon={Percent} />
-        <StatCard label="Typical Leverage" value="4–6x" sub="Total Net Debt/EBITDA" icon={BarChart3} />
-        <StatCard label="DSCR Hurdle" value="≥ 1.2x" sub="debt service coverage" highlight="pos" icon={Shield} />
+    <div className="space-y-8">
+      <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+        <StatCard label="Global AUM" value="$1.7T" sub="Private credit 2024" highlight="pos" />
+        <StatCard label="Typical Spread" value="SOFR+500–700" sub="bps all-in" />
+        <StatCard label="Average Lien" value="1st Lien / Unitranche" sub="~80% of deals" />
+        <StatCard label="EBITDA Leverage" value="5–8×" sub="Senior to total" />
       </div>
 
-      {/* Loan types capital stack */}
-      <div className="rounded-xl border border-white/10 bg-white/5 p-4">
-        <SectionHeader title="Loan Types & Capital Stack Position" subtitle="Click a tranche for details" />
-        <div className="space-y-3">
-          {LOAN_TYPES.map((lt) => {
-            const isOpen = expanded === lt.name;
-            const colorMap: Record<string, string> = {
-              emerald: "border-emerald-500/40 bg-emerald-500/10",
-              blue: "border-blue-500/40 bg-blue-500/10",
-              indigo: "border-indigo-500/40 bg-indigo-500/10",
-              amber: "border-amber-500/40 bg-amber-500/10",
-            };
-            const textMap: Record<string, string> = {
-              emerald: "text-emerald-400",
-              blue: "text-blue-400",
-              indigo: "text-indigo-400",
-              amber: "text-amber-400",
-            };
+      {/* Financing gap */}
+      <div className="rounded-xl border border-white/10 bg-white/5 p-5">
+        <SectionHeading
+          title="Middle Market Financing Gap — Bank Retreat Post-GFC"
+          sub="Banks' share of middle market lending vs private credit (2007–2023)"
+        />
+        <svg viewBox={`0 0 ${W} ${H}`} className="w-full" style={{ maxHeight: 160 }}>
+          {[0, 25, 50, 75, 100].map((pct) => (
+            <line key={pct} x1={pL} x2={W - pR} y1={yS(pct)} y2={yS(pct)} stroke="#ffffff18" strokeWidth={1} />
+          ))}
+          <path d={privFill} fill="rgba(139,92,246,0.2)" />
+          <path d={privLine} fill="none" stroke="#8b5cf6" strokeWidth={2.5} strokeLinejoin="round" />
+          <path d={bankPath} fill="none" stroke="#3b82f6" strokeWidth={2} strokeDasharray="5,3" strokeLinejoin="round" />
+          {[0, 50, 100].map((pct) => (
+            <text key={pct} x={pL - 4} y={yS(pct) + 4} fontSize={9} fill="#71717a" textAnchor="end">{pct}%</text>
+          ))}
+          {bankShare.filter((_, i) => i % 2 === 0).map((d) => {
+            const idx = bankShare.findIndex((b) => b.year === d.year);
+            return <text key={d.year} x={xS(idx)} y={H - 6} fontSize={9} fill="#71717a" textAnchor="middle">{d.year}</text>;
+          })}
+          <rect x={pL} y={pT} width={10} height={3} fill="#8b5cf6" rx={1} />
+          <text x={pL + 13} y={pT + 4} fontSize={9} fill="#a78bfa">Private Credit</text>
+          <line x1={pL + 90} x2={pL + 100} y1={pT + 2} y2={pT + 2} stroke="#3b82f6" strokeWidth={2} strokeDasharray="4,2" />
+          <text x={pL + 103} y={pT + 4} fontSize={9} fill="#93c5fd">Banks</text>
+        </svg>
+      </div>
+
+      {/* Leverage bars */}
+      <div className="rounded-xl border border-white/10 bg-white/5 p-5">
+        <SectionHeading
+          title="EBITDA Leverage Multiples by Tranche Type"
+          sub="Typical range for sponsor-backed middle market deals"
+        />
+        <div className="space-y-4">
+          {leverageBars.map((bar) => {
+            const leftPct = (bar.low / 10) * 100;
+            const widthPct = ((bar.high - bar.low) / 10) * 100;
             return (
-              <div
-                key={lt.name}
-                className={cn("rounded-lg border p-3 cursor-pointer transition-all", colorMap[lt.color])}
-                onClick={() => setExpanded(isOpen ? null : lt.name)}
-              >
-                <div className="flex items-center justify-between">
-                  <div className="flex items-center gap-3">
-                    <span className={cn("text-xs font-bold", textMap[lt.color])}>#{lt.priority}</span>
-                    <div>
-                      <p className="text-sm font-semibold text-white">{lt.name}</p>
-                      <p className="text-xs text-white/50">Spread: {lt.spread} | LTV: {lt.ltv} | Recovery: {lt.recovery}</p>
-                    </div>
-                  </div>
-                  <div className="flex items-center gap-2">
-                    <Badge
-                      className={cn(
-                        "text-xs",
-                        lt.risk === "Low" ? "bg-emerald-500/20 text-emerald-400" :
-                        lt.risk === "Moderate" ? "bg-blue-500/20 text-blue-400" :
-                        "bg-amber-500/20 text-amber-400"
-                      )}
-                    >
-                      {lt.risk}
-                    </Badge>
-                    {isOpen ? <ChevronUp className="h-4 w-4 text-white/40" /> : <ChevronDown className="h-4 w-4 text-white/40" />}
-                  </div>
+              <div key={bar.label}>
+                <div className="flex items-center justify-between mb-1.5">
+                  <span className="text-xs text-zinc-300">{bar.label}</span>
+                  <span className="text-xs text-zinc-400">{bar.low}× – {bar.high}×</span>
                 </div>
-                <AnimatePresence>
-                  {isOpen && (
-                    <motion.div
-                      initial={{ height: 0, opacity: 0 }}
-                      animate={{ height: "auto", opacity: 1 }}
-                      exit={{ height: 0, opacity: 0 }}
-                      transition={{ duration: 0.2 }}
-                      className="overflow-hidden"
-                    >
-                      <p className="mt-3 text-xs text-white/60 border-t border-white/10 pt-3">{lt.desc}</p>
-                    </motion.div>
-                  )}
-                </AnimatePresence>
+                <div className="relative h-5 rounded bg-white/5">
+                  <div
+                    className={cn("absolute h-full rounded", bar.color)}
+                    style={{ left: `${leftPct}%`, width: `${widthPct}%`, opacity: 0.8 }}
+                  />
+                  <div className="absolute top-0 h-full border-l border-white/30" style={{ left: "50%" }} />
+                  <span className="absolute top-0.5 text-[9px] text-zinc-500" style={{ left: "50.5%" }}>5×</span>
+                </div>
               </div>
             );
           })}
         </div>
       </div>
 
-      {/* Key metrics explained */}
-      <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
-        <div className="rounded-xl border border-white/10 bg-white/5 p-4">
-          <div className="mb-3 flex items-center gap-2">
-            <Activity className="h-4 w-4 text-indigo-400" />
-            <h3 className="text-sm font-semibold text-white">Key Underwriting Metrics</h3>
-          </div>
-          <div className="space-y-3">
-            {[
-              { metric: "Leverage Ratio", formula: "Total Net Debt / EBITDA", typical: "4.0–6.0x", warn: ">6.5x high risk" },
-              { metric: "DSCR", formula: "(EBITDA – CapEx) / Debt Service", typical: "≥ 1.20x", warn: "<1.05x breach risk" },
-              { metric: "Interest Coverage", formula: "EBITDA / Interest Expense", typical: "≥ 2.5x", warn: "<1.5x distress" },
-              { metric: "LTV", formula: "Loan Amount / Enterprise Value", typical: "35–55%", warn: ">65% senior secured" },
-            ].map((m) => (
-              <div key={m.metric} className="rounded-lg bg-white/5 p-2.5">
-                <div className="flex items-start justify-between gap-2">
-                  <div>
-                    <p className="text-xs font-semibold text-white">{m.metric}</p>
-                    <p className="text-xs text-white/40 font-mono mt-0.5">{m.formula}</p>
-                  </div>
-                  <span className="text-xs text-emerald-400 shrink-0">{m.typical}</span>
-                </div>
-                <p className="mt-1 text-xs text-rose-400/80">{m.warn}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-
-        <div className="rounded-xl border border-white/10 bg-white/5 p-4">
-          <div className="mb-3 flex items-center gap-2">
-            <FileText className="h-4 w-4 text-amber-400" />
-            <h3 className="text-sm font-semibold text-white">PIK Interest Explained</h3>
-          </div>
-          <p className="text-xs text-white/60 mb-3">
-            Payment-in-Kind (PIK) allows borrowers to accrue interest as additional principal rather than paying cash. Favored in LBOs to preserve cash for growth/operations.
-          </p>
-          <div className="space-y-2 text-xs">
-            <div className="flex justify-between rounded bg-white/5 p-2">
-              <span className="text-white/50">Cash pay component</span>
-              <span className="text-white/80">SOFR + 400bps</span>
-            </div>
-            <div className="flex justify-between rounded bg-white/5 p-2">
-              <span className="text-white/50">PIK component</span>
-              <span className="text-amber-400">+ 150bps (accrues)</span>
-            </div>
-            <div className="flex justify-between rounded bg-white/5 p-2">
-              <span className="text-white/50">All-in (if PIK elected)</span>
-              <span className="text-indigo-300">SOFR + 550bps</span>
-            </div>
-            <div className="flex justify-between rounded bg-white/5 p-2">
-              <span className="text-white/50">Lender risk</span>
-              <span className="text-rose-400">Rising principal balance</span>
-            </div>
-            <div className="flex justify-between rounded bg-white/5 p-2">
-              <span className="text-white/50">Borrower benefit</span>
-              <span className="text-emerald-400">Cash flow preservation</span>
-            </div>
-          </div>
-          <InfoBox text="PIK interest typically triggers if leverage exceeds a threshold (e.g., >5.5x Net Leverage), acting as an automatic circuit-breaker before technical default." variant="warn" />
-        </div>
-      </div>
-
-      {/* Term sheet */}
-      <TermSheet />
-    </div>
-  );
-}
-
-// ── Tab 3: BDC Analysis ───────────────────────────────────────────────────────
-
-const BDC_DATA = [
-  {
-    ticker: "ARCC",
-    name: "Ares Capital Corporation",
-    nav: 19.24,
-    price: 21.10,
-    dividendYield: 9.4,
-    leverage: 1.15,
-    totalAssets: 21800,
-    nonAccrual: 1.2,
-    focus: "Broadly diversified",
-    rating: "A",
-    description: "Largest BDC; diversified across 500+ portfolio companies, all industries.",
-  },
-  {
-    ticker: "OBDC",
-    name: "Blue Owl Capital Corp",
-    nav: 15.38,
-    price: 15.70,
-    dividendYield: 10.2,
-    leverage: 1.20,
-    totalAssets: 13400,
-    nonAccrual: 0.8,
-    focus: "Large/upper middle market",
-    rating: "B+",
-    description: "Focuses on upper middle market; strong underwriting with defensive positioning.",
-  },
-  {
-    ticker: "FSCO",
-    name: "FS KKR Capital Corp",
-    nav: 23.80,
-    price: 21.50,
-    dividendYield: 13.8,
-    leverage: 1.18,
-    totalAssets: 15200,
-    nonAccrual: 2.1,
-    focus: "Opportunistic / middle market",
-    rating: "B",
-    description: "Larger non-accrual but higher yield; pursues opportunistic credit situations.",
-  },
-];
-
-function NavPriceChart({ nav, price, ticker }: { nav: number; price: number; ticker: string }) {
-  const premium = ((price - nav) / nav) * 100;
-  const isDiscount = premium < 0;
-  const W = 160;
-  const H = 60;
-  const maxVal = Math.max(nav, price) * 1.1;
-
-  const navX = (nav / maxVal) * (W - 20) + 10;
-  const priceX = (price / maxVal) * (W - 20) + 10;
-
-  return (
-    <div>
-      <svg viewBox={`0 0 ${W} ${H}`} className="w-full">
-        {/* NAV bar */}
-        <rect x={10} y={10} width={(nav / maxVal) * (W - 20)} height={16} rx={3} fill="rgba(99,102,241,0.3)" />
-        <text x={navX - 4} y={22} textAnchor="end" fontSize={8} fill="rgba(99,102,241,0.8)">
-          NAV ${nav.toFixed(2)}
-        </text>
-
-        {/* Price bar */}
-        <rect x={10} y={32} width={(price / maxVal) * (W - 20)} height={16} rx={3} fill={isDiscount ? "rgba(244,63,94,0.3)" : "rgba(16,185,129,0.3)"} />
-        <text x={priceX - 4} y={44} textAnchor="end" fontSize={8} fill={isDiscount ? "rgb(251,113,133)" : "rgb(52,211,153)"}>
-          ${price.toFixed(2)}
-        </text>
-
-        <text x={W / 2} y={58} textAnchor="middle" fontSize={7} fill="rgba(255,255,255,0.4)">
-          {isDiscount ? `${Math.abs(premium).toFixed(1)}% discount to NAV` : `${premium.toFixed(1)}% premium to NAV`}
-        </text>
-      </svg>
-      <p className={cn("text-xs text-center mt-1 font-semibold", isDiscount ? "text-rose-400" : "text-emerald-400")}>
-        {ticker}: {isDiscount ? "Discount" : "Premium"}
-      </p>
-    </div>
-  );
-}
-
-function BDCAnalysisTab() {
-  const [selectedBDC, setSelectedBDC] = useState<string>("ARCC");
-  const detail = BDC_DATA.find((b) => b.ticker === selectedBDC)!;
-
-  return (
-    <div className="space-y-6">
-      <div className="grid grid-cols-2 gap-3 sm:grid-cols-4">
-        <StatCard label="BDCs in US" value="~50" sub="Registered Investment Companies" icon={Briefcase} />
-        <StatCard label="Max Leverage" value="2:1" sub="Debt-to-equity cap (regulatory)" icon={Shield} />
-        <StatCard label="Avg Dividend Yield" value="9–14%" sub="Qualifying income distributions" highlight="pos" icon={Percent} />
-        <StatCard label="90% Distribution" value="Required" sub="To qualify as RIC (pass-through)" icon={CheckCircle} />
-      </div>
-
-      <InfoBox
-        text="BDCs are closed-end funds regulated under the Investment Company Act of 1940 that provide financing to small/mid-size companies. They must distribute 90%+ of taxable income to shareholders and maintain asset coverage ratio ≥ 150% (post-2018 Small Business Credit Availability Act)."
-        variant="info"
-      />
-
-      {/* BDC Structure */}
-      <div className="rounded-xl border border-white/10 bg-white/5 p-4">
-        <SectionHeader title="BDC Structure Overview" />
-        <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
-          <div className="space-y-2 text-xs text-white/70">
-            <div className="flex items-start gap-2">
-              <CheckCircle className="mt-0.5 h-3.5 w-3.5 shrink-0 text-emerald-400" />
-              <span>Publicly traded — retail investor access to private credit</span>
-            </div>
-            <div className="flex items-start gap-2">
-              <CheckCircle className="mt-0.5 h-3.5 w-3.5 shrink-0 text-emerald-400" />
-              <span>Regulated Investment Company (RIC) structure — no corporate tax at fund level</span>
-            </div>
-            <div className="flex items-start gap-2">
-              <CheckCircle className="mt-0.5 h-3.5 w-3.5 shrink-0 text-emerald-400" />
-              <span>Floating rate portfolios — natural hedge in rising rate environment</span>
-            </div>
-            <div className="flex items-start gap-2">
-              <AlertTriangle className="mt-0.5 h-3.5 w-3.5 shrink-0 text-amber-400" />
-              <span>Leverage amplifies losses; asset coverage ratio must stay ≥ 150%</span>
-            </div>
-            <div className="flex items-start gap-2">
-              <AlertTriangle className="mt-0.5 h-3.5 w-3.5 shrink-0 text-amber-400" />
-              <span>NAV erosion risk in credit downturns — common with poorly underwritten BDCs</span>
-            </div>
-            <div className="flex items-start gap-2">
-              <AlertTriangle className="mt-0.5 h-3.5 w-3.5 shrink-0 text-amber-400" />
-              <span>Management fees (1.5–2%) + incentive fees (15–20% over hurdle) compress net returns</span>
-            </div>
-          </div>
-          <div className="space-y-2">
-            <p className="text-xs font-semibold text-white/60 uppercase tracking-wider">Asset Coverage Ratio</p>
-            <div className="rounded-lg bg-white/5 p-3 text-xs space-y-1.5">
-              <div className="flex justify-between">
-                <span className="text-white/50">Formula</span>
-                <span className="font-mono text-white/80">Assets / (Debt + Pref)</span>
-              </div>
-              <div className="flex justify-between">
-                <span className="text-white/50">Minimum (post-2018)</span>
-                <span className="text-emerald-400">150% (1.5:1 D/E)</span>
-              </div>
-              <div className="flex justify-between">
-                <span className="text-white/50">Prior standard</span>
-                <span className="text-white/60">200% (1:1 D/E)</span>
-              </div>
-              <div className="flex justify-between">
-                <span className="text-white/50">Breach consequence</span>
-                <span className="text-rose-400">No new borrowings</span>
-              </div>
-              <div className="flex justify-between">
-                <span className="text-white/50">Dividend restriction</span>
-                <span className="text-rose-400">If &lt;110% coverage</span>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      {/* BDC Comparison */}
-      <div className="rounded-xl border border-white/10 bg-white/5 p-4">
-        <SectionHeader title="BDC Comparison Table" subtitle="Select a BDC for detailed NAV analysis" />
-        <div className="mb-4 overflow-x-auto">
-          <table className="w-full text-sm">
-            <thead>
-              <tr className="border-b border-white/10">
-                <th className="pb-2 text-left text-xs font-medium text-white/50">Ticker</th>
-                <th className="pb-2 text-right text-xs font-medium text-white/50">NAV/Share</th>
-                <th className="pb-2 text-right text-xs font-medium text-white/50">Price</th>
-                <th className="pb-2 text-right text-xs font-medium text-white/50">P/NAV</th>
-                <th className="pb-2 text-right text-xs font-medium text-white/50">Yield</th>
-                <th className="pb-2 text-right text-xs font-medium text-white/50">Leverage</th>
-                <th className="pb-2 text-right text-xs font-medium text-white/50">Non-Accrual</th>
-                <th className="pb-2 text-right text-xs font-medium text-white/50">Assets</th>
-              </tr>
-            </thead>
-            <tbody className="divide-y divide-white/5">
-              {BDC_DATA.map((bdc) => {
-                const pNav = bdc.price / bdc.nav;
-                const isSelected = selectedBDC === bdc.ticker;
-                return (
-                  <tr
-                    key={bdc.ticker}
-                    className={cn("cursor-pointer transition-colors", isSelected ? "bg-indigo-500/10" : "hover:bg-white/5")}
-                    onClick={() => setSelectedBDC(bdc.ticker)}
-                  >
-                    <td className="py-2 font-mono text-xs font-bold text-indigo-400">{bdc.ticker}</td>
-                    <td className="py-2 text-right text-xs text-white/80">${bdc.nav.toFixed(2)}</td>
-                    <td className="py-2 text-right text-xs text-white/80">${bdc.price.toFixed(2)}</td>
-                    <td className={cn("py-2 text-right text-xs font-semibold", pNav > 1 ? "text-emerald-400" : "text-rose-400")}>
-                      {pNav.toFixed(2)}x
-                    </td>
-                    <td className="py-2 text-right text-xs text-amber-400">{bdc.dividendYield.toFixed(1)}%</td>
-                    <td className="py-2 text-right text-xs text-white/70">{bdc.leverage.toFixed(2)}x</td>
-                    <td className={cn("py-2 text-right text-xs", bdc.nonAccrual > 1.5 ? "text-rose-400" : "text-emerald-400")}>
-                      {bdc.nonAccrual.toFixed(1)}%
-                    </td>
-                    <td className="py-2 text-right text-xs text-white/60">{fmtB(bdc.totalAssets / 1000)}</td>
-                  </tr>
-                );
-              })}
-            </tbody>
-          </table>
-        </div>
-
-        {/* Detail panel */}
-        <AnimatePresence mode="wait">
-          <motion.div
-            key={selectedBDC}
-            initial={{ opacity: 0, y: 8 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -8 }}
-            transition={{ duration: 0.2 }}
-            className="rounded-lg border border-indigo-500/30 bg-indigo-500/10 p-4"
-          >
-            <div className="flex items-start justify-between mb-3">
-              <div>
-                <p className="text-sm font-bold text-indigo-300">{detail.ticker}</p>
-                <p className="text-xs text-white/60">{detail.name}</p>
-              </div>
-              <Badge className="bg-indigo-500/20 text-indigo-300 text-xs">{detail.focus}</Badge>
-            </div>
-            <p className="text-xs text-white/60 mb-4">{detail.description}</p>
-            <NavPriceChart nav={detail.nav} price={detail.price} ticker={detail.ticker} />
-          </motion.div>
-        </AnimatePresence>
-      </div>
-    </div>
-  );
-}
-
-// ── Tab 4: Risk & Returns ─────────────────────────────────────────────────────
-
-const VINTAGE_DATA = [
-  { year: "2015", irr: 8.2, defaultRate: 1.8 },
-  { year: "2016", irr: 9.1, defaultRate: 2.1 },
-  { year: "2017", irr: 9.8, defaultRate: 1.5 },
-  { year: "2018", irr: 10.5, defaultRate: 2.4 },
-  { year: "2019", irr: 11.2, defaultRate: 2.9 },
-  { year: "2020", irr: 7.4, defaultRate: 4.8 },
-  { year: "2021", irr: 12.3, defaultRate: 1.1 },
-  { year: "2022", irr: 13.8, defaultRate: 1.6 },
-  { year: "2023", irr: 12.1, defaultRate: 2.0 },
-];
-
-const SCATTER_DATA = [
-  { label: "IG Corp Bonds", risk: 3.2, ret: 5.1, color: "#818cf8" },
-  { label: "HY Corp Bonds", risk: 7.8, ret: 7.9, color: "#f472b6" },
-  { label: "Leveraged Loans", risk: 6.5, ret: 8.4, color: "#34d399" },
-  { label: "Private Credit (1L)", risk: 6.2, ret: 10.8, color: "#6366f1" },
-  { label: "Private Credit (Unitr.)", risk: 7.5, ret: 12.1, color: "#a855f7" },
-  { label: "Mezzanine", risk: 11.0, ret: 14.5, color: "#f59e0b" },
-  { label: "PE Equity", risk: 18.5, ret: 18.2, color: "#ef4444" },
-];
-
-function VintageChart() {
-  const W = 480;
-  const H = 160;
-  const PAD = { top: 20, right: 20, bottom: 30, left: 40 };
-  const innerW = W - PAD.left - PAD.right;
-  const innerH = H - PAD.top - PAD.bottom;
-  const step = innerW / (VINTAGE_DATA.length - 1);
-
-  const irrMax = 16;
-  const defaultMax = 6;
-
-  const irrPath = VINTAGE_DATA.map((d, i) => {
-    const x = i * step;
-    const y = innerH - (d.irr / irrMax) * innerH;
-    return `${i === 0 ? "M" : "L"} ${x.toFixed(1)} ${y.toFixed(1)}`;
-  }).join(" ");
-
-  const defPath = VINTAGE_DATA.map((d, i) => {
-    const x = i * step;
-    const y = innerH - (d.defaultRate / defaultMax) * innerH;
-    return `${i === 0 ? "M" : "L"} ${x.toFixed(1)} ${y.toFixed(1)}`;
-  }).join(" ");
-
-  return (
-    <div className="overflow-x-auto">
-      <svg viewBox={`0 0 ${W} ${H}`} className="w-full max-w-2xl" style={{ minWidth: 300 }}>
-        <g transform={`translate(${PAD.left},${PAD.top})`}>
-          {[0, 4, 8, 12, 16].map((tick) => (
-            <g key={tick}>
-              <line x1={0} y1={innerH - (tick / irrMax) * innerH} x2={innerW} y2={innerH - (tick / irrMax) * innerH} stroke="rgba(255,255,255,0.06)" strokeWidth={1} />
-              <text x={-6} y={innerH - (tick / irrMax) * innerH + 4} textAnchor="end" fontSize={8} fill="rgba(255,255,255,0.35)">{tick}%</text>
-            </g>
-          ))}
-          <path d={irrPath} fill="none" stroke="#818cf8" strokeWidth={2} strokeLinejoin="round" />
-          <path d={defPath} fill="none" stroke="#f87171" strokeWidth={1.5} strokeLinejoin="round" strokeDasharray="4 3" />
-          {VINTAGE_DATA.map((d, i) => (
-            <g key={d.year}>
-              <circle cx={i * step} cy={innerH - (d.irr / irrMax) * innerH} r={3} fill="#818cf8" />
-              <text x={i * step} y={innerH + 18} textAnchor="middle" fontSize={8} fill="rgba(255,255,255,0.4)">{d.year}</text>
-            </g>
-          ))}
-        </g>
-      </svg>
-      <div className="mt-2 flex items-center gap-4 text-xs text-white/50">
-        <div className="flex items-center gap-1"><div className="h-1.5 w-4 rounded bg-indigo-400" /> IRR (left)</div>
-        <div className="flex items-center gap-1"><div className="h-px w-4 border-t border-dashed border-rose-400" /> Default Rate (scaled)</div>
-      </div>
-    </div>
-  );
-}
-
-function RiskReturnScatter() {
-  const W = 420;
-  const H = 200;
-  const PAD = { top: 20, right: 20, bottom: 35, left: 45 };
-  const innerW = W - PAD.left - PAD.right;
-  const innerH = H - PAD.top - PAD.bottom;
-  const maxRisk = 22;
-  const maxRet = 22;
-
-  const xScale = (v: number) => (v / maxRisk) * innerW;
-  const yScale = (v: number) => innerH - (v / maxRet) * innerH;
-
-  return (
-    <div className="overflow-x-auto">
-      <svg viewBox={`0 0 ${W} ${H}`} className="w-full max-w-xl" style={{ minWidth: 280 }}>
-        <defs>
-          <marker id="arrowTip" markerWidth="6" markerHeight="6" refX="3" refY="3" orient="auto">
-            <path d="M0,0 L6,3 L0,6 Z" fill="rgba(255,255,255,0.2)" />
-          </marker>
-        </defs>
-        <g transform={`translate(${PAD.left},${PAD.top})`}>
-          {/* Efficient frontier region */}
-          <path d={`M ${xScale(3)} ${yScale(5)} Q ${xScale(9)} ${yScale(11)} ${xScale(11)} ${yScale(14.5)} T ${xScale(18)} ${yScale(18)}`}
-            fill="none" stroke="rgba(99,102,241,0.2)" strokeWidth={12} strokeLinecap="round" />
-
-          {[0, 5, 10, 15, 20].map((tick) => (
-            <g key={tick}>
-              <line x1={xScale(tick)} y1={0} x2={xScale(tick)} y2={innerH} stroke="rgba(255,255,255,0.06)" strokeWidth={1} />
-              <text x={xScale(tick)} y={innerH + 16} textAnchor="middle" fontSize={8} fill="rgba(255,255,255,0.3)">{tick}%</text>
-            </g>
-          ))}
-          {[0, 5, 10, 15, 20].map((tick) => (
-            <g key={tick}>
-              <line x1={0} y1={yScale(tick)} x2={innerW} y2={yScale(tick)} stroke="rgba(255,255,255,0.06)" strokeWidth={1} />
-              <text x={-6} y={yScale(tick) + 4} textAnchor="end" fontSize={8} fill="rgba(255,255,255,0.3)">{tick}%</text>
-            </g>
-          ))}
-
-          <text x={innerW / 2} y={innerH + 30} textAnchor="middle" fontSize={8} fill="rgba(255,255,255,0.3)">Volatility / Risk</text>
-          <text x={-innerH / 2} y={-32} textAnchor="middle" fontSize={8} fill="rgba(255,255,255,0.3)" transform="rotate(-90)">Return</text>
-
-          {SCATTER_DATA.map((pt) => (
-            <g key={pt.label}>
-              <circle
-                cx={xScale(pt.risk)}
-                cy={yScale(pt.ret)}
-                r={5}
-                fill={pt.color}
-                fillOpacity={0.8}
-                stroke="rgba(0,0,0,0.4)"
-                strokeWidth={1}
-              />
-              <text
-                x={xScale(pt.risk) + 7}
-                y={yScale(pt.ret) + 4}
-                fontSize={7}
-                fill="rgba(255,255,255,0.6)"
-              >
-                {pt.label}
-              </text>
-            </g>
-          ))}
-        </g>
-      </svg>
-    </div>
-  );
-}
-
-function RiskReturnsTab() {
-  return (
-    <div className="space-y-6">
-      <div className="grid grid-cols-2 gap-3 sm:grid-cols-4">
-        <StatCard label="Illiquidity Premium" value="+200–400bps" sub="vs public credit" highlight="pos" icon={Lock} />
-        <StatCard label="Avg Default Rate" value="~2.0%" sub="5-yr rolling (direct lending)" highlight="neutral" icon={TrendingDown} />
-        <StatCard label="Recovery Rate" value="65–75%" sub="senior secured (1L)" highlight="pos" icon={TrendingUp} />
-        <StatCard label="Floating Rate" value="~95%+" sub="of direct lending portfolio" highlight="pos" icon={Activity} />
-      </div>
-
-      {/* Floating rate advantage */}
-      <div className="rounded-xl border border-white/10 bg-white/5 p-4">
-        <SectionHeader title="Floating Rate Advantage" subtitle="How rising rates benefit private credit lenders" />
-        <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
-          <div className="space-y-2">
-            <div className="rounded-lg bg-emerald-500/10 border border-emerald-500/30 p-3 text-xs">
-              <p className="font-semibold text-emerald-400 mb-2">When SOFR rises +100bps:</p>
-              <div className="space-y-1 text-white/70">
-                <div className="flex justify-between"><span>Current yield (SOFR 5.25% + 550bps)</span><span className="text-emerald-400">10.75%</span></div>
-                <div className="flex justify-between"><span>New yield (SOFR 6.25% + 550bps)</span><span className="text-emerald-400">11.75%</span></div>
-                <div className="flex justify-between"><span>Incremental income</span><span className="text-white/80">+100bps per $1B</span></div>
-              </div>
-            </div>
-            <InfoBox text="Unlike fixed-rate bonds that lose value when rates rise, private credit loans reprice immediately. This makes them a natural inflation/rate hedge." variant="success" />
-          </div>
-          <div className="space-y-2 text-xs">
-            <p className="text-white/50 font-semibold uppercase tracking-wider text-xs">Rate Floors</p>
-            <p className="text-white/60">Most direct lending loans include SOFR floors (typically 75–100bps). This protects lender yield if rates fall below floor, while passing through upside if rates rise above.</p>
-            <div className="rounded-lg bg-white/5 p-2.5 space-y-1">
-              <div className="flex justify-between">
-                <span className="text-white/50">SOFR Floor</span>
-                <span className="text-indigo-300">100bps</span>
-              </div>
-              <div className="flex justify-between">
-                <span className="text-white/50">If SOFR = 0.50%</span>
-                <span className="text-white/80">Treated as 1.00%</span>
-              </div>
-              <div className="flex justify-between">
-                <span className="text-white/50">Effective min yield</span>
-                <span className="text-emerald-400">Floor + spread</span>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      {/* Vintage Analysis */}
-      <div className="rounded-xl border border-white/10 bg-white/5 p-4">
-        <SectionHeader title="Vintage Year Analysis" subtitle="Gross IRR and default rate by vintage (2015–2023)" />
-        <VintageChart />
-        <div className="mt-4 grid grid-cols-3 gap-3 text-xs">
-          <div className="rounded-lg bg-white/5 p-2.5 text-center">
-            <p className="text-white/40">Best Vintage</p>
-            <p className="text-lg font-bold text-emerald-400">2022</p>
-            <p className="text-white/60">13.8% IRR</p>
-          </div>
-          <div className="rounded-lg bg-white/5 p-2.5 text-center">
-            <p className="text-white/40">Worst Vintage</p>
-            <p className="text-lg font-bold text-rose-400">2020</p>
-            <p className="text-white/60">7.4% IRR, 4.8% default</p>
-          </div>
-          <div className="rounded-lg bg-white/5 p-2.5 text-center">
-            <p className="text-white/40">Average IRR</p>
-            <p className="text-lg font-bold text-indigo-400">10.7%</p>
-            <p className="text-white/60">2015–2023</p>
-          </div>
-        </div>
-      </div>
-
-      {/* Risk/Return scatter */}
-      <div className="rounded-xl border border-white/10 bg-white/5 p-4">
-        <SectionHeader title="Risk/Return vs. Public Credit" subtitle="Private credit offers superior risk-adjusted returns" />
-        <RiskReturnScatter />
-        <InfoBox
-          text="Private credit occupies an attractive position on the efficient frontier — higher returns than public high-yield and leveraged loans with comparable or lower volatility due to hold-to-maturity nature and covenant protections."
-          variant="info"
-        />
-      </div>
-
-      {/* J-Curve explanation */}
-      <div className="rounded-xl border border-white/10 bg-white/5 p-4">
-        <SectionHeader title="J-Curve Effect" subtitle="Why early returns look negative in closed-end private credit funds" />
-        <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
-          <div className="space-y-2 text-xs text-white/60">
-            <p>Closed-end private credit funds exhibit a J-curve because:</p>
-            <div className="flex items-start gap-2">
-              <span className="text-indigo-400 font-mono">1.</span>
-              Management fees and setup costs drag returns early
-            </div>
-            <div className="flex items-start gap-2">
-              <span className="text-indigo-400 font-mono">2.</span>
-              Capital is deployed gradually (12–24 months), meaning early years earn on only partial capital
-            </div>
-            <div className="flex items-start gap-2">
-              <span className="text-indigo-400 font-mono">3.</span>
-              Investments must be marked conservatively at cost initially
-            </div>
-            <div className="flex items-start gap-2">
-              <span className="text-indigo-400 font-mono">4.</span>
-              Cash flows accelerate in years 3–7 as loans mature and PIK income is realized
-            </div>
-          </div>
-          <div>
-            <svg viewBox="0 0 200 100" className="w-full">
-              <defs>
-                <linearGradient id="jcurveGrad" x1="0" y1="0" x2="1" y2="0">
-                  <stop offset="0%" stopColor="#f87171" />
-                  <stop offset="45%" stopColor="#f87171" />
-                  <stop offset="50%" stopColor="#818cf8" />
-                  <stop offset="100%" stopColor="#34d399" />
-                </linearGradient>
-              </defs>
-              <line x1={20} y1={10} x2={20} y2={80} stroke="rgba(255,255,255,0.2)" strokeWidth={1} />
-              <line x1={20} y1={50} x2={190} y2={50} stroke="rgba(255,255,255,0.2)" strokeWidth={1} />
-              <path d="M 25 48 Q 40 75 60 70 Q 80 65 90 52 Q 120 35 150 20 Q 170 12 185 10"
-                fill="none" stroke="url(#jcurveGrad)" strokeWidth={2.5} strokeLinejoin="round" />
-              <text x={50} y={90} textAnchor="middle" fontSize={7} fill="rgba(244,63,94,0.8)">Deploy phase</text>
-              <text x={140} y={90} textAnchor="middle" fontSize={7} fill="rgba(52,211,153,0.8)">Harvest phase</text>
-              <text x={18} y={7} fontSize={7} fill="rgba(255,255,255,0.4)" textAnchor="end">+%</text>
-              <text x={18} y={55} fontSize={7} fill="rgba(255,255,255,0.4)" textAnchor="end">0</text>
-            </svg>
-            <p className="text-xs text-white/40 text-center">Illustrative IRR profile over fund life</p>
-          </div>
-        </div>
-      </div>
-    </div>
-  );
-}
-
-// ── Tab 5: Special Situations ─────────────────────────────────────────────────
-
-const SPECIAL_INSTRUMENTS = [
-  {
-    name: "Mezzanine Debt",
-    yield: "12–18%",
-    structure: "Subordinated debt + warrants",
-    security: "Unsecured / 2nd lien",
-    typical: "LBOs, growth capex",
-    color: "amber",
-    desc: "Hybrid between debt and equity. Typically unsecured or junior secured with warrant coverage (equity kicker). Receives coupon + PIK + equity upside at exit.",
-    pros: ["Higher yield than senior debt", "Equity upside via warrants", "Priority over equity in liquidation"],
-    cons: ["Unsecured — high loss given default", "Complex structures require legal expertise", "Illiquid — few secondary buyers"],
-  },
-  {
-    name: "Preferred Equity",
-    yield: "10–15%",
-    structure: "Preferred shares + dividend",
-    security: "Senior to common equity",
-    typical: "Real estate, growth equity",
-    color: "purple",
-    desc: "Equity instrument with debt-like features. Fixed dividend (cumulative or non-cumulative), conversion rights, and liquidation preference. Common in real estate JVs and growth companies.",
-    pros: ["Cumulative dividends (accrues if missed)", "Liquidation preference over common", "Conversion option for upside"],
-    cons: ["Junior to all debt — last before common", "Dividend not tax-deductible for issuer", "Returns capped without participation feature"],
-  },
-  {
-    name: "Royalty Financing",
-    yield: "8–15%",
-    structure: "Revenue royalty stream",
-    security: "Revenue lien",
-    typical: "Mining, pharmaceuticals, music",
-    color: "blue",
-    desc: "Lender receives a percentage of gross revenue in perpetuity or until a cap (e.g., 2–3x invested capital). No dilution, no fixed payments — self-regulating with business performance.",
-    pros: ["No dilution for founders", "Self-scaling with revenue growth", "Non-correlated to market cycles"],
-    cons: ["Complex valuation of royalty stream", "Upside capped at royalty multiple", "Depends heavily on revenue trajectory"],
-  },
-  {
-    name: "Revenue-Based Financing",
-    yield: "6–25%",
-    structure: "Fixed repayment cap (1.3–2.0x)",
-    security: "Revenue assignment",
-    typical: "SaaS, e-commerce, DTC brands",
-    color: "emerald",
-    desc: "Company receives capital and repays via a fixed % of monthly revenue until a cap is reached. Popular with venture-backed SaaS companies that prefer non-dilutive growth capital.",
-    pros: ["Non-dilutive — no equity given up", "Repayment scales with performance", "Quick close (days vs months)"],
-    cons: ["Expensive if company grows fast (high effective IRR)", "Recourse may include IP/brand assignment", "Lender has limited upside vs equity"],
-  },
-];
-
-function CapitalStructureSVG() {
-  const W = 380;
-  const H = 280;
-
-  const layers = [
-    { label: "Senior Secured (1st Lien)", y: 30, h: 42, fill: "rgba(16,185,129,0.5)", stroke: "#10b981", pct: "35–50%", yield: "8–11%", priority: "Highest" },
-    { label: "Senior Secured (2nd Lien)", y: 78, h: 36, fill: "rgba(59,130,246,0.4)", stroke: "#3b82f6", pct: "45–60%", yield: "10–13%", priority: "2nd" },
-    { label: "Unitranche", y: 120, h: 36, fill: "rgba(99,102,241,0.4)", stroke: "#6366f1", pct: "50–65%", yield: "10–13%", priority: "Blended" },
-    { label: "Mezzanine / Sub. Debt", y: 162, h: 36, fill: "rgba(245,158,11,0.4)", stroke: "#f59e0b", pct: "60–75%", yield: "14–18%", priority: "3rd" },
-    { label: "Preferred Equity", y: 204, h: 30, fill: "rgba(168,85,247,0.4)", stroke: "#a855f7", pct: "75–90%", yield: "10–15%", priority: "4th" },
-    { label: "Common Equity", y: 240, h: 30, fill: "rgba(239,68,68,0.3)", stroke: "#ef4444", pct: "90–100%", yield: "Residual", priority: "Last" },
-  ];
-
-  const wBase = 320;
-  const wStep = (wBase - 200) / (layers.length - 1);
-
-  return (
-    <div className="overflow-x-auto">
-      <svg viewBox={`0 0 ${W} ${H}`} className="w-full max-w-xl" style={{ minWidth: 300 }}>
-        <text x={W / 2} y={16} textAnchor="middle" fontSize={9} fill="rgba(255,255,255,0.4)" fontWeight="bold">
-          CAPITAL STRUCTURE — LIQUIDATION PRIORITY (TOP = FIRST PAID)
-        </text>
-        {layers.map((layer, i) => {
-          const w = wBase - i * wStep;
-          const x = (W - w) / 2;
-          return (
-            <g key={layer.label}>
-              <rect x={x} y={layer.y} width={w} height={layer.h - 2} rx={4} fill={layer.fill} stroke={layer.stroke} strokeWidth={1} />
-              <text x={W / 2} y={layer.y + layer.h / 2 + 1} textAnchor="middle" fontSize={8} fill="rgba(255,255,255,0.9)" fontWeight="600">
-                {layer.label}
-              </text>
-              <text x={W / 2} y={layer.y + layer.h / 2 + 10} textAnchor="middle" fontSize={7} fill="rgba(255,255,255,0.5)">
-                LTV: {layer.pct} · Yield: {layer.yield}
-              </text>
-            </g>
-          );
-        })}
-      </svg>
-    </div>
-  );
-}
-
-function SpecialSituationsTab() {
-  const [selected, setSelected] = useState<string>("Mezzanine Debt");
-  const detail = SPECIAL_INSTRUMENTS.find((s) => s.name === selected)!;
-
-  const colorMap: Record<string, string> = {
-    amber: "border-amber-500/40 bg-amber-500/10 text-amber-400",
-    purple: "border-purple-500/40 bg-purple-500/10 text-purple-400",
-    blue: "border-blue-500/40 bg-blue-500/10 text-blue-400",
-    emerald: "border-emerald-500/40 bg-emerald-500/10 text-emerald-400",
-  };
-
-  return (
-    <div className="space-y-6">
-      <div className="grid grid-cols-2 gap-3 sm:grid-cols-4">
-        <StatCard label="Mezz Yield Range" value="12–18%" sub="+ equity kicker upside" highlight="pos" icon={Percent} />
-        <StatCard label="Preferred Equity" value="10–15%" sub="cumulative dividend" highlight="pos" icon={Star} />
-        <StatCard label="Royalty Financing" value="8–15%" sub="revenue royalty stream" highlight="neutral" icon={Activity} />
-        <StatCard label="RBF Repayment Cap" value="1.3–2.0x" sub="of invested principal" highlight="neutral" icon={BarChart3} />
-      </div>
-
-      {/* Instrument selector */}
-      <div className="rounded-xl border border-white/10 bg-white/5 p-4">
-        <SectionHeader title="Special Situations Instruments" subtitle="Click an instrument to explore" />
-        <div className="mb-4 grid grid-cols-2 gap-2 sm:grid-cols-4">
-          {SPECIAL_INSTRUMENTS.map((inst) => (
-            <button
-              key={inst.name}
-              onClick={() => setSelected(inst.name)}
-              className={cn(
-                "rounded-lg border p-2.5 text-left transition-all text-xs",
-                selected === inst.name
-                  ? colorMap[inst.color]
-                  : "border-white/10 bg-white/5 text-white/60 hover:bg-white/10"
-              )}
-            >
-              <p className="font-semibold text-xs mb-0.5">{inst.name}</p>
-              <p className="text-xs opacity-70">{inst.yield}</p>
-            </button>
-          ))}
-        </div>
-
-        <AnimatePresence mode="wait">
-          <motion.div
-            key={selected}
-            initial={{ opacity: 0, x: 16 }}
-            animate={{ opacity: 1, x: 0 }}
-            exit={{ opacity: 0, x: -16 }}
-            transition={{ duration: 0.2 }}
-            className="grid grid-cols-1 gap-4 sm:grid-cols-2"
-          >
-            <div className="space-y-3">
-              <div className="rounded-lg bg-white/5 p-3">
-                <p className="text-xs text-white/50 mb-1">Structure</p>
-                <p className="text-sm text-white font-semibold">{detail.structure}</p>
-              </div>
-              <div className="rounded-lg bg-white/5 p-3">
-                <p className="text-xs text-white/50 mb-1">Security</p>
-                <p className="text-sm text-white">{detail.security}</p>
-              </div>
-              <div className="rounded-lg bg-white/5 p-3">
-                <p className="text-xs text-white/50 mb-1">Typical Use Case</p>
-                <p className="text-sm text-white">{detail.typical}</p>
-              </div>
-              <p className="text-xs text-white/60 rounded-lg bg-white/5 p-3">{detail.desc}</p>
-            </div>
-            <div className="space-y-3">
-              <div className="rounded-lg bg-emerald-500/10 border border-emerald-500/30 p-3">
-                <p className="text-xs font-semibold text-emerald-400 mb-2">Advantages</p>
-                <ul className="space-y-1.5">
-                  {detail.pros.map((p) => (
-                    <li key={p} className="flex items-start gap-2 text-xs text-white/70">
-                      <CheckCircle className="mt-0.5 h-3 w-3 shrink-0 text-emerald-400" />
-                      {p}
-                    </li>
-                  ))}
-                </ul>
-              </div>
-              <div className="rounded-lg bg-rose-500/10 border border-rose-500/30 p-3">
-                <p className="text-xs font-semibold text-rose-400 mb-2">Risks</p>
-                <ul className="space-y-1.5">
-                  {detail.cons.map((c) => (
-                    <li key={c} className="flex items-start gap-2 text-xs text-white/70">
-                      <AlertTriangle className="mt-0.5 h-3 w-3 shrink-0 text-rose-400" />
-                      {c}
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            </div>
-          </motion.div>
-        </AnimatePresence>
-      </div>
-
-      {/* Capital structure SVG */}
-      <div className="rounded-xl border border-white/10 bg-white/5 p-4">
-        <SectionHeader title="Capital Structure Positioning" subtitle="Where each instrument sits in the stack" />
-        <CapitalStructureSVG />
-        <div className="mt-4 grid grid-cols-2 gap-2 sm:grid-cols-3 text-xs text-white/60">
-          <div className="rounded-lg bg-emerald-500/10 border border-emerald-500/20 p-2.5">
-            <span className="font-semibold text-emerald-400">Senior Secured:</span> First priority lien on all assets. Lowest default loss.
-          </div>
-          <div className="rounded-lg bg-amber-500/10 border border-amber-500/20 p-2.5">
-            <span className="font-semibold text-amber-400">Mezzanine:</span> Subordinated; earns equity-like returns with debt protections.
-          </div>
-          <div className="rounded-lg bg-rose-500/10 border border-rose-500/20 p-2.5">
-            <span className="font-semibold text-rose-400">Common Equity:</span> Last in line; unlimited upside but all losses absorbed first.
-          </div>
-        </div>
-      </div>
-
-      {/* Comparison matrix */}
-      <div className="rounded-xl border border-white/10 bg-white/5 p-4">
-        <SectionHeader title="Special Situations Comparison Matrix" />
+      {/* BDC vs Private Fund */}
+      <div className="rounded-xl border border-white/10 bg-white/5 p-5">
+        <SectionHeading title="BDC vs. Private Credit Fund Structure" sub="Key structural differences for investors" />
         <div className="overflow-x-auto">
           <table className="w-full text-xs">
             <thead>
               <tr className="border-b border-white/10">
-                <th className="pb-2 text-left text-xs font-medium text-white/50">Instrument</th>
-                <th className="pb-2 text-right text-xs font-medium text-white/50">Yield</th>
-                <th className="pb-2 text-right text-xs font-medium text-white/50">Equity Upside</th>
-                <th className="pb-2 text-right text-xs font-medium text-white/50">Liquidity</th>
-                <th className="pb-2 text-right text-xs font-medium text-white/50">Typical Term</th>
-                <th className="pb-2 text-right text-xs font-medium text-white/50">Dilutive</th>
+                <th className="py-2 text-left text-zinc-500 font-medium w-32">Feature</th>
+                <th className="py-2 text-left text-blue-400 font-medium">BDC (Publicly Traded)</th>
+                <th className="py-2 text-left text-violet-400 font-medium">Private Credit Fund</th>
               </tr>
             </thead>
-            <tbody className="divide-y divide-white/5">
-              {[
-                ["Mezzanine Debt", "12–18%", "Yes (warrants)", "Low", "5–7 yrs", "Partial"],
-                ["Preferred Equity", "10–15%", "Sometimes", "Low", "3–7 yrs", "Yes"],
-                ["Royalty Financing", "8–15%", "No", "Very Low", "Perpetual/cap", "No"],
-                ["Rev-Based Financing", "Var. 6–25%", "No", "None", "12–36 mos", "No"],
-                ["Convertible Note", "4–8%", "Yes (conversion)", "Moderate", "2–5 yrs", "Yes (at conv)"],
-              ].map(([inst, yld, eq, liq, term, dil]) => (
-                <tr key={inst} className="hover:bg-white/5">
-                  <td className="py-2 text-white/80 font-medium">{inst}</td>
-                  <td className="py-2 text-right text-amber-400">{yld}</td>
-                  <td className="py-2 text-right text-white/60">{eq}</td>
-                  <td className="py-2 text-right text-white/60">{liq}</td>
-                  <td className="py-2 text-right text-white/60">{term}</td>
-                  <td className={cn("py-2 text-right", dil === "No" ? "text-emerald-400" : "text-rose-400")}>{dil}</td>
+            <tbody>
+              {bdcVsPrivate.map((row, i) => (
+                <tr key={row.attr} className={cn("border-b border-white/5", i % 2 === 0 ? "bg-white/[0.02]" : "")}>
+                  <td className="py-2 pr-4 text-zinc-400 font-medium">{row.attr}</td>
+                  <td className="py-2 pr-4 text-zinc-300">{row.bdc}</td>
+                  <td className="py-2 text-zinc-300">{row.pvt}</td>
                 </tr>
               ))}
             </tbody>
@@ -1358,86 +270,704 @@ function SpecialSituationsTab() {
         </div>
       </div>
 
-      <InfoBox
-        text="Special situations investing requires deep credit and legal expertise. Structures like mezzanine and revenue-based financing often involve complex intercreditor arrangements, subordination agreements, and bespoke covenants tailored to each borrower's cashflow profile."
-        variant="warn"
-      />
+      {/* Unitranche vs 1L/2L */}
+      <div className="rounded-xl border border-white/10 bg-white/5 p-5">
+        <SectionHeading title="Unitranche vs. First Lien / Second Lien Split" sub="Structural trade-offs in deal architecture" />
+        <div className="overflow-x-auto">
+          <table className="w-full text-xs">
+            <thead>
+              <tr className="border-b border-white/10">
+                <th className="py-2 text-left text-zinc-500 font-medium w-32">Attribute</th>
+                <th className="py-2 text-left text-amber-400 font-medium">Unitranche</th>
+                <th className="py-2 text-left text-zinc-300 font-medium">1L / 2L Split</th>
+              </tr>
+            </thead>
+            <tbody>
+              {unitranche.map((row, i) => (
+                <tr key={row.attr} className={cn("border-b border-white/5", i % 2 === 0 ? "bg-white/[0.02]" : "")}>
+                  <td className="py-2 pr-4 text-zinc-400 font-medium">{row.attr}</td>
+                  <td className="py-2 pr-4 text-amber-300">{row.uni}</td>
+                  <td className="py-2 text-zinc-300">{row.fl}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      {/* Lender-friendly terms */}
+      <div className="rounded-xl border border-white/10 bg-white/5 p-5">
+        <SectionHeading title="Lender-Friendly Terms & Protections" sub="Common provisions in private credit documentation" />
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+          {lenderTerms.map((item) => (
+            <div key={item.term} className="rounded-lg border border-white/5 bg-white/[0.03] p-3">
+              <InfoPill text={item.term} color={item.color} />
+              <p className="text-xs text-zinc-400 mt-2">{item.desc}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      {/* Top lenders */}
+      <div className="rounded-xl border border-white/10 bg-white/5 p-5">
+        <SectionHeading title="Leading Direct Lenders" sub="Top platforms by AUM (approximate, 2024)" />
+        <div className="space-y-3">
+          {lenders.map((l, i) => (
+            <div key={l.name} className="flex items-center gap-3">
+              <span className="text-xs text-zinc-500 w-4">{i + 1}</span>
+              <div className="flex-1">
+                <div className="flex items-center justify-between mb-1">
+                  <span className="text-sm font-medium text-zinc-200">{l.name}</span>
+                  <span className="text-xs text-zinc-400">{fmtB(l.aum)}</span>
+                </div>
+                <div className="relative h-2 rounded bg-white/5">
+                  <div className="h-full rounded bg-blue-500" style={{ width: `${(l.aum / 450) * 100}%`, opacity: 0.7 }} />
+                </div>
+                <p className="text-[10px] text-zinc-500 mt-0.5">{l.focus}</p>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
     </div>
   );
 }
 
-// ── Page root ─────────────────────────────────────────────────────────────────
+// ═══════════════════════════════════════════════════════════════════════════════
+// TAB 2 — MEZZANINE & SPECIAL SITUATIONS
+// ═══════════════════════════════════════════════════════════════════════════════
 
-export default function PrivateCreditPage() {
-  // Consume rand pool to ensure deterministic page renders
-  void useMemo(() => {
-    const _vals: number[] = [];
-    for (let i = 0; i < 20; i++) _vals.push(r());
-    return _vals;
-  }, []);
+function MezzanineTab() {
+  const [selected, setSelected] = useState<number | null>(null);
+
+  const capitalLayers = [
+    { label: "Senior Secured (1L)", spread: "SOFR+400–500", color: "#3b82f6", risk: "Lowest", ht: 50 },
+    { label: "Senior Secured (2L)", spread: "SOFR+700–900", color: "#8b5cf6", risk: "Low-Medium", ht: 42 },
+    { label: "Mezzanine Debt", spread: "SOFR+900–1100 + PIK", color: "#f59e0b", risk: "Medium-High", ht: 38 },
+    { label: "Preferred Equity", spread: "12–15% fixed/PIK", color: "#f97316", risk: "High", ht: 32 },
+    { label: "Common Equity", spread: "Residual / upside", color: "#10b981", risk: "Highest", ht: 48 },
+  ];
+
+  const irrTargets = [
+    { strategy: "Senior Direct Lending", low: 10, high: 13, color: "#3b82f6" },
+    { strategy: "Unitranche", low: 11, high: 14, color: "#8b5cf6" },
+    { strategy: "Mezzanine", low: 15, high: 20, color: "#f59e0b" },
+    { strategy: "Royalty / NAV Lending", low: 12, high: 16, color: "#f97316" },
+    { strategy: "Preferred Equity", low: 12, high: 18, color: "#06b6d4" },
+    { strategy: "Distressed / Special Sit.", low: 18, high: 25, color: "#10b981" },
+  ];
+
+  const specialSit = [
+    { category: "Regulatory Catalyst", example: "Pharma spin-off; consent decree exit", returnTarget: "15–20%", timeline: "12–24m" },
+    { category: "Litigation Finance", example: "Pre-settlement bridge; IP licensing dispute", returnTarget: "20–30%", timeline: "18–36m" },
+    { category: "Event-Driven", example: "Merger arb; tender offer bridge", returnTarget: "12–18%", timeline: "6–12m" },
+    { category: "Operational Restructuring", example: "Carve-out bridge; management buyout", returnTarget: "15–22%", timeline: "12–18m" },
+    { category: "NAV Lending", example: "LP fund-level credit facility", returnTarget: "10–14%", timeline: "2–4 yrs" },
+    { category: "Rescue Financing", example: "Distressed company bridge to refi", returnTarget: "20–30%", timeline: "12–24m" },
+    { category: "Royalty Financing", example: "Revenue-based pharma / mining streams", returnTarget: "12–18%", timeline: "5–10 yrs" },
+    { category: "Preferred Equity", example: "Family office recapitalization", returnTarget: "12–16%", timeline: "3–5 yrs" },
+  ];
+
+  // Build layer positions
+  let yAcc = 4;
+  const layerRects = capitalLayers.map((layer, idx) => {
+    const y = yAcc;
+    yAcc += layer.ht + 4;
+    return { ...layer, y, idx };
+  });
+  const svgH = yAcc + 4;
 
   return (
-    <div className="min-h-screen bg-[#0a0a0f] p-4 sm:p-6">
-      {/* Header */}
-      <motion.div
-        initial={{ opacity: 0, y: -16 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.4 }}
-        className="mb-6"
-      >
-        <div className="flex items-center gap-3 mb-1">
-          <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-indigo-500/20 border border-indigo-500/30">
-            <Briefcase className="h-5 w-5 text-indigo-400" />
+    <div className="space-y-8">
+      <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+        <StatCard label="Mezz IRR Target" value="15–20%" sub="Cash + PIK + equity" highlight="pos" />
+        <StatCard label="PIK Component" value="3–6%" sub="Added to principal" />
+        <StatCard label="Equity Co-invest" value="1–5%" sub="Warrants / kicker" highlight="pos" />
+        <StatCard label="NAV Lending AUM" value="$130B+" sub="Fastest growing segment" highlight="pos" />
+      </div>
+
+      {/* Capital structure */}
+      <div className="rounded-xl border border-white/10 bg-white/5 p-5">
+        <SectionHeading title="Mezzanine Position in Capital Structure" sub="Click a layer to see details" />
+        <div className="flex gap-6 flex-col md:flex-row">
+          <div className="flex-1">
+            <svg viewBox={`0 0 260 ${svgH}`} className="w-full" style={{ maxHeight: 260 }}>
+              {layerRects.map((layer) => {
+                const isSel = selected === layer.idx;
+                return (
+                  <g key={layer.label} onClick={() => setSelected(isSel ? null : layer.idx)} style={{ cursor: "pointer" }}>
+                    <rect
+                      x={4} y={layer.y} width={252} height={layer.ht - 2} rx={6}
+                      fill={layer.color} fillOpacity={isSel ? 0.5 : 0.3}
+                      stroke={layer.color} strokeWidth={isSel ? 2 : 1}
+                    />
+                    <text x={130} y={layer.y + (layer.ht - 2) / 2 + 1} textAnchor="middle" dominantBaseline="middle" fontSize={10} fill="#fff" fontWeight={isSel ? "700" : "500"}>
+                      {layer.label}
+                    </text>
+                    <text x={246} y={layer.y + (layer.ht - 2) / 2 + 1} textAnchor="end" dominantBaseline="middle" fontSize={8} fill="#ffffff99">
+                      {layer.risk}
+                    </text>
+                  </g>
+                );
+              })}
+            </svg>
+          </div>
+          <AnimatePresence mode="wait">
+            {selected !== null && (
+              <motion.div
+                key={selected}
+                initial={{ opacity: 0, x: 24 }}
+                animate={{ opacity: 1, x: 0 }}
+                exit={{ opacity: 0, x: 24 }}
+                className="flex-1 rounded-xl border border-white/10 bg-white/5 p-4 self-start"
+              >
+                <p className="text-xs text-zinc-400 mb-1">Selected Layer</p>
+                <p className="text-base font-bold" style={{ color: capitalLayers[selected].color }}>
+                  {capitalLayers[selected].label}
+                </p>
+                <p className="text-sm text-zinc-300 mt-2">
+                  <span className="text-zinc-500">Pricing: </span>{capitalLayers[selected].spread}
+                </p>
+                <p className="text-sm text-zinc-300 mt-1">
+                  <span className="text-zinc-500">Risk: </span>{capitalLayers[selected].risk}
+                </p>
+              </motion.div>
+            )}
+          </AnimatePresence>
+        </div>
+      </div>
+
+      {/* PIK vs cash pay */}
+      <div className="rounded-xl border border-white/10 bg-white/5 p-5">
+        <SectionHeading title="PIK vs. Cash Pay Mechanics" sub="How payment-in-kind accrual works" />
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div>
+            <InfoPill text="Cash Pay" color="emerald" />
+            <p className="text-xs text-zinc-300 mt-2">
+              Interest is paid in cash each quarter or semi-annually. Lower nominal rate (e.g., SOFR + 700 bps cash). Borrower must have sufficient free cash flow.
+            </p>
+            <div className="mt-3 rounded bg-white/5 p-3 text-xs font-mono text-zinc-300">
+              $100M × 11.5% = $11.5M/yr cash outflow
+            </div>
           </div>
           <div>
-            <h1 className="text-2xl font-bold text-white">Private Credit</h1>
-            <p className="text-sm text-white/50">Direct Lending · BDCs · Special Situations</p>
+            <InfoPill text="PIK (Payment in Kind)" color="amber" />
+            <p className="text-xs text-zinc-300 mt-2">
+              Interest accrues to principal rather than being paid in cash. Higher effective rate compensates lender for reinvestment risk. Common in high-growth, acquisition-heavy strategies.
+            </p>
+            <div className="mt-3 rounded bg-white/5 p-3 text-xs font-mono text-zinc-300">
+              $100M × 4% PIK → $104M after Y1<br />
+              $104M × 4% PIK → $108.16M after Y2
+            </div>
           </div>
         </div>
-        <div className="mt-3 flex flex-wrap gap-2 text-xs text-white/50">
-          <Badge className="bg-indigo-500/10 text-indigo-400 border border-indigo-500/20">$2.1T Market</Badge>
-          <Badge className="bg-emerald-500/10 text-emerald-400 border border-emerald-500/20">Floating Rate</Badge>
-          <Badge className="bg-amber-500/10 text-amber-400 border border-amber-500/20">10–14% Yield</Badge>
-          <Badge className="bg-rose-500/10 text-rose-400 border border-rose-500/20">Illiquid Premium</Badge>
+      </div>
+
+      {/* IRR targets */}
+      <div className="rounded-xl border border-white/10 bg-white/5 p-5">
+        <SectionHeading title="IRR Targets by Private Credit Strategy" sub="Gross IRR before fees (typical market 2024)" />
+        <div className="space-y-3">
+          {irrTargets.map((t) => {
+            const scale = 30;
+            const left = (t.low / scale) * 100;
+            const width = ((t.high - t.low) / scale) * 100;
+            return (
+              <div key={t.strategy}>
+                <div className="flex items-center justify-between mb-1">
+                  <span className="text-xs text-zinc-300">{t.strategy}</span>
+                  <span className="text-xs font-semibold" style={{ color: t.color }}>{t.low}–{t.high}%</span>
+                </div>
+                <div className="relative h-4 rounded bg-white/5">
+                  <div className="absolute h-full rounded" style={{ left: `${left}%`, width: `${width}%`, background: t.color, opacity: 0.7 }} />
+                </div>
+              </div>
+            );
+          })}
         </div>
-      </motion.div>
+      </div>
 
-      {/* Tabs */}
-      <Tabs defaultValue="overview">
-        <TabsList className="mb-6 flex h-auto flex-wrap gap-1 bg-white/5 p-1 rounded-xl">
-          <TabsTrigger value="overview" className="rounded-lg px-3 py-1.5 text-xs data-[state=active]:bg-white/15 data-[state=active]:text-white text-white/60">
-            Market Overview
-          </TabsTrigger>
-          <TabsTrigger value="direct" className="rounded-lg px-3 py-1.5 text-xs data-[state=active]:bg-white/15 data-[state=active]:text-white text-white/60">
-            Direct Lending
-          </TabsTrigger>
-          <TabsTrigger value="bdc" className="rounded-lg px-3 py-1.5 text-xs data-[state=active]:bg-white/15 data-[state=active]:text-white text-white/60">
-            BDC Analysis
-          </TabsTrigger>
-          <TabsTrigger value="risk" className="rounded-lg px-3 py-1.5 text-xs data-[state=active]:bg-white/15 data-[state=active]:text-white text-white/60">
-            Risk &amp; Returns
-          </TabsTrigger>
-          <TabsTrigger value="special" className="rounded-lg px-3 py-1.5 text-xs data-[state=active]:bg-white/15 data-[state=active]:text-white text-white/60">
-            Special Situations
-          </TabsTrigger>
-        </TabsList>
+      {/* Special situations */}
+      <div className="rounded-xl border border-white/10 bg-white/5 p-5">
+        <SectionHeading title="Special Situations Categories" sub="8 sub-strategies with typical return outcomes" />
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+          {specialSit.map((s) => (
+            <div key={s.category} className="rounded-lg border border-white/5 bg-white/[0.03] p-3">
+              <div className="flex items-start justify-between gap-2">
+                <p className="text-xs font-semibold text-zinc-200">{s.category}</p>
+                <div className="flex gap-1.5 shrink-0">
+                  <InfoPill text={s.returnTarget} color="emerald" />
+                  <InfoPill text={s.timeline} color="zinc" />
+                </div>
+              </div>
+              <p className="text-[10px] text-zinc-500 mt-1.5">{s.example}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  );
+}
 
-        <TabsContent value="overview" className="data-[state=inactive]:hidden">
-          <MarketOverviewTab />
-        </TabsContent>
-        <TabsContent value="direct" className="data-[state=inactive]:hidden">
-          <DirectLendingTab />
-        </TabsContent>
-        <TabsContent value="bdc" className="data-[state=inactive]:hidden">
-          <BDCAnalysisTab />
-        </TabsContent>
-        <TabsContent value="risk" className="data-[state=inactive]:hidden">
-          <RiskReturnsTab />
-        </TabsContent>
-        <TabsContent value="special" className="data-[state=inactive]:hidden">
-          <SpecialSituationsTab />
-        </TabsContent>
-      </Tabs>
+// ═══════════════════════════════════════════════════════════════════════════════
+// TAB 3 — DISTRESSED & OPPORTUNISTIC
+// ═══════════════════════════════════════════════════════════════════════════════
+
+function DistressedTab() {
+  const cycleStages = [
+    { stage: "Normal Credit", color: "#10b981" },
+    { stage: "Stress", color: "#f59e0b" },
+    { stage: "Distress", color: "#f97316" },
+    { stage: "Chapter 11", color: "#ef4444" },
+    { stage: "Reorganization", color: "#8b5cf6" },
+    { stage: "Emergence", color: "#3b82f6" },
+  ];
+
+  const definitions = [
+    { term: "Stressed", spread: "300–600 bps", price: "85–95¢", color: "amber" },
+    { term: "Distressed", spread: "600–1500 bps", price: "60–85¢", color: "orange" },
+    { term: "Default", spread: "1500+ bps", price: "< 60¢", color: "rose" },
+  ];
+
+  const opCredit = [
+    { type: "Fallen Angels", desc: "IG bonds downgraded to HY; forced institutional selling creates mispricing", irr: "12–18%" },
+    { type: "Rating Migrations", desc: "B → CCC downgrades trigger CLO bucket constraints and loan selling", irr: "15–22%" },
+    { type: "Secondary Purchases", desc: "Buying performing loans at discount from banks needing balance sheet relief", irr: "10–15%" },
+    { type: "DIP Financing", desc: "Super-priority post-petition financing at 300–500 bps; highest recovery priority", irr: "14–20%" },
+    { type: "Loan-to-Own", desc: "Accumulate debt at discount to acquire company through plan of reorg", irr: "20–35%" },
+    { type: "363 Asset Sale", desc: "Credit bid existing debt to acquire assets free-and-clear of liabilities", irr: "25–40%" },
+  ];
+
+  const stageCount = cycleStages.length;
+  const CW = 440;
+
+  return (
+    <div className="space-y-8">
+      <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+        <StatCard label="DIP Spread" value="300–500bps" sub="Super-priority pricing" />
+        <StatCard label="Loan-to-Own IRR" value="20–35%" sub="If exit successful" highlight="pos" />
+        <StatCard label="363 Sale Avg" value="45–90 days" sub="Bankruptcy to close" />
+        <StatCard label="Post-Reorg Equity" value="~2–5×" sub="If thesis correct" highlight="pos" />
+      </div>
+
+      {/* Distressed cycle */}
+      <div className="rounded-xl border border-white/10 bg-white/5 p-5">
+        <SectionHeading title="Distressed Debt Market Cycle" sub="Six phases from normal credit to post-reorganization emergence" />
+        <svg viewBox={`0 0 ${CW} 110`} className="w-full" style={{ maxHeight: 130 }}>
+          <text x={CW / 2} y={16} textAnchor="middle" fontSize={9} fill="#71717a">
+            Opportunity grows for distressed investors as cycle progresses →
+          </text>
+          {cycleStages.map((stage, i) => {
+            const x1 = 20 + (i / (stageCount - 1)) * (CW - 40);
+            const x2 = 20 + ((i + 1) / (stageCount - 1)) * (CW - 40);
+            return i < stageCount - 1 ? (
+              <line key={`seg${i}`} x1={x1} y1={56} x2={x2} y2={56} stroke={stage.color} strokeWidth={6} strokeLinecap="round" />
+            ) : null;
+          })}
+          {cycleStages.map((stage, i) => {
+            const x = 20 + (i / (stageCount - 1)) * (CW - 40);
+            const words = stage.stage.split(" ");
+            return (
+              <g key={stage.stage}>
+                <circle cx={x} cy={56} r={8} fill={stage.color} />
+                <text x={x} y={76} textAnchor="middle" fontSize={7.5} fill="#a1a1aa">{words[0]}</text>
+                {words[1] && <text x={x} y={86} textAnchor="middle" fontSize={7.5} fill="#a1a1aa">{words[1]}</text>}
+              </g>
+            );
+          })}
+        </svg>
+      </div>
+
+      {/* Definitions */}
+      <div className="rounded-xl border border-white/10 bg-white/5 p-5">
+        <SectionHeading title="Stressed vs. Distressed vs. Default" sub="Market pricing thresholds" />
+        <div className="grid grid-cols-3 gap-4">
+          {definitions.map((d) => (
+            <div key={d.term} className="rounded-lg border border-white/5 bg-white/[0.03] p-3 text-center">
+              <InfoPill text={d.term} color={d.color} />
+              <p className="text-sm font-bold text-white mt-2">{d.price}</p>
+              <p className="text-xs text-zinc-400">{d.spread}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      {/* Fulcrum security */}
+      <div className="rounded-xl border border-white/10 bg-white/5 p-5">
+        <SectionHeading title="Fulcrum Security Identification" sub="The tranche that converts to equity in the plan of reorganization" />
+        <div className="flex gap-6 flex-col md:flex-row items-start">
+          <svg viewBox="0 0 320 120" className="w-full md:w-72 shrink-0" style={{ maxHeight: 130 }}>
+            <rect x={20} y={10} width={200} height={26} rx={4} fill="#3b82f6" fillOpacity={0.55} />
+            <text x={24} y={27} fontSize={9} fill="#fff">Secured Debt $300M</text>
+            <rect x={20} y={42} width={120} height={26} rx={4} fill="#f59e0b" fillOpacity={0.55} />
+            <text x={24} y={59} fontSize={9} fill="#fff">Mezz $150M (fulcrum)</text>
+            <rect x={20} y={74} width={40} height={22} rx={4} fill="#10b981" fillOpacity={0.2} />
+            <text x={24} y={89} fontSize={9} fill="#6ee7b7">Equity $0</text>
+            <line x1={273} y1={8} x2={273} y2={105} stroke="#f59e0b" strokeWidth={1.5} strokeDasharray="4,2" />
+            <text x={276} y={110} fontSize={8} fill="#f59e0b">EV=$380M</text>
+            <text x={271} y={8} fontSize={7} fill="#f59e0b" textAnchor="end">Fulcrum→</text>
+          </svg>
+          <div className="text-xs text-zinc-300 space-y-2 flex-1">
+            <p>
+              The <span className="text-amber-300 font-semibold">fulcrum security</span> sits at the enterprise value line — it receives partial recovery and converts to equity in the reorganized company.
+            </p>
+            <p>
+              In this example: Secured debt ($300M) is fully covered by $380M EV. The Mezz tranche ($150M) is the fulcrum — it gets ~$80M recovery (~53¢/$) and converts the remainder to equity.
+            </p>
+            <p className="text-zinc-500">Common equity is wiped out (zero residual value).</p>
+          </div>
+        </div>
+      </div>
+
+      {/* DIP financing */}
+      <div className="rounded-xl border border-white/10 bg-white/5 p-5">
+        <SectionHeading title="Chapter 11 DIP Financing" sub="Debtor-in-Possession financing — highest priority, highest yield" />
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+          {[
+            { label: "Priority", value: "Super-priority admin claim", desc: "Paid before all pre-petition creditors", color: "emerald" },
+            { label: "Pricing", value: "SOFR + 300–500 bps", desc: "Plus upfront fee 1–3%, commitment fee 50–75 bps", color: "blue" },
+            { label: "Control Rights", value: "Milestones & covenants", desc: "DIP lender sets restructuring timeline and process milestones", color: "violet" },
+          ].map((item) => (
+            <div key={item.label} className="rounded-lg border border-white/5 bg-white/[0.03] p-4">
+              <InfoPill text={item.label} color={item.color} />
+              <p className="text-sm font-bold text-white mt-2">{item.value}</p>
+              <p className="text-xs text-zinc-500 mt-1">{item.desc}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      {/* Opportunistic credit */}
+      <div className="rounded-xl border border-white/10 bg-white/5 p-5">
+        <SectionHeading title="Opportunistic Credit Strategies" sub="Fallen angels, rating migrations, secondary purchases, and more" />
+        <div className="space-y-3">
+          {opCredit.map((s) => (
+            <div key={s.type} className="flex items-start gap-3 rounded-lg border border-white/5 bg-white/[0.03] p-3">
+              <ArrowRight className="w-4 h-4 text-violet-400 mt-0.5 shrink-0" />
+              <div className="flex-1">
+                <div className="flex items-center gap-2">
+                  <p className="text-xs font-semibold text-zinc-200">{s.type}</p>
+                  <InfoPill text={s.irr} color="emerald" />
+                </div>
+                <p className="text-[10px] text-zinc-500 mt-0.5">{s.desc}</p>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  );
+}
+
+// ═══════════════════════════════════════════════════════════════════════════════
+// TAB 4 — MARKET DYNAMICS
+// ═══════════════════════════════════════════════════════════════════════════════
+
+function MarketDynamicsTab() {
+  const shareData = [
+    { year: 2010, private: 8 },
+    { year: 2012, private: 11 },
+    { year: 2014, private: 16 },
+    { year: 2016, private: 22 },
+    { year: 2018, private: 30 },
+    { year: 2020, private: 37 },
+    { year: 2022, private: 46 },
+    { year: 2024, private: 55 },
+  ];
+
+  const yieldComparison = [
+    { label: "HY Bonds (public)", yield: 7.2, color: "#3b82f6" },
+    { label: "Broadly Syndicated Loans", yield: 8.4, color: "#8b5cf6" },
+    { label: "Private Direct Lending", yield: 10.8, color: "#10b981" },
+    { label: "Mezzanine / Special Sit.", yield: 15.5, color: "#f59e0b" },
+  ];
+
+  const defaultRates = [
+    { label: "Private Direct Lending", rate: 2.4, color: "#10b981" },
+    { label: "HY Bonds (LTM avg)", rate: 4.1, color: "#ef4444" },
+    { label: "Leveraged Loans (LTM avg)", rate: 3.6, color: "#f97316" },
+  ];
+
+  const allocations = [
+    { type: "Large Pension Funds", current: 8, target: 12 },
+    { type: "Endowments / Foundations", current: 11, target: 15 },
+    { type: "Sovereign Wealth Funds", current: 5, target: 10 },
+    { type: "Insurance Companies", current: 6, target: 9 },
+    { type: "Family Offices", current: 9, target: 13 },
+  ];
+
+  const risks = [
+    { risk: "Concentration Risk", detail: "Portfolios with 20–50 loans lack diversification vs. CLOs with 200+ loans", severity: "High", color: "rose" },
+    { risk: "Illiquidity", detail: "No secondary market for most private loans; locked capital for 5–7 years", severity: "High", color: "rose" },
+    { risk: "Valuation Opacity", detail: "Mark-to-model quarterly NAVs; may mask true losses in stress periods", severity: "Medium", color: "amber" },
+    { risk: "Documentation Creep", detail: "Covenant-lite structures and wider EBITDA definitions reducing lender protections", severity: "Medium", color: "amber" },
+    { risk: "Manager Dispersion", detail: "Wide range of outcomes across managers; top-quartile selection crucial", severity: "Medium", color: "amber" },
+    { risk: "Rate Sensitivity", detail: "Floating-rate benefit in rising rates; but may stress borrowers at high levels", severity: "Low", color: "blue" },
+  ];
+
+  // Area chart SVG
+  const W = 520;
+  const H = 148;
+  const pL = 36;
+  const pR = 12;
+  const pT = 16;
+  const pB = 28;
+  const cW = W - pL - pR;
+  const cH = H - pT - pB;
+  const xSc = (i: number) => pL + (i / (shareData.length - 1)) * cW;
+  const ySc = (pct: number) => pT + cH - (pct / 100) * cH;
+
+  const pts = shareData.map((d, i) => ({ x: xSc(i), y: ySc(d.private) }));
+  const linePath = pts.map((p, i) => `${i === 0 ? "M" : "L"}${p.x.toFixed(1)},${p.y.toFixed(1)}`).join(" ");
+  const fillPath = `${linePath} L${xSc(shareData.length - 1).toFixed(1)},${(pT + cH).toFixed(1)} L${xSc(0).toFixed(1)},${(pT + cH).toFixed(1)} Z`;
+
+  return (
+    <div className="space-y-8">
+      <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+        <StatCard label="Market Share (2024)" value="~55%" sub="Private vs syndicated loans" highlight="pos" />
+        <StatCard label="Illiquidity Premium" value="200–300bps" sub="Over comparable public debt" highlight="pos" />
+        <StatCard label="Private Default Rate" value="~2–3%" sub="vs HY bonds 4–5%" highlight="pos" />
+        <StatCard label="Institutional Target" value="5–15%" sub="Portfolio allocation range" />
+      </div>
+
+      {/* Market share area chart */}
+      <div className="rounded-xl border border-white/10 bg-white/5 p-5">
+        <SectionHeading
+          title="Private Credit vs. Syndicated Loan Market Share"
+          sub="Middle market sponsor-backed lending share shift (2010→2024)"
+        />
+        <svg viewBox={`0 0 ${W} ${H}`} className="w-full" style={{ maxHeight: 160 }}>
+          {[0, 25, 50, 75, 100].map((pct) => (
+            <line key={pct} x1={pL} x2={W - pR} y1={ySc(pct)} y2={ySc(pct)} stroke="#ffffff12" strokeWidth={1} />
+          ))}
+          <path d={fillPath} fill="rgba(16,185,129,0.2)" />
+          <path d={linePath} fill="none" stroke="#10b981" strokeWidth={2.5} strokeLinejoin="round" />
+          {pts.map((p, i) => <circle key={i} cx={p.x} cy={p.y} r={3} fill="#10b981" />)}
+          {[0, 25, 50, 75, 100].map((pct) => (
+            <text key={pct} x={pL - 4} y={ySc(pct) + 4} fontSize={9} fill="#71717a" textAnchor="end">{pct}%</text>
+          ))}
+          {shareData.filter((_, i) => i % 2 === 0).map((d) => {
+            const idx = shareData.findIndex((sd) => sd.year === d.year);
+            return <text key={d.year} x={xSc(idx)} y={H - 6} fontSize={9} fill="#71717a" textAnchor="middle">{d.year}</text>;
+          })}
+          <rect x={pL} y={pT - 2} width={10} height={3} fill="#10b981" rx={1} />
+          <text x={pL + 13} y={pT + 2} fontSize={9} fill="#6ee7b7">Private Credit Share %</text>
+        </svg>
+      </div>
+
+      {/* Yield comparison */}
+      <div className="rounded-xl border border-white/10 bg-white/5 p-5">
+        <SectionHeading title="Yield Premium: Private vs. Public Credit" sub="Approximate all-in yields (2024 market)" />
+        <div className="space-y-3">
+          {yieldComparison.map((y) => (
+            <div key={y.label}>
+              <div className="flex items-center justify-between mb-1">
+                <span className="text-xs text-zinc-300">{y.label}</span>
+                <span className="text-xs font-semibold" style={{ color: y.color }}>{y.yield.toFixed(1)}%</span>
+              </div>
+              <div className="relative h-4 rounded bg-white/5">
+                <div className="h-full rounded" style={{ width: `${(y.yield / 18) * 100}%`, background: y.color, opacity: 0.75 }} />
+              </div>
+            </div>
+          ))}
+        </div>
+        <p className="text-xs text-zinc-500 mt-4">
+          Private direct lending commands a 200–300 bps illiquidity premium over comparable public market instruments, compensating for lock-up, concentrated exposure, and valuation opacity.
+        </p>
+      </div>
+
+      {/* Default rates */}
+      <div className="rounded-xl border border-white/10 bg-white/5 p-5">
+        <SectionHeading title="Default Rate Comparison" sub="Private credit historically lower defaults than public HY" />
+        <div className="space-y-3">
+          {defaultRates.map((d) => (
+            <div key={d.label}>
+              <div className="flex items-center justify-between mb-1">
+                <span className="text-xs text-zinc-300">{d.label}</span>
+                <span className="text-xs font-semibold" style={{ color: d.color }}>{d.rate.toFixed(1)}%</span>
+              </div>
+              <div className="relative h-4 rounded bg-white/5">
+                <div className="h-full rounded" style={{ width: `${(d.rate / 6) * 100}%`, background: d.color, opacity: 0.75 }} />
+              </div>
+            </div>
+          ))}
+        </div>
+        <p className="text-xs text-zinc-500 mt-3">
+          Lower default rates reflect private credit&apos;s focus on sponsored, covenant-protected middle market companies with active lender monitoring.
+        </p>
+      </div>
+
+      {/* Institutional allocations */}
+      <div className="rounded-xl border border-white/10 bg-white/5 p-5">
+        <SectionHeading title="Institutional Portfolio Allocations to Private Credit" sub="Current vs. target allocations (2024 survey data)" />
+        <div className="space-y-4">
+          {allocations.map((a) => (
+            <div key={a.type}>
+              <div className="flex items-center justify-between mb-1">
+                <span className="text-xs text-zinc-300">{a.type}</span>
+                <div className="flex items-center gap-2 text-xs">
+                  <span className="text-zinc-400">Current: <span className="text-white">{a.current}%</span></span>
+                  <span className="text-zinc-600">→</span>
+                  <span className="text-zinc-400">Target: <span className="text-emerald-400">{a.target}%</span></span>
+                </div>
+              </div>
+              <div className="relative h-5 rounded bg-white/5">
+                <div className="absolute h-full rounded bg-zinc-600" style={{ width: `${(a.current / 20) * 100}%`, opacity: 0.6 }} />
+                <div className="absolute h-1 top-2 rounded bg-emerald-400" style={{ width: `${(a.target / 20) * 100}%`, opacity: 0.8 }} />
+              </div>
+            </div>
+          ))}
+        </div>
+        <div className="flex items-center gap-4 mt-3 text-[10px] text-zinc-500">
+          <span className="flex items-center gap-1">
+            <span className="inline-block w-3 h-2 rounded bg-zinc-600 opacity-60" /> Current
+          </span>
+          <span className="flex items-center gap-1">
+            <span className="inline-block w-3 h-1 rounded bg-emerald-400 opacity-80" /> Target
+          </span>
+        </div>
+      </div>
+
+      {/* Key risks */}
+      <div className="rounded-xl border border-white/10 bg-white/5 p-5">
+        <SectionHeading title="Key Risks in Private Credit" sub="Concentration, illiquidity, valuation opacity, and documentation creep" />
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+          {risks.map((risk) => (
+            <div key={risk.risk} className="rounded-lg border border-white/5 bg-white/[0.03] p-3">
+              <div className="flex items-start gap-2">
+                <AlertTriangle className={cn("w-3.5 h-3.5 mt-0.5 shrink-0", risk.color === "rose" ? "text-rose-400" : risk.color === "amber" ? "text-amber-400" : "text-blue-400")} />
+                <div>
+                  <div className="flex items-center gap-2">
+                    <p className="text-xs font-semibold text-zinc-200">{risk.risk}</p>
+                    <InfoPill text={risk.severity} color={risk.color} />
+                  </div>
+                  <p className="text-[10px] text-zinc-500 mt-1">{risk.detail}</p>
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      {/* Regulatory tailwinds + vintage */}
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <div className="rounded-xl border border-white/10 bg-white/5 p-5">
+          <SectionHeading title="Regulatory Tailwinds" sub="Why banks retreat, private credit expands" />
+          <div className="space-y-2 text-xs text-zinc-300">
+            {[
+              "Basel III/IV raises RWA for leveraged loans, making bank lending uneconomic",
+              "SEC Form PF reporting improves transparency for large advisers (>$150M AUM)",
+              "Volcker Rule restricts proprietary lending by banks, opening market share",
+              "CLO manager rules and risk retention requirements push volume to direct lenders",
+            ].map((pt, i) => (
+              <div key={i} className="flex items-start gap-2">
+                <CheckCircle className="w-3.5 h-3.5 text-emerald-400 mt-0.5 shrink-0" />
+                <p>{pt}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+        <div className="rounded-xl border border-white/10 bg-white/5 p-5">
+          <SectionHeading title="Vintage Year Diversification" sub="Why spreading deployment across cycles matters" />
+          <div className="space-y-2 text-xs text-zinc-300">
+            {[
+              "2009–2012 vintages: exceptional returns as distressed exits occurred into recovery",
+              "2014–2017 vintages: steady mid-teen IRRs in benign credit environment",
+              "2020 vintage: pandemic-era pricing attractive; strong 2021–2022 performance",
+              "2022–2024 vintages: higher floating rates boost current income; recession risk hedge",
+            ].map((pt, i) => (
+              <div key={i} className="flex items-start gap-2">
+                <Info className="w-3.5 h-3.5 text-blue-400 mt-0.5 shrink-0" />
+                <p>{pt}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+// ═══════════════════════════════════════════════════════════════════════════════
+// PAGE
+// ═══════════════════════════════════════════════════════════════════════════════
+
+export default function PrivateCreditPage() {
+  const tabs = [
+    { id: "direct", label: "Direct Lending", icon: DollarSign },
+    { id: "mezz", label: "Mezzanine & Special Sit.", icon: Layers },
+    { id: "distressed", label: "Distressed & Opportunistic", icon: TrendingDown },
+    { id: "dynamics", label: "Market Dynamics", icon: BarChart3 },
+  ] as const;
+
+  type TabId = (typeof tabs)[number]["id"];
+  const [activeTab, setActiveTab] = useState<TabId>("direct");
+
+  return (
+    <div className="min-h-screen bg-zinc-950 text-white">
+      {/* Header */}
+      <div className="border-b border-white/10 bg-zinc-900/60 backdrop-blur px-6 py-5">
+        <div className="max-w-6xl mx-auto flex items-start gap-4">
+          <div className="rounded-xl bg-violet-500/20 p-2.5 border border-violet-500/30">
+            <Briefcase className="w-5 h-5 text-violet-400" />
+          </div>
+          <div>
+            <h1 className="text-xl font-bold text-white">Private Credit Markets</h1>
+            <p className="text-sm text-zinc-400 mt-0.5">
+              Direct lending, mezzanine finance, distressed debt, special situations, and the $1.7T rise of private credit as an asset class
+            </p>
+            <div className="flex flex-wrap gap-2 mt-3">
+              <InfoPill text="$1.7T AUM" color="violet" />
+              <InfoPill text="SOFR+500–700bps" color="blue" />
+              <InfoPill text="200–300bps Illiquidity Premium" color="emerald" />
+              <InfoPill text="1st Lien / Unitranche" color="amber" />
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* Content */}
+      <div className="max-w-6xl mx-auto px-6 py-6">
+        <Tabs value={activeTab} onValueChange={(v) => setActiveTab(v as TabId)}>
+          <TabsList className="grid grid-cols-2 md:grid-cols-4 mb-6 bg-zinc-900/60 border border-white/10 h-auto gap-1 p-1">
+            {tabs.map((tab) => {
+              const Icon = tab.icon;
+              return (
+                <TabsTrigger
+                  key={tab.id}
+                  value={tab.id}
+                  className="flex items-center gap-1.5 text-xs py-2 data-[state=active]:bg-violet-600 data-[state=active]:text-white"
+                >
+                  <Icon className="w-3.5 h-3.5 shrink-0" />
+                  <span>{tab.label}</span>
+                </TabsTrigger>
+              );
+            })}
+          </TabsList>
+
+          <AnimatePresence mode="wait">
+            <motion.div
+              key={activeTab}
+              initial={{ opacity: 0, y: 12 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -8 }}
+              transition={{ duration: 0.18 }}
+            >
+              <TabsContent value="direct" data-[state=inactive]:hidden>
+                {activeTab === "direct" && <DirectLendingTab />}
+              </TabsContent>
+              <TabsContent value="mezz" data-[state=inactive]:hidden>
+                {activeTab === "mezz" && <MezzanineTab />}
+              </TabsContent>
+              <TabsContent value="distressed" data-[state=inactive]:hidden>
+                {activeTab === "distressed" && <DistressedTab />}
+              </TabsContent>
+              <TabsContent value="dynamics" data-[state=inactive]:hidden>
+                {activeTab === "dynamics" && <MarketDynamicsTab />}
+              </TabsContent>
+            </motion.div>
+          </AnimatePresence>
+        </Tabs>
+      </div>
     </div>
   );
 }
