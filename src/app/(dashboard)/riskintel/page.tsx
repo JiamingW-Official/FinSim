@@ -447,7 +447,7 @@ function MeterBar({
   return (
     <div className="w-full bg-muted rounded-full overflow-hidden" style={{ height }}>
       <div
-        className="h-full rounded-full transition-all duration-700"
+        className="h-full rounded-full transition-all duration-300"
         style={{ width: `${pct}%`, backgroundColor: color }}
       />
     </div>
@@ -968,7 +968,7 @@ export default function RiskIntelPage() {
                 </CardHeader>
                 <CardContent className="px-4 pb-4 space-y-3">
                   <div className="flex items-end gap-2">
-                    <span className="text-3xl font-bold text-orange-400">{metrics.concentration.toFixed(1)}%</span>
+                    <span className="text-2xl font-bold text-orange-400">{metrics.concentration.toFixed(1)}%</span>
                     <span className="text-muted-foreground text-sm mb-1">top-3 holdings</span>
                   </div>
                   <MeterBar
@@ -1010,7 +1010,7 @@ export default function RiskIntelPage() {
                 </CardHeader>
                 <CardContent className="px-4 pb-4 space-y-3">
                   <div className="flex items-end gap-2">
-                    <span className="text-3xl font-bold text-primary">
+                    <span className="text-2xl font-bold text-primary">
                       {metrics.avgCorr.toFixed(2)}
                     </span>
                     <span className="text-muted-foreground text-sm mb-1">avg pairwise</span>
@@ -1049,7 +1049,7 @@ export default function RiskIntelPage() {
                 </CardHeader>
                 <CardContent className="px-4 pb-4 space-y-3">
                   <div className="flex items-end gap-2">
-                    <span className="text-3xl font-bold text-primary">
+                    <span className="text-2xl font-bold text-primary">
                       {metrics.beta.toFixed(2)}
                     </span>
                     <span className="text-muted-foreground text-sm mb-1">vs S&P 500</span>
@@ -1094,7 +1094,7 @@ export default function RiskIntelPage() {
                 </CardHeader>
                 <CardContent className="px-4 pb-4 space-y-3">
                   <div className="flex items-end gap-2">
-                    <span className="text-3xl font-bold text-muted-foreground">
+                    <span className="text-2xl font-bold text-muted-foreground">
                       {metrics.liquidity.toFixed(0)}%
                     </span>
                     <span className="text-muted-foreground text-sm mb-1">1-day exit</span>
@@ -1121,7 +1121,7 @@ export default function RiskIntelPage() {
                 </CardHeader>
                 <CardContent className="px-4 pb-4 space-y-3">
                   <div className="flex items-end gap-2">
-                    <span className="text-3xl font-bold text-red-400">
+                    <span className="text-2xl font-bold text-red-400">
                       -{metrics.es.toFixed(1)}%
                     </span>
                     <span className="text-muted-foreground text-sm mb-1">expected shortfall</span>
@@ -1559,7 +1559,7 @@ export default function RiskIntelPage() {
                   </p>
                   <div className="flex items-end gap-3">
                     <div>
-                      <div className="text-3xl font-bold text-orange-400">{ddData.paintIndex.toFixed(2)}</div>
+                      <div className="text-2xl font-bold text-orange-400">{ddData.paintIndex.toFixed(2)}</div>
                       <div className="text-xs text-muted-foreground mt-0.5">Portfolio Pain Index</div>
                     </div>
                     <div className="text-muted-foreground text-xl">vs</div>
@@ -1760,7 +1760,7 @@ export default function RiskIntelPage() {
                     <div className="text-center">
                       <div className="text-muted-foreground text-sm mb-2">Estimated Portfolio Impact</div>
                       <div
-                        className="text-5xl font-bold font-mono"
+                        className="text-2xl font-bold font-mono"
                         style={{ color: customImpact < 0 ? "#ef4444" : "#22c55e" }}
                       >
                         {customImpact > 0 ? "+" : ""}{customImpact.toFixed(1)}%

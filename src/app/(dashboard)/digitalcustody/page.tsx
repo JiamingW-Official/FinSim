@@ -444,7 +444,7 @@ function Tab1CustodyArchitecture() {
             </thead>
             <tbody>
               {MPC_MULTISIG_ROWS.map((row, i) => (
-                <tr key={i} className="border-b border-white/5 hover:bg-white/3 transition-colors">
+                <tr key={i} className="border-b border-white/5 hover:bg-muted/30 transition-colors">
                   <td className="text-muted-foreground py-2 pr-4 font-medium">{row.feature}</td>
                   <td className="text-center py-2 px-3">
                     <div className="flex items-center justify-center gap-1">
@@ -648,7 +648,7 @@ function Tab2InstitutionalSolutions() {
               {CUSTODIANS.map((c, i) => (
                 <tr
                   key={i}
-                  className="border-b border-white/5 hover:bg-white/5 cursor-pointer transition-colors"
+                  className="border-b border-white/5 hover:bg-muted/30 cursor-pointer transition-colors"
                   onClick={() => setSelectedCustodian(selectedCustodian?.name === c.name ? null : c)}
                 >
                   <td className="py-2 pr-3 font-semibold text-foreground">{c.name}</td>
@@ -919,7 +919,7 @@ function Tab3RegulatoryFramework() {
                   ? "border-emerald-500/20 bg-emerald-500/5 hover:bg-emerald-500/10"
                   : evt.impact === "negative"
                   ? "border-rose-500/20 bg-rose-500/5 hover:bg-rose-500/10"
-                  : "border-white/10 bg-white/5 hover:bg-white/8"
+                  : "border-white/10 bg-white/5 hover:bg-muted/40"
               )}
               onClick={() => setExpandedEvent(expandedEvent === i ? null : i)}
             >

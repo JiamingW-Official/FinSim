@@ -67,7 +67,7 @@ export function AlphaBotAlerts() {
             : `Testing resistance ${level.label} at $${level.price.toFixed(2)} — volume will confirm breakout or rejection`;
           toast.custom(
             () => (
-              <div className="flex items-center gap-2 rounded-lg border border-amber-500/30 bg-card px-3 py-2 shadow-lg text-[11px] max-w-64">
+              <div className="flex items-center gap-2 rounded-lg border border-amber-500/30 bg-card px-3 py-2 shadow-sm text-[11px] max-w-64">
                 <span className="text-base shrink-0">{isSupport ? "🛡️" : "⚡"}</span>
                 <div className="min-w-0">
                   <div className="font-bold text-amber-400 leading-tight">
@@ -104,7 +104,7 @@ export function AlphaBotAlerts() {
         toast.custom(
           () => (
             <div
-              className={`flex items-center gap-2 rounded-lg border ${borderColor} bg-card px-3 py-2 shadow-lg text-[11px] max-w-64`}
+              className={`flex items-center gap-2 rounded-lg border ${borderColor} bg-card px-3 py-2 shadow-sm text-[11px] max-w-64`}
             >
               <span className="text-base shrink-0">{emoji}</span>
               <div className="min-w-0">
@@ -161,7 +161,7 @@ export function AlphaBotAlerts() {
           toast.custom(
             () => (
               <div
-                className={`flex items-center gap-2 rounded-lg border ${isProfit ? "border-emerald-500/30" : "border-red-500/30"} bg-card px-3 py-2 shadow-lg text-[11px] max-w-64`}
+                className={`flex items-center gap-2 rounded-lg border ${isProfit ? "border-emerald-500/30" : "border-red-500/30"} bg-card px-3 py-2 shadow-sm text-[11px] max-w-64`}
               >
                 <span className="text-base shrink-0">{isProfit ? "🎯" : "⚠️"}</span>
                 <div className="min-w-0">
@@ -231,7 +231,7 @@ export function AlphaBotAlerts() {
         toast.custom(
           () => (
             <div
-              className={`flex items-center gap-2 rounded-lg border ${borderColor} bg-card px-3 py-2 shadow-lg text-[11px] max-w-64`}
+              className={`flex items-center gap-2 rounded-lg border ${borderColor} bg-card px-3 py-2 shadow-sm text-[11px] max-w-64`}
             >
               <span className="text-base shrink-0">{isBull ? "🔥" : "❄️"}</span>
               <div className="min-w-0">
@@ -273,7 +273,7 @@ export function AlphaBotAlerts() {
         toast.custom(
           () => (
             <div
-              className={`flex items-center gap-2 rounded-lg border ${borderColor} bg-card px-3 py-2 shadow-lg text-[11px] max-w-64`}
+              className={`flex items-center gap-2 rounded-lg border ${borderColor} bg-card px-3 py-2 shadow-sm text-[11px] max-w-64`}
             >
               <span className="text-base shrink-0">📊</span>
               <div className="min-w-0">

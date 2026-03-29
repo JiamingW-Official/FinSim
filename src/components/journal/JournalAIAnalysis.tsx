@@ -510,7 +510,7 @@ function StreakHeatmap({ history }: { history: string[] }) {
           key={d.date}
           title={d.date}
           className={cn(
-            "flex h-5 w-5 items-center justify-center rounded-sm text-[8px] font-medium transition-colors",
+            "flex h-5 w-5 items-center justify-center rounded-sm text-[11px] font-medium transition-colors",
             d.active
               ? "bg-primary/70 text-primary-foreground"
               : "bg-muted/30 text-muted-foreground/40",

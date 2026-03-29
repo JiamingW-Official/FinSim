@@ -199,7 +199,7 @@ function PatternHistoryLog({ history }: { history: PatternHistoryEntry[] }) {
               <div className="flex items-center gap-1.5 min-w-0">
                 <span
                   className={cn(
-                    "text-[8px] font-bold shrink-0 w-3 text-center",
+                    "text-[11px] font-bold shrink-0 w-3 text-center",
                     isBull
                       ? "text-green-400"
                       : isBear
@@ -216,7 +216,7 @@ function PatternHistoryLog({ history }: { history: PatternHistoryEntry[] }) {
               <div className="flex items-center gap-1.5 shrink-0">
                 <span
                   className={cn(
-                    "text-[8px] font-bold",
+                    "text-[11px] font-bold",
                     isBull
                       ? "text-green-400/70"
                       : isBear
@@ -226,7 +226,7 @@ function PatternHistoryLog({ history }: { history: PatternHistoryEntry[] }) {
                 >
                   {isBull ? "bull" : isBear ? "bear" : "neut"}
                 </span>
-                <span className="text-[8px] text-muted-foreground/50 font-mono">
+                <span className="text-[11px] text-muted-foreground/50 font-mono">
                   b{entry.barIndex}
                 </span>
               </div>
@@ -263,7 +263,7 @@ function PatternCard({ pattern }: { pattern: CandlePattern }) {
         <div className="flex items-center gap-1.5 min-w-0">
           <span
             className={cn(
-              "text-[8px] font-bold rounded px-1 py-0.5 leading-none shrink-0",
+              "text-[11px] font-bold rounded px-1 py-0.5 leading-none shrink-0",
               isBull
                 ? "bg-green-500/20 text-green-400"
                 : isBear
@@ -328,7 +328,7 @@ export function PatternRadar({ patterns, history }: PatternRadarProps) {
           Pattern Radar
         </span>
         {hasPatterns && (
-          <span className="text-[8px] text-muted-foreground/50">
+          <span className="text-[11px] text-muted-foreground/50">
             {patterns.length} detected
           </span>
         )}

@@ -937,7 +937,7 @@ function ConditionRow({
             type="number"
             value={condition.param}
             onChange={e => onChange({ ...condition, param: parseFloat(e.target.value) || 0 })}
-            className="w-16 rounded bg-muted px-2 py-0.5 text-xs text-foreground outline-none focus:ring-1 focus:ring-blue-500"
+            className="w-16 rounded bg-muted px-2 py-0.5 text-xs text-foreground outline-none focus-visible:ring-2 focus-visible:ring-ring"
           />
           <span className="text-xs text-muted-foreground">{meta.unit}</span>
         </div>
@@ -1480,7 +1480,7 @@ export default function StrategyLab() {
                     </thead>
                     <tbody>
                       {result.trades.slice(0, 20).map((t, i) => (
-                        <tr key={i} className="border-b border-white/4 hover:bg-white/2">
+                        <tr key={i} className="border-b border-border/20 hover:bg-muted/30">
                           <td className="py-1.5 pr-3 text-muted-foreground">{i + 1}</td>
                           <td className="py-1.5 pr-3 text-muted-foreground">{t.entryBar}</td>
                           <td className="py-1.5 pr-3 text-muted-foreground">${t.entryPrice.toFixed(2)}</td>
@@ -1725,7 +1725,7 @@ export default function StrategyLab() {
                 </thead>
                 <tbody>
                   {liveSignals.map((sig, i) => (
-                    <tr key={sig.id} className="border-b border-white/4 hover:bg-white/2">
+                    <tr key={sig.id} className="border-b border-border/20 hover:bg-muted/30">
                       <td className="py-1.5 pr-4">
                         <span className="font-bold text-foreground">{sig.ticker}</span>
                       </td>

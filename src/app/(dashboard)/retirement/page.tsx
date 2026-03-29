@@ -1268,10 +1268,7 @@ export default function RetirementPage() {
               <Activity className="h-3 w-3" />
               4% Rule
             </Badge>
-            <Badge variant="outline" className="text-xs gap-1">
-              <Shield className="h-3 w-3" />
-              Educational
-            </Badge>
+            <span className="rounded bg-muted/40 px-1.5 py-0.5 text-[11px] font-medium text-muted-foreground">Educational</span>
           </div>
         </div>
 

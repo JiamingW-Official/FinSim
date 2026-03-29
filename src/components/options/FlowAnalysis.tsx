@@ -384,7 +384,7 @@ function LiveFlowFeed({ baseOrders, onTickerExpiry }: LiveFlowFeedProps) {
                   <td className="px-3 py-2 text-right font-mono tabular-nums font-medium text-orange-400">
                     {fmtPremium(order.premium)}
                     {order.isUnusual && (
-                      <span className="ml-1 rounded bg-amber-500/20 px-1 py-0.5 text-[8px] font-semibold text-amber-400">
+                      <span className="ml-1 rounded bg-amber-500/20 px-1 py-0.5 text-[11px] font-semibold text-amber-400">
                         UNUSUAL
                       </span>
                     )}
@@ -400,7 +400,7 @@ function LiveFlowFeed({ baseOrders, onTickerExpiry }: LiveFlowFeedProps) {
                         isBull ? "text-emerald-500" : isBear ? "text-red-500" : "text-muted-foreground",
                       )}
                     >
-                      <span className="mr-0.5 text-[8px]">●</span>
+                      <span className="mr-0.5 text-[11px]">●</span>
                       {order.sentiment}
                     </span>
                   </td>
@@ -548,7 +548,7 @@ function TickerHeatmap({ orders, onFilter }: TickerHeatmapProps) {
 
       {tooltip && (
         <div
-          className="pointer-events-none absolute z-20 rounded-md border border-border bg-popover p-2 shadow-lg"
+          className="pointer-events-none absolute z-20 rounded-md border border-border bg-popover p-2 shadow-sm"
           style={{ left: tooltip.x + 8, top: tooltip.y - 60, minWidth: 152 }}
         >
           <div className="mb-1 flex justify-between gap-3">

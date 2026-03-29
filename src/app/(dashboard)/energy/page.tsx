@@ -624,7 +624,7 @@ function Tab1() {
               </thead>
               <tbody className="divide-y divide-white/5">
                 {OIL_MAJORS.map((m) => (
-                  <tr key={m.ticker} className="hover:bg-white/5 transition-colors">
+                  <tr key={m.ticker} className="hover:bg-muted/30 transition-colors">
                     <td className="py-2.5">
                       <div className="font-semibold text-white">{m.ticker}</div>
                       <div className="text-muted-foreground">{m.name}</div>
@@ -686,7 +686,7 @@ function Tab2() {
                 </div>
                 <div className="flex-1 h-5 bg-muted/60 rounded-md overflow-hidden relative">
                   <div
-                    className="h-full rounded-md transition-all duration-500"
+                    className="h-full rounded-md transition-all duration-300"
                     style={{
                       width: `${(b.breakeven / 70) * 100}%`,
                       backgroundColor:
@@ -729,7 +729,7 @@ function Tab2() {
               </thead>
               <tbody className="divide-y divide-white/5">
                 {[...BASINS].sort((a, b) => b.co2perBbl - a.co2perBbl).map((b) => (
-                  <tr key={b.name} className="hover:bg-white/5 transition-colors">
+                  <tr key={b.name} className="hover:bg-muted/30 transition-colors">
                     <td className="py-2.5 text-muted-foreground">{b.name}</td>
                     <td className="py-2.5 text-right">
                       <div className="flex items-center justify-end gap-2">
@@ -787,7 +787,7 @@ function Tab2() {
                   "px-3 py-1 rounded-full text-xs font-medium transition-colors",
                   selectedOilPrice === p
                     ? "bg-amber-500 text-black"
-                    : "bg-white/5 text-muted-foreground hover:bg-white/10"
+                    : "bg-white/5 text-muted-foreground hover:bg-muted/50"
                 )}
               >
                 ${p}/bbl
@@ -955,7 +955,7 @@ function Tab3() {
               </thead>
               <tbody className="divide-y divide-white/5">
                 {CLEAN_STOCKS.map((s) => (
-                  <tr key={s.ticker} className="hover:bg-white/5 transition-colors">
+                  <tr key={s.ticker} className="hover:bg-muted/30 transition-colors">
                     <td className="py-2.5 font-semibold text-white">{s.ticker}</td>
                     <td className="py-2.5 text-muted-foreground">{s.segment}</td>
                     <td className="py-2.5 text-right text-muted-foreground">${s.price.toFixed(1)}</td>
@@ -1112,7 +1112,7 @@ function Tab4() {
               </thead>
               <tbody className="divide-y divide-white/5">
                 {UTILITIES.map((u) => (
-                  <tr key={u.ticker} className="hover:bg-white/5 transition-colors">
+                  <tr key={u.ticker} className="hover:bg-muted/30 transition-colors">
                     <td className="py-2.5">
                       <div className="font-semibold text-white">{u.ticker}</div>
                       <div className="text-muted-foreground">{u.name}</div>
@@ -1344,7 +1344,7 @@ function Tab5() {
               </thead>
               <tbody className="divide-y divide-white/5">
                 {CRITICAL_MINERALS.map((m) => (
-                  <tr key={m.mineral} className="hover:bg-white/5 transition-colors">
+                  <tr key={m.mineral} className="hover:bg-muted/30 transition-colors">
                     <td className="py-2.5 font-semibold text-white">{m.mineral}</td>
                     <td className="py-2.5 text-muted-foreground">{m.use}</td>
                     <td className="py-2.5 text-right">

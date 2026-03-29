@@ -1097,7 +1097,7 @@ export default function BehavioralLabPage() {
                 <div className="space-y-4">
                   <div className="p-4 rounded-lg bg-muted border border-border text-center">
                     <p className="text-xs text-muted-foreground mb-1">Your random number is:</p>
-                    <p className="text-4xl font-bold text-yellow-400">{exp2Anchor}</p>
+                    <p className="text-2xl font-bold text-yellow-400">{exp2Anchor}</p>
                     <p className="text-xs text-muted-foreground mt-1">(This is irrelevant to the answer)</p>
                   </div>
                   <div>
@@ -1432,7 +1432,7 @@ export default function BehavioralLabPage() {
                   <div>
                     <p className="text-xs text-muted-foreground mb-0.5">Estimated total annual drag from biases</p>
                     <p
-                      className="text-3xl font-bold"
+                      className="text-2xl font-bold"
                       style={{ color: totalCostPct > 3 ? "#ef4444" : "#22c55e" }}
                     >
                       −{totalCostPct.toFixed(2)}% / year

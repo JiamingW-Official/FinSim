@@ -643,7 +643,7 @@ function SwapCurveTab() {
             </thead>
             <tbody>
               {TENOR_LABELS.map((label, i) => (
-                <tr key={`tr-${i}`} className="border-b border-white/5 hover:bg-white/3">
+                <tr key={`tr-${i}`} className="border-b border-white/5 hover:bg-muted/30">
                   <td className="py-1.5 font-mono text-white/70">{label}</td>
                   <td className="py-1.5 font-mono text-right text-primary">
                     {parRates[i].toFixed(3)}%
@@ -1447,7 +1447,7 @@ function DurationHedgingTab() {
             </thead>
             <tbody>
               {scenarios.filter((_, i) => i % 2 === 0).map((s, i) => (
-                <tr key={`sr-${i}`} className="border-b border-white/5 hover:bg-white/3">
+                <tr key={`sr-${i}`} className="border-b border-white/5 hover:bg-muted/30">
                   <td className="py-1 font-mono text-white/70">
                     {s.shift > 0 ? `+${s.shift}` : s.shift} bps
                   </td>

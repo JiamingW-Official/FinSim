@@ -375,7 +375,7 @@ function RelativeValuationTab() {
         <div className="rounded-xl border border-border bg-card p-5">
           <h3 className="text-sm font-semibold text-muted-foreground mb-3">PEG Ratio Analysis</h3>
           <div className="flex items-center gap-3 mb-3">
-            <span className="text-3xl font-bold font-mono">{fmt2(co.peg)}</span>
+            <span className="text-2xl font-bold font-mono">{fmt2(co.peg)}</span>
             <span className={cn("px-2 py-1 rounded-md text-xs font-semibold", pegStatus.bg, pegStatus.color)}>
               {pegStatus.label}
             </span>
@@ -633,17 +633,17 @@ function DCFTab() {
           <div className="flex items-end gap-4 mb-4">
             <div>
               <div className="text-xs text-muted-foreground">Intrinsic Value</div>
-              <div className="text-3xl font-bold font-mono">${projections.intrinsic.toFixed(0)}</div>
+              <div className="text-2xl font-bold font-mono">${projections.intrinsic.toFixed(0)}</div>
             </div>
             <div>
               <div className="text-xs text-muted-foreground">Market Price</div>
-              <div className="text-3xl font-bold font-mono text-muted-foreground">${marketPrice}</div>
+              <div className="text-2xl font-bold font-mono text-muted-foreground">${marketPrice}</div>
             </div>
           </div>
           {/* Gauge bar */}
           <div className="relative h-8 rounded-full bg-secondary/40 overflow-hidden mb-2">
             <div
-              className="absolute inset-y-0 left-0 rounded-full transition-all duration-500"
+              className="absolute inset-y-0 left-0 rounded-full transition-all duration-300"
               style={{
                 width: `${Math.min(Math.max((marketPrice / (projections.intrinsic * 1.5)) * 100, 5), 95)}%`,
                 background: projections.mos > 20 ? "#10b981" : projections.mos > 0 ? "#f59e0b" : "#ef4444",
@@ -1099,7 +1099,7 @@ function DDMTab() {
         ].map((item) => (
           <div key={item.label} className="rounded-xl border border-border bg-card p-5">
             <div className="text-xs text-muted-foreground mb-1">{item.label}</div>
-            <div className="text-3xl font-bold font-mono mb-1">${item.value.toFixed(0)}</div>
+            <div className="text-2xl font-bold font-mono mb-1">${item.value.toFixed(0)}</div>
             <div className="text-xs text-primary font-mono mb-0.5">{item.formula}</div>
             <div className="text-xs text-muted-foreground">{item.desc}</div>
           </div>
@@ -1312,15 +1312,15 @@ function RealOptionsTab() {
 
             <div className="grid grid-cols-3 gap-3 mb-4">
               <div className="rounded-lg bg-secondary/30 p-4 text-center">
-                <div className="text-3xl font-bold font-mono text-primary">${callValue.toFixed(1)}M</div>
+                <div className="text-2xl font-bold font-mono text-primary">${callValue.toFixed(1)}M</div>
                 <div className="text-xs text-muted-foreground mt-1">Option Value (Black-Scholes)</div>
               </div>
               <div className="rounded-lg bg-secondary/30 p-4 text-center">
-                <div className="text-3xl font-bold font-mono text-amber-400">{(callValue / S * 100).toFixed(1)}%</div>
+                <div className="text-2xl font-bold font-mono text-amber-400">{(callValue / S * 100).toFixed(1)}%</div>
                 <div className="text-xs text-muted-foreground mt-1">Option as % of Asset</div>
               </div>
               <div className="rounded-lg bg-secondary/30 p-4 text-center">
-                <div className={cn("text-3xl font-bold font-mono", S > K ? "text-emerald-400" : "text-red-400")}>
+                <div className={cn("text-2xl font-bold font-mono", S > K ? "text-emerald-400" : "text-red-400")}>
                   {S > K ? "In the Money" : "Out of Money"}
                 </div>
                 <div className="text-xs text-muted-foreground mt-1">Intrinsic Status</div>

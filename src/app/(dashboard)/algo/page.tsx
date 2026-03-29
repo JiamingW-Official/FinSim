@@ -569,7 +569,7 @@ function ConditionEditor({
             type="number"
             value={condition.param}
             onChange={(e) => onChange({ ...condition, param: parseFloat(e.target.value) || 0 })}
-            className="w-16 rounded bg-muted px-2 py-0.5 text-xs text-foreground outline-none focus:ring-1 focus:ring-blue-500"
+            className="w-16 rounded bg-muted px-2 py-0.5 text-xs text-foreground outline-none focus-visible:ring-2 focus-visible:ring-ring"
           />
           <span className="text-xs text-muted-foreground">{meta.unit}</span>
         </div>
@@ -1038,7 +1038,7 @@ export default function AlgoPage() {
                   <input
                     value={strategy.name}
                     onChange={(e) => setStrategy((s) => ({ ...s, name: e.target.value }))}
-                    className="w-full max-w-xs rounded-md border border-white/10 bg-card px-3 py-1.5 text-sm text-foreground outline-none focus:ring-1 focus:ring-blue-500"
+                    className="w-full max-w-xs rounded-md border border-white/10 bg-card px-3 py-1.5 text-sm text-foreground outline-none focus-visible:ring-2 focus-visible:ring-ring"
                     placeholder="My Strategy"
                   />
                 </div>
@@ -1162,7 +1162,7 @@ export default function AlgoPage() {
                         type="number"
                         value={strategy.sizingValue}
                         onChange={(e) => setStrategy((s) => ({ ...s, sizingValue: parseFloat(e.target.value) || 0 }))}
-                        className="w-full rounded-md border border-white/10 bg-muted px-3 py-1.5 text-sm text-foreground outline-none focus:ring-1 focus:ring-blue-500"
+                        className="w-full rounded-md border border-white/10 bg-muted px-3 py-1.5 text-sm text-foreground outline-none focus-visible:ring-2 focus-visible:ring-ring"
                       />
                     </div>
                   )}
@@ -1289,7 +1289,7 @@ export default function AlgoPage() {
                         </thead>
                         <tbody>
                           {result.trades.slice(0, 30).map((t, i) => (
-                            <tr key={i} className="border-b border-white/4 hover:bg-white/2">
+                            <tr key={i} className="border-b border-white/4 hover:bg-muted/30">
                               <td className="py-1.5 pr-4 text-muted-foreground">{i + 1}</td>
                               <td className="py-1.5 pr-4 text-muted-foreground">{t.entryBar}</td>
                               <td className="py-1.5 pr-4 text-muted-foreground">${t.entryPrice.toFixed(2)}</td>

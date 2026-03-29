@@ -1254,7 +1254,7 @@ function ValuationFrameworkTab() {
                     "border-b border-white/5",
                     c.isTarget
                       ? "bg-primary/10 font-semibold"
-                      : "hover:bg-white/3"
+                      : "hover:bg-muted/30"
                   )}
                 >
                   <td className="py-2 px-2 text-left">

@@ -765,7 +765,7 @@ export default function CorpGovernancePage() {
                   </thead>
                   <tbody>
                     {BOARD_COMPANIES.map((c) => (
-                      <tr key={c.ticker} className="border-b border-white/5 hover:bg-white/5 transition-colors">
+                      <tr key={c.ticker} className="border-b border-white/5 hover:bg-muted/30 transition-colors">
                         <td className="py-2 font-medium text-white">{c.name} <span className="text-muted-foreground">({c.ticker})</span></td>
                         <td className="text-center py-2 text-muted-foreground">{c.boardSize}</td>
                         <td className={cn("text-center py-2 font-medium", scoreColor(c.independentPct))}>{c.independentPct}%</td>

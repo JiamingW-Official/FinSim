@@ -100,7 +100,7 @@ export function TradeCalendar() {
         {/* Day labels */}
         <div className="flex flex-col gap-[3px] pr-1">
           {DAY_LABELS.map((label, i) => (
-            <div key={i} className="flex h-[14px] w-3 items-center justify-center text-[8px] text-muted-foreground/50">
+            <div key={i} className="flex h-[14px] w-3 items-center justify-center text-[11px] text-muted-foreground/50">
               {i % 2 === 0 ? label : ""}
             </div>
           ))}
@@ -133,7 +133,7 @@ export function TradeCalendar() {
       </div>
 
       {/* Legend */}
-      <div className="mt-2 flex items-center justify-end gap-1.5 text-[8px] text-muted-foreground/50">
+      <div className="mt-2 flex items-center justify-end gap-1.5 text-[11px] text-muted-foreground/50">
         <span>Loss</span>
         <div className="flex gap-[2px]">
           <div className="h-[10px] w-[10px] rounded-[2px] bg-red-500/80" />

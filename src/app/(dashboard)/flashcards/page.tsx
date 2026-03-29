@@ -380,7 +380,7 @@ function StatsTab() {
               </div>
               <div className="h-1.5 w-full overflow-hidden rounded-full bg-muted/30">
                 <div
-                  className="h-full rounded-full bg-primary transition-all duration-500"
+                  className="h-full rounded-full bg-primary transition-all duration-300"
                   style={{ width: `${pct}%` }}
                 />
               </div>

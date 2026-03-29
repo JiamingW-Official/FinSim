@@ -1930,7 +1930,7 @@ export default function IBDealsPage() {
                         <td className="px-3 py-2">
                           <div className="w-32 bg-muted rounded-full h-2 overflow-hidden">
                             <div
-                              className="h-full bg-gradient-to-r from-blue-500 to-emerald-500 rounded-full"
+                              className="h-full bg-blue-500 rounded-full"
                               style={{ width: `${(row.total / maxTotal) * 100}%` }}
                             />
                           </div>

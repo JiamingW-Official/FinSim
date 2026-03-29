@@ -930,7 +930,7 @@ function StyleBox({ styleIndex }: { styleIndex: number }) {
               <div
                 key={`${ri}-${ci}`}
                 className={cn(
-                  "h-8 w-8 rounded-sm border text-[8px] flex items-center justify-center text-center leading-none",
+                  "h-8 w-8 rounded-sm border text-[11px] flex items-center justify-center text-center leading-none",
                   isActive ? "bg-primary/30 border-primary/60 text-primary font-bold" : "border-border/40 bg-muted/10 text-muted-foreground/40"
                 )}
                 title={`${r} / ${c}`}
@@ -941,7 +941,7 @@ function StyleBox({ styleIndex }: { styleIndex: number }) {
           })
         )}
       </div>
-      <div className="flex justify-between mt-0.5 text-[8px] text-muted-foreground/50 w-24">
+      <div className="flex justify-between mt-0.5 text-[11px] text-muted-foreground/50 w-24">
         <span>Val</span><span>Blnd</span><span>Grw</span>
       </div>
     </div>

@@ -207,7 +207,7 @@ export function MiniTradePanel({
               className="flex-1 flex items-center justify-center gap-1 rounded-lg bg-emerald-500 py-2 text-xs font-bold text-white uppercase tracking-wide transition-all hover:brightness-110 disabled:opacity-30 shadow-sm">
               <ArrowUpRight className="h-3 w-3" />
               Long {qty}
-              {enableKeyboard && <kbd className="ml-1 rounded bg-white/20 px-1 py-0.5 text-[8px] font-mono leading-none">W</kbd>}
+              {enableKeyboard && <kbd className="ml-1 rounded bg-white/20 px-1 py-0.5 text-[11px] font-mono leading-none">W</kbd>}
             </motion.button>
             <motion.button type="button" onClick={handleShort}
               disabled={isLong || cash < currentPrice * qty || allComplete || atEnd}
@@ -215,7 +215,7 @@ export function MiniTradePanel({
               className="flex-1 flex items-center justify-center gap-1 rounded-lg bg-red-500 py-2 text-xs font-bold text-white uppercase tracking-wide transition-all hover:brightness-110 disabled:opacity-30 shadow-sm">
               <ArrowDownRight className="h-3 w-3" />
               Short {qty}
-              {enableKeyboard && <kbd className="ml-1 rounded bg-white/20 px-1 py-0.5 text-[8px] font-mono leading-none">S</kbd>}
+              {enableKeyboard && <kbd className="ml-1 rounded bg-white/20 px-1 py-0.5 text-[11px] font-mono leading-none">S</kbd>}
             </motion.button>
           </div>
 
@@ -225,10 +225,10 @@ export function MiniTradePanel({
               <motion.div initial={{ opacity: 0, height: 0 }} animate={{ opacity: 1, height: "auto" }} exit={{ opacity: 0, height: 0 }}>
                 <motion.button type="button" onClick={handleClose}
                   disabled={allComplete || atEnd} whileTap={{ scale: 0.95 }}
-                  className="w-full flex items-center justify-center gap-1.5 rounded-lg border border-white/10 bg-white/5 py-1.5 text-[11px] font-bold text-muted-foreground uppercase tracking-wide transition-all hover:bg-white/10 disabled:opacity-30">
+                  className="w-full flex items-center justify-center gap-1.5 rounded-lg border border-border/50 bg-muted/20 py-1.5 text-[11px] font-bold text-muted-foreground uppercase tracking-wide transition-all hover:bg-muted/50 disabled:opacity-30">
                   <X className="h-3 w-3" />
                   Close {position.side === "long" ? "Long" : "Short"} ({position.quantity})
-                  {enableKeyboard && <kbd className="ml-1 rounded bg-white/15 px-1 py-0.5 text-[8px] font-mono leading-none text-muted-foreground">Q</kbd>}
+                  {enableKeyboard && <kbd className="ml-1 rounded bg-muted/50 px-1 py-0.5 text-[11px] font-mono leading-none text-muted-foreground">Q</kbd>}
                 </motion.button>
               </motion.div>
             )}

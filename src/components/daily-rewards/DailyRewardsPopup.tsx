@@ -101,7 +101,7 @@ export function DailyRewardsPopup() {
             animate={{ scale: 1, opacity: 1, y: 0 }}
             exit={{ scale: 0.9, opacity: 0, y: 16 }}
             transition={{ type: "spring", stiffness: 320, damping: 22 }}
-            className="relative w-[420px] overflow-hidden rounded-2xl border border-border/60 bg-card shadow-2xl"
+            className="relative w-[420px] overflow-hidden rounded-2xl border border-border/60 bg-card shadow-sm"
             onClick={(e) => e.stopPropagation()}
           >
             {/* Close button */}
@@ -182,7 +182,7 @@ export function DailyRewardsPopup() {
                     >
                       {/* Day label */}
                       <span className={cn(
-                        "text-[8px] font-bold",
+                        "text-[11px] font-bold",
                         isCurrent ? (isLastDay ? "text-amber-400" : "text-primary") : "text-muted-foreground/60",
                       )}>
                         D{i + 1}

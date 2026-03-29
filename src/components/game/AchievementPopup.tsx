@@ -63,7 +63,7 @@ export function AchievementPopup() {
           className="fixed bottom-12 right-4 z-50"
         >
           <div
-            className="achievement-confetti relative flex items-center gap-3 rounded-lg border border-amber-500/30 bg-card px-4 py-3 shadow-lg glow-amber cursor-pointer"
+            className="achievement-confetti relative flex items-center gap-3 rounded-lg border border-amber-500/30 bg-card px-4 py-3 shadow-sm cursor-pointer"
             onClick={dismissAchievement}
           >
             <div className="flex h-10 w-10 items-center justify-center rounded-full bg-amber-500/15">

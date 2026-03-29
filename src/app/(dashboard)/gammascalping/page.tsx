@@ -480,7 +480,7 @@ function GammaPnLTab() {
             </thead>
             <tbody>
               {simulation.hedgeEvents.slice(0, 15).map((ev) => (
-                <tr key={ev.idx} className="border-b border-white/5 hover:bg-white/5">
+                <tr key={ev.idx} className="border-b border-white/5 hover:bg-muted/30">
                   <td className="py-1.5 pr-3 text-muted-foreground">{ev.idx}</td>
                   <td className="py-1.5 pr-3 text-right font-mono text-white">${ev.price.toFixed(2)}</td>
                   <td className="py-1.5 pr-3 text-right font-mono text-primary">{ev.delta.toFixed(3)}</td>
@@ -575,7 +575,7 @@ function VolArbitrageTab() {
               className={`p-3 rounded-lg border text-left transition-all ${
                 selectedStrategy === i
                   ? `border-${st.color}-500/60 bg-${st.color}-500/20`
-                  : "border-white/10 bg-white/5 hover:bg-white/10"
+                  : "border-white/10 bg-white/5 hover:bg-muted/50"
               }`}
             >
               <div className={`text-sm font-medium ${selectedStrategy === i ? `text-${st.color}-300` : "text-muted-foreground"}`}>{st.name}</div>

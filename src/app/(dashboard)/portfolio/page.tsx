@@ -172,7 +172,7 @@ export default function PortfolioPage() {
               <p className="text-base font-semibold tabular-nums">
                 {formatCurrency(portfolioValue)}
               </p>
-              <span className="rounded-full bg-muted px-1.5 py-0.5 text-[9px] font-medium text-muted-foreground">
+              <span className="rounded bg-muted/40 px-1.5 py-0.5 text-[11px] font-medium text-muted-foreground">
                 Simulated
               </span>
             </div>

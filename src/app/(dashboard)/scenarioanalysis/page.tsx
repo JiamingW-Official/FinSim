@@ -1517,7 +1517,7 @@ function ReverseStressTab() {
               <div className="flex items-center justify-between mb-3">
                 <div>
                   <p className="text-xs text-muted-foreground">Portfolio Loss</p>
-                  <p className={`text-3xl font-bold font-mono ${lossColor.split(" ")[0]}`}>
+                  <p className={`text-2xl font-bold font-mono ${lossColor.split(" ")[0]}`}>
                     -{path.lossLevel}%
                   </p>
                 </div>
@@ -1724,10 +1724,7 @@ export default function ScenarioAnalysisPage() {
             </p>
           </div>
           <div className="flex items-center gap-2">
-            <Badge variant="outline" className="border-primary/50 text-primary text-xs">
-              <span className="w-1.5 h-1.5 bg-primary rounded-full mr-1.5 inline-block animate-pulse" />
-              Simulated
-            </Badge>
+            <span className="rounded bg-muted/40 px-1.5 py-0.5 text-[11px] font-medium text-muted-foreground">Simulated</span>
           </div>
         </div>
       </div>

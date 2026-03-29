@@ -122,7 +122,7 @@ export function ThemeCustomizer({ open, onClose }: ThemeCustomizerProps) {
             animate={{ x: 0 }}
             exit={{ x: 320 }}
             transition={{ type: "spring", stiffness: 320, damping: 32, mass: 0.8 }}
-            className="fixed right-0 top-0 z-50 flex h-full w-80 flex-col border-l border-border/50 bg-card shadow-2xl"
+            className="fixed right-0 top-0 z-50 flex h-full w-80 flex-col border-l border-border/50 bg-card shadow-sm"
           >
             {/* Header */}
             <div className="flex items-center justify-between border-b border-border/50 px-4 py-3.5">
@@ -165,7 +165,7 @@ export function ThemeCustomizer({ open, onClose }: ThemeCustomizerProps) {
                       >
                         {/* Swatch circle */}
                         <div
-                          className="relative h-12 w-12 rounded-full border border-border/40 shadow-md flex items-center justify-center"
+                          className="relative h-12 w-12 rounded-full border border-border/40 shadow-sm flex items-center justify-center"
                           style={{ background: preset.swatchBg }}
                         >
                           {/* Inner accent dot */}

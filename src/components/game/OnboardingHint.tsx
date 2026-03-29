@@ -25,7 +25,7 @@ export function OnboardingHint({
   return (
     <div
       className={cn(
-        "absolute z-50 w-56 rounded-lg border border-primary/30 bg-card p-3 shadow-lg shadow-primary/5",
+        "absolute z-50 w-56 rounded-lg border border-primary/30 bg-card p-3 shadow-sm",
         position === "bottom" ? "top-full mt-2" : "bottom-full mb-2",
         className,
       )}

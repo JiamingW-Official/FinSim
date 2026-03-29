@@ -714,7 +714,7 @@ function USDashboard({ data }: { data: ReturnType<typeof generateData> }) {
       <SectionCard title="Economic Composite Score">
         <div className="flex items-center gap-6">
           <div className="text-center">
-            <div className={cn("text-5xl font-bold", scoreColor)}>{compositeScore}</div>
+            <div className={cn("text-2xl font-bold", scoreColor)}>{compositeScore}</div>
             <div className="text-xs text-muted-foreground mt-1">out of 100</div>
           </div>
           <div className="flex-1">
@@ -890,7 +890,7 @@ function FedWatch({ data }: { data: ReturnType<typeof generateData> }) {
             </thead>
             <tbody>
               {fedMeetings.map((m, i) => (
-                <tr key={i} className="border-b border-white/5 hover:bg-white/[0.02] transition-colors">
+                <tr key={i} className="border-b border-white/5 hover:bg-muted/30 transition-colors">
                   <td className="py-1.5 pr-4 text-white font-medium">{m.date}</td>
                   <td className="text-right pr-3 text-red-400">{m.hikePct}%</td>
                   <td className="text-right pr-3 text-muted-foreground">{m.holdPct}%</td>
@@ -1020,7 +1020,7 @@ function GlobalComparison({ data }: { data: ReturnType<typeof generateData> }) {
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 1 }}
                   transition={{ delay: i * 0.03 }}
-                  className="border-b border-white/5 hover:bg-white/[0.02] transition-colors"
+                  className="border-b border-white/5 hover:bg-muted/30 transition-colors"
                 >
                   <td className="py-1.5 text-white">
                     {c.flag} {c.name}
@@ -1188,7 +1188,7 @@ function SectorDataTab({ data }: { data: ReturnType<typeof generateData> }) {
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 1 }}
                   transition={{ delay: i * 0.04 }}
-                  className="border-b border-white/5 hover:bg-white/[0.02] transition-colors"
+                  className="border-b border-white/5 hover:bg-muted/30 transition-colors"
                 >
                   <td className="py-1.5 text-white flex items-center gap-1.5">
                     <span className="w-2 h-2 rounded-full shrink-0" style={{ backgroundColor: s.color }} />

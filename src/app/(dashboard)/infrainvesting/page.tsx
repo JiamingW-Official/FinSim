@@ -423,7 +423,7 @@ function AssetClassesTab() {
               className="mt-3 rounded-xl border border-white/15 bg-white/5 p-4"
             >
               <div className="flex items-start gap-3">
-                <span className="text-3xl">{selected.icon}</span>
+                <span className="text-2xl">{selected.icon}</span>
                 <div className="flex-1">
                   <div className="flex items-center gap-2 mb-1">
                     <span className="font-semibold text-white">{selected.name}</span>

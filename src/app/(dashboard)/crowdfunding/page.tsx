@@ -685,7 +685,7 @@ function PlatformTab() {
               </div>
               <div className="h-1.5 bg-muted rounded-full overflow-hidden">
                 <div
-                  className="h-full bg-gradient-to-r from-blue-500 to-blue-400 rounded-full"
+                  className="h-full bg-blue-500 rounded-full"
                   style={{ width: `${platform.successRate}%` }}
                 />
               </div>

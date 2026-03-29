@@ -801,7 +801,7 @@ function CBDCTab() {
           return (
             <Card key={st} className="bg-card border-border">
               <CardContent className="pt-4 text-center">
-                <div className="text-3xl font-bold mb-1" style={{ color: hexMap[st] }}>
+                <div className="text-2xl font-bold mb-1" style={{ color: hexMap[st] }}>
                   {statusCounts[st]}
                 </div>
                 <div className="text-xs text-muted-foreground">{st}</div>

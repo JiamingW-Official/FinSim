@@ -487,7 +487,7 @@ function EarningsQualitySection() {
         <h2 className="text-sm font-semibold text-foreground">Earnings Quality Analyzer</h2>
         <div className="group relative">
           <Info className="h-3.5 w-3.5 text-muted-foreground cursor-help" />
-          <div className="absolute left-5 top-0 z-10 hidden group-hover:block bg-popover border border-border rounded p-2 text-[11px] text-muted-foreground w-56 shadow-lg">
+          <div className="absolute left-5 top-0 z-10 hidden group-hover:block bg-popover border border-border rounded p-2 text-[11px] text-muted-foreground w-56 shadow-sm">
             Scores rate earnings quality across Revenue, Margin, Cash, and Guidance dimensions. Higher scores indicate more reliable, sustainable earnings.
           </div>
         </div>

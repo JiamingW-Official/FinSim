@@ -1204,7 +1204,7 @@ export default function PensionManagementPage() {
                           <span className="text-muted-foreground w-24">{seg.label}</span>
                           <div className="flex-1 bg-muted rounded-full h-2 overflow-hidden">
                             <div
-                              className="h-full rounded-full transition-all duration-500"
+                              className="h-full rounded-full transition-all duration-300"
                               style={{ width: `${seg.value}%`, backgroundColor: seg.color }}
                             />
                           </div>

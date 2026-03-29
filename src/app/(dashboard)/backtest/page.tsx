@@ -248,7 +248,7 @@ export default function BacktestPage() {
           <h1 className="text-sm font-semibold text-foreground">Strategy Backtester</h1>
           <p className="text-xs text-muted-foreground">Build, test, and optimize on simulated market data</p>
         </div>
-        <span className="ml-4 rounded-full border border-primary/20 bg-primary/5 px-2.5 py-0.5 text-[10px] font-medium text-primary/70">
+        <span className="ml-4 rounded bg-muted/40 px-1.5 py-0.5 text-[11px] font-medium text-muted-foreground">
           Simulated historical data
         </span>
         {store.totalBacktestsRun > 0 && (

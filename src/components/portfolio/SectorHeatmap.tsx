@@ -107,7 +107,7 @@ export function SectorHeatmap({ performance }: SectorHeatmapProps) {
                   <div className="text-xs font-medium text-foreground truncate">
                     {sector.shortName}
                   </div>
-                  <div className="text-[8px] text-muted-foreground/70">
+                  <div className="text-[11px] text-muted-foreground/70">
                     {sector.weight.toFixed(1)}% of S&P
                   </div>
                 </div>
@@ -128,7 +128,7 @@ export function SectorHeatmap({ performance }: SectorHeatmapProps) {
                   {sector.watchlistTickers.map((t) => (
                     <span
                       key={t}
-                      className="px-1 py-px text-[8px] font-mono bg-background/60 rounded text-foreground/80"
+                      className="px-1 py-px text-[11px] font-mono bg-background/60 rounded text-foreground/80"
                     >
                       {t}
                     </span>

@@ -585,7 +585,7 @@ function ScreenerTab() {
                 initial={{ opacity: 0, y: 4 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: i * 0.02 }}
-                className="border-b border-white/[0.04] hover:bg-white/[0.02]"
+                className="border-b border-white/[0.04] hover:bg-muted/30"
               >
                 <td className="py-2 pr-3">
                   <div className="font-semibold text-foreground">{stock.ticker}</div>
@@ -773,7 +773,7 @@ function PiotroskiTab() {
         {/* F-Score summary */}
         <div className="rounded-xl border border-white/5 bg-white/[0.03] p-5 flex flex-col items-center justify-center gap-2">
           <RadarChart company={company} />
-          <div className={cn("text-4xl font-bold tabular-nums", fscoreColor)}>{company.fscore}</div>
+          <div className={cn("text-2xl font-bold tabular-nums", fscoreColor)}>{company.fscore}</div>
           <div className="text-xs text-muted-foreground">{company.ticker} F-Score (out of 9)</div>
           <div className={cn("text-xs font-medium", fscoreColor)}>
             {company.fscore >= 7 ? "Strong — Long Candidate" : company.fscore >= 4 ? "Neutral — Monitor" : "Weak — Potential Short"}
@@ -885,7 +885,7 @@ function BeneishTab() {
             <h3 className="text-sm font-semibold text-foreground">{company.name}</h3>
             <RiskBadge risk={company.risk} />
           </div>
-          <div className={cn("text-3xl font-bold tabular-nums", mScoreColor)}>{company.mScore.toFixed(3)}</div>
+          <div className={cn("text-2xl font-bold tabular-nums", mScoreColor)}>{company.mScore.toFixed(3)}</div>
           <div className="text-xs text-muted-foreground">M-Score (threshold: −1.78)</div>
           <div className="mt-4 space-y-2.5">
             {variables.map(v => (
@@ -1054,7 +1054,7 @@ function CashFlowTab() {
             </thead>
             <tbody>
               {sorted.map((stock, i) => (
-                <motion.tr key={stock.ticker} initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: i * 0.03 }} className={cn("border-b border-white/[0.04]", stock.alert ? "bg-amber-500/5" : "hover:bg-white/[0.02]")}>
+                <motion.tr key={stock.ticker} initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: i * 0.03 }} className={cn("border-b border-white/[0.04]", stock.alert ? "bg-amber-500/5" : "hover:bg-muted/30")}>
                   <td className="py-2 pr-3">
                     <div className="font-semibold text-foreground">{stock.ticker}</div>
                     <div className="text-muted-foreground">{stock.name}</div>

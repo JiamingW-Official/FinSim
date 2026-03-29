@@ -369,7 +369,7 @@ function MarketOverviewTab() {
             </thead>
             <tbody>
               {YIELD_TABLE.map((row) => (
-                <tr key={row.country} className="border-b border-white/5 hover:bg-white/3 transition-colors">
+                <tr key={row.country} className="border-b border-white/5 hover:bg-muted/30 transition-colors">
                   <td className="py-1.5 font-medium text-white">
                     {row.flag} {row.country}
                   </td>
@@ -586,7 +586,7 @@ function EMBondsTab() {
             </thead>
             <tbody>
               {DEFAULT_HISTORY.map((d) => (
-                <tr key={`${d.country}-${d.year}`} className="border-b border-white/5 hover:bg-white/3 transition-colors">
+                <tr key={`${d.country}-${d.year}`} className="border-b border-white/5 hover:bg-muted/30 transition-colors">
                   <td className="py-2 font-medium text-white">{d.flag} {d.country}</td>
                   <td className="py-2 text-white/60">{d.year}</td>
                   <td className="py-2 text-white/50">{d.instrument}</td>
@@ -803,7 +803,7 @@ function CurrencyHedgingTab() {
                     key={h.pair}
                     className={cn(
                       "border-b border-white/5 cursor-pointer transition-colors",
-                      isSelected ? "bg-primary/10" : "hover:bg-white/3"
+                      isSelected ? "bg-primary/10" : "hover:bg-muted/30"
                     )}
                     onClick={() => setSelectedPair(h.pair)}
                   >

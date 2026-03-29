@@ -241,7 +241,7 @@ function ABSStructureTab() {
             </thead>
             <tbody>
               {TRANCHES.map((t) => (
-                <tr key={t.name} className="border-b border-white/5 hover:bg-white/5 transition-colors">
+                <tr key={t.name} className="border-b border-white/5 hover:bg-muted/30 transition-colors">
                   <td className="py-2 text-white/90">
                     <span className="inline-block w-2 h-2 rounded-full mr-2" style={{ backgroundColor: t.color }} />
                     {t.name}
@@ -524,7 +524,7 @@ function PrepaymentModelsTab() {
             </thead>
             <tbody>
               {PREPAY_SCENARIOS.map((s, i) => (
-                <tr key={i} className={cn("border-b border-white/5 hover:bg-white/5 transition-colors", s.psa === psaSpeed ? "bg-primary/10" : "")}>
+                <tr key={i} className={cn("border-b border-white/5 hover:bg-muted/30 transition-colors", s.psa === psaSpeed ? "bg-primary/10" : "")}>
                   <td className="py-2 text-white/90">{s.label}</td>
                   <td className="py-2 text-center text-white/80">{s.psa}</td>
                   <td className="py-2 text-center text-white/80">{s.wal}</td>
@@ -658,7 +658,7 @@ function PricingYieldTab() {
         </div>
         <div className="mt-4 rounded-lg bg-white/5 p-3 text-center">
           <p className="text-xs text-white/50">Computed Discount Margin</p>
-          <p className={cn("text-3xl font-bold mt-1", dm > margin ? "text-green-400" : dm < margin - 20 ? "text-red-400" : "text-primary")}>
+          <p className={cn("text-2xl font-bold mt-1", dm > margin ? "text-green-400" : dm < margin - 20 ? "text-red-400" : "text-primary")}>
             {dm.toFixed(0)} bps
           </p>
           <p className="text-xs text-white/40 mt-1">
@@ -891,7 +891,7 @@ function CreditEnhancementTab() {
             </thead>
             <tbody>
               {ASSET_CLASS_LOSSES.map((row, i) => (
-                <tr key={i} className="border-b border-white/5 hover:bg-white/5 transition-colors">
+                <tr key={i} className="border-b border-white/5 hover:bg-muted/30 transition-colors">
                   <td className="py-2 text-white/90">{row.assetClass}</td>
                   <td className="py-2 text-center">
                     <div className="flex items-center justify-center gap-1">

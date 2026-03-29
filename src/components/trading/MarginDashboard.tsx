@@ -264,7 +264,7 @@ function AccountBar({
           style={{ width: `${equityPct}%` }}
         >
           {equityPct > 10 && (
-            <span className="text-[8px] font-bold text-white/90 px-1 truncate">
+            <span className="text-[11px] font-bold text-white/90 px-1 truncate">
               Equity
             </span>
           )}
@@ -940,7 +940,7 @@ export function MarginDashboard() {
                               >
                                 {info.ticker}
                                 {isActive && (
-                                  <span className="ml-1 text-[8px]">SHORT</span>
+                                  <span className="ml-1 text-[11px]">SHORT</span>
                                 )}
                               </td>
                               <td
@@ -1277,7 +1277,7 @@ export function MarginDashboard() {
                             )}
                           >
                             {p.ticker}{" "}
-                            <span className="text-[8px] text-muted-foreground">
+                            <span className="text-[11px] text-muted-foreground">
                               {p.side.toUpperCase()}
                             </span>
                           </span>

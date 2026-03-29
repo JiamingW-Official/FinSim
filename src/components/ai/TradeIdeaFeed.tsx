@@ -147,20 +147,20 @@ function buildPriceLevels(
 function DirectionBadge({ direction }: { direction: TradeIdea["direction"] }) {
   if (direction === "long")
     return (
-      <span className="inline-flex items-center gap-0.5 rounded border border-emerald-500/40 bg-emerald-500/15 px-1.5 py-0.5 text-[8px] font-bold text-emerald-400 leading-none uppercase">
+      <span className="inline-flex items-center gap-0.5 rounded border border-emerald-500/40 bg-emerald-500/15 px-1.5 py-0.5 text-[11px] font-bold text-emerald-400 leading-none uppercase">
         <TrendingUp className="h-2.5 w-2.5" />
         Long
       </span>
     );
   if (direction === "short")
     return (
-      <span className="inline-flex items-center gap-0.5 rounded border border-red-500/40 bg-red-500/15 px-1.5 py-0.5 text-[8px] font-bold text-red-400 leading-none uppercase">
+      <span className="inline-flex items-center gap-0.5 rounded border border-red-500/40 bg-red-500/15 px-1.5 py-0.5 text-[11px] font-bold text-red-400 leading-none uppercase">
         <TrendingDown className="h-2.5 w-2.5" />
         Short
       </span>
     );
   return (
-    <span className="inline-flex items-center gap-0.5 rounded border border-border bg-muted px-1.5 py-0.5 text-[8px] font-bold text-muted-foreground leading-none uppercase">
+    <span className="inline-flex items-center gap-0.5 rounded border border-border bg-muted px-1.5 py-0.5 text-[11px] font-bold text-muted-foreground leading-none uppercase">
       <Minus className="h-2.5 w-2.5" />
       Wait
     </span>
@@ -177,7 +177,7 @@ function RRBadge({ rr }: { rr: number }) {
   return (
     <span
       className={cn(
-        "inline-flex rounded border px-1.5 py-0.5 text-[8px] font-bold leading-none",
+        "inline-flex rounded border px-1.5 py-0.5 text-[11px] font-bold leading-none",
         cls,
       )}
     >
@@ -194,7 +194,7 @@ function ConfidenceBadge({ conf }: { conf: number }) {
       ? "text-amber-400"
       : "text-muted-foreground";
   return (
-    <span className={cn("text-[8px] font-bold font-mono", cls)}>
+    <span className={cn("text-[11px] font-bold font-mono", cls)}>
       {conf}%
     </span>
   );
@@ -240,7 +240,7 @@ function IdeaCard({
           {idea.ticker}
         </span>
         {idea.setupName && (
-          <span className="text-[8px] text-muted-foreground/70 truncate flex-1">
+          <span className="text-[11px] text-muted-foreground/70 truncate flex-1">
             {idea.setupName}
           </span>
         )}
@@ -250,7 +250,7 @@ function IdeaCard({
       </div>
 
       {/* Row 2: price levels */}
-      <div className="grid grid-cols-3 gap-1 text-[8px]">
+      <div className="grid grid-cols-3 gap-1 text-[11px]">
         <div className="space-y-0.5">
           <div className="text-muted-foreground/50 uppercase text-[6.5px] font-bold tracking-wide">
             Entry
@@ -288,7 +288,7 @@ function IdeaCard({
           type="button"
           onClick={() => router.push("/trade")}
           className={cn(
-            "flex items-center gap-0.5 rounded border px-1.5 py-0.5 text-[8px] font-bold leading-none transition-all",
+            "flex items-center gap-0.5 rounded border px-1.5 py-0.5 text-[11px] font-bold leading-none transition-all",
             isBull
               ? "border-emerald-500/30 bg-emerald-500/10 text-emerald-400 hover:bg-emerald-500/20"
               : isBear
@@ -463,7 +463,7 @@ export function TradeIdeaFeed({ maxItems = 10, compact = false }: TradeIdeaFeedP
             type="button"
             onClick={() => setFilter(f.value)}
             className={cn(
-              "rounded border px-1.5 py-0.5 text-[8px] font-bold leading-none transition-all",
+              "rounded border px-1.5 py-0.5 text-[11px] font-bold leading-none transition-all",
               filter === f.value
                 ? "bg-primary/15 border-primary/30 text-primary"
                 : "border-border bg-muted text-muted-foreground hover:text-foreground hover:bg-accent",

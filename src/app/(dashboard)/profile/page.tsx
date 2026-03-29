@@ -461,7 +461,7 @@ function HeatmapCalendar({ tradeHistory }: { tradeHistory: { timestamp: number }
           <div
             key={cell.key}
             title={`${cell.key}: ${cell.count} trades`}
-            className="w-5 h-5 rounded-sm flex items-center justify-center text-[8px] text-white/40"
+            className="w-5 h-5 rounded-sm flex items-center justify-center text-[11px] text-white/40"
             style={{
               backgroundColor: `rgba(16, 185, 129, ${opacity})`,
               border: cell.count > 0 ? "1px solid rgba(16,185,129,0.3)" : "1px solid rgba(255,255,255,0.06)",
@@ -743,7 +743,7 @@ export default function ProfilePage() {
                     <div className="h-1 w-full bg-primary" />
                     <CardContent className="pt-5 space-y-4">
                       <div className="flex items-start gap-4">
-                        <div className="text-4xl">{archetype.icon}</div>
+                        <div className="text-2xl">{archetype.icon}</div>
                         <div className="flex-1">
                           <div className="flex items-center gap-2 mb-1">
                             <h2 className="text-base font-bold">{archetype.name}</h2>

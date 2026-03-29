@@ -572,7 +572,7 @@ function IPOProcessTab() {
                   {stage.icon}
                 </div>
                 <span className="text-[11px] text-muted-foreground text-center leading-tight">{stage.name}</span>
-                <span className="text-[8px] text-muted-foreground">{stage.duration}</span>
+                <span className="text-[11px] text-muted-foreground">{stage.duration}</span>
               </button>
             ))}
           </div>

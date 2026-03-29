@@ -801,15 +801,15 @@ function PatternCard({
         <div className="mt-auto flex items-center justify-between pt-1">
           <div className="text-center">
             <p className="text-xs font-bold tabular-nums text-emerald-400">{pattern.successRate}%</p>
-            <p className="text-[8px] text-muted-foreground">Success</p>
+            <p className="text-[11px] text-muted-foreground">Success</p>
           </div>
           <div className="text-center">
             <p className="text-xs font-bold tabular-nums text-primary">+{pattern.avgGain}%</p>
-            <p className="text-[8px] text-muted-foreground">Avg Gain</p>
+            <p className="text-[11px] text-muted-foreground">Avg Gain</p>
           </div>
           <div className="text-center">
             <p className="text-xs font-bold tabular-nums text-foreground">{pattern.avgFormationBars}</p>
-            <p className="text-[8px] text-muted-foreground">Bars</p>
+            <p className="text-[11px] text-muted-foreground">Bars</p>
           </div>
         </div>
       </div>

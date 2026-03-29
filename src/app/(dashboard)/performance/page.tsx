@@ -1035,7 +1035,7 @@ export default function PerformancePage() {
                 <div className="flex items-end gap-3">
                   <span
                     className={cn(
-                      "text-5xl font-bold tabular-nums",
+                      "text-2xl font-bold tabular-nums",
                       stats.totalReturn >= 0 ? "text-green-500" : "text-red-400",
                     )}
                   >

@@ -115,7 +115,7 @@ export default function LandingPage() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.45, duration: 0.5 }}
         >
-          <div className="rounded-lg border border-border bg-card overflow-hidden shadow-lg">
+          <div className="rounded-lg border border-border bg-card overflow-hidden shadow-sm">
             {/* Browser chrome */}
             <div className="flex items-center gap-1.5 px-4 py-2.5 bg-muted/50 border-b border-border">
               <div className="h-2.5 w-2.5 rounded-full bg-red-400/60" />

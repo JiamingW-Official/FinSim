@@ -118,7 +118,7 @@ export function StreakCelebration() {
           >
             <motion.div
               className={cn(
-                "flex flex-col items-center gap-2 rounded-2xl border p-5 shadow-xl backdrop-blur-sm",
+                "flex flex-col items-center gap-2 rounded-2xl border p-5 shadow-sm backdrop-blur-sm",
                 config.bg,
                 config.border,
                 isLarge && "min-w-[240px]",

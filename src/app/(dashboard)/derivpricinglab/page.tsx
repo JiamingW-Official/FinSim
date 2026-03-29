@@ -846,7 +846,7 @@ function PriceCard({ title, price, color, icon }: PriceCardProps) {
           <span className={text}>{icon}</span>
           <p className="text-sm text-muted-foreground">{title}</p>
         </div>
-        <p className={`text-4xl font-bold ${text}`}>${price.toFixed(4)}</p>
+        <p className={`text-2xl font-bold ${text}`}>${price.toFixed(4)}</p>
       </CardContent>
     </Card>
   );

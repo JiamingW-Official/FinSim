@@ -581,7 +581,7 @@ export default function RebalancingPage() {
                       <span className="text-muted-foreground text-xs w-12 text-right">{h.ticker}</span>
                       <div className="flex-1 h-4 bg-muted/50 rounded-full overflow-hidden relative">
                         <div
-                          className={`absolute top-0 h-full rounded-full transition-all duration-500 ${
+                          className={`absolute top-0 h-full rounded-full transition-all duration-300 ${
                             h.drift > 0 ? "right-1/2" : "left-1/2"
                           } ${h.driftAbs >= driftThreshold ? "bg-red-500/70" : h.driftAbs >= driftThreshold * 0.5 ? "bg-amber-500/70" : "bg-emerald-500/70"}`}
                           style={{ width: `${Math.min((h.driftAbs / 8) * 50, 50)}%` }}

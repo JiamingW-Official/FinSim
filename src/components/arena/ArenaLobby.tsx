@@ -47,7 +47,7 @@ export function ArenaLobby({ onSelectType }: ArenaLobbyProps) {
       <motion.div
         initial={{ opacity: 0, y: -12 }}
         animate={{ opacity: 1, y: 0 }}
-        className="rounded-xl border border-white/5 bg-card p-4"
+        className="rounded-xl border border-border/30 bg-card p-4"
       >
         <div className="flex items-center gap-4">
           <ArenaRankBadge rank={rank} size="lg" />
@@ -111,8 +111,8 @@ export function ArenaLobby({ onSelectType }: ArenaLobbyProps) {
               onClick={() => onSelectType(config)}
               className={cn(
                 "group relative overflow-hidden rounded-xl border p-4 text-left transition-all",
-                "border-white/5 hover:border-white/10",
-                "bg-white/[0.02] hover:bg-white/[0.05]",
+                "border-border/30 hover:border-border",
+                "bg-muted/10 hover:bg-muted/30",
               )}
             >
               {/* Colored top accent */}
@@ -150,7 +150,7 @@ export function ArenaLobby({ onSelectType }: ArenaLobbyProps) {
 
               {/* Stats if played */}
               {stats && stats.matches > 0 && (
-                <div className="mt-3 pt-2 border-t border-white/5 flex items-center gap-3 text-xs text-muted-foreground">
+                <div className="mt-3 pt-2 border-t border-border/30 flex items-center gap-3 text-xs text-muted-foreground">
                   <span>{stats.wins}/{stats.matches} W</span>
                   <span className="text-muted-foreground/70">|</span>
                   <span>Best: {stats.bestScore}</span>
@@ -185,7 +185,7 @@ function RecentMatches() {
     <motion.div
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
-      className="rounded-xl border border-white/5 bg-white/[0.02] p-4"
+      className="rounded-xl border border-border/30 bg-muted/10 p-4"
     >
       <h3 className="text-xs font-bold text-muted-foreground mb-3 flex items-center gap-1.5">
         <Trophy className="h-3 w-3" />

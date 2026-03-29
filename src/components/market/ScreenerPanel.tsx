@@ -479,7 +479,7 @@ export function ScreenerPanel({ onSelectTicker }: ScreenerPanelProps) {
                   value={saveScreenName}
                   onChange={(e) => setSaveScreenName(e.target.value)}
                   placeholder="Screen name..."
-                  className="flex-1 text-xs px-2 py-1 rounded border border-muted-foreground/30 bg-background focus:outline-none focus:border-primary min-w-0"
+                  className="flex-1 text-xs px-2 py-1 rounded border border-muted-foreground/30 bg-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring min-w-0"
                   onKeyDown={(e) => {
                     if (e.key === "Enter") handleSaveScreen();
                     if (e.key === "Escape") setShowSaveInput(false);

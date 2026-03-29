@@ -799,7 +799,7 @@ function StressTesting() {
           <div className="bg-muted/60 rounded-xl p-4 border border-border/40">
             <SectionHeader title="Reverse Stress Test" sub="How severe must equity fall to lose 20% of portfolio?" />
             <div className="text-center py-3">
-              <div className="text-3xl font-bold text-red-400">{(reverseShock * 100).toFixed(1)}%</div>
+              <div className="text-2xl font-bold text-red-400">{(reverseShock * 100).toFixed(1)}%</div>
               <div className="text-xs text-muted-foreground mt-1">Required equity decline</div>
               <div className="mt-3 text-xs text-muted-foreground bg-muted/40 rounded p-2">
                 With current rate scenario ({rateShock[0]} bps), equities would need to fall{" "}

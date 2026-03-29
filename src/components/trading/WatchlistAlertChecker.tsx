@@ -63,7 +63,7 @@ export function WatchlistAlertChecker() {
 
           toast.custom(
             () => (
-              <div className="flex items-center gap-3 rounded-lg border border-border bg-card px-4 py-3 shadow-lg">
+              <div className="flex items-center gap-3 rounded-lg border border-border bg-card px-4 py-3 shadow-sm">
                 <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-green-500/15 border border-green-500/30">
                   <TrendingUp className="h-4 w-4 text-green-500" />
                 </div>
@@ -106,7 +106,7 @@ export function WatchlistAlertChecker() {
 
           toast.custom(
             () => (
-              <div className="flex items-center gap-3 rounded-lg border border-border bg-card px-4 py-3 shadow-lg">
+              <div className="flex items-center gap-3 rounded-lg border border-border bg-card px-4 py-3 shadow-sm">
                 <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-red-500/15 border border-red-500/30">
                   <TrendingDown className="h-4 w-4 text-red-500" />
                 </div>

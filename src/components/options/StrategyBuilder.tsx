@@ -103,7 +103,7 @@ export function StrategyBuilder() {
                 <div className="text-xs font-bold leading-tight">
                   {preset.name}
                 </div>
-                <div className="text-[8px] text-muted-foreground leading-tight truncate">
+                <div className="text-[11px] text-muted-foreground leading-tight truncate">
                   {preset.description}
                 </div>
               </div>

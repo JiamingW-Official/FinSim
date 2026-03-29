@@ -230,7 +230,7 @@ function InputField({
           className={`
             w-full rounded-lg border border-border bg-background
             px-2.5 py-1.5 text-sm font-mono tabular-nums text-foreground
-            focus:outline-none focus:ring-1 focus:ring-ring
+            focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring
             ${prefix ? "pl-6" : ""}
             ${suffix ? "pr-6" : ""}
           `}

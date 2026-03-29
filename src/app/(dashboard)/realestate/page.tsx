@@ -269,7 +269,7 @@ function PropertyAnalyzer() {
                 step={step}
                 min={min}
                 onChange={(e) => set(key, parseFloat(e.target.value) || 0)}
-                className="w-32 rounded-lg border border-white/10 bg-card px-3 py-1.5 text-sm text-white text-right focus:outline-none focus:ring-1 focus:ring-blue-500"
+                className="w-32 rounded-lg border border-white/10 bg-card px-3 py-1.5 text-sm text-white text-right focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
               />
             </div>
           ))}
@@ -282,7 +282,7 @@ function PropertyAnalyzer() {
               min={0}
               max={30}
               onChange={(e) => set("vacancy", parseFloat(e.target.value) || 0)}
-              className="w-32 rounded-lg border border-white/10 bg-card px-3 py-1.5 text-sm text-white text-right focus:outline-none focus:ring-1 focus:ring-blue-500"
+              className="w-32 rounded-lg border border-white/10 bg-card px-3 py-1.5 text-sm text-white text-right focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
             />
           </div>
           <div className="flex items-center justify-between gap-4">
@@ -294,7 +294,7 @@ function PropertyAnalyzer() {
               min={5}
               max={100}
               onChange={(e) => set("downPct", parseFloat(e.target.value) || 20)}
-              className="w-32 rounded-lg border border-white/10 bg-card px-3 py-1.5 text-sm text-white text-right focus:outline-none focus:ring-1 focus:ring-blue-500"
+              className="w-32 rounded-lg border border-white/10 bg-card px-3 py-1.5 text-sm text-white text-right focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
             />
           </div>
         </div>
@@ -558,7 +558,7 @@ function MarketComparisons() {
             onClick={() => setSort(key)}
             className={cn(
               "rounded-lg px-3 py-1.5 text-xs font-medium transition-colors",
-              sort === key ? "bg-primary text-white" : "bg-white/5 text-muted-foreground hover:bg-white/10"
+              sort === key ? "bg-primary text-white" : "bg-white/5 text-muted-foreground hover:bg-muted/50"
             )}
           >
             {label}
@@ -592,7 +592,7 @@ function MarketComparisons() {
                     initial={{ opacity: 0, x: -10 }}
                     animate={{ opacity: 1, x: 0 }}
                     transition={{ delay: i * 0.02 }}
-                    className="border-t border-white/5 hover:bg-white/5 transition-colors"
+                    className="border-t border-white/5 hover:bg-muted/30 transition-colors"
                   >
                     <td className="px-3 py-2 font-medium text-white">
                       {m.city}, {m.state}
@@ -650,7 +650,7 @@ function MarketComparisons() {
                 onChange={(e) =>
                   setRentVsBuy((p) => ({ ...p, [key]: parseFloat(e.target.value) || 0 }))
                 }
-                className="w-full rounded-lg border border-white/10 bg-card px-3 py-1.5 text-sm text-white focus:outline-none focus:ring-1 focus:ring-blue-500"
+                className="w-full rounded-lg border border-white/10 bg-card px-3 py-1.5 text-sm text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
               />
             </div>
           ))}
@@ -781,7 +781,7 @@ function REITAnalysis() {
                 <tr
                   key={r.ticker}
                   onClick={() => setSelected(r.ticker === selected ? null : r.ticker)}
-                  className={cn("border-t border-white/5 cursor-pointer transition-colors", selected === r.ticker ? "bg-primary/20" : "hover:bg-white/5")}
+                  className={cn("border-t border-white/5 cursor-pointer transition-colors", selected === r.ticker ? "bg-primary/20" : "hover:bg-muted/30")}
                 >
                   <td className="px-3 py-2 font-mono font-bold text-white">{r.ticker}</td>
                   <td className="px-3 py-2">
@@ -1001,12 +1001,12 @@ function CommercialRE() {
                 value={dscrInputs[key]}
                 step={10000}
                 onChange={(e) => setDscrInputs((p) => ({ ...p, [key]: parseFloat(e.target.value) || 0 }))}
-                className="w-32 rounded-lg border border-white/10 bg-card px-3 py-1.5 text-sm text-white text-right focus:outline-none focus:ring-1 focus:ring-blue-500"
+                className="w-32 rounded-lg border border-white/10 bg-card px-3 py-1.5 text-sm text-white text-right focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
               />
             </div>
           ))}
           <div className={cn("rounded-lg p-4 text-center", dscr >= 1.25 ? "bg-emerald-500/15 border border-emerald-500/30" : dscr >= 1.0 ? "bg-amber-500/15 border border-amber-500/30" : "bg-rose-500/15 border border-rose-500/30")}>
-            <div className={cn("text-3xl font-bold", dscr >= 1.25 ? "text-emerald-400" : dscr >= 1.0 ? "text-amber-400" : "text-rose-400")}>
+            <div className={cn("text-2xl font-bold", dscr >= 1.25 ? "text-emerald-400" : dscr >= 1.0 ? "text-amber-400" : "text-rose-400")}>
               {dscr.toFixed(2)}x
             </div>
             <div className="text-xs text-muted-foreground mt-1">DSCR — {dscr >= 1.25 ? "Lender approved (>1.25x)" : dscr >= 1.0 ? "Borderline — may require more equity" : "Below 1.0x — property cash flow negative"}</div>
@@ -1031,7 +1031,7 @@ function CommercialRE() {
                 value={mortInputs[key]}
                 step={step}
                 onChange={(e) => setMortInputs((p) => ({ ...p, [key]: parseFloat(e.target.value) || 0 }))}
-                className="w-32 rounded-lg border border-white/10 bg-card px-3 py-1.5 text-sm text-white text-right focus:outline-none focus:ring-1 focus:ring-blue-500"
+                className="w-32 rounded-lg border border-white/10 bg-card px-3 py-1.5 text-sm text-white text-right focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
               />
             </div>
           ))}
@@ -1165,7 +1165,7 @@ function DevelopmentTab() {
                 value={devInputs[key]}
                 step={10000}
                 onChange={(e) => setDevInputs((p) => ({ ...p, [key]: parseFloat(e.target.value) || 0 }))}
-                className="w-32 rounded-lg border border-white/10 bg-card px-3 py-1.5 text-sm text-white text-right focus:outline-none focus:ring-1 focus:ring-blue-500"
+                className="w-32 rounded-lg border border-white/10 bg-card px-3 py-1.5 text-sm text-white text-right focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
               />
             </div>
           ))}
@@ -1221,7 +1221,7 @@ function DevelopmentTab() {
                 value={brrrrInputs[key]}
                 step={step}
                 onChange={(e) => setBrrrrInputs((p) => ({ ...p, [key]: parseFloat(e.target.value) || 0 }))}
-                className="w-32 rounded-lg border border-white/10 bg-card px-3 py-1.5 text-sm text-white text-right focus:outline-none focus:ring-1 focus:ring-blue-500"
+                className="w-32 rounded-lg border border-white/10 bg-card px-3 py-1.5 text-sm text-white text-right focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
               />
             </div>
           ))}
@@ -1261,7 +1261,7 @@ function DevelopmentTab() {
               {renos
                 .sort((a, b) => b.roi - a.roi)
                 .map((r) => (
-                  <tr key={r.item} className="border-t border-white/5 hover:bg-white/5 transition-colors">
+                  <tr key={r.item} className="border-t border-white/5 hover:bg-muted/30 transition-colors">
                     <td className="px-3 py-2 text-muted-foreground">{r.item}</td>
                     <td className="px-3 py-2 text-right text-muted-foreground">{fmtUSD(r.cost)}</td>
                     <td className="px-3 py-2 text-right text-emerald-400">{fmtUSD(r.addedVal)}</td>

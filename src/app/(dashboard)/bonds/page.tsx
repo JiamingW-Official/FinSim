@@ -1066,7 +1066,7 @@ export default function BondsPage() {
                         inPortfolio ? "border-primary/40 bg-primary/5" : "border-border/40 bg-card hover:bg-accent/30",
                       )}>
                         <div className="flex items-center gap-2">
-                          <span className={cn("rounded px-1 py-0.5 text-[8px] font-bold", tl.cls)}>{tl.label}</span>
+                          <span className={cn("rounded px-1 py-0.5 text-[11px] font-bold", tl.cls)}>{tl.label}</span>
                           <div>
                             <div className="text-xs font-semibold text-foreground">{b.ticker}</div>
                             <div className="text-[11px] text-muted-foreground">{b.maturityYears}yr · {b.ytm.toFixed(2)}% YTM</div>
@@ -1257,8 +1257,8 @@ export default function BondsPage() {
                         <CreditGaugeSVG score={ca.score} />
                         <div>
                           <div className="flex items-center gap-1.5">
-                            <span className={cn("rounded px-1 py-0.5 text-[8px] font-bold", tl.cls)}>{tl.label}</span>
-                            <span className={cn("rounded px-1 py-0.5 text-[8px] font-bold", rc)}>{bond.creditRating}</span>
+                            <span className={cn("rounded px-1 py-0.5 text-[11px] font-bold", tl.cls)}>{tl.label}</span>
+                            <span className={cn("rounded px-1 py-0.5 text-[11px] font-bold", rc)}>{bond.creditRating}</span>
                           </div>
                           <div className="mt-0.5 text-xs font-semibold text-foreground leading-tight">{bond.name}</div>
                           <div className="text-[11px] text-muted-foreground">{bond.sector}</div>
@@ -1310,7 +1310,7 @@ export default function BondsPage() {
                           style={{ width: `${Math.min(100, (ca.zScore / 5) * 100)}%` }}
                         />
                       </div>
-                      <div className="mt-0.5 flex justify-between text-[8px] text-muted-foreground/50">
+                      <div className="mt-0.5 flex justify-between text-[11px] text-muted-foreground/50">
                         <span>0 (Distress)</span><span>1.23</span><span>2.99</span><span>5+</span>
                       </div>
                     </div>

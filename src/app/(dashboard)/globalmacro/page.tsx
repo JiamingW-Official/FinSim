@@ -198,7 +198,7 @@ function WorldHeatmap() {
             animate={{ opacity: 1, scale: 1 }}
             exit={{ opacity: 0, scale: 0.9 }}
             transition={{ duration: 0.15 }}
-            className="absolute z-20 pointer-events-none bg-card border border-border rounded-lg p-3 shadow-xl text-xs min-w-[180px]"
+            className="absolute z-20 pointer-events-none bg-card border border-border rounded-lg p-3 shadow-sm text-xs min-w-[180px]"
             style={{
               left: Math.min(tooltipPos.x + 8, svgW > 0 ? 9999 : 0),
               top: tooltipPos.y + 8,

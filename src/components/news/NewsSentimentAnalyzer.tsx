@@ -1000,7 +1000,7 @@ function SocialMediaPulse({ data }: { data: SocialData[] }) {
                   {d.bullishPct}% bull
                 </span>
                 {viral && (
-                  <span className="absolute -top-1.5 -right-1.5 flex items-center gap-0.5 rounded-full bg-orange-500 px-1 text-[8px] font-bold text-white">
+                  <span className="absolute -top-1.5 -right-1.5 flex items-center gap-0.5 rounded-full bg-orange-500 px-1 text-[11px] font-bold text-white">
                     <Flame className="h-2 w-2" />
                     HOT
                   </span>

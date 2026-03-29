@@ -2185,13 +2185,7 @@ export default function GlobalBondsPage() {
               <Percent className="w-3 h-3 mr-1" />
               Mar 28, 2026
             </Badge>
-            <Badge
-              variant="outline"
-              className="border-primary/40 text-primary text-xs"
-            >
-              <Info className="w-3 h-3 mr-1" />
-              Simulated Data
-            </Badge>
+            <span className="rounded bg-muted/40 px-1.5 py-0.5 text-[11px] font-medium text-muted-foreground">Simulated Data</span>
           </div>
         </div>
       </div>

@@ -351,13 +351,13 @@ function Avatar({
 function DirectionBadge({ direction }: { direction: "long" | "short" }) {
   if (direction === "long")
     return (
-      <span className="inline-flex items-center gap-0.5 rounded border border-emerald-500/40 bg-emerald-500/15 px-1.5 py-0.5 text-[8px] font-bold text-emerald-400 leading-none uppercase">
+      <span className="inline-flex items-center gap-0.5 rounded border border-emerald-500/40 bg-emerald-500/15 px-1.5 py-0.5 text-[11px] font-bold text-emerald-400 leading-none uppercase">
         <TrendingUp className="h-2.5 w-2.5" />
         Long
       </span>
     );
   return (
-    <span className="inline-flex items-center gap-0.5 rounded border border-red-500/40 bg-red-500/15 px-1.5 py-0.5 text-[8px] font-bold text-red-400 leading-none uppercase">
+    <span className="inline-flex items-center gap-0.5 rounded border border-red-500/40 bg-red-500/15 px-1.5 py-0.5 text-[11px] font-bold text-red-400 leading-none uppercase">
       <TrendingDown className="h-2.5 w-2.5" />
       Short
     </span>
@@ -390,7 +390,7 @@ function SentimentBar({ score }: { score: number }) {
           style={{ width: `${normalized}%` }}
         />
       </div>
-      <span className={cn("text-[8px] font-bold w-6 text-right", score > 20 ? "text-emerald-400" : score < -20 ? "text-red-400" : "text-amber-400")}>
+      <span className={cn("text-[11px] font-bold w-6 text-right", score > 20 ? "text-emerald-400" : score < -20 ? "text-red-400" : "text-amber-400")}>
         {score > 0 ? "+" : ""}{score}
       </span>
     </div>
@@ -649,7 +649,7 @@ function AnalystRatingsTab() {
 
             {/* Row 3: rating changes this week */}
             {(r.upgrades > 0 || r.downgrades > 0) && (
-              <div className="flex items-center gap-2 text-[8px]">
+              <div className="flex items-center gap-2 text-[11px]">
                 {r.upgrades > 0 && (
                   <span className="flex items-center gap-0.5 text-emerald-400">
                     <ChevronUp className="h-2.5 w-2.5" />
@@ -810,7 +810,7 @@ function TopTradersTab() {
               <Avatar initials={trader.initials} colorClass={trader.avatarColor} />
               {i < 3 && (
                 <span className={cn(
-                  "absolute -top-1 -right-1 text-[8px] leading-none",
+                  "absolute -top-1 -right-1 text-[11px] leading-none",
                   i === 0 ? "text-yellow-400" : i === 1 ? "text-muted-foreground" : "text-amber-600",
                 )}>
                   {i === 0 ? "★" : i === 1 ? "✦" : "◆"}
@@ -820,7 +820,7 @@ function TopTradersTab() {
             <div className="flex-1 min-w-0">
               <div className="flex items-center gap-1.5">
                 <span className="text-xs font-bold text-foreground">{trader.username}</span>
-                <span className="text-[8px] text-muted-foreground/40">#{i + 1}</span>
+                <span className="text-[11px] text-muted-foreground/40">#{i + 1}</span>
               </div>
               <div className="text-[11px] text-muted-foreground/60 truncate">{trader.strategy}</div>
             </div>
@@ -892,7 +892,7 @@ function TopTradersTab() {
               animate={{ scale: 1, opacity: 1, y: 0 }}
               exit={{ scale: 0.92, opacity: 0, y: 20 }}
               transition={{ duration: 0.2 }}
-              className="w-full max-w-sm rounded-xl border border-border bg-card p-4 shadow-2xl space-y-4"
+              className="w-full max-w-sm rounded-xl border border-border bg-card p-4 shadow-sm space-y-4"
               onClick={(e) => e.stopPropagation()}
             >
               {/* Modal header */}
@@ -919,7 +919,7 @@ function TopTradersTab() {
                   { label: "Trades", value: String(profileTrader.trades), color: "text-foreground" },
                 ].map((s) => (
                   <div key={s.label} className="rounded-lg bg-muted/50 p-2 text-center">
-                    <div className="text-[8px] text-muted-foreground/50 uppercase tracking-wide mb-1">{s.label}</div>
+                    <div className="text-[11px] text-muted-foreground/50 uppercase tracking-wide mb-1">{s.label}</div>
                     <div className={cn("text-sm font-bold", s.color)}>{s.value}</div>
                   </div>
                 ))}

@@ -274,7 +274,7 @@ function FoStructureTab() {
             className={`rounded-xl border p-4 text-left transition-all ${
               selected === fo.id
                 ? "border-white/30 bg-white/10"
-                : "border-white/10 bg-white/5 hover:bg-white/8"
+                : "border-white/10 bg-white/5 hover:bg-muted/40"
             }`}
           >
             <div
@@ -948,7 +948,7 @@ function DirectInvestingTab() {
                       ? "text-primary border-border bg-primary/10"
                       : "text-amber-400 border-amber-400/30 bg-amber-400/10";
                   return (
-                    <tr key={ci.deal} className="hover:bg-white/5 transition-colors">
+                    <tr key={ci.deal} className="hover:bg-muted/30 transition-colors">
                       <td className="py-2 pr-3 font-medium text-foreground">{ci.deal}</td>
                       <td className="py-2 pr-3 text-muted-foreground">{ci.type}</td>
                       <td className="py-2 pr-3 text-muted-foreground">{ci.sponsor}</td>

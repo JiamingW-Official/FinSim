@@ -301,7 +301,7 @@ function StatBox({ label, value, color }: { label: string; value: string; color:
       transition={{ delay: 0.1 }}
     >
       <span className={cn("text-lg font-bold tabular-nums", color)}>{value}</span>
-      <span className="text-[8px] font-bold text-muted-foreground/60">
+      <span className="text-[11px] font-bold text-muted-foreground/60">
         {label}
       </span>
     </motion.div>

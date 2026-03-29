@@ -825,7 +825,7 @@ export function EfficientFrontier() {
                   <span>{ticker}</span>
                   {s && (
                     <span className={cn(
-                      "text-[8px] font-normal mt-0.5",
+                      "text-[11px] font-normal mt-0.5",
                       s.annReturn >= 0 ? "text-emerald-400" : "text-red-400",
                     )}>
                       {(s.annReturn * 100).toFixed(1)}%
@@ -858,7 +858,7 @@ export function EfficientFrontier() {
               }}
               className="w-full h-1 accent-primary cursor-pointer"
             />
-            <div className="flex justify-between text-[8px] text-muted-foreground/60">
+            <div className="flex justify-between text-[11px] text-muted-foreground/60">
               <span>0%</span><span>20%</span>
             </div>
           </div>
@@ -875,7 +875,7 @@ export function EfficientFrontier() {
               onChange={(e) => setMaxWeight(Number(e.target.value))}
               className="w-full h-1 accent-primary cursor-pointer"
             />
-            <div className="flex justify-between text-[8px] text-muted-foreground/60">
+            <div className="flex justify-between text-[11px] text-muted-foreground/60">
               <span>20%</span><span>100%</span>
             </div>
           </div>
@@ -892,7 +892,7 @@ export function EfficientFrontier() {
               onChange={(e) => setRfRate(Number(e.target.value))}
               className="w-full h-1 accent-primary cursor-pointer"
             />
-            <div className="flex justify-between text-[8px] text-muted-foreground/60">
+            <div className="flex justify-between text-[11px] text-muted-foreground/60">
               <span>0%</span><span>10%</span>
             </div>
           </div>
@@ -1095,7 +1095,7 @@ export function EfficientFrontier() {
         <CorrelationHeatmapSVG tickers={selectedTickers} corrMatrix={corrMatrix} />
         {/* Color legend */}
         <div className="flex items-center justify-center gap-1.5">
-          <span className="text-[8px] text-muted-foreground">-1 (blue)</span>
+          <span className="text-[11px] text-muted-foreground">-1 (blue)</span>
           <div className="flex h-2 w-24 rounded-sm overflow-hidden">
             {Array.from({ length: 21 }, (_, i) => {
               const v = -1 + i * 0.1;
@@ -1104,7 +1104,7 @@ export function EfficientFrontier() {
               );
             })}
           </div>
-          <span className="text-[8px] text-muted-foreground">+1 (red)</span>
+          <span className="text-[11px] text-muted-foreground">+1 (red)</span>
         </div>
         <p className="text-[11px] text-muted-foreground leading-relaxed">
           Correlation measures how assets move together. Values near +1 (red) indicate assets

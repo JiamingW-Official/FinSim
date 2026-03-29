@@ -78,7 +78,7 @@ export function RankRow({ entry, dimConfig, index }: RankRowProps) {
             {entry.name}
           </span>
           {entry.isUser && (
-            <span className="shrink-0 rounded-full bg-primary/15 px-1.5 py-0.5 text-[8px] font-bold text-primary">
+            <span className="shrink-0 rounded-full bg-primary/15 px-1.5 py-0.5 text-[11px] font-bold text-primary">
               You
             </span>
           )}

@@ -238,7 +238,7 @@ function NetWorthTab({ brokerageValue }: { brokerageValue: number }) {
             <p className="text-sm text-muted-foreground">Total Net Worth</p>
             <p
               className={cn(
-                "text-4xl font-bold tracking-tight",
+                "text-2xl font-bold tracking-tight",
                 netWorth >= 0 ? "text-foreground" : "text-red-500",
               )}
             >
@@ -794,7 +794,7 @@ function GoalsTab() {
             <NumInput label="Current Emergency Fund" value={efCurrent} onChange={setEfCurrent} />
           </div>
           <div className="rounded-lg bg-muted/30 p-3 text-center">
-            <p className="text-3xl font-bold">{efMonths.toFixed(1)}x</p>
+            <p className="text-2xl font-bold">{efMonths.toFixed(1)}x</p>
             <p className="text-xs text-muted-foreground">months of expenses covered</p>
           </div>
           <div className="mt-3 h-2 overflow-hidden rounded-full bg-muted">

@@ -577,7 +577,7 @@ function StrategyBuilderTab() {
                       <button
                         key={d}
                         onClick={() => updateLeg(leg.id, { direction: d })}
-                        className={`flex-1 text-xs py-1 rounded ${leg.direction === d ? (d === "long" ? "bg-green-600 text-white" : "bg-red-600 text-white") : "bg-white/5 text-muted-foreground hover:bg-white/10"}`}
+                        className={`flex-1 text-xs py-1 rounded ${leg.direction === d ? (d === "long" ? "bg-green-600 text-white" : "bg-red-600 text-white") : "bg-white/5 text-muted-foreground hover:bg-muted/50"}`}
                       >
                         {d}
                       </button>
@@ -593,7 +593,7 @@ function StrategyBuilderTab() {
                       <button
                         key={t}
                         onClick={() => updateLeg(leg.id, { type: t })}
-                        className={`flex-1 text-xs py-1 rounded ${leg.type === t ? "bg-primary text-white" : "bg-white/5 text-muted-foreground hover:bg-white/10"}`}
+                        className={`flex-1 text-xs py-1 rounded ${leg.type === t ? "bg-primary text-white" : "bg-white/5 text-muted-foreground hover:bg-muted/50"}`}
                       >
                         {t}
                       </button>
@@ -758,7 +758,7 @@ function StrategyCard({ strategy }: { strategy: StrategyInfo }) {
     >
       <button
         onClick={() => setExpanded(!expanded)}
-        className="w-full p-4 text-left flex items-center justify-between hover:bg-white/5 transition-colors"
+        className="w-full p-4 text-left flex items-center justify-between hover:bg-muted/30 transition-colors"
       >
         <div className="flex items-center gap-3">
           <div>
@@ -1066,7 +1066,7 @@ function IVCrushViz({ ivBefore, ivAfter }: { ivBefore: number; ivAfter: number }
           initial={{ width: "100%" }}
           animate={{ width: `${(ivAfter / ivBefore) * 100}%` }}
           transition={{ duration: 1.5, ease: "easeOut" }}
-          className="h-full bg-gradient-to-r from-red-500 to-amber-500 rounded-full"
+          className="h-full bg-red-500 rounded-full"
         />
       </div>
     </div>
@@ -1181,7 +1181,7 @@ function EarningsPlaysTab() {
                   <tr
                     key={s.ticker}
                     onClick={() => setSelectedTicker(s.ticker)}
-                    className={`border-t border-white/5 cursor-pointer transition-colors ${selectedTicker === s.ticker ? "bg-primary/10" : "hover:bg-white/5"}`}
+                    className={`border-t border-white/5 cursor-pointer transition-colors ${selectedTicker === s.ticker ? "bg-primary/10" : "hover:bg-muted/30"}`}
                   >
                     <td className="px-4 py-2.5 font-semibold text-white">{s.ticker}</td>
                     <td className="px-4 py-2.5 text-amber-400">±{s.avgMove}%</td>
@@ -1878,8 +1878,8 @@ export default function OptionsStrategiesPage() {
               onClick={() => setActiveTab(id)}
               className={`flex items-center gap-1.5 px-3 py-2 rounded-lg text-xs font-medium transition-all ${
                 activeTab === id
-                  ? "bg-primary text-white shadow-lg"
-                  : "text-muted-foreground hover:text-white hover:bg-white/5"
+                  ? "bg-primary text-white shadow-sm"
+                  : "text-muted-foreground hover:text-white hover:bg-muted/30"
               }`}
             >
               <Icon className="w-3.5 h-3.5" />

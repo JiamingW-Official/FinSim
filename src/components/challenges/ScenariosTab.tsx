@@ -42,7 +42,7 @@ export function ScenariosTab({ onSelectScenario }: ScenariosTabProps) {
         <div className="flex items-center gap-1.5">
           <div className="h-2 flex-1 min-w-[80px] rounded-full bg-muted overflow-hidden">
             <motion.div
-              className="h-full rounded-full bg-gradient-to-r from-amber-400 to-amber-500"
+              className="h-full rounded-full bg-amber-500"
               initial={{ width: 0 }}
               animate={{ width: `${(completedCount / SCENARIO_MISSIONS.length) * 100}%` }}
               transition={{ duration: 0.6, ease: "easeOut" }}

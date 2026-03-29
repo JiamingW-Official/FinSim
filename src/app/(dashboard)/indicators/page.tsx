@@ -673,7 +673,7 @@ function GdpTab() {
       <div className="grid grid-cols-3 gap-4">
         <div className="col-span-3 sm:col-span-1 bg-card border border-border rounded-2xl p-5">
           <p className="text-xs text-indigo-400 font-medium mb-1">GDP Nowcast — Q1 2026</p>
-          <p className="text-4xl font-bold text-indigo-300">2.4%</p>
+          <p className="text-2xl font-bold text-indigo-300">2.4%</p>
           <p className="text-xs text-muted-foreground mt-1">Annualized real growth rate</p>
           <div className="mt-3 bg-muted/60 rounded-lg p-3 flex flex-col gap-1.5">
             <div className="flex justify-between text-xs">
@@ -1234,7 +1234,7 @@ function GlobalTab() {
                 const val = PMI_VALUES[c][pmiView];
                 const status = val >= 52 ? "Strong Expansion" : val >= 50 ? "Expansion" : val >= 48 ? "Mild Contraction" : "Contraction";
                 return (
-                  <tr key={c} className="hover:bg-white/3 transition-colors">
+                  <tr key={c} className="hover:bg-muted/30 transition-colors">
                     <td className="py-1.5 pr-4 text-muted-foreground">{c}</td>
                     <td className="py-1.5 px-2 text-center"><PmiBadge val={val} /></td>
                     <td className="py-1.5 pl-2 text-muted-foreground">{status}</td>

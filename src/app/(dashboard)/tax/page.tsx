@@ -1372,10 +1372,7 @@ export default function TaxPage() {
           </div>
           <div className="flex items-center gap-2 flex-wrap">
             <Badge variant="outline" className="text-xs">2024 Tax Year</Badge>
-            <Badge variant="outline" className="text-xs border-amber-500/50 text-amber-400">
-              <AlertTriangle className="h-2.5 w-2.5 mr-1" />
-              Educational Only
-            </Badge>
+            <span className="rounded bg-muted/40 px-1.5 py-0.5 text-[11px] font-medium text-muted-foreground">Educational Only</span>
           </div>
         </motion.div>
 

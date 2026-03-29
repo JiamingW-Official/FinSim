@@ -859,7 +859,7 @@ function CurrencyCrisesTab() {
                   <Badge
                     variant="outline"
                     className={cn(
-                      "text-[8px] px-1 py-0 ml-auto",
+                      "text-[11px] px-1 py-0 ml-auto",
                       cs.severity === "severe" ? "border-red-500 text-red-400" :
                       cs.severity === "high" ? "border-orange-500 text-orange-400" :
                       "border-yellow-500 text-yellow-400"
@@ -1096,7 +1096,7 @@ function CreditorHierarchy() {
           <div className="flex-1 min-w-0">
             <div className="flex items-center gap-2">
               <span className="text-[11px] font-semibold text-foreground">{t.creditor}</span>
-              <Badge variant="outline" className="text-[8px] px-1 py-0" style={{ borderColor: t.color, color: t.color }}>
+              <Badge variant="outline" className="text-[11px] px-1 py-0" style={{ borderColor: t.color, color: t.color }}>
                 {t.type}
               </Badge>
             </div>

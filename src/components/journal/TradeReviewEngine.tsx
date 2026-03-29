@@ -1287,7 +1287,7 @@ function EmotionalSection({
             value={entry.postNotes}
             onChange={(e) => onChange({ ...entry, postNotes: e.target.value })}
             placeholder="Price moved differently than expected because..."
-            className="w-full rounded-md border border-border bg-background p-2 text-xs resize-none h-16 placeholder:text-muted-foreground/40 focus:outline-none focus:ring-1 focus:ring-primary"
+            className="w-full rounded-md border border-border bg-background p-2 text-xs resize-none h-16 placeholder:text-muted-foreground/40 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
           />
         </div>
 
@@ -1297,7 +1297,7 @@ function EmotionalSection({
             value={entry.lesson}
             onChange={(e) => onChange({ ...entry, lesson: e.target.value })}
             placeholder="Next time I will..."
-            className="w-full rounded-md border border-border bg-background p-2 text-xs resize-none h-12 placeholder:text-muted-foreground/40 focus:outline-none focus:ring-1 focus:ring-primary"
+            className="w-full rounded-md border border-border bg-background p-2 text-xs resize-none h-12 placeholder:text-muted-foreground/40 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
           />
         </div>
 
@@ -1364,7 +1364,7 @@ function EmotionalSection({
             <div
               key={d.day}
               title={`Day ${d.day}: ${d.emotion}`}
-              className={cn("h-6 rounded-sm flex items-center justify-center text-[8px] text-white/60", MOOD_BG[d.emotion])}
+              className={cn("h-6 rounded-sm flex items-center justify-center text-[11px] text-white/60", MOOD_BG[d.emotion])}
             >
               {d.day}
             </div>
@@ -1437,7 +1437,7 @@ function TargetsSection({
           value={commitment}
           onChange={(e) => setCommitment(e.target.value)}
           placeholder="e.g. I will set a hard stop at 2% below entry on every trade"
-          className="w-full rounded-md border border-border bg-background p-2 text-xs resize-none h-16 placeholder:text-muted-foreground/40 focus:outline-none focus:ring-1 focus:ring-primary"
+          className="w-full rounded-md border border-border bg-background p-2 text-xs resize-none h-16 placeholder:text-muted-foreground/40 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
         />
         <div className="flex items-center gap-2">
           <button

@@ -1247,7 +1247,7 @@ function DailyChallengeTab() {
     return (
       <div className="flex flex-col items-center gap-6 py-8">
         <div className="text-center">
-          <div className="text-4xl mb-3">
+          <div className="text-2xl mb-3">
             <Brain className="h-12 w-12 text-primary mx-auto" />
           </div>
           <h2 className="text-xl font-bold text-white">Daily Challenge</h2>
@@ -1669,7 +1669,7 @@ function SpeedRoundTab() {
     return (
       <div className="space-y-4">
         <div className="text-center py-4">
-          <div className="text-5xl font-bold text-yellow-400 mb-1">{totalPoints}</div>
+          <div className="text-2xl font-bold text-yellow-400 mb-1">{totalPoints}</div>
           <div className="text-muted-foreground text-sm">Points Scored</div>
           {totalPoints >= personalBest && personalBest > 0 && (
             <div className="mt-2 text-xs text-yellow-400 flex items-center justify-center gap-1">

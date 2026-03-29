@@ -79,7 +79,7 @@ export function PositionAlerts() {
                 : `${pos.ticker} up ${pct.toFixed(1)}% — building momentum. Hold with a trailing stop`;
             toast.custom(
               () => (
-                <div className="flex items-center gap-2 rounded-lg border border-emerald-500/30 bg-card px-3 py-2 shadow-lg text-[11px] max-w-64">
+                <div className="flex items-center gap-2 rounded-lg border border-emerald-500/30 bg-card px-3 py-2 shadow-sm text-[11px] max-w-64">
                   <span className="text-base shrink-0">
                     {threshold >= 15 ? "💎" : threshold >= 10 ? "🚀" : "🎯"}
                   </span>
@@ -112,7 +112,7 @@ export function PositionAlerts() {
                 : `${pos.ticker} down ${pct.toFixed(1)}% — drawdown building. Keep your stop in place`;
             toast.custom(
               () => (
-                <div className="flex items-center gap-2 rounded-lg border border-red-500/30 bg-card px-3 py-2 shadow-lg text-[11px] max-w-64">
+                <div className="flex items-center gap-2 rounded-lg border border-red-500/30 bg-card px-3 py-2 shadow-sm text-[11px] max-w-64">
                   <span className="text-base shrink-0">{absT >= 5 ? "🛑" : "⚠️"}</span>
                   <div className="min-w-0">
                     <div className="font-bold text-red-400 leading-tight">
@@ -145,7 +145,7 @@ export function PositionAlerts() {
             alertedAtrStop.current.add(key);
             toast.custom(
               () => (
-                <div className="flex items-center gap-2 rounded-lg border border-amber-500/30 bg-card px-3 py-2 shadow-lg text-[11px] max-w-64">
+                <div className="flex items-center gap-2 rounded-lg border border-amber-500/30 bg-card px-3 py-2 shadow-sm text-[11px] max-w-64">
                   <span className="text-base shrink-0">⚡</span>
                   <div className="min-w-0">
                     <div className="font-bold text-amber-400 leading-tight">ATR Stop Proximity</div>
@@ -172,7 +172,7 @@ export function PositionAlerts() {
             alertedTimeExit.current.add(key);
             toast.custom(
               () => (
-                <div className="flex items-center gap-2 rounded-lg border border-border bg-card px-3 py-2 shadow-lg text-[11px] max-w-64">
+                <div className="flex items-center gap-2 rounded-lg border border-border bg-card px-3 py-2 shadow-sm text-[11px] max-w-64">
                   <span className="text-base shrink-0">⏱️</span>
                   <div className="min-w-0">
                     <div className="font-bold text-primary leading-tight">Long-Held Position</div>

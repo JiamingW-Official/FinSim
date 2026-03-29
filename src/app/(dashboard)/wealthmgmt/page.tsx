@@ -295,7 +295,7 @@ function ClientSegmentationTab() {
                   "w-full text-left rounded-lg border p-2 text-xs transition-colors",
                   selectedSeg === i
                     ? "border-white/30 bg-white/10"
-                    : "border-white/5 bg-white/3 hover:bg-white/8"
+                    : "border-white/5 bg-white/3 hover:bg-muted/30"
                 )}
               >
                 <div className="flex items-center justify-between mb-0.5">

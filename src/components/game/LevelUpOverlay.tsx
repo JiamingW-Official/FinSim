@@ -45,7 +45,7 @@ export function LevelUpOverlay() {
             animate={{ scale: 1, opacity: 1 }}
             exit={{ scale: 0.8, opacity: 0 }}
             transition={{ type: "spring", stiffness: 300, damping: 20 }}
-            className="relative flex flex-col items-center gap-3 rounded-xl border border-primary/30 bg-card px-10 py-8 shadow-2xl glow-green"
+            className="relative flex flex-col items-center gap-3 rounded-xl border border-primary/30 bg-card px-10 py-8 shadow-sm"
           >
             {/* Sparkles */}
             <motion.div

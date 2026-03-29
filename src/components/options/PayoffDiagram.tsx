@@ -175,7 +175,7 @@ export function PayoffDiagram({ legs, spotPrice }: PayoffDiagramProps) {
           x={toX(spotPrice)}
           y={SVG_H - PAD.bottom + 12}
           textAnchor="middle"
-          className="fill-muted-foreground text-[8px]"
+          className="fill-muted-foreground text-[11px]"
         >
           ${spotPrice.toFixed(0)}
         </text>
@@ -263,7 +263,7 @@ export function PayoffDiagram({ legs, spotPrice }: PayoffDiagramProps) {
             <text
               x={hoverX + 10}
               y={toY(hoverPoint.pnl) - 4}
-              className="fill-foreground text-[8px] font-bold"
+              className="fill-foreground text-[11px] font-bold"
             >
               ${hoverPoint.spotPrice} → {hoverPoint.pnl >= 0 ? "+" : ""}
               {formatCurrency(hoverPoint.pnl).replace("$", "")}

@@ -157,7 +157,7 @@ export function ArenaResults({ result, onPlayAgain, onBackToLobby }: ArenaResult
           >
             <span className="text-muted-foreground">{cat.icon}</span>
             <span className="text-[11px] text-muted-foreground w-14">{cat.label}</span>
-            <div className="flex-1 h-2 rounded-full bg-white/5 overflow-hidden">
+            <div className="flex-1 h-2 rounded-full bg-muted/20 overflow-hidden">
               <motion.div
                 className={cn("h-full rounded-full", cat.color)}
                 initial={{ width: 0 }}
@@ -291,7 +291,7 @@ export function ArenaResults({ result, onPlayAgain, onBackToLobby }: ArenaResult
           onClick={onBackToLobby}
           whileHover={{ scale: 1.05 }}
           whileTap={{ scale: 0.95 }}
-          className="rounded-lg border border-white/10 bg-white/5 px-6 py-2.5 text-sm font-bold text-muted-foreground transition-colors hover:bg-white/10"
+          className="rounded-lg border border-border/50 bg-muted/20 px-6 py-2.5 text-sm font-bold text-muted-foreground transition-colors hover:bg-muted/50"
         >
           Back to Lobby
         </motion.button>

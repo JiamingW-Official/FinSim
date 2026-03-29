@@ -1124,7 +1124,7 @@ function ElliottWaveSection({
           <div key={pt.label} className="flex items-start gap-1.5">
             <span
               className={cn(
-                "mt-0.5 shrink-0 rounded px-1 py-0 text-[8px] font-bold",
+                "mt-0.5 shrink-0 rounded px-1 py-0 text-[11px] font-bold",
                 ["a", "b", "c"].includes(pt.label)
                   ? "bg-red-500/15 text-red-400"
                   : "bg-primary/15 text-primary",
@@ -1442,7 +1442,7 @@ function WyckoffSection({
             >
               <span
                 className={cn(
-                  "mt-0.5 shrink-0 rounded px-1 py-0 text-[8px] font-bold tabular-nums",
+                  "mt-0.5 shrink-0 rounded px-1 py-0 text-[11px] font-bold tabular-nums",
                   isDetected
                     ? evt.bullish
                       ? "bg-emerald-500/20 text-emerald-400"

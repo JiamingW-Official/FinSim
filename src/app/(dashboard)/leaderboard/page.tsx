@@ -636,7 +636,7 @@ function YourStatsTab({ ranked, userRank }: { ranked: RankedEntry[]; userRank: R
             <Trophy className="h-4 w-4 text-primary" />
             <span className="text-[11px] font-bold text-muted-foreground uppercase tracking-wide">Global Rank</span>
           </div>
-          <div className="text-3xl font-bold tabular-nums text-primary">#{rank}</div>
+          <div className="text-2xl font-bold tabular-nums text-primary">#{rank}</div>
           <p className="text-xs text-muted-foreground mt-0.5">out of {totalPlayers} players</p>
         </div>
 
@@ -645,7 +645,7 @@ function YourStatsTab({ ranked, userRank }: { ranked: RankedEntry[]; userRank: R
             <Star className="h-4 w-4 text-amber-400" />
             <span className="text-[11px] font-bold text-muted-foreground uppercase tracking-wide">Percentile</span>
           </div>
-          <div className="text-3xl font-bold tabular-nums text-amber-400">Top {Math.max(1, 100 - percentile)}%</div>
+          <div className="text-2xl font-bold tabular-nums text-amber-400">Top {Math.max(1, 100 - percentile)}%</div>
           <div className="mt-2 h-2 rounded-full bg-muted/30 overflow-hidden">
             <div
               className="h-full rounded-full bg-amber-400 transition-all duration-200"

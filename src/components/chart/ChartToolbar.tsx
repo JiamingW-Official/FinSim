@@ -291,7 +291,7 @@ export function ChartToolbar() {
         onChange={(e) => setTicker(e.target.value)}
         title="Select ticker"
         aria-label="Select ticker"
-        className="rounded border border-border bg-background px-2 py-1 text-xs text-foreground outline-none focus:ring-1 focus:ring-primary"
+        className="rounded border border-border bg-background px-2 py-1 text-xs text-foreground outline-none focus-visible:ring-2 focus-visible:ring-ring"
       >
         {WATCHLIST_STOCKS.map((stock) => (
           <option key={stock.ticker} value={stock.ticker}>

@@ -512,7 +512,7 @@ function ScreenerTab() {
                   animate={{ opacity: 1 }}
                   exit={{ opacity: 0 }}
                   transition={{ delay: i * 0.02 }}
-                  className="border-b border-white/[0.04] hover:bg-white/[0.04] transition-colors"
+                  className="border-b border-white/[0.04] hover:bg-muted/30 transition-colors"
                 >
                   <td className="px-3 py-2.5 font-bold text-white">{stock.ticker}</td>
                   <td className="px-3 py-2.5 text-white/60 whitespace-nowrap max-w-[140px] truncate">{stock.name}</td>
@@ -620,7 +620,7 @@ function ValueScreenTab() {
               "text-left p-4 rounded-xl border transition-all",
               activeScreen === vs.id
                 ? "bg-primary/20 border-primary/50"
-                : "bg-white/[0.03] border-white/[0.08] hover:bg-white/[0.06]"
+                : "bg-white/[0.03] border-white/[0.08] hover:bg-muted/30"
             )}
           >
             <div className="flex items-center gap-2 mb-1 text-primary">{vs.icon}</div>
@@ -666,7 +666,7 @@ function ValueScreenTab() {
                   </tr>
                 )}
                 {results.map((stock) => (
-                  <tr key={stock.ticker} className="border-b border-white/[0.03] hover:bg-white/[0.03] transition-colors">
+                  <tr key={stock.ticker} className="border-b border-white/[0.03] hover:bg-muted/30 transition-colors">
                     <td className="px-4 py-2.5">
                       <span className="font-bold text-white">{stock.ticker}</span>
                       <span className="block text-[11px] text-white/40">{stock.name}</span>
@@ -757,7 +757,7 @@ function GrowthScreenTab() {
               "text-left p-4 rounded-xl border transition-all",
               activeScreen === gs.id
                 ? colorMap[gs.color]
-                : "bg-white/[0.03] border-white/[0.08] hover:bg-white/[0.06]"
+                : "bg-white/[0.03] border-white/[0.08] hover:bg-muted/30"
             )}
           >
             <div className="flex items-center gap-2 mb-1">
@@ -797,7 +797,7 @@ function GrowthScreenTab() {
                   </tr>
                 )}
                 {results.map((stock) => (
-                  <tr key={stock.ticker} className="border-b border-white/[0.03] hover:bg-white/[0.03] transition-colors">
+                  <tr key={stock.ticker} className="border-b border-white/[0.03] hover:bg-muted/30 transition-colors">
                     <td className="px-4 py-2.5">
                       <span className="font-bold text-white">{stock.ticker}</span>
                       <span className="block text-[11px] text-white/40">{stock.name}</span>
@@ -885,7 +885,7 @@ function QualityScreenTab() {
               "text-left p-3 rounded-xl border transition-all",
               activeScreen === qs.id
                 ? "bg-emerald-600/20 border-emerald-500/50"
-                : "bg-white/[0.03] border-white/[0.08] hover:bg-white/[0.06]"
+                : "bg-white/[0.03] border-white/[0.08] hover:bg-muted/30"
             )}
           >
             <Shield size={14} className={activeScreen === qs.id ? "text-emerald-400 mb-1" : "text-white/30 mb-1"} />
@@ -942,7 +942,7 @@ function QualityScreenTab() {
                   </tr>
                 )}
                 {results.map((stock) => (
-                  <tr key={stock.ticker} className="border-b border-white/[0.03] hover:bg-white/[0.03] transition-colors">
+                  <tr key={stock.ticker} className="border-b border-white/[0.03] hover:bg-muted/30 transition-colors">
                     <td className="px-4 py-2.5">
                       <span className="font-bold text-white">{stock.ticker}</span>
                       <span className="block text-[11px] text-white/40">{stock.name}</span>
@@ -1245,7 +1245,7 @@ function CustomScreenTab() {
                           animate={{ opacity: 1, x: 0 }}
                           exit={{ opacity: 0, x: 8 }}
                           transition={{ delay: i * 0.03 }}
-                          className="border-b border-white/[0.03] hover:bg-white/[0.04] transition-colors"
+                          className="border-b border-white/[0.03] hover:bg-muted/30 transition-colors"
                         >
                           <td className="px-3 py-2.5 font-bold text-white">{stock.ticker}</td>
                           <td className="px-3 py-2.5"><SectorBadge sector={stock.sector} /></td>

@@ -926,7 +926,7 @@ export function PersonalizedCoach() {
                         className={cn("h-full rounded-full", color)}
                       />
                     </div>
-                    <span className={cn("w-6 text-right font-mono text-[8px] font-bold shrink-0", textColor)}>
+                    <span className={cn("w-6 text-right font-mono text-[11px] font-bold shrink-0", textColor)}>
                       {value}
                     </span>
                   </div>
@@ -937,19 +937,19 @@ export function PersonalizedCoach() {
             {/* Stats row */}
             <div className="grid grid-cols-3 gap-1 text-center">
               <div className="rounded border border-border/30 bg-background/30 py-1">
-                <div className="text-[8px] text-muted-foreground">Win Rate</div>
+                <div className="text-[11px] text-muted-foreground">Win Rate</div>
                 <div className={cn("text-xs font-bold font-mono", profile.winRate >= 0.5 ? "text-emerald-400" : "text-amber-400")}>
                   {(profile.winRate * 100).toFixed(0)}%
                 </div>
               </div>
               <div className="rounded border border-border/30 bg-background/30 py-1">
-                <div className="text-[8px] text-muted-foreground">Avg Win</div>
+                <div className="text-[11px] text-muted-foreground">Avg Win</div>
                 <div className="text-xs font-bold font-mono text-emerald-400">
                   ${profile.avgWin.toFixed(0)}
                 </div>
               </div>
               <div className="rounded border border-border/30 bg-background/30 py-1">
-                <div className="text-[8px] text-muted-foreground">Avg Loss</div>
+                <div className="text-[11px] text-muted-foreground">Avg Loss</div>
                 <div className="text-xs font-bold font-mono text-red-400">
                   ${profile.avgLoss.toFixed(0)}
                 </div>
@@ -959,7 +959,7 @@ export function PersonalizedCoach() {
             {/* Strengths / Weaknesses */}
             <div className="grid grid-cols-2 gap-1.5">
               <div className="rounded border border-emerald-500/20 bg-emerald-500/5 px-2 py-1.5">
-                <div className="text-[8px] font-bold text-emerald-400/70 mb-1">
+                <div className="text-[11px] font-bold text-emerald-400/70 mb-1">
                   Top Strengths
                 </div>
                 {profile.strengths.map((s) => (
@@ -970,7 +970,7 @@ export function PersonalizedCoach() {
                 ))}
               </div>
               <div className="rounded border border-red-500/20 bg-red-500/5 px-2 py-1.5">
-                <div className="text-[8px] font-bold text-red-400/70 mb-1">
+                <div className="text-[11px] font-bold text-red-400/70 mb-1">
                   Work On
                 </div>
                 {profile.weaknesses.map((w) => (
@@ -1008,12 +1008,12 @@ export function PersonalizedCoach() {
             <span className="text-base leading-none shrink-0">{personality.icon}</span>
             <div>
               <div className="text-xs font-bold text-foreground">{brief.heading}</div>
-              <div className="text-[8px] text-muted-foreground">{personality.name} mode</div>
+              <div className="text-[11px] text-muted-foreground">{personality.name} mode</div>
             </div>
           </div>
           <p className="text-[11px] text-muted-foreground leading-relaxed">{brief.body}</p>
           <div className="rounded border border-primary/30 bg-primary/10 px-2 py-1.5">
-            <div className="text-[8px] font-bold text-primary/70 mb-0.5">
+            <div className="text-[11px] font-bold text-primary/70 mb-0.5">
               Today&apos;s Focus
             </div>
             <p className="text-[11px] text-foreground/80 leading-tight">{brief.focus}</p>
@@ -1033,7 +1033,7 @@ export function PersonalizedCoach() {
         <div className="space-y-2">
           {/* Preset questions */}
           <div className="space-y-1">
-            <div className="text-[8px] font-bold text-foreground/40">
+            <div className="text-[11px] font-bold text-foreground/40">
               Quick Questions
             </div>
             <div className="flex flex-wrap gap-1">
@@ -1066,7 +1066,7 @@ export function PersonalizedCoach() {
               >
                 <div className="flex items-center gap-1.5 mb-1">
                   <span className="text-sm leading-none">{personality.icon}</span>
-                  <span className="text-[8px] font-bold text-muted-foreground">
+                  <span className="text-[11px] font-bold text-muted-foreground">
                     {personality.name}
                   </span>
                   {isTyping && (
@@ -1095,7 +1095,7 @@ export function PersonalizedCoach() {
 
           {/* Custom input */}
           <div className="space-y-1">
-            <div className="text-[8px] font-bold text-foreground/40">
+            <div className="text-[11px] font-bold text-foreground/40">
               Ask Anything
             </div>
             <div className="flex gap-1.5">

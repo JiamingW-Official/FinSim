@@ -26,7 +26,7 @@ function MarketMoodOrb({ close, open }: { close: number; open: number }) {
           <div
             className={cn("h-2.5 w-2.5 rounded-full shrink-0", orbColor)}
           />
-          <span className="text-[8px] text-muted-foreground font-medium">{label}</span>
+          <span className="text-[11px] text-muted-foreground font-medium">{label}</span>
         </div>
       </TooltipTrigger>
       <TooltipContent side="right" sideOffset={6} className="text-xs max-w-40 bg-card border border-border p-2">

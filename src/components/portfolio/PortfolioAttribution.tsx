@@ -341,7 +341,7 @@ function StylePie({ slices }: { slices: StyleSlice[] }) {
 function RiskBar({ pct, color }: { pct: number; color: string }) {
   return (
     <div className="h-1.5 rounded-full bg-muted overflow-hidden">
-      <div className="h-full rounded-full transition-all duration-500" style={{ width: `${Math.max(pct, 0)}%`, backgroundColor: color }} />
+      <div className="h-full rounded-full transition-all duration-300" style={{ width: `${Math.max(pct, 0)}%`, backgroundColor: color }} />
     </div>
   );
 }

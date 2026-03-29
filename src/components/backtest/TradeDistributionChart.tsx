@@ -191,7 +191,7 @@ export default function TradeDistributionChart({ trades }: Props) {
           <div className={`text-sm font-bold ${skewness > 0 ? "text-emerald-400" : "text-rose-400"}`}>
             {skewness.toFixed(3)}
           </div>
-          <div className="text-[8px] text-muted-foreground/70">
+          <div className="text-[11px] text-muted-foreground/70">
             {Math.abs(skewness) < 0.5 ? "Roughly symmetric" : skewness > 0 ? "Right-tailed (positive)" : "Left-tailed (negative)"}
           </div>
         </div>
@@ -200,7 +200,7 @@ export default function TradeDistributionChart({ trades }: Props) {
           <div className={`text-sm font-bold ${kurtosis > 0 ? "text-amber-400" : "text-foreground"}`}>
             {kurtosis.toFixed(3)}
           </div>
-          <div className="text-[8px] text-muted-foreground/70">
+          <div className="text-[11px] text-muted-foreground/70">
             {kurtosis > 1 ? "Fat tails (leptokurtic)" : kurtosis < -1 ? "Thin tails (platykurtic)" : "Near-normal tails"}
           </div>
         </div>

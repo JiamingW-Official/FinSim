@@ -201,7 +201,7 @@ export function VolumeProfileChart({
                     x={labelWidth + barWidth + (isPOC ? 16 : 4)}
                     y={y + barHeight / 2 + 1}
                     dominantBaseline="middle"
-                    className="text-[8px] fill-muted-foreground font-mono"
+                    className="text-[11px] fill-muted-foreground font-mono"
                   >
                     {level.percentOfTotal.toFixed(1)}%
                   </text>

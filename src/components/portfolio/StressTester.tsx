@@ -974,7 +974,7 @@ function CustomBuilder({
           type="text"
           value={name}
           onChange={(e) => setName(e.target.value)}
-          className="h-8 flex-1 rounded-md border border-border bg-background px-2.5 text-[11px] text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-1 focus:ring-primary"
+          className="h-8 flex-1 rounded-md border border-border bg-background px-2.5 text-[11px] text-foreground placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
           placeholder="Scenario name…"
         />
         <Button size="sm" variant="outline" className="h-8 text-[11px]" onClick={handleSave}>

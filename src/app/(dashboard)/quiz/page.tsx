@@ -753,7 +753,7 @@ function FlashcardsTab() {
             {/* Front */}
             <div
               style={{ backfaceVisibility: "hidden" }}
-              className="absolute inset-0 flex flex-col items-center justify-center rounded-2xl border border-border/60 bg-card px-6 py-8 text-center shadow-lg"
+              className="absolute inset-0 flex flex-col items-center justify-center rounded-2xl border border-border/60 bg-card px-6 py-8 text-center shadow-sm"
             >
               <span className="mb-3 text-xs font-semibold text-muted-foreground">
                 {card.category}
@@ -768,7 +768,7 @@ function FlashcardsTab() {
             {/* Back */}
             <div
               style={{ backfaceVisibility: "hidden", transform: "rotateY(180deg)" }}
-              className="absolute inset-0 flex flex-col items-center justify-center rounded-2xl border border-primary/30 bg-primary/5 px-6 py-8 text-center shadow-lg"
+              className="absolute inset-0 flex flex-col items-center justify-center rounded-2xl border border-primary/30 bg-primary/5 px-6 py-8 text-center shadow-sm"
             >
               <p className="text-sm leading-relaxed text-foreground/90 whitespace-pre-line">
                 {card.back}

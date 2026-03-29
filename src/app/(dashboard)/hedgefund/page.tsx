@@ -603,7 +603,7 @@ function StrategyExplorer() {
               "text-left rounded-xl border p-3 transition-colors",
               selected === st.id
                 ? "border-transparent bg-white/10"
-                : "border-white/8 bg-white/3 hover:bg-white/6"
+                : "border-white/8 bg-white/3 hover:bg-muted/30"
             )}
             style={selected === st.id ? { boxShadow: `0 0 0 1.5px ${st.color}` } : undefined}
           >
@@ -704,7 +704,7 @@ function StrategyExplorer() {
               </thead>
               <tbody>
                 {STRATEGIES.map((st) => (
-                  <tr key={st.id} className="border-b border-white/5 hover:bg-white/3 transition-colors">
+                  <tr key={st.id} className="border-b border-white/5 hover:bg-muted/30 transition-colors">
                     <td className="py-1.5 pr-3 text-muted-foreground whitespace-nowrap">
                       <span
                         className="inline-block w-1.5 h-1.5 rounded-full mr-1.5"
@@ -1135,7 +1135,7 @@ function GlobalMacroSimulator() {
                       "w-full text-left rounded-lg border p-2.5 text-xs transition-colors",
                       activeRegime === i
                         ? "border-transparent bg-white/10"
-                        : "border-white/8 hover:bg-white/5"
+                        : "border-white/8 hover:bg-muted/30"
                     )}
                     style={activeRegime === i ? { boxShadow: `0 0 0 1.5px ${r.color}` } : undefined}
                   >
@@ -1299,7 +1299,7 @@ function EventDriven() {
                     key={i}
                     className={cn(
                       "border-b border-white/5 cursor-pointer transition-colors",
-                      selected === i ? "bg-white/8" : "hover:bg-white/4"
+                      selected === i ? "bg-white/8" : "hover:bg-muted/30"
                     )}
                     onClick={() => setSelected(i === selected ? null : i)}
                   >
@@ -1547,7 +1547,7 @@ function CTASimulator() {
                     "flex-1 rounded-lg border py-2 text-sm font-medium transition-colors",
                     trendPeriod === p
                       ? "border-primary bg-primary/15 text-primary"
-                      : "border-white/8 text-muted-foreground hover:text-muted-foreground hover:bg-white/5"
+                      : "border-white/8 text-muted-foreground hover:text-muted-foreground hover:bg-muted/30"
                   )}
                 >
                   {p}D
@@ -1556,7 +1556,7 @@ function CTASimulator() {
             </div>
             <div className="rounded-xl bg-white/5 p-5 flex items-center justify-center">
               <div className="text-center">
-                <div className="text-5xl font-bold text-primary mb-1">
+                <div className="text-2xl font-bold text-primary mb-1">
                   {paramSharpe[trendPeriod].toFixed(2)}
                 </div>
                 <div className="text-xs text-muted-foreground">Sharpe Ratio ({trendPeriod}D lookback)</div>
@@ -1799,7 +1799,7 @@ function FundEconomics() {
           <CardContent className="pt-0 space-y-4">
             <div className="rounded-xl bg-indigo-400/8 border border-indigo-400/20 p-4">
               <p className="text-xs text-muted-foreground mb-1">Break-Even AUM (cover $3.5M fixed costs)</p>
-              <p className="text-3xl font-bold text-indigo-400">${breakEvenAUM.toFixed(0)}M</p>
+              <p className="text-2xl font-bold text-indigo-400">${breakEvenAUM.toFixed(0)}M</p>
               <p className="text-xs text-muted-foreground mt-1">At 2% mgmt fee — minimum viable fund size</p>
             </div>
 
@@ -1873,7 +1873,7 @@ export default function HedgeFundPage() {
             </p>
           </div>
           <div className="ml-auto flex items-center gap-2">
-            <Badge className="bg-indigo-400/15 text-indigo-400 text-xs">Simulated Data</Badge>
+            <span className="rounded bg-muted/40 px-1.5 py-0.5 text-[11px] font-medium text-muted-foreground">Simulated Data</span>
             <Badge className="bg-muted text-muted-foreground text-xs">Institutional</Badge>
           </div>
         </motion.div>

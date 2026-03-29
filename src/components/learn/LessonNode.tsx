@@ -51,7 +51,7 @@ export function LessonNode({
         isCompleted
           ? "border-[var(--unit-color)]/30 bg-[var(--unit-color)]/5"
           : isUnlocked
-            ? "border-border hover:border-[var(--unit-color)]/50 hover:bg-accent/50 hover:shadow-md cursor-pointer"
+            ? "border-border hover:border-[var(--unit-color)]/50 hover:bg-accent/50 hover:shadow-sm cursor-pointer"
             : "border-border/30 opacity-50 cursor-not-allowed",
       )}
       style={{ "--unit-color": unitColor } as React.CSSProperties}

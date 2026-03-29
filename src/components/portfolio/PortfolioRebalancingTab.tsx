@@ -125,7 +125,7 @@ function TargetAllocationSetup({
             <select
               value={row.ticker}
               onChange={(e) => updateTicker(i, e.target.value)}
-              className="h-7 w-20 rounded border border-border bg-background px-1.5 text-[11px] text-foreground focus:outline-none focus:ring-1 focus:ring-primary"
+              className="h-7 w-20 rounded border border-border bg-background px-1.5 text-[11px] text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
             >
               {availableForRow(i).map((t) => (
                 <option key={t} value={t}>
@@ -142,7 +142,7 @@ function TargetAllocationSetup({
               step={0.5}
               value={row.weight}
               onChange={(e) => updateWeight(i, e.target.value)}
-              className="h-7 w-20 rounded border border-border bg-background px-2 text-[11px] tabular-nums text-foreground focus:outline-none focus:ring-1 focus:ring-primary"
+              className="h-7 w-20 rounded border border-border bg-background px-2 text-[11px] tabular-nums text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
             />
             <span className="text-xs text-muted-foreground">%</span>
 
@@ -639,7 +639,7 @@ function TaxLossHarvestingScanner({ positions }: { positions: PositionRow[] }) {
               {/* Loss magnitude bar */}
               <div className="mt-2 h-1 rounded-full bg-muted overflow-hidden">
                 <div
-                  className="h-full rounded-full bg-red-500 transition-all duration-500"
+                  className="h-full rounded-full bg-red-500 transition-all duration-300"
                   style={{
                     width: `${Math.min(100, (p.unrealizedLoss / (p.costBasis + 1)) * 300)}%`,
                   }}

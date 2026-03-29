@@ -439,7 +439,7 @@ function SaasTab() {
                     "border-b border-white/5 cursor-pointer transition-colors",
                     selected === c.ticker
                       ? "bg-primary/10"
-                      : "hover:bg-white/5"
+                      : "hover:bg-muted/30"
                   )}
                 >
                   <td className="px-3 py-2.5">
@@ -686,7 +686,7 @@ function AiInfraTab() {
                   onClick={() => setActiveHyperscaler(activeHyperscaler === h.ticker ? null : h.ticker)}
                   className={cn(
                     "border-b border-white/5 cursor-pointer transition-colors",
-                    activeHyperscaler === h.ticker ? "bg-orange-500/10" : "hover:bg-white/5"
+                    activeHyperscaler === h.ticker ? "bg-orange-500/10" : "hover:bg-muted/30"
                   )}
                 >
                   <td className="px-3 py-2.5">
@@ -987,7 +987,7 @@ function SemiCycleTab() {
                   onClick={() => setSelectedSemi(selectedSemi === c.ticker ? null : c.ticker)}
                   className={cn(
                     "border-b border-white/5 cursor-pointer transition-colors",
-                    selectedSemi === c.ticker ? "bg-primary/10" : "hover:bg-white/5"
+                    selectedSemi === c.ticker ? "bg-primary/10" : "hover:bg-muted/30"
                   )}
                 >
                   <td className="px-3 py-2.5">
@@ -1128,7 +1128,7 @@ function MegaCapTab() {
               "px-3 py-1.5 rounded-lg text-xs font-mono font-bold transition-colors",
               selected === c.ticker
                 ? "bg-primary text-white"
-                : "bg-white/5 text-muted-foreground hover:bg-white/10 hover:text-white"
+                : "bg-white/5 text-muted-foreground hover:bg-muted/50 hover:text-foreground"
             )}
           >
             {c.ticker}
@@ -1245,7 +1245,7 @@ function MegaCapTab() {
                   onClick={() => setSelected(c.ticker)}
                   className={cn(
                     "border-b border-white/5 cursor-pointer transition-colors",
-                    selected === c.ticker ? "bg-primary/10" : "hover:bg-white/5"
+                    selected === c.ticker ? "bg-primary/10" : "hover:bg-muted/30"
                   )}
                 >
                   <td className="px-3 py-2.5 font-mono font-bold text-white">{c.ticker}</td>
@@ -1378,7 +1378,7 @@ function FintechTab() {
               "px-3 py-1.5 rounded-lg text-xs font-medium transition-colors border",
               activeCategory === cat
                 ? "bg-primary text-white border-primary"
-                : "bg-white/5 text-muted-foreground border-white/10 hover:bg-white/10 hover:text-white"
+                : "bg-white/5 text-muted-foreground border-white/10 hover:bg-muted/50 hover:text-foreground"
             )}
           >
             {cat}
@@ -1407,7 +1407,7 @@ function FintechTab() {
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 1 }}
                   exit={{ opacity: 0 }}
-                  className="border-b border-white/5 hover:bg-white/5 transition-colors"
+                  className="border-b border-white/5 hover:bg-muted/30 transition-colors"
                 >
                   <td className="px-3 py-2.5">
                     <span className="font-mono font-bold text-white">{c.ticker}</span>
@@ -1543,9 +1543,7 @@ export default function TechSectorPage() {
             <Badge variant="outline" className="text-primary border-primary/40">
               2026 Data
             </Badge>
-            <Badge variant="outline" className="text-emerald-300 border-emerald-500/40">
-              Educational
-            </Badge>
+            <span className="rounded bg-muted/40 px-1.5 py-0.5 text-[11px] font-medium text-muted-foreground">Educational</span>
           </div>
         </motion.div>
 

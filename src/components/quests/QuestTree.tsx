@@ -945,7 +945,7 @@ function AchievementCard({ achievement }: { achievement: { id: string; name: str
       <div className="flex items-center justify-between">
         <span
           className={cn(
-            "text-[8px] font-bold px-1.5 py-0.5 rounded border",
+            "text-[11px] font-bold px-1.5 py-0.5 rounded border",
             RARITY_COLORS[rarity],
           )}
         >

@@ -642,7 +642,7 @@ function PricingMechanicsTab() {
                 "w-full flex items-center gap-3 rounded-lg border p-3 text-left transition-colors",
                 selectedRatchet === i
                   ? "border-primary/50 bg-muted/40"
-                  : "border-white/10 bg-white/5 hover:bg-white/10"
+                  : "border-white/10 bg-white/5 hover:bg-muted/30"
               )}
             >
               <div className="w-24 text-xs font-mono text-muted-foreground">{rl.leverage}</div>
@@ -854,7 +854,7 @@ function SyndicationProcessTab() {
                 "rounded-lg border px-3 py-2 text-xs font-medium transition-colors",
                 activeStep === i
                   ? "border-opacity-80 bg-white/10"
-                  : "border-white/10 bg-white/5 hover:bg-white/10"
+                  : "border-white/10 bg-white/5 hover:bg-muted/30"
               )}
               style={activeStep === i ? { borderColor: t.color, color: t.color } : { color: "#94a3b8" }}
             >

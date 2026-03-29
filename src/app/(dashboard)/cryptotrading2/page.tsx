@@ -799,7 +799,7 @@ export default function CryptoTrading2Page() {
                     {perpMarkets.map((m) => (
                       <tr
                         key={m.pair}
-                        className="border-b border-white/5 hover:bg-white/3 transition-colors"
+                        className="border-b border-white/5 hover:bg-muted/30 transition-colors"
                       >
                         <td className="px-4 py-3 font-medium text-white">{m.pair}</td>
                         <td className="px-4 py-3 text-white/80">
@@ -954,7 +954,7 @@ export default function CryptoTrading2Page() {
                   </thead>
                   <tbody>
                     {onChainSignals.map((sig) => (
-                      <tr key={sig.name} className="border-b border-white/5 hover:bg-white/3 transition-colors">
+                      <tr key={sig.name} className="border-b border-white/5 hover:bg-muted/30 transition-colors">
                         <td className="px-4 py-3 font-medium text-white">{sig.name}</td>
                         <td className="px-4 py-3 text-white/50">{sig.category}</td>
                         <td className="px-4 py-3 font-mono text-white/80">{sig.value}</td>
@@ -1068,7 +1068,7 @@ export default function CryptoTrading2Page() {
                       ["Cross-Exchange Arb", "20–50% APY", "Medium", "$100K+", "Yes", "High"],
                       ["Liquidation Hunting", "30–70% APY", "High", "$5K+", "No", "Very High"],
                     ].map(([strat, ret, risk, cap, delta, comp]) => (
-                      <tr key={strat} className="border-b border-white/5 hover:bg-white/3 transition-colors">
+                      <tr key={strat} className="border-b border-white/5 hover:bg-muted/30 transition-colors">
                         <td className="px-4 py-3 font-medium text-white">{strat}</td>
                         <td className="px-4 py-3 text-green-400">{ret}</td>
                         <td className="px-4 py-3">

@@ -342,7 +342,7 @@ function TimeBar({ daysRemaining, totalDays }: { daysRemaining: number; totalDay
   return (
     <div className="flex items-center gap-2">
       <Clock className="h-3 w-3 text-muted-foreground shrink-0" />
-      <div className="flex-1 h-1.5 rounded-full bg-white/[0.05] overflow-hidden">
+      <div className="flex-1 h-1.5 rounded-full bg-muted/20 overflow-hidden">
         <motion.div
           className="h-full rounded-full bg-teal-500"
           initial={{ width: 0 }}
@@ -384,7 +384,7 @@ function TournamentLobby({ joinedIds, onJoin, onViewLeaderboard, playerXP }: Tou
                 "rounded-xl border p-4 transition-all",
                 joined
                   ? `${t.borderColor} ${t.bgColor}`
-                  : "border-white/[0.06] bg-white/[0.02] hover:bg-white/[0.04]",
+                  : "border-border/30 bg-muted/10 hover:bg-muted/15",
               )}
             >
               {/* Header */}
@@ -465,7 +465,7 @@ function TournamentLobby({ joinedIds, onJoin, onViewLeaderboard, playerXP }: Tou
                       "flex-1 flex items-center justify-center gap-1.5 rounded-lg py-2 text-xs font-bold transition-all",
                       canAfford
                         ? `${t.bgColor} ${t.color} border ${t.borderColor} hover:opacity-80 active:scale-95`
-                        : "border border-white/5 bg-white/[0.02] text-muted-foreground/70 cursor-not-allowed",
+                        : "border border-border/30 bg-muted/10 text-muted-foreground/70 cursor-not-allowed",
                     )}
                   >
                     {canAfford ? (
@@ -562,13 +562,13 @@ function LeaderboardSection({ tournamentId, playerElo, playerXP, onBack }: Leade
       </div>
 
       {/* Podium */}
-      <div className="rounded-xl border border-white/[0.06] bg-white/[0.02] p-4">
+      <div className="rounded-xl border border-border/30 bg-muted/10 p-4">
         <div className="text-xs font-bold text-muted-foreground mb-3">Top Traders</div>
         <Podium entries={entries} />
       </div>
 
       {/* Time progress */}
-      <div className="rounded-xl border border-white/[0.06] bg-white/[0.02] px-4 py-3">
+      <div className="rounded-xl border border-border/30 bg-muted/10 px-4 py-3">
         <TimeBar daysRemaining={daysLeft} totalDays={def.durationDays} />
       </div>
 
@@ -592,11 +592,11 @@ function LeaderboardSection({ tournamentId, playerElo, playerXP, onBack }: Leade
       </div>
 
       {/* Full table */}
-      <div className="rounded-xl border border-white/[0.06] overflow-hidden">
+      <div className="rounded-xl border border-border/30 overflow-hidden">
         <div className="overflow-x-auto">
           <table className="w-full text-[11px]">
             <thead>
-              <tr className="border-b border-white/[0.06] bg-white/[0.03]">
+              <tr className="border-b border-border/30 bg-muted/15">
                 <th className="px-3 py-2 text-left font-bold text-muted-foreground w-10">Rank</th>
                 <th className="px-3 py-2 text-left font-bold text-muted-foreground">Trader</th>
                 <th className="px-3 py-2 text-right font-bold text-muted-foreground">Return</th>
@@ -613,10 +613,10 @@ function LeaderboardSection({ tournamentId, playerElo, playerXP, onBack }: Leade
                   <tr
                     key={e.name + e.rank}
                     className={cn(
-                      "border-b border-white/[0.03] last:border-0 transition-colors",
+                      "border-b border-border/15 last:border-0 transition-colors",
                       e.isPlayer
                         ? cn(def.bgColor, "sticky top-0 z-10")
-                        : "hover:bg-white/[0.02]",
+                        : "hover:bg-muted/10",
                     )}
                   >
                     <td className="px-3 py-2">
@@ -736,7 +736,7 @@ function H2HSection({ playerElo }: H2HProps) {
           { label: "W/L", value: `${winCount}/${lossCount}`, color: "text-emerald-400" },
           { label: "Win Rate", value: `${Math.round((winCount / Math.max(1, matchHistory.length)) * 100)}%`, color: "text-primary" },
         ].map((s) => (
-          <div key={s.label} className="rounded-lg border border-white/[0.06] bg-white/[0.02] p-3 text-center">
+          <div key={s.label} className="rounded-lg border border-border/30 bg-muted/10 p-3 text-center">
             <div className={cn("text-sm font-bold tabular-nums", s.color)}>{s.value}</div>
             <div className="text-xs text-muted-foreground mt-0.5">{s.label}</div>
           </div>
@@ -744,7 +744,7 @@ function H2HSection({ playerElo }: H2HProps) {
       </div>
 
       {/* Matchmaking */}
-      <div className="rounded-xl border border-white/[0.06] bg-white/[0.02] p-4 space-y-3">
+      <div className="rounded-xl border border-border/30 bg-muted/10 p-4 space-y-3">
         <div className="text-xs font-bold text-muted-foreground">Find a Match</div>
         <p className="text-[11px] text-muted-foreground">
           24-hour paper trading duel — whoever has higher return % wins. ELO-based matchmaking finds opponents near your rating.
@@ -767,7 +767,7 @@ function H2HSection({ playerElo }: H2HProps) {
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
               placeholder="Challenge by username..."
-              className="w-full rounded-lg border border-white/[0.06] bg-white/[0.02] py-2 pl-8 pr-3 text-xs text-muted-foreground placeholder:text-muted-foreground/50 focus:outline-none focus:border-teal-500/40"
+              className="w-full rounded-lg border border-border/30 bg-muted/10 py-2 pl-8 pr-3 text-xs text-muted-foreground placeholder:text-muted-foreground/50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
               onKeyDown={(e) => { if (e.key === "Enter") handleChallengeUser(); }}
             />
           </div>
@@ -775,7 +775,7 @@ function H2HSection({ playerElo }: H2HProps) {
             type="button"
             onClick={handleChallengeUser}
             disabled={!searchQuery.trim()}
-            className="rounded-lg border border-white/[0.06] bg-white/[0.03] px-3 py-2 text-xs font-bold text-muted-foreground transition-colors hover:bg-white/[0.06] disabled:opacity-40"
+            className="rounded-lg border border-border/30 bg-muted/15 px-3 py-2 text-xs font-bold text-muted-foreground transition-colors hover:bg-muted/30 disabled:opacity-40"
           >
             Challenge
           </button>
@@ -800,13 +800,13 @@ function H2HSection({ playerElo }: H2HProps) {
             <LivePnlBar yourReturn={currentMatch.yourReturn} oppReturn={currentMatch.oppReturn} />
 
             <div className="grid grid-cols-2 gap-2 text-center">
-              <div className="rounded-lg bg-white/[0.03] px-3 py-2">
+              <div className="rounded-lg bg-muted/15 px-3 py-2">
                 <div className="text-xs text-muted-foreground">Your Return</div>
                 <div className={cn("text-sm font-bold tabular-nums", currentMatch.yourReturn >= 0 ? "text-emerald-400" : "text-red-400")}>
                   {currentMatch.yourReturn >= 0 ? "+" : ""}{currentMatch.yourReturn.toFixed(2)}%
                 </div>
               </div>
-              <div className="rounded-lg bg-white/[0.03] px-3 py-2">
+              <div className="rounded-lg bg-muted/15 px-3 py-2">
                 <div className="text-xs text-muted-foreground">{currentMatch.opponent}</div>
                 <div className={cn("text-sm font-bold tabular-nums", currentMatch.oppReturn >= 0 ? "text-red-400" : "text-emerald-400")}>
                   {currentMatch.oppReturn >= 0 ? "+" : ""}{currentMatch.oppReturn.toFixed(2)}%
@@ -828,10 +828,10 @@ function H2HSection({ playerElo }: H2HProps) {
       {/* Match history */}
       <div>
         <div className="text-xs font-bold text-muted-foreground mb-2">Recent Matches (Last 10)</div>
-        <div className="rounded-xl border border-white/[0.06] overflow-hidden">
+        <div className="rounded-xl border border-border/30 overflow-hidden">
           <table className="w-full text-[11px]">
             <thead>
-              <tr className="border-b border-white/[0.06] bg-white/[0.03]">
+              <tr className="border-b border-border/30 bg-muted/15">
                 <th className="px-3 py-2 text-left font-bold text-muted-foreground">Opponent</th>
                 <th className="px-3 py-2 text-right font-bold text-muted-foreground">Your %</th>
                 <th className="px-3 py-2 text-right font-bold text-muted-foreground">Opp %</th>
@@ -841,7 +841,7 @@ function H2HSection({ playerElo }: H2HProps) {
             </thead>
             <tbody>
               {matchHistory.map((m) => (
-                <tr key={m.id} className="border-b border-white/[0.03] last:border-0 hover:bg-white/[0.02]">
+                <tr key={m.id} className="border-b border-border/15 last:border-0 hover:bg-muted/10">
                   <td className="px-3 py-2">
                     <div className="flex flex-col">
                       <span className="text-foreground font-medium">{m.opponent}</span>
@@ -883,7 +883,7 @@ function LivePnlBar({ yourReturn, oppReturn }: { yourReturn: number; oppReturn: 
   return (
     <div className="flex items-center gap-2">
       <span className="text-[11px] font-bold text-muted-foreground w-5 text-right">YOU</span>
-      <div className="flex-1 relative h-4 rounded-full bg-white/[0.04] overflow-hidden flex">
+      <div className="flex-1 relative h-4 rounded-full bg-muted/15 overflow-hidden flex">
         <div className="w-1/2 flex justify-end">
           <motion.div
             className={cn("h-full rounded-l-full", yourReturn >= 0 ? "bg-teal-500/60" : "bg-red-500/40")}
@@ -891,7 +891,7 @@ function LivePnlBar({ yourReturn, oppReturn }: { yourReturn: number; oppReturn: 
             transition={{ duration: 0.5 }}
           />
         </div>
-        <div className="absolute left-1/2 top-0 bottom-0 w-px bg-white/20 z-10" />
+        <div className="absolute left-1/2 top-0 bottom-0 w-px bg-muted/60 z-10" />
         <div className="w-1/2 flex justify-start">
           <motion.div
             className={cn("h-full rounded-r-full", oppReturn >= 0 ? "bg-red-500/40" : "bg-muted-foreground/30")}
@@ -900,7 +900,7 @@ function LivePnlBar({ yourReturn, oppReturn }: { yourReturn: number; oppReturn: 
           />
         </div>
         <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
-          <span className={cn("text-[8px] font-bold tabular-nums", youLeading ? "text-emerald-400" : "text-muted-foreground")}>
+          <span className={cn("text-[11px] font-bold tabular-nums", youLeading ? "text-emerald-400" : "text-muted-foreground")}>
             {(yourReturn - oppReturn) >= 0 ? "+" : ""}{(yourReturn - oppReturn).toFixed(1)}%
           </span>
         </div>
@@ -985,7 +985,7 @@ function HallOfFameSection({ playerElo, playerXP, joinedCount }: HallOfFameProps
             { label: "Best Trade", winner: "SigmaForce", detail: "+47.3% single trade" },
             { label: "Most Consistent", winner: "QuantKing", detail: "Sharpe 4.21 over 30d" },
           ].map((award) => (
-            <div key={award.label} className="rounded-lg border border-white/[0.06] bg-white/[0.02] p-3">
+            <div key={award.label} className="rounded-lg border border-border/30 bg-muted/10 p-3">
               <div className="text-xs font-bold text-muted-foreground mb-1">{award.label}</div>
               <div className="text-xs font-bold text-foreground">{award.winner}</div>
               <div className="text-[11px] text-muted-foreground/70 mt-0.5">{award.detail}</div>
@@ -1005,13 +1005,13 @@ function HallOfFameSection({ playerElo, playerXP, joinedCount }: HallOfFameProps
             <Medal className="h-3.5 w-3.5 text-yellow-500" />
             {board.title}
           </div>
-          <div className="rounded-xl border border-white/[0.06] overflow-hidden">
+          <div className="rounded-xl border border-border/30 overflow-hidden">
             {board.entries.map((e) => (
               <div
                 key={e.name + e.rank}
                 className={cn(
-                  "flex items-center gap-3 px-3 py-2.5 border-b border-white/[0.03] last:border-0",
-                  e.isPlayer ? "bg-teal-500/5" : "hover:bg-white/[0.02]",
+                  "flex items-center gap-3 px-3 py-2.5 border-b border-border/15 last:border-0",
+                  e.isPlayer ? "bg-teal-500/5" : "hover:bg-muted/10",
                 )}
               >
                 <span className={cn(
@@ -1043,7 +1043,7 @@ function HallOfFameSection({ playerElo, playerXP, joinedCount }: HallOfFameProps
         </div>
         <div className="grid grid-cols-2 gap-2">
           {careerStats.map((s) => (
-            <div key={s.label} className="rounded-lg border border-white/[0.06] bg-white/[0.02] p-3">
+            <div key={s.label} className="rounded-lg border border-border/30 bg-muted/10 p-3">
               <div className="text-sm font-bold tabular-nums text-foreground">{s.value}</div>
               <div className="text-xs text-muted-foreground mt-0.5">{s.label}</div>
             </div>
@@ -1186,7 +1186,7 @@ export function TournamentSystem() {
     <div className="space-y-4">
       {/* Sub-tab bar (hidden when viewing leaderboard) */}
       {activeSection !== "leaderboard" && (
-        <div className="flex rounded-xl border border-white/[0.06] bg-white/[0.02] overflow-hidden">
+        <div className="flex rounded-xl border border-border/30 bg-muted/10 overflow-hidden">
           {SECTION_TABS.map((tab) => (
             <button
               key={tab.id}

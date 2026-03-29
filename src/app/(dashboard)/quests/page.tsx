@@ -440,7 +440,7 @@ function BranchGrid() {
                   >
                     <div
                       className={cn(
-                        "h-6 w-6 rounded-full border flex items-center justify-center text-[8px] font-bold",
+                        "h-6 w-6 rounded-full border flex items-center justify-center text-[11px] font-bold",
                         isUnlocked
                           ? cn("border-current", branch.color)
                           : "border-border text-muted-foreground",
@@ -448,12 +448,12 @@ function BranchGrid() {
                     >
                       {ni + 1}
                     </div>
-                    <span className="text-[8px] text-muted-foreground text-center w-14 truncate">
+                    <span className="text-[11px] text-muted-foreground text-center w-14 truncate">
                       {node.label}
                     </span>
                     <span
                       className={cn(
-                        "text-[8px] font-bold",
+                        "text-[11px] font-bold",
                         isUnlocked ? "text-amber-400" : "text-muted-foreground",
                       )}
                     >

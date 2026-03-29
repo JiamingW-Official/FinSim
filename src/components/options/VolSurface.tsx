@@ -773,7 +773,7 @@ export function VolSurface({ spotPrice, hv = 0.25, ivRank = 50 }: VolSurfaceProp
               {/* Hover tooltip */}
               {tooltip && (
                 <div
-                  className="pointer-events-none absolute z-10 rounded border border-border bg-card/95 px-2 py-1.5 shadow-lg"
+                  className="pointer-events-none absolute z-10 rounded border border-border bg-card/95 px-2 py-1.5 shadow-sm"
                   style={{
                     left: tooltip.x + 10,
                     top: tooltip.y - 30,
@@ -823,7 +823,7 @@ export function VolSurface({ spotPrice, hv = 0.25, ivRank = 50 }: VolSurfaceProp
                   onChange={(e) => setSkew(Number(e.target.value))}
                   className="h-1.5 w-full cursor-pointer appearance-none rounded-full bg-muted accent-orange-400"
                 />
-                <div className="mt-0.5 flex justify-between text-[8px] text-muted-foreground/60">
+                <div className="mt-0.5 flex justify-between text-[11px] text-muted-foreground/60">
                   <span>Call skew</span>
                   <span>Put skew</span>
                 </div>
@@ -866,7 +866,7 @@ export function VolSurface({ spotPrice, hv = 0.25, ivRank = 50 }: VolSurfaceProp
                   onChange={(e) => setVolShift(Number(e.target.value))}
                   className="h-1.5 w-full cursor-pointer appearance-none rounded-full bg-muted accent-orange-400"
                 />
-                <div className="mt-0.5 flex justify-between text-[8px] text-muted-foreground/60">
+                <div className="mt-0.5 flex justify-between text-[11px] text-muted-foreground/60">
                   <span>-20%</span>
                   <span>+20%</span>
                 </div>
@@ -875,7 +875,7 @@ export function VolSurface({ spotPrice, hv = 0.25, ivRank = 50 }: VolSurfaceProp
               {/* Reset button */}
               <button
                 onClick={resetToMarket}
-                className="mt-1 w-full rounded border border-border py-1.5 text-[11px] text-muted-foreground transition-colors hover:border-orange-400/50 hover:bg-orange-400/10 hover:text-orange-400"
+                className="mt-1 w-full rounded border border-border py-1.5 text-[11px] text-muted-foreground transition-colors hover:border-primary/50 hover:bg-primary/10 hover:text-primary"
               >
                 Reset to Market
               </button>
@@ -898,7 +898,7 @@ export function VolSurface({ spotPrice, hv = 0.25, ivRank = 50 }: VolSurfaceProp
                   key={label}
                   onClick={() => setSelectedSmileExpiry(i)}
                   className={cn(
-                    "rounded px-1.5 py-0.5 text-[8px] transition-colors",
+                    "rounded px-1.5 py-0.5 text-[11px] transition-colors",
                     selectedSmileExpiry === i
                       ? "bg-orange-400/20 text-orange-400"
                       : "text-muted-foreground hover:bg-muted",

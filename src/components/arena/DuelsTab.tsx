@@ -245,7 +245,7 @@ function ActiveDuel({ mode, opponent, matchSeed, onComplete }: ActiveDuelProps) 
           transition={isUrgent ? { duration: 0.6, repeat: Infinity } : {}}
           className={cn(
             "flex items-center gap-2 rounded-xl px-5 py-2 font-mono text-2xl font-bold tabular-nums",
-            isUrgent ? "bg-red-500/15 text-red-400" : "bg-white/5 text-foreground",
+            isUrgent ? "bg-red-500/15 text-red-400" : "bg-muted/20 text-foreground",
           )}
         >
           <Clock className="h-5 w-5" />
@@ -266,7 +266,7 @@ function ActiveDuel({ mode, opponent, matchSeed, onComplete }: ActiveDuelProps) 
         </div>
 
         {/* Opponent side */}
-        <div className="rounded-lg border border-white/5 bg-white/[0.02] p-3">
+        <div className="rounded-lg border border-border/30 bg-muted/10 p-3">
           <div className="flex items-center gap-1 mb-1">
             <ArenaRankBadge rank={opponent.rank} size="xs" showLabel={false} />
             <span className="text-xs font-bold text-muted-foreground truncate">{opponent.name}</span>
@@ -283,7 +283,7 @@ function ActiveDuel({ mode, opponent, matchSeed, onComplete }: ActiveDuelProps) 
       <PnlRaceBar yourPnl={yours.pnl} oppPnl={opp.pnl} />
 
       {/* Chart */}
-      <div className="rounded-lg border border-white/5 bg-white/[0.02] p-2">
+      <div className="rounded-lg border border-border/30 bg-muted/10 p-2">
         <MiniSVGChart seed={matchSeed} revealedBars={revealedBars} totalBars={TOTAL_BARS} />
       </div>
 
@@ -376,7 +376,7 @@ function DuelResults({ yourPnl, oppPnl, yourTrades, opponent, mode, eloChange, e
       </div>
 
       {/* ELO change */}
-      <div className="flex items-center gap-3 rounded-lg border border-white/5 bg-white/[0.02] px-4 py-2">
+      <div className="flex items-center gap-3 rounded-lg border border-border/30 bg-muted/10 px-4 py-2">
         <span className="text-xs text-muted-foreground">ELO</span>
         <span className="text-sm font-bold text-muted-foreground tabular-nums">{eloBefore}</span>
         <ChevronRight className="h-3 w-3 text-muted-foreground/70" />
@@ -401,7 +401,7 @@ function DuelResults({ yourPnl, oppPnl, yourTrades, opponent, mode, eloChange, e
         <button
           type="button"
           onClick={onFindNew}
-          className="flex items-center gap-2 rounded-lg border border-white/10 bg-white/5 px-5 py-2.5 text-sm font-bold text-muted-foreground transition-colors hover:bg-white/10"
+          className="flex items-center gap-2 rounded-lg border border-border/50 bg-muted/20 px-5 py-2.5 text-sm font-bold text-muted-foreground transition-colors hover:bg-muted/50"
         >
           <ArrowRight className="h-3.5 w-3.5" />
           Find New Match
@@ -492,7 +492,7 @@ export function DuelsTab() {
                       "rounded-lg border px-3 py-3 text-left transition-all",
                       selectedMode.id === m.id
                         ? "border-teal-500/40 bg-teal-500/10"
-                        : "border-white/5 bg-white/[0.02] hover:bg-white/[0.05]",
+                        : "border-border/30 bg-muted/10 hover:bg-muted/30",
                     )}
                   >
                     <div className={cn("text-xs font-bold", selectedMode.id === m.id ? "text-emerald-400" : "text-muted-foreground")}>
@@ -516,7 +516,7 @@ export function DuelsTab() {
             </button>
 
             {/* Your ELO */}
-            <div className="flex items-center justify-between rounded-lg border border-white/5 bg-white/[0.02] px-3 py-2">
+            <div className="flex items-center justify-between rounded-lg border border-border/30 bg-muted/10 px-3 py-2">
               <span className="text-xs text-muted-foreground">Your ELO</span>
               <div className="flex items-center gap-2">
                 <span className="text-sm font-bold tabular-nums text-foreground">{elo}</span>

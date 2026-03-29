@@ -960,7 +960,7 @@ function ExDivCalendar() {
                           <span className={cn("text-[11px]", v >= 0 ? "text-green-400" : "text-red-400")}>
                             {v >= 0 ? "+" : ""}{fmt(v, 2)}%
                           </span>
-                          <span className="text-[8px] text-muted-foreground/50">{i === 4 ? "Ex" : `D-${4 - i}`}</span>
+                          <span className="text-[11px] text-muted-foreground/50">{i === 4 ? "Ex" : `D-${4 - i}`}</span>
                         </div>
                       ))}
                     </div>

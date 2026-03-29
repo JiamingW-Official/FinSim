@@ -724,7 +724,7 @@ function RWATab() {
             </thead>
             <tbody>
               {RWA_PROTOCOLS.map((p) => (
-                <tr key={p.name} className="border-b border-white/5 hover:bg-white/5 transition-colors">
+                <tr key={p.name} className="border-b border-white/5 hover:bg-muted/30 transition-colors">
                   <td className="py-2.5 px-3 text-xs font-semibold text-foreground">{p.name}</td>
                   <td className="py-2.5 px-3 text-xs text-muted-foreground">{p.focus}</td>
                   <td className="py-2.5 px-3 text-xs text-center text-emerald-400">{p.tvl}</td>
@@ -1003,7 +1003,7 @@ function IntentTab() {
             </thead>
             <tbody>
               {INTENT_PROTOCOLS.map((p) => (
-                <tr key={p.name} className="border-b border-white/5 hover:bg-white/5 transition-colors">
+                <tr key={p.name} className="border-b border-white/5 hover:bg-muted/30 transition-colors">
                   <td className="py-2.5 px-3 text-xs font-semibold text-foreground">{p.name}</td>
                   <td className="py-2.5 px-3 text-xs text-muted-foreground">{p.mechanism}</td>
                   <td className="py-2.5 px-3 text-center">
@@ -1348,7 +1348,7 @@ function RestakingTab() {
             </thead>
             <tbody>
               {LRTS.map((l) => (
-                <tr key={l.token} className="border-b border-white/5 hover:bg-white/5 transition-colors">
+                <tr key={l.token} className="border-b border-white/5 hover:bg-muted/30 transition-colors">
                   <td className="py-2.5 px-3 text-xs font-semibold text-foreground">{l.name}</td>
                   <td className="py-2.5 px-3 text-center">
                     <Badge className="bg-primary/20 text-primary border-border text-xs">{l.token}</Badge>

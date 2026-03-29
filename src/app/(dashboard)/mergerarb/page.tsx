@@ -234,7 +234,7 @@ function DealDashboard({
               key={deal.id}
               onClick={() => onSelect(deal.id)}
               className={cn(
-                "border-b border-white/5 cursor-pointer transition-colors hover:bg-white/5",
+                "border-b border-white/5 cursor-pointer transition-colors hover:bg-muted/30",
                 selectedId === deal.id && "bg-primary/10 hover:bg-primary/15"
               )}
             >
@@ -315,7 +315,7 @@ function SpreadDecomposition({ deal }: { deal: Deal }) {
         </CardTitle>
       </CardHeader>
       <CardContent className="space-y-4">
-        <div className="text-3xl font-bold text-white tabular-nums">
+        <div className="text-2xl font-bold text-white tabular-nums">
           +{breakdown.total.toFixed(2)}%
           <span className="text-sm font-normal text-muted-foreground ml-2">total spread</span>
         </div>
@@ -677,7 +677,7 @@ function RiskFactorsPanel() {
             <div key={rf.id} className="rounded-lg border border-white/8 overflow-hidden">
               <button
                 onClick={() => setOpenId(isOpen ? null : rf.id)}
-                className="w-full flex items-center justify-between px-4 py-3 hover:bg-white/5 transition-colors"
+                className="w-full flex items-center justify-between px-4 py-3 hover:bg-muted/30 transition-colors"
               >
                 <div className="flex items-center gap-3">
                   {rf.severity === "High" ? (

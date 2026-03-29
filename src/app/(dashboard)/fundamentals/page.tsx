@@ -1367,7 +1367,7 @@ function CashFlowAnalysis() {
           <p className="text-xs text-muted-foreground mb-3">FCF / Market Cap — higher = better value proposition</p>
           <div className="flex items-center gap-4 mt-2">
             <div className="text-center">
-              <p className="text-4xl font-bold text-indigo-400">{fcfYieldCurrent}%</p>
+              <p className="text-2xl font-bold text-indigo-400">{fcfYieldCurrent}%</p>
               <p className="text-xs text-muted-foreground mt-1">Current FCF Yield</p>
               <p className="text-xs mt-2 px-2 py-1 rounded-full bg-muted">
                 {fcfYieldCurrent >= 5 ? <span className="text-emerald-400">Attractive (&ge;5%)</span>

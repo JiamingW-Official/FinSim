@@ -1225,13 +1225,13 @@ function IncomePortfolioTab() {
       <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
         <div className="bg-card border border-border rounded-xl p-4 text-center">
           <div className="text-muted-foreground text-xs mb-1">Blended Yield</div>
-          <div className="text-3xl font-bold text-green-400">{blendedYield.toFixed(2)}%</div>
+          <div className="text-2xl font-bold text-green-400">{blendedYield.toFixed(2)}%</div>
           <div className="text-muted-foreground text-xs">weighted average</div>
         </div>
         <div className="bg-card border border-border rounded-xl p-4 text-center">
           <div className="text-muted-foreground text-xs mb-1">Target Monthly Income</div>
           <div className="flex items-center justify-center gap-2">
-            <div className="text-3xl font-bold text-white">${targetMonthly.toLocaleString()}</div>
+            <div className="text-2xl font-bold text-white">${targetMonthly.toLocaleString()}</div>
           </div>
           <div className="w-full mt-2">
             <Slider min={500} max={20000} step={500} value={[targetMonthly]} onValueChange={([v]) => setTargetMonthly(v)} />
@@ -1239,7 +1239,7 @@ function IncomePortfolioTab() {
         </div>
         <div className="bg-card border border-border rounded-xl p-4 text-center">
           <div className="text-muted-foreground text-xs mb-1">Capital Needed</div>
-          <div className="text-3xl font-bold text-primary">{formatCurrency(capitalNeeded)}</div>
+          <div className="text-2xl font-bold text-primary">{formatCurrency(capitalNeeded)}</div>
           <div className="text-muted-foreground text-xs">at {blendedYield.toFixed(2)}% yield</div>
         </div>
       </div>

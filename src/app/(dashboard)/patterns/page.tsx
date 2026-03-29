@@ -586,7 +586,7 @@ function PatternLibraryTab() {
                   </div>
                   <div className="h-1.5 bg-muted rounded-full overflow-hidden">
                     <motion.div
-                      className="h-full bg-gradient-to-r from-indigo-500 to-indigo-400 rounded-full"
+                      className="h-full bg-indigo-500 rounded-full"
                       initial={{ width: 0 }}
                       animate={{ width: `${pattern.reliability}%` }}
                       transition={{ duration: 0.8, ease: "easeOut" }}

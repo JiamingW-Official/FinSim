@@ -483,7 +483,7 @@ function MarginalContributionTab() {
               <AlertTriangle className="w-4 h-4 text-amber-400" />
               <span className="text-sm font-medium text-muted-foreground">Concentration Risk</span>
             </div>
-            <div className="text-4xl font-bold text-amber-400 mb-1">{CONCENTRATION_SCORE}</div>
+            <div className="text-2xl font-bold text-amber-400 mb-1">{CONCENTRATION_SCORE}</div>
             <div className="text-xs text-muted-foreground mb-3">Score out of 100</div>
             <div className="w-full bg-muted rounded-full h-2 overflow-hidden">
               <div

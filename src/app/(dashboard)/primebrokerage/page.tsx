@@ -572,7 +572,7 @@ function PBServiceScorecard({ services }: { services: PBService[] }) {
             </div>
             <div className="w-full bg-muted rounded-full h-1.5">
               <div
-                className="h-1.5 rounded-full transition-all duration-500"
+                className="h-1.5 rounded-full transition-all duration-300"
                 style={{
                   width: `${svc.score}%`,
                   background: svc.score >= 90 ? "#10b981" : svc.score >= 80 ? "#22d3ee" : "#f59e0b",

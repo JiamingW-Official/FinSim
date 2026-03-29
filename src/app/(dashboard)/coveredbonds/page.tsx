@@ -449,7 +449,7 @@ function FrameworksTab() {
           >
             <div className="bg-card border rounded-xl p-5 overflow-hidden" style={{ borderColor: selectedFw.color + "60" }}>
               <div className="flex items-center gap-3 mb-4">
-                <span className="text-3xl">{selectedFw.flag}</span>
+                <span className="text-2xl">{selectedFw.flag}</span>
                 <div>
                   <h3 className="text-white font-semibold">{selectedFw.name}</h3>
                   <p className="text-muted-foreground text-xs">{selectedFw.law}</p>

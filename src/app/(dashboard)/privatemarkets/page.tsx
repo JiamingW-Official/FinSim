@@ -2443,7 +2443,7 @@ export default function PrivateMarketsPage() {
                       <div className="w-32 text-xs text-muted-foreground text-right shrink-0">{st.name}</div>
                       <div className="flex-1 h-4 bg-muted/20 rounded-full overflow-hidden">
                         <div
-                          className="h-full rounded-full transition-all duration-500"
+                          className="h-full rounded-full transition-all duration-300"
                           style={{
                             width: `${Math.max(4, pct)}%`,
                             backgroundColor: color,

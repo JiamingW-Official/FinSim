@@ -120,7 +120,7 @@ export function MarketRegimeCard() {
       <div className="flex items-center gap-1.5 flex-wrap">
         <span
           className={cn(
-            "rounded border px-1.5 py-0.5 text-[8px] font-bold leading-none",
+            "rounded border px-1.5 py-0.5 text-[11px] font-bold leading-none",
             bias === "bullish"
               ? "bg-green-500/10 border-green-500/25"
               : bias === "bearish"
@@ -133,7 +133,7 @@ export function MarketRegimeCard() {
         </span>
         <span
           className={cn(
-            "rounded border px-1.5 py-0.5 text-[8px] font-bold leading-none",
+            "rounded border px-1.5 py-0.5 text-[11px] font-bold leading-none",
             conviction === "high"
               ? "bg-primary/10 border-primary/25"
               : conviction === "medium"
@@ -146,7 +146,7 @@ export function MarketRegimeCard() {
         </span>
         <span
           className={cn(
-            "rounded border px-1.5 py-0.5 text-[8px] font-bold leading-none text-muted-foreground border-border bg-muted",
+            "rounded border px-1.5 py-0.5 text-[11px] font-bold leading-none text-muted-foreground border-border bg-muted",
           )}
         >
           ADX: {regime.adxLevel}

@@ -466,7 +466,7 @@ export default function HomePage() {
               </div>
               <div className="mt-5 border-t border-border/20 pt-3">
                 <div className="mb-1.5 flex items-center justify-between"><span className="text-xs text-muted-foreground">Level {level}</span><span className="text-xs text-muted-foreground">{xpToNext > 0 ? `${xpToNext} XP to next` : "Max"}</span></div>
-                <div className="h-1.5 overflow-hidden rounded-full bg-muted/30"><div className="h-full rounded-full bg-primary transition-all duration-700" style={{ width: `${xpProgress}%` }} /></div>
+                <div className="h-1.5 overflow-hidden rounded-full bg-muted/30"><div className="h-full rounded-full bg-primary transition-all duration-300" style={{ width: `${xpProgress}%` }} /></div>
               </div>
             </div>
           </div>
@@ -501,7 +501,7 @@ export default function HomePage() {
                 <div className="flex items-center justify-between"><span className="text-xs text-muted-foreground">VIX</span><span className={cn("text-xs font-bold tabular-nums", marketPulse.vix > 25 ? "text-red-400" : marketPulse.vix > 18 ? "text-amber-400" : "text-emerald-400")}>{marketPulse.vix}</span></div>
                 <div>
                   <div className="mb-1 flex items-center justify-between"><span className="text-xs text-muted-foreground">Fear &amp; Greed</span><span className={cn("text-xs font-bold tabular-nums", marketPulse.fg >= 55 ? "text-emerald-400" : marketPulse.fg <= 35 ? "text-red-400" : "text-amber-400")}>{marketPulse.fg} · {marketPulse.fgLabel}</span></div>
-                  <div className="relative h-1.5 overflow-hidden rounded-full bg-muted/30"><div className={cn("absolute left-0 top-0 h-full rounded-full transition-all duration-700", marketPulse.fg >= 55 ? "bg-emerald-400" : marketPulse.fg <= 35 ? "bg-red-400" : "bg-amber-400")} style={{ width: `${marketPulse.fg}%` }} /></div>
+                  <div className="relative h-1.5 overflow-hidden rounded-full bg-muted/30"><div className={cn("absolute left-0 top-0 h-full rounded-full transition-all duration-300", marketPulse.fg >= 55 ? "bg-emerald-400" : marketPulse.fg <= 35 ? "bg-red-400" : "bg-amber-400")} style={{ width: `${marketPulse.fg}%` }} /></div>
                 </div>
               </div>
             </div>
@@ -585,7 +585,7 @@ export default function HomePage() {
                         <div className="flex items-center gap-1.5">{goal.done ? <CheckCircle2 className="h-3 w-3 text-emerald-400" /> : <div className="h-3 w-3 rounded-full border border-border/60" />}<span className="text-xs text-foreground">{goal.label}</span></div>
                         <span className="text-[11px] font-semibold tabular-nums text-muted-foreground">{goal.current}{"suffix" in goal ? (goal as { suffix?: string }).suffix ?? "" : ""}/{goal.target}{"suffix" in goal ? (goal as { suffix?: string }).suffix ?? "" : ""}</span>
                       </div>
-                      <div className="h-1 overflow-hidden rounded-full bg-muted/30"><div className={cn("h-full rounded-full transition-all duration-500", goal.done ? "bg-emerald-400" : "bg-primary")} style={{ width: `${pct}%` }} /></div>
+                      <div className="h-1 overflow-hidden rounded-full bg-muted/30"><div className={cn("h-full rounded-full transition-all duration-300", goal.done ? "bg-emerald-400" : "bg-primary")} style={{ width: `${pct}%` }} /></div>
                     </div>
                   );
                 })}

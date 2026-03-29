@@ -284,7 +284,7 @@ export default function RiskReturnScatter({ baseConfig }: Props) {
                     </td>
                     <td className="py-1.5 pr-3 text-center font-mono text-xs font-semibold text-primary">
                       {p.sharpe.toFixed(2)}
-                      {i === 0 && <span className="ml-1 text-[8px] text-emerald-400">best</span>}
+                      {i === 0 && <span className="ml-1 text-[11px] text-emerald-400">best</span>}
                     </td>
                   </tr>
                 ))}

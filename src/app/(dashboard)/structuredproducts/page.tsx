@@ -123,7 +123,7 @@ function ExpandableCard({
     <div className="bg-white/5 border border-white/10 rounded-xl overflow-hidden">
       <button
         onClick={() => setOpen((v) => !v)}
-        className="w-full flex items-center justify-between px-4 py-3 text-sm font-medium text-white hover:bg-white/5 transition-colors"
+        className="w-full flex items-center justify-between px-4 py-3 text-sm font-medium text-white hover:bg-muted/30 transition-colors"
       >
         {title}
         {open ? (
@@ -545,7 +545,7 @@ function AbsMbsTab() {
               {assetClasses.map((row, i) => (
                 <tr
                   key={i}
-                  className="border-b border-white/5 hover:bg-white/5 transition-colors"
+                  className="border-b border-white/5 hover:bg-muted/30 transition-colors"
                 >
                   <td className="py-2 pr-3 font-medium text-white">{row.type}</td>
                   <td className="py-2 pr-3 text-white/60">{row.collateral}</td>
@@ -922,7 +922,7 @@ function CmosTab() {
             </thead>
             <tbody>
               {cmbs.map((row, i) => (
-                <tr key={i} className="border-b border-white/5 hover:bg-white/5">
+                <tr key={i} className="border-b border-white/5 hover:bg-muted/30">
                   <td className="py-2 pr-3 text-white/60 font-medium">{row.feature}</td>
                   <td className="py-2 pr-3 text-white/70">{row.conduit}</td>
                   <td className="py-2 text-white/70">{row.sasb}</td>
@@ -1417,7 +1417,7 @@ function StructuredCreditTab() {
             </thead>
             <tbody>
               {cdoCloComparison.map((row, i) => (
-                <tr key={i} className="border-b border-white/5 hover:bg-white/5">
+                <tr key={i} className="border-b border-white/5 hover:bg-muted/30">
                   <td className="py-2 pr-3 text-white/60 font-medium">{row.feature}</td>
                   <td className="py-2 pr-3 text-white/70">{row.cdo}</td>
                   <td className="py-2 text-white/70">{row.clo}</td>

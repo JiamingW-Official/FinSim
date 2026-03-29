@@ -195,12 +195,12 @@ function BSLab() {
           <div className="grid grid-cols-2 gap-4">
             <div className="bg-emerald-950 border border-emerald-700 rounded-xl p-4 text-center">
               <div className="text-xs text-emerald-400 mb-1">Call Price</div>
-              <div className="text-3xl font-mono font-bold text-emerald-300">${bs.call.toFixed(4)}</div>
+              <div className="text-2xl font-mono font-bold text-emerald-300">${bs.call.toFixed(4)}</div>
               <div className="text-xs text-muted-foreground mt-1">d₁ = {bs.d1.toFixed(4)}</div>
             </div>
             <div className="bg-rose-950 border border-rose-700 rounded-xl p-4 text-center">
               <div className="text-xs text-rose-400 mb-1">Put Price</div>
-              <div className="text-3xl font-mono font-bold text-rose-300">${bs.put.toFixed(4)}</div>
+              <div className="text-2xl font-mono font-bold text-rose-300">${bs.put.toFixed(4)}</div>
               <div className="text-xs text-muted-foreground mt-1">d₂ = {bs.d2.toFixed(4)}</div>
             </div>
           </div>

@@ -237,7 +237,7 @@ const CRISES: CrisisEvent[] = (() => {
 function FxPairRow({ pair }: { pair: FxPair }) {
   const up = pair.change1d >= 0;
   return (
-    <tr className="border-b border-white/5 hover:bg-white/[0.02] transition-colors">
+    <tr className="border-b border-white/5 hover:bg-muted/30 transition-colors">
       <td className="py-3 px-4">
         <div className="flex items-center gap-2">
           <span className="text-base">{pair.flag1}{pair.flag2}</span>
@@ -744,7 +744,7 @@ export default function CurrencyMarketsPage() {
                       "w-full flex items-center justify-between p-3 rounded-lg border transition-colors text-sm",
                       selectedCarry === i
                         ? "border-primary/50 bg-primary/10"
-                        : "border-white/5 bg-white/[0.02] hover:bg-white/[0.04]"
+                        : "border-white/5 bg-white/[0.02] hover:bg-muted/30"
                     )}
                   >
                     <div className="flex items-center gap-2">
@@ -938,7 +938,7 @@ export default function CurrencyMarketsPage() {
                       const pct = Math.abs(row.valuation);
                       const barWidth = Math.min(100, pct * 2);
                       return (
-                        <tr key={row.country} className="border-b border-white/5 hover:bg-white/[0.02]">
+                        <tr key={row.country} className="border-b border-white/5 hover:bg-muted/30">
                           <td className="py-2.5 px-3">
                             <span className="mr-2">{row.flag}</span>
                             <span className="text-foreground text-xs">{row.country}</span>
@@ -1095,7 +1095,7 @@ export default function CurrencyMarketsPage() {
                         "w-full flex items-start gap-4 p-3 rounded-lg border text-left transition-colors",
                         selectedCrisis === i
                           ? "border-opacity-50 bg-opacity-10"
-                          : "border-white/5 bg-white/[0.01] hover:bg-white/[0.03]"
+                          : "border-white/5 bg-white/[0.01] hover:bg-muted/30"
                       )}
                       style={selectedCrisis === i ? { borderColor: crisis.color + "80", backgroundColor: crisis.color + "0a" } : {}}
                       whileHover={{ x: 2 }}

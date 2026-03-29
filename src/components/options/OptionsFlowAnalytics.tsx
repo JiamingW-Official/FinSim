@@ -428,7 +428,7 @@ function ActivityFeed({ entries }: { entries: FlowEntry[] }) {
                     </td>
                     <td className="px-3 py-2 text-right font-mono tabular-nums font-medium text-orange-400 whitespace-nowrap">
                       {isWhale && (
-                        <span className="mr-1 rounded bg-amber-500/20 px-1 py-0.5 text-[8px] font-medium text-amber-400">
+                        <span className="mr-1 rounded bg-amber-500/20 px-1 py-0.5 text-[11px] font-medium text-amber-400">
                           WHALE
                         </span>
                       )}
@@ -438,11 +438,11 @@ function ActivityFeed({ entries }: { entries: FlowEntry[] }) {
                     <td className="px-3 py-2 text-right font-mono tabular-nums text-muted-foreground">{(e.iv * 100).toFixed(0)}%</td>
                     <td className="px-3 py-2">
                       {isBullish ? (
-                        <span className="text-emerald-500"><span className="mr-0.5 text-[8px]">●</span>Bullish</span>
+                        <span className="text-emerald-500"><span className="mr-0.5 text-[11px]">●</span>Bullish</span>
                       ) : isBearish ? (
-                        <span className="text-red-500"><span className="mr-0.5 text-[8px]">●</span>Bearish</span>
+                        <span className="text-red-500"><span className="mr-0.5 text-[11px]">●</span>Bearish</span>
                       ) : (
-                        <span className="text-muted-foreground"><span className="mr-0.5 text-[8px]">●</span>Neutral</span>
+                        <span className="text-muted-foreground"><span className="mr-0.5 text-[11px]">●</span>Neutral</span>
                       )}
                     </td>
                   </motion.tr>
@@ -727,7 +727,7 @@ function PCRatioDashboard({ seed }: { seed: number }) {
               <div className="text-[11px] text-muted-foreground">{label}</div>
               <div className="text-[22px] font-bold tabular-nums">{value.toFixed(2)}</div>
               <div className="text-[11px] font-medium">{signal}</div>
-              <div className="mt-0.5 text-[8px] text-muted-foreground">{desc}</div>
+              <div className="mt-0.5 text-[11px] text-muted-foreground">{desc}</div>
             </div>
           );
         })}
@@ -918,17 +918,17 @@ function OIAnalysis({ seed }: { seed: number }) {
         <div className="rounded-md border border-border/50 bg-card/40 p-2 text-center">
           <div className="text-[11px] text-muted-foreground">Max Pain</div>
           <div className="text-[14px] font-bold tabular-nums">${maxPain}</div>
-          <div className="text-[8px] text-muted-foreground">Options expire worthless</div>
+          <div className="text-[11px] text-muted-foreground">Options expire worthless</div>
         </div>
         <div className="rounded-md border border-emerald-500/20 bg-emerald-500/5 p-2 text-center">
           <div className="text-[11px] text-muted-foreground">Call Wall</div>
           <div className="text-[14px] font-bold tabular-nums text-emerald-400">${callWall?.strike ?? 0}</div>
-          <div className="text-[8px] text-muted-foreground">{fmtShares(callWall?.callOI ?? 0)} OI</div>
+          <div className="text-[11px] text-muted-foreground">{fmtShares(callWall?.callOI ?? 0)} OI</div>
         </div>
         <div className="rounded-md border border-red-500/20 bg-red-500/5 p-2 text-center">
           <div className="text-[11px] text-muted-foreground">Put Wall</div>
           <div className="text-[14px] font-bold tabular-nums text-red-400">${putWall?.strike ?? 0}</div>
-          <div className="text-[8px] text-muted-foreground">{fmtShares(putWall?.putOI ?? 0)} OI</div>
+          <div className="text-[11px] text-muted-foreground">{fmtShares(putWall?.putOI ?? 0)} OI</div>
         </div>
       </div>
 

@@ -348,7 +348,7 @@ function BHBTab() {
           </thead>
           <tbody>
             {BHB_DATA.map((row) => (
-              <tr key={row.sector} className="border-b border-white/5 hover:bg-white/5 transition-colors">
+              <tr key={row.sector} className="border-b border-white/5 hover:bg-muted/30 transition-colors">
                 <td className="px-3 py-2 text-foreground font-medium">{row.sector}</td>
                 <td className="px-3 py-2 text-muted-foreground">{(row.pw * 100).toFixed(1)}%</td>
                 <td className="px-3 py-2 text-muted-foreground">{(row.bw * 100).toFixed(1)}%</td>
@@ -500,7 +500,7 @@ function FactorTab() {
           </thead>
           <tbody>
             {FACTOR_DATA.map((f) => (
-              <tr key={f.name} className="border-b border-white/5 hover:bg-white/5 transition-colors">
+              <tr key={f.name} className="border-b border-white/5 hover:bg-muted/30 transition-colors">
                 <td className="px-3 py-2">
                   <span className="flex items-center gap-2">
                     <span className="w-2.5 h-2.5 rounded-full shrink-0" style={{ background: f.color }} />
@@ -747,7 +747,7 @@ function RiskContribTab() {
           </thead>
           <tbody>
             {POSITIONS.map((pos, i) => (
-              <tr key={pos.ticker} className="border-b border-white/5 hover:bg-white/5 transition-colors">
+              <tr key={pos.ticker} className="border-b border-white/5 hover:bg-muted/30 transition-colors">
                 <td className="px-3 py-2 text-muted-foreground">{i + 1}</td>
                 <td className="px-3 py-2 text-white font-bold">{pos.ticker}</td>
                 <td className="px-3 py-2 font-mono text-muted-foreground">{(pos.weight * 100).toFixed(1)}%</td>
@@ -1009,7 +1009,7 @@ function HistoryTab() {
               const prev = i > 0 ? HISTORY[i - 1].cumAlpha : 0;
               const delta = h.cumAlpha - prev;
               return (
-                <tr key={h.month} className="border-b border-white/5 hover:bg-white/5 transition-colors">
+                <tr key={h.month} className="border-b border-white/5 hover:bg-muted/30 transition-colors">
                   <td className="px-3 py-2 text-muted-foreground font-medium">{h.month} &apos;25</td>
                   <td className={cn("px-3 py-2 font-mono font-bold", pctColor(h.cumAlpha))}>{pct(h.cumAlpha)}</td>
                   <td className={cn("px-3 py-2 font-mono", pctColor(h.allocEffect))}>{pct(h.allocEffect)}</td>

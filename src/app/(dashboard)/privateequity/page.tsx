@@ -557,7 +557,7 @@ function LBOModeling() {
                 "rounded-lg border p-3 text-left transition-colors",
                 i === targetIdx
                   ? "border-primary bg-primary/15"
-                  : "border-white/10 bg-white/5 hover:bg-white/10"
+                  : "border-white/10 bg-white/5 hover:bg-muted/50"
               )}
             >
               <p className="text-xs font-semibold text-white truncate">{t.name}</p>
@@ -700,7 +700,7 @@ function LBOModeling() {
             </thead>
             <tbody>
               {result.schedule.map((row) => (
-                <tr key={row.year} className="border-b border-white/5 hover:bg-white/5 transition-colors">
+                <tr key={row.year} className="border-b border-white/5 hover:bg-muted/30 transition-colors">
                   <td className="py-2 pr-4 text-muted-foreground">Year {row.year}</td>
                   <td className="text-right py-2 pr-4 text-emerald-400">${row.ebitda.toFixed(1)}M</td>
                   <td className="text-right py-2 pr-4 text-rose-400">${row.interest.toFixed(1)}M</td>
@@ -1174,7 +1174,7 @@ function FundEconomics() {
             <tbody>
               {scenarios.map(({ irr, econ: sc }) => (
                 <tr key={irr} className={cn(
-                  "border-b border-white/5 hover:bg-white/5 transition-colors",
+                  "border-b border-white/5 hover:bg-muted/30 transition-colors",
                   irr === targetIRR ? "bg-primary/10" : ""
                 )}>
                   <td className="py-2 pr-4 font-semibold text-white">{irr}%</td>

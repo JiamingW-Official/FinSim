@@ -361,7 +361,7 @@ function ProviderComparisonTable() {
                 key={p.abbr}
                 onClick={() => setSelected(selected === p.abbr ? null : p.abbr)}
                 className={`border-b border-white/5 cursor-pointer transition-colors ${
-                  selected === p.abbr ? "bg-white/10" : "hover:bg-white/5"
+                  selected === p.abbr ? "bg-white/10" : "hover:bg-muted/30"
                 }`}
               >
                 <td className="px-4 py-3">
@@ -609,7 +609,7 @@ function FrameworkMatrix() {
         </thead>
         <tbody>
           {FRAMEWORKS.map((f) => (
-            <tr key={f.abbr} className="border-b border-white/5 hover:bg-white/5 transition-colors">
+            <tr key={f.abbr} className="border-b border-white/5 hover:bg-muted/30 transition-colors">
               <td className="px-4 py-3">
                 <div className="flex items-center gap-2">
                   <span className="w-2 h-2 rounded-full" style={{ background: f.color }} />
@@ -866,7 +866,7 @@ function GreenwashCasesTable() {
             </thead>
             <tbody>
               {GREENWASH_CASES.map((c) => (
-                <tr key={c.company} className="border-b border-white/5 hover:bg-white/5">
+                <tr key={c.company} className="border-b border-white/5 hover:bg-muted/30">
                   <td className="px-3 py-2 font-semibold text-white max-w-[120px]">{c.company}</td>
                   <td className="px-3 py-2 text-muted-foreground">{c.year}</td>
                   <td className="px-3 py-2 text-muted-foreground">{c.regulator}</td>
@@ -995,7 +995,7 @@ function IntegrationSpectrum() {
                 >
                   {step.label}
                 </div>
-                <div className="text-[8px] text-muted-foreground text-center leading-tight">{step.desc}</div>
+                <div className="text-[11px] text-muted-foreground text-center leading-tight">{step.desc}</div>
                 {i < steps.length - 1 && (
                   <div className="absolute" style={{ left: `${((i + 1) / steps.length) * 100}%`, top: "12px" }}>
                   </div>

@@ -472,7 +472,7 @@ function TipsMechanicsTab() {
             </thead>
             <tbody>
               {GLOBAL_LINKER_MARKETS.map((m) => (
-                <tr key={m.country} className="border-b border-white/4 hover:bg-white/3 transition-colors">
+                <tr key={m.country} className="border-b border-white/4 hover:bg-muted/30 transition-colors">
                   <td className="py-2 pr-3 text-white font-medium">
                     {m.flag} {m.country}
                   </td>
@@ -899,7 +899,7 @@ function DurationRiskTab() {
             </thead>
             <tbody>
               {INFLATION_BETA_TABLE.map((row) => (
-                <tr key={row.asset} className="border-b border-white/4 hover:bg-white/3 transition-colors">
+                <tr key={row.asset} className="border-b border-white/4 hover:bg-muted/30 transition-colors">
                   <td className="py-2 pr-3 text-white font-medium">{row.asset}</td>
                   <td className={cn("py-2 pr-3 text-right font-semibold font-mono", row.beta > 0.5 ? "text-emerald-400" : row.beta < 0 ? "text-red-400" : "text-amber-400")}>
                     {row.beta > 0 ? "+" : ""}{row.beta.toFixed(2)}
@@ -1032,7 +1032,7 @@ function InflationHedgingTab() {
             >
               <span className="font-semibold">{r.label}</span>
               <span className="text-[11px] opacity-70 mt-0.5">{r.range}</span>
-              {r.active && <span className="text-[8px] mt-1 font-bold uppercase tracking-wide">CURRENT</span>}
+              {r.active && <span className="text-[11px] mt-1 font-bold uppercase tracking-wide">CURRENT</span>}
             </div>
           ))}
         </div>
@@ -1052,7 +1052,7 @@ function InflationHedgingTab() {
                 "text-xs px-3 py-1.5 rounded border transition-colors",
                 selectedScenario === i
                   ? "bg-primary/20 border-primary/40 text-primary"
-                  : "bg-white/5 border-white/10 text-muted-foreground hover:bg-white/8"
+                  : "bg-white/5 border-white/10 text-muted-foreground hover:bg-muted/30"
               )}
             >
               {sc}
@@ -1076,7 +1076,7 @@ function InflationHedgingTab() {
                   key={sc}
                   className={cn(
                     "border-b border-white/4 transition-colors",
-                    si === selectedScenario ? "bg-primary/5" : "hover:bg-white/3"
+                    si === selectedScenario ? "bg-primary/5" : "hover:bg-muted/30"
                   )}
                 >
                   <td className={cn("py-2 pr-3 font-medium", si === selectedScenario ? "text-primary" : "text-muted-foreground")}>
@@ -1118,7 +1118,7 @@ function InflationHedgingTab() {
                 "text-xs px-3 py-1.5 rounded border transition-colors",
                 selectedScenario === i
                   ? "bg-primary/20 border-primary/40 text-primary"
-                  : "bg-white/5 border-white/10 text-muted-foreground hover:bg-white/8"
+                  : "bg-white/5 border-white/10 text-muted-foreground hover:bg-muted/30"
               )}
             >
               {sc}
@@ -1188,7 +1188,7 @@ function InflationHedgingTab() {
                 "text-xs px-3 py-1.5 rounded border transition-colors",
                 selectedScenario === i
                   ? "bg-primary/20 border-primary/40 text-primary"
-                  : "bg-white/5 border-white/10 text-muted-foreground hover:bg-white/8"
+                  : "bg-white/5 border-white/10 text-muted-foreground hover:bg-muted/30"
               )}
             >
               {r.scenario}

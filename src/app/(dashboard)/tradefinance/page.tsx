@@ -646,7 +646,7 @@ function LettersOfCreditTab() {
       {sections.map((sec) => (
         <div key={sec.id} className="bg-white/5 rounded-xl overflow-hidden">
           <button
-            className="w-full flex items-center justify-between p-4 text-left hover:bg-white/5 transition-colors"
+            className="w-full flex items-center justify-between p-4 text-left hover:bg-muted/30 transition-colors"
             onClick={() =>
               setExpandedSection(
                 expandedSection === sec.id ? null : sec.id
@@ -1646,7 +1646,7 @@ function DocumentaryCollectionsTab() {
                   "w-full grid grid-cols-6 gap-1 px-3 py-2 text-xs border-b border-white/5 text-left transition-colors",
                   activeIncoterm === t.code
                     ? "bg-amber-500/10"
-                    : "hover:bg-white/5",
+                    : "hover:bg-muted/30",
                   highlighted && "border-l-2 border-amber-500/40"
                 )}
                 onClick={() =>

@@ -534,7 +534,7 @@ function StrategyCard({
           className={`flex items-center gap-1.5 rounded-lg border border-white/10 px-3 py-1.5 text-xs font-medium transition-colors ${
             backtestState === "running"
               ? "cursor-not-allowed bg-white/5 text-muted-foreground"
-              : "bg-white/5 text-muted-foreground hover:bg-white/10 hover:text-foreground"
+              : "bg-white/5 text-muted-foreground hover:bg-muted/50 hover:text-foreground"
           }`}
         >
           <Play className="h-3 w-3" />
@@ -588,7 +588,7 @@ function SavedStrategyRow({ strategy, onEdit, onBacktest, onDelete, onExport, se
         }`}
         aria-label="Select for comparison"
       >
-        {selected && <span className="flex h-full w-full items-center justify-center text-[8px] text-white font-bold">✓</span>}
+        {selected && <span className="flex h-full w-full items-center justify-center text-[11px] text-white font-bold">✓</span>}
       </button>
 
       <div className="flex-1 min-w-0">
@@ -624,13 +624,13 @@ function SavedStrategyRow({ strategy, onEdit, onBacktest, onDelete, onExport, se
 
       {/* Actions */}
       <div className="flex items-center gap-1 shrink-0">
-        <button onClick={onEdit} className="rounded p-1.5 text-muted-foreground hover:bg-white/5 hover:text-muted-foreground transition-colors" title="Edit">
+        <button onClick={onEdit} className="rounded p-1.5 text-muted-foreground hover:bg-muted/30 hover:text-muted-foreground transition-colors" title="Edit">
           <Edit2 className="h-3.5 w-3.5" />
         </button>
-        <button onClick={onBacktest} className="rounded p-1.5 text-muted-foreground hover:bg-white/5 hover:text-primary transition-colors" title="Backtest">
+        <button onClick={onBacktest} className="rounded p-1.5 text-muted-foreground hover:bg-muted/30 hover:text-primary transition-colors" title="Backtest">
           <Play className="h-3.5 w-3.5" />
         </button>
-        <button onClick={onExport} className="rounded p-1.5 text-muted-foreground hover:bg-white/5 hover:text-muted-foreground transition-colors" title="Export JSON">
+        <button onClick={onExport} className="rounded p-1.5 text-muted-foreground hover:bg-muted/30 hover:text-muted-foreground transition-colors" title="Export JSON">
           <Download className="h-3.5 w-3.5" />
         </button>
         <button onClick={onDelete} className="rounded p-1.5 text-muted-foreground hover:bg-rose-500/10 hover:text-rose-400 transition-colors" title="Delete">
@@ -863,7 +863,7 @@ export default function StrategiesPage() {
 
       {/* Save toast */}
       {saveToast && (
-        <div className="absolute top-16 right-6 z-50 flex items-center gap-2 rounded-lg border border-emerald-500/30 bg-emerald-500/10 px-4 py-2.5 text-xs text-emerald-300 shadow-lg">
+        <div className="absolute top-16 right-6 z-50 flex items-center gap-2 rounded-lg border border-emerald-500/30 bg-emerald-500/10 px-4 py-2.5 text-xs text-emerald-300 shadow-sm">
           <Save className="h-3.5 w-3.5" />
           Strategy saved to library
         </div>
@@ -888,7 +888,7 @@ export default function StrategiesPage() {
                         ? cat === "all"
                           ? "bg-muted text-foreground"
                           : `${meta!.bg} ${meta!.color} ring-1 ring-white/10`
-                        : "bg-white/5 text-muted-foreground hover:bg-white/10 hover:text-muted-foreground"
+                        : "bg-white/5 text-muted-foreground hover:bg-muted/50 hover:text-muted-foreground"
                     }`}
                   >
                     {cat === "all" ? "All" : CATEGORY_META[cat].label}

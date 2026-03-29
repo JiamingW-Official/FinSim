@@ -46,7 +46,7 @@ export function XPBar() {
       >
         <div
           className={cn(
-            "absolute inset-y-0 left-0 rounded-full transition-all duration-500 ease-out",
+            "absolute inset-y-0 left-0 rounded-full transition-all duration-300 ease-out",
             "bg-primary",
           )}
           style={{ width: `${percent}%` }}

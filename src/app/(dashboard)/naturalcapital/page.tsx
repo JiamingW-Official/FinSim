@@ -532,7 +532,7 @@ function EcosystemTab() {
             <div className="flex flex-col md:flex-row md:items-center gap-6">
               <div className="flex-1">
                 <p className="text-sm text-muted-foreground mb-1">Total Natural Capital Value</p>
-                <div className="text-5xl font-bold text-emerald-400">$125T</div>
+                <div className="text-2xl font-bold text-emerald-400">$125T</div>
                 <p className="text-muted-foreground text-sm mt-1">estimated annual ecosystem services value</p>
                 <p className="text-xs text-muted-foreground mt-2">
                   The Dasgupta Review (2021) estimates biodiversity loss costs 3–10% of global GDP annually.
@@ -1195,7 +1195,7 @@ function BiodiversityCreditsTab() {
                 </div>
                 <div className="flex flex-col justify-center items-center p-4 rounded-lg bg-card border border-border/50">
                   <div className="text-xs text-muted-foreground mb-1">Price Range</div>
-                  <div className="text-3xl font-bold" style={{ color: BIODIVERSITY_CREDITS[selectedCredit].color }}>
+                  <div className="text-2xl font-bold" style={{ color: BIODIVERSITY_CREDITS[selectedCredit].color }}>
                     ${BIODIVERSITY_CREDITS[selectedCredit].priceMin}–{BIODIVERSITY_CREDITS[selectedCredit].priceMax}
                   </div>
                   <div className="text-xs text-muted-foreground">per credit</div>

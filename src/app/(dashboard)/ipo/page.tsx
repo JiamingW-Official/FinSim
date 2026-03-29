@@ -567,7 +567,7 @@ function IPODetailModal({
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 p-4 backdrop-blur-sm">
-      <div className="w-full max-w-xl rounded-xl border border-border bg-card p-6 shadow-2xl">
+      <div className="w-full max-w-xl rounded-xl border border-border bg-card p-6 shadow-sm">
         <div className="mb-4 flex items-start justify-between">
           <div>
             <div className="flex items-center gap-2">

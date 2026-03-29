@@ -167,7 +167,7 @@ export default function OptimizationPanel({ savedStrategies }: Props) {
   return (
     <div className="space-y-4">
       {/* Controls */}
-      <div className="rounded-lg border border-white/5 bg-white/[0.02] p-4 space-y-3">
+      <div className="rounded-lg border border-border/30 bg-muted/10 p-4 space-y-3">
         <h3 className="text-xs font-semibold text-muted-foreground">
           Grid Search Parameters
         </h3>
@@ -178,7 +178,7 @@ export default function OptimizationPanel({ savedStrategies }: Props) {
           <select
             value={selectedStrategyIdx}
             onChange={(e) => setSelectedStrategyIdx(parseInt(e.target.value, 10))}
-            className="flex-1 appearance-none rounded-md border border-white/10 bg-card px-2 py-1.5 text-xs text-foreground focus:outline-none focus:ring-1 focus:ring-blue-500"
+            className="flex-1 appearance-none rounded-md border border-border/50 bg-card px-2 py-1.5 text-xs text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
           >
             {savedStrategies.length === 0 ? (
               <option value={0}>Demo Strategy (no saved strategies)</option>
@@ -196,7 +196,7 @@ export default function OptimizationPanel({ savedStrategies }: Props) {
           <select
             value={param1}
             onChange={(e) => setParam1(e.target.value as ParamKey)}
-            className="flex-1 appearance-none rounded-md border border-white/10 bg-card px-2 py-1.5 text-xs text-foreground focus:outline-none focus:ring-1 focus:ring-blue-500"
+            className="flex-1 appearance-none rounded-md border border-border/50 bg-card px-2 py-1.5 text-xs text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
           >
             {(Object.keys(PARAM_CONFIGS) as ParamKey[]).map((k) => (
               <option key={k} value={k}>{PARAM_CONFIGS[k].label}</option>
@@ -213,7 +213,7 @@ export default function OptimizationPanel({ savedStrategies }: Props) {
           <select
             value={param2}
             onChange={(e) => setParam2(e.target.value as ParamKey)}
-            className="flex-1 appearance-none rounded-md border border-white/10 bg-card px-2 py-1.5 text-xs text-foreground focus:outline-none focus:ring-1 focus:ring-blue-500"
+            className="flex-1 appearance-none rounded-md border border-border/50 bg-card px-2 py-1.5 text-xs text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
           >
             {(Object.keys(PARAM_CONFIGS) as ParamKey[]).filter((k) => k !== param1).map((k) => (
               <option key={k} value={k}>{PARAM_CONFIGS[k].label}</option>
@@ -306,7 +306,7 @@ export default function OptimizationPanel({ savedStrategies }: Props) {
       )}
 
       {!hasRun && (
-        <div className="flex h-32 items-center justify-center rounded-lg border border-white/5 bg-white/[0.01] text-sm text-muted-foreground/70">
+        <div className="flex h-32 items-center justify-center rounded-lg border border-border/30 bg-muted/5 text-sm text-muted-foreground/70">
           Configure parameters and run the grid search to see the heatmap
         </div>
       )}

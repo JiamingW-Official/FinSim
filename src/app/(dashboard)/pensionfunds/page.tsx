@@ -554,7 +554,7 @@ function DBvsDCTab() {
                   </div>
                   <div className="h-2 bg-muted rounded-full overflow-hidden">
                     <motion.div
-                      className="h-full bg-gradient-to-r from-blue-500 to-blue-400 rounded-full"
+                      className="h-full bg-blue-500 rounded-full"
                       initial={{ width: 0 }}
                       animate={{ width: `${(sys.assets / maxAssets) * 100}%` }}
                       transition={{ duration: 0.8, delay: 0.1 }}
@@ -1493,7 +1493,7 @@ function InvestmentStrategyTab() {
           </CardHeader>
           <CardContent className="space-y-3 text-xs">
             <div className="flex items-center gap-3 mb-2">
-              <span className="text-3xl">🇳🇴</span>
+              <span className="text-2xl">🇳🇴</span>
               <div>
                 <p className="font-semibold text-foreground">Government Pension Fund Global</p>
                 <p className="text-muted-foreground">$1.8T AUM — largest in the world</p>

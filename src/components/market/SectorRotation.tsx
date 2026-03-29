@@ -848,8 +848,8 @@ export function SectorRotation() {
                     <div className="flex items-center gap-2">
                       <span className="w-2 h-2 rounded-full shrink-0" style={{ backgroundColor: s.color }} />
                       <span className="text-[11px] font-medium">{s.name}</span>
-                      {isOver && <span className="text-[8px] font-bold text-emerald-500 bg-emerald-500/10 px-1 py-0.5 rounded">OW</span>}
-                      {isUnder && <span className="text-[8px] font-bold text-red-500 bg-red-500/10 px-1 py-0.5 rounded">UW</span>}
+                      {isOver && <span className="text-[11px] font-bold text-emerald-500 bg-emerald-500/10 px-1 py-0.5 rounded">OW</span>}
+                      {isUnder && <span className="text-[11px] font-bold text-red-500 bg-red-500/10 px-1 py-0.5 rounded">UW</span>}
                     </div>
                     <span className={cn("text-[11px] font-mono font-semibold", s.perf1M >= 0 ? "text-emerald-500" : "text-red-500")}>
                       {s.perf1M >= 0 ? "+" : ""}{s.perf1M.toFixed(2)}%

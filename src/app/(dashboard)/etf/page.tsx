@@ -1335,7 +1335,7 @@ function ETFScreener() {
                     { label: "Yield", value: etf.dividendYield > 0 ? `${etf.dividendYield.toFixed(1)}%` : "—" },
                   ].map((s) => (
                     <div key={s.label} className="rounded bg-muted/20 px-1.5 py-1 text-center">
-                      <div className="text-[8px] text-muted-foreground">{s.label}</div>
+                      <div className="text-[11px] text-muted-foreground">{s.label}</div>
                       <div className="text-xs font-semibold tabular-nums">{s.value}</div>
                     </div>
                   ))}

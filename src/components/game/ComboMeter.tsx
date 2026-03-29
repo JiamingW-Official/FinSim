@@ -48,7 +48,7 @@ export function ComboMeter() {
                 : undefined
             }
             className={cn(
-              "flex items-center gap-2.5 rounded-xl border px-4 py-2 backdrop-blur-sm shadow-lg",
+              "flex items-center gap-2.5 rounded-xl border px-4 py-2 backdrop-blur-sm shadow-sm",
               tier === "max" && "border-amber-400/60 bg-amber-500/15",
               tier === "fire" && "border-orange-400/40 bg-orange-500/10",
               tier === "hot" && "border-amber-500/30 bg-amber-500/10",
@@ -89,7 +89,7 @@ export function ComboMeter() {
                 {comboCount}
               </motion.span>
               <span className={cn(
-                "text-[8px] font-bold",
+                "text-[11px] font-bold",
                 tier === "max" ? "text-amber-500/70" :
                 tier === "fire" ? "text-orange-500/70" :
                 tier === "hot" ? "text-amber-500/60" :

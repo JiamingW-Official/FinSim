@@ -850,7 +850,7 @@ export default function CryptoTradingPage() {
         <p className="text-xs text-muted-foreground mb-3">USDT + USDC market cap vs BTC market cap. Low SSR = lots of dry powder to buy BTC.</p>
         <div className="flex items-center gap-4">
           <div className="flex-1">
-            <div className="text-3xl font-bold text-green-400 font-mono">{onChain.stablecoinRatio.toFixed(3)}</div>
+            <div className="text-2xl font-bold text-green-400 font-mono">{onChain.stablecoinRatio.toFixed(3)}</div>
             <p className="text-xs text-muted-foreground mt-1">
               {onChain.stablecoinRatio < 0.1
                 ? "Low SSR — stablecoins have high buying power relative to BTC. Bullish."

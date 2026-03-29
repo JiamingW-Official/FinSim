@@ -912,7 +912,7 @@ export default function GreenFinancePage() {
                       orange: "bg-orange-500/10",
                     };
                     return (
-                      <tr key={i} className={cn("border-b border-white/5 hover:bg-white/5 transition-colors")}>
+                      <tr key={i} className={cn("border-b border-white/5 hover:bg-muted/30 transition-colors")}>
                         <td className="p-2">
                           <span className={cn(
                             "inline-block px-2 py-0.5 rounded text-xs font-bold",

@@ -76,7 +76,7 @@ export function TutorialOverlay() {
           transition={{ duration: 0.2 }}
           style={tooltipStyle}
         >
-          <div className="w-72 rounded-lg border border-primary/30 bg-card p-4 shadow-xl">
+          <div className="w-72 rounded-lg border border-primary/30 bg-card p-4 shadow-sm">
             {/* Header */}
             <div className="mb-2 flex items-center justify-between">
               <span className="text-xs font-medium text-primary">

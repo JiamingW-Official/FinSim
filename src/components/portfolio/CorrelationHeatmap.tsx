@@ -159,7 +159,7 @@ export function CorrelationHeatmap({ correlations }: CorrelationHeatmapProps) {
 
         {/* Legend */}
         <div className="flex items-center justify-center gap-0.5 mt-2">
-          <span className="text-[8px] text-muted-foreground mr-1">-1</span>
+          <span className="text-[11px] text-muted-foreground mr-1">-1</span>
           {legendSteps.map((step) => (
             <div
               key={step.value}
@@ -167,7 +167,7 @@ export function CorrelationHeatmap({ correlations }: CorrelationHeatmapProps) {
               style={{ backgroundColor: step.color }}
             />
           ))}
-          <span className="text-[8px] text-muted-foreground ml-1">+1</span>
+          <span className="text-[11px] text-muted-foreground ml-1">+1</span>
         </div>
       </div>
     </div>

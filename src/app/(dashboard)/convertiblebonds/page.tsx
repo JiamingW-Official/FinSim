@@ -503,7 +503,7 @@ export default function ConvertibleBondsPage() {
                         onClick={() => setSelectedCbId(i)}
                         className={cn(
                           "border-b border-white/5 cursor-pointer transition-colors",
-                          isSelected ? "bg-amber-500/10" : "hover:bg-white/5"
+                          isSelected ? "bg-amber-500/10" : "hover:bg-muted/30"
                         )}
                       >
                         <td className="py-2.5 pr-3 whitespace-nowrap">

@@ -195,7 +195,7 @@ export default function StrategyPanel({
   };
 
   return (
-    <div className="flex h-full w-[300px] flex-col gap-3 overflow-y-auto border-r border-white/5 bg-black/20 p-4">
+    <div className="flex h-full w-[300px] flex-col gap-3 overflow-y-auto border-r border-border/30 bg-card/50 p-4">
       {/* Header */}
       <div className="flex items-center justify-between">
         <div className="flex items-center gap-2 text-orange-400">
@@ -218,7 +218,7 @@ export default function StrategyPanel({
         <div>
           <button
             onClick={() => setShowSaved(!showSaved)}
-            className="flex w-full items-center justify-between rounded-lg border border-white/5 bg-white/5 px-3 py-2 text-xs text-muted-foreground transition-colors hover:bg-white/10"
+            className="flex w-full items-center justify-between rounded-lg border border-border/30 bg-muted/20 px-3 py-2 text-xs text-muted-foreground transition-colors hover:bg-muted/50"
           >
             <span className="flex items-center gap-1.5">
               <Save className="h-3 w-3" />
@@ -238,7 +238,7 @@ export default function StrategyPanel({
                   <button
                     key={s.id}
                     onClick={() => loadStrategy(s)}
-                    className="w-full rounded-lg border border-white/5 bg-white/5 px-3 py-2 text-left text-xs transition-colors hover:bg-primary/10"
+                    className="w-full rounded-lg border border-border/30 bg-muted/20 px-3 py-2 text-left text-xs transition-colors hover:bg-primary/10"
                   >
                     <span className="font-medium text-foreground">{s.strategy.name}</span>
                     <span className="ml-2 text-muted-foreground">Grade {s.bestGrade}</span>
@@ -255,7 +255,7 @@ export default function StrategyPanel({
         <select
           value={ticker}
           onChange={(e) => setTicker(e.target.value)}
-          className="w-full rounded-lg border border-white/10 bg-white/5 px-3 py-2 text-sm text-foreground outline-none focus:border-primary/50"
+          className="w-full rounded-lg border border-border/50 bg-muted/20 px-3 py-2 text-sm text-foreground outline-none focus:border-primary/50"
         >
           {WATCHLIST_STOCKS.map((s) => (
             <option key={s.ticker} value={s.ticker} className="bg-card">
@@ -275,7 +275,7 @@ export default function StrategyPanel({
               className={`flex items-center gap-2 rounded-lg border px-3 py-1.5 text-xs transition-all ${
                 preset === key
                   ? "border-primary/50 bg-primary/15 text-orange-300"
-                  : "border-white/5 bg-white/5 text-muted-foreground hover:bg-white/10"
+                  : "border-border/50 bg-muted/20 text-muted-foreground hover:bg-muted/50"
               }`}
             >
               {PRESET_ICONS[key]}
@@ -295,7 +295,7 @@ export default function StrategyPanel({
               className={`flex-1 rounded-lg border px-2 py-1.5 text-xs font-medium transition-all ${
                 barCount === n
                   ? "border-primary/50 bg-primary/15 text-orange-300"
-                  : "border-white/5 bg-white/5 text-muted-foreground hover:bg-white/10"
+                  : "border-border/50 bg-muted/20 text-muted-foreground hover:bg-muted/50"
               }`}
             >
               {n}
@@ -316,7 +316,7 @@ export default function StrategyPanel({
                   ? d === "long"
                     ? "border-emerald-500/50 bg-emerald-500/15 text-emerald-300"
                     : "border-rose-500/50 bg-rose-500/15 text-rose-300"
-                  : "border-white/5 bg-white/5 text-muted-foreground hover:bg-white/10"
+                  : "border-border/50 bg-muted/20 text-muted-foreground hover:bg-muted/50"
               }`}
             >
               {d}
@@ -342,7 +342,7 @@ export default function StrategyPanel({
           {entryRules.length < 3 && (
             <button
               onClick={() => setShowRulePicker(true)}
-              className="flex w-full items-center justify-center gap-1 rounded-lg border border-dashed border-white/10 py-2 text-xs text-muted-foreground transition-colors hover:border-primary/30 hover:text-orange-400"
+              className="flex w-full items-center justify-center gap-1 rounded-lg border border-dashed border-border/50 py-2 text-xs text-muted-foreground transition-colors hover:border-primary/30 hover:text-orange-400"
             >
               <Plus className="h-3 w-3" /> Add Rule
             </button>
@@ -356,13 +356,13 @@ export default function StrategyPanel({
               initial={{ opacity: 0, y: -10 }}
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -10 }}
-              className="mt-2 max-h-52 space-y-1 overflow-y-auto rounded-lg border border-white/10 bg-card/95 p-2"
+              className="mt-2 max-h-52 space-y-1 overflow-y-auto rounded-lg border border-border/50 bg-card/95 p-2"
             >
               {RULE_CATALOG.filter((r) => !entryRules.find((er) => er.id === r.id)).map((entry) => (
                 <button
                   key={entry.id}
                   onClick={() => addEntryRule(entry.rule)}
-                  className="flex w-full flex-col items-start rounded-lg px-3 py-2 text-left transition-colors hover:bg-white/5"
+                  className="flex w-full flex-col items-start rounded-lg px-3 py-2 text-left transition-colors hover:bg-muted/30"
                 >
                   <div className="flex items-center gap-2">
                     <span className={`rounded border px-1.5 py-0.5 text-xs font-medium ${CATEGORY_COLORS[entry.category]}`}>
@@ -474,7 +474,7 @@ export default function StrategyPanel({
                 className={`flex-1 rounded-lg border px-1.5 py-1.5 text-xs font-medium transition-all ${
                   positionSizing.kind === kind
                     ? "border-primary/50 bg-primary/15 text-orange-300"
-                    : "border-white/5 bg-white/5 text-muted-foreground hover:bg-white/10"
+                    : "border-border/50 bg-muted/20 text-muted-foreground hover:bg-muted/50"
                 }`}
               >
                 {kind === "percent_of_capital" ? "% Capital" : kind === "fixed_shares" ? "Fixed" : "Kelly"}
@@ -504,7 +504,7 @@ export default function StrategyPanel({
               max={1000}
               value={positionSizing.shares}
               onChange={(e) => setPositionSizing({ kind: "fixed_shares", shares: Math.max(1, +e.target.value) })}
-              className="w-full rounded-lg border border-white/10 bg-white/5 px-3 py-1.5 text-sm text-foreground outline-none focus:border-primary/50"
+              className="w-full rounded-lg border border-border/50 bg-muted/20 px-3 py-1.5 text-sm text-foreground outline-none focus:border-primary/50"
             />
           )}
           {positionSizing.kind === "kelly_criterion" && (
@@ -568,7 +568,7 @@ export default function StrategyPanel({
                   className={`flex-1 rounded-lg border px-2 py-1.5 text-xs font-medium transition-all ${
                     monteCarloRuns === opt.value
                       ? "border-fuchsia-500/50 bg-fuchsia-500/15 text-fuchsia-300"
-                      : "border-white/5 bg-white/5 text-muted-foreground hover:bg-white/10"
+                      : "border-border/50 bg-muted/20 text-muted-foreground hover:bg-muted/50"
                   }`}
                 >
                   {opt.label}

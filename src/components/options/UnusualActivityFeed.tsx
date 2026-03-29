@@ -330,15 +330,15 @@ export function UnusualActivityFeed({
                     <td className="px-3 py-2">
                       {isBullish ? (
                         <span className="text-emerald-500">
-                          <span className="mr-0.5 text-[8px]">●</span>Bullish
+                          <span className="mr-0.5 text-[11px]">●</span>Bullish
                         </span>
                       ) : isBearish ? (
                         <span className="text-red-500">
-                          <span className="mr-0.5 text-[8px]">●</span>Bearish
+                          <span className="mr-0.5 text-[11px]">●</span>Bearish
                         </span>
                       ) : (
                         <span className="text-muted-foreground">
-                          <span className="mr-0.5 text-[8px]">●</span>Neutral
+                          <span className="mr-0.5 text-[11px]">●</span>Neutral
                         </span>
                       )}
                     </td>
@@ -373,7 +373,7 @@ export function UnusualActivityFeed({
                       >
                         {premOIRatio.toFixed(2)}
                         {premOIHigh && (
-                          <span className="ml-0.5 text-[8px]">!</span>
+                          <span className="ml-0.5 text-[11px]">!</span>
                         )}
                       </span>
                     </td>

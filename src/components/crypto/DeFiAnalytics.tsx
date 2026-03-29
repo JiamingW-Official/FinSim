@@ -714,7 +714,7 @@ function GasTracker({ gasPrice }: { gasPrice: GasPrice }) {
               placeholder="Gwei threshold"
               value={alertThreshold}
               onChange={(e) => setAlertThreshold(e.target.value)}
-              className="flex-1 rounded-md border border-border/60 bg-background px-3 py-2 text-sm focus:outline-none focus:ring-1 focus:ring-primary"
+              className="flex-1 rounded-md border border-border/60 bg-background px-3 py-2 text-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
             />
             <button
               type="button"
@@ -745,7 +745,7 @@ function GasTracker({ gasPrice }: { gasPrice: GasPrice }) {
           <select
             value={selectedAction}
             onChange={(e) => setSelectedAction(e.target.value as ActionType)}
-            className="w-full rounded-md border border-border/60 bg-background px-3 py-2 text-sm focus:outline-none focus:ring-1 focus:ring-primary mb-3"
+            className="w-full rounded-md border border-border/60 bg-background px-3 py-2 text-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring mb-3"
           >
             {ACTION_TYPES.map((a) => (
               <option key={a} value={a}>{a}</option>
@@ -1074,7 +1074,7 @@ function YieldAggregator({ yields }: { yields: YieldOpportunity[] }) {
               min="0"
               value={ilToken0Amount}
               onChange={(e) => setIlToken0Amount(e.target.value)}
-              className="mt-1 w-full rounded-md border border-border/60 bg-background px-3 py-2 text-sm focus:outline-none focus:ring-1 focus:ring-primary"
+              className="mt-1 w-full rounded-md border border-border/60 bg-background px-3 py-2 text-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
             />
           </div>
           <div>
@@ -1084,7 +1084,7 @@ function YieldAggregator({ yields }: { yields: YieldOpportunity[] }) {
               min="0"
               value={ilToken1Amount}
               onChange={(e) => setIlToken1Amount(e.target.value)}
-              className="mt-1 w-full rounded-md border border-border/60 bg-background px-3 py-2 text-sm focus:outline-none focus:ring-1 focus:ring-primary"
+              className="mt-1 w-full rounded-md border border-border/60 bg-background px-3 py-2 text-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
             />
           </div>
           <div>
@@ -1095,7 +1095,7 @@ function YieldAggregator({ yields }: { yields: YieldOpportunity[] }) {
               max="1000"
               value={ilPriceChange}
               onChange={(e) => setIlPriceChange(e.target.value)}
-              className="mt-1 w-full rounded-md border border-border/60 bg-background px-3 py-2 text-sm focus:outline-none focus:ring-1 focus:ring-primary"
+              className="mt-1 w-full rounded-md border border-border/60 bg-background px-3 py-2 text-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
             />
           </div>
         </div>

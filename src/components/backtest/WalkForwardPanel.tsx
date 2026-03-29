@@ -105,10 +105,10 @@ export default function WalkForwardPanel({ result, isRunning }: Props) {
         <h3 className="mb-2 text-xs font-semibold text-muted-foreground">
           Fold Performance
         </h3>
-        <div className="overflow-x-auto rounded-lg border border-white/5">
+        <div className="overflow-x-auto rounded-lg border border-border/30">
           <table className="w-full text-xs">
             <thead>
-              <tr className="border-b border-white/5 bg-white/[0.02]">
+              <tr className="border-b border-border/30 bg-muted/10">
                 <th className="px-3 py-2 text-left text-muted-foreground font-medium">Fold</th>
                 <th className="px-3 py-2 text-right text-muted-foreground font-medium">IS Sharpe</th>
                 <th className="px-3 py-2 text-right text-muted-foreground font-medium">OOS Sharpe</th>
@@ -122,7 +122,7 @@ export default function WalkForwardPanel({ result, isRunning }: Props) {
               {folds.map((fold) => {
                 const goodEfficiency = fold.efficiencyRatio >= 0.5;
                 return (
-                  <tr key={fold.foldIndex} className="border-b border-white/5 hover:bg-white/[0.02]">
+                  <tr key={fold.foldIndex} className="border-b border-border/30 hover:bg-muted/30">
                     <td className="px-3 py-2 font-medium text-muted-foreground">Fold {fold.foldIndex + 1}</td>
                     <td className={`px-3 py-2 text-right font-mono ${fold.inSampleSharpe > 0 ? "text-emerald-400" : "text-rose-400"}`}>
                       {fold.inSampleSharpe.toFixed(2)}
@@ -175,21 +175,21 @@ export default function WalkForwardPanel({ result, isRunning }: Props) {
 function TimelineBar({ folds, totalBars }: { folds: WalkForwardFold[]; totalBars: number }) {
   if (totalBars === 0) return null;
   return (
-    <div className="flex h-8 w-full overflow-hidden rounded-lg border border-white/5">
+    <div className="flex h-8 w-full overflow-hidden rounded-lg border border-border/30">
       {folds.map((fold) => {
         const isPct = (fold.inSampleBars / totalBars) * 100;
         const oosPct = (fold.outOfSampleBars / totalBars) * 100;
         return (
           <div key={fold.foldIndex} className="flex h-full" style={{ width: `${isPct + oosPct}%` }}>
             <div
-              className="flex h-full items-center justify-center bg-primary/60 text-[8px] text-primary overflow-hidden"
+              className="flex h-full items-center justify-center bg-primary/60 text-[11px] text-primary overflow-hidden"
               style={{ width: `${(isPct / (isPct + oosPct)) * 100}%` }}
               title={`Fold ${fold.foldIndex + 1} IS: ${fold.inSampleBars} bars`}
             >
               {isPct > 5 ? `F${fold.foldIndex + 1} IS` : ""}
             </div>
             <div
-              className="flex h-full items-center justify-center bg-teal-600/60 text-[8px] text-emerald-100 overflow-hidden border-l border-black/20"
+              className="flex h-full items-center justify-center bg-teal-600/60 text-[11px] text-emerald-100 overflow-hidden border-l border-black/20"
               style={{ width: `${(oosPct / (isPct + oosPct)) * 100}%` }}
               title={`Fold ${fold.foldIndex + 1} OOS: ${fold.outOfSampleBars} bars`}
             >
@@ -267,7 +267,7 @@ function EfficiencyBarChart({ folds }: { folds: WalkForwardFold[] }) {
 
 function MetricChip({ label, value, positive }: { label: string; value: string; positive?: boolean }) {
   return (
-    <div className="rounded-lg border border-white/5 bg-white/[0.03] px-3 py-2">
+    <div className="rounded-lg border border-border/30 bg-muted/15 px-3 py-2">
       <div className="text-[11px] text-muted-foreground/70">{label}</div>
       <div className={`mt-0.5 text-sm font-bold ${positive === undefined ? "text-foreground" : positive ? "text-emerald-400" : "text-rose-400"}`}>
         {value}

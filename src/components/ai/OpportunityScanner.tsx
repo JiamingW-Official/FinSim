@@ -78,20 +78,20 @@ function ScorePill({ score }: { score: number }) {
 function BiasBadge({ bias }: { bias: ScanRow["bias"] }) {
   if (bias === "bullish")
     return (
-      <span className="inline-flex items-center gap-0.5 rounded border border-emerald-500/30 bg-emerald-500/10 px-1 py-0.5 text-[8px] font-bold text-emerald-400">
+      <span className="inline-flex items-center gap-0.5 rounded border border-emerald-500/30 bg-emerald-500/10 px-1 py-0.5 text-[11px] font-bold text-emerald-400">
         <TrendingUp className="h-2.5 w-2.5" />
         Bull
       </span>
     );
   if (bias === "bearish")
     return (
-      <span className="inline-flex items-center gap-0.5 rounded border border-red-500/30 bg-red-500/10 px-1 py-0.5 text-[8px] font-bold text-red-400">
+      <span className="inline-flex items-center gap-0.5 rounded border border-red-500/30 bg-red-500/10 px-1 py-0.5 text-[11px] font-bold text-red-400">
         <TrendingDown className="h-2.5 w-2.5" />
         Bear
       </span>
     );
   return (
-    <span className="inline-flex items-center gap-0.5 rounded border border-border bg-muted px-1 py-0.5 text-[8px] font-bold text-muted-foreground">
+    <span className="inline-flex items-center gap-0.5 rounded border border-border bg-muted px-1 py-0.5 text-[11px] font-bold text-muted-foreground">
       <Minus className="h-2.5 w-2.5" />
       Neutral
     </span>
@@ -241,7 +241,7 @@ export function OpportunityScanner({
               type="button"
               onClick={() => setFilter(f.value)}
               className={cn(
-                "rounded border px-1.5 py-0.5 text-[8px] font-bold leading-none transition-all",
+                "rounded border px-1.5 py-0.5 text-[11px] font-bold leading-none transition-all",
                 filter === f.value
                   ? "bg-primary/15 border-primary/30 text-primary"
                   : "border-border bg-muted text-muted-foreground hover:text-foreground hover:bg-accent",
@@ -256,7 +256,7 @@ export function OpportunityScanner({
           onClick={handleScanAll}
           disabled={scanning}
           className={cn(
-            "flex items-center gap-1 rounded border px-1.5 py-0.5 text-[8px] font-bold leading-none transition-all shrink-0",
+            "flex items-center gap-1 rounded border px-1.5 py-0.5 text-[11px] font-bold leading-none transition-all shrink-0",
             scanning
               ? "cursor-not-allowed border-border bg-muted text-muted-foreground/50"
               : "border-primary/30 bg-primary/10 text-primary hover:bg-primary/20",
@@ -313,7 +313,7 @@ export function OpportunityScanner({
             </span>
             <ScorePill score={row.score} />
             <BiasBadge bias={row.bias} />
-            <span className="text-[8px] text-muted-foreground truncate leading-none">
+            <span className="text-[11px] text-muted-foreground truncate leading-none">
               {row.topSignal ?? "—"}
             </span>
             <div className="flex justify-end">

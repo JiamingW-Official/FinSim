@@ -147,7 +147,7 @@ export function QuestMilestoneTab() {
 
                       {/* Tooltip */}
                       <div className="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 hidden group-hover:block z-10 pointer-events-none">
-                        <div className="rounded-lg border border-white/10 bg-card px-3 py-2 shadow-xl whitespace-nowrap">
+                        <div className="rounded-lg border border-white/10 bg-card px-3 py-2 shadow-sm whitespace-nowrap">
                           <p className="text-xs font-bold text-foreground">{quest.name}</p>
                           <p className="text-xs text-muted-foreground mt-0.5">{quest.description}</p>
                           <div className="flex items-center gap-1 mt-1">

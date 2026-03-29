@@ -99,7 +99,7 @@ export function OnboardingModal() {
         transition={{ duration: 0.25, ease: "easeOut" }}
         className="relative w-full max-w-md mx-4"
       >
-        <div className="rounded-lg border border-border/60 bg-card shadow-xl overflow-hidden">
+        <div className="rounded-lg border border-border/60 bg-card shadow-sm overflow-hidden">
           {/* Header bar */}
           <div className="flex items-center justify-between border-b border-border/40 px-5 py-3.5">
             <span className="text-xs font-medium text-muted-foreground">

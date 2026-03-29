@@ -425,7 +425,7 @@ function FundamentalsTab() {
           {DESIGN_CHOICES.map((choice, i) => (
             <div key={choice.dimension} className="border border-white/8 rounded-lg overflow-hidden">
               <button
-                className="w-full flex items-center justify-between px-3 py-2.5 hover:bg-white/5 transition-colors"
+                className="w-full flex items-center justify-between px-3 py-2.5 hover:bg-muted/30 transition-colors"
                 onClick={() => setExpandedRow(expandedRow === i ? null : i)}
               >
                 <div className="flex items-center gap-3 text-left">
@@ -852,7 +852,7 @@ function GlobalTrackerTab() {
               "rounded-xl border p-3 cursor-pointer transition-colors",
               selected === c.country
                 ? "border-primary/50 bg-primary/10"
-                : "border-white/10 bg-white/5 hover:bg-white/8"
+                : "border-white/10 bg-white/5 hover:bg-muted/40"
             )}
             onClick={() => setSelected((prev) => (prev === c.country ? null : c.country))}
           >
@@ -1289,7 +1289,7 @@ function CrossBorderTab() {
                 ["Adoption", "11,000+ financial institutions", "Pilot stage — 4 central banks"],
                 ["Governance", "Cooperative (Belgian HQ)", "BIS + member central banks"],
               ].map(([dim, swift, cbdc]) => (
-                <tr key={dim as string} className="border-b border-white/5 hover:bg-white/3 transition-colors">
+                <tr key={dim as string} className="border-b border-white/5 hover:bg-muted/30 transition-colors">
                   <td className="py-2 pr-4 text-muted-foreground font-medium">{dim as string}</td>
                   <td className="py-2 pr-4 text-muted-foreground">{swift as string}</td>
                   <td className="py-2 text-muted-foreground">{cbdc as string}</td>

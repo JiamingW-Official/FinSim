@@ -198,7 +198,7 @@ function NavLink({
 
       {/* NEW badge text */}
       {!collapsed && item.badgeText && (
-        <span className="ml-auto rounded bg-primary/15 px-1 py-0.5 text-[8px] font-bold uppercase leading-none text-primary">
+        <span className="ml-auto rounded bg-primary/15 px-1 py-0.5 text-[11px] font-bold uppercase leading-none text-primary">
           {item.badgeText}
         </span>
       )}
@@ -214,7 +214,7 @@ function NavLink({
       {badge != null && badge > 0 && (
         <span
           className={cn(
-            "absolute flex h-3.5 min-w-[14px] items-center justify-center rounded-full bg-primary px-0.5 text-[8px] font-bold leading-none text-primary-foreground",
+            "absolute flex h-3.5 min-w-[14px] items-center justify-center rounded-full bg-primary px-0.5 text-[11px] font-bold leading-none text-primary-foreground",
             collapsed ? "right-0.5 top-0.5" : "right-2 top-1/2 -translate-y-1/2 ml-auto",
           )}
         >

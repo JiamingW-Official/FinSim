@@ -619,7 +619,7 @@ function ISRow({
       : "";
 
   return (
-    <tr className={cn("border-b border-white/5 hover:bg-white/[0.02]", highlightClass)}>
+    <tr className={cn("border-b border-white/5 hover:bg-muted/30", highlightClass)}>
       <td
         className={cn(
           "py-1.5 px-3 text-xs sticky left-0 bg-card",

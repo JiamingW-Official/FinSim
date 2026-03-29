@@ -893,7 +893,7 @@ function CycleCard({
       className={`rounded-lg border p-4 cursor-pointer transition-colors ${
         selected
           ? "border-primary/50 bg-primary/5"
-          : "border-white/10 bg-white/[0.02] hover:bg-white/[0.04]"
+          : "border-white/10 bg-white/[0.02] hover:bg-muted/30"
       }`}
     >
       <div className="flex items-center justify-between">
@@ -1188,7 +1188,7 @@ export default function CommodityCyclesPage() {
                       {ENERGY_ROWS.map((row) => (
                         <tr
                           key={row.name}
-                          className="border-b border-white/5 hover:bg-white/[0.02]"
+                          className="border-b border-white/5 hover:bg-muted/30"
                         >
                           <td className="py-2 pr-4 font-medium text-white">
                             {row.name}
@@ -1344,7 +1344,7 @@ export default function CommodityCyclesPage() {
                       {METALS_ROWS.map((row) => (
                         <tr
                           key={row.name}
-                          className="border-b border-white/5 hover:bg-white/[0.02]"
+                          className="border-b border-white/5 hover:bg-muted/30"
                         >
                           <td className="py-2 pr-4">
                             <span className="font-medium text-white">
@@ -1539,7 +1539,7 @@ export default function CommodityCyclesPage() {
                       {AGRI_ROWS.map((row) => (
                         <tr
                           key={row.name}
-                          className="border-b border-white/5 hover:bg-white/[0.02]"
+                          className="border-b border-white/5 hover:bg-muted/30"
                         >
                           <td className="py-2 pr-4">
                             <span className="font-medium text-white">
@@ -1728,7 +1728,7 @@ export default function CommodityCyclesPage() {
                       {INVESTMENT_VEHICLES.map((v) => (
                         <tr
                           key={v.ticker}
-                          className="border-b border-white/5 hover:bg-white/[0.02]"
+                          className="border-b border-white/5 hover:bg-muted/30"
                         >
                           <td className="py-2 pr-4">
                             <span className="font-medium text-white">
@@ -1785,7 +1785,7 @@ export default function CommodityCyclesPage() {
                   className="rounded-lg border border-white/10 bg-white/[0.02] overflow-hidden"
                 >
                   <button
-                    className="w-full flex items-center justify-between p-4 hover:bg-white/[0.02] transition-colors"
+                    className="w-full flex items-center justify-between p-4 hover:bg-muted/30 transition-colors"
                     onClick={() =>
                       setExpandedVehicle(
                         expandedVehicle === v.ticker ? null : v.ticker

@@ -594,7 +594,7 @@ export default function MarketDashPage() {
                   return (
                     <div key={i} className="flex flex-col items-center gap-0.5">
                       <div className="w-6 h-2.5 rounded-sm" style={{ background: colors[i] }} />
-                      <span className="text-[8px] text-muted-foreground">{label}</span>
+                      <span className="text-[11px] text-muted-foreground">{label}</span>
                     </div>
                   );
                 })}
@@ -1049,7 +1049,7 @@ export default function MarketDashPage() {
               <div className="text-xs font-semibold text-muted-foreground mb-3">52-Week Highs / Lows</div>
               <div className="flex items-center justify-around py-4">
                 <div className="text-center">
-                  <div className="text-3xl font-bold text-emerald-400">
+                  <div className="text-2xl font-bold text-emerald-400">
                     {BREADTH.newHighs}
                   </div>
                   <div className="text-xs text-muted-foreground mt-1">New Highs</div>
@@ -1057,7 +1057,7 @@ export default function MarketDashPage() {
                 </div>
                 <div className="w-px h-16 bg-muted" />
                 <div className="text-center">
-                  <div className="text-3xl font-bold text-red-400">
+                  <div className="text-2xl font-bold text-red-400">
                     {BREADTH.newLows}
                   </div>
                   <div className="text-xs text-muted-foreground mt-1">New Lows</div>
@@ -1068,7 +1068,7 @@ export default function MarketDashPage() {
                 <div className="text-[11px] text-muted-foreground mb-1">High/Low ratio</div>
                 <div className="h-2 bg-muted rounded-full overflow-hidden">
                   <div
-                    className="h-full bg-gradient-to-r from-emerald-600 to-emerald-400 rounded-full transition-all duration-200"
+                    className="h-full bg-emerald-500 rounded-full transition-all duration-200"
                     style={{ width: `${(BREADTH.newHighs / (BREADTH.newHighs + BREADTH.newLows)) * 100}%` }}
                   />
                 </div>
@@ -1093,7 +1093,7 @@ export default function MarketDashPage() {
               <div className="text-center mt-2">
                 <div
                   className={cn(
-                    "text-3xl font-bold",
+                    "text-2xl font-bold",
                     BREADTH.pctAbove200 >= 60 ? "text-emerald-400" : BREADTH.pctAbove200 >= 40 ? "text-amber-400" : "text-red-400"
                   )}
                 >
@@ -1129,7 +1129,7 @@ export default function MarketDashPage() {
               </div>
               <div className="text-center mt-2">
                 <div
-                  className={cn("text-3xl font-bold", BREADTH.mcclellan > 0 ? "text-emerald-400" : "text-red-400")}
+                  className={cn("text-2xl font-bold", BREADTH.mcclellan > 0 ? "text-emerald-400" : "text-red-400")}
                 >
                   {BREADTH.mcclellan > 0 ? "+" : ""}{BREADTH.mcclellan}
                 </div>

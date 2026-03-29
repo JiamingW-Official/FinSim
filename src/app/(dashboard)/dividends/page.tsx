@@ -920,7 +920,7 @@ function DividendGrowthTab() {
             <p className="text-xs text-muted-foreground mt-0.5">Based on payout ratio, FCF coverage, debt levels, and growth track record</p>
           </div>
           <div className="text-right">
-            <div className={cn("text-3xl font-bold", scoreColor)}>{score}<span className="text-sm text-muted-foreground">/10</span></div>
+            <div className={cn("text-2xl font-bold", scoreColor)}>{score}<span className="text-sm text-muted-foreground">/10</span></div>
             <div className={cn("text-xs font-medium", scoreColor)}>
               {score >= 8 ? "Excellent" : score >= 6 ? "Good" : score >= 4 ? "Fair" : "Caution"}
             </div>

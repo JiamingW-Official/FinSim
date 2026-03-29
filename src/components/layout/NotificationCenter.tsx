@@ -115,7 +115,7 @@ export function NotificationCenter() {
           <motion.span
             initial={{ scale: 0 }}
             animate={{ scale: 1 }}
-            className="absolute -right-0.5 -top-0.5 flex h-3.5 min-w-[14px] items-center justify-center rounded-full bg-red-500 px-0.5 text-[8px] font-bold text-white"
+            className="absolute -right-0.5 -top-0.5 flex h-3.5 min-w-[14px] items-center justify-center rounded-full bg-red-500 px-0.5 text-[11px] font-bold text-white"
           >
             {unreadCount > 9 ? "9+" : unreadCount}
           </motion.span>
@@ -129,7 +129,7 @@ export function NotificationCenter() {
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: -8, scale: 0.95 }}
             transition={{ type: "spring", stiffness: 400, damping: 25 }}
-            className="absolute right-0 top-full z-50 mt-2 w-72 rounded-xl border border-border bg-card shadow-xl"
+            className="absolute right-0 top-full z-50 mt-2 w-72 rounded-xl border border-border bg-card shadow-sm"
           >
             {/* Header */}
             <div className="flex items-center justify-between border-b border-border px-3 py-2">

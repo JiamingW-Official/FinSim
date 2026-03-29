@@ -174,7 +174,7 @@ export function AchievementGallery() {
                       transition={{ duration: 0.5, ease: "easeOut" }}
                     />
                   </div>
-                  <p className="mt-0.5 text-[8px] tabular-nums text-muted-foreground/50">
+                  <p className="mt-0.5 text-[11px] tabular-nums text-muted-foreground/50">
                     {Math.round(progress)}%
                   </p>
                 </div>

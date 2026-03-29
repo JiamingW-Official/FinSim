@@ -281,10 +281,10 @@ export function OrderBookDisplay({ ticker, currentPrice }: OrderBookDisplayProps
                 entry.size > 1000 && "font-semibold bg-amber-500/5",
               )}
             >
-              <span className="w-[56px] text-muted-foreground/60 text-[8px]">{entry.time}</span>
+              <span className="w-[56px] text-muted-foreground/60 text-[11px]">{entry.time}</span>
               <span className="w-[48px] text-right">{formatPrice(entry.price)}</span>
               <span className="flex-1 text-right">{formatSize(entry.size)}</span>
-              <span className="text-[8px]">{entry.direction === "up" ? "B" : "S"}</span>
+              <span className="text-[11px]">{entry.direction === "up" ? "B" : "S"}</span>
             </div>
           ))}
         </div>

@@ -832,7 +832,7 @@ function TagPicker({
         <Tag className="h-2.5 w-2.5" />
       </button>
       {open && (
-        <div className="absolute left-0 top-5 z-50 w-40 rounded-lg border border-border bg-card p-2 shadow-lg">
+        <div className="absolute left-0 top-5 z-50 w-40 rounded-lg border border-border bg-card p-2 shadow-sm">
           <p className="mb-1.5 text-[11px] font-medium text-muted-foreground">
             Add / remove tag
           </p>

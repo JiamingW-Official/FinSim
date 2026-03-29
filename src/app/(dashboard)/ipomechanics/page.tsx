@@ -1158,7 +1158,7 @@ function MarketAnalysisTab() {
                   decline: "text-red-400",
                 };
                 return (
-                  <tr key={ipo.ticker} className="border-b border-white/5 hover:bg-white/3 transition-colors">
+                  <tr key={ipo.ticker} className="border-b border-white/5 hover:bg-muted/30 transition-colors">
                     <td className="px-4 py-2.5">
                       <div className="font-semibold text-white/90">{ipo.company}</div>
                       <div className="text-white/40">{ipo.ticker}</div>
@@ -1372,7 +1372,7 @@ function AlternativesTab() {
                   <tr
                     key={dim.dimension}
                     onClick={() => setSelectedDim(isSelected ? null : i)}
-                    className={cn("border-b border-white/5 cursor-pointer transition-colors", isSelected ? "bg-white/5" : "hover:bg-white/3")}
+                    className={cn("border-b border-white/5 cursor-pointer transition-colors", isSelected ? "bg-white/5" : "hover:bg-muted/30")}
                   >
                     <td className="px-4 py-2.5 font-medium text-white/80">{dim.dimension}</td>
                     <td className={cn("px-3 py-2.5 text-white/65", dim.advantage === "traditional" && advColors.traditional)}>

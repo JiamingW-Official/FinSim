@@ -631,7 +631,7 @@ export default function CryptoMarketIntelligence() {
                   <div className="h-full" style={{ width: "50%", background: "linear-gradient(to right, #f59e0b, #eab308)" }} />
                   <div className="h-full" style={{ width: "50%", background: "linear-gradient(to right, #22c55e, #10b981)" }} />
                 </div>
-                <div className="absolute top-1/2 -translate-y-1/2 w-3 h-3 bg-white rounded-full shadow-lg"
+                <div className="absolute top-1/2 -translate-y-1/2 w-3 h-3 bg-white rounded-full shadow-sm"
                   style={{ left: `calc(${altcoinSeasonIndex}% - 6px)` }} />
               </div>
               <div className="flex justify-between text-xs mt-1">

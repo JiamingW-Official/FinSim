@@ -636,7 +636,7 @@ function PurchaseModal({
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 backdrop-blur-sm">
-      <div className="w-full max-w-sm rounded-xl border bg-card p-6 shadow-xl space-y-4 mx-4">
+      <div className="w-full max-w-sm rounded-xl border bg-card p-6 shadow-sm space-y-4 mx-4">
         <div className="flex items-start justify-between">
           <div>
             <h3 className="text-sm font-semibold">Simulate Purchase</h3>

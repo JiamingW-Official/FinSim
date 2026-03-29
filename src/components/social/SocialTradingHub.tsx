@@ -1285,7 +1285,7 @@ function DiscussionSection() {
                   onChange={(e) => setReplyText(e.target.value)}
                   onKeyDown={(e) => e.key === "Enter" && handlePostReply()}
                   placeholder="Share your thoughts..."
-                  className="flex-1 text-xs bg-muted/50 border border-border/50 rounded-lg px-3 py-2 placeholder:text-muted-foreground/50 focus:outline-none focus:border-primary/50 transition-colors"
+                  className="flex-1 text-xs bg-muted/50 border border-border/50 rounded-lg px-3 py-2 placeholder:text-muted-foreground/50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring transition-colors"
                 />
                 <button
                   onClick={handlePostReply}

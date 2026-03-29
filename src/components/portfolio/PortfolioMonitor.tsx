@@ -583,7 +583,7 @@ function AssetAllocationMonitor({ classes }: { classes: AssetClass[] }) {
                     style={{ left: `${Math.min(100, (c.target / 50) * 100)}%` }}
                   />
                   <div
-                    className="h-full rounded-full transition-all duration-700"
+                    className="h-full rounded-full transition-all duration-300"
                     style={{
                       width: `${Math.min(100, (c.actual / 50) * 100)}%`,
                       backgroundColor: c.color,

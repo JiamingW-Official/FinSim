@@ -647,7 +647,7 @@ function CurveVisualizer({ initialContractId }: { initialContractId: string }) {
         <select
           value={selectedId}
           onChange={(e) => setSelectedId(e.target.value)}
-          className="bg-card border border-border/50 rounded-md px-3 py-1.5 text-xs text-foreground focus:outline-none focus:ring-1 focus:ring-primary"
+          className="bg-card border border-border/50 rounded-md px-3 py-1.5 text-xs text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
         >
           {(["energy", "metals", "grains", "softs", "livestock"] as Sector[]).map((sec) => (
             <optgroup key={sec} label={SECTOR_LABELS[sec]}>
@@ -895,7 +895,7 @@ function SpreadTrading() {
                 value={val}
                 step={step}
                 onChange={(e) => set(parseFloat(e.target.value) || 0)}
-                className="w-full bg-muted/30 border border-border/50 rounded-md px-2.5 py-1.5 text-sm font-medium tabular-nums focus:outline-none focus:ring-1 focus:ring-primary"
+                className="w-full bg-muted/30 border border-border/50 rounded-md px-2.5 py-1.5 text-sm font-medium tabular-nums focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
               />
               <div className={cn("text-xs mt-0.5 tabular-nums", color)}>
                 {label.includes("gal") ? `= $${(val * 42).toFixed(2)}/bbl` : ""}
@@ -946,7 +946,7 @@ function SpreadTrading() {
                 value={val}
                 step={step}
                 onChange={(e) => set(parseFloat(e.target.value) || 0)}
-                className="w-full bg-muted/30 border border-border/50 rounded-md px-2.5 py-1.5 text-sm font-medium tabular-nums focus:outline-none focus:ring-1 focus:ring-primary"
+                className="w-full bg-muted/30 border border-border/50 rounded-md px-2.5 py-1.5 text-sm font-medium tabular-nums focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
               />
               <div className={cn("text-xs mt-0.5 font-medium tabular-nums", color)}>
                 {label.includes("Oil") ? `$${(val * 100).toFixed(2)}¢/lb equiv.` : ""}
@@ -1012,7 +1012,7 @@ function OrderEntrySimulator() {
     const side = direction === "long" ? "BUY" : "SELL";
     const desc = tradeType === "spread" ? "Calendar Spread" : "Outright";
     toast.custom(() => (
-      <div className="bg-card border border-border/60 rounded-lg p-4 shadow-lg min-w-[280px]">
+      <div className="bg-card border border-border/60 rounded-lg p-4 shadow-sm min-w-[280px]">
         <div className="flex items-center gap-2 mb-2">
           <div className={cn("w-2 h-2 rounded-full", direction === "long" ? "bg-green-400" : "bg-red-400")} />
           <span className="font-semibold text-sm">
@@ -1059,7 +1059,7 @@ function OrderEntrySimulator() {
               setSelectedId(e.target.value);
               setEntryPrice("");
             }}
-            className="w-full bg-muted/30 border border-border/50 rounded-md px-3 py-1.5 text-sm focus:outline-none focus:ring-1 focus:ring-primary"
+            className="w-full bg-muted/30 border border-border/50 rounded-md px-3 py-1.5 text-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
           >
             {(["energy", "metals", "grains", "softs", "livestock"] as Sector[]).map((sec) => (
               <optgroup key={sec} label={SECTOR_LABELS[sec]}>
@@ -1148,7 +1148,7 @@ function OrderEntrySimulator() {
             step={g.tickSize}
             placeholder={fmtPrice(g.m1)}
             onChange={(e) => setEntryPrice(e.target.value === "" ? "" : parseFloat(e.target.value))}
-            className="w-full bg-muted/30 border border-border/50 rounded-md px-3 py-1.5 text-sm tabular-nums focus:outline-none focus:ring-1 focus:ring-primary"
+            className="w-full bg-muted/30 border border-border/50 rounded-md px-3 py-1.5 text-sm tabular-nums focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
           />
         </div>
 
@@ -1272,7 +1272,7 @@ function StorageCarryAnalysis() {
                 min={min}
                 max={max}
                 onChange={(e) => set(parseFloat(e.target.value) || 0)}
-                className="w-full bg-muted/30 border border-border/50 rounded-md px-2 py-1.5 text-sm tabular-nums focus:outline-none focus:ring-1 focus:ring-primary"
+                className="w-full bg-muted/30 border border-border/50 rounded-md px-2 py-1.5 text-sm tabular-nums focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
               />
             </div>
           ))}
@@ -1321,7 +1321,7 @@ function StorageCarryAnalysis() {
           <select
             value={selectedSeasonId}
             onChange={(e) => setSelectedSeasonId(e.target.value)}
-            className="bg-card border border-border/50 rounded-md px-2 py-1 text-xs focus:outline-none"
+            className="bg-card border border-border/50 rounded-md px-2 py-1 text-xs focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
           >
             {(["energy", "metals", "grains", "softs", "livestock"] as Sector[]).map((sec) => (
               <optgroup key={sec} label={SECTOR_LABELS[sec]}>

@@ -776,7 +776,7 @@ export default function CryptoDerivativesPage() {
                       <p className={`text-[11px] font-mono ${d.rate >= 0 ? "text-red-400" : "text-emerald-400"}`}>
                         {fmtPct(d.rate, 4)}
                       </p>
-                      <p className="text-[8px] text-muted-foreground">{d.period}</p>
+                      <p className="text-[11px] text-muted-foreground">{d.period}</p>
                     </div>
                   ))}
                 </div>

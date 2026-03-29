@@ -528,7 +528,7 @@ function NetWorthTab() {
           </div>
           <div className="text-center">
             <div className="text-xs text-muted-foreground">Net Worth</div>
-            <div className={cn("text-3xl font-bold", netWorth >= 0 ? "text-green-400" : "text-red-400")}>{fmtK(netWorth)}</div>
+            <div className={cn("text-2xl font-bold", netWorth >= 0 ? "text-green-400" : "text-red-400")}>{fmtK(netWorth)}</div>
           </div>
 
           {/* Age Bracket Selector */}
@@ -1424,7 +1424,7 @@ function FIRoadmapTab() {
               <span>{fmtK(currentSavings)} / {fmtK(fiNumber)}</span>
             </div>
             <div className="relative h-4 bg-muted rounded-full overflow-hidden">
-              <div className="absolute inset-y-0 left-0 bg-primary rounded-full transition-all duration-500"
+              <div className="absolute inset-y-0 left-0 bg-primary rounded-full transition-all duration-300"
                 style={{ width: `${progressPct}%` }} />
               <div className="absolute inset-0 flex items-center justify-center text-xs font-bold text-white">
                 {fmtPct(progressPct)}

@@ -308,7 +308,7 @@ function EventCard({ event, index }: { event: SpecialEvent; index: number }) {
           <Sparkles className="h-4 w-4 text-primary" />
           <span className="text-xs font-bold text-primary uppercase tracking-wide">Special Event</span>
           {event.isNew && (
-            <span className="rounded-full bg-primary px-1.5 py-0.5 text-[8px] font-bold text-primary-foreground">NEW</span>
+            <span className="rounded-full bg-primary px-1.5 py-0.5 text-[11px] font-bold text-primary-foreground">NEW</span>
           )}
         </div>
         <div className="flex items-center gap-1.5 text-xs text-muted-foreground">

@@ -401,7 +401,7 @@ function StructureTab() {
             </thead>
             <tbody>
               {TRANCHES.map((t) => (
-                <tr key={t.name} className="border-b border-white/5 hover:bg-white/5">
+                <tr key={t.name} className="border-b border-white/5 hover:bg-muted/30">
                   <td className="py-2 font-semibold">
                     <span className={cn("inline-block w-2 h-2 rounded-full mr-2", t.color)} />
                     {t.name}
@@ -582,7 +582,7 @@ function PortfolioTab() {
             </thead>
             <tbody>
               {LOANS.map((l) => (
-                <tr key={l.issuer} className="border-b border-white/5 hover:bg-white/5">
+                <tr key={l.issuer} className="border-b border-white/5 hover:bg-muted/30">
                   <td className="py-2 font-medium text-foreground max-w-[140px] truncate">{l.issuer}</td>
                   <td className="py-2 text-muted-foreground">{l.industry}</td>
                   <td className="py-2 text-right text-emerald-400 font-mono">{l.spread}</td>
@@ -768,7 +768,7 @@ function ReinvestmentTab() {
             </thead>
             <tbody>
               {schedule.map((row) => (
-                <tr key={row.yr} className="border-b border-white/5 hover:bg-white/5">
+                <tr key={row.yr} className="border-b border-white/5 hover:bg-muted/30">
                   <td className="py-2 font-mono text-muted-foreground">Yr {row.yr}</td>
                   <td className="py-2 text-center">
                     <Badge variant="outline" className={cn("text-xs", row.yr <= reinvestPeriod ? "border-primary/40 text-primary" : "border-amber-500/40 text-amber-400")}>
@@ -817,7 +817,7 @@ function DefaultScenariosTab() {
               "rounded-xl border p-4 text-left transition-all",
               selectedScenario === idx
                 ? "border-primary/60 bg-muted/40"
-                : "border-white/10 bg-white/5 hover:bg-white/10"
+                : "border-white/10 bg-white/5 hover:bg-muted/50"
             )}
           >
             <p className="text-sm font-semibold text-white mb-1">{sc.label}</p>
@@ -896,7 +896,7 @@ function DefaultScenariosTab() {
                 const lgd = (1 - sc.recovery / 100) * sc.defaultRate / 100;
                 const loss = lgd * TOTAL_ASSETS;
                 return (
-                  <tr key={sc.label} className="border-b border-white/5 hover:bg-white/5">
+                  <tr key={sc.label} className="border-b border-white/5 hover:bg-muted/30">
                     <td className="py-2 font-medium text-foreground">{sc.label}</td>
                     <td className="py-2 text-right font-mono text-muted-foreground">{sc.defaultRate}%</td>
                     <td className="py-2 text-right font-mono text-muted-foreground">{sc.recovery}%</td>

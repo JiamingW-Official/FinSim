@@ -249,7 +249,7 @@ function IncomeBar({ stocks }: { stocks: DividendStock[] }) {
                   style={{ height: `${height}%` }}
                 />
               </div>
-              <span className="text-[8px] text-muted-foreground">{MONTH_LABELS[m].slice(0, 1)}</span>
+              <span className="text-[11px] text-muted-foreground">{MONTH_LABELS[m].slice(0, 1)}</span>
             </div>
           );
         })}

@@ -494,7 +494,7 @@ function EnergyTab() {
           </CardHeader>
           <CardContent>
             <div className="flex items-end gap-2 mb-4">
-              <span className="text-3xl font-bold text-foreground">$78.42</span>
+              <span className="text-2xl font-bold text-foreground">$78.42</span>
               <span className="text-emerald-400 text-sm mb-1">+$0.95 (+1.23%)</span>
             </div>
             <div className="flex gap-1 flex-wrap">
@@ -740,12 +740,12 @@ function MetalsTab() {
             </div>
             <div className="flex items-center gap-3 mb-3 p-3 bg-muted/50 rounded-lg">
               <div className="text-center flex-1">
-                <div className="text-3xl font-bold text-amber-400">{gsRatio}</div>
+                <div className="text-2xl font-bold text-amber-400">{gsRatio}</div>
                 <div className="text-xs text-muted-foreground">Current G:S Ratio</div>
               </div>
               <div className="text-muted-foreground text-2xl">/</div>
               <div className="text-center flex-1">
-                <div className="text-3xl font-bold text-muted-foreground">70:1</div>
+                <div className="text-2xl font-bold text-muted-foreground">70:1</div>
                 <div className="text-xs text-muted-foreground">Historic Average</div>
               </div>
             </div>

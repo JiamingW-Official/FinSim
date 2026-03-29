@@ -57,7 +57,7 @@ export function PlayerStatsCard() {
       className={cn(
         "card-hover-glow rounded-xl border p-4",
         league === "alpha" || league === "diamond"
-          ? "border-primary/20 glow-purple"
+          ? "border-primary/20"
           : "border-border bg-card/50",
       )}
       initial={{ opacity: 0, y: 12 }}
@@ -118,7 +118,7 @@ export function PlayerStatsCard() {
             <span className={cn("text-sm font-bold tabular-nums", item.color)}>
               {item.value}
             </span>
-            <span className="text-[8px] font-bold text-muted-foreground/60">
+            <span className="text-[11px] font-bold text-muted-foreground/60">
               {item.label}
             </span>
           </motion.div>

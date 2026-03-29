@@ -706,9 +706,7 @@ export default function CryptoExchangePage() {
             <span className="w-1.5 h-1.5 rounded-full bg-green-500 inline-block mr-1.5 animate-pulse" />
             Live
           </Badge>
-          <Badge variant="outline" className="border-border text-muted-foreground text-xs">
-            Simulated
-          </Badge>
+          <span className="rounded bg-muted/40 px-1.5 py-0.5 text-[11px] font-medium text-muted-foreground">Simulated</span>
         </div>
       </div>
 

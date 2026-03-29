@@ -74,7 +74,7 @@ export function QuestCard({ quest, progress, onClaim }: QuestCardProps) {
           ? "border-emerald-500/20 bg-emerald-500/5"
           : isComplete
             ? "border-border bg-primary/5"
-            : "border-white/5 bg-white/[0.02] hover:border-white/10 hover:bg-white/[0.04]",
+            : "border-border/50 bg-muted/10 hover:border-border hover:bg-muted/30",
       )}
     >
       <div className="flex items-start gap-2.5">
@@ -200,7 +200,7 @@ export function QuestCard({ quest, progress, onClaim }: QuestCardProps) {
               whileHover={{ scale: 1.05, x: 2 }}
               whileTap={{ scale: 0.95 }}
               onClick={() => router.push(quest.route!)}
-              className="flex items-center gap-1 rounded-lg border border-white/10 bg-white/5 px-2.5 py-1 text-xs font-bold text-muted-foreground transition-all hover:bg-white/10 hover:text-foreground"
+              className="flex items-center gap-1 rounded-lg border border-border/50 bg-muted/20 px-2.5 py-1 text-xs font-bold text-muted-foreground transition-all hover:bg-accent hover:text-accent-foreground"
             >
               {routeLabel}
               <ArrowRight className="h-3 w-3" />

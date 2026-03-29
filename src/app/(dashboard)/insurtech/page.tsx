@@ -693,7 +693,7 @@ function BusinessModelsTab() {
             <div className="flex items-center gap-2">
               <div className="flex-1 h-1 bg-muted rounded-full overflow-hidden">
                 <div
-                  className="h-full rounded-full bg-gradient-to-r from-blue-500 to-violet-500"
+                  className="h-full rounded-full bg-blue-500"
                   style={{ width: `${(cat.fundingBn / 13) * 100}%` }}
                 />
               </div>
@@ -907,7 +907,7 @@ function ParametricTab() {
             </div>
             <div className="mt-2 h-2 bg-muted rounded-full overflow-hidden">
               <motion.div
-                className="h-full rounded-full bg-gradient-to-r from-emerald-600 to-emerald-400"
+                className="h-full rounded-full bg-emerald-500"
                 animate={{ width: `${(payout / 500000) * 100}%` }}
                 transition={{ type: "spring", stiffness: 200, damping: 30 }}
               />

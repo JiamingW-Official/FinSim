@@ -205,7 +205,7 @@ export function TimeAndSales({ ticker, currentPrice }: TimeAndSalesProps) {
               </span>
               <span
                 className={cn(
-                  "w-[12px] text-[8px] text-right",
+                  "w-[12px] text-[11px] text-right",
                   entry.direction === "up" ? "text-emerald-500" : "text-red-500",
                 )}
               >

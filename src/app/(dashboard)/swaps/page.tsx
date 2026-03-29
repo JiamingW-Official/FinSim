@@ -688,7 +688,7 @@ function SwapCurveBuilder() {
             {forwardRates.map((r, i) => (
               <tr
                 key={i}
-                className="border-t border-white/5 hover:bg-white/5 cursor-pointer transition-colors"
+                className="border-t border-white/5 hover:bg-muted/30 cursor-pointer transition-colors"
                 onClick={() => setSelectedIdx(selectedIdx === i ? null : i)}
               >
                 <td className="py-1.5 pr-4 text-white/80 font-medium">{r.label}</td>
@@ -1074,7 +1074,7 @@ function TRSPage() {
               onClick={() => setUseEquity(false)}
               className={cn(
                 "flex-1 h-9 rounded-lg text-sm transition-colors",
-                !useEquity ? "bg-sky-600 text-white" : "bg-white/5 text-white/50 hover:bg-white/10",
+                !useEquity ? "bg-sky-600 text-white" : "bg-white/5 text-white/50 hover:bg-muted/50",
               )}
             >
               Fixed Income
@@ -1083,7 +1083,7 @@ function TRSPage() {
               onClick={() => setUseEquity(true)}
               className={cn(
                 "flex-1 h-9 rounded-lg text-sm transition-colors",
-                useEquity ? "bg-sky-600 text-white" : "bg-white/5 text-white/50 hover:bg-white/10",
+                useEquity ? "bg-sky-600 text-white" : "bg-white/5 text-white/50 hover:bg-muted/50",
               )}
             >
               Equity TRS
@@ -1242,13 +1242,13 @@ function SwaptionsPage() {
           <div className="flex gap-2">
             <button
               onClick={() => setIsPayer(true)}
-              className={cn("flex-1 h-9 rounded-lg text-sm", isPayer ? "bg-sky-600 text-white" : "bg-white/5 text-white/50 hover:bg-white/10")}
+              className={cn("flex-1 h-9 rounded-lg text-sm", isPayer ? "bg-sky-600 text-white" : "bg-white/5 text-white/50 hover:bg-muted/50")}
             >
               Payer
             </button>
             <button
               onClick={() => setIsPayer(false)}
-              className={cn("flex-1 h-9 rounded-lg text-sm", !isPayer ? "bg-sky-600 text-white" : "bg-white/5 text-white/50 hover:bg-white/10")}
+              className={cn("flex-1 h-9 rounded-lg text-sm", !isPayer ? "bg-sky-600 text-white" : "bg-white/5 text-white/50 hover:bg-muted/50")}
             >
               Receiver
             </button>

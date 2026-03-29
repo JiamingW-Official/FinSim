@@ -710,7 +710,7 @@ function MeanVarianceSection() {
                       <td className="py-0.5 px-1 text-right">
                         <input
                           type="number"
-                          className="w-14 rounded bg-muted/40 px-1.5 py-0.5 font-mono text-right focus:outline-none focus:ring-1 focus:ring-primary"
+                          className="w-14 rounded bg-muted/40 px-1.5 py-0.5 font-mono text-right focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
                           value={customReturns[i]}
                           step={0.1}
                           onChange={e => {
@@ -742,7 +742,7 @@ function MeanVarianceSection() {
               <span className="text-xs font-medium w-11 shrink-0">{t}</span>
               <div className="flex-1 h-1.5 rounded-full bg-muted overflow-hidden">
                 <div
-                  className="h-full rounded-full bg-primary transition-all duration-500"
+                  className="h-full rounded-full bg-primary transition-all duration-300"
                   style={{ width: `${(optimalW[i] * 100).toFixed(1)}%` }}
                 />
               </div>

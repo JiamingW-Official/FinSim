@@ -67,7 +67,7 @@ export default function AnalyticsPanel({ result }: AnalyticsPanelProps) {
                 </span>
                 <span className="text-[7px] text-muted-foreground">{p.label}</span>
                 {/* Tooltip */}
-                <div className="absolute -top-8 left-1/2 z-10 hidden -translate-x-1/2 rounded bg-muted px-2 py-1 text-xs text-muted-foreground shadow-lg group-hover:block whitespace-nowrap">
+                <div className="absolute -top-8 left-1/2 z-10 hidden -translate-x-1/2 rounded bg-muted px-2 py-1 text-xs text-muted-foreground shadow-sm group-hover:block whitespace-nowrap">
                   {p.trades} trades
                 </div>
               </div>

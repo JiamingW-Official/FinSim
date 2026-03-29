@@ -485,7 +485,7 @@ function OpportunitiesTab({ issuers }: { issuers: DistressedIssuer[] }) {
                     "border-b border-white/5 cursor-pointer transition-colors",
                     issuer.id === selectedId
                       ? "bg-white/10"
-                      : "hover:bg-white/5"
+                      : "hover:bg-muted/30"
                   )}
                 >
                   <td className="py-2.5 px-3 font-medium text-white">{issuer.company}</td>
@@ -1000,7 +1000,7 @@ function BankruptcyTab({ scenarios }: { scenarios: PlanScenario[] }) {
           >
             <button
               onClick={() => setExpanded(expanded === i ? null : i)}
-              className="w-full flex items-center justify-between p-3 hover:bg-white/5 transition-colors"
+              className="w-full flex items-center justify-between p-3 hover:bg-muted/30 transition-colors"
             >
               <div className="flex items-center gap-3">
                 <div

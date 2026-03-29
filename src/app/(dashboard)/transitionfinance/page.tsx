@@ -1118,7 +1118,7 @@ export default function TransitionFinancePage() {
             </CardHeader>
             <CardContent>
               <div className="flex items-end gap-2 mb-3">
-                <span className="text-3xl font-bold text-emerald-400">${PLEDGE_PROGRESS.delivered}B</span>
+                <span className="text-2xl font-bold text-emerald-400">${PLEDGE_PROGRESS.delivered}B</span>
                 <span className="text-muted-foreground text-sm mb-1">delivered / $100B pledged</span>
               </div>
               <div className="h-3 bg-muted rounded-full overflow-hidden mb-3">

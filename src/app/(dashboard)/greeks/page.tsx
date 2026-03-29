@@ -938,7 +938,7 @@ function GreeksExplorer() {
             key={result.price.toFixed(4)}
             initial={{ scale: 0.95 }}
             animate={{ scale: 1 }}
-            className="text-3xl font-mono font-bold text-primary"
+            className="text-2xl font-mono font-bold text-primary"
           >
             ${result.price.toFixed(4)}
           </motion.p>

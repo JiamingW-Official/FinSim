@@ -542,7 +542,7 @@ function RubricRow({ criterion }: { criterion: ThesisCriterion }) {
     <div className="border-b border-white/5 last:border-0">
       <button
         onClick={() => setExpanded(!expanded)}
-        className="w-full flex items-center gap-3 px-4 py-3 hover:bg-white/5 transition-colors text-left"
+        className="w-full flex items-center gap-3 px-4 py-3 hover:bg-muted/30 transition-colors text-left"
       >
         <div
           className="w-1.5 h-1.5 rounded-full shrink-0"
@@ -591,7 +591,7 @@ function FamousShortCard({ short }: { short: FamousShort }) {
   return (
     <motion.div
       layout
-      className={`rounded-xl border p-4 cursor-pointer transition-colors hover:bg-white/5 ${colorMap[short.color] ?? colorMap.amber}`}
+      className={`rounded-xl border p-4 cursor-pointer transition-colors hover:bg-muted/30 ${colorMap[short.color] ?? colorMap.amber}`}
       onClick={() => setExpanded(!expanded)}
     >
       <div className="flex items-start justify-between gap-3">
@@ -1017,7 +1017,7 @@ export default function ShortSellingPage() {
                     <div key={idx} className="border-b border-white/5 last:border-0">
                       <button
                         onClick={() => toggleThesis(idx)}
-                        className="w-full flex items-center gap-3 px-4 py-3 hover:bg-white/5 transition-colors text-left"
+                        className="w-full flex items-center gap-3 px-4 py-3 hover:bg-muted/30 transition-colors text-left"
                       >
                         <div
                           className={`w-4 h-4 rounded border-2 flex items-center justify-center shrink-0 transition-colors ${
@@ -1286,7 +1286,7 @@ export default function ShortSellingPage() {
                           { firm: "Muddy Waters", founded: "2010", notable: "Sino-Forest, Luckin Coffee", style: "China frauds", avg: "30–99%" },
                           { firm: "Citron Research", founded: "2001", notable: "Valeant, MOXC", style: "Consumer expose", avg: "20–80%" },
                         ].map((row) => (
-                          <tr key={row.firm} className="border-b border-white/5 hover:bg-white/3 transition-colors">
+                          <tr key={row.firm} className="border-b border-white/5 hover:bg-muted/30 transition-colors">
                             <td className="px-3 py-2.5 text-foreground font-medium">{row.firm}</td>
                             <td className="px-3 py-2.5 text-muted-foreground">{row.founded}</td>
                             <td className="px-3 py-2.5 text-muted-foreground">{row.notable}</td>

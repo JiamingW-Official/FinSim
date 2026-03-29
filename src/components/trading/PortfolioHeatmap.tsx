@@ -237,7 +237,7 @@ export function PortfolioHeatmap() {
 
         {/* Hover tooltip */}
         {hoveredPos && (
-          <div className="absolute top-1 right-0 z-10 rounded border border-border bg-card px-2 py-1 text-xs shadow-lg min-w-[110px]">
+          <div className="absolute top-1 right-0 z-10 rounded border border-border bg-card px-2 py-1 text-xs shadow-sm min-w-[110px]">
             <div className="font-bold">{hoveredPos.ticker}</div>
             <div className="text-muted-foreground">
               Value: {formatCurrency(hoveredPos.quantity * hoveredPos.currentPrice)}

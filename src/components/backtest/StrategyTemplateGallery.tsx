@@ -55,23 +55,23 @@ export default function StrategyTemplateGallery({ onSelect, onClose }: StrategyT
         initial={{ scale: 0.95, y: 20 }}
         animate={{ scale: 1, y: 0 }}
         exit={{ scale: 0.95, y: 20 }}
-        className="relative max-h-[85vh] w-full max-w-5xl overflow-hidden rounded-2xl border border-white/10 bg-card/95"
+        className="relative max-h-[85vh] w-full max-w-5xl overflow-hidden rounded-2xl border border-border/50 bg-card/95"
         onClick={(e) => e.stopPropagation()}
       >
         {/* Header */}
-        <div className="flex items-center justify-between border-b border-white/5 px-6 py-4">
+        <div className="flex items-center justify-between border-b border-border/30 px-6 py-4">
           <div>
             <h2 className="text-lg font-bold text-foreground">Strategy Templates</h2>
             <p className="text-xs text-muted-foreground">Select a proven strategy to learn about and test</p>
           </div>
-          <button onClick={onClose} className="rounded-lg p-2 text-muted-foreground transition-colors hover:bg-white/5 hover:text-muted-foreground">
+          <button onClick={onClose} className="rounded-lg p-2 text-muted-foreground transition-colors hover:bg-muted/50 hover:text-foreground">
             <X className="h-5 w-5" />
           </button>
         </div>
 
         <div className="flex h-[calc(85vh-64px)] overflow-hidden">
           {/* Left: Card Grid */}
-          <div className="w-[400px] space-y-2 overflow-y-auto border-r border-white/5 p-4">
+          <div className="w-[400px] space-y-2 overflow-y-auto border-r border-border/30 p-4">
             {STRATEGY_TEMPLATES.map((template) => {
               const Icon = ICON_MAP[template.icon] ?? TrendingUp;
               const catInfo = CATEGORY_INFO[template.category];
@@ -85,10 +85,10 @@ export default function StrategyTemplateGallery({ onSelect, onClose }: StrategyT
                   className={`flex w-full items-start gap-3 rounded-xl border p-3 text-left transition-all ${
                     isSelected
                       ? "border-primary/40 bg-primary/10"
-                      : "border-white/5 bg-white/5 hover:border-white/10 hover:bg-white/8"
+                      : "border-border/50 bg-muted/20 hover:border-border hover:bg-muted/40"
                   }`}
                 >
-                  <div className={`flex h-10 w-10 shrink-0 items-center justify-center rounded-lg ${catInfo?.bgColor ?? "bg-white/10"}`}>
+                  <div className={`flex h-10 w-10 shrink-0 items-center justify-center rounded-lg ${catInfo?.bgColor ?? "bg-muted/40"}`}>
                     <Icon className={`h-5 w-5 ${catInfo?.color ?? "text-muted-foreground"}`} />
                   </div>
                   <div className="min-w-0 flex-1">
@@ -189,7 +189,7 @@ export default function StrategyTemplateGallery({ onSelect, onClose }: StrategyT
                   <Section icon={<Clock className="h-4 w-4 text-muted-foreground" />} title="Key Parameters">
                     <div className="grid grid-cols-2 gap-2">
                       {selected.keyParameters.map((param, i) => (
-                        <div key={i} className="rounded-lg border border-white/5 bg-white/5 px-3 py-2">
+                        <div key={i} className="rounded-lg border border-border/30 bg-muted/20 px-3 py-2">
                           <div className="flex items-center justify-between">
                             <span className="text-[11px] font-medium text-muted-foreground">{param.name}</span>
                             <span className="rounded bg-primary/20 px-1.5 py-0.5 text-xs font-mono font-semibold text-primary">

@@ -88,7 +88,7 @@ export function ChainStatsBar({ analytics, spotPrice, isLoading }: ChainStatsBar
           ${spotPrice.toFixed(2)}
         </span>
         {isLoading && (
-          <span className="text-[8px] text-muted-foreground/50 animate-pulse">
+          <span className="text-[11px] text-muted-foreground/50 animate-pulse">
             updating...
           </span>
         )}
@@ -99,7 +99,7 @@ export function ChainStatsBar({ analytics, spotPrice, isLoading }: ChainStatsBar
       {chips.map((chip, i) => (
         <div key={chip.label} className="flex shrink-0 items-center gap-4">
           <div className="flex flex-col">
-            <span className="text-[8px] text-muted-foreground/70">{chip.label}</span>
+            <span className="text-[11px] text-muted-foreground/70">{chip.label}</span>
             <span className={cn("text-[11px] font-bold tabular-nums", chip.colorClass)}>
               {chip.value}
             </span>

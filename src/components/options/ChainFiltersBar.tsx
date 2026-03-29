@@ -110,7 +110,7 @@ export function ChainFiltersBar({
             )}
           >
             {formatDTE(exp.daysToExpiry)}
-            <span className="ml-0.5 text-[8px] opacity-60">
+            <span className="ml-0.5 text-[11px] opacity-60">
               {exp.daysToExpiry}d
             </span>
           </button>

@@ -133,7 +133,7 @@ export function ExportMenu() {
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: -4, scale: 0.95 }}
             transition={{ duration: 0.15 }}
-            className="absolute right-0 top-full z-50 mt-1 w-56 overflow-hidden rounded-xl border border-border bg-card shadow-xl"
+            className="absolute right-0 top-full z-50 mt-1 w-56 overflow-hidden rounded-xl border border-border bg-card shadow-sm"
           >
             <div className="px-3 py-2 text-xs font-bold text-muted-foreground">
               Export & Share

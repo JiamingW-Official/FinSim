@@ -669,7 +669,7 @@ export default function CryptoPortfolioPage() {
                 </thead>
                 <tbody>
                   {portfolioData.assets.map(a => (
-                    <tr key={a.symbol} className="border-b border-white/4 hover:bg-white/3 transition-colors">
+                    <tr key={a.symbol} className="border-b border-white/4 hover:bg-muted/30 transition-colors">
                       <td className="py-2 pr-4">
                         <div className="flex items-center gap-2">
                           <span className="w-2 h-2 rounded-full" style={{ background: a.color }} />
@@ -921,7 +921,7 @@ export default function CryptoPortfolioPage() {
                   {YIELD_OPPORTUNITIES.map((y, i) => {
                     const typeColor = y.type === "staking" ? "text-emerald-400 bg-emerald-400/10" : y.type === "lending" ? "text-primary bg-primary/10" : "text-primary bg-primary/10";
                     return (
-                      <tr key={i} className="border-b border-white/4 hover:bg-white/3 transition-colors">
+                      <tr key={i} className="border-b border-white/4 hover:bg-muted/30 transition-colors">
                         <td className="py-2 pr-4 font-medium">{y.protocol}</td>
                         <td className="py-2 pr-3 text-muted-foreground">{y.asset}</td>
                         <td className="py-2 pr-3 text-center">
@@ -1067,7 +1067,7 @@ export default function CryptoPortfolioPage() {
                     { regime: "Bank Crisis (SVB)", btcSpy: -0.18, btcGld: 0.45,  btcTlt:  0.22, insight: "Decoupled — seen as safe haven briefly" },
                     { regime: "Crypto-Specific",   btcSpy: 0.12,  btcGld: 0.08,  btcTlt:  0.04, insight: "Macro events dominate crypto moves" },
                   ].map((row, i) => (
-                    <tr key={i} className="border-b border-white/4 hover:bg-white/3">
+                    <tr key={i} className="border-b border-white/4 hover:bg-muted/30">
                       <td className="py-2 pr-4 font-medium text-sm">{row.regime}</td>
                       <td className={cn("text-right py-2 pr-3 tabular-nums", Math.abs(row.btcSpy) > 0.6 ? "text-red-400" : "text-muted-foreground")}>{row.btcSpy.toFixed(2)}</td>
                       <td className={cn("text-right py-2 pr-3 tabular-nums", Math.abs(row.btcGld) > 0.6 ? "text-red-400" : "text-muted-foreground")}>{row.btcGld.toFixed(2)}</td>
@@ -1324,7 +1324,7 @@ export default function CryptoPortfolioPage() {
                   ].map((row, i) => {
                     const gl = row.proceeds - row.basis;
                     return (
-                      <tr key={i} className="border-b border-white/4 hover:bg-white/3">
+                      <tr key={i} className="border-b border-white/4 hover:bg-muted/30">
                         <td className="py-2 pr-3 text-foreground">{row.desc}</td>
                         <td className="py-2 pr-3 text-muted-foreground">{row.acq}</td>
                         <td className="py-2 pr-3 text-muted-foreground">{row.sold}</td>

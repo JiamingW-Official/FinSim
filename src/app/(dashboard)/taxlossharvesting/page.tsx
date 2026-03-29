@@ -316,7 +316,7 @@ function TaxRatesPanel() {
           </div>
           <div className="mt-2 h-1.5 rounded-full bg-border overflow-hidden">
             <div
-              className="h-full rounded-full transition-all duration-700"
+              className="h-full rounded-full transition-all duration-300"
               style={{ width: `${sc.rate * 100 / 0.4 * 100}%`, backgroundColor: sc.color }}
             />
           </div>

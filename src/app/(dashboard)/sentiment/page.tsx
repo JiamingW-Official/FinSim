@@ -1797,19 +1797,19 @@ export default function SentimentPage() {
                   </div>
                   <div className="flex h-3 rounded overflow-hidden gap-0.5">
                     <div
-                      className="bg-emerald-500 rounded-l flex items-center justify-center text-[8px] text-white font-bold"
+                      className="bg-emerald-500 rounded-l flex items-center justify-center text-[11px] text-white font-bold"
                       style={{ width: `${q.agree}%` }}
                     >
                       {q.agree > 15 ? `${q.agree}%` : ""}
                     </div>
                     <div
-                      className="bg-muted flex items-center justify-center text-[8px] text-white"
+                      className="bg-muted flex items-center justify-center text-[11px] text-white"
                       style={{ width: `${q.neutral}%` }}
                     >
                       {q.neutral > 10 ? `${q.neutral}%` : ""}
                     </div>
                     <div
-                      className="bg-red-500 rounded-r flex items-center justify-center text-[8px] text-white font-bold"
+                      className="bg-red-500 rounded-r flex items-center justify-center text-[11px] text-white font-bold"
                       style={{ width: `${q.disagree}%` }}
                     >
                       {q.disagree > 15 ? `${q.disagree}%` : ""}

@@ -279,7 +279,7 @@ export function PredictionGame({ onClose }: PredictionGameProps) {
                   animate={{ opacity: [0.3, 0.7, 0.3] }}
                   transition={{ duration: 1.5, repeat: Infinity, type: "tween" }}
                 >
-                  <span className="text-[8px] font-bold text-muted-foreground">?</span>
+                  <span className="text-[11px] font-bold text-muted-foreground">?</span>
                 </motion.div>
               )}
             </AnimatePresence>
@@ -369,7 +369,7 @@ function SummaryStatBox({ label, value, color }: { label: string; value: string;
       animate={{ opacity: 1, y: 0 }}
     >
       <span className={cn("text-lg font-bold tabular-nums", color)}>{value}</span>
-      <span className="text-[8px] font-bold text-muted-foreground/60">
+      <span className="text-[11px] font-bold text-muted-foreground/60">
         {label}
       </span>
     </motion.div>

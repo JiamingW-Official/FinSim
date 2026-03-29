@@ -591,7 +591,7 @@ function FedPolicyDashboard() {
             </div>
             <div className="h-3 rounded-full bg-muted/30">
               <motion.div
-                className="h-full rounded-full bg-gradient-to-r from-amber-500 to-amber-400"
+                className="h-full rounded-full bg-amber-500"
                 initial={{ width: 0 }}
                 animate={{ width: "60%" }}
                 transition={{ duration: 1, ease: "easeOut" }}

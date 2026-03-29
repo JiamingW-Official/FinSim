@@ -214,7 +214,7 @@ function EloHistoryChart({ history }: { history: number[] }) {
 
 function MatchCard({ match }: { match: BracketMatch }) {
   return (
-    <div className="rounded-lg border border-white/[0.06] bg-white/[0.02] overflow-hidden text-[11px]">
+    <div className="rounded-lg border border-border/30 bg-muted/10 overflow-hidden text-[11px]">
       {[match.playerA, match.playerB].map((p, idx) => {
         if (!p) return <div key={idx} className="px-2.5 py-1.5 text-muted-foreground/50">TBD</div>;
         const isWinner = match.winner?.id === p.id;
@@ -345,7 +345,7 @@ export function TournamentTab() {
   return (
     <div className="space-y-5 pb-4">
       {/* ELO Badge + History */}
-      <div className="rounded-xl border border-white/[0.06] bg-white/[0.02] p-4">
+      <div className="rounded-xl border border-border/30 bg-muted/10 p-4">
         <div className="flex items-center gap-4">
           <div className={cn("rounded-xl border px-4 py-2 text-center", TIER_BG[tier])}>
             <div className={cn("text-2xl font-bold tabular-nums", TIER_COLORS[tier])}>
@@ -376,7 +376,7 @@ export function TournamentTab() {
         <button
           type="button"
           onClick={handleReset}
-          className="w-full flex items-center justify-center gap-2 rounded-lg border border-white/10 bg-white/5 py-2.5 text-sm font-bold text-muted-foreground transition-colors hover:bg-white/10"
+          className="w-full flex items-center justify-center gap-2 rounded-lg border border-border/50 bg-muted/20 py-2.5 text-sm font-bold text-muted-foreground transition-colors hover:bg-muted/50"
         >
           New Tournament
         </button>
@@ -400,7 +400,7 @@ export function TournamentTab() {
                   "rounded-lg border px-4 py-3 text-center text-sm font-bold",
                   bracket.final.winner?.isPlayer
                     ? "border-yellow-400/30 bg-yellow-400/10 text-yellow-400"
-                    : "border-white/10 bg-white/5 text-muted-foreground",
+                    : "border-border/50 bg-muted/20 text-muted-foreground",
                 )}
               >
                 {bracket.final.winner?.isPlayer
@@ -441,12 +441,12 @@ export function TournamentTab() {
               if (!opp) return null;
               const prob = winProb(eloRating, opp.elo);
               return (
-                <div className="rounded-lg border border-white/[0.06] bg-white/[0.02] p-3">
+                <div className="rounded-lg border border-border/30 bg-muted/10 p-3">
                   <div className="text-[11px] text-muted-foreground mb-2">Win probability vs QF opponent</div>
                   <div className="flex items-center gap-3">
                     <div className="flex-1 h-2 rounded-full bg-white/[0.04] overflow-hidden">
                       <div
-                        className="h-full rounded-full bg-teal-500 transition-all duration-700"
+                        className="h-full rounded-full bg-teal-500 transition-all duration-300"
                         style={{ width: `${prob * 100}%` }}
                       />
                     </div>
@@ -477,7 +477,7 @@ export function TournamentTab() {
                 className={cn(
                   "rounded-lg border p-3 transition-colors",
                   canEnter
-                    ? "border-white/[0.06] bg-white/[0.02] hover:bg-white/[0.04]"
+                    ? "border-border/30 bg-muted/10 hover:bg-muted/30"
                     : "border-white/[0.03] bg-white/[0.01] opacity-60",
                 )}
               >
@@ -509,10 +509,10 @@ export function TournamentTab() {
           <Trophy className="h-3.5 w-3.5 text-muted-foreground" />
           <span className="text-xs font-bold text-muted-foreground">Past Results</span>
         </div>
-        <div className="rounded-lg border border-white/[0.06] overflow-hidden">
+        <div className="rounded-lg border border-border/30 overflow-hidden">
           <table className="w-full text-[11px]">
             <thead>
-              <tr className="border-b border-white/[0.04] bg-white/[0.02]">
+              <tr className="border-b border-white/[0.04] bg-muted/10">
                 {["Tournament", "Place", "Prize", "ELO"].map((h) => (
                   <th key={h} className="px-3 py-2 text-left font-bold text-muted-foreground">{h}</th>
                 ))}

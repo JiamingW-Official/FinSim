@@ -570,7 +570,7 @@ function SP500Tracker({ quarters, currentQ }: { quarters: QuarterSummary[]; curr
             initial={{ width: 0 }}
             animate={{ width: `${currentQ.reportedPct}%` }}
             transition={{ duration: 0.8, ease: "easeOut" }}
-            className="h-full rounded-full bg-gradient-to-r from-blue-500 to-indigo-500"
+            className="h-full rounded-full bg-blue-500"
           />
         </div>
         <div className="grid grid-cols-3 gap-2 pt-1">
@@ -814,7 +814,7 @@ function EarningsFeedSection({
                   </thead>
                   <tbody>
                     {upcoming.map((row) => (
-                      <tr key={row.ticker} className="border-b border-border/20 last:border-0 hover:bg-white/[0.02] transition-colors">
+                      <tr key={row.ticker} className="border-b border-border/20 last:border-0 hover:bg-muted/30 transition-colors">
                         <td className="px-3 py-1.5">
                           <div>
                             <span className="font-semibold text-foreground">{row.ticker}</span>
@@ -862,7 +862,7 @@ function EarningsFeedSection({
                   </thead>
                   <tbody>
                     {reported.map((row) => (
-                      <tr key={row.ticker} className="border-b border-border/20 last:border-0 hover:bg-white/[0.02] transition-colors">
+                      <tr key={row.ticker} className="border-b border-border/20 last:border-0 hover:bg-muted/30 transition-colors">
                         <td className="px-3 py-1.5">
                           <div>
                             <span className="font-semibold text-foreground">{row.ticker}</span>
@@ -1070,7 +1070,7 @@ function OptionsPositioningSection({ data }: { data: OptionsPositioning[] }) {
                 const skewColor = row.callSkew > 60 ? "text-emerald-400" : row.callSkew < 40 ? "text-red-400" : "text-muted-foreground";
                 const exceeded = row.historicalMove > row.impliedMove;
                 return (
-                  <tr key={row.ticker} className="border-b border-border/20 last:border-0 hover:bg-white/[0.02] transition-colors">
+                  <tr key={row.ticker} className="border-b border-border/20 last:border-0 hover:bg-muted/30 transition-colors">
                     <td className="px-3 py-1.5 font-semibold text-foreground">{row.ticker}</td>
                     <td className="px-2 py-1.5 text-center text-amber-400 font-semibold">±{row.impliedMove}%</td>
                     <td className={cn("px-2 py-1.5 text-center font-semibold", exceeded ? "text-indigo-400" : "text-muted-foreground")}>

@@ -249,7 +249,7 @@ function FactorPerfTab() {
               "px-3 py-1.5 rounded-lg text-xs font-medium transition-colors",
               period === p
                 ? "bg-indigo-600 text-white"
-                : "bg-white/5 text-muted-foreground hover:bg-white/10"
+                : "bg-white/5 text-muted-foreground hover:bg-muted/50"
             )}
           >
             {periodLabels[p].split(" ")[0]}
@@ -306,7 +306,7 @@ function FactorPerfTab() {
           </thead>
           <tbody className="divide-y divide-white/5">
             {FACTORS.map((f) => (
-              <tr key={f.name} className="hover:bg-white/5 transition-colors">
+              <tr key={f.name} className="hover:bg-muted/30 transition-colors">
                 <td className="py-2.5">
                   <div className="flex items-center gap-2">
                     <div className={cn("w-2 h-2 rounded-full", f.color)} />
@@ -379,7 +379,7 @@ function ExposureAnalyzerTab() {
                 <tr
                   key={stock.ticker}
                   className={cn(
-                    "cursor-pointer transition-colors hover:bg-white/5",
+                    "cursor-pointer transition-colors hover:bg-muted/30",
                     selected?.ticker === stock.ticker && "bg-white/10"
                   )}
                   onClick={() => setSelected(selected?.ticker === stock.ticker ? null : stock)}
@@ -517,7 +517,7 @@ function FactorCycleTab() {
                 hoveredFactor === null || hoveredFactor === f.name
                   ? "opacity-100"
                   : "opacity-30",
-                "bg-white/5 border border-white/10 hover:bg-white/10"
+                "bg-white/5 border border-white/10 hover:bg-muted/50"
               )}
               onMouseEnter={() => setHoveredFactor(f.name)}
               onMouseLeave={() => setHoveredFactor(null)}
@@ -799,7 +799,7 @@ function FamaFrenchTab() {
                 "px-3 py-1.5 rounded-lg text-xs font-medium transition-colors",
                 selectedTicker.ticker === t.ticker
                   ? "bg-indigo-600 text-white"
-                  : "bg-white/5 text-muted-foreground hover:bg-white/10"
+                  : "bg-white/5 text-muted-foreground hover:bg-muted/50"
               )}
             >
               {t.ticker}
@@ -951,7 +951,7 @@ function SmartBetaTab() {
           </thead>
           <tbody className="divide-y divide-white/5">
             {sorted.map((etf) => (
-              <tr key={etf.ticker} className="hover:bg-white/5 transition-colors">
+              <tr key={etf.ticker} className="hover:bg-muted/30 transition-colors">
                 <td className="py-2.5 pr-3">
                   <div>
                     <p className="font-semibold text-white">{etf.ticker}</p>

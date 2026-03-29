@@ -1543,7 +1543,7 @@ export default function ScreenerPage() {
       {/* Save dialog */}
       {saveDialogOpen && (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50">
-          <div className="rounded-xl border border-border bg-card p-6 shadow-xl w-80 space-y-4">
+          <div className="rounded-xl border border-border bg-card p-6 shadow-sm w-80 space-y-4">
             <div className="flex items-center justify-between">
               <h3 className="text-sm font-semibold">Save Screen</h3>
               <button type="button" onClick={() => setSaveDialogOpen(false)} className="rounded-md p-1 hover:bg-accent">

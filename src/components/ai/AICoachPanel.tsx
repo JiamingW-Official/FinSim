@@ -275,19 +275,19 @@ function LevelLadder({
         <div className="flex items-center justify-between text-[11px]">
           <span className="text-red-400 font-bold">${nearestRes.price.toFixed(2)}</span>
           <span className="text-muted-foreground/70">{nearestRes.label}</span>
-          <span className="text-red-400/60 text-[8px]">▲ R</span>
+          <span className="text-red-400/60 text-[11px]">▲ R</span>
         </div>
       )}
       <div className="flex items-center justify-between text-[11px] py-0.5 border-y border-border/30">
         <span className="text-foreground font-bold">● ${currentPrice.toFixed(2)}</span>
-        <span className="text-muted-foreground/50 text-[8px]">current</span>
-        {rr && <span className="text-amber-400 font-bold text-[8px]">R/R {rr}</span>}
+        <span className="text-muted-foreground/50 text-[11px]">current</span>
+        {rr && <span className="text-amber-400 font-bold text-[11px]">R/R {rr}</span>}
       </div>
       {nearestSup && (
         <div className="flex items-center justify-between text-[11px]">
           <span className="text-emerald-400 font-bold">${nearestSup.price.toFixed(2)}</span>
           <span className="text-muted-foreground/70">{nearestSup.label}</span>
-          <span className="text-emerald-400/60 text-[8px]">▼ S</span>
+          <span className="text-emerald-400/60 text-[11px]">▼ S</span>
         </div>
       )}
     </div>
@@ -347,7 +347,7 @@ function ProfileCard({ profile }: { profile: AnalysisResult["traderProfile"] }) 
         <span className="text-muted-foreground">•</span>
         <span className="text-muted-foreground">PF {profile.profitFactor.toFixed(1)}</span>
       </div>
-      <div className="text-[8px] text-muted-foreground/70 leading-tight">
+      <div className="text-[11px] text-muted-foreground/70 leading-tight">
         {profile.strengthMessage}
       </div>
     </div>
@@ -365,7 +365,7 @@ function GradeBadge({ grade }: { grade: string }) {
   return (
     <div className={cn("rounded border px-3 py-2 text-center", cls)}>
       <div className="text-2xl font-bold leading-none">{grade}</div>
-      <div className="text-[8px] font-bold mt-0.5 opacity-80">TRADE GRADE</div>
+      <div className="text-[11px] font-bold mt-0.5 opacity-80">TRADE GRADE</div>
     </div>
   );
 }
@@ -589,7 +589,7 @@ function StrategyConfidenceMeter({ result, currentPrice }: { result: AnalysisRes
         <div className="text-[11px] font-bold text-foreground/50">
           Confidence Check
         </div>
-        <span className={cn("rounded border px-1.5 py-0.5 text-[8px] font-bold leading-none", badgeColor)}>
+        <span className={cn("rounded border px-1.5 py-0.5 text-[11px] font-bold leading-none", badgeColor)}>
           {metCount}/5 {badgeLabel}
         </span>
       </div>
@@ -644,7 +644,7 @@ function TradePlanCard({ plan, conviction }: { plan: TradePlan; conviction: stri
       <div className="text-[11px] font-bold text-foreground/50">
         Suggested Plan
       </div>
-      <div className="text-[9px] text-muted-foreground/50 -mt-0.5">
+      <div className="text-[11px] text-muted-foreground/50 -mt-0.5">
         Based on detected technical signals
       </div>
       <div className="flex justify-between text-[11px]">
@@ -670,7 +670,7 @@ function TradePlanCard({ plan, conviction }: { plan: TradePlan; conviction: stri
       <div className="border-t border-border/30 pt-1 space-y-0.5">
         <div className="flex items-center justify-between text-[11px]">
           <span className="text-muted-foreground">R:R Ratio</span>
-          <span className={cn("rounded border px-1.5 py-0.5 text-[8px] font-bold leading-none", rrColor)}>
+          <span className={cn("rounded border px-1.5 py-0.5 text-[11px] font-bold leading-none", rrColor)}>
             {rrRatio.toFixed(1)}:1
           </span>
         </div>
@@ -688,7 +688,7 @@ function TradePlanCard({ plan, conviction }: { plan: TradePlan; conviction: stri
 
       {/* Position Sizing */}
       <div className="border-t border-border/30 pt-1 space-y-0.5">
-        <div className="text-[8px] font-bold text-foreground/40">
+        <div className="text-[11px] font-bold text-foreground/40">
           Position Sizing (2% risk)
         </div>
         <div className="flex justify-between text-[11px]">
@@ -804,7 +804,7 @@ function LivePositionCoach({
           )}
         >
           {isProfit ? "+" : ""}${unrealizedPnL.toFixed(2)}{" "}
-          <span className="text-[8px]">({isProfit ? "+" : ""}{unrealizedPnLPercent.toFixed(1)}%)</span>
+          <span className="text-[11px]">({isProfit ? "+" : ""}{unrealizedPnLPercent.toFixed(1)}%)</span>
         </span>
       </div>
       {atrTrailingStop !== null && (
@@ -1111,7 +1111,7 @@ export function AICoachPanel() {
           <AlphaBotFace loading={loading} bias={result?.bias} conviction={result?.conviction} />
           <span className="font-bold">Market Analysis</span>
           {expanded && (
-            <span className="text-[9px] text-muted-foreground/70 font-normal">Rules-based</span>
+            <span className="text-[11px] text-muted-foreground/70 font-normal">Rules-based</span>
           )}
           {result && !expanded && (
             <>

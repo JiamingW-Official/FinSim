@@ -929,7 +929,7 @@ function HistoricalPerformanceTab() {
               {sorted.map((row, i) => {
                 const vssp = row.spinoff1Y - row.sp500_1Y;
                 return (
-                  <tr key={i} className="border-b border-white/5 hover:bg-white/5 transition-colors">
+                  <tr key={i} className="border-b border-white/5 hover:bg-muted/30 transition-colors">
                     <td className="px-4 py-3">
                       <div className="text-white/90 font-medium">{row.parent} → <span className="text-primary">{row.spinoff}</span></div>
                       <div className="text-white/30 mt-0.5">{row.parentTicker} → {row.spinoffTicker}</div>

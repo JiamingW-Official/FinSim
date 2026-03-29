@@ -819,7 +819,7 @@ function CorrelationSection({ seed }: { seed: number }) {
           <div />
           {CORR_ASSETS.map((a) => (
             <div key={a} className="text-center">
-              <span className="text-[8px] font-mono text-muted-foreground">{a}</span>
+              <span className="text-[11px] font-mono text-muted-foreground">{a}</span>
             </div>
           ))}
         </div>
@@ -828,7 +828,7 @@ function CorrelationSection({ seed }: { seed: number }) {
           <div key={rowAsset} className="grid gap-0.5 mb-0.5"
             style={{ gridTemplateColumns: `auto repeat(${CORR_ASSETS.length}, 1fr)` }}>
             <div className="flex items-center pr-1">
-              <span className="text-[8px] font-mono text-muted-foreground w-7">{rowAsset}</span>
+              <span className="text-[11px] font-mono text-muted-foreground w-7">{rowAsset}</span>
             </div>
             {CORR_ASSETS.map((_, j) => (
               <CorrCell key={j} value={matrix[i][j]} i={i} j={j} />

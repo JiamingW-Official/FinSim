@@ -248,7 +248,7 @@ function ScenarioChart({
   const chartH = H - PAD_TOP - PAD_BOT;
 
   const visible = bars.slice(0, revealedBars);
-  if (visible.length === 0) return <div className="w-full h-36 bg-white/[0.02] rounded-lg animate-pulse" />;
+  if (visible.length === 0) return <div className="w-full h-36 bg-muted/10 rounded-lg animate-pulse" />;
 
   const barW = W / bars.length;
   const allPrices = visible.flatMap((b) => [b.h, b.l]);
@@ -265,7 +265,7 @@ function ScenarioChart({
     <svg
       width="100%"
       viewBox={`0 0 ${W} ${H}`}
-      className="w-full rounded-lg bg-white/[0.02]"
+      className="w-full rounded-lg bg-muted/10"
       preserveAspectRatio="xMidYMid meet"
     >
       {/* Bars */}
@@ -338,7 +338,7 @@ function ScenarioCard({ scenario, onSelect }: { scenario: BlackSwanScenario; onS
       onClick={onSelect}
       whileHover={{ y: -2 }}
       whileTap={{ scale: 0.98 }}
-      className="group w-full rounded-lg border border-white/5 bg-white/[0.02] p-4 text-left transition-all hover:border-white/10 hover:bg-white/[0.04]"
+      className="group w-full rounded-lg border border-border/30 bg-muted/10 p-4 text-left transition-all hover:border-border/50 hover:bg-muted/30"
     >
       <div className="flex items-start justify-between gap-2 mb-2">
         <div>
@@ -485,7 +485,7 @@ function ActiveScenario({ scenario, bars, onComplete, onBack }: ActiveScenarioPr
 
       {/* Portfolio value */}
       <div className="grid grid-cols-3 gap-2">
-        <div className="rounded-lg border border-white/5 bg-white/[0.02] p-2.5">
+        <div className="rounded-lg border border-border/30 bg-muted/10 p-2.5">
           <div className="text-[11px] text-muted-foreground/70 mb-1">Portfolio</div>
           <div className="text-sm font-bold tabular-nums text-foreground">
             ${Math.round(portfolio).toLocaleString()}
@@ -494,14 +494,14 @@ function ActiveScenario({ scenario, bars, onComplete, onBack }: ActiveScenarioPr
             {pnlPct >= 0 ? "+" : ""}{pnlPct.toFixed(1)}%
           </div>
         </div>
-        <div className="rounded-lg border border-white/5 bg-white/[0.02] p-2.5">
+        <div className="rounded-lg border border-border/30 bg-muted/10 p-2.5">
           <div className="text-[11px] text-muted-foreground/70 mb-1">Market</div>
           <div className={cn("text-sm font-bold tabular-nums", pricePct >= 0 ? "text-emerald-400" : "text-red-400")}>
             {pricePct >= 0 ? "+" : ""}{pricePct.toFixed(1)}%
           </div>
           <div className="text-[11px] text-muted-foreground/70">{scenario.drop}% max drop</div>
         </div>
-        <div className="rounded-lg border border-white/5 bg-white/[0.02] p-2.5">
+        <div className="rounded-lg border border-border/30 bg-muted/10 p-2.5">
           <div className="text-[11px] text-muted-foreground/70 mb-1">Exposure</div>
           <div className="text-sm font-bold tabular-nums text-foreground">{100 - soldPct}%</div>
           <div className={cn("text-[11px] font-bold", hedged ? "text-amber-400" : "text-muted-foreground/70")}>
@@ -558,7 +558,7 @@ function ActiveScenario({ scenario, bars, onComplete, onBack }: ActiveScenarioPr
         </button>
 
         {/* Speed */}
-        <div className="flex items-center gap-0.5 rounded-lg border border-white/5 bg-white/[0.02] p-0.5">
+        <div className="flex items-center gap-0.5 rounded-lg border border-border/30 bg-muted/10 p-0.5">
           {([1, 2, 5] as Speed[]).map((s) => (
             <button
               key={s}
@@ -578,7 +578,7 @@ function ActiveScenario({ scenario, bars, onComplete, onBack }: ActiveScenarioPr
           type="button"
           onClick={doAdvance}
           disabled={isComplete || isPlaying}
-          className="rounded-lg border border-white/5 bg-white/[0.02] px-3 py-2 text-xs text-muted-foreground hover:text-muted-foreground disabled:opacity-40 transition-colors"
+          className="rounded-lg border border-border/30 bg-muted/10 px-3 py-2 text-xs text-muted-foreground hover:text-muted-foreground disabled:opacity-40 transition-colors"
         >
           Step
         </button>
@@ -603,7 +603,7 @@ function ActiveScenario({ scenario, bars, onComplete, onBack }: ActiveScenarioPr
             "flex items-center justify-center gap-1.5 rounded-lg border py-2.5 text-xs font-bold transition-colors",
             hedged
               ? "border-amber-500/40 bg-amber-500/15 text-amber-400 hover:bg-amber-500/25"
-              : "border-white/10 bg-white/5 text-muted-foreground hover:bg-white/10",
+              : "border-border/50 bg-muted/20 text-muted-foreground hover:bg-muted/50",
           )}
         >
           <Shield className="h-3.5 w-3.5" />
@@ -612,7 +612,7 @@ function ActiveScenario({ scenario, bars, onComplete, onBack }: ActiveScenarioPr
       </div>
 
       {/* Progress bar */}
-      <div className="h-1 rounded-full bg-white/5 overflow-hidden">
+      <div className="h-1 rounded-full bg-muted/20 overflow-hidden">
         <motion.div
           className="h-full rounded-full bg-teal-500/60"
           animate={{ width: `${(revealedBars / scenario.bars) * 100}%` }}
@@ -663,11 +663,11 @@ function ScenarioResults({ scenario, finalPortfolio, onPlayAgain, onBack }: Scen
 
       {/* Result chips */}
       <div className="grid grid-cols-2 gap-2">
-        <div className="rounded-lg border border-white/5 bg-white/[0.02] p-3 text-center">
+        <div className="rounded-lg border border-border/30 bg-muted/10 p-3 text-center">
           <div className="text-xs text-muted-foreground/70 mb-1">Final Portfolio</div>
           <div className="text-sm font-bold tabular-nums text-foreground">${Math.round(finalPortfolio).toLocaleString()}</div>
         </div>
-        <div className="rounded-lg border border-white/5 bg-white/[0.02] p-3 text-center">
+        <div className="rounded-lg border border-border/30 bg-muted/10 p-3 text-center">
           <div className="text-xs text-muted-foreground/70 mb-1">Loss</div>
           <div className={cn("text-sm font-bold tabular-nums", lossPct < 20 ? "text-emerald-400" : "text-red-400")}>
             -{lossPct.toFixed(1)}%
@@ -695,7 +695,7 @@ function ScenarioResults({ scenario, finalPortfolio, onPlayAgain, onBack }: Scen
       </div>
 
       {/* What actually happened */}
-      <div className="rounded-lg border border-white/5 bg-white/[0.02] p-3">
+      <div className="rounded-lg border border-border/30 bg-muted/10 p-3">
         <div className="text-xs font-bold text-muted-foreground mb-2 flex items-center gap-1.5">
           <BookOpen className="h-3.5 w-3.5 text-emerald-400" />
           What Actually Happened
@@ -704,11 +704,11 @@ function ScenarioResults({ scenario, finalPortfolio, onPlayAgain, onBack }: Scen
       </div>
 
       {/* Lessons */}
-      <div className="rounded-lg border border-white/5 bg-white/[0.02] overflow-hidden">
+      <div className="rounded-lg border border-border/30 bg-muted/10 overflow-hidden">
         <button
           type="button"
           onClick={() => setShowLessons((v) => !v)}
-          className="w-full flex items-center justify-between px-3 py-2.5 text-xs font-bold text-muted-foreground hover:bg-white/5 transition-colors"
+          className="w-full flex items-center justify-between px-3 py-2.5 text-xs font-bold text-muted-foreground hover:bg-muted/20 transition-colors"
         >
           <span className="flex items-center gap-1.5">
             <TrendingUp className="h-3.5 w-3.5 text-emerald-400" />
@@ -749,7 +749,7 @@ function ScenarioResults({ scenario, finalPortfolio, onPlayAgain, onBack }: Scen
         <button
           type="button"
           onClick={onBack}
-          className="flex-1 flex items-center justify-center gap-2 rounded-lg border border-white/10 bg-white/5 py-2.5 text-sm font-bold text-muted-foreground transition-colors hover:bg-white/10"
+          className="flex-1 flex items-center justify-center gap-2 rounded-lg border border-border/50 bg-muted/20 py-2.5 text-sm font-bold text-muted-foreground transition-colors hover:bg-muted/50"
         >
           Scenarios
         </button>

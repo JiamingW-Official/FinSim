@@ -407,7 +407,7 @@ function YieldDashboard() {
                   initial={{ opacity: 0, y: 4 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: idx * 0.02 }}
-                  className="border-b border-white/5 hover:bg-white/5 transition-colors"
+                  className="border-b border-white/5 hover:bg-muted/30 transition-colors"
                 >
                   <td className="p-3 font-medium text-foreground">{opp.protocol}</td>
                   <td className="p-3 text-muted-foreground">{opp.pair}</td>
@@ -655,7 +655,7 @@ function LiquidityPoolSimulator() {
           </thead>
           <tbody>
             {scenarios.map((sc) => (
-              <tr key={sc.ratio} className="border-b border-white/5 hover:bg-white/5">
+              <tr key={sc.ratio} className="border-b border-white/5 hover:bg-muted/30">
                 <td className="p-3">
                   <span className={cn("font-medium", sc.ratio < 1 ? "text-rose-400" : sc.ratio > 1 ? "text-emerald-400" : "text-muted-foreground")}>
                     {sc.ratio === 1 ? "No change" : sc.ratio > 1 ? `+${((sc.ratio - 1) * 100).toFixed(0)}%` : `-${((1 - sc.ratio) * 100).toFixed(0)}%`}
@@ -1103,7 +1103,7 @@ function LendingAnalyzer() {
           <div className="space-y-3">
             <div className="p-4 rounded-lg border border-white/10 bg-white/5">
               <div className="text-xs text-muted-foreground mb-1">Health Factor</div>
-              <div className={cn("text-3xl font-bold", healthFactor >= 2 ? "text-emerald-400" : healthFactor >= 1.3 ? "text-amber-400" : "text-rose-400")}>
+              <div className={cn("text-2xl font-bold", healthFactor >= 2 ? "text-emerald-400" : healthFactor >= 1.3 ? "text-amber-400" : "text-rose-400")}>
                 {healthFactor.toFixed(2)}
               </div>
               <div className="text-xs text-muted-foreground mt-1">
@@ -1558,7 +1558,7 @@ function ProtocolRankings() {
               <>
                 <tr
                   key={p.name}
-                  className="border-b border-white/5 hover:bg-white/5 transition-colors cursor-pointer"
+                  className="border-b border-white/5 hover:bg-muted/30 transition-colors cursor-pointer"
                   onClick={() => setExpandedRow(expandedRow === idx ? null : idx)}
                 >
                   <td className="p-3 text-muted-foreground font-mono">{p.rank}</td>
@@ -1661,7 +1661,7 @@ function ProtocolRankings() {
             </thead>
             <tbody>
               {DEFI_VS_CEFI.map((row) => (
-                <tr key={row.product} className="border-b border-white/5 hover:bg-white/5">
+                <tr key={row.product} className="border-b border-white/5 hover:bg-muted/30">
                   <td className="p-2 text-foreground">{row.product}</td>
                   <td className="p-2 text-right">
                     {row.defiRate > 0 ? (

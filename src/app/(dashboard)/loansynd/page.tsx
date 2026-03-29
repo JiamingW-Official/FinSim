@@ -555,7 +555,7 @@ export default function LoanSyndPage() {
                       key={i}
                       className={cn(
                         "border-b border-white/5 cursor-pointer transition-colors",
-                        selectedLoan?.company === loan.company ? "bg-indigo-500/10" : "hover:bg-white/5"
+                        selectedLoan?.company === loan.company ? "bg-indigo-500/10" : "hover:bg-muted/30"
                       )}
                       onClick={() => setSelectedLoan(selectedLoan?.company === loan.company ? null : loan)}
                     >

@@ -69,7 +69,7 @@ function CurrentAnnotations({ patterns, barIndex }: CurrentAnnotationsProps) {
             </span>
             <span
               className={cn(
-                "text-[8px] font-bold leading-none",
+                "text-[11px] font-bold leading-none",
                 isBull
                   ? "text-green-400/60"
                   : isBear
@@ -115,7 +115,7 @@ function HistoryAnnotations({ history }: HistoryAnnotationsProps) {
           >
             <span
               className={cn(
-                "font-bold text-[8px] leading-none w-3 text-center",
+                "font-bold text-[11px] leading-none w-3 text-center",
                 isBull
                   ? "text-green-400/70"
                   : isBear
@@ -125,7 +125,7 @@ function HistoryAnnotations({ history }: HistoryAnnotationsProps) {
             >
               {getAbbr(entry.pattern.name)}
             </span>
-            <span className="text-[8px] text-muted-foreground/60 leading-none truncate max-w-16">
+            <span className="text-[11px] text-muted-foreground/60 leading-none truncate max-w-16">
               {entry.pattern.name}
             </span>
             <span className="text-[7px] text-muted-foreground/40 font-mono leading-none">
@@ -172,7 +172,7 @@ export function ChartPatternAnnotations({
     <div className="border-t border-border/30 bg-card/60 backdrop-blur-sm px-3 py-1.5 space-y-1">
       {currentPatterns.length > 0 && (
         <div className="flex items-start gap-1.5">
-          <span className="text-[8px] font-bold text-primary/60 shrink-0 mt-0.5 w-14">
+          <span className="text-[11px] font-bold text-primary/60 shrink-0 mt-0.5 w-14">
             Detected
           </span>
           <CurrentAnnotations
@@ -184,7 +184,7 @@ export function ChartPatternAnnotations({
 
       {history.length > 1 && (
         <div className="flex items-start gap-1.5">
-          <span className="text-[8px] font-bold text-muted-foreground/40 shrink-0 mt-0.5 w-14">
+          <span className="text-[11px] font-bold text-muted-foreground/40 shrink-0 mt-0.5 w-14">
             Prior
           </span>
           <HistoryAnnotations history={history} />

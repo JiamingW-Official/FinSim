@@ -101,7 +101,7 @@ export function StrategyRecommendationCard({
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.2 }}
       onClick={() => onSelect(rec)}
-      className="rounded-lg border border-[#1e293b]/50 bg-[#0f1420] p-2.5 flex flex-col gap-2 cursor-pointer hover:border-orange-500/30 transition-colors"
+      className="rounded-lg border border-border/50 bg-card p-2.5 flex flex-col gap-2 cursor-pointer hover:border-primary/30 hover:bg-accent/50 transition-colors"
     >
       {/* Row 1: Name + Sentiment badge */}
       <div className="flex justify-between items-start gap-1">
@@ -211,7 +211,7 @@ export function StrategyRecommendationCard({
 
       {/* Row 4: Breakevens */}
       {breakevens.length > 0 && (
-        <p className="text-[8px] text-muted-foreground">
+        <p className="text-[11px] text-muted-foreground">
           BE: {breakevens.map((be) => `$${be.toFixed(2)}`).join(", ")}
         </p>
       )}
@@ -222,7 +222,7 @@ export function StrategyRecommendationCard({
           e.stopPropagation();
           onSelect(rec);
         }}
-        className="w-full rounded bg-orange-500/10 border border-orange-500/20 text-orange-400 text-xs font-bold py-1 hover:bg-orange-500/20 transition-colors"
+        className="w-full rounded bg-primary/10 border border-primary/20 text-primary text-xs font-bold py-1 hover:bg-primary/20 transition-colors"
       >
         Select Strategy &rarr;
       </button>

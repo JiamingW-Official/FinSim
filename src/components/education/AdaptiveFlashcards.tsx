@@ -356,7 +356,7 @@ export function AdaptiveFlashcards({ onSessionStats }: AdaptiveFlashcardsProps) 
                   )}
                   <div className="ml-auto flex items-center gap-1.5">
                     {isNew && (
-                      <span className="rounded-sm bg-primary/10 px-1.5 py-0.5 text-[8px] font-bold text-primary">
+                      <span className="rounded-sm bg-primary/10 px-1.5 py-0.5 text-[11px] font-bold text-primary">
                         New
                       </span>
                     )}

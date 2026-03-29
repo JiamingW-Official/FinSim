@@ -779,7 +779,7 @@ function EarningsAnalysisTab() {
           <div className="text-xs font-semibold text-foreground">Earnings Quality Score</div>
           <div className="flex items-center gap-3">
             <div className={cn(
-              "text-3xl font-bold tabular-nums",
+              "text-2xl font-bold tabular-nums",
               qualityScore >= 70 ? "text-emerald-400" : qualityScore >= 50 ? "text-amber-400" : "text-red-400"
             )}>
               {qualityScore}
