@@ -222,7 +222,7 @@ export default function LearnPage() {
                       <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-primary opacity-40" />
                       <span className="relative inline-flex h-2.5 w-2.5 rounded-full bg-primary" />
                     </div>
-                    <span className="text-xs font-semibold text-primary uppercase tracking-widest">Up Next</span>
+                    <span className="text-xs font-medium text-primary">Up next</span>
                   </div>
                   <p className="text-xl font-bold mb-1 leading-tight">{recommendedLesson.lesson.title}</p>
                   <p className="text-sm font-normal text-muted-foreground mb-4 leading-relaxed">{recommendedLesson.lesson.description}</p>
@@ -548,9 +548,8 @@ export default function LearnPage() {
               </div>
 
               {/* Unit-by-unit breakdown */}
-              <h3 className="text-[11px] font-medium text-muted-foreground uppercase tracking-wide flex items-center gap-1.5">
-                <BarChart2 className="h-3 w-3" />
-                Unit Breakdown
+              <h3 className="text-xs text-muted-foreground">
+                Unit breakdown
               </h3>
               <div className="space-y-2">
                 {UNITS.map((unit) => {
@@ -586,9 +585,8 @@ export default function LearnPage() {
               </div>
 
               {/* Full skill tree below */}
-              <h3 className="text-[11px] font-medium text-muted-foreground uppercase tracking-wide flex items-center gap-1.5">
-                <GraduationCap className="h-3 w-3" />
-                Skill Tree
+              <h3 className="text-xs text-muted-foreground">
+                Skill tree
               </h3>
               <SkillPath />
             </>

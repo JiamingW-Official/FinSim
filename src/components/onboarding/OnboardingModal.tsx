@@ -99,7 +99,7 @@ export function OnboardingModal() {
         transition={{ duration: 0.25, ease: "easeOut" }}
         className="relative w-full max-w-md mx-4"
       >
-        <div className="rounded-lg border border-border/60 bg-card shadow-sm overflow-hidden">
+        <div className="rounded-md border border-border/60 bg-card shadow-sm overflow-hidden">
           {/* Header bar */}
           <div className="flex items-center justify-between border-b border-border/40 px-5 py-3.5">
             <span className="text-xs font-medium text-muted-foreground">
@@ -244,7 +244,7 @@ function FeatureRow({
   desc: string;
 }) {
   return (
-    <div className="flex items-start gap-3 rounded-lg border border-border/40 bg-muted/20 px-3.5 py-3">
+    <div className="flex items-start gap-3 rounded-md border border-border/40 bg-muted/20 px-3.5 py-3">
       <div className="mt-0.5 flex-shrink-0">{icon}</div>
       <div>
         <p className="text-xs font-semibold">{title}</p>
@@ -313,7 +313,7 @@ function PathCard({
     <button
       onClick={onClick}
       className={cn(
-        "flex items-start gap-3.5 rounded-lg border px-4 py-4 text-left transition-colors",
+        "flex items-start gap-3.5 rounded-md border px-4 py-4 text-left transition-colors",
         active
           ? "border-primary bg-primary/8 text-foreground"
           : "border-border/40 bg-muted/10 text-muted-foreground hover:bg-accent/30 hover:text-foreground"

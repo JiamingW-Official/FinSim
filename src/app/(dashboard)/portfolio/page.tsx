@@ -181,20 +181,9 @@ export default function PortfolioPage() {
         <div className="flex items-center justify-between mb-5">
           <div className="flex items-center gap-2">
             <h1 className="text-sm font-medium">Portfolio</h1>
-            <div className="flex items-center gap-1.5 rounded-md bg-primary/8 px-2 py-0.5">
-              <Shield className="h-3 w-3 text-primary" />
-              <span className="text-xs font-medium text-primary">
-                Lv.{level} {title}
-              </span>
-            </div>
-            {achievements.length > 0 && (
-              <div className="flex items-center gap-1 rounded-md bg-muted/50 px-2 py-0.5">
-                <Trophy className="h-3 w-3 text-amber-400" />
-                <span className="text-xs font-medium text-amber-400">
-                  {achievements.length}
-                </span>
-              </div>
-            )}
+            <span className="text-xs text-muted-foreground">
+              Lv.{level} {title}
+            </span>
           </div>
           <ExportMenu />
         </div>

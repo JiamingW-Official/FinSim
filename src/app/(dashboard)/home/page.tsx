@@ -353,9 +353,8 @@ export default function HomePage() {
           {/* Main hero body — generous py-8 */}
           <div className="grid grid-cols-1 gap-0 lg:grid-cols-3">
             <div className="border-b border-border/20 px-8 py-8 lg:border-b-0 lg:border-r lg:border-border/20 lg:col-span-2">
-              <p className="mb-4 text-[11px] font-medium uppercase tracking-wide text-muted-foreground flex items-center gap-1.5">
-                Key Insights
-                <span className="rounded bg-primary/10 px-1.5 py-0.5 text-[11px] font-medium text-primary normal-case tracking-normal">AI</span>
+              <p className="mb-4 text-xs text-muted-foreground">
+                Key insights
               </p>
               <ul className="space-y-3">
                 {morningBullets.map((bullet, i) => (
@@ -394,7 +393,7 @@ export default function HomePage() {
 
             {/* Right column: Yesterday + Level — inside the hero */}
             <div className="px-8 py-8">
-              <p className="mb-4 text-[11px] font-medium uppercase tracking-wide text-muted-foreground">Yesterday</p>
+              <p className="mb-4 text-xs text-muted-foreground">Yesterday</p>
               <div className="space-y-3">
                 <div className="flex items-center justify-between"><span className="text-xs text-muted-foreground">Trades</span><span className="text-xs tabular-nums">{yesterdaySummary.count}</span></div>
                 <div className="flex items-center justify-between"><span className="text-xs text-muted-foreground">Session P&L</span><span className={cn("text-xs tabular-nums", yesterdaySummary.pnl >= 0 ? "text-emerald-400" : "text-red-400")}>{yesterdaySummary.pnl >= 0 ? "+" : ""}{formatCurrency(yesterdaySummary.pnl)}</span></div>
@@ -462,8 +461,8 @@ export default function HomePage() {
             TIER 3 — REFERENCE: Market Intelligence (nearly invisible)
         ═══════════════════════════════════════════ */}
         <div className="grid grid-cols-1 gap-1.5 lg:grid-cols-3 opacity-50">
-          {/* Market Pulse — dense */}
-          <div className="rounded bg-muted/20 px-4 py-3">
+          {/* Market Pulse — hero reference card, spans 2 cols */}
+          <div className="rounded bg-muted/20 px-5 py-4 lg:col-span-2">
             <p className="mb-2 text-xs font-normal text-muted-foreground">Market Pulse</p>
             <div className="space-y-1">
               <div className="flex items-center justify-between">
