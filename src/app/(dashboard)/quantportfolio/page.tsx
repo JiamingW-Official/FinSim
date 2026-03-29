@@ -908,7 +908,7 @@ export default function QuantPortfolioPage() {
                         <span className="font-medium text-slate-200">{view.asset}</span>
                         <Badge
                           variant="outline"
-                          className={`text-xs ${view.type === "absolute" ? "border-sky-500/50 text-sky-400" : "border-purple-500/50 text-purple-400"}`}
+                          className={`text-xs ${view.type === "absolute" ? "border-sky-500/50 text-sky-400" : "border-primary/50 text-primary"}`}
                         >
                           {view.type}
                         </Badge>

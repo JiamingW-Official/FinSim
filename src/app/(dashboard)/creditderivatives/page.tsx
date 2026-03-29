@@ -189,15 +189,15 @@ const CREDIT_EVENTS: CreditEvent[] = [
     name: "Repudiation / Moratorium",
     desc: "Government denies or rejects debt obligations (sovereign CDS only)",
     example: "Russia 1998, Venezuela 2017",
-    borderColor: "border-purple-500",
-    textColor: "text-purple-400",
+    borderColor: "border-primary",
+    textColor: "text-primary",
   },
   {
     name: "Obligation Acceleration",
     desc: "Early maturity triggered by default cross-acceleration clauses",
     example: "Emerging market corporates",
-    borderColor: "border-blue-500",
-    textColor: "text-blue-400",
+    borderColor: "border-primary",
+    textColor: "text-primary",
   },
 ];
 
@@ -299,7 +299,7 @@ const TRANCHES: Tranche[] = [
   { name: "Equity", attachment: "0%", detachment: "3%", spread: "~30% upfront + 500bps", role: "First loss — absorbs first 3% defaults", correlation: "Short correlation", borderColor: "border-red-500", labelColor: "text-red-400" },
   { name: "Junior Mezz", attachment: "3%", detachment: "7%", spread: "~250bps", role: "Second loss — high spread compensation", correlation: "Short correlation", borderColor: "border-orange-500", labelColor: "text-orange-400" },
   { name: "Senior Mezz", attachment: "7%", detachment: "10%", spread: "~100bps", role: "Mid capital structure exposure", correlation: "Long correlation", borderColor: "border-amber-500", labelColor: "text-amber-400" },
-  { name: "Senior", attachment: "10%", detachment: "15%", spread: "~40bps", role: "Near-safe protection", correlation: "Long correlation", borderColor: "border-blue-500", labelColor: "text-blue-400" },
+  { name: "Senior", attachment: "10%", detachment: "15%", spread: "~40bps", role: "Near-safe protection", correlation: "Long correlation", borderColor: "border-primary", labelColor: "text-primary" },
   { name: "Super Senior", attachment: "15%", detachment: "30%", spread: "~10bps", role: "Catastrophic scenario only", correlation: "Long correlation", borderColor: "border-indigo-500", labelColor: "text-indigo-400" },
 ];
 
@@ -489,10 +489,10 @@ interface MarketStat {
 const MARKET_STATS: MarketStat[] = [
   { label: "Global CDS Gross Notional", value: "$10.3T", sub: "DTCC TIW 2024 estimate", color: "text-indigo-400" },
   { label: "Global CDS Net Notional", value: "$1.8T", sub: "~17% of gross (netting benefit)", color: "text-emerald-400" },
-  { label: "Cleared CDS (LCH/ICE)", value: "~75%", sub: "Post Dodd-Frank clearing mandate", color: "text-blue-400" },
+  { label: "Cleared CDS (LCH/ICE)", value: "~75%", sub: "Post Dodd-Frank clearing mandate", color: "text-primary" },
   { label: "Index vs Single Name", value: "60% / 40%", sub: "Index products dominate by volume", color: "text-amber-400" },
-  { label: "IG / HY Split", value: "70% / 30%", sub: "IG single-name more liquid", color: "text-purple-400" },
-  { label: "Avg Bid-Ask (IG CDX)", value: "0.25-0.5bps", sub: "Highly liquid benchmark index", color: "text-cyan-400" },
+  { label: "IG / HY Split", value: "70% / 30%", sub: "IG single-name more liquid", color: "text-primary" },
+  { label: "Avg Bid-Ask (IG CDX)", value: "0.25-0.5bps", sub: "Highly liquid benchmark index", color: "text-muted-foreground" },
 ];
 
 // ── XVA data ──────────────────────────────────────────────────────────────────
@@ -602,7 +602,7 @@ export default function CreditDerivativesPage() {
           {[
             { label: "CDX.NA.IG S41", value: "68bps", color: "text-emerald-400" },
             { label: "CDX.NA.HY S41", value: "385bps", color: "text-amber-400" },
-            { label: "iTraxx Europe", value: "72bps", color: "text-blue-400" },
+            { label: "iTraxx Europe", value: "72bps", color: "text-primary" },
             { label: "iTraxx Xover", value: "320bps", color: "text-orange-400" },
             { label: "CDS Market Notional", value: "$10.3T", color: "text-indigo-400" },
           ].map((stat) => (
@@ -702,7 +702,7 @@ export default function CreditDerivativesPage() {
                   <p className="text-xs font-semibold text-zinc-300 mb-2">Settlement Mechanics: Physical vs Cash</p>
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
                     <div>
-                      <p className="text-xs font-medium text-blue-300 mb-1">Physical Settlement</p>
+                      <p className="text-xs font-medium text-primary mb-1">Physical Settlement</p>
                       <ul className="space-y-1">
                         {[
                           "Protection buyer delivers defaulted bond to seller",
@@ -712,7 +712,7 @@ export default function CreditDerivativesPage() {
                           "Risk of short squeeze in bond market",
                         ].map((t, i) => (
                           <li key={i} className="text-xs text-zinc-400 flex gap-2">
-                            <span className="text-blue-400">•</span>{t}
+                            <span className="text-primary">•</span>{t}
                           </li>
                         ))}
                       </ul>
@@ -803,7 +803,7 @@ export default function CreditDerivativesPage() {
             <Card className="bg-zinc-900 border-zinc-800">
               <CardHeader className="pb-2">
                 <CardTitle className="text-sm text-zinc-100 flex items-center gap-2">
-                  <TrendingUp className="w-4 h-4 text-blue-400" />
+                  <TrendingUp className="w-4 h-4 text-primary" />
                   CDS Term Structure
                 </CardTitle>
               </CardHeader>
@@ -825,14 +825,14 @@ export default function CreditDerivativesPage() {
             <Card className="bg-zinc-900 border-zinc-800">
               <CardHeader className="pb-2">
                 <CardTitle className="text-sm text-zinc-100 flex items-center gap-2">
-                  <Globe className="w-4 h-4 text-purple-400" />
+                  <Globe className="w-4 h-4 text-primary" />
                   Sovereign CDS — ISDA 2014 Definitions
                 </CardTitle>
               </CardHeader>
               <CardContent>
                 <SovereignBarChart />
                 <div className="mt-4 bg-zinc-950 rounded-lg p-3 border border-zinc-800">
-                  <p className="text-xs font-semibold text-purple-300 mb-2">Greece 2012 Restructuring — The CAC Trigger</p>
+                  <p className="text-xs font-semibold text-primary mb-2">Greece 2012 Restructuring — The CAC Trigger</p>
                   <p className="text-xs text-zinc-400 mb-2">
                     In March 2012, Greece restructuring triggered CDS credit events after ISDA ruled that collective action
                     clauses (CACs) constituted a restructuring event. The CDS auction settled at 21.5 cents on the dollar
@@ -842,7 +842,7 @@ export default function CreditDerivativesPage() {
                     {[
                       { label: "Recovery Rate", value: "21.5%", color: "text-red-400" },
                       { label: "Protection Payout", value: "78.5%", color: "text-emerald-400" },
-                      { label: "Net CDS Notional", value: "~$2.5B", color: "text-blue-400" },
+                      { label: "Net CDS Notional", value: "~$2.5B", color: "text-primary" },
                     ].map((stat) => (
                       <div key={stat.label} className="text-center bg-zinc-900 rounded p-2 border border-zinc-700">
                         <p className="text-xs text-zinc-500">{stat.label}</p>
@@ -852,10 +852,10 @@ export default function CreditDerivativesPage() {
                   </div>
                 </div>
                 <div className="mt-3 bg-zinc-950 rounded-lg p-3 border border-zinc-800">
-                  <p className="text-xs font-semibold text-cyan-300 mb-2">CDS as Pure Credit Signal vs Bonds</p>
+                  <p className="text-xs font-semibold text-muted-foreground mb-2">CDS as Pure Credit Signal vs Bonds</p>
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
                     <div>
-                      <p className="text-xs font-medium text-blue-300 mb-1">Bond Yield Spread Contamination</p>
+                      <p className="text-xs font-medium text-primary mb-1">Bond Yield Spread Contamination</p>
                       <ul className="space-y-1">
                         {[
                           "Interest rate duration risk embedded",
@@ -894,7 +894,7 @@ export default function CreditDerivativesPage() {
             <Card className="bg-zinc-900 border-zinc-800">
               <CardHeader className="pb-2">
                 <CardTitle className="text-sm text-zinc-100 flex items-center gap-2">
-                  <Activity className="w-4 h-4 text-cyan-400" />
+                  <Activity className="w-4 h-4 text-muted-foreground" />
                   CDS Mark-to-Market P&amp;L
                 </CardTitle>
               </CardHeader>
@@ -902,7 +902,7 @@ export default function CreditDerivativesPage() {
                 <div className="bg-zinc-950 rounded-lg p-3 border border-zinc-800 mb-3">
                   <p className="text-xs text-zinc-400 mb-3">
                     Approximate P&amp;L for a CDS position (protection buyer) when spreads move:{" "}
-                    <span className="text-cyan-300 font-medium">DeltaPV approx -Duration x DeltaSpread x Notional</span>
+                    <span className="text-muted-foreground font-medium">DeltaPV approx -Duration x DeltaSpread x Notional</span>
                   </p>
                   <div className="overflow-x-auto">
                     <table className="w-full text-xs">
@@ -945,7 +945,7 @@ export default function CreditDerivativesPage() {
             <Card className="bg-zinc-900 border-zinc-800">
               <CardHeader className="pb-2">
                 <CardTitle className="text-sm text-zinc-100 flex items-center gap-2">
-                  <BarChart2 className="w-4 h-4 text-blue-400" />
+                  <BarChart2 className="w-4 h-4 text-primary" />
                   Major Credit Indices
                 </CardTitle>
               </CardHeader>
@@ -961,7 +961,7 @@ export default function CreditDerivativesPage() {
                           variant="outline"
                           className={cn(
                             "text-xs border font-mono",
-                            idx.spread > 300 ? "border-orange-500/50 text-orange-300" : "border-blue-500/50 text-blue-300"
+                            idx.spread > 300 ? "border-orange-500/50 text-orange-300" : "border-primary/50 text-primary"
                           )}
                         >
                           {idx.name}
@@ -1039,14 +1039,14 @@ export default function CreditDerivativesPage() {
             <Card className="bg-zinc-900 border-zinc-800">
               <CardHeader className="pb-2">
                 <CardTitle className="text-sm text-zinc-100 flex items-center gap-2">
-                  <Target className="w-4 h-4 text-purple-400" />
+                  <Target className="w-4 h-4 text-primary" />
                   CDX Options — Payer &amp; Receiver Swaptions
                 </CardTitle>
               </CardHeader>
               <CardContent>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                  <div className="bg-zinc-950 rounded-lg p-3 border border-purple-800/30">
-                    <p className="text-xs font-bold text-purple-300 mb-2">Payer Swaption (Long Protection Option)</p>
+                  <div className="bg-zinc-950 rounded-lg p-3 border border-border">
+                    <p className="text-xs font-bold text-primary mb-2">Payer Swaption (Long Protection Option)</p>
                     <ul className="space-y-1">
                       {[
                         "Right to buy protection (pay premium) at strike spread",
@@ -1057,13 +1057,13 @@ export default function CreditDerivativesPage() {
                         "Typical strikes: 10-30bps OTM on CDX IG",
                       ].map((t, i) => (
                         <li key={i} className="text-xs text-zinc-400 flex gap-2 list-none">
-                          <span className="text-purple-400">•</span>{t}
+                          <span className="text-primary">•</span>{t}
                         </li>
                       ))}
                     </ul>
                   </div>
                   <div className="bg-zinc-950 rounded-lg p-3 border border-cyan-800/30">
-                    <p className="text-xs font-bold text-cyan-300 mb-2">Receiver Swaption (Long No-Defaults Option)</p>
+                    <p className="text-xs font-bold text-muted-foreground mb-2">Receiver Swaption (Long No-Defaults Option)</p>
                     <ul className="space-y-1">
                       {[
                         "Right to sell protection (receive premium) at strike spread",
@@ -1074,7 +1074,7 @@ export default function CreditDerivativesPage() {
                         "Straddles used to trade credit spread volatility",
                       ].map((t, i) => (
                         <li key={i} className="text-xs text-zinc-400 flex gap-2 list-none">
-                          <span className="text-cyan-400">•</span>{t}
+                          <span className="text-muted-foreground">•</span>{t}
                         </li>
                       ))}
                     </ul>
@@ -1091,7 +1091,7 @@ export default function CreditDerivativesPage() {
                     {[
                       { label: "Index Tighter Than Names", desc: "Liquidity premium: buy index / sell basket", color: "text-emerald-400" },
                       { label: "Index Wider Than Names", desc: "Macro fear bid on index: sell index / buy basket", color: "text-red-400" },
-                      { label: "Skew Trade", desc: "Long equity tranche + short index = correlation bet", color: "text-blue-400" },
+                      { label: "Skew Trade", desc: "Long equity tranche + short index = correlation bet", color: "text-primary" },
                     ].map((item) => (
                       <div key={item.label} className="bg-zinc-900 rounded p-2 border border-zinc-800">
                         <p className={cn("text-xs font-semibold mb-1", item.color)}>{item.label}</p>
@@ -1135,8 +1135,8 @@ export default function CreditDerivativesPage() {
                     <span className="text-amber-300">implied correlation</span> (the pairwise default correlation that makes
                     the tranche model price equal market price). Equity tranches trade at low implied correlation; senior tranches
                     at high implied correlation — creating a correlation smile. The{" "}
-                    <span className="text-blue-300">compound correlation</span> treats all names as correlated equally;{" "}
-                    <span className="text-purple-300">base correlation</span> (industry standard) decomposes using 0-K structure.
+                    <span className="text-primary">compound correlation</span> treats all names as correlated equally;{" "}
+                    <span className="text-primary">base correlation</span> (industry standard) decomposes using 0-K structure.
                   </p>
                   <div className="grid grid-cols-2 gap-2">
                     <div className="bg-zinc-900 rounded p-2 border border-zinc-800">
@@ -1161,15 +1161,15 @@ export default function CreditDerivativesPage() {
             <Card className="bg-zinc-900 border-zinc-800">
               <CardHeader className="pb-2">
                 <CardTitle className="text-sm text-zinc-100 flex items-center gap-2">
-                  <FileText className="w-4 h-4 text-violet-400" />
+                  <FileText className="w-4 h-4 text-primary" />
                   Credit-Linked Note (CLN) Structure
                 </CardTitle>
               </CardHeader>
               <CardContent>
                 <CLNStructureSVG />
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-3 mt-3">
-                  <div className="bg-zinc-950 rounded-lg p-3 border border-violet-800/30">
-                    <p className="text-xs font-semibold text-violet-300 mb-2">CLN = Bond + Embedded CDS</p>
+                  <div className="bg-zinc-950 rounded-lg p-3 border border-border">
+                    <p className="text-xs font-semibold text-primary mb-2">CLN = Bond + Embedded CDS</p>
                     <ul className="space-y-1">
                       {[
                         "Investor buys a note (funded) — provides principal upfront",
@@ -1180,7 +1180,7 @@ export default function CreditDerivativesPage() {
                         "CLN is tradeable in secondary market like any bond",
                       ].map((t, i) => (
                         <li key={i} className="text-xs text-zinc-400 flex gap-2 list-none">
-                          <span className="text-violet-400">•</span>{t}
+                          <span className="text-primary">•</span>{t}
                         </li>
                       ))}
                     </ul>
@@ -1209,14 +1209,14 @@ export default function CreditDerivativesPage() {
             <Card className="bg-zinc-900 border-zinc-800">
               <CardHeader className="pb-2">
                 <CardTitle className="text-sm text-zinc-100 flex items-center gap-2">
-                  <ArrowRightLeft className="w-4 h-4 text-cyan-400" />
+                  <ArrowRightLeft className="w-4 h-4 text-muted-foreground" />
                   Total Return Swap (TRS) on Credit
                 </CardTitle>
               </CardHeader>
               <CardContent>
                 <div className="bg-zinc-950 rounded-lg p-3 border border-cyan-800/30 mb-4">
                   <p className="text-xs text-zinc-400 mb-3">
-                    In a TRS, the <span className="text-cyan-300 font-medium">TR Receiver</span> receives the total economic
+                    In a TRS, the <span className="text-muted-foreground font-medium">TR Receiver</span> receives the total economic
                     return of a reference bond (coupons + price appreciation/depreciation) and pays a floating rate
                     (SOFR + spread) to the <span className="text-amber-300 font-medium">TR Payer</span>. The TR Payer holds
                     the bond but transfers all economic exposure — a synthetic, off-balance-sheet long position.
@@ -1251,7 +1251,7 @@ export default function CreditDerivativesPage() {
                     <thead>
                       <tr className="border-b border-zinc-700">
                         <th className="text-left py-2 pr-4 text-zinc-500">Aspect</th>
-                        <th className="text-left py-2 pr-4 text-cyan-400">TRS</th>
+                        <th className="text-left py-2 pr-4 text-muted-foreground">TRS</th>
                         <th className="text-left py-2 text-amber-400">Repo</th>
                       </tr>
                     </thead>
@@ -1296,8 +1296,8 @@ export default function CreditDerivativesPage() {
                       ))}
                     </ul>
                   </div>
-                  <div className="bg-zinc-950 rounded-lg p-3 border border-blue-800/30">
-                    <p className="text-xs font-bold text-blue-300 mb-2">Nth-to-Default &amp; Digital Default Swap</p>
+                  <div className="bg-zinc-950 rounded-lg p-3 border border-border">
+                    <p className="text-xs font-bold text-primary mb-2">Nth-to-Default &amp; Digital Default Swap</p>
                     <ul className="space-y-1">
                       {[
                         "2nd-to-default: pays on second credit event in basket",
@@ -1308,7 +1308,7 @@ export default function CreditDerivativesPage() {
                         "BTO (Bespoke Tranche Opportunity): custom basket + tranche",
                       ].map((t, i) => (
                         <li key={i} className="text-xs text-zinc-400 flex gap-2 list-none">
-                          <span className="text-blue-400">•</span>{t}
+                          <span className="text-primary">•</span>{t}
                         </li>
                       ))}
                     </ul>
@@ -1378,7 +1378,7 @@ export default function CreditDerivativesPage() {
             <Card className="bg-zinc-900 border-zinc-800">
               <CardHeader className="pb-2">
                 <CardTitle className="text-sm text-zinc-100 flex items-center gap-2">
-                  <FileText className="w-4 h-4 text-blue-400" />
+                  <FileText className="w-4 h-4 text-primary" />
                   Post-Dodd Frank CDS Market Reform
                 </CardTitle>
               </CardHeader>
@@ -1388,8 +1388,8 @@ export default function CreditDerivativesPage() {
                     {
                       title: "SEF Trading",
                       icon: <Activity className="w-4 h-4" />,
-                      borderColor: "border-blue-800/30",
-                      labelColor: "text-blue-400",
+                      borderColor: "border-border",
+                      labelColor: "text-primary",
                       desc: "Swap Execution Facility mandate: liquid CDS must be traded on SEF platforms (MarketAxess, Bloomberg SEF). Replaces bilateral phone trading with electronic order books for standardized instruments.",
                     },
                     {
@@ -1402,8 +1402,8 @@ export default function CreditDerivativesPage() {
                     {
                       title: "Trade Reporting",
                       icon: <BarChart2 className="w-4 h-4" />,
-                      borderColor: "border-purple-800/30",
-                      labelColor: "text-purple-400",
+                      borderColor: "border-border",
+                      labelColor: "text-primary",
                       desc: "All CDS trades reported to DTCC Trade Information Warehouse (TIW) and swap data repositories (SDR). Creates full audit trail; CFTC/SEC have position-level visibility for systemic risk monitoring.",
                     },
                   ].map((item) => (
@@ -1430,7 +1430,7 @@ export default function CreditDerivativesPage() {
                           "Credit support annex (CSA) attached for collateral",
                         ].map((t, i) => (
                           <li key={i} className="text-xs text-zinc-400 flex gap-2 list-none">
-                            <span className="text-blue-400">•</span>{t}
+                            <span className="text-primary">•</span>{t}
                           </li>
                         ))}
                       </ul>
@@ -1564,7 +1564,7 @@ export default function CreditDerivativesPage() {
                     {BASIS_DATA.map((b, i) => (
                       <div key={i} className="flex items-start gap-3 p-2 bg-zinc-900 rounded border border-zinc-800">
                         <div className="min-w-[120px]">
-                          <p className="text-xs font-bold text-blue-300">{b.basis}</p>
+                          <p className="text-xs font-bold text-primary">{b.basis}</p>
                         </div>
                         <div className="flex-1">
                           <p className="text-xs text-zinc-300 font-medium mb-0.5">{b.setup}</p>

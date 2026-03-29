@@ -544,7 +544,7 @@ function OverviewTab() {
                 <div className="flex items-center gap-2"><div className="h-3 w-6 rounded bg-orange-500/70" /><span>0.6–0.8 Moderate-high</span></div>
                 <div className="flex items-center gap-2"><div className="h-3 w-6 rounded bg-yellow-500/55" /><span>0.4–0.6 Moderate</span></div>
                 <div className="flex items-center gap-2"><div className="h-3 w-6 rounded bg-green-500/45" /><span>0.2–0.4 Low</span></div>
-                <div className="flex items-center gap-2"><div className="h-3 w-6 rounded bg-blue-500/45" /><span>0.0–0.2 Very low</span></div>
+                <div className="flex items-center gap-2"><div className="h-3 w-6 rounded bg-primary/45" /><span>0.0–0.2 Very low</span></div>
               </div>
               <p className="pt-1">High correlations reduce diversification benefit — positions move together in stress scenarios.</p>
             </div>

@@ -85,8 +85,8 @@ function InfoPill({ text, color = "zinc" }: { text: string; color?: string }) {
     emerald: "bg-emerald-900/50 text-emerald-300",
     amber: "bg-amber-900/50 text-amber-300",
     rose: "bg-rose-900/50 text-rose-300",
-    blue: "bg-blue-900/50 text-blue-300",
-    violet: "bg-violet-900/50 text-violet-300",
+    blue: "bg-muted/70 text-primary",
+    violet: "bg-muted/70 text-primary",
     orange: "bg-orange-900/50 text-orange-300",
     sky: "bg-sky-900/50 text-sky-300",
   };
@@ -147,7 +147,7 @@ function DealStructureTab() {
         "Maintain register of lenders and commitments",
         "Coordinate waivers and amendments",
       ],
-      color: "text-blue-400",
+      color: "text-primary",
     },
     {
       role: "Security Agent",
@@ -494,7 +494,7 @@ function PricingMechanicsTab() {
             </div>
           ))}
         </div>
-        <div className="rounded-lg bg-blue-900/20 border border-blue-500/20 p-3 text-xs text-blue-300">
+        <div className="rounded-lg bg-muted/40 border border-border p-3 text-xs text-primary">
           <span className="font-semibold">Credit Sensitive Adjustment:</span> Most leveraged loans now use Term SOFR (1M or 3M) with a
           Credit Spread Adjustment (CSA) of 11–26 bps to approximate historical LIBOR economics.
           Investment grade facilities often use overnight SOFR compounded in arrears.
@@ -641,18 +641,18 @@ function PricingMechanicsTab() {
               className={cn(
                 "w-full flex items-center gap-3 rounded-lg border p-3 text-left transition-colors",
                 selectedRatchet === i
-                  ? "border-violet-500/50 bg-violet-900/20"
+                  ? "border-primary/50 bg-muted/40"
                   : "border-white/10 bg-white/5 hover:bg-white/10"
               )}
             >
               <div className="w-24 text-xs font-mono text-zinc-300">{rl.leverage}</div>
               <div className="flex-1 h-3 bg-white/5 rounded overflow-hidden">
                 <div
-                  className="h-full rounded bg-violet-500 transition-all"
+                  className="h-full rounded bg-primary transition-all"
                   style={{ width: `${(rl.spread / 600) * 100}%` }}
                 />
               </div>
-              <div className="text-xs font-mono text-violet-300 w-16 text-right">
+              <div className="text-xs font-mono text-primary w-16 text-right">
                 SOFR+{rl.spread}bps
               </div>
               <InfoPill text={rl.label} color="violet" />
@@ -665,7 +665,7 @@ function PricingMechanicsTab() {
             initial={{ opacity: 0, y: 4 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -4 }}
-            className="mt-3 rounded-lg bg-violet-900/20 border border-violet-500/20 p-3 text-xs text-violet-300"
+            className="mt-3 rounded-lg bg-muted/40 border border-border p-3 text-xs text-primary"
           >
             <span className="font-semibold">{ratchetLevels[selectedRatchet].label}:</span>{" "}
             At {ratchetLevels[selectedRatchet].leverage} net leverage the borrower pays SOFR+
@@ -1257,10 +1257,10 @@ function MarketDynamicsTab() {
           sub="Fundamental tension in syndicated lending"
         />
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-          <div className="rounded-lg border border-blue-500/20 bg-blue-900/10 p-4">
+          <div className="rounded-lg border border-border bg-muted/30 p-4">
             <div className="flex items-center gap-2 mb-2">
-              <Users size={14} className="text-blue-400" />
-              <span className="text-sm font-semibold text-blue-300">Relationship Banking</span>
+              <Users size={14} className="text-primary" />
+              <span className="text-sm font-semibold text-primary">Relationship Banking</span>
             </div>
             <ul className="space-y-1 text-xs text-zinc-400">
               <li className="flex items-start gap-2"><ArrowRight size={10} className="mt-0.5 shrink-0 text-zinc-600" />MLA holds large slice; cross-sells advisory, FX, deposits</li>

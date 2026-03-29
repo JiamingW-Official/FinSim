@@ -1290,7 +1290,7 @@ export default function NeobanksPage() {
                   <Card className="bg-slate-900 border-slate-800">
                     <CardHeader className="pb-2">
                       <CardTitle className="text-sm font-semibold text-slate-200 flex items-center gap-1.5">
-                        <Zap className="w-4 h-4 text-purple-400" /> Banking-as-a-Service (BaaS)
+                        <Zap className="w-4 h-4 text-primary" /> Banking-as-a-Service (BaaS)
                       </CardTitle>
                     </CardHeader>
                     <CardContent className="text-xs text-slate-400 space-y-2">
@@ -1303,7 +1303,7 @@ export default function NeobanksPage() {
                           "BaaS TAM forecast $22B by 2028 — higher margin than retail banking",
                         ].map((pt) => (
                           <li key={pt} className="flex gap-1.5">
-                            <span className="text-purple-400 mt-0.5 flex-shrink-0">•</span>
+                            <span className="text-primary mt-0.5 flex-shrink-0">•</span>
                             {pt}
                           </li>
                         ))}

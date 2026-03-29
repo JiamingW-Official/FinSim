@@ -19,12 +19,12 @@ export function CareerStats() {
 
   const CARDS = [
     {
-      icon: <BarChart3 className="h-3.5 w-3.5 text-blue-400" />,
+      icon: <BarChart3 className="h-3.5 w-3.5 text-primary" />,
       label: "Total Trades",
       value: stats.totalTrades.toString(),
     },
     {
-      icon: <Target className="h-3.5 w-3.5 text-cyan-400" />,
+      icon: <Target className="h-3.5 w-3.5 text-muted-foreground" />,
       label: "Win Rate",
       value: `${winRate}%`,
       sub: `${stats.profitableTrades} profitable`,

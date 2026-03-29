@@ -328,7 +328,7 @@ function DebtOverviewTab() {
         {[
           { label: "Total Debt", value: fmtK(totalDebt), icon: <DollarSign className="w-4 h-4" />, color: "text-red-400" },
           { label: "Min Payments", value: fmt(totalMinPayment), icon: <Clock className="w-4 h-4" />, color: "text-amber-400" },
-          { label: "Avg Rate", value: fmtPct(weightedRate), icon: <TrendingDown className="w-4 h-4" />, color: "text-purple-400" },
+          { label: "Avg Rate", value: fmtPct(weightedRate), icon: <TrendingDown className="w-4 h-4" />, color: "text-primary" },
           { label: "DTI Ratio", value: fmtPct(dtiRatio), icon: <BarChart3 className="w-4 h-4" />, color: dtiRatio < 28 ? "text-green-400" : dtiRatio < 43 ? "text-amber-400" : "text-red-400" },
         ].map((item) => (
           <Card key={item.label} className="bg-neutral-900 border-neutral-800">
@@ -349,7 +349,7 @@ function DebtOverviewTab() {
           <Card className="bg-neutral-900 border-neutral-800">
             <CardHeader className="pb-3">
               <CardTitle className="text-sm font-medium text-neutral-200 flex items-center gap-2">
-                <CreditCard className="w-4 h-4 text-blue-400" />
+                <CreditCard className="w-4 h-4 text-primary" />
                 Debt Portfolio Builder
               </CardTitle>
             </CardHeader>
@@ -485,24 +485,24 @@ function DebtOverviewTab() {
                   className={cn(
                     "w-full p-3 rounded-lg border text-left transition-all",
                     method === m
-                      ? "border-blue-500 bg-blue-500/10"
+                      ? "border-primary bg-primary/10"
                       : "border-neutral-700 bg-neutral-800/50 hover:border-neutral-600"
                   )}
                 >
                   <div className="flex items-center gap-2 mb-1">
                     {m === "avalanche" ? (
-                      <Zap className="w-3 h-3 text-blue-400" />
+                      <Zap className="w-3 h-3 text-primary" />
                     ) : (
-                      <Target className="w-3 h-3 text-purple-400" />
+                      <Target className="w-3 h-3 text-primary" />
                     )}
                     <span className="text-xs font-semibold text-neutral-200 capitalize">{m}</span>
                     {m === "avalanche" && (
-                      <Badge className="ml-auto text-xs bg-blue-500/20 text-blue-400 border-blue-500/30">
+                      <Badge className="ml-auto text-xs bg-primary/20 text-primary border-border">
                         Saves more $
                       </Badge>
                     )}
                     {m === "snowball" && (
-                      <Badge className="ml-auto text-xs bg-purple-500/20 text-purple-400 border-purple-500/30">
+                      <Badge className="ml-auto text-xs bg-primary/20 text-primary border-border">
                         More wins
                       </Badge>
                     )}
@@ -651,7 +651,7 @@ function PayoffStrategiesTab() {
       <Card className="bg-neutral-900 border-neutral-800">
         <CardHeader className="pb-3">
           <CardTitle className="text-sm font-medium text-neutral-200 flex items-center gap-2">
-            <Target className="w-4 h-4 text-blue-400" />
+            <Target className="w-4 h-4 text-primary" />
             Debt Payoff Calculator
           </CardTitle>
         </CardHeader>
@@ -735,7 +735,7 @@ function PayoffStrategiesTab() {
         <Card className="bg-neutral-900 border-neutral-800">
           <CardHeader className="pb-3">
             <CardTitle className="text-sm font-medium text-neutral-200 flex items-center gap-2">
-              <Repeat className="w-4 h-4 text-cyan-400" />
+              <Repeat className="w-4 h-4 text-muted-foreground" />
               Balance Transfer Analysis
             </CardTitle>
           </CardHeader>
@@ -783,7 +783,7 @@ function PayoffStrategiesTab() {
         <Card className="bg-neutral-900 border-neutral-800">
           <CardHeader className="pb-3">
             <CardTitle className="text-sm font-medium text-neutral-200 flex items-center gap-2">
-              <Shield className="w-4 h-4 text-purple-400" />
+              <Shield className="w-4 h-4 text-primary" />
               Debt Consolidation Analysis
             </CardTitle>
           </CardHeader>
@@ -910,7 +910,7 @@ function MortgageOptimizationTab() {
       <Card className="bg-neutral-900 border-neutral-800">
         <CardHeader className="pb-3">
           <CardTitle className="text-sm font-medium text-neutral-200 flex items-center gap-2">
-            <Home className="w-4 h-4 text-blue-400" />
+            <Home className="w-4 h-4 text-primary" />
             15 vs 30-Year Mortgage Comparison
           </CardTitle>
         </CardHeader>
@@ -1025,7 +1025,7 @@ function MortgageOptimizationTab() {
         <Card className="bg-neutral-900 border-neutral-800">
           <CardHeader className="pb-3">
             <CardTitle className="text-sm font-medium text-neutral-200 flex items-center gap-2">
-              <Repeat className="w-4 h-4 text-cyan-400" />
+              <Repeat className="w-4 h-4 text-muted-foreground" />
               Refinance Break-Even Calculator
             </CardTitle>
           </CardHeader>
@@ -1226,7 +1226,7 @@ function CreditBehavioralTab() {
         <Card className="bg-neutral-900 border-neutral-800">
           <CardHeader className="pb-3">
             <CardTitle className="text-sm font-medium text-neutral-200 flex items-center gap-2">
-              <PieChart className="w-4 h-4 text-blue-400" />
+              <PieChart className="w-4 h-4 text-primary" />
               Credit Score Components
             </CardTitle>
           </CardHeader>
@@ -1306,7 +1306,7 @@ function CreditBehavioralTab() {
             <div className="space-y-2">
               <div className="flex justify-between text-xs">
                 <span className="text-neutral-400">Utilization</span>
-                <span className={cn("font-bold", currentUtil < 10 ? "text-green-400" : currentUtil < 30 ? "text-blue-400" : currentUtil < 50 ? "text-amber-400" : "text-red-400")}>
+                <span className={cn("font-bold", currentUtil < 10 ? "text-green-400" : currentUtil < 30 ? "text-primary" : currentUtil < 50 ? "text-amber-400" : "text-red-400")}>
                   {fmtPct(currentUtil)}
                 </span>
               </div>
@@ -1328,9 +1328,9 @@ function CreditBehavioralTab() {
             </div>
 
             {paydownNeeded > 0 && (
-              <div className="flex items-center gap-2 p-2 rounded-lg bg-blue-500/10 border border-blue-500/20">
-                <Info className="w-3 h-3 text-blue-400 shrink-0" />
-                <span className="text-xs text-blue-300">
+              <div className="flex items-center gap-2 p-2 rounded-lg bg-primary/10 border border-border">
+                <Info className="w-3 h-3 text-primary shrink-0" />
+                <span className="text-xs text-primary">
                   Pay down {fmtK(paydownNeeded)} to reach optimal 10% utilization. Estimated score boost: +
                   {Math.round((currentUtil - 10) * 1.5)} points.
                 </span>
@@ -1340,7 +1340,7 @@ function CreditBehavioralTab() {
             <div className="grid grid-cols-3 gap-2 text-center text-xs">
               {[
                 { range: "<10%", label: "Excellent", color: "text-green-400", score: "+50 pts" },
-                { range: "10–30%", label: "Good", color: "text-blue-400", score: "+20 pts" },
+                { range: "10–30%", label: "Good", color: "text-primary", score: "+20 pts" },
                 { range: ">50%", label: "Harmful", color: "text-red-400", score: "−50 pts" },
               ].map((z) => (
                 <div key={z.range} className="p-2 rounded-lg bg-neutral-800/60 border border-neutral-700/40">
@@ -1414,13 +1414,13 @@ function CreditBehavioralTab() {
         <Card className="bg-neutral-900 border-neutral-800">
           <CardHeader className="pb-3">
             <CardTitle className="text-sm font-medium text-neutral-200 flex items-center gap-2">
-              <Shield className="w-4 h-4 text-purple-400" />
+              <Shield className="w-4 h-4 text-primary" />
               Debt Psychology — Snowball Science
             </CardTitle>
           </CardHeader>
           <CardContent className="space-y-3 text-xs">
             <p className="text-neutral-400 leading-relaxed">
-              Research by Harvard Business Review (2016) found that focusing on small debts first — the snowball method — increases the likelihood of complete debt payoff by <span className="text-purple-400 font-medium">14%</span> compared to purely mathematical approaches.
+              Research by Harvard Business Review (2016) found that focusing on small debts first — the snowball method — increases the likelihood of complete debt payoff by <span className="text-primary font-medium">14%</span> compared to purely mathematical approaches.
             </p>
             <div className="space-y-2">
               {[

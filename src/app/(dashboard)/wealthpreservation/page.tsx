@@ -445,9 +445,9 @@ function StrategyCard({ strategy }: { strategy: Strategy }) {
   }[strategy.riskLevel];
 
   const catColor: Record<string, string> = {
-    "Estate Planning": "bg-purple-500/10 text-purple-400 border-purple-500/20",
-    "Tax Strategy": "bg-blue-500/10 text-blue-400 border-blue-500/20",
-    "Education": "bg-teal-500/10 text-teal-400 border-teal-500/20",
+    "Estate Planning": "bg-primary/10 text-primary border-border",
+    "Tax Strategy": "bg-primary/10 text-primary border-border",
+    "Education": "bg-teal-500/10 text-emerald-400 border-teal-500/20",
     "Insurance": "bg-indigo-500/10 text-indigo-400 border-indigo-500/20",
     "Philanthropy": "bg-pink-500/10 text-pink-400 border-pink-500/20",
   };
@@ -516,7 +516,7 @@ function StrategyCard({ strategy }: { strategy: Strategy }) {
                 </ul>
               </div>
               <div>
-                <div className="text-xs font-semibold text-blue-400 mb-1.5 flex items-center gap-1">
+                <div className="text-xs font-semibold text-primary mb-1.5 flex items-center gap-1">
                   <FileText className="w-3 h-3" /> Tax Treatment
                 </div>
                 <p className="text-xs text-muted-foreground">{strategy.taxTreatment}</p>
@@ -583,13 +583,13 @@ function SuccessionTimeline() {
         const isLast = i === steps.length - 1;
         const statusColor = {
           complete: "bg-green-500",
-          active: "bg-blue-500",
+          active: "bg-primary",
           pending: "bg-muted-foreground/30",
         }[step.status];
 
         const borderColor = {
           complete: "border-green-500/30",
-          active: "border-blue-500/40",
+          active: "border-primary/40",
           pending: "border-border",
         }[step.status];
 
@@ -603,7 +603,7 @@ function SuccessionTimeline() {
                   step.status === "complete"
                     ? "border-green-500 bg-green-500/20 text-green-400"
                     : step.status === "active"
-                    ? "border-blue-500 bg-blue-500/20 text-blue-400"
+                    ? "border-primary bg-primary/20 text-primary"
                     : "border-border bg-muted text-muted-foreground"
                 )}
               >
@@ -629,7 +629,7 @@ function SuccessionTimeline() {
                     step.status === "complete"
                       ? "bg-green-500/10 text-green-400 border-green-500/20"
                       : step.status === "active"
-                      ? "bg-blue-500/10 text-blue-400 border-blue-500/20"
+                      ? "bg-primary/10 text-primary border-border"
                       : "text-muted-foreground border-border"
                   )}
                 >
@@ -658,14 +658,14 @@ function TaxStrategyPanel() {
     },
     {
       title: "Asset Location Optimization",
-      icon: <Layers className="w-4 h-4 text-blue-400" />,
+      icon: <Layers className="w-4 h-4 text-primary" />,
       saving: "0.4–0.7% after-tax return",
       description: "Place tax-inefficient assets (bonds, REITs) in tax-deferred accounts; equities in taxable. Coordinate across all account types.",
       complexity: "Low",
     },
     {
       title: "Roth Conversion Ladder",
-      icon: <BarChart3 className="w-4 h-4 text-violet-400" />,
+      icon: <BarChart3 className="w-4 h-4 text-primary" />,
       saving: "Significant in low-tax years",
       description: "Convert traditional IRA to Roth during low-income years (gap years, early retirement) to reduce future RMDs.",
       complexity: "Medium",
@@ -679,7 +679,7 @@ function TaxStrategyPanel() {
     },
     {
       title: "Municipal Bond Ladder",
-      icon: <Landmark className="w-4 h-4 text-cyan-400" />,
+      icon: <Landmark className="w-4 h-4 text-muted-foreground" />,
       saving: "Tax-exempt income",
       description: "Build a laddered portfolio of investment-grade munis. At 37% marginal rate, 4% muni yield ≈ 6.35% taxable equivalent.",
       complexity: "Low",
@@ -723,7 +723,7 @@ function TaxStrategyPanel() {
                       {s.complexity}
                     </Badge>
                   </div>
-                  <div className="text-xs text-blue-400 font-medium mb-1.5">{s.saving}</div>
+                  <div className="text-xs text-primary font-medium mb-1.5">{s.saving}</div>
                   <p className="text-xs text-muted-foreground leading-relaxed">{s.description}</p>
                 </div>
               </div>
@@ -814,7 +814,7 @@ function InflationHedgesPanel() {
                   </div>
                 </td>
                 <td className="px-4 py-3 text-right hidden md:table-cell">
-                  <span className="text-xs text-blue-400 font-medium">{h.expectedReturn}</span>
+                  <span className="text-xs text-primary font-medium">{h.expectedReturn}</span>
                 </td>
                 <td className="px-4 py-3 text-right hidden md:table-cell">
                   <Badge
@@ -840,7 +840,7 @@ function InflationHedgesPanel() {
       <Card className="bg-card border-border">
         <CardHeader className="pb-2 pt-4 px-4">
           <CardTitle className="text-sm flex items-center gap-2">
-            <Info className="w-4 h-4 text-blue-400" />
+            <Info className="w-4 h-4 text-primary" />
             Purchasing Power Erosion: $1M over 30 Years
           </CardTitle>
         </CardHeader>
@@ -922,18 +922,18 @@ export default function WealthPreservationPage() {
             color="bg-amber-500/10"
           />
           <MetricCard
-            icon={<Scale className="w-4 h-4 text-blue-400" />}
+            icon={<Scale className="w-4 h-4 text-primary" />}
             label="Tax Efficiency Score"
             value={`${taxScore}/100`}
             sub="vs. 58 avg unoptimized"
-            color="bg-blue-500/10"
+            color="bg-primary/10"
           />
           <MetricCard
-            icon={<PieChart className="w-4 h-4 text-violet-400" />}
+            icon={<PieChart className="w-4 h-4 text-primary" />}
             label="Diversification Score"
             value={`${divScore}/100`}
             sub="Across 5 asset classes"
-            color="bg-violet-500/10"
+            color="bg-primary/10"
           />
         </div>
 
@@ -988,7 +988,7 @@ export default function WealthPreservationPage() {
                 <Card className="bg-card border-border">
                   <CardHeader className="pb-2">
                     <CardTitle className="text-sm flex items-center gap-2">
-                      <BarChart3 className="w-4 h-4 text-blue-400" />
+                      <BarChart3 className="w-4 h-4 text-primary" />
                       After-Tax Returns: Optimized vs. Unoptimized
                     </CardTitle>
                   </CardHeader>
@@ -997,8 +997,8 @@ export default function WealthPreservationPage() {
                     <p className="text-xs text-muted-foreground mt-3 leading-relaxed">
                       Proper asset location, tax-loss harvesting, and vehicle selection can add 1–2% of net annual return for high-income taxpayers. The difference compounds dramatically over decades.
                     </p>
-                    <div className="mt-3 p-3 bg-blue-500/5 rounded-lg border border-blue-500/20">
-                      <div className="text-xs font-semibold text-blue-400 mb-1">Key Insight</div>
+                    <div className="mt-3 p-3 bg-primary/5 rounded-lg border border-border">
+                      <div className="text-xs font-semibold text-primary mb-1">Key Insight</div>
                       <p className="text-xs text-muted-foreground">
                         At a 37% marginal rate + 3.8% NIIT, unoptimized equity returns of 8% yield only 4.3% after-tax. Tax optimization can recover 1.5–2% annually.
                       </p>
@@ -1011,7 +1011,7 @@ export default function WealthPreservationPage() {
               <Card className="bg-card border-border">
                 <CardHeader className="pb-2">
                   <CardTitle className="text-sm flex items-center gap-2">
-                    <Landmark className="w-4 h-4 text-violet-400" />
+                    <Landmark className="w-4 h-4 text-primary" />
                     Preservation Strategy Comparison
                   </CardTitle>
                 </CardHeader>
@@ -1101,7 +1101,7 @@ export default function WealthPreservationPage() {
               <Card className="bg-card border-border">
                 <CardHeader className="pb-2">
                   <CardTitle className="text-sm flex items-center gap-2">
-                    <Clock className="w-4 h-4 text-violet-400" />
+                    <Clock className="w-4 h-4 text-primary" />
                     Succession Planning Timeline
                   </CardTitle>
                 </CardHeader>

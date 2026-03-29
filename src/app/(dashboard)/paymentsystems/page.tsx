@@ -364,7 +364,7 @@ function StatChip({
   label,
   value,
   sub,
-  color = "text-blue-400",
+  color = "text-primary",
 }: {
   label: string;
   value: string;
@@ -972,8 +972,8 @@ export default function PaymentSystemsPage() {
         transition={{ duration: 0.4 }}
         className="flex items-start gap-4"
       >
-        <div className="p-3 rounded-xl bg-blue-500/10 border border-blue-500/20">
-          <Network className="w-7 h-7 text-blue-400" />
+        <div className="p-3 rounded-xl bg-primary/10 border border-border">
+          <Network className="w-7 h-7 text-primary" />
         </div>
         <div>
           <h1 className="text-2xl font-bold text-zinc-100">Payment Systems &amp; Infrastructure</h1>
@@ -991,8 +991,8 @@ export default function PaymentSystemsPage() {
         transition={{ delay: 0.1, duration: 0.4 }}
         className="grid grid-cols-2 sm:grid-cols-4 gap-3"
       >
-        <StatChip label="Global Non-Cash Txns" value="1.3T+" sub="transactions/year" color="text-blue-400" />
-        <StatChip label="SWIFT Messages/day" value="44M+" sub="across 200+ countries" color="text-purple-400" />
+        <StatChip label="Global Non-Cash Txns" value="1.3T+" sub="transactions/year" color="text-primary" />
+        <StatChip label="SWIFT Messages/day" value="44M+" sub="across 200+ countries" color="text-primary" />
         <StatChip label="Card Spend (Global)" value="$45T" sub="annual card volume" color="text-green-400" />
         <StatChip label="Remittance Flows" value="$860B" sub="annual cross-border" color="text-yellow-400" />
       </motion.div>
@@ -1000,10 +1000,10 @@ export default function PaymentSystemsPage() {
       {/* Tabs */}
       <Tabs value={activeTab} onValueChange={setActiveTab}>
         <TabsList className="bg-zinc-900 border border-zinc-800 w-full grid grid-cols-4">
-          <TabsTrigger value="rails" className="text-xs data-[state=active]:bg-blue-600/30 data-[state=active]:text-blue-300">
+          <TabsTrigger value="rails" className="text-xs data-[state=active]:bg-primary/30 data-[state=active]:text-primary">
             Payment Rails
           </TabsTrigger>
-          <TabsTrigger value="cards" className="text-xs data-[state=active]:bg-purple-600/30 data-[state=active]:text-purple-300">
+          <TabsTrigger value="cards" className="text-xs data-[state=active]:bg-primary/30 data-[state=active]:text-primary">
             Card Networks
           </TabsTrigger>
           <TabsTrigger value="rtp" className="text-xs data-[state=active]:bg-green-600/30 data-[state=active]:text-green-300">
@@ -1021,7 +1021,7 @@ export default function PaymentSystemsPage() {
             <Card className="bg-zinc-900 border-zinc-800">
               <CardHeader className="pb-2">
                 <CardTitle className="text-sm flex items-center gap-2">
-                  <BarChart2 className="w-4 h-4 text-blue-400" />
+                  <BarChart2 className="w-4 h-4 text-primary" />
                   Global Payment Rails Comparison
                 </CardTitle>
               </CardHeader>
@@ -1094,7 +1094,7 @@ export default function PaymentSystemsPage() {
           <Card className="bg-zinc-900 border-zinc-800">
             <CardHeader className="pb-2">
               <CardTitle className="text-sm flex items-center gap-2">
-                <BarChart2 className="w-4 h-4 text-purple-400" />
+                <BarChart2 className="w-4 h-4 text-primary" />
                 Volume vs. Value by Rail — High Value, Low Volume vs. High Volume, Low Value
               </CardTitle>
             </CardHeader>
@@ -1102,11 +1102,11 @@ export default function PaymentSystemsPage() {
               <VolumeValueChart />
               <div className="grid grid-cols-2 gap-3 mt-3">
                 <div className="bg-zinc-800/50 rounded p-2 text-xs text-zinc-400">
-                  <span className="text-blue-400 font-semibold">Fedwire &amp; CHIPS</span> settle trillions
+                  <span className="text-primary font-semibold">Fedwire &amp; CHIPS</span> settle trillions
                   daily in wholesale interbank payments despite low transaction counts.
                 </div>
                 <div className="bg-zinc-800/50 rounded p-2 text-xs text-zinc-400">
-                  <span className="text-blue-400 font-semibold">ACH &amp; SEPA</span> process billions of
+                  <span className="text-primary font-semibold">ACH &amp; SEPA</span> process billions of
                   retail transactions at much lower average values per transaction.
                 </div>
               </div>
@@ -1154,7 +1154,7 @@ export default function PaymentSystemsPage() {
             <Card className="bg-zinc-900 border-zinc-800">
               <CardHeader className="pb-1">
                 <CardTitle className="text-sm flex items-center gap-2">
-                  <Layers className="w-4 h-4 text-blue-400" />
+                  <Layers className="w-4 h-4 text-primary" />
                   Net Settlement (DNS)
                 </CardTitle>
               </CardHeader>
@@ -1163,8 +1163,8 @@ export default function PaymentSystemsPage() {
                   All transactions are batched and obligations are offset. Only the net position
                   is settled at end-of-day. Used by ACH, SEPA.
                 </p>
-                <div className="bg-blue-500/10 border border-blue-500/20 rounded p-2">
-                  <div className="text-blue-400 font-medium mb-1">Example</div>
+                <div className="bg-primary/10 border border-border rounded p-2">
+                  <div className="text-primary font-medium mb-1">Example</div>
                   Bank A owes Bank B $10M, Bank B owes Bank A $8M. Net settlement: Bank A pays $2M only.
                   Reduces liquidity needs by 90%+.
                 </div>
@@ -1207,7 +1207,7 @@ export default function PaymentSystemsPage() {
             <Card className="bg-zinc-900 border-zinc-800">
               <CardHeader className="pb-2">
                 <CardTitle className="text-sm flex items-center gap-2">
-                  <CreditCard className="w-4 h-4 text-purple-400" />
+                  <CreditCard className="w-4 h-4 text-primary" />
                   Global Card Market Share
                 </CardTitle>
               </CardHeader>
@@ -1220,22 +1220,22 @@ export default function PaymentSystemsPage() {
             <Card className="bg-zinc-900 border-zinc-800">
               <CardHeader className="pb-2">
                 <CardTitle className="text-sm flex items-center gap-2">
-                  <Network className="w-4 h-4 text-blue-400" />
+                  <Network className="w-4 h-4 text-primary" />
                   4-Party vs 3-Party Model
                 </CardTitle>
               </CardHeader>
               <CardContent className="space-y-3">
                 <FourPartyModelSVG />
                 <div className="grid grid-cols-2 gap-2 text-xs">
-                  <div className="bg-blue-500/10 border border-blue-500/20 rounded p-2">
-                    <div className="text-blue-400 font-semibold mb-1">4-Party (Visa/MC)</div>
+                  <div className="bg-primary/10 border border-border rounded p-2">
+                    <div className="text-primary font-semibold mb-1">4-Party (Visa/MC)</div>
                     <div className="text-zinc-400">
                       Cardholder, Issuing Bank, Acquiring Bank, Merchant. Network sets rules but
                       doesn&apos;t issue cards or acquire merchants directly.
                     </div>
                   </div>
-                  <div className="bg-purple-500/10 border border-purple-500/20 rounded p-2">
-                    <div className="text-purple-400 font-semibold mb-1">3-Party (Amex/Discover)</div>
+                  <div className="bg-primary/10 border border-border rounded p-2">
+                    <div className="text-primary font-semibold mb-1">3-Party (Amex/Discover)</div>
                     <div className="text-zinc-400">
                       Network acts as both issuer and acquirer. Direct relationship with cardholder
                       and merchant. Higher control but smaller acceptance.
@@ -1261,8 +1261,8 @@ export default function PaymentSystemsPage() {
                   {
                     label: "Issuer (70%)",
                     desc: "Funds rewards programs, fraud losses, credit risk. Consumer bank keeps the lion's share.",
-                    color: "text-purple-400",
-                    bg: "bg-purple-500/10 border-purple-500/20",
+                    color: "text-primary",
+                    bg: "bg-primary/10 border-border",
                   },
                   {
                     label: "Network (10%)",
@@ -1295,7 +1295,7 @@ export default function PaymentSystemsPage() {
           <Card className="bg-zinc-900 border-zinc-800">
             <CardHeader className="pb-2">
               <CardTitle className="text-sm flex items-center gap-2">
-                <RefreshCw className="w-4 h-4 text-blue-400" />
+                <RefreshCw className="w-4 h-4 text-primary" />
                 Authorization → Clearing → Settlement 3-Step Flow
               </CardTitle>
             </CardHeader>
@@ -1322,8 +1322,8 @@ export default function PaymentSystemsPage() {
                   {
                     icon: Wifi,
                     title: "Contactless / NFC",
-                    color: "text-blue-400",
-                    bg: "bg-blue-500/10 border-blue-500/20",
+                    color: "text-primary",
+                    bg: "bg-primary/10 border-border",
                     points: [
                       "ISO/IEC 14443 standard, 13.56 MHz",
                       "Cryptogram generated per-tap",
@@ -1335,8 +1335,8 @@ export default function PaymentSystemsPage() {
                   {
                     icon: Lock,
                     title: "Tokenization",
-                    color: "text-purple-400",
-                    bg: "bg-purple-500/10 border-purple-500/20",
+                    color: "text-primary",
+                    bg: "bg-primary/10 border-border",
                     points: [
                       "PAN replaced with device-specific token",
                       "Token useless if intercepted",
@@ -1402,7 +1402,7 @@ export default function PaymentSystemsPage() {
           <Card className="bg-zinc-900 border-zinc-800">
             <CardHeader className="pb-2">
               <CardTitle className="text-sm flex items-center gap-2">
-                <ArrowLeftRight className="w-4 h-4 text-blue-400" />
+                <ArrowLeftRight className="w-4 h-4 text-primary" />
                 RTP vs FedNow Feature Comparison
               </CardTitle>
             </CardHeader>
@@ -1412,7 +1412,7 @@ export default function PaymentSystemsPage() {
                   <thead>
                     <tr className="border-b border-zinc-800">
                       <th className="px-3 py-2 text-left text-zinc-500">Feature</th>
-                      <th className="px-3 py-2 text-center text-purple-400">RTP (TCH)</th>
+                      <th className="px-3 py-2 text-center text-primary">RTP (TCH)</th>
                       <th className="px-3 py-2 text-center text-orange-400">FedNow</th>
                     </tr>
                   </thead>
@@ -1548,7 +1548,7 @@ export default function PaymentSystemsPage() {
           <Card className="bg-zinc-900 border-zinc-800">
             <CardHeader className="pb-2">
               <CardTitle className="text-sm flex items-center gap-2">
-                <Smartphone className="w-4 h-4 text-blue-400" />
+                <Smartphone className="w-4 h-4 text-primary" />
                 Open Banking API Integration &amp; Overlay Services
               </CardTitle>
             </CardHeader>
@@ -1560,9 +1560,9 @@ export default function PaymentSystemsPage() {
                   Party Providers (TPPs) initiate payments and access account data on behalf of consumers.
                 </p>
                 <div className="bg-zinc-800/50 rounded p-2 space-y-1">
-                  <div><span className="text-blue-400">AISP:</span> Account Information Service Provider — read-only data aggregation</div>
-                  <div><span className="text-blue-400">PISP:</span> Payment Initiation Service Provider — trigger bank transfers</div>
-                  <div><span className="text-blue-400">CBPII:</span> Card-Based Payment Instrument Issuer — confirmation of funds</div>
+                  <div><span className="text-primary">AISP:</span> Account Information Service Provider — read-only data aggregation</div>
+                  <div><span className="text-primary">PISP:</span> Payment Initiation Service Provider — trigger bank transfers</div>
+                  <div><span className="text-primary">CBPII:</span> Card-Based Payment Instrument Issuer — confirmation of funds</div>
                 </div>
               </div>
               <div className="space-y-2">
@@ -1617,7 +1617,7 @@ export default function PaymentSystemsPage() {
           <Card className="bg-zinc-900 border-zinc-800">
             <CardHeader className="pb-2">
               <CardTitle className="text-sm flex items-center gap-2">
-                <ArrowRight className="w-4 h-4 text-blue-400" />
+                <ArrowRight className="w-4 h-4 text-primary" />
                 Top Cross-Border Remittance Corridors
               </CardTitle>
             </CardHeader>
@@ -1645,10 +1645,10 @@ export default function PaymentSystemsPage() {
                         <td className="px-3 py-2 font-semibold text-zinc-200">
                           {c.from} → {c.to}
                         </td>
-                        <td className="px-3 py-2 text-blue-400">${c.annualBillion}B</td>
+                        <td className="px-3 py-2 text-primary">${c.annualBillion}B</td>
                         <td className="px-3 py-2 text-red-400">{c.bankCostPct}%</td>
                         <td className="px-3 py-2 text-green-400">{c.fintechCostPct}%</td>
-                        <td className="px-3 py-2 text-purple-400">{c.cryptoCostPct}%</td>
+                        <td className="px-3 py-2 text-primary">{c.cryptoCostPct}%</td>
                         <td className="px-3 py-2 text-zinc-400">T+{c.avgDays}</td>
                       </motion.tr>
                     ))}
@@ -1669,8 +1669,8 @@ export default function PaymentSystemsPage() {
             <CardContent className="grid grid-cols-2 sm:grid-cols-4 gap-3">
               {[
                 { label: "Same-day settlement", value: "50%", sub: "of GPI payments", color: "text-green-400" },
-                { label: "Within 30 min", value: "40%", sub: "end-to-end", color: "text-blue-400" },
-                { label: "Payment tracking", value: "100%", sub: "UETR tracker", color: "text-purple-400" },
+                { label: "Within 30 min", value: "40%", sub: "end-to-end", color: "text-primary" },
+                { label: "Payment tracking", value: "100%", sub: "UETR tracker", color: "text-primary" },
                 { label: "Fee transparency", value: "Full", sub: "upfront disclosure", color: "text-yellow-400" },
               ].map((m) => (
                 <div key={m.label} className="bg-zinc-800/60 rounded-lg p-3">
@@ -1687,13 +1687,13 @@ export default function PaymentSystemsPage() {
             <Card className="bg-zinc-900 border-zinc-800">
               <CardHeader className="pb-1">
                 <CardTitle className="text-sm flex items-center gap-2">
-                  <Network className="w-4 h-4 text-purple-400" />
+                  <Network className="w-4 h-4 text-primary" />
                   Blockchain Alternatives — Ripple / Stellar
                 </CardTitle>
               </CardHeader>
               <CardContent className="text-xs text-zinc-400 space-y-3">
-                <div className="bg-purple-500/10 border border-purple-500/20 rounded p-2">
-                  <div className="text-purple-400 font-semibold mb-1">Ripple (XRP Ledger)</div>
+                <div className="bg-primary/10 border border-border rounded p-2">
+                  <div className="text-primary font-semibold mb-1">Ripple (XRP Ledger)</div>
                   <ul className="space-y-1">
                     <li>• 3–5 second settlement vs 3–5 day SWIFT</li>
                     <li>• ODL (On-Demand Liquidity) — XRP as bridge currency</li>
@@ -1702,8 +1702,8 @@ export default function PaymentSystemsPage() {
                     <li>• Cost: $0.0001/tx vs $25–45 SWIFT correspondent fee</li>
                   </ul>
                 </div>
-                <div className="bg-blue-500/10 border border-blue-500/20 rounded p-2">
-                  <div className="text-blue-400 font-semibold mb-1">Stellar (XLM)</div>
+                <div className="bg-primary/10 border border-border rounded p-2">
+                  <div className="text-primary font-semibold mb-1">Stellar (XLM)</div>
                   <ul className="space-y-1">
                     <li>• Non-profit, open-source protocol</li>
                     <li>• 3–5 second finality, Stellar Consensus Protocol</li>
@@ -1766,16 +1766,16 @@ export default function PaymentSystemsPage() {
                 },
                 {
                   name: "Project Dunbar",
-                  color: "text-purple-400",
-                  bg: "bg-purple-500/10 border-purple-500/20",
+                  color: "text-primary",
+                  bg: "bg-primary/10 border-border",
                   participants: "BIS, MAS, RBA, SARB, BNM",
                   status: "Completed 2022",
                   desc: "Tested shared multi-CBDC platform. Showed feasibility of direct CBDC settlement between banks.",
                 },
                 {
                   name: "Project Nexus",
-                  color: "text-blue-400",
-                  bg: "bg-blue-500/10 border-blue-500/20",
+                  color: "text-primary",
+                  bg: "bg-primary/10 border-border",
                   participants: "BIS, ASEAN central banks",
                   status: "Pilot phase",
                   desc: "Interlinking domestic instant payment systems (UPI, PromptPay, PayNow) via standardized gateway.",
@@ -1828,12 +1828,12 @@ export default function PaymentSystemsPage() {
                 },
                 {
                   title: "Access Governance",
-                  color: "text-purple-400",
+                  color: "text-primary",
                   desc: "Which foreign institutions can hold domestic CBDC? Tiered access raises geopolitical questions.",
                 },
                 {
                   title: "FX Conversion",
-                  color: "text-blue-400",
+                  color: "text-primary",
                   desc: "Atomic FX swap requires simultaneous CBDC exchange across ledgers — liquidity provision and pricing mechanics unsolved.",
                 },
                 {

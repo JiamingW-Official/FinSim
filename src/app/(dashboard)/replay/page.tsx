@@ -424,7 +424,7 @@ function TradeLog({ trades, currentPrice }: TradeLogProps) {
                   </div>
                   <div className="flex items-center gap-1">
                     {isOpen && (
-                      <Badge className="h-4 bg-blue-600/20 px-1 text-[11px] text-blue-400">
+                      <Badge className="h-4 bg-primary/20 px-1 text-[11px] text-primary">
                         OPEN
                       </Badge>
                     )}
@@ -944,7 +944,7 @@ export default function ReplayPage() {
         );
       case "complete":
         return (
-          <Badge className="border-blue-600/30 bg-blue-600/20 text-xs text-blue-400">
+          <Badge className="border-border bg-primary/20 text-xs text-primary">
             Complete
           </Badge>
         );

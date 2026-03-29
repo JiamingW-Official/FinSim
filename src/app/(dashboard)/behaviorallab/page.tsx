@@ -759,8 +759,8 @@ export default function BehavioralLabPage() {
       {/* Header */}
       <div className="mb-6">
         <div className="flex items-center gap-3 mb-2">
-          <div className="p-2 rounded-lg bg-purple-500/10 border border-purple-500/20">
-            <Brain className="w-6 h-6 text-purple-400" />
+          <div className="p-2 rounded-lg bg-primary/10 border border-border">
+            <Brain className="w-6 h-6 text-primary" />
           </div>
           <div>
             <h1 className="text-2xl font-bold text-white">Behavioral Economics Lab</h1>
@@ -823,13 +823,13 @@ export default function BehavioralLabPage() {
                             className={cn(
                               "w-full text-left px-3 py-2 rounded-lg border text-sm transition-all",
                               selected
-                                ? "border-purple-500 bg-purple-500/10 text-white"
+                                ? "border-primary bg-primary/10 text-white"
                                 : "border-zinc-700 bg-zinc-800/50 text-zinc-400 hover:border-zinc-600 hover:text-white"
                             )}
                           >
                             <div className="flex items-center gap-2">
                               {selected ? (
-                                <CheckCircle2 className="w-4 h-4 text-purple-400 shrink-0" />
+                                <CheckCircle2 className="w-4 h-4 text-primary shrink-0" />
                               ) : (
                                 <Circle className="w-4 h-4 text-zinc-600 shrink-0" />
                               )}
@@ -843,7 +843,7 @@ export default function BehavioralLabPage() {
                 </Card>
               ))}
               <Button
-                className="w-full bg-purple-600 hover:bg-purple-700"
+                className="w-full bg-primary hover:bg-primary/80"
                 disabled={!allAnswered}
                 onClick={() => setQuizSubmitted(true)}
               >
@@ -857,7 +857,7 @@ export default function BehavioralLabPage() {
               <Card className="bg-zinc-900 border-zinc-800">
                 <CardHeader className="pb-2">
                   <CardTitle className="text-sm font-semibold text-zinc-300 flex items-center gap-2">
-                    <BarChart2 className="w-4 h-4 text-purple-400" />
+                    <BarChart2 className="w-4 h-4 text-primary" />
                     Bias Radar
                   </CardTitle>
                 </CardHeader>

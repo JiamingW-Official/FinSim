@@ -487,11 +487,11 @@ const IMPACT_STYLES: Record<ImpactLevel, string> = {
 };
 
 const TYPE_STYLES: Record<EventType, string> = {
-  Earnings: "bg-blue-500/10 text-blue-500",
-  FOMC: "bg-purple-500/10 text-purple-500",
+  Earnings: "bg-primary/10 text-primary",
+  FOMC: "bg-primary/10 text-primary",
   CPI: "bg-orange-500/10 text-orange-500",
   NFP: "bg-emerald-500/10 text-emerald-500",
-  GDP: "bg-teal-500/10 text-teal-500",
+  GDP: "bg-teal-500/10 text-emerald-500",
   PMI: "bg-sky-500/10 text-sky-500",
 };
 

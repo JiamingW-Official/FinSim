@@ -913,8 +913,8 @@ export default function FixedIncomeRVPage() {
             <div className="mt-4 grid grid-cols-1 sm:grid-cols-3 gap-3">
               <div className="rounded-xl bg-zinc-900/60 border border-zinc-800/50 p-4">
                 <div className="flex items-center gap-2 mb-2">
-                  <CheckCircle2 className="w-3.5 h-3.5 text-blue-400" />
-                  <span className="text-xs font-medium text-blue-400">IG Credit</span>
+                  <CheckCircle2 className="w-3.5 h-3.5 text-primary" />
+                  <span className="text-xs font-medium text-primary">IG Credit</span>
                 </div>
                 <div className="text-2xl font-bold mb-1">118 <span className="text-sm text-zinc-500 font-normal">bps OAS</span></div>
                 <div className="text-xs text-zinc-500 mb-2">vs 10Y average: 125 bps</div>
@@ -991,9 +991,9 @@ export default function FixedIncomeRVPage() {
                             className={cn(
                               "px-1.5 py-0.5 rounded text-xs",
                               row.type === "Treasury" && "bg-zinc-700/50 text-zinc-400",
-                              row.type === "Agency" && "bg-blue-500/10 text-blue-400",
+                              row.type === "Agency" && "bg-primary/10 text-primary",
                               row.type === "Muni" && "bg-indigo-500/10 text-indigo-400",
-                              row.type === "TIPS" && "bg-cyan-500/10 text-cyan-400"
+                              row.type === "TIPS" && "bg-cyan-500/10 text-muted-foreground"
                             )}
                           >
                             {row.type}
@@ -1007,7 +1007,7 @@ export default function FixedIncomeRVPage() {
                             <span className="text-zinc-600">—</span>
                           )}
                         </td>
-                        <td className={cn("py-2 pr-4 font-mono", row.spreadVsTsy > 0 ? "text-emerald-400" : row.spreadVsTsy < -100 ? "text-cyan-400" : "text-zinc-500")}>
+                        <td className={cn("py-2 pr-4 font-mono", row.spreadVsTsy > 0 ? "text-emerald-400" : row.spreadVsTsy < -100 ? "text-muted-foreground" : "text-zinc-500")}>
                           {row.spreadVsTsy === 0 ? "—" : `${row.spreadVsTsy > 0 ? "+" : ""}${row.spreadVsTsy} bps`}
                         </td>
                         <td className="py-2 pr-4 font-mono text-zinc-400">
@@ -1029,7 +1029,7 @@ export default function FixedIncomeRVPage() {
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 mb-4">
               <div className="rounded-xl bg-zinc-900/60 border border-zinc-800/50 p-4">
                 <div className="flex items-center gap-2 mb-2">
-                  <Layers className="w-3.5 h-3.5 text-blue-400" />
+                  <Layers className="w-3.5 h-3.5 text-primary" />
                   <span className="text-xs font-medium">Agency Premium</span>
                 </div>
                 <p className="text-xs text-zinc-400 mb-3">
@@ -1063,7 +1063,7 @@ export default function FixedIncomeRVPage() {
 
               <div className="rounded-xl bg-zinc-900/60 border border-zinc-800/50 p-4">
                 <div className="flex items-center gap-2 mb-2">
-                  <RefreshCw className="w-3.5 h-3.5 text-cyan-400" />
+                  <RefreshCw className="w-3.5 h-3.5 text-muted-foreground" />
                   <span className="text-xs font-medium">10Y TIPS Breakeven</span>
                 </div>
                 <p className="text-xs text-zinc-400 mb-3">
@@ -1073,7 +1073,7 @@ export default function FixedIncomeRVPage() {
                 </p>
                 <div className="flex items-center gap-2 text-xs">
                   <span className="text-zinc-500">5Y avg BE:</span>
-                  <span className="text-cyan-300">2.35% &bull; Current: 2.28%</span>
+                  <span className="text-muted-foreground">2.35% &bull; Current: 2.28%</span>
                   <span className={cn("ml-auto px-1.5 py-0.5 rounded", signalBg("buy"))}>TIPS</span>
                 </div>
               </div>
@@ -1242,7 +1242,7 @@ export default function FixedIncomeRVPage() {
                             <td className="py-2 pr-3 font-mono">{row.yield.toFixed(2)}%</td>
                             <td className="py-2 pr-3 font-mono text-indigo-400">+{row.carryBps}</td>
                             <td className="py-2 pr-3 font-mono text-orange-400">+{row.rollBps}</td>
-                            <td className="py-2 pr-3 font-mono font-semibold text-cyan-400">+{row.totalReturnBps}</td>
+                            <td className="py-2 pr-3 font-mono font-semibold text-muted-foreground">+{row.totalReturnBps}</td>
                             <td className="py-2 pr-3 font-mono text-zinc-300">{annualized}%</td>
                           </motion.tr>
                         );
@@ -1254,8 +1254,8 @@ export default function FixedIncomeRVPage() {
                 {/* Best tenor highlight */}
                 <div className="mt-4 rounded-lg bg-cyan-500/5 border border-cyan-500/20 p-3">
                   <div className="flex items-center gap-2 mb-1">
-                    <Target className="w-3.5 h-3.5 text-cyan-400" />
-                    <span className="text-xs font-medium text-cyan-400">Optimal Carry Point</span>
+                    <Target className="w-3.5 h-3.5 text-muted-foreground" />
+                    <span className="text-xs font-medium text-muted-foreground">Optimal Carry Point</span>
                   </div>
                   <p className="text-xs text-zinc-400">
                     {(() => {
@@ -1291,8 +1291,8 @@ export default function FixedIncomeRVPage() {
               </div>
               <div className="rounded-xl bg-zinc-900/60 border border-zinc-800/50 p-4">
                 <div className="flex items-center gap-2 mb-2">
-                  <Activity className="w-3.5 h-3.5 text-cyan-400" />
-                  <span className="text-xs font-semibold text-cyan-400">Riding the Curve</span>
+                  <Activity className="w-3.5 h-3.5 text-muted-foreground" />
+                  <span className="text-xs font-semibold text-muted-foreground">Riding the Curve</span>
                 </div>
                 <p className="text-xs text-zinc-400">
                   Combined strategy of maximizing carry + roll-down. Most effective in a stable, upward-sloping curve.

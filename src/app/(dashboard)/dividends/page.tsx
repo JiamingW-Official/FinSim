@@ -92,11 +92,11 @@ const DIV_STOCKS: DivStockDef[] = [
 
 const SECTOR_COLORS: Record<string, { text: string; bg: string; border: string }> = {
   Healthcare:    { text: "text-green-400",  bg: "bg-green-500/10",  border: "border-green-500/30" },
-  Consumer:      { text: "text-blue-400",   bg: "bg-blue-500/10",   border: "border-blue-500/30" },
+  Consumer:      { text: "text-primary",   bg: "bg-primary/10",   border: "border-border" },
   Telecom:       { text: "text-amber-400",  bg: "bg-amber-500/10",  border: "border-amber-500/30" },
   Energy:        { text: "text-orange-400", bg: "bg-orange-500/10", border: "border-orange-500/30" },
-  Retail:        { text: "text-cyan-400",   bg: "bg-cyan-500/10",   border: "border-cyan-500/30" },
-  "Real Estate": { text: "text-purple-400", bg: "bg-purple-500/10", border: "border-purple-500/30" },
+  Retail:        { text: "text-muted-foreground",   bg: "bg-cyan-500/10",   border: "border-cyan-500/30" },
+  "Real Estate": { text: "text-primary", bg: "bg-primary/10", border: "border-border" },
 };
 
 // ── Computed stock rows ───────────────────────────────────────────────────────
@@ -177,9 +177,9 @@ function DividendStocksTab() {
       <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
         {[
           { label: "Avg Yield", value: `${fmt(avgYield, 2)}%`, color: "text-green-400" },
-          { label: "Avg 5Y Growth", value: `${fmt(avgGrowth, 1)}%`, color: "text-blue-400" },
+          { label: "Avg 5Y Growth", value: `${fmt(avgGrowth, 1)}%`, color: "text-primary" },
           { label: "Dividend Kings", value: String(kings), color: "text-yellow-400" },
-          { label: "Aristocrats", value: String(aristocrats), color: "text-purple-400" },
+          { label: "Aristocrats", value: String(aristocrats), color: "text-primary" },
         ].map((chip) => (
           <div key={chip.label} className="bg-muted/30 border border-border/40 rounded-lg p-3">
             <p className="text-xs text-muted-foreground">{chip.label}</p>
@@ -256,7 +256,7 @@ function DividendStocksTab() {
                         </span>
                       </div>
                     </td>
-                    <td className={cn("px-3 py-2.5 text-right font-mono text-xs", r.growthRate > 7 ? "text-blue-400" : r.growthRate > 4 ? "text-cyan-400" : "text-muted-foreground")}>
+                    <td className={cn("px-3 py-2.5 text-right font-mono text-xs", r.growthRate > 7 ? "text-primary" : r.growthRate > 4 ? "text-muted-foreground" : "text-muted-foreground")}>
                       +{fmt(r.growthRate, 1)}%
                     </td>
                     <td className="px-3 py-2.5 text-right font-mono text-xs text-muted-foreground">{r.consecutiveYears}y</td>
@@ -266,7 +266,7 @@ function DividendStocksTab() {
                           <Crown className="w-3 h-3" /> King
                         </span>
                       ) : r.isDividendAristocrat ? (
-                        <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded bg-purple-500/10 border border-purple-500/30 text-purple-400 text-xs font-medium">
+                        <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded bg-primary/10 border border-border text-primary text-xs font-medium">
                           <Award className="w-3 h-3" /> Aristocrat
                         </span>
                       ) : (
@@ -284,7 +284,7 @@ function DividendStocksTab() {
       {/* Legend */}
       <div className="flex flex-wrap gap-x-5 gap-y-1 text-xs text-muted-foreground">
         <span className="inline-flex items-center gap-1"><Crown className="w-3 h-3 text-yellow-400" /> Dividend King = 50+ consecutive years of growth</span>
-        <span className="inline-flex items-center gap-1"><Award className="w-3 h-3 text-purple-400" /> Dividend Aristocrat = 25+ consecutive years of growth</span>
+        <span className="inline-flex items-center gap-1"><Award className="w-3 h-3 text-primary" /> Dividend Aristocrat = 25+ consecutive years of growth</span>
         <span>Payout: <span className="text-green-400">&lt;65% Healthy</span> / <span className="text-amber-400">65–80% Watch</span> / <span className="text-red-400">&gt;80% Risk</span></span>
       </div>
     </div>
@@ -405,7 +405,7 @@ function IncomeCalculatorTab() {
         {/* Dividend Growth Rate */}
         <div className="space-y-2">
           <label className="text-sm font-medium text-muted-foreground">Dividend Growth Rate (%/yr)</label>
-          <div className="bg-muted/30 border border-border/40 rounded px-3 py-1.5 text-sm font-mono font-medium text-blue-400">
+          <div className="bg-muted/30 border border-border/40 rounded px-3 py-1.5 text-sm font-mono font-medium text-primary">
             {fmt(divGrowth, 1)}%
           </div>
           <Slider value={[divGrowth]} min={0} max={15} step={0.5} onValueChange={(v) => setDivGrowth(v[0])} />
@@ -443,9 +443,9 @@ function IncomeCalculatorTab() {
       <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
         {[
           { label: "Annual Income (Now)", value: fmtK(year0.annualIncome), color: "text-green-400", sub: `${fmt(year0.annualIncome / 12, 0)}/mo` },
-          { label: `Annual Income (Yr ${years})`, value: fmtK(finalIncome), color: "text-blue-400", sub: `${fmtK(finalIncome / 12)}/mo` },
+          { label: `Annual Income (Yr ${years})`, value: fmtK(finalIncome), color: "text-primary", sub: `${fmtK(finalIncome / 12)}/mo` },
           { label: "Total Income Collected", value: fmtK(totalIncome), color: "text-amber-400", sub: `over ${years} years` },
-          { label: "Final Portfolio Value", value: fmtK(finalPortfolio), color: "text-purple-400", sub: drip ? "with DRIP" : "no DRIP" },
+          { label: "Final Portfolio Value", value: fmtK(finalPortfolio), color: "text-primary", sub: drip ? "with DRIP" : "no DRIP" },
         ].map((chip) => (
           <div key={chip.label} className="bg-muted/30 border border-border/40 rounded-lg p-3">
             <p className="text-xs text-muted-foreground">{chip.label}</p>
@@ -461,7 +461,7 @@ function IncomeCalculatorTab() {
           <h3 className="text-sm font-medium">Portfolio Value vs Annual Income</h3>
           <div className="flex items-center gap-4 text-xs text-muted-foreground">
             <span className="inline-flex items-center gap-1.5">
-              <span className="w-3 h-0.5 bg-blue-400 inline-block" /> Portfolio Value
+              <span className="w-3 h-0.5 bg-primary inline-block" /> Portfolio Value
             </span>
             <span className="inline-flex items-center gap-1.5">
               <span className="w-3 h-0.5 bg-green-400 inline-block" /> Annual Income
@@ -520,13 +520,13 @@ function IncomeCalculatorTab() {
             <p className="text-sm text-muted-foreground">Not reached within {years} years — increase investment or yield</p>
           )}
         </div>
-        <div className={cn("rounded-lg border p-3", milestone5k ? "bg-purple-500/5 border-purple-500/30" : "bg-muted/20 border-border/40")}>
+        <div className={cn("rounded-lg border p-3", milestone5k ? "bg-primary/5 border-border" : "bg-muted/20 border-border/40")}>
           <div className="flex items-center gap-2 mb-1">
-            <Crown className={cn("w-4 h-4", milestone5k ? "text-purple-400" : "text-muted-foreground")} />
+            <Crown className={cn("w-4 h-4", milestone5k ? "text-primary" : "text-muted-foreground")} />
             <span className="text-sm font-medium">$5,000/month Passive Income</span>
           </div>
           {milestone5k ? (
-            <p className="text-sm text-purple-400">Reached in Year {milestone5k.year} — portfolio {fmtK(milestone5k.portfolioValue)}</p>
+            <p className="text-sm text-primary">Reached in Year {milestone5k.year} — portfolio {fmtK(milestone5k.portfolioValue)}</p>
           ) : (
             <p className="text-sm text-muted-foreground">Not reached within {years} years — increase investment or years</p>
           )}
@@ -679,10 +679,10 @@ function ExDividendCalendarTab() {
       </div>
 
       {/* T+1 note */}
-      <div className="bg-blue-500/5 border border-blue-500/20 rounded-lg p-3 flex gap-2">
-        <Info className="w-4 h-4 text-blue-400 mt-0.5 flex-shrink-0" />
+      <div className="bg-primary/5 border border-border rounded-lg p-3 flex gap-2">
+        <Info className="w-4 h-4 text-primary mt-0.5 flex-shrink-0" />
         <p className="text-xs text-muted-foreground">
-          <strong className="text-blue-400">T+1 Settlement:</strong> To receive the dividend, you must own shares by market close on the business day before the ex-dividend date. Buying on the ex-dividend date itself means you will NOT receive the upcoming dividend payment.
+          <strong className="text-primary">T+1 Settlement:</strong> To receive the dividend, you must own shares by market close on the business day before the ex-dividend date. Buying on the ex-dividend date itself means you will NOT receive the upcoming dividend payment.
         </p>
       </div>
     </div>
@@ -764,7 +764,7 @@ function DividendGrowthTab() {
 
   const scoreColor =
     score >= 8 ? "text-green-400" :
-    score >= 6 ? "text-cyan-400" :
+    score >= 6 ? "text-muted-foreground" :
     score >= 4 ? "text-amber-400" :
     "text-red-400";
 
@@ -805,7 +805,7 @@ function DividendGrowthTab() {
             <Crown className="w-4 h-4" /> Dividend King
           </span>
         ) : def.consecutiveYears >= 25 ? (
-          <span className="inline-flex items-center gap-1 px-3 py-1 rounded-lg bg-purple-500/10 border border-purple-500/30 text-purple-400 text-sm font-medium">
+          <span className="inline-flex items-center gap-1 px-3 py-1 rounded-lg bg-primary/10 border border-border text-primary text-sm font-medium">
             <Award className="w-4 h-4" /> Dividend Aristocrat
           </span>
         ) : null}

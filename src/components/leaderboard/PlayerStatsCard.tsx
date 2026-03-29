@@ -47,7 +47,7 @@ export function PlayerStatsCard() {
     {
       label: "Achievements",
       value: `${unlockedCount}`,
-      color: unlockedCount >= 5 ? "text-purple-400" : "text-muted-foreground",
+      color: unlockedCount >= 5 ? "text-primary" : "text-muted-foreground",
       icon: Award,
     },
   ];

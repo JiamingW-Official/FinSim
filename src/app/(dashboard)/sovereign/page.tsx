@@ -452,7 +452,7 @@ function SWFOverviewTab() {
     Savings: "bg-indigo-500/20 text-indigo-300 border-indigo-500/30",
     Stabilization: "bg-amber-500/20 text-amber-300 border-amber-500/30",
     Development: "bg-emerald-500/20 text-emerald-300 border-emerald-500/30",
-    "Pension Reserve": "bg-cyan-500/20 text-cyan-300 border-cyan-500/30",
+    "Pension Reserve": "bg-cyan-500/20 text-muted-foreground border-cyan-500/30",
   };
 
   const transparencyColor: Record<SWFEntry["transparency"], string> = {
@@ -470,7 +470,7 @@ function SWFOverviewTab() {
         <StatCard icon={DollarSign} label="Top-10 AUM" value="$8.0T" sub="USD trillions combined" color="bg-indigo-600" idx={0} />
         <StatCard icon={Globe} label="Countries" value="12" sub="Nations represented" color="bg-cyan-600" idx={1} />
         <StatCard icon={TrendingUp} label="Avg. 10Y Return" value="6.8%" sub="Annualized net of fees" color="bg-emerald-600" idx={2} />
-        <StatCard icon={Award} label="Oldest Fund" value="1953" sub="Kuwait Investment Authority" color="bg-violet-600" idx={3} />
+        <StatCard icon={Award} label="Oldest Fund" value="1953" sub="Kuwait Investment Authority" color="bg-primary" idx={3} />
       </div>
 
       {/* AUM Bar Chart */}
@@ -569,9 +569,9 @@ function SWFOverviewTab() {
                     <span className={`px-1.5 py-0.5 rounded border text-xs ${mandateColor[fund.mandate]}`}>{fund.mandate}</span>
                   </td>
                   <td className="py-2 px-2 text-indigo-300">{fund.allocation.equities}%</td>
-                  <td className="py-2 px-2 text-cyan-300">{fund.allocation.fixedIncome}%</td>
+                  <td className="py-2 px-2 text-muted-foreground">{fund.allocation.fixedIncome}%</td>
                   <td className="py-2 px-2 text-emerald-300">{fund.allocation.realAssets}%</td>
-                  <td className="py-2 px-2 text-violet-300">{fund.allocation.alternatives}%</td>
+                  <td className="py-2 px-2 text-primary">{fund.allocation.alternatives}%</td>
                   <td className="py-2 px-2">
                     <span className={`font-medium ${transparencyColor[fund.transparency]}`}>{fund.transparency}</span>
                   </td>
@@ -665,7 +665,7 @@ function AssetAllocationTab() {
       <div className="grid grid-cols-2 lg:grid-cols-4 gap-3">
         <StatCard icon={Layers} label="Avg. Equity Weight" value="48%" sub="Public + private" color="bg-indigo-600" idx={0} />
         <StatCard icon={Shield} label="Avg. Fixed Income" value="22%" sub="Gov't + credit" color="bg-cyan-600" idx={1} />
-        <StatCard icon={Globe} label="Avg. Alternatives" value="15%" sub="PE, HF, private credit" color="bg-violet-600" idx={2} />
+        <StatCard icon={Globe} label="Avg. Alternatives" value="15%" sub="PE, HF, private credit" color="bg-primary" idx={2} />
         <StatCard icon={Target} label="Avg. Real Assets" value="12%" sub="Infra, RE, commodities" color="bg-emerald-600" idx={3} />
       </div>
 
@@ -824,7 +824,7 @@ function NorwayModelTab() {
         <StatCard icon={DollarSign} label="GPFG AUM" value="$1.72T" sub="Largest single SWF" color="bg-indigo-600" idx={0} />
         <StatCard icon={TrendingUp} label="Since Inception" value="6.1% ann." sub="Net of mgmt. costs" color="bg-emerald-600" idx={1} />
         <StatCard icon={Globe} label="Holdings" value="8,800+" sub="Companies in 70+ countries" color="bg-cyan-600" idx={2} />
-        <StatCard icon={Shield} label="Equity Share" value="72%" sub="Mandated by Storting" color="bg-violet-600" idx={3} />
+        <StatCard icon={Shield} label="Equity Share" value="72%" sub="Mandated by Storting" color="bg-primary" idx={3} />
       </div>
 
       {/* Cumulative Performance Chart */}
@@ -967,7 +967,7 @@ function EndowmentModelTab() {
       <div className="grid grid-cols-2 lg:grid-cols-4 gap-3">
         <StatCard icon={BookOpen} label="Yale AUM" value="$41.4B" sub="FY2024" color="bg-indigo-600" idx={0} />
         <StatCard icon={TrendingUp} label="Yale 10Y Return" value="11.3%" sub="Annualized net" color="bg-emerald-600" idx={1} />
-        <StatCard icon={Layers} label="Yale Illiquid %" value="72%" sub="PE + VC + RE + Infra" color="bg-violet-600" idx={2} />
+        <StatCard icon={Layers} label="Yale Illiquid %" value="72%" sub="PE + VC + RE + Infra" color="bg-primary" idx={2} />
         <StatCard icon={Target} label="Yale Spending" value="5.25%" sub="Of 3Y rolling avg AUM" color="bg-amber-600" idx={3} />
       </div>
 
@@ -994,8 +994,8 @@ function EndowmentModelTab() {
                   <td className="py-2 px-2 font-medium text-white">{ep.institution}</td>
                   <td className="py-2 px-2 text-white">${ep.aum.toFixed(1)}B</td>
                   <td className="py-2 px-2 text-indigo-300">{ep.equities}%</td>
-                  <td className="py-2 px-2 text-cyan-300">{ep.fixedIncome}%</td>
-                  <td className="py-2 px-2 text-violet-300">{ep.alternatives}%</td>
+                  <td className="py-2 px-2 text-muted-foreground">{ep.fixedIncome}%</td>
+                  <td className="py-2 px-2 text-primary">{ep.alternatives}%</td>
                   <td className="py-2 px-2 text-emerald-300">{ep.realAssets}%</td>
                   <td className="py-2 px-2">
                     <span className={`font-semibold ${ep.illiquidPct >= 60 ? "text-amber-300" : "text-zinc-300"}`}>{ep.illiquidPct}%</span>
@@ -1097,13 +1097,13 @@ function EndowmentModelTab() {
                 title: "J-Curve Management",
                 desc: "Vintage diversification smooths J-curves. A portfolio of vintages 2010–2024 ensures consistent capital calls and distributions.",
                 icon: BarChart3,
-                color: "text-cyan-400",
+                color: "text-muted-foreground",
               },
               {
                 title: "Manager Access",
                 desc: "Top-quartile PE/VC funds are capacity-constrained. Brand-name LPs get access that smaller investors cannot.",
                 icon: Award,
-                color: "text-violet-400",
+                color: "text-primary",
               },
             ].map((item) => (
               <div key={item.title} className="flex gap-3 p-2.5 bg-zinc-800/50 rounded-lg">
@@ -1120,7 +1120,7 @@ function EndowmentModelTab() {
         <Card className="bg-zinc-900 border-zinc-800">
           <CardHeader className="pb-2">
             <CardTitle className="text-sm font-semibold text-zinc-300 flex items-center gap-2">
-              <Info className="w-4 h-4 text-cyan-400" />
+              <Info className="w-4 h-4 text-muted-foreground" />
               Spending Rules — Balancing Growth &amp; Support
             </CardTitle>
           </CardHeader>
@@ -1379,9 +1379,9 @@ function FactorInvestingTab() {
               {
                 title: "Crowding",
                 desc: "When a factor is widely known, competition arbitrages away 20–40% of the premium over a decade.",
-                color: "bg-violet-500/10 border-violet-500/30",
+                color: "bg-primary/10 border-border",
                 icon: Globe,
-                iconColor: "text-violet-400",
+                iconColor: "text-primary",
               },
             ].map((item) => (
               <div key={item.title} className={`p-3 rounded-lg border ${item.color}`}>
@@ -1419,8 +1419,8 @@ export default function SovereignPage() {
           <div className="flex gap-2 mt-3 flex-wrap">
             <Badge variant="outline" className="border-indigo-500/40 text-indigo-300 text-xs">$10T+ AUM covered</Badge>
             <Badge variant="outline" className="border-emerald-500/40 text-emerald-300 text-xs">Norway GPFG deep dive</Badge>
-            <Badge variant="outline" className="border-violet-500/40 text-violet-300 text-xs">Yale &amp; Harvard models</Badge>
-            <Badge variant="outline" className="border-cyan-500/40 text-cyan-300 text-xs">Factor investing at scale</Badge>
+            <Badge variant="outline" className="border-primary/40 text-primary text-xs">Yale &amp; Harvard models</Badge>
+            <Badge variant="outline" className="border-cyan-500/40 text-muted-foreground text-xs">Factor investing at scale</Badge>
           </div>
         </motion.div>
 

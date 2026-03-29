@@ -461,8 +461,8 @@ export default function ESGIntegrationPage() {
           <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
             {[
               { label: "Portfolio ESG Score", value: (COMPANIES.reduce((s, c) => s + c.total, 0) / COMPANIES.length).toFixed(1), icon: Award, color: "text-emerald-400" },
-              { label: "Avg Carbon Intensity", value: (COMPANIES.reduce((s, c) => s + c.carbonFootprint, 0) / COMPANIES.length).toFixed(1) + " tCO2e", icon: Wind, color: "text-blue-400" },
-              { label: "Avg Gender Diversity", value: (COMPANIES.reduce((s, c) => s + c.genderDiversityPct, 0) / COMPANIES.length).toFixed(1) + "%", icon: Users, color: "text-purple-400" },
+              { label: "Avg Carbon Intensity", value: (COMPANIES.reduce((s, c) => s + c.carbonFootprint, 0) / COMPANIES.length).toFixed(1) + " tCO2e", icon: Wind, color: "text-primary" },
+              { label: "Avg Gender Diversity", value: (COMPANIES.reduce((s, c) => s + c.genderDiversityPct, 0) / COMPANIES.length).toFixed(1) + "%", icon: Users, color: "text-primary" },
               { label: "Avg Board Independence", value: (COMPANIES.reduce((s, c) => s + c.boardIndependencePct, 0) / COMPANIES.length).toFixed(1) + "%", icon: Shield, color: "text-orange-400" },
             ].map((stat) => (
               <Card key={stat.label} className="border-border">
@@ -513,8 +513,8 @@ export default function ESGIntegrationPage() {
                         <div className="space-y-1">
                           {[
                             { label: "E", value: co.eScore, color: "bg-emerald-500" },
-                            { label: "S", value: co.sScore, color: "bg-blue-500" },
-                            { label: "G", value: co.gScore, color: "bg-purple-500" },
+                            { label: "S", value: co.sScore, color: "bg-primary" },
+                            { label: "G", value: co.gScore, color: "bg-primary" },
                           ].map((dim) => (
                             <div key={dim.label} className="flex items-center gap-2">
                               <span className="text-xs text-muted-foreground w-4">{dim.label}</span>
@@ -554,8 +554,8 @@ export default function ESGIntegrationPage() {
                         <div className="grid grid-cols-3 gap-3 text-center">
                           {[
                             { label: "Environmental", value: selectedCompany.eScore, color: "text-emerald-400", bg: "bg-emerald-500/10" },
-                            { label: "Social", value: selectedCompany.sScore, color: "text-blue-400", bg: "bg-blue-500/10" },
-                            { label: "Governance", value: selectedCompany.gScore, color: "text-purple-400", bg: "bg-purple-500/10" },
+                            { label: "Social", value: selectedCompany.sScore, color: "text-primary", bg: "bg-primary/10" },
+                            { label: "Governance", value: selectedCompany.gScore, color: "text-primary", bg: "bg-primary/10" },
                           ].map((dim) => (
                             <div key={dim.label} className={`rounded-lg p-3 ${dim.bg}`}>
                               <p className={`text-2xl font-bold ${dim.color}`}>{dim.value.toFixed(0)}</p>
@@ -620,8 +620,8 @@ export default function ESGIntegrationPage() {
                                 <p className="text-muted-foreground">{co.sector}</p>
                               </td>
                               <td className="text-right p-3 text-emerald-400">{co.eScore.toFixed(0)}</td>
-                              <td className="text-right p-3 text-blue-400">{co.sScore.toFixed(0)}</td>
-                              <td className="text-right p-3 text-purple-400">{co.gScore.toFixed(0)}</td>
+                              <td className="text-right p-3 text-primary">{co.sScore.toFixed(0)}</td>
+                              <td className="text-right p-3 text-primary">{co.gScore.toFixed(0)}</td>
                               <td className="text-right p-3 font-semibold">{co.total.toFixed(1)}</td>
                               <td className="text-right p-3">
                                 <Badge className={`text-xs border ${ratingBadgeColor(co.rating)}`}>{co.rating}</Badge>
@@ -786,7 +786,7 @@ export default function ESGIntegrationPage() {
               <Card className="border-border">
                 <CardHeader className="pb-2">
                   <CardTitle className="text-sm flex items-center gap-2">
-                    <Wind className="w-4 h-4 text-blue-400" />
+                    <Wind className="w-4 h-4 text-primary" />
                     Carbon Footprint (tCO2e / $M revenue)
                   </CardTitle>
                 </CardHeader>
@@ -801,7 +801,7 @@ export default function ESGIntegrationPage() {
                     {IMPACT_DATA.map((d) => (
                       <div key={d.company} className="flex items-center gap-2">
                         <span className="text-xs text-muted-foreground w-10">{d.company}</span>
-                        <HorizontalBar value={d.carbon} max={200} color="bg-blue-500" />
+                        <HorizontalBar value={d.carbon} max={200} color="bg-primary" />
                       </div>
                     ))}
                   </div>
@@ -812,7 +812,7 @@ export default function ESGIntegrationPage() {
               <Card className="border-border">
                 <CardHeader className="pb-2">
                   <CardTitle className="text-sm flex items-center gap-2">
-                    <Droplets className="w-4 h-4 text-cyan-400" />
+                    <Droplets className="w-4 h-4 text-muted-foreground" />
                     Water Usage (m³ / $M revenue)
                   </CardTitle>
                 </CardHeader>
@@ -838,7 +838,7 @@ export default function ESGIntegrationPage() {
               <Card className="border-border">
                 <CardHeader className="pb-2">
                   <CardTitle className="text-sm flex items-center gap-2">
-                    <Users className="w-4 h-4 text-purple-400" />
+                    <Users className="w-4 h-4 text-primary" />
                     Gender Diversity (% women in workforce)
                   </CardTitle>
                 </CardHeader>
@@ -853,7 +853,7 @@ export default function ESGIntegrationPage() {
                     {IMPACT_DATA.map((d) => (
                       <div key={d.company} className="flex items-center gap-2">
                         <span className="text-xs text-muted-foreground w-10">{d.company}</span>
-                        <HorizontalBar value={d.genderDiv} max={100} color="bg-purple-500" />
+                        <HorizontalBar value={d.genderDiv} max={100} color="bg-primary" />
                       </div>
                     ))}
                   </div>
@@ -930,7 +930,7 @@ export default function ESGIntegrationPage() {
             <Card className="border-border">
               <CardHeader className="pb-2">
                 <CardTitle className="text-base flex items-center gap-2">
-                  <Globe className="w-4 h-4 text-blue-400" />
+                  <Globe className="w-4 h-4 text-primary" />
                   TCFD — Task Force on Climate-Related Financial Disclosures
                 </CardTitle>
               </CardHeader>
@@ -942,7 +942,7 @@ export default function ESGIntegrationPage() {
                   {tcfdPillars.map((pillar) => (
                     <div key={pillar.title} className="p-3 rounded-lg bg-muted/20 border border-border">
                       <div className="flex items-center gap-2 mb-2">
-                        <pillar.icon className="w-4 h-4 text-blue-400" />
+                        <pillar.icon className="w-4 h-4 text-primary" />
                         <p className="font-medium text-sm">{pillar.title}</p>
                       </div>
                       <ul className="space-y-1">
@@ -982,8 +982,8 @@ export default function ESGIntegrationPage() {
                     </div>
                   ))}
                 </div>
-                <div className="mt-3 p-3 rounded-lg bg-blue-500/5 border border-blue-500/20">
-                  <p className="text-xs text-blue-400 flex items-start gap-1.5">
+                <div className="mt-3 p-3 rounded-lg bg-primary/5 border border-border">
+                  <p className="text-xs text-primary flex items-start gap-1.5">
                     <Info className="w-3.5 h-3.5 mt-0.5 flex-shrink-0" />
                     Principal Adverse Impacts (PAI) — Article 8 and 9 products must consider 18 mandatory PAI indicators including GHG emissions, biodiversity, water, waste, and social violations.
                   </p>
@@ -1040,7 +1040,7 @@ export default function ESGIntegrationPage() {
             <Card className="border-border">
               <CardHeader className="pb-2">
                 <CardTitle className="text-base flex items-center gap-2">
-                  <Globe className="w-4 h-4 text-teal-400" />
+                  <Globe className="w-4 h-4 text-emerald-400" />
                   UN Sustainable Development Goals — Portfolio Alignment
                 </CardTitle>
               </CardHeader>
@@ -1071,7 +1071,7 @@ export default function ESGIntegrationPage() {
                   ))}
                 </div>
                 <div className="mt-3 flex items-center gap-3">
-                  <Badge variant="outline" className="text-xs border-teal-500/40 text-teal-400">
+                  <Badge variant="outline" className="text-xs border-teal-500/40 text-emerald-400">
                     {UN_SDGS.filter((s) => s.aligned).length} / 17 SDGs aligned
                   </Badge>
                   <span className="text-xs text-muted-foreground">Based on portfolio sector exposure and ESG activity data</span>

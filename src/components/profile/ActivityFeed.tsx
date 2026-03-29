@@ -52,7 +52,7 @@ export function ActivityFeed() {
       const IconComp = ICON_MAP[n.icon] ?? Zap;
       let dotColor = "bg-primary/40";
       if (n.type === "achievement") dotColor = "bg-amber-500/60";
-      else if (n.type === "level_up") dotColor = "bg-violet-500/60";
+      else if (n.type === "level_up") dotColor = "bg-primary/60";
       else if (n.type === "trade") dotColor = "bg-emerald-500/60";
 
       feed.push({

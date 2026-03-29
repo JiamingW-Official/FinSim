@@ -569,10 +569,10 @@ export default function PortfolioOptimizerPage() {
                   {/* Legend */}
                   <div className="flex flex-wrap gap-3 mt-2 text-xs text-muted-foreground">
                     <span className="flex items-center gap-1"><span className="w-3 h-3 rounded-full inline-block bg-emerald-500" /> Min Variance</span>
-                    <span className="flex items-center gap-1"><span className="w-3 h-3 rounded-full inline-block bg-blue-500" /> Max Sharpe (★)</span>
-                    <span className="flex items-center gap-1"><span className="w-3 h-3 rounded-full inline-block bg-violet-500" /> Risk Parity (■)</span>
+                    <span className="flex items-center gap-1"><span className="w-3 h-3 rounded-full inline-block bg-primary" /> Max Sharpe (★)</span>
+                    <span className="flex items-center gap-1"><span className="w-3 h-3 rounded-full inline-block bg-primary" /> Risk Parity (■)</span>
                     <span className="flex items-center gap-1"><span className="w-3 h-3 rounded-full inline-block bg-amber-500" /> 60/40 (▲)</span>
-                    <span className="flex items-center gap-1"><span className="w-10 h-0.5 inline-block bg-violet-400" /> Efficient frontier</span>
+                    <span className="flex items-center gap-1"><span className="w-10 h-0.5 inline-block bg-primary" /> Efficient frontier</span>
                   </div>
                 </CardContent>
               </Card>
@@ -596,7 +596,7 @@ export default function PortfolioOptimizerPage() {
                         </div>
                         <div className="text-center">
                           <div className="text-muted-foreground">Sharpe</div>
-                          <div className="font-semibold text-blue-400">{pt.sharpe.toFixed(3)}</div>
+                          <div className="font-semibold text-primary">{pt.sharpe.toFixed(3)}</div>
                         </div>
                       </div>
                       <div className="space-y-1">
@@ -672,7 +672,7 @@ export default function PortfolioOptimizerPage() {
                               <td className="py-2 text-right text-rose-400 font-mono font-semibold">
                                 {(a.volatility * 100).toFixed(1)}%
                               </td>
-                              <td className="py-2 text-right text-blue-400 font-mono font-semibold">
+                              <td className="py-2 text-right text-primary font-mono font-semibold">
                                 {sharpe.toFixed(3)}
                               </td>
                               <td className="py-2 text-right">
@@ -792,7 +792,7 @@ export default function PortfolioOptimizerPage() {
                   <div className="mt-3 space-y-1">
                     <p className="text-xs text-muted-foreground font-medium">Key Relationships:</p>
                     <div className="flex flex-wrap gap-2 text-xs">
-                      <Badge variant="secondary" className="text-blue-400 border-blue-400/30">AAPL↔MSFT +0.82 (high)</Badge>
+                      <Badge variant="secondary" className="text-primary border-border">AAPL↔MSFT +0.82 (high)</Badge>
                       <Badge variant="secondary" className="text-rose-400 border-rose-400/30">BND↔AAPL -0.18 (hedge)</Badge>
                       <Badge variant="secondary" className="text-amber-400 border-amber-400/30">GLD↔BND +0.24 (mild)</Badge>
                     </div>
@@ -862,7 +862,7 @@ export default function PortfolioOptimizerPage() {
                         ))}
                         <th className="text-right pb-2 font-medium text-emerald-400">Return</th>
                         <th className="text-right pb-2 font-medium text-rose-400">Risk</th>
-                        <th className="text-right pb-2 font-medium text-blue-400">Sharpe</th>
+                        <th className="text-right pb-2 font-medium text-primary">Sharpe</th>
                         <th className="text-right pb-2 font-medium text-amber-400">Var %</th>
                       </tr>
                     </thead>
@@ -885,7 +885,7 @@ export default function PortfolioOptimizerPage() {
                             <td className="py-2 text-right font-semibold text-rose-400 font-mono">
                               {(pt.vol * 100).toFixed(2)}%
                             </td>
-                            <td className="py-2 text-right font-semibold text-blue-400 font-mono">
+                            <td className="py-2 text-right font-semibold text-primary font-mono">
                               {pt.sharpe.toFixed(3)}
                             </td>
                             <td className="py-2 text-right font-mono text-amber-400 text-xs">
@@ -1064,8 +1064,8 @@ export default function PortfolioOptimizerPage() {
                     <div className="text-xs text-muted-foreground font-medium uppercase tracking-wide">Active Constraints</div>
                     <div className="flex flex-wrap gap-1">
                       <Badge variant="secondary" className="text-xs text-emerald-400 border-emerald-400/30">Long-only (w≥0)</Badge>
-                      <Badge variant="secondary" className="text-xs text-blue-400 border-blue-400/30">Sum=100%</Badge>
-                      <Badge variant="secondary" className="text-xs text-violet-400 border-violet-400/30">
+                      <Badge variant="secondary" className="text-xs text-primary border-border">Sum=100%</Badge>
+                      <Badge variant="secondary" className="text-xs text-primary border-border">
                         Max {Math.min(...maxWeightPct)}–{Math.max(...maxWeightPct)}% per asset
                       </Badge>
                       <Badge variant="secondary" className="text-xs text-amber-400 border-amber-400/30">
@@ -1142,11 +1142,11 @@ export default function PortfolioOptimizerPage() {
                   {/* Constrained stats */}
                   <div className="grid grid-cols-2 gap-3 mt-3">
                     <div className="bg-teal-500/10 border border-teal-500/20 rounded-lg p-3 space-y-1">
-                      <div className="text-xs text-teal-400 font-medium">Constrained Min Variance</div>
+                      <div className="text-xs text-emerald-400 font-medium">Constrained Min Variance</div>
                       <div className="grid grid-cols-3 gap-1 text-xs">
                         <div><span className="text-muted-foreground">Ret: </span><span className="text-emerald-400 font-mono">{(constrainedMinVar.ret * 100).toFixed(2)}%</span></div>
                         <div><span className="text-muted-foreground">Vol: </span><span className="text-rose-400 font-mono">{(constrainedMinVar.vol * 100).toFixed(2)}%</span></div>
-                        <div><span className="text-muted-foreground">SR: </span><span className="text-blue-400 font-mono">{constrainedMinVar.sharpe.toFixed(3)}</span></div>
+                        <div><span className="text-muted-foreground">SR: </span><span className="text-primary font-mono">{constrainedMinVar.sharpe.toFixed(3)}</span></div>
                       </div>
                       <div className="space-y-0.5 mt-1">
                         {ASSETS.map((a, i) => (
@@ -1155,17 +1155,17 @@ export default function PortfolioOptimizerPage() {
                             <div className="flex-1 h-1.5 bg-muted rounded-full overflow-hidden">
                               <div className="h-full bg-teal-400 rounded-full" style={{ width: `${constrainedMinVar.weights[i] * 100}%` }} />
                             </div>
-                            <span className="font-mono w-8 text-right text-teal-400">{(constrainedMinVar.weights[i] * 100).toFixed(0)}%</span>
+                            <span className="font-mono w-8 text-right text-emerald-400">{(constrainedMinVar.weights[i] * 100).toFixed(0)}%</span>
                           </div>
                         ))}
                       </div>
                     </div>
-                    <div className="bg-violet-500/10 border border-violet-500/20 rounded-lg p-3 space-y-1">
-                      <div className="text-xs text-violet-400 font-medium">Unconstrained Min Variance</div>
+                    <div className="bg-primary/10 border border-border rounded-lg p-3 space-y-1">
+                      <div className="text-xs text-primary font-medium">Unconstrained Min Variance</div>
                       <div className="grid grid-cols-3 gap-1 text-xs">
                         <div><span className="text-muted-foreground">Ret: </span><span className="text-emerald-400 font-mono">{(minVarPt.ret * 100).toFixed(2)}%</span></div>
                         <div><span className="text-muted-foreground">Vol: </span><span className="text-rose-400 font-mono">{(minVarPt.vol * 100).toFixed(2)}%</span></div>
-                        <div><span className="text-muted-foreground">SR: </span><span className="text-blue-400 font-mono">{minVarPt.sharpe.toFixed(3)}</span></div>
+                        <div><span className="text-muted-foreground">SR: </span><span className="text-primary font-mono">{minVarPt.sharpe.toFixed(3)}</span></div>
                       </div>
                       <div className="space-y-0.5 mt-1">
                         {ASSETS.map((a, i) => (
@@ -1393,7 +1393,7 @@ export default function PortfolioOptimizerPage() {
                     </div>
                   </div>
                   <div className="space-y-2">
-                    <div className="font-semibold text-sm text-blue-400">2. Investor Views</div>
+                    <div className="font-semibold text-sm text-primary">2. Investor Views</div>
                     <p className="text-xs text-muted-foreground">
                       Express views as P × μ = Q + ε, where P picks the assets, Q is the view return, and ε ~ N(0, Ω) captures uncertainty. Absolute views (&quot;AAPL returns 15%&quot;) and relative views (&quot;AAPL outperforms MSFT by 3%&quot;) are both supported.
                     </p>
@@ -1539,7 +1539,7 @@ export default function PortfolioOptimizerPage() {
                           <td className="py-2 text-center">
                             <span className={
                               row.stability === "Very Good" ? "text-emerald-400" :
-                              row.stability === "Good" ? "text-blue-400" :
+                              row.stability === "Good" ? "text-primary" :
                               "text-rose-400"
                             }>
                               {row.stability}

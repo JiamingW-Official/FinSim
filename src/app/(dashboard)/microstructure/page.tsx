@@ -663,7 +663,7 @@ export default function MicrostructurePage() {
     if (c === "High") return "text-green-400";
     if (c === "Medium") return "text-yellow-400";
     if (c === "Low") return "text-red-400";
-    return "text-blue-400";
+    return "text-primary";
   };
 
   const riskColor = (r: string) => {
@@ -686,7 +686,7 @@ export default function MicrostructurePage() {
       >
         <div>
           <h1 className="text-2xl font-bold tracking-tight flex items-center gap-2">
-            <Activity className="w-7 h-7 text-blue-400" />
+            <Activity className="w-7 h-7 text-primary" />
             Equity Market Microstructure
           </h1>
           <p className="text-sm text-muted-foreground mt-1">
@@ -715,7 +715,7 @@ export default function MicrostructurePage() {
       >
         {[
           {
-            icon: <Scale className="w-4 h-4 text-blue-400" />,
+            icon: <Scale className="w-4 h-4 text-primary" />,
             label: "NBBO Spread",
             value: `$${nbboSpread}`,
             sub: `${nbboSpreadBps} bps`,
@@ -723,7 +723,7 @@ export default function MicrostructurePage() {
             trendLabel: "vs. 30d avg",
           },
           {
-            icon: <Layers className="w-4 h-4 text-purple-400" />,
+            icon: <Layers className="w-4 h-4 text-primary" />,
             label: "Market Depth",
             value: `$${marketDepth}M`,
             sub: "Top 12 levels",
@@ -755,7 +755,7 @@ export default function MicrostructurePage() {
                   <span className="text-xs text-muted-foreground">{m.label}</span>
                 </div>
                 {m.trend === "up" && <TrendingUp className="w-3 h-3 text-green-400" />}
-                {m.trend === "down" && <TrendingDown className="w-3 h-3 text-blue-400" />}
+                {m.trend === "down" && <TrendingDown className="w-3 h-3 text-primary" />}
               </div>
               <div className="mt-2">
                 <div className="text-xl font-bold">{m.value}</div>
@@ -801,7 +801,7 @@ export default function MicrostructurePage() {
               <Card className="border-border/50">
                 <CardHeader className="pb-2">
                   <CardTitle className="text-sm font-medium flex items-center gap-2">
-                    <Layers className="w-4 h-4 text-blue-400" />
+                    <Layers className="w-4 h-4 text-primary" />
                     Level 2 Depth — AAPL
                   </CardTitle>
                 </CardHeader>
@@ -814,7 +814,7 @@ export default function MicrostructurePage() {
               <Card className="border-border/50">
                 <CardHeader className="pb-2">
                   <CardTitle className="text-sm font-medium flex items-center gap-2">
-                    <BarChart3 className="w-4 h-4 text-purple-400" />
+                    <BarChart3 className="w-4 h-4 text-primary" />
                     Order Book Ladder
                   </CardTitle>
                 </CardHeader>
@@ -870,10 +870,10 @@ export default function MicrostructurePage() {
             </div>
 
             {/* NBBO explanation */}
-            <Card className="border-border/50 border-blue-500/20 bg-blue-500/5">
+            <Card className="border-border/50 border-border bg-primary/5">
               <CardContent className="pt-4 pb-3">
                 <div className="flex gap-3">
-                  <Info className="w-4 h-4 text-blue-400 mt-0.5 shrink-0" />
+                  <Info className="w-4 h-4 text-primary mt-0.5 shrink-0" />
                   <div className="text-sm text-muted-foreground space-y-1">
                     <p className="font-medium text-foreground">National Best Bid and Offer (NBBO)</p>
                     <p>
@@ -885,7 +885,7 @@ export default function MicrostructurePage() {
                       <span className="text-green-400">Best Bid: ${bids[0].price.toFixed(2)}</span>
                       <span className="text-red-400">Best Ask: ${asks[0].price.toFixed(2)}</span>
                       <span className="text-amber-400">Mid: $182.50</span>
-                      <span className="text-blue-400">Spread: {nbboSpreadBps}bps</span>
+                      <span className="text-primary">Spread: {nbboSpreadBps}bps</span>
                     </div>
                   </div>
                 </div>
@@ -914,7 +914,7 @@ export default function MicrostructurePage() {
               <Card className="border-border/50">
                 <CardHeader className="pb-2">
                   <CardTitle className="text-sm font-medium flex items-center gap-2">
-                    <BookOpen className="w-4 h-4 text-teal-400" />
+                    <BookOpen className="w-4 h-4 text-emerald-400" />
                     Price Discovery Concepts
                   </CardTitle>
                 </CardHeader>
@@ -933,7 +933,7 @@ export default function MicrostructurePage() {
                     {
                       title: "Implementation Shortfall",
                       desc: "Total cost = market impact + timing risk + spread costs. Measured as deviation from arrival price benchmark.",
-                      color: "text-blue-400",
+                      color: "text-primary",
                     },
                     {
                       title: "VWAP Execution",
@@ -943,7 +943,7 @@ export default function MicrostructurePage() {
                     {
                       title: "Kyle's Lambda",
                       desc: "Empirical measure of price impact per unit of order flow imbalance. Higher λ = less liquid market.",
-                      color: "text-purple-400",
+                      color: "text-primary",
                     },
                   ].map((item, i) => (
                     <div key={i} className="flex gap-3">
@@ -1108,7 +1108,7 @@ export default function MicrostructurePage() {
                       value: "0.007%",
                       benchmark: "0.010%",
                       label: "vs. 30d avg",
-                      color: "bg-blue-500",
+                      color: "bg-primary",
                       pct: 70,
                       note: "Dealer profit component post-trade",
                     },
@@ -1117,7 +1117,7 @@ export default function MicrostructurePage() {
                       value: "0.011%",
                       benchmark: "0.012%",
                       label: "vs. 30d avg",
-                      color: "bg-purple-500",
+                      color: "bg-primary",
                       pct: 92,
                       note: "Adverse selection component",
                     },
@@ -1177,7 +1177,7 @@ export default function MicrostructurePage() {
                       abbr: "DMMs",
                       role: "NYSE-assigned, must quote within price bands, capital commitment required",
                       share: "18%",
-                      icon: <Scale className="w-4 h-4 text-blue-400" />,
+                      icon: <Scale className="w-4 h-4 text-primary" />,
                       badge: "Obligated",
                     },
                     {
@@ -1185,7 +1185,7 @@ export default function MicrostructurePage() {
                       abbr: "RMMs",
                       role: "NASDAQ structure, competitive quoting, earn maker rebates for adding liquidity",
                       share: "34%",
-                      icon: <Activity className="w-4 h-4 text-purple-400" />,
+                      icon: <Activity className="w-4 h-4 text-primary" />,
                       badge: "Competitive",
                     },
                     {
@@ -1221,7 +1221,7 @@ export default function MicrostructurePage() {
               <Card className="border-border/50">
                 <CardHeader className="pb-2">
                   <CardTitle className="text-sm font-medium flex items-center gap-2">
-                    <Network className="w-4 h-4 text-blue-400" />
+                    <Network className="w-4 h-4 text-primary" />
                     US Equity Market Share
                   </CardTitle>
                 </CardHeader>
@@ -1245,7 +1245,7 @@ export default function MicrostructurePage() {
                     {
                       title: "Order Routing Complexity",
                       desc: "Smart Order Routers (SOR) must evaluate 16+ venues simultaneously, optimizing for price, size, speed, and rebate economics.",
-                      icon: <Network className="w-3.5 h-3.5 text-blue-400" />,
+                      icon: <Network className="w-3.5 h-3.5 text-primary" />,
                     },
                     {
                       title: "Maker-Taker Model",
@@ -1255,12 +1255,12 @@ export default function MicrostructurePage() {
                     {
                       title: "IEX Speed Bump",
                       desc: "350-microsecond delay (38-mile fiber coil) prevents latency arbitrage, protecting resting orders from being picked off.",
-                      icon: <Clock className="w-3.5 h-3.5 text-teal-400" />,
+                      icon: <Clock className="w-3.5 h-3.5 text-emerald-400" />,
                     },
                     {
                       title: "Dark Pool Benefits",
                       desc: "Institutional orders trade at midpoint with minimal market impact. Block prints often appear in FINRA ATS data with a delay.",
-                      icon: <Layers className="w-3.5 h-3.5 text-purple-400" />,
+                      icon: <Layers className="w-3.5 h-3.5 text-primary" />,
                     },
                     {
                       title: "Reg NMS Trade-Through",

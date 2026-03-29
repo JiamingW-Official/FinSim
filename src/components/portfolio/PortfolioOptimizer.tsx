@@ -625,7 +625,7 @@ function MeanVarianceSection() {
           {[
             { color: "bg-amber-500", label: "Equal-Weight" },
             { color: "bg-emerald-500", label: "Min Variance" },
-            { color: "bg-violet-500", label: "Max Sharpe" },
+            { color: "bg-primary", label: "Max Sharpe" },
             { color: "bg-orange-500", label: "Risk Parity" },
           ].map(({ color, label }) => (
             <div key={label} className="flex items-center gap-1">
@@ -641,7 +641,7 @@ function MeanVarianceSection() {
         {[
           { label: "Equal-Wt", stats: eqStats, color: "text-amber-400" },
           { label: "Min Var", stats: minVarStats, color: "text-emerald-400" },
-          { label: "Max Sharpe", stats: maxSharpeStats, color: "text-violet-400" },
+          { label: "Max Sharpe", stats: maxSharpeStats, color: "text-primary" },
           { label: "Risk Parity", stats: rpStats, color: "text-orange-400" },
         ].map(({ label, stats, color }) => (
           <div key={label} className="rounded-lg border border-border bg-card/50 p-2.5 space-y-1">
@@ -720,7 +720,7 @@ function MeanVarianceSection() {
                           }}
                         />
                       </td>
-                      <td className="py-0.5 px-1 text-right font-mono text-violet-400">{(maxSharpeW[i] * 100).toFixed(1)}%</td>
+                      <td className="py-0.5 px-1 text-right font-mono text-primary">{(maxSharpeW[i] * 100).toFixed(1)}%</td>
                       <td className="py-0.5 px-1 text-right font-mono text-emerald-400">{(minVarW[i] * 100).toFixed(1)}%</td>
                     </tr>
                   ))}
@@ -807,10 +807,10 @@ function RiskParitySection() {
     <div className="space-y-4">
       <div className="grid grid-cols-2 sm:grid-cols-4 gap-2">
         {[
-          { label: "Equal Weight", stats: eqStats, color: "text-blue-400" },
+          { label: "Equal Weight", stats: eqStats, color: "text-primary" },
           { label: "Value Weight", stats: valStats, color: "text-amber-400" },
           { label: "Risk Parity", stats: rpStats, color: "text-orange-400" },
-          { label: "Max Sharpe", stats: msStats, color: "text-violet-400" },
+          { label: "Max Sharpe", stats: msStats, color: "text-primary" },
         ].map(({ label, stats, color }) => (
           <div key={label} className="rounded-lg border border-border bg-card/50 p-2.5 space-y-1">
             <p className={cn("text-xs font-semibold", color)}>{label}</p>
@@ -845,9 +845,9 @@ function RiskParitySection() {
         />
         <div className="flex flex-wrap gap-2.5 mt-1 justify-center">
           {[
-            { color: "bg-blue-500", label: "Equal-Weight" },
+            { color: "bg-primary", label: "Equal-Weight" },
             { color: "bg-orange-500", label: "Risk Parity" },
-            { color: "bg-violet-500", label: "Max Sharpe" },
+            { color: "bg-primary", label: "Max Sharpe" },
           ].map(({ color, label }) => (
             <div key={label} className="flex items-center gap-1">
               <div className={cn("w-2 h-2 rounded-full", color)} />
@@ -867,7 +867,7 @@ function RiskParitySection() {
           </div>
           <div>
             <p className="text-[11px] text-muted-foreground">Target Vol ({targetVol}%)</p>
-            <p className="font-mono text-sm font-semibold text-blue-400">{targetVol}%</p>
+            <p className="font-mono text-sm font-semibold text-primary">{targetVol}%</p>
           </div>
           <div>
             <p className="text-[11px] text-muted-foreground">Required Leverage</p>
@@ -930,7 +930,7 @@ function RiskParitySection() {
           })()}
         </svg>
         <div className="flex gap-3 mt-1 justify-center">
-          {[{ color: "bg-blue-500", label: "Equal-Wt" }, { color: "bg-orange-500", label: "Risk Parity" }, { color: "bg-violet-500", label: "Max Sharpe" }].map(({ color, label }) => (
+          {[{ color: "bg-primary", label: "Equal-Wt" }, { color: "bg-orange-500", label: "Risk Parity" }, { color: "bg-primary", label: "Max Sharpe" }].map(({ color, label }) => (
             <div key={label} className="flex items-center gap-1">
               <div className={cn("w-2 h-1.5 rounded-full", color)} />
               <span className="text-[11px] text-muted-foreground">{label}</span>
@@ -1029,7 +1029,7 @@ function FactorSection() {
           </div>
           <div className="rounded border border-border/40 bg-muted/20 p-2">
             <p className="text-[11px] text-muted-foreground mb-1">{FACTOR_LABELS[tilt1]}</p>
-            <p className="text-xs font-semibold text-blue-400">
+            <p className="text-xs font-semibold text-primary">
               Ret: {w1Stats.ret.toFixed(1)}% | Vol: {w1Stats.vol.toFixed(1)}% | SR: {w1Stats.sharpe.toFixed(2)}
             </p>
             <p className="text-[11px] text-muted-foreground mt-1">ETF: {FACTOR_ETFS[tilt1].etf}</p>
@@ -1068,11 +1068,11 @@ function FactorSection() {
         <input type="range" min={0} max={100} step={5} value={blendRatio}
           onChange={e => setBlendRatio(Number(e.target.value))} className="w-full h-1" />
         <div className="rounded-lg border border-border bg-card/50 p-2.5">
-          <p className="text-xs font-semibold text-violet-400 mb-1">Blended Portfolio</p>
+          <p className="text-xs font-semibold text-primary mb-1">Blended Portfolio</p>
           <div className="grid grid-cols-3 gap-2 text-[11px]">
             <div><span className="text-muted-foreground">Return: </span><span className="font-mono">{blendStats.ret.toFixed(1)}%</span></div>
             <div><span className="text-muted-foreground">Vol: </span><span className="font-mono">{blendStats.vol.toFixed(1)}%</span></div>
-            <div><span className="text-muted-foreground">Sharpe: </span><span className="font-mono font-semibold text-violet-400">{blendStats.sharpe.toFixed(2)}</span></div>
+            <div><span className="text-muted-foreground">Sharpe: </span><span className="font-mono font-semibold text-primary">{blendStats.sharpe.toFixed(2)}</span></div>
           </div>
         </div>
       </div>
@@ -1093,9 +1093,9 @@ function FactorSection() {
             </thead>
             <tbody>
               {[
-                { label: FACTOR_LABELS[tilt1], exp: exp1, color: "text-blue-400" },
+                { label: FACTOR_LABELS[tilt1], exp: exp1, color: "text-primary" },
                 { label: FACTOR_LABELS[tilt2], exp: exp2, color: "text-amber-400" },
-                { label: "Blended", exp: expBlend, color: "text-violet-400" },
+                { label: "Blended", exp: expBlend, color: "text-primary" },
               ].map(({ label, exp, color }) => (
                 <tr key={label} className="border-b border-border/20">
                   <td className={cn("py-1 font-semibold", color)}>{label}</td>
@@ -1104,7 +1104,7 @@ function FactorSection() {
                     {exp.momentumTilt >= 0 ? "+" : ""}{exp.momentumTilt.toFixed(3)}
                   </td>
                   <td className="py-1 text-right font-mono">{exp.qualityTilt.toFixed(3)}</td>
-                  <td className={cn("py-1 text-right font-mono", exp.betaTilt > 1 ? "text-amber-400" : "text-blue-400")}>
+                  <td className={cn("py-1 text-right font-mono", exp.betaTilt > 1 ? "text-amber-400" : "text-primary")}>
                     {exp.betaTilt.toFixed(2)}
                   </td>
                 </tr>
@@ -1122,7 +1122,7 @@ function FactorSection() {
             <div key={t} className="flex items-center gap-2">
               <span className="text-xs font-medium w-11 shrink-0">{t}</span>
               <div className="flex-1 h-1.5 rounded-full bg-muted overflow-hidden">
-                <div className="h-full rounded-full bg-violet-500 transition-all duration-300"
+                <div className="h-full rounded-full bg-primary transition-all duration-300"
                   style={{ width: `${(blendW[i] * 100).toFixed(1)}%` }} />
               </div>
               <span className="text-xs font-mono text-muted-foreground w-10 text-right">
@@ -1223,7 +1223,7 @@ function LDISection() {
       <div className="grid grid-cols-2 sm:grid-cols-4 gap-2">
         <div className="rounded-lg border border-border bg-card/50 p-2.5">
           <p className="text-[11px] text-muted-foreground">Liability PV</p>
-          <p className="font-mono text-sm font-semibold text-blue-400">{formatCur(liabilityPV)}</p>
+          <p className="font-mono text-sm font-semibold text-primary">{formatCur(liabilityPV)}</p>
         </div>
         <div className="rounded-lg border border-border bg-card/50 p-2.5">
           <p className="text-[11px] text-muted-foreground">Funding Ratio</p>
@@ -1233,7 +1233,7 @@ function LDISection() {
         </div>
         <div className="rounded-lg border border-border bg-card/50 p-2.5">
           <p className="text-[11px] text-muted-foreground">Liability Duration</p>
-          <p className="font-mono text-sm font-semibold text-violet-400">{liabilityDuration.toFixed(1)} yrs</p>
+          <p className="font-mono text-sm font-semibold text-primary">{liabilityDuration.toFixed(1)} yrs</p>
         </div>
         <div className="rounded-lg border border-border bg-card/50 p-2.5">
           <p className="text-[11px] text-muted-foreground">Deficit / Surplus</p>
@@ -1247,22 +1247,22 @@ function LDISection() {
       <div className="rounded-lg border border-border bg-card/40 p-3">
         <p className="text-xs font-semibold text-muted-foreground mb-2">Asset Allocation Split</p>
         <div className="flex rounded-lg overflow-hidden h-5 mb-2">
-          <div className="bg-blue-500/70 flex items-center justify-center text-[11px] font-semibold text-white transition-all duration-300"
+          <div className="bg-primary/70 flex items-center justify-center text-[11px] font-semibold text-white transition-all duration-300"
             style={{ width: `${hedgePct}%` }}>
             {parseInt(hedgePct) > 15 ? `Hedge ${hedgePct}%` : ""}
           </div>
-          <div className="bg-violet-500/70 flex items-center justify-center text-[11px] font-semibold text-white transition-all duration-300"
+          <div className="bg-primary/70 flex items-center justify-center text-[11px] font-semibold text-white transition-all duration-300"
             style={{ width: `${growthPct}%` }}>
             {parseInt(growthPct) > 15 ? `Growth ${growthPct}%` : ""}
           </div>
         </div>
         <div className="grid grid-cols-2 gap-2 text-[11px]">
           <div>
-            <p className="font-semibold text-blue-400">Liability-Matching (Hedge) Portfolio</p>
+            <p className="font-semibold text-primary">Liability-Matching (Hedge) Portfolio</p>
             <p className="text-muted-foreground">Long-duration bonds (TLT/AGG) matched to {liabilityDuration.toFixed(1)}-yr liability duration. Immunizes interest rate risk.</p>
           </div>
           <div>
-            <p className="font-semibold text-violet-400">Return-Seeking (Growth) Portfolio</p>
+            <p className="font-semibold text-primary">Return-Seeking (Growth) Portfolio</p>
             <p className="text-muted-foreground">Equities + alternatives targeting real returns to improve funding ratio over time.</p>
           </div>
         </div>
@@ -1273,7 +1273,7 @@ function LDISection() {
         <p className="text-xs font-medium text-muted-foreground mb-1">Funding Ratio Glide Path — 30-Year Projection</p>
         <FundingRatioChart bull={bullPath} base={basePath} bear={bearPath} years={30} />
         <div className="flex gap-3 mt-1 justify-center">
-          {[{ color: "bg-emerald-500", label: "Bull" }, { color: "bg-blue-500", label: "Base" }, { color: "bg-red-500", label: "Bear" }].map(({ color, label }) => (
+          {[{ color: "bg-emerald-500", label: "Bull" }, { color: "bg-primary", label: "Base" }, { color: "bg-red-500", label: "Bear" }].map(({ color, label }) => (
             <div key={label} className="flex items-center gap-1">
               <div className={cn("w-3 h-1 rounded-full", color)} />
               <span className="text-[11px] text-muted-foreground">{label}</span>
@@ -1477,7 +1477,7 @@ function SimulationSection() {
         <div className="flex flex-wrap gap-2 mt-1 justify-center">
           {[
             { color: "bg-emerald-500", label: "90th pct" },
-            { color: "bg-blue-500", label: "50th pct (median)" },
+            { color: "bg-primary", label: "50th pct (median)" },
             { color: "bg-red-500", label: "10th pct" },
           ].map(({ color, label }) => (
             <div key={label} className="flex items-center gap-1">
@@ -1492,7 +1492,7 @@ function SimulationSection() {
       <div className="grid grid-cols-3 gap-2">
         <div className="rounded-lg border border-border bg-card/50 p-2.5">
           <p className="text-[11px] text-muted-foreground">Median Outcome</p>
-          <p className="font-mono text-sm font-semibold text-blue-400">{formatCur(finalP50)}</p>
+          <p className="font-mono text-sm font-semibold text-primary">{formatCur(finalP50)}</p>
         </div>
         <div className="rounded-lg border border-border bg-card/50 p-2.5">
           <p className="text-[11px] text-muted-foreground">90th Percentile</p>
@@ -1534,7 +1534,7 @@ function SimulationSection() {
           </div>
           <div className="flex justify-between text-xs mt-1">
             <span className="text-muted-foreground">Required monthly contribution to reach goal (median)</span>
-            <span className="font-mono font-semibold text-violet-400">{formatCur(requiredContrib)}/mo</span>
+            <span className="font-mono font-semibold text-primary">{formatCur(requiredContrib)}/mo</span>
           </div>
         </div>
       </div>

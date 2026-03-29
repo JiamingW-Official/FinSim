@@ -113,7 +113,7 @@ const PLAN_COMPARISONS: PlanComparison[] = [
     db: "Defined monthly income based on salary & years of service",
     dc: "Depends on contributions + investment performance",
     dbColor: "text-emerald-400",
-    dcColor: "text-blue-400",
+    dcColor: "text-primary",
   },
   {
     dimension: "Investment Risk",
@@ -348,7 +348,7 @@ void shimBars; // suppress unused warning
 function SectionTitle({ icon, title, subtitle }: { icon: React.ReactNode; title: string; subtitle?: string }) {
   return (
     <div className="flex items-start gap-3 mb-6">
-      <div className="p-2 rounded-lg bg-slate-800 text-blue-400">{icon}</div>
+      <div className="p-2 rounded-lg bg-slate-800 text-primary">{icon}</div>
       <div>
         <h2 className="text-lg font-semibold text-slate-100">{title}</h2>
         {subtitle && <p className="text-sm text-slate-400 mt-0.5">{subtitle}</p>}
@@ -406,7 +406,7 @@ function DBvsDCTab() {
         <Card className="bg-slate-800/60 border-slate-700">
           <CardContent className="p-4">
             <p className="text-xs text-slate-400 mb-1">Global Pension Assets</p>
-            <p className="text-2xl font-bold text-blue-400">$56T</p>
+            <p className="text-2xl font-bold text-primary">$56T</p>
             <p className="text-xs text-slate-500 mt-0.5">Total AUM worldwide</p>
           </CardContent>
         </Card>
@@ -427,7 +427,7 @@ function DBvsDCTab() {
         <Card className="bg-slate-800/60 border-slate-700">
           <CardContent className="p-4">
             <p className="text-xs text-slate-400 mb-1">PBGC Max Benefit</p>
-            <p className="text-2xl font-bold text-purple-400">$7,131</p>
+            <p className="text-2xl font-bold text-primary">$7,131</p>
             <p className="text-xs text-slate-500 mt-0.5">Per month (2025)</p>
           </CardContent>
         </Card>
@@ -437,7 +437,7 @@ function DBvsDCTab() {
       <Card className="bg-slate-800/60 border-slate-700">
         <CardHeader className="pb-3">
           <CardTitle className="text-base text-slate-100 flex items-center gap-2">
-            <Users className="w-4 h-4 text-blue-400" />
+            <Users className="w-4 h-4 text-primary" />
             DB vs DC Plan Comparison (10 Dimensions)
           </CardTitle>
         </CardHeader>
@@ -448,7 +448,7 @@ function DBvsDCTab() {
                 <tr className="border-b border-slate-700">
                   <th className="text-left py-2 pr-4 text-slate-400 font-medium w-32">Dimension</th>
                   <th className="text-left py-2 pr-4 text-emerald-400 font-medium">Defined Benefit (DB)</th>
-                  <th className="text-left py-2 text-blue-400 font-medium">Defined Contribution (DC)</th>
+                  <th className="text-left py-2 text-primary font-medium">Defined Contribution (DC)</th>
                 </tr>
               </thead>
               <tbody>
@@ -480,7 +480,7 @@ function DBvsDCTab() {
               <span className="text-slate-400">DB Plans</span>
             </div>
             <div className="flex items-center gap-1.5">
-              <div className="w-8 h-0.5 bg-blue-400"></div>
+              <div className="w-8 h-0.5 bg-primary"></div>
               <span className="text-slate-400">DC Plans</span>
             </div>
           </div>
@@ -534,7 +534,7 @@ function DBvsDCTab() {
       <Card className="bg-slate-800/60 border-slate-700">
         <CardHeader className="pb-3">
           <CardTitle className="text-base text-slate-100 flex items-center gap-2">
-            <Globe className="w-4 h-4 text-blue-400" />
+            <Globe className="w-4 h-4 text-primary" />
             Global Pension System Assets ($56T Total)
           </CardTitle>
         </CardHeader>
@@ -549,7 +549,7 @@ function DBvsDCTab() {
                     <div className="flex items-center gap-3">
                       <span className="text-xs text-slate-500">{sys.type}</span>
                       <span className="text-xs text-slate-400">{sys.gdpPct}% GDP</span>
-                      <span className="text-sm font-semibold text-blue-400">${sys.assets}T</span>
+                      <span className="text-sm font-semibold text-primary">${sys.assets}T</span>
                     </div>
                   </div>
                   <div className="h-2 bg-slate-700 rounded-full overflow-hidden">
@@ -572,20 +572,20 @@ function DBvsDCTab() {
         <Card className="bg-slate-800/60 border-slate-700">
           <CardHeader className="pb-3">
             <CardTitle className="text-base text-slate-100 flex items-center gap-2">
-              <Layers className="w-4 h-4 text-purple-400" />
+              <Layers className="w-4 h-4 text-primary" />
               Hybrid Plan Designs
             </CardTitle>
           </CardHeader>
           <CardContent className="space-y-4">
             <div className="p-3 rounded-lg bg-slate-900/60 border border-slate-700">
-              <p className="text-sm font-semibold text-purple-400 mb-1">Cash Balance Plan</p>
+              <p className="text-sm font-semibold text-primary mb-1">Cash Balance Plan</p>
               <p className="text-xs text-slate-400">
                 Hybrid DB: employer credits hypothetical account with pay credits (5–8% salary) + interest credits (tied to Treasury rates).
                 Employee bears no investment risk; benefit is portable as a lump sum.
               </p>
             </div>
             <div className="p-3 rounded-lg bg-slate-900/60 border border-slate-700">
-              <p className="text-sm font-semibold text-blue-400 mb-1">Career Average Plan</p>
+              <p className="text-sm font-semibold text-primary mb-1">Career Average Plan</p>
               <p className="text-xs text-slate-400">
                 DB variant: benefit = X% × each year&apos;s actual salary × years of service.
                 Lower liability risk for sponsor vs final-pay plans. Common in public sector.
@@ -632,13 +632,13 @@ function DBvsDCTab() {
               </div>
               {/* Graded vesting */}
               <div>
-                <p className="text-xs font-semibold text-blue-400 mb-2">Graded Vesting (6-Year)</p>
+                <p className="text-xs font-semibold text-primary mb-2">Graded Vesting (6-Year)</p>
                 <div className="flex gap-1">
                   {GRADED_VESTING.years.map((yr, i) => (
                     <div key={yr} className="flex-1 text-center">
                       <div className="h-10 flex flex-col justify-end">
                         <div
-                          className="rounded-t bg-blue-500/70 flex items-end justify-center"
+                          className="rounded-t bg-primary/70 flex items-end justify-center"
                           style={{ height: `${Math.max(GRADED_VESTING.vestedPct[i], 8)}%` }}
                         >
                           <span className="text-xs font-bold text-white pb-1">
@@ -671,7 +671,7 @@ function DBvsDCTab() {
           <CardContent>
             <button
               onClick={() => setShowPublic(!showPublic)}
-              className="text-xs text-blue-400 underline mb-3 block"
+              className="text-xs text-primary underline mb-3 block"
             >
               {showPublic ? "Showing: Public Sector" : "Showing: Private Sector"} (click to toggle)
             </button>
@@ -679,11 +679,11 @@ function DBvsDCTab() {
               <div className="space-y-2 text-xs">
                 <div className="flex justify-between p-2 rounded bg-slate-900/50">
                   <span className="text-slate-400">CalPERS (CA)</span>
-                  <span className="text-blue-400 font-semibold">$500B AUM</span>
+                  <span className="text-primary font-semibold">$500B AUM</span>
                 </div>
                 <div className="flex justify-between p-2 rounded bg-slate-900/50">
                   <span className="text-slate-400">NY State Teachers</span>
-                  <span className="text-blue-400 font-semibold">$135B AUM</span>
+                  <span className="text-primary font-semibold">$135B AUM</span>
                 </div>
                 <div className="flex justify-between p-2 rounded bg-slate-900/50">
                   <span className="text-slate-400">Typical benefit formula</span>
@@ -707,11 +707,11 @@ function DBvsDCTab() {
               <div className="space-y-2 text-xs">
                 <div className="flex justify-between p-2 rounded bg-slate-900/50">
                   <span className="text-slate-400">Boeing Pension</span>
-                  <span className="text-blue-400 font-semibold">~$68B AUM</span>
+                  <span className="text-primary font-semibold">~$68B AUM</span>
                 </div>
                 <div className="flex justify-between p-2 rounded bg-slate-900/50">
                   <span className="text-slate-400">AT&T Pension</span>
-                  <span className="text-blue-400 font-semibold">~$55B AUM</span>
+                  <span className="text-primary font-semibold">~$55B AUM</span>
                 </div>
                 <div className="flex justify-between p-2 rounded bg-slate-900/50">
                   <span className="text-slate-400">PBGC coverage</span>
@@ -739,13 +739,13 @@ function DBvsDCTab() {
         <Card className="bg-slate-800/60 border-slate-700">
           <CardHeader className="pb-3">
             <CardTitle className="text-base text-slate-100 flex items-center gap-2">
-              <BookOpen className="w-4 h-4 text-blue-400" />
+              <BookOpen className="w-4 h-4 text-primary" />
               ERISA Protections & DC Growth Drivers
             </CardTitle>
           </CardHeader>
           <CardContent className="space-y-3">
             <div>
-              <p className="text-xs font-semibold text-blue-400 mb-2">ERISA Key Protections</p>
+              <p className="text-xs font-semibold text-primary mb-2">ERISA Key Protections</p>
               <div className="space-y-1.5">
                 {[
                   "Fiduciary duty — plan managers must act in participants' best interest",
@@ -813,7 +813,7 @@ function LDITab() {
           { label: "Liability Duration", value: "15 yrs", sub: "Typical DB", color: "text-red-400" },
           { label: "Asset Duration", value: "5 yrs", sub: "Traditional mix", color: "text-amber-400" },
           { label: "Duration Gap", value: "10 yrs", sub: "Interest rate risk", color: "text-orange-400" },
-          { label: "PBGC Variable Rate", value: "$52/$1K", sub: "Per $1K underfunded", color: "text-purple-400" },
+          { label: "PBGC Variable Rate", value: "$52/$1K", sub: "Per $1K underfunded", color: "text-primary" },
         ].map((s) => (
           <Card key={s.label} className="bg-slate-800/60 border-slate-700">
             <CardContent className="p-4">
@@ -829,7 +829,7 @@ function LDITab() {
       <Card className="bg-slate-800/60 border-slate-700">
         <CardHeader className="pb-3">
           <CardTitle className="text-base text-slate-100 flex items-center gap-2">
-            <DollarSign className="w-4 h-4 text-blue-400" />
+            <DollarSign className="w-4 h-4 text-primary" />
             Pension Liability Valuation — Funded Status
           </CardTitle>
         </CardHeader>
@@ -840,8 +840,8 @@ function LDITab() {
                 <span className="text-slate-200 font-semibold">PBO (Projected Benefit Obligation)</span> = Present value of all future pension benefits earned to date,
                 discounting by the yield on high-quality corporate bonds (AA-rated, per ASC 715 / IAS 19).
               </p>
-              <div className="p-3 rounded-lg bg-slate-900/60 border border-blue-800/40 mb-3">
-                <p className="text-xs text-center font-mono text-blue-400">
+              <div className="p-3 rounded-lg bg-slate-900/60 border border-border mb-3">
+                <p className="text-xs text-center font-mono text-primary">
                   Funded Status = Plan Assets ÷ PBO × 100%
                 </p>
               </div>
@@ -933,7 +933,7 @@ function LDITab() {
                     </div>
                     <div className="flex rounded overflow-hidden h-5">
                       <div
-                        className="bg-blue-500 flex items-center justify-center text-xs text-white font-bold"
+                        className="bg-primary flex items-center justify-center text-xs text-white font-bold"
                         style={{ width: `${stage.rs}%` }}
                       >
                         {stage.rs > 15 ? `${stage.rs}%` : ""}
@@ -949,13 +949,13 @@ function LDITab() {
                 ))}
               </div>
               <div className="flex items-center gap-4 mt-3 text-xs">
-                <div className="flex items-center gap-1.5"><div className="w-3 h-3 rounded bg-blue-500"></div><span className="text-slate-400">Return-Seeking</span></div>
+                <div className="flex items-center gap-1.5"><div className="w-3 h-3 rounded bg-primary"></div><span className="text-slate-400">Return-Seeking</span></div>
                 <div className="flex items-center gap-1.5"><div className="w-3 h-3 rounded bg-emerald-500"></div><span className="text-slate-400">Liability Hedge</span></div>
               </div>
             </div>
             <div className="space-y-3">
               <div className="p-3 rounded-lg bg-slate-900/60 border border-slate-700">
-                <p className="text-xs font-semibold text-blue-400 mb-1">Interest Rate Swap Overlay</p>
+                <p className="text-xs font-semibold text-primary mb-1">Interest Rate Swap Overlay</p>
                 <p className="text-xs text-slate-400">
                   Plan sells floating, receives fixed on a notional equal to liability duration. A $1B pension with 15yr liability duration
                   may overlay $500M notional swaps, extending effective duration to 10yr without selling equities.
@@ -977,7 +977,7 @@ function LDITab() {
               </div>
               <div className="p-3 rounded-lg bg-slate-900/60 border border-slate-700">
                 <div className="flex items-center justify-between text-xs mb-1">
-                  <span className="font-semibold text-purple-400">PBGC Variable Premium</span>
+                  <span className="font-semibold text-primary">PBGC Variable Premium</span>
                 </div>
                 <p className="text-xs text-slate-400">
                   $52 per $1,000 of unfunded vested benefits. A plan with $500M unfunded VB pays $26M/year in variable premium
@@ -1093,7 +1093,7 @@ function ActuarialTab() {
       <Card className="bg-slate-800/60 border-slate-700">
         <CardHeader className="pb-3">
           <CardTitle className="text-base text-slate-100 flex items-center gap-2">
-            <Activity className="w-4 h-4 text-blue-400" />
+            <Activity className="w-4 h-4 text-primary" />
             Mortality Table Evolution — Longevity Risk
           </CardTitle>
         </CardHeader>
@@ -1104,7 +1104,7 @@ function ActuarialTab() {
                 <tr className="border-b border-slate-700">
                   <th className="text-left py-2 pr-4 text-slate-400 font-medium">Table</th>
                   <th className="text-left py-2 pr-4 text-slate-400 font-medium">Year</th>
-                  <th className="text-left py-2 pr-4 text-blue-400 font-medium">Life Exp. Male (65)</th>
+                  <th className="text-left py-2 pr-4 text-primary font-medium">Life Exp. Male (65)</th>
                   <th className="text-left py-2 pr-4 text-pink-400 font-medium">Life Exp. Female (65)</th>
                   <th className="text-left py-2 text-slate-400 font-medium">Notes</th>
                 </tr>
@@ -1114,7 +1114,7 @@ function ActuarialTab() {
                   <tr key={row.table} className={i % 2 === 0 ? "bg-slate-900/30" : ""}>
                     <td className="py-2 pr-4 font-semibold text-slate-200">{row.table}</td>
                     <td className="py-2 pr-4 text-slate-400">{row.year}</td>
-                    <td className="py-2 pr-4 text-blue-400 font-semibold">{row.lifeExpectancy65M} yrs</td>
+                    <td className="py-2 pr-4 text-primary font-semibold">{row.lifeExpectancy65M} yrs</td>
                     <td className="py-2 pr-4 text-pink-400 font-semibold">{row.lifeExpectancy65F} yrs</td>
                     <td className="py-2 text-xs text-slate-500">{row.description}</td>
                   </tr>
@@ -1149,13 +1149,13 @@ function ActuarialTab() {
               <div key={assumption.name}>
                 <button
                   onClick={() => setSelectedAssumption(selectedAssumption === assumption.name ? null : assumption.name)}
-                  className="w-full flex items-center justify-between p-3 rounded-lg bg-slate-900/60 border border-slate-700 hover:border-blue-600/60 transition-colors"
+                  className="w-full flex items-center justify-between p-3 rounded-lg bg-slate-900/60 border border-slate-700 hover:border-primary/60 transition-colors"
                 >
                   <div className="flex items-center gap-3">
                     <div className={`px-2 py-0.5 rounded text-xs font-semibold ${
                       assumption.sensitivity === "Very High" ? "bg-red-900/60 text-red-400" :
                       assumption.sensitivity === "High" ? "bg-amber-900/60 text-amber-400" :
-                      assumption.sensitivity === "Medium" ? "bg-blue-900/60 text-blue-400" :
+                      assumption.sensitivity === "Medium" ? "bg-muted text-primary" :
                       "bg-slate-700 text-slate-400"
                     }`}>
                       {assumption.sensitivity}
@@ -1163,7 +1163,7 @@ function ActuarialTab() {
                     <span className="text-sm text-slate-200 font-medium">{assumption.name}</span>
                   </div>
                   <div className="flex items-center gap-3">
-                    <span className="text-sm font-semibold text-blue-400">{assumption.currentValue}</span>
+                    <span className="text-sm font-semibold text-primary">{assumption.currentValue}</span>
                     <span className="text-xs text-slate-500">{assumption.range}</span>
                   </div>
                 </button>
@@ -1188,20 +1188,20 @@ function ActuarialTab() {
         <Card className="bg-slate-800/60 border-slate-700">
           <CardHeader className="pb-3">
             <CardTitle className="text-base text-slate-100 flex items-center gap-2">
-              <BarChart3 className="w-4 h-4 text-purple-400" />
+              <BarChart3 className="w-4 h-4 text-primary" />
               Asset Smoothing Methods
             </CardTitle>
           </CardHeader>
           <CardContent className="space-y-3 text-xs">
             <div className="p-3 rounded bg-slate-900/60 border border-slate-700">
-              <p className="font-semibold text-purple-400 mb-1">5-Year Average Value</p>
+              <p className="font-semibold text-primary mb-1">5-Year Average Value</p>
               <p className="text-slate-400">
                 Actuarial asset value = average of market values over last 5 years.
                 Dampens volatility in contribution requirements — market crashes spread over 5yr. Risk: slow to reflect recovery.
               </p>
             </div>
             <div className="p-3 rounded bg-slate-900/60 border border-slate-700">
-              <p className="font-semibold text-blue-400 mb-1">Market Value of Assets (MVA)</p>
+              <p className="font-semibold text-primary mb-1">Market Value of Assets (MVA)</p>
               <p className="text-slate-400">
                 IRS requires MVA for at-risk plans under PPA 2006. Creates volatile contribution requirements
                 but most transparent. GAAP accounting (ASC 715) requires MVA for balance sheet funded status.
@@ -1237,8 +1237,8 @@ function ActuarialTab() {
                 {
                   label: "Target 100% Funded",
                   desc: "Typical sponsor target. Eliminates PBGC variable premium. Provides benefit security.",
-                  color: "text-blue-400",
-                  bgColor: "bg-blue-900/20 border-blue-800/40",
+                  color: "text-primary",
+                  bgColor: "bg-muted/40 border-border",
                 },
                 {
                   label: "Funded 110%+ (Overfunded)",
@@ -1366,8 +1366,8 @@ function InvestmentStrategyTab() {
       <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
         {[
           { label: "Typical Target Return", value: "7–8%", sub: "Historical (6–7% forward)", color: "text-emerald-400" },
-          { label: "Alternatives Allocation", value: "30%", sub: "US pensions avg (2024)", color: "text-purple-400" },
-          { label: "Norway GPFG AUM", value: "$1.8T", sub: "Largest pension fund", color: "text-blue-400" },
+          { label: "Alternatives Allocation", value: "30%", sub: "US pensions avg (2024)", color: "text-primary" },
+          { label: "Norway GPFG AUM", value: "$1.8T", sub: "Largest pension fund", color: "text-primary" },
           { label: "Canadian Model Return", value: "+2%", sub: "Above benchmark (avg)", color: "text-amber-400" },
         ].map((s) => (
           <Card key={s.label} className="bg-slate-800/60 border-slate-700">
@@ -1385,7 +1385,7 @@ function InvestmentStrategyTab() {
         <Card className="bg-slate-800/60 border-slate-700">
           <CardHeader className="pb-3">
             <CardTitle className="text-base text-slate-100 flex items-center gap-2">
-              <PieChart className="w-4 h-4 text-blue-400" />
+              <PieChart className="w-4 h-4 text-primary" />
               Typical US Pension Asset Allocation
             </CardTitle>
           </CardHeader>
@@ -1420,7 +1420,7 @@ function InvestmentStrategyTab() {
         <Card className="bg-slate-800/60 border-slate-700">
           <CardHeader className="pb-3">
             <CardTitle className="text-base text-slate-100 flex items-center gap-2">
-              <TrendingUp className="w-4 h-4 text-purple-400" />
+              <TrendingUp className="w-4 h-4 text-primary" />
               Alternatives Growth in Pensions 1990–2024
             </CardTitle>
           </CardHeader>
@@ -1487,7 +1487,7 @@ function InvestmentStrategyTab() {
         <Card className="bg-slate-800/60 border-slate-700">
           <CardHeader className="pb-3">
             <CardTitle className="text-base text-slate-100 flex items-center gap-2">
-              <Shield className="w-4 h-4 text-blue-400" />
+              <Shield className="w-4 h-4 text-primary" />
               Norway GPFG: The Benchmark
             </CardTitle>
           </CardHeader>
@@ -1510,7 +1510,7 @@ function InvestmentStrategyTab() {
                 { key: "Benchmark", val: "70% FTSE All World + 30% Bloomberg AGG" },
               ].map((item) => (
                 <div key={item.key} className="flex items-start gap-2">
-                  <ArrowRight className="w-3 h-3 text-blue-400 mt-0.5 flex-shrink-0" />
+                  <ArrowRight className="w-3 h-3 text-primary mt-0.5 flex-shrink-0" />
                   <span>
                     <span className="text-slate-300 font-semibold">{item.key}: </span>
                     <span className="text-slate-400">{item.val}</span>
@@ -1533,12 +1533,12 @@ function InvestmentStrategyTab() {
         <CardContent>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
             <div>
-              <p className="text-xs font-semibold text-blue-400 mb-3">Liability-Matching Glide Path</p>
+              <p className="text-xs font-semibold text-primary mb-3">Liability-Matching Glide Path</p>
               <div className="space-y-2">
                 {[
                   { funded: "< 80%", strategy: "Growth-oriented; 70% RS / 30% hedge", color: "text-red-400" },
                   { funded: "80–90%", strategy: "Balanced transition; 55% RS / 45% hedge", color: "text-amber-400" },
-                  { funded: "90–100%", strategy: "De-risk; 35% RS / 65% hedge", color: "text-blue-400" },
+                  { funded: "90–100%", strategy: "De-risk; 35% RS / 65% hedge", color: "text-primary" },
                   { funded: "> 100%", strategy: "Full LDI; terminate or purchase annuity", color: "text-emerald-400" },
                 ].map((row) => (
                   <div key={row.funded} className="p-2 rounded bg-slate-900/60 border border-slate-700">
@@ -1551,7 +1551,7 @@ function InvestmentStrategyTab() {
               </div>
             </div>
             <div>
-              <p className="text-xs font-semibold text-purple-400 mb-3">Risk Factor Approach</p>
+              <p className="text-xs font-semibold text-primary mb-3">Risk Factor Approach</p>
               <div className="space-y-2 text-xs">
                 {[
                   { factor: "Growth", exposures: "Equities, PE, HY credit, EM debt", alloc: "45%" },
@@ -1560,9 +1560,9 @@ function InvestmentStrategyTab() {
                   { factor: "Diversifying", exposures: "Hedge funds, risk parity, macro strategies", alloc: "5%" },
                 ].map((row) => (
                   <div key={row.factor} className="flex items-start gap-2 p-2 rounded bg-slate-900/60">
-                    <Percent className="w-3 h-3 text-purple-400 mt-0.5 flex-shrink-0" />
+                    <Percent className="w-3 h-3 text-primary mt-0.5 flex-shrink-0" />
                     <div>
-                      <span className="text-purple-300 font-semibold">{row.factor} ({row.alloc}): </span>
+                      <span className="text-primary font-semibold">{row.factor} ({row.alloc}): </span>
                       <span className="text-slate-400">{row.exposures}</span>
                     </div>
                   </div>
@@ -1581,7 +1581,7 @@ function InvestmentStrategyTab() {
                   </p>
                 </div>
                 <div className="p-2 rounded bg-slate-900/60 border border-slate-700">
-                  <p className="text-blue-300 font-semibold mb-1">Investment Committee</p>
+                  <p className="text-primary font-semibold mb-1">Investment Committee</p>
                   <div className="space-y-1">
                     {[
                       "Sets IPS (Investment Policy Statement) and SAA",
@@ -1591,7 +1591,7 @@ function InvestmentStrategyTab() {
                       "Typically 5–9 members including independent trustees",
                     ].map((item, i) => (
                       <div key={i} className="flex items-start gap-1.5">
-                        <div className="w-1 h-1 rounded-full bg-blue-400 mt-1.5 flex-shrink-0"></div>
+                        <div className="w-1 h-1 rounded-full bg-primary mt-1.5 flex-shrink-0"></div>
                         <span className="text-slate-400">{item}</span>
                       </div>
                     ))}
@@ -1620,7 +1620,7 @@ export default function PensionFundsPage() {
       >
         <div className="flex items-start gap-4">
           <div className="p-3 rounded-xl bg-slate-800 border border-slate-700">
-            <Shield className="w-7 h-7 text-blue-400" />
+            <Shield className="w-7 h-7 text-primary" />
           </div>
           <div>
             <h1 className="text-2xl font-bold text-slate-100">Pension Fund Management</h1>
@@ -1628,7 +1628,7 @@ export default function PensionFundsPage() {
               DB vs DC plans, liability-driven investing, actuarial assumptions, and institutional investment strategies
             </p>
             <div className="flex flex-wrap gap-2 mt-3">
-              <InfoBadge label="Global AUM" value="$56 Trillion" color="text-blue-400" />
+              <InfoBadge label="Global AUM" value="$56 Trillion" color="text-primary" />
               <InfoBadge label="US DB Coverage" value="15% workers" color="text-amber-400" />
               <InfoBadge label="Largest Fund" value="Norway GPFG $1.8T" color="text-emerald-400" />
               <InfoBadge label="Pension Crisis" value="$1.4T unfunded (US public)" color="text-red-400" />
@@ -1640,19 +1640,19 @@ export default function PensionFundsPage() {
       {/* Tabs */}
       <Tabs defaultValue="dbvsdc">
         <TabsList className="grid grid-cols-4 w-full mb-6 bg-slate-800 border border-slate-700">
-          <TabsTrigger value="dbvsdc" className="flex items-center gap-1.5 text-xs data-[state=active]:bg-blue-600">
+          <TabsTrigger value="dbvsdc" className="flex items-center gap-1.5 text-xs data-[state=active]:bg-primary">
             <Users className="w-3.5 h-3.5" />
             DB vs DC Plans
           </TabsTrigger>
-          <TabsTrigger value="ldi" className="flex items-center gap-1.5 text-xs data-[state=active]:bg-blue-600">
+          <TabsTrigger value="ldi" className="flex items-center gap-1.5 text-xs data-[state=active]:bg-primary">
             <Target className="w-3.5 h-3.5" />
             Liability-Driven
           </TabsTrigger>
-          <TabsTrigger value="actuarial" className="flex items-center gap-1.5 text-xs data-[state=active]:bg-blue-600">
+          <TabsTrigger value="actuarial" className="flex items-center gap-1.5 text-xs data-[state=active]:bg-primary">
             <Activity className="w-3.5 h-3.5" />
             Actuarial
           </TabsTrigger>
-          <TabsTrigger value="strategy" className="flex items-center gap-1.5 text-xs data-[state=active]:bg-blue-600">
+          <TabsTrigger value="strategy" className="flex items-center gap-1.5 text-xs data-[state=active]:bg-primary">
             <BarChart3 className="w-3.5 h-3.5" />
             Investment Strategy
           </TabsTrigger>

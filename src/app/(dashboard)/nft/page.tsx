@@ -348,7 +348,7 @@ function clr(val: number): string {
 function severityColor(s: "High" | "Medium" | "Low"): string {
   if (s === "High") return "bg-red-500/20 text-red-400 border-red-500/30";
   if (s === "Medium") return "bg-amber-500/20 text-amber-400 border-amber-500/30";
-  return "bg-blue-500/20 text-blue-400 border-blue-500/30";
+  return "bg-primary/20 text-primary border-border";
 }
 
 // ── SVG Charts ────────────────────────────────────────────────────────────────
@@ -709,8 +709,8 @@ function MarketOverview() {
       {/* KPI chips */}
       <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
         {[
-          { label: "Total NFT Market Cap", value: fmtUSD(totalMcap), icon: DollarSign, color: "text-blue-400" },
-          { label: "7d Trading Volume", value: fmtUSD(totalVol), icon: BarChart3, color: "text-purple-400" },
+          { label: "Total NFT Market Cap", value: fmtUSD(totalMcap), icon: DollarSign, color: "text-primary" },
+          { label: "7d Trading Volume", value: fmtUSD(totalVol), icon: BarChart3, color: "text-primary" },
           { label: "Avg 7d Change", value: `${avgChange >= 0 ? "+" : ""}${avgChange.toFixed(1)}%`, icon: TrendingUp, color: avgChange >= 0 ? "text-green-400" : "text-red-400" },
           { label: "Active Collections", value: "94,200+", icon: Image, color: "text-amber-400" },
         ].map((kpi) => (
@@ -751,7 +751,7 @@ function MarketOverview() {
                     className="border-b border-slate-700/50 hover:bg-slate-700/30 transition-colors"
                   >
                     <td className="px-3 py-2 font-medium text-slate-200">{c.name}</td>
-                    <td className="px-3 py-2 text-blue-400">{fmtETH(c.floorPrice)}</td>
+                    <td className="px-3 py-2 text-primary">{fmtETH(c.floorPrice)}</td>
                     <td className="px-3 py-2 text-slate-300">{fmtUSD(c.volume7d)}</td>
                     <td className="px-3 py-2 text-slate-300">{c.holders.toLocaleString()}</td>
                     <td className={`px-3 py-2 font-medium ${clr(c.change7d)}`}>
@@ -883,8 +883,8 @@ function PricingModels() {
           <div className="mt-3 grid grid-cols-3 gap-3 text-xs">
             {[
               { label: "R² (Fit Quality)", value: "0.78", color: "text-green-400" },
-              { label: "Base Floor (α)", value: "42.3 ETH", color: "text-blue-400" },
-              { label: "Rarity Coefficient (β₁)", value: "+0.018", color: "text-purple-400" },
+              { label: "Base Floor (α)", value: "42.3 ETH", color: "text-primary" },
+              { label: "Rarity Coefficient (β₁)", value: "+0.018", color: "text-primary" },
             ].map((s) => (
               <div key={s.label} className="bg-slate-700/40 rounded-lg p-2 text-center">
                 <p className="text-slate-400">{s.label}</p>
@@ -918,7 +918,7 @@ function PricingModels() {
                     <td className={`px-3 py-2 font-semibold ${tp.floorMultiplier > 3 ? "text-green-400" : tp.floorMultiplier > 1.5 ? "text-amber-400" : "text-slate-400"}`}>
                       {tp.floorMultiplier.toFixed(1)}x
                     </td>
-                    <td className="px-3 py-2 text-blue-400">{tp.avgSalePrice} ETH</td>
+                    <td className="px-3 py-2 text-primary">{tp.avgSalePrice} ETH</td>
                     <td className="px-3 py-2 text-slate-400">{tp.sampleSize}</td>
                     <td className="px-3 py-2">
                       {tp.sampleSize < 100 ? (
@@ -983,7 +983,7 @@ function NFTFinancialization() {
       id: "lending",
       icon: Lock,
       title: "NFT Collateralized Lending",
-      color: "text-blue-400",
+      color: "text-primary",
       content: (
         <div className="space-y-4">
           <p className="text-xs text-slate-400 leading-relaxed">
@@ -995,7 +995,7 @@ function NFTFinancialization() {
                 <div className="flex items-center justify-between mb-2">
                   <span className="font-semibold text-slate-200 text-sm">{lp.name}</span>
                   <div className="flex gap-2">
-                    <Badge variant="outline" className="text-xs border-blue-500/40 text-blue-400">
+                    <Badge variant="outline" className="text-xs border-primary/40 text-primary">
                       {lp.maxLtv}% LTV
                     </Badge>
                     <Badge variant="outline" className="text-xs border-green-500/40 text-green-400">
@@ -1022,8 +1022,8 @@ function NFTFinancialization() {
               </div>
             ))}
           </div>
-          <div className="p-3 bg-blue-500/10 border border-blue-500/20 rounded-lg">
-            <p className="text-xs text-blue-300">
+          <div className="p-3 bg-primary/10 border border-border rounded-lg">
+            <p className="text-xs text-primary">
               <strong>Key Risk:</strong> Peer-to-peer lending (NFTfi) shifts liquidation risk to individual lenders. Pool-based models (BendDAO) socialize risk but can suffer bank runs when floor prices crash — causing a liquidation spiral.
             </p>
           </div>
@@ -1034,7 +1034,7 @@ function NFTFinancialization() {
       id: "fractions",
       icon: Layers,
       title: "Fractional NFT Ownership",
-      color: "text-purple-400",
+      color: "text-primary",
       content: (
         <div className="space-y-4">
           <p className="text-xs text-slate-400 leading-relaxed">
@@ -1047,7 +1047,7 @@ function NFTFinancialization() {
                 <div className="space-y-1 text-xs">
                   <div className="flex justify-between">
                     <span className="text-slate-400">TVL</span>
-                    <span className="text-purple-400">${fp.tvlM}M</span>
+                    <span className="text-primary">${fp.tvlM}M</span>
                   </div>
                   <div className="flex justify-between">
                     <span className="text-slate-400">Collections</span>
@@ -1065,8 +1065,8 @@ function NFTFinancialization() {
               </div>
             ))}
           </div>
-          <div className="p-3 bg-purple-500/10 border border-purple-500/20 rounded-lg">
-            <p className="text-xs text-purple-300">
+          <div className="p-3 bg-primary/10 border border-border rounded-lg">
+            <p className="text-xs text-primary">
               <strong>Reconstruction Risk:</strong> When more than 50% of fraction holders vote to buy out the NFT, fractions are redeemed at a fixed price. This can cause arbitrage if the buyout price differs from the implied fraction market cap.
             </p>
           </div>
@@ -1177,9 +1177,9 @@ function InvestmentFramework() {
 
   const categories = ["Creator Brand", "Community", "Utility", "Liquidity"];
   const categoryColors: Record<string, string> = {
-    "Creator Brand": "text-blue-400",
+    "Creator Brand": "text-primary",
     Community: "text-green-400",
-    Utility: "text-purple-400",
+    Utility: "text-primary",
     Liquidity: "text-amber-400",
   };
 
@@ -1369,8 +1369,8 @@ export default function NFTPage() {
         <div className="flex items-start justify-between">
           <div>
             <div className="flex items-center gap-3 mb-1">
-              <div className="w-8 h-8 bg-purple-500/20 rounded-lg flex items-center justify-center">
-                <Image className="w-4 h-4 text-purple-400" />
+              <div className="w-8 h-8 bg-primary/20 rounded-lg flex items-center justify-center">
+                <Image className="w-4 h-4 text-primary" />
               </div>
               <h1 className="text-2xl font-bold text-slate-100">NFT Markets</h1>
             </div>
@@ -1383,7 +1383,7 @@ export default function NFTPage() {
               <Globe className="w-4 h-4 text-slate-400" />
               <span className="text-xs text-slate-400">NFT Market Cap</span>
             </div>
-            <span className="text-xl font-bold text-purple-400">{fmtUSD(totalMcap)}</span>
+            <span className="text-xl font-bold text-primary">{fmtUSD(totalMcap)}</span>
             <Badge variant="outline" className="text-xs border-slate-600 text-slate-400">
               Ethereum + Solana
             </Badge>
@@ -1404,7 +1404,7 @@ export default function NFTPage() {
             className="flex-shrink-0 bg-slate-800/60 border border-slate-700 rounded-lg px-3 py-2 flex items-center gap-3"
           >
             <span className="text-xs font-medium text-slate-300">{c.name}</span>
-            <span className="text-xs text-blue-400">{fmtETH(c.floorPrice)}</span>
+            <span className="text-xs text-primary">{fmtETH(c.floorPrice)}</span>
             <span className={`text-xs font-medium flex items-center gap-0.5 ${clr(c.change7d)}`}>
               {c.change7d >= 0 ? <TrendingUp className="w-3 h-3" /> : <TrendingDown className="w-3 h-3" />}
               {Math.abs(c.change7d).toFixed(1)}%

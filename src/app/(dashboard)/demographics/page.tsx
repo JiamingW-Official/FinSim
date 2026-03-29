@@ -329,7 +329,7 @@ function GlobalDemographicsTab() {
       <Card className="bg-zinc-900 border-zinc-800">
         <CardHeader className="pb-3">
           <CardTitle className="text-base flex items-center gap-2">
-            <Users className="w-4 h-4 text-blue-400" />
+            <Users className="w-4 h-4 text-primary" />
             Population Age Structure by Country
           </CardTitle>
         </CardHeader>
@@ -342,7 +342,7 @@ function GlobalDemographicsTab() {
                 className={cn(
                   "px-3 py-1.5 rounded text-xs font-medium border transition-colors",
                   selectedCountry === c.name
-                    ? "bg-blue-600 border-blue-500 text-white"
+                    ? "bg-primary border-primary text-white"
                     : "bg-zinc-800 border-zinc-700 text-zinc-400 hover:text-zinc-200",
                 )}
               >
@@ -364,7 +364,7 @@ function GlobalDemographicsTab() {
                 <div className="grid grid-cols-3 gap-3">
                   {[
                     { label: "Youth (0–14)", value: `${country.youngDep.toFixed(1)}%`, color: "text-amber-400" },
-                    { label: "Working Age", value: `${country.workingAge.toFixed(1)}%`, color: "text-blue-400" },
+                    { label: "Working Age", value: `${country.workingAge.toFixed(1)}%`, color: "text-primary" },
                     { label: "Elderly (65+)", value: `${country.oldDep.toFixed(1)}%`, color: "text-red-400" },
                   ].map((stat) => (
                     <div key={stat.label} className="bg-zinc-800 rounded-lg p-3 text-center">
@@ -444,7 +444,7 @@ function GlobalDemographicsTab() {
           <div className="flex gap-4 mt-2">
             {[
               { color: "bg-amber-500", label: "Youth 0–14" },
-              { color: "bg-blue-500",  label: "Working 15–64" },
+              { color: "bg-primary",  label: "Working 15–64" },
               { color: "bg-red-500",   label: "Elderly 65+" },
             ].map((l) => (
               <div key={l.label} className="flex items-center gap-1.5">
@@ -460,7 +460,7 @@ function GlobalDemographicsTab() {
       <Card className="bg-zinc-900 border-zinc-800">
         <CardHeader className="pb-3">
           <CardTitle className="text-base flex items-center gap-2">
-            <BarChart2 className="w-4 h-4 text-purple-400" />
+            <BarChart2 className="w-4 h-4 text-primary" />
             Median Age by Country
           </CardTitle>
         </CardHeader>
@@ -487,7 +487,7 @@ function GlobalDemographicsTab() {
                       <div className="flex items-center justify-end gap-2">
                         <div className="w-20 bg-zinc-800 rounded h-1.5">
                           <div
-                            className="h-1.5 rounded bg-blue-500"
+                            className="h-1.5 rounded bg-primary"
                             style={{ width: `${(row.medianAge / 55) * 100}%` }}
                           />
                         </div>
@@ -779,7 +779,7 @@ function InvestmentImplicationsTab() {
       <Card className="bg-zinc-900 border-zinc-800">
         <CardHeader className="pb-3">
           <CardTitle className="text-base flex items-center gap-2">
-            <BarChart2 className="w-4 h-4 text-blue-400" />
+            <BarChart2 className="w-4 h-4 text-primary" />
             Sector Impact Matrix — Demographic Aging
           </CardTitle>
         </CardHeader>
@@ -1012,7 +1012,7 @@ function JapanCaseStudyTab() {
               <span className="text-xs text-zinc-400">Elderly % (left axis)</span>
             </div>
             <div className="flex items-center gap-1.5">
-              <div className="w-6 h-0.5 bg-blue-500 rounded" />
+              <div className="w-6 h-0.5 bg-primary rounded" />
               <span className="text-xs text-zinc-400">Nikkei (right axis)</span>
             </div>
           </div>
@@ -1038,13 +1038,13 @@ function JapanCaseStudyTab() {
             title: "BOJ Yield Curve Control",
             body: "BOJ capped 10-year JGB yields at 0% (then 0.5%, 1%) to prevent deflation. The world's most aggressive monetary experiment — and a cautionary tale for other aging economies approaching similar conditions.",
             icon: Activity,
-            accent: "bg-blue-500/10 border border-blue-500/30 text-blue-300",
+            accent: "bg-primary/10 border border-border text-primary",
           },
           {
             title: "Investment Lesson",
             body: "Despite terrible demographics, the Nikkei hit all-time highs in 2024. Demographics create secular headwinds but policy, corporate governance reform, and foreign flows can still drive equity returns. Invest in the policy response, not just the trend.",
             icon: DollarSign,
-            accent: "bg-purple-500/10 border border-purple-500/30 text-purple-300",
+            accent: "bg-primary/10 border border-border text-primary",
           },
         ].map((item) => (
           <InsightCard key={item.title} icon={item.icon} title={item.title} body={item.body} accent={item.accent} />
@@ -1206,7 +1206,7 @@ function EmergingMarketTab() {
       <Card className="bg-zinc-900 border-zinc-800">
         <CardHeader className="pb-3">
           <CardTitle className="text-base flex items-center gap-2">
-            <Users className="w-4 h-4 text-blue-400" />
+            <Users className="w-4 h-4 text-primary" />
             Working-Age Population Index (2020 = 100)
           </CardTitle>
         </CardHeader>
@@ -1265,7 +1265,7 @@ function EmergingMarketTab() {
           {
             flag: "🇳🇬",
             name: "Nigeria",
-            color: "border-purple-500/40",
+            color: "border-primary/40",
             stats: [
               { label: "Population 2026",     value: "230M" },
               { label: "Median Age",           value: "17.9 yrs" },
@@ -1324,7 +1324,7 @@ function EmergingMarketTab() {
       <Card className="bg-zinc-900 border-zinc-800">
         <CardHeader className="pb-3">
           <CardTitle className="text-base flex items-center gap-2">
-            <Globe className="w-4 h-4 text-cyan-400" />
+            <Globe className="w-4 h-4 text-muted-foreground" />
             Southeast Asia: Demographic vs. Structural Catalysts
           </CardTitle>
         </CardHeader>
@@ -1334,7 +1334,7 @@ function EmergingMarketTab() {
               icon={TrendingUp}
               title="China+1 Manufacturing Shift"
               body="Vietnam, Thailand, Indonesia benefit as multinationals diversify supply chains out of China. Young workforces + lower wages = structural FDI magnet for the next decade."
-              accent="bg-cyan-500/10 border border-cyan-500/30 text-cyan-300"
+              accent="bg-cyan-500/10 border border-cyan-500/30 text-muted-foreground"
             />
             <InsightCard
               icon={Users}
@@ -1369,8 +1369,8 @@ export default function DemographicsPage() {
       <div className="max-w-5xl mx-auto px-4 py-6">
         {/* Header */}
         <div className="flex items-center gap-3 mb-6">
-          <div className="p-2 bg-blue-500/10 rounded-lg border border-blue-500/20">
-            <Users className="w-6 h-6 text-blue-400" />
+          <div className="p-2 bg-primary/10 rounded-lg border border-border">
+            <Users className="w-6 h-6 text-primary" />
           </div>
           <div>
             <h1 className="text-xl font-bold">Global Demographics</h1>
@@ -1379,7 +1379,7 @@ export default function DemographicsPage() {
             </p>
           </div>
           <div className="ml-auto flex gap-2 flex-wrap">
-            <Badge variant="outline" className="border-blue-500/30 text-blue-400 text-xs">
+            <Badge variant="outline" className="border-border text-primary text-xs">
               UN Projections 2026
             </Badge>
             <Badge variant="outline" className="border-green-500/30 text-green-400 text-xs">
@@ -1391,7 +1391,7 @@ export default function DemographicsPage() {
         {/* Key stats strip */}
         <div className="grid grid-cols-2 md:grid-cols-4 gap-3 mb-6">
           {[
-            { label: "World Population",   value: "8.2B",  sub: "+70M/yr net",   color: "text-blue-400" },
+            { label: "World Population",   value: "8.2B",  sub: "+70M/yr net",   color: "text-primary" },
             { label: "Median World Age",   value: "30.9",  sub: "+2.5 yrs/decade", color: "text-amber-400" },
             { label: "Share Aged 65+",     value: "10.3%", sub: "vs 5% in 1960",  color: "text-red-400" },
             { label: "Fertility (Global)", value: "2.3",   sub: "vs 5.0 in 1960", color: "text-green-400" },

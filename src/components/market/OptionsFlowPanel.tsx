@@ -52,8 +52,8 @@ function SignificanceBadge({
 }) {
   const styles = {
     sweep: "bg-amber-500/10 text-amber-500",
-    block: "bg-blue-500/10 text-blue-500",
-    split: "bg-purple-500/10 text-purple-500",
+    block: "bg-primary/10 text-primary",
+    split: "bg-primary/10 text-primary",
     routine: "bg-muted text-muted-foreground",
   };
   return (
@@ -162,7 +162,7 @@ export function OptionsFlowPanel({ ticker, currentPrice }: OptionsFlowPanelProps
         </div>
         <div className="space-y-0.5">
           <p className="text-xs text-muted-foreground">Blocks</p>
-          <p className="font-mono tabular-nums text-sm font-medium text-blue-500">
+          <p className="font-mono tabular-nums text-sm font-medium text-primary">
             {flows.filter((f) => f.significance === "block").length}
           </p>
         </div>

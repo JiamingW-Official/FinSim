@@ -843,7 +843,7 @@ function ValuationMonitor() {
       <Card className="bg-slate-900/70 border-slate-800">
         <CardHeader className="pb-2">
           <CardTitle className="text-sm text-slate-300 flex items-center gap-2">
-            <Globe className="w-4 h-4 text-blue-400" />
+            <Globe className="w-4 h-4 text-primary" />
             International P/E Comparison
           </CardTitle>
         </CardHeader>
@@ -876,7 +876,7 @@ function ValuationMonitor() {
       <Card className="bg-slate-900/70 border-slate-800">
         <CardHeader className="pb-2">
           <CardTitle className="text-sm text-slate-300 flex items-center gap-2">
-            <Layers className="w-4 h-4 text-purple-400" />
+            <Layers className="w-4 h-4 text-primary" />
             Sector Valuation Heatmap (Relative to Own History)
           </CardTitle>
         </CardHeader>
@@ -1072,7 +1072,7 @@ function EconCalendar() {
       <Card className="bg-slate-900/70 border-slate-800">
         <CardHeader className="pb-2">
           <CardTitle className="text-sm text-slate-300 flex items-center gap-2">
-            <Target className="w-4 h-4 text-purple-400" />
+            <Target className="w-4 h-4 text-primary" />
             Fed SEP Projections (Dot Plot Summary)
           </CardTitle>
         </CardHeader>
@@ -1091,7 +1091,7 @@ function EconCalendar() {
                 {[
                   { label: "GDP Growth",     vals: ["2.1%", "2.0%", "2.0%", "1.8%"],  color: "text-emerald-400" },
                   { label: "PCE Inflation",  vals: ["2.4%", "2.2%", "2.1%", "2.0%"],  color: "text-yellow-400" },
-                  { label: "Unemployment",   vals: ["4.0%", "4.1%", "4.0%", "4.1%"],  color: "text-blue-400" },
+                  { label: "Unemployment",   vals: ["4.0%", "4.1%", "4.0%", "4.1%"],  color: "text-primary" },
                   { label: "Fed Funds Rate", vals: ["4.375%","3.625%","2.875%","2.5%"],color: "text-rose-400" },
                 ].map(row => (
                   <tr key={row.label} className="border-b border-slate-800/40">
@@ -1223,7 +1223,7 @@ function ThematicResearch() {
         <p className="text-slate-400 text-sm">
           In-depth research notes on structural investment themes. Each covers abstract, key findings, risks, and investment implications.
         </p>
-        <Badge variant="outline" className="ml-auto text-purple-400 border-purple-800 shrink-0">5 Deep Dives</Badge>
+        <Badge variant="outline" className="ml-auto text-primary border-border shrink-0">5 Deep Dives</Badge>
       </div>
       {RESEARCH_NOTES.map((note, idx) => (
         <motion.div
@@ -1411,7 +1411,7 @@ function DataLibrary() {
       <Card className="bg-slate-900/70 border-slate-800">
         <CardHeader className="pb-2">
           <CardTitle className="text-sm text-slate-300 flex items-center gap-2">
-            <Activity className="w-4 h-4 text-purple-400" />
+            <Activity className="w-4 h-4 text-primary" />
             Market Indicators &amp; Sentiment
           </CardTitle>
         </CardHeader>

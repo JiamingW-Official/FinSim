@@ -428,7 +428,7 @@ function CotBar({ entry }: { entry: CotEntry }) {
           <span className={entry.commercial > 0 ? "text-emerald-400" : "text-red-400"}>
             Comm: {entry.commercial > 0 ? "+" : ""}{entry.commercial.toLocaleString()}
           </span>
-          <span className={entry.nonCommercial > 0 ? "text-blue-400" : "text-amber-400"}>
+          <span className={entry.nonCommercial > 0 ? "text-primary" : "text-amber-400"}>
             NonComm: {entry.nonCommercial > 0 ? "+" : ""}{entry.nonCommercial.toLocaleString()}
           </span>
         </div>
@@ -908,8 +908,8 @@ export default function SentimentPage() {
         transition={{ duration: 0.4 }}
         className="flex items-center gap-3"
       >
-        <div className="p-2 rounded-lg bg-violet-500/15">
-          <Brain className="h-5 w-5 text-violet-400" />
+        <div className="p-2 rounded-lg bg-primary/15">
+          <Brain className="h-5 w-5 text-primary" />
         </div>
         <div>
           <h1 className="text-lg font-bold text-white">
@@ -937,7 +937,7 @@ export default function SentimentPage() {
             <TabsTrigger
               key={value}
               value={value}
-              className="text-xs data-[state=active]:bg-violet-600 data-[state=active]:text-white flex items-center gap-1.5 px-3 py-1.5"
+              className="text-xs data-[state=active]:bg-primary data-[state=active]:text-white flex items-center gap-1.5 px-3 py-1.5"
             >
               <Icon className="h-3 w-3" />
               {label}
@@ -952,7 +952,7 @@ export default function SentimentPage() {
             <Card className="lg:col-span-1 bg-slate-900/60 border-slate-800">
               <CardHeader className="pb-2">
                 <CardTitle className="text-sm text-slate-300 flex items-center gap-2">
-                  <Activity className="h-4 w-4 text-violet-400" />
+                  <Activity className="h-4 w-4 text-primary" />
                   Fear & Greed Index
                 </CardTitle>
               </CardHeader>
@@ -1077,7 +1077,7 @@ export default function SentimentPage() {
             <Card className="bg-slate-900/60 border-slate-800">
               <CardHeader className="pb-2">
                 <CardTitle className="text-sm text-slate-300 flex items-center gap-2">
-                  <Users className="h-4 w-4 text-blue-400" />
+                  <Users className="h-4 w-4 text-primary" />
                   AAII Sentiment Survey
                 </CardTitle>
               </CardHeader>
@@ -1222,7 +1222,7 @@ export default function SentimentPage() {
                 <div className="text-[11px] text-slate-500">
                   Contango (upward sloping) = normal. Backwardation = fear/stress event.
                 </div>
-                <div className="flex items-center gap-2 text-[11px] text-blue-400 bg-blue-500/10 rounded p-2">
+                <div className="flex items-center gap-2 text-[11px] text-primary bg-primary/10 rounded p-2">
                   <Info className="h-3 w-3" />
                   Current structure shows normal contango — markets pricing low near-term stress
                 </div>
@@ -1281,7 +1281,7 @@ export default function SentimentPage() {
           <Card className="bg-slate-900/60 border-slate-800">
             <CardHeader className="pb-2">
               <CardTitle className="text-sm text-slate-300 flex items-center gap-2">
-                <TrendingUp className="h-4 w-4 text-blue-400" />
+                <TrendingUp className="h-4 w-4 text-primary" />
                 Advance/Decline Line vs S&P 500 (90 days)
               </CardTitle>
             </CardHeader>
@@ -1289,7 +1289,7 @@ export default function SentimentPage() {
               <AdLineChart adLine={adLine} sp500={adSp500} />
               <div className="flex gap-4 mt-2 text-xs">
                 <span className="flex items-center gap-1">
-                  <span className="w-3 h-0.5 bg-blue-400 inline-block" />
+                  <span className="w-3 h-0.5 bg-primary inline-block" />
                   A/D Line
                 </span>
                 <span className="flex items-center gap-1">
@@ -1368,7 +1368,7 @@ export default function SentimentPage() {
                         mclellanOscillator > 60
                           ? "bg-emerald-500/15 text-emerald-400 border-emerald-500/25"
                           : mclellanOscillator > 0
-                            ? "bg-blue-500/15 text-blue-400 border-blue-500/25"
+                            ? "bg-primary/15 text-primary border-border"
                             : mclellanOscillator > -60
                               ? "bg-amber-500/15 text-amber-400 border-amber-500/25"
                               : "bg-red-500/15 text-red-400 border-red-500/25",
@@ -1479,7 +1479,7 @@ export default function SentimentPage() {
           <Card className="bg-slate-900/60 border-slate-800">
             <CardHeader className="pb-2">
               <CardTitle className="text-sm text-slate-300 flex items-center gap-2">
-                <Eye className="h-4 w-4 text-cyan-400" />
+                <Eye className="h-4 w-4 text-muted-foreground" />
                 COT Report — Commitment of Traders (Net Positions)
               </CardTitle>
             </CardHeader>
@@ -1689,7 +1689,7 @@ export default function SentimentPage() {
             <Card className="bg-slate-900/60 border-slate-800">
               <CardHeader className="pb-2">
                 <CardTitle className="text-sm text-slate-300 flex items-center gap-2">
-                  <Brain className="h-4 w-4 text-violet-400" />
+                  <Brain className="h-4 w-4 text-primary" />
                   Psychological Market Cycle
                 </CardTitle>
               </CardHeader>
@@ -1707,7 +1707,7 @@ export default function SentimentPage() {
             <Card className="bg-slate-900/60 border-slate-800">
               <CardHeader className="pb-2">
                 <CardTitle className="text-sm text-slate-300 flex items-center gap-2">
-                  <Users className="h-4 w-4 text-blue-400" />
+                  <Users className="h-4 w-4 text-primary" />
                   Social Sentiment Tracker
                 </CardTitle>
               </CardHeader>
@@ -1766,7 +1766,7 @@ export default function SentimentPage() {
                     Margin Debt (% mkt cap)
                   </span>
                   <span className="flex items-center gap-1">
-                    <span className="w-3 h-0.5 bg-blue-400 inline-block" style={{ borderTopStyle: "dashed", borderTopWidth: 1 }} />
+                    <span className="w-3 h-0.5 bg-primary inline-block" style={{ borderTopStyle: "dashed", borderTopWidth: 1 }} />
                     S&P 500
                   </span>
                 </div>

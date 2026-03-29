@@ -281,7 +281,7 @@ function SectionToggle({
       <Icon className="h-4 w-4 shrink-0" />
       {!sidebarCollapsed && (
         <>
-          <span className="flex-1 text-left text-[11px] font-semibold leading-none">
+          <span className="flex-1 text-left text-[10px] font-semibold uppercase tracking-wide leading-none">
             {label}
           </span>
           <ChevronDown
@@ -480,7 +480,7 @@ export function Sidebar() {
               <div key={cat.label} className={cn("flex flex-col", collapsed ? "items-center w-full" : "w-full")}>
                 {!collapsed && (
                   <div className="mb-0.5 mt-2 px-1">
-                    <span className="text-[11px] font-semibold text-muted-foreground/30 select-none">
+                    <span className="text-[10px] font-semibold uppercase tracking-wide text-muted-foreground select-none">
                       {cat.label}
                     </span>
                   </div>
@@ -502,7 +502,7 @@ export function Sidebar() {
         <div className={cn("flex flex-col", collapsed ? "items-center w-full" : "w-full")}>
           {!collapsed && (
             <div className="mb-1 px-1">
-              <span className="text-[11px] font-semibold text-muted-foreground/40 select-none">
+              <span className="text-[10px] font-semibold uppercase tracking-wide text-muted-foreground select-none">
                 Learn
               </span>
             </div>
@@ -519,7 +519,7 @@ export function Sidebar() {
         <div className={cn("flex flex-col", collapsed ? "items-center w-full" : "w-full")}>
           {!collapsed && (
             <div className="mb-1 px-1">
-              <span className="text-[11px] font-semibold text-muted-foreground/40 select-none">
+              <span className="text-[10px] font-semibold uppercase tracking-wide text-muted-foreground select-none">
                 Social
               </span>
             </div>

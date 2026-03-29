@@ -596,7 +596,7 @@ export default function CTASimulatorPage() {
           </div>
           <div className="ml-auto flex items-center gap-2">
             <Badge className="bg-emerald-500/10 text-emerald-400 border-emerald-500/20 text-xs">Managed Futures</Badge>
-            <Badge className="bg-blue-500/10 text-blue-400 border-blue-500/20 text-xs">Live Signals</Badge>
+            <Badge className="bg-primary/10 text-primary border-border text-xs">Live Signals</Badge>
           </div>
         </div>
       </div>
@@ -623,9 +623,9 @@ export default function CTASimulatorPage() {
               {/* KPI row */}
               <div className="grid grid-cols-2 md:grid-cols-4 gap-3 mb-6">
                 <StatChip label="Global CTA AUM" value="$358B+" sub="Managed Futures Industry" color="text-emerald-400" />
-                <StatChip label="Strategy Types" value="4 Core" sub="Trend / Counter-Trend / Carry / Vol" color="text-blue-400" />
+                <StatChip label="Strategy Types" value="4 Core" sub="Trend / Counter-Trend / Carry / Vol" color="text-primary" />
                 <StatChip label="Crisis Alpha Events" value="7 Major" sub="Since 2000" color="text-amber-400" />
-                <StatChip label="Avg Vol Target" value="10–12%" sub="Annualized Portfolio Vol" color="text-purple-400" />
+                <StatChip label="Avg Vol Target" value="10–12%" sub="Annualized Portfolio Vol" color="text-primary" />
               </div>
 
               {/* Strategy overview cards */}
@@ -726,7 +726,7 @@ export default function CTASimulatorPage() {
                   { label: "Long Signals",  value: trendSignals.filter(s => s.signal === "long").length.toString(),  color: "text-emerald-400" },
                   { label: "Short Signals", value: trendSignals.filter(s => s.signal === "short").length.toString(), color: "text-red-400"     },
                   { label: "Flat",          value: trendSignals.filter(s => s.signal === "flat").length.toString(),  color: "text-slate-400"   },
-                  { label: "Avg Strength",  value: (trendSignals.reduce((a, b) => a + b.strength, 0) / trendSignals.length).toFixed(1) + "%", color: "text-blue-400" },
+                  { label: "Avg Strength",  value: (trendSignals.reduce((a, b) => a + b.strength, 0) / trendSignals.length).toFixed(1) + "%", color: "text-primary" },
                 ].map(({ label, value, color }) => (
                   <StatChip key={label} label={label} value={value} color={color} />
                 ))}
@@ -736,7 +736,7 @@ export default function CTASimulatorPage() {
                 <Card className="bg-slate-900/60 border-slate-700/40">
                   <CardHeader className="pb-2">
                     <CardTitle className="flex items-center gap-2 text-sm">
-                      <Activity className="w-4 h-4 text-blue-400" />
+                      <Activity className="w-4 h-4 text-primary" />
                       Signal Strength by Market
                     </CardTitle>
                   </CardHeader>
@@ -748,7 +748,7 @@ export default function CTASimulatorPage() {
                 <Card className="bg-slate-900/60 border-slate-700/40">
                   <CardHeader className="pb-2">
                     <CardTitle className="flex items-center gap-2 text-sm">
-                      <SlidersHorizontal className="w-4 h-4 text-purple-400" />
+                      <SlidersHorizontal className="w-4 h-4 text-primary" />
                       Signal Table
                     </CardTitle>
                   </CardHeader>
@@ -773,7 +773,7 @@ export default function CTASimulatorPage() {
                               <td className="py-1.5 px-2">
                                 <span className={`px-1.5 py-0.5 rounded text-xs ${
                                   sig.category === "equity" ? "bg-indigo-500/15 text-indigo-300" :
-                                  sig.category === "bond"   ? "bg-blue-500/15 text-blue-300"    :
+                                  sig.category === "bond"   ? "bg-primary/15 text-primary"    :
                                   sig.category === "fx"     ? "bg-amber-500/15 text-amber-300"  :
                                   "bg-emerald-500/15 text-emerald-300"
                                 }`}>{sig.category}</span>
@@ -835,8 +835,8 @@ export default function CTASimulatorPage() {
             <motion.div key="portfolio" initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0 }} transition={{ duration: 0.2 }}>
               <div className="grid grid-cols-2 md:grid-cols-4 gap-3 mb-6">
                 <StatChip label="Markets" value="20" sub="Diversified futures universe" color="text-emerald-400" />
-                <StatChip label="Vol Target" value={`${volTarget}%`} sub="Annualized portfolio vol" color="text-blue-400" />
-                <StatChip label="ERC Method" value="Equal Risk" sub="Risk contribution per market" color="text-purple-400" />
+                <StatChip label="Vol Target" value={`${volTarget}%`} sub="Annualized portfolio vol" color="text-primary" />
+                <StatChip label="ERC Method" value="Equal Risk" sub="Risk contribution per market" color="text-primary" />
                 <StatChip label="Rebalance" value="Daily" sub="Position size adjustment" color="text-amber-400" />
               </div>
 
@@ -844,7 +844,7 @@ export default function CTASimulatorPage() {
               <Card className="mb-4 bg-slate-900/60 border-slate-700/40">
                 <CardHeader className="pb-2">
                   <CardTitle className="flex items-center gap-2 text-sm">
-                    <Gauge className="w-4 h-4 text-purple-400" />
+                    <Gauge className="w-4 h-4 text-primary" />
                     Volatility Target: {volTarget}%
                   </CardTitle>
                 </CardHeader>
@@ -863,7 +863,7 @@ export default function CTASimulatorPage() {
                     {[
                       { label: "Expected Annual Return", value: `${(volTarget * 0.6).toFixed(1)}%`, color: "text-emerald-400" },
                       { label: "Expected Max Drawdown",  value: `-${(volTarget * 1.5).toFixed(1)}%`, color: "text-red-400" },
-                      { label: "Estimated Sharpe",       value: "0.55–0.75", color: "text-blue-400" },
+                      { label: "Estimated Sharpe",       value: "0.55–0.75", color: "text-primary" },
                     ].map(({ label, value, color }) => (
                       <div key={label} className="p-2 rounded bg-slate-800/60 border border-slate-700/30">
                         <p className="text-xs text-slate-400">{label}</p>
@@ -903,7 +903,7 @@ export default function CTASimulatorPage() {
                 <Card className="bg-slate-900/60 border-slate-700/40">
                   <CardHeader className="pb-2">
                     <CardTitle className="flex items-center gap-2 text-sm">
-                      <Layers className="w-4 h-4 text-blue-400" />
+                      <Layers className="w-4 h-4 text-primary" />
                       Equal Risk Contribution
                     </CardTitle>
                   </CardHeader>
@@ -924,9 +924,9 @@ export default function CTASimulatorPage() {
                           {allocations.slice(0, 12).map((a, i) => (
                             <tr key={i} className="border-b border-slate-800/40 hover:bg-slate-800/30">
                               <td className="py-1 px-1.5 text-slate-200">{a.market}</td>
-                              <td className="py-1 px-1.5 text-blue-300">{a.weight.toFixed(2)}%</td>
+                              <td className="py-1 px-1.5 text-primary">{a.weight.toFixed(2)}%</td>
                               <td className="py-1 px-1.5 text-amber-300">{a.vol.toFixed(1)}%</td>
-                              <td className="py-1 px-1.5 text-purple-300">{a.riskContrib.toFixed(2)}%</td>
+                              <td className="py-1 px-1.5 text-primary">{a.riskContrib.toFixed(2)}%</td>
                             </tr>
                           ))}
                         </tbody>
@@ -946,10 +946,10 @@ export default function CTASimulatorPage() {
               {/* KPIs */}
               <div className="grid grid-cols-2 md:grid-cols-5 gap-3 mb-6">
                 <StatChip label="CAGR (10Y)"   value={`${perf.cagr.toFixed(1)}%`}  color={perf.cagr >= 0 ? "text-emerald-400" : "text-red-400"} />
-                <StatChip label="Sharpe Ratio" value={perf.sharpe.toFixed(2)}       color="text-blue-400" />
+                <StatChip label="Sharpe Ratio" value={perf.sharpe.toFixed(2)}       color="text-primary" />
                 <StatChip label="Max Drawdown"  value={`${perf.maxDD.toFixed(1)}%`}  color="text-red-400" />
                 <StatChip label="Win Rate"     value={`${perf.winRate.toFixed(0)}%`} color="text-amber-400" />
-                <StatChip label="Ann. Volatility" value={`${perf.std.toFixed(1)}%`} color="text-purple-400" />
+                <StatChip label="Ann. Volatility" value={`${perf.std.toFixed(1)}%`} color="text-primary" />
               </div>
 
               {/* Equity curve */}
@@ -970,7 +970,7 @@ export default function CTASimulatorPage() {
                 <Card className="bg-slate-900/60 border-slate-700/40">
                   <CardHeader className="pb-2">
                     <CardTitle className="flex items-center gap-2 text-sm">
-                      <BarChart3 className="w-4 h-4 text-blue-400" />
+                      <BarChart3 className="w-4 h-4 text-primary" />
                       Annual Returns
                     </CardTitle>
                   </CardHeader>
@@ -993,7 +993,7 @@ export default function CTASimulatorPage() {
                             <td className={`py-1.5 px-2 ${r.equity >= 0 ? "text-emerald-300" : "text-red-300"}`}>
                               {r.equity >= 0 ? "+" : ""}{r.equity.toFixed(1)}%
                             </td>
-                            <td className={`py-1.5 px-2 ${r.blended >= 0 ? "text-blue-300" : "text-orange-300"}`}>
+                            <td className={`py-1.5 px-2 ${r.blended >= 0 ? "text-primary" : "text-orange-300"}`}>
                               {r.blended >= 0 ? "+" : ""}{r.blended.toFixed(1)}%
                             </td>
                           </tr>
@@ -1037,15 +1037,15 @@ export default function CTASimulatorPage() {
               <div className="grid grid-cols-2 md:grid-cols-4 gap-3 mb-6">
                 <StatChip label="Long-run CTA/EQ Corr" value="-0.08" sub="Near zero on average" color="text-emerald-400" />
                 <StatChip label="Crisis Corr (CTA/EQ)" value="-0.42" sub="Negative in drawdowns" color="text-emerald-400" />
-                <StatChip label="Diversification Benefit" value="~18%" sub="Sharpe improvement vs 60/40" color="text-blue-400" />
-                <StatChip label="Tail Dependency" value="Low" sub="Not co-crashing with risk assets" color="text-purple-400" />
+                <StatChip label="Diversification Benefit" value="~18%" sub="Sharpe improvement vs 60/40" color="text-primary" />
+                <StatChip label="Tail Dependency" value="Low" sub="Not co-crashing with risk assets" color="text-primary" />
               </div>
 
               {/* Rolling correlation chart */}
               <Card className="mb-4 bg-slate-900/60 border-slate-700/40">
                 <CardHeader className="pb-2">
                   <CardTitle className="flex items-center gap-2 text-sm">
-                    <GitBranch className="w-4 h-4 text-blue-400" />
+                    <GitBranch className="w-4 h-4 text-primary" />
                     Correlation by Market Regime
                   </CardTitle>
                 </CardHeader>

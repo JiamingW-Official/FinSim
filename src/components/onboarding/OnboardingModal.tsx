@@ -215,12 +215,12 @@ function StepWelcome() {
 
       <div className="flex flex-col gap-2.5 mt-1">
         <FeatureRow
-          icon={<BarChart3 className="h-4 w-4 text-blue-400" />}
+          icon={<BarChart3 className="h-4 w-4 text-primary" />}
           title="Real market data"
           desc="Historical candlestick charts for 10 tickers with 15 indicators"
         />
         <FeatureRow
-          icon={<GraduationCap className="h-4 w-4 text-violet-400" />}
+          icon={<GraduationCap className="h-4 w-4 text-primary" />}
           title="Learn as you go"
           desc="650+ bite-sized lessons, quizzes, and flashcards"
         />

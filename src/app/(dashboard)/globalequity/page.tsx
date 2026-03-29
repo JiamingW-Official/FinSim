@@ -403,7 +403,7 @@ function MarketOverviewTab() {
                         className={cn(
                           "text-xs",
                           idx.type === "DM"
-                            ? "border-blue-700 text-blue-400"
+                            ? "border-border text-primary"
                             : "border-amber-700 text-amber-400"
                         )}
                       >
@@ -568,7 +568,7 @@ function ValuationTab() {
               <div key={v.code} className="flex items-center justify-between py-1 border-b border-zinc-800/60 last:border-0">
                 <div>
                   <span className="text-sm font-medium text-zinc-200">{v.country}</span>
-                  <Badge variant="outline" className={cn("ml-2 text-xs", v.type === "EM" ? "border-amber-700 text-amber-400" : "border-blue-700 text-blue-400")}>{v.type}</Badge>
+                  <Badge variant="outline" className={cn("ml-2 text-xs", v.type === "EM" ? "border-amber-700 text-amber-400" : "border-border text-primary")}>{v.type}</Badge>
                 </div>
                 <div className="text-right">
                   <span className="text-sm font-bold text-emerald-400">{v.pe.toFixed(1)}x</span>
@@ -591,7 +591,7 @@ function ValuationTab() {
               <div key={v.code} className="flex items-center justify-between py-1 border-b border-zinc-800/60 last:border-0">
                 <div>
                   <span className="text-sm font-medium text-zinc-200">{v.country}</span>
-                  <Badge variant="outline" className={cn("ml-2 text-xs", v.type === "EM" ? "border-amber-700 text-amber-400" : "border-blue-700 text-blue-400")}>{v.type}</Badge>
+                  <Badge variant="outline" className={cn("ml-2 text-xs", v.type === "EM" ? "border-amber-700 text-amber-400" : "border-border text-primary")}>{v.type}</Badge>
                 </div>
                 <div className="text-right">
                   <span className="text-sm font-bold text-red-400">{v.pe.toFixed(1)}x</span>
@@ -635,7 +635,7 @@ function ValuationTab() {
                     >
                       <td className="px-3 py-2 font-medium text-zinc-200">{v.country}</td>
                       <td className="px-3 py-2">
-                        <Badge variant="outline" className={cn("text-xs", v.type === "EM" ? "border-amber-700 text-amber-400" : "border-blue-700 text-blue-400")}>{v.type}</Badge>
+                        <Badge variant="outline" className={cn("text-xs", v.type === "EM" ? "border-amber-700 text-amber-400" : "border-border text-primary")}>{v.type}</Badge>
                       </td>
                       <td className={cn("px-3 py-2 font-semibold", v.pe < 12 ? "text-emerald-400" : v.pe > 20 ? "text-red-400" : "text-zinc-200")}>{v.pe.toFixed(1)}x</td>
                       <td className="px-3 py-2 text-zinc-300">{v.pb.toFixed(1)}x</td>
@@ -1023,7 +1023,7 @@ function CurrencyImpactTab() {
               },
               {
                 title: "Partial Hedge Strategy",
-                color: "text-blue-400 border-blue-900/50 bg-blue-950/20",
+                color: "text-primary border-border bg-muted/30",
                 points: [
                   "Hedge 50% as default baseline",
                   "Adjust based on momentum signals",
@@ -1082,9 +1082,9 @@ function EMvsDMTab() {
       {/* Summary stats */}
       <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
         {[
-          { label: "DM Avg Return", val: dmAvgReturn.toFixed(1) + "%", color: "text-blue-400" },
+          { label: "DM Avg Return", val: dmAvgReturn.toFixed(1) + "%", color: "text-primary" },
           { label: "EM Avg Return", val: emAvgReturn.toFixed(1) + "%", color: "text-amber-400" },
-          { label: "DM Avg Volatility", val: dmAvgVol.toFixed(1) + "%", color: "text-blue-400" },
+          { label: "DM Avg Volatility", val: dmAvgVol.toFixed(1) + "%", color: "text-primary" },
           { label: "EM Avg Volatility", val: emAvgVol.toFixed(1) + "%", color: "text-amber-400" },
         ].map(c => (
           <Card key={c.label} className="bg-zinc-900/60 border-zinc-800">
@@ -1169,14 +1169,14 @@ function EMvsDMTab() {
               <div className="flex items-center justify-between">
                 <span className="text-xs font-medium text-zinc-300">{f.name}</span>
                 <div className="flex items-center gap-3 text-xs">
-                  <span className="text-blue-400">DM {f.dmScore.toFixed(1)}</span>
+                  <span className="text-primary">DM {f.dmScore.toFixed(1)}</span>
                   <span className="text-amber-400">EM {f.emScore.toFixed(1)}</span>
                 </div>
               </div>
               <div className="grid grid-cols-2 gap-1">
                 <div className="flex items-center gap-1.5">
                   <div className="h-1.5 rounded-full bg-zinc-800 flex-1 overflow-hidden">
-                    <div className="h-full bg-blue-500/70 rounded-full" style={{ width: `${(f.dmScore / 10) * 100}%` }} />
+                    <div className="h-full bg-primary/70 rounded-full" style={{ width: `${(f.dmScore / 10) * 100}%` }} />
                   </div>
                 </div>
                 <div className="flex items-center gap-1.5">
@@ -1220,7 +1220,7 @@ function EMvsDMTab() {
                   >
                     <td className="px-3 py-2 font-medium text-zinc-200 whitespace-nowrap">{d.name}</td>
                     <td className="px-3 py-2">
-                      <Badge variant="outline" className={cn("text-xs", d.type === "EM" ? "border-amber-700 text-amber-400" : "border-blue-700 text-blue-400")}>{d.type}</Badge>
+                      <Badge variant="outline" className={cn("text-xs", d.type === "EM" ? "border-amber-700 text-amber-400" : "border-border text-primary")}>{d.type}</Badge>
                     </td>
                     <td className="px-3 py-2"><ReturnBadge value={d.annualReturn} /></td>
                     <td className="px-3 py-2 text-zinc-400 text-xs">{fmtNoSign(d.volatility)}</td>
@@ -1236,7 +1236,7 @@ function EMvsDMTab() {
                     <td className={cn("px-3 py-2 text-xs", d.demographicScore > 7 ? "text-emerald-400" : d.demographicScore > 5 ? "text-zinc-300" : "text-red-400")}>
                       {d.demographicScore.toFixed(1)}
                     </td>
-                    <td className={cn("px-3 py-2 text-xs font-semibold", d.riskPremium > 3 ? "text-amber-400" : "text-blue-400")}>
+                    <td className={cn("px-3 py-2 text-xs font-semibold", d.riskPremium > 3 ? "text-amber-400" : "text-primary")}>
                       {d.riskPremium > 0 ? "+" : ""}{d.riskPremium.toFixed(1)}%
                     </td>
                   </motion.tr>
@@ -1267,7 +1267,7 @@ export default function GlobalEquityPage() {
           </p>
         </div>
         <div className="flex items-center gap-2">
-          <Badge variant="outline" className="border-blue-700 text-blue-400 text-xs">
+          <Badge variant="outline" className="border-border text-primary text-xs">
             <ArrowUpRight className="w-3 h-3 mr-1" />
             DM Neutral
           </Badge>

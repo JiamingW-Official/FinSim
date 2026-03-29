@@ -200,7 +200,7 @@ function StatCard({
   const colors = {
     green: "text-emerald-400",
     red: "text-red-400",
-    blue: "text-blue-400",
+    blue: "text-primary",
   };
   return (
     <div className="rounded-lg border border-neutral-800 bg-neutral-900 p-4">
@@ -227,8 +227,8 @@ function SectionHeader({ title, subtitle }: { title: string; subtitle: string })
 
 function InfoBox({ title, children }: { title: string; children: React.ReactNode }) {
   return (
-    <div className="rounded-lg border border-blue-900/40 bg-blue-950/20 p-4">
-      <div className="flex items-center gap-2 text-sm font-medium text-blue-300 mb-2">
+    <div className="rounded-lg border border-border bg-muted/30 p-4">
+      <div className="flex items-center gap-2 text-sm font-medium text-primary mb-2">
         <Info size={14} />
         {title}
       </div>
@@ -375,7 +375,7 @@ function ScalingLandscape() {
                       className={cn(
                         "text-xs border",
                         p.type === "zk"
-                          ? "border-purple-700 text-purple-300"
+                          ? "border-border text-primary"
                           : "border-orange-700 text-orange-300"
                       )}
                     >
@@ -509,7 +509,7 @@ function RollupTechnology() {
       />
 
       <div className="grid grid-cols-1 gap-4 lg:grid-cols-2">
-        <div className="rounded-lg border border-blue-900/50 bg-neutral-900 p-4">
+        <div className="rounded-lg border border-border bg-neutral-900 p-4">
           <div className="flex items-center gap-2 mb-3">
             <Clock size={16} className="text-orange-400" />
             <span className="text-sm font-medium text-orange-300">Optimistic Rollups</span>
@@ -530,11 +530,11 @@ function RollupTechnology() {
           </div>
         </div>
 
-        <div className="rounded-lg border border-purple-900/50 bg-neutral-900 p-4">
+        <div className="rounded-lg border border-border bg-neutral-900 p-4">
           <div className="flex items-center gap-2 mb-3">
-            <Shield size={16} className="text-purple-400" />
-            <span className="text-sm font-medium text-purple-300">ZK Rollups</span>
-            <Badge variant="outline" className="text-xs border-purple-700 text-purple-400 ml-auto">Instant finality</Badge>
+            <Shield size={16} className="text-primary" />
+            <span className="text-sm font-medium text-primary">ZK Rollups</span>
+            <Badge variant="outline" className="text-xs border-border text-primary ml-auto">Instant finality</Badge>
           </div>
           <RollupDiagram type="zk" />
           <div className="mt-3 text-xs text-neutral-400 leading-relaxed">
@@ -544,7 +544,7 @@ function RollupTechnology() {
           <div className="mt-2 space-y-1">
             {["zkSync Era (zkEVM)", "Starknet (Cairo + STARKs)", "Polygon zkEVM"].map((item) => (
               <div key={item} className="flex items-center gap-2 text-xs text-neutral-400">
-                <div className="w-1.5 h-1.5 rounded-full bg-purple-400" />
+                <div className="w-1.5 h-1.5 rounded-full bg-primary" />
                 {item}
               </div>
             ))}
@@ -561,7 +561,7 @@ function RollupTechnology() {
             <tr className="text-xs text-neutral-500 border-b border-neutral-800">
               <th className="text-left px-4 py-2">Feature</th>
               <th className="text-left px-4 py-2 text-orange-400">Optimistic</th>
-              <th className="text-left px-4 py-2 text-purple-400">ZK Rollup</th>
+              <th className="text-left px-4 py-2 text-primary">ZK Rollup</th>
               <th className="text-center px-4 py-2">Winner</th>
             </tr>
           </thead>
@@ -573,7 +573,7 @@ function RollupTechnology() {
                 <td className="px-4 py-2.5 text-xs text-neutral-400">{row.zk}</td>
                 <td className="px-4 py-2.5 text-center">
                   {row.winner === "zk" ? (
-                    <span className="text-xs text-purple-400 font-medium">ZK</span>
+                    <span className="text-xs text-primary font-medium">ZK</span>
                   ) : row.winner === "optimistic" ? (
                     <span className="text-xs text-orange-400 font-medium">Opt.</span>
                   ) : (
@@ -791,7 +791,7 @@ function L2TokenEconomics() {
             </div>
             <div className="flex justify-between border-b border-neutral-800 pb-2">
               <span>Sequencer Margin</span>
-              <span className="text-blue-400">~10–30%</span>
+              <span className="text-primary">~10–30%</span>
             </div>
             <div className="flex justify-between border-b border-neutral-800 pb-2">
               <span>Post EIP-4844 Savings</span>
@@ -799,7 +799,7 @@ function L2TokenEconomics() {
             </div>
             <div className="flex justify-between">
               <span>Target Long-run Fee</span>
-              <span className="text-purple-400">&lt;$0.001</span>
+              <span className="text-primary">&lt;$0.001</span>
             </div>
           </div>
         </div>
@@ -927,9 +927,9 @@ function DeveloperEcosystem() {
             <thead>
               <tr className="text-xs text-neutral-500 border-b border-neutral-800">
                 <th className="text-left px-4 py-2">Feature</th>
-                <th className="text-center px-4 py-2 text-blue-400">Arbitrum</th>
+                <th className="text-center px-4 py-2 text-primary">Arbitrum</th>
                 <th className="text-center px-4 py-2 text-red-400">Optimism</th>
-                <th className="text-center px-4 py-2 text-purple-400">zkSync</th>
+                <th className="text-center px-4 py-2 text-primary">zkSync</th>
                 <th className="text-center px-4 py-2 text-pink-400">Starknet</th>
               </tr>
             </thead>
@@ -962,7 +962,7 @@ function DeveloperEcosystem() {
             <thead>
               <tr className="text-xs text-neutral-500 border-b border-neutral-800">
                 <th className="text-left px-4 py-2">Metric</th>
-                <th className="text-right px-4 py-2 text-blue-400">Arbitrum</th>
+                <th className="text-right px-4 py-2 text-primary">Arbitrum</th>
                 <th className="text-right px-4 py-2 text-red-400">Optimism</th>
                 <th className="text-right px-4 py-2 text-indigo-400">Base</th>
               </tr>
@@ -1062,7 +1062,7 @@ const ETH_ROADMAP: RoadmapItem[] = [
 
 function InvestmentThesis() {
   const statusColor = (s: RoadmapItem["status"]) =>
-    s === "live" ? "text-emerald-400 border-emerald-700" : s === "upcoming" ? "text-blue-400 border-blue-700" : "text-purple-400 border-purple-700";
+    s === "live" ? "text-emerald-400 border-emerald-700" : s === "upcoming" ? "text-primary border-border" : "text-primary border-border";
 
   return (
     <div className="space-y-6">
@@ -1119,7 +1119,7 @@ function InvestmentThesis() {
 
       <div className="rounded-lg border border-neutral-800 bg-neutral-900 p-4">
         <div className="text-sm font-medium text-neutral-300 mb-4 flex items-center gap-2">
-          <Lock size={14} className="text-blue-400" />
+          <Lock size={14} className="text-primary" />
           Ethereum Roadmap — L2 Catalysts
         </div>
         <div className="space-y-3">
@@ -1127,7 +1127,7 @@ function InvestmentThesis() {
             <div key={item.title} className="flex gap-3">
               <div className="flex flex-col items-center">
                 <div className={cn("w-2 h-2 rounded-full mt-1.5 flex-shrink-0",
-                  item.status === "live" ? "bg-emerald-400" : item.status === "upcoming" ? "bg-blue-400" : "bg-purple-400"
+                  item.status === "live" ? "bg-emerald-400" : item.status === "upcoming" ? "bg-primary" : "bg-primary"
                 )} />
                 <div className="w-px flex-1 bg-neutral-800 mt-1" />
               </div>
@@ -1201,7 +1201,7 @@ function InvestmentThesis() {
 
       <div className="rounded-lg border border-neutral-800 bg-neutral-900 p-4">
         <div className="text-sm font-medium text-neutral-300 mb-3 flex items-center gap-2">
-          <Layers size={14} className="text-purple-400" />
+          <Layers size={14} className="text-primary" />
           Modular Blockchain Thesis
         </div>
         <div className="grid grid-cols-1 gap-3 sm:grid-cols-3">
@@ -1265,8 +1265,8 @@ export default function Layer2Page() {
           className="mb-8"
         >
           <div className="flex items-center gap-3 mb-2">
-            <div className="flex items-center justify-center w-9 h-9 rounded-lg bg-blue-950 border border-blue-800">
-              <Layers size={18} className="text-blue-400" />
+            <div className="flex items-center justify-center w-9 h-9 rounded-lg bg-muted border border-border">
+              <Layers size={18} className="text-primary" />
             </div>
             <div>
               <h1 className="text-2xl font-bold text-neutral-100">Layer 2 Networks</h1>
@@ -1275,10 +1275,10 @@ export default function Layer2Page() {
           </div>
           <div className="flex flex-wrap gap-2 mt-4">
             {[
-              { label: "L2 TVL", value: fmtB(L2_PROTOCOLS.reduce((a, b) => a + b.tvlB, 0)), color: "text-blue-400" },
+              { label: "L2 TVL", value: fmtB(L2_PROTOCOLS.reduce((a, b) => a + b.tvlB, 0)), color: "text-primary" },
               { label: "EIP-4844", value: "Live", color: "text-emerald-400" },
               { label: "Avg Fee", value: "$0.04", color: "text-green-400" },
-              { label: "Networks", value: "6 major", color: "text-purple-400" },
+              { label: "Networks", value: "6 major", color: "text-primary" },
             ].map((chip) => (
               <div key={chip.label} className="flex items-center gap-1.5 rounded-full border border-neutral-800 bg-neutral-900 px-3 py-1 text-xs">
                 <span className="text-neutral-500">{chip.label}:</span>

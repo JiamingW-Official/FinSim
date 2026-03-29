@@ -669,7 +669,7 @@ export default function InfrastructurePage() {
 
   const riskBadgeColor: Record<string, string> = {
     Core: "bg-green-500/20 text-green-400 border-green-500/30",
-    "Core+": "bg-blue-500/20 text-blue-400 border-blue-500/30",
+    "Core+": "bg-primary/20 text-primary border-border",
     "Value-Add": "bg-amber-500/20 text-amber-400 border-amber-500/30",
     Opportunistic: "bg-red-500/20 text-red-400 border-red-500/30",
   };
@@ -682,7 +682,7 @@ export default function InfrastructurePage() {
 
   const cfvisBadge: Record<string, string> = {
     "Very High": "bg-emerald-500/15 text-emerald-400",
-    High: "bg-blue-500/15 text-blue-400",
+    High: "bg-primary/15 text-primary",
     Medium: "bg-amber-500/15 text-amber-400",
     Low: "bg-red-500/15 text-red-400",
   };
@@ -697,8 +697,8 @@ export default function InfrastructurePage() {
         className="flex flex-col gap-1"
       >
         <div className="flex items-center gap-3">
-          <div className="p-2 rounded-lg bg-blue-500/10">
-            <Building2 size={24} className="text-blue-400" />
+          <div className="p-2 rounded-lg bg-primary/10">
+            <Building2 size={24} className="text-primary" />
           </div>
           <div>
             <h1 className="text-2xl font-bold tracking-tight">
@@ -780,7 +780,7 @@ export default function InfrastructurePage() {
                     {ASSET_TYPES.map((asset, i) => (
                       <tr
                         key={asset.name}
-                        className={`border-b border-border/50 cursor-pointer transition-colors ${selectedAsset?.name === asset.name ? "bg-blue-500/10" : i % 2 === 0 ? "bg-transparent" : "bg-muted/10"} hover:bg-muted/20`}
+                        className={`border-b border-border/50 cursor-pointer transition-colors ${selectedAsset?.name === asset.name ? "bg-primary/10" : i % 2 === 0 ? "bg-transparent" : "bg-muted/10"} hover:bg-muted/20`}
                         onClick={() => setSelectedAsset(selectedAsset?.name === asset.name ? null : asset)}
                       >
                         <td className="px-4 py-3">
@@ -826,17 +826,17 @@ export default function InfrastructurePage() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.25 }}
             >
-              <Card className="bg-blue-950/30 border-blue-500/30">
+              <Card className="bg-muted/40 border-border">
                 <CardContent className="p-4 space-y-2">
                   <div className="flex items-center gap-2">
-                    <span className="text-blue-400">{selectedAsset.icon}</span>
+                    <span className="text-primary">{selectedAsset.icon}</span>
                     <h3 className="font-semibold text-foreground">{selectedAsset.name}</h3>
                     <span className={`text-xs px-2 py-0.5 rounded-full border ${riskBadgeColor[selectedAsset.risk]}`}>
                       {selectedAsset.risk}
                     </span>
                   </div>
                   <p className="text-sm text-muted-foreground">{selectedAsset.description}</p>
-                  <p className="text-xs text-blue-300">
+                  <p className="text-xs text-primary">
                     <span className="font-medium">Listed examples:</span> {selectedAsset.examples}
                   </p>
                   <div className="flex gap-4 text-xs text-muted-foreground pt-1">
@@ -961,7 +961,7 @@ export default function InfrastructurePage() {
                   <CardContent className="p-4 space-y-2">
                     <div className="flex items-center justify-between">
                       <div className="flex items-center gap-2">
-                        <BarChart3 size={16} className="text-blue-400" />
+                        <BarChart3 size={16} className="text-primary" />
                         <span className="font-semibold text-foreground">{vm.name}</span>
                       </div>
                       <Badge variant="outline" className="text-xs font-mono">{vm.shortName}</Badge>
@@ -1178,7 +1178,7 @@ export default function InfrastructurePage() {
                     <span className="text-xs text-muted-foreground w-44 shrink-0">{row.type}</span>
                     <div className="flex-1 bg-muted/30 rounded-full h-3 overflow-hidden">
                       <div
-                        className="h-full rounded-full bg-blue-500"
+                        className="h-full rounded-full bg-primary"
                         style={{ width: `${(row.alloc / 15) * 100}%`, opacity: 0.7 }}
                       />
                     </div>

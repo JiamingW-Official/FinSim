@@ -620,9 +620,9 @@ function convictionColor(c: TradeIdea["conviction"]): string {
 }
 
 function typeColor(t: TradeIdea["type"]): string {
-  if (t === "steepener") return "bg-blue-500/20 text-blue-400 border-blue-500/30";
-  if (t === "flattener") return "bg-purple-500/20 text-purple-400 border-purple-500/30";
-  if (t === "butterfly") return "bg-teal-500/20 text-teal-400 border-teal-500/30";
+  if (t === "steepener") return "bg-primary/20 text-primary border-border";
+  if (t === "flattener") return "bg-primary/20 text-primary border-border";
+  if (t === "butterfly") return "bg-teal-500/20 text-emerald-400 border-teal-500/30";
   return "bg-orange-500/20 text-orange-400 border-orange-500/30";
 }
 
@@ -736,7 +736,7 @@ export default function YieldCurvePage() {
       >
         <div>
           <div className="flex items-center gap-2 mb-1">
-            <Activity className="h-5 w-5 text-blue-400" />
+            <Activity className="h-5 w-5 text-primary" />
             <h1 className="text-2xl font-bold tracking-tight">Yield Curve Strategies</h1>
           </div>
           <p className="text-muted-foreground text-sm">
@@ -826,7 +826,7 @@ export default function YieldCurvePage() {
               <Card className="lg:col-span-2 border-border">
                 <CardHeader className="pb-2">
                   <CardTitle className="text-sm font-semibold flex items-center gap-2">
-                    <Activity className="h-4 w-4 text-blue-400" />
+                    <Activity className="h-4 w-4 text-primary" />
                     US Treasury Yield Curve
                   </CardTitle>
                 </CardHeader>
@@ -959,7 +959,7 @@ export default function YieldCurvePage() {
                         <div className="space-y-1.5">
                           {trade.legs.map((leg, li) => (
                             <div key={li} className="flex items-start gap-2 text-xs">
-                              <ArrowRight className="h-3 w-3 mt-0.5 text-blue-400 flex-shrink-0" />
+                              <ArrowRight className="h-3 w-3 mt-0.5 text-primary flex-shrink-0" />
                               <span>{leg}</span>
                             </div>
                           ))}
@@ -983,11 +983,11 @@ export default function YieldCurvePage() {
                       </div>
 
                       {/* R:R */}
-                      <div className="p-3 rounded-lg bg-blue-500/10 border border-blue-500/20">
+                      <div className="p-3 rounded-lg bg-primary/10 border border-border">
                         <div className="flex items-start gap-2">
-                          <Info className="h-3.5 w-3.5 text-blue-400 mt-0.5 flex-shrink-0" />
+                          <Info className="h-3.5 w-3.5 text-primary mt-0.5 flex-shrink-0" />
                           <div>
-                            <div className="text-xs font-medium text-blue-400 mb-0.5">Rationale</div>
+                            <div className="text-xs font-medium text-primary mb-0.5">Rationale</div>
                             <p className="text-xs text-muted-foreground leading-relaxed">{trade.rationale}</p>
                           </div>
                         </div>
@@ -1006,7 +1006,7 @@ export default function YieldCurvePage() {
                   <Card className="border-border">
                     <CardHeader className="pb-2">
                       <CardTitle className="text-sm font-semibold flex items-center gap-2">
-                        <Target className="h-4 w-4 text-blue-400" />
+                        <Target className="h-4 w-4 text-primary" />
                         P&L Profile (vs Spread Level)
                       </CardTitle>
                     </CardHeader>
@@ -1043,12 +1043,12 @@ export default function YieldCurvePage() {
                     {
                       name: "Steepener",
                       desc: "Long longer tenor / Short shorter tenor. Profits when the curve steepens (spread widens). Typical in rate cut cycles.",
-                      color: "border-blue-500/30 bg-blue-500/5",
+                      color: "border-border bg-primary/5",
                     },
                     {
                       name: "Flattener",
                       desc: "Long shorter tenor / Short longer tenor. Profits when the curve flattens. Common in late-cycle tightening phases.",
-                      color: "border-purple-500/30 bg-purple-500/5",
+                      color: "border-border bg-primary/5",
                     },
                     {
                       name: "Butterfly",
@@ -1198,7 +1198,7 @@ export default function YieldCurvePage() {
               <Card className="border-border">
                 <CardHeader className="pb-2">
                   <CardTitle className="text-sm font-semibold flex items-center gap-2">
-                    <BarChart3 className="h-4 w-4 text-blue-400" />
+                    <BarChart3 className="h-4 w-4 text-primary" />
                     Macro Drivers
                   </CardTitle>
                 </CardHeader>
@@ -1237,7 +1237,7 @@ export default function YieldCurvePage() {
                 <Card className="border-border">
                   <CardHeader className="pb-2">
                     <CardTitle className="text-sm font-semibold flex items-center gap-2">
-                      <Target className="h-4 w-4 text-blue-400" />
+                      <Target className="h-4 w-4 text-primary" />
                       Signal Scorecard
                     </CardTitle>
                   </CardHeader>
@@ -1287,7 +1287,7 @@ export default function YieldCurvePage() {
                 <Card className="border-border">
                   <CardHeader className="pb-2">
                     <CardTitle className="text-sm font-semibold flex items-center gap-2">
-                      <RefreshCw className="h-4 w-4 text-blue-400" />
+                      <RefreshCw className="h-4 w-4 text-primary" />
                       Key Risk Factors
                     </CardTitle>
                   </CardHeader>

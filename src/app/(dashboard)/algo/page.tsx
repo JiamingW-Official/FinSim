@@ -986,8 +986,8 @@ export default function AlgoPage() {
     <div className="flex h-full flex-col">
       {/* Header */}
       <div className="flex items-center gap-3 border-b border-white/5 bg-black/30 px-6 py-3 shrink-0">
-        <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-blue-500/15">
-          <Bot className="h-4 w-4 text-blue-400" />
+        <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-primary/15">
+          <Bot className="h-4 w-4 text-primary" />
         </div>
         <div>
           <h1 className="text-sm font-bold text-zinc-100">Algo Trading Lab</h1>
@@ -1012,7 +1012,7 @@ export default function AlgoPage() {
             className={cn(
               "px-5 py-2.5 text-xs font-medium transition-colors",
               activeTab === tab.id
-                ? "border-b-2 border-blue-500 text-blue-300"
+                ? "border-b-2 border-primary text-primary"
                 : "text-zinc-500 hover:text-zinc-300"
             )}
           >
@@ -1045,7 +1045,7 @@ export default function AlgoPage() {
                 <Button
                   onClick={handleRunBacktest}
                   disabled={isRunning || strategy.entryConditions.length === 0}
-                  className="flex items-center gap-2 bg-blue-600 hover:bg-blue-500 text-white shrink-0"
+                  className="flex items-center gap-2 bg-primary hover:bg-primary text-white shrink-0"
                 >
                   <Play className="h-3.5 w-3.5" />
                   {isRunning ? "Running..." : "Run Backtest"}
@@ -1254,7 +1254,7 @@ export default function AlgoPage() {
                     <h2 className="mb-3 text-xs font-bold text-zinc-400 uppercase tracking-wide">Equity Curve</h2>
                     <div className="flex items-center gap-4 mb-3">
                       <div className="flex items-center gap-1.5 text-xs text-zinc-500">
-                        <span className="inline-block h-1.5 w-4 rounded bg-blue-500" /> Strategy
+                        <span className="inline-block h-1.5 w-4 rounded bg-primary" /> Strategy
                       </div>
                       <div className="flex items-center gap-1.5 text-xs text-zinc-500">
                         <span className="inline-block h-1.5 w-4 rounded bg-zinc-600" /> Capital floor
@@ -1361,7 +1361,7 @@ export default function AlgoPage() {
                   const libSeed = strSeed(lib.id);
                   const libReturn = (mulberry32(libSeed)() * 0.4 - 0.05 + lib.avgReturn / 100);
                   return (
-                    <Card key={lib.id} className="border-white/8 bg-zinc-900/50 p-4 space-y-3 hover:border-blue-500/30 transition-colors">
+                    <Card key={lib.id} className="border-white/8 bg-zinc-900/50 p-4 space-y-3 hover:border-border transition-colors">
                       <div className="flex items-start justify-between">
                         <div>
                           <h3 className="text-sm font-bold text-zinc-100">{lib.name}</h3>
@@ -1386,7 +1386,7 @@ export default function AlgoPage() {
                       </div>
                       <button
                         onClick={() => handleLoadLibrary(lib)}
-                        className="flex items-center gap-1.5 text-xs font-medium text-blue-400 hover:text-blue-300 transition-colors"
+                        className="flex items-center gap-1.5 text-xs font-medium text-primary hover:text-primary transition-colors"
                       >
                         Load Strategy <ChevronRight className="h-3 w-3" />
                       </button>
@@ -1424,7 +1424,7 @@ export default function AlgoPage() {
                   <Button
                     onClick={handleRunOptimization}
                     disabled={isOptimizing}
-                    className="shrink-0 bg-blue-600 hover:bg-blue-500 text-white text-xs"
+                    className="shrink-0 bg-primary hover:bg-primary text-white text-xs"
                   >
                     {isOptimizing ? "Optimizing..." : "Run 6 Backtests"}
                   </Button>

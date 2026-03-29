@@ -119,7 +119,7 @@ function InfoBox({
   variant?: "blue" | "amber" | "emerald" | "rose";
 }) {
   const colors = {
-    blue: "bg-blue-500/10 border-blue-500/30 text-blue-200",
+    blue: "bg-primary/10 border-border text-primary",
     amber: "bg-amber-500/10 border-amber-500/30 text-amber-200",
     emerald: "bg-emerald-500/10 border-emerald-500/30 text-emerald-200",
     rose: "bg-rose-500/10 border-rose-500/30 text-rose-200",
@@ -153,9 +153,9 @@ function RiskBadge({ score }: { score: number }) {
 
 function TypeBadge({ type }: { type: string }) {
   const map: Record<string, string> = {
-    lending: "bg-blue-500/20 text-blue-300 border-blue-500/30",
-    lp: "bg-purple-500/20 text-purple-300 border-purple-500/30",
-    staking: "bg-cyan-500/20 text-cyan-300 border-cyan-500/30",
+    lending: "bg-primary/20 text-primary border-border",
+    lp: "bg-primary/20 text-primary border-border",
+    staking: "bg-cyan-500/20 text-muted-foreground border-cyan-500/30",
     vault: "bg-orange-500/20 text-orange-300 border-orange-500/30",
   };
   return (
@@ -332,7 +332,7 @@ function YieldDashboard() {
             className={cn(
               "px-2 py-1 rounded text-xs border transition-colors",
               filterType === t
-                ? "border-purple-500 bg-purple-500/20 text-purple-300"
+                ? "border-primary bg-primary/20 text-primary"
                 : "border-white/10 bg-white/5 text-zinc-400 hover:border-white/20"
             )}
           >
@@ -556,7 +556,7 @@ function LiquidityPoolSimulator() {
               className={cn(
                 "px-3 py-1.5 rounded-lg text-xs border transition-colors",
                 v3Mode
-                  ? "border-purple-500 bg-purple-500/20 text-purple-300"
+                  ? "border-primary bg-primary/20 text-primary"
                   : "border-white/10 bg-white/5 text-zinc-400 hover:border-white/20"
               )}
             >
@@ -825,7 +825,7 @@ function StakingCalculator() {
             >
               <div className="flex items-center justify-between">
                 <span className="text-sm font-medium text-zinc-200">
-                  {useLiquidStaking ? <Unlock size={14} className="inline mr-1 text-cyan-400" /> : <Lock size={14} className="inline mr-1 text-zinc-400" />}
+                  {useLiquidStaking ? <Unlock size={14} className="inline mr-1 text-muted-foreground" /> : <Lock size={14} className="inline mr-1 text-zinc-400" />}
                   Liquid Staking ({asset.liquidStaking.token})
                 </span>
                 <span className="text-xs text-zinc-400">-{asset.liquidStaking.discount}% fee</span>
@@ -1158,11 +1158,11 @@ function LendingAnalyzer() {
         </p>
         <div className="flex flex-col gap-2 text-xs">
           {[
-            { step: "1", action: "Borrow $10M USDC (0% collateral)", color: "text-blue-300" },
+            { step: "1", action: "Borrow $10M USDC (0% collateral)", color: "text-primary" },
             { step: "2", action: "Buy asset on DEX A (artificially low price)", color: "text-emerald-300" },
             { step: "3", action: "Sell asset on DEX B (higher price = arbitrage profit)", color: "text-emerald-300" },
             { step: "4", action: "Repay $10M + 0.09% fee = $9,000 fee", color: "text-amber-300" },
-            { step: "5", action: "Keep arbitrage profit (all in 1 transaction)", color: "text-purple-300" },
+            { step: "5", action: "Keep arbitrage profit (all in 1 transaction)", color: "text-primary" },
           ].map((s) => (
             <div key={s.step} className="flex items-center gap-2">
               <span className="w-5 h-5 rounded-full bg-white/10 text-zinc-300 flex items-center justify-center shrink-0">{s.step}</span>
@@ -1288,10 +1288,10 @@ const PRESET_STRATEGIES: YieldStrategy[] = [
 
 const COLOR_MAP: Record<string, string> = {
   emerald: "border-emerald-500 bg-emerald-500/20 text-emerald-300",
-  blue: "border-blue-500 bg-blue-500/20 text-blue-300",
+  blue: "border-primary bg-primary/20 text-primary",
   indigo: "border-indigo-500 bg-indigo-500/20 text-indigo-300",
   rose: "border-rose-500 bg-rose-500/20 text-rose-300",
-  purple: "border-purple-500 bg-purple-500/20 text-purple-300",
+  purple: "border-primary bg-primary/20 text-primary",
 };
 
 function YieldStrategyBuilder() {

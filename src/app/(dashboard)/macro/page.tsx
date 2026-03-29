@@ -575,10 +575,10 @@ export default function MacroDashboardPage() {
     regimeLabel === "Expansion"
       ? "bg-emerald-500/20 text-emerald-400 border-emerald-500/30"
       : regimeLabel === "Recovery"
-      ? "bg-blue-500/20 text-blue-400 border-blue-500/30"
+      ? "bg-primary/20 text-primary border-border"
       : regimeLabel === "Stagflation"
       ? "bg-amber-500/20 text-amber-400 border-amber-500/30"
-      : "bg-violet-500/20 text-violet-400 border-violet-500/30";
+      : "bg-primary/20 text-primary border-border";
 
   const fadeIn = { initial: { opacity: 0, y: 16 }, animate: { opacity: 1, y: 0 }, transition: { duration: 0.35 } };
 
@@ -777,7 +777,7 @@ export default function MacroDashboardPage() {
                 <Card className="bg-gray-900 border-gray-800">
                   <CardHeader className="pb-2">
                     <CardTitle className="text-sm font-semibold text-white flex items-center gap-2">
-                      <Activity size={14} className="text-violet-400" />
+                      <Activity size={14} className="text-primary" />
                       Inflation Expectations (TIPS Breakeven)
                     </CardTitle>
                   </CardHeader>
@@ -801,7 +801,7 @@ export default function MacroDashboardPage() {
                 <Card className="bg-gray-900 border-gray-800">
                   <CardHeader className="pb-2">
                     <CardTitle className="text-sm font-semibold text-white flex items-center gap-2">
-                      <DollarSign size={14} className="text-teal-400" />
+                      <DollarSign size={14} className="text-emerald-400" />
                       Wage Growth (YoY %)
                     </CardTitle>
                   </CardHeader>
@@ -829,7 +829,7 @@ export default function MacroDashboardPage() {
                       { name: "Food at Home", contribution: 0.3, color: "bg-emerald-500" },
                       { name: "Energy", contribution: -0.2, color: "bg-amber-500" },
                       { name: "Core Services ex-Shelter", contribution: 0.6, color: "bg-red-500" },
-                      { name: "Core Goods", contribution: 0.1, color: "bg-blue-500" },
+                      { name: "Core Goods", contribution: 0.1, color: "bg-primary" },
                       { name: "Medical Care", contribution: 0.2, color: "bg-pink-500" },
                     ].map((comp) => (
                       <div key={comp.name}>
@@ -1078,7 +1078,7 @@ export default function MacroDashboardPage() {
                 <Card className="bg-gray-900 border-gray-800 lg:col-span-1">
                   <CardHeader className="pb-2">
                     <CardTitle className="text-sm font-semibold text-white flex items-center gap-2">
-                      <DollarSign size={14} className="text-blue-400" />
+                      <DollarSign size={14} className="text-primary" />
                       Current Account (% GDP)
                     </CardTitle>
                   </CardHeader>
@@ -1094,7 +1094,7 @@ export default function MacroDashboardPage() {
                     <div className="flex justify-between text-[11px] text-muted-foreground mt-2 px-1">
                       <span className="text-red-400">Deficit</span>
                       <span>Balanced</span>
-                      <span className="text-blue-400">Surplus</span>
+                      <span className="text-primary">Surplus</span>
                     </div>
                     <p className="text-xs text-muted-foreground mt-2">
                       Germany (+5.8%) and Japan (+3.5%) run large surpluses. USA (-3.1%) and UK (-3.5%) structural deficit nations.
@@ -1136,12 +1136,12 @@ export default function MacroDashboardPage() {
                             <td className={`text-right py-2 ${row.gdp < 0 ? "text-red-400" : row.gdp > 2 ? "text-emerald-400" : "text-amber-400"}`}>
                               {row.gdp > 0 ? "+" : ""}{row.gdp.toFixed(1)}%
                             </td>
-                            <td className={`text-right py-2 ${row.cpi > 3.5 ? "text-red-400" : row.cpi < 1.5 ? "text-blue-400" : "text-amber-400"}`}>
+                            <td className={`text-right py-2 ${row.cpi > 3.5 ? "text-red-400" : row.cpi < 1.5 ? "text-primary" : "text-amber-400"}`}>
                               {row.cpi.toFixed(1)}%
                             </td>
                             <td className="text-right py-2 text-white">{row.unemp.toFixed(1)}%</td>
                             <td className="text-right py-2 text-indigo-400">{row.rate.toFixed(2)}%</td>
-                            <td className={`text-right py-2 ${row.ca > 0 ? "text-blue-400" : "text-red-400"}`}>
+                            <td className={`text-right py-2 ${row.ca > 0 ? "text-primary" : "text-red-400"}`}>
                               {row.ca > 0 ? "+" : ""}{row.ca.toFixed(1)}%
                             </td>
                           </tr>
@@ -1235,7 +1235,7 @@ export default function MacroDashboardPage() {
               <Card className="bg-gray-900 border-gray-800">
                 <CardHeader className="pb-2">
                   <CardTitle className="text-sm font-semibold text-white flex items-center gap-2">
-                    <Layers size={14} className="text-blue-400" />
+                    <Layers size={14} className="text-primary" />
                     NBER Business Cycle Tracker
                   </CardTitle>
                 </CardHeader>

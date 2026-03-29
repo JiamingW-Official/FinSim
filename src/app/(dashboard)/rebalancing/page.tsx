@@ -418,7 +418,7 @@ export default function RebalancingPage() {
       >
         <div>
           <h1 className="text-2xl font-bold text-white flex items-center gap-2">
-            <RefreshCw className="w-6 h-6 text-blue-400" />
+            <RefreshCw className="w-6 h-6 text-primary" />
             Portfolio Rebalancing
           </h1>
           <p className="text-slate-400 text-sm mt-1">
@@ -448,7 +448,7 @@ export default function RebalancingPage() {
         {[
           { label: "Positions Over Threshold", value: String(drifts.filter(d => d.driftAbs >= driftThreshold).length), icon: <AlertTriangle className="w-4 h-4 text-amber-400" />, sub: `of ${HOLDINGS.length} holdings` },
           { label: "Max Drift", value: fmtPct(maxAbsDrift), icon: <TrendingUp className="w-4 h-4 text-red-400" />, sub: "NVDA +5.6pp over-weight" },
-          { label: "Est. Tax Impact", value: fmt$(taxImpact), icon: <DollarSign className="w-4 h-4 text-blue-400" />, sub: `at ${taxRate}% rate` },
+          { label: "Est. Tax Impact", value: fmt$(taxImpact), icon: <DollarSign className="w-4 h-4 text-primary" />, sub: `at ${taxRate}% rate` },
           { label: "Location Score", value: `${locationScore}/100`, icon: <Shield className="w-4 h-4 text-emerald-400" />, sub: "Good — 2 improvements avail." },
         ].map((kpi, i) => (
           <Card key={i} className="bg-slate-800/50 border-slate-700">
@@ -472,19 +472,19 @@ export default function RebalancingPage() {
       >
         <Tabs defaultValue="portfolio">
           <TabsList className="bg-slate-800/70 border border-slate-700 mb-4">
-            <TabsTrigger value="portfolio" className="data-[state=active]:bg-blue-600 data-[state=active]:text-white text-slate-400 text-xs">
+            <TabsTrigger value="portfolio" className="data-[state=active]:bg-primary data-[state=active]:text-white text-slate-400 text-xs">
               <Layers className="w-3.5 h-3.5 mr-1" />Current Portfolio
             </TabsTrigger>
-            <TabsTrigger value="engine" className="data-[state=active]:bg-blue-600 data-[state=active]:text-white text-slate-400 text-xs">
+            <TabsTrigger value="engine" className="data-[state=active]:bg-primary data-[state=active]:text-white text-slate-400 text-xs">
               <RefreshCw className="w-3.5 h-3.5 mr-1" />Rebalancing Engine
             </TabsTrigger>
-            <TabsTrigger value="harvest" className="data-[state=active]:bg-blue-600 data-[state=active]:text-white text-slate-400 text-xs">
+            <TabsTrigger value="harvest" className="data-[state=active]:bg-primary data-[state=active]:text-white text-slate-400 text-xs">
               <TrendingDown className="w-3.5 h-3.5 mr-1" />Tax-Loss Harvesting
             </TabsTrigger>
-            <TabsTrigger value="location" className="data-[state=active]:bg-blue-600 data-[state=active]:text-white text-slate-400 text-xs">
+            <TabsTrigger value="location" className="data-[state=active]:bg-primary data-[state=active]:text-white text-slate-400 text-xs">
               <Shield className="w-3.5 h-3.5 mr-1" />Asset Location
             </TabsTrigger>
-            <TabsTrigger value="drift" className="data-[state=active]:bg-blue-600 data-[state=active]:text-white text-slate-400 text-xs">
+            <TabsTrigger value="drift" className="data-[state=active]:bg-primary data-[state=active]:text-white text-slate-400 text-xs">
               <BarChart3 className="w-3.5 h-3.5 mr-1" />Drift Analysis
             </TabsTrigger>
           </TabsList>
@@ -609,7 +609,7 @@ export default function RebalancingPage() {
                 <Card className="bg-slate-800/50 border-slate-700">
                   <CardHeader className="pb-2">
                     <CardTitle className="text-sm text-slate-300 flex items-center gap-2">
-                      <Target className="w-4 h-4 text-blue-400" />
+                      <Target className="w-4 h-4 text-primary" />
                       Rebalancing Method
                     </CardTitle>
                   </CardHeader>
@@ -621,7 +621,7 @@ export default function RebalancingPage() {
                           onClick={() => setCalendarMode(m)}
                           className={`flex-1 py-2 rounded text-xs font-medium capitalize transition-all ${
                             calendarMode === m
-                              ? "bg-blue-600 text-white"
+                              ? "bg-primary text-white"
                               : "bg-slate-700 text-slate-400 hover:bg-slate-600"
                           }`}
                         >
@@ -633,7 +633,7 @@ export default function RebalancingPage() {
                       <div className="space-y-2">
                         <div className="flex justify-between text-xs text-slate-400">
                           <span>Drift Threshold</span>
-                          <span className="text-blue-400 font-medium">{driftThreshold}%</span>
+                          <span className="text-primary font-medium">{driftThreshold}%</span>
                         </div>
                         <Slider
                           value={[driftThreshold]}
@@ -697,7 +697,7 @@ export default function RebalancingPage() {
                 </Card>
 
                 <Button
-                  className="w-full bg-blue-600 hover:bg-blue-500 text-white"
+                  className="w-full bg-primary hover:bg-primary text-white"
                   onClick={handleRebalance}
                   disabled={rebalancing || trades.length === 0}
                 >
@@ -738,7 +738,7 @@ export default function RebalancingPage() {
               <Card className="bg-slate-800/50 border-slate-700 lg:col-span-2">
                 <CardHeader className="pb-2">
                   <CardTitle className="text-sm text-slate-300 flex items-center gap-2">
-                    <ArrowRightLeft className="w-4 h-4 text-blue-400" />
+                    <ArrowRightLeft className="w-4 h-4 text-primary" />
                     Trades Required ({trades.length})
                   </CardTitle>
                 </CardHeader>
@@ -873,13 +873,13 @@ export default function RebalancingPage() {
                           animate={{ opacity: 1, x: 0 }}
                           transition={{ delay: i * 0.06 }}
                           className={`border-b border-slate-700/50 cursor-pointer transition-colors ${
-                            selectedHarvest.has(p.ticker) ? "bg-blue-600/10" : "hover:bg-slate-700/20"
+                            selectedHarvest.has(p.ticker) ? "bg-primary/10" : "hover:bg-slate-700/20"
                           }`}
                           onClick={() => toggleHarvest(p.ticker)}
                         >
                           <td className="px-4 py-2">
                             <div className={`w-4 h-4 rounded border-2 flex items-center justify-center ${
-                              selectedHarvest.has(p.ticker) ? "bg-blue-600 border-blue-600" : "border-slate-600"
+                              selectedHarvest.has(p.ticker) ? "bg-primary border-primary" : "border-slate-600"
                             }`}>
                               {selectedHarvest.has(p.ticker) && <CheckCircle2 className="w-3 h-3 text-white" />}
                             </div>
@@ -922,7 +922,7 @@ export default function RebalancingPage() {
                         <div className="text-slate-500 text-xs mb-2">Sell to harvest loss, then buy:</div>
                         <div className="flex gap-1 flex-wrap">
                           {subs.map(s => (
-                            <Badge key={s} variant="outline" className="text-blue-300 border-blue-500/40 text-xs">
+                            <Badge key={s} variant="outline" className="text-primary border-primary/40 text-xs">
                               {s}
                             </Badge>
                           ))}
@@ -987,7 +987,7 @@ export default function RebalancingPage() {
                   </CardHeader>
                   <CardContent className="space-y-2 text-xs">
                     {[
-                      { label: "Taxable",         pct: 55, color: "bg-blue-500" },
+                      { label: "Taxable",         pct: 55, color: "bg-primary" },
                       { label: "Traditional IRA",  pct: 30, color: "bg-amber-500" },
                       { label: "Roth IRA",         pct: 15, color: "bg-emerald-500" },
                     ].map(acc => (
@@ -1052,7 +1052,7 @@ export default function RebalancingPage() {
                               <Badge className={`text-xs ${
                                 rule.ideal === "roth"       ? "bg-emerald-500/20 text-emerald-300" :
                                 rule.ideal === "traditional" ? "bg-amber-500/20 text-amber-300" :
-                                                              "bg-blue-500/20 text-blue-300"
+                                                              "bg-primary/20 text-primary"
                               }`}>
                                 {rule.ideal === "traditional" ? "Trad. IRA" : rule.ideal === "roth" ? "Roth IRA" : "Taxable"}
                               </Badge>
@@ -1098,7 +1098,7 @@ export default function RebalancingPage() {
                 <Card className="bg-slate-800/50 border-slate-700">
                   <CardHeader className="pb-2">
                     <CardTitle className="text-sm text-slate-300 flex items-center gap-2">
-                      <BarChart3 className="w-4 h-4 text-blue-400" />
+                      <BarChart3 className="w-4 h-4 text-primary" />
                       12-Month Drift Stats
                     </CardTitle>
                   </CardHeader>
@@ -1131,11 +1131,11 @@ export default function RebalancingPage() {
                           <span className="text-slate-500 w-8">{d.month}</span>
                           <div className="flex-1 h-3 bg-slate-700/50 rounded-full overflow-hidden relative">
                             <div
-                              className={`absolute top-0 h-full rounded-full ${Math.abs(d.equityDrift) >= driftThreshold ? "bg-red-500/60" : "bg-blue-500/60"}`}
+                              className={`absolute top-0 h-full rounded-full ${Math.abs(d.equityDrift) >= driftThreshold ? "bg-red-500/60" : "bg-primary/60"}`}
                               style={{ width: `${Math.min((Math.abs(d.equityDrift) / 8) * 100, 100)}%`, left: d.equityDrift < 0 ? "auto" : 0, right: d.equityDrift < 0 ? 0 : "auto" }}
                             />
                           </div>
-                          <span className={`w-10 text-right font-mono ${d.equityDrift >= 0 ? "text-blue-400" : "text-red-400"}`}>
+                          <span className={`w-10 text-right font-mono ${d.equityDrift >= 0 ? "text-primary" : "text-red-400"}`}>
                             {fmtPct(d.equityDrift)}
                           </span>
                           {d.rebalancedAt && <Badge className="bg-indigo-500/20 text-indigo-300 text-xs px-1 py-0">RB</Badge>}

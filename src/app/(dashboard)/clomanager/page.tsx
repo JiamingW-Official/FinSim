@@ -80,8 +80,8 @@ const TRANCHES: Tranche[] = [
     couponLabel: "SOFR + 145",
     spread: 145,
     ocCushion: 42.3,
-    color: "bg-blue-700",
-    textColor: "text-blue-300",
+    color: "bg-primary/80",
+    textColor: "text-primary",
   },
   {
     name: "AA",
@@ -103,7 +103,7 @@ const TRANCHES: Tranche[] = [
     spread: 270,
     ocCushion: 21.5,
     color: "bg-teal-700",
-    textColor: "text-teal-300",
+    textColor: "text-emerald-300",
   },
   {
     name: "BBB",
@@ -267,11 +267,11 @@ function PassBadge({ pass }: { pass: boolean }) {
 function RatingBadge({ rating }: { rating: string }) {
   const cls =
     rating === "AAA"
-      ? "bg-blue-900/50 text-blue-300"
+      ? "bg-muted/70 text-primary"
       : rating === "AA"
       ? "bg-sky-900/50 text-sky-300"
       : rating === "A"
-      ? "bg-teal-900/50 text-teal-300"
+      ? "bg-teal-900/50 text-emerald-300"
       : rating === "BBB"
       ? "bg-amber-900/50 text-amber-300"
       : rating === "BB" || rating === "BB-"
@@ -615,7 +615,7 @@ function PortfolioTab() {
                 <span className="w-32 text-xs text-zinc-400 truncate">{l.issuer.split(" ")[0]}</span>
                 <div className="flex-1 h-2 bg-zinc-800 rounded-full overflow-hidden">
                   <div
-                    className="h-full bg-blue-500 rounded-full"
+                    className="h-full bg-primary rounded-full"
                     style={{ width: `${(l.balance / maxBal) * 100}%` }}
                   />
                 </div>
@@ -771,14 +771,14 @@ function ReinvestmentTab() {
                 <tr key={row.yr} className="border-b border-white/5 hover:bg-white/5">
                   <td className="py-2 font-mono text-zinc-300">Yr {row.yr}</td>
                   <td className="py-2 text-center">
-                    <Badge variant="outline" className={cn("text-xs", row.yr <= reinvestPeriod ? "border-blue-500/40 text-blue-400" : "border-amber-500/40 text-amber-400")}>
+                    <Badge variant="outline" className={cn("text-xs", row.yr <= reinvestPeriod ? "border-primary/40 text-primary" : "border-amber-500/40 text-amber-400")}>
                       {row.yr <= reinvestPeriod ? "Reinvest" : "Amort"}
                     </Badge>
                   </td>
                   <td className="py-2 text-right text-zinc-400 font-mono">
                     {row.yr <= reinvestPeriod ? "—" : `${row.prepaid}%`}
                   </td>
-                  <td className="py-2 text-right text-blue-400 font-mono">
+                  <td className="py-2 text-right text-primary font-mono">
                     {row.aaaPay > 0 ? fmtMM(row.aaaPay) : "—"}
                   </td>
                   <td className="py-2 text-right text-emerald-400 font-mono">
@@ -816,7 +816,7 @@ function DefaultScenariosTab() {
             className={cn(
               "rounded-xl border p-4 text-left transition-all",
               selectedScenario === idx
-                ? "border-blue-500/60 bg-blue-900/20"
+                ? "border-primary/60 bg-muted/40"
                 : "border-white/10 bg-white/5 hover:bg-white/10"
             )}
           >
@@ -1038,7 +1038,7 @@ function EquityReturnsTab() {
         <SectionHeading title="Fee Structure" sub="CLO manager compensation" />
         <div className="grid gap-3 sm:grid-cols-3">
           {[
-            { name: "Senior Management Fee", rate: `${seniorMgmtFee}% p.a.`, desc: "Paid quarterly on total AUM. Top of the waterfall, senior to all note interest.", color: "text-blue-300" },
+            { name: "Senior Management Fee", rate: `${seniorMgmtFee}% p.a.`, desc: "Paid quarterly on total AUM. Top of the waterfall, senior to all note interest.", color: "text-primary" },
             { name: "Subordinate Management Fee", rate: `${subMgmtFee}% p.a.`, desc: "Paid after coverage tests pass. Junior to note coupons but senior to equity.", color: "text-amber-300" },
             { name: "Incentive / Performance Fee", rate: `${incentiveFee}% above 12% hurdle`, desc: "Aligns manager with equity. Only earned once equity IRR exceeds the hurdle rate.", color: "text-emerald-300" },
           ].map((fee) => (
@@ -1078,9 +1078,9 @@ export default function CLOManagerPage() {
       {/* Header */}
       <div className="border-b border-white/10 bg-zinc-900/60 px-6 py-5">
         <div className="flex items-center gap-3 mb-1">
-          <DollarSign className="h-6 w-6 text-blue-400" />
+          <DollarSign className="h-6 w-6 text-primary" />
           <h1 className="text-xl font-bold text-white">CLO Manager</h1>
-          <Badge variant="outline" className="border-blue-500/40 text-blue-400 text-xs">
+          <Badge variant="outline" className="border-primary/40 text-primary text-xs">
             $500M CLO
           </Badge>
         </div>
@@ -1097,7 +1097,7 @@ export default function CLOManagerPage() {
               <TabsTrigger
                 key={id}
                 value={id}
-                className="flex items-center gap-1.5 text-xs px-3 py-1.5 rounded-lg data-[state=active]:bg-blue-600 data-[state=active]:text-white"
+                className="flex items-center gap-1.5 text-xs px-3 py-1.5 rounded-lg data-[state=active]:bg-primary data-[state=active]:text-white"
               >
                 <Icon className="h-3.5 w-3.5" />
                 {label}

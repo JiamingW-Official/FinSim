@@ -491,7 +491,7 @@ function EquityFuturesTab() {
   const filtered = regionFilter === "All" ? indexFutures : indexFutures.filter((f) => f.region === regionFilter);
 
   const regionColors: Record<string, string> = {
-    US: "text-blue-400", EU: "text-yellow-400", Asia: "text-red-400", Sector: "text-purple-400",
+    US: "text-primary", EU: "text-yellow-400", Asia: "text-red-400", Sector: "text-primary",
   };
 
   return (
@@ -604,7 +604,7 @@ function EquityFuturesTab() {
       <Card className="bg-card border-border">
         <CardHeader className="pb-2 pt-4 px-4">
           <CardTitle className="text-sm font-semibold flex items-center gap-2">
-            <Activity className="h-4 w-4 text-blue-400" /> Single Stock Futures (SSF)
+            <Activity className="h-4 w-4 text-primary" /> Single Stock Futures (SSF)
           </CardTitle>
         </CardHeader>
         <CardContent className="p-0">
@@ -622,7 +622,7 @@ function EquityFuturesTab() {
                   const premPct = (s.premium / s.spotPrice) * 100;
                   return (
                     <tr key={s.ticker} className="border-b border-border/40 hover:bg-muted/20 transition-colors">
-                      <td className="px-3 py-2.5 font-bold text-xs text-blue-400">{s.ticker}</td>
+                      <td className="px-3 py-2.5 font-bold text-xs text-primary">{s.ticker}</td>
                       <td className="px-3 py-2.5 tabular-nums text-xs font-medium">{fmtPrice(s.spotPrice)}</td>
                       <td className="px-3 py-2.5 tabular-nums text-xs font-semibold text-foreground">{fmtPrice(s.futuresPrice)}</td>
                       <td className="px-3 py-2.5 tabular-nums text-xs">
@@ -808,7 +808,7 @@ function InterestRateFuturesTab() {
       <Card className="bg-card border-border">
         <CardHeader className="pb-2 pt-4 px-4">
           <CardTitle className="text-sm font-semibold flex items-center gap-2">
-            <Globe className="h-4 w-4 text-blue-400" /> International Rate Futures
+            <Globe className="h-4 w-4 text-primary" /> International Rate Futures
           </CardTitle>
         </CardHeader>
         <CardContent className="p-0">
@@ -824,7 +824,7 @@ function InterestRateFuturesTab() {
               <tbody>
                 {intl.map((f) => (
                   <tr key={f.symbol + f.country} className="border-b border-border/40 hover:bg-muted/20 transition-colors">
-                    <td className="px-3 py-2.5 font-bold text-xs text-blue-400">{f.symbol}</td>
+                    <td className="px-3 py-2.5 font-bold text-xs text-primary">{f.symbol}</td>
                     <td className="px-3 py-2.5 text-xs text-muted-foreground">{f.name}</td>
                     <td className="px-3 py-2.5">
                       <Badge variant="outline" className="text-xs py-0">{f.country}</Badge>
@@ -873,7 +873,7 @@ function CurrencyCryptoTab() {
       <Card className="bg-card border-border">
         <CardHeader className="pb-2 pt-4 px-4">
           <CardTitle className="text-sm font-semibold flex items-center gap-2">
-            <Globe className="h-4 w-4 text-purple-400" /> FX Futures (CME)
+            <Globe className="h-4 w-4 text-primary" /> FX Futures (CME)
           </CardTitle>
         </CardHeader>
         <CardContent className="p-0">
@@ -889,7 +889,7 @@ function CurrencyCryptoTab() {
               <tbody>
                 {fxFutures.map((f) => (
                   <tr key={f.symbol} className="border-b border-border/40 hover:bg-muted/20 transition-colors">
-                    <td className="px-3 py-2.5 font-bold text-xs text-purple-400">{f.symbol}</td>
+                    <td className="px-3 py-2.5 font-bold text-xs text-primary">{f.symbol}</td>
                     <td className="px-3 py-2.5 text-xs font-medium text-foreground">{f.pair}</td>
                     <td className="px-3 py-2.5 tabular-nums text-xs font-semibold text-foreground">{fmtPrice(f.price)}</td>
                     <td className="px-3 py-2.5 tabular-nums text-xs">
@@ -957,11 +957,11 @@ function CurrencyCryptoTab() {
               </div>
               <div className="rounded-lg border border-border bg-muted/20 p-3">
                 <div className="text-xs text-muted-foreground mb-1">Q1 (Jun 25)</div>
-                <div className="text-sm font-bold tabular-nums text-blue-400">${fmtLarge(c.q1Price)}</div>
+                <div className="text-sm font-bold tabular-nums text-primary">${fmtLarge(c.q1Price)}</div>
               </div>
               <div className="rounded-lg border border-border bg-muted/20 p-3">
                 <div className="text-xs text-muted-foreground mb-1">Q2 (Sep 25)</div>
-                <div className="text-sm font-bold tabular-nums text-blue-400">${fmtLarge(c.q2Price)}</div>
+                <div className="text-sm font-bold tabular-nums text-primary">${fmtLarge(c.q2Price)}</div>
               </div>
             </div>
             {/* Funding Rate */}
@@ -1445,7 +1445,7 @@ function MarginOrderTab() {
       <Card className="bg-card border-border">
         <CardHeader className="pb-2 pt-4 px-4">
           <CardTitle className="text-sm font-semibold flex items-center gap-2">
-            <Shield className="h-4 w-4 text-blue-400" /> Margin Account Simulator
+            <Shield className="h-4 w-4 text-primary" /> Margin Account Simulator
           </CardTitle>
         </CardHeader>
         <CardContent className="px-4 pb-4 flex flex-col gap-3">

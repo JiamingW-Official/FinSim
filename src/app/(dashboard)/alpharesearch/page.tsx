@@ -456,8 +456,8 @@ export default function AlphaResearchPage() {
           <div className="flex items-start justify-between">
             <div>
               <div className="flex items-center gap-3 mb-1">
-                <div className="w-8 h-8 rounded-lg bg-violet-500/20 flex items-center justify-center">
-                  <FlaskConical className="w-4 h-4 text-violet-400" />
+                <div className="w-8 h-8 rounded-lg bg-primary/20 flex items-center justify-center">
+                  <FlaskConical className="w-4 h-4 text-primary" />
                 </div>
                 <h1 className="text-2xl font-bold">Quantitative Alpha Research</h1>
               </div>
@@ -465,7 +465,7 @@ export default function AlphaResearchPage() {
                 Signal discovery, information coefficient analysis, and alpha decay measurement
               </p>
             </div>
-            <Badge className="bg-violet-500/20 text-violet-400 border-violet-500/30">Research Platform</Badge>
+            <Badge className="bg-primary/20 text-primary border-border">Research Platform</Badge>
           </div>
         </motion.div>
 
@@ -686,7 +686,7 @@ export default function AlphaResearchPage() {
                 <Card className="border-border bg-card">
                   <CardHeader className="pb-2">
                     <CardTitle className="text-sm flex items-center gap-2">
-                      <Zap className="w-4 h-4 text-violet-400" />
+                      <Zap className="w-4 h-4 text-primary" />
                       Decay by Category
                     </CardTitle>
                   </CardHeader>
@@ -782,7 +782,7 @@ export default function AlphaResearchPage() {
               <Card className="border-border bg-card">
                 <CardHeader className="pb-2">
                   <CardTitle className="text-base flex items-center gap-2">
-                    <GitBranch className="w-4 h-4 text-violet-400" />
+                    <GitBranch className="w-4 h-4 text-primary" />
                     The Multiple-Testing Problem
                   </CardTitle>
                   <p className="text-xs text-muted-foreground">
@@ -838,12 +838,12 @@ export default function AlphaResearchPage() {
                 </CardContent>
               </Card>
 
-              <Card className="border-border bg-card border-violet-500/20">
+              <Card className="border-border bg-card border-border">
                 <CardContent className="pt-4 pb-3">
                   <div className="flex gap-2">
-                    <Brain className="w-4 h-4 text-violet-400 shrink-0 mt-0.5" />
+                    <Brain className="w-4 h-4 text-primary shrink-0 mt-0.5" />
                     <div>
-                      <p className="text-xs font-semibold text-violet-400 mb-1">Researcher&apos;s Dilemma</p>
+                      <p className="text-xs font-semibold text-primary mb-1">Researcher&apos;s Dilemma</p>
                       <p className="text-xs text-muted-foreground leading-relaxed">
                         With hundreds of tested factors, a 5% false discovery rate (FDR) implies roughly 20 spurious signals per 400 tested. The Bonferroni correction or Benjamini-Hochberg procedure should be applied when reporting multi-factor discoveries. Machine learning approaches (e.g., LASSO, elastic net) can help manage the multiple-testing burden by regularizing factor selection.
                       </p>

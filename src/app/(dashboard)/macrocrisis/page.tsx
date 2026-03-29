@@ -585,7 +585,7 @@ function CrisisAnatomyTab() {
       <Card className="bg-zinc-900 border-zinc-700">
         <CardHeader className="pb-2">
           <CardTitle className="text-sm text-zinc-100 flex items-center gap-2">
-            <TrendingDown className="w-4 h-4 text-purple-400" />
+            <TrendingDown className="w-4 h-4 text-primary" />
             Credit Boom-to-Bust Cycle
           </CardTitle>
         </CardHeader>
@@ -599,7 +599,7 @@ function CrisisAnatomyTab() {
               </div>
             </div>
             <div className="bg-zinc-800/50 rounded p-2">
-              <div className="text-purple-400 font-semibold mb-1">Liquidity Spiral</div>
+              <div className="text-primary font-semibold mb-1">Liquidity Spiral</div>
               <div className="text-zinc-400 leading-tight">
                 Asset prices fall → haircuts rise → funding shrinks → more selling → prices fall further. Amplified by leverage.
               </div>
@@ -762,7 +762,7 @@ function FXReserveMetrics() {
         <div key={m.rule} className="bg-zinc-800/50 rounded-lg p-3 border border-zinc-700">
           <div className="flex items-center justify-between mb-1">
             <span className="text-[12px] font-bold text-zinc-100">{m.rule}</span>
-            <Badge variant="outline" className="text-[11px] border-cyan-500 text-cyan-400">{m.threshold}</Badge>
+            <Badge variant="outline" className="text-[11px] border-cyan-500 text-muted-foreground">{m.threshold}</Badge>
           </div>
           <p className="text-xs text-zinc-400 mb-1">{m.desc}</p>
           <p className="text-xs text-zinc-500 italic">{m.rationale}</p>
@@ -832,7 +832,7 @@ function CurrencyCrisesTab() {
       <Card className="bg-zinc-900 border-zinc-700">
         <CardHeader className="pb-2">
           <CardTitle className="text-sm text-zinc-100 flex items-center gap-2">
-            <Globe className="w-4 h-4 text-blue-400" />
+            <Globe className="w-4 h-4 text-primary" />
             6 Historical Case Studies
           </CardTitle>
         </CardHeader>
@@ -907,7 +907,7 @@ function CurrencyCrisesTab() {
         <Card className="bg-zinc-900 border-zinc-700">
           <CardHeader className="pb-2">
             <CardTitle className="text-sm text-zinc-100 flex items-center gap-2">
-              <DollarSign className="w-4 h-4 text-cyan-400" />
+              <DollarSign className="w-4 h-4 text-muted-foreground" />
               FX Reserve Adequacy Rules
             </CardTitle>
           </CardHeader>
@@ -1190,7 +1190,7 @@ function SovereignDebtTab() {
       <Card className="bg-zinc-900 border-zinc-700">
         <CardHeader className="pb-2">
           <CardTitle className="text-sm text-zinc-100 flex items-center gap-2">
-            <Clock className="w-4 h-4 text-purple-400" />
+            <Clock className="w-4 h-4 text-primary" />
             Debt Restructuring Process
           </CardTitle>
         </CardHeader>
@@ -1204,13 +1204,13 @@ function SovereignDebtTab() {
               </div>
             </div>
             <div className="bg-zinc-800/50 rounded p-2">
-              <div className="text-cyan-400 font-semibold mb-1">CDS as Distress Signal</div>
+              <div className="text-muted-foreground font-semibold mb-1">CDS as Distress Signal</div>
               <div className="text-zinc-400 leading-tight">
                 Sovereign CDS spreads &gt;300bps = elevated risk. &gt;500bps = distress. &gt;1000bps = near-default. CDS basis trade: buy bonds, buy CDS for arb.
               </div>
             </div>
             <div className="bg-zinc-800/50 rounded p-2">
-              <div className="text-purple-400 font-semibold mb-1">Debt Sustainability (DSA)</div>
+              <div className="text-primary font-semibold mb-1">Debt Sustainability (DSA)</div>
               <div className="text-zinc-400 leading-tight">
                 IMF framework: project debt/GDP under baseline + stress scenarios. Debt sustainable if converges to benchmark without extraordinary measures.
               </div>
@@ -1531,7 +1531,7 @@ function CrisisInvestingTab() {
                     >
                       <div className="bg-zinc-800 rounded-b-lg p-3 border-x border-b border-indigo-500/50 space-y-1.5">
                         <div>
-                          <span className="text-[11px] text-blue-400 font-semibold uppercase">Examples: </span>
+                          <span className="text-[11px] text-primary font-semibold uppercase">Examples: </span>
                           <span className="text-xs text-zinc-300">{theme.examples}</span>
                         </div>
                         <div>

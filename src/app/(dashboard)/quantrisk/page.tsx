@@ -566,8 +566,8 @@ export default function QuantRiskPage() {
         {[
           { label: "99% 1D VaR", value: fmtUSD(varData[1].var99), icon: <TrendingDown className="w-4 h-4 text-red-500" />, sub: "Historical" },
           { label: "Expected Shortfall", value: fmtUSD(parametricES), icon: <AlertTriangle className="w-4 h-4 text-amber-500" />, sub: `ES at ${confLabels[confidenceIdx]}` },
-          { label: "Backtest Exceptions", value: `${exceptions}/250`, icon: <Activity className="w-4 h-4 text-blue-500" />, sub: trafficLight === "green" ? "Green zone" : trafficLight === "amber" ? "Amber zone" : "Red zone" },
-          { label: "Dominant Risk", value: riskFactors[0].name, icon: <PieChart className="w-4 h-4 text-purple-500" />, sub: `${riskFactors[0].contribution.toFixed(0)}% of VaR` },
+          { label: "Backtest Exceptions", value: `${exceptions}/250`, icon: <Activity className="w-4 h-4 text-primary" />, sub: trafficLight === "green" ? "Green zone" : trafficLight === "amber" ? "Amber zone" : "Red zone" },
+          { label: "Dominant Risk", value: riskFactors[0].name, icon: <PieChart className="w-4 h-4 text-primary" />, sub: `${riskFactors[0].contribution.toFixed(0)}% of VaR` },
         ].map((kpi) => (
           <Card key={kpi.label} className="border-border bg-card">
             <CardContent className="p-4">
@@ -701,7 +701,7 @@ export default function QuantRiskPage() {
           <Card className="border-border bg-card">
             <CardHeader className="pb-2">
               <CardTitle className="text-sm font-semibold flex items-center gap-2">
-                <BarChart3 className="w-4 h-4 text-purple-500" />
+                <BarChart3 className="w-4 h-4 text-primary" />
                 P&amp;L Distribution with VaR Threshold
               </CardTitle>
             </CardHeader>
@@ -1025,7 +1025,7 @@ export default function QuantRiskPage() {
           <Card className="border-border bg-card">
             <CardHeader className="pb-2">
               <CardTitle className="text-sm font-semibold flex items-center gap-2">
-                <BarChart3 className="w-4 h-4 text-purple-500" />
+                <BarChart3 className="w-4 h-4 text-primary" />
                 Component VaR — Position Level
               </CardTitle>
             </CardHeader>

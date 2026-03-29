@@ -417,7 +417,7 @@ function SectionCard({ title, icon, children, className }: {
   return (
     <div className={cn("bg-neutral-900 border border-neutral-800 rounded-xl p-5", className)}>
       <div className="flex items-center gap-2 mb-4">
-        <span className="text-blue-400">{icon}</span>
+        <span className="text-primary">{icon}</span>
         <h3 className="font-semibold text-neutral-100 text-sm">{title}</h3>
       </div>
       {children}
@@ -427,11 +427,11 @@ function SectionCard({ title, icon, children, className }: {
 
 function InfoChip({ label, value, color = "blue" }: { label: string; value: string; color?: string }) {
   const colors: Record<string, string> = {
-    blue: "bg-blue-500/10 text-blue-300 border-blue-500/20",
+    blue: "bg-primary/10 text-primary border-border",
     green: "bg-emerald-500/10 text-emerald-300 border-emerald-500/20",
     amber: "bg-amber-500/10 text-amber-300 border-amber-500/20",
     red: "bg-red-500/10 text-red-300 border-red-500/20",
-    purple: "bg-purple-500/10 text-purple-300 border-purple-500/20",
+    purple: "bg-primary/10 text-primary border-border",
   };
   return (
     <div className={cn("border rounded-lg px-3 py-2 text-center", colors[color] ?? colors.blue)}>
@@ -475,7 +475,7 @@ function AgencyMarketTab() {
               className={cn(
                 "rounded-xl border p-4 text-left transition-all",
                 selectedAgency.name === ag.name
-                  ? "border-blue-500/60 bg-blue-500/8"
+                  ? "border-primary/60 bg-primary/8"
                   : "border-neutral-700 bg-neutral-800/50 hover:border-neutral-600"
               )}
             >
@@ -582,7 +582,7 @@ function AgencyMarketTab() {
         <div className="grid grid-cols-2 gap-4">
           <div className="space-y-3">
             <p className="text-sm text-neutral-300 leading-relaxed">
-              The <strong className="text-blue-300">To-Be-Announced (TBA)</strong> market is the most liquid
+              The <strong className="text-primary">To-Be-Announced (TBA)</strong> market is the most liquid
               segment of the mortgage-backed securities universe, with ~$300B in daily trading volume. In TBA
               trading, the buyer agrees to purchase an MBS at a future settlement date without knowing the
               exact pools — only coupon, agency, maturity, and face value are specified.
@@ -631,8 +631,8 @@ function AgencyMarketTab() {
             <thead>
               <tr className="border-b border-neutral-700">
                 <th className="text-left py-2 text-neutral-400 font-medium">Characteristic</th>
-                <th className="text-center py-2 text-blue-400 font-medium">Fannie Mae</th>
-                <th className="text-center py-2 text-purple-400 font-medium">Freddie Mac</th>
+                <th className="text-center py-2 text-primary font-medium">Fannie Mae</th>
+                <th className="text-center py-2 text-primary font-medium">Freddie Mac</th>
                 <th className="text-center py-2 text-emerald-400 font-medium">Ginnie Mae</th>
                 <th className="text-left py-2 text-neutral-400 font-medium w-48">Description</th>
               </tr>
@@ -648,8 +648,8 @@ function AgencyMarketTab() {
                   onClick={() => setExpandedPool(expandedPool === row.label ? null : row.label)}
                 >
                   <td className="py-2.5 font-medium text-neutral-200">{row.label}</td>
-                  <td className="py-2.5 text-center text-blue-300">{row.fannie}</td>
-                  <td className="py-2.5 text-center text-purple-300">{row.freddie}</td>
+                  <td className="py-2.5 text-center text-primary">{row.fannie}</td>
+                  <td className="py-2.5 text-center text-primary">{row.freddie}</td>
                   <td className="py-2.5 text-center text-emerald-300">{row.ginnie}</td>
                   <td className="py-2.5 text-neutral-400 truncate max-w-0 w-48 pr-2">
                     <span className="text-neutral-500">{expandedPool === row.label ? "▲" : "▼"} details</span>
@@ -679,7 +679,7 @@ function AgencyMarketTab() {
       {/* Dollar roll economics */}
       <SectionCard title="Dollar Roll Economics" icon={<RefreshCw size={16} />}>
         <p className="text-sm text-neutral-300 mb-4 leading-relaxed">
-          A <strong className="text-blue-300">dollar roll</strong> is a repurchase agreement where an investor
+          A <strong className="text-primary">dollar roll</strong> is a repurchase agreement where an investor
           sells TBA MBS for spot settlement and simultaneously buys back the same coupon for the following month.
           The forward purchase price is lower (the &quot;drop&quot;), effectively financing the position. When
           the implied repo rate exceeds financing costs, rolling is advantageous.
@@ -711,7 +711,7 @@ function AgencyMarketTab() {
                     <td className="py-2.5 text-center font-medium text-neutral-200">{row.coupon.toFixed(1)}%</td>
                     <td className="py-2.5 text-center text-neutral-300">{row.spotPrice.toFixed(3)}</td>
                     <td className="py-2.5 text-center text-neutral-300">{row.forwardPrice.toFixed(3)}</td>
-                    <td className="py-2.5 text-center text-blue-300">{Math.round(row.drop * 32)}</td>
+                    <td className="py-2.5 text-center text-primary">{Math.round(row.drop * 32)}</td>
                     <td className="py-2.5 text-center text-neutral-200">{row.impliedRepo.toFixed(2)}%</td>
                     <td className="py-2.5 text-center text-neutral-400">{row.breakeven.toFixed(2)}%</td>
                     <td className="py-2.5 text-center">
@@ -937,7 +937,7 @@ function PrepaymentAnalysisTab() {
           })}
         </svg>
         <div className="flex gap-6 mt-1 text-xs text-neutral-500">
-          <span className="flex items-center gap-1.5"><span className="w-3 h-2 rounded bg-blue-500 opacity-70" /> Above baseline (summer surge)</span>
+          <span className="flex items-center gap-1.5"><span className="w-3 h-2 rounded bg-primary opacity-70" /> Above baseline (summer surge)</span>
           <span className="flex items-center gap-1.5"><span className="w-3 h-2 rounded bg-red-500 opacity-70" /> Below baseline (winter slowdown)</span>
         </div>
       </SectionCard>
@@ -1027,11 +1027,11 @@ function PrepaymentAnalysisTab() {
                     key={row.psa}
                     className={cn(
                       "border-b border-neutral-800",
-                      isBase ? "bg-blue-500/5 border-blue-500/20" : i % 2 === 0 ? "bg-neutral-900" : "bg-neutral-800/20"
+                      isBase ? "bg-primary/5 border-border" : i % 2 === 0 ? "bg-neutral-900" : "bg-neutral-800/20"
                     )}
                   >
                     <td className="py-2.5 text-center font-semibold text-neutral-100">
-                      {row.psa} PSA {isBase && <span className="text-blue-400 ml-1">(base)</span>}
+                      {row.psa} PSA {isBase && <span className="text-primary ml-1">(base)</span>}
                     </td>
                     <td className="py-2.5 text-center text-neutral-300">{row.month1CPR.toFixed(1)}%</td>
                     <td className="py-2.5 text-center text-neutral-300">{row.month30CPR.toFixed(1)}%</td>
@@ -1564,9 +1564,9 @@ function ConvexityRiskTab() {
         <div className="grid grid-cols-2 gap-6">
           <div className="space-y-3 text-sm text-neutral-300">
             <div className="bg-neutral-800 rounded-xl p-4 border border-neutral-700">
-              <div className="font-semibold text-blue-300 mb-2">Z-Spread</div>
+              <div className="font-semibold text-primary mb-2">Z-Spread</div>
               <p className="text-xs text-neutral-400 leading-relaxed">
-                The constant spread over the <strong className="text-blue-200">spot rate curve</strong> that
+                The constant spread over the <strong className="text-primary">spot rate curve</strong> that
                 equates the present value of cash flows to the market price. Does not adjust for the embedded
                 prepayment option — overstates value for callable/prepayable instruments.
               </p>
@@ -1650,7 +1650,7 @@ function ConvexityRiskTab() {
                   <td className="py-2.5 text-center text-neutral-200">{sc.price.toFixed(2)}</td>
                   <td className="py-2.5 text-center text-neutral-200">{sc.duration.toFixed(1)} yrs</td>
                   <td className="py-2.5 text-center text-emerald-300">{sc.oas}bps</td>
-                  <td className="py-2.5 text-center text-blue-300">{sc.zSpread}bps</td>
+                  <td className="py-2.5 text-center text-primary">{sc.zSpread}bps</td>
                 </tr>
               ))}
             </tbody>
@@ -1700,11 +1700,11 @@ function ConvexityRiskTab() {
         </div>
 
         {/* Swaption note */}
-        <div className="mt-4 bg-purple-500/8 border border-purple-500/20 rounded-lg p-4">
+        <div className="mt-4 bg-primary/8 border border-border rounded-lg p-4">
           <div className="flex items-start gap-2">
-            <Info size={14} className="text-purple-400 mt-0.5 shrink-0" />
+            <Info size={14} className="text-primary mt-0.5 shrink-0" />
             <div className="text-xs text-neutral-300 leading-relaxed">
-              <strong className="text-purple-300">Swaption straddle overlay:</strong> Sophisticated MBS managers
+              <strong className="text-primary">Swaption straddle overlay:</strong> Sophisticated MBS managers
               often hold receiver swaptions (to hedge extension) AND payer swaptions (to hedge prepayment/contraction)
               simultaneously — creating a &quot;vega long&quot; position that profits from realized rate volatility exceeding
               the implied vol paid in premiums.
@@ -1724,8 +1724,8 @@ export default function AgencyMBSPage() {
       {/* Header */}
       <div className="mb-6">
         <div className="flex items-center gap-3 mb-2">
-          <div className="w-9 h-9 rounded-xl bg-blue-500/15 border border-blue-500/25 flex items-center justify-center">
-            <Building2 size={18} className="text-blue-400" />
+          <div className="w-9 h-9 rounded-xl bg-primary/15 border border-border flex items-center justify-center">
+            <Building2 size={18} className="text-primary" />
           </div>
           <div>
             <h1 className="text-xl font-bold text-neutral-100">Agency MBS</h1>
@@ -1734,7 +1734,7 @@ export default function AgencyMBSPage() {
             </p>
           </div>
           <div className="ml-auto flex gap-2">
-            <Badge className="bg-blue-500/15 text-blue-300 border-blue-500/25 text-xs">Agency Guaranteed</Badge>
+            <Badge className="bg-primary/15 text-primary border-border text-xs">Agency Guaranteed</Badge>
             <Badge className="bg-emerald-500/15 text-emerald-300 border-emerald-500/25 text-xs">~$9T Market</Badge>
             <Badge className="bg-amber-500/15 text-amber-300 border-amber-500/25 text-xs">Prepayment Risk</Badge>
           </div>
@@ -1753,7 +1753,7 @@ export default function AgencyMBSPage() {
             <TabsTrigger
               key={tab.value}
               value={tab.value}
-              className="flex items-center gap-1.5 text-xs px-3 py-2 rounded-lg data-[state=active]:bg-blue-600 data-[state=active]:text-white text-neutral-400 hover:text-neutral-200 transition-colors"
+              className="flex items-center gap-1.5 text-xs px-3 py-2 rounded-lg data-[state=active]:bg-primary data-[state=active]:text-white text-neutral-400 hover:text-neutral-200 transition-colors"
             >
               {tab.icon}
               {tab.label}

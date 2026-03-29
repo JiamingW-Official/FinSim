@@ -574,7 +574,7 @@ function ratingColor(rc: string): string {
     case "aa":
       return "text-green-400";
     case "a":
-      return "text-blue-400";
+      return "text-primary";
     case "bbb":
       return "text-yellow-400";
     case "bb":
@@ -589,7 +589,7 @@ function ratingColor(rc: string): string {
 
 function stanceColor(s: string): string {
   if (s === "hawkish") return "bg-red-500/20 text-red-400 border-red-500/30";
-  if (s === "dovish") return "bg-blue-500/20 text-blue-400 border-blue-500/30";
+  if (s === "dovish") return "bg-primary/20 text-primary border-border";
   return "bg-yellow-500/20 text-yellow-400 border-yellow-500/30";
 }
 
@@ -598,7 +598,7 @@ function yieldColor(y: number): string {
   if (y >= 5) return "text-orange-400";
   if (y >= 3) return "text-yellow-400";
   if (y >= 1) return "text-green-400";
-  return "text-blue-400";
+  return "text-primary";
 }
 
 // ── Sub-Components ────────────────────────────────────────────────────────────
@@ -662,7 +662,7 @@ function SovereignYieldsTab() {
       onClick={() => toggle(col)}
       className={cn(
         "flex items-center gap-1 text-xs font-medium transition-colors",
-        sortBy === col ? "text-blue-400" : "text-neutral-400 hover:text-white"
+        sortBy === col ? "text-primary" : "text-neutral-400 hover:text-white"
       )}
     >
       {label}
@@ -685,7 +685,7 @@ function SovereignYieldsTab() {
             label: "Lowest Yield",
             val: "Switzerland 0.77%",
             icon: TrendingDown,
-            color: "text-blue-400",
+            color: "text-primary",
           },
           {
             label: "G10 Average",
@@ -1255,10 +1255,10 @@ function HedgedReturnsTab() {
   return (
     <div className="space-y-6">
       {/* Info panel */}
-      <div className="bg-blue-500/10 border border-blue-500/20 rounded-lg p-4 flex gap-3">
-        <Info className="w-4 h-4 text-blue-400 mt-0.5 shrink-0" />
-        <div className="text-xs text-blue-300 space-y-1">
-          <p className="font-medium text-blue-200">Currency Hedging in Fixed Income</p>
+      <div className="bg-primary/10 border border-border rounded-lg p-4 flex gap-3">
+        <Info className="w-4 h-4 text-primary mt-0.5 shrink-0" />
+        <div className="text-xs text-primary space-y-1">
+          <p className="font-medium text-primary">Currency Hedging in Fixed Income</p>
           <p>
             When a US investor buys foreign bonds, currency risk can dominate
             returns. Hedging via FX forwards locks the exchange rate but incurs a
@@ -1557,7 +1557,7 @@ function EMBondsTab() {
           {
             label: "Hard vs Local",
             val: "+3.2% carry",
-            color: "text-blue-400",
+            color: "text-primary",
             icon: DollarSign,
           },
         ].map((c) => (
@@ -1800,8 +1800,8 @@ function EMBondsTab() {
                 "Lower yield, higher liquidity",
                 "Vulnerable to USD strengthening",
               ],
-              color: "border-blue-500/40 bg-blue-500/10",
-              textColor: "text-blue-300",
+              color: "border-primary/40 bg-primary/10",
+              textColor: "text-primary",
             },
             {
               title: "Local Currency (Domestic CCY)",
@@ -2028,7 +2028,7 @@ function CentralBankTab() {
                       cb.currentInflation > cb.inflationTarget + 1
                         ? "bg-red-400"
                         : cb.currentInflation < cb.inflationTarget - 0.5
-                        ? "bg-blue-400"
+                        ? "bg-primary"
                         : "bg-green-400"
                     )}
                     style={{
@@ -2085,8 +2085,8 @@ function CentralBankTab() {
               title: "Fed vs ECB Divergence",
               diff: `+${(5.375 - 3.15).toFixed(2)}%`,
               desc: "Wide spread supports USD over EUR. Limits EUR bond demand from US investors on unhedged basis.",
-              color: "text-blue-400",
-              bg: "bg-blue-500/10 border-blue-500/20",
+              color: "text-primary",
+              bg: "bg-primary/10 border-border",
             },
             {
               title: "Fed vs BoJ Divergence",
@@ -2164,8 +2164,8 @@ export default function GlobalBondsPage() {
         <div className="flex items-start justify-between gap-4">
           <div>
             <div className="flex items-center gap-2.5 mb-1">
-              <div className="w-7 h-7 rounded-lg bg-blue-500/20 flex items-center justify-center">
-                <Globe className="w-4 h-4 text-blue-400" />
+              <div className="w-7 h-7 rounded-lg bg-primary/20 flex items-center justify-center">
+                <Globe className="w-4 h-4 text-primary" />
               </div>
               <h1 className="text-xl font-bold text-white">
                 Global Bond Markets
@@ -2187,7 +2187,7 @@ export default function GlobalBondsPage() {
             </Badge>
             <Badge
               variant="outline"
-              className="border-blue-500/40 text-blue-400 text-xs"
+              className="border-primary/40 text-primary text-xs"
             >
               <Info className="w-3 h-3 mr-1" />
               Simulated Data
@@ -2208,7 +2208,7 @@ export default function GlobalBondsPage() {
               <TabsTrigger
                 key={tab.id}
                 value={tab.id}
-                className="flex items-center gap-1.5 text-xs data-[state=active]:bg-blue-600 data-[state=active]:text-white px-3 py-1.5 rounded-md transition-all"
+                className="flex items-center gap-1.5 text-xs data-[state=active]:bg-primary data-[state=active]:text-white px-3 py-1.5 rounded-md transition-all"
               >
                 <tab.icon className="w-3.5 h-3.5" />
                 <span className="hidden sm:inline">{tab.label}</span>

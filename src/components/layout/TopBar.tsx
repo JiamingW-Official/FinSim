@@ -300,9 +300,9 @@ function LearnStreakBadge() {
   if (learningStreak <= 0) return null;
 
   return (
-    <div className="flex items-center gap-0.5 rounded-full bg-violet-500/10 px-1.5 py-0.5">
-      <BookOpen className="h-3 w-3 text-violet-400" />
-      <span className="text-xs font-bold tabular-nums text-violet-400">
+    <div className="flex items-center gap-0.5 rounded-full bg-primary/10 px-1.5 py-0.5">
+      <BookOpen className="h-3 w-3 text-primary" />
+      <span className="text-xs font-bold tabular-nums text-primary">
         {learningStreak}
       </span>
     </div>

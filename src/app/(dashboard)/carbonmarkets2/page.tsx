@@ -119,11 +119,11 @@ const CAP_TRAJECTORY = [
 
 const SECTOR_COVERAGE = [
   { sector: "Power Generation", icon: <Zap size={14} />, coverage: "100%", freeAlloc: "0%", phase: "Phase 4", color: "text-yellow-400" },
-  { sector: "Aviation (EU)", icon: <Plane size={14} />, coverage: "~70%", freeAlloc: "25%", phase: "Phase 4", color: "text-blue-400" },
+  { sector: "Aviation (EU)", icon: <Plane size={14} />, coverage: "~70%", freeAlloc: "25%", phase: "Phase 4", color: "text-primary" },
   { sector: "Heavy Industry", icon: <Factory size={14} />, coverage: "~50%", freeAlloc: "60%", phase: "Phase 4", color: "text-orange-400" },
-  { sector: "Maritime (new)", icon: <Globe size={14} />, coverage: "50%→100%", freeAlloc: "0%", phase: "Phase 4+", color: "text-cyan-400" },
+  { sector: "Maritime (new)", icon: <Globe size={14} />, coverage: "50%→100%", freeAlloc: "0%", phase: "Phase 4+", color: "text-muted-foreground" },
   { sector: "Buildings (ETS2)", icon: <Flame size={14} />, coverage: "100%", freeAlloc: "0%", phase: "ETS2 2027", color: "text-red-400" },
-  { sector: "Road Transport (ETS2)", icon: <TrendingUp size={14} />, coverage: "100%", freeAlloc: "0%", phase: "ETS2 2027", color: "text-purple-400" },
+  { sector: "Road Transport (ETS2)", icon: <TrendingUp size={14} />, coverage: "100%", freeAlloc: "0%", phase: "ETS2 2027", color: "text-primary" },
 ];
 
 // ── Voluntary Carbon Market Data ──────────────────────────────────────────────
@@ -343,7 +343,7 @@ function EuEtsTab() {
       <Card className="bg-zinc-900 border-zinc-800">
         <CardHeader className="pb-2">
           <CardTitle className="text-sm text-zinc-200 flex items-center gap-2">
-            <BarChart2 size={15} className="text-blue-400" />
+            <BarChart2 size={15} className="text-primary" />
             EU ETS Allowance Price (EUA) 2015–2024 — €/tonne CO₂
           </CardTitle>
         </CardHeader>
@@ -439,7 +439,7 @@ function EuEtsTab() {
           <CardContent className="pt-0 space-y-3">
             {[
               { label: "Power Sector", free: 0, auction: 100, color: "bg-yellow-500" },
-              { label: "Aviation", free: 25, auction: 75, color: "bg-blue-500" },
+              { label: "Aviation", free: 25, auction: 75, color: "bg-primary" },
               { label: "Cement / Steel", free: 60, auction: 40, color: "bg-orange-500" },
               { label: "Glass / Ceramics", free: 55, auction: 45, color: "bg-pink-500" },
               { label: "Pulp & Paper", free: 70, auction: 30, color: "bg-lime-500" },
@@ -451,13 +451,13 @@ function EuEtsTab() {
                 </div>
                 <div className="flex h-3 rounded overflow-hidden bg-zinc-800">
                   <div className={`${row.color} opacity-70`} style={{ width: `${row.free}%` }} />
-                  <div className="bg-blue-700 opacity-50" style={{ width: `${row.auction}%` }} />
+                  <div className="bg-primary/80 opacity-50" style={{ width: `${row.auction}%` }} />
                 </div>
               </div>
             ))}
             <div className="flex gap-4 text-xs text-zinc-500 pt-1">
               <span className="flex items-center gap-1"><span className="w-3 h-2 bg-orange-500 rounded opacity-70 inline-block" />Free Allocation</span>
-              <span className="flex items-center gap-1"><span className="w-3 h-2 bg-blue-700 rounded opacity-50 inline-block" />Auction Revenue</span>
+              <span className="flex items-center gap-1"><span className="w-3 h-2 bg-primary/80 rounded opacity-50 inline-block" />Auction Revenue</span>
             </div>
           </CardContent>
         </Card>
@@ -467,20 +467,20 @@ function EuEtsTab() {
       <Card className="bg-zinc-900 border-zinc-800">
         <CardHeader className="pb-2">
           <CardTitle className="text-sm text-zinc-200 flex items-center gap-2">
-            <Shield size={14} className="text-purple-400" />
+            <Shield size={14} className="text-primary" />
             Carbon Border Adjustment Mechanism (CBAM)
           </CardTitle>
         </CardHeader>
         <CardContent className="pt-0">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4 text-sm">
             <div className="bg-zinc-800 rounded-lg p-3 space-y-2">
-              <p className="text-purple-300 font-medium">How CBAM Works</p>
+              <p className="text-primary font-medium">How CBAM Works</p>
               <p className="text-zinc-400 text-xs leading-relaxed">
                 Importers of covered goods buy CBAM certificates at the weekly average EU ETS price. Certificates are surrendered for embedded carbon in imports.
               </p>
             </div>
             <div className="bg-zinc-800 rounded-lg p-3 space-y-2">
-              <p className="text-blue-300 font-medium">Covered Sectors (Phase-in)</p>
+              <p className="text-primary font-medium">Covered Sectors (Phase-in)</p>
               <ul className="text-zinc-400 text-xs space-y-1">
                 <li className="flex items-center gap-1"><CheckCircle size={10} className="text-emerald-400" />Cement</li>
                 <li className="flex items-center gap-1"><CheckCircle size={10} className="text-emerald-400" />Iron & Steel</li>
@@ -507,7 +507,7 @@ function EuEtsTab() {
       <Card className="bg-zinc-900 border-zinc-800">
         <CardHeader className="pb-2">
           <CardTitle className="text-sm text-zinc-200 flex items-center gap-2">
-            <Info size={14} className="text-cyan-400" />
+            <Info size={14} className="text-muted-foreground" />
             Market Stability Reserve (MSR)
           </CardTitle>
         </CardHeader>
@@ -522,7 +522,7 @@ function EuEtsTab() {
                 { label: "TNAC Upper Trigger", val: "833 Mt", dir: "Withhold", color: "text-red-400" },
                 { label: "TNAC Lower Trigger", val: "400 Mt", dir: "Release", color: "text-emerald-400" },
                 { label: "Annual Intake Rate", val: "24% of TNAC", dir: "Withheld", color: "text-orange-400" },
-                { label: "Post-2023 Cancellation", val: "Above auction vol", dir: "Permanent", color: "text-purple-400" },
+                { label: "Post-2023 Cancellation", val: "Above auction vol", dir: "Permanent", color: "text-primary" },
               ].map((item) => (
                 <div key={item.label} className="flex justify-between items-center bg-zinc-800 rounded px-3 py-1.5">
                   <span className="text-zinc-400 text-xs">{item.label}</span>
@@ -618,7 +618,7 @@ function VoluntaryTab() {
                 key={ct.abbr}
                 whileHover={{ scale: 1.02 }}
                 onClick={() => setSelected(selected === ct.abbr ? null : ct.abbr)}
-                className={`cursor-pointer rounded-lg p-3 border transition-colors ${selected === ct.abbr ? "border-blue-500 bg-zinc-800" : "border-zinc-800 bg-zinc-850 hover:border-zinc-700"}`}
+                className={`cursor-pointer rounded-lg p-3 border transition-colors ${selected === ct.abbr ? "border-primary bg-zinc-800" : "border-zinc-800 bg-zinc-850 hover:border-zinc-700"}`}
                 style={{ background: selected === ct.abbr ? undefined : "#18181b" }}
               >
                 <div className="flex items-center justify-between mb-2">
@@ -683,7 +683,7 @@ function VoluntaryTab() {
       <Card className="bg-zinc-900 border-zinc-800">
         <CardHeader className="pb-2">
           <CardTitle className="text-sm text-zinc-200 flex items-center gap-2">
-            <Shield size={14} className="text-blue-400" />
+            <Shield size={14} className="text-primary" />
             Verra VCS vs Gold Standard Comparison
           </CardTitle>
         </CardHeader>
@@ -693,7 +693,7 @@ function VoluntaryTab() {
               <thead>
                 <tr className="border-b border-zinc-800 text-zinc-500">
                   <th className="text-left py-2 pr-4">Dimension</th>
-                  <th className="text-center py-2 pr-4 text-blue-400">Verra VCS</th>
+                  <th className="text-center py-2 pr-4 text-primary">Verra VCS</th>
                   <th className="text-center py-2 text-yellow-400">Gold Standard</th>
                 </tr>
               </thead>
@@ -768,7 +768,7 @@ function VoluntaryTab() {
                   {gc.severity}
                 </Badge>
               </div>
-              <p className="text-xs text-blue-300 italic">&ldquo;{gc.claim}&rdquo;</p>
+              <p className="text-xs text-primary italic">&ldquo;{gc.claim}&rdquo;</p>
               <p className="text-xs text-zinc-400">{gc.issue}</p>
             </div>
           ))}
@@ -810,7 +810,7 @@ function NatureTab() {
           {
             type: "Wetland / Peatland Restoration",
             icon: <Droplets size={16} />,
-            color: "text-cyan-400",
+            color: "text-muted-foreground",
             mech: "Re-wetting drained peat; peatlands store 2× more C than all forests combined",
             creds: "5–18 tCO₂e/ha/yr",
             risk: "Medium; high co-benefit for water & biodiversity",
@@ -818,7 +818,7 @@ function NatureTab() {
           {
             type: "Blue Carbon (Mangrove / Seagrass)",
             icon: <Droplets size={16} />,
-            color: "text-blue-400",
+            color: "text-primary",
             mech: "Coastal ecosystems sequester C in biomass + sediment at 3–5× rate of forests",
             creds: "8–45 tCO₂e/ha/yr",
             risk: "Low-medium; sea level rise risk long-term",
@@ -844,7 +844,7 @@ function NatureTab() {
       <Card className="bg-zinc-900 border-zinc-800">
         <CardHeader className="pb-2">
           <CardTitle className="text-sm text-zinc-200 flex items-center gap-2">
-            <Globe size={14} className="text-cyan-400" />
+            <Globe size={14} className="text-muted-foreground" />
             Project Co-Benefits & Risk Scoring
           </CardTitle>
         </CardHeader>
@@ -870,7 +870,7 @@ function NatureTab() {
               <div className="grid grid-cols-3 gap-2 mb-2">
                 {[
                   { label: "Biodiversity", val: p.coBeeBio, color: "bg-emerald-500" },
-                  { label: "Community", val: p.coBeeComm, color: "bg-blue-500" },
+                  { label: "Community", val: p.coBeeComm, color: "bg-primary" },
                   { label: "Water", val: p.coBeeWater, color: "bg-cyan-500" },
                 ].map((cb) => (
                   <div key={cb.label}>
@@ -937,7 +937,7 @@ function NatureTab() {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
             {ICVCM_PRINCIPLES.map((p) => (
               <div key={p.id} className="bg-zinc-800 rounded-lg p-2.5 flex gap-2">
-                <span className="text-xs font-mono text-blue-400 shrink-0 mt-0.5">{p.id}</span>
+                <span className="text-xs font-mono text-primary shrink-0 mt-0.5">{p.id}</span>
                 <div>
                   <p className="text-xs font-medium text-zinc-300">{p.name}</p>
                   <p className="text-xs text-zinc-500 mt-0.5">{p.desc}</p>
@@ -998,8 +998,8 @@ function CorporateTab() {
           },
           {
             label: "Net-Zero",
-            color: "text-blue-400",
-            border: "border-blue-800",
+            color: "text-primary",
+            border: "border-border",
             points: [
               "Residual emissions balanced by permanent removals (not just offsets)",
               "SBTi Net-Zero Standard requires 90–95% absolute reduction first",
@@ -1043,7 +1043,7 @@ function CorporateTab() {
       <Card className="bg-zinc-900 border-zinc-800">
         <CardHeader className="pb-2">
           <CardTitle className="text-sm text-zinc-200 flex items-center gap-2">
-            <BarChart2 size={14} className="text-purple-400" />
+            <BarChart2 size={14} className="text-primary" />
             Marginal Abatement Cost (MAC) Curve
           </CardTitle>
         </CardHeader>
@@ -1124,7 +1124,7 @@ function CorporateTab() {
                       {co.offsetQuality}
                     </Badge>
                     {co.sbtAligned ? (
-                      <Badge variant="outline" className="text-xs text-blue-400 border-blue-800">SBTi</Badge>
+                      <Badge variant="outline" className="text-xs text-primary border-border">SBTi</Badge>
                     ) : (
                       <Badge variant="outline" className="text-xs text-zinc-500 border-zinc-700">No SBTi</Badge>
                     )}
@@ -1140,12 +1140,12 @@ function CorporateTab() {
                   <div className="flex h-3 rounded overflow-hidden">
                     <div className="bg-red-500 opacity-80" style={{ width: `${s1Pct}%` }} title={`S1: ${co.scope1}Mt`} />
                     <div className="bg-yellow-500 opacity-80" style={{ width: `${s2Pct}%` }} title={`S2: ${co.scope2}Mt`} />
-                    <div className="bg-blue-500 opacity-70" style={{ width: `${s3Pct}%` }} title={`S3: ${co.scope3}Mt`} />
+                    <div className="bg-primary opacity-70" style={{ width: `${s3Pct}%` }} title={`S3: ${co.scope3}Mt`} />
                   </div>
                   <div className="flex gap-4 text-xs text-zinc-500 mt-1">
                     <span className="flex items-center gap-1"><span className="w-2 h-2 bg-red-500 rounded opacity-80 inline-block" />S1 {co.scope1}Mt</span>
                     <span className="flex items-center gap-1"><span className="w-2 h-2 bg-yellow-500 rounded opacity-80 inline-block" />S2 {co.scope2}Mt</span>
-                    <span className="flex items-center gap-1"><span className="w-2 h-2 bg-blue-500 rounded opacity-70 inline-block" />S3 {co.scope3}Mt</span>
+                    <span className="flex items-center gap-1"><span className="w-2 h-2 bg-primary rounded opacity-70 inline-block" />S3 {co.scope3}Mt</span>
                     <span className="ml-auto text-zinc-600">Internal abatement: ${co.abatementCost}/t</span>
                   </div>
                 </div>
@@ -1159,7 +1159,7 @@ function CorporateTab() {
       <Card className="bg-zinc-900 border-zinc-800">
         <CardHeader className="pb-2">
           <CardTitle className="text-sm text-zinc-200 flex items-center gap-2">
-            <Shield size={14} className="text-cyan-400" />
+            <Shield size={14} className="text-muted-foreground" />
             Offset Quality Tiers
           </CardTitle>
         </CardHeader>
@@ -1209,7 +1209,7 @@ function CorporateTab() {
       <Card className="bg-zinc-900 border-zinc-800">
         <CardHeader className="pb-2">
           <CardTitle className="text-sm text-zinc-200 flex items-center gap-2">
-            <TrendingUp size={14} className="text-blue-400" />
+            <TrendingUp size={14} className="text-primary" />
             Credible Transition Plan Checklist
           </CardTitle>
         </CardHeader>
@@ -1231,7 +1231,7 @@ function CorporateTab() {
                 {row.required ? (
                   <CheckCircle size={12} className="text-emerald-400 shrink-0" />
                 ) : (
-                  <Info size={12} className="text-blue-400 shrink-0" />
+                  <Info size={12} className="text-primary shrink-0" />
                 )}
                 <span className="text-xs text-zinc-300">{row.item}</span>
                 {row.required && (
@@ -1279,9 +1279,9 @@ export default function CarbonMarkets2Page() {
         {/* Key stats */}
         <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
           {[
-            { label: "EU ETS Price", value: "€59.4/t", sub: "2024 average", color: "text-blue-400" },
+            { label: "EU ETS Price", value: "€59.4/t", sub: "2024 average", color: "text-primary" },
             { label: "VCM Volume", value: "~350 MtCO₂e", sub: "Issued 2023", color: "text-emerald-400" },
-            { label: "CBAM Start", value: "Jan 2026", sub: "Financial obligations", color: "text-purple-400" },
+            { label: "CBAM Start", value: "Jan 2026", sub: "Financial obligations", color: "text-primary" },
             { label: "ICVCM CCPs", value: "10 Principles", sub: "Published 2023", color: "text-yellow-400" },
           ].map((stat) => (
             <Card key={stat.label} className="bg-zinc-900 border-zinc-800">

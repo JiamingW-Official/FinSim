@@ -982,7 +982,7 @@ function BuildingEdgeTab() {
       text: "IC Decay: Average alt data IC decays 50% within 12 months as market microstructure adapts. Continuous refresh needed.",
     },
     {
-      icon: <Users className="w-4 h-4 text-blue-400 shrink-0" />,
+      icon: <Users className="w-4 h-4 text-primary shrink-0" />,
       text: "Academic-to-Production Gap: Academic papers use survivorship-free data; production pipelines face universe changes, revised data, and capacity constraints.",
     },
   ];
@@ -1117,7 +1117,7 @@ function BuildingEdgeTab() {
       <Card className="bg-zinc-900/60 border-zinc-800">
         <CardHeader className="pb-2">
           <CardTitle className="text-sm text-zinc-300 flex items-center gap-2">
-            <Cpu className="w-4 h-4 text-violet-400" />
+            <Cpu className="w-4 h-4 text-primary" />
             IC, Crowding, and Ensemble Signals
           </CardTitle>
         </CardHeader>
@@ -1126,7 +1126,7 @@ function BuildingEdgeTab() {
             {icMetrics.map((m, i) => (
               <div key={`icm-${i}`} className="bg-zinc-800/50 rounded-lg p-3">
                 <div className="text-xs text-zinc-500 mb-1">{m.metric}</div>
-                <div className="text-sm font-bold text-violet-400">{m.value}</div>
+                <div className="text-sm font-bold text-primary">{m.value}</div>
                 <div className="text-xs text-zinc-600 mt-1">{m.label}</div>
               </div>
             ))}

@@ -642,7 +642,7 @@ function InfrastructureTab() {
                       {selected.risk} Risk
                     </Badge>
                     {selected.regulated && (
-                      <Badge variant="outline" className="text-blue-400 border-blue-400/30 bg-blue-400/10">
+                      <Badge variant="outline" className="text-primary border-border bg-primary/10">
                         Regulated
                       </Badge>
                     )}
@@ -794,7 +794,7 @@ function RealEstateTab() {
                         variant="outline"
                         className={
                           r.type === "REIT"
-                            ? "text-blue-400 border-blue-400/30 bg-blue-400/10"
+                            ? "text-primary border-border bg-primary/10"
                             : "text-amber-400 border-amber-400/30 bg-amber-400/10"
                         }
                       >
@@ -845,7 +845,7 @@ function RealEstateTab() {
                   animate={{ width: `${(r.capRate / 8) * 100}%` }}
                   transition={{ duration: 0.6, ease: "easeOut" }}
                   className={`h-full rounded-full ${
-                    r.type === "REIT" ? "bg-blue-500" : "bg-amber-500"
+                    r.type === "REIT" ? "bg-primary" : "bg-amber-500"
                   }`}
                 />
               </div>
@@ -1078,7 +1078,7 @@ function CommoditiesTab() {
               </div>
               <div>
                 <span className="text-muted-foreground">Inflation Corr.: </span>
-                <span className="font-mono text-blue-400">{hoveredComm.inflationCorr.toFixed(2)}</span>
+                <span className="font-mono text-primary">{hoveredComm.inflationCorr.toFixed(2)}</span>
               </div>
             </motion.div>
           )}
@@ -1125,7 +1125,7 @@ function CommoditiesTab() {
                       {fmtPct(c.annualReturn)}
                     </td>
                     <td className="p-3 text-right font-mono text-amber-400">{fmtPct(c.volatility)}</td>
-                    <td className="p-3 text-right font-mono text-blue-400">
+                    <td className="p-3 text-right font-mono text-primary">
                       {c.inflationCorr.toFixed(2)}
                     </td>
                   </tr>
@@ -1528,7 +1528,7 @@ function PortfolioRoleTab() {
               initial={{ opacity: 0, height: 0 }}
               animate={{ opacity: 1, height: "auto" }}
               exit={{ opacity: 0, height: 0 }}
-              className="mb-4 p-3 rounded-lg bg-blue-500/10 border border-blue-500/20 text-xs text-blue-300"
+              className="mb-4 p-3 rounded-lg bg-primary/10 border border-border text-xs text-primary"
             >
               Darker green = higher positive correlation. Lower correlations with stocks and bonds indicate
               stronger diversification benefit. Inflation column shows hedge effectiveness.
@@ -1739,7 +1739,7 @@ export default function RealAssetsPage() {
             <TrendingUp className="w-3 h-3 mr-1" />
             Inflation Hedge
           </Badge>
-          <Badge variant="outline" className="text-blue-400 border-blue-400/30 bg-blue-400/10">
+          <Badge variant="outline" className="text-primary border-border bg-primary/10">
             <Shield className="w-3 h-3 mr-1" />
             Low Correlation
           </Badge>

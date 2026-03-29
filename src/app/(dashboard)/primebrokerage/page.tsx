@@ -566,7 +566,7 @@ function PBServiceScorecard({ services }: { services: PBService[] }) {
           <div className="flex-1 min-w-0">
             <div className="flex items-center justify-between mb-1">
               <span className="text-sm font-medium text-slate-200 truncate">{svc.name}</span>
-              <span className={cn("text-xs font-bold ml-2", svc.score >= 90 ? "text-emerald-400" : svc.score >= 80 ? "text-cyan-400" : "text-amber-400")}>
+              <span className={cn("text-xs font-bold ml-2", svc.score >= 90 ? "text-emerald-400" : svc.score >= 80 ? "text-muted-foreground" : "text-amber-400")}>
                 {svc.score}/100
               </span>
             </div>
@@ -682,7 +682,7 @@ export default function PrimeBrokeragePage() {
         </div>
         <div className="flex gap-2 flex-wrap">
           <Badge className="bg-indigo-500/15 text-indigo-300 border border-indigo-500/30 text-xs">Institutional</Badge>
-          <Badge className="bg-cyan-500/15 text-cyan-300 border border-cyan-500/30 text-xs">Prime Finance</Badge>
+          <Badge className="bg-cyan-500/15 text-muted-foreground border border-cyan-500/30 text-xs">Prime Finance</Badge>
           <Badge className="bg-slate-700 text-slate-300 text-xs">Seed 840</Badge>
         </div>
       </div>
@@ -692,7 +692,7 @@ export default function PrimeBrokeragePage() {
         {[
           { label: "Total Lendable Inventory", value: "$4.2T", sub: "Across 12,000+ securities", icon: <Layers className="w-4 h-4 text-indigo-400" />, color: "text-indigo-400" },
           { label: "HTB Securities", value: `${htbCount} / ${securities.length}`, sub: "In demo portfolio", icon: <AlertTriangle className="w-4 h-4 text-amber-400" />, color: "text-amber-400" },
-          { label: "Avg Utilization Rate", value: `${avgUtil.toFixed(1)}%`, sub: "Weighted by borrow rate", icon: <Activity className="w-4 h-4 text-cyan-400" />, color: "text-cyan-400" },
+          { label: "Avg Utilization Rate", value: `${avgUtil.toFixed(1)}%`, sub: "Weighted by borrow rate", icon: <Activity className="w-4 h-4 text-muted-foreground" />, color: "text-muted-foreground" },
           { label: "GC Securities", value: `${gcCount} / ${securities.length}`, sub: "General collateral", icon: <ShieldCheck className="w-4 h-4 text-emerald-400" />, color: "text-emerald-400" },
         ].map((kpi) => (
           <Card key={kpi.label} className="bg-slate-900 border-slate-800">
@@ -790,7 +790,7 @@ export default function PrimeBrokeragePage() {
                   <Card className="bg-slate-900 border-slate-800">
                     <CardHeader className="pb-2">
                       <CardTitle className="text-sm font-semibold text-slate-200 flex items-center gap-2">
-                        <TrendingUp className="w-4 h-4 text-cyan-400" />
+                        <TrendingUp className="w-4 h-4 text-muted-foreground" />
                         Borrow Cost by Security
                       </CardTitle>
                     </CardHeader>
@@ -813,7 +813,7 @@ export default function PrimeBrokeragePage() {
                   <Card className="bg-slate-900 border-slate-800">
                     <CardHeader className="pb-2">
                       <CardTitle className="text-sm font-semibold text-slate-200 flex items-center gap-2">
-                        <Layers className="w-4 h-4 text-violet-400" />
+                        <Layers className="w-4 h-4 text-primary" />
                         Hard-to-Borrow vs General Collateral
                       </CardTitle>
                     </CardHeader>
@@ -847,7 +847,7 @@ export default function PrimeBrokeragePage() {
                   <Card className="bg-slate-900 border-slate-800">
                     <CardHeader className="pb-2">
                       <CardTitle className="text-sm font-semibold text-slate-200 flex items-center gap-2">
-                        <Activity className="w-4 h-4 text-cyan-400" />
+                        <Activity className="w-4 h-4 text-muted-foreground" />
                         Average Utilization Rate
                       </CardTitle>
                     </CardHeader>
@@ -904,7 +904,7 @@ export default function PrimeBrokeragePage() {
                           { label: "Portfolio Value (Equity)", value: `$${(portfolioValue / 1e6).toFixed(1)}M`, color: "text-slate-200" },
                           { label: "Leveraged Exposure", value: `$${(leveragedValue / 1e6).toFixed(1)}M`, color: "text-indigo-300" },
                           { label: "Amount Borrowed", value: `$${(borrowedAmount / 1e6).toFixed(2)}M`, color: "text-amber-300" },
-                          { label: "Initial Margin Required", value: `${(100 / leverage).toFixed(1)}%`, color: "text-cyan-300" },
+                          { label: "Initial Margin Required", value: `${(100 / leverage).toFixed(1)}%`, color: "text-muted-foreground" },
                           { label: "Maintenance Margin", value: `${(65 / leverage).toFixed(1)}%`, color: "text-yellow-300" },
                           { label: "Excess Equity", value: `$${(excessEquity / 1e6).toFixed(2)}M`, color: excessEquity > 0 ? "text-emerald-400" : "text-rose-400" },
                           { label: "Margin Call Trigger (Drop)", value: `${marginCallDropPct > 0 ? marginCallDropPct.toFixed(1) : "—"}%`, color: "text-rose-400" },
@@ -945,7 +945,7 @@ export default function PrimeBrokeragePage() {
                 <Card className="bg-slate-900 border-slate-800">
                   <CardHeader className="pb-2">
                     <CardTitle className="text-sm font-semibold text-slate-200 flex items-center gap-2">
-                      <Info className="w-4 h-4 text-cyan-400" />
+                      <Info className="w-4 h-4 text-muted-foreground" />
                       Initial vs Maintenance Margin — Concept Guide
                     </CardTitle>
                   </CardHeader>
@@ -1012,7 +1012,7 @@ export default function PrimeBrokeragePage() {
                 <Card className="bg-slate-900 border-slate-800">
                   <CardHeader className="pb-2">
                     <CardTitle className="text-sm font-semibold text-slate-200 flex items-center gap-2">
-                      <ArrowRight className="w-4 h-4 text-cyan-400" />
+                      <ArrowRight className="w-4 h-4 text-muted-foreground" />
                       Collateral Chain Diagram
                     </CardTitle>
                   </CardHeader>
@@ -1041,7 +1041,7 @@ export default function PrimeBrokeragePage() {
                   <Card className="bg-slate-900 border-slate-800">
                     <CardHeader className="pb-2">
                       <CardTitle className="text-sm font-semibold text-slate-200 flex items-center gap-2">
-                        <ShieldCheck className="w-4 h-4 text-violet-400" />
+                        <ShieldCheck className="w-4 h-4 text-primary" />
                         Haircut Table by Asset Class
                       </CardTitle>
                     </CardHeader>
@@ -1164,7 +1164,7 @@ export default function PrimeBrokeragePage() {
                 <Card className="bg-slate-900 border-slate-800">
                   <CardHeader className="pb-2">
                     <CardTitle className="text-sm font-semibold text-slate-200 flex items-center gap-2">
-                      <Scale className="w-4 h-4 text-cyan-400" />
+                      <Scale className="w-4 h-4 text-muted-foreground" />
                       Prime Broker vs Mini-Prime Comparison
                     </CardTitle>
                   </CardHeader>
@@ -1175,7 +1175,7 @@ export default function PrimeBrokeragePage() {
                           <tr className="border-b border-slate-800 bg-slate-800/50">
                             <th className="text-left px-4 py-2.5 text-slate-400 font-medium w-1/3">Feature</th>
                             <th className="text-center px-4 py-2.5 text-indigo-300 font-semibold">Prime Broker</th>
-                            <th className="text-center px-4 py-2.5 text-cyan-300 font-semibold">Mini-Prime / Introducing</th>
+                            <th className="text-center px-4 py-2.5 text-muted-foreground font-semibold">Mini-Prime / Introducing</th>
                           </tr>
                         </thead>
                         <tbody>
@@ -1214,7 +1214,7 @@ export default function PrimeBrokeragePage() {
                 <Card className="bg-slate-900 border-slate-800">
                   <CardHeader className="pb-2">
                     <CardTitle className="text-sm font-semibold text-slate-200 flex items-center gap-2">
-                      <FileText className="w-4 h-4 text-violet-400" />
+                      <FileText className="w-4 h-4 text-primary" />
                       Operational Due Diligence (ODD) Checklist
                     </CardTitle>
                   </CardHeader>
@@ -1254,7 +1254,7 @@ export default function PrimeBrokeragePage() {
                       ))}
                     </div>
                     <div className="mt-3 rounded-lg bg-slate-800/60 p-3 text-xs text-slate-400 flex items-start gap-2">
-                      <Info className="w-3.5 h-3.5 text-cyan-400 shrink-0 mt-0.5" />
+                      <Info className="w-3.5 h-3.5 text-muted-foreground shrink-0 mt-0.5" />
                       <span>ODD is conducted by institutional allocators (pensions, endowments, FoHFs) before committing capital. A failed category in <span className="text-amber-300 font-semibold">Personnel Background</span> can delay or prevent allocation regardless of performance track record.</span>
                     </div>
                   </CardContent>

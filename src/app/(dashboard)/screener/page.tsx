@@ -1157,11 +1157,11 @@ export default function ScreenerPage() {
                           <span className="font-mono font-bold text-primary text-base">{pick.ticker}</span>
                           <span className={cn(
                             "rounded-full px-2 py-0.5 text-xs font-semibold",
-                            pick.category === "Value" ? "bg-blue-500/10 text-blue-400" :
+                            pick.category === "Value" ? "bg-primary/10 text-primary" :
                             pick.category === "Growth" ? "bg-emerald-500/10 text-emerald-400" :
                             pick.category === "Income" ? "bg-amber-500/10 text-amber-400" :
-                            pick.category === "Momentum" ? "bg-purple-500/10 text-purple-400" :
-                            "bg-cyan-500/10 text-cyan-400",
+                            pick.category === "Momentum" ? "bg-primary/10 text-primary" :
+                            "bg-cyan-500/10 text-muted-foreground",
                           )}>
                             {pick.category}
                           </span>

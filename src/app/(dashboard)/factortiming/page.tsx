@@ -622,7 +622,7 @@ function FactorDashboard() {
             className={cn(
               "text-left p-3 rounded-lg border transition-all",
               selected === f.name
-                ? "border-blue-500/60 bg-blue-500/10"
+                ? "border-primary/60 bg-primary/10"
                 : "border-zinc-700 bg-zinc-900 hover:border-zinc-500"
             )}
           >
@@ -683,7 +683,7 @@ function FactorDashboard() {
       <Card className="bg-zinc-900 border-zinc-700">
         <CardHeader className="pb-2">
           <CardTitle className="text-sm font-semibold text-zinc-300 flex items-center gap-2">
-            <BarChart3 className="w-4 h-4 text-blue-400" />
+            <BarChart3 className="w-4 h-4 text-primary" />
             Factor Z-Score &amp; Crowding
           </CardTitle>
         </CardHeader>
@@ -699,7 +699,7 @@ function FactorDashboard() {
       <Card className="bg-zinc-900 border-zinc-700">
         <CardHeader className="pb-2">
           <CardTitle className="text-sm font-semibold text-zinc-300 flex items-center gap-2">
-            <Target className="w-4 h-4 text-purple-400" />
+            <Target className="w-4 h-4 text-primary" />
             Factor Signal Table
           </CardTitle>
         </CardHeader>
@@ -824,7 +824,7 @@ function CrossAssetMomentum() {
       <Card className="bg-zinc-900 border-zinc-700">
         <CardHeader className="pb-2">
           <CardTitle className="text-sm font-semibold text-zinc-300 flex items-center gap-2">
-            <Activity className="w-4 h-4 text-blue-400" />
+            <Activity className="w-4 h-4 text-primary" />
             12-Month Momentum Ranking (All Assets)
           </CardTitle>
         </CardHeader>
@@ -895,7 +895,7 @@ function FactorCycle() {
       <Card className="bg-zinc-900 border-zinc-700">
         <CardHeader className="pb-2">
           <CardTitle className="text-sm font-semibold text-zinc-300 flex items-center gap-2">
-            <Layers className="w-4 h-4 text-purple-400" />
+            <Layers className="w-4 h-4 text-primary" />
             Factor Performance by Economic Regime (annualised %)
           </CardTitle>
         </CardHeader>
@@ -938,7 +938,7 @@ function FactorCycle() {
       <Card className="bg-zinc-900 border-zinc-700">
         <CardHeader className="pb-2">
           <CardTitle className="text-sm font-semibold text-zinc-300 flex items-center gap-2">
-            <Scale className="w-4 h-4 text-blue-400" />
+            <Scale className="w-4 h-4 text-primary" />
             Factor Correlation Matrix (trailing 3Y)
           </CardTitle>
         </CardHeader>
@@ -1052,7 +1052,7 @@ function TacticalAllocation() {
       <Card className="bg-zinc-900 border-zinc-700">
         <CardHeader className="pb-2">
           <CardTitle className="text-sm font-semibold text-zinc-300 flex items-center gap-2">
-            <Activity className="w-4 h-4 text-blue-400" />
+            <Activity className="w-4 h-4 text-primary" />
             200-Day Moving Average Rules — Current Signals
           </CardTitle>
         </CardHeader>
@@ -1112,7 +1112,7 @@ function TacticalAllocation() {
         <CardHeader className="pb-2">
           <div className="flex items-start justify-between">
             <CardTitle className="text-sm font-semibold text-zinc-300 flex items-center gap-2">
-              <TrendingUp className="w-4 h-4 text-blue-400" />
+              <TrendingUp className="w-4 h-4 text-primary" />
               200d MA Strategy vs Buy &amp; Hold (36-Month Sim)
             </CardTitle>
             <div className="flex items-center gap-3 text-xs">
@@ -1142,7 +1142,7 @@ function TacticalAllocation() {
       {/* Strategy description */}
       <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
         {[
-          { icon: <Shield className="w-4 h-4 text-blue-400" />, title: "Signal Logic", body: "Enter long when closing price crosses above its 200-day simple moving average. Exit to cash when price crosses below. Apply per asset class independently." },
+          { icon: <Shield className="w-4 h-4 text-primary" />, title: "Signal Logic", body: "Enter long when closing price crosses above its 200-day simple moving average. Exit to cash when price crosses below. Apply per asset class independently." },
           { icon: <Clock className="w-4 h-4 text-amber-400" />, title: "Rebalance Frequency", body: "Daily monitoring, monthly execution to reduce friction. Signal lags by 1 trading day to avoid look-ahead bias. Transaction costs assumed at 5bps round-trip." },
           { icon: <DollarSign className="w-4 h-4 text-emerald-400" />, title: "Risk Controls", body: "Max allocation 40% per asset class. Position sizing via equal-weight among passing signals. Cash held in short-term T-bills yielding estimated 4.8%." },
         ].map((item) => (
@@ -1207,7 +1207,7 @@ function Implementation() {
                   onClick={() => setSelected(selected === e.ticker ? null : e.ticker)}
                   className={cn(
                     "border-b border-zinc-800 cursor-pointer transition-colors",
-                    selected === e.ticker ? "bg-blue-500/10" : "hover:bg-zinc-800/40"
+                    selected === e.ticker ? "bg-primary/10" : "hover:bg-zinc-800/40"
                   )}
                 >
                   <td className="py-2 pr-3">
@@ -1252,7 +1252,7 @@ function Implementation() {
             initial={{ opacity: 0, y: -6 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -6 }}
-            className="rounded-lg border border-blue-500/30 bg-blue-500/5 p-4"
+            className="rounded-lg border border-border bg-primary/5 p-4"
           >
             <div className="flex items-start justify-between mb-3">
               <div>
@@ -1299,7 +1299,7 @@ function Implementation() {
       <Card className="bg-zinc-900 border-zinc-700">
         <CardHeader className="pb-2">
           <CardTitle className="text-sm font-semibold text-zinc-300 flex items-center gap-2">
-            <Info className="w-4 h-4 text-purple-400" />
+            <Info className="w-4 h-4 text-primary" />
             Factor ETF vs Mutual Fund: Key Trade-offs
           </CardTitle>
         </CardHeader>
@@ -1356,7 +1356,7 @@ function Implementation() {
                 </div>
                 <div className="flex h-3 rounded-full overflow-hidden bg-zinc-800 gap-px">
                   <div
-                    className="bg-blue-500"
+                    className="bg-primary"
                     style={{ width: `${(expCost / total) * 100}%` }}
                     title={`Expense: $${expCost}`}
                   />
@@ -1366,15 +1366,15 @@ function Implementation() {
                     title={`Tax drag: $${taxCost}`}
                   />
                   <div
-                    className="bg-purple-500"
+                    className="bg-primary"
                     style={{ width: `${(tradeCost / total) * 100}%` }}
                     title={`Trade cost: $${tradeCost}`}
                   />
                 </div>
                 <div className="flex gap-4 text-xs text-zinc-500">
-                  <span><span className="inline-block w-2 h-2 rounded-full bg-blue-500 mr-1" />Expense ${expCost}</span>
+                  <span><span className="inline-block w-2 h-2 rounded-full bg-primary mr-1" />Expense ${expCost}</span>
                   <span><span className="inline-block w-2 h-2 rounded-full bg-amber-500 mr-1" />Tax ${taxCost}</span>
-                  <span><span className="inline-block w-2 h-2 rounded-full bg-purple-500 mr-1" />Trade ${tradeCost}</span>
+                  <span><span className="inline-block w-2 h-2 rounded-full bg-primary mr-1" />Trade ${tradeCost}</span>
                 </div>
               </div>
             );
@@ -1408,9 +1408,9 @@ export default function FactorTimingPage() {
         className="mb-6"
       >
         <div className="flex items-center gap-3 mb-1">
-          <Layers className="w-6 h-6 text-blue-400" />
+          <Layers className="w-6 h-6 text-primary" />
           <h1 className="text-2xl font-bold tracking-tight text-white">Factor Timing</h1>
-          <Badge className="bg-blue-500/20 text-blue-400 border-blue-500/30 text-xs ml-2">Quant</Badge>
+          <Badge className="bg-primary/20 text-primary border-border text-xs ml-2">Quant</Badge>
         </div>
         <p className="text-sm text-zinc-400">
           Cross-asset momentum signals · Factor z-scores &amp; crowding · Economic regime heatmap · 200d MA tactical rules · Factor ETF universe

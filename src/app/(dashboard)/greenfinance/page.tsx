@@ -461,14 +461,14 @@ function GreeniumCalculator() {
           <p className="text-2xl font-bold text-emerald-400">{greenBondYield.toFixed(2)}%</p>
           <p className="text-xs text-zinc-500 mt-1">vs {conventionalYield.toFixed(2)}% conventional</p>
         </div>
-        <div className="rounded-lg border border-blue-500/30 bg-blue-500/5 p-4 text-center">
+        <div className="rounded-lg border border-border bg-primary/5 p-4 text-center">
           <p className="text-xs text-zinc-400 mb-1">Annual Savings</p>
-          <p className="text-2xl font-bold text-blue-400">${(annualSaving / 1000).toFixed(0)}K</p>
+          <p className="text-2xl font-bold text-primary">${(annualSaving / 1000).toFixed(0)}K</p>
           <p className="text-xs text-zinc-500 mt-1">per year on ${issuanceSize}M</p>
         </div>
-        <div className="rounded-lg border border-violet-500/30 bg-violet-500/5 p-4 text-center">
+        <div className="rounded-lg border border-border bg-primary/5 p-4 text-center">
           <p className="text-xs text-zinc-400 mb-1">10-Year Savings</p>
-          <p className="text-2xl font-bold text-violet-400">${(tenYearSaving / 1e6).toFixed(2)}M</p>
+          <p className="text-2xl font-bold text-primary">${(tenYearSaving / 1e6).toFixed(2)}M</p>
           <p className="text-xs text-zinc-500 mt-1">cumulative interest reduction</p>
         </div>
       </div>
@@ -735,7 +735,7 @@ export default function GreenFinancePage() {
           <Card className="bg-zinc-900 border-white/10">
             <CardHeader className="pb-2">
               <CardTitle className="text-sm text-zinc-200 flex items-center gap-2">
-                <Globe size={16} className="text-blue-400" />
+                <Globe size={16} className="text-primary" />
                 EU Green Taxonomy — 6 Environmental Objectives
               </CardTitle>
               <p className="text-xs text-zinc-400">
@@ -805,7 +805,7 @@ export default function GreenFinancePage() {
               <CardContent className="p-3 pt-0 space-y-2">
                 <div className="flex gap-3 text-[11px] mb-3">
                   <div className="flex items-center gap-1.5">
-                    <div className="w-3 h-3 rounded-sm bg-blue-500" />
+                    <div className="w-3 h-3 rounded-sm bg-primary" />
                     <span className="text-zinc-400">Compliance (ETS)</span>
                   </div>
                   <div className="flex items-center gap-1.5">
@@ -823,7 +823,7 @@ export default function GreenFinancePage() {
                 ].map((row) => (
                   <div key={row.label} className="grid grid-cols-3 text-[11px]">
                     <span className="text-zinc-400">{row.label}</span>
-                    <span className="text-blue-300">{row.comp}</span>
+                    <span className="text-primary">{row.comp}</span>
                     <span className="text-emerald-300">{row.vcm}</span>
                   </div>
                 ))}
@@ -844,7 +844,7 @@ export default function GreenFinancePage() {
                       <span className="text-xs font-bold text-white">{credit.abbr}</span>
                       <Badge className={cn(
                         "text-[11px] py-0 border-none",
-                        credit.market === "compliance" ? "bg-blue-500/20 text-blue-300" : "bg-emerald-500/20 text-emerald-300"
+                        credit.market === "compliance" ? "bg-primary/20 text-primary" : "bg-emerald-500/20 text-emerald-300"
                       )}>
                         {credit.market}
                       </Badge>
@@ -899,15 +899,15 @@ export default function GreenFinancePage() {
                   {INSTRUMENTS.map((ins, i) => {
                     const colorMap: Record<string, string> = {
                       emerald: "text-emerald-400",
-                      blue: "text-blue-400",
-                      violet: "text-violet-400",
+                      blue: "text-primary",
+                      violet: "text-primary",
                       amber: "text-amber-400",
                       orange: "text-orange-400",
                     };
                     const bgMap: Record<string, string> = {
                       emerald: "bg-emerald-500/10",
-                      blue: "bg-blue-500/10",
-                      violet: "bg-violet-500/10",
+                      blue: "bg-primary/10",
+                      violet: "bg-primary/10",
                       amber: "bg-amber-500/10",
                       orange: "bg-orange-500/10",
                     };
@@ -961,7 +961,7 @@ export default function GreenFinancePage() {
           <Card className="bg-zinc-900 border-white/10">
             <CardHeader className="pb-2">
               <CardTitle className="text-sm text-zinc-200 flex items-center gap-2">
-                <Shield size={16} className="text-violet-400" />
+                <Shield size={16} className="text-primary" />
                 SFDR Fund Classification — Paris Alignment Funnel
               </CardTitle>
               <p className="text-xs text-zinc-400">
@@ -1020,8 +1020,8 @@ export default function GreenFinancePage() {
           {/* SFDR tier details */}
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
             {SFDR_TIERS.map((tier, i) => {
-              const colors = ["text-emerald-400", "text-blue-400", "text-zinc-400"];
-              const borders = ["border-emerald-500/30", "border-blue-500/30", "border-zinc-700"];
+              const colors = ["text-emerald-400", "text-primary", "text-zinc-400"];
+              const borders = ["border-emerald-500/30", "border-border", "border-zinc-700"];
               return (
                 <div key={tier.article} className={cn("rounded-lg border p-4", borders[i])}>
                   <p className={cn("text-sm font-bold mb-1", colors[i])}>{tier.article}</p>

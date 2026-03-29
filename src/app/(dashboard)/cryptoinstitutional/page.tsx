@@ -397,7 +397,7 @@ function Tab1EtfContent() {
     <div className="space-y-6">
       <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
         <StatChip label="Spot BTC ETF AUM" value="$100B" sub="Dec 2024 total" color="text-indigo-400" />
-        <StatChip label="Spot ETH ETF AUM" value="$12B" sub="8 issuers combined" color="text-purple-400" />
+        <StatChip label="Spot ETH ETF AUM" value="$12B" sub="8 issuers combined" color="text-primary" />
         <StatChip label="IBIT Daily Volume" value="$1.8B" sub="Largest by AUM" color="text-emerald-400" />
         <StatChip label="GBTC Discount 2023" value="-49%" sub="Pre-conversion peak" color="text-amber-400" />
       </div>
@@ -459,7 +459,7 @@ function Tab1EtfContent() {
 
       <CollapsibleCard
         title="Ether ETF Timeline & Staking Exclusion Controversy"
-        icon={<Activity className="w-4 h-4 text-purple-400" />}
+        icon={<Activity className="w-4 h-4 text-primary" />}
         defaultOpen={false}
       >
         <div className="space-y-2">
@@ -470,9 +470,9 @@ function Tab1EtfContent() {
                 : ev.status === "Controversy"
                 ? "border-amber-800"
                 : ev.status === "Live"
-                ? "border-blue-800"
+                ? "border-border"
                 : ev.status === "Pending"
-                ? "border-purple-800"
+                ? "border-border"
                 : "border-zinc-700";
             const badgeColor =
               ev.status === "Approved"
@@ -526,7 +526,7 @@ function Tab1EtfContent() {
 
       <CollapsibleCard
         title="Institutional Crypto Allocation Sizing"
-        icon={<Shield className="w-4 h-4 text-blue-400" />}
+        icon={<Shield className="w-4 h-4 text-primary" />}
         defaultOpen={false}
       >
         <div className="space-y-3">
@@ -784,8 +784,8 @@ function Tab2StablecoinContent() {
       <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
         <StatChip label="Total Stablecoin M.Cap" value="$165B" sub="Sep 2024" color="text-emerald-400" />
         <StatChip label="USDT Dominance" value="71%" sub="Of stablecoin supply" color="text-amber-400" />
-        <StatChip label="DEX Vol Stablecoin" value="80%+" sub="Stablecoins in DEX volume" color="text-blue-400" />
-        <StatChip label="Daily Stablecoin Vol" value="$40B" sub="Cross-chain transfers" color="text-purple-400" />
+        <StatChip label="DEX Vol Stablecoin" value="80%+" sub="Stablecoins in DEX volume" color="text-primary" />
+        <StatChip label="Daily Stablecoin Vol" value="$40B" sub="Cross-chain transfers" color="text-primary" />
       </div>
 
       <CollapsibleCard
@@ -815,7 +815,7 @@ function Tab2StablecoinContent() {
 
       <CollapsibleCard
         title="Reserve Composition: USDT vs USDC"
-        icon={<Shield className="w-4 h-4 text-blue-400" />}
+        icon={<Shield className="w-4 h-4 text-primary" />}
       >
         <ReserveChart />
         <div className="mt-3 grid grid-cols-2 gap-3 text-xs">
@@ -852,7 +852,7 @@ function Tab2StablecoinContent() {
                     ev.severity === "Catastrophic"
                       ? "text-red-400"
                       : ev.severity === "Regulatory"
-                      ? "text-purple-400"
+                      ? "text-primary"
                       : "text-amber-400"
                   )}
                 >
@@ -1116,10 +1116,10 @@ function Tab3PrimeBrokerageContent() {
   return (
     <div className="space-y-6">
       <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
-        <StatChip label="Coinbase Prime AUM" value="$250B+" sub="Custodied institutional" color="text-blue-400" />
+        <StatChip label="Coinbase Prime AUM" value="$250B+" sub="Custodied institutional" color="text-primary" />
         <StatChip label="OTC Block Min. Size" value=">$500K" sub="Typical minimum" color="text-emerald-400" />
         <StatChip label="BTC Lending LTV" value="50%" sub="Standard margin rate" color="text-amber-400" />
-        <StatChip label="FTX Claims Paid" value="$16B" sub="Nov 2024 bankruptcy plan" color="text-purple-400" />
+        <StatChip label="FTX Claims Paid" value="$16B" sub="Nov 2024 bankruptcy plan" color="text-primary" />
       </div>
 
       <CollapsibleCard
@@ -1187,7 +1187,7 @@ function Tab3PrimeBrokerageContent() {
             <tbody>
               {pbProviders.map((pb, i) => (
                 <tr key={i} className="border-b border-zinc-800/60 hover:bg-zinc-800/30">
-                  <td className="py-2 px-3 text-blue-400 font-medium">{pb.name}</td>
+                  <td className="py-2 px-3 text-primary font-medium">{pb.name}</td>
                   <td className="py-2 px-3 text-zinc-400">{pb.strengths}</td>
                   {([pb.custody, pb.otc, pb.lending, pb.margin] as boolean[]).map((has, j) => (
                     <td key={j} className="py-2 px-3 text-center">
@@ -1231,7 +1231,7 @@ function Tab3PrimeBrokerageContent() {
 
       <CollapsibleCard
         title="Crypto-Specific Risk Framework"
-        icon={<Shield className="w-4 h-4 text-purple-400" />}
+        icon={<Shield className="w-4 h-4 text-primary" />}
         defaultOpen={false}
       >
         <div className="space-y-3">
@@ -1539,7 +1539,7 @@ function Tab4OnchainContent() {
         <StatChip label="BTC Exchange Reserves" value="1.72M" sub="Multi-year lows (Oct 24)" color="text-amber-400" />
         <StatChip label="Whale Wallets >1K BTC" value="~2,100" sub="Address count" color="text-indigo-400" />
         <StatChip label="MVRV Ratio (Oct 24)" value="2.4x" sub="Market / Realized cap" color="text-emerald-400" />
-        <StatChip label="LTH Supply" value="70%+" sub="Long-term holders (>155d)" color="text-purple-400" />
+        <StatChip label="LTH Supply" value="70%+" sub="Long-term holders (>155d)" color="text-primary" />
       </div>
 
       <CollapsibleCard
@@ -1585,7 +1585,7 @@ function Tab4OnchainContent() {
 
       <CollapsibleCard
         title="HODL Waves — Bitcoin Supply by Coin Age"
-        icon={<Database className="w-4 h-4 text-purple-400" />}
+        icon={<Database className="w-4 h-4 text-primary" />}
       >
         <HodlWavesSVG />
         <p className="text-xs text-zinc-500 mt-2">
@@ -1598,7 +1598,7 @@ function Tab4OnchainContent() {
 
       <CollapsibleCard
         title="Key On-Chain Metrics Reference"
-        icon={<Eye className="w-4 h-4 text-blue-400" />}
+        icon={<Eye className="w-4 h-4 text-primary" />}
         defaultOpen={false}
       >
         <div className="space-y-3">
@@ -1682,8 +1682,8 @@ function Tab4OnchainContent() {
             </ul>
           </div>
         </div>
-        <div className="mt-3 p-3 bg-purple-500/10 border border-purple-500/20 rounded text-xs">
-          <div className="font-medium text-purple-300 mb-1">Nansen Smart Money Labels</div>
+        <div className="mt-3 p-3 bg-primary/10 border border-border rounded text-xs">
+          <div className="font-medium text-primary mb-1">Nansen Smart Money Labels</div>
           <div className="text-zinc-400">
             Nansen&apos;s entity database labels ~200M wallets including exchanges, protocols, VC funds (a16z, Paradigm),
             and known traders. Tracking when labeled &quot;smart money&quot; wallets accumulate a token has predictive value —
@@ -1720,7 +1720,7 @@ export default function CryptoInstitutionalPage() {
             { label: "Spot BTC ETF", color: "bg-indigo-500/15 text-indigo-300 border-indigo-500/25" },
             { label: "Stablecoins", color: "bg-emerald-500/15 text-emerald-300 border-emerald-500/25" },
             { label: "Prime Brokerage", color: "bg-amber-500/15 text-amber-300 border-amber-500/25" },
-            { label: "On-Chain Analytics", color: "bg-purple-500/15 text-purple-300 border-purple-500/25" },
+            { label: "On-Chain Analytics", color: "bg-primary/15 text-primary border-border" },
           ].map((tag) => (
             <span
               key={tag.label}
@@ -1755,7 +1755,7 @@ export default function CryptoInstitutionalPage() {
           </TabsTrigger>
           <TabsTrigger
             value="onchain"
-            className="text-xs data-[state=active]:bg-purple-600 data-[state=active]:text-white"
+            className="text-xs data-[state=active]:bg-primary data-[state=active]:text-white"
           >
             On-Chain Analytics
           </TabsTrigger>

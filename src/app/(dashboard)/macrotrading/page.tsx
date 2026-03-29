@@ -540,7 +540,7 @@ function RegimeDashboard() {
       <Card className="bg-slate-900/60 border-slate-700/50">
         <CardHeader className="pb-3">
           <CardTitle className="text-sm font-medium text-slate-300 flex items-center gap-2">
-            <BarChart2 className="w-4 h-4 text-violet-400" />
+            <BarChart2 className="w-4 h-4 text-primary" />
             Asset Class Returns by Regime (Historical Avg)
           </CardTitle>
         </CardHeader>
@@ -859,7 +859,7 @@ function RateCyclePlaybook() {
       <Card className="bg-slate-900/60 border-slate-700/50">
         <CardHeader className="pb-3">
           <CardTitle className="text-sm font-medium text-slate-300 flex items-center gap-2">
-            <BarChart2 className="w-4 h-4 text-violet-400" />
+            <BarChart2 className="w-4 h-4 text-primary" />
             Historical Asset Performance per Rate Cycle Phase
           </CardTitle>
         </CardHeader>
@@ -911,9 +911,9 @@ function RateCyclePlaybook() {
 function MagnitudeBadge({ magnitude }: { magnitude: CrossAssetSignal["magnitude"] }) {
   const cls =
     magnitude === "strong"
-      ? "bg-violet-900/60 text-violet-300 border-violet-700/50"
+      ? "bg-muted text-primary border-border"
       : magnitude === "moderate"
-      ? "bg-blue-900/60 text-blue-300 border-blue-700/50"
+      ? "bg-muted text-primary border-border"
       : "bg-slate-800 text-slate-400 border-slate-700/50";
   return (
     <span className={cn("text-xs font-medium px-2 py-0.5 rounded-full border capitalize", cls)}>
@@ -1190,7 +1190,7 @@ function TradeIdeas() {
       <Card className="bg-slate-900/60 border-slate-700/50">
         <CardHeader className="pb-2">
           <CardTitle className="text-sm font-medium text-slate-300 flex items-center gap-2">
-            <Target className="w-4 h-4 text-violet-400" />
+            <Target className="w-4 h-4 text-primary" />
             Conviction Distribution
           </CardTitle>
         </CardHeader>

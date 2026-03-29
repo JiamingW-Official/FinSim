@@ -377,7 +377,7 @@ function PerformanceAttribution() {
         {[
           { label: "Total Alpha", value: `${totalAlpha > 0 ? "+" : ""}${(totalAlpha).toFixed(2)}%`, color: totalAlpha >= 0 ? "text-emerald-400" : "text-red-400" },
           { label: "Hit Rate", value: `${(hitRate * 100).toFixed(0)}%`, color: hitRate >= 0.5 ? "text-emerald-400" : "text-amber-400" },
-          { label: "Positive Contributors", value: `${positiveRows}/10`, color: "text-blue-400" },
+          { label: "Positive Contributors", value: `${positiveRows}/10`, color: "text-primary" },
         ].map((s) => (
           <div key={s.label} className="rounded-md border border-border/50 bg-background/60 px-3 py-2">
             <div className="text-[11px] text-muted-foreground">{s.label}</div>
@@ -458,7 +458,7 @@ function PerformanceAttribution() {
           <div className="text-xs text-muted-foreground">IC measures correlation between predicted and actual returns. Target &gt; 0.05 is considered skilled.</div>
           <div className="rounded-md border border-border/50 bg-background/60 px-3 py-2">
             <div className="text-[11px] text-muted-foreground">Estimated IC</div>
-            <div className="text-sm font-semibold text-blue-400 tabular-nums">0.12</div>
+            <div className="text-sm font-semibold text-primary tabular-nums">0.12</div>
           </div>
         </div>
       </div>
@@ -631,7 +631,7 @@ function FactorAnalysisSection() {
     <div className="space-y-4">
       <div className="grid grid-cols-3 gap-2">
         {[
-          { label: "R-Squared", value: (rSquared * 100).toFixed(1) + "%", color: "text-violet-400", desc: "Explained by factors" },
+          { label: "R-Squared", value: (rSquared * 100).toFixed(1) + "%", color: "text-primary", desc: "Explained by factors" },
           { label: "Jensen's Alpha", value: `${jensensAlpha > 0 ? "+" : ""}${jensensAlpha.toFixed(2)}%`, color: jensensAlpha >= 0 ? "text-emerald-400" : "text-red-400", desc: "Factor-adj. excess return" },
           { label: "Active Factors", value: `${loadings.filter((f) => Math.abs(f.tStat) > 2).length}/5`, color: "text-amber-400", desc: "|t-stat| > 2" },
         ].map((s) => (
@@ -660,7 +660,7 @@ function FactorAnalysisSection() {
             {loadings.map((f) => (
               <tr key={f.label} className="border-b border-border/20 hover:bg-muted/10 transition-colors">
                 <td className="px-3 py-2 text-muted-foreground">{f.name}</td>
-                <td className={cn("px-3 py-2 text-right tabular-nums font-semibold", f.loading >= 0 ? "text-blue-400" : "text-violet-400")}>
+                <td className={cn("px-3 py-2 text-right tabular-nums font-semibold", f.loading >= 0 ? "text-primary" : "text-primary")}>
                   {f.loading > 0 ? "+" : ""}{f.loading.toFixed(3)}
                 </td>
                 <td className={cn("px-3 py-2 text-right tabular-nums", Math.abs(f.tStat) > 2 ? "text-amber-400" : "text-muted-foreground")}>
@@ -777,8 +777,8 @@ function DrawdownSection() {
         </table>
       </div>
 
-      <div className="flex items-start gap-1.5 rounded-md border border-blue-500/30 bg-blue-500/8 px-3 py-2 text-xs text-muted-foreground">
-        <span className="text-blue-400 font-medium shrink-0">DD Correlation {ddCorrelation.toFixed(2)}:</span>
+      <div className="flex items-start gap-1.5 rounded-md border border-border bg-primary/8 px-3 py-2 text-xs text-muted-foreground">
+        <span className="text-primary font-medium shrink-0">DD Correlation {ddCorrelation.toFixed(2)}:</span>
         <span>{ddCorrelation > 0.6 ? "Portfolio drawdowns are highly correlated with market drawdowns — limited diversification benefit in crises." : "Portfolio shows some independence from market drawdowns — provides diversification in stress."}</span>
       </div>
     </div>
@@ -931,7 +931,7 @@ function StyleBox({ styleIndex }: { styleIndex: number }) {
                 key={`${ri}-${ci}`}
                 className={cn(
                   "h-8 w-8 rounded-sm border text-[8px] flex items-center justify-center text-center leading-none",
-                  isActive ? "bg-blue-500/30 border-blue-500/60 text-blue-300 font-bold" : "border-border/40 bg-muted/10 text-muted-foreground/40"
+                  isActive ? "bg-primary/30 border-primary/60 text-primary font-bold" : "border-border/40 bg-muted/10 text-muted-foreground/40"
                 )}
                 title={`${r} / ${c}`}
               >
@@ -949,7 +949,7 @@ function StyleBox({ styleIndex }: { styleIndex: number }) {
 }
 
 function QuartileBar({ quartile }: { quartile: number }) {
-  const colors = ["", "bg-emerald-500", "bg-blue-500", "bg-amber-500", "bg-red-500"];
+  const colors = ["", "bg-emerald-500", "bg-primary", "bg-amber-500", "bg-red-500"];
   const labels = ["", "Q1 (Top)", "Q2", "Q3", "Q4 (Bot)"];
   return (
     <div className="flex items-center gap-1.5">
@@ -1001,7 +1001,7 @@ function PeerComparisonSection() {
               <div className="text-muted-foreground font-medium">Style Classification</div>
               {[
                 { label: "Active Share", value: `${activeShare.toFixed(1)}%`, color: activeShare > 60 ? "text-emerald-400" : "text-amber-400", note: activeShare > 60 ? "High conviction" : "Closet indexer risk" },
-                { label: "Tracking Error", value: `${trackingError.toFixed(2)}%`, color: "text-blue-400", note: "Ann. excess return std dev" },
+                { label: "Tracking Error", value: `${trackingError.toFixed(2)}%`, color: "text-primary", note: "Ann. excess return std dev" },
                 { label: "Info Ratio", value: informationRatio.toFixed(2), color: informationRatio > 0.5 ? "text-emerald-400" : "text-amber-400", note: informationRatio > 0.5 ? "Above target" : "Target: > 0.5" },
               ].map((s) => (
                 <div key={s.label} className="flex items-center gap-2">
@@ -1030,12 +1030,12 @@ function PeerComparisonSection() {
 // ── Tab definitions ───────────────────────────────────────────────────────────
 
 const TABS: { id: string; label: string; icon: React.ReactNode; color: string }[] = [
-  { id: "attribution", label: "Performance Attribution", icon: <TrendingUp className="h-3 w-3" />, color: "text-blue-400" },
+  { id: "attribution", label: "Performance Attribution", icon: <TrendingUp className="h-3 w-3" />, color: "text-primary" },
   { id: "risk", label: "Risk-Adjusted Returns", icon: <Shield className="h-3 w-3" />, color: "text-emerald-400" },
-  { id: "factors", label: "Factor Analysis", icon: <BarChart2 className="h-3 w-3" />, color: "text-violet-400" },
+  { id: "factors", label: "Factor Analysis", icon: <BarChart2 className="h-3 w-3" />, color: "text-primary" },
   { id: "drawdown", label: "Drawdown Deep Dive", icon: <TrendingDown className="h-3 w-3" />, color: "text-red-400" },
   { id: "tail", label: "Tail Risk", icon: <AlertTriangle className="h-3 w-3" />, color: "text-amber-400" },
-  { id: "peers", label: "Peer Comparison", icon: <Users className="h-3 w-3" />, color: "text-cyan-400" },
+  { id: "peers", label: "Peer Comparison", icon: <Users className="h-3 w-3" />, color: "text-muted-foreground" },
 ];
 
 // ── Main component ────────────────────────────────────────────────────────────

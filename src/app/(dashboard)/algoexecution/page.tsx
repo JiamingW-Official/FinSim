@@ -542,9 +542,9 @@ export default function AlgoExecutionPage() {
       label: "Impl. Shortfall",
       value: `${implShortfall} bps`,
       icon: TrendingDown,
-      color: "text-blue-400",
-      bg: "bg-blue-900/20",
-      border: "border-blue-700/30",
+      color: "text-primary",
+      bg: "bg-muted/40",
+      border: "border-border",
       sub: "vs arrival price",
       positive: true,
     },
@@ -562,9 +562,9 @@ export default function AlgoExecutionPage() {
       label: "Fill Rate",
       value: `${fillRate}%`,
       icon: Target,
-      color: "text-purple-400",
-      bg: "bg-purple-900/20",
-      border: "border-purple-700/30",
+      color: "text-primary",
+      bg: "bg-muted/40",
+      border: "border-border",
       sub: "of target shares",
       positive: true,
     },
@@ -583,8 +583,8 @@ export default function AlgoExecutionPage() {
         className="space-y-1"
       >
         <div className="flex items-center gap-3">
-          <div className="p-2 rounded-lg bg-blue-900/30 border border-blue-700/40">
-            <Zap className="w-5 h-5 text-blue-400" />
+          <div className="p-2 rounded-lg bg-muted/50 border border-border">
+            <Zap className="w-5 h-5 text-primary" />
           </div>
           <div>
             <h1 className="text-2xl font-bold tracking-tight">Algorithmic Execution Strategies</h1>
@@ -637,7 +637,7 @@ export default function AlgoExecutionPage() {
               <Card className="lg:col-span-2 border-border bg-card">
                 <CardHeader className="pb-2">
                   <CardTitle className="text-sm font-semibold flex items-center gap-2">
-                    <BarChart3 className="w-4 h-4 text-blue-400" />
+                    <BarChart3 className="w-4 h-4 text-primary" />
                     Intraday VWAP Execution
                   </CardTitle>
                   <p className="text-xs text-muted-foreground">
@@ -674,9 +674,9 @@ export default function AlgoExecutionPage() {
                   </CardContent>
                 </Card>
 
-                <Card className="border-blue-700/30 bg-blue-900/10">
+                <Card className="border-border bg-muted/30">
                   <CardContent className="p-4 space-y-2">
-                    <div className="flex items-center gap-2 text-blue-400 font-semibold text-sm">
+                    <div className="flex items-center gap-2 text-primary font-semibold text-sm">
                       <Info className="w-4 h-4" />
                       VWAP vs TWAP
                     </div>
@@ -699,7 +699,7 @@ export default function AlgoExecutionPage() {
             <Card className="border-border bg-card">
               <CardHeader className="pb-2">
                 <CardTitle className="text-sm font-semibold flex items-center gap-2">
-                  <Clock className="w-4 h-4 text-purple-400" />
+                  <Clock className="w-4 h-4 text-primary" />
                   Intraday Volume Distribution
                 </CardTitle>
               </CardHeader>
@@ -713,7 +713,7 @@ export default function AlgoExecutionPage() {
                   {[38, 18, 10, 9, 10, 18, 42].map((v, i) => (
                     <div key={i} className="flex flex-col items-center justify-end h-full">
                       <div
-                        className="w-full bg-blue-500/40 border border-blue-500/60 rounded-t"
+                        className="w-full bg-primary/40 border border-primary/60 rounded-t"
                         style={{ height: `${(v / 42) * 100}%` }}
                       />
                       <div className="text-xs mt-1 text-muted-foreground">{v}%</div>
@@ -765,12 +765,12 @@ export default function AlgoExecutionPage() {
                       {
                         label: "Participation Rate",
                         desc: "Trading too fast raises market impact; too slow increases timing risk.",
-                        color: "text-blue-400",
+                        color: "text-primary",
                       },
                       {
                         label: "Spread Width",
                         desc: "Wide spreads mean each trade is costlier at the touch.",
-                        color: "text-purple-400",
+                        color: "text-primary",
                       },
                       {
                         label: "Dark Pool Access",
@@ -824,7 +824,7 @@ export default function AlgoExecutionPage() {
                   <TCBreakdownChart data={TC_DATA} />
                   <div className="flex gap-4 mt-3 text-xs">
                     <div className="flex items-center gap-1.5">
-                      <div className="w-3 h-3 rounded bg-blue-500/60" />
+                      <div className="w-3 h-3 rounded bg-primary/60" />
                       <span className="text-muted-foreground">Explicit: {explicitTotal.toFixed(1)} bps</span>
                     </div>
                     <div className="flex items-center gap-1.5">
@@ -838,7 +838,7 @@ export default function AlgoExecutionPage() {
               <Card className="border-border bg-card">
                 <CardHeader className="pb-2">
                   <CardTitle className="text-sm font-semibold flex items-center gap-2">
-                    <Shield className="w-4 h-4 text-blue-400" />
+                    <Shield className="w-4 h-4 text-primary" />
                     Cost Components Detail
                   </CardTitle>
                 </CardHeader>
@@ -849,7 +849,7 @@ export default function AlgoExecutionPage() {
                         variant="outline"
                         className={`flex-shrink-0 text-xs px-1.5 py-0 ${
                           d.type === "explicit"
-                            ? "border-blue-700/50 text-blue-400"
+                            ? "border-border text-primary"
                             : "border-yellow-700/50 text-yellow-400"
                         }`}
                       >
@@ -934,7 +934,7 @@ export default function AlgoExecutionPage() {
               <Card className="border-border bg-card">
                 <CardHeader className="pb-2">
                   <CardTitle className="text-sm font-semibold flex items-center gap-2">
-                    <Layers className="w-4 h-4 text-purple-400" />
+                    <Layers className="w-4 h-4 text-primary" />
                     Side-by-Side Comparison
                   </CardTitle>
                 </CardHeader>
@@ -1045,7 +1045,7 @@ export default function AlgoExecutionPage() {
               <Card className="border-border bg-card">
                 <CardHeader className="pb-2">
                   <CardTitle className="text-sm font-semibold flex items-center gap-2">
-                    <BarChart3 className="w-4 h-4 text-blue-400" />
+                    <BarChart3 className="w-4 h-4 text-primary" />
                     Venue Fill Rates
                   </CardTitle>
                   <p className="text-xs text-muted-foreground">
@@ -1056,8 +1056,8 @@ export default function AlgoExecutionPage() {
                   <VenueChart data={venueData} />
                   <div className="flex gap-3 mt-2 text-xs flex-wrap">
                     {[
-                      { type: "Exchange", color: "bg-blue-500/60" },
-                      { type: "Dark Pool", color: "bg-purple-500/60" },
+                      { type: "Exchange", color: "bg-primary/60" },
+                      { type: "Dark Pool", color: "bg-primary/60" },
                       { type: "Internalized", color: "bg-green-500/60" },
                     ].map((l) => (
                       <div key={l.type} className="flex items-center gap-1.5">
@@ -1073,7 +1073,7 @@ export default function AlgoExecutionPage() {
               <Card className="border-border bg-card">
                 <CardHeader className="pb-2">
                   <CardTitle className="text-sm font-semibold flex items-center gap-2">
-                    <Layers className="w-4 h-4 text-purple-400" />
+                    <Layers className="w-4 h-4 text-primary" />
                     Venue Quality Metrics
                   </CardTitle>
                 </CardHeader>
@@ -1093,9 +1093,9 @@ export default function AlgoExecutionPage() {
                         {venueData.map((v) => {
                           const typeColor =
                             v.type === "exchange"
-                              ? "text-blue-400"
+                              ? "text-primary"
                               : v.type === "dark"
-                              ? "text-purple-400"
+                              ? "text-primary"
                               : "text-green-400";
                           return (
                             <tr key={v.name} className="border-b border-border/50">
@@ -1124,9 +1124,9 @@ export default function AlgoExecutionPage() {
                 {
                   title: "Lit Exchanges",
                   icon: Activity,
-                  color: "text-blue-400",
-                  bg: "bg-blue-900/10",
-                  border: "border-blue-700/30",
+                  color: "text-primary",
+                  bg: "bg-muted/30",
+                  border: "border-border",
                   points: [
                     "Fully transparent pre/post-trade",
                     "Best price discovery via NBBO",
@@ -1138,9 +1138,9 @@ export default function AlgoExecutionPage() {
                 {
                   title: "Dark Pools (ATSs)",
                   icon: Shield,
-                  color: "text-purple-400",
-                  bg: "bg-purple-900/10",
-                  border: "border-purple-700/30",
+                  color: "text-primary",
+                  bg: "bg-muted/30",
+                  border: "border-border",
                   points: [
                     "No pre-trade transparency",
                     "Midpoint pricing (no spread cost)",
@@ -1196,8 +1196,8 @@ export default function AlgoExecutionPage() {
               <CardContent>
                 <div className="grid grid-cols-1 md:grid-cols-4 gap-3 text-xs">
                   {[
-                    { step: "1", label: "Price Check", desc: "Find best bid/offer across all venues via NBBO sweep", color: "bg-blue-500" },
-                    { step: "2", label: "Dark Sweep", desc: "Check dark pools for resting liquidity at midpoint", color: "bg-purple-500" },
+                    { step: "1", label: "Price Check", desc: "Find best bid/offer across all venues via NBBO sweep", color: "bg-primary" },
+                    { step: "2", label: "Dark Sweep", desc: "Check dark pools for resting liquidity at midpoint", color: "bg-primary" },
                     { step: "3", label: "IOC Lit", desc: "Send immediate-or-cancel orders to lit venues with price improvement", color: "bg-green-500" },
                     { step: "4", label: "Post & Internalize", desc: "Post remainder or internalize if broker has inventory", color: "bg-yellow-500" },
                   ].map((item) => (

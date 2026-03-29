@@ -612,7 +612,7 @@ export default function OnchainPage() {
                     change={networkStats.btcActiveAddrChg}
                     sub="Unique daily senders"
                     icon={<Users className="w-4 h-4" />}
-                    color="text-blue-400"
+                    color="text-primary"
                   />
                   <StatCard
                     label="Daily Transactions"
@@ -628,7 +628,7 @@ export default function OnchainPage() {
                     change={networkStats.btcFeesChg}
                     sub="Median fee rate"
                     icon={<CircleDollarSign className="w-4 h-4" />}
-                    color="text-purple-400"
+                    color="text-primary"
                   />
                 </div>
               </div>
@@ -898,7 +898,7 @@ export default function OnchainPage() {
                   change={0.4}
                   sub="DEX share of spot vol"
                   icon={<Globe className="w-4 h-4" />}
-                  color="text-cyan-400"
+                  color="text-muted-foreground"
                 />
               </div>
 
@@ -1020,7 +1020,7 @@ export default function OnchainPage() {
                   change={0.9}
                   sub="Next adj. in 8 days"
                   icon={<Database className="w-4 h-4" />}
-                  color="text-blue-400"
+                  color="text-primary"
                 />
                 <StatCard
                   label="ETH Validators"
@@ -1147,7 +1147,7 @@ export default function OnchainPage() {
                     threshold: { ob: 3.5, os: 1.0 },
                     desc: "Market Val / Realized Val",
                     icon: <BarChart3 className="w-4 h-4" />,
-                    color: "text-blue-400",
+                    color: "text-primary",
                   },
                   {
                     name: "NVT Signal",
@@ -1155,7 +1155,7 @@ export default function OnchainPage() {
                     threshold: { ob: 150, os: 45 },
                     desc: "Network Value / Txn Volume",
                     icon: <Activity className="w-4 h-4" />,
-                    color: "text-purple-400",
+                    color: "text-primary",
                   },
                   {
                     name: "Puell Multiple",

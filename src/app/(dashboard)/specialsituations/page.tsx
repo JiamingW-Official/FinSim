@@ -702,7 +702,7 @@ function StubCalculator() {
 
       <div className="grid grid-cols-3 gap-3 pt-2 border-t border-gray-800">
         {[
-          { label: "Sub Stake Value", value: `$${subStakeValue.toFixed(2)}`, color: "text-purple-400" },
+          { label: "Sub Stake Value", value: `$${subStakeValue.toFixed(2)}`, color: "text-primary" },
           { label: "Implied Stub Value", value: `$${impliedStub.toFixed(2)}`, color: impliedStub < 0 ? "text-red-400" : "text-emerald-400" },
           { label: "Stub Mkt Cap ($M)", value: `$${(stubMarketCap / 1).toFixed(0)}M`, color: stubMarketCap < 0 ? "text-red-400" : "text-emerald-400" },
         ].map(({ label, value, color }) => (
@@ -843,7 +843,7 @@ function ActivistTab() {
         <div className="grid grid-cols-2 md:grid-cols-4 gap-3 mt-4">
           {[
             { phase: "13D Filing", note: "Share price typically +5–15% on day of filing", icon: <FileText className="w-4 h-4 text-indigo-400" /> },
-            { phase: "Public Letter", note: "Detailed demands; management responds within 30 days", icon: <BookOpen className="w-4 h-4 text-purple-400" /> },
+            { phase: "Public Letter", note: "Detailed demands; management responds within 30 days", icon: <BookOpen className="w-4 h-4 text-primary" /> },
             { phase: "Proxy Fight", note: "Costly; ~60% of contested elections settle before vote", icon: <Users className="w-4 h-4 text-fuchsia-400" /> },
             { phase: "Resolution", note: "Board seat, strategic review, or sale announcement", icon: <CheckCircle2 className="w-4 h-4 text-pink-400" /> },
           ].map(({ phase, note, icon }) => (
@@ -1011,13 +1011,13 @@ function PostReorgTab() {
   const keyInsights = [
     {
       title: "Fresh-Start Accounting",
-      icon: <RefreshCw className="w-4 h-4 text-blue-400" />,
+      icon: <RefreshCw className="w-4 h-4 text-primary" />,
       description:
         "Assets re-valued to fair value on emergence. Goodwill written off. New entity = clean balance sheet with no legacy write-downs.",
     },
     {
       title: "Capital Structure Analysis",
-      icon: <BarChart2 className="w-4 h-4 text-purple-400" />,
+      icon: <BarChart2 className="w-4 h-4 text-primary" />,
       description:
         "New equity issued to former creditors (often at 6–8× EBITDA). Management gets 5–10% equity kicker. Debt load reduced 60–80%.",
     },
@@ -1335,7 +1335,7 @@ export default function SpecialSituationsPage() {
           {[
             { label: "Avg Merger Arb Spread", value: "3–6%", sub: "Annualized", icon: <Activity className="w-4 h-4 text-indigo-400" /> },
             { label: "Post-Reorg 3yr Median", value: "+128%", sub: "vs market +38%", icon: <TrendingUp className="w-4 h-4 text-emerald-400" /> },
-            { label: "Activist Success Rate", value: "66%", sub: "Demand met", icon: <Target className="w-4 h-4 text-purple-400" /> },
+            { label: "Activist Success Rate", value: "66%", sub: "Demand met", icon: <Target className="w-4 h-4 text-primary" /> },
             { label: "Stub Avg Entry Discount", value: "−38%", sub: "To fair value", icon: <DollarSign className="w-4 h-4 text-pink-400" /> },
           ].map(({ label, value, sub, icon }) => (
             <div key={label} className="bg-gray-900 border border-gray-800 rounded-xl p-3">

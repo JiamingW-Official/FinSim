@@ -490,7 +490,7 @@ function MacroRegimeTab() {
       {/* Header */}
       <div className="flex items-center gap-3 flex-wrap">
         <div className="flex items-center gap-2">
-          <Globe className="w-5 h-5 text-blue-400" />
+          <Globe className="w-5 h-5 text-primary" />
           <span className="text-sm font-semibold text-gray-200">Global Growth/Inflation Matrix</span>
         </div>
         <Badge
@@ -568,7 +568,7 @@ function MacroRegimeTab() {
         {[
           { label: "Global PMI Composite", value: "51.3", sub: "Expansion", icon: <Activity className="w-4 h-4 text-green-400" />, up: true },
           { label: "Global CPI (avg)", value: "3.8%", sub: "Above target", icon: <TrendingUp className="w-4 h-4 text-red-400" />, up: false },
-          { label: "G7 GDP Growth", value: "2.1%", sub: "Steady", icon: <BarChart2 className="w-4 h-4 text-blue-400" />, up: true },
+          { label: "G7 GDP Growth", value: "2.1%", sub: "Steady", icon: <BarChart2 className="w-4 h-4 text-primary" />, up: true },
           { label: "USD Index (DXY)", value: "104.6", sub: "-0.3% MTD", icon: <DollarSign className="w-4 h-4 text-yellow-400" />, up: false },
         ].map((m, i) => (
           <Card key={i} className="bg-gray-900/60 border-gray-800">
@@ -596,7 +596,7 @@ function CentralBanksTab() {
   return (
     <div className="space-y-4">
       <div className="flex items-center gap-2">
-        <Target className="w-5 h-5 text-purple-400" />
+        <Target className="w-5 h-5 text-primary" />
         <span className="text-sm font-semibold text-gray-200">Central Bank Policy Tracker</span>
       </div>
 
@@ -677,7 +677,7 @@ function CentralBanksTab() {
                 title: "Fed vs ECB Spread",
                 value: "+2.10%",
                 note: "USD carry advantage persists",
-                color: "text-blue-400",
+                color: "text-primary",
               },
               {
                 title: "BOJ Divergence",
@@ -744,7 +744,7 @@ function CrossAssetTab() {
   return (
     <div className="space-y-4">
       <div className="flex items-center gap-2">
-        <Layers className="w-5 h-5 text-cyan-400" />
+        <Layers className="w-5 h-5 text-muted-foreground" />
         <span className="text-sm font-semibold text-gray-200">Cross-Asset Correlation Matrix (30-day rolling)</span>
       </div>
 
@@ -1048,7 +1048,7 @@ export default function GlobalMacroDashPage() {
       <div className="flex items-start justify-between flex-wrap gap-3">
         <div>
           <div className="flex items-center gap-2 mb-1">
-            <Globe className="w-6 h-6 text-blue-400" />
+            <Globe className="w-6 h-6 text-primary" />
             <h1 className="text-xl font-bold text-white">Global Macro Dashboard</h1>
           </div>
           <p className="text-sm text-gray-400">
@@ -1056,7 +1056,7 @@ export default function GlobalMacroDashPage() {
           </p>
         </div>
         <div className="flex items-center gap-2">
-          <Badge className="bg-blue-900/40 text-blue-300 border-blue-700 text-xs">
+          <Badge className="bg-muted/60 text-primary border-border text-xs">
             <Activity className="w-3 h-3 mr-1" />
             Live Feed
           </Badge>

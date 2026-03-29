@@ -645,9 +645,9 @@ function SOTPTab() {
       {/* Header KPIs */}
       <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
         {[
-          { label: "Sum of Parts", value: `$${Math.round(TOTAL_SOTP / 100) / 10}B`, sub: "Gross asset value", color: "text-blue-400" },
+          { label: "Sum of Parts", value: `$${Math.round(TOTAL_SOTP / 100) / 10}B`, sub: "Gross asset value", color: "text-primary" },
           { label: "HC Discount", value: `-${Math.round(HOLDING_CO_DISCOUNT * 100)}%`, sub: "NAV discount applied", color: "text-red-400" },
-          { label: "SOTP / Share", value: `$${Math.round(SOTP_PER_SHARE)}`, sub: "Post discount + debt", color: "text-cyan-400" },
+          { label: "SOTP / Share", value: `$${Math.round(SOTP_PER_SHARE)}`, sub: "Post discount + debt", color: "text-muted-foreground" },
           { label: "Upside vs. Market", value: `+${Math.round(upside)}%`, sub: `Current $${CURRENT_PRICE}`, color: "text-emerald-400" },
         ].map((kpi, i) => (
           <div key={i} className="bg-gray-800 border border-gray-700 rounded-lg p-3">
@@ -662,7 +662,7 @@ function SOTPTab() {
       <div className="grid md:grid-cols-2 gap-6">
         <div className="bg-gray-800 border border-gray-700 rounded-xl p-4">
           <h3 className="text-sm font-semibold text-gray-200 mb-3 flex items-center gap-2">
-            <PieChart className="w-4 h-4 text-blue-400" />
+            <PieChart className="w-4 h-4 text-primary" />
             Asset Value Composition
           </h3>
           <div className="flex items-center gap-4">
@@ -692,7 +692,7 @@ function SOTPTab() {
         {/* Waterfall */}
         <div className="bg-gray-800 border border-gray-700 rounded-xl p-4">
           <h3 className="text-sm font-semibold text-gray-200 mb-2 flex items-center gap-2">
-            <BarChart3 className="w-4 h-4 text-purple-400" />
+            <BarChart3 className="w-4 h-4 text-primary" />
             Waterfall Bridge to Equity
           </h3>
           <SOTPWaterfallSVG />
@@ -826,7 +826,7 @@ function SOTPTab() {
             <div className="font-mono text-xs space-y-0.5">
               <div className="flex justify-between">
                 <span className="text-gray-400">Current Assets</span>
-                <span className="text-blue-400">+$X</span>
+                <span className="text-primary">+$X</span>
               </div>
               <div className="flex justify-between">
                 <span className="text-gray-400">All Liabilities</span>
@@ -834,7 +834,7 @@ function SOTPTab() {
               </div>
               <div className="flex justify-between border-t border-gray-700 pt-0.5 mt-0.5">
                 <span className="text-gray-200 font-bold">NCAV</span>
-                <span className="text-cyan-400 font-bold">=$Z</span>
+                <span className="text-muted-foreground font-bold">=$Z</span>
               </div>
               <div className="flex justify-between">
                 <span className="text-gray-400">Buy threshold</span>
@@ -910,7 +910,7 @@ function PrimaryResearchTab() {
         {/* Channel framework */}
         <div className="bg-gray-800 border border-gray-700 rounded-xl p-4">
           <h3 className="text-sm font-semibold text-gray-200 mb-3 flex items-center gap-2">
-            <Network className="w-4 h-4 text-blue-400" />
+            <Network className="w-4 h-4 text-primary" />
             Channel Check Framework
           </h3>
           <div className="space-y-2">
@@ -920,7 +920,7 @@ function PrimaryResearchTab() {
                 className={cn(
                   "rounded-lg p-2.5 cursor-pointer border transition-colors",
                   activeLevel === i
-                    ? "border-blue-500 bg-blue-950/30"
+                    ? "border-primary bg-muted/40"
                     : "border-gray-700 bg-gray-900 hover:border-gray-600"
                 )}
                 onClick={() => setActiveLevel(activeLevel === i ? null : i)}
@@ -943,7 +943,7 @@ function PrimaryResearchTab() {
                     >
                       {level.insights.map((ins, j) => (
                         <li key={j} className="text-xs text-gray-400 flex gap-1.5 items-start">
-                          <span className="text-blue-400 mt-0.5">•</span>
+                          <span className="text-primary mt-0.5">•</span>
                           {ins}
                         </li>
                       ))}
@@ -959,14 +959,14 @@ function PrimaryResearchTab() {
       {/* Expert networks */}
       <div className="bg-gray-800 border border-gray-700 rounded-xl p-4">
         <h3 className="text-sm font-semibold text-gray-200 mb-3 flex items-center gap-2">
-          <Users className="w-4 h-4 text-purple-400" />
+          <Users className="w-4 h-4 text-primary" />
           Expert Network Landscape
         </h3>
         <div className="grid md:grid-cols-2 gap-3">
           {expertNetworks.map((en, i) => (
             <div key={i} className="bg-gray-900 rounded-lg p-3 border border-gray-700">
               <div className="flex items-center gap-2 mb-1">
-                <span className="text-xs font-bold text-white bg-blue-600 px-2 py-0.5 rounded">{en.name}</span>
+                <span className="text-xs font-bold text-white bg-primary px-2 py-0.5 rounded">{en.name}</span>
               </div>
               <p className="text-xs text-gray-400">{en.description}</p>
             </div>
@@ -1005,7 +1005,7 @@ function PrimaryResearchTab() {
       {/* Alt Data */}
       <div className="bg-gray-800 border border-gray-700 rounded-xl p-4">
         <h3 className="text-sm font-semibold text-gray-200 mb-3 flex items-center gap-2">
-          <Zap className="w-4 h-4 text-cyan-400" />
+          <Zap className="w-4 h-4 text-muted-foreground" />
           Alternative Data Sources
         </h3>
         <div className="grid md:grid-cols-3 gap-3">
@@ -1019,7 +1019,7 @@ function PrimaryResearchTab() {
               onClick={() => setActiveMethod(i)}
             >
               <div className="flex items-center gap-2 mb-1">
-                <div className="text-cyan-400">{src.icon}</div>
+                <div className="text-muted-foreground">{src.icon}</div>
                 <span className="text-xs font-semibold text-gray-200">{src.name}</span>
               </div>
               <p className="text-xs text-gray-500">{src.detail}</p>
@@ -1185,7 +1185,7 @@ function ForensicTab() {
 
         <div className="bg-gray-800 border border-gray-700 rounded-xl p-4">
           <h3 className="text-sm font-semibold text-gray-200 mb-2 flex items-center gap-2">
-            <Shield className="w-4 h-4 text-purple-400" />
+            <Shield className="w-4 h-4 text-primary" />
             Short Seller Report Anatomy
           </h3>
           <p className="text-xs text-gray-500 mb-2">Well-constructed short reports follow a predictable structure. Understanding the template helps separate signal from noise.</p>
@@ -1198,7 +1198,7 @@ function ForensicTab() {
               { section: "Price Target & Thesis", detail: "Bear case valuation + what the stock is worth on honest numbers." },
             ].map((s, i) => (
               <div key={i} className="flex gap-2 items-start">
-                <span className="text-xs font-mono text-purple-400 w-5 mt-0.5">{i + 1}.</span>
+                <span className="text-xs font-mono text-primary w-5 mt-0.5">{i + 1}.</span>
                 <div>
                   <p className="text-xs font-semibold text-gray-200">{s.section}</p>
                   <p className="text-xs text-gray-500">{s.detail}</p>
@@ -1236,7 +1236,7 @@ function ThesisTab() {
       {/* Thesis steps */}
       <div className="bg-gray-800 border border-gray-700 rounded-xl p-4">
         <h3 className="text-sm font-semibold text-gray-200 mb-3 flex items-center gap-2">
-          <Target className="w-4 h-4 text-blue-400" />
+          <Target className="w-4 h-4 text-primary" />
           Differentiated Thesis Construction Framework
         </h3>
 
@@ -1248,7 +1248,7 @@ function ThesisTab() {
               onClick={() => setActiveStep(i)}
               className={cn(
                 "text-xs px-2.5 py-1 rounded-lg font-semibold transition-colors",
-                activeStep === i ? "bg-blue-600 text-white" : "bg-gray-700 text-gray-400 hover:bg-gray-600"
+                activeStep === i ? "bg-primary text-white" : "bg-gray-700 text-gray-400 hover:bg-gray-600"
               )}
             >
               {step.step}
@@ -1270,8 +1270,8 @@ function ThesisTab() {
               <h4 className="text-sm font-bold text-gray-100">{THESIS_STEPS[activeStep].title}</h4>
             </div>
             <p className="text-xs text-gray-400 mb-3">{THESIS_STEPS[activeStep].description}</p>
-            <div className="bg-blue-950/30 border border-blue-800/40 rounded-lg p-2.5">
-              <p className="text-xs text-blue-300 font-semibold mb-0.5">Example</p>
+            <div className="bg-muted/40 border border-border rounded-lg p-2.5">
+              <p className="text-xs text-primary font-semibold mb-0.5">Example</p>
               <p className="text-xs text-gray-400 italic">{THESIS_STEPS[activeStep].example}</p>
             </div>
           </motion.div>
@@ -1299,7 +1299,7 @@ function ThesisTab() {
             {
               label: "Know what the market knows",
               desc: "Before disagreeing, understand the full bull and bear case that professionals have already debated. Consensus is not stupid — it is the weighted average of informed views.",
-              icon: <BookOpen className="w-4 h-4 text-blue-400" />,
+              icon: <BookOpen className="w-4 h-4 text-primary" />,
             },
           ].map((item, i) => (
             <div key={i} className="bg-gray-900 rounded-lg p-3 border border-gray-700">
@@ -1350,7 +1350,7 @@ function ThesisTab() {
       <div className="grid md:grid-cols-2 gap-6">
         <div className="bg-gray-800 border border-gray-700 rounded-xl p-4 flex flex-col items-center">
           <h3 className="text-sm font-semibold text-gray-200 mb-3 w-full flex items-center gap-2">
-            <Shield className="w-4 h-4 text-blue-400" />
+            <Shield className="w-4 h-4 text-primary" />
             Economic Moat Durability
           </h3>
           <MoatRadarSVG moats={MOAT_TYPES} />
@@ -1358,7 +1358,7 @@ function ThesisTab() {
 
         <div className="bg-gray-800 border border-gray-700 rounded-xl p-4">
           <h3 className="text-sm font-semibold text-gray-200 mb-3 flex items-center gap-2">
-            <Shield className="w-4 h-4 text-blue-400" />
+            <Shield className="w-4 h-4 text-primary" />
             Moat Classification
           </h3>
           <div className="space-y-2">
@@ -1367,16 +1367,16 @@ function ThesisTab() {
                 key={i}
                 className={cn(
                   "rounded-lg p-2.5 cursor-pointer border transition-colors",
-                  activeMoat === i ? "border-blue-500 bg-blue-950/20" : "border-gray-700 bg-gray-900 hover:border-gray-600"
+                  activeMoat === i ? "border-primary bg-muted/30" : "border-gray-700 bg-gray-900 hover:border-gray-600"
                 )}
                 onClick={() => setActiveMoat(activeMoat === i ? null : i)}
               >
                 <div className="flex items-center gap-2">
                   <span className="text-xs font-bold text-gray-200">{moat.name}</span>
                   <div className="flex-1 h-1.5 bg-gray-800 rounded-full overflow-hidden ml-2">
-                    <div className="h-full bg-blue-500 rounded-full" style={{ width: `${moat.durability}%` }} />
+                    <div className="h-full bg-primary rounded-full" style={{ width: `${moat.durability}%` }} />
                   </div>
-                  <span className="text-xs font-mono text-blue-400">{moat.durability}</span>
+                  <span className="text-xs font-mono text-primary">{moat.durability}</span>
                 </div>
                 <AnimatePresence>
                   {activeMoat === i && (
@@ -1405,13 +1405,13 @@ function ThesisTab() {
       {/* Idea generation */}
       <div className="bg-gray-800 border border-gray-700 rounded-xl p-4">
         <h3 className="text-sm font-semibold text-gray-200 mb-3 flex items-center gap-2">
-          <BookOpen className="w-4 h-4 text-cyan-400" />
+          <BookOpen className="w-4 h-4 text-muted-foreground" />
           Idea Generation Sources
         </h3>
         <div className="grid md:grid-cols-2 gap-3">
           {ideaGenSources.map((src, i) => (
             <div key={i} className="flex gap-2 items-start bg-gray-900 rounded-lg p-2.5 border border-gray-700">
-              <ChevronRight className="w-3.5 h-3.5 text-cyan-400 mt-0.5 flex-shrink-0" />
+              <ChevronRight className="w-3.5 h-3.5 text-muted-foreground mt-0.5 flex-shrink-0" />
               <div>
                 <p className="text-xs font-semibold text-gray-200">{src.label}</p>
                 <p className="text-xs text-gray-500 mt-0.5">{src.detail}</p>
@@ -1484,8 +1484,8 @@ export default function EquityResearch3Page() {
         {/* Header */}
         <div>
           <div className="flex items-center gap-2 mb-1">
-            <Microscope className="w-5 h-5 text-blue-400" />
-            <span className="text-xs font-semibold text-blue-400">Advanced Equity Research</span>
+            <Microscope className="w-5 h-5 text-primary" />
+            <span className="text-xs font-semibold text-primary">Advanced Equity Research</span>
           </div>
           <h1 className="text-2xl font-bold text-white">
             SOTP · Primary Research · Forensic Accounting · Thesis Construction

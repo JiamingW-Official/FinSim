@@ -38,8 +38,8 @@ export const ACTIVE_CATEGORY_LABELS: Record<ActiveMarketCategory, string> = {
 };
 
 export const ACTIVE_CATEGORY_COLORS: Record<ActiveMarketCategory, string> = {
-  macro: "bg-blue-500/15 text-blue-400",
-  earnings: "bg-violet-500/15 text-violet-400",
+  macro: "bg-primary/15 text-primary",
+  earnings: "bg-primary/15 text-primary",
   crypto: "bg-orange-500/15 text-orange-400",
   politics: "bg-rose-500/15 text-rose-400",
   commodities: "bg-amber-500/15 text-amber-400",

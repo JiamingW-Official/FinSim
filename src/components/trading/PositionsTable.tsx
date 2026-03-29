@@ -281,7 +281,7 @@ export function PositionsTable() {
                     <span
                       className={cn(
                         "text-xs",
-                        barsHeld > 20 ? "text-purple-400 font-semibold" : "text-muted-foreground",
+                        barsHeld > 20 ? "text-primary font-semibold" : "text-muted-foreground",
                       )}
                     >
                       {barsHeld > 0 ? barsHeld : "—"}
@@ -405,13 +405,13 @@ export function PositionsTable() {
                             <span
                               className={cn(
                                 "font-medium",
-                                barsHeld > 20 ? "text-purple-400" : "",
+                                barsHeld > 20 ? "text-primary" : "",
                               )}
                             >
                               {barsHeld > 0 ? `${barsHeld} bars` : "Just opened"}
                             </span>
                             {barsHeld > 20 && (
-                              <span className="text-purple-400/70 ml-1">
+                              <span className="text-muted-foreground ml-1">
                                 — consider re-evaluating thesis
                               </span>
                             )}

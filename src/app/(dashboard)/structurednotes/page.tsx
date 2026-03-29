@@ -979,8 +979,8 @@ export default function StructuredNotesPage() {
       {/* Header */}
       <div className="mb-6">
         <div className="flex items-center gap-3 mb-2">
-          <div className="p-2 rounded-lg bg-blue-500/10 border border-blue-500/20">
-            <Layers className="w-5 h-5 text-blue-400" />
+          <div className="p-2 rounded-lg bg-primary/10 border border-border">
+            <Layers className="w-5 h-5 text-primary" />
           </div>
           <div>
             <h1 className="text-xl font-semibold text-slate-100">
@@ -1000,7 +1000,7 @@ export default function StructuredNotesPage() {
               value: "$3.2T",
               sub: "Global structured products",
               icon: <BarChart3 className="w-4 h-4" />,
-              color: "text-blue-400",
+              color: "text-primary",
             },
             {
               label: "Avg Term",
@@ -1021,7 +1021,7 @@ export default function StructuredNotesPage() {
               value: "3",
               sub: "Hard / soft / conditional",
               icon: <Lock className="w-4 h-4" />,
-              color: "text-purple-400",
+              color: "text-primary",
             },
           ].map((m) => (
             <div
@@ -1215,7 +1215,7 @@ export default function StructuredNotesPage() {
                 {
                   id: "autocall-mechanism",
                   title: "Auto-Call Mechanism",
-                  icon: <RefreshCw className="w-4 h-4 text-blue-400" />,
+                  icon: <RefreshCw className="w-4 h-4 text-primary" />,
                   content:
                     "On each observation date (typically quarterly or annually), if the underlying closes above the call trigger (often 100% of initial), the note redeems at face value plus accrued coupon. Memory coupons pay all previously missed coupons on redemption.",
                 },
@@ -1267,14 +1267,14 @@ export default function StructuredNotesPage() {
             <div className="space-y-5">
               <div className="bg-slate-900 border border-slate-800 rounded-xl p-4 space-y-5">
                 <h3 className="text-sm font-semibold text-slate-200 flex items-center gap-2">
-                  <TrendingUp className="w-4 h-4 text-blue-400" />
+                  <TrendingUp className="w-4 h-4 text-primary" />
                   Payoff Parameters
                 </h3>
 
                 <div className="space-y-2">
                   <div className="flex justify-between text-xs">
                     <span className="text-slate-400">Participation Rate</span>
-                    <span className="font-mono text-blue-400">
+                    <span className="font-mono text-primary">
                       {participationRate}%
                     </span>
                   </div>
@@ -1400,7 +1400,7 @@ export default function StructuredNotesPage() {
             <div className="lg:col-span-2 space-y-4">
               <div className="bg-slate-900 border border-slate-800 rounded-xl p-4">
                 <h3 className="text-sm font-semibold text-slate-200 mb-4 flex items-center gap-2">
-                  <BarChart3 className="w-4 h-4 text-blue-400" />
+                  <BarChart3 className="w-4 h-4 text-primary" />
                   Payoff Diagram — Underlying vs Note Return
                 </h3>
                 <div className="overflow-x-auto">
@@ -1421,7 +1421,7 @@ export default function StructuredNotesPage() {
               {/* Scenarios */}
               <div className="bg-slate-900 border border-slate-800 rounded-xl p-4">
                 <h3 className="text-sm font-semibold text-slate-200 mb-3 flex items-center gap-2">
-                  <Activity className="w-4 h-4 text-purple-400" />
+                  <Activity className="w-4 h-4 text-primary" />
                   Scenario Analysis
                 </h3>
                 <ScenarioTable
@@ -1490,7 +1490,7 @@ export default function StructuredNotesPage() {
                 <div className="space-y-2">
                   <div className="flex justify-between text-xs">
                     <span className="text-slate-400">Participation Rate</span>
-                    <span className="font-mono text-blue-400">
+                    <span className="font-mono text-primary">
                       {participationRate}%
                     </span>
                   </div>
@@ -1550,7 +1550,7 @@ export default function StructuredNotesPage() {
                   ))}
                   <div className="border-t border-slate-700 pt-2 flex justify-between text-sm font-semibold">
                     <span className="text-slate-200">Fair Value</span>
-                    <span className="font-mono text-purple-400">
+                    <span className="font-mono text-primary">
                       {fairValue.toFixed(2)}
                     </span>
                   </div>
@@ -1617,7 +1617,7 @@ export default function StructuredNotesPage() {
                       </span>
                     </div>
                     <div className="flex items-start gap-2">
-                      <Info className="w-3.5 h-3.5 text-blue-400 mt-0.5 flex-shrink-0" />
+                      <Info className="w-3.5 h-3.5 text-primary mt-0.5 flex-shrink-0" />
                       <span>
                         Bid-ask spreads widen in volatile markets and near
                         barrier levels due to elevated gamma.
@@ -1635,7 +1635,7 @@ export default function StructuredNotesPage() {
 
                 <div className="bg-slate-900 border border-slate-800 rounded-xl p-4">
                   <h3 className="text-sm font-semibold text-slate-200 mb-3 flex items-center gap-2">
-                    <Lock className="w-4 h-4 text-purple-400" />
+                    <Lock className="w-4 h-4 text-primary" />
                     Issuer Credit Impact
                   </h3>
                   <div className="space-y-2">
@@ -1750,13 +1750,13 @@ export default function StructuredNotesPage() {
               {/* Break-even analysis */}
               <div className="mt-4 p-3 bg-slate-800/40 rounded-lg">
                 <h4 className="text-xs font-semibold text-slate-300 mb-2 flex items-center gap-1.5">
-                  <TrendingUp className="w-3.5 h-3.5 text-blue-400" />
+                  <TrendingUp className="w-3.5 h-3.5 text-primary" />
                   Break-Even Analysis (current settings)
                 </h4>
                 <div className="space-y-1.5 text-xs text-slate-400">
                   <div className="flex justify-between">
                     <span>Participation Rate</span>
-                    <span className="font-mono text-blue-400">
+                    <span className="font-mono text-primary">
                       {participationRate}%
                     </span>
                   </div>
@@ -1809,7 +1809,7 @@ export default function StructuredNotesPage() {
             {/* Scenario table */}
             <div className="lg:col-span-2 bg-slate-900 border border-slate-800 rounded-xl p-4">
               <h3 className="text-sm font-semibold text-slate-200 mb-3 flex items-center gap-2">
-                <BarChart3 className="w-4 h-4 text-purple-400" />
+                <BarChart3 className="w-4 h-4 text-primary" />
                 Full Scenario Table — Current Payoff Parameters
               </h3>
               <ScenarioTable
@@ -1832,10 +1832,10 @@ export default function StructuredNotesPage() {
                     color: "border-amber-500/20",
                   },
                   {
-                    icon: <Info className="w-4 h-4 text-blue-400" />,
+                    icon: <Info className="w-4 h-4 text-primary" />,
                     title: "Tax Consideration",
                     text: "Returns may be taxed as ordinary income rather than capital gains. Consult a tax advisor for jurisdiction-specific treatment of contingent payment instruments.",
-                    color: "border-blue-500/20",
+                    color: "border-border",
                   },
                 ].map((card) => (
                   <div

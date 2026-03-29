@@ -265,9 +265,9 @@ function MarketOverviewTab() {
       {/* Hero stats */}
       <div className="grid grid-cols-2 gap-3 sm:grid-cols-4">
         {[
-          { label: "Global Bond Market", value: `$${total.toFixed(0)}T`, sub: "Total outstanding", icon: Globe, color: "text-blue-400" },
+          { label: "Global Bond Market", value: `$${total.toFixed(0)}T`, sub: "Total outstanding", icon: Globe, color: "text-primary" },
           { label: "Negative Yield Debt", value: "$1.2T", sub: "Down from $18T peak", icon: TrendingDown, color: "text-red-400" },
-          { label: "Avg. Global Duration", value: "7.8 yrs", sub: "Bloomberg Global AGG", icon: Activity, color: "text-purple-400" },
+          { label: "Avg. Global Duration", value: "7.8 yrs", sub: "Bloomberg Global AGG", icon: Activity, color: "text-primary" },
           { label: "Countries in Index", value: "70+", sub: "Bloomberg Global AGG", icon: Landmark, color: "text-emerald-400" },
         ].map((s) => (
           <FadeCard key={s.label} className="flex flex-col gap-1">
@@ -380,7 +380,7 @@ function MarketOverviewTab() {
                         row.rating.startsWith("AA") || row.rating === "AAA"
                           ? "bg-emerald-500/20 text-emerald-300"
                           : row.rating.startsWith("A")
-                          ? "bg-blue-500/20 text-blue-300"
+                          ? "bg-primary/20 text-primary"
                           : row.rating.startsWith("BBB")
                           ? "bg-yellow-500/20 text-yellow-300"
                           : row.rating.startsWith("BB")
@@ -479,10 +479,10 @@ function EMBondsTab() {
     <div className="space-y-6">
       {/* Explainer cards */}
       <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
-        <FadeCard className="border-blue-500/20 bg-blue-500/5">
+        <FadeCard className="border-border bg-primary/5">
           <div className="flex items-center gap-2 mb-2">
-            <DollarSign size={14} className="text-blue-400" />
-            <span className="text-sm font-semibold text-blue-300">Hard Currency (HC) Bonds</span>
+            <DollarSign size={14} className="text-primary" />
+            <span className="text-sm font-semibold text-primary">Hard Currency (HC) Bonds</span>
           </div>
           <ul className="space-y-1 text-xs text-white/60">
             <li>• Denominated in USD (or EUR/GBP) — eliminates local FX risk</li>
@@ -520,7 +520,7 @@ function EMBondsTab() {
                 onClick={() => setView(v)}
                 className={cn(
                   "rounded px-2 py-1 text-xs font-medium transition-colors",
-                  view === v ? "bg-blue-500/30 text-blue-300" : "text-white/40 hover:text-white/60"
+                  view === v ? "bg-primary/30 text-primary" : "text-white/40 hover:text-white/60"
                 )}
               >
                 {v === "hard" ? "Hard CCY" : "Local CCY"}
@@ -604,20 +604,20 @@ function EMBondsTab() {
       <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
         <FadeCard>
           <div className="flex items-center gap-2 mb-3">
-            <ShieldCheck size={14} className="text-purple-400" />
+            <ShieldCheck size={14} className="text-primary" />
             <h3 className="text-sm font-semibold text-white/80">IMF Program Mechanics</h3>
           </div>
           <div className="space-y-2 text-xs text-white/60">
             <div className="flex gap-2">
-              <span className="text-purple-400 font-semibold w-20 shrink-0">SBA</span>
+              <span className="text-primary font-semibold w-20 shrink-0">SBA</span>
               <span>Stand-By Arrangement: short-term 12–24 month support; conditionality includes fiscal consolidation, FX flexibility</span>
             </div>
             <div className="flex gap-2">
-              <span className="text-purple-400 font-semibold w-20 shrink-0">EFF</span>
+              <span className="text-primary font-semibold w-20 shrink-0">EFF</span>
               <span>Extended Fund Facility: 3-year structural reform programs for deeper imbalances</span>
             </div>
             <div className="flex gap-2">
-              <span className="text-purple-400 font-semibold w-20 shrink-0">RSF</span>
+              <span className="text-primary font-semibold w-20 shrink-0">RSF</span>
               <span>Resilience &amp; Sustainability Facility: new climate/pandemic resilience instrument</span>
             </div>
             <div className="rounded bg-white/5 p-2 mt-2">
@@ -628,12 +628,12 @@ function EMBondsTab() {
 
         <FadeCard>
           <div className="flex items-center gap-2 mb-3">
-            <Layers size={14} className="text-blue-400" />
+            <Layers size={14} className="text-primary" />
             <h3 className="text-sm font-semibold text-white/80">JPMorgan Index Inclusion Criteria</h3>
           </div>
           <div className="space-y-3 text-xs text-white/60">
             <div>
-              <p className="text-blue-300 font-semibold mb-1">EMBI Global (Hard Currency)</p>
+              <p className="text-primary font-semibold mb-1">EMBI Global (Hard Currency)</p>
               <ul className="space-y-0.5">
                 <li>• Min outstanding $500M per bond</li>
                 <li>• Residual maturity &gt; 2.5 years</li>
@@ -683,13 +683,13 @@ function CurrencyHedgingTab() {
           {
             title: "Covered Interest Parity",
             icon: Scale,
-            color: "text-blue-400",
+            color: "text-primary",
             body: "F/S = (1 + r_d) / (1 + r_f) — forward exchange rate reflects interest rate differential. Hedge cost ≈ rate differential between two countries.",
           },
           {
             title: "Cross-Currency Basis Swap",
             icon: ArrowUpDown,
-            color: "text-purple-400",
+            color: "text-primary",
             body: "Exchange floating rate cashflows in different currencies. Basis = deviation from covered interest parity. Negative EUR/USD basis means USD demand premium.",
           },
           {
@@ -803,7 +803,7 @@ function CurrencyHedgingTab() {
                     key={h.pair}
                     className={cn(
                       "border-b border-white/5 cursor-pointer transition-colors",
-                      isSelected ? "bg-blue-500/10" : "hover:bg-white/3"
+                      isSelected ? "bg-primary/10" : "hover:bg-white/3"
                     )}
                     onClick={() => setSelectedPair(h.pair)}
                   >
@@ -836,10 +836,10 @@ function CurrencyHedgingTab() {
           exit={{ opacity: 0, y: -8 }}
           transition={{ duration: 0.25 }}
         >
-          <FadeCard className="border-blue-500/20 bg-blue-500/5">
+          <FadeCard className="border-border bg-primary/5">
             <div className="flex items-center gap-2 mb-3">
-              <ArrowUpDown size={14} className="text-blue-400" />
-              <h3 className="text-sm font-semibold text-blue-300">{selected.pair} Hedge Analysis</h3>
+              <ArrowUpDown size={14} className="text-primary" />
+              <h3 className="text-sm font-semibold text-primary">{selected.pair} Hedge Analysis</h3>
             </div>
             <div className="grid grid-cols-2 gap-4 text-xs sm:grid-cols-4">
               <div>
@@ -1160,7 +1160,7 @@ function PortfolioConstructionTab() {
               <p>Use-of-proceeds bonds with ring-fenced ESG projects. Now $4T+ market. "Greenium" of 3–8bps vs conventional bonds for AAA issuers.</p>
             </div>
             <div>
-              <p className="text-blue-300 font-semibold mb-1">ESG-Integrated Scoring</p>
+              <p className="text-primary font-semibold mb-1">ESG-Integrated Scoring</p>
               <p>MSCI, Sustainalytics, ISS ratings applied to bond issuers. Higher ESG scores correlate with lower default probability and credit spread tightening.</p>
             </div>
             <div>
@@ -1168,7 +1168,7 @@ function PortfolioConstructionTab() {
               <p>Governance quality (rule of law, corruption), environmental exposure (climate vulnerability), social metrics (inequality, labor) integrated into EM sovereign analysis.</p>
             </div>
             <div>
-              <p className="text-purple-300 font-semibold mb-1">Multi-Currency Benchmark Tracking</p>
+              <p className="text-primary font-semibold mb-1">Multi-Currency Benchmark Tracking</p>
               <p>Managers track Bloomberg Global AGG or FTSE WGBI. Currency, duration, and sector buckets all managed vs benchmark weights with ±20–30% active share limits.</p>
             </div>
           </div>
@@ -1201,8 +1201,8 @@ export default function GlobalFixedIncomePage() {
           className="mb-6"
         >
           <div className="flex items-center gap-3 mb-2">
-            <div className="rounded-lg bg-blue-500/15 p-2">
-              <Globe size={20} className="text-blue-400" />
+            <div className="rounded-lg bg-primary/15 p-2">
+              <Globe size={20} className="text-primary" />
             </div>
             <div>
               <h1 className="text-2xl font-bold text-white">Global Fixed Income</h1>
@@ -1210,7 +1210,7 @@ export default function GlobalFixedIncomePage() {
                 Cross-border bond investing, sovereign &amp; corporate credit, EM bonds, FX hedging, and portfolio construction
               </p>
             </div>
-            <Badge variant="outline" className="ml-auto border-blue-500/30 text-blue-400 text-xs">
+            <Badge variant="outline" className="ml-auto border-border text-primary text-xs">
               Professional
             </Badge>
           </div>
@@ -1223,7 +1223,7 @@ export default function GlobalFixedIncomePage() {
               <TabsTrigger
                 key={tab.id}
                 value={tab.id}
-                className="flex items-center gap-1.5 rounded px-3 py-2 text-sm data-[state=active]:bg-blue-500/25 data-[state=active]:text-blue-300"
+                className="flex items-center gap-1.5 rounded px-3 py-2 text-sm data-[state=active]:bg-primary/25 data-[state=active]:text-primary"
               >
                 <tab.icon size={13} />
                 {tab.label}

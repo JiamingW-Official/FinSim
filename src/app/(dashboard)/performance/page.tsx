@@ -1073,8 +1073,8 @@ export default function PerformancePage() {
               <div className="flex flex-wrap gap-2">
                 {[
                   { label: "You", val: stats.totalReturn, color: "text-orange-400" },
-                  { label: "S&P 500", val: (benchmarkSeries[0].values[benchmarkSeries[0].values.length - 1] - 100), color: "text-blue-400" },
-                  { label: "Nasdaq", val: (benchmarkSeries[1].values[benchmarkSeries[1].values.length - 1] - 100), color: "text-purple-400" },
+                  { label: "S&P 500", val: (benchmarkSeries[0].values[benchmarkSeries[0].values.length - 1] - 100), color: "text-primary" },
+                  { label: "Nasdaq", val: (benchmarkSeries[1].values[benchmarkSeries[1].values.length - 1] - 100), color: "text-primary" },
                   { label: `Goal (${targetReturn}%)`, val: targetReturn, color: "text-yellow-400" },
                 ].map((item) => (
                   <div key={item.label} className="flex items-center gap-1.5 rounded-full border border-border/50 px-3 py-1 text-sm">
@@ -1330,7 +1330,7 @@ export default function PerformancePage() {
                   label: "Best Day of Week",
                   value: "Tuesday",
                   sub: "+3.2% avg P&L",
-                  icon: <Calendar className="h-4 w-4 text-blue-400" />,
+                  icon: <Calendar className="h-4 w-4 text-primary" />,
                 },
                 {
                   label: "Best Hour",
@@ -1342,7 +1342,7 @@ export default function PerformancePage() {
                   label: "Best Vol Regime",
                   value: "Low Vol",
                   sub: "VIX 12–18",
-                  icon: <Activity className="h-4 w-4 text-purple-400" />,
+                  icon: <Activity className="h-4 w-4 text-primary" />,
                 },
               ].map((c) => (
                 <div key={c.label} className="rounded-lg bg-muted/30 p-3 space-y-1">
@@ -1467,7 +1467,7 @@ export default function PerformancePage() {
               <h3 className="text-sm font-medium">12-Month Projection Scenarios</h3>
               <div className="ml-auto flex items-center gap-3 text-xs">
                 <span className="text-red-400">— Bear (-8%)</span>
-                <span className="text-blue-400">— Base (+18%)</span>
+                <span className="text-primary">— Base (+18%)</span>
                 <span className="text-green-400">— Bull (+38%)</span>
               </div>
             </div>

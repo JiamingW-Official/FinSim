@@ -63,9 +63,9 @@ export function ArenaResults({ result, onPlayAgain, onBackToLobby }: ArenaResult
   // Scoring category labels and values for breakdown bars
   const categories = [
     { label: "P&L", icon: <TrendingUp className="h-3 w-3" />, color: "bg-emerald-500", value: Math.max(0, Math.min(100, result.playerPnLPercent * 5 + 50)) },
-    { label: "Risk", icon: <Shield className="h-3 w-3" />, color: "bg-blue-500", value: Math.max(0, 100 - result.playerMaxDrawdown * 5) },
+    { label: "Risk", icon: <Shield className="h-3 w-3" />, color: "bg-primary", value: Math.max(0, 100 - result.playerMaxDrawdown * 5) },
     { label: "Win Rate", icon: <Zap className="h-3 w-3" />, color: "bg-amber-500", value: result.playerWinRate },
-    { label: "Trades", icon: <Target className="h-3 w-3" />, color: "bg-purple-500", value: Math.min(100, result.playerTradesCount * 5) },
+    { label: "Trades", icon: <Target className="h-3 w-3" />, color: "bg-primary", value: Math.min(100, result.playerTradesCount * 5) },
   ];
 
   return (

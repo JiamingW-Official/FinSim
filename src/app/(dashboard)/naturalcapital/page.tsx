@@ -447,7 +447,7 @@ function SeverityBadge({ level }: { level: "Low" | "Medium" | "High" }) {
 function BenefitBadge({ level }: { level: "Low" | "Medium" | "High" | "Very High" }) {
   const map: Record<string, string> = {
     Low: "bg-zinc-800 text-zinc-400",
-    Medium: "bg-blue-900/40 text-blue-300",
+    Medium: "bg-muted/60 text-primary",
     High: "bg-green-900/40 text-green-300",
     "Very High": "bg-emerald-900/40 text-emerald-300",
   };
@@ -585,7 +585,7 @@ function EcosystemTab() {
           <Card className="bg-zinc-900 border-zinc-700/50">
             <CardHeader className="pb-3">
               <CardTitle className="text-base text-zinc-100 flex items-center gap-2">
-                <BarChart2 className="w-4 h-4 text-blue-400" />
+                <BarChart2 className="w-4 h-4 text-primary" />
                 Nature Dependency by Sector
               </CardTitle>
               <p className="text-xs text-zinc-500">Score 0–100: extent of direct reliance on ecosystem services</p>
@@ -776,7 +776,7 @@ function EcosystemTab() {
                 { label: "Annual GDP at risk from nature loss", value: "$44T", sub: ">50% of global GDP", color: "text-red-400" },
                 { label: "Estimated cost of biodiversity overshoot", value: "$23T/yr", sub: "by 2100 under BAU", color: "text-orange-400" },
                 { label: "Pollination services value at risk", value: "$577B/yr", sub: "if pollinators collapse", color: "text-yellow-400" },
-                { label: "Ocean services at risk", value: "$2.5T/yr", sub: "fisheries + coastal protection", color: "text-blue-400" },
+                { label: "Ocean services at risk", value: "$2.5T/yr", sub: "fisheries + coastal protection", color: "text-primary" },
               ].map(item => (
                 <div key={item.label} className="p-3 rounded-lg bg-zinc-800/50 border border-zinc-700/40">
                   <div className={`text-2xl font-bold mb-1 ${item.color}`}>{item.value}</div>
@@ -846,7 +846,7 @@ function TNFDTab() {
         <Card className="bg-zinc-900 border-zinc-700/50">
           <CardHeader className="pb-3">
             <CardTitle className="text-base text-zinc-100 flex items-center gap-2">
-              <FileText className="w-4 h-4 text-blue-400" />
+              <FileText className="w-4 h-4 text-primary" />
               TNFD Framework — Four Pillars
             </CardTitle>
             <p className="text-xs text-zinc-500">Taskforce on Nature-related Financial Disclosures — 14 disclosure recommendations published September 2023</p>
@@ -947,7 +947,7 @@ function TNFDTab() {
         <Card className="bg-zinc-900 border-zinc-700/50">
           <CardHeader className="pb-3">
             <CardTitle className="text-base text-zinc-100 flex items-center gap-2">
-              <Info className="w-4 h-4 text-purple-400" />
+              <Info className="w-4 h-4 text-primary" />
               TNFD vs TCFD Comparison
             </CardTitle>
           </CardHeader>
@@ -956,7 +956,7 @@ function TNFDTab() {
               <thead>
                 <tr className="border-b border-zinc-700">
                   <th className="text-left py-2 pr-4 text-zinc-400 font-medium">Dimension</th>
-                  <th className="text-left py-2 px-3 text-blue-400 font-medium">TCFD (Climate)</th>
+                  <th className="text-left py-2 px-3 text-primary font-medium">TCFD (Climate)</th>
                   <th className="text-left py-2 pl-3 text-green-400 font-medium">TNFD (Nature)</th>
                 </tr>
               </thead>
@@ -1018,7 +1018,7 @@ function TNFDTab() {
           <Card className="bg-zinc-900 border-zinc-700/50">
             <CardHeader className="pb-3">
               <CardTitle className="text-base text-zinc-100 flex items-center gap-2">
-                <Layers className="w-4 h-4 text-cyan-400" />
+                <Layers className="w-4 h-4 text-muted-foreground" />
                 Sector-Specific Materiality Matrix
               </CardTitle>
               <p className="text-xs text-zinc-500">Risk scores 0–100. TNFD disclosure priority per TNFD sector guidance.</p>
@@ -1283,11 +1283,11 @@ function BiodiversityCreditsTab() {
                       <div className="text-xs text-zinc-500">Gt CO₂/yr potential</div>
                     </div>
                     <div className="text-center p-2 rounded bg-zinc-900 border border-zinc-700/50">
-                      <div className="text-sm font-bold text-blue-400">${nbs.costPerHa.toLocaleString()}</div>
+                      <div className="text-sm font-bold text-primary">${nbs.costPerHa.toLocaleString()}</div>
                       <div className="text-xs text-zinc-500">cost/hectare</div>
                     </div>
                     <div className="text-center p-2 rounded bg-zinc-900 border border-zinc-700/50">
-                      <div className="text-sm font-bold text-purple-400">{nbs.biodiversityBenefit}</div>
+                      <div className="text-sm font-bold text-primary">{nbs.biodiversityBenefit}</div>
                       <div className="text-xs text-zinc-500">biodiversity benefit</div>
                     </div>
                   </div>
@@ -1308,7 +1308,7 @@ function BiodiversityCreditsTab() {
         <Card className="bg-zinc-900 border-zinc-700/50">
           <CardHeader className="pb-3">
             <CardTitle className="text-base text-zinc-100 flex items-center gap-2">
-              <Shield className="w-4 h-4 text-blue-400" />
+              <Shield className="w-4 h-4 text-primary" />
               High-Integrity Credit Standards & Additionality Requirements
             </CardTitle>
           </CardHeader>
@@ -1814,7 +1814,7 @@ export default function NaturalCapitalPage() {
                 <div className="text-xs text-zinc-500">Boundaries exceeded</div>
               </div>
               <div className="text-center p-2 rounded-lg bg-zinc-900 border border-zinc-700/50">
-                <div className="text-lg font-bold text-blue-400">150+</div>
+                <div className="text-lg font-bold text-primary">150+</div>
                 <div className="text-xs text-zinc-500">FfBP signatories</div>
               </div>
             </div>
@@ -1827,10 +1827,10 @@ export default function NaturalCapitalPage() {
             <TabsTrigger value="ecosystem" className="data-[state=active]:bg-emerald-900/50 data-[state=active]:text-emerald-300 text-xs">
               Ecosystem Services
             </TabsTrigger>
-            <TabsTrigger value="tnfd" className="data-[state=active]:bg-blue-900/50 data-[state=active]:text-blue-300 text-xs">
+            <TabsTrigger value="tnfd" className="data-[state=active]:bg-muted/70 data-[state=active]:text-primary text-xs">
               TNFD & Disclosure
             </TabsTrigger>
-            <TabsTrigger value="credits" className="data-[state=active]:bg-purple-900/50 data-[state=active]:text-purple-300 text-xs">
+            <TabsTrigger value="credits" className="data-[state=active]:bg-muted/70 data-[state=active]:text-primary text-xs">
               Biodiversity Credits & NbS
             </TabsTrigger>
             <TabsTrigger value="deforestation" className="data-[state=active]:bg-red-900/50 data-[state=active]:text-red-300 text-xs">

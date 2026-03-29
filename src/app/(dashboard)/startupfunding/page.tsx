@@ -447,7 +447,7 @@ function InfoBox({
       ? "border-amber-500/40 bg-amber-500/10 text-amber-200"
       : variant === "success"
       ? "border-emerald-500/40 bg-emerald-500/10 text-emerald-200"
-      : "border-blue-500/40 bg-blue-500/10 text-blue-200";
+      : "border-primary/40 bg-primary/10 text-primary";
   return (
     <div className={cn("rounded-lg border p-3 text-sm", cls)}>
       {title && <p className="font-semibold mb-1">{title}</p>}
@@ -1252,7 +1252,7 @@ function ValuationTab() {
               </div>
               <div className="bg-zinc-900 rounded-lg p-3 text-center">
                 <p className="text-xs text-zinc-500 mb-1">Implied Enterprise Value</p>
-                <p className="text-2xl font-bold text-purple-400">{fmtM(rmEV)}</p>
+                <p className="text-2xl font-bold text-primary">{fmtM(rmEV)}</p>
               </div>
             </div>
           )}
@@ -1627,7 +1627,7 @@ export default function StartupFundingPage() {
           <div className="flex gap-3 mt-3">
             {[
               { label: "Funding stages", icon: <TrendingUp className="w-3.5 h-3.5" />, color: "text-indigo-400" },
-              { label: "Cap table sim", icon: <PieChart className="w-3.5 h-3.5" />, color: "text-purple-400" },
+              { label: "Cap table sim", icon: <PieChart className="w-3.5 h-3.5" />, color: "text-primary" },
               { label: "Term sheet guide", icon: <FileText className="w-3.5 h-3.5" />, color: "text-pink-400" },
               { label: "Valuation methods", icon: <Calculator className="w-3.5 h-3.5" />, color: "text-rose-400" },
               { label: "Employee equity", icon: <Users className="w-3.5 h-3.5" />, color: "text-orange-400" },
@@ -1677,7 +1677,7 @@ export default function StartupFundingPage() {
 
           <TabsContent value="captable" className="data-[state=inactive]:hidden">
             <SectionTitle>
-              <PieChart className="w-5 h-5 text-purple-400" />
+              <PieChart className="w-5 h-5 text-primary" />
               Cap Table Simulator
             </SectionTitle>
             <CapTableTab />

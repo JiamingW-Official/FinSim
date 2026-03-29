@@ -544,7 +544,7 @@ function StrategyBuilderTab() {
             <button
               onClick={addLeg}
               disabled={legs.length >= 4}
-              className="text-xs bg-blue-600 hover:bg-blue-500 disabled:opacity-40 text-white px-3 py-1 rounded"
+              className="text-xs bg-primary hover:bg-primary disabled:opacity-40 text-white px-3 py-1 rounded"
             >
               + Add Leg
             </button>
@@ -593,7 +593,7 @@ function StrategyBuilderTab() {
                       <button
                         key={t}
                         onClick={() => updateLeg(leg.id, { type: t })}
-                        className={`flex-1 text-xs py-1 rounded ${leg.type === t ? "bg-blue-600 text-white" : "bg-white/5 text-gray-400 hover:bg-white/10"}`}
+                        className={`flex-1 text-xs py-1 rounded ${leg.type === t ? "bg-primary text-white" : "bg-white/5 text-gray-400 hover:bg-white/10"}`}
                       >
                         {t}
                       </button>
@@ -737,9 +737,9 @@ const CAT_LABELS: Record<string, string> = {
 };
 
 const CAT_COLORS: Record<string, string> = {
-  directional: "text-blue-400 bg-blue-500/10 border-blue-500/30",
+  directional: "text-primary bg-primary/10 border-border",
   income: "text-green-400 bg-green-500/10 border-green-500/30",
-  volatility: "text-purple-400 bg-purple-500/10 border-purple-500/30",
+  volatility: "text-primary bg-primary/10 border-border",
   defensive: "text-amber-400 bg-amber-500/10 border-amber-500/30",
 };
 
@@ -980,8 +980,8 @@ function RollCard({ scenario }: { scenario: RollScenario }) {
         </div>
       </div>
 
-      <div className="bg-blue-500/10 border border-blue-500/20 rounded-lg p-3">
-        <div className="text-xs text-blue-400 uppercase mb-1">Rationale</div>
+      <div className="bg-primary/10 border border-border rounded-lg p-3">
+        <div className="text-xs text-primary uppercase mb-1">Rationale</div>
         <p className="text-xs text-gray-300">{scenario.rationale}</p>
       </div>
 
@@ -990,7 +990,7 @@ function RollCard({ scenario }: { scenario: RollScenario }) {
         <ul className="space-y-1">
           {scenario.tips.map((tip, i) => (
             <li key={i} className="flex items-start gap-2 text-xs text-gray-300">
-              <span className="text-blue-400 mt-0.5">•</span>
+              <span className="text-primary mt-0.5">•</span>
               <span>{tip}</span>
             </li>
           ))}
@@ -1181,7 +1181,7 @@ function EarningsPlaysTab() {
                   <tr
                     key={s.ticker}
                     onClick={() => setSelectedTicker(s.ticker)}
-                    className={`border-t border-white/5 cursor-pointer transition-colors ${selectedTicker === s.ticker ? "bg-blue-500/10" : "hover:bg-white/5"}`}
+                    className={`border-t border-white/5 cursor-pointer transition-colors ${selectedTicker === s.ticker ? "bg-primary/10" : "hover:bg-white/5"}`}
                   >
                     <td className="px-4 py-2.5 font-semibold text-white">{s.ticker}</td>
                     <td className="px-4 py-2.5 text-amber-400">±{s.avgMove}%</td>
@@ -1191,7 +1191,7 @@ function EarningsPlaysTab() {
                     <td className="px-4 py-2.5 text-gray-300">{s.straddle}%</td>
                     <td className="px-4 py-2.5 text-green-400">{s.beat}</td>
                     <td className="px-4 py-2.5 text-red-400">{s.miss}</td>
-                    <td className="px-4 py-2.5 text-blue-400">{bestPlay}</td>
+                    <td className="px-4 py-2.5 text-primary">{bestPlay}</td>
                   </tr>
                 );
               })}
@@ -1353,8 +1353,8 @@ function PortfolioHedgingTab() {
 
           {/* Hedge Sizing */}
           <div className="space-y-3">
-            <div className="bg-blue-500/10 border border-blue-500/20 rounded-lg p-3 space-y-2">
-              <div className="text-xs text-blue-400 uppercase font-semibold">Hedge Sizing</div>
+            <div className="bg-primary/10 border border-border rounded-lg p-3 space-y-2">
+              <div className="text-xs text-primary uppercase font-semibold">Hedge Sizing</div>
               <div className="grid grid-cols-2 gap-2 text-xs">
                 <div>
                   <div className="text-gray-500">Notional to Hedge</div>
@@ -1632,7 +1632,7 @@ function GammaScalpingSim() {
             <button
               key={n}
               onClick={() => setHedgeInterval(n)}
-              className={`px-2 py-0.5 rounded ${hedgeInterval === n ? "bg-blue-600 text-white" : "bg-white/10 text-gray-400"}`}
+              className={`px-2 py-0.5 rounded ${hedgeInterval === n ? "bg-primary text-white" : "bg-white/10 text-gray-400"}`}
             >
               {n}d
             </button>
@@ -1650,7 +1650,7 @@ function GammaScalpingSim() {
         <text x={simPad.left - 4} y={zeroY + 4} textAnchor="end" fill="#6b7280" fontSize={9}>$0</text>
       </svg>
       <div className="flex gap-4 text-xs">
-        <span className="flex items-center gap-1"><span className="w-3 h-0.5 bg-blue-400 inline-block" /> Total P&L</span>
+        <span className="flex items-center gap-1"><span className="w-3 h-0.5 bg-primary inline-block" /> Total P&L</span>
         <span className="flex items-center gap-1"><span className="w-3 h-0.5 bg-red-400 inline-block" /> Hedge P&L</span>
         <span className="flex items-center gap-1"><span className="w-3 h-0.5 bg-gray-500 inline-block border-dashed" /> Option P&L</span>
       </div>
@@ -1860,8 +1860,8 @@ export default function OptionsStrategiesPage() {
           className="mb-6"
         >
           <div className="flex items-center gap-3 mb-1">
-            <div className="w-8 h-8 rounded-lg bg-blue-500/20 flex items-center justify-center">
-              <BarChart2 className="w-4 h-4 text-blue-400" />
+            <div className="w-8 h-8 rounded-lg bg-primary/20 flex items-center justify-center">
+              <BarChart2 className="w-4 h-4 text-primary" />
             </div>
             <h1 className="text-xl font-bold text-white">Options Strategies</h1>
           </div>
@@ -1878,7 +1878,7 @@ export default function OptionsStrategiesPage() {
               onClick={() => setActiveTab(id)}
               className={`flex items-center gap-1.5 px-3 py-2 rounded-lg text-xs font-medium transition-all ${
                 activeTab === id
-                  ? "bg-blue-600 text-white shadow-lg"
+                  ? "bg-primary text-white shadow-lg"
                   : "text-gray-400 hover:text-white hover:bg-white/5"
               }`}
             >

@@ -333,7 +333,7 @@ function PodStructureTab() {
                   const ddPct = Math.abs(pod.drawdown / pod.drawdownLimit) * 100;
                   const statusColor = pod.status === "active" ? "text-emerald-400" : pod.status === "flat" ? "text-amber-400" : "text-red-400";
                   const statusBg = pod.status === "active" ? "bg-emerald-900/30 border-emerald-800" : pod.status === "flat" ? "bg-amber-900/30 border-amber-800" : "bg-red-900/30 border-red-800";
-                  const seedColor = pod.seeding === "internal" ? "bg-indigo-900/40 text-indigo-300 border-indigo-800" : pod.seeding === "external" ? "bg-cyan-900/40 text-cyan-300 border-cyan-800" : "bg-purple-900/40 text-purple-300 border-purple-800";
+                  const seedColor = pod.seeding === "internal" ? "bg-indigo-900/40 text-indigo-300 border-indigo-800" : pod.seeding === "external" ? "bg-cyan-900/40 text-muted-foreground border-cyan-800" : "bg-muted/60 text-primary border-border";
                   return (
                     <tr key={pod.id} className="border-b border-zinc-800/50 hover:bg-zinc-800/30 transition-colors">
                       <td className="py-2 pr-3">
@@ -379,7 +379,7 @@ function PodStructureTab() {
       <Card className="bg-zinc-900 border-zinc-800">
         <CardHeader className="pb-2">
           <CardTitle className="text-sm font-medium text-zinc-300 flex items-center gap-2">
-            <Target className="h-4 w-4 text-cyan-400" />
+            <Target className="h-4 w-4 text-muted-foreground" />
             Capital Allocation Process
           </CardTitle>
         </CardHeader>
@@ -390,7 +390,7 @@ function PodStructureTab() {
               <p className="text-xs text-zinc-400 leading-relaxed">Pods with Sharpe &gt; 1.5 receive additional capital allocation. Capital is proportional to risk-adjusted returns over trailing 12 months. New pods receive minimum $250M seed regardless of track record.</p>
             </div>
             <div className="p-3 bg-zinc-800/50 rounded-lg border border-zinc-700">
-              <p className="text-xs font-semibold text-cyan-400 mb-2">Risk Budget / Kelly</p>
+              <p className="text-xs font-semibold text-muted-foreground mb-2">Risk Budget / Kelly</p>
               <p className="text-xs text-zinc-400 leading-relaxed">Each pod receives a VaR budget (e.g. $X per $1B AUM). Kelly fraction applied at half-Kelly to avoid over-sizing. Correlated pods share a combined VaR bucket — reducing capital when correlation spikes.</p>
             </div>
             <div className="p-3 bg-zinc-800/50 rounded-lg border border-zinc-700">
@@ -540,7 +540,7 @@ function StrategyAllocationTab() {
       <Card className="bg-zinc-900 border-zinc-800">
         <CardHeader className="pb-2">
           <CardTitle className="text-sm font-medium text-zinc-300 flex items-center gap-2">
-            <Activity className="h-4 w-4 text-cyan-400" />
+            <Activity className="h-4 w-4 text-muted-foreground" />
             Pod Cross-Correlation Heatmap
           </CardTitle>
         </CardHeader>
@@ -603,10 +603,10 @@ function StrategyAllocationTab() {
           <CardContent className="space-y-2 text-xs text-zinc-400">
             <p>During drawdowns or volatility spikes, capital rotates from directional strategies toward:</p>
             <ul className="space-y-1 ml-3">
-              <li className="flex gap-2"><span className="text-cyan-400">•</span> Merger arb (event-driven, low beta, defined catalysts)</li>
-              <li className="flex gap-2"><span className="text-cyan-400">•</span> Stat arb / quant (market-neutral, factor-diversified)</li>
-              <li className="flex gap-2"><span className="text-cyan-400">•</span> Vol selling pods (elevated VIX = higher premium income)</li>
-              <li className="flex gap-2"><span className="text-cyan-400">•</span> Cash reserves — undeployed capital earns T-bill rate (3–5%)</li>
+              <li className="flex gap-2"><span className="text-muted-foreground">•</span> Merger arb (event-driven, low beta, defined catalysts)</li>
+              <li className="flex gap-2"><span className="text-muted-foreground">•</span> Stat arb / quant (market-neutral, factor-diversified)</li>
+              <li className="flex gap-2"><span className="text-muted-foreground">•</span> Vol selling pods (elevated VIX = higher premium income)</li>
+              <li className="flex gap-2"><span className="text-muted-foreground">•</span> Cash reserves — undeployed capital earns T-bill rate (3–5%)</li>
             </ul>
             <p className="text-zinc-500 mt-2">Multi-strat advantage: capital can be redeployed in days vs. months for single-strat funds. Explains outperformance in 2022 market stress year.</p>
           </CardContent>
@@ -860,7 +860,7 @@ function EconomicsTab() {
       <Card className="bg-zinc-900 border-zinc-800">
         <CardHeader className="pb-2">
           <CardTitle className="text-sm font-medium text-zinc-300 flex items-center gap-2">
-            <TrendingUp className="h-4 w-4 text-cyan-400" />
+            <TrendingUp className="h-4 w-4 text-muted-foreground" />
             Annual Returns: Multi-Strat vs Single-Strat vs S&amp;P 500
           </CardTitle>
         </CardHeader>
@@ -1024,7 +1024,7 @@ export default function MultiStrategyPage() {
                 indigo: "bg-indigo-900/30 text-indigo-300 border-indigo-800",
                 amber: "bg-amber-900/30 text-amber-300 border-amber-800",
                 red: "bg-red-900/30 text-red-300 border-red-800",
-                cyan: "bg-cyan-900/30 text-cyan-300 border-cyan-800",
+                cyan: "bg-cyan-900/30 text-muted-foreground border-cyan-800",
                 emerald: "bg-emerald-900/30 text-emerald-300 border-emerald-800",
               };
               return (

@@ -34,7 +34,7 @@ function DirectionBadge({ direction }: { direction: ChartPattern["direction"] })
         "text-xs font-medium px-2 py-0.5 rounded-full",
         direction === "bullish" && "bg-green-500/10 text-green-500",
         direction === "bearish" && "bg-red-500/10 text-red-500",
-        direction === "both" && "bg-blue-500/10 text-blue-500"
+        direction === "both" && "bg-primary/10 text-primary"
       )}
     >
       {direction}
@@ -54,7 +54,7 @@ function PatternCard({ pattern }: { pattern: ChartPattern }) {
             <span
               className={cn(
                 "text-xs font-medium px-2 py-0.5 rounded-full",
-                pattern.type === "reversal" ? "bg-amber-500/10 text-amber-500" : "bg-blue-500/10 text-blue-500"
+                pattern.type === "reversal" ? "bg-amber-500/10 text-amber-500" : "bg-primary/10 text-primary"
               )}
             >
               {pattern.type}
@@ -97,7 +97,7 @@ function PatternCard({ pattern }: { pattern: ChartPattern }) {
               <span className="text-xs text-muted-foreground">{pattern.tradeSetup.entry}</span>
               <span className="text-[11px] font-medium text-red-500">Stop</span>
               <span className="text-xs text-muted-foreground">{pattern.tradeSetup.stopLoss}</span>
-              <span className="text-[11px] font-medium text-blue-500">Target</span>
+              <span className="text-[11px] font-medium text-primary">Target</span>
               <span className="text-xs text-muted-foreground">{pattern.tradeSetup.target}</span>
             </div>
           </div>

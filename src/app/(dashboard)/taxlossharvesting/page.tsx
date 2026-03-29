@@ -399,9 +399,9 @@ export default function TaxLossHarvestingPage() {
             label: "Unrealized Gains",
             value: formatCurrency(metrics.totalUnrealizedGains),
             icon: TrendingUp,
-            color: "text-blue-400",
-            bg: "bg-blue-500/10",
-            border: "border-blue-500/20",
+            color: "text-primary",
+            bg: "bg-primary/10",
+            border: "border-border",
           },
         ].map((m) => (
           <Card key={m.label} className={`border ${m.border}`}>
@@ -478,7 +478,7 @@ export default function TaxLossHarvestingPage() {
                               </td>
                               <td className="px-3 py-2.5 text-center">
                                 {h.replacement ? (
-                                  <Badge className="bg-blue-500/20 text-blue-400 border-blue-500/30 border text-xs">
+                                  <Badge className="bg-primary/20 text-primary border-border border text-xs">
                                     {h.replacement}
                                   </Badge>
                                 ) : (
@@ -508,7 +508,7 @@ export default function TaxLossHarvestingPage() {
               <Card className="border-border">
                 <CardHeader className="pb-2">
                   <CardTitle className="text-sm flex items-center gap-2">
-                    <BarChart3 className="w-4 h-4 text-blue-400" />
+                    <BarChart3 className="w-4 h-4 text-primary" />
                     All Holdings — Tax Lot Detail
                   </CardTitle>
                 </CardHeader>
@@ -707,18 +707,18 @@ export default function TaxLossHarvestingPage() {
               {[
                 {
                   icon: RefreshCw,
-                  color: "text-blue-400",
-                  bg: "bg-blue-500/10",
-                  border: "border-blue-500/20",
+                  color: "text-primary",
+                  bg: "bg-primary/10",
+                  border: "border-border",
                   title: "Systematic Harvesting",
                   desc: "Review portfolio monthly or when losses exceed a threshold (e.g., $500). Automated platforms check daily.",
                   stat: "~150 bps/yr alpha",
                 },
                 {
                   icon: Shield,
-                  color: "text-purple-400",
-                  bg: "bg-purple-500/10",
-                  border: "border-purple-500/20",
+                  color: "text-primary",
+                  bg: "bg-primary/10",
+                  border: "border-border",
                   title: "Loss Carry-Forward",
                   desc: "Unused losses carry forward indefinitely. Up to $3,000/year can offset ordinary income.",
                   stat: "No expiration",
@@ -755,7 +755,7 @@ export default function TaxLossHarvestingPage() {
               <Card className="border-border">
                 <CardHeader className="pb-2">
                   <CardTitle className="text-sm flex items-center gap-2">
-                    <Layers className="w-4 h-4 text-blue-400" />
+                    <Layers className="w-4 h-4 text-primary" />
                     ETF Ownership vs Direct Indexing
                   </CardTitle>
                 </CardHeader>
@@ -836,17 +836,17 @@ export default function TaxLossHarvestingPage() {
                             <p className="text-xs font-medium text-foreground">{row.label}</p>
                             <p className="text-xs text-muted-foreground">{row.note}</p>
                           </div>
-                          <span className="text-xs font-semibold text-blue-400">{row.value}</span>
+                          <span className="text-xs font-semibold text-primary">{row.value}</span>
                         </div>
                       ))}
                     </div>
                   </CardContent>
                 </Card>
 
-                <Card className="border-purple-500/20 bg-purple-500/5">
+                <Card className="border-border bg-primary/5">
                   <CardHeader className="pb-2">
                     <CardTitle className="text-sm flex items-center gap-2">
-                      <Zap className="w-4 h-4 text-purple-400" />
+                      <Zap className="w-4 h-4 text-primary" />
                       Who Benefits Most?
                     </CardTitle>
                   </CardHeader>
@@ -860,7 +860,7 @@ export default function TaxLossHarvestingPage() {
                         "Those who want index exposure + customization",
                       ].map((item) => (
                         <li key={item} className="flex items-start gap-2 text-xs text-muted-foreground">
-                          <CheckCircle2 className="w-3 h-3 mt-0.5 shrink-0 text-purple-400" />
+                          <CheckCircle2 className="w-3 h-3 mt-0.5 shrink-0 text-primary" />
                           {item}
                         </li>
                       ))}
@@ -870,11 +870,11 @@ export default function TaxLossHarvestingPage() {
               </div>
             </div>
 
-            <Card className="border-blue-500/20 bg-blue-500/5">
+            <Card className="border-border bg-primary/5">
               <CardContent className="p-4 flex gap-3">
-                <Info className="w-4 h-4 text-blue-400 shrink-0 mt-0.5" />
+                <Info className="w-4 h-4 text-primary shrink-0 mt-0.5" />
                 <div className="text-xs text-muted-foreground">
-                  <span className="font-semibold text-blue-400">How it works:</span> A direct indexing platform
+                  <span className="font-semibold text-primary">How it works:</span> A direct indexing platform
                   (e.g., Parametric, Fidelity Managed Accounts, Schwab Personalized Indexing) purchases each
                   constituent stock individually. When any stock falls below your cost basis, the system
                   automatically harvests the loss and buys a correlated substitute for 31+ days, then rotates

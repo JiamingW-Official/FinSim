@@ -83,7 +83,7 @@ const EMOTION_COLORS: Record<EmotionState, string> = {
   excited:    "text-amber-400",
   anxious:    "text-orange-400",
   frustrated: "text-red-400",
-  bored:      "text-blue-400",
+  bored:      "text-primary",
 };
 
 const EMOTION_SCORES: Record<EmotionState, number> = {
@@ -100,7 +100,7 @@ const CONDITIONS: GradedTrade["conditionLabel"][] = ["trending", "choppy", "vola
 const DOW_LABELS = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
 const GRADE_COLORS: Record<string, string> = {
   A: "text-green-400",
-  B: "text-teal-400",
+  B: "text-emerald-400",
   C: "text-amber-400",
   D: "text-orange-400",
   F: "text-red-400",
@@ -535,9 +535,9 @@ function GradeEngineSection({
     <div className="space-y-4">
       {/* Summary stats */}
       <div className="grid grid-cols-3 gap-2">
-        <ScoreChip label="Avg Process" value={avgProcess.toFixed(0)} max={100} color="text-blue-400" />
-        <ScoreChip label="Avg Outcome" value={avgOutcome.toFixed(0)} max={100} color="text-purple-400" />
-        <ScoreChip label="Consistency" value={consistencyScore.toFixed(0)} max={100} color="text-teal-400" />
+        <ScoreChip label="Avg Process" value={avgProcess.toFixed(0)} max={100} color="text-primary" />
+        <ScoreChip label="Avg Outcome" value={avgOutcome.toFixed(0)} max={100} color="text-primary" />
+        <ScoreChip label="Consistency" value={consistencyScore.toFixed(0)} max={100} color="text-emerald-400" />
       </div>
 
       {/* Scatter plot */}
@@ -558,7 +558,7 @@ function GradeEngineSection({
             <span className="text-muted-foreground">Bad Process + Good Outcome (Lucky)</span>
           </div>
           <div className="flex items-center gap-1">
-            <div className="h-2 w-2 rounded-full bg-blue-400" />
+            <div className="h-2 w-2 rounded-full bg-primary" />
             <span className="text-muted-foreground">Good Process + Bad Outcome (Unlucky)</span>
           </div>
           <div className="flex items-center gap-1">
@@ -584,16 +584,16 @@ function GradeEngineSection({
             </div>
           ))}
         </div>
-        <div className="rounded-lg border border-blue-500/30 bg-blue-500/10 p-3 space-y-1">
-          <div className="flex items-center gap-1.5 text-xs font-semibold text-blue-300">
+        <div className="rounded-lg border border-border bg-primary/10 p-3 space-y-1">
+          <div className="flex items-center gap-1.5 text-xs font-semibold text-primary">
             <CheckCircle2 className="h-3.5 w-3.5" />
             Unlucky Trades ({unlucky.length})
           </div>
-          <p className="text-xs text-blue-200/70">
+          <p className="text-xs text-muted-foreground">
             Good process, bad outcome. Stay the course — edge shows over time.
           </p>
           {unlucky.slice(0, 3).map((t) => (
-            <div key={t.id} className="text-xs text-blue-300 font-medium">
+            <div key={t.id} className="text-xs text-primary font-medium">
               {t.ticker} {t.pnlPct.toFixed(1)}% (process: {t.processScore})
             </div>
           ))}
@@ -613,7 +613,7 @@ function GradeEngineSection({
               </span>
               <div className="flex-1">
                 <div className="flex gap-1">
-                  <div className="h-1.5 rounded-full bg-blue-400/40" style={{ width: `${t.processScore * 0.6}%` }} title={`Process: ${t.processScore}`} />
+                  <div className="h-1.5 rounded-full bg-primary/40" style={{ width: `${t.processScore * 0.6}%` }} title={`Process: ${t.processScore}`} />
                 </div>
                 <div className="flex gap-1 mt-0.5">
                   <div className={cn("h-1.5 rounded-full", t.outcomeScore >= 50 ? "bg-green-400/60" : "bg-red-400/50")} style={{ width: `${t.outcomeScore * 0.6}%` }} />
@@ -626,7 +626,7 @@ function GradeEngineSection({
           ))}
         </div>
         <div className="mt-2 flex gap-3 text-[11px] text-muted-foreground/50">
-          <div className="flex items-center gap-1"><div className="h-1.5 w-4 rounded-full bg-blue-400/40" /> Process</div>
+          <div className="flex items-center gap-1"><div className="h-1.5 w-4 rounded-full bg-primary/40" /> Process</div>
           <div className="flex items-center gap-1"><div className="h-1.5 w-4 rounded-full bg-green-400/60" /> Outcome</div>
         </div>
       </div>
@@ -1003,11 +1003,11 @@ function PatternSection({ trades }: { trades: GradedTrade[] }) {
           },
           {
             text: `Best win rate in ${bestDuration.label} trades (${bestDuration.count > 0 ? ((bestDuration.winCount / bestDuration.count) * 100).toFixed(0) : 0}%)`,
-            icon: <Clock className="h-3.5 w-3.5 text-blue-400 shrink-0" />,
+            icon: <Clock className="h-3.5 w-3.5 text-primary shrink-0" />,
           },
           {
             text: `${bestDow.label} is your best day — avg ${bestDow.avg >= 0 ? "+" : ""}${bestDow.avg.toFixed(2)}%`,
-            icon: <Calendar className="h-3.5 w-3.5 text-teal-400 shrink-0" />,
+            icon: <Calendar className="h-3.5 w-3.5 text-emerald-400 shrink-0" />,
           },
         ].map((ins, i) => (
           <div key={i} className="flex items-start gap-2 rounded-md border border-border bg-card/60 p-2.5 text-xs">
@@ -1201,7 +1201,7 @@ function EmotionalSection({
     excited: "bg-amber-500/60",
     anxious: "bg-orange-500/60",
     frustrated: "bg-red-500/60",
-    bored: "bg-blue-500/40",
+    bored: "bg-primary/40",
   };
 
   const SliderInput = ({

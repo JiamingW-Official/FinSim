@@ -165,19 +165,19 @@ function DeltaHedgingTab() {
       {/* Header */}
       <div className="rounded-xl border border-white/10 bg-white/5 p-5">
         <h2 className="text-lg font-semibold text-white mb-3 flex items-center gap-2">
-          <ArrowUpDown className="w-5 h-5 text-blue-400" />
+          <ArrowUpDown className="w-5 h-5 text-primary" />
           Delta Hedging Fundamentals
         </h2>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4 text-sm">
-          <div className="bg-blue-500/10 border border-blue-500/20 rounded-lg p-3">
-            <div className="text-blue-300 font-medium mb-1">Delta = Hedge Ratio</div>
+          <div className="bg-primary/10 border border-border rounded-lg p-3">
+            <div className="text-primary font-medium mb-1">Delta = Hedge Ratio</div>
             <div className="text-slate-300 text-xs leading-relaxed">
               Delta measures how much an option's price changes per $1 move in the underlying.
               A delta of 0.6 means hold 60 shares short per 1 call to be delta-neutral.
             </div>
           </div>
-          <div className="bg-purple-500/10 border border-purple-500/20 rounded-lg p-3">
-            <div className="text-purple-300 font-medium mb-1">Hedge P&amp;L Formula</div>
+          <div className="bg-primary/10 border border-border rounded-lg p-3">
+            <div className="text-primary font-medium mb-1">Hedge P&amp;L Formula</div>
             <div className="text-slate-300 text-xs font-mono leading-relaxed">
               ΔP&amp;L ≈ ½ × Γ × (ΔS)² − Θ × Δt<br />
               <span className="text-slate-400">Gamma income minus theta bleed</span>
@@ -259,7 +259,7 @@ function DeltaHedgingTab() {
           <text x={PAD - 4} y={H - PAD} fontSize={10} fill="#94a3b8" textAnchor="end">${pMin.toFixed(0)}</text>
         </svg>
         <div className="flex items-center gap-4 mt-2 text-xs text-slate-400">
-          <span className="flex items-center gap-1"><span className="w-3 h-0.5 bg-blue-400 inline-block" /> Price path</span>
+          <span className="flex items-center gap-1"><span className="w-3 h-0.5 bg-primary inline-block" /> Price path</span>
           <span className="flex items-center gap-1"><span className="w-2 h-2 rounded-full bg-amber-400 inline-block" /> Hedge rebalance (delta shown)</span>
           <span className="text-slate-500">Rebalances: {hedgePoints.length} | Transaction cost ≈ ${(hedgePoints.length * 0.05 * SPOT * 0.01).toFixed(2)}</span>
         </div>
@@ -389,7 +389,7 @@ function GammaPnLTab() {
             <div className="bg-slate-800 rounded-lg p-3 font-mono text-sm space-y-1">
               <div className="text-emerald-400">Gamma P&amp;L = ½ × Γ × (ΔS)²</div>
               <div className="text-red-400">Theta Decay = Θ × Δt</div>
-              <div className="text-blue-400 border-t border-white/10 pt-1 mt-1">Net = Gamma − |Theta|</div>
+              <div className="text-primary border-t border-white/10 pt-1 mt-1">Net = Gamma − |Theta|</div>
             </div>
             <div className="mt-3 text-xs text-slate-400 space-y-1">
               <div>• Breakeven realized vol: σ_R = σ_IV when Γ-income = Θ-decay</div>
@@ -483,7 +483,7 @@ function GammaPnLTab() {
                 <tr key={ev.idx} className="border-b border-white/5 hover:bg-white/5">
                   <td className="py-1.5 pr-3 text-slate-300">{ev.idx}</td>
                   <td className="py-1.5 pr-3 text-right font-mono text-white">${ev.price.toFixed(2)}</td>
-                  <td className="py-1.5 pr-3 text-right font-mono text-blue-300">{ev.delta.toFixed(3)}</td>
+                  <td className="py-1.5 pr-3 text-right font-mono text-primary">{ev.delta.toFixed(3)}</td>
                   <td className={`py-1.5 pr-3 text-right font-mono ${ev.pnl >= 0 ? "text-emerald-400" : "text-red-400"}`}>
                     {ev.pnl >= 0 ? "+" : ""}{ev.pnl.toFixed(2)}
                   </td>
@@ -564,7 +564,7 @@ function VolArbitrageTab() {
       {/* Strategy selector */}
       <div className="rounded-xl border border-white/10 bg-white/5 p-5">
         <h2 className="text-lg font-semibold text-white mb-4 flex items-center gap-2">
-          <TrendingUp className="w-5 h-5 text-purple-400" />
+          <TrendingUp className="w-5 h-5 text-primary" />
           Volatility Arbitrage Strategies
         </h2>
         <div className="grid grid-cols-2 md:grid-cols-4 gap-3 mb-4">
@@ -604,12 +604,12 @@ function VolArbitrageTab() {
             )}
             {selectedStrategy === 2 && (
               <div>
-                <strong className="text-blue-300">Vol Surface Arbitrage</strong>: Exploit relative mispricings between strikes (skew arb) or expiries (term structure arb). Example: buy cheap 30-delta put, sell expensive 10-delta put in same expiry. Vanna/charm effects near expiry create systematic dislocations — especially in index products.
+                <strong className="text-primary">Vol Surface Arbitrage</strong>: Exploit relative mispricings between strikes (skew arb) or expiries (term structure arb). Example: buy cheap 30-delta put, sell expensive 10-delta put in same expiry. Vanna/charm effects near expiry create systematic dislocations — especially in index products.
               </div>
             )}
             {selectedStrategy === 3 && (
               <div>
-                <strong className="text-purple-300">Calendar Spread</strong>: Long near-dated vol, short far-dated vol (or vice versa). Profits from term structure mean reversion. Near-dated options have higher gamma but more theta. Far-dated options have higher vega sensitivity. Vanna effects (∂Delta/∂Vol) amplify P&amp;L near expiry.
+                <strong className="text-primary">Calendar Spread</strong>: Long near-dated vol, short far-dated vol (or vice versa). Profits from term structure mean reversion. Near-dated options have higher gamma but more theta. Far-dated options have higher vega sensitivity. Vanna effects (∂Delta/∂Vol) amplify P&amp;L near expiry.
               </div>
             )}
           </motion.div>
@@ -685,7 +685,7 @@ function VolArbitrageTab() {
                   </td>
                   {surfaceIV[ki].map((iv, ei) => {
                     const intensity = (iv - 0.18) / 0.20;
-                    const bg = iv > 0.28 ? "bg-red-500/20 text-red-300" : iv > 0.25 ? "bg-amber-500/20 text-amber-300" : "bg-blue-500/10 text-blue-300";
+                    const bg = iv > 0.28 ? "bg-red-500/20 text-red-300" : iv > 0.25 ? "bg-amber-500/20 text-amber-300" : "bg-primary/10 text-primary";
                     return (
                       <td key={ei} className="py-2 px-3 text-center">
                         <span className={`font-mono text-xs px-1.5 py-0.5 rounded ${bg}`}>{(iv * 100).toFixed(1)}%</span>
@@ -700,7 +700,7 @@ function VolArbitrageTab() {
         <div className="mt-3 grid grid-cols-3 gap-3 text-xs text-slate-400">
           <div className="flex items-center gap-1.5"><span className="w-2 h-2 rounded bg-red-500/40 inline-block" /> High IV (&gt;28%) — potential short vol</div>
           <div className="flex items-center gap-1.5"><span className="w-2 h-2 rounded bg-amber-500/40 inline-block" /> Elevated (25–28%)</div>
-          <div className="flex items-center gap-1.5"><span className="w-2 h-2 rounded bg-blue-500/30 inline-block" /> Normal (&lt;25%)</div>
+          <div className="flex items-center gap-1.5"><span className="w-2 h-2 rounded bg-primary/30 inline-block" /> Normal (&lt;25%)</div>
         </div>
       </div>
 
@@ -751,7 +751,7 @@ function MMRiskTab() {
       {/* Book overview */}
       <div className="rounded-xl border border-white/10 bg-white/5 p-5">
         <h2 className="text-lg font-semibold text-white mb-4 flex items-center gap-2">
-          <Shield className="w-5 h-5 text-blue-400" />
+          <Shield className="w-5 h-5 text-primary" />
           Market Maker Book Management
         </h2>
         <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
@@ -856,7 +856,7 @@ function MMRiskTab() {
         <div className="flex items-center gap-6 mt-2 text-xs">
           <span className="flex items-center gap-1.5 text-emerald-400"><span className="w-3 h-3 rounded bg-emerald-500/40 inline-block" /> Gamma income</span>
           <span className="flex items-center gap-1.5 text-red-400"><span className="w-3 h-3 rounded bg-red-500/40 inline-block" /> Theta decay</span>
-          <span className="flex items-center gap-1.5 text-blue-400"><span className="w-4 h-0.5 bg-blue-400 inline-block" /> Net P&amp;L</span>
+          <span className="flex items-center gap-1.5 text-primary"><span className="w-4 h-0.5 bg-primary inline-block" /> Net P&amp;L</span>
         </div>
       </div>
 

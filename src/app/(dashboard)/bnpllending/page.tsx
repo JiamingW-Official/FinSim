@@ -115,7 +115,7 @@ function InfoBox({
   variant?: "blue" | "amber" | "emerald" | "rose";
 }) {
   const colors = {
-    blue: "bg-blue-500/10 border-blue-500/30 text-blue-200",
+    blue: "bg-primary/10 border-border text-primary",
     amber: "bg-amber-500/10 border-amber-500/30 text-amber-200",
     emerald: "bg-emerald-500/10 border-emerald-500/30 text-emerald-200",
     rose: "bg-rose-500/10 border-rose-500/30 text-rose-200",
@@ -335,8 +335,8 @@ function Tab1BNPLModel() {
           </SectionTitle>
           <div className="space-y-3">
             {[
-              { label: "Merchant Discount Rate (MDR)", desc: "2–6% of transaction value paid by merchant for driving incremental sales and handling credit risk", pct: 72, color: "bg-blue-500" },
-              { label: "Consumer Late Fees", desc: "Flat fees ($5–$15) when payment missed; capped by state law. 15–25% of consumers incur at least one", pct: 16, color: "bg-purple-500" },
+              { label: "Merchant Discount Rate (MDR)", desc: "2–6% of transaction value paid by merchant for driving incremental sales and handling credit risk", pct: 72, color: "bg-primary" },
+              { label: "Consumer Late Fees", desc: "Flat fees ($5–$15) when payment missed; capped by state law. 15–25% of consumers incur at least one", pct: 16, color: "bg-primary" },
               { label: "0% APR Loan Interest (Affirm)", desc: "Higher-ticket items (>$500) carry 10–36% APR financing — consumer paid interest", pct: 8, color: "bg-amber-500" },
               { label: "Interchange / Bank Fees", desc: "Virtual card-based BNPL earns Visa/MC interchange (~1.5%) at point of sale", pct: 4, color: "bg-emerald-500" },
             ].map((r) => (
@@ -390,7 +390,7 @@ function Tab1BNPLModel() {
               {BNPL_PLAYERS.map((p, i) => (
                 <tr key={p.name} className={cn("border-b border-white/5", i % 2 === 0 ? "bg-white/[0.02]" : "")}>
                   <td className="py-2.5 px-3 font-semibold text-white">{p.name}</td>
-                  <td className="py-2.5 px-3 text-blue-300">{p.gmv}</td>
+                  <td className="py-2.5 px-3 text-primary">{p.gmv}</td>
                   <td className="py-2.5 px-3 text-emerald-300">{p.takeRate}</td>
                   <td className="py-2.5 px-3 text-rose-300">{p.creditLoss}</td>
                   <td className="py-2.5 px-3 text-zinc-300">{p.model}</td>
@@ -611,11 +611,11 @@ function Tab2DigitalScoring() {
           </SectionTitle>
           <div className="space-y-2 mb-3">
             {[
-              { factor: "Payment History", weight: 35, color: "bg-blue-500" },
-              { factor: "Credit Utilization", weight: 30, color: "bg-blue-400" },
-              { factor: "Credit History Length", weight: 15, color: "bg-blue-300" },
-              { factor: "Credit Mix", weight: 10, color: "bg-blue-200" },
-              { factor: "New Credit Inquiries", weight: 10, color: "bg-blue-100" },
+              { factor: "Payment History", weight: 35, color: "bg-primary" },
+              { factor: "Credit Utilization", weight: 30, color: "bg-primary" },
+              { factor: "Credit History Length", weight: 15, color: "bg-primary/30" },
+              { factor: "Credit Mix", weight: 10, color: "bg-primary/20" },
+              { factor: "New Credit Inquiries", weight: 10, color: "bg-primary/10" },
             ].map((f) => (
               <div key={f.factor} className="space-y-0.5">
                 <div className="flex justify-between text-xs">
@@ -932,7 +932,7 @@ function Tab3EmbeddedFinance() {
                 {cs.advantage}
               </p>
               <p className="text-xs text-zinc-400">
-                <span className="text-blue-400 font-medium">Model: </span>
+                <span className="text-primary font-medium">Model: </span>
                 {cs.model}
               </p>
             </div>
@@ -1262,7 +1262,7 @@ function Tab4RiskRegulation() {
                 severity: "high",
               },
             ].map((item) => {
-              const severityColor = item.severity === "high" ? "text-rose-400 border-rose-500/30 bg-rose-500/10" : item.severity === "medium" ? "text-amber-400 border-amber-500/30 bg-amber-500/10" : "text-blue-400 border-blue-500/30 bg-blue-500/10";
+              const severityColor = item.severity === "high" ? "text-rose-400 border-rose-500/30 bg-rose-500/10" : item.severity === "medium" ? "text-amber-400 border-amber-500/30 bg-amber-500/10" : "text-primary border-border bg-primary/10";
               return (
                 <div key={item.event} className="rounded-lg border border-white/10 bg-white/5 p-3">
                   <div className="flex items-center gap-2 mb-1">
@@ -1346,8 +1346,8 @@ export default function BNPLLendingPage() {
         {/* Header */}
         <div className="mb-6">
           <div className="flex items-center gap-3 mb-2">
-            <div className="w-9 h-9 rounded-xl bg-blue-500/20 border border-blue-500/30 flex items-center justify-center">
-              <CreditCard size={18} className="text-blue-400" />
+            <div className="w-9 h-9 rounded-xl bg-primary/20 border border-border flex items-center justify-center">
+              <CreditCard size={18} className="text-primary" />
             </div>
             <div>
               <h1 className="text-xl font-bold text-white">BNPL &amp; Digital Lending</h1>
@@ -1356,10 +1356,10 @@ export default function BNPLLendingPage() {
           </div>
           <div className="flex flex-wrap gap-2 mt-3">
             {[
-              { label: "Global BNPL Market", val: "$450B GMV", color: "bg-blue-500/20 text-blue-300 border-blue-500/30" },
+              { label: "Global BNPL Market", val: "$450B GMV", color: "bg-primary/20 text-primary border-border" },
               { label: "Market CAGR", val: "22% YoY", color: "bg-emerald-500/20 text-emerald-300 border-emerald-500/30" },
               { label: "Thin-File Problem", val: "45M Americans", color: "bg-amber-500/20 text-amber-300 border-amber-500/30" },
-              { label: "Embedded Finance", val: "$124B Market", color: "bg-purple-500/20 text-purple-300 border-purple-500/30" },
+              { label: "Embedded Finance", val: "$124B Market", color: "bg-primary/20 text-primary border-border" },
             ].map((chip) => (
               <Badge key={chip.label} className={cn("text-xs", chip.color)}>
                 {chip.label}: {chip.val}

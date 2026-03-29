@@ -403,8 +403,8 @@ export default function DerivPricingLabPage() {
         transition={{ duration: 0.4 }}
         className="flex items-center gap-4"
       >
-        <div className="p-2.5 rounded-xl bg-violet-500/10 border border-violet-500/20">
-          <FlaskConical className="w-6 h-6 text-violet-400" />
+        <div className="p-2.5 rounded-xl bg-primary/10 border border-border">
+          <FlaskConical className="w-6 h-6 text-primary" />
         </div>
         <div>
           <h1 className="text-2xl font-semibold tracking-tight">Derivatives Pricing Lab</h1>
@@ -413,7 +413,7 @@ export default function DerivPricingLabPage() {
           </p>
         </div>
         <div className="ml-auto flex gap-2">
-          <Badge variant="outline" className="border-violet-500/30 text-violet-400 text-xs">
+          <Badge variant="outline" className="border-border text-primary text-xs">
             Interactive
           </Badge>
           <Badge variant="outline" className="border-emerald-500/30 text-emerald-400 text-xs">
@@ -487,7 +487,7 @@ export default function DerivPricingLabPage() {
       >
         <Tabs defaultValue="bs">
           <TabsList className="bg-[#111118] border border-[#1e1e2e] mb-6">
-            <TabsTrigger value="bs" className="data-[state=active]:bg-violet-600/20 data-[state=active]:text-violet-300 gap-2">
+            <TabsTrigger value="bs" className="data-[state=active]:bg-primary/20 data-[state=active]:text-primary gap-2">
               <FlaskConical className="w-3.5 h-3.5" />
               Black-Scholes
             </TabsTrigger>
@@ -527,7 +527,7 @@ export default function DerivPricingLabPage() {
               <CardContent className="p-4 flex gap-8 flex-wrap">
                 <div>
                   <p className="text-xs text-slate-500 mb-1">d₁</p>
-                  <p className="text-lg font-mono text-violet-300">{bs.d1.toFixed(4)}</p>
+                  <p className="text-lg font-mono text-primary">{bs.d1.toFixed(4)}</p>
                   <p className="text-xs text-slate-500 mt-1">ln(S/K) + (r+σ²/2)T / σ√T</p>
                 </div>
                 <div>
@@ -554,7 +554,7 @@ export default function DerivPricingLabPage() {
             <Card className="bg-[#111118] border-[#1e1e2e]">
               <CardHeader className="pb-2">
                 <CardTitle className="text-sm font-medium text-slate-300 flex items-center gap-2">
-                  <BarChart3 className="w-4 h-4 text-violet-400" />
+                  <BarChart3 className="w-4 h-4 text-primary" />
                   Payoff Diagram at Expiry
                 </CardTitle>
               </CardHeader>
@@ -624,7 +624,7 @@ export default function DerivPricingLabPage() {
               </Card>
               <Card className="bg-[#111118] border-[#1e1e2e] p-4">
                 <p className="text-xs text-slate-500 mb-1">Black-Scholes Call Price</p>
-                <p className="text-2xl font-bold text-violet-400">${bs.callPrice.toFixed(4)}</p>
+                <p className="text-2xl font-bold text-primary">${bs.callPrice.toFixed(4)}</p>
                 <p className="text-xs text-slate-500 mt-1">
                   Diff: ${Math.abs(binomial.callPrice - bs.callPrice).toFixed(4)} (converges with more steps)
                 </p>
@@ -693,7 +693,7 @@ export default function DerivPricingLabPage() {
                     95% CI: [${mc.callCI[0].toFixed(3)}, ${mc.callCI[1].toFixed(3)}]
                   </p>
                   <p className="text-xs text-slate-500 mt-0.5">
-                    BS reference: <span className="text-violet-300">${bs.callPrice.toFixed(4)}</span>
+                    BS reference: <span className="text-primary">${bs.callPrice.toFixed(4)}</span>
                   </p>
                 </CardContent>
               </Card>
@@ -705,7 +705,7 @@ export default function DerivPricingLabPage() {
                     95% CI: [${mc.putCI[0].toFixed(3)}, ${mc.putCI[1].toFixed(3)}]
                   </p>
                   <p className="text-xs text-slate-500 mt-0.5">
-                    BS reference: <span className="text-violet-300">${bs.putPrice.toFixed(4)}</span>
+                    BS reference: <span className="text-primary">${bs.putPrice.toFixed(4)}</span>
                   </p>
                 </CardContent>
               </Card>
@@ -741,7 +741,7 @@ export default function DerivPricingLabPage() {
               <Card className="bg-[#111118] border-[#1e1e2e]">
                 <CardHeader className="pb-2">
                   <CardTitle className="text-sm font-medium text-slate-300 flex items-center gap-2">
-                    <Activity className="w-4 h-4 text-violet-400" />
+                    <Activity className="w-4 h-4 text-primary" />
                     Convergence Chart (Call Price vs N)
                   </CardTitle>
                 </CardHeader>
@@ -760,7 +760,7 @@ export default function DerivPricingLabPage() {
                 <p className="text-sm text-slate-400">
                   Exotic options have path-dependent payoffs not captured by standard Black-Scholes.
                   Prices are estimated via Monte Carlo (5,000 paths, same parameters as other tabs).
-                  Vanilla call reference: <span className="text-violet-300 font-medium">${bs.callPrice.toFixed(4)}</span>
+                  Vanilla call reference: <span className="text-primary font-medium">${bs.callPrice.toFixed(4)}</span>
                 </p>
               </CardContent>
             </Card>
@@ -807,7 +807,7 @@ interface SliderParamProps {
 
 function SliderParam({ label, value, min, max, step, format, onChange, color }: SliderParamProps) {
   const colorMap: Record<string, string> = {
-    violet: "text-violet-300",
+    violet: "text-primary",
     sky: "text-sky-300",
     emerald: "text-emerald-300",
     amber: "text-amber-300",
@@ -861,7 +861,7 @@ interface GreekCardProps {
 
 function GreekCard({ label, value, sub, color }: GreekCardProps) {
   const colorMap: Record<string, string> = {
-    violet: "text-violet-300 border-violet-500/20 bg-violet-500/5",
+    violet: "text-primary border-border bg-primary/5",
     sky: "text-sky-300 border-sky-500/20 bg-sky-500/5",
     amber: "text-amber-300 border-amber-500/20 bg-amber-500/5",
     emerald: "text-emerald-300 border-emerald-500/20 bg-emerald-500/5",
@@ -1330,7 +1330,7 @@ function ExoticCard({ ex, vanillaCall }: { ex: ExoticResult; vanillaCall: number
           </div>
           <div>
             <p className="text-xs text-slate-500 mb-0.5">Vanilla Call</p>
-            <p className="text-2xl font-bold text-violet-400">${vanillaCall.toFixed(4)}</p>
+            <p className="text-2xl font-bold text-primary">${vanillaCall.toFixed(4)}</p>
           </div>
           <div className="ml-auto text-right">
             <p className="text-xs text-slate-500 mb-0.5">{ex.metricLabel}</p>
@@ -1348,7 +1348,7 @@ function ExoticCard({ ex, vanillaCall }: { ex: ExoticResult; vanillaCall: number
           </div>
           <div className="relative h-4 bg-[#1e1e2e] rounded overflow-hidden">
             <div
-              className="absolute left-0 top-0 h-full bg-violet-500/40 rounded"
+              className="absolute left-0 top-0 h-full bg-primary/40 rounded"
               style={{ width: `${clamp((vanillaCall / (Math.max(ex.price, vanillaCall) * 1.1)) * 100, 0, 100)}%` }}
             />
             <div
@@ -1357,7 +1357,7 @@ function ExoticCard({ ex, vanillaCall }: { ex: ExoticResult; vanillaCall: number
             />
           </div>
           <div className="flex gap-3 mt-1 text-xs">
-            <span className="text-violet-400">■ Vanilla</span>
+            <span className="text-primary">■ Vanilla</span>
             <span className="text-amber-400">■ Exotic</span>
           </div>
         </div>

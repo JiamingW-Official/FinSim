@@ -462,10 +462,10 @@ function statusColor(s: DealStatus): string {
 
 function typeColor(t: DealType): string {
   const m: Record<DealType, string> = {
-    Acquisition: "bg-blue-500/20 text-blue-400 border-blue-500/30",
-    Merger: "bg-purple-500/20 text-purple-400 border-purple-500/30",
+    Acquisition: "bg-primary/20 text-primary border-border",
+    Merger: "bg-primary/20 text-primary border-border",
     LBO: "bg-orange-500/20 text-orange-400 border-orange-500/30",
-    Spinoff: "bg-teal-500/20 text-teal-400 border-teal-500/30",
+    Spinoff: "bg-teal-500/20 text-emerald-400 border-teal-500/30",
   };
   return m[t];
 }
@@ -687,7 +687,7 @@ export default function IBDealsPage() {
         className="mb-6"
       >
         <div className="flex items-center gap-3 mb-1">
-          <Briefcase className="text-blue-400" size={28} />
+          <Briefcase className="text-primary" size={28} />
           <h1 className="text-2xl font-bold tracking-tight">Investment Banking Deal Simulator</h1>
         </div>
         <p className="text-sm text-zinc-400">
@@ -708,7 +708,7 @@ export default function IBDealsPage() {
             <TabsTrigger
               key={t.value}
               value={t.value}
-              className="text-xs data-[state=active]:bg-blue-600 data-[state=active]:text-white"
+              className="text-xs data-[state=active]:bg-primary data-[state=active]:text-white"
             >
               {t.label}
             </TabsTrigger>
@@ -730,7 +730,7 @@ export default function IBDealsPage() {
                       className={cn(
                         "px-2 py-1 text-xs rounded border transition-colors",
                         filterType === t
-                          ? "bg-blue-600 border-blue-500 text-white"
+                          ? "bg-primary border-primary text-white"
                           : "bg-zinc-800 border-zinc-700 text-zinc-400 hover:text-white"
                       )}
                     >
@@ -749,7 +749,7 @@ export default function IBDealsPage() {
                       className={cn(
                         "px-2 py-1 text-xs rounded border transition-colors",
                         filterStatus === t
-                          ? "bg-blue-600 border-blue-500 text-white"
+                          ? "bg-primary border-primary text-white"
                           : "bg-zinc-800 border-zinc-700 text-zinc-400 hover:text-white"
                       )}
                     >
@@ -768,7 +768,7 @@ export default function IBDealsPage() {
                       className={cn(
                         "px-2 py-1 text-xs rounded border transition-colors",
                         filterSize === t
-                          ? "bg-blue-600 border-blue-500 text-white"
+                          ? "bg-primary border-primary text-white"
                           : "bg-zinc-800 border-zinc-700 text-zinc-400 hover:text-white"
                       )}
                     >
@@ -787,7 +787,7 @@ export default function IBDealsPage() {
           <div className="bg-zinc-900 border border-zinc-800 rounded-xl overflow-hidden">
             <div className="p-4 border-b border-zinc-800">
               <h2 className="font-semibold text-sm flex items-center gap-2">
-                <Activity size={14} className="text-blue-400" />
+                <Activity size={14} className="text-primary" />
                 Announced M&A Deals
               </h2>
             </div>
@@ -834,7 +834,7 @@ export default function IBDealsPage() {
                       <td className="px-4 py-2 text-zinc-400">{d.industry}</td>
                       <td className="px-4 py-2 text-center">
                         {d.crossBorder ? (
-                          <span className="text-blue-400 font-medium">{d.origin} → {d.destination}</span>
+                          <span className="text-primary font-medium">{d.origin} → {d.destination}</span>
                         ) : (
                           <span className="text-zinc-600">Domestic</span>
                         )}
@@ -850,7 +850,7 @@ export default function IBDealsPage() {
           {/* Deal timelines */}
           <div className="bg-zinc-900 border border-zinc-800 rounded-xl p-4">
             <h2 className="font-semibold text-sm mb-4 flex items-center gap-2">
-              <BarChart3 size={14} className="text-blue-400" />
+              <BarChart3 size={14} className="text-primary" />
               Deal Timeline: Announce → Regulatory → Close
             </h2>
             <svg width="100%" height={filteredDeals.slice(0, 8).length * 36 + 40} className="overflow-visible">
@@ -927,7 +927,7 @@ export default function IBDealsPage() {
 
             <div className="bg-zinc-900 border border-zinc-800 rounded-xl p-4">
               <h2 className="font-semibold text-sm mb-3 flex items-center gap-2">
-                <Globe size={14} className="text-purple-400" />
+                <Globe size={14} className="text-primary" />
                 Cross-Border Deal Origins
               </h2>
               {(() => {
@@ -949,7 +949,7 @@ export default function IBDealsPage() {
                               initial={{ width: 0 }}
                               animate={{ width: `${(vol / maxVal) * 100}%` }}
                               transition={{ duration: 0.6 }}
-                              className="h-full bg-purple-500 rounded-full"
+                              className="h-full bg-primary rounded-full"
                             />
                           </div>
                           <span className="text-xs text-zinc-400 w-12 text-right">{fmtB(vol)}</span>
@@ -971,7 +971,7 @@ export default function IBDealsPage() {
             {/* Controls */}
             <div className="bg-zinc-900 border border-zinc-800 rounded-xl p-4 space-y-4">
               <h2 className="font-semibold text-sm flex items-center gap-2">
-                <Target size={14} className="text-blue-400" />
+                <Target size={14} className="text-primary" />
                 Deal Builder
               </h2>
 
@@ -1072,11 +1072,11 @@ export default function IBDealsPage() {
                 {/* Key metrics */}
                 <div className="grid grid-cols-2 md:grid-cols-3 gap-3">
                   {[
-                    { label: "Offer EV", value: fmtB(dealCalcs.offeredEV), color: "text-blue-400" },
+                    { label: "Offer EV", value: fmtB(dealCalcs.offeredEV), color: "text-primary" },
                     { label: "Offer Equity", value: fmtB(dealCalcs.offeredEquity), color: "text-emerald-400" },
                     { label: "EV/EBITDA (offer)", value: `${fmt(dealCalcs.impliedEvEbitda)}×`, color: "text-amber-400" },
-                    { label: "EV/Revenue (offer)", value: `${fmt(dealCalcs.impliedEvRevenue)}×`, color: "text-purple-400" },
-                    { label: "P/E (offer)", value: `${fmt(dealCalcs.impliedPE)}×`, color: "text-cyan-400" },
+                    { label: "EV/Revenue (offer)", value: `${fmt(dealCalcs.impliedEvRevenue)}×`, color: "text-primary" },
+                    { label: "P/E (offer)", value: `${fmt(dealCalcs.impliedPE)}×`, color: "text-muted-foreground" },
                     { label: "New Shares Issued", value: `${fmt(dealCalcs.newSharesIssued, 0)}M`, color: "text-zinc-300" },
                   ].map((m) => (
                     <div key={m.label} className="bg-zinc-900 border border-zinc-800 rounded-xl p-3">
@@ -1134,7 +1134,7 @@ export default function IBDealsPage() {
                 {/* Financing structure */}
                 <div className="bg-zinc-900 border border-zinc-800 rounded-xl p-4">
                   <h3 className="text-sm font-semibold mb-3 flex items-center gap-2">
-                    <DollarSign size={14} className="text-blue-400" />
+                    <DollarSign size={14} className="text-primary" />
                     Financing Structure
                   </h3>
                   <div className="grid grid-cols-2 md:grid-cols-4 gap-3 mb-3">
@@ -1148,29 +1148,29 @@ export default function IBDealsPage() {
                     </div>
                     <div className="bg-zinc-800/50 rounded p-2">
                       <div className="text-xs text-zinc-400">Debt Financing</div>
-                      <div className="text-sm font-semibold text-blue-400">{fmtM(dealCalcs.debtFinancing)}</div>
+                      <div className="text-sm font-semibold text-primary">{fmtM(dealCalcs.debtFinancing)}</div>
                     </div>
                     <div className="bg-zinc-800/50 rounded p-2">
                       <div className="text-xs text-zinc-400">Equity Financing</div>
-                      <div className="text-sm font-semibold text-purple-400">{fmtM(Math.max(0, dealCalcs.equityFinancing))}</div>
+                      <div className="text-sm font-semibold text-primary">{fmtM(Math.max(0, dealCalcs.equityFinancing))}</div>
                     </div>
                   </div>
                   {/* Financing bar */}
                   <div className="flex h-4 rounded-full overflow-hidden gap-0.5">
                     <div
                       style={{ width: `${cashMix}%` }}
-                      className="bg-blue-500 transition-all duration-300"
+                      className="bg-primary transition-all duration-300"
                       title={`Cash: ${cashMix}%`}
                     />
                     <div
                       style={{ width: `${100 - cashMix}%` }}
-                      className="bg-purple-500 transition-all duration-300"
+                      className="bg-primary transition-all duration-300"
                       title={`Stock: ${100 - cashMix}%`}
                     />
                   </div>
                   <div className="flex gap-4 mt-2 text-xs text-zinc-400">
-                    <span><span className="inline-block w-2 h-2 rounded-full bg-blue-500 mr-1" />Cash {cashMix}%</span>
-                    <span><span className="inline-block w-2 h-2 rounded-full bg-purple-500 mr-1" />Stock {100 - cashMix}%</span>
+                    <span><span className="inline-block w-2 h-2 rounded-full bg-primary mr-1" />Cash {cashMix}%</span>
+                    <span><span className="inline-block w-2 h-2 rounded-full bg-primary mr-1" />Stock {100 - cashMix}%</span>
                   </div>
                 </div>
               </div>
@@ -1183,7 +1183,7 @@ export default function IBDealsPage() {
           {/* Comps */}
           <div className="bg-zinc-900 border border-zinc-800 rounded-xl p-4">
             <h2 className="font-semibold text-sm mb-3 flex items-center gap-2">
-              <Scale size={14} className="text-blue-400" />
+              <Scale size={14} className="text-primary" />
               Comparable Company Analysis
             </h2>
             <div className="overflow-x-auto">
@@ -1200,14 +1200,14 @@ export default function IBDealsPage() {
                 </thead>
                 <tbody>
                   {COMPS.map((c, i) => (
-                    <tr key={c.name} className={cn("border-t border-zinc-800", c.name === selectedTarget ? "bg-blue-900/20" : "")}>
+                    <tr key={c.name} className={cn("border-t border-zinc-800", c.name === selectedTarget ? "bg-muted/40" : "")}>
                       <td className="px-3 py-2 font-medium text-white flex items-center gap-1">
-                        {c.name === selectedTarget && <span className="text-blue-400 text-[11px]">TARGET</span>}
+                        {c.name === selectedTarget && <span className="text-primary text-[11px]">TARGET</span>}
                         {c.name}
                       </td>
                       <td className="px-3 py-2 text-right text-zinc-300">{fmtB(c.revenue)}</td>
                       <td className="px-3 py-2 text-right text-zinc-300">{fmtB(c.ebitda)}</td>
-                      <td className="px-3 py-2 text-right text-blue-400">{fmt(c.evRevenue)}×</td>
+                      <td className="px-3 py-2 text-right text-primary">{fmt(c.evRevenue)}×</td>
                       <td className="px-3 py-2 text-right text-emerald-400">{fmt(c.evEbitda)}×</td>
                       <td className="px-3 py-2 text-right text-amber-400">{fmt(c.peRatio)}×</td>
                     </tr>
@@ -1217,7 +1217,7 @@ export default function IBDealsPage() {
                     <td className="px-3 py-2 text-zinc-300">Median</td>
                     <td className="px-3 py-2 text-right text-zinc-400">—</td>
                     <td className="px-3 py-2 text-right text-zinc-400">—</td>
-                    <td className="px-3 py-2 text-right text-blue-400">
+                    <td className="px-3 py-2 text-right text-primary">
                       {fmt([...COMPS].sort((a, b) => a.evRevenue - b.evRevenue)[3].evRevenue)}×
                     </td>
                     <td className="px-3 py-2 text-right text-emerald-400">
@@ -1235,7 +1235,7 @@ export default function IBDealsPage() {
           {/* Precedents */}
           <div className="bg-zinc-900 border border-zinc-800 rounded-xl p-4">
             <h2 className="font-semibold text-sm mb-3 flex items-center gap-2">
-              <FileText size={14} className="text-purple-400" />
+              <FileText size={14} className="text-primary" />
               Precedent Transaction Analysis
             </h2>
             <div className="overflow-x-auto">
@@ -1255,7 +1255,7 @@ export default function IBDealsPage() {
                       <td className="px-3 py-2 text-zinc-300">{p.name}</td>
                       <td className="px-3 py-2 text-right text-zinc-400">{p.year}</td>
                       <td className="px-3 py-2 text-right text-amber-400">+{p.premium}%</td>
-                      <td className="px-3 py-2 text-right text-blue-400">{fmt(p.evRevenue)}×</td>
+                      <td className="px-3 py-2 text-right text-primary">{fmt(p.evRevenue)}×</td>
                       <td className="px-3 py-2 text-right text-emerald-400">{fmt(p.evEbitda)}×</td>
                     </tr>
                   ))}
@@ -1493,7 +1493,7 @@ export default function IBDealsPage() {
             {/* Remedies */}
             <div className="bg-zinc-900 border border-zinc-800 rounded-xl p-4">
               <h2 className="font-semibold text-sm mb-3 flex items-center gap-2">
-                <Scale size={14} className="text-purple-400" />
+                <Scale size={14} className="text-primary" />
                 Potential Remedies
               </h2>
               <div className="space-y-2">
@@ -1525,7 +1525,7 @@ export default function IBDealsPage() {
           {/* Historical outcomes */}
           <div className="bg-zinc-900 border border-zinc-800 rounded-xl p-4">
             <h2 className="font-semibold text-sm mb-3 flex items-center gap-2">
-              <FileText size={14} className="text-blue-400" />
+              <FileText size={14} className="text-primary" />
               Historical Regulatory Outcomes
             </h2>
             <div className="overflow-x-auto">
@@ -1647,7 +1647,7 @@ export default function IBDealsPage() {
                 {/* Summary metrics */}
                 <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
                   {[
-                    { label: "Entry EV", value: fmtB(lboCalcs.entryEV), color: "text-blue-400" },
+                    { label: "Entry EV", value: fmtB(lboCalcs.entryEV), color: "text-primary" },
                     { label: "Total Debt", value: fmtB(lboCalcs.totalDebt), color: "text-red-400" },
                     { label: "Equity Contribution", value: fmtB(lboCalcs.equityContribution), color: "text-emerald-400" },
                     { label: "Annual FCF", value: fmtB(lboCalcs.fcf), color: "text-amber-400" },
@@ -1700,7 +1700,7 @@ export default function IBDealsPage() {
                 {/* Debt schedule SVG */}
                 <div className="bg-zinc-900 border border-zinc-800 rounded-xl p-4">
                   <h3 className="text-sm font-semibold mb-3 flex items-center gap-2">
-                    <BarChart3 size={14} className="text-blue-400" />
+                    <BarChart3 size={14} className="text-primary" />
                     Debt Paydown Schedule ($B)
                   </h3>
                   <svg width="100%" height={150} viewBox="0 0 360 150">
@@ -1740,8 +1740,8 @@ export default function IBDealsPage() {
                   <div className="space-y-2">
                     {[
                       { label: "Management Equity (5%)", value: lboCalcs.mgmtEquity, color: "bg-amber-500" },
-                      { label: "PE Sponsor (80%)", value: lboCalcs.peSponsor, color: "bg-blue-500" },
-                      { label: "LP Returns (15%)", value: lboCalcs.lpReturns, color: "bg-purple-500" },
+                      { label: "PE Sponsor (80%)", value: lboCalcs.peSponsor, color: "bg-primary" },
+                      { label: "LP Returns (15%)", value: lboCalcs.lpReturns, color: "bg-primary" },
                     ].map((item) => {
                       const total = lboCalcs.baseExit.exitEquity;
                       const pct = (item.value / total) * 100;
@@ -1792,7 +1792,7 @@ export default function IBDealsPage() {
                 className={cn(
                   "px-3 py-1.5 text-xs rounded border transition-colors",
                   leagueTab === t.key
-                    ? "bg-blue-600 border-blue-500 text-white"
+                    ? "bg-primary border-primary text-white"
                     : "bg-zinc-800 border-zinc-700 text-zinc-400 hover:text-white"
                 )}
               >
@@ -1859,7 +1859,7 @@ export default function IBDealsPage() {
                               <div className="flex items-center gap-2">
                                 <div className="w-28 bg-zinc-800 rounded-full h-2 overflow-hidden">
                                   <div
-                                    className="h-full bg-blue-500 rounded-full"
+                                    className="h-full bg-primary rounded-full"
                                     style={{ width: `${(entry.value / maxValue) * 100}%` }}
                                   />
                                 </div>
@@ -1890,7 +1890,7 @@ export default function IBDealsPage() {
                 { type: "DCM (Bond)", rate: "0.3–1.5%", typical: "0.5% on $2B issuance = $10M", note: "Higher for HY bonds; lower for IG; management fee + selling concession" },
               ].map((f) => (
                 <div key={f.type} className="bg-zinc-800/50 rounded-lg p-3">
-                  <div className="font-semibold text-xs text-blue-400 mb-1">{f.type}</div>
+                  <div className="font-semibold text-xs text-primary mb-1">{f.type}</div>
                   <div className="text-xs text-zinc-200 mb-1">Rate: {f.rate}</div>
                   <div className="text-xs text-emerald-400 mb-2">Typical: {f.typical}</div>
                   <div className="text-xs text-zinc-500">{f.note}</div>
@@ -1902,7 +1902,7 @@ export default function IBDealsPage() {
           {/* IB compensation */}
           <div className="bg-zinc-900 border border-zinc-800 rounded-xl p-4">
             <h2 className="font-semibold text-sm mb-3 flex items-center gap-2">
-              <Users size={14} className="text-purple-400" />
+              <Users size={14} className="text-primary" />
               IB Analyst / Associate Compensation (Top Banks, 2025)
             </h2>
             <div className="overflow-x-auto">

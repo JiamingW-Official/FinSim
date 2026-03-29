@@ -729,8 +729,8 @@ const MATRIX_QUADRANTS = [
     label: "Bad Break",
     sublabel: "Right decision, bad luck",
     color: "#3b82f6",
-    bg: "bg-blue-950/40",
-    border: "border-blue-800/40",
+    bg: "bg-muted/50",
+    border: "border-border",
     icon: RefreshCw,
     description:
       "Good process + bad outcome happens regularly even to professionals. Do NOT change your process based on a single bad outcome. Evaluate over 20+ samples.",

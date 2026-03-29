@@ -225,11 +225,11 @@ const TYPE_ICON: Record<AssetType, React.ReactNode> = {
 };
 
 const TYPE_COLOR: Record<AssetType, string> = {
-  "Real Estate": "bg-blue-500/10 text-blue-400 border-blue-500/20",
+  "Real Estate": "bg-primary/10 text-primary border-border",
   "Treasury Bonds": "bg-emerald-500/10 text-emerald-400 border-emerald-500/20",
-  "Private Credit": "bg-purple-500/10 text-purple-400 border-purple-500/20",
+  "Private Credit": "bg-primary/10 text-primary border-border",
   "Commodities": "bg-amber-500/10 text-amber-400 border-amber-500/20",
-  "Infrastructure": "bg-teal-500/10 text-teal-400 border-teal-500/20",
+  "Infrastructure": "bg-teal-500/10 text-emerald-400 border-teal-500/20",
 };
 
 const FILTER_OPTIONS: FilterType[] = [
@@ -1088,7 +1088,7 @@ function YieldCalculatorTab() {
                 <td className="px-3 py-2 font-mono tabular-nums text-indigo-400">
                   +${fmt(row.sp500)}
                 </td>
-                <td className="px-3 py-2 font-mono tabular-nums text-teal-400">
+                <td className="px-3 py-2 font-mono tabular-nums text-emerald-400">
                   +${fmt(row.treasury)}
                 </td>
                 <td className="px-3 py-2 font-mono tabular-nums text-muted-foreground">

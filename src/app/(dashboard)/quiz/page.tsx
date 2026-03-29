@@ -138,7 +138,7 @@ function gradeFromScore(score: number, total: number): { grade: string; color: s
   const pct = score / total;
   if (pct >= 0.9) return { grade: "S", color: "text-yellow-400", xp: 150 };
   if (pct >= 0.8) return { grade: "A", color: "text-emerald-400", xp: 100 };
-  if (pct >= 0.7) return { grade: "B", color: "text-blue-400", xp: 75 };
+  if (pct >= 0.7) return { grade: "B", color: "text-primary", xp: 75 };
   if (pct >= 0.6) return { grade: "C", color: "text-amber-400", xp: 50 };
   return { grade: "D", color: "text-rose-400", xp: 25 };
 }

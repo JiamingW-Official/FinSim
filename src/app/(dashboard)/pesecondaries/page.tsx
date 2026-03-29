@@ -80,8 +80,8 @@ function InfoPill({ text, color = "zinc" }: { text: string; color?: string }) {
     emerald: "bg-emerald-900/50 text-emerald-300",
     amber: "bg-amber-900/50 text-amber-300",
     rose: "bg-rose-900/50 text-rose-300",
-    blue: "bg-blue-900/50 text-blue-300",
-    violet: "bg-violet-900/50 text-violet-300",
+    blue: "bg-muted/70 text-primary",
+    violet: "bg-muted/70 text-primary",
     orange: "bg-orange-900/50 text-orange-300",
     sky: "bg-sky-900/50 text-sky-300",
   };
@@ -337,9 +337,9 @@ function LPLedTab() {
                   className={cn(
                     "w-6 h-6 rounded-full text-xs font-bold flex items-center justify-center",
                     step.color === "blue"
-                      ? "bg-blue-600 text-white"
+                      ? "bg-primary text-white"
                       : step.color === "violet"
-                      ? "bg-violet-600 text-white"
+                      ? "bg-primary text-white"
                       : "bg-emerald-600 text-white"
                   )}
                 >
@@ -365,18 +365,18 @@ function LPLedTab() {
               <span className="text-xs text-zinc-400 w-12">{v.vintage}</span>
               <div className="flex-1 h-5 bg-zinc-800 rounded relative">
                 <div
-                  className="absolute h-5 bg-blue-600/40 rounded"
+                  className="absolute h-5 bg-primary/40 rounded"
                   style={{
                     left: `${(v.bid - 70) * 10}%`,
                     width: `${(v.ask - v.bid) * 10}%`,
                   }}
                 />
                 <div
-                  className="absolute h-5 bg-blue-500 rounded-l"
+                  className="absolute h-5 bg-primary rounded-l"
                   style={{ left: `${(v.bid - 70) * 10}%`, width: "2px" }}
                 />
                 <div
-                  className="absolute h-5 bg-violet-500 rounded-r"
+                  className="absolute h-5 bg-primary rounded-r"
                   style={{ left: `${(v.ask - 70) * 10}%`, width: "2px" }}
                 />
               </div>
@@ -511,7 +511,7 @@ function LPLedTab() {
               className="flex gap-4 rounded-lg border border-white/5 bg-black/20 p-3"
             >
               <div className="flex flex-col items-center">
-                <span className="text-xs font-bold text-violet-400">{p.phase}</span>
+                <span className="text-xs font-bold text-primary">{p.phase}</span>
                 <div className="flex-1 w-0.5 bg-white/10 mt-1" />
               </div>
               <div className="flex-1">
@@ -716,7 +716,7 @@ function GPLedTab() {
             className={cn(
               "rounded-lg px-4 py-1.5 text-sm font-medium transition-colors",
               selectedCV === "multi"
-                ? "bg-violet-600 text-white"
+                ? "bg-primary text-white"
                 : "bg-zinc-800 text-zinc-400 hover:text-white"
             )}
           >
@@ -788,8 +788,8 @@ function GPLedTab() {
                     ))}
                   </div>
                 </div>
-                <div className="rounded-lg bg-violet-900/20 border border-violet-700/30 p-3">
-                  <p className="text-xs font-semibold text-violet-300 mb-2">Strip Sale vs Full Roll</p>
+                <div className="rounded-lg bg-muted/40 border border-border p-3">
+                  <p className="text-xs font-semibold text-primary mb-2">Strip Sale vs Full Roll</p>
                   <p className="text-xs text-zinc-400 mb-2">
                     <strong className="text-zinc-300">Strip Sale:</strong> Subset of portfolio moves to CV; rest winds down in old fund. Allows GP to select best performers.
                   </p>
@@ -835,10 +835,10 @@ function GPLedTab() {
                 className={cn(
                   "text-sm font-semibold mb-2",
                   c.color === "blue"
-                    ? "text-blue-300"
+                    ? "text-primary"
                     : c.color === "emerald"
                     ? "text-emerald-300"
-                    : "text-violet-300"
+                    : "text-primary"
                 )}
               >
                 {c.title}
@@ -1042,7 +1042,7 @@ function NAVFinancingTab() {
             <thead>
               <tr className="border-b border-white/10">
                 <th className="text-left text-zinc-400 py-2 pr-4">Attribute</th>
-                <th className="text-left text-violet-300 py-2 pr-4">NAV Facility</th>
+                <th className="text-left text-primary py-2 pr-4">NAV Facility</th>
                 <th className="text-left text-emerald-300 py-2">Subscription Line</th>
               </tr>
             </thead>
@@ -1093,7 +1093,7 @@ function NAVFinancingTab() {
               },
             ].map((c) => (
               <div key={c.cov} className="rounded-lg bg-black/20 p-2">
-                <p className="text-xs font-semibold text-blue-300">{c.cov}</p>
+                <p className="text-xs font-semibold text-primary">{c.cov}</p>
                 <p className="text-xs text-zinc-500 mt-0.5">{c.detail}</p>
               </div>
             ))}
@@ -1255,11 +1255,11 @@ function MarketDynamicsTab() {
     .join(" ");
 
   const assetClassSpreads = [
-    { cls: "PE (Buyout)", bid: 88, ask: 94, color: "bg-blue-500" },
+    { cls: "PE (Buyout)", bid: 88, ask: 94, color: "bg-primary" },
     { cls: "PE (Venture)", bid: 65, ask: 78, color: "bg-rose-500" },
     { cls: "Real Estate", bid: 75, ask: 85, color: "bg-amber-500" },
     { cls: "Infrastructure", bid: 90, ask: 96, color: "bg-emerald-500" },
-    { cls: "Private Credit", bid: 92, ask: 97, color: "bg-violet-500" },
+    { cls: "Private Credit", bid: 92, ask: 97, color: "bg-primary" },
   ];
 
   // suppress unused var lint
@@ -1514,7 +1514,7 @@ function MarketDynamicsTab() {
                 <div key={d.axis} className="flex gap-2 rounded bg-black/20 border border-white/5 p-2">
                   <div className="w-28 flex-shrink-0">
                     <p className="text-xs font-medium text-zinc-300">{d.axis}</p>
-                    <p className="text-xs text-violet-400">{d.target}</p>
+                    <p className="text-xs text-primary">{d.target}</p>
                   </div>
                   <p className="text-xs text-zinc-500">{d.detail}</p>
                 </div>
@@ -1544,8 +1544,8 @@ function MarketDynamicsTab() {
                 ))}
               </div>
             </div>
-            <div className="rounded-lg bg-blue-900/20 border border-blue-700/30 p-3">
-              <p className="text-xs font-semibold text-blue-300 mb-1">Denominator Effect Mechanics</p>
+            <div className="rounded-lg bg-muted/40 border border-border p-3">
+              <p className="text-xs font-semibold text-primary mb-1">Denominator Effect Mechanics</p>
               <p className="text-xs text-zinc-400">
                 When public markets fall 30%, LP portfolio PE allocation (which marks quarterly) stays elevated as % of total portfolio. LP target 15% PE but now shows 22%. Must sell PE secondary interests to rebalance — creating forced selling pressure that drives secondary discounts during public market drawdowns.
               </p>
@@ -1652,8 +1652,8 @@ export default function PESecondariesPage() {
         className="mb-6"
       >
         <div className="flex items-center gap-3 mb-2">
-          <div className="p-2 rounded-lg bg-violet-900/40 border border-violet-700/40">
-            <Repeat className="w-5 h-5 text-violet-400" />
+          <div className="p-2 rounded-lg bg-muted/60 border border-border">
+            <Repeat className="w-5 h-5 text-primary" />
           </div>
           <div>
             <h1 className="text-xl font-bold text-white">Private Equity Secondaries</h1>
@@ -1675,10 +1675,10 @@ export default function PESecondariesPage() {
         initial={{ opacity: 0, y: 8 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 0.1 }}
-        className="rounded-xl border border-violet-700/30 bg-violet-900/10 p-4 mb-6"
+        className="rounded-xl border border-border bg-muted/30 p-4 mb-6"
       >
         <div className="flex items-start gap-2">
-          <Info className="w-4 h-4 text-violet-400 flex-shrink-0 mt-0.5" />
+          <Info className="w-4 h-4 text-primary flex-shrink-0 mt-0.5" />
           <div className="text-xs text-zinc-300 space-y-1">
             <p>
               The <strong className="text-white">private equity secondary market</strong> allows investors to buy and sell existing PE fund interests before the fund lifecycle ends. Originally a niche liquidity solution, the market has grown to $130B+ annually and now includes LP-led sales, GP-led continuation vehicles, NAV financing, and preferred equity structures.
@@ -1702,7 +1702,7 @@ export default function PESecondariesPage() {
             <TabsTrigger
               key={t.value}
               value={t.value}
-              className="flex items-center gap-1.5 rounded-lg px-3 py-2 text-sm data-[state=active]:bg-violet-600 data-[state=active]:text-white"
+              className="flex items-center gap-1.5 rounded-lg px-3 py-2 text-sm data-[state=active]:bg-primary data-[state=active]:text-white"
             >
               {t.icon}
               {t.label}

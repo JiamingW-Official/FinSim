@@ -207,9 +207,9 @@ function BSLab() {
 
           {/* Greeks */}
           <div className="grid grid-cols-3 gap-2">
-            <GreekChip label="Δ Call" value={bs.delta_call.toFixed(4)} color="border-blue-800 bg-blue-950/40" />
-            <GreekChip label="Δ Put" value={bs.delta_put.toFixed(4)} color="border-blue-800 bg-blue-950/40" />
-            <GreekChip label="Γ" value={bs.gamma.toFixed(6)} color="border-violet-800 bg-violet-950/40" />
+            <GreekChip label="Δ Call" value={bs.delta_call.toFixed(4)} color="border-border bg-muted/50" />
+            <GreekChip label="Δ Put" value={bs.delta_put.toFixed(4)} color="border-border bg-muted/50" />
+            <GreekChip label="Γ" value={bs.gamma.toFixed(6)} color="border-border bg-muted/50" />
             <GreekChip label="Θ Call/day" value={bs.theta_call.toFixed(4)} color="border-amber-800 bg-amber-950/40" />
             <GreekChip label="Θ Put/day" value={bs.theta_put.toFixed(4)} color="border-amber-800 bg-amber-950/40" />
             <GreekChip label="Vega /1%" value={bs.vega.toFixed(4)} color="border-cyan-800 bg-cyan-950/40" />
@@ -343,7 +343,7 @@ function BinomialTree() {
             {(["call", "put"] as const).map(t => (
               <button key={t} onClick={() => setOptType(t)}
                 className={`flex-1 py-1.5 rounded-lg text-xs font-semibold transition-colors ${
-                  optType === t ? "bg-blue-600 text-white" : "bg-zinc-800 text-zinc-400 hover:bg-zinc-700"
+                  optType === t ? "bg-primary text-white" : "bg-zinc-800 text-zinc-400 hover:bg-zinc-700"
                 }`}>
                 {t.toUpperCase()}
               </button>
@@ -358,7 +358,7 @@ function BinomialTree() {
             </div>
             <div className="bg-zinc-800 rounded-lg p-3 text-center">
               <div className="text-xs text-zinc-400">Black-Scholes</div>
-              <div className="text-lg font-mono font-bold text-blue-300">${tree.bsPrice.toFixed(4)}</div>
+              <div className="text-lg font-mono font-bold text-primary">${tree.bsPrice.toFixed(4)}</div>
             </div>
           </div>
           <div className="text-xs text-zinc-500 text-center">
@@ -517,7 +517,7 @@ function MonteCarlo() {
             {(["call", "put"] as const).map(t => (
               <button key={t} onClick={() => setOptType(t)}
                 className={`flex-1 py-1.5 rounded-lg text-xs font-semibold transition-colors ${
-                  optType === t ? "bg-blue-600 text-white" : "bg-zinc-800 text-zinc-400 hover:bg-zinc-700"
+                  optType === t ? "bg-primary text-white" : "bg-zinc-800 text-zinc-400 hover:bg-zinc-700"
                 }`}>
                 {t.toUpperCase()}
               </button>
@@ -531,7 +531,7 @@ function MonteCarlo() {
             </div>
             <div className="bg-zinc-800 rounded-lg p-3 text-center">
               <div className="text-xs text-zinc-400">BS Price</div>
-              <div className="text-lg font-mono font-bold text-blue-300">${bsPrice.toFixed(4)}</div>
+              <div className="text-lg font-mono font-bold text-primary">${bsPrice.toFixed(4)}</div>
             </div>
           </div>
 

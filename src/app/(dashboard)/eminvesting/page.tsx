@@ -502,8 +502,8 @@ export default function EMInvestingPage() {
         {[
           { label: "MSCI EM Countries", value: "24", sub: "vs 23 DM", icon: <Globe className="w-4 h-4" />, color: "text-orange-400" },
           { label: "EM vs DM P/E Discount", value: "−33%", sub: "12x vs 18x P/E", icon: <BarChart2 className="w-4 h-4" />, color: "text-emerald-400" },
-          { label: "EM Debt Universe", value: "$9.4T", sub: "Hard + local currency", icon: <DollarSign className="w-4 h-4" />, color: "text-blue-400" },
-          { label: "Global Remittances", value: "$800B+", sub: "Annual EM inflows", icon: <ArrowRight className="w-4 h-4" />, color: "text-purple-400" },
+          { label: "EM Debt Universe", value: "$9.4T", sub: "Hard + local currency", icon: <DollarSign className="w-4 h-4" />, color: "text-primary" },
+          { label: "Global Remittances", value: "$800B+", sub: "Annual EM inflows", icon: <ArrowRight className="w-4 h-4" />, color: "text-primary" },
         ].map((chip, i) => (
           <Card key={`chip-${i}`} className="bg-zinc-900 border-zinc-800">
             <CardContent className="p-3 flex items-center gap-3">
@@ -632,7 +632,7 @@ export default function EMInvestingPage() {
           <Card className="bg-zinc-900 border-zinc-800">
             <CardHeader className="pb-2">
               <CardTitle className="text-sm text-zinc-300 flex items-center gap-2">
-                <Layers className="w-4 h-4 text-purple-400" />EM Factor Premiums (vs DM)
+                <Layers className="w-4 h-4 text-primary" />EM Factor Premiums (vs DM)
               </CardTitle>
             </CardHeader>
             <CardContent>
@@ -671,7 +671,7 @@ export default function EMInvestingPage() {
           <Card className="bg-zinc-900 border-zinc-800">
             <CardHeader className="pb-2">
               <CardTitle className="text-sm text-zinc-300 flex items-center gap-2">
-                <DollarSign className="w-4 h-4 text-blue-400" />Hard Currency vs Local Currency EM Debt
+                <DollarSign className="w-4 h-4 text-primary" />Hard Currency vs Local Currency EM Debt
               </CardTitle>
             </CardHeader>
             <CardContent>
@@ -762,7 +762,7 @@ export default function EMInvestingPage() {
                   <p className="text-xs text-zinc-500">Oil price spikes hit current account and inflation simultaneously. FX depreciation is inflationary — creating a vicious cycle. IMF programmes often required to break the cycle.</p>
                 </div>
                 <div className="p-2.5 bg-zinc-800/50 rounded-lg">
-                  <div className="text-xs font-medium text-blue-400 mb-1">Carry Trade in EM Rates</div>
+                  <div className="text-xs font-medium text-primary mb-1">Carry Trade in EM Rates</div>
                   <p className="text-xs text-zinc-500">Brazil SELIC 10.5%, Indonesia 6.25%, Mexico 11%: attractive carry. Risk: sudden stop + FX depreciation can reverse carry in days. REER overvaluation signals vulnerability.</p>
                 </div>
               </CardContent>
@@ -771,7 +771,7 @@ export default function EMInvestingPage() {
             <Card className="bg-zinc-900 border-zinc-800">
               <CardHeader className="pb-2">
                 <CardTitle className="text-sm text-zinc-300 flex items-center gap-2">
-                  <Landmark className="w-4 h-4 text-purple-400" />Dedicated EM Debt Managers
+                  <Landmark className="w-4 h-4 text-primary" />Dedicated EM Debt Managers
                 </CardTitle>
               </CardHeader>
               <CardContent>
@@ -875,7 +875,7 @@ export default function EMInvestingPage() {
           <Card className="bg-zinc-900 border-zinc-800">
             <CardHeader className="pb-2">
               <CardTitle className="text-sm text-zinc-300 flex items-center gap-2">
-                <Landmark className="w-4 h-4 text-blue-400" />Debt Sustainability Analysis (DSA) & IMF Programmes
+                <Landmark className="w-4 h-4 text-primary" />Debt Sustainability Analysis (DSA) & IMF Programmes
               </CardTitle>
             </CardHeader>
             <CardContent>
@@ -889,7 +889,7 @@ export default function EMInvestingPage() {
                     <div className="text-xs font-medium text-zinc-300 mb-2">{s.title}</div>
                     {s.items.map((item, j) => (
                       <div key={`dsa-i-${i}-${j}`} className="text-xs text-zinc-500 flex gap-1.5 mb-0.5">
-                        <span className="text-blue-500 shrink-0">•</span>{item}
+                        <span className="text-primary shrink-0">•</span>{item}
                       </div>
                     ))}
                   </div>
@@ -989,7 +989,7 @@ export default function EMInvestingPage() {
                 {[
                   { label: "Risk-on inflows", stat: "+$120B/yr peak", color: "text-emerald-400" },
                   { label: "Risk-off outflows", stat: "−$80B crisis week", color: "text-red-400" },
-                  { label: "FDI (sticky)", stat: "$600B+ annual", color: "text-blue-400" },
+                  { label: "FDI (sticky)", stat: "$600B+ annual", color: "text-primary" },
                   { label: "Portfolio (hot money)", stat: "Most volatile", color: "text-amber-400" },
                 ].map((s, i) => (
                   <div key={`cfc-${i}`} className="text-center p-2 bg-zinc-800/50 rounded">
@@ -1059,7 +1059,7 @@ export default function EMInvestingPage() {
             <Card className="bg-zinc-900 border-zinc-800">
               <CardHeader className="pb-2">
                 <CardTitle className="text-sm text-zinc-300 flex items-center gap-2">
-                  <ShieldAlert className="w-4 h-4 text-blue-400" />FX Reserve Adequacy Metrics
+                  <ShieldAlert className="w-4 h-4 text-primary" />FX Reserve Adequacy Metrics
                 </CardTitle>
               </CardHeader>
               <CardContent className="space-y-2">
@@ -1083,7 +1083,7 @@ export default function EMInvestingPage() {
           <Card className="bg-zinc-900 border-zinc-800">
             <CardHeader className="pb-2">
               <CardTitle className="text-sm text-zinc-300 flex items-center gap-2">
-                <Globe className="w-4 h-4 text-purple-400" />CBDCs in Emerging Markets & Digital Finance
+                <Globe className="w-4 h-4 text-primary" />CBDCs in Emerging Markets & Digital Finance
               </CardTitle>
             </CardHeader>
             <CardContent>

@@ -140,8 +140,8 @@ function Pill({ children, color = "default" }: { children: React.ReactNode; colo
     green: "bg-emerald-500/20 text-emerald-300",
     red: "bg-red-500/20 text-red-300",
     amber: "bg-amber-500/20 text-amber-300",
-    blue: "bg-blue-500/20 text-blue-300",
-    purple: "bg-purple-500/20 text-purple-300",
+    blue: "bg-primary/20 text-primary",
+    purple: "bg-primary/20 text-primary",
   }[color];
   return (
     <span className={cn("text-xs font-medium px-2 py-0.5 rounded-full", cls)}>
@@ -492,7 +492,7 @@ export default function LoanSyndPage() {
       <div className="grid grid-cols-2 md:grid-cols-4 gap-3 mb-6">
         {[
           { label: "US LL Market Size", value: "$1.4T", sub: "Outstanding notional", icon: DollarSign, color: "text-indigo-400" },
-          { label: "CLO Share of Demand", value: "65%", sub: "Primary market buyers", icon: Users, color: "text-cyan-400" },
+          { label: "CLO Share of Demand", value: "65%", sub: "Primary market buyers", icon: Users, color: "text-muted-foreground" },
           { label: "Avg TLB Spread", value: "SOFR+450", sub: "B-rated credit", icon: Percent, color: "text-amber-400" },
           { label: "Cov-Lite Share", value: "91%", sub: "2024 new issuance", icon: Shield, color: "text-emerald-400" },
         ].map((kpi, i) => (
@@ -634,8 +634,8 @@ export default function LoanSyndPage() {
                 ].map((row, i) => (
                   <div key={i} className="grid grid-cols-3 gap-2 py-1.5 border-b border-white/5">
                     <span className="text-white/40">{row.feature}</span>
-                    <span className="text-cyan-300">{row.tla}</span>
-                    <span className="text-purple-300">{row.tlb}</span>
+                    <span className="text-muted-foreground">{row.tla}</span>
+                    <span className="text-primary">{row.tlb}</span>
                   </div>
                 ))}
               </div>
@@ -790,7 +790,7 @@ export default function LoanSyndPage() {
               {[
                 {
                   title: "CLO Structure",
-                  color: "text-purple-300",
+                  color: "text-primary",
                   points: [
                     "SPV holds 150–250 leveraged loans",
                     "Tranched liabilities: AAA→equity",
@@ -800,7 +800,7 @@ export default function LoanSyndPage() {
                 },
                 {
                   title: "Arbitrage Driver",
-                  color: "text-cyan-300",
+                  color: "text-muted-foreground",
                   points: [
                     "Loan yield: SOFR + 400–500 bps",
                     "AAA CLO liability: SOFR + 130–160 bps",
@@ -1072,7 +1072,7 @@ export default function LoanSyndPage() {
                   {
                     name: "S&P/LSTA LCD Loan Index",
                     ticker: "S&P LCD",
-                    color: "text-purple-300",
+                    color: "text-primary",
                     points: ["Largest leveraged loans only (>$100M)", "Used by ETF and loan fund managers", "Total return, spread duration, OAS stats", "Subindices: BB, B, CCC/split-rated"],
                   },
                 ].map((idx, i) => (

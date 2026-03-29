@@ -56,8 +56,8 @@ function StatChip({
     green: "bg-green-500/10 text-green-400 border-green-500/20",
     red: "bg-red-500/10 text-red-400 border-red-500/20",
     amber: "bg-amber-500/10 text-amber-400 border-amber-500/20",
-    blue: "bg-blue-500/10 text-blue-400 border-blue-500/20",
-    purple: "bg-purple-500/10 text-purple-400 border-purple-500/20",
+    blue: "bg-primary/10 text-primary border-border",
+    purple: "bg-primary/10 text-primary border-border",
     default: "bg-muted text-muted-foreground border-border",
   }[color];
   return (
@@ -81,8 +81,8 @@ function InfoBox({
     default: "border-border bg-muted/30",
     green: "border-green-500/30 bg-green-500/5",
     amber: "border-amber-500/30 bg-amber-500/5",
-    blue: "border-blue-500/30 bg-blue-500/5",
-    purple: "border-purple-500/30 bg-purple-500/5",
+    blue: "border-border bg-primary/5",
+    purple: "border-border bg-primary/5",
   }[variant];
   return (
     <div className={cn("rounded-lg border p-4", cls)}>
@@ -659,14 +659,14 @@ function LifeInsuranceTab() {
         {policies.map((p) => {
           const colorCls = {
             green: "border-green-500/20 bg-green-500/5",
-            blue: "border-blue-500/20 bg-blue-500/5",
-            purple: "border-purple-500/20 bg-purple-500/5",
+            blue: "border-border bg-primary/5",
+            purple: "border-border bg-primary/5",
             amber: "border-amber-500/20 bg-amber-500/5",
           }[p.color];
           const badgeCls = {
             green: "bg-green-500/10 text-green-400 border-green-500/20",
-            blue: "bg-blue-500/10 text-blue-400 border-blue-500/20",
-            purple: "bg-purple-500/10 text-purple-400 border-purple-500/20",
+            blue: "bg-primary/10 text-primary border-border",
+            purple: "bg-primary/10 text-primary border-border",
             amber: "bg-amber-500/10 text-amber-400 border-amber-500/20",
           }[p.color];
           return (
@@ -682,10 +682,10 @@ function LifeInsuranceTab() {
               </div>
               <div className="flex gap-2 flex-wrap">
                 <Badge className={cn("text-xs", badgeCls)}>{fmt$(p.annual / 12)}/mo</Badge>
-                <Badge className={cn("text-xs", p.cashValue ? "bg-blue-500/10 text-blue-400 border-blue-500/20" : "bg-muted text-muted-foreground border-border")}>
+                <Badge className={cn("text-xs", p.cashValue ? "bg-primary/10 text-primary border-border" : "bg-muted text-muted-foreground border-border")}>
                   {p.cashValue ? "Cash Value" : "No Cash Value"}
                 </Badge>
-                <Badge className={cn("text-xs", p.permanentCoverage ? "bg-purple-500/10 text-purple-400 border-purple-500/20" : "bg-muted text-muted-foreground border-border")}>
+                <Badge className={cn("text-xs", p.permanentCoverage ? "bg-primary/10 text-primary border-border" : "bg-muted text-muted-foreground border-border")}>
                   {p.permanentCoverage ? "Permanent" : "Term Only"}
                 </Badge>
               </div>
@@ -1330,8 +1330,8 @@ function HealthMedicareTab() {
                   <span className="text-muted-foreground">{item.label}</span>
                   <span className={cn("font-semibold", {
                     green: "text-green-400",
-                    blue: "text-blue-400",
-                    purple: "text-purple-400",
+                    blue: "text-primary",
+                    purple: "text-primary",
                   }[item.color])}>
                     +{fmt$(item.saving)} saved
                   </span>
@@ -1406,15 +1406,15 @@ function HealthMedicareTab() {
             },
           ].map((part) => {
             const colorCls = {
-              blue: "border-blue-500/20 bg-blue-500/5",
+              blue: "border-border bg-primary/5",
               green: "border-green-500/20 bg-green-500/5",
-              purple: "border-purple-500/20 bg-purple-500/5",
+              purple: "border-border bg-primary/5",
               amber: "border-amber-500/20 bg-amber-500/5",
             }[part.color];
             const partCls = {
-              blue: "text-blue-400",
+              blue: "text-primary",
               green: "text-green-400",
-              purple: "text-purple-400",
+              purple: "text-primary",
               amber: "text-amber-400",
             }[part.color];
             return (
@@ -1462,10 +1462,10 @@ export default function PersonalInsurancePage() {
             <p className="text-sm text-muted-foreground">Risk protection analysis — life, disability, property, health</p>
           </div>
           <div className="ml-auto flex gap-2 flex-wrap">
-            <Badge className="bg-blue-500/10 text-blue-400 border-blue-500/20 text-xs">
+            <Badge className="bg-primary/10 text-primary border-border text-xs">
               <Heart className="h-3 w-3 mr-1" />Life
             </Badge>
-            <Badge className="bg-purple-500/10 text-purple-400 border-purple-500/20 text-xs">
+            <Badge className="bg-primary/10 text-primary border-border text-xs">
               <Activity className="h-3 w-3 mr-1" />Disability
             </Badge>
             <Badge className="bg-green-500/10 text-green-400 border-green-500/20 text-xs">
@@ -1489,7 +1489,7 @@ export default function PersonalInsurancePage() {
               amber: "border-amber-500/20 bg-amber-500/5 text-amber-400",
               red: "border-red-500/20 bg-red-500/5 text-red-400",
               green: "border-green-500/20 bg-green-500/5 text-green-400",
-              blue: "border-blue-500/20 bg-blue-500/5 text-blue-400",
+              blue: "border-border bg-primary/5 text-primary",
             }[chip.color];
             return (
               <div key={chip.label} className={cn("rounded-xl border p-3", cls)}>

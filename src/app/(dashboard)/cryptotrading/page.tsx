@@ -737,8 +737,8 @@ export default function CryptoTradingPage() {
   const renderOnChain = () => (
     <div className="space-y-6">
       <div className="flex items-center gap-3">
-        <div className="p-2 rounded-lg bg-blue-400/10">
-          <Globe className="w-5 h-5 text-blue-400" />
+        <div className="p-2 rounded-lg bg-primary/10">
+          <Globe className="w-5 h-5 text-primary" />
         </div>
         <div>
           <h2 className="text-base font-semibold text-slate-200">On-Chain Analytics</h2>
@@ -803,7 +803,7 @@ export default function CryptoTradingPage() {
         {/* Mining Metrics */}
         <div className="bg-slate-800/60 border border-slate-700/50 rounded-xl p-4">
           <div className="flex items-center gap-2 mb-3">
-            <Cpu className="w-4 h-4 text-cyan-400" />
+            <Cpu className="w-4 h-4 text-muted-foreground" />
             <h3 className="text-sm font-semibold text-slate-300">Mining Metrics</h3>
           </div>
           <p className="text-xs text-slate-500 mb-3">Network security and miner economics.</p>
@@ -881,8 +881,8 @@ export default function CryptoTradingPage() {
   const renderDerivatives = () => (
     <div className="space-y-6">
       <div className="flex items-center gap-3">
-        <div className="p-2 rounded-lg bg-purple-400/10">
-          <Layers className="w-5 h-5 text-purple-400" />
+        <div className="p-2 rounded-lg bg-primary/10">
+          <Layers className="w-5 h-5 text-primary" />
         </div>
         <div>
           <h2 className="text-base font-semibold text-slate-200">Crypto Derivatives</h2>
@@ -1011,7 +1011,7 @@ export default function CryptoTradingPage() {
         <div className="mt-3 grid grid-cols-3 gap-3">
           <div className="bg-slate-700/40 rounded-lg p-3 text-center">
             <p className="text-xs text-slate-500 mb-1">DCA Final Value</p>
-            <p className="text-sm font-mono font-bold text-blue-400">${fmtK(dcaData[dcaData.length - 1].dcaValue)}</p>
+            <p className="text-sm font-mono font-bold text-primary">${fmtK(dcaData[dcaData.length - 1].dcaValue)}</p>
           </div>
           <div className="bg-slate-700/40 rounded-lg p-3 text-center">
             <p className="text-xs text-slate-500 mb-1">Lump Sum Final</p>

@@ -58,7 +58,7 @@ function InfoBox({
     sky: "bg-sky-500/10 border-sky-500/20 text-sky-300",
     amber: "bg-amber-500/10 border-amber-500/20 text-amber-300",
     emerald: "bg-emerald-500/10 border-emerald-500/20 text-emerald-300",
-    violet: "bg-violet-500/10 border-violet-500/20 text-violet-300",
+    violet: "bg-primary/10 border-border text-primary",
   };
   return (
     <div
@@ -89,7 +89,7 @@ function MetricCard({
     red: "text-red-400",
     amber: "text-amber-400",
     sky: "text-sky-400",
-    violet: "text-violet-400",
+    violet: "text-primary",
   };
   return (
     <div className="bg-white/5 rounded-lg p-3 flex flex-col gap-1">
@@ -805,7 +805,7 @@ function CmosTab() {
       name: "TAC (Targeted Amortization Class)",
       desc: "One-sided PAC — protected against contraction only (single PSA speed target)",
       risk: "Unprotected against extension",
-      color: "text-violet-400",
+      color: "text-primary",
     },
     {
       name: "Z-Bond (Accrual)",
@@ -1218,7 +1218,7 @@ function EquityNotesTab() {
             <p className="text-xs text-white/50">Barrier breached — 1:1 loss from 100%</p>
           </div>
           <div className="text-center">
-            <div className="w-3 h-1 bg-violet-400 mx-auto mb-1" style={{ borderTop: "2px dashed" }} />
+            <div className="w-3 h-1 bg-primary mx-auto mb-1" style={{ borderTop: "2px dashed" }} />
             <p className="text-xs text-white/50">Early autocall — returned at 115% before maturity</p>
           </div>
         </div>
@@ -1233,7 +1233,7 @@ function EquityNotesTab() {
               emerald: "text-emerald-400",
               amber: "text-amber-400",
               sky: "text-sky-400",
-              violet: "text-violet-400",
+              violet: "text-primary",
               red: "text-red-400",
               pink: "text-pink-400",
             };
@@ -1489,7 +1489,7 @@ function StructuredCreditTab() {
             </ul>
           </div>
           <div className="space-y-2">
-            <p className="text-sm font-semibold text-violet-400">Funded CDS (ISDA)</p>
+            <p className="text-sm font-semibold text-primary">Funded CDS (ISDA)</p>
             <ul className="text-sm text-white/60 space-y-1 ml-4 list-disc">
               <li>Unfunded — no upfront cash exchange</li>
               <li>Bilateral counterparty risk; requires CSA/collateral</li>

@@ -402,7 +402,7 @@ function ExchangeLandscapeTab() {
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
         <div className="rounded-xl border border-slate-700/60 bg-slate-800/50 p-5">
           <h3 className="text-sm font-semibold text-slate-200 mb-4 flex items-center gap-2">
-            <BarChart3 size={15} className="text-blue-400" />
+            <BarChart3 size={15} className="text-primary" />
             US Equity Market Share (2024)
           </h3>
           <HorizontalBarChart data={US_EXCHANGES} height={280} />
@@ -410,7 +410,7 @@ function ExchangeLandscapeTab() {
 
         <div className="rounded-xl border border-slate-700/60 bg-slate-800/50 p-5">
           <h3 className="text-sm font-semibold text-slate-200 mb-4 flex items-center gap-2">
-            <DollarSign size={15} className="text-purple-400" />
+            <DollarSign size={15} className="text-primary" />
             Exchange Revenue Model
           </h3>
           <DonutChart data={EXCHANGE_REVENUE} />
@@ -480,8 +480,8 @@ function ExchangeLandscapeTab() {
             <thead>
               <tr className="border-b border-slate-700">
                 <th className="text-left py-2 pr-4 text-slate-400 font-medium">Dimension</th>
-                <th className="text-left py-2 pr-4 text-blue-400 font-medium">NYSE</th>
-                <th className="text-left py-2 text-purple-400 font-medium">NASDAQ</th>
+                <th className="text-left py-2 pr-4 text-primary font-medium">NYSE</th>
+                <th className="text-left py-2 text-primary font-medium">NASDAQ</th>
               </tr>
             </thead>
             <tbody className="divide-y divide-slate-700/40">
@@ -509,7 +509,7 @@ function ExchangeLandscapeTab() {
       {/* Global Exchanges */}
       <div className="rounded-xl border border-slate-700/60 bg-slate-800/50 p-5">
         <h3 className="text-sm font-semibold text-slate-200 mb-4 flex items-center gap-2">
-          <Globe size={15} className="text-cyan-400" />
+          <Globe size={15} className="text-muted-foreground" />
           Global Exchanges by Market Cap
         </h3>
         <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-3">
@@ -518,7 +518,7 @@ function ExchangeLandscapeTab() {
               key={i}
               whileHover={{ scale: 1.02 }}
               onClick={() => setSelectedGlobal(selectedGlobal?.abbr === ex.abbr ? null : ex)}
-              className={cn("rounded-lg border p-3 cursor-pointer transition-colors", selectedGlobal?.abbr === ex.abbr ? "border-blue-500 bg-blue-900/20" : "border-slate-700 hover:border-slate-600 bg-slate-900/40")}
+              className={cn("rounded-lg border p-3 cursor-pointer transition-colors", selectedGlobal?.abbr === ex.abbr ? "border-primary bg-muted/40" : "border-slate-700 hover:border-slate-600 bg-slate-900/40")}
             >
               <div className="flex items-center justify-between mb-1">
                 <span className="text-xs font-bold text-slate-200">{ex.abbr}</span>
@@ -535,7 +535,7 @@ function ExchangeLandscapeTab() {
               initial={{ opacity: 0, height: 0 }}
               animate={{ opacity: 1, height: "auto" }}
               exit={{ opacity: 0, height: 0 }}
-              className="mt-4 rounded-lg border border-blue-500/30 bg-blue-900/10 p-4 text-xs"
+              className="mt-4 rounded-lg border border-border bg-muted/30 p-4 text-xs"
             >
               <div className="font-semibold text-slate-200 mb-1">{selectedGlobal.name}</div>
               <div className="grid grid-cols-3 gap-4 text-slate-400">
@@ -619,7 +619,7 @@ function OrderTypesTab() {
               <button
                 key={f}
                 onClick={() => setFilter(f)}
-                className={cn("text-xs px-3 py-1 rounded-md border transition-colors", filter === f ? "bg-blue-600 border-blue-500 text-white" : "border-slate-700 text-slate-400 hover:border-slate-500")}
+                className={cn("text-xs px-3 py-1 rounded-md border transition-colors", filter === f ? "bg-primary border-primary text-white" : "border-slate-700 text-slate-400 hover:border-slate-500")}
               >
                 {f}
               </button>
@@ -636,7 +636,7 @@ function OrderTypesTab() {
               onClick={() => setSelected(selected?.abbr === o.abbr ? null : o)}
               className={cn(
                 "rounded-lg border p-2.5 text-left transition-colors",
-                selected?.abbr === o.abbr ? "border-blue-500 bg-blue-900/25" : "border-slate-700 hover:border-slate-600 bg-slate-900/40"
+                selected?.abbr === o.abbr ? "border-primary bg-muted/40" : "border-slate-700 hover:border-slate-600 bg-slate-900/40"
               )}
             >
               <div className="text-xs font-bold text-slate-200 mb-0.5">{o.abbr}</div>
@@ -654,7 +654,7 @@ function OrderTypesTab() {
             initial={{ opacity: 0, y: 12 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -12 }}
-            className="rounded-xl border border-blue-500/30 bg-slate-800/50 p-5"
+            className="rounded-xl border border-border bg-slate-800/50 p-5"
           >
             <div className="flex items-start justify-between mb-3">
               <div>
@@ -978,7 +978,7 @@ function FragmentationTab() {
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
         <div className="rounded-xl border border-slate-700/60 bg-slate-800/50 p-5">
           <h3 className="text-sm font-semibold text-slate-200 mb-3 flex items-center gap-2">
-            <Network size={14} className="text-cyan-400" />
+            <Network size={14} className="text-muted-foreground" />
             US Equity Fragmentation (2024)
           </h3>
           <DonutChart data={fragmentData} />
@@ -1118,7 +1118,7 @@ function FragmentationTab() {
             </ul>
           </div>
           <div className="bg-slate-900/40 rounded-lg p-4 text-xs">
-            <div className="text-blue-400 font-medium mb-2">Exchange Execution (Fidelity, Interactive Brokers)</div>
+            <div className="text-primary font-medium mb-2">Exchange Execution (Fidelity, Interactive Brokers)</div>
             <ul className="space-y-1.5 text-slate-400">
               <li>Orders sent directly to exchanges — compete with all market participants</li>
               <li>Potential for better price discovery in volatile conditions</li>
@@ -1140,7 +1140,7 @@ function RegulationTab() {
       {/* Timeline */}
       <div className="rounded-xl border border-slate-700/60 bg-slate-800/50 p-5">
         <h3 className="text-sm font-semibold text-slate-200 mb-4 flex items-center gap-2">
-          <BookOpen size={14} className="text-cyan-400" />
+          <BookOpen size={14} className="text-muted-foreground" />
           US Market Structure Regulatory Timeline
         </h3>
         <div className="relative">
@@ -1155,9 +1155,9 @@ function RegulationTab() {
                 className="flex gap-4 items-start"
               >
                 <div className="w-20 flex-shrink-0 text-right">
-                  <span className="text-xs font-mono font-bold text-blue-400">{item.year}</span>
+                  <span className="text-xs font-mono font-bold text-primary">{item.year}</span>
                 </div>
-                <div className="w-3 h-3 rounded-full bg-blue-500 flex-shrink-0 mt-0.5 relative z-10" />
+                <div className="w-3 h-3 rounded-full bg-primary flex-shrink-0 mt-0.5 relative z-10" />
                 <div className="pb-2">
                   <div className="text-xs font-semibold text-slate-200">{item.event}</div>
                   <div className="text-[11px] text-slate-500 mt-0.5">{item.description}</div>
@@ -1312,8 +1312,8 @@ export default function MarketStructurePage() {
       <motion.div initial={{ opacity: 0, y: -12 }} animate={{ opacity: 1, y: 0 }} className="flex flex-wrap items-start justify-between gap-4">
         <div>
           <div className="flex items-center gap-3 mb-1">
-            <div className="p-2 rounded-lg bg-blue-500/15 border border-blue-500/25">
-              <Network size={20} className="text-blue-400" />
+            <div className="p-2 rounded-lg bg-primary/15 border border-border">
+              <Network size={20} className="text-primary" />
             </div>
             <h1 className="text-2xl font-bold text-slate-100">Market Structure</h1>
           </div>
@@ -1321,7 +1321,7 @@ export default function MarketStructurePage() {
         </div>
         <div className="flex flex-wrap gap-2">
           {[
-            { label: "60+ Venues", color: "bg-blue-900/40 text-blue-300 border-blue-700/50" },
+            { label: "60+ Venues", color: "bg-muted/60 text-primary border-border" },
             { label: "T+1 Settlement", color: "bg-emerald-900/40 text-emerald-300 border-emerald-700/50" },
             { label: "PFOF Reform", color: "bg-amber-900/40 text-amber-300 border-amber-700/50" },
           ].map((b, i) => (
@@ -1373,7 +1373,7 @@ export default function MarketStructurePage() {
             <TabsTrigger
               key={tab.value}
               value={tab.value}
-              className="flex items-center gap-1.5 text-xs data-[state=active]:bg-blue-600 data-[state=active]:text-white"
+              className="flex items-center gap-1.5 text-xs data-[state=active]:bg-primary data-[state=active]:text-white"
             >
               <tab.icon size={12} />
               {tab.label}

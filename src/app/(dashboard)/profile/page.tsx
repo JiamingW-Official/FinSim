@@ -100,7 +100,7 @@ const ARCHETYPES: ArchetypeResult[] = [
   {
     name: "The Value Hunter",
     icon: "🔍",
-    color: "text-blue-400",
+    color: "text-primary",
     description: "You seek undervalued assets with strong fundamentals. Patient and research-driven, you buy when others sell.",
     strengths: ["Deep fundamental research", "Long-term conviction", "Contrarian thinking"],
     blindSpots: ["May miss momentum opportunities", "Overanalyzing can cause hesitation"],
@@ -140,7 +140,7 @@ const ARCHETYPES: ArchetypeResult[] = [
   {
     name: "The Swing Trader",
     icon: "📈",
-    color: "text-violet-400",
+    color: "text-primary",
     description: "You capture multi-day moves using a blend of technical and fundamental triggers. Balanced and adaptive.",
     strengths: ["Balanced approach", "Good timing", "Adapts to market conditions"],
     blindSpots: ["Can be whipsawed", "Requires constant monitoring"],
@@ -150,7 +150,7 @@ const ARCHETYPES: ArchetypeResult[] = [
   {
     name: "The Macro Strategist",
     icon: "🌍",
-    color: "text-cyan-400",
+    color: "text-muted-foreground",
     description: "Big-picture thinker. You position around macro themes: rates, currencies, geopolitical shifts, and sectors.",
     strengths: ["Top-down thinking", "Sector rotation", "Macro foresight"],
     blindSpots: ["Macro timing is notoriously hard", "Individual stock selection"],
@@ -937,7 +937,7 @@ export default function ProfilePage() {
                 {[
                   { label: "Lessons Done", value: completedLessons.length, icon: CheckCircle2, color: "text-emerald-400" },
                   { label: "Learn Streak", value: `${learningStreak}d`, icon: Flame, color: "text-orange-400" },
-                  { label: "Completion", value: `${Math.round(lessonPct)}%`, icon: Target, color: "text-blue-400" },
+                  { label: "Completion", value: `${Math.round(lessonPct)}%`, icon: Target, color: "text-primary" },
                 ].map((stat) => {
                   const Icon = stat.icon;
                   return (
@@ -1113,7 +1113,7 @@ export default function ProfilePage() {
               <div className="grid grid-cols-2 gap-2">
                 {[
                   { label: "Win Rate", value: `${winRate.toFixed(1)}%`, icon: TrendingUp, color: winRate >= 50 ? "text-emerald-400" : "text-red-400" },
-                  { label: "Total Trades", value: stats.totalTrades, icon: Activity, color: "text-blue-400" },
+                  { label: "Total Trades", value: stats.totalTrades, icon: Activity, color: "text-primary" },
                   { label: "Avg Win", value: `$${avgWin.toFixed(0)}`, icon: DollarSign, color: "text-emerald-400" },
                   { label: "Avg Loss", value: `$${avgLoss.toFixed(0)}`, icon: TrendingDown, color: "text-red-400" },
                   { label: "Profit Factor", value: isFinite(profitFactor) ? profitFactor.toFixed(2) : "∞", icon: BarChart3, color: profitFactor >= 1.5 ? "text-emerald-400" : "text-amber-400" },
@@ -1289,8 +1289,8 @@ export default function ProfilePage() {
                         <p className="text-xs font-semibold text-right">Level {nextLevel}</p>
                         <p className="text-xs text-muted-foreground">{levelProgress.needed - levelProgress.current} XP needed</p>
                       </div>
-                      <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-violet-500/15 border border-violet-500/25">
-                        <span className="text-sm font-bold text-violet-400">{nextLevel}</span>
+                      <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-primary/15 border border-border">
+                        <span className="text-sm font-bold text-primary">{nextLevel}</span>
                       </div>
                     </div>
                   </div>
@@ -1345,7 +1345,7 @@ export default function ProfilePage() {
                   <div className="space-y-2 rounded-lg border border-border bg-background/40 p-3">
                     <div className="flex items-center justify-between">
                       <div className="flex items-center gap-2">
-                        <BookOpen className="h-3.5 w-3.5 text-blue-400" />
+                        <BookOpen className="h-3.5 w-3.5 text-primary" />
                         <span className="text-xs font-medium">Learning Goal</span>
                       </div>
                       <Badge variant="secondary" className="text-[11px]">Active</Badge>
@@ -1364,7 +1364,7 @@ export default function ProfilePage() {
                   <div className="space-y-2 rounded-lg border border-border bg-background/40 p-3">
                     <div className="flex items-center justify-between">
                       <div className="flex items-center gap-2">
-                        <Target className="h-3.5 w-3.5 text-violet-400" />
+                        <Target className="h-3.5 w-3.5 text-primary" />
                         <span className="text-xs font-medium">Win Rate Goal</span>
                       </div>
                       <Badge variant="secondary" className="text-[11px]">Active</Badge>

@@ -33,7 +33,7 @@ function calcGrade(pnlPct: number): Grade {
 
 const GRADE_COLOR: Record<Grade, string> = {
   A: "text-emerald-400",
-  B: "text-teal-400",
+  B: "text-emerald-400",
   C: "text-yellow-400",
   D: "text-orange-400",
   F: "text-red-400",
@@ -402,10 +402,10 @@ function PortfolioMilestoneCard({
       </div>
 
       <div className="flex flex-col items-center gap-3 px-6 py-5">
-        <BarChart2 className="h-8 w-8 text-teal-400" />
+        <BarChart2 className="h-8 w-8 text-emerald-400" />
         <div className="text-center">
           <div className="text-xs text-muted-foreground">Portfolio Value</div>
-          <div className="text-3xl font-bold tabular-nums text-teal-400">
+          <div className="text-3xl font-bold tabular-nums text-emerald-400">
             {formatCurrency(portfolioValue)}
           </div>
           <div className="text-sm font-bold text-emerald-400">

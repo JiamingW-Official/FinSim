@@ -216,7 +216,7 @@ function WorldHeatmap() {
               </div>
               <div className="flex justify-between gap-4">
                 <span>Inflation</span>
-                <span className={hovered.inflation > 5 ? "text-red-400" : hovered.inflation < 2 ? "text-blue-400" : "text-yellow-400"}>
+                <span className={hovered.inflation > 5 ? "text-red-400" : hovered.inflation < 2 ? "text-primary" : "text-yellow-400"}>
                   {hovered.inflation.toFixed(1)}%
                 </span>
               </div>

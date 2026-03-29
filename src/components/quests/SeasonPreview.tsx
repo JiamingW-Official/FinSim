@@ -24,8 +24,8 @@ function rewardIcon(type: string): string {
 function rewardColor(type: string): string {
   switch (type) {
     case "xp":       return "text-amber-400 bg-amber-500/10 border-amber-500/20";
-    case "title":    return "text-cyan-400 bg-cyan-500/10 border-cyan-500/20";
-    case "badge":    return "text-violet-400 bg-violet-500/10 border-violet-500/20";
+    case "title":    return "text-muted-foreground bg-cyan-500/10 border-cyan-500/20";
+    case "badge":    return "text-primary bg-primary/10 border-border";
     case "xp_boost": return "text-green-400 bg-green-500/10 border-green-500/20";
     default:         return "text-zinc-400 bg-white/5 border-white/10";
   }
@@ -128,7 +128,7 @@ export function SeasonPreview() {
                   isClaimed
                     ? "border-green-500/30 bg-green-500/15 text-green-400"
                     : isUnlocked
-                      ? "border-cyan-500/30 bg-cyan-500/10 text-cyan-400"
+                      ? "border-cyan-500/30 bg-cyan-500/10 text-muted-foreground"
                       : "border-zinc-800 bg-zinc-900 text-zinc-700",
                 )}
               >
@@ -147,7 +147,7 @@ export function SeasonPreview() {
                     {tier.xpRequired.toLocaleString()} Season XP
                   </span>
                   {isCurrent && !isClaimed && (
-                    <span className="rounded px-1 py-0.5 text-[11px] font-bold bg-cyan-500/15 text-cyan-400 uppercase tracking-wide">
+                    <span className="rounded px-1 py-0.5 text-[11px] font-bold bg-cyan-500/15 text-muted-foreground uppercase tracking-wide">
                       Current
                     </span>
                   )}

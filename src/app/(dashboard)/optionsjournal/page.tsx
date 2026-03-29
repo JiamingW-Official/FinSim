@@ -1075,7 +1075,7 @@ function ImprovementAreasTab() {
     },
     {
       icon: Clock,
-      color: "text-cyan-400",
+      color: "text-muted-foreground",
       title: "Holding to expiration improves win rate by 12%",
       body: "Early exits capture only 62% of max profit on average. Letting defined-risk trades expire naturally yields better outcomes except in adverse directional moves.",
     },
@@ -1087,7 +1087,7 @@ function ImprovementAreasTab() {
     },
     {
       icon: BarChart2,
-      color: "text-violet-400",
+      color: "text-primary",
       title: "Iron Condors perform best in sideways markets",
       body: "IC strategy shows the best profit factor (1.9) during low-trend periods. Consider correlation with the VIX term structure before entering.",
     },

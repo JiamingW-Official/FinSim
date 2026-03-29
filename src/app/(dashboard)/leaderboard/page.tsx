@@ -105,8 +105,8 @@ function generateRankHistory(currentRank: number, totalPlayers: number): number[
 // ── Avatar helpers ────────────────────────────────────────────────────────────
 
 const AVATAR_COLORS = [
-  "bg-blue-500", "bg-emerald-500", "bg-amber-500", "bg-rose-500",
-  "bg-purple-500", "bg-cyan-500", "bg-pink-500", "bg-indigo-500",
+  "bg-primary", "bg-emerald-500", "bg-amber-500", "bg-rose-500",
+  "bg-primary", "bg-cyan-500", "bg-pink-500", "bg-indigo-500",
 ];
 
 function getInitials(name: string): string {
@@ -169,9 +169,9 @@ export default function LeaderboardPage() {
       <div className="border-b border-border px-4 py-4">
         <div className="flex items-center gap-3">
           <div
-            className="flex h-10 w-10 items-center justify-center rounded-xl bg-purple-500/10"
+            className="flex h-10 w-10 items-center justify-center rounded-xl bg-primary/10"
           >
-            <Trophy className="h-5 w-5 text-purple-400" />
+            <Trophy className="h-5 w-5 text-primary" />
           </div>
           <div>
             <h1 className="text-lg font-bold">Leaderboard</h1>
@@ -188,9 +188,9 @@ export default function LeaderboardPage() {
         {/* Rank badge */}
         <div className="flex items-center gap-2 mt-3">
           <div
-            className="flex items-center gap-1.5 rounded-lg bg-purple-500/10 border border-purple-500/20 px-3 py-1.5"
+            className="flex items-center gap-1.5 rounded-lg bg-primary/10 border border-border px-3 py-1.5"
           >
-            <span className="text-[11px] font-bold tabular-nums text-purple-400">
+            <span className="text-[11px] font-bold tabular-nums text-primary">
               Rank #{userRank?.rank ?? "-"}
             </span>
             <span className="text-xs text-muted-foreground">
@@ -220,7 +220,7 @@ export default function LeaderboardPage() {
                 {isActive && (
                   <motion.span
                     layoutId="leaderboard-main-tab"
-                    className="absolute bottom-0 left-0 right-0 h-0.5 bg-purple-400 rounded-full"
+                    className="absolute bottom-0 left-0 right-0 h-0.5 bg-primary rounded-full"
                     transition={{ type: "spring", stiffness: 400, damping: 30 }}
                   />
                 )}
@@ -264,7 +264,7 @@ export default function LeaderboardPage() {
                         className={cn(
                           "flex items-center gap-1 rounded-md px-2.5 py-1 text-xs font-bold transition-colors whitespace-nowrap",
                           isActive
-                            ? "bg-purple-500/20 border border-purple-500/40 text-purple-300"
+                            ? "bg-primary/20 border border-primary/40 text-primary"
                             : "bg-muted/20 border border-border text-muted-foreground hover:text-foreground",
                         )}
                       >
@@ -343,7 +343,7 @@ export default function LeaderboardPage() {
                     className="rounded-xl border border-border bg-card/50 p-4"
                   >
                     <div className="flex items-center gap-2 mb-3">
-                      <Gem className="h-4 w-4 text-cyan-400" />
+                      <Gem className="h-4 w-4 text-muted-foreground" />
                       <span className="text-sm font-bold">Leagues</span>
                     </div>
 
@@ -359,7 +359,7 @@ export default function LeaderboardPage() {
                             key={tier}
                             className={cn(
                               "flex items-center gap-2 rounded-lg px-2.5 py-1.5 transition-colors",
-                              isUserLeague && "bg-purple-500/5 border border-purple-500/20",
+                              isUserLeague && "bg-primary/5 border border-border",
                             )}
                           >
                             <span className="text-sm">{info.emoji}</span>
@@ -372,7 +372,7 @@ export default function LeaderboardPage() {
                             <div className="w-12 h-1.5 rounded-full bg-muted/30 overflow-hidden">
                               <div
                                 className={cn("h-full rounded-full transition-all duration-200", {
-                                  "bg-purple-400": tier === "alpha",
+                                  "bg-primary": tier === "alpha",
                                   "bg-cyan-400": tier === "diamond",
                                   "bg-amber-400": tier === "gold",
                                   "bg-gray-300": tier === "silver",
@@ -392,7 +392,7 @@ export default function LeaderboardPage() {
                     className="rounded-xl border border-border bg-card/50 p-4"
                   >
                     <div className="flex items-center gap-2 mb-3">
-                      <Medal className="h-4 w-4 text-purple-400" />
+                      <Medal className="h-4 w-4 text-primary" />
                       <span className="text-sm font-bold">Your Next Goal</span>
                     </div>
                     <NextGoalContent userRank={userRank} dimConfig={dimConfig} ranked={filteredRanked} />
@@ -633,10 +633,10 @@ function YourStatsTab({ ranked, userRank }: { ranked: RankedEntry[]; userRank: R
       <div className="grid grid-cols-2 gap-3">
         <div className="rounded-xl border border-border bg-card/50 p-4">
           <div className="flex items-center gap-2 mb-1">
-            <Trophy className="h-4 w-4 text-purple-400" />
+            <Trophy className="h-4 w-4 text-primary" />
             <span className="text-[11px] font-bold text-muted-foreground uppercase tracking-wide">Global Rank</span>
           </div>
-          <div className="text-3xl font-bold tabular-nums text-purple-400">#{rank}</div>
+          <div className="text-3xl font-bold tabular-nums text-primary">#{rank}</div>
           <p className="text-xs text-muted-foreground mt-0.5">out of {totalPlayers} players</p>
         </div>
 
@@ -954,7 +954,7 @@ function NextGoalContent({
       </div>
       <div className="flex items-center justify-between rounded-lg bg-muted/15 px-3 py-2">
         <span className="text-xs text-muted-foreground">Gap</span>
-        <span className="text-sm font-bold tabular-nums text-purple-400">
+        <span className="text-sm font-bold tabular-nums text-primary">
           {dimConfig.format(Math.abs(diff))}
         </span>
       </div>

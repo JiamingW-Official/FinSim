@@ -526,7 +526,7 @@ function FedPolicyDashboard() {
         <div className="mb-3 flex items-center justify-between">
           <h3 className="text-sm font-semibold">Fed Balance Sheet 2008–2024</h3>
           <div className="flex items-center gap-3 text-xs">
-            <span className="flex items-center gap-1"><span className="inline-block h-2 w-3 rounded-sm bg-blue-500/70" />Treasuries</span>
+            <span className="flex items-center gap-1"><span className="inline-block h-2 w-3 rounded-sm bg-primary/70" />Treasuries</span>
             <span className="flex items-center gap-1"><span className="inline-block h-2 w-3 rounded-sm bg-emerald-500/60" />MBS</span>
             <span className="flex items-center gap-1"><span className="inline-block h-2 w-3 rounded-sm bg-amber-500/50" />Other</span>
           </div>
@@ -604,7 +604,7 @@ function FedPolicyDashboard() {
           </div>
           <div className="flex flex-col gap-1 text-[11px]">
             <div className="flex items-center gap-2">
-              <span className="h-2 w-2 rounded-full bg-blue-400" />
+              <span className="h-2 w-2 rounded-full bg-primary" />
               <span className="text-muted-foreground">Treasuries cap:</span>
               <span className="font-medium">$35B/mo</span>
             </div>
@@ -1026,7 +1026,7 @@ function PolicyTransmission() {
       name: "Interest Rate Channel",
       steps: [
         { label: "Bank Rate", color: "bg-primary/80" },
-        { label: "Lending Rates", color: "bg-blue-500/70" },
+        { label: "Lending Rates", color: "bg-primary/70" },
         { label: "Investment & Consumption", color: "bg-cyan-500/60" },
         { label: "Inflation", color: "bg-red-500/60" },
       ],
@@ -1038,7 +1038,7 @@ function PolicyTransmission() {
       name: "Exchange Rate Channel",
       steps: [
         { label: "Rate Differential", color: "bg-primary/80" },
-        { label: "FX Rate Appreciation", color: "bg-violet-500/70" },
+        { label: "FX Rate Appreciation", color: "bg-primary/70" },
         { label: "Exports ↓ / Imports ↑", color: "bg-fuchsia-500/60" },
         { label: "Inflation", color: "bg-red-500/60" },
       ],
@@ -1330,7 +1330,7 @@ function CentralBankBalanceSheets() {
   // Side-by-side comparison (% of GDP)
   const cbGdp = [
     { name: "Fed", flag: "🇺🇸", pct: 27.5, color: "bg-primary/70", peak: 36.7 },
-    { name: "ECB", flag: "🇪🇺", pct: 48.2, color: "bg-blue-500/70", peak: 66.1 },
+    { name: "ECB", flag: "🇪🇺", pct: 48.2, color: "bg-primary/70", peak: 66.1 },
     { name: "BOJ", flag: "🇯🇵", pct: 124.3, color: "bg-red-400/70", peak: 134.2 },
   ];
 
@@ -1466,7 +1466,7 @@ function CentralBankBalanceSheets() {
         </div>
         <div className="grid grid-cols-3 gap-3 text-center text-[11px]">
           {[
-            { label: "Treasuries", value: "$4.52T", pct: "59%", color: "bg-blue-500/60" },
+            { label: "Treasuries", value: "$4.52T", pct: "59%", color: "bg-primary/60" },
             { label: "MBS", value: "$2.25T", pct: "29%", color: "bg-emerald-500/60" },
             { label: "Other", value: "$0.21T", pct: "3%", color: "bg-amber-500/60" },
           ].map((item) => (
@@ -1479,7 +1479,7 @@ function CentralBankBalanceSheets() {
           ))}
         </div>
         <div className="mt-3 flex h-5 gap-0.5 overflow-hidden rounded-md">
-          <div className="bg-blue-500/60 transition-all" style={{ width: "59%" }} />
+          <div className="bg-primary/60 transition-all" style={{ width: "59%" }} />
           <div className="bg-emerald-500/60 transition-all" style={{ width: "29%" }} />
           <div className="bg-amber-500/60 transition-all" style={{ width: "3%" }} />
           <div className="bg-muted/30 transition-all" style={{ width: "9%" }} />

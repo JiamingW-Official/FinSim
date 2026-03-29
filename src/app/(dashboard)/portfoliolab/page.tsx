@@ -274,9 +274,9 @@ function EfficientFrontierTab() {
       {/* Metrics row */}
       <div className="grid grid-cols-3 gap-3">
         {[
-          { label: "Current Sharpe", value: CURRENT_PORT.sharpe.toFixed(2), sub: "Your portfolio", color: "text-blue-400" },
+          { label: "Current Sharpe", value: CURRENT_PORT.sharpe.toFixed(2), sub: "Your portfolio", color: "text-primary" },
           { label: "Max Sharpe", value: MAX_SHARPE_PORT.sharpe.toFixed(2), sub: `Vol ${MAX_SHARPE_PORT.vol.toFixed(1)}% / Ret ${MAX_SHARPE_PORT.ret.toFixed(1)}%`, color: "text-emerald-400" },
-          { label: "Min Variance", value: `${MIN_VAR_PORT.vol.toFixed(1)}%`, sub: `Return ${MIN_VAR_PORT.ret.toFixed(1)}%`, color: "text-purple-400" },
+          { label: "Min Variance", value: `${MIN_VAR_PORT.vol.toFixed(1)}%`, sub: `Return ${MIN_VAR_PORT.ret.toFixed(1)}%`, color: "text-primary" },
         ].map(m => (
           <Card key={m.label} className="bg-muted/30 border-border">
             <CardContent className="p-3">
@@ -483,7 +483,7 @@ function BlackLittermanTab() {
       <Card className="bg-muted/30 border-border">
         <CardHeader className="pb-2">
           <CardTitle className="text-sm font-medium flex items-center gap-2">
-            <Sliders className="h-4 w-4 text-purple-400" />
+            <Sliders className="h-4 w-4 text-primary" />
             Investor Views
           </CardTitle>
         </CardHeader>
@@ -496,7 +496,7 @@ function BlackLittermanTab() {
                   <Badge variant="outline" className="text-xs">
                     View: {view.expectedReturn.toFixed(1)}%
                   </Badge>
-                  <Badge variant="outline" className="text-xs text-purple-400 border-purple-400/40">
+                  <Badge variant="outline" className="text-xs text-primary border-primary/40">
                     Conf: {view.confidence}%
                   </Badge>
                 </div>
@@ -720,7 +720,7 @@ function RiskBudgetingTab() {
         <Card className="bg-muted/30 border-border">
           <CardHeader className="pb-2">
             <CardTitle className="text-sm font-medium flex items-center gap-2">
-              <Activity className="h-4 w-4 text-blue-400" />
+              <Activity className="h-4 w-4 text-primary" />
               Marginal Risk Contribution
             </CardTitle>
           </CardHeader>
@@ -747,7 +747,7 @@ function RiskBudgetingTab() {
       <Card className="bg-muted/30 border-border">
         <CardHeader className="pb-2">
           <CardTitle className="text-sm font-medium flex items-center gap-2">
-            <Scale className="h-4 w-4 text-purple-400" />
+            <Scale className="h-4 w-4 text-primary" />
             Equal Risk Contribution vs Equal Weight
           </CardTitle>
         </CardHeader>
@@ -971,7 +971,7 @@ function RebalancingTab() {
                     <td className="py-2 font-medium text-foreground">{row.strategy}</td>
                     <td className="py-2 text-right text-muted-foreground">{row.trades}</td>
                     <td className="py-2 text-right text-muted-foreground">{row.costBps}</td>
-                    <td className={`py-2 text-right font-semibold ${row.annualDrag === 0 ? "text-emerald-400" : row.annualDrag < 0.2 ? "text-blue-400" : "text-amber-400"}`}>
+                    <td className={`py-2 text-right font-semibold ${row.annualDrag === 0 ? "text-emerald-400" : row.annualDrag < 0.2 ? "text-primary" : "text-amber-400"}`}>
                       {row.annualDrag.toFixed(2)}%
                     </td>
                   </tr>
@@ -1063,7 +1063,7 @@ export default function PortfolioLabPage() {
           <div className="flex flex-wrap gap-2 pt-1">
             {[
               { label: "Efficient Frontier", icon: TrendingUp,  color: "text-indigo-400" },
-              { label: "Black-Litterman",    icon: Activity,    color: "text-purple-400" },
+              { label: "Black-Litterman",    icon: Activity,    color: "text-primary" },
               { label: "Risk Budgeting",     icon: Scale,       color: "text-emerald-400" },
               { label: "Rebalancing",        icon: RefreshCw,   color: "text-amber-400" },
             ].map(({ label, icon: Icon, color }) => (

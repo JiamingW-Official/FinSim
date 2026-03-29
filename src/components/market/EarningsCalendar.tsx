@@ -136,7 +136,7 @@ function earningsPlayStrategy(event: CalendarEarningsEvent): {
       name: "Long Straddle",
       rationale: `High IV Rank (${event.ivRank}) prices in a ±${event.expectedMove}% move. Buy ATM call + put to profit from any large move.`,
       riskLabel: "Premium risk",
-      color: "text-purple-500 bg-purple-500/10",
+      color: "text-primary bg-primary/10",
     };
   }
   if (bullish && event.beatHistory.filter((h) => h === "beat").length >= 3) {
@@ -271,7 +271,7 @@ function UpcomingStrip({
                   ev.callTime === "BMO"
                     ? "bg-emerald-500/10 text-emerald-500"
                     : ev.callTime === "AMC"
-                      ? "bg-blue-500/10 text-blue-500"
+                      ? "bg-primary/10 text-primary"
                       : "bg-muted text-muted-foreground",
                 )}
               >
@@ -416,7 +416,7 @@ function CalendarGrid({
                       ev.callTime === "BMO"
                         ? "bg-emerald-500/15 text-emerald-600 hover:bg-emerald-500/25"
                         : ev.callTime === "AMC"
-                          ? "bg-blue-500/15 text-blue-600 hover:bg-blue-500/25"
+                          ? "bg-primary/15 text-primary hover:bg-primary/25"
                           : "bg-amber-500/15 text-amber-600 hover:bg-amber-500/25",
                       selectedTicker === ev.ticker && "ring-1 ring-primary",
                     )}
@@ -438,7 +438,7 @@ function CalendarGrid({
           <span className="text-[11px] text-muted-foreground">BMO</span>
         </div>
         <div className="flex items-center gap-1">
-          <div className="w-2.5 h-2.5 rounded-sm bg-blue-500/40" />
+          <div className="w-2.5 h-2.5 rounded-sm bg-primary/40" />
           <span className="text-[11px] text-muted-foreground">AMC</span>
         </div>
         <div className="flex items-center gap-1">
@@ -495,7 +495,7 @@ function EarningsDetailPanel({
                   event.callTime === "BMO"
                     ? "bg-emerald-500/10 text-emerald-500"
                     : event.callTime === "AMC"
-                      ? "bg-blue-500/10 text-blue-500"
+                      ? "bg-primary/10 text-primary"
                       : "bg-muted text-muted-foreground",
                 )}
               >
@@ -698,7 +698,7 @@ function EarningsPlayIdeas({ events }: { events: CalendarEarningsEvent[] }) {
                     ev.callTime === "BMO"
                       ? "bg-emerald-500/10 text-emerald-500"
                       : ev.callTime === "AMC"
-                        ? "bg-blue-500/10 text-blue-500"
+                        ? "bg-primary/10 text-primary"
                         : "bg-muted text-muted-foreground",
                   )}
                 >

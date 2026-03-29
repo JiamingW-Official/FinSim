@@ -339,9 +339,9 @@ function RoboLandscape() {
       {/* Key Insights */}
       <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
         {[
-          { icon: TrendingUp, color: "text-blue-400", label: "Industry AUM", val: "$506B+", sub: "Across top 5 platforms" },
+          { icon: TrendingUp, color: "text-primary", label: "Industry AUM", val: "$506B+", sub: "Across top 5 platforms" },
           { icon: DollarSign, color: "text-emerald-400", label: "Avg Fee", val: "0.14%", sub: "vs 1.02% human advisor" },
-          { icon: Users, color: "text-purple-400", label: "Users", val: "4.5M+", sub: "Active robo accounts" },
+          { icon: Users, color: "text-primary", label: "Users", val: "4.5M+", sub: "Active robo accounts" },
         ].map(({ icon: Icon, color, label, val, sub }) => (
           <Card key={label} className="p-4 bg-neutral-900 border-neutral-800 flex items-center gap-3">
             <Icon className={cn("w-8 h-8 flex-shrink-0", color)} />
@@ -576,7 +576,7 @@ function PortfolioConstruction() {
           {[
             {
               icon: RefreshCw,
-              color: "text-blue-400",
+              color: "text-primary",
               title: "Threshold Rebalancing",
               desc: "Triggers when any asset class drifts ±5% from target. More tax-efficient than calendar-based.",
             },
@@ -588,7 +588,7 @@ function PortfolioConstruction() {
             },
             {
               icon: Activity,
-              color: "text-purple-400",
+              color: "text-primary",
               title: "Cash Flow Rebalancing",
               desc: "New deposits directed to underweight assets first, minimizing taxable rebalancing events.",
             },
@@ -814,7 +814,7 @@ function SmartFeatures() {
   const pct = (totalScore / maxScore) * 100;
 
   const riskLabel =
-    pct < 30 ? { label: "Conservative", color: "text-blue-400" } :
+    pct < 30 ? { label: "Conservative", color: "text-primary" } :
     pct < 60 ? { label: "Moderate", color: "text-amber-400" } :
     { label: "Aggressive Growth", color: "text-red-400" };
 
@@ -837,8 +837,8 @@ function SmartFeatures() {
           },
           {
             icon: BarChart3,
-            color: "text-blue-400",
-            bg: "bg-blue-950/30 border-blue-900/40",
+            color: "text-primary",
+            bg: "bg-muted/40 border-border",
             title: "Direct Indexing",
             stat: "$100K+",
             statLabel: "Minimum account",
@@ -847,7 +847,7 @@ function SmartFeatures() {
           },
           {
             icon: Leaf,
-            color: "text-teal-400",
+            color: "text-emerald-400",
             bg: "bg-teal-950/30 border-teal-900/40",
             title: "Socially Responsible (SRI/ESG)",
             stat: "1,200+",
@@ -857,8 +857,8 @@ function SmartFeatures() {
           },
           {
             icon: Settings,
-            color: "text-purple-400",
-            bg: "bg-purple-950/30 border-purple-900/40",
+            color: "text-primary",
+            bg: "bg-muted/40 border-border",
             title: "Smart Beta & Factor Tilts",
             stat: "5 Factors",
             statLabel: "Value · Size · Momentum · Quality · Low-Vol",
@@ -901,7 +901,7 @@ function SmartFeatures() {
                     className={cn(
                       "px-3 py-1.5 rounded-lg text-xs font-medium border transition-colors",
                       answers[qi] === oi
-                        ? "bg-blue-600 border-blue-500 text-white"
+                        ? "bg-primary border-primary text-white"
                         : "bg-neutral-800 border-neutral-700 text-neutral-400 hover:border-neutral-600"
                     )}
                   >
@@ -934,7 +934,7 @@ function SmartFeatures() {
               </div>
               <div className="w-full bg-neutral-700 rounded-full h-2 mb-2">
                 <motion.div
-                  className="h-2 rounded-full bg-blue-500"
+                  className="h-2 rounded-full bg-primary"
                   initial={{ width: 0 }}
                   animate={{ width: `${pct}%` }}
                   transition={{ duration: 0.8 }}
@@ -985,13 +985,13 @@ function AIAndFuture() {
         {[
           {
             icon: BrainCircuit,
-            color: "text-purple-400",
+            color: "text-primary",
             title: "LLM-Powered Personalization",
             desc: "Natural language goal setting ('I want to retire at 58 with $3M'). AI decomposes into monthly savings targets, asset mix, and milestone alerts.",
           },
           {
             icon: Target,
-            color: "text-blue-400",
+            color: "text-primary",
             title: "Goals-Based Investing",
             desc: "Separate portfolios per goal with individual glide paths. Education fund de-risks as tuition date approaches. Retirement fund adjusts equity/bond split with age.",
           },
@@ -1009,7 +1009,7 @@ function AIAndFuture() {
           },
           {
             icon: Globe,
-            color: "text-cyan-400",
+            color: "text-muted-foreground",
             title: "Global Tax Optimization",
             desc: "Multi-country TLH aware of local wash-sale rules. Asset location across taxable, IRA, Roth, HSA automatically optimized for after-tax returns.",
           },
@@ -1049,7 +1049,7 @@ function AIAndFuture() {
                     ev.status === "past"
                       ? "bg-neutral-800 border-neutral-600 text-neutral-400"
                       : ev.status === "current"
-                      ? "bg-blue-600 border-blue-400 text-white"
+                      ? "bg-primary border-primary text-white"
                       : "bg-neutral-900 border-dashed border-neutral-600 text-neutral-600"
                   )}
                 >
@@ -1063,14 +1063,14 @@ function AIAndFuture() {
                         ev.status === "past"
                           ? "text-neutral-300"
                           : ev.status === "current"
-                          ? "text-blue-300"
+                          ? "text-primary"
                           : "text-neutral-600"
                       )}
                     >
                       {ev.title}
                     </p>
                     {ev.status === "current" && (
-                      <Badge className="text-xs bg-blue-600/20 text-blue-400 border-blue-800">Now</Badge>
+                      <Badge className="text-xs bg-primary/20 text-primary border-border">Now</Badge>
                     )}
                     {ev.status === "future" && (
                       <Badge variant="outline" className="text-xs border-neutral-700 text-neutral-600">Projected</Badge>
@@ -1087,7 +1087,7 @@ function AIAndFuture() {
       {/* Robo vs Human Performance Insight */}
       <Card className="p-5 bg-neutral-900 border-neutral-800">
         <div className="flex items-start gap-3">
-          <Info className="w-5 h-5 text-blue-400 mt-0.5 flex-shrink-0" />
+          <Info className="w-5 h-5 text-primary mt-0.5 flex-shrink-0" />
           <div>
             <h3 className="text-sm font-semibold text-neutral-200 mb-2">Research Insight: Do Robos Outperform?</h3>
             <p className="text-xs text-neutral-400 leading-relaxed">
@@ -1100,7 +1100,7 @@ function AIAndFuture() {
               {[
                 { label: "Avg investor gap", val: "−1.5%/yr", color: "text-red-400" },
                 { label: "TLH alpha (est.)", val: "+0.5%/yr", color: "text-emerald-400" },
-                { label: "Behavioral alpha", val: "+1.5%/yr", color: "text-blue-400" },
+                { label: "Behavioral alpha", val: "+1.5%/yr", color: "text-primary" },
               ].map(({ label, val, color }) => (
                 <div key={label} className="bg-neutral-800/50 rounded-lg p-3 text-center">
                   <p className={cn("text-base font-bold", color)}>{val}</p>
@@ -1129,7 +1129,7 @@ export default function RoboAdvisorPage() {
         className="mb-6"
       >
         <div className="flex items-center gap-3 mb-1">
-          <Cpu className="w-7 h-7 text-blue-400" />
+          <Cpu className="w-7 h-7 text-primary" />
           <h1 className="text-2xl font-bold text-neutral-100">Robo-Advisor & Wealth Tech</h1>
         </div>
         <p className="text-sm text-neutral-500">
@@ -1150,7 +1150,7 @@ export default function RoboAdvisorPage() {
             <TabsTrigger
               key={value}
               value={value}
-              className="flex items-center gap-1.5 text-xs data-[state=active]:bg-blue-600 data-[state=active]:text-white"
+              className="flex items-center gap-1.5 text-xs data-[state=active]:bg-primary data-[state=active]:text-white"
             >
               <Icon className="w-3.5 h-3.5" />
               {label}

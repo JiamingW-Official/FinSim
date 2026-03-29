@@ -146,12 +146,12 @@ const PERIL_ICONS: Record<string, React.ReactNode> = {
 const PERIL_COLORS: Record<string, string> = {
   Hurricane: "text-amber-400",
   Earthquake: "text-orange-400",
-  Flood: "text-blue-400",
+  Flood: "text-primary",
 };
 
 const TRIGGER_COLORS: Record<string, string> = {
-  Indemnity: "bg-purple-500/20 text-purple-300 border-purple-500/30",
-  "PCS Index": "bg-blue-500/20 text-blue-300 border-blue-500/30",
+  Indemnity: "bg-primary/20 text-primary border-border",
+  "PCS Index": "bg-primary/20 text-primary border-border",
   Parametric: "bg-emerald-500/20 text-emerald-300 border-emerald-500/30",
 };
 
@@ -506,7 +506,7 @@ export default function InsuranceDerivativesPage() {
               <CardContent className="pt-4 pb-3">
                 <p className="text-xs text-zinc-500">Active Issuances (2024)</p>
                 <p className="text-2xl font-semibold text-white mt-1">48 Tranches</p>
-                <p className="text-xs text-blue-400 mt-1">$16.2B new issuance</p>
+                <p className="text-xs text-primary mt-1">$16.2B new issuance</p>
               </CardContent>
             </Card>
           </div>
@@ -663,7 +663,7 @@ export default function InsuranceDerivativesPage() {
             <Card className="bg-zinc-900 border-zinc-800">
               <CardHeader className="pb-2">
                 <CardTitle className="text-sm font-medium text-zinc-300 flex items-center gap-2">
-                  <BarChart2 className="h-4 w-4 text-blue-400" />
+                  <BarChart2 className="h-4 w-4 text-primary" />
                   Return Period Event Loss Table
                 </CardTitle>
               </CardHeader>
@@ -746,9 +746,9 @@ export default function InsuranceDerivativesPage() {
             <CardContent>
               <div className="grid grid-cols-2 md:grid-cols-4 gap-3 text-xs">
                 {[
-                  { stage: "Hazard Module", desc: "Physical characteristics of the event (wind speed, PGA, surge height)", color: "border-blue-500/30 bg-blue-500/5" },
+                  { stage: "Hazard Module", desc: "Physical characteristics of the event (wind speed, PGA, surge height)", color: "border-border bg-primary/5" },
                   { stage: "Vulnerability Module", desc: "Damage functions mapping hazard intensity to mean damage ratios by construction type", color: "border-amber-500/30 bg-amber-500/5" },
-                  { stage: "Exposure Module", desc: "Geo-coded insured values, occupancy types, policy terms and conditions", color: "border-purple-500/30 bg-purple-500/5" },
+                  { stage: "Exposure Module", desc: "Geo-coded insured values, occupancy types, policy terms and conditions", color: "border-border bg-primary/5" },
                   { stage: "Financial Module", desc: "Applies policy terms, reinsurance structure, occurrence and aggregate limits", color: "border-emerald-500/30 bg-emerald-500/5" },
                 ].map((s) => (
                   <div key={s.stage} className={cn("rounded-lg border p-3", s.color)}>
@@ -775,8 +775,8 @@ export default function InsuranceDerivativesPage() {
                     <p className="text-emerald-300 font-medium">ILS Advantage</p>
                     <p className="text-zinc-400 mt-1">Near-zero correlation to equities makes ILS a powerful diversifier in multi-asset portfolios.</p>
                   </div>
-                  <div className="bg-blue-500/10 border border-blue-500/20 rounded p-2">
-                    <p className="text-blue-300 font-medium">Reinsurance Advantage</p>
+                  <div className="bg-primary/10 border border-border rounded p-2">
+                    <p className="text-primary font-medium">Reinsurance Advantage</p>
                     <p className="text-zinc-400 mt-1">Long-standing relationships, broader peril coverage, and established claims handling expertise.</p>
                   </div>
                 </div>
@@ -793,7 +793,7 @@ export default function InsuranceDerivativesPage() {
                     <tr className="border-b border-zinc-800">
                       <th className="text-left text-zinc-500 px-4 py-2 font-medium">Metric</th>
                       <th className="text-left text-emerald-500 px-4 py-2 font-medium">ILS / CAT Bond</th>
-                      <th className="text-left text-blue-500 px-4 py-2 font-medium">Traditional Re</th>
+                      <th className="text-left text-primary px-4 py-2 font-medium">Traditional Re</th>
                     </tr>
                   </thead>
                   <tbody>
@@ -801,7 +801,7 @@ export default function InsuranceDerivativesPage() {
                       <tr key={i} className="border-b border-zinc-800/50">
                         <td className="px-4 py-2 text-zinc-400">{row.metric}</td>
                         <td className="px-4 py-2 text-emerald-300">{row.ils}</td>
-                        <td className="px-4 py-2 text-blue-300">{row.trad}</td>
+                        <td className="px-4 py-2 text-primary">{row.trad}</td>
                       </tr>
                     ))}
                   </tbody>
@@ -817,7 +817,7 @@ export default function InsuranceDerivativesPage() {
             <CardContent>
               <div className="flex items-center justify-between gap-2 text-xs overflow-x-auto pb-2">
                 {[
-                  { label: "Cedent\n(Sponsor)", sub: "Insurance / Re co.", color: "bg-blue-500/20 border-blue-500/40" },
+                  { label: "Cedent\n(Sponsor)", sub: "Insurance / Re co.", color: "bg-primary/20 border-primary/40" },
                   { label: "Reinsurance\nAgreement", sub: "Premium payments", color: "bg-zinc-800 border-zinc-700", arrow: true },
                   { label: "SPV\n(Special Purpose Vehicle)", sub: "Cayman / Bermuda", color: "bg-amber-500/20 border-amber-500/40" },
                   { label: "CAT Bond\nIssuance", sub: "Principal proceeds", color: "bg-zinc-800 border-zinc-700", arrow: true },
@@ -909,8 +909,8 @@ export default function InsuranceDerivativesPage() {
                     <p className="text-xs text-zinc-500">Moral Hazard</p>
                     <div className="flex gap-1.5 mt-2 items-end">
                       {[
-                        { label: "Indemnity", h: 80, color: "bg-purple-500" },
-                        { label: "PCS", h: 35, color: "bg-blue-500" },
+                        { label: "Indemnity", h: 80, color: "bg-primary" },
+                        { label: "PCS", h: 35, color: "bg-primary" },
                         { label: "Parametric", h: 8, color: "bg-emerald-500" },
                       ].map((b) => (
                         <div key={b.label} className="flex flex-col items-center gap-1">
@@ -928,8 +928,8 @@ export default function InsuranceDerivativesPage() {
                     <p className="text-xs text-zinc-500">Basis Risk</p>
                     <div className="flex gap-1.5 mt-2 items-end">
                       {[
-                        { label: "Indemnity", h: 5, color: "bg-purple-500" },
-                        { label: "PCS", h: 45, color: "bg-blue-500" },
+                        { label: "Indemnity", h: 5, color: "bg-primary" },
+                        { label: "PCS", h: 45, color: "bg-primary" },
                         { label: "Parametric", h: 85, color: "bg-emerald-500" },
                       ].map((b) => (
                         <div key={b.label} className="flex flex-col items-center gap-1">
@@ -961,7 +961,7 @@ export default function InsuranceDerivativesPage() {
                 <div className="flex gap-4 mt-2 text-xs text-zinc-500 justify-center">
                   <span className="flex items-center gap-1"><span className="w-2 h-2 rounded-full bg-amber-400 inline-block" />Hurricane</span>
                   <span className="flex items-center gap-1"><span className="w-2 h-2 rounded-full bg-orange-400 inline-block" />Earthquake</span>
-                  <span className="flex items-center gap-1"><span className="w-2 h-2 rounded-full bg-blue-400 inline-block" />Flood</span>
+                  <span className="flex items-center gap-1"><span className="w-2 h-2 rounded-full bg-primary inline-block" />Flood</span>
                   <span className="flex items-center gap-1"><span className="w-2 h-2 rounded-full bg-pink-400 inline-block" />60/40+ILS</span>
                 </div>
               </CardContent>
@@ -976,8 +976,8 @@ export default function InsuranceDerivativesPage() {
                   {[
                     { label: "60/40 Sharpe Ratio", value: "0.68", note: "Without ILS", color: "text-zinc-300" },
                     { label: "60/40 + 10% ILS Sharpe", value: "0.84", note: "+24% improvement", color: "text-emerald-400" },
-                    { label: "ILS Correlation to S&P 500", value: "0.03", note: "Near-zero", color: "text-blue-400" },
-                    { label: "ILS Correlation to AGG", value: "-0.02", note: "Slightly negative", color: "text-purple-400" },
+                    { label: "ILS Correlation to S&P 500", value: "0.03", note: "Near-zero", color: "text-primary" },
+                    { label: "ILS Correlation to AGG", value: "-0.02", note: "Slightly negative", color: "text-primary" },
                   ].map((m) => (
                     <div key={m.label} className="bg-zinc-800/60 rounded p-2.5">
                       <p className="text-zinc-500">{m.label}</p>
@@ -1000,7 +1000,7 @@ export default function InsuranceDerivativesPage() {
                 <div className="grid grid-cols-3 gap-2 text-xs">
                   {[
                     { label: "Optimal Allocation", value: "10–15%", color: "text-emerald-400" },
-                    { label: "Min Portfolio Size", value: "$50M+", color: "text-blue-400" },
+                    { label: "Min Portfolio Size", value: "$50M+", color: "text-primary" },
                     { label: "Typical Liquidity", value: "Secondary mkt", color: "text-amber-400" },
                   ].map((s) => (
                     <div key={s.label} className="bg-zinc-800/40 rounded p-2 text-center">
@@ -1067,9 +1067,9 @@ export default function InsuranceDerivativesPage() {
                 label: "HDD Contract",
                 value: "Heating Degree Days",
                 desc: "Max(0, 65°F – Avg daily temp). Energy demand proxy in winter months.",
-                color: "text-blue-400",
-                bg: "bg-blue-500/10 border-blue-500/20",
-                icon: <Thermometer className="h-5 w-5 text-blue-400" />,
+                color: "text-primary",
+                bg: "bg-primary/10 border-border",
+                icon: <Thermometer className="h-5 w-5 text-primary" />,
               },
               {
                 label: "CDD Contract",
@@ -1083,9 +1083,9 @@ export default function InsuranceDerivativesPage() {
                 label: "Precipitation",
                 value: "Rainfall Swap",
                 desc: "Fixed vs floating rainfall mm. Agriculture, hydro power, construction sectors.",
-                color: "text-cyan-400",
+                color: "text-muted-foreground",
                 bg: "bg-cyan-500/10 border-cyan-500/20",
-                icon: <Waves className="h-5 w-5 text-cyan-400" />,
+                icon: <Waves className="h-5 w-5 text-muted-foreground" />,
               },
             ].map((item) => (
               <Card key={item.label} className={cn("border", item.bg.replace("bg-", "bg-").split(" ")[0], item.bg.split(" ")[1])}>
@@ -1181,9 +1181,9 @@ export default function InsuranceDerivativesPage() {
               <div className="grid grid-cols-2 md:grid-cols-4 gap-3 text-xs">
                 {[
                   { label: "Annual Market Size", value: "~$3–5B", sub: "Notional outstanding", color: "text-amber-400" },
-                  { label: "CME Listed Contracts", value: "24 Cities", sub: "US, EU, Asia-Pacific", color: "text-blue-400" },
+                  { label: "CME Listed Contracts", value: "24 Cities", sub: "US, EU, Asia-Pacific", color: "text-primary" },
                   { label: "Primary Users", value: "Energy Utilities", sub: "+ Agriculture & Tourism", color: "text-emerald-400" },
-                  { label: "OTC vs Exchange", value: "~70% OTC", sub: "Custom structures dominate", color: "text-purple-400" },
+                  { label: "OTC vs Exchange", value: "~70% OTC", sub: "Custom structures dominate", color: "text-primary" },
                 ].map((s) => (
                   <div key={s.label} className="bg-zinc-800/40 rounded-lg p-3">
                     <p className="text-zinc-500">{s.label}</p>

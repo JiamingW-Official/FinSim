@@ -954,7 +954,7 @@ function VarianceSwapDisplay() {
 
   return (
     <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
-      <StatChip label="Strike Vol" value={strikeVol + "%"} color="text-violet-400" />
+      <StatChip label="Strike Vol" value={strikeVol + "%"} color="text-primary" />
       <StatChip label="Realized Vol" value={realizedVol + "%"} color="text-amber-400" />
       <StatChip
         label="Vega Notional"
@@ -1032,8 +1032,8 @@ export default function EquityDerivativesPage() {
         className="mb-6"
       >
         <div className="flex items-center gap-3 mb-2">
-          <div className="p-2 rounded-lg bg-violet-500/10 border border-violet-500/20">
-            <Layers className="w-5 h-5 text-violet-400" />
+          <div className="p-2 rounded-lg bg-primary/10 border border-border">
+            <Layers className="w-5 h-5 text-primary" />
           </div>
           <div>
             <h1 className="text-2xl font-bold text-zinc-50">
@@ -1057,7 +1057,7 @@ export default function EquityDerivativesPage() {
               variant="outline"
               className="border-zinc-700 text-zinc-300 text-xs"
             >
-              {c.label}: <span className="text-violet-300 ml-1">{c.value}</span>
+              {c.label}: <span className="text-primary ml-1">{c.value}</span>
             </Badge>
           ))}
         </div>
@@ -1097,13 +1097,13 @@ export default function EquityDerivativesPage() {
               <Card className="bg-zinc-900 border-zinc-800">
                 <CardHeader className="pb-2">
                   <CardTitle className="text-sm text-zinc-300 flex items-center gap-2">
-                    <Target className="w-4 h-4 text-violet-400" />
+                    <Target className="w-4 h-4 text-primary" />
                     Single-Stock vs Index Options
                   </CardTitle>
                 </CardHeader>
                 <CardContent className="text-xs text-zinc-400 space-y-2">
                   <p>
-                    Single-stock options carry <span className="text-violet-300 font-semibold">idiosyncratic risk</span> — earnings surprises, M&A, dividend announcements — producing higher and more skewed implied volatility surfaces than index options.
+                    Single-stock options carry <span className="text-primary font-semibold">idiosyncratic risk</span> — earnings surprises, M&A, dividend announcements — producing higher and more skewed implied volatility surfaces than index options.
                   </p>
                   <div className="grid grid-cols-2 gap-2 mt-3">
                     {[
@@ -1151,7 +1151,7 @@ export default function EquityDerivativesPage() {
                 <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
                   <StatChip label="Cliff" value="Year 1" sub="25% vests" color="text-amber-400" />
                   <StatChip label="Full vest" value="Year 4" sub="100%" color="text-emerald-400" />
-                  <StatChip label="Expiry" value="7–10 yr" sub="post-grant" color="text-violet-400" />
+                  <StatChip label="Expiry" value="7–10 yr" sub="post-grant" color="text-primary" />
                   <StatChip label="Tax (ISO)" value="AMT risk" sub="Incentive SO" color="text-sky-400" />
                 </div>
                 <div className="overflow-auto">
@@ -1167,7 +1167,7 @@ export default function EquityDerivativesPage() {
                       {ESO_EXAMPLES.map((row, i) => (
                         <tr key={i} className="border-b border-zinc-800/50 hover:bg-zinc-800/30">
                           <td className="px-2 py-1.5 text-zinc-300">{row.company}</td>
-                          <td className="px-2 py-1.5 text-violet-400">{row.type}</td>
+                          <td className="px-2 py-1.5 text-primary">{row.type}</td>
                           <td className="px-2 py-1.5 text-emerald-400">{row.strike}</td>
                           <td className="px-2 py-1.5 text-zinc-400">{row.vesting}</td>
                           <td className="px-2 py-1.5 text-zinc-400">{row.expiry}</td>
@@ -1205,15 +1205,15 @@ export default function EquityDerivativesPage() {
 
               <CollapsibleSection
                 title="Warrants vs Listed Options — Dilution Effect"
-                accent="border-violet-900/50"
+                accent="border-border"
               >
                 <div className="text-xs text-zinc-400 space-y-2">
                   <p>
-                    <span className="text-violet-300 font-semibold">Warrants</span> are issued by the company itself; exercise creates new shares, diluting existing shareholders. Listed exchange-traded options involve no new share issuance — only transfer of existing shares.
+                    <span className="text-primary font-semibold">Warrants</span> are issued by the company itself; exercise creates new shares, diluting existing shareholders. Listed exchange-traded options involve no new share issuance — only transfer of existing shares.
                   </p>
                   <div className="bg-zinc-800/60 rounded p-3 font-mono text-[11px] mt-2">
                     <div className="text-zinc-300 mb-1">Warrant dilution adjustment:</div>
-                    <div className="text-violet-300">W = (N / N+nW) × C(S*, X, T)</div>
+                    <div className="text-primary">W = (N / N+nW) × C(S*, X, T)</div>
                     <div className="text-zinc-500 mt-1">
                       N = existing shares, nW = warrants, S* = diluted spot, C = Black-Scholes call
                     </div>
@@ -1397,7 +1397,7 @@ export default function EquityDerivativesPage() {
                 </CardHeader>
                 <CardContent className="text-xs text-zinc-400 space-y-2">
                   <div className="bg-zinc-800/60 rounded p-3 font-mono text-[11px]">
-                    <div className="text-violet-300 mb-1">VIX Formula (model-free):</div>
+                    <div className="text-primary mb-1">VIX Formula (model-free):</div>
                     <div className="text-zinc-200">
                       σ² = (2/T) Σ ΔKᵢ/Kᵢ² × e^(rT) × Q(Kᵢ) − (1/T)[F/K₀ − 1]²
                     </div>
@@ -1406,11 +1406,11 @@ export default function EquityDerivativesPage() {
                     </div>
                   </div>
                   <p>
-                    VIX measures the <span className="text-violet-300 font-semibold">expected 30-day annualized volatility</span> of the S&P 500, derived from a strip of OTM SPX options. VVIX measures vol-of-VIX.
+                    VIX measures the <span className="text-primary font-semibold">expected 30-day annualized volatility</span> of the S&P 500, derived from a strip of OTM SPX options. VVIX measures vol-of-VIX.
                   </p>
                   <div className="grid grid-cols-3 gap-2 mt-2">
                     {[
-                      { label: "VIX Spot", value: "~16", color: "text-violet-400" },
+                      { label: "VIX Spot", value: "~16", color: "text-primary" },
                       { label: "VIX 3M", value: "~18", color: "text-sky-400" },
                       { label: "VIX 6M", value: "~20", color: "text-amber-400" },
                     ].map((c) => (
@@ -1440,7 +1440,7 @@ export default function EquityDerivativesPage() {
             <Card className="bg-zinc-900 border-zinc-800">
               <CardHeader className="pb-2">
                 <CardTitle className="text-sm text-zinc-300 flex items-center gap-2">
-                  <BarChart2 className="w-4 h-4 text-violet-400" />
+                  <BarChart2 className="w-4 h-4 text-primary" />
                   VIX Regime Chart (2020–2024)
                 </CardTitle>
               </CardHeader>
@@ -1453,11 +1453,11 @@ export default function EquityDerivativesPage() {
               <CollapsibleSection
                 title="Volatility Surface Modeling — SVI / SABR"
                 defaultOpen={true}
-                accent="border-violet-900/50"
+                accent="border-border"
               >
                 <div className="text-xs text-zinc-400 space-y-2">
                   <p>
-                    <span className="text-violet-300 font-semibold">SVI (Stochastic Volatility Inspired):</span> parameterizes total implied variance w(k) = a + b{"{"}ρ(k−m) + √((k−m)²+σ²){"}"}. Guarantees no static arbitrage across strikes for a given expiry. Used widely for single-expiry smile fitting.
+                    <span className="text-primary font-semibold">SVI (Stochastic Volatility Inspired):</span> parameterizes total implied variance w(k) = a + b{"{"}ρ(k−m) + √((k−m)²+σ²){"}"}. Guarantees no static arbitrage across strikes for a given expiry. Used widely for single-expiry smile fitting.
                   </p>
                   <p>
                     <span className="text-sky-300 font-semibold">SABR model:</span> stochastic α (vol of vol) and ρ (vol-spot correlation) parameters. Forward SABR popular for interest rate derivatives and swaptions. Equity desks typically use local volatility (Dupire) or SLV (stochastic local vol) hybrid models for path-dependent exotic pricing.
@@ -1511,7 +1511,7 @@ export default function EquityDerivativesPage() {
                     <div className="text-zinc-200">ρ_implied = (σ²_index − Σwᵢ²σᵢ²) / (2 ΣΣ wᵢwⱼ σᵢσⱼ)</div>
                   </div>
                   <p>
-                    <span className="text-violet-300 font-semibold">Correlation swaps</span> pay directly on realized correlation between a basket and its components. More pure exposure than dispersion trades but less liquid; OTC only. Typical strikes: 40–60% for S&P 500 sub-baskets.
+                    <span className="text-primary font-semibold">Correlation swaps</span> pay directly on realized correlation between a basket and its components. More pure exposure than dispersion trades but less liquid; OTC only. Typical strikes: 40–60% for S&P 500 sub-baskets.
                   </p>
                   <p>
                     <span className="text-amber-400 font-semibold">Variance notional conversion:</span> $1M vega notional converts to a variance notional of $1M / (2 × σ_strike). At 20% strike, variance notional = $25,000. At 40% strike, variance notional = $12,500. The convexity of variance swaps means realized vol above strike is increasingly profitable vs vega swaps.
@@ -1535,7 +1535,7 @@ export default function EquityDerivativesPage() {
               <Card className="bg-zinc-900 border-zinc-800">
                 <CardHeader className="pb-2">
                   <CardTitle className="text-sm text-zinc-300 flex items-center gap-2">
-                    <Shield className="w-4 h-4 text-violet-400" />
+                    <Shield className="w-4 h-4 text-primary" />
                     CB Anatomy & Pricing
                   </CardTitle>
                 </CardHeader>
@@ -1566,7 +1566,7 @@ export default function EquityDerivativesPage() {
                 <CardContent>
                   <div className="space-y-2">
                     <div className="grid grid-cols-2 gap-2">
-                      <StatChip label="Global CB Mkt" value="$350B+" sub="outstanding" color="text-violet-400" />
+                      <StatChip label="Global CB Mkt" value="$350B+" sub="outstanding" color="text-primary" />
                       <StatChip label="Avg Coupon" value="0.5–2%" sub="vs 4–6% HY" color="text-emerald-400" />
                       <StatChip label="Conv. Premium" value="20–40%" sub="at issuance" color="text-amber-400" />
                       <StatChip label="Typical Maturity" value="5–7 yr" sub="callable after Yr3" color="text-sky-400" />
@@ -1587,7 +1587,7 @@ export default function EquityDerivativesPage() {
                               <td className="px-1.5 py-1 text-emerald-400">{row.coupon}</td>
                               <td className="px-1.5 py-1 text-zinc-400">{row.maturity}</td>
                               <td className="px-1.5 py-1 text-amber-400">{row.convPrem}</td>
-                              <td className="px-1.5 py-1 text-violet-400">{row.delta}</td>
+                              <td className="px-1.5 py-1 text-primary">{row.delta}</td>
                               <td className="px-1.5 py-1 text-sky-400">{row.rating}</td>
                             </tr>
                           ))}
@@ -1604,12 +1604,12 @@ export default function EquityDerivativesPage() {
               <CollapsibleSection
                 title="Conversion Ratio, Premium & CB Arbitrage"
                 defaultOpen={true}
-                accent="border-violet-900/50"
+                accent="border-border"
               >
                 <div className="text-xs text-zinc-400 space-y-2">
                   <div className="grid grid-cols-2 sm:grid-cols-3 gap-3">
                     <div className="bg-zinc-800/60 rounded p-3 font-mono text-[11px]">
-                      <div className="text-violet-300 mb-1">Conversion Ratio:</div>
+                      <div className="text-primary mb-1">Conversion Ratio:</div>
                       <div className="text-zinc-200">CR = Face Value / Conversion Price</div>
                       <div className="text-zinc-500 mt-1">e.g. $1,000 / $50 = 20 shares</div>
                     </div>
@@ -1625,7 +1625,7 @@ export default function EquityDerivativesPage() {
                     </div>
                   </div>
                   <p>
-                    <span className="text-violet-300 font-semibold">CB Arbitrage strategy:</span> Long the CB (bond + embedded call), short the underlying stock delta-equivalent. The arb captures the implied volatility discount of the embedded option vs listed options. Position is long gamma: profits from large moves in either direction. Risk: credit deterioration widens CB spread and collapses the bond floor.
+                    <span className="text-primary font-semibold">CB Arbitrage strategy:</span> Long the CB (bond + embedded call), short the underlying stock delta-equivalent. The arb captures the implied volatility discount of the embedded option vs listed options. Position is long gamma: profits from large moves in either direction. Risk: credit deterioration widens CB spread and collapses the bond floor.
                   </p>
                   <p>
                     <span className="text-sky-300 font-semibold">Convexity of CB:</span> CBs exhibit positive convexity — in equity rallies, delta approaches 1 and price rises dollar-for-dollar with stock; in equity declines, delta approaches 0 and the bond floor limits downside. This asymmetric profile is the core attraction for equity investors seeking downside cushion.
@@ -1714,12 +1714,12 @@ export default function EquityDerivativesPage() {
                         { ratio: "60–80%", region: "Low Delta", delta: "0.15–0.35", dur: "Moderate", credit: "High", behavior: "Balanced; bond floor relevant", color: "text-amber-400" },
                         { ratio: "80–120%", region: "Balanced", delta: "0.35–0.65", dur: "Low", credit: "Moderate", behavior: "Max gamma; optimal arb zone", color: "text-emerald-400" },
                         { ratio: "120–150%", region: "In-the-Money", delta: "0.65–0.85", dur: "Minimal", credit: "Low", behavior: "Equity proxy + floor protection", color: "text-sky-400" },
-                        { ratio: ">150%", region: "Deep ITM", delta: "0.85–1.0", dur: "Near zero", credit: "Negligible", behavior: "Converts/calls; equity-like", color: "text-violet-400" },
+                        { ratio: ">150%", region: "Deep ITM", delta: "0.85–1.0", dur: "Near zero", credit: "Negligible", behavior: "Converts/calls; equity-like", color: "text-primary" },
                       ].map((row, i) => (
                         <tr key={i} className="border-b border-zinc-800/50 hover:bg-zinc-800/30">
                           <td className={cn("px-2 py-1.5 font-semibold", row.color)}>{row.ratio}</td>
                           <td className="px-2 py-1.5 text-zinc-300">{row.region}</td>
-                          <td className="px-2 py-1.5 text-violet-400">{row.delta}</td>
+                          <td className="px-2 py-1.5 text-primary">{row.delta}</td>
                           <td className="px-2 py-1.5 text-zinc-400">{row.dur}</td>
                           <td className="px-2 py-1.5 text-red-400/80">{row.credit}</td>
                           <td className="px-2 py-1.5 text-zinc-400">{row.behavior}</td>

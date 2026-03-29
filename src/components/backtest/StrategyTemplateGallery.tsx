@@ -29,7 +29,7 @@ const ICON_MAP: Record<string, React.ComponentType<{ className?: string }>> = {
 };
 
 const DIFFICULTY_LABELS = ["", "Beginner", "Intermediate", "Advanced", "Expert", "Master"];
-const DIFFICULTY_COLORS = ["", "text-emerald-400", "text-blue-400", "text-amber-400", "text-orange-400", "text-rose-400"];
+const DIFFICULTY_COLORS = ["", "text-emerald-400", "text-primary", "text-amber-400", "text-orange-400", "text-rose-400"];
 
 interface StrategyTemplateGalleryProps {
   onSelect: (config: Omit<StrategyConfig, "id" | "name" | "ticker">, preset: BarGenPreset, bars: number) => void;
@@ -84,7 +84,7 @@ export default function StrategyTemplateGallery({ onSelect, onClose }: StrategyT
                   whileHover={{ x: 2 }}
                   className={`flex w-full items-start gap-3 rounded-xl border p-3 text-left transition-all ${
                     isSelected
-                      ? "border-violet-500/40 bg-violet-500/10"
+                      ? "border-primary/40 bg-primary/10"
                       : "border-white/5 bg-white/5 hover:border-white/10 hover:bg-white/8"
                   }`}
                 >
@@ -132,7 +132,7 @@ export default function StrategyTemplateGallery({ onSelect, onClose }: StrategyT
                   className="space-y-5"
                 >
                   {/* Theory */}
-                  <Section icon={<BookOpen className="h-4 w-4 text-violet-400" />} title="Theory & Background">
+                  <Section icon={<BookOpen className="h-4 w-4 text-primary" />} title="Theory & Background">
                     <div className="space-y-2 text-[13px] leading-relaxed text-zinc-400">
                       {selected.theory.split("\n\n").map((p, i) => (
                         <p key={i}>{p}</p>
@@ -186,13 +186,13 @@ export default function StrategyTemplateGallery({ onSelect, onClose }: StrategyT
                   </div>
 
                   {/* Key Parameters */}
-                  <Section icon={<Clock className="h-4 w-4 text-cyan-400" />} title="Key Parameters">
+                  <Section icon={<Clock className="h-4 w-4 text-muted-foreground" />} title="Key Parameters">
                     <div className="grid grid-cols-2 gap-2">
                       {selected.keyParameters.map((param, i) => (
                         <div key={i} className="rounded-lg border border-white/5 bg-white/5 px-3 py-2">
                           <div className="flex items-center justify-between">
                             <span className="text-[11px] font-medium text-zinc-300">{param.name}</span>
-                            <span className="rounded bg-violet-500/20 px-1.5 py-0.5 text-xs font-mono font-semibold text-violet-300">
+                            <span className="rounded bg-primary/20 px-1.5 py-0.5 text-xs font-mono font-semibold text-primary">
                               {param.default}
                             </span>
                           </div>
@@ -203,14 +203,14 @@ export default function StrategyTemplateGallery({ onSelect, onClose }: StrategyT
                   </Section>
 
                   {/* History */}
-                  <Section icon={<History className="h-4 w-4 text-purple-400" />} title="Historical Context">
+                  <Section icon={<History className="h-4 w-4 text-primary" />} title="Historical Context">
                     <p className="text-[12px] leading-relaxed text-zinc-500 italic">{selected.history}</p>
                   </Section>
 
                   {/* Use Strategy Button */}
                   <button
                     onClick={() => handleUseStrategy(selected)}
-                    className="w-full rounded-xl bg-violet-600 py-3 text-sm font-bold text-white shadow-sm transition-all hover:bg-violet-500"
+                    className="w-full rounded-xl bg-primary py-3 text-sm font-bold text-white shadow-sm transition-all hover:bg-primary"
                   >
                     Use This Strategy
                   </button>

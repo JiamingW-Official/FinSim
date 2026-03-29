@@ -59,8 +59,8 @@ function StatChip({
     green: "bg-green-500/10 text-green-400 border-green-500/20",
     red: "bg-red-500/10 text-red-400 border-red-500/20",
     amber: "bg-amber-500/10 text-amber-400 border-amber-500/20",
-    blue: "bg-blue-500/10 text-blue-400 border-blue-500/20",
-    purple: "bg-purple-500/10 text-purple-400 border-purple-500/20",
+    blue: "bg-primary/10 text-primary border-border",
+    purple: "bg-primary/10 text-primary border-border",
     default: "bg-muted text-muted-foreground border-border",
   }[color];
   return (
@@ -84,8 +84,8 @@ function InfoBox({
     default: "border-border bg-muted/30",
     green: "border-green-500/20 bg-green-500/5",
     amber: "border-amber-500/20 bg-amber-500/5",
-    blue: "border-blue-500/20 bg-blue-500/5",
-    purple: "border-purple-500/20 bg-purple-500/5",
+    blue: "border-border bg-primary/5",
+    purple: "border-border bg-primary/5",
   }[variant];
   return (
     <div className={cn("rounded-lg border p-4", cls)}>
@@ -250,7 +250,7 @@ function BasicsTab() {
           ].map((item) => (
             <div key={item.label} className={cn(
               "rounded-lg border p-3",
-              item.color === "blue" ? "border-blue-500/20 bg-blue-500/5" : "border-purple-500/20 bg-purple-500/5"
+              item.color === "blue" ? "border-border bg-primary/5" : "border-border bg-primary/5"
             )}>
               <div className="text-xs font-semibold text-foreground mb-1">{item.label}</div>
               <div className="text-xs text-muted-foreground">{item.desc}</div>
@@ -285,7 +285,7 @@ function BasicsTab() {
                 <tr key={r.name} className={cn("border-b border-border/50", i % 2 === 0 ? "bg-muted/10" : "")}>
                   <td className="px-4 py-2.5 font-medium text-foreground">{r.name}</td>
                   <td className="px-4 py-2.5 text-muted-foreground">{r.country}</td>
-                  <td className="px-4 py-2.5 text-blue-400 font-mono">{r.premiums}</td>
+                  <td className="px-4 py-2.5 text-primary font-mono">{r.premiums}</td>
                   <td className="px-4 py-2.5">
                     <Badge variant="outline" className="text-green-400 border-green-500/30 text-xs">{r.rating}</Badge>
                   </td>
@@ -556,10 +556,10 @@ function CatBondsTab() {
         <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
           {TRIGGER_TYPES.map((t) => {
             const colorCls = {
-              blue: { border: "border-blue-500/20", bg: "bg-blue-500/5", title: "text-blue-400", badge: "bg-blue-500/10 text-blue-400 border-blue-500/20" },
+              blue: { border: "border-border", bg: "bg-primary/5", title: "text-primary", badge: "bg-primary/10 text-primary border-border" },
               green: { border: "border-green-500/20", bg: "bg-green-500/5", title: "text-green-400", badge: "bg-green-500/10 text-green-400 border-green-500/20" },
               amber: { border: "border-amber-500/20", bg: "bg-amber-500/5", title: "text-amber-400", badge: "bg-amber-500/10 text-amber-400 border-amber-500/20" },
-              purple: { border: "border-purple-500/20", bg: "bg-purple-500/5", title: "text-purple-400", badge: "bg-purple-500/10 text-purple-400 border-purple-500/20" },
+              purple: { border: "border-border", bg: "bg-primary/5", title: "text-primary", badge: "bg-primary/10 text-primary border-border" },
             }[t.color];
             return (
               <div key={t.type} className={cn("rounded-lg border p-4", colorCls?.border, colorCls?.bg)}>
@@ -756,8 +756,8 @@ function ILSTab() {
             <tbody>
               {ILS_TAXONOMY.map((item, i) => {
                 const colorMap = {
-                  blue: "text-blue-400",
-                  purple: "text-purple-400",
+                  blue: "text-primary",
+                  purple: "text-primary",
                   green: "text-green-400",
                   amber: "text-amber-400",
                 };
@@ -801,7 +801,7 @@ function ILSTab() {
           ].map((item) => {
             const Icon = item.icon;
             const cls = {
-              blue: { border: "border-blue-500/20", bg: "bg-blue-500/5", icon: "text-blue-400" },
+              blue: { border: "border-border", bg: "bg-primary/5", icon: "text-primary" },
               green: { border: "border-green-500/20", bg: "bg-green-500/5", icon: "text-green-400" },
               amber: { border: "border-amber-500/20", bg: "bg-amber-500/5", icon: "text-amber-400" },
             }[item.color];
@@ -842,7 +842,7 @@ function ILSTab() {
               "Leadenhall Capital — London-based",
               "Elementum Advisors — multi-peril",
             ].map((item) => (
-              <li key={item} className="flex items-start gap-1"><span className="text-blue-400 mt-0.5">•</span>{item}</li>
+              <li key={item} className="flex items-start gap-1"><span className="text-primary mt-0.5">•</span>{item}</li>
             ))}
           </ul>
         </InfoBox>
@@ -1076,7 +1076,7 @@ function CyclesTab() {
       </div>
 
       <InfoBox title="Retrocession Market" variant="purple">
-        Reinsurers themselves buy protection — called <strong className="text-purple-300">retrocession</strong> — from the broader market including other reinsurers, ILS funds, and Lloyd's syndicates. The retrocession market is notoriously thin and expensive; in hard markets, retro capacity disappears first, forcing reinsurers to either retain more risk or reduce capacity to cedents. The "spiral" risk — where losses recycle through the retro market repeatedly — was a significant issue in the 1990s Lloyd's market.
+        Reinsurers themselves buy protection — called <strong className="text-primary">retrocession</strong> — from the broader market including other reinsurers, ILS funds, and Lloyd's syndicates. The retrocession market is notoriously thin and expensive; in hard markets, retro capacity disappears first, forcing reinsurers to either retain more risk or reduce capacity to cedents. The "spiral" risk — where losses recycle through the retro market repeatedly — was a significant issue in the 1990s Lloyd's market.
       </InfoBox>
     </div>
   );
@@ -1107,8 +1107,8 @@ export default function ReinsurancePage() {
           className="mb-6"
         >
           <div className="flex items-center gap-3 mb-2">
-            <div className="rounded-lg p-2 bg-blue-500/10 border border-blue-500/20">
-              <Shield size={20} className="text-blue-400" />
+            <div className="rounded-lg p-2 bg-primary/10 border border-border">
+              <Shield size={20} className="text-primary" />
             </div>
             <div>
               <h1 className="text-2xl font-bold text-foreground">Reinsurance Markets</h1>

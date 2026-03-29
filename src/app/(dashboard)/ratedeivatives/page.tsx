@@ -1281,7 +1281,7 @@ export default function RateDerivativesPage() {
           <Badge variant="outline" className="border-indigo-500/40 text-indigo-300 text-xs">
             Black-76
           </Badge>
-          <Badge variant="outline" className="border-violet-500/40 text-violet-300 text-xs">
+          <Badge variant="outline" className="border-primary/40 text-primary text-xs">
             SABR
           </Badge>
           <Badge variant="outline" className="border-emerald-500/40 text-emerald-300 text-xs">
@@ -1400,7 +1400,7 @@ export default function RateDerivativesPage() {
                     step={25}
                     value={[curveShift]}
                     onValueChange={([v]) => setCurveShift(v)}
-                    className="[&_[role=slider]]:bg-violet-500"
+                    className="[&_[role=slider]]:bg-primary"
                   />
                   <div className="flex justify-between text-xs text-zinc-600 mt-1">
                     <span>-300 bps</span><span>+300 bps</span>
@@ -1545,7 +1545,7 @@ export default function RateDerivativesPage() {
             <Card className="bg-zinc-900 border-zinc-800">
               <CardHeader className="pb-3">
                 <CardTitle className="text-base flex items-center gap-2">
-                  <Layers className="w-4 h-4 text-violet-400" />
+                  <Layers className="w-4 h-4 text-primary" />
                   Swaption Builder
                 </CardTitle>
               </CardHeader>
@@ -1593,7 +1593,7 @@ export default function RateDerivativesPage() {
                         onClick={() => setSwaptionExpiry(t)}
                         className={`flex-1 py-1.5 rounded text-xs font-medium transition-colors ${
                           swaptionExpiry === t
-                            ? "bg-violet-600 text-white"
+                            ? "bg-primary text-white"
                             : "bg-zinc-800 text-zinc-400 hover:text-zinc-200"
                         }`}
                       >
@@ -1616,7 +1616,7 @@ export default function RateDerivativesPage() {
                         onClick={() => setSwaptionTenor(t)}
                         className={`flex-1 py-1.5 rounded text-xs font-medium transition-colors ${
                           swaptionTenor === t
-                            ? "bg-violet-600 text-white"
+                            ? "bg-primary text-white"
                             : "bg-zinc-800 text-zinc-400 hover:text-zinc-200"
                         }`}
                       >
@@ -1638,7 +1638,7 @@ export default function RateDerivativesPage() {
                     step={5}
                     value={[Math.round(swaptionStrike * 100)]}
                     onValueChange={([v]) => setSwaptionStrike(v / 100)}
-                    className="[&_[role=slider]]:bg-violet-500"
+                    className="[&_[role=slider]]:bg-primary"
                   />
                   <div className="flex justify-between text-xs text-zinc-600 mt-1">
                     <span>2.00%</span><span>8.00%</span>
@@ -1657,7 +1657,7 @@ export default function RateDerivativesPage() {
                     step={1}
                     value={[swaptionVol]}
                     onValueChange={([v]) => setSwaptionVol(v)}
-                    className="[&_[role=slider]]:bg-violet-500"
+                    className="[&_[role=slider]]:bg-primary"
                   />
                   <div className="flex justify-between text-xs text-zinc-600 mt-1">
                     <span>5%</span><span>60%</span>
@@ -1878,7 +1878,7 @@ export default function RateDerivativesPage() {
                   </div>
                   <div className="flex justify-between text-xs">
                     <span className="text-zinc-500">Collar Net Cost</span>
-                    <span className={capMetrics.collarCost >= 0 ? "text-orange-400 font-semibold" : "text-violet-400 font-semibold"}>
+                    <span className={capMetrics.collarCost >= 0 ? "text-orange-400 font-semibold" : "text-primary font-semibold"}>
                       {fmtK(capMetrics.collarCost)}
                     </span>
                   </div>
@@ -1965,7 +1965,7 @@ export default function RateDerivativesPage() {
                     <div className="font-semibold text-zinc-300 mb-1">Break-even Analysis</div>
                     <div>
                       A collar at these strikes costs{" "}
-                      <span className={capMetrics.collarCost >= 0 ? "text-orange-400 font-semibold" : "text-violet-400 font-semibold"}>
+                      <span className={capMetrics.collarCost >= 0 ? "text-orange-400 font-semibold" : "text-primary font-semibold"}>
                         {fmtK(Math.abs(capMetrics.collarCost))}
                       </span>{" "}
                       {capMetrics.collarCost >= 0 ? "net premium" : "net received"}.
@@ -2128,7 +2128,7 @@ export default function RateDerivativesPage() {
                         className={`text-xs cursor-pointer ${
                           showNormalVol
                             ? "border-orange-500/50 text-orange-300"
-                            : "border-violet-500/50 text-violet-300"
+                            : "border-primary/50 text-primary"
                         }`}
                         onClick={() => setShowNormalVol((v) => !v)}
                       >

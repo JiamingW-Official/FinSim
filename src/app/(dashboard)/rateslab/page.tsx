@@ -294,7 +294,7 @@ function SwapPricerTab() {
       {/* Controls */}
       <Card className="space-y-4">
         <h3 className="text-sm font-semibold text-white/80 flex items-center gap-2">
-          <ArrowLeftRight className="w-4 h-4 text-blue-400" />
+          <ArrowLeftRight className="w-4 h-4 text-primary" />
           IRS Parameters
         </h3>
 
@@ -342,7 +342,7 @@ function SwapPricerTab() {
               onClick={() => setPayFixed(true)}
               className={`flex-1 py-1.5 rounded text-xs font-medium transition-colors ${
                 payFixed
-                  ? "bg-blue-500/30 text-blue-300 border border-blue-500/50"
+                  ? "bg-primary/30 text-primary border border-primary/50"
                   : "bg-white/5 text-white/40 border border-transparent"
               }`}
             >
@@ -352,7 +352,7 @@ function SwapPricerTab() {
               onClick={() => setPayFixed(false)}
               className={`flex-1 py-1.5 rounded text-xs font-medium transition-colors ${
                 !payFixed
-                  ? "bg-purple-500/30 text-purple-300 border border-purple-500/50"
+                  ? "bg-primary/30 text-primary border border-primary/50"
                   : "bg-white/5 text-white/40 border border-transparent"
               }`}
             >
@@ -382,8 +382,8 @@ function SwapPricerTab() {
           />
         </div>
 
-        <div className="bg-blue-500/10 border border-blue-500/20 rounded-lg p-3">
-          <p className="text-[11px] text-blue-200/70 leading-relaxed">
+        <div className="bg-primary/10 border border-border rounded-lg p-3">
+          <p className="text-[11px] text-muted-foreground leading-relaxed">
             <Info className="inline w-3 h-3 mr-1 mb-0.5" />
             In an IRS, one party pays a fixed coupon while receiving SOFR-linked
             floating payments. NPV &gt; 0 means the swap has positive value to you.
@@ -635,7 +635,7 @@ function SwapCurveTab() {
             <thead>
               <tr className="border-b border-white/10">
                 <th className="text-left py-1.5 text-white/40 font-medium">Tenor</th>
-                <th className="text-right py-1.5 text-blue-400 font-medium">Par Rate</th>
+                <th className="text-right py-1.5 text-primary font-medium">Par Rate</th>
                 <th className="text-right py-1.5 text-emerald-400 font-medium">Zero Rate</th>
                 <th className="text-right py-1.5 text-pink-400 font-medium">Fwd Rate</th>
                 <th className="text-right py-1.5 text-white/40 font-medium">Disc Factor</th>
@@ -645,7 +645,7 @@ function SwapCurveTab() {
               {TENOR_LABELS.map((label, i) => (
                 <tr key={`tr-${i}`} className="border-b border-white/5 hover:bg-white/3">
                   <td className="py-1.5 font-mono text-white/70">{label}</td>
-                  <td className="py-1.5 font-mono text-right text-blue-300">
+                  <td className="py-1.5 font-mono text-right text-primary">
                     {parRates[i].toFixed(3)}%
                   </td>
                   <td className="py-1.5 font-mono text-right text-emerald-300">
@@ -815,7 +815,7 @@ function SwaptionTab() {
               onClick={() => setIsPayer(false)}
               className={`flex-1 py-1.5 rounded text-xs font-medium transition-colors ${
                 !isPayer
-                  ? "bg-violet-500/30 text-violet-300 border border-violet-500/50"
+                  ? "bg-primary/30 text-primary border border-primary/50"
                   : "bg-white/5 text-white/40 border border-transparent"
               }`}
             >
@@ -961,7 +961,7 @@ function SwaptionTab() {
           </div>
           <div className="bg-white/5 rounded p-2">
             <div className="text-white/40 mb-1">Time Value</div>
-            <div className="font-mono font-semibold text-blue-400">
+            <div className="font-mono font-semibold text-primary">
               {fmtK(Math.max(0, result.price - Math.max(0, isPayer
                 ? (sofrFwd / 100 - strike / 100) * annuity
                 : (strike / 100 - sofrFwd / 100) * annuity)))}
@@ -1035,7 +1035,7 @@ function CrossCurrencyTab() {
       {/* Controls */}
       <Card className="space-y-4">
         <h3 className="text-sm font-semibold text-white/80 flex items-center gap-2">
-          <Globe className="w-4 h-4 text-cyan-400" />
+          <Globe className="w-4 h-4 text-muted-foreground" />
           Cross-Currency Swap
         </h3>
 
@@ -1194,7 +1194,7 @@ function CrossCurrencyTab() {
                   }`}
                 >
                   <div className="text-[11px] text-white/40">{`Y${t.toFixed(1)}`}</div>
-                  <div className="text-[11px] text-blue-300">{fmtK(usdFlow)}</div>
+                  <div className="text-[11px] text-primary">{fmtK(usdFlow)}</div>
                   <div className="text-[11px] text-emerald-300">{fmtK(eurFlow)}</div>
                   <div className={`text-xs font-mono font-semibold ${net >= 0 ? "text-emerald-400" : "text-red-400"}`}>
                     {fmtK(net)}
@@ -1440,7 +1440,7 @@ function DurationHedgingTab() {
               <tr className="border-b border-white/10">
                 <th className="text-left py-1 text-white/40">Shift (bps)</th>
                 <th className="text-right py-1 text-red-400">Swap P&L</th>
-                <th className="text-right py-1 text-blue-400">Futures P&L</th>
+                <th className="text-right py-1 text-primary">Futures P&L</th>
                 <th className="text-right py-1 text-emerald-400">Net P&L</th>
                 <th className="text-right py-1 text-white/40">Residual %</th>
               </tr>
@@ -1498,11 +1498,11 @@ export default function RatesLabPage() {
         >
           <div>
             <div className="flex items-center gap-3 mb-1">
-              <div className="w-8 h-8 rounded-lg bg-blue-500/20 border border-blue-500/30 flex items-center justify-center">
-                <BarChart3 className="w-4 h-4 text-blue-400" />
+              <div className="w-8 h-8 rounded-lg bg-primary/20 border border-border flex items-center justify-center">
+                <BarChart3 className="w-4 h-4 text-primary" />
               </div>
               <h1 className="text-xl font-bold text-white">Rates Lab</h1>
-              <Badge variant="outline" className="text-xs border-blue-500/30 text-blue-300">
+              <Badge variant="outline" className="text-xs border-border text-primary">
                 Interest Rate Derivatives
               </Badge>
             </div>
@@ -1515,7 +1515,7 @@ export default function RatesLabPage() {
         {/* Tabs */}
         <Tabs defaultValue="swap-pricer" className="space-y-4">
           <TabsList className="bg-white/5 border border-white/10 flex-wrap h-auto gap-1 p-1">
-            <TabsTrigger value="swap-pricer" className="text-xs data-[state=active]:bg-blue-500/20 data-[state=active]:text-blue-300">
+            <TabsTrigger value="swap-pricer" className="text-xs data-[state=active]:bg-primary/20 data-[state=active]:text-primary">
               <ArrowLeftRight className="w-3 h-3 mr-1.5" />
               Swap Pricer
             </TabsTrigger>
@@ -1527,7 +1527,7 @@ export default function RatesLabPage() {
               <BarChart3 className="w-3 h-3 mr-1.5" />
               Swaption Pricing
             </TabsTrigger>
-            <TabsTrigger value="xccy" className="text-xs data-[state=active]:bg-cyan-500/20 data-[state=active]:text-cyan-300">
+            <TabsTrigger value="xccy" className="text-xs data-[state=active]:bg-cyan-500/20 data-[state=active]:text-muted-foreground">
               <Globe className="w-3 h-3 mr-1.5" />
               Cross-Currency
             </TabsTrigger>

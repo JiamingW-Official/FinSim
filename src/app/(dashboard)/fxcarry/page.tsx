@@ -201,9 +201,9 @@ const STRATEGY_TYPES = [
     sharpe: 0.89,
     maxDD: -18,
     ytd: 9.4,
-    color: "text-blue-400",
-    bg: "bg-blue-400/10",
-    border: "border-blue-400/30",
+    color: "text-primary",
+    bg: "bg-primary/10",
+    border: "border-border",
   },
   {
     name: "Vol-Targeted Carry",
@@ -214,9 +214,9 @@ const STRATEGY_TYPES = [
     sharpe: 0.95,
     maxDD: -12,
     ytd: 6.8,
-    color: "text-violet-400",
-    bg: "bg-violet-400/10",
-    border: "border-violet-400/30",
+    color: "text-primary",
+    bg: "bg-primary/10",
+    border: "border-border",
   },
   {
     name: "EM Carry",
@@ -745,7 +745,7 @@ export default function FXCarryPage() {
                           <td className="px-4 py-3 text-right font-mono text-rose-400">
                             {pos.shortRate.toFixed(2)}%
                           </td>
-                          <td className="px-4 py-3 text-right font-mono text-blue-400 font-semibold">
+                          <td className="px-4 py-3 text-right font-mono text-primary font-semibold">
                             {pos.differential.toFixed(2)}%
                           </td>
                           <td className="px-4 py-3 text-right font-mono text-emerald-400">
@@ -789,7 +789,7 @@ export default function FXCarryPage() {
             <Card className="border-border bg-card">
               <CardHeader className="pb-2">
                 <CardTitle className="text-sm font-semibold flex items-center gap-2">
-                  <BarChart2 className="w-4 h-4 text-blue-400" />
+                  <BarChart2 className="w-4 h-4 text-primary" />
                   G10 Policy Rates — Sorted by Rate Level
                 </CardTitle>
               </CardHeader>
@@ -801,7 +801,7 @@ export default function FXCarryPage() {
                     High yield (&ge;4%)
                   </span>
                   <span className="flex items-center gap-1">
-                    <span className="inline-block w-3 h-3 rounded-sm bg-blue-400/80" />
+                    <span className="inline-block w-3 h-3 rounded-sm bg-primary/80" />
                     Mid yield
                   </span>
                   <span className="flex items-center gap-1">
@@ -833,7 +833,7 @@ export default function FXCarryPage() {
                         <div
                           className={cn(
                             "text-lg font-bold font-mono",
-                            ccy.policyRate >= 4 ? "text-emerald-400" : ccy.policyRate <= 0.5 ? "text-rose-400" : "text-blue-400"
+                            ccy.policyRate >= 4 ? "text-emerald-400" : ccy.policyRate <= 0.5 ? "text-rose-400" : "text-primary"
                           )}
                         >
                           {ccy.policyRate.toFixed(2)}%
@@ -854,7 +854,7 @@ export default function FXCarryPage() {
             <Card className="border-border bg-card">
               <CardHeader className="pb-2">
                 <CardTitle className="text-sm font-semibold flex items-center gap-2">
-                  <Activity className="w-4 h-4 text-violet-400" />
+                  <Activity className="w-4 h-4 text-primary" />
                   Carry Returns vs Volatility Regime
                 </CardTitle>
               </CardHeader>

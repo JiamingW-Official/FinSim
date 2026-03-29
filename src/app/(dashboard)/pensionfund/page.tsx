@@ -474,10 +474,10 @@ function DurationGapBar({ assetDur, liabilityDur }: { assetDur: number; liabilit
       <div>
         <div className="flex justify-between text-xs text-muted-foreground mb-1">
           <span>Asset Duration</span>
-          <span className="font-semibold text-blue-400">{assetDur.toFixed(1)} yrs</span>
+          <span className="font-semibold text-primary">{assetDur.toFixed(1)} yrs</span>
         </div>
         <div className="h-4 bg-muted rounded-full overflow-hidden">
-          <div className="h-full bg-blue-500 rounded-full transition-all" style={{ width: `${aWidth}%` }} />
+          <div className="h-full bg-primary rounded-full transition-all" style={{ width: `${aWidth}%` }} />
         </div>
       </div>
       <div>
@@ -570,8 +570,8 @@ export default function PensionFundPage() {
       {/* Header */}
       <motion.div {...fadeIn} className="space-y-1">
         <div className="flex items-center gap-3">
-          <div className="p-2 rounded-lg bg-blue-500/10 border border-blue-500/20">
-            <Shield className="w-5 h-5 text-blue-400" />
+          <div className="p-2 rounded-lg bg-primary/10 border border-border">
+            <Shield className="w-5 h-5 text-primary" />
           </div>
           <div>
             <h1 className="text-2xl font-bold tracking-tight">Pension Fund Management</h1>
@@ -617,8 +617,8 @@ export default function PensionFundPage() {
             value: `$${PBO.toFixed(2)}B`,
             sub: `Assets: $${PLAN_ASSETS.toFixed(1)}B`,
             icon: <Target className="w-4 h-4" />,
-            color: "text-purple-400",
-            bg: "bg-purple-500/10 border-purple-500/20",
+            color: "text-primary",
+            bg: "bg-primary/10 border-border",
             trend: { dir: "up" as const, val: "+$0.4B from aging" },
           },
         ].map((m) => (
@@ -659,7 +659,7 @@ export default function PensionFundPage() {
               <Card className="border-border">
                 <CardHeader className="pb-2">
                   <CardTitle className="text-sm flex items-center gap-2">
-                    <Scale className="w-4 h-4 text-blue-400" />
+                    <Scale className="w-4 h-4 text-primary" />
                     Funded Ratio Gauge
                   </CardTitle>
                 </CardHeader>
@@ -679,9 +679,9 @@ export default function PensionFundPage() {
                   </div>
                   <div className="mt-4 p-3 rounded-lg bg-muted/50 text-xs text-muted-foreground space-y-1">
                     <p><strong className="text-foreground">Actuarial Assumptions:</strong></p>
-                    <p>Discount rate: <span className="text-blue-400">{DISCOUNT_RATE}%</span> (7Y AA Corp Bond yield)</p>
+                    <p>Discount rate: <span className="text-primary">{DISCOUNT_RATE}%</span> (7Y AA Corp Bond yield)</p>
                     <p>Expected return: <span className="text-green-400">{ACTUARIAL_RETURN_ASSUMPTION}%</span> (geometric mean)</p>
-                    <p>Salary growth: <span className="text-purple-400">3.5%</span> | Mortality: SOA PRI-2012</p>
+                    <p>Salary growth: <span className="text-primary">3.5%</span> | Mortality: SOA PRI-2012</p>
                   </div>
                 </CardContent>
               </Card>
@@ -689,7 +689,7 @@ export default function PensionFundPage() {
               <Card className="border-border">
                 <CardHeader className="pb-2">
                   <CardTitle className="text-sm flex items-center gap-2">
-                    <BarChart3 className="w-4 h-4 text-purple-400" />
+                    <BarChart3 className="w-4 h-4 text-primary" />
                     10-Year Funded Ratio Projection
                   </CardTitle>
                 </CardHeader>
@@ -723,7 +723,7 @@ export default function PensionFundPage() {
                 <AssetLiabilityChart data={projectionData} />
                 <div className="mt-3 grid grid-cols-3 gap-3 text-xs">
                   {[
-                    { label: "Current Assets", val: `$${PLAN_ASSETS.toFixed(1)}B`, color: "text-blue-400" },
+                    { label: "Current Assets", val: `$${PLAN_ASSETS.toFixed(1)}B`, color: "text-primary" },
                     { label: "Current PBO", val: `$${PBO.toFixed(2)}B`, color: "text-red-400" },
                     { label: "Funding Gap", val: `$${(PBO - PLAN_ASSETS).toFixed(2)}B`, color: "text-amber-400" },
                   ].map((item) => (
@@ -742,7 +742,7 @@ export default function PensionFundPage() {
             <Card className="border-border">
               <CardHeader className="pb-2">
                 <CardTitle className="text-sm flex items-center gap-2">
-                  <Layers className="w-4 h-4 text-blue-400" />
+                  <Layers className="w-4 h-4 text-primary" />
                   Asset Class Breakdown — Allocation, Return &amp; Hedge Characteristics
                 </CardTitle>
               </CardHeader>
@@ -770,7 +770,7 @@ export default function PensionFundPage() {
                           </td>
                           <td className="text-right px-3 font-semibold">{a.allocation}%</td>
                           <td className="text-right px-3 text-green-400">{a.expectedReturn.toFixed(1)}%</td>
-                          <td className="text-right px-3 text-blue-400">{a.duration.toFixed(1)}y</td>
+                          <td className="text-right px-3 text-primary">{a.duration.toFixed(1)}y</td>
                           <td className="text-right px-3">
                             <Badge
                               variant="outline"
@@ -808,9 +808,9 @@ export default function PensionFundPage() {
                             ASSET_CLASSES.reduce((s, a) => s + a.allocation * a.expectedReturn, 0) / 100
                           ).toFixed(2)}%
                         </td>
-                        <td className="text-right px-3 text-blue-400">{weightedAssetDuration.toFixed(1)}y</td>
+                        <td className="text-right px-3 text-primary">{weightedAssetDuration.toFixed(1)}y</td>
                         <td className="text-right px-3">
-                          <Badge variant="outline" className="text-xs border-blue-500/50 text-blue-400">
+                          <Badge variant="outline" className="text-xs border-primary/50 text-primary">
                             {weightedHedgeRatio.toFixed(0)}%
                           </Badge>
                         </td>
@@ -820,8 +820,8 @@ export default function PensionFundPage() {
                   </table>
                 </div>
                 <div className="mt-4 grid grid-cols-1 sm:grid-cols-2 gap-3">
-                  <div className="p-3 rounded-lg bg-blue-500/10 border border-blue-500/20 text-xs space-y-1">
-                    <p className="font-semibold text-blue-300 flex items-center gap-1">
+                  <div className="p-3 rounded-lg bg-primary/10 border border-border text-xs space-y-1">
+                    <p className="font-semibold text-primary flex items-center gap-1">
                       <Info className="w-3.5 h-3.5" /> Liability Hedge Ratio
                     </p>
                     <p className="text-muted-foreground">
@@ -850,7 +850,7 @@ export default function PensionFundPage() {
             <Card className="border-border">
               <CardHeader className="pb-2">
                 <CardTitle className="text-sm flex items-center gap-2">
-                  <Scale className="w-4 h-4 text-purple-400" />
+                  <Scale className="w-4 h-4 text-primary" />
                   Duration Gap Analysis
                 </CardTitle>
               </CardHeader>
@@ -862,7 +862,7 @@ export default function PensionFundPage() {
             <Card className="border-border">
               <CardHeader className="pb-2">
                 <CardTitle className="text-sm flex items-center gap-2">
-                  <Layers className="w-4 h-4 text-blue-400" />
+                  <Layers className="w-4 h-4 text-primary" />
                   LDI Strategy Selection
                 </CardTitle>
               </CardHeader>
@@ -885,7 +885,7 @@ export default function PensionFundPage() {
                   <div className="flex items-center justify-between">
                     <span className="font-semibold text-sm">{currentLDI.label}</span>
                     <div className="flex gap-2">
-                      <Badge variant="outline" className="text-xs border-blue-500/50 text-blue-400">
+                      <Badge variant="outline" className="text-xs border-primary/50 text-primary">
                         Hedge: {currentLDI.hedgeRatio}%
                       </Badge>
                       <Badge
@@ -1002,9 +1002,9 @@ export default function PensionFundPage() {
                 >
                   <Card
                     className={cn(
-                      "border cursor-pointer transition-all hover:border-blue-500/50",
+                      "border cursor-pointer transition-all hover:border-primary/50",
                       activeScenario === i
-                        ? "border-blue-500 bg-blue-500/5"
+                        ? "border-primary bg-primary/5"
                         : "border-border"
                     )}
                     onClick={() => setActiveScenario(activeScenario === i ? null : i)}
@@ -1045,7 +1045,7 @@ export default function PensionFundPage() {
                       <div className="grid grid-cols-2 gap-2 pt-1">
                         <div className="p-2 rounded bg-muted/50 text-center">
                           <div className="text-xs text-muted-foreground mb-0.5">Rate Shock</div>
-                          <div className={cn("text-sm font-bold", sc.rateShock >= 0 ? "text-amber-400" : "text-blue-400")}>
+                          <div className={cn("text-sm font-bold", sc.rateShock >= 0 ? "text-amber-400" : "text-primary")}>
                             {sc.rateShock > 0 ? "+" : ""}
                             {sc.rateShock.toFixed(0) === "0" ? "—" : `${sc.rateShock * 100}bps`}
                           </div>
@@ -1110,7 +1110,7 @@ export default function PensionFundPage() {
                             className={cn(
                               "h-full rounded transition-all",
                               row.isBase
-                                ? "bg-blue-500"
+                                ? "bg-primary"
                                 : row.ratio >= 80
                                 ? "bg-green-500"
                                 : row.ratio >= 60
@@ -1126,7 +1126,7 @@ export default function PensionFundPage() {
                           className={cn(
                             "w-12 text-right font-semibold",
                             row.isBase
-                              ? "text-blue-400"
+                              ? "text-primary"
                               : row.ratio >= 80
                               ? "text-green-400"
                               : row.ratio >= 60
@@ -1151,7 +1151,7 @@ export default function PensionFundPage() {
             <Card className="border-border">
               <CardHeader className="pb-2">
                 <CardTitle className="text-sm flex items-center gap-2">
-                  <Info className="w-4 h-4 text-blue-400" />
+                  <Info className="w-4 h-4 text-primary" />
                   Key Actuarial Concepts
                 </CardTitle>
               </CardHeader>

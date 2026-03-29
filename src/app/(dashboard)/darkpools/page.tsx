@@ -458,9 +458,9 @@ function DarkPoolLandscapeTab() {
     <div className="space-y-6">
       {/* Header stats */}
       <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
-        <StatChip label="ATS Registered" value="~60" color="text-blue-400" />
-        <StatChip label="Daily Dark Volume" value="$27.8B" color="text-purple-400" />
-        <StatChip label="% of US Equity Vol" value="~38%" color="text-cyan-400" />
+        <StatChip label="ATS Registered" value="~60" color="text-primary" />
+        <StatChip label="Daily Dark Volume" value="$27.8B" color="text-primary" />
+        <StatChip label="% of US Equity Vol" value="~38%" color="text-muted-foreground" />
         <StatChip label="Avg Block Size" value="$1.4M" color="text-emerald-400" />
       </div>
 
@@ -468,7 +468,7 @@ function DarkPoolLandscapeTab() {
         {/* Donut chart */}
         <div className="bg-neutral-800/50 rounded-xl p-4 border border-neutral-700/50">
           <h3 className="text-sm font-semibold text-white mb-3 flex items-center gap-2">
-            <BarChart3 className="w-4 h-4 text-blue-400" />
+            <BarChart3 className="w-4 h-4 text-primary" />
             Dark Pool Market Share
           </h3>
           <svg viewBox="0 0 320 320" className="w-full max-h-64">
@@ -521,7 +521,7 @@ function DarkPoolLandscapeTab() {
         {/* Rankings table */}
         <div className="bg-neutral-800/50 rounded-xl p-4 border border-neutral-700/50">
           <h3 className="text-sm font-semibold text-white mb-3 flex items-center gap-2">
-            <Layers className="w-4 h-4 text-purple-400" />
+            <Layers className="w-4 h-4 text-primary" />
             Top 10 Dark Pools by Volume
           </h3>
           <div className="space-y-1.5 overflow-y-auto max-h-64 pr-1">
@@ -630,7 +630,7 @@ function DarkPoolLandscapeTab() {
       {/* ATS vs Exchange comparison */}
       <div className="bg-neutral-800/50 rounded-xl p-4 border border-neutral-700/50">
         <h3 className="text-sm font-semibold text-white mb-4 flex items-center gap-2">
-          <Scale className="w-4 h-4 text-cyan-400" />
+          <Scale className="w-4 h-4 text-muted-foreground" />
           US Equity Volume Distribution (ATS vs Lit Exchanges)
         </h3>
         <div className="space-y-3">
@@ -815,7 +815,7 @@ function WhyDarkPoolsTab() {
                   quality === "Excellent"
                     ? "text-emerald-400"
                     : quality === "Good"
-                    ? "text-blue-400"
+                    ? "text-primary"
                     : "text-amber-400";
                 return (
                   <tr key={row.pool} className="hover:bg-neutral-700/20">
@@ -844,7 +844,7 @@ function WhyDarkPoolsTab() {
       {/* Info leakage visual */}
       <div className="bg-neutral-800/50 rounded-xl p-4 border border-neutral-700/50">
         <h3 className="text-sm font-semibold text-white mb-4 flex items-center gap-2">
-          <Info className="w-4 h-4 text-blue-400" />
+          <Info className="w-4 h-4 text-primary" />
           Information Leakage: Lit vs Dark Order Flow
         </h3>
         <svg viewBox="0 0 600 120" className="w-full h-24">
@@ -912,7 +912,7 @@ function OrderTypesTab() {
 
   const impactColor = {
     None: "text-emerald-400",
-    Low: "text-blue-400",
+    Low: "text-primary",
     Medium: "text-amber-400",
     High: "text-red-400",
   };
@@ -934,7 +934,7 @@ function OrderTypesTab() {
             className={cn(
               "px-3 py-1.5 rounded-lg text-xs font-medium border transition-colors",
               selected === o.name
-                ? "bg-blue-600/30 border-blue-500/60 text-blue-300"
+                ? "bg-primary/30 border-primary/60 text-primary"
                 : "bg-neutral-800/60 border-neutral-700/50 text-neutral-400 hover:text-white hover:border-neutral-600"
             )}
           >
@@ -1007,11 +1007,11 @@ function OrderTypesTab() {
                     return (
                       <>
                         <div
-                          className="h-full bg-blue-600/40 rounded-full relative"
+                          className="h-full bg-primary/40 rounded-full relative"
                           style={{ width: `${hi * 100}%` }}
                         >
                           <div
-                            className="absolute left-0 top-0 h-full bg-blue-500 rounded-full"
+                            className="absolute left-0 top-0 h-full bg-primary rounded-full"
                             style={{ width: `${(lo / hi) * 100}%` }}
                           />
                         </div>
@@ -1019,7 +1019,7 @@ function OrderTypesTab() {
                     );
                   })()}
                 </div>
-                <span className="text-xs text-blue-400 font-semibold w-20 text-right">
+                <span className="text-xs text-primary font-semibold w-20 text-right">
                   {order.fillProbability}
                 </span>
               </div>
@@ -1031,7 +1031,7 @@ function OrderTypesTab() {
       {/* Order routing decision tree SVG */}
       <div className="bg-neutral-800/50 rounded-xl p-4 border border-neutral-700/50">
         <h3 className="text-sm font-semibold text-white mb-4 flex items-center gap-2">
-          <Network className="w-4 h-4 text-purple-400" />
+          <Network className="w-4 h-4 text-primary" />
           Order Routing Decision Tree
         </h3>
         <svg viewBox="0 0 640 300" className="w-full">
@@ -1104,7 +1104,7 @@ function OrderTypesTab() {
           { label: "Spread Capture (Midpoint)", value: "50%", color: "text-emerald-400" },
           { label: "Avg IOC Cancel Rate", value: "42%", color: "text-amber-400" },
           { label: "FOK Block Fill Rate", value: "28%", color: "text-red-400" },
-          { label: "VWAP Tracking Error", value: "~3 bps", color: "text-blue-400" },
+          { label: "VWAP Tracking Error", value: "~3 bps", color: "text-primary" },
         ].map((s) => (
           <StatChip key={s.label} label={s.label} value={s.value} color={s.color} />
         ))}
@@ -1190,8 +1190,8 @@ function HFTInteractionTab() {
 
       {/* Regulatory responses stats */}
       <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
-        <StatChip label="IEX Speed Bump" value="350 µs" color="text-cyan-400" />
-        <StatChip label="SEC Reg ATS-N Forms" value="~60" color="text-blue-400" />
+        <StatChip label="IEX Speed Bump" value="350 µs" color="text-muted-foreground" />
+        <StatChip label="SEC Reg ATS-N Forms" value="~60" color="text-primary" />
         <StatChip label="FINRA Manipulation Cases (2023)" value="48" color="text-red-400" />
         <StatChip label="Max Spoofing Sentence" value="10 yrs" color="text-amber-400" />
       </div>
@@ -1199,7 +1199,7 @@ function HFTInteractionTab() {
       {/* Timeline */}
       <div className="bg-neutral-800/50 rounded-xl p-4 border border-neutral-700/50">
         <h3 className="text-sm font-semibold text-white mb-4 flex items-center gap-2">
-          <Clock className="w-4 h-4 text-purple-400" />
+          <Clock className="w-4 h-4 text-primary" />
           HFT & Dark Pool Regulatory Timeline — click an event to expand
         </h3>
 
@@ -1344,16 +1344,16 @@ function LitVsDarkTab() {
       {/* Toxicity metrics comparison */}
       <div className="bg-neutral-800/50 rounded-xl p-4 border border-neutral-700/50">
         <h3 className="text-sm font-semibold text-white mb-4 flex items-center gap-2">
-          <BarChart3 className="w-4 h-4 text-blue-400" />
+          <BarChart3 className="w-4 h-4 text-primary" />
           Lit vs Dark: Key Microstructure Metrics
         </h3>
         <div className="flex gap-4 mb-4 text-xs">
           <div className="flex items-center gap-1.5">
-            <div className="w-3 h-3 rounded-sm bg-blue-500/70" />
+            <div className="w-3 h-3 rounded-sm bg-primary/70" />
             <span className="text-neutral-400">Lit Market</span>
           </div>
           <div className="flex items-center gap-1.5">
-            <div className="w-3 h-3 rounded-sm bg-purple-500/70" />
+            <div className="w-3 h-3 rounded-sm bg-primary/70" />
             <span className="text-neutral-400">Dark Pool</span>
           </div>
         </div>
@@ -1382,7 +1382,7 @@ function LitVsDarkTab() {
                     <span className="text-xs text-neutral-500 w-6">Lit</span>
                     <div className="flex-1 bg-neutral-700/40 rounded-full h-3 overflow-hidden">
                       <motion.div
-                        className="h-full rounded-full bg-blue-500/70"
+                        className="h-full rounded-full bg-primary/70"
                         initial={{ width: 0 }}
                         animate={{ width: `${litW}%` }}
                         transition={{ duration: 0.6, ease: "easeOut" }}
@@ -1393,7 +1393,7 @@ function LitVsDarkTab() {
                     <span className="text-xs text-neutral-500 w-6">Dark</span>
                     <div className="flex-1 bg-neutral-700/40 rounded-full h-3 overflow-hidden">
                       <motion.div
-                        className="h-full rounded-full bg-purple-500/70"
+                        className="h-full rounded-full bg-primary/70"
                         initial={{ width: 0 }}
                         animate={{ width: `${darkW}%` }}
                         transition={{ duration: 0.6, ease: "easeOut", delay: 0.1 }}

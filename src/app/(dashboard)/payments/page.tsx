@@ -387,8 +387,8 @@ function PaymentRailsTab() {
       <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
         {[
           { icon: <Zap className="w-4 h-4 text-yellow-400" />, title: "RTP Growth", body: "Real-Time Payments volume grew 40%+ YoY in 2024. FedNow added 900+ institutions in its first year.", color: "yellow" },
-          { icon: <Globe className="w-4 h-4 text-teal-400" />, title: "SWIFT gpi", body: "SWIFT's global payments initiative enables same-day cross-border transfers for 50%+ of transactions.", color: "teal" },
-          { icon: <Shield className="w-4 h-4 text-blue-400" />, title: "Fedwire RTGS", body: "Fedwire settles $4+ trillion daily — the backbone of US large-value payments since 1918.", color: "blue" },
+          { icon: <Globe className="w-4 h-4 text-emerald-400" />, title: "SWIFT gpi", body: "SWIFT's global payments initiative enables same-day cross-border transfers for 50%+ of transactions.", color: "teal" },
+          { icon: <Shield className="w-4 h-4 text-primary" />, title: "Fedwire RTGS", body: "Fedwire settles $4+ trillion daily — the backbone of US large-value payments since 1918.", color: "blue" },
         ].map((card) => (
           <Card key={card.title} className="bg-zinc-900 border-zinc-800">
             <CardContent className="pt-4">
@@ -750,7 +750,7 @@ function DigitalWalletsTab() {
         {[
           { icon: <Zap className="w-4 h-4 text-yellow-400" />, title: "Super App Race", body: "Cash App and PayPal are adding investing, crypto, BNPL, and banking features to increase stickiness and ARPU." },
           { icon: <Lock className="w-4 h-4 text-indigo-400" />, title: "Tokenization", body: "Apple Pay and Google Pay use device tokens so merchants never see the real card number — reducing fraud by ~80%." },
-          { icon: <Globe className="w-4 h-4 text-teal-400" />, title: "BNPL Integration", body: "Buy Now Pay Later volume reached $400B globally in 2024. Wallets that offer BNPL see 23% higher transaction rates." },
+          { icon: <Globe className="w-4 h-4 text-emerald-400" />, title: "BNPL Integration", body: "Buy Now Pay Later volume reached $400B globally in 2024. Wallets that offer BNPL see 23% higher transaction rates." },
         ].map((card) => (
           <Card key={card.title} className="bg-zinc-900 border-zinc-800">
             <CardContent className="pt-4">
@@ -1104,7 +1104,7 @@ function PaymentStocksTab() {
       <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
         {[
           {
-            icon: <Shield className="w-4 h-4 text-blue-400" />,
+            icon: <Shield className="w-4 h-4 text-primary" />,
             title: "Visa / Mastercard",
             subtitle: "Pure networks",
             body: "Asset-light model. Don't take credit risk — just pass transactions between banks. ~80%+ operating margins. Volume-driven revenue.",

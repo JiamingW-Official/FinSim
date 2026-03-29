@@ -102,10 +102,10 @@ function InfoBox({
   variant?: "blue" | "amber" | "emerald" | "violet";
 }) {
   const colors = {
-    blue: "bg-blue-500/10 border-blue-500/30 text-blue-200",
+    blue: "bg-primary/10 border-border text-primary",
     amber: "bg-amber-500/10 border-amber-500/30 text-amber-200",
     emerald: "bg-emerald-500/10 border-emerald-500/30 text-emerald-200",
-    violet: "bg-violet-500/10 border-violet-500/30 text-violet-200",
+    violet: "bg-primary/10 border-border text-primary",
   };
   return (
     <div className={cn("rounded-lg border p-3 text-xs leading-relaxed", colors[variant])}>
@@ -231,14 +231,14 @@ function IndustryOverview() {
             <div key={f.name} className="rounded-lg border border-white/10 bg-white/5 p-3">
               <div className="flex items-center justify-between mb-1">
                 <span className="text-sm font-semibold text-white">{f.name}</span>
-                <Badge className="bg-violet-500/20 text-violet-300 border-violet-500/30 text-xs">
+                <Badge className="bg-primary/20 text-primary border-border text-xs">
                   ${f.aum}B
                 </Badge>
               </div>
               <p className="text-xs text-zinc-400">{f.focus}</p>
               <div className="mt-2 h-1.5 rounded-full bg-white/10 overflow-hidden">
                 <div
-                  className="h-full rounded-full bg-violet-500"
+                  className="h-full rounded-full bg-primary"
                   style={{ width: `${(f.aum / 1050) * 100}%` }}
                 />
               </div>
@@ -317,7 +317,7 @@ function IndustryOverview() {
           </svg>
           <div className="flex gap-6 justify-center mt-2 text-xs text-zinc-400">
             <span className="flex items-center gap-1">
-              <span className="w-3 h-3 rounded bg-violet-500 inline-block" /> Volume ($B)
+              <span className="w-3 h-3 rounded bg-primary inline-block" /> Volume ($B)
             </span>
             <span className="flex items-center gap-1">
               <span className="w-3 h-2 rounded bg-amber-400 inline-block" /> Avg Entry Multiple (x)
@@ -376,7 +376,7 @@ function IndustryOverview() {
                 <span className="text-sm font-semibold text-white">{s.name}</span>
                 <div className="flex gap-2">
                   <Badge className="bg-zinc-700 text-zinc-200 text-xs">{s.stage}</Badge>
-                  <Badge className="bg-violet-500/20 text-violet-300 border-violet-500/30 text-xs">{s.minInvest}</Badge>
+                  <Badge className="bg-primary/20 text-primary border-border text-xs">{s.minInvest}</Badge>
                 </div>
               </div>
               <div className="grid grid-cols-2 gap-3">
@@ -556,7 +556,7 @@ function LBOModeling() {
               className={cn(
                 "rounded-lg border p-3 text-left transition-colors",
                 i === targetIdx
-                  ? "border-violet-500 bg-violet-500/15"
+                  ? "border-primary bg-primary/15"
                   : "border-white/10 bg-white/5 hover:bg-white/10"
               )}
             >
@@ -566,7 +566,7 @@ function LBOModeling() {
                 <span className="text-zinc-300">Rev: <strong className="text-white">${t.revenue}M</strong></span>
               </div>
               <div className="text-xs text-zinc-300 mt-0.5">
-                EBITDA: <strong className="text-violet-300">${t.ebitda}M</strong>
+                EBITDA: <strong className="text-primary">${t.ebitda}M</strong>
               </div>
             </button>
           ))}
@@ -704,7 +704,7 @@ function LBOModeling() {
                   <td className="py-2 pr-4 text-zinc-300">Year {row.year}</td>
                   <td className="text-right py-2 pr-4 text-emerald-400">${row.ebitda.toFixed(1)}M</td>
                   <td className="text-right py-2 pr-4 text-rose-400">${row.interest.toFixed(1)}M</td>
-                  <td className="text-right py-2 pr-4 text-blue-400">${row.cashSweep.toFixed(1)}M</td>
+                  <td className="text-right py-2 pr-4 text-primary">${row.cashSweep.toFixed(1)}M</td>
                   <td className="text-right py-2 text-amber-400">${row.debt.toFixed(1)}M</td>
                 </tr>
               ))}
@@ -900,7 +900,7 @@ function ValueCreation() {
             {
               title: "Margin Expansion",
               items: ["Procurement / rebate renegotiation", "Overhead right-sizing & back-office consolidation", "Pricing optimization via analytics", "Shift to recurring service contracts"],
-              color: "text-blue-400",
+              color: "text-primary",
             },
             {
               title: "Revenue Growth",
@@ -952,7 +952,7 @@ function ValueCreation() {
                   <span className="text-emerald-400 font-medium">+${bo.synergyEBITDA}M</span>
                 </div>
               </div>
-              <Badge className="bg-violet-500/20 text-violet-300 border-violet-500/30 text-xs">
+              <Badge className="bg-primary/20 text-primary border-border text-xs">
                 {(bo.price / (bo.synergyEBITDA + bo.revenue * 0.15)).toFixed(1)}x adj. EV/EBITDA
               </Badge>
             </div>
@@ -972,7 +972,7 @@ function ValueCreation() {
             <p className="text-xs text-zinc-300 leading-relaxed">Management co-invests at same entry price but receives disproportionate upside above hurdle. Typical pool: 15–20% of equity. Vesting: 20% per year over 5 years.</p>
           </div>
           <div className="rounded-xl border border-white/10 bg-white/5 p-4">
-            <p className="text-sm font-semibold text-blue-400 mb-2">IRR Hurdles</p>
+            <p className="text-sm font-semibold text-primary mb-2">IRR Hurdles</p>
             <p className="text-xs text-zinc-300 leading-relaxed">Management equity kicks in above 8% preferred return. Accelerated participation above 20% IRR. Full vesting on change-of-control event regardless of time served.</p>
           </div>
           <div className="rounded-xl border border-white/10 bg-white/5 p-4">
@@ -1112,7 +1112,7 @@ function FundEconomics() {
           <div className="rounded-xl border border-white/10 bg-white/5 p-4">
             <p className="text-sm font-semibold text-white mb-2">Commitment Period (Years 1–5)</p>
             <p className="text-xs text-zinc-300 leading-relaxed">
-              2.0% × <strong className="text-violet-300">${committedCapital}M committed capital</strong> ={" "}
+              2.0% × <strong className="text-primary">${committedCapital}M committed capital</strong> ={" "}
               <strong className="text-amber-300">${(committedCapital * 0.02).toFixed(0)}M/yr</strong> management fee.
               Fee base is full committed capital regardless of deployment pace.
             </p>
@@ -1120,7 +1120,7 @@ function FundEconomics() {
           <div className="rounded-xl border border-white/10 bg-white/5 p-4">
             <p className="text-sm font-semibold text-white mb-2">Harvest Period (Years 6–10)</p>
             <p className="text-xs text-zinc-300 leading-relaxed">
-              Fee step-down to 1.5% × <strong className="text-violet-300">invested capital</strong>.
+              Fee step-down to 1.5% × <strong className="text-primary">invested capital</strong>.
               As realizations return capital, fee base shrinks. GPs typically reduce to 1.5% after commitment period ends.
             </p>
           </div>
@@ -1142,14 +1142,14 @@ function FundEconomics() {
             </ol>
             <p className="text-xs text-zinc-400 mt-2 italic">LP-friendly: GP only gets carry after full fund returns hurdle</p>
           </div>
-          <div className="rounded-xl border border-violet-500/30 bg-violet-500/10 p-4">
-            <p className="text-sm font-semibold text-violet-300 mb-2">American (Deal-by-Deal)</p>
+          <div className="rounded-xl border border-border bg-primary/10 p-4">
+            <p className="text-sm font-semibold text-primary mb-2">American (Deal-by-Deal)</p>
             <ol className="space-y-2 text-xs text-zinc-300">
-              <li className="flex gap-2"><span className="text-violet-400 font-bold">1.</span> Return invested capital for <em>that specific deal</em></li>
-              <li className="flex gap-2"><span className="text-violet-400 font-bold">2.</span> 8% pref on capital invested in that deal</li>
-              <li className="flex gap-2"><span className="text-violet-400 font-bold">3.</span> GP catch-up on deal profits</li>
-              <li className="flex gap-2"><span className="text-violet-400 font-bold">4.</span> 80/20 split on remaining deal profits</li>
-              <li className="flex gap-2"><span className="text-violet-400 font-bold">5.</span> Clawback provision applies if later deals underperform</li>
+              <li className="flex gap-2"><span className="text-primary font-bold">1.</span> Return invested capital for <em>that specific deal</em></li>
+              <li className="flex gap-2"><span className="text-primary font-bold">2.</span> 8% pref on capital invested in that deal</li>
+              <li className="flex gap-2"><span className="text-primary font-bold">3.</span> GP catch-up on deal profits</li>
+              <li className="flex gap-2"><span className="text-primary font-bold">4.</span> 80/20 split on remaining deal profits</li>
+              <li className="flex gap-2"><span className="text-primary font-bold">5.</span> Clawback provision applies if later deals underperform</li>
             </ol>
             <p className="text-xs text-zinc-400 mt-2 italic">GP-friendly: early carry on winning deals before full fund close</p>
           </div>
@@ -1175,14 +1175,14 @@ function FundEconomics() {
               {scenarios.map(({ irr, econ: sc }) => (
                 <tr key={irr} className={cn(
                   "border-b border-white/5 hover:bg-white/5 transition-colors",
-                  irr === targetIRR ? "bg-violet-500/10" : ""
+                  irr === targetIRR ? "bg-primary/10" : ""
                 )}>
                   <td className="py-2 pr-4 font-semibold text-white">{irr}%</td>
                   <td className="text-right py-2 pr-4 text-zinc-300">${sc.grossValue.toFixed(0)}M</td>
                   <td className="text-right py-2 pr-4 text-amber-400">${sc.gpCarry.toFixed(0)}M</td>
                   <td className="text-right py-2 pr-4 text-emerald-400">${sc.lpProfit.toFixed(0)}M</td>
-                  <td className="text-right py-2 pr-4 text-blue-400">{fmtIRR(sc.netIRR)}</td>
-                  <td className="text-right py-2 text-violet-400">{fmtMult(sc.moic)}</td>
+                  <td className="text-right py-2 pr-4 text-primary">{fmtIRR(sc.netIRR)}</td>
+                  <td className="text-right py-2 text-primary">{fmtMult(sc.moic)}</td>
                 </tr>
               ))}
             </tbody>
@@ -1346,7 +1346,7 @@ function DealSourcing() {
                 transition={{ delay: i * 0.06 }}
                 className="relative flex gap-4 pl-14"
               >
-                <div className="absolute left-3 top-2 w-6 h-6 rounded-full bg-violet-600 border-2 border-zinc-900 flex items-center justify-center text-xs font-bold text-white z-10">
+                <div className="absolute left-3 top-2 w-6 h-6 rounded-full bg-primary border-2 border-zinc-900 flex items-center justify-center text-xs font-bold text-white z-10">
                   {i + 1}
                 </div>
                 <div className="rounded-xl border border-white/10 bg-white/5 p-3 flex-1">
@@ -1376,7 +1376,7 @@ function DealSourcing() {
                 "Competitive intensity: HHI, Porter's 5 Forces",
               ],
               icon: BarChart3,
-              color: "text-blue-400",
+              color: "text-primary",
             },
             {
               title: "Competitive Position",
@@ -1387,7 +1387,7 @@ function DealSourcing() {
                 "Technology moat and R&D intensity",
               ],
               icon: TrendingUp,
-              color: "text-violet-400",
+              color: "text-primary",
             },
             {
               title: "Customer Analysis",
@@ -1438,8 +1438,8 @@ function DealSourcing() {
             {
               phase: "Days 1–30",
               title: "Foundation",
-              color: "border-blue-500/40 bg-blue-500/10",
-              titleColor: "text-blue-300",
+              color: "border-primary/40 bg-primary/10",
+              titleColor: "text-primary",
               items: [
                 "Onboard new board / operating partners",
                 "Establish weekly management cadence",
@@ -1512,8 +1512,8 @@ export default function PrivateEquityPage() {
           className="flex flex-col gap-1"
         >
           <div className="flex items-center gap-3">
-            <div className="w-9 h-9 rounded-xl bg-violet-600/20 border border-violet-500/30 flex items-center justify-center">
-              <Briefcase className="w-5 h-5 text-violet-400" />
+            <div className="w-9 h-9 rounded-xl bg-primary/20 border border-border flex items-center justify-center">
+              <Briefcase className="w-5 h-5 text-primary" />
             </div>
             <div>
               <h1 className="text-2xl font-bold text-white">Private Equity &amp; LBO Analysis</h1>
@@ -1521,7 +1521,7 @@ export default function PrivateEquityPage() {
             </div>
           </div>
           <div className="flex gap-3 mt-2">
-            <Badge className="bg-violet-500/20 text-violet-300 border-violet-500/30">$7T Global AUM</Badge>
+            <Badge className="bg-primary/20 text-primary border-border">$7T Global AUM</Badge>
             <Badge className="bg-zinc-700 text-zinc-300 border-zinc-600">Buyout | VC | Growth</Badge>
             <Badge className="bg-emerald-500/20 text-emerald-300 border-emerald-500/30">IRR Modeling</Badge>
           </div>
@@ -1530,19 +1530,19 @@ export default function PrivateEquityPage() {
         {/* Tabs */}
         <Tabs defaultValue="overview" className="w-full">
           <TabsList className="bg-white/5 border border-white/10 flex-wrap h-auto gap-1 p-1">
-            <TabsTrigger value="overview" className="data-[state=active]:bg-violet-600 data-[state=active]:text-white text-xs">
+            <TabsTrigger value="overview" className="data-[state=active]:bg-primary data-[state=active]:text-white text-xs">
               Industry Overview
             </TabsTrigger>
-            <TabsTrigger value="lbo" className="data-[state=active]:bg-violet-600 data-[state=active]:text-white text-xs">
+            <TabsTrigger value="lbo" className="data-[state=active]:bg-primary data-[state=active]:text-white text-xs">
               LBO Modeling
             </TabsTrigger>
-            <TabsTrigger value="value" className="data-[state=active]:bg-violet-600 data-[state=active]:text-white text-xs">
+            <TabsTrigger value="value" className="data-[state=active]:bg-primary data-[state=active]:text-white text-xs">
               Value Creation
             </TabsTrigger>
-            <TabsTrigger value="fundeconomics" className="data-[state=active]:bg-violet-600 data-[state=active]:text-white text-xs">
+            <TabsTrigger value="fundeconomics" className="data-[state=active]:bg-primary data-[state=active]:text-white text-xs">
               Fund Economics
             </TabsTrigger>
-            <TabsTrigger value="sourcing" className="data-[state=active]:bg-violet-600 data-[state=active]:text-white text-xs">
+            <TabsTrigger value="sourcing" className="data-[state=active]:bg-primary data-[state=active]:text-white text-xs">
               Deal Sourcing &amp; Diligence
             </TabsTrigger>
           </TabsList>

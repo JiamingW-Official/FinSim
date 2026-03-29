@@ -254,7 +254,7 @@ function InfoBox({
   variant?: "info" | "warn" | "success";
 }) {
   const styles = {
-    info: "border-blue-500/30 bg-blue-500/10 text-blue-300",
+    info: "border-border bg-primary/10 text-primary",
     warn: "border-amber-500/30 bg-amber-500/10 text-amber-300",
     success: "border-emerald-500/30 bg-emerald-500/10 text-emerald-300",
   };
@@ -1019,9 +1019,9 @@ function RBFTab() {
             {
               name: "Revenue-Based Finance",
               icon: RefreshCw,
-              color: "text-blue-400",
-              border: "border-blue-500/30",
-              bg: "bg-blue-500/5",
+              color: "text-primary",
+              border: "border-border",
+              bg: "bg-primary/5",
               pros: [
                 "No equity dilution",
                 "Payments flex with revenue",

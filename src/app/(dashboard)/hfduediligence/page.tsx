@@ -215,7 +215,7 @@ function StatusBadge({ status }: { status: DdItem["status"] }) {
 function SeverityBadge({ severity }: { severity: RedFlag["severity"] }) {
   if (severity === "critical") return <Badge className="bg-rose-500/20 text-rose-400 border-rose-500/30 text-xs">CRITICAL</Badge>;
   if (severity === "high") return <Badge className="bg-amber-500/20 text-amber-400 border-amber-500/30 text-xs">HIGH</Badge>;
-  return <Badge className="bg-blue-500/20 text-blue-400 border-blue-500/30 text-xs">MEDIUM</Badge>;
+  return <Badge className="bg-primary/20 text-primary border-border text-xs">MEDIUM</Badge>;
 }
 
 // ── SVG: Performance Attribution Chart ───────────────────────────────────────
@@ -672,14 +672,14 @@ export default function HFDueDiligencePage() {
                   flag.detected
                     ? flag.severity === "critical" ? "border-rose-500/50 bg-rose-500/5"
                       : flag.severity === "high" ? "border-amber-500/40 bg-amber-500/5"
-                      : "border-blue-500/30"
+                      : "border-border"
                     : "border-border opacity-60"
                 )}>
                   <CardContent className="p-4">
                     <div className="flex items-start justify-between gap-2 mb-2">
                       <div className="flex items-center gap-2">
                         {flag.detected
-                          ? <AlertTriangle className={cn("h-4 w-4 shrink-0", flag.severity === "critical" ? "text-rose-400" : flag.severity === "high" ? "text-amber-400" : "text-blue-400")} />
+                          ? <AlertTriangle className={cn("h-4 w-4 shrink-0", flag.severity === "critical" ? "text-rose-400" : flag.severity === "high" ? "text-amber-400" : "text-primary")} />
                           : <Lock className="h-4 w-4 text-muted-foreground shrink-0" />
                         }
                         <span className={cn("text-sm font-semibold", flag.detected ? "text-foreground" : "text-muted-foreground")}>{flag.title}</span>

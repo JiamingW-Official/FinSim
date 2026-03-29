@@ -129,11 +129,11 @@ function generateCMBXSeries(): CMBXSeries[] {
 // ── Small helper components ──────────────────────────────────────────────────
 function InfoBadge({ text, color = "blue" }: { text: string; color?: string }) {
   const colors: Record<string, string> = {
-    blue: "bg-blue-500/15 text-blue-300 border-blue-500/30",
+    blue: "bg-primary/15 text-primary border-border",
     green: "bg-green-500/15 text-green-300 border-green-500/30",
     amber: "bg-amber-500/15 text-amber-300 border-amber-500/30",
     red: "bg-red-500/15 text-red-300 border-red-500/30",
-    purple: "bg-purple-500/15 text-purple-300 border-purple-500/30",
+    purple: "bg-primary/15 text-primary border-border",
   };
   return (
     <span className={cn("inline-flex items-center px-2 py-0.5 rounded text-xs font-medium border", colors[color] ?? colors.blue)}>
@@ -180,10 +180,10 @@ function StructureTab() {
     <div className="space-y-6">
       {/* Conduit vs SASB */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-        <div className="bg-slate-800/60 border border-blue-500/30 rounded-xl p-5 space-y-3">
+        <div className="bg-slate-800/60 border border-border rounded-xl p-5 space-y-3">
           <div className="flex items-center gap-2">
-            <Layers className="w-4 h-4 text-blue-400" />
-            <span className="font-semibold text-blue-300 text-sm">Conduit CMBS</span>
+            <Layers className="w-4 h-4 text-primary" />
+            <span className="font-semibold text-primary text-sm">Conduit CMBS</span>
           </div>
           <p className="text-xs text-slate-400 leading-relaxed">
             Pool of <strong className="text-slate-300">50–100+ loans</strong> from multiple originators across property types. Diversification reduces single-asset risk. Standard deal size $0.5B–$2B.
@@ -191,16 +191,16 @@ function StructureTab() {
           <ul className="space-y-1">
             {["Loan granularity 30–100 loans", "Mix of property types & geographies", "10-year IO common on top loans", "Sequential/pro-rata pay structures", "B-piece buyers perform loan diligence"].map((item) => (
               <li key={item} className="flex items-start gap-1.5 text-xs text-slate-400">
-                <span className="text-blue-400 mt-0.5">•</span>
+                <span className="text-primary mt-0.5">•</span>
                 {item}
               </li>
             ))}
           </ul>
         </div>
-        <div className="bg-slate-800/60 border border-purple-500/30 rounded-xl p-5 space-y-3">
+        <div className="bg-slate-800/60 border border-border rounded-xl p-5 space-y-3">
           <div className="flex items-center gap-2">
-            <Building2 className="w-4 h-4 text-purple-400" />
-            <span className="font-semibold text-purple-300 text-sm">Single-Asset / Single-Borrower (SASB)</span>
+            <Building2 className="w-4 h-4 text-primary" />
+            <span className="font-semibold text-primary text-sm">Single-Asset / Single-Borrower (SASB)</span>
           </div>
           <p className="text-xs text-slate-400 leading-relaxed">
             <strong className="text-slate-300">One loan on one asset</strong> (or portfolio of same borrower). Higher concentration risk but deeper asset-specific diligence. Trophy assets command premium pricing.
@@ -208,7 +208,7 @@ function StructureTab() {
           <ul className="space-y-1">
             {["One borrower / one property", "$500M–$3B+ deal sizes", "Full IO common during loan term", "Asset-specific risk dominant", "Investor-specific call protection"].map((item) => (
               <li key={item} className="flex items-start gap-1.5 text-xs text-slate-400">
-                <span className="text-purple-400 mt-0.5">•</span>
+                <span className="text-primary mt-0.5">•</span>
                 {item}
               </li>
             ))}
@@ -219,7 +219,7 @@ function StructureTab() {
       {/* Trust Flow Diagram */}
       <div className="bg-slate-800/60 border border-slate-700/50 rounded-xl p-5">
         <h3 className="text-sm font-semibold text-slate-200 mb-4 flex items-center gap-2">
-          <ArrowRight className="w-4 h-4 text-blue-400" />
+          <ArrowRight className="w-4 h-4 text-primary" />
           CMBS Trust Structure
         </h3>
         <svg viewBox="0 0 680 120" className="w-full h-auto" aria-label="CMBS trust structure flow">
@@ -311,9 +311,9 @@ function StructureTab() {
           <div className="bg-slate-800/60 border border-slate-700/50 rounded-xl p-4 space-y-3">
             <h4 className="text-xs font-semibold text-slate-300 uppercase tracking-wide">Servicer Roles</h4>
             {[
-              { role: "Master Servicer", desc: "Collects P&I from all performing loans; advances scheduled payments to certificate holders when borrowers are current.", color: "text-blue-400" },
+              { role: "Master Servicer", desc: "Collects P&I from all performing loans; advances scheduled payments to certificate holders when borrowers are current.", color: "text-primary" },
               { role: "Special Servicer", desc: "Takes over when loan becomes 60+ days delinquent. Negotiates workouts, foreclosures, REO sales. Compensated via workout fees.", color: "text-amber-400" },
-              { role: "Trustee / Cert. Admin", desc: "Holds mortgage files, distributes principal & interest per waterfall. Maintains transaction registers and tax reporting.", color: "text-purple-400" },
+              { role: "Trustee / Cert. Admin", desc: "Holds mortgage files, distributes principal & interest per waterfall. Maintains transaction registers and tax reporting.", color: "text-primary" },
               { role: "Operating Advisor", desc: "Post-Dodd-Frank oversight of special servicer decisions when B-piece buyer accumulates conflicts.", color: "text-green-400" },
             ].map((item) => (
               <div key={item.role} className="flex gap-3">
@@ -371,7 +371,7 @@ function LoanAnalysisTab() {
       {/* Loans table */}
       <div className="bg-slate-800/60 border border-slate-700/50 rounded-xl overflow-hidden">
         <div className="px-5 py-3 border-b border-slate-700/50 flex items-center gap-2">
-          <Building2 className="w-4 h-4 text-blue-400" />
+          <Building2 className="w-4 h-4 text-primary" />
           <span className="text-sm font-semibold text-slate-200">Sample Loan Pool (8 Loans)</span>
         </div>
         <div className="overflow-x-auto">
@@ -425,7 +425,7 @@ function LoanAnalysisTab() {
         {/* DSCR vs LTV Scatter */}
         <div className="bg-slate-800/60 border border-slate-700/50 rounded-xl p-5">
           <h3 className="text-sm font-semibold text-slate-200 mb-3 flex items-center gap-2">
-            <BarChart3 className="w-4 h-4 text-blue-400" />
+            <BarChart3 className="w-4 h-4 text-primary" />
             DSCR vs LTV Scatter
           </h3>
           <svg viewBox={`0 0 ${scatterW} ${scatterH}`} className="w-full h-auto" aria-label="DSCR vs LTV scatter">
@@ -657,7 +657,7 @@ function PerformanceTab() {
 
         <div className="bg-slate-800/60 border border-slate-700/50 rounded-xl p-5">
           <h3 className="text-sm font-semibold text-slate-200 mb-4 flex items-center gap-2">
-            <TrendingUp className="w-4 h-4 text-blue-400" />
+            <TrendingUp className="w-4 h-4 text-primary" />
             Prepayment Speeds by Property Type (CPR%)
           </h3>
           <div className="space-y-2.5">
@@ -741,7 +741,7 @@ function TradingTab() {
       {/* CMBX Spread Chart */}
       <div className="bg-slate-800/60 border border-slate-700/50 rounded-xl p-5">
         <h3 className="text-sm font-semibold text-slate-200 mb-4 flex items-center gap-2">
-          <Activity className="w-4 h-4 text-blue-400" />
+          <Activity className="w-4 h-4 text-primary" />
           CMBX Index Spreads — 12 Month (IG vs HY)
         </h3>
         <svg viewBox={`0 0 ${chartW} ${chartH}`} className="w-full h-auto" aria-label="CMBX spread chart">
@@ -844,7 +844,7 @@ function TradingTab() {
           className="w-full flex items-center justify-between px-5 py-4 text-sm font-semibold text-slate-200 hover:bg-slate-700/30 transition-colors"
         >
           <span className="flex items-center gap-2">
-            <Layers className="w-4 h-4 text-purple-400" />
+            <Layers className="w-4 h-4 text-primary" />
             CMBS Trading Desk Workflow
           </span>
           {showWorkflow ? <ChevronUp className="w-4 h-4 text-slate-400" /> : <ChevronDown className="w-4 h-4 text-slate-400" />}
@@ -860,10 +860,10 @@ function TradingTab() {
             >
               <div className="px-5 pb-5 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
                 {[
-                  { step: "1. Pre-Trade", items: ["Pull Bloomberg CMBX screens", "Check TREPP watchlist updates", "Review S&P/Fitch servicer reports", "Size position vs. risk limits"], color: "border-blue-500/30 text-blue-300" },
+                  { step: "1. Pre-Trade", items: ["Pull Bloomberg CMBX screens", "Check TREPP watchlist updates", "Review S&P/Fitch servicer reports", "Size position vs. risk limits"], color: "border-border text-primary" },
                   { step: "2. Price Discovery", items: ["Request dealer runs (Goldman, Citi, JPM)", "Compare cash vs. synthetic basis", "Check last trade tape (TRACE)", "Confirm ratings/factor sheets"], color: "border-green-500/30 text-green-300" },
                   { step: "3. Execution", items: ["Submit BWIC (Bid Wanted in Comp)", "Negotiate bilateral with dealer", "Confirm settlement T+3 (DTC/FAST)", "Book trade in OMS (Aladdin/SS&C)"], color: "border-amber-500/30 text-amber-300" },
-                  { step: "4. Post-Trade", items: ["Update position risk systems", "Monitor servicer advances", "Watch delinquency triggers", "Report to PM & risk committee"], color: "border-purple-500/30 text-purple-300" },
+                  { step: "4. Post-Trade", items: ["Update position risk systems", "Monitor servicer advances", "Watch delinquency triggers", "Report to PM & risk committee"], color: "border-border text-primary" },
                 ].map((phase) => (
                   <div key={phase.step} className={cn("border rounded-xl p-4 space-y-2", phase.color.split(" ")[0])}>
                     <div className={cn("text-xs font-bold", phase.color.split(" ")[1])}>{phase.step}</div>
@@ -893,8 +893,8 @@ export default function CMBSPage() {
       {/* Header */}
       <motion.div initial={{ opacity: 0, y: -16 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.4 }} className="mb-6">
         <div className="flex items-start gap-4">
-          <div className="p-3 rounded-xl bg-blue-500/15 border border-blue-500/30">
-            <Building2 className="w-6 h-6 text-blue-400" />
+          <div className="p-3 rounded-xl bg-primary/15 border border-border">
+            <Building2 className="w-6 h-6 text-primary" />
           </div>
           <div>
             <h1 className="text-2xl font-bold text-slate-100">Commercial Mortgage-Backed Securities</h1>

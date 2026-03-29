@@ -655,7 +655,7 @@ export function RebalancingTool() {
                       <p className="text-[11px] font-semibold">{preset.label}</p>
                       <p className="text-xs text-muted-foreground mt-0.5">{preset.description}</p>
                       <div className="mt-1.5 flex gap-1 flex-wrap">
-                        <span className="rounded bg-blue-500/15 px-1 text-[11px] text-blue-400">{preset.usStocks}% US</span>
+                        <span className="rounded bg-primary/15 px-1 text-[11px] text-primary">{preset.usStocks}% US</span>
                         <span className="rounded bg-emerald-500/15 px-1 text-[11px] text-emerald-400">{preset.bonds}% Bond</span>
                       </div>
                     </button>
@@ -695,7 +695,7 @@ export function RebalancingTool() {
               <CardHeader className="pb-2 pt-3 px-3">
                 <div className="flex items-center justify-between">
                   <CardTitle className="text-xs font-semibold flex items-center gap-1.5">
-                    <BarChart3 className="h-3.5 w-3.5 text-blue-400" />
+                    <BarChart3 className="h-3.5 w-3.5 text-primary" />
                     Asset Class Targets
                   </CardTitle>
                   <div className="flex items-center gap-1.5">
@@ -822,7 +822,7 @@ export function RebalancingTool() {
           <Card className="border-border bg-card/50">
             <CardHeader className="pb-2 pt-3 px-3">
               <CardTitle className="text-xs font-semibold flex items-center gap-1.5">
-                <Info className="h-3.5 w-3.5 text-cyan-400" />
+                <Info className="h-3.5 w-3.5 text-muted-foreground" />
                 Rebalancing Threshold
               </CardTitle>
             </CardHeader>
@@ -838,8 +838,8 @@ export function RebalancingTool() {
                 step={1}
                 onValueChange={([v]) => setDriftThreshold(v)}
               />
-              <div className="rounded-md bg-blue-500/8 border border-blue-500/20 p-2.5 space-y-1">
-                <p className="text-xs font-medium text-blue-400">Threshold vs Calendar Rebalancing</p>
+              <div className="rounded-md bg-primary/8 border border-border p-2.5 space-y-1">
+                <p className="text-xs font-medium text-primary">Threshold vs Calendar Rebalancing</p>
                 <p className="text-xs text-muted-foreground leading-relaxed">
                   <strong className="text-foreground">Threshold (5%)</strong> — only rebalance when a position drifts more than 5% from target.
                   Reduces over-trading and tax events. Research shows 5% threshold achieves ~85% of the benefit with ~40% fewer trades.
@@ -941,7 +941,7 @@ export function RebalancingTool() {
           <Card className="border-border bg-card/50">
             <CardHeader className="pb-2 pt-3 px-3">
               <CardTitle className="text-xs font-semibold flex items-center gap-1.5">
-                <BarChart3 className="h-3.5 w-3.5 text-blue-400" />
+                <BarChart3 className="h-3.5 w-3.5 text-primary" />
                 Weight Comparison — Current vs Target
               </CardTitle>
             </CardHeader>
@@ -1049,7 +1049,7 @@ export function RebalancingTool() {
                       </Badge>
                       <span className="text-[12px] font-bold">{trade.ticker}</span>
                       {trade.isLosser && trade.action === "sell" && (
-                        <Badge variant="outline" className="text-[11px] border-blue-500/30 text-blue-400">
+                        <Badge variant="outline" className="text-[11px] border-border text-primary">
                           Tax Loss
                         </Badge>
                       )}
@@ -1137,14 +1137,14 @@ export function RebalancingTool() {
           <Card className="border-border bg-card/50">
             <CardHeader className="pb-2 pt-3 px-3">
               <CardTitle className="text-xs font-semibold flex items-center gap-1.5">
-                <BarChart3 className="h-3.5 w-3.5 text-blue-400" />
+                <BarChart3 className="h-3.5 w-3.5 text-primary" />
                 Portfolio Drift Over Time
               </CardTitle>
             </CardHeader>
             <CardContent className="px-3 pb-3">
               <DriftChart history={rebalancingHistory} currentDrift={driftScore} />
               <div className="mt-1 flex gap-3 text-xs text-muted-foreground">
-                <span className="flex items-center gap-1"><span className="inline-block w-3 h-0.5 bg-blue-500 rounded" />Drift level</span>
+                <span className="flex items-center gap-1"><span className="inline-block w-3 h-0.5 bg-primary rounded" />Drift level</span>
                 <span className="flex items-center gap-1"><span className="inline-block w-2 h-2 rounded-full bg-emerald-500" />Rebalance event</span>
                 <span className="flex items-center gap-1"><span className="inline-block w-3 h-0.5 bg-red-500 rounded" />5% threshold</span>
               </div>
@@ -1155,7 +1155,7 @@ export function RebalancingTool() {
           <Card className="border-border bg-card/50">
             <CardHeader className="pb-2 pt-3 px-3">
               <CardTitle className="text-xs font-semibold flex items-center gap-1.5">
-                <Calendar className="h-3.5 w-3.5 text-cyan-400" />
+                <Calendar className="h-3.5 w-3.5 text-muted-foreground" />
                 Rebalancing History
               </CardTitle>
             </CardHeader>
@@ -1198,7 +1198,7 @@ export function RebalancingTool() {
                 className="flex w-full items-center justify-between"
               >
                 <CardTitle className="text-xs font-semibold flex items-center gap-1.5">
-                  <Target className="h-3.5 w-3.5 text-violet-400" />
+                  <Target className="h-3.5 w-3.5 text-primary" />
                   Drift Simulator
                 </CardTitle>
                 {showSimulator ? <ChevronUp className="h-3.5 w-3.5 text-muted-foreground" /> : <ChevronDown className="h-3.5 w-3.5 text-muted-foreground" />}

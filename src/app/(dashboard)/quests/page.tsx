@@ -77,9 +77,9 @@ function SimpleQuestCard({
 
   const timeBadgeClass =
     quest.category === "daily"
-      ? "bg-blue-500/10 text-blue-400 border-blue-500/20"
+      ? "bg-primary/10 text-primary border-border"
       : quest.category === "weekly"
-        ? "bg-violet-500/10 text-violet-400 border-violet-500/20"
+        ? "bg-primary/10 text-primary border-border"
         : "bg-amber-500/10 text-amber-400 border-amber-500/20";
 
   return (
@@ -348,7 +348,7 @@ const BRANCHES: Branch[] = [
     name: "Trading Journey",
     description: "Master order execution and market reading.",
     unlockAt: 1,
-    color: "text-cyan-400",
+    color: "text-muted-foreground",
     borderColor: "border-cyan-500/20",
     nodes: [
       { label: "50 Trades", xp: 200 },
@@ -361,8 +361,8 @@ const BRANCHES: Branch[] = [
     name: "Indicators Mastery",
     description: "Use technical indicators to drive decisions.",
     unlockAt: 5,
-    color: "text-violet-400",
-    borderColor: "border-violet-500/20",
+    color: "text-primary",
+    borderColor: "border-border",
     nodes: [
       { label: "5 Tickers", xp: 150 },
       { label: "Backtest x5", xp: 200 },
@@ -581,8 +581,8 @@ export default function QuestsPage() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.13 }}
           >
-            <CalendarDays className="h-3.5 w-3.5 text-violet-400" />
-            <span className="text-[11px] font-bold tabular-nums text-violet-400">
+            <CalendarDays className="h-3.5 w-3.5 text-primary" />
+            <span className="text-[11px] font-bold tabular-nums text-primary">
               {completedWeeklyCount}/{WEEKLY_QUESTS.length}
             </span>
             <span className="text-xs text-muted-foreground">weekly</span>

@@ -655,9 +655,9 @@ function StorageCarryModel() {
       <Card className="bg-muted/30 border-border">
         <CardContent className="pt-4">
           <div className="flex items-center gap-2 mb-3">
-            <Warehouse className="h-4 w-4 text-blue-400" />
+            <Warehouse className="h-4 w-4 text-primary" />
             <span className="text-sm font-medium">Inventory Level Impact</span>
-            <Badge className="ml-auto bg-blue-500/20 text-blue-400 text-xs">
+            <Badge className="ml-auto bg-primary/20 text-primary text-xs">
               {INVENTORY_LEVEL}% full
             </Badge>
           </div>
@@ -878,7 +878,7 @@ export default function CommodityTermPage() {
             icon={Activity}
             label="Inventory Level"
             value={`${INVENTORY_LEVEL}% Full`}
-            valueClass="text-blue-400"
+            valueClass="text-primary"
           />
         </div>
       </FadeIn>
@@ -995,7 +995,7 @@ export default function CommodityTermPage() {
                 </p>
               </div>
               <div>
-                <p className="font-semibold text-blue-400 mb-1">Roll Optimization</p>
+                <p className="font-semibold text-primary mb-1">Roll Optimization</p>
                 <p className="text-muted-foreground">
                   By selecting contracts with the smallest contango premium, sophisticated ETFs and funds
                   can reduce roll drag by 50–80%, significantly improving long-term performance vs. naive rolling.

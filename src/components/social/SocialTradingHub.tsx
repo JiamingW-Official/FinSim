@@ -121,10 +121,10 @@ interface DiscussionThread {
 // ─── Constants ────────────────────────────────────────────────────────────────
 
 const AVATAR_COLORS = [
-  "bg-blue-500", "bg-emerald-500", "bg-violet-500", "bg-amber-500",
+  "bg-primary", "bg-emerald-500", "bg-primary", "bg-amber-500",
   "bg-rose-500", "bg-cyan-500", "bg-orange-500", "bg-pink-500",
   "bg-teal-500", "bg-indigo-500", "bg-lime-500", "bg-fuchsia-500",
-  "bg-sky-500", "bg-red-500", "bg-green-500", "bg-purple-500",
+  "bg-sky-500", "bg-red-500", "bg-green-500", "bg-primary",
 ];
 
 const USERNAMES = [
@@ -244,7 +244,7 @@ function generateTradeIdeas(): TradeIdea[] {
     ideas.push({
       id: `idea-hub-${i}`,
       author,
-      authorColor: AVATAR_COLORS[colorIdx] ?? "bg-blue-500",
+      authorColor: AVATAR_COLORS[colorIdx] ?? "bg-primary",
       authorInitials: author.slice(0, 2).toUpperCase(),
       badge,
       accuracyRate: Math.round((40 + rng() * 45) * 10) / 10,
@@ -278,7 +278,7 @@ function generateLeaderboard(): LeaderboardEntry[] {
     entries.push({
       rank: i + 1,
       username,
-      color: AVATAR_COLORS[colorIdx] ?? "bg-blue-500",
+      color: AVATAR_COLORS[colorIdx] ?? "bg-primary",
       initials: username.slice(0, 2).toUpperCase(),
       returnPct: Math.round((rng() * 90 - 5) * 10) / 10,
       sharpe: Math.round((0.3 + rng() * 2.5) * 100) / 100,
@@ -320,7 +320,7 @@ function generateTopTraders(): TopTrader[] {
     return {
       id: `top-${i}`,
       username,
-      color: AVATAR_COLORS[colorIdx] ?? "bg-blue-500",
+      color: AVATAR_COLORS[colorIdx] ?? "bg-primary",
       initials: username.slice(0, 2).toUpperCase(),
       positions,
       recentTrades,
@@ -346,7 +346,7 @@ function generateDiscussionThreads(): DiscussionThread[] {
       return {
         id: `msg-${ti}-${mi}`,
         author,
-        authorColor: AVATAR_COLORS[colorIdx] ?? "bg-blue-500",
+        authorColor: AVATAR_COLORS[colorIdx] ?? "bg-primary",
         authorInitials: author.slice(0, 2).toUpperCase(),
         content,
         minutesAgo: Math.floor(5 + rng() * 180),

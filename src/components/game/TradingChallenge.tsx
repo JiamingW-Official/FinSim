@@ -903,7 +903,7 @@ function StrategyBattleScreen({ onFinish }: { onFinish: (score: number) => void 
           </div>
           <div className="h-2 rounded-full bg-zinc-800">
             <motion.div
-              className="h-2 rounded-full bg-blue-500"
+              className="h-2 rounded-full bg-primary"
               animate={{ width: `${(bar / 30) * 100}%` }}
             />
           </div>
@@ -955,7 +955,7 @@ function StrategyBattleScreen({ onFinish }: { onFinish: (score: number) => void 
           <button
             disabled={!playerStrategy}
             onClick={handleStart}
-            className="w-full rounded-xl bg-blue-600 hover:bg-blue-500 disabled:bg-zinc-800 disabled:text-zinc-600 py-2.5 text-sm font-bold text-white transition-colors"
+            className="w-full rounded-xl bg-primary hover:bg-primary disabled:bg-zinc-800 disabled:text-zinc-600 py-2.5 text-sm font-bold text-white transition-colors"
           >
             Battle!
           </button>
@@ -999,8 +999,8 @@ function LeaderboardScreen({ playerScore, onBack }: { playerScore: number; onBac
 
   const ACHIEVEMENTS = [
     { id: "speed_trader", label: "Speed Trader", desc: "Avg decision < 1s", icon: <Zap className="h-4 w-4" />, color: "text-yellow-400" },
-    { id: "pattern_master", label: "Pattern Master", desc: "10/10 quiz accuracy", icon: <Star className="h-4 w-4" />, color: "text-purple-400" },
-    { id: "crash_survivor", label: "Crash Survivor", desc: "Survived market crash", icon: <Shield className="h-4 w-4" />, color: "text-blue-400" },
+    { id: "pattern_master", label: "Pattern Master", desc: "10/10 quiz accuracy", icon: <Star className="h-4 w-4" />, color: "text-primary" },
+    { id: "crash_survivor", label: "Crash Survivor", desc: "Survived market crash", icon: <Shield className="h-4 w-4" />, color: "text-primary" },
     { id: "income_ace", label: "Income Ace", desc: "Generated 2% income", icon: <Award className="h-4 w-4" />, color: "text-emerald-400" },
   ];
 
@@ -1088,7 +1088,7 @@ function ResultsSummary({
 
   const gradeColor =
     grade === "A" ? "text-emerald-400" :
-    grade === "B" ? "text-blue-400" :
+    grade === "B" ? "text-primary" :
     grade === "C" ? "text-amber-400" :
     grade === "D" ? "text-orange-400" : "text-red-400";
 

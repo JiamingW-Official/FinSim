@@ -396,7 +396,7 @@ const EARNINGS_STRATEGIES: EarningsStrategy[] = [
 // ── Category color helpers ─────────────────────────────────────────────────────
 
 function catColor(cat: "large-cap" | "high-vol" | "beat-history") {
-  if (cat === "large-cap") return "bg-blue-500/20 text-blue-400 border border-blue-500/30";
+  if (cat === "large-cap") return "bg-primary/20 text-primary border border-border";
   if (cat === "high-vol") return "bg-amber-500/20 text-amber-400 border border-amber-500/30";
   return "bg-emerald-500/20 text-emerald-400 border border-emerald-500/30";
 }
@@ -449,7 +449,7 @@ function CalendarTab() {
               {/* Time label */}
               <div className={cn(
                 "flex items-center gap-1 px-2 py-0.5 rounded text-xs font-semibold w-fit",
-                e.time === "BMO" ? "bg-blue-500/10 text-blue-400" : "bg-purple-500/10 text-purple-400"
+                e.time === "BMO" ? "bg-primary/10 text-primary" : "bg-primary/10 text-primary"
               )}>
                 {e.time === "BMO" ? "Before Market Open" : "After Market Close"}
               </div>
@@ -514,7 +514,7 @@ function CalendarTab() {
         {/* Legend */}
         <div className="flex items-center gap-3 mb-3 text-[11px]">
           <div className="flex items-center gap-1.5">
-            <div className="w-2 h-2 rounded-full bg-blue-400" />
+            <div className="w-2 h-2 rounded-full bg-primary" />
             <span className="text-muted-foreground">Large Cap</span>
           </div>
           <div className="flex items-center gap-1.5">
@@ -557,7 +557,7 @@ function CalendarTab() {
                           key={ei}
                           className={cn(
                             "text-[11px] font-semibold px-1 py-0.5 rounded",
-                            ev.category === "large-cap" ? "bg-blue-500/20 text-blue-400" :
+                            ev.category === "large-cap" ? "bg-primary/20 text-primary" :
                             ev.category === "high-vol" ? "bg-amber-500/20 text-amber-400" :
                             "bg-emerald-500/20 text-emerald-400",
                           )}

@@ -499,7 +499,7 @@ function LongShortTab() {
       <Card className="bg-slate-900/60 border-slate-700/40">
         <CardHeader className="pb-2 pt-4 px-4">
           <CardTitle className="text-sm text-slate-300 flex items-center gap-2">
-            <Scale className="w-4 h-4 text-blue-400" />
+            <Scale className="w-4 h-4 text-primary" />
             Sector Neutrality Check
           </CardTitle>
         </CardHeader>
@@ -525,7 +525,7 @@ function LongShortTab() {
       <Card className="bg-slate-900/60 border-slate-700/40">
         <CardHeader className="pb-2 pt-4 px-4">
           <CardTitle className="text-sm text-slate-300 flex items-center gap-2">
-            <Repeat className="w-4 h-4 text-violet-400" />
+            <Repeat className="w-4 h-4 text-primary" />
             Active Pair Trades
           </CardTitle>
         </CardHeader>
@@ -568,7 +568,7 @@ function LongShortTab() {
       <Card className="bg-slate-900/60 border-slate-700/40">
         <CardHeader className="pb-2 pt-4 px-4">
           <CardTitle className="text-sm text-slate-300 flex items-center gap-2">
-            <BarChart3 className="w-4 h-4 text-blue-400" />
+            <BarChart3 className="w-4 h-4 text-primary" />
             Gross Exposure by Pair
           </CardTitle>
         </CardHeader>
@@ -605,7 +605,7 @@ function GlobalMacroTab() {
       <Card className="bg-slate-900/60 border-slate-700/40">
         <CardHeader className="pb-2 pt-4 px-4">
           <CardTitle className="text-sm text-slate-300 flex items-center gap-2">
-            <Globe className="w-4 h-4 text-blue-400" />
+            <Globe className="w-4 h-4 text-primary" />
             Macro Theme Book
           </CardTitle>
         </CardHeader>
@@ -628,7 +628,7 @@ function GlobalMacroTab() {
                       <Badge variant="outline" className={`text-xs py-0 px-1.5 ${t.position === "long" ? "border-green-700 text-green-400" : "border-red-700 text-red-400"}`}>
                         {t.position.toUpperCase()}
                       </Badge>
-                      <Badge variant="outline" className={`text-xs py-0 px-1.5 ${t.conviction === "high" ? "border-violet-700 text-violet-400" : t.conviction === "medium" ? "border-amber-700 text-amber-400" : "border-slate-600 text-slate-400"}`}>
+                      <Badge variant="outline" className={`text-xs py-0 px-1.5 ${t.conviction === "high" ? "border-border text-primary" : t.conviction === "medium" ? "border-amber-700 text-amber-400" : "border-slate-600 text-slate-400"}`}>
                         {t.conviction}
                       </Badge>
                     </div>
@@ -655,7 +655,7 @@ function GlobalMacroTab() {
       <Card className="bg-slate-900/60 border-slate-700/40">
         <CardHeader className="pb-2 pt-4 px-4">
           <CardTitle className="text-sm text-slate-300 flex items-center gap-2">
-            <Activity className="w-4 h-4 text-violet-400" />
+            <Activity className="w-4 h-4 text-primary" />
             Theme Correlation Matrix
           </CardTitle>
         </CardHeader>
@@ -716,7 +716,7 @@ function EventDrivenTab() {
 
       <div className="flex gap-2">
         {(["merger", "distressed", "special"] as const).map((t) => (
-          <Button key={t} size="sm" variant={subTab === t ? "default" : "outline"} onClick={() => setSubTab(t)} className={`text-xs capitalize ${subTab === t ? "bg-blue-600 hover:bg-blue-700" : "border-slate-700 text-slate-400 hover:text-slate-200"}`}>
+          <Button key={t} size="sm" variant={subTab === t ? "default" : "outline"} onClick={() => setSubTab(t)} className={`text-xs capitalize ${subTab === t ? "bg-primary hover:bg-primary/80" : "border-slate-700 text-slate-400 hover:text-slate-200"}`}>
             {t === "merger" ? "Merger Arb" : t === "distressed" ? "Distressed Debt" : "Special Situations"}
           </Button>
         ))}
@@ -755,7 +755,7 @@ function EventDrivenTab() {
                               <span className="text-slate-300">{d.probability}%</span>
                             </div>
                           </td>
-                          <td className="py-2 pr-3 text-blue-400 font-medium">{d.annualizedReturn.toFixed(1)}%</td>
+                          <td className="py-2 pr-3 text-primary font-medium">{d.annualizedReturn.toFixed(1)}%</td>
                           <td className="py-2 pr-3">
                             <Badge variant="outline" className="text-xs py-0 px-1.5 border-slate-600 text-slate-400">{d.dealType}</Badge>
                           </td>
@@ -825,7 +825,7 @@ function EventDrivenTab() {
             <Card className="bg-slate-900/60 border-slate-700/40">
               <CardHeader className="pb-2 pt-4 px-4">
                 <CardTitle className="text-sm text-slate-300 flex items-center gap-2">
-                  <Target className="w-4 h-4 text-violet-400" />
+                  <Target className="w-4 h-4 text-primary" />
                   Special Situations Screener
                 </CardTitle>
               </CardHeader>
@@ -836,7 +836,7 @@ function EventDrivenTab() {
                       <div>
                         <div className="text-sm font-medium text-slate-200">{ss.name}</div>
                         <div className="flex items-center gap-2 mt-1">
-                          <Badge variant="outline" className="text-xs py-0 px-1.5 border-violet-700 text-violet-400">{ss.type}</Badge>
+                          <Badge variant="outline" className="text-xs py-0 px-1.5 border-border text-primary">{ss.type}</Badge>
                           <Badge variant="outline" className="text-xs py-0 px-1.5 border-slate-600 text-slate-400">{ss.stage}</Badge>
                         </div>
                         <p className="text-xs text-slate-500 mt-1.5">{ss.catalyst}</p>
@@ -892,7 +892,7 @@ function RelativeValueTab() {
 
       <div className="flex gap-2 flex-wrap">
         {([["convertible", "Convertible Arb"], ["capstructure", "Capital Structure Arb"], ["statarb", "Stat Arb"]] as const).map(([key, label]) => (
-          <Button key={key} size="sm" variant={rvMode === key ? "default" : "outline"} onClick={() => setRvMode(key)} className={`text-xs ${rvMode === key ? "bg-violet-600 hover:bg-violet-700" : "border-slate-700 text-slate-400 hover:text-slate-200"}`}>
+          <Button key={key} size="sm" variant={rvMode === key ? "default" : "outline"} onClick={() => setRvMode(key)} className={`text-xs ${rvMode === key ? "bg-primary hover:bg-primary/80" : "border-slate-700 text-slate-400 hover:text-slate-200"}`}>
             {label}
           </Button>
         ))}
@@ -904,7 +904,7 @@ function RelativeValueTab() {
             <Card className="bg-slate-900/60 border-slate-700/40">
               <CardHeader className="pb-2 pt-4 px-4">
                 <CardTitle className="text-sm text-slate-300 flex items-center gap-2">
-                  <Layers className="w-4 h-4 text-violet-400" />
+                  <Layers className="w-4 h-4 text-primary" />
                   Convertible Arbitrage — Delta-Hedged Book
                 </CardTitle>
               </CardHeader>
@@ -928,8 +928,8 @@ function RelativeValueTab() {
                           <td className={`py-2 pr-3 font-semibold ${c.mispricing < 0 ? "text-green-400" : "text-red-400"}`}>
                             {c.mispricing > 0 ? "+" : ""}{c.mispricing.toFixed(1)}
                           </td>
-                          <td className="py-2 pr-3 text-blue-400">{c.delta.toFixed(2)}</td>
-                          <td className="py-2 pr-3 text-violet-400">{c.gamma.toFixed(3)}</td>
+                          <td className="py-2 pr-3 text-primary">{c.delta.toFixed(2)}</td>
+                          <td className="py-2 pr-3 text-primary">{c.gamma.toFixed(3)}</td>
                           <td className="py-2 text-amber-400">{c.impliedVol.toFixed(1)}%</td>
                         </tr>
                       ))}
@@ -987,7 +987,7 @@ function RelativeValueTab() {
             <Card className="bg-slate-900/60 border-slate-700/40">
               <CardHeader className="pb-2 pt-4 px-4">
                 <CardTitle className="text-sm text-slate-300 flex items-center gap-2">
-                  <RefreshCw className="w-4 h-4 text-cyan-400" />
+                  <RefreshCw className="w-4 h-4 text-muted-foreground" />
                   Statistical Arbitrage Framework
                 </CardTitle>
               </CardHeader>
@@ -1005,12 +1005,12 @@ function RelativeValueTab() {
                       {statArbPairs.map((p) => (
                         <tr key={p.name} className="border-b border-slate-800/40 hover:bg-slate-800/20 transition-colors">
                           <td className="py-2 pr-3 text-slate-200 font-medium">{p.name}</td>
-                          <td className="py-2 pr-3 text-blue-400">{p.correlation.toFixed(3)}</td>
+                          <td className="py-2 pr-3 text-primary">{p.correlation.toFixed(3)}</td>
                           <td className={`py-2 pr-3 font-semibold ${Math.abs(p.zScore) > 1.5 ? "text-amber-400" : "text-slate-400"}`}>
                             {p.zScore > 0 ? "+" : ""}{p.zScore.toFixed(2)}
                           </td>
                           <td className="py-2 pr-3 text-slate-400">{p.halfLife}d</td>
-                          <td className="py-2 pr-3 text-violet-400 text-[11px]">{p.signal}</td>
+                          <td className="py-2 pr-3 text-primary text-[11px]">{p.signal}</td>
                           <td className={`py-2 font-semibold ${p.expectedReturn > 1 ? "text-green-400" : "text-slate-500"}`}>{p.expectedReturn.toFixed(1)}%</td>
                         </tr>
                       ))}
@@ -1069,7 +1069,7 @@ function PerformanceTab() {
         <Card className="bg-slate-900/60 border-slate-700/40">
           <CardHeader className="pb-2 pt-4 px-4">
             <CardTitle className="text-sm text-slate-300 flex items-center gap-2">
-              <PieChart className="w-4 h-4 text-violet-400" />
+              <PieChart className="w-4 h-4 text-primary" />
               Alpha vs Beta Decomposition
             </CardTitle>
           </CardHeader>
@@ -1100,7 +1100,7 @@ function PerformanceTab() {
               </div>
               <div className="flex justify-between text-xs mt-1">
                 <span className="text-slate-500">Portfolio Beta (equity)</span>
-                <span className="text-blue-400 font-semibold">0.38</span>
+                <span className="text-primary font-semibold">0.38</span>
               </div>
             </div>
           </CardContent>
@@ -1109,7 +1109,7 @@ function PerformanceTab() {
         <Card className="bg-slate-900/60 border-slate-700/40">
           <CardHeader className="pb-2 pt-4 px-4">
             <CardTitle className="text-sm text-slate-300 flex items-center gap-2">
-              <BarChart3 className="w-4 h-4 text-blue-400" />
+              <BarChart3 className="w-4 h-4 text-primary" />
               Factor Attribution
             </CardTitle>
           </CardHeader>
@@ -1157,7 +1157,7 @@ function PerformanceTab() {
       <Card className="bg-slate-900/60 border-slate-700/40">
         <CardHeader className="pb-2 pt-4 px-4">
           <CardTitle className="text-sm text-slate-300 flex items-center gap-2">
-            <Scale className="w-4 h-4 text-cyan-400" />
+            <Scale className="w-4 h-4 text-muted-foreground" />
             Risk &amp; Return Metrics
           </CardTitle>
         </CardHeader>
@@ -1197,7 +1197,7 @@ export default function HFStrategiesPage() {
         <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
           <div>
             <h1 className="text-2xl font-bold text-slate-100 flex items-center gap-2">
-              <Layers className="w-6 h-6 text-violet-400" />
+              <Layers className="w-6 h-6 text-primary" />
               Hedge Fund Strategies
             </h1>
             <p className="text-sm text-slate-500 mt-1">Professional-grade strategy simulator — Long/Short, Global Macro, Event Driven, Relative Value</p>
@@ -1207,11 +1207,11 @@ export default function HFStrategiesPage() {
               <TrendingUp className="w-3 h-3 mr-1" />
               AUM: $2.4B
             </Badge>
-            <Badge variant="outline" className="border-blue-700 text-blue-400 text-xs">
+            <Badge variant="outline" className="border-border text-primary text-xs">
               <Activity className="w-3 h-3 mr-1" />
               Sharpe: 1.82
             </Badge>
-            <Badge variant="outline" className="border-violet-700 text-violet-400 text-xs">
+            <Badge variant="outline" className="border-border text-primary text-xs">
               <Target className="w-3 h-3 mr-1" />
               YTD: +11.3%
             </Badge>

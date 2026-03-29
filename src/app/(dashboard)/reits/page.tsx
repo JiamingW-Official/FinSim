@@ -237,8 +237,8 @@ function REITUniverseTab() {
       <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
         {[
           { label: "Avg Div Yield", value: `${fmt(REITS.reduce((a, r) => a + r.divYield, 0) / REITS.length, 1)}%`, icon: <Percent className="w-4 h-4 text-emerald-400" /> },
-          { label: "Avg P/FFO",     value: fmt(REITS.reduce((a, r) => a + r.pFfo, 0) / REITS.length, 1) + "x",     icon: <Calculator className="w-4 h-4 text-blue-400" /> },
-          { label: "Avg Occupancy", value: `${fmt(REITS.reduce((a, r) => a + r.occupancy, 0) / REITS.length, 1)}%`, icon: <Building2 className="w-4 h-4 text-purple-400" /> },
+          { label: "Avg P/FFO",     value: fmt(REITS.reduce((a, r) => a + r.pFfo, 0) / REITS.length, 1) + "x",     icon: <Calculator className="w-4 h-4 text-primary" /> },
+          { label: "Avg Occupancy", value: `${fmt(REITS.reduce((a, r) => a + r.occupancy, 0) / REITS.length, 1)}%`, icon: <Building2 className="w-4 h-4 text-primary" /> },
           { label: "Total Mkt Cap", value: fmtB(REITS.reduce((a, r) => a + r.marketCap, 0)),                        icon: <DollarSign className="w-4 h-4 text-amber-400" /> },
         ].map((s) => (
           <Card key={s.label} className="bg-card/60 border-border/50">
@@ -463,7 +463,7 @@ function ValuationTab() {
       <Card className="bg-card/60 border-border/50">
         <CardHeader className="pb-2">
           <CardTitle className="text-sm font-medium flex items-center gap-2">
-            <BarChart3 className="w-4 h-4 text-blue-400" />
+            <BarChart3 className="w-4 h-4 text-primary" />
             FFO vs AFFO Waterfall (per share)
           </CardTitle>
         </CardHeader>
@@ -513,7 +513,7 @@ function ValuationTab() {
       <Card className="bg-card/60 border-border/50">
         <CardHeader className="pb-2">
           <CardTitle className="text-sm font-medium flex items-center gap-2">
-            <Activity className="w-4 h-4 text-purple-400" />
+            <Activity className="w-4 h-4 text-primary" />
             P/FFO vs Historical Average by Sector
           </CardTitle>
         </CardHeader>
@@ -634,9 +634,9 @@ function DividendsTab() {
       <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
         {[
           { label: "Latest Quarterly Div", value: `$${fmt(latestAmt, 3)}`,           icon: <DollarSign className="w-4 h-4 text-emerald-400" /> },
-          { label: "3Y Div CAGR",          value: `${cagr.toFixed(1)}%`,             icon: <TrendingUp className="w-4 h-4 text-blue-400" /> },
+          { label: "3Y Div CAGR",          value: `${cagr.toFixed(1)}%`,             icon: <TrendingUp className="w-4 h-4 text-primary" /> },
           { label: "AFFO Payout Ratio",    value: `${fmt(affoPayout, 1)}%`,          icon: <Percent className="w-4 h-4 text-amber-400" /> },
-          { label: "Sustainability Score", value: `${sustainScore.toFixed(0)} / 100`, icon: <Activity className="w-4 h-4 text-purple-400" /> },
+          { label: "Sustainability Score", value: `${sustainScore.toFixed(0)} / 100`, icon: <Activity className="w-4 h-4 text-primary" /> },
         ].map((s) => (
           <Card key={s.label} className="bg-card/60 border-border/50">
             <CardContent className="p-3 flex items-center gap-2">
@@ -712,7 +712,7 @@ function DividendsTab() {
           </div>
           <div className="flex gap-4 mt-1 text-xs text-muted-foreground">
             <span>Total growth over period: <span className={totalGrowth >= 0 ? "text-emerald-400" : "text-rose-400"}>{totalGrowth >= 0 ? "+" : ""}{totalGrowth.toFixed(1)}%</span></span>
-            <span>Annualized CAGR: <span className="text-blue-400">{cagr.toFixed(2)}%</span></span>
+            <span>Annualized CAGR: <span className="text-primary">{cagr.toFixed(2)}%</span></span>
           </div>
         </CardContent>
       </Card>
@@ -722,7 +722,7 @@ function DividendsTab() {
         <Card className="bg-card/60 border-border/50">
           <CardHeader className="pb-2">
             <CardTitle className="text-sm font-medium flex items-center gap-2">
-              <Activity className="w-4 h-4 text-purple-400" />
+              <Activity className="w-4 h-4 text-primary" />
               Dividend Sustainability Gauge
             </CardTitle>
           </CardHeader>
@@ -792,7 +792,7 @@ function DividendsTab() {
         <Card className="bg-card/60 border-border/50">
           <CardHeader className="pb-2">
             <CardTitle className="text-sm font-medium flex items-center gap-2">
-              <Info className="w-4 h-4 text-blue-400" />
+              <Info className="w-4 h-4 text-primary" />
               Dividend Analysis — Key Concepts
             </CardTitle>
           </CardHeader>
@@ -881,7 +881,7 @@ function PortfolioTab() {
           { label: "Holdings",        value: `${portfolio.length} REITs`,     icon: <Building2 className="w-4 h-4 text-primary" /> },
           { label: "Blended Yield",   value: `${blendedYield.toFixed(2)}%`,  icon: <Percent className="w-4 h-4 text-emerald-400" /> },
           { label: "Portfolio Beta",  value: blendedBeta.toFixed(2),          icon: <Activity className="w-4 h-4 text-amber-400" /> },
-          { label: "Sector Spread",   value: `${portfolio.length} Sectors`,  icon: <PieChart className="w-4 h-4 text-purple-400" /> },
+          { label: "Sector Spread",   value: `${portfolio.length} Sectors`,  icon: <PieChart className="w-4 h-4 text-primary" /> },
         ].map((s) => (
           <Card key={s.label} className="bg-card/60 border-border/50">
             <CardContent className="p-3 flex items-center gap-2">
@@ -951,7 +951,7 @@ function PortfolioTab() {
         <Card className="bg-card/60 border-border/50">
           <CardHeader className="pb-2">
             <CardTitle className="text-sm font-medium flex items-center gap-2">
-              <BarChart3 className="w-4 h-4 text-blue-400" />
+              <BarChart3 className="w-4 h-4 text-primary" />
               Portfolio Correlations
             </CardTitle>
           </CardHeader>
@@ -1072,7 +1072,7 @@ export default function REITsPage() {
             <TrendingUp className="w-3 h-3 mr-1" />
             Live Sim
           </Badge>
-          <Badge variant="outline" className="text-xs text-blue-400 border-blue-400/30">
+          <Badge variant="outline" className="text-xs text-primary border-border">
             8 REITs
           </Badge>
         </div>

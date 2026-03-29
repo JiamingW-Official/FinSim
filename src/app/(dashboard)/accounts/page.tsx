@@ -103,8 +103,8 @@ const TYPE_META: Record<
 > = {
   taxable: {
     label: "Taxable Brokerage",
-    color: "text-blue-400",
-    bg: "bg-blue-500/10 text-blue-400",
+    color: "text-primary",
+    bg: "bg-primary/10 text-primary",
     description: "Standard margin account, capital gains taxed",
   },
   roth_ira: {
@@ -121,8 +121,8 @@ const TYPE_META: Record<
   },
   paper: {
     label: "Paper Trading",
-    color: "text-purple-400",
-    bg: "bg-purple-500/10 text-purple-400",
+    color: "text-primary",
+    bg: "bg-primary/10 text-primary",
     description: "Simulated account, no real money, reset anytime",
   },
 };
@@ -1162,7 +1162,7 @@ export default function AccountsPage() {
             <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
               {[
                 { label: "Highest Return", account: bestByReturn, icon: TrendingUp, color: "text-emerald-400" },
-                { label: "Lowest Drawdown", account: bestByDrawdown, icon: CheckCircle2, color: "text-blue-400" },
+                { label: "Lowest Drawdown", account: bestByDrawdown, icon: CheckCircle2, color: "text-primary" },
                 { label: "Best Sharpe", account: bestBySharpe, icon: Target, color: "text-amber-400" },
               ].map(({ label, account, icon: Icon, color }) => (
                 <Card key={label} className="p-4 bg-card/60 border-border/50 flex items-center gap-3">
@@ -1252,7 +1252,7 @@ export default function AccountsPage() {
                         if (totalV === 0) return null;
                         const totalAll = acc.positions.reduce((s, p) => s + p.shares * p.currentPrice, 0);
                         const COLOR: Record<string, string> = {
-                          growth: "bg-blue-400",
+                          growth: "bg-primary",
                           dividend: "bg-emerald-400",
                           bond: "bg-amber-400",
                           etf: "bg-indigo-400",
@@ -1437,8 +1437,8 @@ export default function AccountsPage() {
                     asset: "Trading Strategies",
                     target: "Taxable",
                     reason: "Harvest tax losses to offset short-term gains",
-                    color: "text-blue-400",
-                    bg: "bg-blue-500/10",
+                    color: "text-primary",
+                    bg: "bg-primary/10",
                   },
                   {
                     asset: "ETFs / Index Funds",

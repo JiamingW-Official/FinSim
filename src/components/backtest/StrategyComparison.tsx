@@ -217,7 +217,7 @@ export default function StrategyComparison({ baseConfig }: Props) {
               style={{ backgroundColor: COLORS[i].line }}
             />
             <span className="text-zinc-300 font-medium">{cfg.label}</span>
-            <span className={`rounded-sm px-1 text-[11px] font-semibold ${results[i].grade === "S" ? "bg-amber-400/20 text-amber-400" : results[i].grade === "A" ? "bg-emerald-400/20 text-emerald-400" : results[i].grade === "B" ? "bg-blue-400/20 text-blue-400" : "bg-zinc-400/20 text-zinc-400"}`}>
+            <span className={`rounded-sm px-1 text-[11px] font-semibold ${results[i].grade === "S" ? "bg-amber-400/20 text-amber-400" : results[i].grade === "A" ? "bg-emerald-400/20 text-emerald-400" : results[i].grade === "B" ? "bg-primary/20 text-primary" : "bg-zinc-400/20 text-zinc-400"}`}>
               {results[i].grade}
             </span>
           </div>

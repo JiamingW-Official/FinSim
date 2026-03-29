@@ -115,7 +115,7 @@ function InfoBox({
   variant?: "blue" | "amber" | "emerald" | "rose";
 }) {
   const colors = {
-    blue: "bg-blue-500/10 border-blue-500/30 text-blue-200",
+    blue: "bg-primary/10 border-border text-primary",
     amber: "bg-amber-500/10 border-amber-500/30 text-amber-200",
     emerald: "bg-emerald-500/10 border-emerald-500/30 text-emerald-200",
     rose: "bg-rose-500/10 border-rose-500/30 text-rose-200",
@@ -130,7 +130,7 @@ function InfoBox({
 function StageBadge({ stage }: { stage: CBDCStage }) {
   const map: Record<CBDCStage, string> = {
     launched: "bg-emerald-500/20 text-emerald-300 border-emerald-500/30",
-    pilot: "bg-blue-500/20 text-blue-300 border-blue-500/30",
+    pilot: "bg-primary/20 text-primary border-border",
     research: "bg-amber-500/20 text-amber-300 border-amber-500/30",
     cancelled: "bg-rose-500/20 text-rose-300 border-rose-500/30",
   };
@@ -352,8 +352,8 @@ function FundamentalsTab() {
             <thead>
               <tr className="border-b border-white/10">
                 <th className="py-2 pr-4 text-left text-zinc-400 font-medium">Attribute</th>
-                <th className="py-2 pr-4 text-left text-blue-400 font-medium">Retail CBDC</th>
-                <th className="py-2 pr-4 text-left text-purple-400 font-medium">Wholesale CBDC</th>
+                <th className="py-2 pr-4 text-left text-primary font-medium">Retail CBDC</th>
+                <th className="py-2 pr-4 text-left text-primary font-medium">Wholesale CBDC</th>
                 <th className="py-2 text-left text-amber-400 font-medium">Synthetic CBDC</th>
               </tr>
             </thead>
@@ -381,10 +381,10 @@ function FundamentalsTab() {
 
       {/* Account-Based vs Token-Based */}
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-        <div className="rounded-xl border border-blue-500/30 bg-blue-500/5 p-4">
+        <div className="rounded-xl border border-border bg-primary/5 p-4">
           <div className="flex items-center gap-2 mb-3">
-            <Shield className="w-4 h-4 text-blue-400" />
-            <span className="text-sm font-semibold text-blue-300">Account-Based CBDC</span>
+            <Shield className="w-4 h-4 text-primary" />
+            <span className="text-sm font-semibold text-primary">Account-Based CBDC</span>
           </div>
           <ul className="space-y-1.5 text-xs text-zinc-300">
             <li className="flex items-start gap-1.5"><CheckCircle className="w-3 h-3 text-emerald-400 mt-0.5 shrink-0" />Identity verification required at account opening</li>
@@ -394,10 +394,10 @@ function FundamentalsTab() {
             <li className="flex items-start gap-1.5"><XCircle className="w-3 h-3 text-rose-400 mt-0.5 shrink-0" />Excludes unbanked without digital ID infrastructure</li>
           </ul>
         </div>
-        <div className="rounded-xl border border-purple-500/30 bg-purple-500/5 p-4">
+        <div className="rounded-xl border border-border bg-primary/5 p-4">
           <div className="flex items-center gap-2 mb-3">
-            <Lock className="w-4 h-4 text-purple-400" />
-            <span className="text-sm font-semibold text-purple-300">Token-Based CBDC</span>
+            <Lock className="w-4 h-4 text-primary" />
+            <span className="text-sm font-semibold text-primary">Token-Based CBDC</span>
           </div>
           <ul className="space-y-1.5 text-xs text-zinc-300">
             <li className="flex items-start gap-1.5"><CheckCircle className="w-3 h-3 text-emerald-400 mt-0.5 shrink-0" />Bearer instrument — no account needed</li>
@@ -431,9 +431,9 @@ function FundamentalsTab() {
                 <div className="flex items-center gap-3 text-left">
                   <span className="text-xs font-medium text-zinc-300 w-36 shrink-0">{choice.dimension}</span>
                   <div className="flex items-center gap-2">
-                    <Badge className="bg-blue-500/20 text-blue-300 border-blue-500/30 text-xs">{choice.optionA}</Badge>
+                    <Badge className="bg-primary/20 text-primary border-border text-xs">{choice.optionA}</Badge>
                     <span className="text-zinc-600 text-xs">vs</span>
-                    <Badge className="bg-purple-500/20 text-purple-300 border-purple-500/30 text-xs">{choice.optionB}</Badge>
+                    <Badge className="bg-primary/20 text-primary border-border text-xs">{choice.optionB}</Badge>
                   </div>
                 </div>
                 {expandedRow === i
@@ -783,7 +783,7 @@ function GlobalTrackerTab() {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: 12 }}
             transition={{ duration: 0.2 }}
-            className="rounded-xl border border-blue-500/30 bg-blue-500/5 p-4"
+            className="rounded-xl border border-border bg-primary/5 p-4"
           >
             <div className="flex items-start justify-between gap-2 mb-2">
               <div>
@@ -830,7 +830,7 @@ function GlobalTrackerTab() {
             className={cn(
               "px-3 py-1 rounded-full text-xs capitalize border transition-colors",
               filter === f
-                ? "bg-blue-500/30 border-blue-500/50 text-blue-200"
+                ? "bg-primary/30 border-primary/50 text-primary"
                 : "border-white/10 text-zinc-400 hover:border-white/20"
             )}
           >
@@ -851,7 +851,7 @@ function GlobalTrackerTab() {
             className={cn(
               "rounded-xl border p-3 cursor-pointer transition-colors",
               selected === c.country
-                ? "border-blue-500/50 bg-blue-500/10"
+                ? "border-primary/50 bg-primary/10"
                 : "border-white/10 bg-white/5 hover:bg-white/8"
             )}
             onClick={() => setSelected((prev) => (prev === c.country ? null : c.country))}
@@ -863,7 +863,7 @@ function GlobalTrackerTab() {
               </div>
               <StageBadge stage={c.stage} />
             </div>
-            <div className="text-xs font-medium text-blue-300 mb-1">{c.name}</div>
+            <div className="text-xs font-medium text-primary mb-1">{c.name}</div>
             <div className="text-xs text-zinc-400">{c.useCase}</div>
             <div className="text-xs text-zinc-500 mt-1">{c.timeline}</div>
           </motion.div>
@@ -1009,7 +1009,7 @@ function MonetaryPolicyTab() {
           {[
             {
               title: "Expiry Dates",
-              icon: <Clock className="w-4 h-4 text-blue-400" />,
+              icon: <Clock className="w-4 h-4 text-primary" />,
               color: "blue",
               desc: "Government can issue CBDC that expires after 90 days, forcing spending and preventing hoarding. Useful for targeted stimulus but raises concerns about government control over savings.",
               example: "China used expiring e-CNY vouchers during COVID stimulus to ensure money was spent locally.",
@@ -1030,7 +1030,7 @@ function MonetaryPolicyTab() {
             },
             {
               title: "Helicopter Money Distribution",
-              icon: <Banknote className="w-4 h-4 text-purple-400" />,
+              icon: <Banknote className="w-4 h-4 text-primary" />,
               color: "purple" as const,
               desc: "Direct universal transfers to every citizen wallet. No intermediary banks required. Bypasses credit channel entirely for immediate stimulus effect.",
               example: "BIS research shows CBDC helicopter money reaches 100% of population in hours vs weeks via bank transfers.",
@@ -1038,10 +1038,10 @@ function MonetaryPolicyTab() {
           ].map((item) => (
             <div key={item.title} className={cn(
               "rounded-lg border p-3",
-              item.color === "blue" ? "border-blue-500/30 bg-blue-500/5" :
+              item.color === "blue" ? "border-border bg-primary/5" :
               item.color === "emerald" ? "border-emerald-500/30 bg-emerald-500/5" :
               item.color === "amber" ? "border-amber-500/30 bg-amber-500/5" :
-              "border-purple-500/30 bg-purple-500/5"
+              "border-border bg-primary/5"
             )}>
               <div className="flex items-center gap-2 mb-2">
                 {item.icon}
@@ -1096,7 +1096,7 @@ function MonetaryPolicyTab() {
               ].map(([step, time, color]) => (
                 <div key={step as string} className="flex items-center justify-between text-xs px-2 py-1.5 rounded bg-white/5">
                   <span className="text-zinc-300">{step as string}</span>
-                  <span className={cn("font-medium", color === "emerald" ? "text-emerald-400" : color === "blue" ? "text-blue-400" : "text-zinc-400")}>{time as string}</span>
+                  <span className={cn("font-medium", color === "emerald" ? "text-emerald-400" : color === "blue" ? "text-primary" : "text-zinc-400")}>{time as string}</span>
                 </div>
               ))}
             </div>
@@ -1272,7 +1272,7 @@ function CrossBorderTab() {
             <thead>
               <tr className="border-b border-white/10">
                 <th className="py-2 pr-4 text-left text-zinc-400 font-medium">Dimension</th>
-                <th className="py-2 pr-4 text-left text-blue-400 font-medium">SWIFT Network</th>
+                <th className="py-2 pr-4 text-left text-primary font-medium">SWIFT Network</th>
                 <th className="py-2 text-left text-emerald-400 font-medium">Multi-CBDC Platform</th>
               </tr>
             </thead>
@@ -1360,7 +1360,7 @@ function CrossBorderTab() {
             <div key={proj.name} className="rounded-lg border border-white/10 bg-white/3 p-3">
               <div className="flex items-center justify-between mb-1.5">
                 <span className="text-sm font-semibold text-zinc-100">{proj.name}</span>
-                <Badge className={cn("text-xs", proj.statusColor === "emerald" ? "bg-emerald-500/20 text-emerald-300 border-emerald-500/30" : proj.statusColor === "blue" ? "bg-blue-500/20 text-blue-300 border-blue-500/30" : "bg-amber-500/20 text-amber-300 border-amber-500/30")}>
+                <Badge className={cn("text-xs", proj.statusColor === "emerald" ? "bg-emerald-500/20 text-emerald-300 border-emerald-500/30" : proj.statusColor === "blue" ? "bg-primary/20 text-primary border-border" : "bg-amber-500/20 text-amber-300 border-amber-500/30")}>
                   {proj.status}
                 </Badge>
               </div>

@@ -965,7 +965,7 @@ function FinancialModelingTab() {
       {/* Key Driver Assumptions */}
       <div className="rounded-xl bg-slate-800/50 border border-slate-700/50 p-4">
         <div className="flex items-center gap-2 mb-3">
-          <Activity size={15} className="text-cyan-400" />
+          <Activity size={15} className="text-muted-foreground" />
           <p className="text-sm font-semibold text-slate-200">Key Driver Assumptions — {TICKER}</p>
         </div>
         <div className="overflow-x-auto">
@@ -1010,7 +1010,7 @@ function FinancialModelingTab() {
       {/* Tornado Chart */}
       <div className="rounded-xl bg-slate-800/50 border border-slate-700/50 p-4">
         <div className="flex items-center gap-2 mb-3">
-          <BarChart3 size={15} className="text-violet-400" />
+          <BarChart3 size={15} className="text-primary" />
           <p className="text-sm font-semibold text-slate-200">Sensitivity Analysis — Tornado Chart</p>
         </div>
         <p className="text-xs text-slate-400 mb-4">
@@ -1049,7 +1049,7 @@ function ValuationTab() {
       {/* DCF Sensitivity Matrix */}
       <div className="rounded-xl bg-slate-800/50 border border-slate-700/50 p-4">
         <div className="flex items-center gap-2 mb-3">
-          <Calculator size={15} className="text-violet-400" />
+          <Calculator size={15} className="text-primary" />
           <p className="text-sm font-semibold text-slate-200">DCF Sensitivity — WACC vs Terminal Growth ($/share)</p>
         </div>
         <p className="text-xs text-slate-400 mb-4">
@@ -1062,7 +1062,7 @@ function ValuationTab() {
       {/* P/E Relative Valuation */}
       <div className="rounded-xl bg-slate-800/50 border border-slate-700/50 p-4">
         <div className="flex items-center gap-2 mb-3">
-          <Scale size={15} className="text-cyan-400" />
+          <Scale size={15} className="text-muted-foreground" />
           <p className="text-sm font-semibold text-slate-200">P/E Relative Valuation Context</p>
         </div>
         <div className="grid grid-cols-3 gap-3 mb-4">
@@ -1383,7 +1383,7 @@ function ReportStructureTab() {
                   cat.type === "earnings"
                     ? "bg-indigo-500/20 text-indigo-300"
                     : cat.type === "product"
-                    ? "bg-violet-500/20 text-violet-300"
+                    ? "bg-primary/20 text-primary"
                     : cat.type === "regulatory"
                     ? "bg-red-500/20 text-red-300"
                     : "bg-slate-600/40 text-slate-300"

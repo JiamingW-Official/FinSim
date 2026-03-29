@@ -240,7 +240,7 @@ function InsightCard({ insight }: { insight: Insight }) {
       ? "text-green-400"
       : insight.sentiment === "negative"
       ? "text-red-400"
-      : "text-blue-400";
+      : "text-primary";
 
   const valueColor =
     insight.sentiment === "positive"

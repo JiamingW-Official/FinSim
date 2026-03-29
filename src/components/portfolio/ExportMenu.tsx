@@ -98,14 +98,14 @@ export function ExportMenu() {
       label: "Export Report",
       description: "Download portfolio summary",
       onClick: handleExportReport,
-      color: "text-blue-400",
+      color: "text-primary",
     },
     {
       icon: copied ? Check : Copy,
       label: copied ? "Copied!" : "Copy Stats",
       description: "Copy to clipboard",
       onClick: handleCopyStats,
-      color: copied ? "text-emerald-400" : "text-violet-400",
+      color: copied ? "text-emerald-400" : "text-primary",
     },
   ];
 

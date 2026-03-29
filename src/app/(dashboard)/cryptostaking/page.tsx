@@ -675,7 +675,7 @@ export default function CryptoStakingPage() {
                   <RewardBreakdownChart />
                   <div className="mt-3 grid grid-cols-3 gap-2 text-xs">
                     <div className="text-center">
-                      <div className="font-semibold text-blue-400">~3.2%</div>
+                      <div className="font-semibold text-primary">~3.2%</div>
                       <div className="text-muted-foreground">Consensus</div>
                     </div>
                     <div className="text-center">
@@ -938,7 +938,7 @@ export default function CryptoStakingPage() {
                         step: "1",
                         label: "Searchers",
                         desc: "Identify MEV opportunities (arb, liquidation) and submit transaction bundles to block builders.",
-                        color: "text-blue-400",
+                        color: "text-primary",
                       },
                       {
                         step: "2",
@@ -956,7 +956,7 @@ export default function CryptoStakingPage() {
                         step: "4",
                         label: "Validators",
                         desc: "Select highest bid from relay, propose winning builder's block, receive bid payment + consensus rewards.",
-                        color: "text-purple-400",
+                        color: "text-primary",
                       },
                     ].map(({ step, label, desc, color }) => (
                       <div key={step} className="flex gap-3 rounded border border-border bg-card/40 p-2">
@@ -1103,8 +1103,8 @@ export default function CryptoStakingPage() {
                     </div>
                   ))}
                 </div>
-                <div className="mt-4 rounded-lg border border-blue-500/20 bg-blue-500/5 p-3 text-xs">
-                  <div className="flex items-center gap-1.5 font-medium text-blue-400 mb-1">
+                <div className="mt-4 rounded-lg border border-border bg-primary/5 p-3 text-xs">
+                  <div className="flex items-center gap-1.5 font-medium text-primary mb-1">
                     <Info className="w-3.5 h-3.5" />
                     DVT: Distributed Validator Technology
                   </div>

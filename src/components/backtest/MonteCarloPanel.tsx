@@ -61,9 +61,9 @@ export default function MonteCarloPanel({ result, startingCapital }: MonteCarloP
         </h3>
         <EquityFanChart percentiles={percentiles} startingCapital={startingCapital} />
         <div className="mt-1 flex items-center justify-center gap-4 text-[11px]">
-          <span className="flex items-center gap-1"><span className="h-2 w-4 rounded-sm bg-violet-500/20" /> 5th-95th</span>
-          <span className="flex items-center gap-1"><span className="h-2 w-4 rounded-sm bg-violet-500/40" /> 25th-75th</span>
-          <span className="flex items-center gap-1"><span className="h-0.5 w-4 bg-violet-400" /> Median</span>
+          <span className="flex items-center gap-1"><span className="h-2 w-4 rounded-sm bg-primary/20" /> 5th-95th</span>
+          <span className="flex items-center gap-1"><span className="h-2 w-4 rounded-sm bg-primary/40" /> 25th-75th</span>
+          <span className="flex items-center gap-1"><span className="h-0.5 w-4 bg-primary" /> Median</span>
         </div>
       </div>
 

@@ -714,7 +714,7 @@ function InfoCard({ title, children, icon: Icon }: { title: string; children: Re
         onClick={() => setOpen(o => !o)}
       >
         <div className="flex items-center gap-2">
-          <Icon className="w-4 h-4 text-blue-400" />
+          <Icon className="w-4 h-4 text-primary" />
           <span className="text-sm font-medium text-slate-200">{title}</span>
         </div>
         {open ? <ChevronUp className="w-4 h-4 text-slate-500" /> : <ChevronDown className="w-4 h-4 text-slate-500" />}
@@ -829,12 +829,12 @@ function ContagionTab() {
         </CardContent>
       </Card>
 
-      <Card className="bg-blue-950/20 border-blue-900/40">
+      <Card className="bg-muted/30 border-border">
         <CardContent className="pt-4">
           <div className="flex items-start gap-3">
-            <Info className="w-4 h-4 text-blue-400 mt-0.5 shrink-0" />
+            <Info className="w-4 h-4 text-primary mt-0.5 shrink-0" />
             <div className="text-sm text-slate-300">
-              <strong className="text-blue-400">Key Insight:</strong> Contagion is non-linear. Small shocks can cascade into systemic crises when
+              <strong className="text-primary">Key Insight:</strong> Contagion is non-linear. Small shocks can cascade into systemic crises when
               institutions are highly interconnected, leverage is elevated, and liquidity buffers are thin.
               The 2008 crisis spread from $500B in subprime losses to a $20T global wealth destruction event.
             </div>
@@ -859,7 +859,7 @@ function GSIBTab() {
       <Card className="bg-slate-900/50 border-slate-800">
         <CardHeader className="pb-2">
           <CardTitle className="text-sm text-slate-200 flex items-center gap-2">
-            <Building2 className="w-4 h-4 text-blue-400" />
+            <Building2 className="w-4 h-4 text-primary" />
             G-SIB Identification: 5 Indicator Categories (Basel Committee)
           </CardTitle>
         </CardHeader>
@@ -875,7 +875,7 @@ function GSIBTab() {
               <div key={i} className="rounded-lg bg-slate-800/50 border border-slate-700 p-3 text-center">
                 <div className="text-2xl mb-1">{cat.icon}</div>
                 <div className="text-xs font-bold text-slate-200 mb-0.5">{cat.name}</div>
-                <Badge variant="outline" className="text-xs border-blue-700 text-blue-400 mb-1">{cat.weight}</Badge>
+                <Badge variant="outline" className="text-xs border-border text-primary mb-1">{cat.weight}</Badge>
                 <p className="text-xs text-slate-500">{cat.desc}</p>
               </div>
             ))}
@@ -947,7 +947,7 @@ function GSIBTab() {
             >
               <strong className="text-slate-100">{selectedBank.bank}</strong> — {selectedBank.country} |&nbsp;
               G-SIB surcharge <strong style={{ color: bucketColor(selectedBank.bucket) }}>{selectedBank.surcharge}</strong> on top of minimum 8% CET1 requirement.
-              Total minimum capital: <strong className="text-blue-400">{selectedBank.totalCapital}</strong> (CET1 + surcharge + conservation buffer).
+              Total minimum capital: <strong className="text-primary">{selectedBank.totalCapital}</strong> (CET1 + surcharge + conservation buffer).
             </motion.div>
           )}
         </CardContent>
@@ -1048,10 +1048,10 @@ function MetricsTab() {
             animate={{ opacity: 1, height: "auto" }}
             exit={{ opacity: 0, height: 0 }}
           >
-            <Card className="bg-blue-950/20 border-blue-900/40">
+            <Card className="bg-muted/30 border-border">
               <CardContent className="pt-4">
                 <div className="flex items-start gap-3">
-                  <BarChart3 className="w-5 h-5 text-blue-400 shrink-0 mt-0.5" />
+                  <BarChart3 className="w-5 h-5 text-primary shrink-0 mt-0.5" />
                   <div className="space-y-2">
                     <div className="font-semibold text-slate-200">{activeMetric.name} — Technical Definition</div>
                     <div className="bg-slate-900/60 border border-slate-700 rounded px-3 py-2 font-mono text-xs text-green-300">
@@ -1137,7 +1137,7 @@ function MacroPruTab() {
       <Card className="bg-slate-900/50 border-slate-800">
         <CardHeader className="pb-2">
           <CardTitle className="text-sm text-slate-200 flex items-center gap-2">
-            <Lock className="w-4 h-4 text-blue-400" />
+            <Lock className="w-4 h-4 text-primary" />
             Macroprudential Toolkit
           </CardTitle>
         </CardHeader>
@@ -1193,7 +1193,7 @@ function MacroPruTab() {
       <Card className="bg-slate-900/50 border-slate-800">
         <CardHeader className="pb-2">
           <CardTitle className="text-sm text-slate-200 flex items-center gap-2">
-            <BarChart3 className="w-4 h-4 text-blue-400" />
+            <BarChart3 className="w-4 h-4 text-primary" />
             Countercyclical Capital Buffer (CCyB) — Build-up and Release
           </CardTitle>
         </CardHeader>
@@ -1295,7 +1295,7 @@ function MacroPruTab() {
       <Card className="bg-slate-900/50 border-slate-800">
         <CardHeader className="pb-2">
           <CardTitle className="text-sm text-slate-200 flex items-center gap-2">
-            <Activity className="w-4 h-4 text-purple-400" />
+            <Activity className="w-4 h-4 text-primary" />
             Stress Test Evolution: DFAST &amp; CCAR
           </CardTitle>
         </CardHeader>
@@ -1352,7 +1352,7 @@ export default function SystemicRiskPage() {
         {/* Summary chips */}
         <div className="flex flex-wrap gap-2 mt-3">
           {[
-            { label: "G-SIBs Monitored", value: "30+", color: "text-blue-400 border-blue-800 bg-blue-950/30" },
+            { label: "G-SIBs Monitored", value: "30+", color: "text-primary border-border bg-muted/40" },
             { label: "Global SRISK", value: "$318B", color: "text-red-400 border-red-800 bg-red-950/30" },
             { label: "CCyB (US)", value: "1.0%", color: "text-amber-400 border-amber-800 bg-amber-950/30" },
             { label: "Shadow Banking", value: "$68T", color: "text-orange-400 border-orange-800 bg-orange-950/30" },

@@ -944,7 +944,7 @@ export default function CommoditySpreadsPage() {
                     {
                       label: "Soybean Oil Output",
                       value: `${(CRUSH_BARS[11].value * 0.003 + 0.55).toFixed(3)}/lb`,
-                      color: "text-cyan-400",
+                      color: "text-muted-foreground",
                       bg: "bg-cyan-400/10",
                     },
                     {
@@ -992,10 +992,10 @@ export default function CommoditySpreadsPage() {
               <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
                 {[
                   {
-                    icon: <CloudRain className="w-4 h-4 text-blue-400" />,
+                    icon: <CloudRain className="w-4 h-4 text-primary" />,
                     title: "South American Weather",
                     desc: "Brazil & Argentina produce ~55% of world soybeans. La Niña = drought = bullish crush",
-                    color: "text-blue-400",
+                    color: "text-primary",
                   },
                   {
                     icon: <TrendingUp className="w-4 h-4 text-emerald-400" />,
@@ -1004,10 +1004,10 @@ export default function CommoditySpreadsPage() {
                     color: "text-emerald-400",
                   },
                   {
-                    icon: <Activity className="w-4 h-4 text-purple-400" />,
+                    icon: <Activity className="w-4 h-4 text-primary" />,
                     title: "Chinese Demand",
                     desc: "China buys 60%+ of global soybean exports for hog feed. Swine herd size is key metric",
-                    color: "text-purple-400",
+                    color: "text-primary",
                   },
                   {
                     icon: <DollarSign className="w-4 h-4 text-amber-400" />,
@@ -1277,7 +1277,7 @@ export default function CommoditySpreadsPage() {
                     { months: "Mar–Apr", event: "Spring shoulder → Cracks narrow, storage builds", color: "text-emerald-400" },
                     { months: "May–Jun", event: "Driving season begins → Gasoline cracks widen", color: "text-amber-400" },
                     { months: "Jul–Aug", event: "Peak cooling demand → Spark spreads surge", color: "text-red-400" },
-                    { months: "Sep–Oct", event: "Refinery maintenance → Transitional crack spread", color: "text-purple-400" },
+                    { months: "Sep–Oct", event: "Refinery maintenance → Transitional crack spread", color: "text-primary" },
                     { months: "Nov–Dec", event: "Pre-winter storage → Heating oil/gas premium", color: "text-sky-400" },
                   ].map((s) => (
                     <div key={s.months} className="flex items-center gap-3 bg-zinc-800/40 rounded px-2.5 py-1.5">

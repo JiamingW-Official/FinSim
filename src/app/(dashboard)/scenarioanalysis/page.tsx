@@ -1335,7 +1335,7 @@ function MacroSensitivityTab() {
                   <th className="text-right py-2 text-emerald-400 px-3">Bonds</th>
                   <th className="text-right py-2 text-yellow-400 px-3">Gold</th>
                   <th className="text-right py-2 text-orange-400 px-3">Credit</th>
-                  <th className="text-right py-2 text-blue-400 pl-3">USD</th>
+                  <th className="text-right py-2 text-primary pl-3">USD</th>
                 </tr>
               </thead>
               <tbody>

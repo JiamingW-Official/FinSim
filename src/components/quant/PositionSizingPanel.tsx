@@ -264,7 +264,7 @@ function MethodRow({
         className={`
           border-b border-border/50 cursor-pointer transition-colors
           hover:bg-muted/20
-          ${isRecommended ? "bg-blue-500/5" : ""}
+          ${isRecommended ? "bg-primary/5" : ""}
         `}
         onClick={onToggle}
       >
@@ -272,7 +272,7 @@ function MethodRow({
           <div className="flex items-center gap-2">
             <span className="font-medium text-foreground text-xs">{result.method}</span>
             {isRecommended && (
-              <span className="text-[11px] font-semibold uppercase tracking-wide px-1.5 py-0.5 rounded bg-blue-500/10 text-blue-600 dark:text-blue-400">
+              <span className="text-[11px] font-semibold uppercase tracking-wide px-1.5 py-0.5 rounded bg-primary/10 text-primary dark:text-primary">
                 Suggested
               </span>
             )}

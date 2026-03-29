@@ -124,8 +124,8 @@ function getMarketTemperature(indicators: boolean[]): { label: string; desc: str
   const total = indicators.length;
   const pct = Math.round((bullCount / total) * 100);
 
-  if (pct <= 15) return { label: "Icy", desc: `${100 - pct}% of indicators show fear`, color: "text-blue-400" };
-  if (pct <= 35) return { label: "Cool", desc: `${100 - pct}% of indicators lean bearish`, color: "text-cyan-400" };
+  if (pct <= 15) return { label: "Icy", desc: `${100 - pct}% of indicators show fear`, color: "text-primary" };
+  if (pct <= 35) return { label: "Cool", desc: `${100 - pct}% of indicators lean bearish`, color: "text-muted-foreground" };
   if (pct <= 65) return { label: "Warm", desc: `${pct}% of indicators balanced`, color: "text-yellow-500" };
   if (pct <= 85) return { label: "Hot", desc: `${pct}% of indicators lean bullish`, color: "text-orange-500" };
   return { label: "Overheated", desc: `${pct}% of indicators show greed`, color: "text-red-500" };
@@ -614,7 +614,7 @@ function SentimentSummaryCard({
   const bearCount = indicators.length - bullCount;
 
   const tempColors: Record<string, string> = {
-    Icy: "border-blue-500/20 bg-muted/30",
+    Icy: "border-border bg-muted/30",
     Cool: "border-cyan-500/20 bg-muted/30",
     Warm: "border-yellow-500/20 bg-muted/30",
     Hot: "border-orange-500/20 bg-muted/30",
@@ -638,9 +638,9 @@ function SentimentSummaryCard({
       {/* Thermometer bar */}
       <div className="space-y-1.5">
         <div className="flex items-center gap-2 text-xs">
-          <span className="text-blue-400 font-medium w-8 text-right shrink-0">Icy</span>
+          <span className="text-primary font-medium w-8 text-right shrink-0">Icy</span>
           <div className="flex-1 h-3 bg-muted rounded-full overflow-hidden flex">
-            {["bg-blue-400", "bg-cyan-400", "bg-yellow-400", "bg-orange-400", "bg-red-400"].map((c, i) => (
+            {["bg-primary", "bg-cyan-400", "bg-yellow-400", "bg-orange-400", "bg-red-400"].map((c, i) => (
               <div key={i} className={cn("h-full flex-1", c, "opacity-30")} />
             ))}
             <div

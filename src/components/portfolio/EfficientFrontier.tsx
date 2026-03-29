@@ -906,10 +906,10 @@ export function EfficientFrontier() {
           <div className="flex flex-wrap gap-2">
             {(
               [
-                { value: "maxSharpe",    label: "Max Sharpe",    color: "text-violet-400" },
+                { value: "maxSharpe",    label: "Max Sharpe",    color: "text-primary" },
                 { value: "minVariance",  label: "Min Variance",  color: "text-emerald-400" },
                 { value: "maxReturn",    label: "Max Return",    color: "text-amber-400" },
-                { value: "riskParity",   label: "Risk Parity",   color: "text-cyan-400" },
+                { value: "riskParity",   label: "Risk Parity",   color: "text-muted-foreground" },
               ] as { value: Objective; label: string; color: string }[]
             ).map(({ value, label, color }) => (
               <label key={value} className="flex items-center gap-1.5 cursor-pointer">
@@ -972,7 +972,7 @@ export function EfficientFrontier() {
             </div>
           )}
           <div className="flex items-center gap-1">
-            <div className="w-6 h-1 rounded-full bg-blue-400" />
+            <div className="w-6 h-1 rounded-full bg-primary" />
             <span className="text-[11px] text-muted-foreground">Frontier curve</span>
           </div>
         </div>
@@ -1046,7 +1046,7 @@ export function EfficientFrontier() {
                       <div className="flex items-center justify-end gap-1.5">
                         <div className="h-1.5 w-12 rounded-full bg-muted overflow-hidden">
                           <div
-                            className="h-full rounded-full bg-violet-500/70"
+                            className="h-full rounded-full bg-primary/70"
                             style={{ width: `${Math.min(100, row.targetWeight * 100).toFixed(1)}%` }}
                           />
                         </div>

@@ -201,11 +201,11 @@ function StatChip({
   color?: "blue" | "green" | "amber" | "red" | "purple";
 }) {
   const colors = {
-    blue: "bg-blue-900/40 text-blue-300 border-blue-800",
+    blue: "bg-muted/60 text-primary border-border",
     green: "bg-green-900/40 text-green-300 border-green-800",
     amber: "bg-amber-900/40 text-amber-300 border-amber-800",
     red: "bg-red-900/40 text-red-300 border-red-800",
-    purple: "bg-purple-900/40 text-purple-300 border-purple-800",
+    purple: "bg-muted/60 text-primary border-border",
   };
   return (
     <div className={cn("rounded-md border px-3 py-2 text-center", colors[color])}>
@@ -231,13 +231,13 @@ function LoanStructureTab() {
       {/* Definition */}
       <div className="rounded-xl border border-zinc-700 bg-zinc-900/50 p-5">
         <div className="flex items-center gap-2 mb-3">
-          <Info className="w-4 h-4 text-blue-400" />
+          <Info className="w-4 h-4 text-primary" />
           <span className="text-sm font-semibold text-zinc-200">What is a Leveraged Loan?</span>
         </div>
         <p className="text-sm text-zinc-400 leading-relaxed">
           A leveraged loan is a syndicated credit facility extended to below-investment-grade borrowers
           (rated BB+/Ba1 or lower, or unrated) or borrowers with a debt-to-EBITDA ratio above 4–5×.
-          Priced as a floating-rate instrument — historically LIBOR + spread, now <span className="text-blue-300 font-medium">SOFR + credit spread</span> —
+          Priced as a floating-rate instrument — historically LIBOR + spread, now <span className="text-primary font-medium">SOFR + credit spread</span> —
           they provide inflation-linked income to lenders and flexibility to leveraged buyout (LBO)
           borrowers. The market is dominated by Term Loan B (TLB) structures favored by institutional investors.
         </p>
@@ -318,7 +318,7 @@ function LoanStructureTab() {
           <div className="flex justify-between relative z-10">
             {[
               { year: "2017", event: "FCA announces LIBOR end", color: "bg-zinc-600" },
-              { year: "2021", event: "CME SOFR futures launch", color: "bg-blue-600" },
+              { year: "2021", event: "CME SOFR futures launch", color: "bg-primary" },
               { year: "Jun 2023", event: "USD LIBOR cessation", color: "bg-amber-600" },
               { year: "2024", event: "Market fully SOFR-based", color: "bg-green-600" },
             ].map((pt, i) => (
@@ -357,10 +357,10 @@ function LoanStructureTab() {
             <li>• Equity cure right: sponsor can inject equity to cure breach</li>
           </ul>
         </div>
-        <div className="rounded-xl border border-blue-800/50 bg-blue-900/10 p-4">
+        <div className="rounded-xl border border-border bg-muted/30 p-4">
           <div className="flex items-center gap-2 mb-2">
-            <Activity className="w-4 h-4 text-blue-400" />
-            <span className="text-sm font-semibold text-blue-300">Incurrence Covenants (Cov-Lite)</span>
+            <Activity className="w-4 h-4 text-primary" />
+            <span className="text-sm font-semibold text-primary">Incurrence Covenants (Cov-Lite)</span>
           </div>
           <ul className="text-xs text-zinc-400 space-y-1">
             <li>• Tested only when a specific action is taken (e.g., new debt, dividends)</li>
@@ -484,8 +484,8 @@ function SyndicationTab() {
         <h3 className="text-sm font-semibold text-zinc-200 mb-4">Syndication Timeline</h3>
         <div className="space-y-2">
           {[
-            { phase: "Commitment Letter", days: "Day 0", desc: "Lead arranger commits to provide the full loan amount (underwritten) or best efforts. Mandated lead arranger (MLA) role secured. Fee letter executed.", color: "bg-blue-600" },
-            { phase: "Due Diligence & Documentation", days: "Day 1–14", desc: "Credit agreement, collateral/security docs, lender call, confidential information memorandum (CIM) prepared. Rating agency process initiated.", color: "bg-violet-600" },
+            { phase: "Commitment Letter", days: "Day 0", desc: "Lead arranger commits to provide the full loan amount (underwritten) or best efforts. Mandated lead arranger (MLA) role secured. Fee letter executed.", color: "bg-primary" },
+            { phase: "Due Diligence & Documentation", days: "Day 1–14", desc: "Credit agreement, collateral/security docs, lender call, confidential information memorandum (CIM) prepared. Rating agency process initiated.", color: "bg-primary" },
             { phase: "Launch / Marketing", days: "Day 14–28", desc: "Investor roadshow, bank meeting, online distribution. Price talk (spread + OID guidance) released. Flex language invoked if demand weak/strong.", color: "bg-teal-600" },
             { phase: "Allocation", days: "Day 28–35", desc: "Book closes. Oversubscribed books tightened (OID removed, spread lowered). Undersubscribed books flex wider or structure changes. Allocations communicated.", color: "bg-amber-600" },
             { phase: "Closing & Funding", days: "Day 35–42", desc: "Conditions precedent met (legal, regulatory). Commitments fund. Collateral agent takes security interest. Loan transfers to par desk.", color: "bg-green-600" },
@@ -512,8 +512,8 @@ function SyndicationTab() {
         <h3 className="text-sm font-semibold text-zinc-200 mb-3">Flex Language Mechanics</h3>
         <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
           {[
-            { type: "Rate Flex", color: "border-blue-700 bg-blue-900/20", icon: "↕", desc: "Arranger can adjust the credit spread (typically ±50–100 bps) from price talk based on book quality. Positive flex = spread increases (book weak). Negative flex = spread decreases (oversubscribed)." },
-            { type: "OID Flex", color: "border-purple-700 bg-purple-900/20", icon: "💲", desc: "Original Issue Discount can be adjusted (e.g., 99.0 → 98.5 floor) to increase effective yield for investors without changing stated spread. OID amortizes into income over loan life." },
+            { type: "Rate Flex", color: "border-border bg-muted/40", icon: "↕", desc: "Arranger can adjust the credit spread (typically ±50–100 bps) from price talk based on book quality. Positive flex = spread increases (book weak). Negative flex = spread decreases (oversubscribed)." },
+            { type: "OID Flex", color: "border-border bg-muted/40", icon: "💲", desc: "Original Issue Discount can be adjusted (e.g., 99.0 → 98.5 floor) to increase effective yield for investors without changing stated spread. OID amortizes into income over loan life." },
             { type: "Structure Flex", color: "border-amber-700 bg-amber-900/20", icon: "⚙", desc: "More extreme: change amortization, maturity, or tranche sizing. E.g., increase TLB amount and reduce HY bonds; add 2nd lien. Requires borrower consent and re-documentation." },
           ].map((f, i) => (
             <div key={i} className={cn("rounded-lg border p-3", f.color)}>
@@ -673,10 +673,10 @@ function CLOStructureTab() {
 
       {/* OC / IC tests */}
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-        <div className="rounded-xl border border-blue-800/50 bg-blue-900/10 p-4">
+        <div className="rounded-xl border border-border bg-muted/30 p-4">
           <div className="flex items-center gap-2 mb-2">
-            <Shield className="w-4 h-4 text-blue-400" />
-            <span className="text-sm font-semibold text-blue-300">OC (Overcollateralization) Test</span>
+            <Shield className="w-4 h-4 text-primary" />
+            <span className="text-sm font-semibold text-primary">OC (Overcollateralization) Test</span>
           </div>
           <p className="text-xs text-zinc-400 mb-2">OC Ratio = Par Value of Assets / Par Value of Rated Notes</p>
           <p className="text-xs text-zinc-400 mb-2">Example Class A OC: $500M assets / $310M Class A = 161% (min. trigger ~120%)</p>
@@ -711,7 +711,7 @@ function CLOStructureTab() {
             },
             {
               gen: "CLO 2.0 (2010–2013)",
-              color: "border-blue-800 bg-blue-900/10",
+              color: "border-border bg-muted/30",
               items: [
                 "Pure senior secured loan collateral",
                 "Risk retention requirements (US: 5%)",
@@ -965,7 +965,7 @@ function MarketDynamicsTab() {
             {
               title: "CLO Formation Rate",
               icon: "🏗",
-              color: "border-blue-800 bg-blue-900/10",
+              color: "border-border bg-muted/30",
               desc: "Primary demand driver. Peak CLO issuance years (2018, 2021, 2024: $175B+) compress spreads; CLO reset/refi activity can maintain technical bid even during stress.",
             },
             {
@@ -1044,8 +1044,8 @@ export default function LeveragedLoansPage() {
           className="mb-8"
         >
           <div className="flex items-center gap-3 mb-2">
-            <div className="p-2 rounded-lg bg-blue-900/40 border border-blue-800">
-              <Layers className="w-5 h-5 text-blue-400" />
+            <div className="p-2 rounded-lg bg-muted/60 border border-border">
+              <Layers className="w-5 h-5 text-primary" />
             </div>
             <div>
               <h1 className="text-xl font-bold text-zinc-100">Leveraged Loans &amp; CLOs</h1>
@@ -1054,10 +1054,10 @@ export default function LeveragedLoansPage() {
           </div>
           <div className="flex flex-wrap gap-2 mt-3">
             {[
-              { icon: DollarSign, label: "$1.4T US Market", color: "text-blue-400" },
+              { icon: DollarSign, label: "$1.4T US Market", color: "text-primary" },
               { icon: TrendingUp, label: "SOFR + Spread", color: "text-green-400" },
               { icon: Shield, label: "Senior Secured", color: "text-amber-400" },
-              { icon: Activity, label: "Floating Rate", color: "text-purple-400" },
+              { icon: Activity, label: "Floating Rate", color: "text-primary" },
             ].map((badge, i) => (
               <div key={i} className="flex items-center gap-1.5 text-xs bg-zinc-900 border border-zinc-700 rounded-full px-3 py-1">
                 <badge.icon className={cn("w-3 h-3", badge.color)} />

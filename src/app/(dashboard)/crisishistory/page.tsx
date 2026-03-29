@@ -664,10 +664,10 @@ export default function CrisisHistoryPage() {
         {/* quick stats */}
         <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 mt-4">
           {[
-            { label: "Crises Covered", value: "8", icon: <BookOpen className="w-4 h-4 text-blue-400" /> },
+            { label: "Crises Covered", value: "8", icon: <BookOpen className="w-4 h-4 text-primary" /> },
             { label: "Worst Peak Loss", value: "-89%", icon: <TrendingDown className="w-4 h-4 text-red-400" /> },
             { label: "Asset Classes", value: "6", icon: <Activity className="w-4 h-4 text-emerald-400" /> },
-            { label: "Policy Tools", value: "12+", icon: <Landmark className="w-4 h-4 text-violet-400" /> },
+            { label: "Policy Tools", value: "12+", icon: <Landmark className="w-4 h-4 text-primary" /> },
           ].map((s) => (
             <Card key={s.label} className="bg-slate-900 border-slate-800">
               <CardContent className="p-3 flex items-center gap-3">
@@ -707,7 +707,7 @@ export default function CrisisHistoryPage() {
           <Card className="bg-slate-900 border-slate-800 mb-4">
             <CardHeader className="pb-2">
               <CardTitle className="text-sm text-slate-300 flex items-center gap-2">
-                <Activity className="w-4 h-4 text-blue-400" />
+                <Activity className="w-4 h-4 text-primary" />
                 Interactive Crisis Timeline — Click a crisis to explore
               </CardTitle>
             </CardHeader>
@@ -820,8 +820,8 @@ export default function CrisisHistoryPage() {
             {[
               {
                 title: "The MBS/CDO Machine",
-                color: "text-blue-400",
-                icon: <DollarSign className="w-4 h-4 text-blue-400" />,
+                color: "text-primary",
+                icon: <DollarSign className="w-4 h-4 text-primary" />,
                 points: [
                   "Banks originated subprime loans they didn't intend to hold",
                   "Loans were pooled into Mortgage-Backed Securities (MBS)",
@@ -832,8 +832,8 @@ export default function CrisisHistoryPage() {
               },
               {
                 title: "Leverage & Shadow Banking",
-                color: "text-purple-400",
-                icon: <TrendingUp className="w-4 h-4 text-purple-400" />,
+                color: "text-primary",
+                icon: <TrendingUp className="w-4 h-4 text-primary" />,
                 points: [
                   "Investment banks ran 30–40x leverage by 2007",
                   "SIVs (off-balance-sheet) held $400B in toxic assets",
@@ -901,7 +901,7 @@ export default function CrisisHistoryPage() {
                   { label: "Global Wealth Destroyed", value: "$11T", color: "text-red-400" },
                   { label: "US Fiscal Deficit Peak", value: "-10% GDP", color: "text-orange-400" },
                   { label: "LIBOR-OIS Spread", value: "365bps", color: "text-red-400" },
-                  { label: "Fed Balance Sheet 2009", value: "$2.2T", color: "text-blue-400" },
+                  { label: "Fed Balance Sheet 2009", value: "$2.2T", color: "text-primary" },
                   { label: "Recovery to Prior Peak", value: "5.5 years", color: "text-emerald-400" },
                 ].map((m) => (
                   <div key={m.label} className="bg-slate-800 rounded-lg p-3">
@@ -919,7 +919,7 @@ export default function CrisisHistoryPage() {
           <Card className="bg-slate-900 border-slate-800">
             <CardHeader className="pb-2">
               <CardTitle className="text-sm text-slate-300 flex items-center gap-2">
-                <Activity className="w-4 h-4 text-violet-400" />
+                <Activity className="w-4 h-4 text-primary" />
                 Kindleberger–Minsky Anatomy of a Financial Crisis
               </CardTitle>
             </CardHeader>
@@ -932,7 +932,7 @@ export default function CrisisHistoryPage() {
           {/* Phase detail cards */}
           <div className="grid grid-cols-1 sm:grid-cols-5 gap-3">
             {[
-              { phase: "1. Displacement", color: "border-blue-500/40 bg-blue-500/5", tc: "text-blue-400",
+              { phase: "1. Displacement", color: "border-primary/40 bg-primary/5", tc: "text-primary",
                 desc: "An exogenous shock creates new profit opportunities: a new technology, deregulation, war, or policy shift.",
                 examples: ["Internet (1995)", "Low rates (2001)", "Financial innovation (2004)", "COVID stimulus (2020)"] },
               { phase: "2. Boom", color: "border-emerald-500/40 bg-emerald-500/5", tc: "text-emerald-400",
@@ -1024,7 +1024,7 @@ export default function CrisisHistoryPage() {
           <Card className="bg-slate-900 border-slate-800">
             <CardHeader className="pb-2">
               <CardTitle className="text-sm text-slate-300 flex items-center gap-2">
-                <TrendingDown className="w-4 h-4 text-blue-400" />
+                <TrendingDown className="w-4 h-4 text-primary" />
                 Asset Class Performance During Crises — Heatmap
               </CardTitle>
             </CardHeader>
@@ -1056,7 +1056,7 @@ export default function CrisisHistoryPage() {
                 summary: "Perform worst in almost every crisis. High beta to economic growth and risk sentiment.",
                 exception: "2022: fell ~25% but not catastrophic due to strong earnings backdrop.",
                 rule: "Buy equities when fear peaks (VIX > 40), not when complacency is high (VIX < 12)." },
-              { asset: "Government Bonds", icon: <Activity className="w-4 h-4 text-blue-400" />, tc: "text-blue-400",
+              { asset: "Government Bonds", icon: <Activity className="w-4 h-4 text-primary" />, tc: "text-primary",
                 summary: "Usually a flight-to-safety asset. Perform well in deflationary crises as yields fall.",
                 exception: "2022: bonds fell 18% — worst year since 1788 — as inflation forced rate hikes.",
                 rule: "Bonds provide crisis diversification ONLY in deflationary, not inflationary, crises." },
@@ -1072,7 +1072,7 @@ export default function CrisisHistoryPage() {
                 summary: "Highly cyclical, tend to fall sharply in demand downturns (recession fears).",
                 exception: "2022: commodities surged +35% due to Russia–Ukraine supply shock — unique macro regime.",
                 rule: "In supply-shock-driven crises, commodities can be inflationary even as financial assets crash." },
-              { asset: "Real Estate", icon: <Landmark className="w-4 h-4 text-violet-400" />, tc: "text-violet-400",
+              { asset: "Real Estate", icon: <Landmark className="w-4 h-4 text-primary" />, tc: "text-primary",
                 summary: "Highly leveraged, illiquid, and slow to reprice — often the cause or victim of crises.",
                 exception: "2020: residential real estate rose due to stimulus and work-from-home demand shift.",
                 rule: "Watch price-to-rent ratios and mortgage credit conditions as leading indicators." },
@@ -1090,8 +1090,8 @@ export default function CrisisHistoryPage() {
                     <p className="text-xs text-amber-400 font-semibold mb-0.5">Notable Exception</p>
                     <p className="text-xs text-slate-400">{a.exception}</p>
                   </div>
-                  <div className="bg-blue-500/10 border border-blue-500/20 rounded p-2">
-                    <p className="text-xs text-blue-400 font-semibold mb-0.5">Investor Rule</p>
+                  <div className="bg-primary/10 border border-border rounded p-2">
+                    <p className="text-xs text-primary font-semibold mb-0.5">Investor Rule</p>
                     <p className="text-xs text-slate-400">{a.rule}</p>
                   </div>
                 </CardContent>
@@ -1133,7 +1133,7 @@ export default function CrisisHistoryPage() {
           <Card className="bg-slate-900 border-slate-800">
             <CardHeader className="pb-2">
               <CardTitle className="text-sm text-slate-300 flex items-center gap-2">
-                <Landmark className="w-4 h-4 text-violet-400" />
+                <Landmark className="w-4 h-4 text-primary" />
                 Fed Policy Tools — Historical Timeline
               </CardTitle>
             </CardHeader>
@@ -1151,13 +1151,13 @@ export default function CrisisHistoryPage() {
               <CardContent>
                 <div className="space-y-3">
                   {[
-                    { era: "Pre-2008 (Traditional)", color: "text-blue-400", tools: [
+                    { era: "Pre-2008 (Traditional)", color: "text-primary", tools: [
                       "Federal funds rate target",
                       "Discount window lending",
                       "Reserve requirements",
                       "Open market operations (OMO)",
                     ]},
-                    { era: "2008–2015 (GFC Innovation)", color: "text-violet-400", tools: [
+                    { era: "2008–2015 (GFC Innovation)", color: "text-primary", tools: [
                       "Zero Interest Rate Policy (ZIRP)",
                       "Quantitative Easing (QE1–QE3) — $3.5T",
                       "Forward guidance on rates",
@@ -1195,7 +1195,7 @@ export default function CrisisHistoryPage() {
                     { crisis: "1929 Great Depression", response: "Hoover: fiscal austerity, raised taxes. FDR: New Deal $50B (6% GDP). Result: prolonged depression, recovery only post-WWII.", outcome: "Poor", color: "text-red-400" },
                     { crisis: "2008 GFC", response: "TARP $700B + ARRA stimulus $787B + Fed QE $1.75T. Coordinated G20 stimulus ~$5T globally. Result: recession ended after 18 months.", outcome: "Moderate", color: "text-yellow-400" },
                     { crisis: "2020 COVID", response: "CARES Act $2.2T + ARPA $1.9T + PPP $800B. Total US fiscal ~$6T. Fed balance sheet: $4T → $9T. Result: fastest recovery on record.", outcome: "Strong", color: "text-emerald-400" },
-                    { crisis: "2022 Inflation", response: "Rapid Fed rate hikes: 0% → 5.25% in 16 months. Simultaneous QT. IRA/CHIPS Acts as supply-side response. Result: inflation down without recession.", outcome: "Effective", color: "text-blue-400" },
+                    { crisis: "2022 Inflation", response: "Rapid Fed rate hikes: 0% → 5.25% in 16 months. Simultaneous QT. IRA/CHIPS Acts as supply-side response. Result: inflation down without recession.", outcome: "Effective", color: "text-primary" },
                   ].map((row) => (
                     <div key={row.crisis} className="bg-slate-800 rounded-lg p-3">
                       <div className="flex items-center justify-between mb-1">

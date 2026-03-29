@@ -654,8 +654,8 @@ function SingleOptionTab() {
         <h3 className="text-sm font-semibold text-white flex items-center gap-2"><Calculator size={14} /> Parameters</h3>
 
         <div className="flex gap-2">
-          <button onClick={() => setIsCall(true)} className={`flex-1 py-1.5 text-xs rounded font-medium transition-colors ${isCall ? "bg-blue-600 text-white" : "bg-gray-800 text-gray-400 hover:bg-gray-700"}`}>Call</button>
-          <button onClick={() => setIsCall(false)} className={`flex-1 py-1.5 text-xs rounded font-medium transition-colors ${!isCall ? "bg-purple-600 text-white" : "bg-gray-800 text-gray-400 hover:bg-gray-700"}`}>Put</button>
+          <button onClick={() => setIsCall(true)} className={`flex-1 py-1.5 text-xs rounded font-medium transition-colors ${isCall ? "bg-primary text-white" : "bg-gray-800 text-gray-400 hover:bg-gray-700"}`}>Call</button>
+          <button onClick={() => setIsCall(false)} className={`flex-1 py-1.5 text-xs rounded font-medium transition-colors ${!isCall ? "bg-primary text-white" : "bg-gray-800 text-gray-400 hover:bg-gray-700"}`}>Put</button>
         </div>
         <div className="flex gap-2">
           <button onClick={() => setIsBuy(true)} className={`flex-1 py-1.5 text-xs rounded font-medium transition-colors ${isBuy ? "bg-emerald-700 text-white" : "bg-gray-800 text-gray-400 hover:bg-gray-700"}`}>Buy</button>
@@ -821,10 +821,10 @@ function StrategyBuilderTab() {
 
   const tagColors: Record<string, string> = {
     "Income": "bg-emerald-900/50 text-emerald-300",
-    "Defined Risk": "bg-blue-900/50 text-blue-300",
-    "Earnings Play": "bg-purple-900/50 text-purple-300",
+    "Defined Risk": "bg-muted/70 text-primary",
+    "Earnings Play": "bg-muted/70 text-primary",
     "Speculation": "bg-amber-900/50 text-amber-300",
-    "Hedge": "bg-teal-900/50 text-teal-300",
+    "Hedge": "bg-teal-900/50 text-emerald-300",
   };
 
   return (
@@ -858,7 +858,7 @@ function StrategyBuilderTab() {
           <div className="grid grid-cols-2 sm:grid-cols-3 gap-1.5 max-h-40 overflow-y-auto">
             {Object.entries(presets).map(([name, preset]) => (
               <button key={name} onClick={() => applyPreset(name)}
-                className={`text-left p-2 rounded border text-xs transition-all ${selectedPreset === name ? "border-blue-500 bg-blue-900/30" : "border-gray-700 bg-gray-800/50 hover:border-gray-600"}`}>
+                className={`text-left p-2 rounded border text-xs transition-all ${selectedPreset === name ? "border-primary bg-muted/50" : "border-gray-700 bg-gray-800/50 hover:border-gray-600"}`}>
                 <div className="font-medium text-gray-200 truncate">{name}</div>
                 <div className="flex flex-wrap gap-0.5 mt-1">
                   {preset.tags.map(t => <span key={t} className={`px-1 py-0.5 rounded text-[11px] ${tagColors[t] ?? "bg-gray-700 text-gray-300"}`}>{t}</span>)}
@@ -957,7 +957,7 @@ function VolatilityTab() {
         <div className="flex flex-wrap gap-2 mb-4">
           {TICKERS.map(t => (
             <button key={t} onClick={() => setSelectedTicker(t)}
-              className={`px-3 py-1 text-xs rounded-full font-medium transition-colors ${selectedTicker === t ? "bg-blue-600 text-white" : "bg-gray-800 text-gray-400 hover:bg-gray-700"}`}>
+              className={`px-3 py-1 text-xs rounded-full font-medium transition-colors ${selectedTicker === t ? "bg-primary text-white" : "bg-gray-800 text-gray-400 hover:bg-gray-700"}`}>
               {t}
             </button>
           ))}
@@ -977,9 +977,9 @@ function VolatilityTab() {
                 const sig = d.ivPct > 75 ? { label: "Rich", cls: "text-amber-400" } : d.ivPct < 25 ? { label: "Cheap", cls: "text-emerald-400" } : { label: "Fair", cls: "text-gray-400" };
                 return (
                   <tr key={d.ticker} onClick={() => setSelectedTicker(d.ticker)}
-                    className={`border-b border-gray-800/50 cursor-pointer hover:bg-gray-800/30 transition-colors ${d.ticker === selectedTicker ? "bg-blue-900/20" : ""}`}>
+                    className={`border-b border-gray-800/50 cursor-pointer hover:bg-gray-800/30 transition-colors ${d.ticker === selectedTicker ? "bg-muted/40" : ""}`}>
                     <td className="py-1.5 pr-4 font-medium text-gray-200">{d.ticker}</td>
-                    <td className="py-1.5 pr-4 text-blue-400">{(d.iv * 100).toFixed(1)}%</td>
+                    <td className="py-1.5 pr-4 text-primary">{(d.iv * 100).toFixed(1)}%</td>
                     <td className="py-1.5 pr-4 text-gray-400">{(d.hv * 100).toFixed(1)}%</td>
                     <td className={`py-1.5 pr-4 ${ratio > 1.1 ? "text-amber-400" : ratio < 0.9 ? "text-emerald-400" : "text-gray-300"}`}>{ratio.toFixed(2)}x</td>
                     <td className="py-1.5 pr-4 text-gray-300">{d.ivPct.toFixed(0)}th</td>
@@ -1273,8 +1273,8 @@ function GreeksDashboardTab() {
           <h3 className="text-sm font-semibold text-white mb-2 flex items-center gap-2"><Zap size={14} /> Theta Decay</h3>
           <ThetaDecayChart S={spot} K={Math.round(spot / 5) * 5} r={r} sigma={sigma} isCall={isCall} />
           <div className="flex gap-2 mt-2">
-            <button onClick={() => setIsCall(true)} className={`flex-1 py-1 text-xs rounded ${isCall ? "bg-blue-600 text-white" : "bg-gray-800 text-gray-400"}`}>Call</button>
-            <button onClick={() => setIsCall(false)} className={`flex-1 py-1 text-xs rounded ${!isCall ? "bg-purple-600 text-white" : "bg-gray-800 text-gray-400"}`}>Put</button>
+            <button onClick={() => setIsCall(true)} className={`flex-1 py-1 text-xs rounded ${isCall ? "bg-primary text-white" : "bg-gray-800 text-gray-400"}`}>Call</button>
+            <button onClick={() => setIsCall(false)} className={`flex-1 py-1 text-xs rounded ${!isCall ? "bg-primary text-white" : "bg-gray-800 text-gray-400"}`}>Put</button>
           </div>
           <p className="text-xs text-gray-500 mt-2">Time value accelerates to zero non-linearly — the last 30 days lose the most value per day.</p>
         </Card>
@@ -1370,8 +1370,8 @@ export default function OptionsCalcPage() {
         {/* Header */}
         <motion.div initial={{ opacity: 0, y: -16 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.4 }}>
           <div className="flex items-center gap-3 mb-1">
-            <div className="p-2 bg-blue-600/20 rounded-lg">
-              <Calculator size={20} className="text-blue-400" />
+            <div className="p-2 bg-primary/20 rounded-lg">
+              <Calculator size={20} className="text-primary" />
             </div>
             <div>
               <h1 className="text-2xl font-bold text-white">Options Strategies Calculator</h1>
@@ -1379,11 +1379,11 @@ export default function OptionsCalcPage() {
             </div>
           </div>
           <div className="flex flex-wrap gap-2 mt-3">
-            <Badge variant="outline" className="border-blue-700 text-blue-400 text-xs">Black-Scholes</Badge>
-            <Badge variant="outline" className="border-purple-700 text-purple-400 text-xs">Greeks</Badge>
+            <Badge variant="outline" className="border-border text-primary text-xs">Black-Scholes</Badge>
+            <Badge variant="outline" className="border-border text-primary text-xs">Greeks</Badge>
             <Badge variant="outline" className="border-emerald-700 text-emerald-400 text-xs">10 Strategies</Badge>
             <Badge variant="outline" className="border-amber-700 text-amber-400 text-xs">Vol Analysis</Badge>
-            <Badge variant="outline" className="border-teal-700 text-teal-400 text-xs">Risk Metrics</Badge>
+            <Badge variant="outline" className="border-teal-700 text-emerald-400 text-xs">Risk Metrics</Badge>
           </div>
         </motion.div>
 

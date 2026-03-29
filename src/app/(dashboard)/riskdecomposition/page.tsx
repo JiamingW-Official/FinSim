@@ -297,9 +297,9 @@ function RiskDecompositionTab() {
       <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
         {[
           { label: "Portfolio Vol", value: `${PORTFOLIO_VOL}%`, sub: "Annualised", icon: Activity, color: "text-indigo-400" },
-          { label: "Portfolio Beta", value: BETA.toFixed(2), sub: "vs S&P 500", icon: BarChart3, color: "text-violet-400" },
-          { label: "Tracking Error", value: `${TRACKING_ERROR}%`, sub: "vs Benchmark", icon: Target, color: "text-purple-400" },
-          { label: "Systematic %", value: `${SYSTEMATIC_RISK}%`, sub: "of total risk", icon: Layers, color: "text-blue-400" },
+          { label: "Portfolio Beta", value: BETA.toFixed(2), sub: "vs S&P 500", icon: BarChart3, color: "text-primary" },
+          { label: "Tracking Error", value: `${TRACKING_ERROR}%`, sub: "vs Benchmark", icon: Target, color: "text-primary" },
+          { label: "Systematic %", value: `${SYSTEMATIC_RISK}%`, sub: "of total risk", icon: Layers, color: "text-primary" },
         ].map((item) => (
           <Card key={item.label} className="bg-zinc-900 border-zinc-800">
             <CardContent className="pt-4 pb-4">
@@ -1076,7 +1076,7 @@ function RiskBudgetingTab() {
         <Card className="bg-zinc-900 border-zinc-800">
           <CardContent className="pt-5">
             <div className="flex items-center gap-2 mb-2">
-              <PieChart className="w-4 h-4 text-violet-400" />
+              <PieChart className="w-4 h-4 text-primary" />
               <span className="text-sm font-medium text-zinc-300">Risk Parity Concept</span>
             </div>
             <p className="text-xs text-zinc-500 leading-relaxed mb-3">

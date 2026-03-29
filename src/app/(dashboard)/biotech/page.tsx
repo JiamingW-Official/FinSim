@@ -349,7 +349,7 @@ function PipelineTracker() {
             className={cn(
               "px-3 py-1 rounded text-xs font-medium transition-colors",
               sortBy === opt
-                ? "bg-blue-600 text-white"
+                ? "bg-primary text-white"
                 : "bg-zinc-800 text-zinc-400 hover:bg-zinc-700"
             )}
           >
@@ -377,7 +377,7 @@ function PipelineTracker() {
               className={cn(
                 "rounded-lg border transition-colors cursor-pointer",
                 isSelected
-                  ? "border-blue-500 bg-blue-950/20"
+                  ? "border-primary bg-muted/30"
                   : "border-zinc-800 bg-zinc-900/60 hover:border-zinc-600"
               )}
               onClick={() => setSelectedCompany(isSelected ? null : co)}
@@ -455,7 +455,7 @@ function PipelineTracker() {
                                 PoA: <span className="text-white font-medium">{fmtPct(drug.poA)}</span>
                               </span>
                               <span className="text-zinc-400">
-                                Readout: <span className="text-blue-300">{drug.nextReadout}</span>
+                                Readout: <span className="text-primary">{drug.nextReadout}</span>
                               </span>
                               <span
                                 className="font-medium px-2 py-0.5 rounded text-xs"
@@ -505,7 +505,7 @@ function PipelineTracker() {
       {/* Binary Event Calendar */}
       <div>
         <h3 className="text-sm font-semibold text-zinc-300 mb-3 flex items-center gap-2">
-          <Calendar className="w-4 h-4 text-blue-400" />
+          <Calendar className="w-4 h-4 text-primary" />
           Binary Event Calendar
         </h3>
         <div className="rounded-lg border border-zinc-800 overflow-hidden">
@@ -525,10 +525,10 @@ function PipelineTracker() {
                   ev.eventType === "PDUFA"
                     ? "text-emerald-400"
                     : ev.eventType === "Conference"
-                    ? "text-blue-400"
+                    ? "text-primary"
                     : ev.eventType === "Phase III Readout"
                     ? "text-amber-400"
-                    : "text-purple-400";
+                    : "text-primary";
                 return (
                   <tr
                     key={i}
@@ -697,7 +697,7 @@ function DrugEconomics() {
         {[
           { label: "Avg. All-in Cost", value: "$2.6B", sub: "Including failures", color: "text-rose-400" },
           { label: "Development Timeline", value: "10–15 yrs", sub: "Discovery to launch", color: "text-amber-400" },
-          { label: "Success Rate", value: "0.01%", sub: "Compound → Approval", color: "text-blue-400" },
+          { label: "Success Rate", value: "0.01%", sub: "Compound → Approval", color: "text-primary" },
           { label: "Phase III Success", value: "58%", sub: "FDA NDA approval", color: "text-emerald-400" },
         ].map((stat) => (
           <div key={stat.label} className="bg-zinc-900 border border-zinc-800 rounded-lg p-4">
@@ -970,7 +970,7 @@ function ValuationFramework() {
             className={cn(
               "px-2.5 py-1 rounded text-xs font-mono font-medium transition-colors",
               selectedTicker === c.ticker
-                ? "bg-blue-600 text-white"
+                ? "bg-primary text-white"
                 : "bg-zinc-800 text-zinc-400 hover:bg-zinc-700"
             )}
           >
@@ -1078,7 +1078,7 @@ function ValuationFramework() {
               {comparables.map((row, i) => (
                 <tr key={i} className="border-b border-zinc-800/50 hover:bg-zinc-800/30">
                   <td className="p-2 text-zinc-300">{row.name}</td>
-                  <td className="p-2 text-blue-300 font-mono">{row.metric}</td>
+                  <td className="p-2 text-primary font-mono">{row.metric}</td>
                   <td className="p-2 text-zinc-400">{row.typical}</td>
                   <td className="p-2 text-right text-white font-medium">{row.current}</td>
                 </tr>
@@ -1104,7 +1104,7 @@ function ValuationFramework() {
                 <div className="flex items-center gap-2 mb-0.5">
                   <span className="text-xs font-bold text-white">{deal.acquirer}</span>
                   <span className="text-xs text-zinc-500">acquires</span>
-                  <span className="text-xs font-bold text-blue-300">{deal.target}</span>
+                  <span className="text-xs font-bold text-primary">{deal.target}</span>
                   <span className="text-xs text-zinc-400">({deal.year})</span>
                 </div>
                 <p className="text-xs text-zinc-500">{deal.rationale}</p>
@@ -1187,7 +1187,7 @@ function SectorAnalysis() {
                     <span
                       className={cn(
                         "font-medium",
-                        row.rd > 30 ? "text-blue-400" : row.rd > 15 ? "text-amber-400" : "text-zinc-400"
+                        row.rd > 30 ? "text-primary" : row.rd > 15 ? "text-amber-400" : "text-zinc-400"
                       )}
                     >
                       {row.rd}%
@@ -1224,7 +1224,7 @@ function SectorAnalysis() {
                     cat.pricingPower === "Extreme" || cat.pricingPower === "Very High"
                       ? "text-emerald-400"
                       : cat.pricingPower === "High"
-                      ? "text-blue-400"
+                      ? "text-primary"
                       : "text-amber-400"
                   )}
                 >
@@ -1287,8 +1287,8 @@ function SectorAnalysis() {
         </svg>
         <div className="mt-3 grid grid-cols-3 gap-3">
           {[
-            { label: "Fast Track", desc: "Accelerate review for serious conditions with unmet need", color: "text-blue-400" },
-            { label: "Breakthrough Therapy", desc: "Preliminary evidence of substantial improvement over SOC", color: "text-purple-400" },
+            { label: "Fast Track", desc: "Accelerate review for serious conditions with unmet need", color: "text-primary" },
+            { label: "Breakthrough Therapy", desc: "Preliminary evidence of substantial improvement over SOC", color: "text-primary" },
             { label: "Accelerated Approval", desc: "Based on surrogate endpoint; post-market confirmation required", color: "text-emerald-400" },
           ].map((d) => (
             <div key={d.label} className="bg-zinc-800/40 rounded p-3">
@@ -1394,7 +1394,7 @@ function BinaryEventTrading() {
       {/* Straddle Calculator */}
       <div className="bg-zinc-900 border border-zinc-800 rounded-lg p-5">
         <h3 className="text-sm font-semibold text-zinc-300 mb-2 flex items-center gap-2">
-          <Activity className="w-4 h-4 text-blue-400" />
+          <Activity className="w-4 h-4 text-primary" />
           ATM Straddle Calculator for Binary Events
         </h3>
         <p className="text-xs text-zinc-500 mb-4">
@@ -1480,14 +1480,14 @@ function BinaryEventTrading() {
       {/* Position Sizing */}
       <div className="bg-zinc-900 border border-zinc-800 rounded-lg p-5">
         <h3 className="text-sm font-semibold text-zinc-300 mb-4 flex items-center gap-2">
-          <Target className="w-4 h-4 text-purple-400" />
+          <Target className="w-4 h-4 text-primary" />
           Position Sizing for Binary Events
         </h3>
         <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
           {[
             { label: "Binary Event", maxSize: "1–3%", why: "High variance, binary outcome", color: "text-rose-400" },
             { label: "Catalyst + Trend", maxSize: "3–5%", why: "Directional bias + catalyst", color: "text-amber-400" },
-            { label: "FDA Blue Chip", maxSize: "3–7%", why: "Large pharma, lower volatility", color: "text-blue-400" },
+            { label: "FDA Blue Chip", maxSize: "3–7%", why: "Large pharma, lower volatility", color: "text-primary" },
             { label: "Basket (10 names)", maxSize: "1–2% each", why: "Diversified across catalysts", color: "text-emerald-400" },
           ].map((ps) => (
             <div key={ps.label} className="bg-zinc-800/40 rounded p-3">
@@ -1530,7 +1530,7 @@ function BinaryEventTrading() {
                     <td className="p-2 font-mono font-bold text-white">{c.ticker}</td>
                     <td className="p-2 text-zinc-400">{c.eventType}</td>
                     <td className="p-2 text-zinc-500">{c.date}</td>
-                    <td className="p-2 text-right text-blue-300">{c.positionPct.toFixed(1)}%</td>
+                    <td className="p-2 text-right text-primary">{c.positionPct.toFixed(1)}%</td>
                     <td className="p-2 text-right">
                       {c.result === "pending" ? (
                         <span className="text-zinc-500">—</span>
@@ -1592,16 +1592,16 @@ function BinaryEventTrading() {
               granted: "Rolling review, more FDA meetings",
               impliedMove: "±5–10% on grant",
               frequency: "~200/yr",
-              color: "border-blue-700 bg-blue-950/20",
-              textColor: "text-blue-400",
+              color: "border-border bg-muted/30",
+              textColor: "text-primary",
             },
             {
               name: "Breakthrough Therapy",
               granted: "Intensive guidance; Priority Review eligible",
               impliedMove: "±15–25% on grant",
               frequency: "~50/yr",
-              color: "border-purple-700 bg-purple-950/20",
-              textColor: "text-purple-400",
+              color: "border-border bg-muted/30",
+              textColor: "text-primary",
             },
             {
               name: "Accelerated Approval",
@@ -1762,11 +1762,11 @@ export default function BiotechPage() {
           {/* Top KPIs */}
           <div className="grid grid-cols-2 md:grid-cols-5 gap-3 mt-4">
             {[
-              { label: "Companies Tracked", value: "15", sub: "Across all subsectors", color: "text-blue-400" },
+              { label: "Companies Tracked", value: "15", sub: "Across all subsectors", color: "text-primary" },
               { label: "Upcoming Catalysts", value: "12", sub: "Next 12 months", color: "text-amber-400" },
               { label: "Phase III PoA", value: "58%", sub: "Historical approval rate", color: "text-emerald-400" },
               { label: "Avg Dev Cost", value: "$2.6B", sub: "All-in incl. failures", color: "text-rose-400" },
-              { label: "M&A Premium", value: "50–100%", sub: "Big pharma acquisitions", color: "text-purple-400" },
+              { label: "M&A Premium", value: "50–100%", sub: "Big pharma acquisitions", color: "text-primary" },
             ].map((kpi) => (
               <div key={kpi.label} className="bg-zinc-900 border border-zinc-800 rounded-lg p-3">
                 <div className={cn("text-lg font-bold", kpi.color)}>{kpi.value}</div>

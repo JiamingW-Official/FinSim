@@ -103,7 +103,7 @@ const TICKER_BASE_PRICES: Record<string, number> = {
 };
 
 const AVATAR_COLORS = [
-  "bg-blue-500", "bg-emerald-500", "bg-violet-500", "bg-amber-500",
+  "bg-primary", "bg-emerald-500", "bg-primary", "bg-amber-500",
   "bg-rose-500", "bg-cyan-500", "bg-orange-500", "bg-pink-500",
   "bg-teal-500", "bg-indigo-500",
 ];
@@ -725,7 +725,7 @@ function TrendingTab() {
       {/* Volume anomalies */}
       <section className="space-y-2">
         <div className="flex items-center gap-1.5 mb-1">
-          <BarChart2 className="h-3.5 w-3.5 text-blue-400" />
+          <BarChart2 className="h-3.5 w-3.5 text-primary" />
           <h3 className="text-xs font-bold text-foreground">Volume Anomalies</h3>
           <span className="text-[11px] text-muted-foreground/50">vs 30-day avg</span>
         </div>
@@ -744,7 +744,7 @@ function TrendingTab() {
                   <span className="text-muted-foreground/60">{formatVolume(a.volume)} / {formatVolume(a.avgVolume)} avg</span>
                   <span className={cn(
                     "font-bold rounded px-1 py-0.5",
-                    a.ratio >= 3 ? "text-rose-400 bg-rose-500/10" : a.ratio >= 2 ? "text-amber-400 bg-amber-500/10" : "text-blue-400 bg-blue-500/10",
+                    a.ratio >= 3 ? "text-rose-400 bg-rose-500/10" : a.ratio >= 2 ? "text-amber-400 bg-amber-500/10" : "text-primary bg-primary/10",
                   )}>
                     {a.ratio.toFixed(1)}x
                   </span>
@@ -753,7 +753,7 @@ function TrendingTab() {
                   <div
                     className={cn(
                       "h-full rounded-full transition-all",
-                      a.ratio >= 3 ? "bg-rose-500" : a.ratio >= 2 ? "bg-amber-500" : "bg-blue-500",
+                      a.ratio >= 3 ? "bg-rose-500" : a.ratio >= 2 ? "bg-amber-500" : "bg-primary",
                     )}
                     style={{ width: `${Math.min((a.ratio / 5) * 100, 100)}%` }}
                   />

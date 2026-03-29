@@ -520,17 +520,17 @@ function buildSensitivityTable(): SensCell[] {
 
 // ── Color helpers ────────────────────────────────────────────────────────────
 const colorMap: Record<string, string> = {
-  blue: "bg-blue-500/10 border-blue-500/30 text-blue-400",
-  purple: "bg-purple-500/10 border-purple-500/30 text-purple-400",
+  blue: "bg-primary/10 border-border text-primary",
+  purple: "bg-primary/10 border-border text-primary",
   emerald: "bg-emerald-500/10 border-emerald-500/30 text-emerald-400",
   orange: "bg-orange-500/10 border-orange-500/30 text-orange-400",
-  cyan: "bg-cyan-500/10 border-cyan-500/30 text-cyan-400",
+  cyan: "bg-cyan-500/10 border-cyan-500/30 text-muted-foreground",
   rose: "bg-rose-500/10 border-rose-500/30 text-rose-400",
 };
 
 const dotColorMap: Record<string, string> = {
-  blue: "bg-blue-500",
-  purple: "bg-purple-500",
+  blue: "bg-primary",
+  purple: "bg-primary",
   emerald: "bg-emerald-500",
   orange: "bg-orange-500",
   cyan: "bg-cyan-500",
@@ -1000,7 +1000,7 @@ function FinancialModelTab() {
                 <th className="text-center py-2 px-3 text-rose-400 font-semibold text-xs">
                   Bear
                 </th>
-                <th className="text-center py-2 px-3 text-blue-400 font-semibold text-xs">
+                <th className="text-center py-2 px-3 text-primary font-semibold text-xs">
                   Base
                 </th>
                 <th className="text-center py-2 px-3 text-emerald-400 font-semibold text-xs">
@@ -1021,7 +1021,7 @@ function FinancialModelTab() {
                   <td className="text-center py-2 px-3 text-rose-300 font-mono text-xs">
                     {row.bear}
                   </td>
-                  <td className="text-center py-2 px-3 text-blue-300 font-mono text-xs font-semibold">
+                  <td className="text-center py-2 px-3 text-primary font-mono text-xs font-semibold">
                     {row.base}
                   </td>
                   <td className="text-center py-2 px-3 text-emerald-300 font-mono text-xs">
@@ -1036,7 +1036,7 @@ function FinancialModelTab() {
                 <td className="text-center py-2 px-3 text-rose-300 font-mono text-xs font-bold">
                   $88
                 </td>
-                <td className="text-center py-2 px-3 text-blue-300 font-mono text-xs font-bold">
+                <td className="text-center py-2 px-3 text-primary font-mono text-xs font-bold">
                   $136
                 </td>
                 <td className="text-center py-2 px-3 text-emerald-300 font-mono text-xs font-bold">
@@ -1084,7 +1084,7 @@ function FinancialModelTab() {
                         className={cn(
                           "text-center py-1.5 px-2 font-mono rounded",
                           isBase
-                            ? "bg-blue-500/20 text-blue-300 font-bold"
+                            ? "bg-primary/20 text-primary font-bold"
                             : diff > 20
                             ? "text-emerald-300"
                             : diff < -20
@@ -1201,7 +1201,7 @@ function ValuationFrameworkTab() {
           </div>
           <div>
             <div className="text-xs text-white/40 mb-1">12-Mo Price Target</div>
-            <div className="text-xl font-bold text-blue-400">${weightedPT}</div>
+            <div className="text-xl font-bold text-primary">${weightedPT}</div>
           </div>
           <div>
             <div className="text-xs text-white/40 mb-1">Upside / Downside</div>
@@ -1253,7 +1253,7 @@ function ValuationFrameworkTab() {
                   className={cn(
                     "border-b border-white/5",
                     c.isTarget
-                      ? "bg-blue-500/10 font-semibold"
+                      ? "bg-primary/10 font-semibold"
                       : "hover:bg-white/3"
                   )}
                 >
@@ -1261,13 +1261,13 @@ function ValuationFrameworkTab() {
                     <span
                       className={cn(
                         "font-mono",
-                        c.isTarget ? "text-blue-400" : "text-white/80"
+                        c.isTarget ? "text-primary" : "text-white/80"
                       )}
                     >
                       {c.ticker}
                     </span>
                     {c.isTarget && (
-                      <span className="ml-1 text-xs text-blue-400/70">
+                      <span className="ml-1 text-xs text-muted-foreground">
                         ★
                       </span>
                     )}
@@ -1290,7 +1290,7 @@ function ValuationFrameworkTab() {
                   <td className="text-right py-2 px-2 font-mono text-emerald-300">
                     {c.growth}%
                   </td>
-                  <td className="text-right py-2 px-2 font-mono text-cyan-300">
+                  <td className="text-right py-2 px-2 font-mono text-muted-foreground">
                     {c.margin}%
                   </td>
                 </tr>
@@ -1410,9 +1410,9 @@ function ValuationFrameworkTab() {
             </div>
           ))}
         </div>
-        <div className="mt-4 rounded-lg border border-blue-500/25 bg-blue-500/5 p-3 text-xs text-white/60 leading-relaxed">
-          <Info className="w-3.5 h-3.5 inline mr-1.5 text-blue-400" />
-          <strong className="text-blue-400">Net conclusion:</strong> Mixed premium/discount factors suggest applying a modest 10–15% discount to peer median multiples. EV/EBITDA target: 11.5x–12.5x (peer median 15.8x). Justifies Price Target of ~$136 (base case).
+        <div className="mt-4 rounded-lg border border-border bg-primary/5 p-3 text-xs text-white/60 leading-relaxed">
+          <Info className="w-3.5 h-3.5 inline mr-1.5 text-primary" />
+          <strong className="text-primary">Net conclusion:</strong> Mixed premium/discount factors suggest applying a modest 10–15% discount to peer median multiples. EV/EBITDA target: 11.5x–12.5x (peer median 15.8x). Justifies Price Target of ~$136 (base case).
         </div>
       </div>
     </div>
@@ -1462,7 +1462,7 @@ function BuyVsSellSideTab() {
                 <th className="text-left py-2 px-3 text-emerald-400 font-semibold w-3/8">
                   Buy-Side (Asset Manager / HF / PE)
                 </th>
-                <th className="text-left py-2 px-3 text-blue-400 font-semibold w-3/8">
+                <th className="text-left py-2 px-3 text-primary font-semibold w-3/8">
                   Sell-Side (Broker-Dealer / IBD)
                 </th>
               </tr>
@@ -1612,7 +1612,7 @@ function BuyVsSellSideTab() {
         </div>
         <div className="grid grid-cols-2 gap-3">
           <div>
-            <div className="text-xs font-semibold text-blue-400 mb-2 flex items-center gap-1.5">
+            <div className="text-xs font-semibold text-primary mb-2 flex items-center gap-1.5">
               <Building2 className="w-3.5 h-3.5" /> Sell-Side Track
             </div>
             <div className="space-y-2">
@@ -1620,11 +1620,11 @@ function BuyVsSellSideTab() {
                 (stage, i) => (
                   <div key={stage.title} className="flex items-start gap-2">
                     <div className="flex flex-col items-center">
-                      <div className="w-6 h-6 rounded-full bg-blue-500/20 border border-blue-500/40 flex items-center justify-center text-xs text-blue-400 font-bold shrink-0">
+                      <div className="w-6 h-6 rounded-full bg-primary/20 border border-primary/40 flex items-center justify-center text-xs text-primary font-bold shrink-0">
                         {i + 1}
                       </div>
                       {i < 2 && (
-                        <div className="w-0.5 h-4 bg-blue-500/20 mt-1" />
+                        <div className="w-0.5 h-4 bg-primary/20 mt-1" />
                       )}
                     </div>
                     <div className="pb-2">
@@ -1638,7 +1638,7 @@ function BuyVsSellSideTab() {
                         {stage.skills.map((sk) => (
                           <span
                             key={sk}
-                            className="text-xs bg-blue-500/10 text-blue-300/70 rounded px-1.5 py-0.5"
+                            className="text-xs bg-primary/10 text-muted-foreground rounded px-1.5 py-0.5"
                           >
                             {sk}
                           </span>
@@ -1730,10 +1730,10 @@ function BuyVsSellSideTab() {
           </div>
         </div>
 
-        <div className="rounded-xl border border-purple-500/25 bg-purple-500/5 p-5">
+        <div className="rounded-xl border border-border bg-primary/5 p-5">
           <div className="flex items-center gap-2 mb-3">
-            <Eye className="w-4 h-4 text-purple-400" />
-            <span className="text-sm font-semibold text-purple-400">
+            <Eye className="w-4 h-4 text-primary" />
+            <span className="text-sm font-semibold text-primary">
               Consensus vs. Variant Perception
             </span>
           </div>
@@ -1757,7 +1757,7 @@ function BuyVsSellSideTab() {
               },
             ].map((item) => (
               <div key={item.title}>
-                <div className="font-semibold text-purple-300/80 mb-0.5">
+                <div className="font-semibold text-muted-foreground mb-0.5">
                   {item.title}
                 </div>
                 <div>{item.body}</div>
@@ -1782,8 +1782,8 @@ export default function EquityResearch2Page() {
           transition={{ duration: 0.4 }}
         >
           <div className="flex items-center gap-3 mb-1">
-            <div className="w-9 h-9 rounded-lg bg-blue-500/15 border border-blue-500/30 flex items-center justify-center">
-              <Search className="w-5 h-5 text-blue-400" />
+            <div className="w-9 h-9 rounded-lg bg-primary/15 border border-border flex items-center justify-center">
+              <Search className="w-5 h-5 text-primary" />
             </div>
             <div>
               <h1 className="text-2xl font-bold text-white">
@@ -1820,21 +1820,21 @@ export default function EquityResearch2Page() {
           <TabsList className="grid grid-cols-4 w-full bg-white/5 border border-white/10 rounded-lg h-10">
             <TabsTrigger
               value="process"
-              className="text-xs data-[state=active]:bg-blue-500/20 data-[state=active]:text-blue-300 rounded-md"
+              className="text-xs data-[state=active]:bg-primary/20 data-[state=active]:text-primary rounded-md"
             >
               <Search className="w-3.5 h-3.5 mr-1.5" />
               Research Process
             </TabsTrigger>
             <TabsTrigger
               value="model"
-              className="text-xs data-[state=active]:bg-cyan-500/20 data-[state=active]:text-cyan-300 rounded-md"
+              className="text-xs data-[state=active]:bg-cyan-500/20 data-[state=active]:text-muted-foreground rounded-md"
             >
               <BarChart3 className="w-3.5 h-3.5 mr-1.5" />
               Financial Model
             </TabsTrigger>
             <TabsTrigger
               value="valuation"
-              className="text-xs data-[state=active]:bg-purple-500/20 data-[state=active]:text-purple-300 rounded-md"
+              className="text-xs data-[state=active]:bg-primary/20 data-[state=active]:text-primary rounded-md"
             >
               <Target className="w-3.5 h-3.5 mr-1.5" />
               Valuation

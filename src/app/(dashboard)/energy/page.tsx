@@ -74,7 +74,7 @@ function InfoBox({
   variant?: "blue" | "amber" | "emerald" | "rose";
 }) {
   const colors: Record<string, string> = {
-    blue: "bg-blue-500/10 border-blue-500/30 text-blue-200",
+    blue: "bg-primary/10 border-border text-primary",
     amber: "bg-amber-500/10 border-amber-500/30 text-amber-200",
     emerald: "bg-emerald-500/10 border-emerald-500/30 text-emerald-200",
     rose: "bg-rose-500/10 border-rose-500/30 text-rose-200",
@@ -735,7 +735,7 @@ function Tab2() {
                       <div className="flex items-center justify-end gap-2">
                         <div className="w-20 h-1.5 bg-zinc-800 rounded-full overflow-hidden">
                           <div
-                            className="h-full bg-blue-400 rounded-full"
+                            className="h-full bg-primary rounded-full"
                             style={{ width: `${Math.min((b.reserveLife / 80) * 100, 100)}%` }}
                           />
                         </div>
@@ -838,7 +838,7 @@ function Tab2() {
               <div className="text-sm font-semibold text-white">{h.name}</div>
               <div className="text-xs text-zinc-400 flex-1">{h.desc}</div>
               <div className="flex gap-2 text-xs mt-1">
-                <Badge variant="outline" className="border-blue-500/40 text-blue-400">Risk: {h.risk}</Badge>
+                <Badge variant="outline" className="border-primary/40 text-primary">Risk: {h.risk}</Badge>
                 <Badge variant="outline" className={cn(
                   h.upside === "Full" ? "border-emerald-500/40 text-emerald-400" :
                   h.upside === "Partial" ? "border-amber-500/40 text-amber-400" :
@@ -907,7 +907,7 @@ function Tab3() {
               cf: "40–55%",
               trend: "Rapidly declining — scale + supply chain",
               color: "#3b82f6",
-              icon: <Droplets className="w-5 h-5 text-blue-400" />,
+              icon: <Droplets className="w-5 h-5 text-primary" />,
             },
           ].map((w) => (
             <Card key={w.type} className="flex flex-col gap-3">
@@ -1033,7 +1033,7 @@ function Tab3() {
               </div>
               <div className="text-center">
                 <div className="text-xs text-zinc-500 mb-0.5">Cycle Life</div>
-                <div className="text-xs font-semibold text-blue-400">{b.cycles}</div>
+                <div className="text-xs font-semibold text-primary">{b.cycles}</div>
               </div>
               <div>
                 <div className="text-xs text-zinc-500 mb-0.5">Best For</div>
@@ -1117,7 +1117,7 @@ function Tab4() {
                       <div className="font-semibold text-white">{u.ticker}</div>
                       <div className="text-zinc-500">{u.name}</div>
                     </td>
-                    <td className="py-2.5 text-right text-blue-400">{u.allowedROE}%</td>
+                    <td className="py-2.5 text-right text-primary">{u.allowedROE}%</td>
                     <td className="py-2.5 text-right text-emerald-400">+{u.rateBaseGrowth}%</td>
                     <td className="py-2.5 text-right text-white">${u.dividend.toFixed(2)}</td>
                     <td className="py-2.5 text-right text-zinc-300">{u.payoutRatio}%</td>
@@ -1144,7 +1144,7 @@ function Tab4() {
                 step: "1",
                 title: "File Rate Case",
                 desc: "Utility submits request to state Public Utilities Commission to increase customer rates based on capital invested (rate base).",
-                color: "text-blue-400",
+                color: "text-primary",
               },
               {
                 step: "2",
@@ -1191,7 +1191,7 @@ function Tab4() {
                   </div>
                   <div className="h-2 bg-zinc-800 rounded-full overflow-hidden">
                     <motion.div
-                      className="h-full bg-blue-500 rounded-full"
+                      className="h-full bg-primary rounded-full"
                       initial={{ width: 0 }}
                       animate={{ width: `${(u.capex / 9) * 100}%` }}
                       transition={{ delay: 0.1, duration: 0.6 }}
@@ -1300,7 +1300,7 @@ function Tab5() {
               <div className="text-xs text-zinc-500">IEA NZE target 2030</div>
             </div>
             <div>
-              <div className="text-xl font-bold text-blue-400">20mb/d</div>
+              <div className="text-xl font-bold text-primary">20mb/d</div>
               <div className="text-xs text-zinc-500">oil displaced by 2035 (IEA NZE)</div>
             </div>
           </div>

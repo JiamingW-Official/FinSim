@@ -383,7 +383,7 @@ function PortfoliosTab() {
       <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
         <StatCard label="IG Bond Allocation" value="70–80%" sub="Life insurer avg" color="text-indigo-400" />
         <StatCard label="P&C Portfolio Duration" value="1–3yr" sub="Short-dated claims" color="text-emerald-400" />
-        <StatCard label="Life Insurer Duration" value="15–25yr" sub="30yr liability matching" color="text-violet-400" />
+        <StatCard label="Life Insurer Duration" value="15–25yr" sub="30yr liability matching" color="text-primary" />
         <StatCard label="Float Return (BRK)" value="~1–2%" sub="Cost-free leverage" color="text-amber-400" />
       </div>
 
@@ -470,7 +470,7 @@ function AnnuitiesTab() {
     <div className="space-y-6">
       {/* Stats */}
       <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
-        <StatCard label="US Annuity Market" value="$3.7T" sub="Total assets in-force" color="text-violet-400" />
+        <StatCard label="US Annuity Market" value="$3.7T" sub="Total assets in-force" color="text-primary" />
         <StatCard label="SPIA Payout (70M)" value="~7.5%" sub="Per $100k, annual income" color="text-emerald-400" />
         <StatCard label="FIA Cap Rate (avg)" value="8–12%" sub="S&P 500 indexed" color="text-indigo-400" />
         <StatCard label="Surrender Charge" value="7–10yr" sub="Typical illiquidity period" color="text-red-400" />
@@ -550,8 +550,8 @@ function AnnuitiesTab() {
               { name: "GLWB", full: "Guaranteed Lifetime Withdrawal Benefit", desc: "Like GMWB but extends for life. If account depletes, insurer continues payments. Annual step-up provisions ratchet the benefit base higher. Cost: 0.75–1.5%/yr." },
               { name: "GMAB", full: "Guaranteed Minimum Accumulation Benefit", desc: "Guarantees account value equals or exceeds a specified amount (e.g., original premium) at a specific future date. Protects against poor market performance over a defined term." },
             ].map((b) => (
-              <div key={b.name} className="bg-zinc-800/50 rounded-xl p-3 border border-violet-500/20">
-                <div className="text-xs font-bold text-violet-400">{b.name}</div>
+              <div key={b.name} className="bg-zinc-800/50 rounded-xl p-3 border border-border">
+                <div className="text-xs font-bold text-primary">{b.name}</div>
                 <div className="text-xs text-zinc-400 mt-0.5 mb-2">{b.full}</div>
                 <div className="text-xs text-zinc-300">{b.desc}</div>
               </div>
@@ -621,7 +621,7 @@ function SettlementsILSTab() {
         <StatCard label="Life Settlement Market" value="$4B/yr" sub="Secondary policy sales" color="text-indigo-400" />
         <StatCard label="ILS Market Size" value="$112B+" sub="Outstanding notional" color="text-amber-400" />
         <StatCard label="Cat Bond Avg Spread" value="~5–8%" sub="Over risk-free rate" color="text-emerald-400" />
-        <StatCard label="ILS/Equity Correlation" value="~0.05" sub="Near-zero diversifier" color="text-violet-400" />
+        <StatCard label="ILS/Equity Correlation" value="~0.05" sub="Near-zero diversifier" color="text-primary" />
       </div>
 
       {/* Life Settlement Mechanics */}
@@ -703,7 +703,7 @@ function SettlementsILSTab() {
             {[
               { name: "Cat Bonds", desc: "SPV issues bonds; investors lose principal if a defined catastrophe triggers. Typical triggers: industry loss index, parametric (wind speed), indemnity. Spreads: 5–12% over Treasuries.", color: "text-amber-400" },
               { name: "Sidecars", desc: "Quota-share arrangements where outside capital participates in a reinsurer's book. Rapid deployment post-catastrophe when reinsurance prices spike. Typical 1-3yr life.", color: "text-indigo-400" },
-              { name: "Collateralized Re", desc: "Private, fully collateralized reinsurance contract. Higher returns (8–15%) but less liquid than cat bonds. Forms largest segment of ILS market.", color: "text-violet-400" },
+              { name: "Collateralized Re", desc: "Private, fully collateralized reinsurance contract. Higher returns (8–15%) but less liquid than cat bonds. Forms largest segment of ILS market.", color: "text-primary" },
             ].map((t) => (
               <div key={t.name} className="bg-zinc-800/50 rounded-xl p-3 border border-zinc-700/30">
                 <div className={cn("text-xs font-semibold mb-1", t.color)}>{t.name}</div>
@@ -749,7 +749,7 @@ function StockAnalysisTab() {
       <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
         <StatCard label="CR Screen Threshold" value="&lt;95%" sub="Profitable underwriting" color="text-emerald-400" />
         <StatCard label="ROE Screen" value="&gt;12%" sub="Above cost of capital" color="text-indigo-400" />
-        <StatCard label="P/B Range (P&C)" value="1.0–2.5×" sub="ROE drives premium" color="text-violet-400" />
+        <StatCard label="P/B Range (P&C)" value="1.0–2.5×" sub="ROE drives premium" color="text-primary" />
         <StatCard label="EV Discount (Life)" value="10–20%" sub="Typical trading range" color="text-amber-400" />
       </div>
 
@@ -896,7 +896,7 @@ export default function InsuranceInvestingPage() {
               { icon: DollarSign, label: "$3.7T annuity market", color: "text-indigo-400" },
               { icon: TrendingUp, label: "Float-funded returns", color: "text-emerald-400" },
               { icon: Activity, label: "$112B+ ILS outstanding", color: "text-amber-400" },
-              { icon: BookOpen, label: "Berkshire float model", color: "text-violet-400" },
+              { icon: BookOpen, label: "Berkshire float model", color: "text-primary" },
             ].map(({ icon: Icon, label, color }) => (
               <div key={label} className="flex items-center gap-1.5 px-3 py-1 rounded-full bg-zinc-800/60 border border-zinc-700/40 text-xs">
                 <Icon className={cn("w-3 h-3", color)} />

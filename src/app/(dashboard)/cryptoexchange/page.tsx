@@ -1426,8 +1426,8 @@ export default function CryptoExchangePage() {
                   const chainColors: Record<string, string> = {
                     ETH: "text-indigo-400",
                     BSC: "text-amber-400",
-                    Polygon: "text-purple-400",
-                    Arbitrum: "text-blue-400",
+                    Polygon: "text-primary",
+                    Arbitrum: "text-primary",
                     Optimism: "text-red-400",
                   };
                   return (

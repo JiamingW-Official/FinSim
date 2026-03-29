@@ -139,7 +139,7 @@ const SCENARIOS: StressScenario[] = [
     name: "2022 Rate Hike Cycle",
     period: "2022",
     keyStat: "Equities -20%, Bonds -15%",
-    color: "text-violet-400",
+    color: "text-primary",
     equityShock: -0.20,
     bondShock: -0.15,
     vixMultiplier: 2.0,
@@ -163,7 +163,7 @@ const SCENARIOS: StressScenario[] = [
     name: "Rate Spike +300bp",
     period: "Hypothetical",
     keyStat: "Duration damage, yield curve inverts",
-    color: "text-cyan-400",
+    color: "text-muted-foreground",
     equityShock: -0.18,
     bondShock: -0.25,
     vixMultiplier: 2.2,
@@ -862,7 +862,7 @@ function MonteCarloPanel({ portfolioValue }: { portfolioValue: number }) {
       <div className="rounded-lg border border-border bg-card/50 px-3 py-2">
         <p className="text-xs text-muted-foreground leading-relaxed">
           <span className="font-medium text-foreground/80">Legend:</span>{" "}
-          <span className="text-violet-400">Purple</span> = Median path.{" "}
+          <span className="text-primary">Purple</span> = Median path.{" "}
           <span className="text-emerald-400">Green</span> = 75th/90th percentile.{" "}
           <span className="text-red-400">Red dashed</span> = 10th percentile (worst 10% of outcomes).
           Shaded bands show interquartile ranges. Dotted horizontal = starting portfolio value.
@@ -1111,7 +1111,7 @@ export function StressTester() {
         <Card className="border-border bg-card/50">
           <CardHeader className="pb-3 pt-4">
             <CardTitle className="flex items-center gap-2 text-[13px]">
-              <Activity className="h-4 w-4 text-cyan-400" />
+              <Activity className="h-4 w-4 text-muted-foreground" />
               Custom Scenario Builder
             </CardTitle>
           </CardHeader>
@@ -1130,7 +1130,7 @@ export function StressTester() {
         <div className="space-y-3">
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-1.5">
-              <BarChart2 className="h-3.5 w-3.5 text-violet-400" />
+              <BarChart2 className="h-3.5 w-3.5 text-primary" />
               <p className="text-[11px] font-medium text-muted-foreground">
                 {stressResult ? stressResult.scenarioName : "Stress Test Results"}
               </p>

@@ -365,8 +365,8 @@ const PITCH_SECTIONS = [
     id: 1,
     title: "Executive Summary",
     icon: Star,
-    color: "text-blue-400",
-    bg: "bg-blue-500/10 border-blue-500/30",
+    color: "text-primary",
+    bg: "bg-primary/10 border-border",
     status: "complete",
     keyPoints: [
       "Transformational combination creating $8.2B market leader in enterprise SaaS",
@@ -381,8 +381,8 @@ const PITCH_SECTIONS = [
     id: 2,
     title: "Situation Overview",
     icon: Activity,
-    color: "text-purple-400",
-    bg: "bg-purple-500/10 border-purple-500/30",
+    color: "text-primary",
+    bg: "bg-primary/10 border-border",
     status: "complete",
     keyPoints: [
       "Target: Stratos Digital (STRD) — $15.6B enterprise value, growing 22% YoY",
@@ -448,8 +448,8 @@ function PitchStructureTab() {
         <CardContent className="pt-4 pb-4">
           <div className="flex flex-wrap items-center gap-4">
             <div className="flex items-center gap-3">
-              <div className="w-10 h-10 rounded-lg bg-blue-500/20 flex items-center justify-center">
-                <Building2 className="w-5 h-5 text-blue-400" />
+              <div className="w-10 h-10 rounded-lg bg-primary/20 flex items-center justify-center">
+                <Building2 className="w-5 h-5 text-primary" />
               </div>
               <div>
                 <p className="text-xs text-zinc-500">Transaction</p>
@@ -595,7 +595,7 @@ function PitchStructureTab() {
                   <div
                     className={`w-8 h-8 rounded-full flex items-center justify-center text-xs font-bold border ${
                       step.done
-                        ? "bg-blue-500 border-blue-400 text-white"
+                        ? "bg-primary border-primary text-white"
                         : "bg-zinc-800 border-zinc-600 text-zinc-400"
                     }`}
                   >
@@ -605,7 +605,7 @@ function PitchStructureTab() {
                   <p className="text-xs text-zinc-500 whitespace-nowrap">{step.date}</p>
                 </div>
                 {i < arr.length - 1 && (
-                  <div className={`h-px w-6 mx-1 mt-[-18px] ${step.done ? "bg-blue-500" : "bg-zinc-700"}`} />
+                  <div className={`h-px w-6 mx-1 mt-[-18px] ${step.done ? "bg-primary" : "bg-zinc-700"}`} />
                 )}
               </div>
             ))}
@@ -750,7 +750,7 @@ function ValuationSummaryTab() {
                           key={tgr}
                           className={`text-center p-2 font-mono ${
                             isMiddle
-                              ? "bg-blue-500/20 text-blue-300 font-bold"
+                              ? "bg-primary/20 text-primary font-bold"
                               : isHigh
                               ? "text-emerald-400"
                               : isLow
@@ -844,7 +844,7 @@ function ComparableCompaniesTab() {
               <div className="space-y-2">
                 {[
                   { k: "25th Pct.", v: st.p25, color: "text-zinc-400" },
-                  { k: "Median", v: st.median, color: "text-blue-400" },
+                  { k: "Median", v: st.median, color: "text-primary" },
                   { k: "Mean", v: st.mean, color: "text-zinc-300" },
                   { k: "75th Pct.", v: st.p75, color: "text-emerald-400" },
                 ].map((row) => (
@@ -884,7 +884,7 @@ function ComparableCompaniesTab() {
                     >
                       {col.label}
                       {sortField === col.field && (
-                        <span className="ml-1 text-blue-400">
+                        <span className="ml-1 text-primary">
                           {sortDir === "asc" ? "↑" : "↓"}
                         </span>
                       )}
@@ -915,7 +915,7 @@ function ComparableCompaniesTab() {
                         <td
                           key={col.field}
                           className={`p-2 text-right font-mono ${
-                            isMed ? "text-blue-400 font-bold" : "text-zinc-300"
+                            isMed ? "text-primary font-bold" : "text-zinc-300"
                           }`}
                         >
                           {col.fmt(val)}
@@ -926,13 +926,13 @@ function ComparableCompaniesTab() {
                 ))}
                 {/* Median row */}
                 <tr className="border-t-2 border-zinc-600 bg-zinc-800/30">
-                  <td className="p-2 text-blue-300 font-bold" colSpan={2}>Median</td>
+                  <td className="p-2 text-primary font-bold" colSpan={2}>Median</td>
                   {cols.map((col) => {
                     const vals = COMPS_TABLE.map((c) => c[col.field] as number);
                     const med = median(vals);
                     const isNum = ["ev", "revenue", "ebitda"].includes(col.field);
                     return (
-                      <td key={col.field} className="p-2 text-right font-mono text-blue-400 font-bold">
+                      <td key={col.field} className="p-2 text-right font-mono text-primary font-bold">
                         {isNum ? `$${med.toFixed(1)}B` : `${med.toFixed(1)}x`}
                       </td>
                     );
@@ -1011,7 +1011,7 @@ function MAndAAccretionTab() {
           <div>
             <div className="flex items-center justify-between mb-2">
               <span className="text-xs text-zinc-400">Synergy Capture Rate</span>
-              <span className="text-sm font-bold text-blue-400">{synergyCapture}%</span>
+              <span className="text-sm font-bold text-primary">{synergyCapture}%</span>
             </div>
             <Slider
               value={[synergyCapture]}
@@ -1029,7 +1029,7 @@ function MAndAAccretionTab() {
           <div>
             <div className="flex items-center justify-between mb-2">
               <span className="text-xs text-zinc-400">Debt Financing Mix</span>
-              <span className="text-sm font-bold text-purple-400">{debtFinancing}% Debt / {100 - debtFinancing}% Equity</span>
+              <span className="text-sm font-bold text-primary">{debtFinancing}% Debt / {100 - debtFinancing}% Equity</span>
             </div>
             <Slider
               value={[debtFinancing]}
@@ -1087,7 +1087,7 @@ function MAndAAccretionTab() {
           <div className="flex items-center justify-between">
             <CardTitle className="text-sm text-zinc-300">Synergy Assumptions ($M)</CardTitle>
             <div className="text-xs text-zinc-500">
-              Captured: <span className="text-blue-400 font-bold">${capturedSynergies.toFixed(0)}M</span>{" "}
+              Captured: <span className="text-primary font-bold">${capturedSynergies.toFixed(0)}M</span>{" "}
               of <span className="text-zinc-300">${totalSynergies}M</span> total
             </div>
           </div>
@@ -1121,8 +1121,8 @@ function MAndAAccretionTab() {
                         <Badge
                           className={`text-xs ${
                             syn.type === "Revenue"
-                              ? "bg-blue-500/20 text-blue-300 border-blue-500/30"
-                              : "bg-purple-500/20 text-purple-300 border-purple-500/30"
+                              ? "bg-primary/20 text-primary border-border"
+                              : "bg-primary/20 text-primary border-border"
                           }`}
                         >
                           {syn.type}
@@ -1268,7 +1268,7 @@ function FinancingStructureTab() {
           <div>
             <div className="flex items-center justify-between mb-2">
               <span className="text-xs text-zinc-400">Target Leverage (Debt / EBITDA)</span>
-              <span className="text-sm font-bold text-purple-400">{leverage.toFixed(1)}x</span>
+              <span className="text-sm font-bold text-primary">{leverage.toFixed(1)}x</span>
             </div>
             <Slider
               value={[leverage * 10]}
@@ -1286,8 +1286,8 @@ function FinancingStructureTab() {
 
           <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 pt-2">
             {[
-              { label: "Net Debt", value: `$${(leverage * ebitda / 1000).toFixed(1)}B`, icon: DollarSign, color: "text-purple-400" },
-              { label: "Leverage Ratio", value: `${leverageRatio.toFixed(1)}x`, icon: Layers, color: "text-blue-400" },
+              { label: "Net Debt", value: `$${(leverage * ebitda / 1000).toFixed(1)}B`, icon: DollarSign, color: "text-primary" },
+              { label: "Leverage Ratio", value: `${leverageRatio.toFixed(1)}x`, icon: Layers, color: "text-primary" },
               { label: "Interest Coverage", value: `${interestCoverage.toFixed(1)}x`, icon: Shield, color: "text-emerald-400" },
               { label: "Agency Rating", value: ratingInfo.rating, icon: Target, color: ratingInfo.color },
             ].map((item) => {
@@ -1330,19 +1330,19 @@ function FinancingStructureTab() {
               <div className="space-y-3 flex-1">
                 <div>
                   <div className="flex items-center gap-2 mb-1">
-                    <div className="w-3 h-3 rounded-sm bg-purple-500" />
+                    <div className="w-3 h-3 rounded-sm bg-primary" />
                     <span className="text-xs text-zinc-400">Debt Financing</span>
-                    <span className="text-xs font-bold text-purple-400 ml-auto">{debtPct.toFixed(0)}%</span>
+                    <span className="text-xs font-bold text-primary ml-auto">{debtPct.toFixed(0)}%</span>
                   </div>
-                  <p className="text-sm font-bold text-purple-300 pl-5">${totalDebt.toLocaleString()}M</p>
+                  <p className="text-sm font-bold text-primary pl-5">${totalDebt.toLocaleString()}M</p>
                 </div>
                 <div>
                   <div className="flex items-center gap-2 mb-1">
-                    <div className="w-3 h-3 rounded-sm bg-blue-500" />
+                    <div className="w-3 h-3 rounded-sm bg-primary" />
                     <span className="text-xs text-zinc-400">Equity Financing</span>
-                    <span className="text-xs font-bold text-blue-400 ml-auto">{equityPct.toFixed(0)}%</span>
+                    <span className="text-xs font-bold text-primary ml-auto">{equityPct.toFixed(0)}%</span>
                   </div>
-                  <p className="text-sm font-bold text-blue-300 pl-5">${equity.toLocaleString()}M</p>
+                  <p className="text-sm font-bold text-primary pl-5">${equity.toLocaleString()}M</p>
                 </div>
                 <div className="pt-2 border-t border-zinc-700">
                   <div className="flex justify-between text-xs">
@@ -1444,7 +1444,7 @@ function FinancingStructureTab() {
                     >
                       <td className="p-2 text-zinc-300 font-medium">{t.name}</td>
                       <td className="p-2 text-right font-mono text-zinc-300">${t.amount.toLocaleString()}M</td>
-                      <td className="p-2 text-right font-mono text-purple-400">{t.rate.toFixed(2)}%</td>
+                      <td className="p-2 text-right font-mono text-primary">{t.rate.toFixed(2)}%</td>
                       <td className="p-2 text-right font-mono text-zinc-400">S+{t.spread}bps</td>
                       <td className="p-2 text-right font-mono text-zinc-400">{t.maturity}yr</td>
                       <td className={`p-2 text-center font-bold ${ratingCol}`}>{t.rating}</td>
@@ -1455,7 +1455,7 @@ function FinancingStructureTab() {
                 <tr className="border-t-2 border-zinc-600 bg-zinc-800/30">
                   <td className="p-2 text-white font-bold">Total Debt</td>
                   <td className="p-2 text-right font-mono text-white font-bold">${totalDebt.toLocaleString()}M</td>
-                  <td className="p-2 text-right font-mono text-purple-400 font-bold">
+                  <td className="p-2 text-right font-mono text-primary font-bold">
                     {(DEBT_TRANCHES.reduce((s, t) => s + t.amount * t.rate, 0) / totalDebt).toFixed(2)}%
                   </td>
                   <td colSpan={3} />
@@ -1522,8 +1522,8 @@ export default function PitchbookPage() {
         <div className="flex flex-wrap items-start justify-between gap-4">
           <div>
             <div className="flex items-center gap-3 mb-1">
-              <div className="w-9 h-9 rounded-lg bg-blue-500/20 border border-blue-500/30 flex items-center justify-center">
-                <FileText className="w-5 h-5 text-blue-400" />
+              <div className="w-9 h-9 rounded-lg bg-primary/20 border border-border flex items-center justify-center">
+                <FileText className="w-5 h-5 text-primary" />
               </div>
               <div>
                 <h1 className="text-xl font-bold text-white">Pitch Book Builder</h1>
@@ -1532,7 +1532,7 @@ export default function PitchbookPage() {
             </div>
           </div>
           <div className="flex flex-wrap items-center gap-2">
-            <Badge className="bg-blue-500/20 text-blue-300 border-blue-500/30 text-xs">
+            <Badge className="bg-primary/20 text-primary border-border text-xs">
               <Building2 className="w-3 h-3 mr-1" /> NXTS / STRD
             </Badge>
             <Badge className="bg-emerald-500/20 text-emerald-300 border-emerald-500/30 text-xs">
@@ -1541,7 +1541,7 @@ export default function PitchbookPage() {
             <Badge className="bg-amber-500/20 text-amber-300 border-amber-500/30 text-xs">
               <TrendingUp className="w-3 h-3 mr-1" /> 52% Premium
             </Badge>
-            <Badge className="bg-purple-500/20 text-purple-300 border-purple-500/30 text-xs">
+            <Badge className="bg-primary/20 text-primary border-border text-xs">
               <Percent className="w-3 h-3 mr-1" /> Cash + Stock
             </Badge>
           </div>
@@ -1555,14 +1555,14 @@ export default function PitchbookPage() {
           className="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-8 gap-2 mt-4"
         >
           {[
-            { label: "Transaction Value", value: "$8.2B", icon: DollarSign, color: "text-blue-400" },
+            { label: "Transaction Value", value: "$8.2B", icon: DollarSign, color: "text-primary" },
             { label: "Offer Per Share", value: "$72.50", icon: Target, color: "text-emerald-400" },
             { label: "Premium to VWAP", value: "52.0%", icon: TrendingUp, color: "text-emerald-400" },
-            { label: "EV / NTM EBITDA", value: "14.2x", icon: BarChart3, color: "text-purple-400" },
-            { label: "Revenue Synergies", value: "$95M", icon: ArrowUpRight, color: "text-blue-400" },
+            { label: "EV / NTM EBITDA", value: "14.2x", icon: BarChart3, color: "text-primary" },
+            { label: "Revenue Synergies", value: "$95M", icon: ArrowUpRight, color: "text-primary" },
             { label: "Cost Synergies", value: "$92M", icon: Layers, color: "text-amber-400" },
             { label: "Year 2 Accretion", value: "+9.4%", icon: CheckCircle, color: "text-emerald-400" },
-            { label: "Pro Forma Leverage", value: "4.5x", icon: Scale, color: "text-purple-400" },
+            { label: "Pro Forma Leverage", value: "4.5x", icon: Scale, color: "text-primary" },
           ].map((stat) => {
             const Icon = stat.icon;
             return (

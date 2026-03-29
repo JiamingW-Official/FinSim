@@ -440,8 +440,8 @@ function discountToPar(price: number): string {
 // ── Color helpers ──────────────────────────────────────────────────────────────
 
 function roleColor(role: SyndicationRole): string {
-  if (role === "Bookrunning") return "bg-blue-500/20 text-blue-400 border-blue-500/30";
-  if (role === "Co-Lead") return "bg-violet-500/20 text-violet-400 border-violet-500/30";
+  if (role === "Bookrunning") return "bg-primary/20 text-primary border-border";
+  if (role === "Co-Lead") return "bg-primary/20 text-primary border-border";
   return "bg-zinc-700/40 text-zinc-400 border-zinc-600/30";
 }
 
@@ -509,8 +509,8 @@ function PipelineTab() {
   return (
     <div className="space-y-6">
       <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-        <StatCard icon={Briefcase} label="Total Pipeline" value={fmtM(totalPipeline)} sub="across 5 deals" color="text-blue-400" />
-        <StatCard icon={Star} label="Bookrunning" value={`${bookrunningCount} deals`} sub="lead arranger" color="text-violet-400" />
+        <StatCard icon={Briefcase} label="Total Pipeline" value={fmtM(totalPipeline)} sub="across 5 deals" color="text-primary" />
+        <StatCard icon={Star} label="Bookrunning" value={`${bookrunningCount} deals`} sub="lead arranger" color="text-primary" />
         <StatCard icon={Activity} label="Active / Pricing" value={`${activeDealCount} deals`} sub="in market" color="text-amber-400" />
         <StatCard icon={Percent} label="Avg Spread" value="L+320 bps" sub="blended pipeline" color="text-emerald-400" />
       </div>
@@ -518,7 +518,7 @@ function PipelineTab() {
       <Card className="bg-zinc-900 border-zinc-800">
         <CardHeader className="pb-3">
           <CardTitle className="text-sm font-medium text-zinc-300 flex items-center gap-2">
-            <Briefcase className="w-4 h-4 text-blue-400" />
+            <Briefcase className="w-4 h-4 text-primary" />
             Active Syndication Pipeline
           </CardTitle>
         </CardHeader>
@@ -534,7 +534,7 @@ function PipelineTab() {
                   >
                     <div className="flex items-center justify-between px-4 py-3 hover:bg-zinc-800/50 transition-colors">
                       <div className="flex items-center gap-3 min-w-0">
-                        <div className="w-2 h-2 rounded-full bg-blue-400 shrink-0" />
+                        <div className="w-2 h-2 rounded-full bg-primary shrink-0" />
                         <div className="min-w-0">
                           <p className="text-sm font-medium text-zinc-100 truncate">{deal.borrower}</p>
                           <p className="text-xs text-zinc-500">{deal.purpose} · {deal.sector}</p>
@@ -605,7 +605,7 @@ function PipelineTab() {
       <Card className="bg-zinc-900 border-zinc-800">
         <CardHeader className="pb-2">
           <CardTitle className="text-sm font-medium text-zinc-300 flex items-center gap-2">
-            <BarChart3 className="w-4 h-4 text-blue-400" />
+            <BarChart3 className="w-4 h-4 text-primary" />
             Deal Size by Role
           </CardTitle>
         </CardHeader>
@@ -664,7 +664,7 @@ function BookBuildingTab() {
                 variant={selectedDealId === d.id ? "default" : "outline"}
                 size="sm"
                 className={selectedDealId === d.id
-                  ? "bg-blue-600 hover:bg-blue-700 text-white border-0"
+                  ? "bg-primary hover:bg-primary/80 text-white border-0"
                   : "bg-zinc-800 border-zinc-700 text-zinc-300 hover:bg-zinc-700"}
                 onClick={() => setSelectedDealId(d.id)}
               >
@@ -677,8 +677,8 @@ function BookBuildingTab() {
 
       {/* Stats */}
       <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-        <StatCard icon={DollarSign} label="Deal Size" value={fmtM(selectedDeal.sizeM)} sub="total tranche" color="text-blue-400" />
-        <StatCard icon={TrendingUp} label="Total Commitments" value={fmtM(totalCommit)} sub="from all investors" color="text-violet-400" />
+        <StatCard icon={DollarSign} label="Deal Size" value={fmtM(selectedDeal.sizeM)} sub="total tranche" color="text-primary" />
+        <StatCard icon={TrendingUp} label="Total Commitments" value={fmtM(totalCommit)} sub="from all investors" color="text-primary" />
         <StatCard
           icon={Activity}
           label="Oversubscription"
@@ -693,7 +693,7 @@ function BookBuildingTab() {
       <Card className="bg-zinc-900 border-zinc-800">
         <CardHeader className="pb-3">
           <CardTitle className="text-sm font-medium text-zinc-300 flex items-center gap-2">
-            <BookOpen className="w-4 h-4 text-violet-400" />
+            <BookOpen className="w-4 h-4 text-primary" />
             Demand Book — {selectedDeal.borrower}
           </CardTitle>
         </CardHeader>
@@ -706,7 +706,7 @@ function BookBuildingTab() {
             </div>
             <div className="h-5 bg-zinc-800 rounded-full overflow-hidden relative">
               <div
-                className="h-full bg-blue-500 rounded-full"
+                className="h-full bg-primary rounded-full"
                 style={{ width: `${Math.min((selectedDeal.sizeM / totalCommit) * 100, 100)}%` }}
               />
               <div className="absolute inset-0 flex items-center justify-center text-xs font-semibold text-white">
@@ -803,7 +803,7 @@ function PricingGridTab() {
             </div>
             <div className="text-center p-4 bg-zinc-800 rounded-lg min-w-[130px]">
               <p className="text-xs text-zinc-500">Applicable Spread</p>
-              <p className="text-2xl font-bold text-blue-400">+{activeTier.spreadBps}</p>
+              <p className="text-2xl font-bold text-primary">+{activeTier.spreadBps}</p>
               <p className="text-xs text-zinc-400">bps over SOFR</p>
               <p className="text-xs text-zinc-500 mt-1">Floor: {activeTier.floor}%</p>
             </div>
@@ -815,7 +815,7 @@ function PricingGridTab() {
       <Card className="bg-zinc-900 border-zinc-800">
         <CardHeader className="pb-3">
           <CardTitle className="text-sm font-medium text-zinc-300 flex items-center gap-2">
-            <BarChart3 className="w-4 h-4 text-blue-400" />
+            <BarChart3 className="w-4 h-4 text-primary" />
             Full Pricing Grid
           </CardTitle>
         </CardHeader>
@@ -828,22 +828,22 @@ function PricingGridTab() {
                 <div
                   key={i}
                   className={`flex items-center gap-3 p-3 rounded-lg transition-all ${
-                    isActive ? "bg-blue-500/10 border border-blue-500/30" : "bg-zinc-800/50"
+                    isActive ? "bg-primary/10 border border-border" : "bg-zinc-800/50"
                   }`}
                 >
                   <div className="w-24 shrink-0">
-                    <p className={`text-sm font-medium ${isActive ? "text-blue-400" : "text-zinc-300"}`}>
+                    <p className={`text-sm font-medium ${isActive ? "text-primary" : "text-zinc-300"}`}>
                       {tier.leverageLabel}
                     </p>
                   </div>
                   <div className="flex-1 h-5 bg-zinc-800 rounded overflow-hidden">
                     <div
-                      className={`h-full rounded transition-all ${isActive ? "bg-blue-500" : "bg-zinc-600"}`}
+                      className={`h-full rounded transition-all ${isActive ? "bg-primary" : "bg-zinc-600"}`}
                       style={{ width: `${barWidth}%` }}
                     />
                   </div>
                   <div className="w-24 text-right shrink-0">
-                    <span className={`text-sm font-semibold ${isActive ? "text-blue-400" : "text-zinc-200"}`}>
+                    <span className={`text-sm font-semibold ${isActive ? "text-primary" : "text-zinc-200"}`}>
                       SOFR+{tier.spreadBps}
                     </span>
                   </div>
@@ -851,7 +851,7 @@ function PricingGridTab() {
                     <span className="text-xs text-zinc-500">Floor {tier.floor}%</span>
                   </div>
                   {isActive && (
-                    <Badge className="bg-blue-500/20 text-blue-400 border-blue-500/30 border text-xs shrink-0">Active</Badge>
+                    <Badge className="bg-primary/20 text-primary border-border border text-xs shrink-0">Active</Badge>
                   )}
                 </div>
               );
@@ -928,7 +928,7 @@ function SecondaryMarketTab() {
   return (
     <div className="space-y-6">
       <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-        <StatCard icon={BarChart3} label="Loans Tracked" value="6" sub="secondary trades" color="text-blue-400" />
+        <StatCard icon={BarChart3} label="Loans Tracked" value="6" sub="secondary trades" color="text-primary" />
         <StatCard icon={AlertTriangle} label="Distressed" value={`${distressedCount} loans`} sub="< 90 pts" color="text-red-400" />
         <StatCard icon={Percent} label="Avg Bid" value={`${avgBid.toFixed(1)}`} sub="cents on dollar" color="text-amber-400" />
         <StatCard icon={TrendingUp} label="Avg YTM" value={`${avgYtm.toFixed(1)}%`} sub="yield to maturity" color="text-emerald-400" />
@@ -938,7 +938,7 @@ function SecondaryMarketTab() {
         <CardHeader className="pb-3">
           <div className="flex items-center justify-between">
             <CardTitle className="text-sm font-medium text-zinc-300 flex items-center gap-2">
-              <Activity className="w-4 h-4 text-blue-400" />
+              <Activity className="w-4 h-4 text-primary" />
               Secondary Loan Prices
             </CardTitle>
             <div className="flex gap-1">
@@ -1010,7 +1010,7 @@ function SecondaryMarketTab() {
                   <div className="mt-3">
                     <div className="h-2 bg-zinc-800 rounded-full overflow-hidden">
                       <div
-                        className={`h-full rounded-full ${loan.distressed ? "bg-red-500" : "bg-blue-500"}`}
+                        className={`h-full rounded-full ${loan.distressed ? "bg-red-500" : "bg-primary"}`}
                         style={{ width: `${(loan.bid / 100) * 100}%` }}
                       />
                     </div>
@@ -1053,7 +1053,7 @@ function CovenantTab() {
       <Card className="bg-zinc-900 border-zinc-800 border-l-4 border-l-blue-500">
         <CardContent className="pt-4 pb-4">
           <div className="flex gap-3">
-            <BookOpen className="w-4 h-4 text-blue-400 shrink-0 mt-0.5" />
+            <BookOpen className="w-4 h-4 text-primary shrink-0 mt-0.5" />
             <div>
               <p className="text-sm font-medium text-zinc-200">What is Cov-Lite?</p>
               <p className="text-xs text-zinc-400 mt-1">
@@ -1071,7 +1071,7 @@ function CovenantTab() {
         <Card key={category} className="bg-zinc-900 border-zinc-800">
           <CardHeader className="pb-3">
             <CardTitle className="text-sm font-medium text-zinc-300 flex items-center gap-2">
-              <FileText className="w-4 h-4 text-violet-400" />
+              <FileText className="w-4 h-4 text-primary" />
               {category} Covenants
             </CardTitle>
           </CardHeader>
@@ -1136,8 +1136,8 @@ function LeagueTableTab() {
   return (
     <div className="space-y-6">
       <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
-        <StatCard icon={Building2} label="Top 8 Arrangers" value="$2.31T" sub="combined volume" color="text-blue-400" />
-        <StatCard icon={Award} label="Total Deals" value={`${totalDeals.toLocaleString()}`} sub="LTM syndicated" color="text-violet-400" />
+        <StatCard icon={Building2} label="Top 8 Arrangers" value="$2.31T" sub="combined volume" color="text-primary" />
+        <StatCard icon={Award} label="Total Deals" value={`${totalDeals.toLocaleString()}`} sub="LTM syndicated" color="text-primary" />
         <StatCard icon={Globe} label="Market Total" value={`$${(totalVol / 0.875).toFixed(0)}B`} sub="est. total mkt" color="text-amber-400" />
       </div>
 
@@ -1184,7 +1184,7 @@ function LeagueTableTab() {
                       <div className="flex items-center gap-2">
                         <div className="flex-1 h-3 bg-zinc-800 rounded overflow-hidden max-w-[120px]">
                           <div
-                            className={`h-full rounded ${entry.rank <= 2 ? "bg-blue-500" : "bg-zinc-600"}`}
+                            className={`h-full rounded ${entry.rank <= 2 ? "bg-primary" : "bg-zinc-600"}`}
                             style={{ width: `${(entry.volumeB / maxVol) * 100}%` }}
                           />
                         </div>
@@ -1248,7 +1248,7 @@ function LeagueTableTab() {
             </div>
             <div className="grid grid-cols-2 gap-x-6 gap-y-1.5">
               {LEAGUE_TABLE.map((entry, i) => {
-                const colors = ["bg-blue-500", "bg-violet-500", "bg-amber-500", "bg-emerald-500", "bg-indigo-500", "bg-pink-500", "bg-teal-500", "bg-orange-500"];
+                const colors = ["bg-primary", "bg-primary", "bg-amber-500", "bg-emerald-500", "bg-indigo-500", "bg-pink-500", "bg-teal-500", "bg-orange-500"];
                 return (
                   <div key={i} className="flex items-center gap-1.5">
                     <div className={`w-2 h-2 rounded-full ${colors[i]}`} />
@@ -1278,8 +1278,8 @@ export default function LoanSyndicationPage() {
       {/* Header */}
       <div className="mb-6">
         <div className="flex items-center gap-3 mb-1">
-          <div className="p-2 rounded-lg bg-blue-500/10">
-            <Briefcase className="w-5 h-5 text-blue-400" />
+          <div className="p-2 rounded-lg bg-primary/10">
+            <Briefcase className="w-5 h-5 text-primary" />
           </div>
           <h1 className="text-2xl font-bold text-zinc-100">Loan Syndication & Leveraged Finance</h1>
         </div>
@@ -1290,10 +1290,10 @@ export default function LoanSyndicationPage() {
 
       {/* Top KPIs */}
       <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-6">
-        <StatCard icon={DollarSign} label="Pipeline Value" value="$8.1B" sub="5 active deals" color="text-blue-400" />
+        <StatCard icon={DollarSign} label="Pipeline Value" value="$8.1B" sub="5 active deals" color="text-primary" />
         <StatCard icon={TrendingUp} label="Avg Leverage" value="4.3x" sub="blended portfolio" color="text-amber-400" />
         <StatCard icon={RefreshCw} label="Book Coverage" value="2.1x" sub="avg oversubscription" color="text-emerald-400" />
-        <StatCard icon={Shield} label="Cov-Lite %" value="78%" sub="of new issuance" color="text-violet-400" />
+        <StatCard icon={Shield} label="Cov-Lite %" value="78%" sub="of new issuance" color="text-primary" />
       </div>
 
       {/* Tabs */}

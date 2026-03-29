@@ -51,7 +51,7 @@ const SHORTCUT_SECTIONS: ShortcutSection[] = [
   {
     title: "General",
     icon: Keyboard,
-    color: "text-blue-400",
+    color: "text-primary",
     shortcuts: [
       { keys: ["?"], description: "Open this shortcut guide" },
       { keys: ["Esc"], description: "Close dialog / Cancel" },
@@ -84,9 +84,9 @@ export function KeyboardShortcutGuide() {
   return (
     <Dialog open={open} onOpenChange={setOpen}>
       <DialogContent className="glass max-w-sm border-border/50 p-0">
-        <div className="rounded-t-lg bg-blue-500/10 px-4 py-3">
+        <div className="rounded-t-lg bg-primary/10 px-4 py-3">
           <DialogHeader>
-            <DialogTitle className="flex items-center gap-2 text-sm font-bold text-blue-400">
+            <DialogTitle className="flex items-center gap-2 text-sm font-bold text-primary">
               <Keyboard className="h-4 w-4" />
               Keyboard Shortcuts
             </DialogTitle>

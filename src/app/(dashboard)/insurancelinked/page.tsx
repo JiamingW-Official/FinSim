@@ -131,10 +131,10 @@ function MetricCard({
   color?: "blue" | "green" | "amber" | "purple";
 }) {
   const colors = {
-    blue: "text-blue-400 bg-blue-500/10",
+    blue: "text-primary bg-primary/10",
     green: "text-green-400 bg-green-500/10",
     amber: "text-amber-400 bg-amber-500/10",
-    purple: "text-purple-400 bg-purple-500/10",
+    purple: "text-primary bg-primary/10",
   };
   return (
     <Card className="bg-card border-border">
@@ -156,11 +156,11 @@ function MetricCard({
 
 function PerilBadge({ peril }: { peril: CatBond["peril"] }) {
   const map: Record<CatBond["peril"], { icon: React.ElementType; cls: string }> = {
-    Hurricane: { icon: Wind, cls: "bg-blue-500/10 text-blue-400 border-blue-500/20" },
+    Hurricane: { icon: Wind, cls: "bg-primary/10 text-primary border-border" },
     Earthquake: { icon: Zap, cls: "bg-amber-500/10 text-amber-400 border-amber-500/20" },
-    Windstorm: { icon: Wind, cls: "bg-cyan-500/10 text-cyan-400 border-cyan-500/20" },
-    "Multi-Peril": { icon: Globe, cls: "bg-purple-500/10 text-purple-400 border-purple-500/20" },
-    Flood: { icon: Droplets, cls: "bg-teal-500/10 text-teal-400 border-teal-500/20" },
+    Windstorm: { icon: Wind, cls: "bg-cyan-500/10 text-muted-foreground border-cyan-500/20" },
+    "Multi-Peril": { icon: Globe, cls: "bg-primary/10 text-primary border-border" },
+    Flood: { icon: Droplets, cls: "bg-teal-500/10 text-emerald-400 border-teal-500/20" },
   };
   const { icon: Icon, cls } = map[peril];
   return (
@@ -174,9 +174,9 @@ function PerilBadge({ peril }: { peril: CatBond["peril"] }) {
 function TriggerBadge({ trigger }: { trigger: CatBond["trigger"] }) {
   const colors: Record<CatBond["trigger"], string> = {
     Indemnity: "bg-green-500/10 text-green-400 border-green-500/20",
-    "Industry Index": "bg-blue-500/10 text-blue-400 border-blue-500/20",
+    "Industry Index": "bg-primary/10 text-primary border-border",
     Parametric: "bg-orange-500/10 text-orange-400 border-orange-500/20",
-    "Modeled Loss": "bg-purple-500/10 text-purple-400 border-purple-500/20",
+    "Modeled Loss": "bg-primary/10 text-primary border-border",
   };
   return (
     <span className={cn("text-xs px-2 py-0.5 rounded-full border font-medium", colors[trigger])}>
@@ -413,7 +413,7 @@ export default function InsuranceLinkedPage() {
           <div className="flex items-start justify-between flex-wrap gap-4">
             <div>
               <div className="flex items-center gap-2 mb-1">
-                <Shield className="w-6 h-6 text-blue-400" />
+                <Shield className="w-6 h-6 text-primary" />
                 <h1 className="text-2xl font-bold text-foreground">Insurance-Linked Securities</h1>
               </div>
               <p className="text-muted-foreground text-sm max-w-2xl">
@@ -421,7 +421,7 @@ export default function InsuranceLinkedPage() {
               </p>
             </div>
             <div className="flex items-center gap-2">
-              <Badge variant="outline" className="text-xs border-blue-500/30 text-blue-400">Alternative Asset</Badge>
+              <Badge variant="outline" className="text-xs border-border text-primary">Alternative Asset</Badge>
               <Badge variant="outline" className="text-xs border-green-500/30 text-green-400">Low Correlation</Badge>
             </div>
           </div>
@@ -492,7 +492,7 @@ export default function InsuranceLinkedPage() {
               <Card className="bg-card border-border">
                 <CardHeader className="pb-2">
                   <CardTitle className="text-sm font-semibold flex items-center gap-2">
-                    <BarChart3 className="w-4 h-4 text-blue-400" />
+                    <BarChart3 className="w-4 h-4 text-primary" />
                     Annual Cat Bond Issuance 2015–2024
                   </CardTitle>
                   <p className="text-xs text-muted-foreground">USD billions; record $19.8B issued in 2021</p>
@@ -506,7 +506,7 @@ export default function InsuranceLinkedPage() {
               <Card className="bg-card border-border">
                 <CardHeader className="pb-2">
                   <CardTitle className="text-sm font-semibold flex items-center gap-2">
-                    <Shield className="w-4 h-4 text-blue-400" />
+                    <Shield className="w-4 h-4 text-primary" />
                     Active Cat Bond Listings
                   </CardTitle>
                   <p className="text-xs text-muted-foreground">Representative transactions — 2023/2024 vintage</p>
@@ -546,9 +546,9 @@ export default function InsuranceLinkedPage() {
               {/* Info boxes */}
               <div className="grid md:grid-cols-3 gap-4">
                 {[
-                  { icon: Info, color: "text-blue-400", title: "Trigger Types", body: "Indemnity triggers pay on actual insurer losses, reducing basis risk. Parametric triggers pay on measured physical parameters (wind speed, magnitude). Industry index and modeled loss triggers sit between these extremes." },
+                  { icon: Info, color: "text-primary", title: "Trigger Types", body: "Indemnity triggers pay on actual insurer losses, reducing basis risk. Parametric triggers pay on measured physical parameters (wind speed, magnitude). Industry index and modeled loss triggers sit between these extremes." },
                   { icon: TrendingUp, color: "text-green-400", title: "Return Drivers", body: "Cat bond returns = risk-free rate + spread. The spread compensates for low-probability catastrophe risk. In non-loss years, investors earn full coupon. Spreads widened significantly post-Ian (2022) as capacity contracted." },
-                  { icon: Globe, color: "text-purple-400", title: "Diversification Value", body: "ILS has near-zero correlation to equity and credit markets. Natural catastrophe frequency is independent of economic cycles. This makes ILS a powerful portfolio diversifier and return enhancer in multi-asset portfolios." },
+                  { icon: Globe, color: "text-primary", title: "Diversification Value", body: "ILS has near-zero correlation to equity and credit markets. Natural catastrophe frequency is independent of economic cycles. This makes ILS a powerful portfolio diversifier and return enhancer in multi-asset portfolios." },
                 ].map(({ icon: Icon, color, title, body }) => (
                   <Card key={title} className="bg-card border-border">
                     <CardContent className="pt-4">
@@ -569,7 +569,7 @@ export default function InsuranceLinkedPage() {
               <Card className="bg-card border-border">
                 <CardHeader className="pb-2">
                   <CardTitle className="text-sm font-semibold flex items-center gap-2">
-                    <Activity className="w-4 h-4 text-purple-400" />
+                    <Activity className="w-4 h-4 text-primary" />
                     Risk-Return: ILS vs Other Asset Classes
                   </CardTitle>
                   <p className="text-xs text-muted-foreground">X-axis: expected loss / volatility | Y-axis: expected annual return</p>
@@ -578,8 +578,8 @@ export default function InsuranceLinkedPage() {
                   <RiskReturnScatter />
                   <div className="mt-3 flex flex-wrap gap-3">
                     {[
-                      { label: "Cat Bonds", color: "bg-blue-400" },
-                      { label: "ILS Private", color: "bg-purple-400" },
+                      { label: "Cat Bonds", color: "bg-primary" },
+                      { label: "ILS Private", color: "bg-primary" },
                       { label: "US HY Bonds", color: "bg-amber-400" },
                       { label: "US Equities", color: "bg-red-400" },
                       { label: "US IG Bonds", color: "bg-green-400" },
@@ -597,7 +597,7 @@ export default function InsuranceLinkedPage() {
               <Card className="bg-card border-border">
                 <CardHeader className="pb-2">
                   <CardTitle className="text-sm font-semibold flex items-center gap-2">
-                    <Layers className="w-4 h-4 text-purple-400" />
+                    <Layers className="w-4 h-4 text-primary" />
                     ILS Fund Comparison
                   </CardTitle>
                 </CardHeader>
@@ -620,7 +620,7 @@ export default function InsuranceLinkedPage() {
                             </td>
                             <td className="px-4 py-2.5 text-foreground">{f.aum.toLocaleString()}</td>
                             <td className="px-4 py-2.5 text-green-400 font-semibold">+{f.ytdReturn.toFixed(1)}%</td>
-                            <td className="px-4 py-2.5 text-blue-400">{f.sharpe.toFixed(2)}</td>
+                            <td className="px-4 py-2.5 text-primary">{f.sharpe.toFixed(2)}</td>
                             <td className="px-4 py-2.5 text-red-400">{f.maxDrawdown.toFixed(1)}%</td>
                             <td className="px-4 py-2.5 text-amber-400">{f.expLoss.toFixed(1)}%</td>
                           </tr>
@@ -632,12 +632,12 @@ export default function InsuranceLinkedPage() {
               </Card>
 
               {/* Access note */}
-              <Card className="bg-blue-500/5 border-blue-500/20">
+              <Card className="bg-primary/5 border-border">
                 <CardContent className="pt-4">
                   <div className="flex gap-3">
-                    <Info className="w-4 h-4 text-blue-400 mt-0.5 shrink-0" />
+                    <Info className="w-4 h-4 text-primary mt-0.5 shrink-0" />
                     <div>
-                      <p className="text-sm font-semibold text-blue-400 mb-1">Investor Access</p>
+                      <p className="text-sm font-semibold text-primary mb-1">Investor Access</p>
                       <p className="text-xs text-muted-foreground leading-relaxed">
                         ILS funds are primarily available to institutional and qualified investors. Minimum investments typically range from $1M (fund of funds) to $10M+ (direct sidecars). Cat bond ETFs (e.g., SRSKX, JHILS) provide retail exposure but with higher fees and broader mandates.
                       </p>
@@ -692,7 +692,7 @@ export default function InsuranceLinkedPage() {
                   },
                   {
                     icon: Target,
-                    color: "text-blue-400",
+                    color: "text-primary",
                     title: "Key Risk Metrics",
                     items: [
                       "Expected Loss (EL): average annual loss %",
@@ -759,7 +759,7 @@ export default function InsuranceLinkedPage() {
                                   const isMed = v > 0.2 && v <= 0.5 && ri !== ci;
                                   const isLow = v <= 0.1 && ri !== ci;
                                   const cellCls = ri === ci
-                                    ? "bg-blue-500/20 text-blue-300"
+                                    ? "bg-primary/20 text-primary"
                                     : isHigh
                                     ? "bg-red-500/15 text-red-400"
                                     : isMed
@@ -870,7 +870,7 @@ export default function InsuranceLinkedPage() {
                       { label: "Years with 0 Loss", value: "~70%", sub: "Of all annual periods", color: "text-green-400" },
                       { label: "Worst Annual Return", value: "-8.1%", sub: "2022 (Ian year)", color: "text-red-400" },
                       { label: "Best Annual Return", value: "+16.4%", sub: "2023 (post-Ian rebound)", color: "text-green-400" },
-                      { label: "Avg Equity Corr.", value: "0.04", sub: "Near-zero beta", color: "text-blue-400" },
+                      { label: "Avg Equity Corr.", value: "0.04", sub: "Near-zero beta", color: "text-primary" },
                     ].map(({ label, value, sub, color }) => (
                       <div key={label} className="bg-muted/30 rounded-lg p-3 border border-border/50">
                         <div className="text-xs text-muted-foreground mb-1">{label}</div>

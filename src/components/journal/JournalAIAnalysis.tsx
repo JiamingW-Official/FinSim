@@ -31,7 +31,7 @@ const EMOTION_CONFIG: Record<
   TradeEmotion,
   { emoji: string; label: string; color: string; bgColor: string }
 > = {
-  anxious:    { emoji: "😰", label: "Anxious",    color: "text-blue-400",   bgColor: "bg-blue-500/15 border-blue-500/30" },
+  anxious:    { emoji: "😰", label: "Anxious",    color: "text-primary",   bgColor: "bg-primary/15 border-border" },
   neutral:    { emoji: "😐", label: "Neutral",    color: "text-slate-400",  bgColor: "bg-slate-500/15 border-slate-500/30" },
   confident:  { emoji: "😊", label: "Confident",  color: "text-green-400",  bgColor: "bg-green-500/15 border-green-500/30" },
   greedy:     { emoji: "🤑", label: "Greedy",     color: "text-amber-400",  bgColor: "bg-amber-500/15 border-amber-500/30" },
@@ -872,7 +872,7 @@ function DebriefCard({
       ? "text-green-400"
       : sentiment === "negative"
       ? "text-red-400"
-      : "text-blue-400";
+      : "text-primary";
 
   return (
     <div className={cn("rounded-lg border border-border bg-card/50 border-l-2 pl-3 pr-4 py-2.5", borderColor)}>

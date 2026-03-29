@@ -85,8 +85,8 @@ const FEATURE_CATEGORIES: FeatureCategory[] = [
   {
     name: "Price & Returns",
     icon: <TrendingUp className="w-4 h-4" />,
-    color: "text-blue-400",
-    bgColor: "bg-blue-500/10",
+    color: "text-primary",
+    bgColor: "bg-primary/10",
     importance: 0.28,
     count: 24,
     features: [
@@ -101,8 +101,8 @@ const FEATURE_CATEGORIES: FeatureCategory[] = [
   {
     name: "Volume & Market Microstructure",
     icon: <BarChart3 className="w-4 h-4" />,
-    color: "text-purple-400",
-    bgColor: "bg-purple-500/10",
+    color: "text-primary",
+    bgColor: "bg-primary/10",
     importance: 0.19,
     count: 18,
     features: [
@@ -725,8 +725,8 @@ export default function MLStocksPage() {
         className="mb-6"
       >
         <div className="flex items-center gap-3 mb-2">
-          <div className="p-2 rounded-lg bg-violet-500/10 border border-violet-500/20">
-            <Brain className="w-5 h-5 text-violet-400" />
+          <div className="p-2 rounded-lg bg-primary/10 border border-border">
+            <Brain className="w-5 h-5 text-primary" />
           </div>
           <div>
             <h1 className="text-xl font-semibold text-zinc-100">Machine Learning in Stock Selection</h1>
@@ -737,8 +737,8 @@ export default function MLStocksPage() {
         {/* KPI chips */}
         <div className="flex flex-wrap gap-2 mt-3">
           {[
-            { label: `${totalFeatures} Features`, color: "text-blue-400 bg-blue-500/10 border-blue-500/20" },
-            { label: "8 Model Types", color: "text-purple-400 bg-purple-500/10 border-purple-500/20" },
+            { label: `${totalFeatures} Features`, color: "text-primary bg-primary/10 border-border" },
+            { label: "8 Model Types", color: "text-primary bg-primary/10 border-border" },
             { label: "5 Pitfalls", color: "text-red-400 bg-red-500/10 border-red-500/20" },
             { label: "IC/ICIR Framework", color: "text-green-400 bg-green-500/10 border-green-500/20" },
             { label: "10-Stock Ranking", color: "text-amber-400 bg-amber-500/10 border-amber-500/20" },
@@ -751,16 +751,16 @@ export default function MLStocksPage() {
       {/* Tabs */}
       <Tabs value={activeTab} onValueChange={setActiveTab}>
         <TabsList className="bg-zinc-900 border border-zinc-800 mb-4 flex-wrap h-auto gap-1 p-1">
-          <TabsTrigger value="features" className="text-xs data-[state=active]:bg-violet-500/20 data-[state=active]:text-violet-300">
+          <TabsTrigger value="features" className="text-xs data-[state=active]:bg-primary/20 data-[state=active]:text-primary">
             <Database className="w-3 h-3 mr-1" />Feature Engineering
           </TabsTrigger>
-          <TabsTrigger value="models" className="text-xs data-[state=active]:bg-violet-500/20 data-[state=active]:text-violet-300">
+          <TabsTrigger value="models" className="text-xs data-[state=active]:bg-primary/20 data-[state=active]:text-primary">
             <Cpu className="w-3 h-3 mr-1" />Model Zoo
           </TabsTrigger>
-          <TabsTrigger value="backtest" className="text-xs data-[state=active]:bg-violet-500/20 data-[state=active]:text-violet-300">
+          <TabsTrigger value="backtest" className="text-xs data-[state=active]:bg-primary/20 data-[state=active]:text-primary">
             <FlaskConical className="w-3 h-3 mr-1" />Backtesting
           </TabsTrigger>
-          <TabsTrigger value="signals" className="text-xs data-[state=active]:bg-violet-500/20 data-[state=active]:text-violet-300">
+          <TabsTrigger value="signals" className="text-xs data-[state=active]:bg-primary/20 data-[state=active]:text-primary">
             <Zap className="w-3 h-3 mr-1" />Live Signals
           </TabsTrigger>
         </TabsList>
@@ -841,12 +841,12 @@ export default function MLStocksPage() {
                     {
                       title: "Stationarity Requirements",
                       desc: "Price levels are non-stationary (random walk). Use returns, z-scores, or log differences. Augmented Dickey-Fuller test for each feature.",
-                      color: "text-blue-400",
+                      color: "text-primary",
                     },
                     {
                       title: "Dimensionality Reduction",
                       desc: "With 100+ features, use PCA (retain 95% variance), autoencoders, or L1 regularization (Lasso) to avoid the curse of dimensionality.",
-                      color: "text-purple-400",
+                      color: "text-primary",
                     },
                     {
                       title: "Look-Ahead Bias Prevention",
@@ -973,7 +973,7 @@ export default function MLStocksPage() {
                 </CardHeader>
                 <CardContent className="space-y-2">
                   {[
-                    { cond: "Small dataset (< 5yrs)", rec: "Ridge/Lasso — regularized linear models generalize better", color: "text-blue-400" },
+                    { cond: "Small dataset (< 5yrs)", rec: "Ridge/Lasso — regularized linear models generalize better", color: "text-primary" },
                     { cond: "Tabular features, medium data", rec: "XGBoost — best risk-adjusted Sharpe per compute hour", color: "text-green-400" },
                     { cond: "Sequential price patterns", rec: "LSTM — captures temporal dependencies in time series", color: "text-orange-400" },
                     { cond: "Rich cross-asset context", rec: "Transformer — attention mechanism handles long-range deps", color: "text-pink-400" },
@@ -1142,8 +1142,8 @@ export default function MLStocksPage() {
                   <SignalPipelineSVG />
                   <div className="grid grid-cols-3 gap-2 mt-3">
                     {[
-                      { label: "Data Latency", val: "< 500ms", color: "text-blue-400" },
-                      { label: "Feature Calc", val: "~ 50ms", color: "text-purple-400" },
+                      { label: "Data Latency", val: "< 500ms", color: "text-primary" },
+                      { label: "Feature Calc", val: "~ 50ms", color: "text-primary" },
                       { label: "Model Infer", val: "< 10ms", color: "text-orange-400" },
                     ].map(m => (
                       <div key={m.label} className="bg-zinc-800/50 rounded-lg p-2 text-center">
@@ -1162,14 +1162,14 @@ export default function MLStocksPage() {
                 <CardContent className="space-y-3">
                   <div className="bg-zinc-800/50 rounded-lg p-3 font-mono text-xs space-y-1">
                     <p className="text-green-400">IC = rank_corr(predictions_t, returns_{"{t+1}"})</p>
-                    <p className="text-blue-400">ICIR = mean(IC) / std(IC)</p>
+                    <p className="text-primary">ICIR = mean(IC) / std(IC)</p>
                     <p className="text-amber-400">IC_t2: IR ≥ 0.5 for live deployment</p>
                   </div>
                   <div className="grid grid-cols-2 gap-2">
                     {[
                       { label: "Ensemble IC", val: "0.089", note: "Top quartile", color: "text-green-400" },
                       { label: "ICIR", val: "1.34", note: "Production-ready", color: "text-green-400" },
-                      { label: "XGBoost IC", val: "0.074", note: "Deployable", color: "text-blue-400" },
+                      { label: "XGBoost IC", val: "0.074", note: "Deployable", color: "text-primary" },
                       { label: "LSTM IC", val: "0.068", note: "Borderline", color: "text-amber-400" },
                     ].map(m => (
                       <div key={m.label} className="bg-zinc-800/50 rounded-lg p-2">

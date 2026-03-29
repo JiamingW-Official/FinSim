@@ -585,10 +585,10 @@ function EventImpactTab() {
       {/* stats bar */}
       <div className="grid grid-cols-2 gap-3 sm:grid-cols-4">
         {[
-          { label: "Events Analyzed", value: "10", sub: "since 1990", icon: <Globe className="w-4 h-4" />, color: "text-blue-400" },
+          { label: "Events Analyzed", value: "10", sub: "since 1990", icon: <Globe className="w-4 h-4" />, color: "text-primary" },
           { label: "Positive 3M Returns", value: `${meanReversion.pct}%`, sub: `${meanReversion.count} of 10 events`, icon: <TrendingUp className="w-4 h-4" />, color: "text-green-400" },
           { label: "Avg Recovery Time", value: "26 days", sub: "median trading days", icon: <Activity className="w-4 h-4" />, color: "text-amber-400" },
-          { label: "Buy-the-Dip Edge", value: "+12.4%", sub: "avg 3M after initial drop", icon: <Target className="w-4 h-4" />, color: "text-purple-400" },
+          { label: "Buy-the-Dip Edge", value: "+12.4%", sub: "avg 3M after initial drop", icon: <Target className="w-4 h-4" />, color: "text-primary" },
         ].map(item => (
           <Card key={item.label} className="bg-neutral-900 border-neutral-800">
             <CardContent className="p-4">
@@ -702,7 +702,7 @@ function EventImpactTab() {
                     </div>
                     <div className="flex gap-3">
                       <span className="text-neutral-500">USD Bid:</span>
-                      <span className={selectedEvent.usdBid ? "text-blue-400" : "text-neutral-500"}>
+                      <span className={selectedEvent.usdBid ? "text-primary" : "text-neutral-500"}>
                         {selectedEvent.usdBid ? "Yes — flight to safety" : "No / weakened"}
                       </span>
                     </div>
@@ -725,8 +725,8 @@ function EventImpactTab() {
                       ))}
                     </div>
                   </div>
-                  <div className="border-t border-neutral-800 pt-3 bg-blue-900/10 rounded p-2 text-neutral-400">
-                    <Info className="w-3.5 h-3.5 inline mr-1 text-blue-400" />
+                  <div className="border-t border-neutral-800 pt-3 bg-muted/30 rounded p-2 text-neutral-400">
+                    <Info className="w-3.5 h-3.5 inline mr-1 text-primary" />
                     Mean reversion: {selectedEvent.m3 > 0 ? "Markets recovered and advanced by 3-month mark." : "Recovery incomplete at 3 months — structural headwinds persisted."}
                   </div>
                 </CardContent>
@@ -869,8 +869,8 @@ function SanctionsTradeTab() {
                     {[
                       { label: "USD decline since 2000", value: "−14.2 ppts", color: "text-red-400" },
                       { label: "CNY share gain", value: "+3.2 ppts", color: "text-amber-400" },
-                      { label: "Gold reserves growth", value: "+6.1 ppts", color: "text-purple-400" },
-                      { label: "USD still dominant", value: "57.3% share", color: "text-blue-400" },
+                      { label: "Gold reserves growth", value: "+6.1 ppts", color: "text-primary" },
+                      { label: "USD still dominant", value: "57.3% share", color: "text-primary" },
                     ].map(({ label, value, color }) => (
                       <div key={label} className="bg-neutral-800 rounded p-2.5">
                         <div className="text-neutral-500 mb-0.5">{label}</div>
@@ -920,7 +920,7 @@ function SanctionsTradeTab() {
               <Card className="bg-neutral-900 border-neutral-800">
                 <CardHeader className="pb-2">
                   <CardTitle className="text-sm font-semibold text-neutral-300 flex items-center gap-2">
-                    <Cpu className="w-4 h-4 text-blue-400" />
+                    <Cpu className="w-4 h-4 text-primary" />
                     US–China Technology Decoupling Timeline
                   </CardTitle>
                 </CardHeader>
@@ -1084,7 +1084,7 @@ function RiskPremiumTab() {
         <Card className="bg-neutral-900 border-neutral-800">
           <CardHeader className="pb-2">
             <CardTitle className="text-sm font-semibold text-neutral-300 flex items-center gap-2">
-              <Anchor className="w-4 h-4 text-blue-400" />
+              <Anchor className="w-4 h-4 text-primary" />
               Safe Haven Asset Performance During Geo-Events
             </CardTitle>
           </CardHeader>
@@ -1110,7 +1110,7 @@ function RiskPremiumTab() {
       <Card className="bg-neutral-900 border-neutral-800">
         <CardHeader className="pb-2">
           <CardTitle className="text-sm font-semibold text-neutral-300 flex items-center gap-2">
-            <Layers className="w-4 h-4 text-purple-400" />
+            <Layers className="w-4 h-4 text-primary" />
             Sector Impact by Geopolitical Scenario (Standard Deviations from Normal)
           </CardTitle>
         </CardHeader>
@@ -1152,7 +1152,7 @@ function RiskPremiumTab() {
       <Card className="bg-neutral-900 border-neutral-800">
         <CardHeader className="pb-2">
           <CardTitle className="text-sm font-semibold text-neutral-300 flex items-center gap-2">
-            <BarChart2 className="w-4 h-4 text-blue-400" />
+            <BarChart2 className="w-4 h-4 text-primary" />
             Geopolitical Risk Pricing Across Asset Classes
           </CardTitle>
         </CardHeader>
@@ -1282,12 +1282,12 @@ function PortfolioPositioningTab() {
                   ))}
                 </div>
                 <div>
-                  <div className="text-xs font-semibold text-blue-400 mb-2 flex items-center gap-1.5">
+                  <div className="text-xs font-semibold text-primary mb-2 flex items-center gap-1.5">
                     <Target className="w-3.5 h-3.5" /> Potential Beneficiaries
                   </div>
                   {selectedScenario.positives.map(p => (
                     <div key={p} className="flex items-start gap-1.5 text-xs text-neutral-300 mb-1">
-                      <span className="text-blue-500 flex-shrink-0 mt-0.5">•</span> {p}
+                      <span className="text-primary flex-shrink-0 mt-0.5">•</span> {p}
                     </div>
                   ))}
                 </div>
@@ -1353,7 +1353,7 @@ function PortfolioPositioningTab() {
         <Card className="bg-neutral-900 border-neutral-800">
           <CardHeader className="pb-2">
             <CardTitle className="text-sm font-semibold text-neutral-300 flex items-center gap-2">
-              <Globe className="w-4 h-4 text-blue-400" />
+              <Globe className="w-4 h-4 text-primary" />
               Geopolitical Diversification Metrics
             </CardTitle>
           </CardHeader>
@@ -1404,7 +1404,7 @@ function PortfolioPositioningTab() {
               { ticker: "JPM",  name: "JPMorgan", china: 8, russia: 0, em: 22, tariffRisk: "Low" },
             ].map(({ ticker, name, china, em, tariffRisk }) => (
               <div key={ticker} className="flex items-center gap-3 p-2 bg-neutral-800/60 rounded">
-                <span className="font-mono text-blue-400 w-10 flex-shrink-0">{ticker}</span>
+                <span className="font-mono text-primary w-10 flex-shrink-0">{ticker}</span>
                 <span className="text-neutral-400 w-28 flex-shrink-0">{name}</span>
                 <div className="flex-1 flex gap-2">
                   <div className="flex items-center gap-1">

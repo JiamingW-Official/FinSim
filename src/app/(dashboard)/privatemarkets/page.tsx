@@ -473,7 +473,7 @@ function StatChip({
     green: "bg-green-500/10 text-green-400 border-green-500/20",
     red: "bg-red-500/10 text-red-400 border-red-500/20",
     amber: "bg-amber-500/10 text-amber-400 border-amber-500/20",
-    blue: "bg-blue-500/10 text-blue-400 border-blue-500/20",
+    blue: "bg-primary/10 text-primary border-border",
     default: "bg-muted text-muted-foreground border-border",
   }[color];
   return (
@@ -869,9 +869,9 @@ function IRRCalculator() {
 
 function PEFundTable() {
   const typeColor: Record<string, string> = {
-    Buyout: "text-blue-400",
+    Buyout: "text-primary",
     Growth: "text-green-400",
-    Venture: "text-purple-400",
+    Venture: "text-primary",
     Distressed: "text-amber-400",
   };
   return (
@@ -907,7 +907,7 @@ function PEFundTable() {
               </td>
               <td className="py-2.5 px-3 text-foreground">{f.tvpi.toFixed(1)}x</td>
               <td className="py-2.5 px-3 text-green-400">{f.dpi.toFixed(1)}x</td>
-              <td className="py-2.5 px-3 text-blue-400">{f.rvpi.toFixed(1)}x</td>
+              <td className="py-2.5 px-3 text-primary">{f.rvpi.toFixed(1)}x</td>
               <td className="py-2.5 px-3 text-muted-foreground">${f.size}B</td>
               <td className="py-2.5 px-3">
                 <Badge
@@ -917,7 +917,7 @@ function PEFundTable() {
                     f.status === "Harvesting"
                       ? "border-green-500/30 text-green-400"
                       : f.status === "Investing"
-                      ? "border-blue-500/30 text-blue-400"
+                      ? "border-border text-primary"
                       : "border-border text-muted-foreground"
                   )}
                 >
@@ -1152,11 +1152,11 @@ function VCEconomics() {
           </div>
           <div className="flex justify-between">
             <span className="text-muted-foreground">GP Carry</span>
-            <span className="text-purple-400 font-medium">${gpCarry.toFixed(1)}M</span>
+            <span className="text-primary font-medium">${gpCarry.toFixed(1)}M</span>
           </div>
           <div className="flex justify-between border-t border-border pt-1 mt-1">
             <span className="font-semibold text-foreground">GP Total</span>
-            <span className="font-semibold text-purple-400">${gpTotal.toFixed(1)}M</span>
+            <span className="font-semibold text-primary">${gpTotal.toFixed(1)}M</span>
           </div>
         </div>
       </div>
@@ -1643,14 +1643,14 @@ function FeeBreakevenCalc() {
         />
       </div>
       <div className="grid grid-cols-2 gap-4">
-        <div className="rounded-lg bg-blue-500/10 border border-blue-500/20 p-3 text-center">
+        <div className="rounded-lg bg-primary/10 border border-border p-3 text-center">
           <div className="text-xs text-muted-foreground mb-1">2% Mgmt + 20% Carry</div>
-          <div className="text-xl font-bold text-blue-400">{net220.toFixed(1)}%</div>
+          <div className="text-xl font-bold text-primary">{net220.toFixed(1)}%</div>
           <div className="text-xs text-muted-foreground mt-0.5">Net to LP</div>
         </div>
-        <div className="rounded-lg bg-purple-500/10 border border-purple-500/20 p-3 text-center">
+        <div className="rounded-lg bg-primary/10 border border-border p-3 text-center">
           <div className="text-xs text-muted-foreground mb-1">1.5% Mgmt + 15% Carry</div>
-          <div className="text-xl font-bold text-purple-400">{net1515.toFixed(1)}%</div>
+          <div className="text-xl font-bold text-primary">{net1515.toFixed(1)}%</div>
           <div className="text-xs text-muted-foreground mt-0.5">Net to LP</div>
         </div>
       </div>
@@ -2361,7 +2361,7 @@ export default function PrivateMarketsPage() {
                   </div>
                   <div className="flex justify-between">
                     <span>Illiquidity Premium</span>
-                    <span className="text-blue-400">+75-175bps</span>
+                    <span className="text-primary">+75-175bps</span>
                   </div>
                 </div>
               </div>

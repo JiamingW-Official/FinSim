@@ -763,9 +763,9 @@ function RollingCorrelationChart() {
         <Card className="border-border bg-muted/20">
           <CardContent className="p-3">
             <div className="flex items-start gap-2">
-              <Zap className="h-4 w-4 text-purple-400 mt-0.5 shrink-0" />
+              <Zap className="h-4 w-4 text-primary mt-0.5 shrink-0" />
               <div>
-                <p className="text-xs font-semibold text-purple-400">Quality-Low Vol Overlap</p>
+                <p className="text-xs font-semibold text-primary">Quality-Low Vol Overlap</p>
                 <p className="text-xs text-muted-foreground mt-0.5">
                   Quality and Low Vol tend to move together (0.65 correlation), especially during market stress, reducing diversification benefit of combining them.
                 </p>

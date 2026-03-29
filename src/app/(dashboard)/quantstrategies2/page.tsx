@@ -118,7 +118,7 @@ const ML_MODELS: MLModel[] = [
     sharpe: 0.92,
     maxDD: -14.3,
     overfit: "high",
-    color: "text-violet-400",
+    color: "text-primary",
   },
   {
     name: "FinBERT Sentiment",
@@ -158,7 +158,7 @@ const EXEC_ALGOS: ExecutionAlgo[] = [
     bestFor: "Urgent alpha, large cap",
     avgPI: 3.1,
     complexity: "high",
-    color: "text-violet-400",
+    color: "text-primary",
   },
   {
     name: "POV",
@@ -680,7 +680,7 @@ function OUFormulaCard() {
     <Card className="bg-[#0f172a] border-[#1e293b]">
       <CardHeader className="pb-2">
         <CardTitle className="text-sm text-slate-300 flex items-center gap-2">
-          <Activity className="w-4 h-4 text-violet-400" />
+          <Activity className="w-4 h-4 text-primary" />
           Ornstein-Uhlenbeck Spread Model
         </CardTitle>
       </CardHeader>
@@ -697,7 +697,7 @@ function OUFormulaCard() {
           </div>
           <div className="bg-[#1e293b]/40 rounded p-2">
             <p className="text-slate-500 mb-0.5">Entry threshold (±)</p>
-            <p className="font-mono text-violet-400">|z| &gt; 2.0σ</p>
+            <p className="font-mono text-primary">|z| &gt; 2.0σ</p>
           </div>
         </div>
         <div className="bg-[#1e293b]/40 rounded p-2">
@@ -741,7 +741,7 @@ function StatArbTab() {
       <Card className="bg-[#0f172a] border-[#1e293b]">
         <CardHeader className="pb-2">
           <CardTitle className="text-sm text-slate-300 flex items-center gap-2">
-            <Shuffle className="w-4 h-4 text-violet-400" />
+            <Shuffle className="w-4 h-4 text-primary" />
             Spread Z-Score — Entry &amp; Exit Signals
           </CardTitle>
         </CardHeader>
@@ -828,7 +828,7 @@ function StatArbTab() {
                   </div>
                   <div>
                     <p className="text-slate-500">Reversion speed</p>
-                    <p className="text-violet-400 font-medium mt-0.5">
+                    <p className="text-primary font-medium mt-0.5">
                       κ = {(Math.log(2) / selectedPair.halfLife).toFixed(4)} /day
                     </p>
                   </div>
@@ -900,7 +900,7 @@ function StatArbTab() {
             {[
               { label: "PC1 (Market)", var: "38.4%", color: "text-slate-300" },
               { label: "PC2 (Size)", var: "11.2%", color: "text-sky-400" },
-              { label: "PC3 (Value)", var: "7.8%", color: "text-violet-400" },
+              { label: "PC3 (Value)", var: "7.8%", color: "text-primary" },
             ].map(({ label, var: v, color }) => (
               <div key={label} className="bg-[#1e293b]/40 rounded p-2 text-center">
                 <p className={`font-medium text-[11px] ${color}`}>{label}</p>
@@ -948,14 +948,14 @@ function MLFinanceTab() {
       <Card className="bg-[#0f172a] border-[#1e293b]">
         <CardHeader className="pb-2">
           <CardTitle className="text-sm text-slate-300 flex items-center gap-2">
-            <Brain className="w-4 h-4 text-violet-400" />
+            <Brain className="w-4 h-4 text-primary" />
             Feature Importance — Mean |SHAP| Values
           </CardTitle>
         </CardHeader>
         <CardContent>
           <FeatureImportanceSVG />
           <div className="flex gap-4 mt-2 text-xs text-slate-500">
-            <span><span className="text-violet-400">■</span> Momentum factors</span>
+            <span><span className="text-primary">■</span> Momentum factors</span>
             <span><span className="text-emerald-400">■</span> Quality / value</span>
             <span><span className="text-amber-400">■</span> Alternative</span>
             <span><span className="text-rose-400">■</span> Accounting</span>
@@ -979,7 +979,7 @@ function MLFinanceTab() {
                 onClick={() => setActiveModel(m)}
                 className={`px-3 py-1 rounded text-xs border transition-colors ${
                   activeModel.name === m.name
-                    ? "border-violet-500 bg-violet-500/10 text-violet-300"
+                    ? "border-primary bg-primary/10 text-primary"
                     : "border-slate-700 text-slate-500 hover:border-slate-600"
                 }`}
               >
@@ -999,7 +999,7 @@ function MLFinanceTab() {
               {[
                 { label: "IC (daily)", value: activeModel.ic.toFixed(3), color: "text-emerald-400" },
                 { label: "IC/IR", value: activeModel.icir.toFixed(2), color: "text-sky-400" },
-                { label: "Sharpe", value: activeModel.sharpe.toFixed(2), color: "text-violet-400" },
+                { label: "Sharpe", value: activeModel.sharpe.toFixed(2), color: "text-primary" },
                 { label: "Max DD", value: `${activeModel.maxDD.toFixed(1)}%`, color: "text-rose-400" },
               ].map(({ label, value, color }) => (
                 <div key={label} className="bg-[#1e293b]/50 rounded-lg p-3 text-center">
@@ -1131,7 +1131,7 @@ function MLFinanceTab() {
         <CardContent>
           <div className="flex items-center gap-2 flex-wrap text-xs">
             {[
-              { step: "Feature Store", color: "bg-violet-500/20 text-violet-300" },
+              { step: "Feature Store", color: "bg-primary/20 text-primary" },
               { step: "Model Registry", color: "bg-sky-500/20 text-sky-300" },
               { step: "Champion/Challenger", color: "bg-emerald-500/20 text-emerald-300" },
               { step: "Drift Detection", color: "bg-amber-500/20 text-amber-300" },
@@ -1221,7 +1221,7 @@ function HFTMarketMakingTab() {
       <Card className="bg-[#0f172a] border-[#1e293b]">
         <CardHeader className="pb-2">
           <CardTitle className="text-sm text-slate-300 flex items-center gap-2">
-            <Activity className="w-4 h-4 text-violet-400" />
+            <Activity className="w-4 h-4 text-primary" />
             Inventory Position Over Time — Mean Reversion Control
           </CardTitle>
         </CardHeader>
@@ -1248,7 +1248,7 @@ function HFTMarketMakingTab() {
               key={r.regime}
               className={`rounded-lg p-3 border cursor-pointer transition-colors ${
                 selectedRegime.regime === r.regime
-                  ? "border-violet-500/50 bg-[#1e293b]/60"
+                  ? "border-primary/50 bg-[#1e293b]/60"
                   : "border-[#1e293b] hover:bg-[#1e293b]/30"
               }`}
               onClick={() => setSelectedRegime(r)}
@@ -1289,7 +1289,7 @@ function HFTMarketMakingTab() {
               { stage: "Signal compute", lat: "500 ns", tech: "FPGA / GPU", color: "text-sky-400" },
               { stage: "Decision logic", lat: "1 μs", tech: "CPU (optimised C++)", color: "text-amber-400" },
               { stage: "Order encode + send", lat: "2 μs", tech: "Kernel bypass (DPDK)", color: "text-amber-400" },
-              { stage: "Exchange ACK", lat: "30–200 μs", tech: "Co-location advantage", color: "text-violet-400" },
+              { stage: "Exchange ACK", lat: "30–200 μs", tech: "Co-location advantage", color: "text-primary" },
             ].map(({ stage, lat, tech, color }) => (
               <div key={stage} className="flex items-center justify-between border-b border-[#1e293b]/50 pb-1">
                 <span className="text-slate-400">{stage}</span>
@@ -1423,7 +1423,7 @@ function ExecutionTab() {
             ].map(({ q, imp, note }) => (
               <div key={q} className="bg-[#1e293b]/40 rounded p-2 text-center">
                 <p className="text-slate-500">{q}</p>
-                <p className="text-violet-400 font-bold">{imp}</p>
+                <p className="text-primary font-bold">{imp}</p>
                 <p className="text-slate-600 text-xs">{note}</p>
               </div>
             ))}
@@ -1435,7 +1435,7 @@ function ExecutionTab() {
       <Card className="bg-[#0f172a] border-[#1e293b]">
         <CardHeader className="pb-2">
           <CardTitle className="text-sm text-slate-300 flex items-center gap-2">
-            <Layers className="w-4 h-4 text-violet-400" />
+            <Layers className="w-4 h-4 text-primary" />
             Implementation Shortfall Decomposition
           </CardTitle>
         </CardHeader>
@@ -1444,7 +1444,7 @@ function ExecutionTab() {
             {[
               { component: "Delay Cost", bps: 3.1, pct: 18, color: "bg-amber-500", desc: "Price drift between decision and order submission" },
               { component: "Market Impact", bps: 8.4, pct: 49, color: "bg-rose-500", desc: "Price move caused by own order flow" },
-              { component: "Timing Risk", bps: 3.8, pct: 22, color: "bg-violet-500", desc: "Opportunity cost of phased execution" },
+              { component: "Timing Risk", bps: 3.8, pct: 22, color: "bg-primary", desc: "Opportunity cost of phased execution" },
               { component: "Commissions", bps: 1.9, pct: 11, color: "bg-slate-500", desc: "Explicit brokerage fees" },
             ].map(({ component, bps, pct, color, desc }) => (
               <div key={component}>
@@ -1580,7 +1580,7 @@ function ExecutionTab() {
                 Input: order size, urgency, historical ADV, intraday vol profile.</p>
             </div>
             <div className="bg-[#1e293b]/40 rounded p-2">
-              <p className="text-violet-400 font-medium mb-1">Post-Trade TCA Attribution</p>
+              <p className="text-primary font-medium mb-1">Post-Trade TCA Attribution</p>
               <p>Decompose realised IS into delay, impact, timing, commissions.
                 Compare vs VWAP, arrival price, close. Broker toxicity scored by adverse selection.</p>
             </div>
@@ -1617,8 +1617,8 @@ export default function QuantStrategies2Page() {
         className="mb-6"
       >
         <div className="flex items-center gap-3 mb-2">
-          <div className="p-2 bg-violet-500/10 rounded-lg border border-violet-500/20">
-            <Activity className="w-6 h-6 text-violet-400" />
+          <div className="p-2 bg-primary/10 rounded-lg border border-border">
+            <Activity className="w-6 h-6 text-primary" />
           </div>
           <div>
             <h1 className="text-2xl font-bold text-slate-100">Advanced Quantitative Strategies II</h1>
@@ -1633,7 +1633,7 @@ export default function QuantStrategies2Page() {
           {[
             { label: "Stat Arb Sharpe", value: "1.42", color: "text-emerald-400" },
             { label: "XGBoost IC", value: "0.048", color: "text-sky-400" },
-            { label: "HFT Spread", value: "1.1bp", color: "text-violet-400" },
+            { label: "HFT Spread", value: "1.1bp", color: "text-primary" },
             { label: "IS (avg)", value: "17.2bp", color: "text-amber-400" },
           ].map(({ label, value, color }) => (
             <div

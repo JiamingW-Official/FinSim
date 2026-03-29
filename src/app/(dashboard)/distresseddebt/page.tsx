@@ -390,11 +390,11 @@ function ratingColor(rating: CreditRating) {
 
 function badgeColor(badge: TradeBadge) {
   const map: Record<TradeBadge, string> = {
-    "Loan-to-Own": "bg-violet-500/20 text-violet-300 border-violet-500/30",
+    "Loan-to-Own": "bg-primary/20 text-primary border-border",
     "Fulcrum Security": "bg-yellow-500/20 text-yellow-300 border-yellow-500/30",
-    "Capital Structure Arb": "bg-cyan-500/20 text-cyan-300 border-cyan-500/30",
+    "Capital Structure Arb": "bg-cyan-500/20 text-muted-foreground border-cyan-500/30",
     "DIP Financing": "bg-emerald-500/20 text-emerald-300 border-emerald-500/30",
-    "Credit Catalyst": "bg-blue-500/20 text-blue-300 border-blue-500/30",
+    "Credit Catalyst": "bg-primary/20 text-primary border-border",
     "Liquidation Play": "bg-red-500/20 text-red-300 border-red-500/30",
   };
   return map[badge];
@@ -894,7 +894,7 @@ function CapitalStructureTab({ layers }: { layers: CapitalStructureLayer[] }) {
                 <span>Fulcrum security holders negotiate the plan of reorganization terms</span>
               </div>
               <div className="flex items-start gap-2">
-                <ArrowRight className="h-3 w-3 text-blue-400 flex-shrink-0 mt-0.5" />
+                <ArrowRight className="h-3 w-3 text-primary flex-shrink-0 mt-0.5" />
                 <span>Intercreditor agreements may restrict junior lien enforcement</span>
               </div>
               <div className="flex items-start gap-2">
@@ -1063,7 +1063,7 @@ function BankruptcyTab({ scenarios }: { scenarios: PlanScenario[] }) {
             <Slider value={dipRate} onValueChange={setDipRate} min={5} max={25} step={0.5} className="mb-4" />
             <div className="flex items-center justify-between mb-2">
               <span className="text-sm text-white/60">DIP Facility Size</span>
-              <span className="text-sm font-mono text-blue-400">${dipSize[0]}M</span>
+              <span className="text-sm font-mono text-primary">${dipSize[0]}M</span>
             </div>
             <Slider value={dipSize} onValueChange={setDipSize} min={25} max={500} step={25} />
           </div>

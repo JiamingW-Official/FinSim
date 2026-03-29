@@ -235,7 +235,7 @@ function DealDashboard({
               onClick={() => onSelect(deal.id)}
               className={cn(
                 "border-b border-white/5 cursor-pointer transition-colors hover:bg-white/5",
-                selectedId === deal.id && "bg-blue-500/10 hover:bg-blue-500/15"
+                selectedId === deal.id && "bg-primary/10 hover:bg-primary/15"
               )}
             >
               <td className="py-3 px-3">
@@ -289,13 +289,13 @@ function SpreadDecomposition({ deal }: { deal: Deal }) {
     {
       label: "Deal Risk Premium",
       value: breakdown.dealRiskPremium,
-      color: "bg-blue-500",
+      color: "bg-primary",
       desc: "Compensation for the risk the deal fails to close",
     },
     {
       label: "Time Value",
       value: breakdown.timeValue,
-      color: "bg-violet-500",
+      color: "bg-primary",
       desc: "Opportunity cost of capital locked until close date",
     },
     {
@@ -310,7 +310,7 @@ function SpreadDecomposition({ deal }: { deal: Deal }) {
     <Card className="bg-zinc-900 border-white/10">
       <CardHeader className="pb-3">
         <CardTitle className="text-sm font-medium text-zinc-300 flex items-center gap-2">
-          <BarChart2 className="w-4 h-4 text-blue-400" />
+          <BarChart2 className="w-4 h-4 text-primary" />
           Spread Decomposition — {deal.targetTicker}
         </CardTitle>
       </CardHeader>
@@ -397,7 +397,7 @@ function DealRiskMatrix({ deals }: { deals: Deal[] }) {
     <Card className="bg-zinc-900 border-white/10">
       <CardHeader className="pb-2">
         <CardTitle className="text-sm font-medium text-zinc-300 flex items-center gap-2">
-          <Activity className="w-4 h-4 text-violet-400" />
+          <Activity className="w-4 h-4 text-primary" />
           Deal Risk Matrix
           <span className="text-xs text-zinc-500 font-normal ml-1">(bubble size = deal size $B)</span>
         </CardTitle>
@@ -531,7 +531,7 @@ function HistoricalPerformance({ history }: { history: PortfolioPoint[] }) {
             Merger Arb Portfolio
           </div>
           <div className="flex items-center gap-2 text-xs text-zinc-400">
-            <div className="w-5 h-0.5 bg-blue-400 rounded" />
+            <div className="w-5 h-0.5 bg-primary rounded" />
             S&amp;P 500
           </div>
         </div>
@@ -584,7 +584,7 @@ function HistoricalPerformance({ history }: { history: PortfolioPoint[] }) {
           </div>
           <div>
             <div className="text-xs text-zinc-500">S&amp;P 500 YTD</div>
-            <div className={cn("font-mono font-bold", lastSp >= 0 ? "text-blue-400" : "text-red-400")}>
+            <div className={cn("font-mono font-bold", lastSp >= 0 ? "text-primary" : "text-red-400")}>
               {lastSp > 0 ? "+" : ""}{lastSp.toFixed(1)}%
             </div>
           </div>
@@ -748,14 +748,14 @@ function ArbitrageCalculator() {
   const rrRatio = Math.abs(grossPnL) / Math.max(0.01, Math.abs(breakLoss));
 
   const inputClass =
-    "w-full bg-zinc-800 border border-white/10 rounded-lg px-3 py-2 text-sm text-white font-mono focus:outline-none focus:border-blue-500/50 transition-colors";
+    "w-full bg-zinc-800 border border-white/10 rounded-lg px-3 py-2 text-sm text-white font-mono focus:outline-none focus:border-primary/50 transition-colors";
   const labelClass = "text-xs text-zinc-400 mb-1 block";
 
   return (
     <Card className="bg-zinc-900 border-white/10">
       <CardHeader className="pb-3">
         <CardTitle className="text-sm font-medium text-zinc-300 flex items-center gap-2">
-          <Calculator className="w-4 h-4 text-blue-400" />
+          <Calculator className="w-4 h-4 text-primary" />
           Arbitrage Calculator
         </CardTitle>
       </CardHeader>
@@ -846,7 +846,7 @@ function ArbitrageCalculator() {
           </div>
           <div className="bg-zinc-800/60 rounded-xl p-3 text-center">
             <div className="text-xs text-zinc-500 mb-1">Ann. Return</div>
-            <div className="text-xl font-bold font-mono text-blue-400">{annualizedReturn.toFixed(1)}%</div>
+            <div className="text-xl font-bold font-mono text-primary">{annualizedReturn.toFixed(1)}%</div>
           </div>
           <div className="bg-zinc-800/60 rounded-xl p-3 text-center">
             <div className="text-xs text-zinc-500 mb-1">Expected Value</div>
@@ -896,7 +896,7 @@ function SummaryStats({ deals }: { deals: Deal[] }) {
       label: "Active Deals",
       value: String(deals.length),
       icon: <Activity className="w-4 h-4" />,
-      color: "text-blue-400",
+      color: "text-primary",
     },
     {
       label: "Avg Spread",
@@ -908,7 +908,7 @@ function SummaryStats({ deals }: { deals: Deal[] }) {
       label: "Avg Probability",
       value: `${avgProb.toFixed(0)}%`,
       icon: <CheckCircle2 className="w-4 h-4" />,
-      color: "text-violet-400",
+      color: "text-primary",
     },
     {
       label: "Total Deal Value",
@@ -960,7 +960,7 @@ export default function MergerArbPage() {
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
         <div>
           <h1 className="text-2xl font-bold text-white flex items-center gap-2">
-            <TrendingDown className="w-6 h-6 text-blue-400" />
+            <TrendingDown className="w-6 h-6 text-primary" />
             Merger Arbitrage
           </h1>
           <p className="text-sm text-zinc-400 mt-0.5">
@@ -1001,7 +1001,7 @@ export default function MergerArbPage() {
           <Card className="bg-zinc-900 border-white/10">
             <CardHeader className="pb-2">
               <CardTitle className="text-sm font-medium text-zinc-300 flex items-center gap-2">
-                <Activity className="w-4 h-4 text-blue-400" />
+                <Activity className="w-4 h-4 text-primary" />
                 Active Deals
                 <span className="text-xs text-zinc-500 font-normal ml-1">
                   — click a row to analyze spread
@@ -1039,7 +1039,7 @@ export default function MergerArbPage() {
           <Card className="bg-zinc-900 border-white/10">
             <CardHeader className="pb-2">
               <CardTitle className="text-sm font-medium text-zinc-300 flex items-center gap-2">
-                <BarChart2 className="w-4 h-4 text-violet-400" />
+                <BarChart2 className="w-4 h-4 text-primary" />
                 Deal Metrics Summary
               </CardTitle>
             </CardHeader>
@@ -1063,7 +1063,7 @@ export default function MergerArbPage() {
                         <td className="py-2 pr-4 text-right text-emerald-400 font-mono">
                           +{d.spreadPct}%
                         </td>
-                        <td className="py-2 pr-4 text-right font-mono text-blue-400">
+                        <td className="py-2 pr-4 text-right font-mono text-primary">
                           {d.annualizedReturn.toFixed(1)}%
                         </td>
                         <td className="py-2 pr-4 text-right font-mono text-zinc-300">
@@ -1091,7 +1091,7 @@ export default function MergerArbPage() {
           <Card className="bg-zinc-900 border-white/10">
             <CardHeader className="pb-2">
               <CardTitle className="text-sm font-medium text-zinc-300 flex items-center gap-2">
-                <Info className="w-4 h-4 text-blue-400" />
+                <Info className="w-4 h-4 text-primary" />
                 Merger Arbitrage Education
               </CardTitle>
             </CardHeader>
@@ -1112,7 +1112,7 @@ export default function MergerArbPage() {
                     Spread = Deal Price - Current Price
                   </span>
                   . Annualized return is computed as{" "}
-                  <span className="text-blue-400 font-mono">
+                  <span className="text-primary font-mono">
                     (Spread / Current Price) * (365 / Days to Close)
                   </span>
                   . A wider spread signals higher market-perceived risk.
@@ -1123,7 +1123,7 @@ export default function MergerArbPage() {
                 <p>
                   Assuming a deal closes at deal price or breaks to a pre-announcement level, implied
                   probability is back-solved:{" "}
-                  <span className="text-violet-400 font-mono">
+                  <span className="text-primary font-mono">
                     P = (Current - Break) / (Deal - Break)
                   </span>
                   .

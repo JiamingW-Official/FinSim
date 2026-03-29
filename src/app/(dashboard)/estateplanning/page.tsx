@@ -59,8 +59,8 @@ function StatChip({
     green: "bg-green-500/10 text-green-400 border-green-500/20",
     red: "bg-red-500/10 text-red-400 border-red-500/20",
     amber: "bg-amber-500/10 text-amber-400 border-amber-500/20",
-    blue: "bg-blue-500/10 text-blue-400 border-blue-500/20",
-    purple: "bg-purple-500/10 text-purple-400 border-purple-500/20",
+    blue: "bg-primary/10 text-primary border-border",
+    purple: "bg-primary/10 text-primary border-border",
     default: "bg-muted text-muted-foreground border-border",
   }[color];
   return (
@@ -84,8 +84,8 @@ function InfoBox({
     default: "border-border bg-card",
     green: "border-green-500/30 bg-green-500/5",
     amber: "border-amber-500/30 bg-amber-500/5",
-    blue: "border-blue-500/30 bg-blue-500/5",
-    purple: "border-purple-500/30 bg-purple-500/5",
+    blue: "border-border bg-primary/5",
+    purple: "border-border bg-primary/5",
   }[variant];
   return (
     <div className={cn("rounded-lg border p-4", cls)}>
@@ -423,8 +423,8 @@ function TrustsTab() {
   }, []);
 
   const colorMap: Record<string, string> = {
-    blue: "border-blue-500/30 bg-blue-500/5",
-    purple: "border-purple-500/30 bg-purple-500/5",
+    blue: "border-border bg-primary/5",
+    purple: "border-border bg-primary/5",
     green: "border-green-500/30 bg-green-500/5",
     amber: "border-amber-500/30 bg-amber-500/5",
     red: "border-red-500/30 bg-red-500/5",
@@ -432,8 +432,8 @@ function TrustsTab() {
   };
 
   const badgeColorMap: Record<string, string> = {
-    blue: "border-blue-500/30 text-blue-400",
-    purple: "border-purple-500/30 text-purple-400",
+    blue: "border-border text-primary",
+    purple: "border-border text-primary",
     green: "border-green-500/30 text-green-400",
     amber: "border-amber-500/30 text-amber-400",
     red: "border-red-500/30 text-red-400",
@@ -765,9 +765,9 @@ function CharitableGivingTab() {
   const vehicle = CHARITABLE_VEHICLES.find((v) => v.abbrev === selected) ?? CHARITABLE_VEHICLES[0];
 
   const colorBorder: Record<string, string> = {
-    blue: "border-blue-500/30 bg-blue-500/5",
+    blue: "border-border bg-primary/5",
     green: "border-green-500/30 bg-green-500/5",
-    purple: "border-purple-500/30 bg-purple-500/5",
+    purple: "border-border bg-primary/5",
     amber: "border-amber-500/30 bg-amber-500/5",
     red: "border-red-500/30 bg-red-500/5",
   };
@@ -1032,8 +1032,8 @@ function BusinessSuccessionTab() {
       <div className="space-y-3">
         {SUCCESSION_VEHICLES.map((v, i) => {
           const colorBorder: Record<string, string> = {
-            blue: "border-blue-500/30",
-            purple: "border-purple-500/30",
+            blue: "border-border",
+            purple: "border-border",
             green: "border-green-500/30",
             amber: "border-amber-500/30",
             red: "border-red-500/30",

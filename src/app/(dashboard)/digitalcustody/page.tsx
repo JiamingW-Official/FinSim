@@ -96,7 +96,7 @@ function InfoBox({
   variant?: "blue" | "amber" | "emerald" | "rose";
 }) {
   const colors = {
-    blue: "bg-blue-500/10 border-blue-500/30 text-blue-200",
+    blue: "bg-primary/10 border-border text-primary",
     amber: "bg-amber-500/10 border-amber-500/30 text-amber-200",
     emerald: "bg-emerald-500/10 border-emerald-500/30 text-emerald-200",
     rose: "bg-rose-500/10 border-rose-500/30 text-rose-200",
@@ -309,7 +309,7 @@ function Tab1CustodyArchitecture() {
       id: "hsm",
       label: "Hardware Security Module (HSM)",
       icon: <Server size={14} />,
-      color: "text-blue-400",
+      color: "text-primary",
       desc: "FIPS 140-2 Level 3+ certified tamper-resistant hardware that generates, stores, and uses cryptographic keys. Keys never leave the HSM in plaintext.",
       details: [
         "FIPS 140-2 Level 3 or Level 4 certification",
@@ -323,7 +323,7 @@ function Tab1CustodyArchitecture() {
       id: "hw",
       label: "Hardware Wallets",
       icon: <Cpu size={14} />,
-      color: "text-purple-400",
+      color: "text-primary",
       desc: "Dedicated signing devices (Ledger, Trezor, Coldcard) that isolate private keys from internet-connected systems. Used for warm/cold storage at smaller scale.",
       details: [
         "PIN/passphrase protection",
@@ -337,7 +337,7 @@ function Tab1CustodyArchitecture() {
       id: "mpc",
       label: "Multi-Party Computation (MPC)",
       icon: <GitBranch size={14} />,
-      color: "text-cyan-400",
+      color: "text-muted-foreground",
       desc: "Cryptographic protocol where a private key is split into shares held by separate parties. Signatures are computed collaboratively without any party ever reconstructing the full key.",
       details: [
         "Threshold Signature Scheme (TSS): t-of-n participants",
@@ -438,8 +438,8 @@ function Tab1CustodyArchitecture() {
             <thead>
               <tr className="border-b border-white/10">
                 <th className="text-left text-zinc-400 font-medium py-2 pr-4 w-40">Feature</th>
-                <th className="text-center text-cyan-400 font-medium py-2 px-3">MPC / TSS</th>
-                <th className="text-center text-purple-400 font-medium py-2 px-3">Multi-Sig</th>
+                <th className="text-center text-muted-foreground font-medium py-2 px-3">MPC / TSS</th>
+                <th className="text-center text-primary font-medium py-2 px-3">Multi-Sig</th>
               </tr>
             </thead>
             <tbody>
@@ -772,7 +772,7 @@ function Tab2InstitutionalSolutions() {
               { label: "Compliance Layer", desc: "Chainalysis/Elliptic checks on all DeFi interactions" },
             ].map((row, i) => (
               <div key={i} className="rounded-md bg-white/5 border border-white/10 p-2">
-                <p className="text-xs text-cyan-400 font-medium">{row.label}</p>
+                <p className="text-xs text-muted-foreground font-medium">{row.label}</p>
                 <p className="text-xs text-zinc-400">{row.desc}</p>
               </div>
             ))}
@@ -984,7 +984,7 @@ function Tab3RegulatoryFramework() {
                       {reg.status}
                     </Badge>
                   </div>
-                  <p className="text-xs text-cyan-400 font-medium">{reg.regime}</p>
+                  <p className="text-xs text-muted-foreground font-medium">{reg.regime}</p>
                 </div>
               </div>
               <p className="text-xs text-zinc-400 mt-1">{reg.requirement}</p>
@@ -1210,7 +1210,7 @@ function Tab4SecurityInsurance() {
               </div>
               <p className="text-xs text-zinc-400 mb-1.5">{ins.desc}</p>
               <p className="text-xs text-zinc-500 italic mb-1">Example: {ins.example}</p>
-              <p className="text-xs text-blue-400">Providers: {ins.providers}</p>
+              <p className="text-xs text-primary">Providers: {ins.providers}</p>
             </div>
           ))}
         </div>
@@ -1322,9 +1322,9 @@ export default function DigitalCustodyPage() {
         </div>
         <div className="flex flex-wrap gap-2 mt-3">
           {[
-            { label: "Hot/Cold Wallets", color: "bg-blue-500/20 text-blue-300 border-blue-500/30" },
-            { label: "MPC Technology", color: "bg-cyan-500/20 text-cyan-300 border-cyan-500/30" },
-            { label: "SEC / OCC", color: "bg-purple-500/20 text-purple-300 border-purple-500/30" },
+            { label: "Hot/Cold Wallets", color: "bg-primary/20 text-primary border-border" },
+            { label: "MPC Technology", color: "bg-cyan-500/20 text-muted-foreground border-cyan-500/30" },
+            { label: "SEC / OCC", color: "bg-primary/20 text-primary border-border" },
             { label: "Lloyd's Insurance", color: "bg-emerald-500/20 text-emerald-300 border-emerald-500/30" },
             { label: "SOC 2 Type II", color: "bg-indigo-500/20 text-indigo-300 border-indigo-500/30" },
           ].map((tag) => (

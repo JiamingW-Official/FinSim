@@ -623,8 +623,8 @@ export default function MonteCarloPage() {
         className="mb-6"
       >
         <div className="flex items-center gap-3 mb-2">
-          <div className="p-2 rounded-lg bg-blue-500/10">
-            <Shuffle className="h-6 w-6 text-blue-500" />
+          <div className="p-2 rounded-lg bg-primary/10">
+            <Shuffle className="h-6 w-6 text-primary" />
           </div>
           <div>
             <h1 className="text-2xl font-bold">Monte Carlo Simulation</h1>
@@ -1058,7 +1058,7 @@ export default function MonteCarloPage() {
                   label: "MC vs Parametric Gap",
                   value: fmtPct(Math.abs(varData.varMC99 - varData.varParametric99) * 100, 3),
                   sub: "Fat tail effect",
-                  color: "text-blue-400",
+                  color: "text-primary",
                 },
               ].map(item => (
                 <Card key={item.label} className="border-border">
@@ -1086,7 +1086,7 @@ export default function MonteCarloPage() {
                     Loss tail (1% worst outcomes)
                   </span>
                   <span>
-                    <span className="inline-block w-3 h-3 bg-blue-500 rounded-sm mr-1" />
+                    <span className="inline-block w-3 h-3 bg-primary rounded-sm mr-1" />
                     Normal outcomes
                   </span>
                 </div>

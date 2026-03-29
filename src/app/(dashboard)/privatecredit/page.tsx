@@ -84,8 +84,8 @@ function InfoPill({ text, color = "zinc" }: { text: string; color?: string }) {
     emerald: "bg-emerald-900/50 text-emerald-300",
     amber: "bg-amber-900/50 text-amber-300",
     rose: "bg-rose-900/50 text-rose-300",
-    blue: "bg-blue-900/50 text-blue-300",
-    violet: "bg-violet-900/50 text-violet-300",
+    blue: "bg-muted/70 text-primary",
+    violet: "bg-muted/70 text-primary",
     orange: "bg-orange-900/50 text-orange-300",
   };
   return (
@@ -118,8 +118,8 @@ function DirectLendingTab() {
   ];
 
   const leverageBars = [
-    { label: "Senior / 1st Lien", low: 5.0, high: 7.0, color: "bg-blue-500" },
-    { label: "Unitranche", low: 5.5, high: 7.5, color: "bg-violet-500" },
+    { label: "Senior / 1st Lien", low: 5.0, high: 7.0, color: "bg-primary" },
+    { label: "Unitranche", low: 5.5, high: 7.5, color: "bg-primary" },
     { label: "Total (incl. Mezz)", low: 6.0, high: 8.0, color: "bg-amber-500" },
   ];
 
@@ -253,8 +253,8 @@ function DirectLendingTab() {
             <thead>
               <tr className="border-b border-white/10">
                 <th className="py-2 text-left text-zinc-500 font-medium w-32">Feature</th>
-                <th className="py-2 text-left text-blue-400 font-medium">BDC (Publicly Traded)</th>
-                <th className="py-2 text-left text-violet-400 font-medium">Private Credit Fund</th>
+                <th className="py-2 text-left text-primary font-medium">BDC (Publicly Traded)</th>
+                <th className="py-2 text-left text-primary font-medium">Private Credit Fund</th>
               </tr>
             </thead>
             <tbody>
@@ -321,7 +321,7 @@ function DirectLendingTab() {
                   <span className="text-xs text-zinc-400">{fmtB(l.aum)}</span>
                 </div>
                 <div className="relative h-2 rounded bg-white/5">
-                  <div className="h-full rounded bg-blue-500" style={{ width: `${(l.aum / 450) * 100}%`, opacity: 0.7 }} />
+                  <div className="h-full rounded bg-primary" style={{ width: `${(l.aum / 450) * 100}%`, opacity: 0.7 }} />
                 </div>
                 <p className="text-xs text-zinc-500 mt-0.5">{l.focus}</p>
               </div>
@@ -642,7 +642,7 @@ function DistressedTab() {
         <div className="space-y-3">
           {opCredit.map((s) => (
             <div key={s.type} className="flex items-start gap-3 rounded-lg border border-white/5 bg-white/[0.03] p-3">
-              <ArrowRight className="w-4 h-4 text-violet-400 mt-0.5 shrink-0" />
+              <ArrowRight className="w-4 h-4 text-primary mt-0.5 shrink-0" />
               <div className="flex-1">
                 <div className="flex items-center gap-2">
                   <p className="text-xs font-semibold text-zinc-200">{s.type}</p>
@@ -834,7 +834,7 @@ function MarketDynamicsTab() {
           {risks.map((risk) => (
             <div key={risk.risk} className="rounded-lg border border-white/5 bg-white/[0.03] p-3">
               <div className="flex items-start gap-2">
-                <AlertTriangle className={cn("w-3.5 h-3.5 mt-0.5 shrink-0", risk.color === "rose" ? "text-rose-400" : risk.color === "amber" ? "text-amber-400" : "text-blue-400")} />
+                <AlertTriangle className={cn("w-3.5 h-3.5 mt-0.5 shrink-0", risk.color === "rose" ? "text-rose-400" : risk.color === "amber" ? "text-amber-400" : "text-primary")} />
                 <div>
                   <div className="flex items-center gap-2">
                     <p className="text-xs font-semibold text-zinc-200">{risk.risk}</p>
@@ -876,7 +876,7 @@ function MarketDynamicsTab() {
               "2022–2024 vintages: higher floating rates boost current income; recession risk hedge",
             ].map((pt, i) => (
               <div key={i} className="flex items-start gap-2">
-                <Info className="w-3.5 h-3.5 text-blue-400 mt-0.5 shrink-0" />
+                <Info className="w-3.5 h-3.5 text-primary mt-0.5 shrink-0" />
                 <p>{pt}</p>
               </div>
             ))}
@@ -907,8 +907,8 @@ export default function PrivateCreditPage() {
       {/* Header */}
       <div className="border-b border-white/10 bg-zinc-900/60 backdrop-blur px-6 py-5">
         <div className="max-w-6xl mx-auto flex items-start gap-4">
-          <div className="rounded-xl bg-violet-500/20 p-2.5 border border-violet-500/30">
-            <Briefcase className="w-5 h-5 text-violet-400" />
+          <div className="rounded-xl bg-primary/20 p-2.5 border border-border">
+            <Briefcase className="w-5 h-5 text-primary" />
           </div>
           <div>
             <h1 className="text-xl font-bold text-white">Private Credit Markets</h1>
@@ -935,7 +935,7 @@ export default function PrivateCreditPage() {
                 <TabsTrigger
                   key={tab.id}
                   value={tab.id}
-                  className="flex items-center gap-1.5 text-xs py-2 data-[state=active]:bg-violet-600 data-[state=active]:text-white"
+                  className="flex items-center gap-1.5 text-xs py-2 data-[state=active]:bg-primary data-[state=active]:text-white"
                 >
                   <Icon className="w-3.5 h-3.5 shrink-0" />
                   <span>{tab.label}</span>

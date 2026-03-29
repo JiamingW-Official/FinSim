@@ -202,7 +202,7 @@ function StatChip({
     green: "bg-emerald-500/10 text-emerald-400 border-emerald-500/20",
     red: "bg-red-500/10 text-red-400 border-red-500/20",
     amber: "bg-amber-500/10 text-amber-400 border-amber-500/20",
-    blue: "bg-blue-500/10 text-blue-400 border-blue-500/20",
+    blue: "bg-primary/10 text-primary border-border",
   };
   return (
     <div className={cn("rounded-lg border px-3 py-2 text-center", colors[color])}>
@@ -217,7 +217,7 @@ function SectionCard({ title, children, icon: Icon }: { title: string; children:
     <div className="rounded-xl border border-white/8 bg-white/3 p-4">
       {title && (
         <div className="flex items-center gap-2 mb-4">
-          {Icon && <Icon className="w-4 h-4 text-blue-400" />}
+          {Icon && <Icon className="w-4 h-4 text-primary" />}
           <h3 className="text-sm font-semibold text-white">{title}</h3>
         </div>
       )}
@@ -277,7 +277,7 @@ function TipsMechanicsTab() {
               type="number"
               value={par}
               onChange={(e) => setPar(Math.max(100, +e.target.value))}
-              className="w-full rounded bg-white/5 border border-white/10 text-white text-sm px-2 py-1.5 focus:outline-none focus:border-blue-500/50"
+              className="w-full rounded bg-white/5 border border-white/10 text-white text-sm px-2 py-1.5 focus:outline-none focus:border-primary/50"
             />
           </div>
           <div>
@@ -287,7 +287,7 @@ function TipsMechanicsTab() {
               step="0.1"
               value={couponRate}
               onChange={(e) => setCouponRate(Math.max(0, +e.target.value))}
-              className="w-full rounded bg-white/5 border border-white/10 text-white text-sm px-2 py-1.5 focus:outline-none focus:border-blue-500/50"
+              className="w-full rounded bg-white/5 border border-white/10 text-white text-sm px-2 py-1.5 focus:outline-none focus:border-primary/50"
             />
           </div>
           <div>
@@ -296,7 +296,7 @@ function TipsMechanicsTab() {
               type="number"
               value={cpiStart}
               onChange={(e) => setCpiStart(Math.max(1, +e.target.value))}
-              className="w-full rounded bg-white/5 border border-white/10 text-white text-sm px-2 py-1.5 focus:outline-none focus:border-blue-500/50"
+              className="w-full rounded bg-white/5 border border-white/10 text-white text-sm px-2 py-1.5 focus:outline-none focus:border-primary/50"
             />
           </div>
           <div>
@@ -305,7 +305,7 @@ function TipsMechanicsTab() {
               type="number"
               value={cpiCurrent}
               onChange={(e) => setCpiCurrent(Math.max(1, +e.target.value))}
-              className="w-full rounded bg-white/5 border border-white/10 text-white text-sm px-2 py-1.5 focus:outline-none focus:border-blue-500/50"
+              className="w-full rounded bg-white/5 border border-white/10 text-white text-sm px-2 py-1.5 focus:outline-none focus:border-primary/50"
             />
           </div>
         </div>
@@ -348,18 +348,18 @@ function TipsMechanicsTab() {
           />
         </div>
 
-        <div className="mt-3 p-3 rounded bg-blue-500/8 border border-blue-500/15 text-xs text-slate-300 space-y-1">
+        <div className="mt-3 p-3 rounded bg-primary/8 border border-border text-xs text-slate-300 space-y-1">
           <p>
-            <span className="text-blue-400 font-medium">Formula:</span> Adjusted Principal = Par × (Current CPI / Base CPI)
+            <span className="text-primary font-medium">Formula:</span> Adjusted Principal = Par × (Current CPI / Base CPI)
           </p>
           <p>
-            <span className="text-blue-400 font-medium">Coupon:</span> Adjusted Principal × (Real Coupon Rate / 2)
+            <span className="text-primary font-medium">Coupon:</span> Adjusted Principal × (Real Coupon Rate / 2)
           </p>
           <p>
-            <span className="text-blue-400 font-medium">Deflation floor:</span> At maturity, bondholder receives max(Adjusted Principal, Par) — never less than par.
+            <span className="text-primary font-medium">Deflation floor:</span> At maturity, bondholder receives max(Adjusted Principal, Par) — never less than par.
           </p>
           <p>
-            <span className="text-blue-400 font-medium">Real annual return:</span> {annualRealReturn.toFixed(2)}% regardless of inflation
+            <span className="text-primary font-medium">Real annual return:</span> {annualRealReturn.toFixed(2)}% regardless of inflation
           </p>
         </div>
       </SectionCard>
@@ -564,7 +564,7 @@ function RealYieldsTab() {
               step="0.05"
               value={nominalYield}
               onChange={(e) => setNominalYield(Math.max(0, +e.target.value))}
-              className="w-full rounded bg-white/5 border border-white/10 text-white text-sm px-2 py-1.5 focus:outline-none focus:border-blue-500/50"
+              className="w-full rounded bg-white/5 border border-white/10 text-white text-sm px-2 py-1.5 focus:outline-none focus:border-primary/50"
             />
           </div>
           <div>
@@ -574,7 +574,7 @@ function RealYieldsTab() {
               step="0.05"
               value={tipsYield}
               onChange={(e) => setTipsYield(+e.target.value)}
-              className="w-full rounded bg-white/5 border border-white/10 text-white text-sm px-2 py-1.5 focus:outline-none focus:border-blue-500/50"
+              className="w-full rounded bg-white/5 border border-white/10 text-white text-sm px-2 py-1.5 focus:outline-none focus:border-primary/50"
             />
           </div>
           <div>
@@ -584,7 +584,7 @@ function RealYieldsTab() {
               step="0.05"
               value={inflationExp}
               onChange={(e) => setInflationExp(Math.max(0, +e.target.value))}
-              className="w-full rounded bg-white/5 border border-white/10 text-white text-sm px-2 py-1.5 focus:outline-none focus:border-blue-500/50"
+              className="w-full rounded bg-white/5 border border-white/10 text-white text-sm px-2 py-1.5 focus:outline-none focus:border-primary/50"
             />
           </div>
         </div>
@@ -820,7 +820,7 @@ function DurationRiskTab() {
               type="number"
               value={maturity}
               onChange={(e) => setMaturity(Math.max(1, +e.target.value))}
-              className="w-full rounded bg-white/5 border border-white/10 text-white text-sm px-2 py-1.5 focus:outline-none focus:border-blue-500/50"
+              className="w-full rounded bg-white/5 border border-white/10 text-white text-sm px-2 py-1.5 focus:outline-none focus:border-primary/50"
             />
           </div>
           <div>
@@ -830,7 +830,7 @@ function DurationRiskTab() {
               step="0.1"
               value={coupon}
               onChange={(e) => setCoupon(Math.max(0, +e.target.value))}
-              className="w-full rounded bg-white/5 border border-white/10 text-white text-sm px-2 py-1.5 focus:outline-none focus:border-blue-500/50"
+              className="w-full rounded bg-white/5 border border-white/10 text-white text-sm px-2 py-1.5 focus:outline-none focus:border-primary/50"
             />
           </div>
           <div>
@@ -840,7 +840,7 @@ function DurationRiskTab() {
               step="0.05"
               value={realYield}
               onChange={(e) => setRealYield(+e.target.value)}
-              className="w-full rounded bg-white/5 border border-white/10 text-white text-sm px-2 py-1.5 focus:outline-none focus:border-blue-500/50"
+              className="w-full rounded bg-white/5 border border-white/10 text-white text-sm px-2 py-1.5 focus:outline-none focus:border-primary/50"
             />
           </div>
           <div>
@@ -850,7 +850,7 @@ function DurationRiskTab() {
               step="0.05"
               value={nominalYield}
               onChange={(e) => setNominalYield(+e.target.value)}
-              className="w-full rounded bg-white/5 border border-white/10 text-white text-sm px-2 py-1.5 focus:outline-none focus:border-blue-500/50"
+              className="w-full rounded bg-white/5 border border-white/10 text-white text-sm px-2 py-1.5 focus:outline-none focus:border-primary/50"
             />
           </div>
           <div>
@@ -860,7 +860,7 @@ function DurationRiskTab() {
               step="0.05"
               value={inflation}
               onChange={(e) => setInflation(Math.max(0, +e.target.value))}
-              className="w-full rounded bg-white/5 border border-white/10 text-white text-sm px-2 py-1.5 focus:outline-none focus:border-blue-500/50"
+              className="w-full rounded bg-white/5 border border-white/10 text-white text-sm px-2 py-1.5 focus:outline-none focus:border-primary/50"
             />
           </div>
         </div>
@@ -879,9 +879,9 @@ function DurationRiskTab() {
         </div>
 
         <div className="mt-3 p-3 rounded bg-white/4 border border-white/8 text-xs text-slate-300 space-y-1">
-          <p><span className="text-blue-400">Modified Duration</span>: sensitivity to changes in real yields. A {modDur.toFixed(1)}y ModDur means ~{modDur.toFixed(1)}% price change per 100bps real yield shift.</p>
-          <p><span className="text-blue-400">Real Duration</span>: further adjusted for inflation expectations — TIPS have lower interest rate risk in real terms than ModDur implies.</p>
-          <p><span className="text-blue-400">Key insight</span>: TIPS carry inflation risk on the accreted principal, but this is the risk you <em>want</em> when hedging inflation.</p>
+          <p><span className="text-primary">Modified Duration</span>: sensitivity to changes in real yields. A {modDur.toFixed(1)}y ModDur means ~{modDur.toFixed(1)}% price change per 100bps real yield shift.</p>
+          <p><span className="text-primary">Real Duration</span>: further adjusted for inflation expectations — TIPS have lower interest rate risk in real terms than ModDur implies.</p>
+          <p><span className="text-primary">Key insight</span>: TIPS carry inflation risk on the accreted principal, but this is the risk you <em>want</em> when hedging inflation.</p>
         </div>
       </SectionCard>
 
@@ -1008,7 +1008,7 @@ function InflationHedgingTab() {
 
   // Regime indicator
   const inflationRegimes = [
-    { label: "Disinflation", range: "<1%", active: false, color: "text-blue-400 bg-blue-500/10 border-blue-500/20" },
+    { label: "Disinflation", range: "<1%", active: false, color: "text-primary bg-primary/10 border-border" },
     { label: "On Target", range: "1–2%", active: false, color: "text-green-400 bg-green-500/10 border-green-500/20" },
     { label: "Mild Overshoot", range: "2–3%", active: true, color: "text-emerald-400 bg-emerald-500/15 border-emerald-400/30" },
     { label: "Elevated", range: "3–5%", active: false, color: "text-amber-400 bg-amber-500/10 border-amber-500/20" },
@@ -1051,7 +1051,7 @@ function InflationHedgingTab() {
               className={cn(
                 "text-xs px-3 py-1.5 rounded border transition-colors",
                 selectedScenario === i
-                  ? "bg-blue-500/20 border-blue-500/40 text-blue-300"
+                  ? "bg-primary/20 border-primary/40 text-primary"
                   : "bg-white/5 border-white/10 text-slate-400 hover:bg-white/8"
               )}
             >
@@ -1076,10 +1076,10 @@ function InflationHedgingTab() {
                   key={sc}
                   className={cn(
                     "border-b border-white/4 transition-colors",
-                    si === selectedScenario ? "bg-blue-500/5" : "hover:bg-white/3"
+                    si === selectedScenario ? "bg-primary/5" : "hover:bg-white/3"
                   )}
                 >
-                  <td className={cn("py-2 pr-3 font-medium", si === selectedScenario ? "text-blue-300" : "text-slate-300")}>
+                  <td className={cn("py-2 pr-3 font-medium", si === selectedScenario ? "text-primary" : "text-slate-300")}>
                     {sc}
                   </td>
                   {HEDGING_MATRIX[si].map((score, ai) => (
@@ -1117,7 +1117,7 @@ function InflationHedgingTab() {
               className={cn(
                 "text-xs px-3 py-1.5 rounded border transition-colors",
                 selectedScenario === i
-                  ? "bg-blue-500/20 border-blue-500/40 text-blue-300"
+                  ? "bg-primary/20 border-primary/40 text-primary"
                   : "bg-white/5 border-white/10 text-slate-400 hover:bg-white/8"
               )}
             >
@@ -1187,7 +1187,7 @@ function InflationHedgingTab() {
               className={cn(
                 "text-xs px-3 py-1.5 rounded border transition-colors",
                 selectedScenario === i
-                  ? "bg-blue-500/20 border-blue-500/40 text-blue-300"
+                  ? "bg-primary/20 border-primary/40 text-primary"
                   : "bg-white/5 border-white/10 text-slate-400 hover:bg-white/8"
               )}
             >
@@ -1246,8 +1246,8 @@ export default function InflationLinkedPage() {
           className="mb-6"
         >
           <div className="flex items-center gap-3 mb-2">
-            <div className="p-2 rounded-lg bg-blue-500/15 border border-blue-500/25">
-              <Flame className="w-5 h-5 text-blue-400" />
+            <div className="p-2 rounded-lg bg-primary/15 border border-border">
+              <Flame className="w-5 h-5 text-primary" />
             </div>
             <div>
               <h1 className="text-xl font-bold text-white">Inflation-Linked Bonds</h1>
@@ -1268,19 +1268,19 @@ export default function InflationLinkedPage() {
         {/* Tabs */}
         <Tabs defaultValue="mechanics">
           <TabsList className="mb-4 bg-white/5 border border-white/10 p-1 rounded-lg flex-wrap h-auto gap-1">
-            <TabsTrigger value="mechanics" className="text-xs data-[state=active]:bg-blue-600 data-[state=active]:text-white rounded">
+            <TabsTrigger value="mechanics" className="text-xs data-[state=active]:bg-primary data-[state=active]:text-white rounded">
               <Calculator className="w-3 h-3 mr-1.5" />
               TIPS Mechanics
             </TabsTrigger>
-            <TabsTrigger value="yields" className="text-xs data-[state=active]:bg-blue-600 data-[state=active]:text-white rounded">
+            <TabsTrigger value="yields" className="text-xs data-[state=active]:bg-primary data-[state=active]:text-white rounded">
               <Activity className="w-3 h-3 mr-1.5" />
               Real Yields &amp; Breakeven
             </TabsTrigger>
-            <TabsTrigger value="duration" className="text-xs data-[state=active]:bg-blue-600 data-[state=active]:text-white rounded">
+            <TabsTrigger value="duration" className="text-xs data-[state=active]:bg-primary data-[state=active]:text-white rounded">
               <BarChart3 className="w-3 h-3 mr-1.5" />
               Duration &amp; Risk
             </TabsTrigger>
-            <TabsTrigger value="hedging" className="text-xs data-[state=active]:bg-blue-600 data-[state=active]:text-white rounded">
+            <TabsTrigger value="hedging" className="text-xs data-[state=active]:bg-primary data-[state=active]:text-white rounded">
               <ShieldCheck className="w-3 h-3 mr-1.5" />
               Inflation Hedging
             </TabsTrigger>

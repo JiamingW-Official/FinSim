@@ -286,10 +286,10 @@ export function ChallengePlayer({
               <motion.div
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
-                className="flex items-start gap-2 rounded-lg border border-blue-500/20 bg-blue-500/5 px-3 py-2"
+                className="flex items-start gap-2 rounded-lg border border-border bg-primary/5 px-3 py-2"
               >
-                <span className="text-blue-400 text-sm mt-0.5">💡</span>
-                <p className="text-[11px] text-blue-300/80">{challenge.hint}</p>
+                <span className="text-primary text-sm mt-0.5">💡</span>
+                <p className="text-[11px] text-muted-foreground">{challenge.hint}</p>
               </motion.div>
             )}
 

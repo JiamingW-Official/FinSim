@@ -82,10 +82,10 @@ function InfoBox({
   variant?: "blue" | "amber" | "emerald" | "violet";
 }) {
   const colors = {
-    blue: "bg-blue-500/10 border-blue-500/30 text-blue-200",
+    blue: "bg-primary/10 border-border text-primary",
     amber: "bg-amber-500/10 border-amber-500/30 text-amber-200",
     emerald: "bg-emerald-500/10 border-emerald-500/30 text-emerald-200",
-    violet: "bg-violet-500/10 border-violet-500/30 text-violet-200",
+    violet: "bg-primary/10 border-border text-primary",
   };
   return (
     <div className={cn("rounded-lg border p-3 text-xs leading-relaxed", colors[variant])}>
@@ -155,10 +155,10 @@ const REGIONAL_HNWI = [
 ];
 
 const CLIENT_GOALS = [
-  { goal: "Wealth Preservation", pct: 68, icon: Shield, color: "text-blue-400" },
+  { goal: "Wealth Preservation", pct: 68, icon: Shield, color: "text-primary" },
   { goal: "Capital Growth", pct: 54, icon: TrendingUp, color: "text-emerald-400" },
   { goal: "Income Generation", pct: 47, icon: DollarSign, color: "text-amber-400" },
-  { goal: "Legacy / Estate", pct: 41, icon: Building2, color: "text-violet-400" },
+  { goal: "Legacy / Estate", pct: 41, icon: Building2, color: "text-primary" },
   { goal: "Impact / ESG", pct: 29, icon: Globe, color: "text-green-400" },
 ];
 
@@ -349,13 +349,13 @@ function ClientSegmentationTab() {
                           width: `${g.pct}%`,
                           background: g.color.replace("text-", "").replace("-400", ""),
                           backgroundColor:
-                            g.color === "text-blue-400"
+                            g.color === "text-primary"
                               ? "#60a5fa"
                               : g.color === "text-emerald-400"
                               ? "#34d399"
                               : g.color === "text-amber-400"
                               ? "#fbbf24"
-                              : g.color === "text-violet-400"
+                              : g.color === "text-primary"
                               ? "#a78bfa"
                               : "#4ade80",
                         }}
@@ -383,7 +383,7 @@ function ClientSegmentationTab() {
                   ? "border-rose-500/30 bg-rose-500/10"
                   : b.color === "amber"
                   ? "border-amber-500/30 bg-amber-500/10"
-                  : "border-blue-500/30 bg-blue-500/10"
+                  : "border-border bg-primary/10"
               )}
             >
               <div className="flex items-center justify-between mb-1">
@@ -395,7 +395,7 @@ function ClientSegmentationTab() {
                       ? "bg-rose-500/20 text-rose-300"
                       : b.color === "amber"
                       ? "bg-amber-500/20 text-amber-300"
-                      : "bg-blue-500/20 text-blue-300"
+                      : "bg-primary/20 text-primary"
                   )}
                 >
                   {b.severity}
@@ -669,8 +669,8 @@ function FinancialPlanningTab() {
                 <div className="text-rose-400 font-bold">10th Pct</div>
                 <div className="text-zinc-400">Bear scenario</div>
               </div>
-              <div className="rounded bg-blue-500/10 border border-blue-500/20 p-1.5">
-                <div className="text-blue-400 font-bold">Median</div>
+              <div className="rounded bg-primary/10 border border-border p-1.5">
+                <div className="text-primary font-bold">Median</div>
                 <div className="text-zinc-400">Base case</div>
               </div>
               <div className="rounded bg-emerald-500/10 border border-emerald-500/20 p-1.5">
@@ -1042,7 +1042,7 @@ function AssetAllocationTab() {
               className={cn(
                 "rounded-lg border p-3 text-xs",
                 m.color === "blue"
-                  ? "border-blue-500/30 bg-blue-500/10"
+                  ? "border-border bg-primary/10"
                   : m.color === "amber"
                   ? "border-amber-500/30 bg-amber-500/10"
                   : "border-emerald-500/30 bg-emerald-500/10"
@@ -1278,9 +1278,9 @@ function FeeModelsTab() {
                   className={cn(
                     "rounded-lg border p-2.5 text-xs",
                     m.color === "blue"
-                      ? "border-blue-500/30 bg-blue-500/10"
+                      ? "border-border bg-primary/10"
                       : m.color === "violet"
-                      ? "border-violet-500/30 bg-violet-500/10"
+                      ? "border-border bg-primary/10"
                       : m.color === "amber"
                       ? "border-amber-500/30 bg-amber-500/10"
                       : "border-rose-500/30 bg-rose-500/10"

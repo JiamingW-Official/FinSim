@@ -261,7 +261,7 @@ function FxPairRow({ pair }: { pair: FxPair }) {
         </span>
       </td>
       <td className="py-3 px-4 text-right">
-        <Badge className={cn("text-xs", pair.vol30d > 8 ? "bg-amber-500/20 text-amber-300 border-amber-500/30" : "bg-blue-500/20 text-blue-300 border-blue-500/30")}>
+        <Badge className={cn("text-xs", pair.vol30d > 8 ? "bg-amber-500/20 text-amber-300 border-amber-500/30" : "bg-primary/20 text-primary border-border")}>
           {pair.vol30d}%
         </Badge>
       </td>
@@ -549,8 +549,8 @@ export default function CurrencyMarketsPage() {
       {/* Header */}
       <div className="mb-6">
         <div className="flex items-center gap-3 mb-2">
-          <div className="w-10 h-10 rounded-xl bg-blue-500/20 flex items-center justify-center">
-            <Globe className="w-5 h-5 text-blue-400" />
+          <div className="w-10 h-10 rounded-xl bg-primary/20 flex items-center justify-center">
+            <Globe className="w-5 h-5 text-primary" />
           </div>
           <div>
             <h1 className="text-2xl font-bold text-white">Currency Markets Deep Dive</h1>
@@ -562,8 +562,8 @@ export default function CurrencyMarketsPage() {
         <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 mt-4">
           {[
             { label: "Daily FX Volume", value: "$7.5T", icon: DollarSign, color: "text-emerald-400" },
-            { label: "Major Pairs", value: "28+", icon: ArrowUpDown, color: "text-blue-400" },
-            { label: "Trading Sessions", value: "4 Zones", icon: Clock, color: "text-purple-400" },
+            { label: "Major Pairs", value: "28+", icon: ArrowUpDown, color: "text-primary" },
+            { label: "Trading Sessions", value: "4 Zones", icon: Clock, color: "text-primary" },
             { label: "24h Market", value: "Mon–Fri", icon: Activity, color: "text-amber-400" },
           ].map((stat) => (
             <Card key={stat.label} className="bg-white/[0.03] border-white/10">
@@ -582,16 +582,16 @@ export default function CurrencyMarketsPage() {
       {/* Tabs */}
       <Tabs defaultValue="structure" className="space-y-4">
         <TabsList className="bg-white/[0.05] border border-white/10 p-1 flex flex-wrap gap-1 h-auto">
-          <TabsTrigger value="structure" className="data-[state=active]:bg-blue-600 data-[state=active]:text-white text-slate-400 text-xs sm:text-sm">
+          <TabsTrigger value="structure" className="data-[state=active]:bg-primary data-[state=active]:text-white text-slate-400 text-xs sm:text-sm">
             <Globe className="w-3 h-3 mr-1" /> FX Structure
           </TabsTrigger>
-          <TabsTrigger value="carry" className="data-[state=active]:bg-blue-600 data-[state=active]:text-white text-slate-400 text-xs sm:text-sm">
+          <TabsTrigger value="carry" className="data-[state=active]:bg-primary data-[state=active]:text-white text-slate-400 text-xs sm:text-sm">
             <TrendingUp className="w-3 h-3 mr-1" /> Carry Trades
           </TabsTrigger>
-          <TabsTrigger value="theory" className="data-[state=active]:bg-blue-600 data-[state=active]:text-white text-slate-400 text-xs sm:text-sm">
+          <TabsTrigger value="theory" className="data-[state=active]:bg-primary data-[state=active]:text-white text-slate-400 text-xs sm:text-sm">
             <BookOpen className="w-3 h-3 mr-1" /> Theory
           </TabsTrigger>
-          <TabsTrigger value="crises" className="data-[state=active]:bg-blue-600 data-[state=active]:text-white text-slate-400 text-xs sm:text-sm">
+          <TabsTrigger value="crises" className="data-[state=active]:bg-primary data-[state=active]:text-white text-slate-400 text-xs sm:text-sm">
             <ShieldAlert className="w-3 h-3 mr-1" /> Crises
           </TabsTrigger>
         </TabsList>
@@ -604,7 +604,7 @@ export default function CurrencyMarketsPage() {
               <Card className="bg-white/[0.03] border-white/10">
                 <CardHeader className="pb-2">
                   <CardTitle className="text-white text-base flex items-center gap-2">
-                    <BarChart2 className="w-4 h-4 text-blue-400" />
+                    <BarChart2 className="w-4 h-4 text-primary" />
                     Major Currency Pairs
                   </CardTitle>
                 </CardHeader>
@@ -642,7 +642,7 @@ export default function CurrencyMarketsPage() {
               <Card className="bg-white/[0.03] border-white/10">
                 <CardHeader className="pb-2">
                   <CardTitle className="text-white text-base flex items-center gap-2">
-                    <Clock className="w-4 h-4 text-purple-400" />
+                    <Clock className="w-4 h-4 text-primary" />
                     Trading Sessions (UTC)
                   </CardTitle>
                 </CardHeader>
@@ -673,10 +673,10 @@ export default function CurrencyMarketsPage() {
             <CardContent>
               <SessionVolumeChart />
               <div className="flex flex-wrap gap-4 mt-2 text-xs text-slate-400">
-                <span><span className="inline-block w-3 h-2 rounded bg-purple-500 mr-1 opacity-70" />Tokyo (00–09)</span>
+                <span><span className="inline-block w-3 h-2 rounded bg-primary mr-1 opacity-70" />Tokyo (00–09)</span>
                 <span><span className="inline-block w-3 h-2 rounded bg-emerald-500 mr-1 opacity-70" />London (07–16)</span>
                 <span><span className="inline-block w-3 h-2 rounded bg-amber-500 mr-1 opacity-70" />New York (12–21) / Overlap</span>
-                <span><span className="inline-block w-3 h-2 rounded bg-blue-500 mr-1 opacity-70" />Sydney (21–06)</span>
+                <span><span className="inline-block w-3 h-2 rounded bg-primary mr-1 opacity-70" />Sydney (21–06)</span>
               </div>
             </CardContent>
           </Card>
@@ -687,14 +687,14 @@ export default function CurrencyMarketsPage() {
               {
                 title: "OTC Decentralized",
                 icon: Globe,
-                color: "text-blue-400",
+                color: "text-primary",
                 desc: "FX is the world's largest market at $7.5T/day. Unlike exchanges, it operates via an interbank network — major banks act as market makers, providing continuous bid/ask quotes.",
                 tags: ["No Central Exchange", "24/5 Market", "Interbank + Retail"],
               },
               {
                 title: "Participants",
                 icon: ArrowUpDown,
-                color: "text-purple-400",
+                color: "text-primary",
                 desc: "Central banks (policy/intervention), commercial banks (market making), hedge funds (speculation), corporates (hedging), retail traders (speculation). Tier-1 banks see tightest spreads.",
                 tags: ["Central Banks", "Hedge Funds", "Corporates"],
               },
@@ -743,7 +743,7 @@ export default function CurrencyMarketsPage() {
                     className={cn(
                       "w-full flex items-center justify-between p-3 rounded-lg border transition-colors text-sm",
                       selectedCarry === i
-                        ? "border-blue-500/50 bg-blue-500/10"
+                        ? "border-primary/50 bg-primary/10"
                         : "border-white/5 bg-white/[0.02] hover:bg-white/[0.04]"
                     )}
                   >
@@ -896,10 +896,10 @@ export default function CurrencyMarketsPage() {
                   </div>
                 ))}
               </div>
-              <div className="mt-3 p-3 bg-blue-500/10 border border-blue-500/20 rounded-lg flex items-start gap-2">
-                <Info className="w-4 h-4 text-blue-400 flex-shrink-0 mt-0.5" />
+              <div className="mt-3 p-3 bg-primary/10 border border-border rounded-lg flex items-start gap-2">
+                <Info className="w-4 h-4 text-primary flex-shrink-0 mt-0.5" />
                 <p className="text-slate-300 text-xs leading-relaxed">
-                  <strong className="text-blue-400">Carry Crash Correlation:</strong> Carry returns exhibit negative skewness and excess kurtosis — they show small consistent gains interspersed with large sudden losses. The Sharpe ratio overstates risk-adjusted returns because it assumes normality. Position sizing and stop-losses are critical.
+                  <strong className="text-primary">Carry Crash Correlation:</strong> Carry returns exhibit negative skewness and excess kurtosis — they show small consistent gains interspersed with large sudden losses. The Sharpe ratio overstates risk-adjusted returns because it assumes normality. Position sizing and stop-losses are critical.
                 </p>
               </div>
             </CardContent>
@@ -918,7 +918,7 @@ export default function CurrencyMarketsPage() {
             </CardHeader>
             <CardContent>
               <p className="text-slate-400 text-xs mb-4">
-                PPP states that exchange rates should equalize the price of identical goods across countries. The Big Mac Index (The Economist) uses McDonald's burger price as a real-world PPP indicator. A positive % means the currency is <strong className="text-amber-400">overvalued</strong> vs USD; negative means <strong className="text-blue-400">undervalued</strong>.
+                PPP states that exchange rates should equalize the price of identical goods across countries. The Big Mac Index (The Economist) uses McDonald's burger price as a real-world PPP indicator. A positive % means the currency is <strong className="text-amber-400">overvalued</strong> vs USD; negative means <strong className="text-primary">undervalued</strong>.
               </p>
               <div className="overflow-x-auto">
                 <table className="w-full text-sm">
@@ -948,7 +948,7 @@ export default function CurrencyMarketsPage() {
                           <td className="py-2.5 px-3 font-mono text-slate-300 text-xs text-right">{row.impliedRate}</td>
                           <td className="py-2.5 px-3 font-mono text-slate-300 text-xs text-right">{row.actualRate}</td>
                           <td className="py-2.5 px-3 text-right">
-                            <span className={cn("font-mono font-semibold text-sm", over ? "text-amber-400" : "text-blue-400")}>
+                            <span className={cn("font-mono font-semibold text-sm", over ? "text-amber-400" : "text-primary")}>
                               {over ? "+" : ""}{row.valuation}%
                             </span>
                           </td>
@@ -956,11 +956,11 @@ export default function CurrencyMarketsPage() {
                             <div className="flex items-center gap-1">
                               <div className="flex-1 h-2 bg-white/5 rounded-full overflow-hidden">
                                 <div
-                                  className={cn("h-full rounded-full", over ? "bg-amber-500" : "bg-blue-500")}
+                                  className={cn("h-full rounded-full", over ? "bg-amber-500" : "bg-primary")}
                                   style={{ width: `${barWidth}%` }}
                                 />
                               </div>
-                              <span className={cn("text-xs", over ? "text-amber-400" : "text-blue-400")}>
+                              <span className={cn("text-xs", over ? "text-amber-400" : "text-primary")}>
                                 {over ? "Over" : "Under"}
                               </span>
                             </div>
@@ -974,7 +974,7 @@ export default function CurrencyMarketsPage() {
               <div className="mt-3 flex gap-4 text-xs text-slate-500">
                 <span>US Big Mac: $5.69 (reference)</span>
                 <span className="text-amber-400">Amber = overvalued vs USD</span>
-                <span className="text-blue-400">Blue = undervalued vs USD</span>
+                <span className="text-primary">Blue = undervalued vs USD</span>
               </div>
             </CardContent>
           </Card>
@@ -984,13 +984,13 @@ export default function CurrencyMarketsPage() {
             <Card className="bg-white/[0.03] border-white/10">
               <CardHeader className="pb-2">
                 <CardTitle className="text-white text-sm flex items-center gap-2">
-                  <Info className="w-4 h-4 text-purple-400" />
+                  <Info className="w-4 h-4 text-primary" />
                   Uncovered Interest Parity (UIP) — Why It Fails
                 </CardTitle>
               </CardHeader>
               <CardContent className="space-y-3">
-                <div className="bg-purple-500/10 border border-purple-500/20 rounded-lg p-3">
-                  <div className="font-mono text-purple-300 text-xs text-center mb-1">UIP Theory:</div>
+                <div className="bg-primary/10 border border-border rounded-lg p-3">
+                  <div className="font-mono text-primary text-xs text-center mb-1">UIP Theory:</div>
                   <div className="font-mono text-white text-sm text-center">E[ΔS] = i_d − i_f</div>
                   <div className="text-slate-400 text-xs text-center mt-1">High-rate currency should depreciate by the rate differential</div>
                 </div>
@@ -1005,7 +1005,7 @@ export default function CurrencyMarketsPage() {
                     { reason: "Behavioral Bias", desc: "Momentum and trend-following by institutional investors create persistent deviations." },
                   ].map((item) => (
                     <div key={item.reason} className="flex gap-2 text-xs">
-                      <span className="text-purple-400 font-semibold whitespace-nowrap">{item.reason}:</span>
+                      <span className="text-primary font-semibold whitespace-nowrap">{item.reason}:</span>
                       <span className="text-slate-400">{item.desc}</span>
                     </div>
                   ))}
@@ -1038,7 +1038,7 @@ export default function CurrencyMarketsPage() {
                   ].map((item) => (
                     <div key={item.pair} className="flex items-center justify-between text-xs bg-white/[0.02] rounded px-2 py-1.5">
                       <span className="font-mono text-white">{item.pair}</span>
-                      <span className={cn("font-mono", item.taylorGap > 0 ? "text-amber-400" : "text-blue-400")}>
+                      <span className={cn("font-mono", item.taylorGap > 0 ? "text-amber-400" : "text-primary")}>
                         {item.taylorGap > 0 ? "+" : ""}{item.taylorGap}%
                       </span>
                       <span className="text-slate-400">{item.dir}</span>
@@ -1053,7 +1053,7 @@ export default function CurrencyMarketsPage() {
           <Card className="bg-white/[0.03] border-white/10">
             <CardHeader className="pb-2">
               <CardTitle className="text-white text-base flex items-center gap-2">
-                <BarChart2 className="w-4 h-4 text-blue-400" />
+                <BarChart2 className="w-4 h-4 text-primary" />
                 Real Effective Exchange Rate (REER) — Major Currencies
               </CardTitle>
             </CardHeader>
@@ -1064,8 +1064,8 @@ export default function CurrencyMarketsPage() {
               <ReerChart />
               <div className="mt-2 grid grid-cols-1 md:grid-cols-3 gap-3 text-xs text-slate-400">
                 <div><span className="text-amber-400 font-semibold">USD REER:</span> Driven by Fed tightening, dollar dominance in trade invoicing.</div>
-                <div><span className="text-blue-400 font-semibold">EUR REER:</span> ECB policy normalization after years of negative rates.</div>
-                <div><span className="text-purple-400 font-semibold">JPY REER:</span> Multi-decade low reflects BOJ yield curve control and inflation gap.</div>
+                <div><span className="text-primary font-semibold">EUR REER:</span> ECB policy normalization after years of negative rates.</div>
+                <div><span className="text-primary font-semibold">JPY REER:</span> Multi-decade low reflects BOJ yield curve control and inflation gap.</div>
               </div>
             </CardContent>
           </Card>
@@ -1186,7 +1186,7 @@ export default function CurrencyMarketsPage() {
           <Card className="bg-white/[0.03] border-white/10">
             <CardHeader className="pb-2">
               <CardTitle className="text-white text-base flex items-center gap-2">
-                <BookOpen className="w-4 h-4 text-blue-400" />
+                <BookOpen className="w-4 h-4 text-primary" />
                 Anatomy of a Currency Crisis
               </CardTitle>
             </CardHeader>
@@ -1200,7 +1200,7 @@ export default function CurrencyMarketsPage() {
                   <div className="space-y-1">
                     {["Fiscal imbalance → money printing", "Inflation differential vs peg anchor", "Reserve depletion over time", "Speculative attack when reserves critical", "Peg collapses → sharp devaluation"].map((step, i) => (
                       <div key={step} className="flex items-center gap-2 text-xs">
-                        <span className="w-5 h-5 rounded-full bg-blue-500/20 text-blue-400 text-xs flex items-center justify-center flex-shrink-0">{i + 1}</span>
+                        <span className="w-5 h-5 rounded-full bg-primary/20 text-primary text-xs flex items-center justify-center flex-shrink-0">{i + 1}</span>
                         <span className="text-slate-300">{step}</span>
                       </div>
                     ))}
@@ -1215,7 +1215,7 @@ export default function CurrencyMarketsPage() {
                   <div className="space-y-1">
                     {["Peg sustainable at current beliefs", "Speculative pressure increases hedging cost", "Defense requires painful rate hikes", "Government weighs defense cost vs credibility", "Self-fulfilling exit if confidence breaks"].map((step, i) => (
                       <div key={step} className="flex items-center gap-2 text-xs">
-                        <span className="w-5 h-5 rounded-full bg-purple-500/20 text-purple-400 text-xs flex items-center justify-center flex-shrink-0">{i + 1}</span>
+                        <span className="w-5 h-5 rounded-full bg-primary/20 text-primary text-xs flex items-center justify-center flex-shrink-0">{i + 1}</span>
                         <span className="text-slate-300">{step}</span>
                       </div>
                     ))}

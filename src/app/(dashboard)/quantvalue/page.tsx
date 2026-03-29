@@ -214,9 +214,9 @@ function useSortedData<T>(data: T[], defaultKey: keyof T, defaultDir: SortDir = 
 function SortIcon({ active, dir }: { active: boolean; dir: SortDir }) {
   if (!active) return <ChevronUp className="w-3 h-3 opacity-20" />;
   return dir === "asc" ? (
-    <ChevronUp className="w-3 h-3 text-blue-400" />
+    <ChevronUp className="w-3 h-3 text-primary" />
   ) : (
-    <ChevronDown className="w-3 h-3 text-blue-400" />
+    <ChevronDown className="w-3 h-3 text-primary" />
   );
 }
 
@@ -327,10 +327,10 @@ function DeepValueScreen() {
             className="overflow-hidden"
           >
             <div className="bg-zinc-800/50 border border-zinc-700 rounded-lg p-4 text-sm text-zinc-300 space-y-2">
-              <p><span className="text-blue-400 font-medium">Graham Number</span> = √(22.5 × EPS × Book Value per share). A stock trading below its Graham number is considered undervalued by Benjamin Graham's classic formula.</p>
-              <p><span className="text-blue-400 font-medium">Net-Net</span> = stocks where market cap &lt; net current assets (current assets − all liabilities). Graham's most conservative value criterion.</p>
-              <p><span className="text-blue-400 font-medium">EV/EBIT</span> is a capital-structure-neutral valuation ratio; values below 8× historically outperform.</p>
-              <p><span className="text-blue-400 font-medium">FCF Yield</span> = free cash flow / market cap. A yield above 8% signals potential undervaluation.</p>
+              <p><span className="text-primary font-medium">Graham Number</span> = √(22.5 × EPS × Book Value per share). A stock trading below its Graham number is considered undervalued by Benjamin Graham's classic formula.</p>
+              <p><span className="text-primary font-medium">Net-Net</span> = stocks where market cap &lt; net current assets (current assets − all liabilities). Graham's most conservative value criterion.</p>
+              <p><span className="text-primary font-medium">EV/EBIT</span> is a capital-structure-neutral valuation ratio; values below 8× historically outperform.</p>
+              <p><span className="text-primary font-medium">FCF Yield</span> = free cash flow / market cap. A yield above 8% signals potential undervaluation.</p>
             </div>
           </motion.div>
         )}
@@ -345,7 +345,7 @@ function DeepValueScreen() {
             className={cn(
               "px-3 py-1.5 rounded text-xs font-medium transition-colors",
               filter === f
-                ? "bg-blue-600 text-white"
+                ? "bg-primary text-white"
                 : "bg-zinc-800 text-zinc-400 hover:bg-zinc-700 hover:text-zinc-200"
             )}
           >
@@ -411,7 +411,7 @@ function DeepValueScreen() {
                     idx % 2 === 0 ? "bg-zinc-900/30" : ""
                   )}
                 >
-                  <td className="px-3 py-2 font-mono text-blue-400 font-medium">{st.ticker}</td>
+                  <td className="px-3 py-2 font-mono text-primary font-medium">{st.ticker}</td>
                   <td className="px-3 py-2 text-zinc-300">{st.company}</td>
                   <td className="px-3 py-2 text-right text-zinc-200">${st.price.toFixed(2)}</td>
                   <td className={cn("px-3 py-2 text-right font-medium", belowGraham ? "text-emerald-400" : "text-zinc-400")}>
@@ -431,9 +431,9 @@ function DeepValueScreen() {
                   </td>
                   <td className="px-3 py-2">
                     <div className="flex gap-1 justify-center flex-wrap">
-                      {st.isNetNet && <Badge label="NET-NET" color="bg-purple-900/60 text-purple-300" />}
+                      {st.isNetNet && <Badge label="NET-NET" color="bg-muted text-primary" />}
                       {belowGraham && <Badge label="<Graham" color="bg-emerald-900/60 text-emerald-300" />}
-                      {st.evEbit < 8 && <Badge label="EV<8x" color="bg-blue-900/60 text-blue-300" />}
+                      {st.evEbit < 8 && <Badge label="EV<8x" color="bg-muted text-primary" />}
                     </div>
                   </td>
                 </tr>
@@ -489,14 +489,14 @@ function MagicFormula() {
       <div>
         <h2 className="text-lg font-semibold text-zinc-100">Magic Formula — Joel Greenblatt</h2>
         <p className="text-sm text-zinc-400 mt-0.5">
-          Ranks by <span className="text-blue-400">Return on Invested Capital</span> + <span className="text-amber-400">Earnings Yield</span> (EBIT/EV). Lower combined rank = better opportunity.
+          Ranks by <span className="text-primary">Return on Invested Capital</span> + <span className="text-amber-400">Earnings Yield</span> (EBIT/EV). Lower combined rank = better opportunity.
         </p>
       </div>
 
       <div className="grid grid-cols-3 gap-3">
         {[
           { label: "Top Pick", value: ranked[0]?.ticker, sub: `Combined rank: ${ranked[0]?.combinedRank}`, color: "text-emerald-400" },
-          { label: "Avg ROIC (Top 10)", value: `${(ranked.slice(0,10).reduce((a,b) => a+b.roic, 0)/10).toFixed(1)}%`, sub: "High quality threshold", color: "text-blue-400" },
+          { label: "Avg ROIC (Top 10)", value: `${(ranked.slice(0,10).reduce((a,b) => a+b.roic, 0)/10).toFixed(1)}%`, sub: "High quality threshold", color: "text-primary" },
           { label: "Avg EY (Top 10)", value: `${(ranked.slice(0,10).reduce((a,b) => a+b.earningsYield, 0)/10).toFixed(1)}%`, sub: "Above market average", color: "text-amber-400" },
         ].map((c) => (
           <div key={c.label} className="bg-zinc-900 border border-zinc-800 rounded-lg p-3">
@@ -570,7 +570,7 @@ function MagicFormula() {
                     <span className="text-zinc-500 text-xs">{idx + 1}</span>
                   )}
                 </td>
-                <td className="px-3 py-2 font-mono text-blue-400 font-medium">{st.ticker}</td>
+                <td className="px-3 py-2 font-mono text-primary font-medium">{st.ticker}</td>
                 <td className="px-3 py-2 text-zinc-300">{st.company}</td>
                 <td className="px-3 py-2 text-right text-emerald-400">{st.roic.toFixed(1)}%</td>
                 <td className="px-3 py-2 text-right text-zinc-400">#{st.roicRank}</td>
@@ -623,7 +623,7 @@ function AcquirersMultiple() {
         </div>
         <div className="bg-zinc-900 border border-zinc-800 rounded-lg p-3">
           <p className="text-xs text-zinc-500">Avg AM (top 5)</p>
-          <p className="text-xl font-bold text-blue-400 mt-1">{avgAM.toFixed(1)}x</p>
+          <p className="text-xl font-bold text-primary mt-1">{avgAM.toFixed(1)}x</p>
           <p className="text-xs text-zinc-500 mt-0.5">Cheapest decile</p>
         </div>
         <div className="bg-zinc-900 border border-zinc-800 rounded-lg p-3">
@@ -692,7 +692,7 @@ function AcquirersMultiple() {
                   )}
                 >
                   <td className="px-3 py-2 text-zinc-500 text-xs">{idx + 1}</td>
-                  <td className="px-3 py-2 font-mono text-blue-400 font-medium">{st.ticker}</td>
+                  <td className="px-3 py-2 font-mono text-primary font-medium">{st.ticker}</td>
                   <td className="px-3 py-2 text-zinc-300">{st.company}</td>
                   <td className="px-3 py-2 text-zinc-500 text-xs">{st.sector}</td>
                   <td className="px-3 py-2 text-right text-zinc-400">${st.ev.toFixed(0)}M</td>
@@ -812,14 +812,14 @@ function QualityValueBlend() {
           {selectedStock ? (
             <div className="space-y-3">
               <div className="flex items-center justify-between">
-                <span className="font-mono text-blue-400 font-bold text-lg">{selectedStock.ticker}</span>
+                <span className="font-mono text-primary font-bold text-lg">{selectedStock.ticker}</span>
                 <button onClick={() => setSelected(null)} className="text-zinc-500 hover:text-zinc-300 text-xs">✕ close</button>
               </div>
               <p className="text-sm text-zinc-400">{selectedStock.company}</p>
               <div className="space-y-2">
                 {[
                   { label: "Composite Score", value: selectedStock.compositeScore.toFixed(1), color: "text-amber-400" },
-                  { label: "Value Score", value: selectedStock.valueScore.toFixed(1), color: "text-blue-400" },
+                  { label: "Value Score", value: selectedStock.valueScore.toFixed(1), color: "text-primary" },
                   { label: "Quality Score", value: selectedStock.qualityScore.toFixed(1), color: "text-emerald-400" },
                   { label: "P/B Ratio", value: `${selectedStock.pb.toFixed(2)}x`, color: "text-zinc-200" },
                   { label: "EV/EBITDA", value: `${selectedStock.evEbitda.toFixed(1)}x`, color: "text-zinc-200" },
@@ -845,7 +845,7 @@ function QualityValueBlend() {
                     className="flex items-center gap-2 p-1.5 rounded hover:bg-zinc-800 cursor-pointer group"
                   >
                     <span className="w-5 text-center text-xs text-zinc-600">{idx + 1}</span>
-                    <span className="font-mono text-blue-400 text-sm w-14">{st.ticker}</span>
+                    <span className="font-mono text-primary text-sm w-14">{st.ticker}</span>
                     <div className="flex-1">
                       <div className="h-1.5 bg-zinc-800 rounded-full overflow-hidden">
                         <div
@@ -891,9 +891,9 @@ function QualityValueBlend() {
                 onClick={() => setSelected(st.ticker === selected ? null : st.ticker)}
               >
                 <td className="px-3 py-2 text-zinc-500 text-xs">{idx + 1}</td>
-                <td className="px-3 py-2 font-mono text-blue-400 font-medium">{st.ticker}</td>
+                <td className="px-3 py-2 font-mono text-primary font-medium">{st.ticker}</td>
                 <td className="px-3 py-2 text-zinc-300">{st.company}</td>
-                <td className="px-3 py-2 text-right text-blue-400">{st.valueScore.toFixed(1)}</td>
+                <td className="px-3 py-2 text-right text-primary">{st.valueScore.toFixed(1)}</td>
                 <td className="px-3 py-2 text-right text-emerald-400">{st.qualityScore.toFixed(1)}</td>
                 <td className="px-3 py-2 text-right font-bold text-amber-400">{st.compositeScore.toFixed(1)}</td>
                 <td className="px-3 py-2 text-right text-zinc-300">{st.pb.toFixed(2)}x</td>
@@ -968,7 +968,7 @@ function BacktestedPerformance() {
       <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
         {[
           { label: "20Y Total Return (Value)", value: `${(totalValueReturn - 100).toFixed(0)}%`, color: "text-emerald-400" },
-          { label: "20Y Total Return (Mkt)", value: `${(totalMarketReturn - 100).toFixed(0)}%`, color: "text-blue-400" },
+          { label: "20Y Total Return (Mkt)", value: `${(totalMarketReturn - 100).toFixed(0)}%`, color: "text-primary" },
           { label: "Avg Annual Spread", value: `+${(avgAnnualValue - avgAnnualMarket).toFixed(1)}%`, color: "text-amber-400" },
           { label: "Max Drawdown", value: `${maxDrawdown.toFixed(1)}%`, color: "text-red-400" },
         ].map((k) => (
@@ -983,7 +983,7 @@ function BacktestedPerformance() {
       <div className="flex gap-2">
         <button
           onClick={() => setShowDrawdown(false)}
-          className={cn("px-3 py-1 text-xs rounded", !showDrawdown ? "bg-blue-600 text-white" : "bg-zinc-800 text-zinc-400")}
+          className={cn("px-3 py-1 text-xs rounded", !showDrawdown ? "bg-primary text-white" : "bg-zinc-800 text-zinc-400")}
         >
           NAV Growth
         </button>
@@ -1002,7 +1002,7 @@ function BacktestedPerformance() {
             <motion.div key="nav" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}>
               <div className="flex gap-4 mb-2 text-xs">
                 <span className="flex items-center gap-1.5"><span className="w-4 h-0.5 bg-emerald-400 inline-block" /> Value Strategy</span>
-                <span className="flex items-center gap-1.5"><span className="w-4 h-0.5 bg-blue-400 inline-block" /> Market</span>
+                <span className="flex items-center gap-1.5"><span className="w-4 h-0.5 bg-primary inline-block" /> Market</span>
               </div>
               <svg width="100%" viewBox={`0 0 ${W} ${H}`} preserveAspectRatio="xMidYMid meet">
                 {[0, 0.25, 0.5, 0.75, 1].map((t) => {
@@ -1083,7 +1083,7 @@ function BacktestedPerformance() {
                 <td className={cn("px-3 py-2 text-right font-medium", yr.valueReturn >= 0 ? "text-emerald-400" : "text-red-400")}>
                   <Num v={yr.valueReturn} suffix="%" colorize />
                 </td>
-                <td className={cn("px-3 py-2 text-right", yr.marketReturn >= 0 ? "text-blue-400" : "text-red-400")}>
+                <td className={cn("px-3 py-2 text-right", yr.marketReturn >= 0 ? "text-primary" : "text-red-400")}>
                   <Num v={yr.marketReturn} suffix="%" colorize />
                 </td>
                 <td className={cn("px-3 py-2 text-right text-xs", yr.spread >= 0 ? "text-amber-400" : "text-zinc-500")}>
@@ -1115,8 +1115,8 @@ export default function QuantValuePage() {
       {/* Page Header */}
       <div className="mb-6">
         <div className="flex items-center gap-3 mb-2">
-          <div className="p-2 rounded-lg bg-blue-600/20 border border-blue-600/30">
-            <Target className="w-5 h-5 text-blue-400" />
+          <div className="p-2 rounded-lg bg-primary/20 border border-border">
+            <Target className="w-5 h-5 text-primary" />
           </div>
           <div>
             <h1 className="text-2xl font-bold text-zinc-100">Quantitative Value Investing</h1>
@@ -1127,8 +1127,8 @@ export default function QuantValuePage() {
           {[
             { icon: <Star className="w-3.5 h-3.5" />, label: "Graham Number", color: "text-amber-400 bg-amber-900/20 border-amber-800/40" },
             { icon: <Award className="w-3.5 h-3.5" />, label: "Magic Formula", color: "text-emerald-400 bg-emerald-900/20 border-emerald-800/40" },
-            { icon: <BarChart2 className="w-3.5 h-3.5" />, label: "Acquirer's Multiple", color: "text-blue-400 bg-blue-900/20 border-blue-800/40" },
-            { icon: <Layers className="w-3.5 h-3.5" />, label: "Quality-Value Blend", color: "text-purple-400 bg-purple-900/20 border-purple-800/40" },
+            { icon: <BarChart2 className="w-3.5 h-3.5" />, label: "Acquirer's Multiple", color: "text-primary bg-muted/40 border-border" },
+            { icon: <Layers className="w-3.5 h-3.5" />, label: "Quality-Value Blend", color: "text-primary bg-muted/40 border-border" },
             { icon: <TrendingUp className="w-3.5 h-3.5" />, label: "20Y Backtest", color: "text-rose-400 bg-rose-900/20 border-rose-800/40" },
           ].map((chip) => (
             <span

@@ -326,13 +326,13 @@ function ExchangeTradedOptionsTab() {
       {/* CBOE Overview */}
       <div className="rounded-xl border border-zinc-700 bg-zinc-800/40 p-5">
         <h3 className="text-sm font-semibold text-white mb-3 flex items-center gap-2">
-          <BookOpen size={15} className="text-blue-400" /> CBOE Product Overview
+          <BookOpen size={15} className="text-primary" /> CBOE Product Overview
         </h3>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4 text-sm">
           {[
             {
               title: "Equity Options",
-              color: "border-blue-500/40 bg-blue-500/5",
+              color: "border-primary/40 bg-primary/5",
               items: [
                 "American-style exercise",
                 "100-share contracts",
@@ -343,7 +343,7 @@ function ExchangeTradedOptionsTab() {
             },
             {
               title: "ETF Options",
-              color: "border-purple-500/40 bg-purple-500/5",
+              color: "border-primary/40 bg-primary/5",
               items: [
                 "Tracks basket of assets",
                 "SPY, QQQ, IWM most liquid",
@@ -390,7 +390,7 @@ function ExchangeTradedOptionsTab() {
                 onClick={() => setFilterType(f)}
                 className={cn(
                   "px-3 py-1 rounded-full text-xs font-medium transition-colors",
-                  filterType === f ? "bg-blue-600 text-white" : "bg-zinc-700 text-zinc-300 hover:bg-zinc-600"
+                  filterType === f ? "bg-primary text-white" : "bg-zinc-700 text-zinc-300 hover:bg-zinc-600"
                 )}
               >
                 {f}
@@ -429,7 +429,7 @@ function ExchangeTradedOptionsTab() {
                     <span
                       className={cn(
                         "px-2 py-0.5 rounded-full text-xs",
-                        row.type === "Equity" ? "bg-blue-500/20 text-blue-400" : row.type === "ETF" ? "bg-purple-500/20 text-purple-400" : "bg-emerald-500/20 text-emerald-400"
+                        row.type === "Equity" ? "bg-primary/20 text-primary" : row.type === "ETF" ? "bg-primary/20 text-primary" : "bg-emerald-500/20 text-emerald-400"
                       )}
                     >
                       {row.type}
@@ -494,7 +494,7 @@ function ExchangeTradedOptionsTab() {
           onClick={() => setExpandCompare(!expandCompare)}
         >
           <h3 className="text-sm font-semibold text-white flex items-center gap-2">
-            <BarChart2 size={15} className="text-blue-400" /> Options vs Stock: Feature Comparison
+            <BarChart2 size={15} className="text-primary" /> Options vs Stock: Feature Comparison
           </h3>
           {expandCompare ? <ChevronUp size={15} className="text-zinc-400" /> : <ChevronDown size={15} className="text-zinc-400" />}
         </button>
@@ -511,7 +511,7 @@ function ExchangeTradedOptionsTab() {
                   <thead>
                     <tr className="border-b border-zinc-700 text-zinc-400 text-xs">
                       <th className="text-left py-2 pr-4">Feature</th>
-                      <th className="text-left py-2 pr-4 text-blue-400">Options</th>
+                      <th className="text-left py-2 pr-4 text-primary">Options</th>
                       <th className="text-left py-2 text-zinc-300">Stock</th>
                     </tr>
                   </thead>
@@ -605,7 +605,7 @@ function LeveragedETFsTab() {
             className={cn(
               "rounded-lg border p-3 text-left transition-colors",
               selected.ticker === etf.ticker
-                ? "border-blue-500 bg-blue-500/10"
+                ? "border-primary bg-primary/10"
                 : "border-zinc-700 bg-zinc-800/40 hover:border-zinc-500"
             )}
           >
@@ -650,7 +650,7 @@ function LeveragedETFsTab() {
               onClick={() => setDays(d)}
               className={cn(
                 "px-2.5 py-1 rounded text-xs font-medium transition-colors",
-                days === d ? "bg-blue-600 text-white" : "bg-zinc-700 text-zinc-300 hover:bg-zinc-600"
+                days === d ? "bg-primary text-white" : "bg-zinc-700 text-zinc-300 hover:bg-zinc-600"
               )}
             >
               {d === 252 ? "1Y" : `${d}d`}
@@ -762,7 +762,7 @@ function StructuredNotesTab() {
 
   const typeColors: Record<StructuredNote["type"], string> = {
     "Principal-Protected": "bg-emerald-500/20 text-emerald-400 border-emerald-500/30",
-    "Leveraged": "bg-blue-500/20 text-blue-400 border-blue-500/30",
+    "Leveraged": "bg-primary/20 text-primary border-border",
     "Reverse Convertible": "bg-red-500/20 text-red-400 border-red-500/30",
   };
 
@@ -782,8 +782,8 @@ function StructuredNotesTab() {
             t: "Leveraged Participation Notes",
             desc: "Amplified exposure to upside (e.g., 1.5× or 2× on index gains) with potential downside buffer. No guaranteed principal.",
             risk: "Market + credit risk",
-            color: "border-blue-500/40 bg-blue-500/5",
-            icon: <TrendingUp size={14} className="text-blue-400" />,
+            color: "border-primary/40 bg-primary/5",
+            icon: <TrendingUp size={14} className="text-primary" />,
           },
           {
             t: "Reverse Convertibles",
@@ -813,7 +813,7 @@ function StructuredNotesTab() {
               onClick={() => setFilterType(f)}
               className={cn(
                 "px-3 py-1 rounded-full text-xs font-medium transition-colors",
-                filterType === f ? "bg-blue-600 text-white" : "bg-zinc-700 text-zinc-300 hover:bg-zinc-600"
+                filterType === f ? "bg-primary text-white" : "bg-zinc-700 text-zinc-300 hover:bg-zinc-600"
               )}
             >
               {f}
@@ -846,7 +846,7 @@ function StructuredNotesTab() {
                   onClick={() => setSelected(selected?.id === note.id ? null : note)}
                   className={cn(
                     "border-b border-zinc-800 cursor-pointer transition-colors",
-                    selected?.id === note.id ? "bg-blue-500/10" : "hover:bg-zinc-800/30"
+                    selected?.id === note.id ? "bg-primary/10" : "hover:bg-zinc-800/30"
                   )}
                 >
                   <td className="px-4 py-2.5 font-mono text-zinc-400">{note.id}</td>
@@ -881,7 +881,7 @@ function StructuredNotesTab() {
             initial={{ opacity: 0, y: 12 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: 12 }}
-            className="rounded-xl border border-blue-500/30 bg-zinc-800/60 p-5 space-y-4"
+            className="rounded-xl border border-border bg-zinc-800/60 p-5 space-y-4"
           >
             <h3 className="text-sm font-semibold text-white">{selected.name}</h3>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm">
@@ -889,7 +889,7 @@ function StructuredNotesTab() {
                 <p className="text-zinc-400">Embedded Option Decomposition</p>
                 <div className="rounded-lg bg-zinc-900 p-3 text-xs space-y-1.5 font-mono">
                   <p className="text-zinc-400">// Structural decomposition</p>
-                  <p className="text-zinc-200">Option leg: <span className="text-blue-400">{selected.embeddedOption}</span></p>
+                  <p className="text-zinc-200">Option leg: <span className="text-primary">{selected.embeddedOption}</span></p>
                   <p className="text-zinc-200">Funding: <span className="text-zinc-300">ZCB + note issuance proceeds</span></p>
                   <p className="text-zinc-200">Barrier: <span className="text-amber-400">{selected.barrierLevel}% of initial level</span></p>
                   <p className="text-amber-400 mt-2">// Retail pricing transparency</p>
@@ -981,7 +981,7 @@ function WarrantsRightsTab() {
                   className="border-b border-zinc-800 hover:bg-zinc-800/30 transition-colors"
                 >
                   <td className="px-4 py-2.5 text-zinc-200">{w.company}</td>
-                  <td className="px-4 py-2.5 font-semibold text-blue-400 font-mono">{w.ticker}</td>
+                  <td className="px-4 py-2.5 font-semibold text-primary font-mono">{w.ticker}</td>
                   <td className="px-4 py-2.5 text-right text-zinc-300">${w.exercisePrice.toFixed(2)}</td>
                   <td className="px-4 py-2.5 text-right text-white">${w.currentStock.toFixed(2)}</td>
                   <td className="px-4 py-2.5 text-zinc-400">{w.expiry}</td>
@@ -1044,7 +1044,7 @@ function WarrantsRightsTab() {
           onClick={() => setExpandDiff(!expandDiff)}
         >
           <h3 className="text-sm font-semibold text-white flex items-center gap-2">
-            <Info size={15} className="text-blue-400" /> Subscription Rights: Short-Lived Opportunities
+            <Info size={15} className="text-primary" /> Subscription Rights: Short-Lived Opportunities
           </h3>
           {expandDiff ? <ChevronUp size={15} className="text-zinc-400" /> : <ChevronDown size={15} className="text-zinc-400" />}
         </button>
@@ -1061,7 +1061,7 @@ function WarrantsRightsTab() {
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-3 text-xs">
                   {[
                     { title: "Standby Rights", desc: "Underwriter commits to purchasing all unsubscribed shares. Reduces risk for the issuer.", color: "border-emerald-500/30" },
-                    { title: "Renounceable Rights", desc: "Shareholders can sell their rights on the open market. Valuable if subscription price is below market.", color: "border-blue-500/30" },
+                    { title: "Renounceable Rights", desc: "Shareholders can sell their rights on the open market. Valuable if subscription price is below market.", color: "border-border" },
                     { title: "Non-Renounceable Rights", desc: "Must subscribe or let expire — cannot be sold. Common in smaller offerings. Watch for dilution.", color: "border-amber-500/30" },
                   ].map((r) => (
                     <div key={r.title} className={cn("rounded-lg border p-3", r.color, "bg-zinc-900")}>
@@ -1088,8 +1088,8 @@ function RetailAlternativesTab() {
   const filtered = filterType === "All" ? ALT_PRODUCTS : ALT_PRODUCTS.filter((p) => p.type === filterType);
 
   const typeColors: Record<AlternativeProduct["type"], string> = {
-    "Interval Fund": "bg-blue-500/20 text-blue-400",
-    "Non-Traded REIT": "bg-purple-500/20 text-purple-400",
+    "Interval Fund": "bg-primary/20 text-primary",
+    "Non-Traded REIT": "bg-primary/20 text-primary",
     "BDC": "bg-emerald-500/20 text-emerald-400",
     "Reg CF": "bg-amber-500/20 text-amber-400",
     "Reg A+": "bg-orange-500/20 text-orange-400",
@@ -1098,10 +1098,10 @@ function RetailAlternativesTab() {
   return (
     <div className="space-y-6">
       {/* Info Banner */}
-      <div className="rounded-xl border border-blue-500/30 bg-blue-500/5 p-4 flex items-start gap-3">
-        <Info size={16} className="text-blue-400 mt-0.5 flex-shrink-0" />
+      <div className="rounded-xl border border-border bg-primary/5 p-4 flex items-start gap-3">
+        <Info size={16} className="text-primary mt-0.5 flex-shrink-0" />
         <div className="text-sm">
-          <p className="font-semibold text-blue-400 mb-1">Democratization of Alternative Investments</p>
+          <p className="font-semibold text-primary mb-1">Democratization of Alternative Investments</p>
           <p className="text-zinc-300">Regulatory changes (JOBS Act, SEC Reg CF/A, 40 Act interval funds) now allow non-accredited retail investors to access private credit, real estate, and startup equity — previously available only to institutions and the ultra-wealthy.</p>
         </div>
       </div>
@@ -1109,8 +1109,8 @@ function RetailAlternativesTab() {
       {/* Structure Overview */}
       <div className="grid grid-cols-1 md:grid-cols-5 gap-3 text-xs">
         {([
-          { type: "Interval Fund", desc: "Registered closed-end fund. Quarterly redemptions (typically 5%). Daily NAV.", access: "All investors", icon: <Layers size={13} />, color: "border-blue-500/40" },
-          { type: "Non-Traded REIT", desc: "Real estate income. Monthly/quarterly liquidity. SEC-registered.", access: "All investors", icon: <BarChart2 size={13} />, color: "border-purple-500/40" },
+          { type: "Interval Fund", desc: "Registered closed-end fund. Quarterly redemptions (typically 5%). Daily NAV.", access: "All investors", icon: <Layers size={13} />, color: "border-primary/40" },
+          { type: "Non-Traded REIT", desc: "Real estate income. Monthly/quarterly liquidity. SEC-registered.", access: "All investors", icon: <BarChart2 size={13} />, color: "border-primary/40" },
           { type: "BDC", desc: "Business Development Company. Lends to middle-market firms. Exchange-listed or non-traded.", access: "All investors", icon: <DollarSign size={13} />, color: "border-emerald-500/40" },
           { type: "Reg CF", desc: "Crowdfunding up to $5M/yr. SEC Reg CF. High failure risk. Illiquid.", access: "All investors ($2.5K limit for non-accredited)", icon: <Users size={13} />, color: "border-amber-500/40" },
           { type: "Reg A+", desc: 'Mini-IPO up to $75M/yr. SEC "Tier 2". More flexibility than Reg CF.', access: "All investors", icon: <Unlock size={13} />, color: "border-orange-500/40" },
@@ -1135,7 +1135,7 @@ function RetailAlternativesTab() {
               onClick={() => setFilterType(f)}
               className={cn(
                 "px-3 py-1 rounded-full text-xs font-medium transition-colors",
-                filterType === f ? "bg-blue-600 text-white" : "bg-zinc-700 text-zinc-300 hover:bg-zinc-600"
+                filterType === f ? "bg-primary text-white" : "bg-zinc-700 text-zinc-300 hover:bg-zinc-600"
               )}
             >
               {f}
@@ -1215,7 +1215,7 @@ function RetailAlternativesTab() {
           onClick={() => setExpandDebate(!expandDebate)}
         >
           <h3 className="text-sm font-semibold text-white flex items-center gap-2">
-            <Users size={15} className="text-blue-400" /> The Accredited Investor Threshold Debate
+            <Users size={15} className="text-primary" /> The Accredited Investor Threshold Debate
           </h3>
           {expandDebate ? <ChevronUp size={15} className="text-zinc-400" /> : <ChevronDown size={15} className="text-zinc-400" />}
         </button>
@@ -1328,8 +1328,8 @@ export default function RetailDerivativesPage() {
           className="space-y-1"
         >
           <div className="flex items-center gap-3">
-            <div className="rounded-lg bg-blue-600/20 p-2">
-              <Layers size={20} className="text-blue-400" />
+            <div className="rounded-lg bg-primary/20 p-2">
+              <Layers size={20} className="text-primary" />
             </div>
             <div>
               <h1 className="text-xl font-bold text-white">Retail Derivatives & Structured Products</h1>

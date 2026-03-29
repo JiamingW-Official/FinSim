@@ -425,10 +425,10 @@ function signalColor(s: TrendMarket["signal"]) {
 
 function categoryColor(c: MacroTheme["category"]) {
   return {
-    rates: "text-blue-400 bg-blue-400/10",
+    rates: "text-primary bg-primary/10",
     fx: "text-emerald-400 bg-emerald-400/10",
     commodities: "text-amber-400 bg-amber-400/10",
-    equities: "text-violet-400 bg-violet-400/10",
+    equities: "text-primary bg-primary/10",
   }[c];
 }
 
@@ -952,8 +952,8 @@ function LSEquitySimulator() {
           </CardHeader>
           <CardContent className="pt-0 space-y-3">
             {[
-              { label: "Market Beta (net)", value: betaAdjNet, max: 100, color: "bg-blue-500" },
-              { label: "Tech Sector Tilt", value: 58, max: 100, color: "bg-violet-500" },
+              { label: "Market Beta (net)", value: betaAdjNet, max: 100, color: "bg-primary" },
+              { label: "Tech Sector Tilt", value: 58, max: 100, color: "bg-primary" },
               { label: "Large Cap Tilt", value: 72, max: 100, color: "bg-indigo-500" },
               { label: "Momentum Factor", value: 44, max: 100, color: "bg-emerald-500" },
               { label: "Quality Factor", value: 81, max: 100, color: "bg-teal-500" },
@@ -1309,7 +1309,7 @@ function EventDriven() {
                     <td className="py-2 text-right text-zinc-300">${deal.currentPrice.toFixed(2)}</td>
                     <td className="py-2 text-right text-emerald-400 font-medium">{spreadPct.toFixed(2)}%</td>
                     <td className="py-2 text-right text-zinc-400">{deal.daysToClose}d</td>
-                    <td className="py-2 text-right text-cyan-400 font-medium">{annRet.toFixed(1)}%</td>
+                    <td className="py-2 text-right text-muted-foreground font-medium">{annRet.toFixed(1)}%</td>
                     <td className="py-2 text-left">
                       <Badge
                         className={cn(
@@ -1546,7 +1546,7 @@ function CTASimulator() {
                   className={cn(
                     "flex-1 rounded-lg border py-2 text-sm font-medium transition-colors",
                     trendPeriod === p
-                      ? "border-violet-400 bg-violet-400/15 text-violet-300"
+                      ? "border-primary bg-primary/15 text-primary"
                       : "border-white/8 text-zinc-500 hover:text-zinc-300 hover:bg-white/5"
                   )}
                 >
@@ -1556,7 +1556,7 @@ function CTASimulator() {
             </div>
             <div className="rounded-xl bg-white/5 p-5 flex items-center justify-center">
               <div className="text-center">
-                <div className="text-5xl font-bold text-violet-400 mb-1">
+                <div className="text-5xl font-bold text-primary mb-1">
                   {paramSharpe[trendPeriod].toFixed(2)}
                 </div>
                 <div className="text-xs text-zinc-500">Sharpe Ratio ({trendPeriod}D lookback)</div>
@@ -1582,9 +1582,9 @@ function CTASimulator() {
           </CardHeader>
           <CardContent className="pt-0">
             <CrisisAlphaChart />
-            <div className="mt-3 rounded-lg bg-violet-400/8 border border-violet-400/20 p-3">
+            <div className="mt-3 rounded-lg bg-primary/8 border border-border p-3">
               <p className="text-xs text-zinc-400">
-                <span className="text-violet-400 font-semibold">Crisis Alpha: </span>
+                <span className="text-primary font-semibold">Crisis Alpha: </span>
                 CTAs delivered positive returns in 4 of 5 major equity drawdowns. The 2022 +25% return
                 during one of the worst bond and equity years illustrates trend-following&apos;s unique
                 diversification benefit during sustained trending environments.

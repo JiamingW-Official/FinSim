@@ -63,7 +63,7 @@ const SHORTCUT_SECTIONS: ShortcutSection[] = [
   {
     title: "Time Travel",
     icon: Clock,
-    color: "text-violet-400",
+    color: "text-primary",
     shortcuts: [
       { keys: ["Space"], description: "Play / Pause simulation" },
       { keys: ["←"], description: "Step back one bar" },
@@ -73,7 +73,7 @@ const SHORTCUT_SECTIONS: ShortcutSection[] = [
   {
     title: "General",
     icon: Settings2,
-    color: "text-blue-400",
+    color: "text-primary",
     shortcuts: [
       { keys: ["/"], description: "Open global search" },
       { keys: ["⌘", "K"], description: "Open global search (CMD+K)" },
@@ -156,9 +156,9 @@ function KeyboardShortcutsModal({
     <Dialog open={open} onOpenChange={(v) => !v && onClose()}>
       <DialogContent className="glass max-w-2xl border-border/50 p-0">
         {/* Header */}
-        <div className="rounded-t-lg bg-blue-500/10 px-5 py-3">
+        <div className="rounded-t-lg bg-primary/10 px-5 py-3">
           <DialogHeader>
-            <DialogTitle className="flex items-center gap-2 text-sm font-bold text-blue-400">
+            <DialogTitle className="flex items-center gap-2 text-sm font-bold text-primary">
               <Keyboard className="h-4 w-4" />
               Keyboard Shortcuts
             </DialogTitle>

@@ -49,8 +49,8 @@ const TYPE_LABEL: Record<SearchResultType, string> = {
 
 const TYPE_COLOR: Record<SearchResultType, string> = {
   page: "text-primary bg-primary/10",
-  indicator: "text-violet-400 bg-violet-500/10",
-  strategy: "text-blue-400 bg-blue-500/10",
+  indicator: "text-primary bg-primary/10",
+  strategy: "text-primary bg-primary/10",
   glossary: "text-emerald-400 bg-emerald-500/10",
   lesson: "text-amber-400 bg-amber-500/10",
 };

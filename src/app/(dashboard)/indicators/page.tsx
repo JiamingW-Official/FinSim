@@ -1421,8 +1421,8 @@ export default function EconomicIndicatorsPage() {
               { label: "GDP Growth",   val: "2.4%",  color: "text-emerald-400" },
               { label: "CPI",         val: "3.2%",  color: "text-amber-400"   },
               { label: "Fed Funds",   val: "4.25%", color: "text-indigo-400"  },
-              { label: "Unemployment",val: "3.9%",  color: "text-blue-400"    },
-              { label: "10Y Yield",   val: "4.43%", color: "text-purple-400"  },
+              { label: "Unemployment",val: "3.9%",  color: "text-primary"    },
+              { label: "10Y Yield",   val: "4.43%", color: "text-primary"  },
               { label: "DXY",         val: "104.2", color: "text-gray-300"    },
             ].map(({ label, val, color }) => (
               <div key={label} className="flex items-center gap-1.5 text-sm">

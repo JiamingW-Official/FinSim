@@ -90,9 +90,9 @@ const TOURNAMENTS: TournamentDef[] = [
     entryLabel: "Free",
     prizes: [600, 350, 150],
     icon: <BarChart2 className="h-4 w-4" />,
-    color: "text-blue-400",
-    bgColor: "bg-blue-400/10",
-    borderColor: "border-blue-400/25",
+    color: "text-primary",
+    bgColor: "bg-primary/10",
+    borderColor: "border-border",
     inviteOnly: false,
   },
   {
@@ -106,9 +106,9 @@ const TOURNAMENTS: TournamentDef[] = [
     entryLabel: "100 XP",
     prizes: [800, 500, 200],
     icon: <Target className="h-4 w-4" />,
-    color: "text-purple-400",
-    bgColor: "bg-purple-400/10",
-    borderColor: "border-purple-400/25",
+    color: "text-primary",
+    bgColor: "bg-primary/10",
+    borderColor: "border-border",
     inviteOnly: false,
   },
   {
@@ -320,7 +320,7 @@ function Podium({ entries }: PodiumProps) {
             <span
               className={cn(
                 "text-xs font-bold truncate w-full text-center",
-                p.entry?.isPlayer ? "text-teal-300" : "text-zinc-300",
+                p.entry?.isPlayer ? "text-emerald-300" : "text-zinc-300",
               )}
             >
               {p.entry?.name ?? "—"}
@@ -400,7 +400,7 @@ function TournamentLobby({ joinedIds, onJoin, onViewLeaderboard, playerXP }: Tou
                         <Lock className="h-3 w-3 text-amber-400" />
                       )}
                       {joined && (
-                        <CheckCircle className="h-3.5 w-3.5 text-teal-400" />
+                        <CheckCircle className="h-3.5 w-3.5 text-emerald-400" />
                       )}
                     </div>
                     <span className="text-xs text-zinc-500">{t.duration} · {t.scoring}</span>
@@ -631,18 +631,18 @@ function LeaderboardSection({ tournamentId, playerElo, playerXP, onBack }: Leade
                           {e.rank}
                         </span>
                         {rankDelta > 0 ? (
-                          <ChevronUp className="h-2.5 w-2.5 text-teal-400" />
+                          <ChevronUp className="h-2.5 w-2.5 text-emerald-400" />
                         ) : rankDelta < 0 ? (
                           <ChevronDown className="h-2.5 w-2.5 text-red-400" />
                         ) : null}
                       </div>
                     </td>
                     <td className="px-3 py-2">
-                      <span className={cn("font-bold", e.isPlayer ? "text-teal-300" : "text-zinc-200")}>
+                      <span className={cn("font-bold", e.isPlayer ? "text-emerald-300" : "text-zinc-200")}>
                         {e.isPlayer ? "You" : e.name}
                       </span>
                     </td>
-                    <td className={cn("px-3 py-2 text-right font-bold tabular-nums", e.returnPct >= 0 ? "text-teal-400" : "text-red-400")}>
+                    <td className={cn("px-3 py-2 text-right font-bold tabular-nums", e.returnPct >= 0 ? "text-emerald-400" : "text-red-400")}>
                       {e.returnPct >= 0 ? "+" : ""}{e.returnPct.toFixed(1)}%
                     </td>
                     <td className="px-3 py-2 text-right tabular-nums text-zinc-400">{e.sharpe.toFixed(2)}</td>
@@ -667,7 +667,7 @@ function EloChangeBadge({ change, small }: { change: number; small?: boolean }) 
     <span className={cn(
       "inline-flex items-center gap-0.5 font-bold tabular-nums",
       small ? "text-xs" : "text-xs",
-      change >= 0 ? "text-teal-400" : "text-red-400",
+      change >= 0 ? "text-emerald-400" : "text-red-400",
     )}>
       {change >= 0 ? <TrendingUp className="h-2.5 w-2.5" /> : <TrendingDown className="h-2.5 w-2.5" />}
       {change >= 0 ? "+" : ""}{change}
@@ -733,8 +733,8 @@ function H2HSection({ playerElo }: H2HProps) {
       <div className="grid grid-cols-3 gap-3">
         {[
           { label: "Your ELO", value: playerElo.toLocaleString(), color: "text-zinc-100" },
-          { label: "W/L", value: `${winCount}/${lossCount}`, color: "text-teal-400" },
-          { label: "Win Rate", value: `${Math.round((winCount / Math.max(1, matchHistory.length)) * 100)}%`, color: "text-blue-400" },
+          { label: "W/L", value: `${winCount}/${lossCount}`, color: "text-emerald-400" },
+          { label: "Win Rate", value: `${Math.round((winCount / Math.max(1, matchHistory.length)) * 100)}%`, color: "text-primary" },
         ].map((s) => (
           <div key={s.label} className="rounded-lg border border-white/[0.06] bg-white/[0.02] p-3 text-center">
             <div className={cn("text-sm font-bold tabular-nums", s.color)}>{s.value}</div>
@@ -752,7 +752,7 @@ function H2HSection({ playerElo }: H2HProps) {
         <button
           type="button"
           onClick={handleFindMatch}
-          className="w-full flex items-center justify-center gap-2 rounded-lg bg-teal-500/20 border border-teal-500/30 py-3 text-sm font-bold text-teal-400 transition-colors hover:bg-teal-500/30 active:scale-95"
+          className="w-full flex items-center justify-center gap-2 rounded-lg bg-teal-500/20 border border-teal-500/30 py-3 text-sm font-bold text-emerald-400 transition-colors hover:bg-teal-500/30 active:scale-95"
         >
           <Swords className="h-4 w-4" />
           Find Opponent (±{Math.round(playerElo * 0.1)} ELO)
@@ -792,7 +792,7 @@ function H2HSection({ playerElo }: H2HProps) {
             className="rounded-xl border border-teal-500/25 bg-teal-500/5 p-4 space-y-3"
           >
             <div className="flex items-center justify-between">
-              <span className="text-xs font-bold text-teal-400">Active Match · 24h Duel</span>
+              <span className="text-xs font-bold text-emerald-400">Active Match · 24h Duel</span>
               <span className="text-xs text-zinc-500">vs {currentMatch.opponent} ({currentMatch.opponentElo} ELO)</span>
             </div>
 
@@ -802,13 +802,13 @@ function H2HSection({ playerElo }: H2HProps) {
             <div className="grid grid-cols-2 gap-2 text-center">
               <div className="rounded-lg bg-white/[0.03] px-3 py-2">
                 <div className="text-xs text-zinc-500">Your Return</div>
-                <div className={cn("text-sm font-bold tabular-nums", currentMatch.yourReturn >= 0 ? "text-teal-400" : "text-red-400")}>
+                <div className={cn("text-sm font-bold tabular-nums", currentMatch.yourReturn >= 0 ? "text-emerald-400" : "text-red-400")}>
                   {currentMatch.yourReturn >= 0 ? "+" : ""}{currentMatch.yourReturn.toFixed(2)}%
                 </div>
               </div>
               <div className="rounded-lg bg-white/[0.03] px-3 py-2">
                 <div className="text-xs text-zinc-500">{currentMatch.opponent}</div>
-                <div className={cn("text-sm font-bold tabular-nums", currentMatch.oppReturn >= 0 ? "text-red-400" : "text-teal-400")}>
+                <div className={cn("text-sm font-bold tabular-nums", currentMatch.oppReturn >= 0 ? "text-red-400" : "text-emerald-400")}>
                   {currentMatch.oppReturn >= 0 ? "+" : ""}{currentMatch.oppReturn.toFixed(2)}%
                 </div>
               </div>
@@ -848,7 +848,7 @@ function H2HSection({ playerElo }: H2HProps) {
                       <span className="text-[11px] text-zinc-600">{m.date} · {m.opponentElo} ELO</span>
                     </div>
                   </td>
-                  <td className={cn("px-3 py-2 text-right tabular-nums font-bold", m.yourReturn >= 0 ? "text-teal-400" : "text-red-400")}>
+                  <td className={cn("px-3 py-2 text-right tabular-nums font-bold", m.yourReturn >= 0 ? "text-emerald-400" : "text-red-400")}>
                     {m.yourReturn >= 0 ? "+" : ""}{m.yourReturn.toFixed(1)}%
                   </td>
                   <td className={cn("px-3 py-2 text-right tabular-nums", m.oppReturn >= 0 ? "text-zinc-400" : "text-zinc-500")}>
@@ -856,7 +856,7 @@ function H2HSection({ playerElo }: H2HProps) {
                   </td>
                   <td className="px-3 py-2 text-right">
                     {m.won ? (
-                      <CheckCircle className="h-3.5 w-3.5 text-teal-400 ml-auto" />
+                      <CheckCircle className="h-3.5 w-3.5 text-emerald-400 ml-auto" />
                     ) : (
                       <XCircle className="h-3.5 w-3.5 text-red-400 ml-auto" />
                     )}
@@ -900,7 +900,7 @@ function LivePnlBar({ yourReturn, oppReturn }: { yourReturn: number; oppReturn: 
           />
         </div>
         <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
-          <span className={cn("text-[8px] font-bold tabular-nums", youLeading ? "text-teal-400" : "text-zinc-500")}>
+          <span className={cn("text-[8px] font-bold tabular-nums", youLeading ? "text-emerald-400" : "text-zinc-500")}>
             {(yourReturn - oppReturn) >= 0 ? "+" : ""}{(yourReturn - oppReturn).toFixed(1)}%
           </span>
         </div>
@@ -1023,10 +1023,10 @@ function HallOfFameSection({ playerElo, playerXP, joinedCount }: HallOfFameProps
                 )}>
                   {e.rank}
                 </span>
-                <span className={cn("flex-1 text-xs font-medium", e.isPlayer ? "text-teal-300" : "text-zinc-200")}>
+                <span className={cn("flex-1 text-xs font-medium", e.isPlayer ? "text-emerald-300" : "text-zinc-200")}>
                   {e.name}
                 </span>
-                <span className={cn("text-xs font-bold tabular-nums", e.isPlayer ? "text-teal-400" : "text-zinc-400")}>
+                <span className={cn("text-xs font-bold tabular-nums", e.isPlayer ? "text-emerald-400" : "text-zinc-400")}>
                   {e.value}
                 </span>
               </div>
@@ -1038,7 +1038,7 @@ function HallOfFameSection({ playerElo, playerXP, joinedCount }: HallOfFameProps
       {/* Career stats */}
       <div>
         <div className="text-xs font-bold text-zinc-400 mb-2 flex items-center gap-1.5">
-          <Award className="h-3.5 w-3.5 text-blue-400" />
+          <Award className="h-3.5 w-3.5 text-primary" />
           Your Career Stats
         </div>
         <div className="grid grid-cols-2 gap-2">
@@ -1073,7 +1073,7 @@ function HallOfFameSection({ playerElo, playerXP, joinedCount }: HallOfFameProps
                 <span className={cn("text-xs font-bold", badge.earned ? "text-zinc-100" : "text-zinc-600")}>
                   {badge.name}
                 </span>
-                {badge.earned && <CheckCircle className="h-3 w-3 text-teal-400 ml-auto" />}
+                {badge.earned && <CheckCircle className="h-3 w-3 text-emerald-400 ml-auto" />}
               </div>
               <p className="text-xs text-zinc-500">{badge.description}</p>
             </div>
@@ -1107,7 +1107,7 @@ function generateBadges(joinedCount: number, playerElo: number): TournamentBadge
       name: "Perfect Week",
       description: "100% win rate in Weekly Blitz",
       icon: <Star className="h-3.5 w-3.5" />,
-      color: "text-blue-400",
+      color: "text-primary",
       earned: joinedCount >= 2,
     },
     {
@@ -1115,7 +1115,7 @@ function generateBadges(joinedCount: number, playerElo: number): TournamentBadge
       name: "Duel Master",
       description: "Won 10 head-to-head matches",
       icon: <Swords className="h-3.5 w-3.5" />,
-      color: "text-purple-400",
+      color: "text-primary",
       earned: joinedCount >= 3,
     },
     {
@@ -1123,7 +1123,7 @@ function generateBadges(joinedCount: number, playerElo: number): TournamentBadge
       name: "Options Champion",
       description: "Top 3 in Options Masters",
       icon: <Target className="h-3.5 w-3.5" />,
-      color: "text-teal-400",
+      color: "text-emerald-400",
       earned: playerElo >= 1400,
     },
     {
@@ -1195,7 +1195,7 @@ export function TournamentSystem() {
               className={cn(
                 "flex flex-1 items-center justify-center gap-1.5 py-2.5 text-xs font-bold transition-colors",
                 activeSection === tab.id
-                  ? "bg-teal-500/15 text-teal-400"
+                  ? "bg-teal-500/15 text-emerald-400"
                   : "text-zinc-500 hover:text-zinc-300",
               )}
             >

@@ -59,7 +59,7 @@ function gradeForWinRate(
 ): { grade: string; color: string } {
   if (totalTrades === 0) return { grade: "—", color: "text-muted-foreground" };
   if (winRate >= 70 && totalPnL > 0) return { grade: "A", color: "text-emerald-400" };
-  if (winRate >= 55 && totalPnL >= 0) return { grade: "B", color: "text-teal-400" };
+  if (winRate >= 55 && totalPnL >= 0) return { grade: "B", color: "text-emerald-400" };
   if (winRate >= 45 || totalPnL > 0) return { grade: "C", color: "text-amber-400" };
   if (winRate >= 35) return { grade: "D", color: "text-orange-400" };
   return { grade: "F", color: "text-red-400" };
@@ -423,7 +423,7 @@ export function WeeklyReview() {
       {/* ── Trade Breakdown ── */}
       <div className="rounded-lg border border-border bg-card p-4">
         <div className="mb-3 flex items-center gap-1.5 text-xs font-medium text-muted-foreground">
-          <Target className="h-3.5 w-3.5 text-cyan-400" />
+          <Target className="h-3.5 w-3.5 text-muted-foreground" />
           Trade Breakdown
         </div>
 
@@ -503,13 +503,13 @@ export function WeeklyReview() {
             icon={<BarChart2 className="h-3 w-3" />}
             title="Strategy performance"
             text={insights.strategyPerf}
-            iconColor="text-blue-400"
+            iconColor="text-primary"
           />
           <InsightSection
             icon={<Telescope className="h-3 w-3" />}
             title="Next week outlook"
             text={insights.outlook}
-            iconColor="text-violet-400"
+            iconColor="text-primary"
           />
         </div>
       </div>
@@ -532,10 +532,10 @@ export function WeeklyReview() {
 
           <div className="rounded-md border border-border/40 bg-card/60 p-2.5 text-center">
             <div className="flex items-center justify-center gap-1 mb-1">
-              <BookOpen className="h-3 w-3 text-blue-400" />
+              <BookOpen className="h-3 w-3 text-primary" />
               <span className="text-xs text-muted-foreground">Lessons</span>
             </div>
-            <p className="text-sm font-bold text-blue-400 tabular-nums">{completedLessons.length}</p>
+            <p className="text-sm font-bold text-primary tabular-nums">{completedLessons.length}</p>
           </div>
 
           <div className="rounded-md border border-border/40 bg-card/60 p-2.5 text-center">

@@ -63,8 +63,8 @@ function StatChip({
     green: "bg-green-500/10 text-green-400 border-green-500/20",
     red: "bg-red-500/10 text-red-400 border-red-500/20",
     amber: "bg-amber-500/10 text-amber-400 border-amber-500/20",
-    blue: "bg-blue-500/10 text-blue-400 border-blue-500/20",
-    purple: "bg-purple-500/10 text-purple-400 border-purple-500/20",
+    blue: "bg-primary/10 text-primary border-border",
+    purple: "bg-primary/10 text-primary border-border",
     default: "bg-muted text-muted-foreground border-border",
   }[color];
   return (
@@ -88,8 +88,8 @@ function InfoBox({
     default: "border-border bg-card",
     green: "border-green-500/30 bg-green-500/5",
     amber: "border-amber-500/30 bg-amber-500/5",
-    blue: "border-blue-500/30 bg-blue-500/5",
-    purple: "border-purple-500/30 bg-purple-500/5",
+    blue: "border-border bg-primary/5",
+    purple: "border-border bg-primary/5",
   }[variant];
   return (
     <div className={cn("rounded-lg border p-4", cls)}>
@@ -229,7 +229,7 @@ function EstateTaxChart() {
         <span className="text-sm font-medium text-foreground">Estate Tax Projection (2024–2040)</span>
         <div className="flex items-center gap-4 text-xs text-muted-foreground">
           <span className="flex items-center gap-1.5">
-            <span className="inline-block w-3 h-0.5 bg-blue-400" />
+            <span className="inline-block w-3 h-0.5 bg-primary" />
             Estate Value
           </span>
           <span className="flex items-center gap-1.5">
@@ -346,8 +346,8 @@ function WealthTransferTab() {
                   <div
                     className={cn(
                       "w-7 h-7 rounded-md flex items-center justify-center shrink-0",
-                      strat.color === "blue" && "bg-blue-500/10 text-blue-400",
-                      strat.color === "purple" && "bg-purple-500/10 text-purple-400",
+                      strat.color === "blue" && "bg-primary/10 text-primary",
+                      strat.color === "purple" && "bg-primary/10 text-primary",
                       strat.color === "green" && "bg-green-500/10 text-green-400",
                       strat.color === "amber" && "bg-amber-500/10 text-amber-400"
                     )}
@@ -519,8 +519,8 @@ function FamilyGovernanceTab() {
                   <div
                     className={cn(
                       "w-7 h-7 rounded-md flex items-center justify-center shrink-0",
-                      comp.color === "blue" && "bg-blue-500/10 text-blue-400",
-                      comp.color === "purple" && "bg-purple-500/10 text-purple-400",
+                      comp.color === "blue" && "bg-primary/10 text-primary",
+                      comp.color === "purple" && "bg-primary/10 text-primary",
                       comp.color === "green" && "bg-green-500/10 text-green-400",
                       comp.color === "amber" && "bg-amber-500/10 text-amber-400"
                     )}
@@ -641,8 +641,8 @@ function EducationCostChart() {
       <div className="flex items-center justify-between mb-3">
         <span className="text-sm font-medium text-foreground">4-Year College Cost vs. 529 Savings (2024–2041)</span>
         <div className="flex items-center gap-4 text-xs text-muted-foreground">
-          <span className="flex items-center gap-1.5"><span className="inline-block w-3 h-0.5 bg-blue-400" />Public</span>
-          <span className="flex items-center gap-1.5"><span className="inline-block w-3 h-0.5 bg-purple-400" />Private</span>
+          <span className="flex items-center gap-1.5"><span className="inline-block w-3 h-0.5 bg-primary" />Public</span>
+          <span className="flex items-center gap-1.5"><span className="inline-block w-3 h-0.5 bg-primary" />Private</span>
           <span className="flex items-center gap-1.5"><span className="inline-block w-3 h-0.5 bg-green-400" />529 ($500/mo)</span>
         </div>
       </div>
@@ -745,8 +745,8 @@ function EducationFundingTab() {
                 className={cn(
                   "text-xs shrink-0",
                   v.color === "green" && "border-green-500/30 text-green-400",
-                  v.color === "blue" && "border-blue-500/30 text-blue-400",
-                  v.color === "purple" && "border-purple-500/30 text-purple-400",
+                  v.color === "blue" && "border-border text-primary",
+                  v.color === "purple" && "border-border text-primary",
                   v.color === "amber" && "border-amber-500/30 text-amber-400"
                 )}
               >
@@ -899,8 +899,8 @@ function PhilanthropyTab() {
                     className={cn(
                       "w-7 h-7 rounded-md flex items-center justify-center shrink-0",
                       v.color === "green" && "bg-green-500/10 text-green-400",
-                      v.color === "blue" && "bg-blue-500/10 text-blue-400",
-                      v.color === "purple" && "bg-purple-500/10 text-purple-400",
+                      v.color === "blue" && "bg-primary/10 text-primary",
+                      v.color === "purple" && "bg-primary/10 text-primary",
                       v.color === "amber" && "bg-amber-500/10 text-amber-400"
                     )}
                   >
@@ -1070,13 +1070,13 @@ function BusinessRealEstateTab() {
         <div className="text-sm font-medium text-foreground mb-4">Recommended Family Enterprise Structure</div>
         <div className="flex flex-col items-center gap-2 text-xs">
           <div className="flex gap-3">
-            <div className="rounded-md border border-blue-500/30 bg-blue-500/10 text-blue-400 px-4 py-2 text-center font-medium">
+            <div className="rounded-md border border-border bg-primary/10 text-primary px-4 py-2 text-center font-medium">
               Family Trust / Estate Plan
             </div>
           </div>
           <div className="text-muted-foreground">|</div>
           <div className="flex gap-3">
-            <div className="rounded-md border border-purple-500/30 bg-purple-500/10 text-purple-400 px-4 py-2 text-center font-medium">
+            <div className="rounded-md border border-border bg-primary/10 text-primary px-4 py-2 text-center font-medium">
               HoldCo LLC / LP
             </div>
           </div>
@@ -1086,7 +1086,7 @@ function BusinessRealEstateTab() {
             <span>|</span>
           </div>
           <div className="flex gap-3">
-            <div className="rounded-md border border-blue-500/30 bg-blue-500/5 text-blue-300 px-3 py-2 text-center">
+            <div className="rounded-md border border-border bg-primary/5 text-primary px-3 py-2 text-center">
               OpCo LLC
             </div>
             <div className="rounded-md border border-amber-500/30 bg-amber-500/5 text-amber-300 px-3 py-2 text-center">
@@ -1112,8 +1112,8 @@ function BusinessRealEstateTab() {
                 <div
                   className={cn(
                     "w-8 h-8 rounded-md flex items-center justify-center shrink-0",
-                    e.color === "blue" && "bg-blue-500/10 text-blue-400",
-                    e.color === "purple" && "bg-purple-500/10 text-purple-400",
+                    e.color === "blue" && "bg-primary/10 text-primary",
+                    e.color === "purple" && "bg-primary/10 text-primary",
                     e.color === "green" && "bg-green-500/10 text-green-400",
                     e.color === "amber" && "bg-amber-500/10 text-amber-400"
                   )}
@@ -1155,7 +1155,7 @@ function BusinessRealEstateTab() {
                   <div
                     className={cn(
                       "w-7 h-7 rounded-md flex items-center justify-center shrink-0",
-                      phase.color === "blue" && "bg-blue-500/10 text-blue-400",
+                      phase.color === "blue" && "bg-primary/10 text-primary",
                       phase.color === "green" && "bg-green-500/10 text-green-400",
                       phase.color === "amber" && "bg-amber-500/10 text-amber-400"
                     )}
@@ -1232,10 +1232,10 @@ export default function FamilyWealthPage() {
             </p>
           </div>
           <div className="flex items-center gap-2 shrink-0">
-            <Badge variant="outline" className="text-xs border-blue-500/30 text-blue-400">
+            <Badge variant="outline" className="text-xs border-border text-primary">
               Estate Planning
             </Badge>
-            <Badge variant="outline" className="text-xs border-purple-500/30 text-purple-400">
+            <Badge variant="outline" className="text-xs border-border text-primary">
               Family Office
             </Badge>
           </div>

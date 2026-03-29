@@ -358,7 +358,7 @@ const ACCOUNTS = [
     rmd: "Age 73",
     investments: "Limited (plan menu)",
     keyBenefit: "Employer match, high limits",
-    color: "text-blue-400",
+    color: "text-primary",
   },
   {
     name: "403(b)",
@@ -380,7 +380,7 @@ const ACCOUNTS = [
     rmd: "Age 73",
     investments: "Broad (any broker)",
     keyBenefit: "Deductible if income eligible",
-    color: "text-violet-400",
+    color: "text-primary",
   },
   {
     name: "Roth IRA",
@@ -507,13 +507,13 @@ function AccountsTab() {
               </div>
               <Slider min={0} max={37} step={1} value={[retireRate]} onValueChange={([v]) => setRetireRate(v)} />
             </div>
-            <div className={cn("rounded-lg p-3 text-sm", rothBetter ? "bg-emerald-500/10 border border-emerald-500/30" : "bg-blue-500/10 border border-blue-500/30")}>
+            <div className={cn("rounded-lg p-3 text-sm", rothBetter ? "bg-emerald-500/10 border border-emerald-500/30" : "bg-primary/10 border border-border")}>
               {rothBetter ? (
                 <p><span className="font-bold text-emerald-400">Roth IRA is better</span> — you expect a higher tax rate in retirement. Pay taxes now at {nowRate}%, withdraw tax-free later.</p>
               ) : nowRate === retireRate ? (
                 <p className="text-muted-foreground">Tax rates are equal — either account type works. Roth has the edge (no RMDs, tax-free heirs).</p>
               ) : (
-                <p><span className="font-bold text-blue-400">Traditional is better</span> — you expect a lower tax rate in retirement. Defer taxes now at {nowRate}%, pay {retireRate}% later.</p>
+                <p><span className="font-bold text-primary">Traditional is better</span> — you expect a lower tax rate in retirement. Defer taxes now at {nowRate}%, pay {retireRate}% later.</p>
               )}
               <p className="text-xs text-muted-foreground mt-1">
                 Roth after-tax value multiplier: {breakEvenYears.toFixed(3)}x per dollar contributed
@@ -739,7 +739,7 @@ function SocialSecurityTab() {
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
         <Card className="p-4 space-y-2">
           <p className="text-sm font-semibold flex items-center gap-2">
-            <Shield className="h-4 w-4 text-blue-400" />
+            <Shield className="h-4 w-4 text-primary" />
             Spousal Benefits
           </p>
           <ul className="space-y-1 text-xs text-muted-foreground">
@@ -941,7 +941,7 @@ function InvestmentStrategyTab() {
                   <div style={{ width: `${cashBar}%`, backgroundColor: "#6b7280" }} title={`Cash ${cashBar}%`} />
                 </div>
                 <div className="space-y-0.5 text-xs">
-                  <div className="flex justify-between"><span className="text-blue-400">Stocks</span><span>{stockBar}%</span></div>
+                  <div className="flex justify-between"><span className="text-primary">Stocks</span><span>{stockBar}%</span></div>
                   <div className="flex justify-between"><span className="text-amber-400">Bonds</span><span>{bondBar}%</span></div>
                   <div className="flex justify-between"><span className="text-muted-foreground">Cash</span><span>{cashBar}%</span></div>
                 </div>
@@ -950,7 +950,7 @@ function InvestmentStrategyTab() {
           })}
         </div>
         <div className="flex gap-4 text-xs text-muted-foreground">
-          <span className="flex items-center gap-1"><span className="inline-block w-2.5 h-2.5 rounded-sm bg-blue-500" />Stocks</span>
+          <span className="flex items-center gap-1"><span className="inline-block w-2.5 h-2.5 rounded-sm bg-primary" />Stocks</span>
           <span className="flex items-center gap-1"><span className="inline-block w-2.5 h-2.5 rounded-sm bg-amber-500" />Bonds</span>
           <span className="flex items-center gap-1"><span className="inline-block w-2.5 h-2.5 rounded-sm bg-gray-500" />Cash</span>
         </div>
@@ -1006,9 +1006,9 @@ function InvestmentStrategyTab() {
               assets: "Cash, Money Market, CDs",
               purpose: "Immediate living expenses. Never disrupted by market volatility.",
               pct: "5–10%",
-              color: "text-blue-400",
-              border: "border-blue-500/30",
-              bg: "bg-blue-500/5",
+              color: "text-primary",
+              border: "border-border",
+              bg: "bg-primary/5",
             },
             {
               label: "Bucket 2",
@@ -1086,7 +1086,7 @@ function HealthcareRMDsTab() {
         </p>
         <div className="flex items-start gap-3 flex-wrap">
           {[
-            { age: "Age 65", event: "Medicare Eligibility Begins", detail: "Initial enrollment window: 3 months before, month of, 3 months after your 65th birthday (7-month window).", color: "bg-blue-500/20 border-blue-500/40" },
+            { age: "Age 65", event: "Medicare Eligibility Begins", detail: "Initial enrollment window: 3 months before, month of, 3 months after your 65th birthday (7-month window).", color: "bg-primary/20 border-primary/40" },
             { age: "Late Penalty", event: "Part B Penalty", detail: "10% premium increase for each 12-month period you could have enrolled but didn't (unless you have qualifying employer coverage).", color: "bg-red-500/20 border-red-500/40" },
             { age: "Age 65+", event: "Special Enrollment", detail: "If covered by employer plan at 65, you have 8 months to enroll in Part B after losing employer coverage.", color: "bg-emerald-500/20 border-emerald-500/40" },
           ].map((e) => (
@@ -1102,14 +1102,14 @@ function HealthcareRMDsTab() {
       {/* Medicare parts */}
       <Card className="p-4 space-y-3">
         <p className="text-sm font-semibold flex items-center gap-2">
-          <Shield className="h-4 w-4 text-blue-400" />
+          <Shield className="h-4 w-4 text-primary" />
           Medicare Parts Overview
         </p>
         <div className="grid grid-cols-2 lg:grid-cols-4 gap-3">
           {[
-            { part: "Part A", name: "Hospital", premium: "$0 (most)", covers: "Inpatient hospital, skilled nursing, hospice", deductible: "$1,632/benefit period", color: "text-blue-400", border: "border-blue-500/30" },
+            { part: "Part A", name: "Hospital", premium: "$0 (most)", covers: "Inpatient hospital, skilled nursing, hospice", deductible: "$1,632/benefit period", color: "text-primary", border: "border-border" },
             { part: "Part B", name: "Medical", premium: "~$174.70/mo", covers: "Doctor visits, outpatient care, preventive services", deductible: "$240/year", color: "text-indigo-400", border: "border-indigo-500/30" },
-            { part: "Part C", name: "Advantage", premium: "Varies ($0+)", covers: "Combines A+B (often with D), offered by private insurers", deductible: "Plan varies", color: "text-violet-400", border: "border-violet-500/30" },
+            { part: "Part C", name: "Advantage", premium: "Varies ($0+)", covers: "Combines A+B (often with D), offered by private insurers", deductible: "Plan varies", color: "text-primary", border: "border-border" },
             { part: "Part D", name: "Prescription Drugs", premium: "Varies (~$55/mo avg)", covers: "Prescription drug coverage through private plans", deductible: "Up to $545/year", color: "text-emerald-400", border: "border-emerald-500/30" },
           ].map((p) => (
             <div key={p.part} className={cn("rounded-lg border p-3 space-y-1", p.border)}>
@@ -1223,9 +1223,9 @@ function HealthcareRMDsTab() {
             <li className="flex gap-2"><CheckCircle className="h-3 w-3 text-emerald-400 shrink-0 mt-0.5" />Available at age 70½ and older (even before RMDs start at 73).</li>
           </ul>
           <ul className="space-y-1.5 text-xs text-muted-foreground">
-            <li className="flex gap-2"><Info className="h-3 w-3 text-blue-400 shrink-0 mt-0.5" />Must go directly from IRA custodian to charity — no "withdrawal then donate."</li>
-            <li className="flex gap-2"><Info className="h-3 w-3 text-blue-400 shrink-0 mt-0.5" />Reduces adjusted gross income — can lower Medicare premiums (IRMAA) and SS taxation.</li>
-            <li className="flex gap-2"><Info className="h-3 w-3 text-blue-400 shrink-0 mt-0.5" />Only traditional IRAs qualify (not 401k, SEP IRA directly — must rollover first).</li>
+            <li className="flex gap-2"><Info className="h-3 w-3 text-primary shrink-0 mt-0.5" />Must go directly from IRA custodian to charity — no "withdrawal then donate."</li>
+            <li className="flex gap-2"><Info className="h-3 w-3 text-primary shrink-0 mt-0.5" />Reduces adjusted gross income — can lower Medicare premiums (IRMAA) and SS taxation.</li>
+            <li className="flex gap-2"><Info className="h-3 w-3 text-primary shrink-0 mt-0.5" />Only traditional IRAs qualify (not 401k, SEP IRA directly — must rollover first).</li>
           </ul>
         </div>
       </Card>

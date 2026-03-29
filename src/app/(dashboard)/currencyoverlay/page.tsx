@@ -844,7 +844,7 @@ function HedgingStrategyBuilder() {
                         <div
                           className={cn(
                             "h-2 rounded-full",
-                            inst === "options" ? "bg-blue-500" : inst === "forwards" ? "bg-primary" : "bg-purple-500"
+                            inst === "options" ? "bg-primary" : inst === "forwards" ? "bg-primary" : "bg-primary"
                           )}
                           style={{ width: `${Math.min(Math.abs(be) / 5 * 100, 100)}%` }}
                         />
@@ -984,7 +984,7 @@ function CarryTradeAnalyzer() {
                 <div className="flex gap-4 text-xs mb-2">
                   <span className="flex items-center gap-1"><span className="inline-block w-3 h-1 bg-primary rounded" />Total Return</span>
                   <span className="flex items-center gap-1"><span className="inline-block w-3 h-1 bg-emerald-400 rounded" />Carry</span>
-                  <span className="flex items-center gap-1"><span className="inline-block w-3 h-1 bg-blue-400 rounded" />Spot</span>
+                  <span className="flex items-center gap-1"><span className="inline-block w-3 h-1 bg-primary rounded" />Spot</span>
                 </div>
               </div>
               <LineChart
@@ -1360,7 +1360,7 @@ function OptionsFXHedging() {
           {/* Seagull */}
           <Card className="bg-card border-border">
             <CardHeader className="pb-2">
-              <CardTitle className="text-xs font-medium text-blue-400">Seagull Structure</CardTitle>
+              <CardTitle className="text-xs font-medium text-primary">Seagull Structure</CardTitle>
               <p className="text-xs text-muted-foreground">Put spread + sell OTM call</p>
             </CardHeader>
             <CardContent>
@@ -1556,7 +1556,7 @@ function CrossCurrencySwapAnalytics() {
             <CardContent>
               <div className="mb-2 flex gap-4 text-xs">
                 <span className="flex items-center gap-1">
-                  <span className="inline-block w-3 h-1 bg-blue-400 rounded" />EUR/USD basis
+                  <span className="inline-block w-3 h-1 bg-primary rounded" />EUR/USD basis
                 </span>
                 <span className="flex items-center gap-1">
                   <span className="inline-block w-3 h-1 bg-orange-400 rounded" />USD/JPY basis
@@ -1614,8 +1614,8 @@ function CrossCurrencySwapAnalytics() {
                   <p className="text-xs font-medium text-primary mb-1">Step 1: Initial Exchange</p>
                   <p className="text-xs text-muted-foreground">At inception, parties exchange notional in two currencies at the current spot rate. E.g., Party A gives $100M, receives €92M at 1.085.</p>
                 </div>
-                <div className="p-3 rounded-lg bg-blue-500/5 border border-blue-500/20">
-                  <p className="text-xs font-medium text-blue-400 mb-1">Step 2: Periodic Payments</p>
+                <div className="p-3 rounded-lg bg-primary/5 border border-border">
+                  <p className="text-xs font-medium text-primary mb-1">Step 2: Periodic Payments</p>
                   <p className="text-xs text-muted-foreground">Over the life of the swap, parties exchange floating interest payments in their respective currencies. USD SOFR vs EUR €STR + spread.</p>
                 </div>
                 <div className="p-3 rounded-lg bg-emerald-500/5 border border-emerald-500/20">

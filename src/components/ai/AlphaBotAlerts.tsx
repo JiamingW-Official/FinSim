@@ -268,8 +268,8 @@ export function AlphaBotAlerts() {
       if (!alertedVolumeSurges.current.has(key)) {
         alertedVolumeSurges.current.add(key);
         const isBullCandle = currentBar.close > currentBar.open;
-        const borderColor = isBullCandle ? "border-blue-500/30" : "border-orange-500/30";
-        const textColor = isBullCandle ? "text-blue-400" : "text-orange-400";
+        const borderColor = isBullCandle ? "border-emerald-500/30" : "border-orange-500/30";
+        const textColor = isBullCandle ? "text-emerald-400" : "text-orange-400";
         toast.custom(
           () => (
             <div

@@ -306,7 +306,7 @@ function EvidenceTab() {
       {/* EMH */}
       <div className="rounded-xl border border-zinc-800 bg-zinc-900/50 p-5">
         <div className="flex items-center gap-2 mb-3">
-          <Info className="w-4 h-4 text-blue-400" />
+          <Info className="w-4 h-4 text-primary" />
           <h3 className="font-semibold text-zinc-100">Efficient Market Hypothesis</h3>
         </div>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
@@ -541,8 +541,8 @@ function IndexMechanicsTab() {
             <p className="text-xs font-medium text-green-400 mb-1">Tax Efficiency Advantage</p>
             <p className="text-xs text-zinc-400">In-kind creations/redemptions avoid capital gains distributions. Mutual funds must sell securities (triggering gains) when investors redeem for cash.</p>
           </div>
-          <div className="p-3 rounded-lg bg-blue-900/10 border border-blue-800/30">
-            <p className="text-xs font-medium text-blue-400 mb-1">Securities Lending Revenue</p>
+          <div className="p-3 rounded-lg bg-muted/30 border border-border">
+            <p className="text-xs font-medium text-primary mb-1">Securities Lending Revenue</p>
             <p className="text-xs text-zinc-400">Large ETF custodians earn 0.01–0.25% lending shares to short-sellers. VOO earns ~0.02% in securities lending, effectively reducing net cost below headline fee.</p>
           </div>
         </div>
@@ -551,7 +551,7 @@ function IndexMechanicsTab() {
       {/* Tracking Error Sources */}
       <div className="rounded-xl border border-zinc-800 bg-zinc-900/50 p-5">
         <div className="flex items-center gap-2 mb-4">
-          <BarChart2 className="w-4 h-4 text-purple-400" />
+          <BarChart2 className="w-4 h-4 text-primary" />
           <h3 className="font-semibold text-zinc-100">Tracking Error Sources (basis points per year)</h3>
         </div>
         <div className="space-y-2">
@@ -847,7 +847,7 @@ function FactorTab() {
       {/* Equal Weight vs Cap Weight */}
       <div className="rounded-xl border border-zinc-800 bg-zinc-900/50 p-5">
         <div className="flex items-center gap-2 mb-3">
-          <Scale className="w-4 h-4 text-blue-400" />
+          <Scale className="w-4 h-4 text-primary" />
           <h3 className="font-semibold text-zinc-100">Equal Weight vs Cap Weight</h3>
         </div>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -1149,9 +1149,9 @@ function FeeImpactTab() {
               turnover: "20–30%",
               capitalGainsDist: "Managed",
               taxDrag: "-0.5 to +0.5%",
-              color: "border-blue-800/50",
+              color: "border-border",
               badge: "Best After-Tax",
-              badgeColor: "text-blue-400",
+              badgeColor: "text-primary",
               notes: "Hold individual stocks. Harvest losses daily to offset gains elsewhere. Available at $250K+ minimums via Parametric, Aperio.",
             },
           ].map((item) => (
@@ -1202,7 +1202,7 @@ function FeeImpactTab() {
       {/* Core-Satellite Construction */}
       <div className="rounded-xl border border-zinc-800 bg-zinc-900/50 p-5">
         <div className="flex items-center gap-2 mb-3">
-          <Layers className="w-4 h-4 text-blue-400" />
+          <Layers className="w-4 h-4 text-primary" />
           <h3 className="font-semibold text-zinc-100">Core-Satellite Portfolio Construction</h3>
         </div>
         <CoreSatelliteSVG />

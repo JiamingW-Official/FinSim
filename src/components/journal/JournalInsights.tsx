@@ -748,7 +748,7 @@ function TradeNarratives({ rows, emotions }: {
   return (
     <div className="space-y-4">
       <div className="flex items-center gap-2">
-        <BookOpen className="h-4 w-4 text-blue-400" />
+        <BookOpen className="h-4 w-4 text-primary" />
         <h3 className="text-sm font-semibold">Trade Narrative Generator</h3>
       </div>
 
@@ -1246,7 +1246,7 @@ function ImprovementRoadmap({ rows, rng }: { rows: TradeRow[]; rng: () => number
   const PRIORITY_COLORS: Record<number, string> = {
     1: "text-red-400 border-red-500/30 bg-red-500/5",
     2: "text-amber-400 border-amber-500/30 bg-amber-500/5",
-    3: "text-blue-400 border-blue-500/30 bg-blue-500/5",
+    3: "text-primary border-border bg-primary/5",
   };
 
   const PRIORITY_LABELS: Record<number, string> = {

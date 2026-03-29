@@ -519,11 +519,11 @@ export const ECONOMIC_CATEGORY_COLORS: Record<
   string
 > = {
   inflation: "text-red-400 bg-red-400/10",
-  employment: "text-blue-400 bg-blue-400/10",
+  employment: "text-primary bg-primary/10",
   gdp: "text-emerald-400 bg-emerald-400/10",
-  fed: "text-violet-400 bg-violet-400/10",
+  fed: "text-primary bg-primary/10",
   housing: "text-amber-400 bg-amber-400/10",
-  manufacturing: "text-cyan-400 bg-cyan-400/10",
+  manufacturing: "text-muted-foreground bg-muted/30",
   consumer: "text-pink-400 bg-pink-400/10",
 };
 

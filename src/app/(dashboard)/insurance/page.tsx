@@ -57,8 +57,8 @@ function StatChip({
     green: "bg-green-500/10 text-green-400 border-green-500/20",
     red: "bg-red-500/10 text-red-400 border-red-500/20",
     amber: "bg-amber-500/10 text-amber-400 border-amber-500/20",
-    blue: "bg-blue-500/10 text-blue-400 border-blue-500/20",
-    purple: "bg-purple-500/10 text-purple-400 border-purple-500/20",
+    blue: "bg-primary/10 text-primary border-border",
+    purple: "bg-primary/10 text-primary border-border",
     default: "bg-muted text-muted-foreground border-border",
   }[color];
   return (
@@ -82,8 +82,8 @@ function InfoBox({
     default: "border-border",
     green: "border-green-500/30 bg-green-500/5",
     amber: "border-amber-500/30 bg-amber-500/5",
-    blue: "border-blue-500/30 bg-blue-500/5",
-    purple: "border-purple-500/30 bg-purple-500/5",
+    blue: "border-border bg-primary/5",
+    purple: "border-border bg-primary/5",
   }[variant];
   return (
     <div className={cn("rounded-lg border p-4", border)}>
@@ -384,16 +384,16 @@ function FundamentalsTab() {
   ];
 
   const colorMap: Record<string, string> = {
-    blue: "border-blue-500/30 bg-blue-500/5",
+    blue: "border-border bg-primary/5",
     amber: "border-amber-500/30 bg-amber-500/5",
     green: "border-green-500/30 bg-green-500/5",
-    purple: "border-purple-500/30 bg-purple-500/5",
+    purple: "border-border bg-primary/5",
   };
   const iconMap: Record<string, string> = {
-    blue: "text-blue-400",
+    blue: "text-primary",
     amber: "text-amber-400",
     green: "text-green-400",
-    purple: "text-purple-400",
+    purple: "text-primary",
   };
 
   return (
@@ -889,7 +889,7 @@ function LifeTab() {
             $30/mo term premium, $270/mo invested at 7% = <strong className="text-green-400">~$140K</strong> after 20 years. Death benefit: $500K throughout.
           </InfoBox>
           <InfoBox title="Whole Life ($300/mo)" variant="purple">
-            All $300/mo in whole life. Cash value grows ~3%. After 20 years: <strong className="text-purple-400">~$55K</strong> cash value with same death benefit.
+            All $300/mo in whole life. Cash value grows ~3%. After 20 years: <strong className="text-primary">~$55K</strong> cash value with same death benefit.
           </InfoBox>
         </div>
       </div>
@@ -1144,7 +1144,7 @@ function PCTab() {
                     {sec.required ? (
                       <CheckCircle size={14} className="text-green-400 flex-shrink-0 mt-0.5" />
                     ) : (
-                      <Info size={14} className="text-blue-400 flex-shrink-0 mt-0.5" />
+                      <Info size={14} className="text-primary flex-shrink-0 mt-0.5" />
                     )}
                     <div>
                       <div className="text-xs font-medium">{sec.name}</div>
@@ -1352,16 +1352,16 @@ function ReinsuranceTab() {
       <div className="space-y-3">
         {structures.map((s) => {
           const borderMap: Record<string, string> = {
-            blue: "border-blue-500/30 bg-blue-500/5",
+            blue: "border-border bg-primary/5",
             amber: "border-amber-500/30 bg-amber-500/5",
             red: "border-red-500/30 bg-red-500/5",
-            purple: "border-purple-500/30 bg-purple-500/5",
+            purple: "border-border bg-primary/5",
           };
           const iconMap: Record<string, string> = {
-            blue: "text-blue-400",
+            blue: "text-primary",
             amber: "text-amber-400",
             red: "text-red-400",
-            purple: "text-purple-400",
+            purple: "text-primary",
           };
           return (
             <div key={s.title} className={cn("rounded-lg border p-4", borderMap[s.color])}>
@@ -1557,18 +1557,18 @@ function InsurTechTab() {
   ];
 
   const colorBorder: Record<string, string> = {
-    blue: "border-blue-500/30 bg-blue-500/5",
+    blue: "border-border bg-primary/5",
     amber: "border-amber-500/30 bg-amber-500/5",
     green: "border-green-500/30 bg-green-500/5",
     red: "border-red-500/30 bg-red-500/5",
-    purple: "border-purple-500/30 bg-purple-500/5",
+    purple: "border-border bg-primary/5",
   };
   const colorText: Record<string, string> = {
-    blue: "text-blue-400",
+    blue: "text-primary",
     amber: "text-amber-400",
     green: "text-green-400",
     red: "text-red-400",
-    purple: "text-purple-400",
+    purple: "text-primary",
   };
 
   return (
@@ -1839,7 +1839,7 @@ function InvestmentTab() {
               {allocationData.map((r) => (
                 <tr key={r.type} className="border-b border-border/30">
                   <td className="px-3 py-2 font-medium">{r.type}</td>
-                  <td className="px-3 py-2 text-right text-blue-400">{r.bonds}%</td>
+                  <td className="px-3 py-2 text-right text-primary">{r.bonds}%</td>
                   <td className="px-3 py-2 text-right text-green-400">{r.equities}%</td>
                   <td className="px-3 py-2 text-right text-amber-400">{r.alternatives}%</td>
                   <td className="px-3 py-2 text-right text-muted-foreground">{r.cash}%</td>
@@ -1964,10 +1964,10 @@ export default function InsurancePage() {
             </div>
           </div>
           <div className="flex flex-wrap gap-2 mt-3">
-            <Badge className="bg-blue-500/15 text-blue-400 border-blue-500/25 text-xs">Risk Pooling</Badge>
+            <Badge className="bg-primary/15 text-primary border-border text-xs">Risk Pooling</Badge>
             <Badge className="bg-green-500/15 text-green-400 border-green-500/25 text-xs">Float Leverage</Badge>
             <Badge className="bg-amber-500/15 text-amber-400 border-amber-500/25 text-xs">Combined Ratio</Badge>
-            <Badge className="bg-purple-500/15 text-purple-400 border-purple-500/25 text-xs">Cat Bonds</Badge>
+            <Badge className="bg-primary/15 text-primary border-border text-xs">Cat Bonds</Badge>
             <Badge className="bg-rose-500/15 text-rose-400 border-rose-500/25 text-xs">ILS Market</Badge>
           </div>
         </div>

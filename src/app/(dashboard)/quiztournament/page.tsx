@@ -583,14 +583,14 @@ const QUESTION_BANK: Question[] = [
 // ── Category colors ───────────────────────────────────────────────────────────
 
 const CATEGORY_COLORS: Record<Category, string> = {
-  Fundamentals: "bg-blue-500/20 text-blue-400 border-blue-500/30",
-  "Technical Analysis": "bg-purple-500/20 text-purple-400 border-purple-500/30",
+  Fundamentals: "bg-primary/20 text-primary border-border",
+  "Technical Analysis": "bg-primary/20 text-primary border-border",
   Options: "bg-yellow-500/20 text-yellow-400 border-yellow-500/30",
   Macro: "bg-green-500/20 text-green-400 border-green-500/30",
   Crypto: "bg-orange-500/20 text-orange-400 border-orange-500/30",
   "Risk Management": "bg-red-500/20 text-red-400 border-red-500/30",
   "Behavioral Finance": "bg-pink-500/20 text-pink-400 border-pink-500/30",
-  Derivatives: "bg-cyan-500/20 text-cyan-400 border-cyan-500/30",
+  Derivatives: "bg-cyan-500/20 text-muted-foreground border-cyan-500/30",
 };
 
 const DIFFICULTY_LABEL: Record<Difficulty, string> = { 1: "Easy", 2: "Medium", 3: "Hard" };
@@ -661,7 +661,7 @@ function Sparkline({ data, color = "#22c55e" }: { data: number[]; color?: string
 function calcGrade(pct: number): { grade: string; color: string } {
   if (pct >= 0.9) return { grade: "S", color: "text-yellow-400" };
   if (pct >= 0.75) return { grade: "A", color: "text-green-400" };
-  if (pct >= 0.6) return { grade: "B", color: "text-blue-400" };
+  if (pct >= 0.6) return { grade: "B", color: "text-primary" };
   if (pct >= 0.45) return { grade: "C", color: "text-orange-400" };
   return { grade: "D", color: "text-red-400" };
 }
@@ -673,15 +673,15 @@ const TIER_COLOR: Record<LeagueTier, string> = {
   Bronze: "text-amber-700",
   Silver: "text-slate-300",
   Gold: "text-yellow-400",
-  Platinum: "text-cyan-300",
-  Diamond: "text-blue-300",
+  Platinum: "text-muted-foreground",
+  Diamond: "text-primary",
 };
 const TIER_BG: Record<LeagueTier, string> = {
   Bronze: "bg-amber-700/20 border-amber-700/40",
   Silver: "bg-slate-400/20 border-slate-400/40",
   Gold: "bg-yellow-500/20 border-yellow-500/40",
   Platinum: "bg-cyan-400/20 border-cyan-400/40",
-  Diamond: "bg-blue-400/20 border-blue-400/40",
+  Diamond: "bg-primary/20 border-border",
 };
 
 // ── Boss Challenges data ──────────────────────────────────────────────────────
@@ -980,7 +980,7 @@ function QuestionCard({
               variantClass = "bg-slate-900/40 border-slate-800/50 opacity-50";
             }
           } else if (selectedIndex === idx) {
-            variantClass = "bg-blue-500/20 border-blue-500/60";
+            variantClass = "bg-primary/20 border-primary/60";
           }
 
           return (
@@ -1059,14 +1059,14 @@ function ExplanationPanel({
         {question.learnLink && (
           <a
             href={question.learnLink}
-            className="inline-flex items-center gap-1 mt-2 text-xs text-blue-400 hover:text-blue-300 transition-colors"
+            className="inline-flex items-center gap-1 mt-2 text-xs text-primary hover:text-primary transition-colors"
           >
             <BookOpen className="h-3 w-3" />
             Learn More
           </a>
         )}
       </Card>
-      <Button onClick={onNext} className="w-full bg-blue-600 hover:bg-blue-500 text-white">
+      <Button onClick={onNext} className="w-full bg-primary hover:bg-primary text-white">
         {isLast ? "See Results" : "Next Question"}
         <ChevronRight className="h-4 w-4 ml-1" />
       </Button>
@@ -1120,7 +1120,7 @@ function FinalScoreScreen({
             <div className="text-xs text-slate-500">Points</div>
           </div>
           <div className="text-center">
-            <div className="text-2xl font-bold text-blue-400">+{xpGained}</div>
+            <div className="text-2xl font-bold text-primary">+{xpGained}</div>
             <div className="text-xs text-slate-500">XP</div>
           </div>
         </div>
@@ -1248,7 +1248,7 @@ function DailyChallengeTab() {
       <div className="flex flex-col items-center gap-6 py-8">
         <div className="text-center">
           <div className="text-4xl mb-3">
-            <Brain className="h-12 w-12 text-blue-400 mx-auto" />
+            <Brain className="h-12 w-12 text-primary mx-auto" />
           </div>
           <h2 className="text-xl font-bold text-white">Daily Challenge</h2>
           <p className="text-slate-400 text-sm mt-1">
@@ -1281,7 +1281,7 @@ function DailyChallengeTab() {
         </Card>
         <Button
           onClick={() => setPhase("playing")}
-          className="bg-blue-600 hover:bg-blue-500 text-white px-8"
+          className="bg-primary hover:bg-primary text-white px-8"
         >
           <Zap className="h-4 w-4 mr-2" />
           Start Daily Challenge
@@ -1377,7 +1377,7 @@ function WeeklyLeagueTab() {
     <div className="space-y-4">
       {/* User's standing */}
       {userPlayer && (
-        <Card className="bg-blue-500/10 border-blue-500/30 p-4">
+        <Card className="bg-primary/10 border-border p-4">
           <div className="flex items-center justify-between">
             <div>
               <div className="text-xs text-slate-500 mb-0.5">Your Standing</div>
@@ -1422,19 +1422,19 @@ function WeeklyLeagueTab() {
               className={cn(
                 "flex-shrink-0 flex flex-col items-center gap-1 p-2 rounded-lg border text-center min-w-[60px]",
                 s.status === "done" && "bg-green-500/10 border-green-500/30",
-                s.status === "today" && "bg-blue-500/10 border-blue-500/50 ring-1 ring-blue-500",
+                s.status === "today" && "bg-primary/10 border-primary/50 ring-1 ring-blue-500",
                 s.status === "upcoming" && "bg-slate-800/50 border-slate-700/40"
               )}
             >
               <span className="text-xs font-bold text-slate-300">{s.day}</span>
               <span className={cn("text-xs",
                 s.status === "done" ? "text-green-400" :
-                s.status === "today" ? "text-blue-400" : "text-slate-500"
+                s.status === "today" ? "text-primary" : "text-slate-500"
               )}>
                 {s.type}
               </span>
               {s.status === "done" && <CheckCircle2 className="h-3 w-3 text-green-400" />}
-              {s.status === "today" && <Zap className="h-3 w-3 text-blue-400" />}
+              {s.status === "today" && <Zap className="h-3 w-3 text-primary" />}
               {s.status === "upcoming" && <Clock className="h-3 w-3 text-slate-600" />}
             </div>
           ))}
@@ -1467,7 +1467,7 @@ function WeeklyLeagueTab() {
             key={player.rank}
             className={cn(
               "flex items-center gap-3 p-3 rounded-lg border transition-colors",
-              player.isUser ? "bg-blue-500/10 border-blue-500/30" : "bg-slate-900/50 border-slate-800/50"
+              player.isUser ? "bg-primary/10 border-border" : "bg-slate-900/50 border-slate-800/50"
             )}
           >
             <div className="w-7 text-center">
@@ -1483,7 +1483,7 @@ function WeeklyLeagueTab() {
             </div>
             <div className="flex-1 min-w-0">
               <div className="flex items-center gap-1.5">
-                <span className={cn("text-sm font-semibold", player.isUser ? "text-blue-300" : "text-slate-200")}>
+                <span className={cn("text-sm font-semibold", player.isUser ? "text-primary" : "text-slate-200")}>
                   {player.username}
                 </span>
                 <span className={cn("text-xs font-medium", TIER_COLOR[player.tier])}>
@@ -1509,7 +1509,7 @@ function WeeklyLeagueTab() {
           {prizes.map((p) => (
             <div key={p.rank} className="bg-slate-800/50 border border-slate-700/40 rounded-lg p-2 text-center">
               <div className="text-xs font-bold text-slate-300">{p.rank}</div>
-              <div className="text-sm font-bold text-blue-400">+{p.xp}</div>
+              <div className="text-sm font-bold text-primary">+{p.xp}</div>
               <div className="text-xs text-slate-500">XP</div>
             </div>
           ))}
@@ -1748,8 +1748,8 @@ function SpeedRoundTab() {
           <div className={cn(
             "flex items-center gap-1 px-2 py-0.5 rounded-full text-xs font-bold",
             multiplier === 1 ? "bg-slate-700 text-slate-400" :
-            multiplier === 2 ? "bg-blue-500/20 text-blue-400" :
-            multiplier === 3 ? "bg-purple-500/20 text-purple-400" :
+            multiplier === 2 ? "bg-primary/20 text-primary" :
+            multiplier === 3 ? "bg-primary/20 text-primary" :
             "bg-yellow-500/20 text-yellow-400"
           )}>
             <Zap className="h-3 w-3" />
@@ -2152,7 +2152,7 @@ function QuestionBuilderTab() {
       <Card className="bg-slate-900/70 border-slate-700/50 p-4 space-y-3">
         <div className="flex items-center justify-between">
           <div className="text-sm font-semibold text-white flex items-center gap-2">
-            <Plus className="h-4 w-4 text-blue-400" />
+            <Plus className="h-4 w-4 text-primary" />
             Create a Question
           </div>
           <button
@@ -2169,7 +2169,7 @@ function QuestionBuilderTab() {
           onChange={(e) => setFormData((f) => ({ ...f, question: e.target.value }))}
           placeholder="Enter your question..."
           rows={2}
-          className="w-full bg-slate-800/60 border border-slate-700/60 rounded-lg px-3 py-2 text-sm text-slate-200 placeholder-slate-600 focus:outline-none focus:border-blue-500/50 resize-none"
+          className="w-full bg-slate-800/60 border border-slate-700/60 rounded-lg px-3 py-2 text-sm text-slate-200 placeholder-slate-600 focus:outline-none focus:border-primary/50 resize-none"
         />
 
         <div className="grid grid-cols-2 gap-2">
@@ -2184,7 +2184,7 @@ function QuestionBuilderTab() {
                 placeholder={`Option ${["A", "B", "C", "D"][idx]}`}
                 className={cn(
                   "w-full pl-7 pr-2 py-2 bg-slate-800/60 border rounded-lg text-xs text-slate-200 placeholder-slate-600 focus:outline-none",
-                  formData.correctIndex === idx ? "border-green-500/50" : "border-slate-700/60 focus:border-blue-500/40"
+                  formData.correctIndex === idx ? "border-green-500/50" : "border-slate-700/60 focus:border-primary/40"
                 )}
               />
               <button
@@ -2204,7 +2204,7 @@ function QuestionBuilderTab() {
           onChange={(e) => setFormData((f) => ({ ...f, explanation: e.target.value }))}
           placeholder="Explanation (shown after answering)..."
           rows={2}
-          className="w-full bg-slate-800/60 border border-slate-700/60 rounded-lg px-3 py-2 text-xs text-slate-200 placeholder-slate-600 focus:outline-none focus:border-blue-500/50 resize-none"
+          className="w-full bg-slate-800/60 border border-slate-700/60 rounded-lg px-3 py-2 text-xs text-slate-200 placeholder-slate-600 focus:outline-none focus:border-primary/50 resize-none"
         />
 
         <div className="flex gap-2 flex-wrap">
@@ -2230,7 +2230,7 @@ function QuestionBuilderTab() {
         <div className="flex items-center gap-3 p-3 bg-slate-800/50 rounded-lg border border-slate-700/40">
           <div>
             <div className="text-xs text-slate-500">Share Code</div>
-            <div className="text-lg font-mono font-bold text-blue-400 tracking-widest">{shareCode}</div>
+            <div className="text-lg font-mono font-bold text-primary tracking-widest">{shareCode}</div>
           </div>
           <Button
             size="sm"
@@ -2356,7 +2356,7 @@ export default function QuizTournamentPage() {
         <div className="grid grid-cols-4 gap-2">
           {[
             { label: "Streak", value: "3d", icon: <Flame className="h-3.5 w-3.5 text-orange-400" />, color: "text-orange-400" },
-            { label: "Rank", value: "#8", icon: <Target className="h-3.5 w-3.5 text-blue-400" />, color: "text-blue-400" },
+            { label: "Rank", value: "#8", icon: <Target className="h-3.5 w-3.5 text-primary" />, color: "text-primary" },
             { label: "Accuracy", value: "72%", icon: <TrendingUp className="h-3.5 w-3.5 text-green-400" />, color: "text-green-400" },
             { label: "Badges", value: "4", icon: <Star className="h-3.5 w-3.5 text-yellow-400" />, color: "text-yellow-400" },
           ].map((stat) => (

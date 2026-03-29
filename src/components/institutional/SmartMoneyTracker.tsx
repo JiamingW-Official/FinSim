@@ -1052,8 +1052,8 @@ function InstitutionalOptions() {
             LEAPs are expressing multi-quarter directional conviction, not hedging near-term events.
           </p>
         </div>
-        <div className="rounded-lg border border-purple-500/20 bg-purple-500/5 p-3">
-          <p className="text-xs font-semibold text-purple-400 mb-1">Earnings Straddling</p>
+        <div className="rounded-lg border border-border bg-primary/5 p-3">
+          <p className="text-xs font-semibold text-primary mb-1">Earnings Straddling</p>
           <p className="text-xs text-muted-foreground">
             Simultaneous call + put purchase around earnings dates. Institutions hedge binary
             outcomes without directional bias — large straddle purchases amplify post-earnings moves.
@@ -1117,7 +1117,7 @@ function InstitutionalOptions() {
                 <td className="p-2.5 text-right font-medium text-foreground">{fmtB(trade.premium)}</td>
                 <td className="p-2.5 text-right">
                   {trade.repeatCount >= 2 ? (
-                    <span className="rounded px-1 py-0.5 bg-purple-500/15 text-purple-400 text-xs font-medium">
+                    <span className="rounded px-1 py-0.5 bg-primary/15 text-primary text-xs font-medium">
                       ×{trade.repeatCount}
                     </span>
                   ) : (

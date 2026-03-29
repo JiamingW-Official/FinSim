@@ -712,13 +712,13 @@ function CurveVisualizer({ initialContractId }: { initialContractId: string }) {
             </div>
             <div className="flex justify-between text-xs">
               <span className="text-muted-foreground">Convenience Yield</span>
-              <span className={cn("font-medium", isBackwardation ? "text-green-400" : "text-blue-400")}>
+              <span className={cn("font-medium", isBackwardation ? "text-green-400" : "text-primary")}>
                 -{convenienceYieldPct}% ann.
               </span>
             </div>
             <div className="flex justify-between text-xs">
               <span className="text-muted-foreground">Risk-Free Rate</span>
-              <span className="text-blue-400 font-medium">+5.25% ann.</span>
+              <span className="text-primary font-medium">+5.25% ann.</span>
             </div>
             <div className="border-t border-border/30 pt-1.5 flex justify-between text-xs font-semibold">
               <span>Net Carry</span>
@@ -885,7 +885,7 @@ function SpreadTrading() {
         <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-4">
           {[
             { label: "WTI Crude (USD/bbl)", val: crackCrude, set: setCrackCrude, step: 0.5, color: "text-orange-400" },
-            { label: "RBOB Gasoline (USD/gal)", val: crackGasoline, set: setCrackGasoline, step: 0.01, color: "text-blue-400" },
+            { label: "RBOB Gasoline (USD/gal)", val: crackGasoline, set: setCrackGasoline, step: 0.01, color: "text-primary" },
             { label: "Heating Oil (USD/gal)", val: crackHeating, set: setCrackHeating, step: 0.01, color: "text-amber-400" },
           ].map(({ label, val, set, step, color }) => (
             <div key={label}>
@@ -1034,7 +1034,7 @@ function OrderEntrySimulator() {
           </div>
           <div className="flex justify-between">
             <span>Leverage</span>
-            <span className="text-blue-400 font-medium tabular-nums">{leverage.toFixed(1)}x</span>
+            <span className="text-primary font-medium tabular-nums">{leverage.toFixed(1)}x</span>
           </div>
         </div>
         <div className="mt-2 pt-2 border-t border-border/40 text-xs text-muted-foreground">
@@ -1190,7 +1190,7 @@ function OrderEntrySimulator() {
           {/* Key metrics */}
           {[
             { label: "Notional Value", value: fmtDollar(notional), color: "text-foreground" },
-            { label: "Leverage Ratio", value: `${leverage.toFixed(1)}x`, color: "text-blue-400" },
+            { label: "Leverage Ratio", value: `${leverage.toFixed(1)}x`, color: "text-primary" },
             { label: "Initial Margin", value: fmtDollar(totalInitial), color: "text-amber-400" },
             { label: "Maintenance Margin", value: fmtDollar(totalMaintenance), color: "text-amber-300" },
             { label: "P&L per Tick", value: `$${pnlPerTick.toFixed(2)}`, color: "text-primary" },
@@ -1293,13 +1293,13 @@ function StorageCarryAnalysis() {
           <div className={cn(
             "rounded-lg border p-3 text-center",
             Math.abs(basisPct) < 0.5 ? "bg-muted/20 border-border/30" :
-            basis > 0 ? "bg-amber-500/10 border-amber-500/20" : "bg-blue-500/10 border-blue-500/20"
+            basis > 0 ? "bg-amber-500/10 border-amber-500/20" : "bg-primary/10 border-border"
           )}>
             <div className="text-xs text-muted-foreground mb-1">Market vs Fair Value (Basis)</div>
             <div className={cn(
               "text-xl font-bold tabular-nums",
               Math.abs(basisPct) < 0.5 ? "text-muted-foreground" :
-              basis > 0 ? "text-amber-400" : "text-blue-400"
+              basis > 0 ? "text-amber-400" : "text-primary"
             )}>
               {basis >= 0 ? "+" : ""}{basis.toFixed(2)}
             </div>
@@ -1402,7 +1402,7 @@ function StorageCarryAnalysis() {
                   <div className="text-xs text-muted-foreground w-20">5-Yr Avg</div>
                   <div className="flex-1 relative h-4 bg-muted rounded overflow-hidden">
                     <div
-                      className="absolute inset-y-0 left-0 bg-blue-500/50 rounded"
+                      className="absolute inset-y-0 left-0 bg-primary/50 rounded"
                       style={{ width: `${avgPct}%` }}
                     />
                     <span className="absolute inset-y-0 right-2 flex items-center text-xs font-medium text-white">

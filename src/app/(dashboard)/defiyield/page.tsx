@@ -85,9 +85,9 @@ const RISK_BG: Record<string, string> = {
 };
 
 const TYPE_COLORS: Record<string, string> = {
-  DEX: "bg-violet-400/10 text-violet-400 border-violet-400/20",
-  Lending: "bg-blue-400/10 text-blue-400 border-blue-400/20",
-  Aggregator: "bg-cyan-400/10 text-cyan-400 border-cyan-400/20",
+  DEX: "bg-primary/10 text-primary border-border",
+  Lending: "bg-primary/10 text-primary border-border",
+  Aggregator: "bg-cyan-400/10 text-muted-foreground border-cyan-400/20",
   Staking: "bg-emerald-400/10 text-emerald-400 border-emerald-400/20",
 };
 
@@ -312,11 +312,11 @@ function StrategiesTab() {
 
   // Flow diagram steps
   const flowSteps = [
-    { icon: DollarSign, label: "Acquire\nAssets", color: "bg-blue-500/20 border-blue-500/40 text-blue-400" },
-    { icon: Lock, label: "Deposit to\nProtocol", color: "bg-violet-500/20 border-violet-500/40 text-violet-400" },
+    { icon: DollarSign, label: "Acquire\nAssets", color: "bg-primary/20 border-primary/40 text-primary" },
+    { icon: Lock, label: "Deposit to\nProtocol", color: "bg-primary/20 border-primary/40 text-primary" },
     { icon: RefreshCw, label: "Earn\nRewards", color: "bg-emerald-500/20 border-emerald-500/40 text-emerald-400" },
     { icon: Zap, label: "Compound\nYield", color: "bg-yellow-500/20 border-yellow-500/40 text-yellow-400" },
-    { icon: TrendingUp, label: "Reinvest\nProfits", color: "bg-cyan-500/20 border-cyan-500/40 text-cyan-400" },
+    { icon: TrendingUp, label: "Reinvest\nProfits", color: "bg-cyan-500/20 border-cyan-500/40 text-muted-foreground" },
   ];
 
   return (
@@ -349,8 +349,8 @@ function StrategiesTab() {
           {/* Legend */}
           <div className="flex gap-6 text-xs">
             <span className="flex items-center gap-1.5"><span className="w-3 h-0.5 bg-emerald-400 inline-block rounded" /> ETH Staking (4.2%)</span>
-            <span className="flex items-center gap-1.5"><span className="w-3 h-0.5 bg-violet-400 inline-block rounded" /> LP Farming (22%)</span>
-            <span className="flex items-center gap-1.5"><span className="w-3 h-0.5 bg-blue-400 inline-block rounded" /> Lending (6.5%)</span>
+            <span className="flex items-center gap-1.5"><span className="w-3 h-0.5 bg-primary inline-block rounded" /> LP Farming (22%)</span>
+            <span className="flex items-center gap-1.5"><span className="w-3 h-0.5 bg-primary inline-block rounded" /> Lending (6.5%)</span>
           </div>
 
           {/* SVG line chart */}
@@ -398,8 +398,8 @@ function StrategiesTab() {
           <div className="grid grid-cols-3 gap-3">
             {[
               { label: "ETH Staking", val: lastStaking, color: "text-emerald-400", pct: ((lastStaking / principal - 1) * 100).toFixed(1) },
-              { label: "LP Farming", val: lastLp, color: "text-violet-400", pct: ((lastLp / principal - 1) * 100).toFixed(1) },
-              { label: "Lending", val: lastLending, color: "text-blue-400", pct: ((lastLending / principal - 1) * 100).toFixed(1) },
+              { label: "LP Farming", val: lastLp, color: "text-primary", pct: ((lastLp / principal - 1) * 100).toFixed(1) },
+              { label: "Lending", val: lastLending, color: "text-primary", pct: ((lastLending / principal - 1) * 100).toFixed(1) },
             ].map(({ label, val, color, pct }) => (
               <div key={label} className="bg-muted/20 rounded-lg p-3 text-center">
                 <p className="text-xs text-muted-foreground mb-1">{label}</p>
@@ -437,9 +437,9 @@ function StrategiesTab() {
           </div>
           <div className="mt-4 grid grid-cols-1 md:grid-cols-3 gap-3 text-sm">
             {[
-              { title: "Liquidity Mining", desc: "Provide token pairs to DEX pools and earn trading fees + protocol tokens as rewards. High APY but exposed to impermanent loss.", color: "border-violet-400/30" },
+              { title: "Liquidity Mining", desc: "Provide token pairs to DEX pools and earn trading fees + protocol tokens as rewards. High APY but exposed to impermanent loss.", color: "border-border" },
               { title: "Yield Aggregators", desc: "Auto-compound strategies across multiple protocols. Saves gas, maximizes compounding frequency, managed risk.", color: "border-cyan-400/30" },
-              { title: "Lending Protocols", desc: "Supply assets to earn interest from borrowers. Lower risk than LP, predictable yield, no IL exposure.", color: "border-blue-400/30" },
+              { title: "Lending Protocols", desc: "Supply assets to earn interest from borrowers. Lower risk than LP, predictable yield, no IL exposure.", color: "border-border" },
             ].map(({ title, desc, color }) => (
               <div key={title} className={`border ${color} rounded-lg p-3 bg-muted/10`}>
                 <p className="font-semibold text-foreground text-sm mb-1">{title}</p>
@@ -811,8 +811,8 @@ function YieldCalculatorTab() {
           <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
             {[
               { label: "Compounded Value", val: `$${Math.round(compounded).toLocaleString()}`, color: "text-emerald-400" },
-              { label: "Simple Interest", val: `$${Math.round(simple).toLocaleString()}`, color: "text-blue-400" },
-              { label: "Compound Gain", val: `+$${Math.round(compoundGain).toLocaleString()}`, color: "text-violet-400" },
+              { label: "Simple Interest", val: `$${Math.round(simple).toLocaleString()}`, color: "text-primary" },
+              { label: "Compound Gain", val: `+$${Math.round(compoundGain).toLocaleString()}`, color: "text-primary" },
               { label: "Compounding Bonus", val: `+$${Math.round(extraFromCompounding).toLocaleString()}`, color: "text-yellow-400" },
             ].map(({ label, val, color }) => (
               <div key={label} className="bg-muted/20 rounded-lg p-3 text-center">
@@ -827,7 +827,7 @@ function YieldCalculatorTab() {
             <p className="text-xs text-muted-foreground mb-2">Yearly Growth Comparison</p>
             <div className="flex gap-4 text-xs mb-2">
               <span className="flex items-center gap-1.5"><span className="w-3 h-3 bg-emerald-400/70 rounded inline-block" /> Compounded</span>
-              <span className="flex items-center gap-1.5"><span className="w-3 h-3 bg-blue-400/50 rounded inline-block" /> Simple</span>
+              <span className="flex items-center gap-1.5"><span className="w-3 h-3 bg-primary/50 rounded inline-block" /> Simple</span>
             </div>
             <svg viewBox={`0 0 ${BW} ${BH}`} style={{ height: BH }} className="w-full max-w-xl">
               {[0, 25, 50, 75, 100].map((pct) => {
@@ -977,7 +977,7 @@ export default function DeFiYieldPage() {
             label="Total Value Locked"
             value={`$${metrics.totalTVL}B`}
             sub="Across all DeFi protocols"
-            color="bg-blue-400/10 text-blue-400"
+            color="bg-primary/10 text-primary"
             delay={0.05}
           />
           <MetricCard
@@ -993,7 +993,7 @@ export default function DeFiYieldPage() {
             label="ETH Staking Yield"
             value={`${metrics.ethStakingYield}%`}
             sub="Lido / native staking"
-            color="bg-violet-400/10 text-violet-400"
+            color="bg-primary/10 text-primary"
             delay={0.15}
           />
           <MetricCard

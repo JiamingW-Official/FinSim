@@ -168,9 +168,9 @@ function StatChip({
     indigo: "bg-indigo-500/10 border-indigo-500/20 text-indigo-400",
     green: "bg-green-500/10 border-green-500/20 text-green-400",
     amber: "bg-amber-500/10 border-amber-500/20 text-amber-400",
-    blue: "bg-blue-500/10 border-blue-500/20 text-blue-400",
+    blue: "bg-primary/10 border-border text-primary",
     red: "bg-red-500/10 border-red-500/20 text-red-400",
-    teal: "bg-teal-500/10 border-teal-500/20 text-teal-400",
+    teal: "bg-teal-500/10 border-teal-500/20 text-emerald-400",
   };
   return (
     <div className={cn("rounded-lg border px-4 py-3", colorMap[color] ?? colorMap.indigo)}>
@@ -324,7 +324,7 @@ function ConvertibleMechanicsTab() {
           },
           {
             title: "Bond Floor & Investment Value",
-            icon: <DollarSign size={16} className="text-blue-400" />,
+            icon: <DollarSign size={16} className="text-primary" />,
             body: `The bond floor ($${metrics.bondFloor.toFixed(0)}) is the straight-debt value — what the bond is worth ignoring conversion. It uses a yield of ${metrics.ytm.toFixed(2)}% (risk-free ${params.riskFreeRate}% + spread ${params.creditSpread}%). This provides downside protection: the convertible should rarely trade below this floor.`,
           },
           {
@@ -334,7 +334,7 @@ function ConvertibleMechanicsTab() {
           },
           {
             title: "Embedded Option Value",
-            icon: <Target size={16} className="text-teal-400" />,
+            icon: <Target size={16} className="text-emerald-400" />,
             body: `The embedded call option is worth $${metrics.optionValue.toFixed(0)} using Black-Scholes with ${params.volatility}% vol and ${params.yearsToMaturity}yr tenor. Total fair value = Bond Floor + Option = $${metrics.theoreticalValue.toFixed(0)}, implying ${metrics.premium > 0 ? "a premium of" : "a discount of"} ${Math.abs(metrics.premium).toFixed(1)}% to par.`,
           },
         ].map((card) => (
@@ -499,7 +499,7 @@ function GreeksSensitivityTab() {
             body: "Sensitivity to implied volatility. Convertible holders are long vega — they benefit from rising vol because the embedded call becomes more valuable. This makes convertibles natural volatility instruments for arb funds.",
           },
           {
-            greek: "Rho (ρ)", color: "text-blue-400",
+            greek: "Rho (ρ)", color: "text-primary",
             body: "Sensitivity to interest rates. The bond floor falls when rates rise (negative duration), while the embedded call value decreases (negative rho). Net rho of a convertible is typically negative — they underperform in rising-rate environments.",
           },
         ].map((g) => (
@@ -740,7 +740,7 @@ function InvestmentStrategiesTab() {
 
   const colorClasses: Record<string, { border: string; bg: string; text: string }> = {
     indigo: { border: "border-indigo-500/40", bg: "bg-indigo-500/10", text: "text-indigo-400" },
-    teal: { border: "border-teal-500/40", bg: "bg-teal-500/10", text: "text-teal-400" },
+    teal: { border: "border-teal-500/40", bg: "bg-teal-500/10", text: "text-emerald-400" },
     amber: { border: "border-amber-500/40", bg: "bg-amber-500/10", text: "text-amber-400" },
     green: { border: "border-green-500/40", bg: "bg-green-500/10", text: "text-green-400" },
   };
@@ -843,7 +843,7 @@ function InvestmentStrategiesTab() {
                   i === selected ? "bg-indigo-900/10" : "")}>
                   <td className="px-4 py-2.5 font-medium text-zinc-200">{r.name}</td>
                   <td className="px-4 py-2.5 font-mono text-indigo-400">{r.delta}</td>
-                  <td className="px-4 py-2.5 text-teal-400">{r.vega}</td>
+                  <td className="px-4 py-2.5 text-emerald-400">{r.vega}</td>
                   <td className={cn("px-4 py-2.5", r.credit === "High" ? "text-red-400" : r.credit === "Low" ? "text-green-400" : "text-amber-400")}>{r.credit}</td>
                   <td className={cn("px-4 py-2.5", r.liq === "Low" ? "text-red-400" : "text-amber-400")}>{r.liq}</td>
                   <td className={cn("px-4 py-2.5", r.cx === "High" ? "text-red-400" : "text-green-400")}>{r.cx}</td>

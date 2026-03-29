@@ -511,8 +511,8 @@ export const STRATEGY_TEMPLATES_BY_ID = Object.fromEntries(
 
 export const CATEGORY_INFO: Record<string, { label: string; color: string; bgColor: string }> = {
   "trend-following": { label: "Trend Following", color: "text-emerald-400", bgColor: "bg-emerald-500/10" },
-  "mean-reversion": { label: "Mean Reversion", color: "text-cyan-400", bgColor: "bg-cyan-500/10" },
+  "mean-reversion": { label: "Mean Reversion", color: "text-muted-foreground", bgColor: "bg-cyan-500/10" },
   momentum: { label: "Momentum", color: "text-amber-400", bgColor: "bg-amber-500/10" },
   volatility: { label: "Volatility", color: "text-rose-400", bgColor: "bg-rose-500/10" },
-  composite: { label: "Composite", color: "text-violet-400", bgColor: "bg-violet-500/10" },
+  composite: { label: "Composite", color: "text-primary", bgColor: "bg-primary/10" },
 };

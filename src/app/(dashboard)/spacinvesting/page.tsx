@@ -411,7 +411,7 @@ function MechanicsTab() {
         {/* Warrants */}
         <div className="bg-zinc-900 border border-zinc-800 rounded-xl p-5">
           <div className="flex items-center gap-2 mb-3">
-            <Zap className="w-4 h-4 text-blue-400" />
+            <Zap className="w-4 h-4 text-primary" />
             <span className="text-sm font-medium text-white">Warrants</span>
           </div>
           <p className="text-xs text-zinc-400 mb-3">
@@ -428,7 +428,7 @@ function MechanicsTab() {
             ].map((item) => (
               <div key={item.label} className="flex justify-between text-xs">
                 <span className="text-zinc-500">{item.label}</span>
-                <span className="text-blue-400 font-medium">{item.value}</span>
+                <span className="text-primary font-medium">{item.value}</span>
               </div>
             ))}
           </div>
@@ -438,7 +438,7 @@ function MechanicsTab() {
       {/* Redemption Rights Explainer */}
       <div className="bg-zinc-900 border border-zinc-800 rounded-xl p-5">
         <div className="flex items-center gap-2 mb-3">
-          <Shield className="w-4 h-4 text-violet-400" />
+          <Shield className="w-4 h-4 text-primary" />
           <span className="text-sm font-medium text-white">Redemption Rights — The NAV Floor</span>
         </div>
         <p className="text-xs text-zinc-400 mb-4">
@@ -453,9 +453,9 @@ function MechanicsTab() {
               color: "text-emerald-400",
               desc: "Can always redeem at ~$10",
             },
-            { label: "Upside participation", value: "Unlimited", color: "text-blue-400", desc: "Via warrants + shares" },
+            { label: "Upside participation", value: "Unlimited", color: "text-primary", desc: "Via warrants + shares" },
             { label: "Redemption window", value: "10 days before vote", color: "text-amber-400", desc: "Must elect by deadline" },
-            { label: "Warrants after redemption", value: "Retained", color: "text-violet-400", desc: "Keep optionality" },
+            { label: "Warrants after redemption", value: "Retained", color: "text-primary", desc: "Keep optionality" },
           ].map((item) => (
             <div key={item.label} className="bg-zinc-800 rounded-lg p-3">
               <div className={`text-base font-bold ${item.color}`}>{item.value}</div>
@@ -501,7 +501,7 @@ function DealAnalysisTab() {
             <thead>
               <tr className="border-b border-zinc-800">
                 <th className="text-left py-2 pr-4 text-xs font-medium text-zinc-500">Metric</th>
-                <th className="text-left py-2 pr-4 text-xs font-medium text-blue-400">SPAC Route</th>
+                <th className="text-left py-2 pr-4 text-xs font-medium text-primary">SPAC Route</th>
                 <th className="text-left py-2 pr-4 text-xs font-medium text-emerald-400">Traditional IPO</th>
                 <th className="text-left py-2 text-xs font-medium text-zinc-500">Edge</th>
               </tr>
@@ -514,7 +514,7 @@ function DealAnalysisTab() {
                   <td className="py-2.5 pr-4 text-xs text-zinc-400">{row.ipo}</td>
                   <td className="py-2.5 text-xs">
                     {row.winner === "spac" ? (
-                      <span className="text-blue-400 font-medium">SPAC</span>
+                      <span className="text-primary font-medium">SPAC</span>
                     ) : row.winner === "ipo" ? (
                       <span className="text-emerald-400 font-medium">IPO</span>
                     ) : (
@@ -559,7 +559,7 @@ function DealAnalysisTab() {
                           ? "bg-amber-500/15 text-amber-400"
                           : deal.status === "Liquidated"
                           ? "bg-red-500/15 text-red-400"
-                          : "bg-blue-500/15 text-blue-400"
+                          : "bg-primary/15 text-primary"
                       )}
                     >
                       {deal.status}
@@ -603,7 +603,7 @@ function DealAnalysisTab() {
                         {(() => {
                           const d = calcDilution(deal);
                           return [
-                            { label: "Raise Size", value: `$${deal.raiseSizeMn}M`, color: "text-blue-400" },
+                            { label: "Raise Size", value: `$${deal.raiseSizeMn}M`, color: "text-primary" },
                             { label: "PIPE Size", value: `$${deal.pipeAmountMn}M`, color: "text-amber-400" },
                             { label: "Sponsor Shares", value: `${d.sponsorSharesMn.toFixed(1)}M`, color: "text-orange-400" },
                             { label: "Total Dilution", value: `${d.dilutionPct.toFixed(1)}%`, color: "text-red-400" },
@@ -752,7 +752,7 @@ function WarrantValuationTab() {
             </div>
             <div className="bg-zinc-800 rounded-lg p-4 space-y-2">
               {[
-                { label: "Warrant (BS) Value", value: `$${warrantPrice.toFixed(2)}`, color: "text-blue-400" },
+                { label: "Warrant (BS) Value", value: `$${warrantPrice.toFixed(2)}`, color: "text-primary" },
                 { label: "Intrinsic Value", value: `$${intrinsicValue.toFixed(2)}`, color: "text-emerald-400" },
                 { label: "Time / Extrinsic Value", value: `$${timeValue.toFixed(2)}`, color: "text-amber-400" },
                 { label: "Strike Price", value: `$${K}`, color: "text-zinc-300" },
@@ -869,7 +869,7 @@ function WarrantValuationTab() {
                 <div className="text-zinc-300 font-medium mb-1">{row.phase}</div>
                 <div className="flex gap-4 text-zinc-500">
                   <span>
-                    Value: <span className="text-blue-400">{row.warrantVal}</span>
+                    Value: <span className="text-primary">{row.warrantVal}</span>
                   </span>
                   <span>
                     Leverage: <span className="text-amber-400">{row.leverage}</span>
@@ -1001,7 +1001,7 @@ function HistoricalPerformanceTab() {
           <h3 className="text-sm font-medium text-zinc-300">SPAC Returns by Year — Pre-Merger vs. Post-Merger</h3>
           <div className="flex gap-4 text-xs text-zinc-500">
             <span className="flex items-center gap-1">
-              <span className="w-3 h-2 inline-block bg-blue-500/60 rounded-sm" />
+              <span className="w-3 h-2 inline-block bg-primary/60 rounded-sm" />
               Pre-Merger
             </span>
             <span className="flex items-center gap-1">
@@ -1073,7 +1073,7 @@ function HistoricalPerformanceTab() {
       {/* Summary Stats */}
       <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
         {[
-          { label: "Avg Pre-Merger Return", value: "+2.8%", sub: "Annualized, 2019–2025", color: "text-blue-400" },
+          { label: "Avg Pre-Merger Return", value: "+2.8%", sub: "Annualized, 2019–2025", color: "text-primary" },
           { label: "Avg Post-Merger (12M)", value: "-34%", sub: "Median de-SPAC performance", color: "text-red-400" },
           { label: "SPAC Peak Year", value: "2021", sub: "$162B raised in SPACs", color: "text-amber-400" },
           { label: "Beat Traditional IPO", value: "22%", sub: "% of de-SPACs that outperformed", color: "text-emerald-400" },
@@ -1208,9 +1208,9 @@ function InvestorStrategyTab() {
     {
       title: "Redemption Strategy",
       icon: Shield,
-      color: "text-blue-400",
-      bgColor: "bg-blue-500/10",
-      borderColor: "border-blue-500/30",
+      color: "text-primary",
+      bgColor: "bg-primary/10",
+      borderColor: "border-border",
       risk: "Very Low",
       return: "+2–5% per redemption cycle",
       horizon: "Until shareholder vote",
@@ -1236,9 +1236,9 @@ function InvestorStrategyTab() {
     {
       title: "PIPE Co-Investment",
       icon: Layers,
-      color: "text-violet-400",
-      bgColor: "bg-violet-500/10",
-      borderColor: "border-violet-500/30",
+      color: "text-primary",
+      bgColor: "bg-primary/10",
+      borderColor: "border-border",
       risk: "Medium",
       return: "+5–30% over 1–3 years",
       horizon: "12–36 months",
@@ -1457,8 +1457,8 @@ export default function SpacInvestingPage() {
           className="mb-8"
         >
           <div className="flex items-center gap-3 mb-2">
-            <div className="w-9 h-9 rounded-xl bg-blue-500/15 flex items-center justify-center">
-              <Building2 className="w-5 h-5 text-blue-400" />
+            <div className="w-9 h-9 rounded-xl bg-primary/15 flex items-center justify-center">
+              <Building2 className="w-5 h-5 text-primary" />
             </div>
             <div>
               <h1 className="text-2xl font-bold text-white">SPAC Investing</h1>
@@ -1468,11 +1468,11 @@ export default function SpacInvestingPage() {
           {/* Quick stats bar */}
           <div className="flex flex-wrap gap-3 mt-4">
             {[
-              { label: "2025 SPAC IPOs", value: "87", color: "text-blue-400" },
+              { label: "2025 SPAC IPOs", value: "87", color: "text-primary" },
               { label: "Avg Trust NAV", value: "$10.22", color: "text-emerald-400" },
               { label: "Median Post-Merger Return", value: "-34%", color: "text-red-400" },
               { label: "Avg Deal Size", value: "$312M", color: "text-amber-400" },
-              { label: "Typical Warrant Strike", value: "$11.50", color: "text-violet-400" },
+              { label: "Typical Warrant Strike", value: "$11.50", color: "text-primary" },
             ].map((stat) => (
               <div key={stat.label} className="bg-zinc-900 border border-zinc-800 rounded-lg px-3 py-1.5">
                 <span className="text-xs text-zinc-500">{stat.label}: </span>

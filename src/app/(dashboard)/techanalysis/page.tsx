@@ -678,7 +678,7 @@ function CandlestickMasteryTab() {
                 ? f === "bullish" ? "bg-green-500/20 border-green-500 text-green-400"
                   : f === "bearish" ? "bg-red-500/20 border-red-500 text-red-400"
                   : f === "neutral" ? "bg-gray-500/20 border-gray-500 text-gray-300"
-                  : "bg-blue-500/20 border-blue-500 text-blue-400"
+                  : "bg-primary/20 border-primary text-primary"
                 : "text-gray-400"
             )}
           >
@@ -702,7 +702,7 @@ function CandlestickMasteryTab() {
               className={cn(
                 "p-3 cursor-pointer border transition-all bg-gray-900",
                 selectedPattern === pattern.id
-                  ? "border-blue-500 bg-blue-500/5"
+                  ? "border-primary bg-primary/5"
                   : "border-gray-800 hover:border-gray-600"
               )}
               onClick={() => setSelectedPattern(selectedPattern === pattern.id ? null : pattern.id)}
@@ -756,7 +756,7 @@ function CandlestickMasteryTab() {
                           {pattern.timeframe}
                         </Badge>
                       </div>
-                      <p className="text-xs text-gray-400"><span className="text-blue-400 font-medium">Entry:</span> {pattern.entry}</p>
+                      <p className="text-xs text-gray-400"><span className="text-primary font-medium">Entry:</span> {pattern.entry}</p>
                       <p className="text-xs text-gray-400"><span className="text-red-400 font-medium">Stop:</span> {pattern.stop}</p>
                       <Button
                         size="sm"
@@ -1003,7 +1003,7 @@ function TrendAnalysisTab() {
               {trend}
             </Badge>
             {lastCross && (
-              <Badge className={cn("text-xs", lastCross === "golden" ? "bg-yellow-500/20 text-yellow-400 border-yellow-500/30" : "bg-purple-500/20 text-purple-400 border-purple-500/30")}>
+              <Badge className={cn("text-xs", lastCross === "golden" ? "bg-yellow-500/20 text-yellow-400 border-yellow-500/30" : "bg-primary/20 text-primary border-border")}>
                 {lastCross === "golden" ? "Golden Cross" : "Death Cross"} detected
               </Badge>
             )}
@@ -1016,7 +1016,7 @@ function TrendAnalysisTab() {
         {/* ADX Gauge */}
         <Card className="p-4 bg-gray-900 border-gray-800">
           <h3 className="text-sm font-semibold text-white mb-3 flex items-center gap-2">
-            <Activity className="h-4 w-4 text-purple-400" />
+            <Activity className="h-4 w-4 text-primary" />
             ADX Trend Strength
           </h3>
           <ADXGauge value={adx} />
@@ -1062,7 +1062,7 @@ function TrendAnalysisTab() {
           <div className="mt-3 p-2 rounded bg-gray-800/50">
             <p className="text-xs text-gray-400 leading-relaxed">
               <span className="text-yellow-400 font-medium">Golden Cross:</span> EMA20 crosses above EMA50 — bullish signal.{" "}
-              <span className="text-purple-400 font-medium">Death Cross:</span> EMA20 crosses below EMA50 — bearish signal.
+              <span className="text-primary font-medium">Death Cross:</span> EMA20 crosses below EMA50 — bearish signal.
             </p>
           </div>
         </Card>
@@ -1426,7 +1426,7 @@ function VolumeAnalysisTab() {
         {/* Volume Profile */}
         <Card className="p-4 bg-gray-900 border-gray-800 md:col-span-1">
           <h3 className="text-sm font-semibold text-white mb-3 flex items-center gap-2">
-            <BarChart2 className="h-4 w-4 text-blue-400" />
+            <BarChart2 className="h-4 w-4 text-primary" />
             Volume Profile
           </h3>
           <div className="space-y-1">
@@ -1438,11 +1438,11 @@ function VolumeAnalysisTab() {
                   <span className="text-xs font-mono text-gray-500 w-12 text-right">{lvl.price.toFixed(1)}</span>
                   <div className="flex-1 h-4 bg-gray-800 rounded-sm overflow-hidden">
                     <div
-                      className={cn("h-full transition-all", isValueArea ? "bg-blue-500" : "bg-blue-500/40")}
+                      className={cn("h-full transition-all", isValueArea ? "bg-primary" : "bg-primary/40")}
                       style={{ width: `${pct}%` }}
                     />
                   </div>
-                  {isValueArea && <Badge className="text-[11px] h-4 px-1 bg-blue-500/20 text-blue-400 border-blue-500/30">VAP</Badge>}
+                  {isValueArea && <Badge className="text-[11px] h-4 px-1 bg-primary/20 text-primary border-border">VAP</Badge>}
                 </div>
               );
             })}
@@ -1667,8 +1667,8 @@ function SRTab() {
                 "h-7 text-xs border-gray-700 transition-colors",
                 btn.active
                   ? btn.color === "yellow" ? "bg-yellow-500/20 border-yellow-500 text-yellow-400"
-                    : btn.color === "purple" ? "bg-purple-500/20 border-purple-500 text-purple-400"
-                    : "bg-blue-500/20 border-blue-500 text-blue-400"
+                    : btn.color === "purple" ? "bg-primary/20 border-primary text-primary"
+                    : "bg-primary/20 border-primary text-primary"
                   : "text-gray-400"
               )}
             >
@@ -1684,14 +1684,14 @@ function SRTab() {
             <div>
               <div className="flex justify-between text-xs text-gray-400 mb-1">
                 <span>Fib Swing Low (bar)</span>
-                <span className="text-purple-400">{fibLow} — ${fibLowPrice.toFixed(2)}</span>
+                <span className="text-primary">{fibLow} — ${fibLowPrice.toFixed(2)}</span>
               </div>
               <Slider value={[fibLow]} onValueChange={([v]) => setFibLow(Math.min(v, fibHigh - 5))} min={0} max={90} step={1} className="h-1" />
             </div>
             <div>
               <div className="flex justify-between text-xs text-gray-400 mb-1">
                 <span>Fib Swing High (bar)</span>
-                <span className="text-purple-400">{fibHigh} — ${fibHighPrice.toFixed(2)}</span>
+                <span className="text-primary">{fibHigh} — ${fibHighPrice.toFixed(2)}</span>
               </div>
               <Slider value={[fibHigh]} onValueChange={([v]) => setFibHigh(Math.max(v, fibLow + 5))} min={10} max={99} step={1} className="h-1" />
             </div>
@@ -1777,7 +1777,7 @@ function SRTab() {
                   className={cn(
                     "text-[11px] h-4 px-1",
                     lvl.strength === "strong" ? "bg-yellow-500/20 text-yellow-400 border-yellow-500/30"
-                    : lvl.strength === "medium" ? "bg-blue-500/20 text-blue-400 border-blue-500/30"
+                    : lvl.strength === "medium" ? "bg-primary/20 text-primary border-border"
                     : "bg-gray-500/20 text-gray-400 border-gray-500/30"
                   )}
                 >
@@ -1811,7 +1811,7 @@ function SRTab() {
       {showFib && (
         <Card className="p-4 bg-gray-900 border-gray-800">
           <h3 className="text-sm font-semibold text-white mb-3 flex items-center gap-2">
-            <BookOpen className="h-4 w-4 text-purple-400" />
+            <BookOpen className="h-4 w-4 text-primary" />
             Fibonacci Retracement Levels
           </h3>
           <div className="grid grid-cols-2 sm:grid-cols-4 gap-2">
@@ -1860,8 +1860,8 @@ export default function TechAnalysisPage() {
           className="mb-6"
         >
           <div className="flex items-start gap-3">
-            <div className="p-2 rounded-lg bg-blue-500/10 border border-blue-500/20">
-              <BarChart2 className="h-5 w-5 text-blue-400" />
+            <div className="p-2 rounded-lg bg-primary/10 border border-border">
+              <BarChart2 className="h-5 w-5 text-primary" />
             </div>
             <div>
               <h1 className="text-xl font-bold text-white tracking-tight">Technical Analysis Masterclass</h1>

@@ -213,10 +213,10 @@ function AssetLocationTab() {
             <p className="text-xs text-muted-foreground mt-1">saved per year</p>
           </CardContent>
         </Card>
-        <Card className="border-blue-500/30 bg-blue-500/5">
+        <Card className="border-border bg-primary/5">
           <CardContent className="pt-3 pb-3 text-center">
             <p className="text-xs text-muted-foreground">20-Yr Compounded Benefit</p>
-            <p className="text-xl font-bold text-blue-400">{fmtK(compoundedBenefit)}</p>
+            <p className="text-xl font-bold text-primary">{fmtK(compoundedBenefit)}</p>
             <p className="text-xs text-muted-foreground mt-1">optimal placement</p>
           </CardContent>
         </Card>
@@ -503,10 +503,10 @@ function TaxLossHarvestingTab() {
             <p className="text-xl font-bold text-green-400">{fmtK(totalSavings)}</p>
           </CardContent>
         </Card>
-        <Card className="border-blue-500/30 bg-blue-500/5">
+        <Card className="border-border bg-primary/5">
           <CardContent className="pt-3 pb-3 text-center">
             <p className="text-xs text-muted-foreground">Eligible Positions</p>
-            <p className="text-xl font-bold text-blue-400">{eligibleCount} / {positions.length}</p>
+            <p className="text-xl font-bold text-primary">{eligibleCount} / {positions.length}</p>
           </CardContent>
         </Card>
       </div>
@@ -554,7 +554,7 @@ function TaxLossHarvestingTab() {
                   <span>{p.shares} shares @ {fmtDollar(p.costBasis, 2)} → {fmtDollar(p.currentPrice, 2)}</span>
                   <span className="text-red-400">{fmtPct(p.pctChange)}</span>
                   {!p.washSaleRisk && (
-                    <span className="text-blue-400">Alt: {p.washSaleAlternative}</span>
+                    <span className="text-primary">Alt: {p.washSaleAlternative}</span>
                   )}
                 </div>
               </motion.div>
@@ -806,10 +806,10 @@ function RothConversionTab() {
 
       {/* Summary */}
       <div className="grid grid-cols-4 gap-3">
-        <Card className="border-blue-500/30 bg-blue-500/5">
+        <Card className="border-border bg-primary/5">
           <CardContent className="pt-3 pb-3 text-center">
             <p className="text-xs text-muted-foreground">Tax Cost Now</p>
-            <p className="text-lg font-bold text-blue-400">{fmtK(conversionTax)}</p>
+            <p className="text-lg font-bold text-primary">{fmtK(conversionTax)}</p>
           </CardContent>
         </Card>
         <Card className={cn("border-amber-500/30 bg-amber-500/5", afterBracket?.rate !== currentBracket?.rate && "border-red-500/30 bg-red-500/5")}>
@@ -824,10 +824,10 @@ function RothConversionTab() {
             <p className="text-lg font-bold text-green-400">{rothBreakevenYrs} yrs</p>
           </CardContent>
         </Card>
-        <Card className={cn("border-purple-500/30 bg-purple-500/5", irmaa ? "" : "border-muted/30")}>
+        <Card className={cn("border-border bg-primary/5", irmaa ? "" : "border-muted/30")}>
           <CardContent className="pt-3 pb-3 text-center">
             <p className="text-xs text-muted-foreground">IRMAA Status</p>
-            <p className="text-lg font-bold text-purple-400">{irmaa ? "Safe" : "Breached"}</p>
+            <p className="text-lg font-bold text-primary">{irmaa ? "Safe" : "Breached"}</p>
           </CardContent>
         </Card>
       </div>
@@ -877,15 +877,15 @@ function RothConversionTab() {
                     )}
                   </div>
                   <span className="text-xs text-muted-foreground w-20 text-right">{fmtK(b.max)}</span>
-                  {isCurrentIncome && <Badge className="text-xs bg-blue-500/20 text-blue-400 border-blue-500/30">Income</Badge>}
-                  {convFills && <Badge className="text-xs bg-purple-500/20 text-purple-400 border-purple-500/30">Conversion</Badge>}
+                  {isCurrentIncome && <Badge className="text-xs bg-primary/20 text-primary border-border">Income</Badge>}
+                  {convFills && <Badge className="text-xs bg-primary/20 text-primary border-border">Conversion</Badge>}
                 </div>
               );
             })}
           </div>
           <div className="mt-3 flex gap-4 text-xs text-muted-foreground">
-            <div className="flex items-center gap-1"><div className="w-3 h-3 rounded-full bg-blue-500" /> Other income</div>
-            <div className="flex items-center gap-1"><div className="w-3 h-3 rounded-full bg-purple-500" /> Conversion</div>
+            <div className="flex items-center gap-1"><div className="w-3 h-3 rounded-full bg-primary" /> Other income</div>
+            <div className="flex items-center gap-1"><div className="w-3 h-3 rounded-full bg-primary" /> Conversion</div>
           </div>
         </CardContent>
       </Card>
@@ -965,10 +965,10 @@ function RothConversionTab() {
           </CardContent>
         </Card>
 
-        <Card className="border-purple-500/20">
+        <Card className="border-border">
           <CardHeader className="pb-2">
             <CardTitle className="text-sm flex items-center gap-2">
-              <Landmark className="h-4 w-4 text-purple-400" />
+              <Landmark className="h-4 w-4 text-primary" />
               SECURE Act 2.0 Key Rules
             </CardTitle>
           </CardHeader>

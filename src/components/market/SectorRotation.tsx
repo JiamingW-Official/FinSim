@@ -79,7 +79,7 @@ const CYCLE_DESCRIPTION: Record<CycleStage, string> = {
 
 const CYCLE_COLOR: Record<CycleStage, string> = {
   "Early Cycle": "text-emerald-500",
-  "Mid Cycle": "text-blue-500",
+  "Mid Cycle": "text-primary",
   "Late Cycle": "text-amber-500",
   Recession: "text-red-500",
 };
@@ -890,7 +890,7 @@ export function SectorRotation() {
                 Leading: "border-emerald-500/30 bg-emerald-500/5 text-emerald-500",
                 Weakening: "border-amber-500/30 bg-amber-500/5 text-amber-500",
                 Lagging: "border-red-500/30 bg-red-500/5 text-red-500",
-                Improving: "border-blue-500/30 bg-blue-500/5 text-blue-500",
+                Improving: "border-border bg-primary/5 text-primary",
               };
               const descs: Record<string, string> = {
                 Leading: "High RS + Rising momentum — top picks",

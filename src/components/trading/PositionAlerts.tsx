@@ -172,10 +172,10 @@ export function PositionAlerts() {
             alertedTimeExit.current.add(key);
             toast.custom(
               () => (
-                <div className="flex items-center gap-2 rounded-lg border border-purple-500/30 bg-zinc-900 px-3 py-2 shadow-lg text-[11px] max-w-64">
+                <div className="flex items-center gap-2 rounded-lg border border-border bg-zinc-900 px-3 py-2 shadow-lg text-[11px] max-w-64">
                   <span className="text-base shrink-0">⏱️</span>
                   <div className="min-w-0">
-                    <div className="font-bold text-purple-400 leading-tight">Long-Held Position</div>
+                    <div className="font-bold text-primary leading-tight">Long-Held Position</div>
                     <div className="text-zinc-400 leading-tight mt-0.5">
                       {pos.ticker} held {barsHeld} bars — re-evaluate thesis. Is momentum still supportive?
                     </div>

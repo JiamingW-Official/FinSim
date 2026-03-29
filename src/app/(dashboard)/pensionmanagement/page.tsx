@@ -664,7 +664,7 @@ function FundedRatioCalculator() {
             type="number"
             value={assets}
             onChange={(e) => setAssets(Number(e.target.value))}
-            className="w-full bg-slate-800 border border-slate-700 rounded px-3 py-2 text-sm text-white focus:outline-none focus:border-blue-500"
+            className="w-full bg-slate-800 border border-slate-700 rounded px-3 py-2 text-sm text-white focus:outline-none focus:border-primary"
           />
         </div>
         <div>
@@ -673,7 +673,7 @@ function FundedRatioCalculator() {
             type="number"
             value={pbo}
             onChange={(e) => setPbo(Number(e.target.value))}
-            className="w-full bg-slate-800 border border-slate-700 rounded px-3 py-2 text-sm text-white focus:outline-none focus:border-blue-500"
+            className="w-full bg-slate-800 border border-slate-700 rounded px-3 py-2 text-sm text-white focus:outline-none focus:border-primary"
           />
         </div>
         <div>
@@ -683,7 +683,7 @@ function FundedRatioCalculator() {
             step={0.1}
             value={discountRate}
             onChange={(e) => setDiscountRate(Number(e.target.value))}
-            className="w-full bg-slate-800 border border-slate-700 rounded px-3 py-2 text-sm text-white focus:outline-none focus:border-blue-500"
+            className="w-full bg-slate-800 border border-slate-700 rounded px-3 py-2 text-sm text-white focus:outline-none focus:border-primary"
           />
         </div>
         <div>
@@ -693,7 +693,7 @@ function FundedRatioCalculator() {
             step={0.1}
             value={payrollGrowth}
             onChange={(e) => setPayrollGrowth(Number(e.target.value))}
-            className="w-full bg-slate-800 border border-slate-700 rounded px-3 py-2 text-sm text-white focus:outline-none focus:border-blue-500"
+            className="w-full bg-slate-800 border border-slate-700 rounded px-3 py-2 text-sm text-white focus:outline-none focus:border-primary"
           />
         </div>
       </div>
@@ -713,7 +713,7 @@ function FundedRatioCalculator() {
           <div className="text-xs text-slate-400 mt-1">Unfunded Liability</div>
         </div>
         <div className="bg-slate-800 rounded-lg p-3 text-center">
-          <div className="text-xl font-bold text-blue-400">${requiredContrib.toLocaleString()}M</div>
+          <div className="text-xl font-bold text-primary">${requiredContrib.toLocaleString()}M</div>
           <div className="text-xs text-slate-400 mt-1">Annual Contribution</div>
         </div>
       </div>
@@ -744,8 +744,8 @@ export default function PensionManagementPage() {
         className="mb-6"
       >
         <div className="flex items-center gap-3 mb-2">
-          <div className="w-10 h-10 rounded-xl bg-blue-600/20 border border-blue-600/30 flex items-center justify-center">
-            <Building2 className="w-5 h-5 text-blue-400" />
+          <div className="w-10 h-10 rounded-xl bg-primary/20 border border-border flex items-center justify-center">
+            <Building2 className="w-5 h-5 text-primary" />
           </div>
           <div>
             <h1 className="text-xl font-bold text-white">Pension Fund Management</h1>
@@ -756,8 +756,8 @@ export default function PensionManagementPage() {
         <div className="flex flex-wrap gap-2 mt-3">
           {[
             { label: "Avg US Funded Ratio", value: "79%", color: "text-yellow-400" },
-            { label: "Total US DB Assets", value: "$4.2T", color: "text-blue-400" },
-            { label: "Liability Duration", value: "~15yr", color: "text-purple-400" },
+            { label: "Total US DB Assets", value: "$4.2T", color: "text-primary" },
+            { label: "Liability Duration", value: "~15yr", color: "text-primary" },
             { label: "Avg Employer Contrib", value: "18.4%", color: "text-emerald-400" },
           ].map((chip) => (
             <div key={chip.label} className="bg-slate-800/60 rounded-lg px-3 py-1.5 flex items-center gap-2">
@@ -771,19 +771,19 @@ export default function PensionManagementPage() {
       {/* Tabs */}
       <Tabs defaultValue="overview">
         <TabsList className="bg-slate-900 border border-slate-800 mb-4 flex-wrap h-auto gap-1 p-1">
-          <TabsTrigger value="overview" className="text-xs data-[state=active]:bg-blue-600 data-[state=active]:text-white">
+          <TabsTrigger value="overview" className="text-xs data-[state=active]:bg-primary data-[state=active]:text-white">
             <Building2 className="w-3 h-3 mr-1" />Fund Overview
           </TabsTrigger>
-          <TabsTrigger value="ldi" className="text-xs data-[state=active]:bg-blue-600 data-[state=active]:text-white">
+          <TabsTrigger value="ldi" className="text-xs data-[state=active]:bg-primary data-[state=active]:text-white">
             <Scale className="w-3 h-3 mr-1" />LDI
           </TabsTrigger>
-          <TabsTrigger value="allocation" className="text-xs data-[state=active]:bg-blue-600 data-[state=active]:text-white">
+          <TabsTrigger value="allocation" className="text-xs data-[state=active]:bg-primary data-[state=active]:text-white">
             <BarChart3 className="w-3 h-3 mr-1" />Asset Allocation
           </TabsTrigger>
-          <TabsTrigger value="risk" className="text-xs data-[state=active]:bg-blue-600 data-[state=active]:text-white">
+          <TabsTrigger value="risk" className="text-xs data-[state=active]:bg-primary data-[state=active]:text-white">
             <Shield className="w-3 h-3 mr-1" />Risk Factors
           </TabsTrigger>
-          <TabsTrigger value="esg" className="text-xs data-[state=active]:bg-blue-600 data-[state=active]:text-white">
+          <TabsTrigger value="esg" className="text-xs data-[state=active]:bg-primary data-[state=active]:text-white">
             <Leaf className="w-3 h-3 mr-1" />ESG & Stewardship
           </TabsTrigger>
         </TabsList>
@@ -795,7 +795,7 @@ export default function PensionManagementPage() {
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
               <Card className="bg-slate-900 border-slate-800">
                 <CardHeader className="pb-2">
-                  <CardTitle className="text-sm text-blue-400 flex items-center gap-2">
+                  <CardTitle className="text-sm text-primary flex items-center gap-2">
                     <DollarSign className="w-4 h-4" />Defined Benefit (DB)
                   </CardTitle>
                 </CardHeader>
@@ -821,7 +821,7 @@ export default function PensionManagementPage() {
 
               <Card className="bg-slate-900 border-slate-800">
                 <CardHeader className="pb-2">
-                  <CardTitle className="text-sm text-purple-400 flex items-center gap-2">
+                  <CardTitle className="text-sm text-primary flex items-center gap-2">
                     <Users className="w-4 h-4" />Defined Contribution (DC)
                   </CardTitle>
                 </CardHeader>
@@ -851,7 +851,7 @@ export default function PensionManagementPage() {
               <Card className="bg-slate-900 border-slate-800">
                 <CardHeader className="pb-2">
                   <CardTitle className="text-sm text-white flex items-center gap-2">
-                    <Target className="w-4 h-4 text-blue-400" />Funded Ratio Calculator
+                    <Target className="w-4 h-4 text-primary" />Funded Ratio Calculator
                   </CardTitle>
                 </CardHeader>
                 <CardContent>
@@ -902,7 +902,7 @@ export default function PensionManagementPage() {
             <Card className="bg-slate-900 border-slate-800">
               <CardHeader className="pb-2">
                 <CardTitle className="text-sm text-white flex items-center gap-2">
-                  <TrendingUp className="w-4 h-4 text-blue-400" />Top 10 US Public Pension Funds
+                  <TrendingUp className="w-4 h-4 text-primary" />Top 10 US Public Pension Funds
                 </CardTitle>
               </CardHeader>
               <CardContent>
@@ -928,7 +928,7 @@ export default function PensionManagementPage() {
                             <div className="text-slate-200 font-medium leading-tight max-w-[200px]">{f.name}</div>
                             <div className="text-slate-500">{f.state}</div>
                           </td>
-                          <td className="py-2 pr-2 text-right text-blue-300 font-medium">${f.aum}</td>
+                          <td className="py-2 pr-2 text-right text-primary font-medium">${f.aum}</td>
                           <td className="py-2 pr-2 text-right text-slate-300">{f.members.toLocaleString()}</td>
                           <td className="py-2 pr-2 text-right">
                             <span
@@ -945,7 +945,7 @@ export default function PensionManagementPage() {
                           </td>
                           <td className="py-2 pr-2 text-right text-emerald-400">{f.returnPct}%</td>
                           <td className="py-2 pr-2 text-right text-orange-400">{f.contribution}%</td>
-                          <td className="py-2 text-right text-purple-400">{f.liabilityDiscount}%</td>
+                          <td className="py-2 text-right text-primary">{f.liabilityDiscount}%</td>
                         </tr>
                       ))}
                     </tbody>
@@ -968,7 +968,7 @@ export default function PensionManagementPage() {
               {/* Duration matching explanation */}
               <Card className="bg-slate-900 border-slate-800">
                 <CardHeader className="pb-2">
-                  <CardTitle className="text-sm text-purple-400 flex items-center gap-2">
+                  <CardTitle className="text-sm text-primary flex items-center gap-2">
                     <Scale className="w-4 h-4" />Duration Matching Principles
                   </CardTitle>
                 </CardHeader>
@@ -978,13 +978,13 @@ export default function PensionManagementPage() {
                       title: "Immunization Goal",
                       desc: "Match asset duration to liability duration so that a parallel shift in rates leaves the funded ratio unchanged.",
                       badge: "Core LDI",
-                      badgeColor: "bg-blue-600/20 text-blue-400",
+                      badgeColor: "bg-primary/20 text-primary",
                     },
                     {
                       title: "Key Rate Duration (KRD)",
                       desc: "Decompose interest rate sensitivity across the yield curve (2Y, 5Y, 10Y, 20Y, 30Y) to hedge non-parallel shifts.",
                       badge: "Advanced",
-                      badgeColor: "bg-purple-600/20 text-purple-400",
+                      badgeColor: "bg-primary/20 text-primary",
                     },
                     {
                       title: "Liability Benchmark",
@@ -1022,7 +1022,7 @@ export default function PensionManagementPage() {
               <Card className="bg-slate-900 border-slate-800">
                 <CardHeader className="pb-2">
                   <CardTitle className="text-sm text-white flex items-center gap-2">
-                    <BarChart3 className="w-4 h-4 text-blue-400" />Key Rate Duration Bucketing
+                    <BarChart3 className="w-4 h-4 text-primary" />Key Rate Duration Bucketing
                   </CardTitle>
                 </CardHeader>
                 <CardContent>
@@ -1042,7 +1042,7 @@ export default function PensionManagementPage() {
                         {KEY_RATE_DURATIONS.map((d) => (
                           <tr key={d.maturity} className="border-b border-slate-800/50">
                             <td className="py-1.5 text-slate-200 font-medium">{d.maturity}</td>
-                            <td className="py-1.5 text-right text-blue-300">{d.assetDur.toFixed(1)}</td>
+                            <td className="py-1.5 text-right text-primary">{d.assetDur.toFixed(1)}</td>
                             <td className="py-1.5 text-right text-red-300">{d.liabilityDur.toFixed(1)}</td>
                             <td className="py-1.5 text-right">
                               <span className={d.mismatch < 0 ? "text-red-400" : "text-emerald-400"}>
@@ -1081,8 +1081,8 @@ export default function PensionManagementPage() {
                   {[
                     {
                       title: "Physical LDI",
-                      color: "border-blue-600",
-                      titleColor: "text-blue-400",
+                      color: "border-primary",
+                      titleColor: "text-primary",
                       pros: [
                         "No counterparty risk",
                         "No margin / collateral management",
@@ -1098,8 +1098,8 @@ export default function PensionManagementPage() {
                     },
                     {
                       title: "Synthetic LDI (Overlay)",
-                      color: "border-purple-600",
-                      titleColor: "text-purple-400",
+                      color: "border-primary",
+                      titleColor: "text-primary",
                       pros: [
                         "Capital efficient — retain equity/alternatives",
                         "Flexible adjustment to hedge ratio",
@@ -1159,7 +1159,7 @@ export default function PensionManagementPage() {
                   onClick={() => setSelectedScenario(sc)}
                   className={`px-3 py-1.5 rounded-lg text-xs font-medium transition-all border ${
                     selectedScenario.name === sc.name
-                      ? "border-blue-500 bg-blue-600/20 text-blue-300"
+                      ? "border-primary bg-primary/20 text-primary"
                       : "border-slate-700 bg-slate-800 text-slate-400 hover:border-slate-600"
                   }`}
                 >
@@ -1173,7 +1173,7 @@ export default function PensionManagementPage() {
               <Card className="bg-slate-900 border-slate-800">
                 <CardHeader className="pb-2">
                   <CardTitle className="text-sm text-white flex items-center gap-2">
-                    <BarChart3 className="w-4 h-4 text-blue-400" />
+                    <BarChart3 className="w-4 h-4 text-primary" />
                     {selectedScenario.name}
                   </CardTitle>
                 </CardHeader>
@@ -1227,7 +1227,7 @@ export default function PensionManagementPage() {
                       onClick={() => setSelectedScenario(sc)}
                       className={`p-3 rounded-lg border cursor-pointer transition-all ${
                         selectedScenario.name === sc.name
-                          ? "border-blue-600/50 bg-blue-950/30"
+                          ? "border-primary/50 bg-muted/40"
                           : "border-slate-800 bg-slate-800/30 hover:border-slate-700"
                       }`}
                     >
@@ -1291,8 +1291,8 @@ export default function PensionManagementPage() {
                       ].map((row) => (
                         <tr key={row.fr} className="border-b border-slate-800/50">
                           <td className="py-2 pr-3 font-medium text-slate-200">{row.fr}</td>
-                          <td className="py-2 pr-3 text-right text-blue-400">{row.eq}%</td>
-                          <td className="py-2 pr-3 text-right text-purple-400">{row.bond}%</td>
+                          <td className="py-2 pr-3 text-right text-primary">{row.eq}%</td>
+                          <td className="py-2 pr-3 text-right text-primary">{row.bond}%</td>
                           <td className="py-2 pr-3 text-right text-emerald-400">{row.alt}%</td>
                           <td className="py-2 pr-3 text-right text-amber-400">{row.hedge}%</td>
                           <td className="py-2 text-slate-400">{row.action}</td>
@@ -1319,8 +1319,8 @@ export default function PensionManagementPage() {
                     ? "text-yellow-400 bg-yellow-950/30 border-yellow-800/40"
                     : "text-emerald-400 bg-emerald-950/30 border-emerald-800/40";
                 const catColor: Record<string, string> = {
-                  "Interest Rate": "text-blue-400",
-                  Longevity: "text-purple-400",
+                  "Interest Rate": "text-primary",
+                  Longevity: "text-primary",
                   Inflation: "text-orange-400",
                   Credit: "text-amber-400",
                   Liquidity: "text-slate-400",
@@ -1349,7 +1349,7 @@ export default function PensionManagementPage() {
                       </div>
                     </div>
                     <div className="text-xs text-slate-400 flex items-start gap-1">
-                      <Shield className="w-3 h-3 text-blue-400 mt-0.5 shrink-0" />
+                      <Shield className="w-3 h-3 text-primary mt-0.5 shrink-0" />
                       {rf.mitigant}
                     </div>
                     {/* Hedge progress bar */}
@@ -1360,7 +1360,7 @@ export default function PensionManagementPage() {
                       </div>
                       <div className="h-1.5 bg-slate-800 rounded-full overflow-hidden">
                         <div
-                          className="h-full rounded-full bg-blue-500 transition-all"
+                          className="h-full rounded-full bg-primary transition-all"
                           style={{ width: `${rf.hedgeRatio}%` }}
                         />
                       </div>
@@ -1466,8 +1466,8 @@ export default function PensionManagementPage() {
                         "Liquidity risk in alternatives (PE/RE/Infra)",
                         "Currency risk in international allocations",
                       ],
-                      color: "border-blue-700",
-                      icon: <TrendingUp className="w-3.5 h-3.5 text-blue-400" />,
+                      color: "border-border",
+                      icon: <TrendingUp className="w-3.5 h-3.5 text-primary" />,
                     },
                     {
                       title: "Governance Risk",
@@ -1530,12 +1530,12 @@ export default function PensionManagementPage() {
                     {
                       title: "Market Returns Dependence",
                       desc: "Pension benefits depend on broad market growth. Systemic risk reduction through engagement benefits the entire portfolio.",
-                      color: "text-blue-400",
+                      color: "text-primary",
                     },
                     {
                       title: "Fiduciary Duty",
                       desc: "Integrating material ESG risks is consistent with — and arguably required by — fiduciary duty to beneficiaries.",
-                      color: "text-purple-400",
+                      color: "text-primary",
                     },
                   ].map((item) => (
                     <div key={item.title} className="p-3 bg-slate-800/50 rounded-lg">
@@ -1559,11 +1559,11 @@ export default function PensionManagementPage() {
                   {ESG_INITIATIVES.map((init) => {
                     const catColors: Record<string, string> = {
                       Climate: "bg-emerald-600/20 text-emerald-400 border-emerald-600/30",
-                      "Shareholder Engagement": "bg-blue-600/20 text-blue-400 border-blue-600/30",
-                      "Proxy Voting": "bg-purple-600/20 text-purple-400 border-purple-600/30",
+                      "Shareholder Engagement": "bg-primary/20 text-primary border-border",
+                      "Proxy Voting": "bg-primary/20 text-primary border-border",
                       "Universal Owner": "bg-amber-600/20 text-amber-400 border-amber-600/30",
                       "DEI & Labor": "bg-pink-600/20 text-pink-400 border-pink-600/30",
-                      "Long-Horizon": "bg-cyan-600/20 text-cyan-400 border-cyan-600/30",
+                      "Long-Horizon": "bg-cyan-600/20 text-muted-foreground border-cyan-600/30",
                     };
                     return (
                       <div key={init.fund + init.category} className="p-3 bg-slate-800/40 rounded-lg border border-slate-800 text-xs">
@@ -1577,7 +1577,7 @@ export default function PensionManagementPage() {
                             </span>
                             <span className="text-slate-500">{init.year}</span>
                           </div>
-                          <span className="text-blue-400 font-medium shrink-0">${init.aum}B</span>
+                          <span className="text-primary font-medium shrink-0">${init.aum}B</span>
                         </div>
                         <div className="text-slate-300 mb-1">{init.action}</div>
                         <div className="flex items-start gap-1 text-slate-500">
@@ -1596,7 +1596,7 @@ export default function PensionManagementPage() {
               <Card className="bg-slate-900 border-slate-800">
                 <CardHeader className="pb-2">
                   <CardTitle className="text-sm text-white flex items-center gap-2">
-                    <Users className="w-4 h-4 text-blue-400" />Proxy Voting Principles
+                    <Users className="w-4 h-4 text-primary" />Proxy Voting Principles
                   </CardTitle>
                 </CardHeader>
                 <CardContent className="text-xs space-y-2">
@@ -1637,8 +1637,8 @@ export default function PensionManagementPage() {
                   </CardTitle>
                 </CardHeader>
                 <CardContent className="text-xs space-y-3">
-                  <div className="p-3 bg-blue-950/20 border border-blue-800/30 rounded-lg">
-                    <div className="font-semibold text-blue-400 mb-2">CalPERS ($487B)</div>
+                  <div className="p-3 bg-muted/30 border border-border rounded-lg">
+                    <div className="font-semibold text-primary mb-2">CalPERS ($487B)</div>
                     <ul className="space-y-1.5 text-slate-300">
                       {[
                         "Climate Action 100+ signatory — engages 170 high-emitting companies",
@@ -1648,14 +1648,14 @@ export default function PensionManagementPage() {
                         "Rejected S&P 500 passive-only approach — active engagement mandate",
                       ].map((item) => (
                         <li key={item} className="flex items-start gap-1">
-                          <ArrowUpRight className="w-3 h-3 text-blue-400 mt-0.5 shrink-0" />
+                          <ArrowUpRight className="w-3 h-3 text-primary mt-0.5 shrink-0" />
                           {item}
                         </li>
                       ))}
                     </ul>
                   </div>
-                  <div className="p-3 bg-purple-950/20 border border-purple-800/30 rounded-lg">
-                    <div className="font-semibold text-purple-400 mb-2">CalSTRS ($334B)</div>
+                  <div className="p-3 bg-muted/30 border border-border rounded-lg">
+                    <div className="font-semibold text-primary mb-2">CalSTRS ($334B)</div>
                     <ul className="space-y-1.5 text-slate-300">
                       {[
                         "Sustainable Investment & Stewardship Strategies (SISS) framework",
@@ -1665,7 +1665,7 @@ export default function PensionManagementPage() {
                         "Annual Global Governance Principles updated for systemic risk",
                       ].map((item) => (
                         <li key={item} className="flex items-start gap-1">
-                          <ArrowUpRight className="w-3 h-3 text-purple-400 mt-0.5 shrink-0" />
+                          <ArrowUpRight className="w-3 h-3 text-primary mt-0.5 shrink-0" />
                           {item}
                         </li>
                       ))}
@@ -1694,13 +1694,13 @@ export default function PensionManagementPage() {
                       metric: "Illiquidity Premium",
                       value: "150–300bps",
                       desc: "Over public markets for PE/infra/RE",
-                      color: "text-blue-400",
+                      color: "text-primary",
                     },
                     {
                       metric: "Complexity Premium",
                       value: "50–150bps",
                       desc: "For structurally complex instruments",
-                      color: "text-purple-400",
+                      color: "text-primary",
                     },
                     {
                       metric: "ESG Engagement Alpha",

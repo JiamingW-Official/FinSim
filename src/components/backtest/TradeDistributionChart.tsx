@@ -180,7 +180,7 @@ export default function TradeDistributionChart({ trades }: Props) {
       <div className="flex flex-wrap items-center gap-3 px-1 text-[11px] text-zinc-500">
         <span className="flex items-center gap-1"><span className="inline-block h-1.5 w-4 bg-amber-400/80 rounded-full" />Mean {mean.toFixed(2)}%</span>
         <span className="flex items-center gap-1"><span className="inline-block h-0.5 w-4 border-t border-dashed border-sky-400" />Median {median.toFixed(2)}%</span>
-        <span className="flex items-center gap-1"><span className="inline-block h-1 w-4 bg-violet-500/80 rounded-sm" />Normal dist.</span>
+        <span className="flex items-center gap-1"><span className="inline-block h-1 w-4 bg-primary/80 rounded-sm" />Normal dist.</span>
         <span className="text-zinc-600">σ={std.toFixed(2)}%</span>
       </div>
 

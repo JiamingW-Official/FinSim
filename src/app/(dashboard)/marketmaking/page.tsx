@@ -184,7 +184,7 @@ function Tab101() {
               {
                 label: "Operational Cost",
                 pct: 25,
-                color: "bg-blue-500",
+                color: "bg-primary",
                 desc: "Technology, co-location, exchange fees, compliance",
               },
             ].map((c) => (
@@ -284,7 +284,7 @@ function Tab101() {
             onClick={() => setExpandedSection(expandedSection === sec.id ? null : sec.id)}
           >
             <div className="flex items-center gap-2 text-zinc-200 font-medium text-sm">
-              <span className="text-blue-400">{sec.icon}</span>
+              <span className="text-primary">{sec.icon}</span>
               {sec.title}
             </div>
             <motion.span
@@ -443,7 +443,7 @@ function TabSpread() {
               {
                 label: "Daily P&L (est.)",
                 val: fmtDollar(model.dailyPnlPerMM),
-                color: "text-blue-400",
+                color: "text-primary",
               },
             ].map((r) => (
               <div key={r.label} className="flex justify-between items-center bg-zinc-800 rounded p-2">
@@ -485,7 +485,7 @@ function TabSpread() {
             <p>Realized spread ≈ 65% of quoted due to adverse selection and market impact. A high-quality MM minimizes this gap.</p>
           </div>
           <div className="bg-zinc-800 rounded p-3">
-            <div className="text-blue-400 font-semibold mb-1">Risk-Aversion Effect</div>
+            <div className="text-primary font-semibold mb-1">Risk-Aversion Effect</div>
             <p>Higher γ → wider spreads but lower fill rate. The optimal γ maximizes risk-adjusted P&L given your inventory constraints.</p>
           </div>
           <div className="bg-zinc-800 rounded p-3">
@@ -779,8 +779,8 @@ function TabAMM() {
         <div className="space-y-1">
           <div className="grid grid-cols-3 gap-2 text-xs font-semibold text-zinc-400 pb-1 border-b border-zinc-800">
             <span>Metric</span>
-            <span className="text-purple-400">AMM (Uniswap v2/v3)</span>
-            <span className="text-blue-400">CLOB (NYSE / Binance)</span>
+            <span className="text-primary">AMM (Uniswap v2/v3)</span>
+            <span className="text-primary">CLOB (NYSE / Binance)</span>
           </div>
           {comparisons.map((c) => (
             <div
@@ -857,7 +857,7 @@ function TabAMM() {
               {
                 label: "Breakeven (periods)",
                 val: ammCalc.breakeven === 0 ? "∞" : ammCalc.breakeven.toString(),
-                color: "text-blue-400",
+                color: "text-primary",
               },
             ].map((r) => (
               <div key={r.label} className="flex justify-between items-center bg-zinc-800 rounded px-3 py-2">
@@ -953,7 +953,7 @@ function TabHFT() {
     {
       name: "IOC",
       full: "Immediate-or-Cancel",
-      color: "text-blue-400",
+      color: "text-primary",
       desc: "Fill immediately at the stated price or better; cancel any unfilled portion. Used to trade aggressively without leaving resting orders.",
     },
     {
@@ -971,7 +971,7 @@ function TabHFT() {
     {
       name: "MOO/MOC",
       full: "Market-On-Open / Close",
-      color: "text-purple-400",
+      color: "text-primary",
       desc: "Execute at the opening or closing auction price. Used for index arbitrage and EOD inventory management.",
     },
   ];
@@ -1100,7 +1100,7 @@ function TabHFT() {
         <div className="text-xs font-semibold text-zinc-400 mb-3">Market Making vs Statistical Arbitrage</div>
         <div className="grid grid-cols-2 gap-3">
           <div className="bg-zinc-800 rounded-lg p-3">
-            <div className="text-blue-400 font-semibold text-sm mb-2">HFT Market Making</div>
+            <div className="text-primary font-semibold text-sm mb-2">HFT Market Making</div>
             <div className="space-y-1 text-xs text-zinc-400">
               <div className="flex gap-2"><CheckCircle size={10} className="text-emerald-400 mt-0.5 shrink-0" /><span>Consistent small profits on spread</span></div>
               <div className="flex gap-2"><CheckCircle size={10} className="text-emerald-400 mt-0.5 shrink-0" /><span>High volume = law of large numbers</span></div>
@@ -1110,7 +1110,7 @@ function TabHFT() {
             </div>
           </div>
           <div className="bg-zinc-800 rounded-lg p-3">
-            <div className="text-purple-400 font-semibold text-sm mb-2">Statistical Arbitrage</div>
+            <div className="text-primary font-semibold text-sm mb-2">Statistical Arbitrage</div>
             <div className="space-y-1 text-xs text-zinc-400">
               <div className="flex gap-2"><CheckCircle size={10} className="text-emerald-400 mt-0.5 shrink-0" /><span>Directional alpha from mispricings</span></div>
               <div className="flex gap-2"><CheckCircle size={10} className="text-emerald-400 mt-0.5 shrink-0" /><span>Lower turnover needed</span></div>
@@ -1210,8 +1210,8 @@ export default function MarketMakingPage() {
           className="mb-6"
         >
           <div className="flex items-center gap-3 mb-2">
-            <div className="p-2 bg-blue-500/10 rounded-lg border border-blue-500/20">
-              <Activity size={20} className="text-blue-400" />
+            <div className="p-2 bg-primary/10 rounded-lg border border-border">
+              <Activity size={20} className="text-primary" />
             </div>
             <div>
               <h1 className="text-xl font-bold text-zinc-100">Market Making Simulator</h1>
@@ -1224,10 +1224,10 @@ export default function MarketMakingPage() {
           {/* Key metrics strip */}
           <div className="grid grid-cols-5 gap-2 mt-4">
             {[
-              { label: "Citadel MM Volume", val: "~25%", sub: "US equities", color: "text-blue-400" },
+              { label: "Citadel MM Volume", val: "~25%", sub: "US equities", color: "text-primary" },
               { label: "Typical Spread", val: "1–5 bps", sub: "liquid stocks", color: "text-amber-400" },
               { label: "HFT Trades/Day", val: "100M+", sub: "US markets total", color: "text-emerald-400" },
-              { label: "Co-lo Latency", val: "< 1 μs", sub: "NYSE data center", color: "text-purple-400" },
+              { label: "Co-lo Latency", val: "< 1 μs", sub: "NYSE data center", color: "text-primary" },
               { label: "Flash Crash 2010", val: "−9.2%", sub: "intraday Dow drop", color: "text-rose-400" },
             ].map((m) => (
               <div key={m.label} className="bg-zinc-900 border border-zinc-800 rounded-lg px-3 py-2">

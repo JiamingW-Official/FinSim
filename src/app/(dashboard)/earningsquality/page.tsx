@@ -600,7 +600,7 @@ function ScreenerTab() {
                   <MiniBar value={stock.revenueQuality} max={100} color="bg-indigo-500" />
                 </td>
                 <td className="py-2 pr-3">
-                  <MiniBar value={stock.expenseRecognition} max={100} color="bg-violet-500" />
+                  <MiniBar value={stock.expenseRecognition} max={100} color="bg-primary" />
                 </td>
                 <td className={cn("py-2 pr-3 tabular-nums font-medium", stock.fcfNiDivergence >= 1 ? "text-emerald-400" : "text-amber-400")}>
                   {stock.fcfNiDivergence.toFixed(2)}x
@@ -1133,7 +1133,7 @@ export default function EarningsQualityPage() {
             { label: "Accrual Anomaly", value: "~10%", subLabel: "Annual alpha, low vs high", icon: <Activity size={14} className="text-indigo-400" />, color: "text-indigo-400" },
             { label: "F-Score Spread", value: "~23%", subLabel: "Strong vs weak portfolios", icon: <TrendingUp size={14} className="text-emerald-400" />, color: "text-emerald-400" },
             { label: "M-Score Accuracy", value: "76%", subLabel: "Manipulation detection rate", icon: <ShieldAlert size={14} className="text-amber-400" />, color: "text-amber-400" },
-            { label: "FCF Premium", value: "~7%", subLabel: "High vs low FCF quality", icon: <DollarSign size={14} className="text-violet-400" />, color: "text-violet-400" },
+            { label: "FCF Premium", value: "~7%", subLabel: "High vs low FCF quality", icon: <DollarSign size={14} className="text-primary" />, color: "text-primary" },
           ].map(stat => (
             <div key={stat.label} className="rounded-lg border border-white/5 bg-white/[0.03] p-3 flex items-start gap-3">
               <div className="mt-0.5">{stat.icon}</div>

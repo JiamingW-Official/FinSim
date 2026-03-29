@@ -315,7 +315,7 @@ function ScenarioChart({
 // ── Grade calculation ────────────────────────────────────────────
 
 function calcGrade(portfolioLossPct: number): { grade: "S" | "A" | "B" | "C" | "D"; color: string; label: string } {
-  if (portfolioLossPct < 5) return { grade: "S", color: "text-teal-400", label: "Outstanding" };
+  if (portfolioLossPct < 5) return { grade: "S", color: "text-emerald-400", label: "Outstanding" };
   if (portfolioLossPct < 10) return { grade: "A", color: "text-emerald-400", label: "Excellent" };
   if (portfolioLossPct < 20) return { grade: "B", color: "text-amber-400", label: "Good" };
   if (portfolioLossPct < 35) return { grade: "C", color: "text-orange-400", label: "Survived" };
@@ -329,7 +329,7 @@ function ScenarioCard({ scenario, onSelect }: { scenario: BlackSwanScenario; onS
     Catastrophic: "text-red-400 bg-red-500/10 border-red-500/20",
     Extreme: "text-orange-400 bg-orange-500/10 border-orange-500/20",
     Sudden: "text-amber-400 bg-amber-500/10 border-amber-500/20",
-    Prolonged: "text-purple-400 bg-purple-500/10 border-purple-500/20",
+    Prolonged: "text-primary bg-primary/10 border-border",
   };
 
   return (
@@ -356,7 +356,7 @@ function ScenarioCard({ scenario, onSelect }: { scenario: BlackSwanScenario; onS
         <span>{scenario.events.length} key events</span>
       </div>
 
-      <div className="mt-3 flex items-center gap-1 text-xs text-teal-400 opacity-0 group-hover:opacity-100 transition-opacity">
+      <div className="mt-3 flex items-center gap-1 text-xs text-emerald-400 opacity-0 group-hover:opacity-100 transition-opacity">
         <ChevronRight className="h-3 w-3" />
         Start scenario
       </div>
@@ -490,13 +490,13 @@ function ActiveScenario({ scenario, bars, onComplete, onBack }: ActiveScenarioPr
           <div className="text-sm font-bold tabular-nums text-zinc-200">
             ${Math.round(portfolio).toLocaleString()}
           </div>
-          <div className={cn("text-xs font-bold tabular-nums", pnlPct >= 0 ? "text-teal-400" : "text-red-400")}>
+          <div className={cn("text-xs font-bold tabular-nums", pnlPct >= 0 ? "text-emerald-400" : "text-red-400")}>
             {pnlPct >= 0 ? "+" : ""}{pnlPct.toFixed(1)}%
           </div>
         </div>
         <div className="rounded-lg border border-white/5 bg-white/[0.02] p-2.5">
           <div className="text-[11px] text-zinc-600 mb-1">Market</div>
-          <div className={cn("text-sm font-bold tabular-nums", pricePct >= 0 ? "text-teal-400" : "text-red-400")}>
+          <div className={cn("text-sm font-bold tabular-nums", pricePct >= 0 ? "text-emerald-400" : "text-red-400")}>
             {pricePct >= 0 ? "+" : ""}{pricePct.toFixed(1)}%
           </div>
           <div className="text-[11px] text-zinc-600">{scenario.drop}% max drop</div>
@@ -549,7 +549,7 @@ function ActiveScenario({ scenario, bars, onComplete, onBack }: ActiveScenarioPr
             "flex items-center gap-1.5 rounded-lg px-3 py-2 text-xs font-bold transition-colors",
             isPlaying
               ? "bg-amber-500/20 border border-amber-500/30 text-amber-400 hover:bg-amber-500/30"
-              : "bg-teal-500/20 border border-teal-500/30 text-teal-400 hover:bg-teal-500/30",
+              : "bg-teal-500/20 border border-teal-500/30 text-emerald-400 hover:bg-teal-500/30",
             isComplete && "opacity-40 cursor-not-allowed",
           )}
         >
@@ -669,7 +669,7 @@ function ScenarioResults({ scenario, finalPortfolio, onPlayAgain, onBack }: Scen
         </div>
         <div className="rounded-lg border border-white/5 bg-white/[0.02] p-3 text-center">
           <div className="text-xs text-zinc-600 mb-1">Loss</div>
-          <div className={cn("text-sm font-bold tabular-nums", lossPct < 20 ? "text-teal-400" : "text-red-400")}>
+          <div className={cn("text-sm font-bold tabular-nums", lossPct < 20 ? "text-emerald-400" : "text-red-400")}>
             -{lossPct.toFixed(1)}%
           </div>
         </div>
@@ -681,11 +681,11 @@ function ScenarioResults({ scenario, finalPortfolio, onPlayAgain, onBack }: Scen
         passed ? "border-teal-500/20 bg-teal-500/5" : "border-red-500/20 bg-red-500/5",
       )}>
         {passed
-          ? <CheckCircle className="h-4 w-4 text-teal-400 shrink-0" />
+          ? <CheckCircle className="h-4 w-4 text-emerald-400 shrink-0" />
           : <AlertTriangle className="h-4 w-4 text-red-400 shrink-0" />
         }
         <div>
-          <div className={cn("text-xs font-bold", passed ? "text-teal-400" : "text-red-400")}>
+          <div className={cn("text-xs font-bold", passed ? "text-emerald-400" : "text-red-400")}>
             {gold ? "Gold rank achieved!" : passed ? "Passed — loss below 20%" : "Failed — loss exceeded 20%"}
           </div>
           <div className="text-xs text-zinc-500 mt-0.5">
@@ -697,7 +697,7 @@ function ScenarioResults({ scenario, finalPortfolio, onPlayAgain, onBack }: Scen
       {/* What actually happened */}
       <div className="rounded-lg border border-white/5 bg-white/[0.02] p-3">
         <div className="text-xs font-bold text-zinc-300 mb-2 flex items-center gap-1.5">
-          <BookOpen className="h-3.5 w-3.5 text-teal-400" />
+          <BookOpen className="h-3.5 w-3.5 text-emerald-400" />
           What Actually Happened
         </div>
         <p className="text-[11px] text-zinc-400 leading-relaxed">{scenario.whatHappened}</p>
@@ -711,7 +711,7 @@ function ScenarioResults({ scenario, finalPortfolio, onPlayAgain, onBack }: Scen
           className="w-full flex items-center justify-between px-3 py-2.5 text-xs font-bold text-zinc-300 hover:bg-white/5 transition-colors"
         >
           <span className="flex items-center gap-1.5">
-            <TrendingUp className="h-3.5 w-3.5 text-teal-400" />
+            <TrendingUp className="h-3.5 w-3.5 text-emerald-400" />
             Lessons Learned
           </span>
           {showLessons ? <ChevronDown className="h-3.5 w-3.5 text-zinc-500" /> : <ChevronRight className="h-3.5 w-3.5 text-zinc-500" />}
@@ -727,7 +727,7 @@ function ScenarioResults({ scenario, finalPortfolio, onPlayAgain, onBack }: Scen
               <div className="px-3 pb-3 space-y-1.5">
                 {scenario.lessons.map((lesson, i) => (
                   <div key={i} className="flex items-start gap-2 text-[11px] text-zinc-400">
-                    <span className="text-teal-500 mt-0.5 shrink-0">-</span>
+                    <span className="text-emerald-500 mt-0.5 shrink-0">-</span>
                     {lesson}
                   </div>
                 ))}
@@ -742,7 +742,7 @@ function ScenarioResults({ scenario, finalPortfolio, onPlayAgain, onBack }: Scen
         <button
           type="button"
           onClick={onPlayAgain}
-          className="flex-1 flex items-center justify-center gap-2 rounded-lg bg-teal-500/20 border border-teal-500/30 py-2.5 text-sm font-bold text-teal-400 transition-colors hover:bg-teal-500/30"
+          className="flex-1 flex items-center justify-center gap-2 rounded-lg bg-teal-500/20 border border-teal-500/30 py-2.5 text-sm font-bold text-emerald-400 transition-colors hover:bg-teal-500/30"
         >
           Try Again
         </button>

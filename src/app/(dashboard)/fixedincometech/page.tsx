@@ -62,18 +62,18 @@ const PLATFORMS = [
     type: "All-to-All + D2C",
     adv: "$36B",
     focus: "IG Credit",
-    color: "text-blue-400",
-    bg: "bg-blue-400/10",
-    border: "border-blue-400/30",
+    color: "text-primary",
+    bg: "bg-primary/10",
+    border: "border-border",
   },
   {
     name: "Tradeweb",
     type: "D2C + D2D",
     adv: "$28B",
     focus: "Rates & Credit",
-    color: "text-purple-400",
-    bg: "bg-purple-400/10",
-    border: "border-purple-400/30",
+    color: "text-primary",
+    bg: "bg-primary/10",
+    border: "border-border",
   },
   {
     name: "Bloomberg TSOX",
@@ -113,9 +113,9 @@ const ALGO_STRATEGIES = [
     id: "passive",
     label: "Passive / TWAP",
     icon: Clock,
-    color: "text-blue-400",
-    bg: "bg-blue-400/10",
-    border: "border-blue-400/30",
+    color: "text-primary",
+    bg: "bg-primary/10",
+    border: "border-border",
     description: "Slice over time, minimize market impact",
     tactics: ["Post at midpoint or better", "Work order over hours/days", "Pull back if adverse price move"],
     bestFor: "Large blocks, illiquid HY, patience available",
@@ -126,9 +126,9 @@ const ALGO_STRATEGIES = [
     id: "is",
     label: "Implementation Shortfall",
     icon: Target,
-    color: "text-purple-400",
-    bg: "bg-purple-400/10",
-    border: "border-purple-400/30",
+    color: "text-primary",
+    bg: "bg-primary/10",
+    border: "border-border",
     description: "Balance market impact vs timing risk dynamically",
     tactics: ["Dynamic child orders based on liquidity", "Adapt aggression to real-time spread", "Minimize total cost vs arrival price"],
     bestFor: "Medium-size orders, normal market conditions",
@@ -167,8 +167,8 @@ const NS_MATURITIES = [0.25, 0.5, 1, 2, 3, 5, 7, 10, 20, 30];
 const NS_CURVE_POINTS = NS_MATURITIES.map((t) => ({ t, y: nelsonSiegel(t) }));
 
 const FAIR_VALUE_SOURCES = [
-  { name: "Dealer Composite", method: "Average of 3+ dealer quotes", accuracy: 88, latency: "~15 min", color: "text-blue-400" },
-  { name: "Bloomberg BVAL", method: "Evaluated pricing engine (multi-source)", accuracy: 91, latency: "~5 min", color: "text-purple-400" },
+  { name: "Dealer Composite", method: "Average of 3+ dealer quotes", accuracy: 88, latency: "~15 min", color: "text-primary" },
+  { name: "Bloomberg BVAL", method: "Evaluated pricing engine (multi-source)", accuracy: 91, latency: "~5 min", color: "text-primary" },
   { name: "Matrix Pricing", method: "Interpolate from similar bonds", accuracy: 74, latency: "Real-time", color: "text-amber-400" },
   { name: "Model Price", method: "Theoretical from yield curve + spread", accuracy: 69, latency: "Real-time", color: "text-green-400" },
 ];
@@ -202,7 +202,7 @@ const ALT_DATA_SOURCES = [
     signal: "Retail foot traffic, factory utilization",
     lead: "2–4 weeks",
     icon: Globe,
-    color: "text-blue-400",
+    color: "text-primary",
   },
   {
     name: "Payment Processing",
@@ -216,7 +216,7 @@ const ALT_DATA_SOURCES = [
     signal: "Consumer demand, app downloads, search trends",
     lead: "1 week",
     icon: Activity,
-    color: "text-purple-400",
+    color: "text-primary",
   },
   {
     name: "Job Postings",
@@ -493,9 +493,9 @@ function ElectronicMarketsTab() {
           <div className="space-y-2">
             {[
               { step: "1", text: "ETF trades at premium to NAV", color: "text-green-400" },
-              { step: "2", text: "Authorized Participant (AP) buys underlying bonds", color: "text-blue-400" },
-              { step: "3", text: "AP delivers bond basket to ETF issuer", color: "text-blue-400" },
-              { step: "4", text: "AP receives new ETF shares at NAV", color: "text-purple-400" },
+              { step: "2", text: "Authorized Participant (AP) buys underlying bonds", color: "text-primary" },
+              { step: "3", text: "AP delivers bond basket to ETF issuer", color: "text-primary" },
+              { step: "4", text: "AP receives new ETF shares at NAV", color: "text-primary" },
               { step: "5", text: "AP sells ETF shares at premium → profit", color: "text-amber-400" },
               { step: "6", text: "Premium collapses back to NAV", color: "text-green-400" },
             ].map((s) => (
@@ -583,8 +583,8 @@ function AlgoExecutionTab() {
             </div>
           </div>
         </div>
-        <div className="mt-3 p-2 rounded-lg bg-blue-400/10 border border-blue-400/30">
-          <p className="text-xs text-blue-300">
+        <div className="mt-3 p-2 rounded-lg bg-primary/10 border border-border">
+          <p className="text-xs text-primary">
             Bond algos must use <strong>AI-driven liquidity scoring</strong> and <strong>venue fragmentation maps</strong> to approximate VWAP — no single source provides complete market data.
           </p>
         </div>
@@ -836,9 +836,9 @@ function BondPricingTab() {
         </div>
         <div className="grid grid-cols-3 gap-2 mt-2">
           {[
-            { factor: "Level (β₀)", desc: "Long-run yield level (~30Y rate)", color: "text-blue-400" },
+            { factor: "Level (β₀)", desc: "Long-run yield level (~30Y rate)", color: "text-primary" },
             { factor: "Slope (β₁)", desc: "Short-run deviation (2Y–30Y spread)", color: "text-green-400" },
-            { factor: "Curvature (β₂)", desc: "Hump shape at medium maturities", color: "text-purple-400" },
+            { factor: "Curvature (β₂)", desc: "Hump shape at medium maturities", color: "text-primary" },
           ].map((f) => (
             <div key={f.factor} className="p-2 rounded-lg bg-muted/30 border border-border">
               <p className={cn("text-xs font-semibold", f.color)}>{f.factor}</p>
@@ -1127,8 +1127,8 @@ function CreditStructureTab() {
           </svg>
         </div>
         <div className="grid grid-cols-2 gap-3 mt-3">
-          <div className="p-2 rounded-lg bg-blue-400/10 border border-blue-400/30">
-            <p className="text-xs font-semibold text-blue-400">Negative Basis (IG)</p>
+          <div className="p-2 rounded-lg bg-primary/10 border border-border">
+            <p className="text-xs font-semibold text-primary">Negative Basis (IG)</p>
             <p className="text-xs text-muted-foreground mt-1">CDS tighter than bond — bond is "cheap" vs CDS. Dealers short CDS and buy bonds to capture the basis (negative basis trade).</p>
           </div>
           <div className="p-2 rounded-lg bg-orange-400/10 border border-orange-400/30">
@@ -1163,9 +1163,9 @@ function CreditStructureTab() {
                 reg: "MiFID II (Europe)",
                 impact: "Pre/post-trade transparency mandates",
                 result: "Increased electronic adoption in EUR credit",
-                color: "text-blue-400",
-                bg: "bg-blue-400/10",
-                border: "border-blue-400/30",
+                color: "text-primary",
+                bg: "bg-primary/10",
+                border: "border-border",
               },
             ].map((r) => (
               <div key={r.reg} className={cn("rounded-lg border p-2.5", r.bg, r.border)}>
@@ -1190,8 +1190,8 @@ function CreditStructureTab() {
               </div>
             ))}
           </div>
-          <div className="mt-3 p-2 rounded-lg bg-purple-400/10 border border-purple-400/30">
-            <p className="text-xs text-purple-300">
+          <div className="mt-3 p-2 rounded-lg bg-primary/10 border border-border">
+            <p className="text-xs text-primary">
               Alt data provides an edge in early detection of credit deterioration before it appears in quarterly financials — especially valuable for high-yield and leveraged loan analysis.
             </p>
           </div>
@@ -1277,8 +1277,8 @@ export default function FixedIncomeTechPage() {
             </div>
           </div>
           <div className="flex gap-2 mt-4 flex-wrap">
-            <Badge variant="outline" className="text-xs border-blue-500/40 text-blue-400">Electronic Trading</Badge>
-            <Badge variant="outline" className="text-xs border-purple-500/40 text-purple-400">Algo Execution</Badge>
+            <Badge variant="outline" className="text-xs border-primary/40 text-primary">Electronic Trading</Badge>
+            <Badge variant="outline" className="text-xs border-primary/40 text-primary">Algo Execution</Badge>
             <Badge variant="outline" className="text-xs border-amber-500/40 text-amber-400">Pricing Models</Badge>
             <Badge variant="outline" className="text-xs border-green-500/40 text-green-400">Credit Structure</Badge>
           </div>

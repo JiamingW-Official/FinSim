@@ -432,7 +432,7 @@ const ADVANCED_INDICATORS = [
     description: "Volume Weighted Average Price represents the average price paid weighted by volume. VWAP bands at ±1σ and ±2σ create dynamic support/resistance. Price above VWAP = institutional buyers in control. Below VWAP = sellers. ±2σ levels are extreme — expect mean reversion.",
     components: ["+2σ (overbought extreme)", "+1σ (mild overbought)", "VWAP (fair value)", "-1σ (mild oversold)", "-2σ (oversold extreme)"],
     svgComponent: <VWAPSvg />,
-    color: "text-violet-400",
+    color: "text-primary",
   },
   {
     title: "Divergence: Regular vs Hidden",
@@ -446,7 +446,7 @@ const ADVANCED_INDICATORS = [
     description: "Market Profile shows time price opportunity (TPO) — how long price spent at each level. Value Area: 70% of volume traded here. Point of Control (POC): highest volume price level. Price above Value Area High = potential breakout. Price below Value Area Low = potential breakdown. POC acts as magnetic attractor.",
     components: ["Value Area (70% of volume)", "Value Area High (VAH)", "Value Area Low (VAL)", "Point of Control (POC)", "Developing vs. Previous POC"],
     svgComponent: null,
-    color: "text-cyan-400",
+    color: "text-muted-foreground",
   },
   {
     title: "Order Flow: Cumulative Delta",
@@ -539,8 +539,8 @@ const SYSTEM_SECTIONS = [
   {
     icon: <DollarSign className="w-4 h-4" />,
     title: "Position Sizing",
-    color: "text-blue-400",
-    bgColor: "bg-blue-400/10",
+    color: "text-primary",
+    bgColor: "bg-primary/10",
     points: [
       "Risk per trade: 1–2% of account equity (fixed fractional)",
       "Max open risk: 6% portfolio (3 positions at 2% each)",
@@ -552,8 +552,8 @@ const SYSTEM_SECTIONS = [
   {
     icon: <BarChart2 className="w-4 h-4" />,
     title: "Walk-Forward Testing",
-    color: "text-violet-400",
-    bgColor: "bg-violet-400/10",
+    color: "text-primary",
+    bgColor: "bg-primary/10",
     points: [
       "In-sample period: optimize parameters on first 70% of data",
       "Out-of-sample: validate on remaining 30% — no further optimization",
@@ -606,7 +606,7 @@ const REGIMES: RegimeCard[] = [
     posSize: "Standard (1% risk — tighter targets)",
     indicators: ["ADX < 20", "Price between clear S/R", "Flat 50 EMA", "Declining volume"],
     color: "border-cyan-500/40 bg-cyan-500/5",
-    icon: <Repeat className="w-5 h-5 text-cyan-400" />,
+    icon: <Repeat className="w-5 h-5 text-muted-foreground" />,
   },
   {
     regime: "Volatile / Crisis",
@@ -664,7 +664,7 @@ const OPTIONS_TA_CONCEPTS = [
   {
     title: "Options Flow as TA Signal",
     badge: "Sentiment",
-    badgeColor: "bg-violet-500/20 text-violet-300",
+    badgeColor: "bg-primary/20 text-primary",
     description: "Large unusual options sweeps at key technical levels amplify the significance of those levels. A $2M call sweep at the 200-day EMA on above-average volume confirms institutional interest at that level. Combine flow with classical S/R analysis for high-conviction trades.",
     rules: [
       "Premium > $500K = significant",
@@ -700,7 +700,7 @@ const OPTIONS_TA_CONCEPTS = [
   {
     title: "Gamma Exposure (GEX)",
     badge: "Market Structure",
-    badgeColor: "bg-cyan-500/20 text-cyan-300",
+    badgeColor: "bg-cyan-500/20 text-muted-foreground",
     description: "Gamma Exposure measures market maker net gamma position. Positive GEX: MMs are long gamma, so they sell rallies and buy dips (price stabilization). Negative GEX: MMs are short gamma, must buy rallies and sell dips (price amplification). GEX flips at major strikes create volatility transitions.",
     rules: [
       "Positive GEX → range-bound, buy dips",
@@ -966,7 +966,7 @@ export default function AdvancedTAPage() {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-2">
             <Card className="p-4 border-border/50">
               <div className="flex items-center gap-2 mb-3">
-                <BarChart2 className="w-4 h-4 text-cyan-400" />
+                <BarChart2 className="w-4 h-4 text-muted-foreground" />
                 <h3 className="font-semibold text-sm">Volume Confirmation</h3>
               </div>
               <div className="space-y-2">
@@ -974,7 +974,7 @@ export default function AdvancedTAPage() {
                   { label: "Breakout + High Volume", note: "Institutional participation confirms move", color: "bg-green-500" },
                   { label: "Breakout + Low Volume", note: "Suspect — high failure rate, wait for retest", color: "bg-yellow-500" },
                   { label: "Rejection + Low Volume", note: "Normal — lack of conviction at extreme", color: "bg-cyan-500" },
-                  { label: "Rejection + High Volume", note: "Absorption — smart money opposing the move", color: "bg-violet-500" },
+                  { label: "Rejection + High Volume", note: "Absorption — smart money opposing the move", color: "bg-primary" },
                 ].map((item, i) => (
                   <div key={i} className="flex items-start gap-2">
                     <div className={cn("w-2 h-2 rounded-full mt-1 shrink-0", item.color)} />
@@ -995,7 +995,7 @@ export default function AdvancedTAPage() {
               <div className="space-y-3">
                 {[
                   { tf: "Weekly", role: "Bias & Major S/R", desc: "Identifies the dominant trend direction. Only trade in weekly trend direction.", color: "text-yellow-400" },
-                  { tf: "Daily", role: "Entry Timeframe", desc: "Sets up patterns, flags, pullbacks. Primary chart for position entries.", color: "text-blue-400" },
+                  { tf: "Daily", role: "Entry Timeframe", desc: "Sets up patterns, flags, pullbacks. Primary chart for position entries.", color: "text-primary" },
                   { tf: "Hourly", role: "Precise Timing", desc: "Fine-tunes entry within the daily setup. Tighten stops using intraday structure.", color: "text-green-400" },
                 ].map((item, i) => (
                   <div key={i} className="flex gap-3 items-start">
@@ -1143,7 +1143,7 @@ export default function AdvancedTAPage() {
 
           <Card className="p-4 border-border/50">
             <div className="flex items-center gap-2 mb-3">
-              <GitBranch className="w-4 h-4 text-violet-400" />
+              <GitBranch className="w-4 h-4 text-primary" />
               <h3 className="font-semibold text-sm">Adaptive Parameters by Regime</h3>
             </div>
             <div className="max-w-sm mb-3">
@@ -1170,7 +1170,7 @@ export default function AdvancedTAPage() {
                   high: "Avoid trades correlated > 0.7 with open positions",
                   low: "Diversify across uncorrelated strategies",
                   icon: <Filter className="w-3 h-3" />,
-                  color: "text-cyan-400",
+                  color: "text-muted-foreground",
                 },
               ].map((item, i) => (
                 <div key={i} className="p-3 rounded bg-muted/20 border border-border/30">
@@ -1193,7 +1193,7 @@ export default function AdvancedTAPage() {
               <Card className="p-4 border-border/50">
                 <div className="flex items-start justify-between mb-2">
                   <div className="flex items-center gap-2">
-                    <Layers className="w-4 h-4 text-violet-400 shrink-0" />
+                    <Layers className="w-4 h-4 text-primary shrink-0" />
                     <h3 className="font-semibold text-sm">{concept.title}</h3>
                   </div>
                   <Badge className={cn("text-xs shrink-0", concept.badgeColor)}>{concept.badge}</Badge>
@@ -1202,7 +1202,7 @@ export default function AdvancedTAPage() {
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-1.5">
                   {concept.rules.map((rule, j) => (
                     <div key={j} className="flex items-start gap-2">
-                      <div className="w-1.5 h-1.5 rounded-full bg-violet-400/60 shrink-0 mt-1" />
+                      <div className="w-1.5 h-1.5 rounded-full bg-primary/60 shrink-0 mt-1" />
                       <p className="text-xs text-muted-foreground">{rule}</p>
                     </div>
                   ))}
@@ -1325,7 +1325,7 @@ export default function AdvancedTAPage() {
           {/* Correlation matrix */}
           <Card className="p-4 border-border/50">
             <div className="flex items-center gap-2 mb-3">
-              <Layers className="w-4 h-4 text-cyan-400" />
+              <Layers className="w-4 h-4 text-muted-foreground" />
               <h3 className="font-semibold text-sm">Strategy Return Correlation Matrix</h3>
             </div>
             <p className="text-xs text-muted-foreground mb-3">
@@ -1335,7 +1335,7 @@ export default function AdvancedTAPage() {
               <CorrelationMatrixSvg />
             </div>
             <div className="mt-3 p-3 rounded bg-cyan-500/5 border border-cyan-500/20">
-              <p className="text-xs text-cyan-300 font-medium">Diversification Insight</p>
+              <p className="text-xs text-muted-foreground font-medium">Diversification Insight</p>
               <p className="text-xs text-muted-foreground mt-1">
                 EMA Crossover + Breakout System correlation = 0.18. Combining these two strategies reduces portfolio max drawdown by ~30% vs. trading either alone, while maintaining combined positive expectancy.
               </p>

@@ -172,7 +172,7 @@ function ConditionRow({
             onClick={() => onChange({ ...cond, usePreset: true, targetPreset: p })}
             className={`rounded px-2 py-0.5 text-xs font-medium transition-colors ${
               cond.usePreset && cond.targetPreset === p
-                ? "bg-blue-600 text-white"
+                ? "bg-primary text-white"
                 : "bg-white/5 text-zinc-400 hover:bg-white/10"
             }`}
           >
@@ -190,7 +190,7 @@ function ConditionRow({
           }}
           className={`w-16 rounded-md border px-2 py-0.5 text-xs text-zinc-200 focus:outline-none focus:ring-1 focus:ring-blue-500 ${
             !cond.usePreset
-              ? "border-blue-500 bg-blue-950/30"
+              ? "border-primary bg-muted/40"
               : "border-white/10 bg-zinc-900"
           }`}
         />
@@ -268,7 +268,7 @@ export default function VisualStrategyBuilder({ savedStrategies, onSaveStrategy,
         <span className="text-sm font-semibold text-zinc-200">Visual Strategy Builder</span>
         <div className="flex items-center gap-2">
           {!isCollapsed && (
-            <span className="rounded-full bg-blue-500/10 px-2 py-0.5 text-xs text-blue-400">
+            <span className="rounded-full bg-primary/10 px-2 py-0.5 text-xs text-primary">
               {entryConditions.length} entry / {exitConditions.length} exit rules
             </span>
           )}
@@ -319,7 +319,7 @@ export default function VisualStrategyBuilder({ savedStrategies, onSaveStrategy,
                         key={l}
                         onClick={() => setEntryLogic(l)}
                         className={`px-2 py-0.5 text-xs font-medium transition-colors ${
-                          entryLogic === l ? "bg-blue-600 text-white" : "bg-zinc-900 text-zinc-400"
+                          entryLogic === l ? "bg-primary text-white" : "bg-zinc-900 text-zinc-400"
                         }`}
                       >
                         {l}
@@ -444,7 +444,7 @@ export default function VisualStrategyBuilder({ savedStrategies, onSaveStrategy,
               <span className="text-xs font-semibold text-zinc-500">
                 Position Size
               </span>
-              <span className="text-xs font-bold text-blue-400">{positionSize}% of portfolio</span>
+              <span className="text-xs font-bold text-primary">{positionSize}% of portfolio</span>
             </div>
             <input
               type="range"
@@ -472,7 +472,7 @@ export default function VisualStrategyBuilder({ savedStrategies, onSaveStrategy,
             </button>
             <button
               onClick={handleRun}
-              className="flex flex-1 items-center justify-center gap-1.5 rounded-lg bg-blue-600 px-3 py-1.5 text-xs font-semibold text-white transition-colors hover:bg-blue-500"
+              className="flex flex-1 items-center justify-center gap-1.5 rounded-lg bg-primary px-3 py-1.5 text-xs font-semibold text-white transition-colors hover:bg-primary"
             >
               <Play className="h-3.5 w-3.5" /> Run Custom Backtest
             </button>

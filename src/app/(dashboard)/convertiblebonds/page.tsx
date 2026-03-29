@@ -586,7 +586,7 @@ export default function ConvertibleBondsPage() {
               </CardTitle>
             </CardHeader>
             <CardContent className="space-y-2 text-xs text-white/60">
-              <p><span className="text-purple-400 font-semibold">Purple curve</span> = CB market price. Bounded below by the investment floor and above tracks parity with a diminishing premium.</p>
+              <p><span className="text-primary font-semibold">Purple curve</span> = CB market price. Bounded below by the investment floor and above tracks parity with a diminishing premium.</p>
               <p><span className="text-emerald-400 font-semibold">Green dashed line</span> = Parity (intrinsic conversion value = stock / conv. price × par). CB trades above this by the conversion premium.</p>
               <p><span className="text-amber-400 font-semibold">Amber dashed line</span> = Investment value floor (present value of bond cash flows). Acts as a downside cushion.</p>
               <p>The <span className="text-white/80 font-semibold">convexity</span> of the CB price curve is what makes converts attractive: limited downside (floor) with equity-like upside participation.</p>
@@ -637,7 +637,7 @@ export default function ConvertibleBondsPage() {
                   label="Gamma (γ)"
                   value={selectedDerived.gamma}
                   max={0.08}
-                  color="text-violet-400"
+                  color="text-primary"
                   desc="Rate of delta change per $1 stock move. Peaks near ATM conversion price."
                 />
                 <GreekBar
@@ -669,8 +669,8 @@ export default function ConvertibleBondsPage() {
                   <div className="text-sky-400 font-semibold mb-1">Delta — Dampened</div>
                   <p>Equity call delta is purely a function of moneyness and time. CB delta is lower because the credit spread introduces a floor that reduces equity optionality when out-of-the-money.</p>
                 </div>
-                <div className="rounded-lg bg-violet-500/5 border border-violet-500/15 p-3">
-                  <div className="text-violet-400 font-semibold mb-1">Gamma — Credit-Modified</div>
+                <div className="rounded-lg bg-primary/5 border border-border p-3">
+                  <div className="text-primary font-semibold mb-1">Gamma — Credit-Modified</div>
                   <p>CB gamma peaks near the conversion price but is reduced by credit risk — as the stock falls the issuer distress risk increases, compressing optionality non-linearly.</p>
                 </div>
                 <div className="rounded-lg bg-emerald-500/5 border border-emerald-500/15 p-3">
@@ -689,7 +689,7 @@ export default function ConvertibleBondsPage() {
           <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
             {[
               { label: "Delta", value: selectedDerived.delta.toFixed(3), color: "text-sky-400", sub: "Equity sensitivity" },
-              { label: "Gamma", value: selectedDerived.gamma.toFixed(5), color: "text-violet-400", sub: "Delta velocity" },
+              { label: "Gamma", value: selectedDerived.gamma.toFixed(5), color: "text-primary", sub: "Delta velocity" },
               { label: "Vega", value: selectedDerived.vega.toFixed(4), color: "text-emerald-400", sub: "Vol sensitivity" },
               { label: "Theta", value: selectedDerived.theta.toFixed(5), color: "text-rose-400", sub: "Time decay/day" },
             ].map((g) => (
@@ -907,7 +907,7 @@ export default function ConvertibleBondsPage() {
                 {[
                   { title: "Credit Risk", color: "text-rose-400", desc: "If issuer credit deteriorates, investment floor drops and the hedge becomes insufficient. Credit spread widening hurts even delta-neutral books." },
                   { title: "Liquidity Risk", color: "text-amber-400", desc: "CBs trade OTC with wide bid-ask spreads. Forced liquidations during market stress can be costly. Position sizing must account for liquidity." },
-                  { title: "Gamma Profile Risk", color: "text-violet-400", desc: "Gamma is highest near conversion price. If stock moves away, dynamic rebalancing costs eat into profits. Must rehedge frequently." },
+                  { title: "Gamma Profile Risk", color: "text-primary", desc: "Gamma is highest near conversion price. If stock moves away, dynamic rebalancing costs eat into profits. Must rehedge frequently." },
                   { title: "Borrow Cost", color: "text-sky-400", desc: "Shorting the equity hedge requires shares to borrow. High short interest names (like many tech converts) have expensive borrow rates, eroding yield." },
                   { title: "Call Risk", color: "text-orange-400", desc: "Issuers can call CBs when stock rises significantly above conversion price, forcing conversion at par. This terminates the long-vol position at inopportune times." },
                   { title: "Correlation Breakdown", color: "text-pink-400", desc: "Delta hedge assumes stable correlation between CB price and stock. In crisis scenarios this breaks down — both can fall simultaneously (correlation to 1)." },

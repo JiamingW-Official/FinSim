@@ -360,17 +360,17 @@ const scoreBg = (v: number) =>
   v >= 80 ? "bg-emerald-400/20 text-emerald-400" : v >= 65 ? "bg-amber-400/20 text-amber-400" : "bg-rose-400/20 text-rose-400";
 
 const statusColor: Record<ActivistCampaign["status"], string> = {
-  Ongoing: "bg-blue-500/20 text-blue-400",
+  Ongoing: "bg-primary/20 text-primary",
   Settled: "bg-emerald-500/20 text-emerald-400",
   Withdrawn: "bg-zinc-500/20 text-zinc-400",
-  Won: "bg-violet-500/20 text-violet-400",
+  Won: "bg-primary/20 text-primary",
 };
 
 const typeColor: Record<Shareholder["type"], string> = {
-  Index: "bg-blue-500/20 text-blue-400",
+  Index: "bg-primary/20 text-primary",
   Active: "bg-emerald-500/20 text-emerald-400",
   "Hedge Fund": "bg-amber-500/20 text-amber-400",
-  Insider: "bg-violet-500/20 text-violet-400",
+  Insider: "bg-primary/20 text-primary",
 };
 
 function StatCard({
@@ -547,7 +547,7 @@ function ProxyVoteSimulator() {
             <div className="flex items-start justify-between gap-3 mb-2">
               <div className="flex-1">
                 <div className="flex items-center gap-2 mb-1">
-                  <Badge className={cn("text-xs px-1.5 py-0", res.type === "Management" ? "bg-blue-500/20 text-blue-400" : "bg-violet-500/20 text-violet-400")}>
+                  <Badge className={cn("text-xs px-1.5 py-0", res.type === "Management" ? "bg-primary/20 text-primary" : "bg-primary/20 text-primary")}>
                     {res.type}
                   </Badge>
                   <span className="text-xs font-semibold text-white">{res.title}</span>
@@ -950,7 +950,7 @@ export default function CorpGovernancePage() {
                   <div className="mt-4 grid grid-cols-2 gap-3 text-xs">
                     <div className="rounded-lg border border-white/10 bg-white/5 p-3">
                       <p className="text-zinc-400 mb-1">Passive (Index)</p>
-                      <p className="text-xl font-bold text-blue-400">
+                      <p className="text-xl font-bold text-primary">
                         {SHAREHOLDERS.filter((s) => s.type === "Index").reduce((a, b) => a + b.pct, 0).toFixed(1)}%
                       </p>
                     </div>
@@ -968,7 +968,7 @@ export default function CorpGovernancePage() {
                     </div>
                     <div className="rounded-lg border border-white/10 bg-white/5 p-3">
                       <p className="text-zinc-400 mb-1">Insiders</p>
-                      <p className="text-xl font-bold text-violet-400">
+                      <p className="text-xl font-bold text-primary">
                         {SHAREHOLDERS.filter((s) => s.type === "Insider").reduce((a, b) => a + b.pct, 0).toFixed(1)}%
                       </p>
                     </div>
@@ -988,7 +988,7 @@ export default function CorpGovernancePage() {
                           <div className="flex items-center gap-2">
                             <div className="flex-1 h-1 rounded-full bg-white/10 overflow-hidden">
                               <div
-                                className={cn("h-full rounded-full", sh.type === "Index" ? "bg-blue-500" : sh.type === "Active" ? "bg-emerald-500" : sh.type === "Hedge Fund" ? "bg-amber-500" : "bg-violet-500")}
+                                className={cn("h-full rounded-full", sh.type === "Index" ? "bg-primary" : sh.type === "Active" ? "bg-emerald-500" : sh.type === "Hedge Fund" ? "bg-amber-500" : "bg-primary")}
                                 style={{ width: `${(sh.pct / 9) * 100}%` }}
                               />
                             </div>
@@ -1004,7 +1004,7 @@ export default function CorpGovernancePage() {
                 <h3 className="text-sm font-semibold text-white mb-3">Voting Power Dynamics</h3>
                 <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 text-xs">
                   <div className="space-y-1.5">
-                    <p className="text-zinc-400 font-medium flex items-center gap-1"><TrendingUp className="w-3 h-3 text-blue-400" />Index Funds (Passive)</p>
+                    <p className="text-zinc-400 font-medium flex items-center gap-1"><TrendingUp className="w-3 h-3 text-primary" />Index Funds (Passive)</p>
                     <p className="text-zinc-300">Control ~20.5% of votes but historically rubber-stamp management. The "Big Three" (Vanguard, BlackRock, State Street) are increasingly exercising stewardship via proxy voting guidelines.</p>
                   </div>
                   <div className="space-y-1.5">
@@ -1012,7 +1012,7 @@ export default function CorpGovernancePage() {
                     <p className="text-zinc-300">Pershing Square&apos;s 7.7% stake represents meaningful voting power. Hedge funds leverage smaller stakes through proxy campaigns, media pressure, and coalition-building with other institutions.</p>
                   </div>
                   <div className="space-y-1.5">
-                    <p className="text-zinc-400 font-medium flex items-center gap-1"><AlertTriangle className="w-3 h-3 text-violet-400" />Insider Holdings</p>
+                    <p className="text-zinc-400 font-medium flex items-center gap-1"><AlertTriangle className="w-3 h-3 text-primary" />Insider Holdings</p>
                     <p className="text-zinc-300">7.5% insider ownership aligns management incentives with shareholders. High insider ownership can also entrench leadership — context matters (founder vs. legacy management).</p>
                   </div>
                 </div>

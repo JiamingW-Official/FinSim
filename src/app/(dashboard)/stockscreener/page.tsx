@@ -303,9 +303,9 @@ function ColHeader({ label, field, sortField, sortDir, onSort, align = "right" }
         {label}
         {active ? (
           sortDir === "asc" ? (
-            <ChevronUp size={12} className="text-blue-400" />
+            <ChevronUp size={12} className="text-primary" />
           ) : (
-            <ChevronDown size={12} className="text-blue-400" />
+            <ChevronDown size={12} className="text-primary" />
           )
         ) : (
           <ArrowUpDown size={10} className="opacity-30" />
@@ -317,12 +317,12 @@ function ColHeader({ label, field, sortField, sortDir, onSort, align = "right" }
 
 // ── Sector badge ──────────────────────────────────────────────────────────────
 const SECTOR_COLORS: Record<Sector, string> = {
-  Technology: "bg-blue-500/20 text-blue-300",
+  Technology: "bg-primary/20 text-primary",
   Healthcare: "bg-emerald-500/20 text-emerald-300",
   Finance: "bg-amber-500/20 text-amber-300",
-  Consumer: "bg-purple-500/20 text-purple-300",
+  Consumer: "bg-primary/20 text-primary",
   Energy: "bg-orange-500/20 text-orange-300",
-  Industrials: "bg-cyan-500/20 text-cyan-300",
+  Industrials: "bg-cyan-500/20 text-muted-foreground",
   Materials: "bg-lime-500/20 text-lime-300",
   Utilities: "bg-rose-500/20 text-rose-300",
 };
@@ -453,7 +453,7 @@ function ScreenerTab() {
         <div className="relative">
           <Search size={14} className="absolute left-2.5 top-1/2 -translate-y-1/2 text-white/40" />
           <input
-            className="bg-white/5 border border-white/10 rounded-lg pl-8 pr-3 py-1.5 text-sm text-white placeholder:text-white/30 focus:outline-none focus:border-blue-500/50 w-48"
+            className="bg-white/5 border border-white/10 rounded-lg pl-8 pr-3 py-1.5 text-sm text-white placeholder:text-white/30 focus:outline-none focus:border-primary/50 w-48"
             placeholder="Search ticker..."
             value={search}
             onChange={(e) => setSearch(e.target.value)}
@@ -467,7 +467,7 @@ function ScreenerTab() {
               className={cn(
                 "text-xs px-2.5 py-1 rounded-lg border transition-all",
                 sectorFilter === sec
-                  ? "bg-blue-600 border-blue-500 text-white"
+                  ? "bg-primary border-primary text-white"
                   : "bg-white/5 border-white/10 text-white/50 hover:text-white/80"
               )}
             >
@@ -619,11 +619,11 @@ function ValueScreenTab() {
             className={cn(
               "text-left p-4 rounded-xl border transition-all",
               activeScreen === vs.id
-                ? "bg-blue-600/20 border-blue-500/50"
+                ? "bg-primary/20 border-primary/50"
                 : "bg-white/[0.03] border-white/[0.08] hover:bg-white/[0.06]"
             )}
           >
-            <div className="flex items-center gap-2 mb-1 text-blue-400">{vs.icon}</div>
+            <div className="flex items-center gap-2 mb-1 text-primary">{vs.icon}</div>
             <p className="font-semibold text-white text-sm">{vs.name}</p>
             <p className="text-xs text-white/50 mt-0.5">{vs.description}</p>
           </button>
@@ -736,8 +736,8 @@ function GrowthScreenTab() {
   const results = useMemo(() => ALL_STOCKS.filter(screen.filter), [activeScreen, screen.filter]);
 
   const colorMap: Record<string, string> = {
-    blue: "bg-blue-600/20 border-blue-500/50 text-blue-400",
-    purple: "bg-purple-600/20 border-purple-500/50 text-purple-400",
+    blue: "bg-primary/20 border-primary/50 text-primary",
+    purple: "bg-primary/20 border-primary/50 text-primary",
     emerald: "bg-emerald-600/20 border-emerald-500/50 text-emerald-400",
   };
 
@@ -803,10 +803,10 @@ function GrowthScreenTab() {
                       <span className="block text-[11px] text-white/40">{stock.name}</span>
                     </td>
                     <td className="px-4 py-2.5"><SectorBadge sector={stock.sector} /></td>
-                    <td className={cn("px-4 py-2.5 text-right font-medium", stock.revenueGrowth >= 20 ? "text-emerald-400" : "text-blue-400")}>
+                    <td className={cn("px-4 py-2.5 text-right font-medium", stock.revenueGrowth >= 20 ? "text-emerald-400" : "text-primary")}>
                       {fmtPct(stock.revenueGrowth)}
                     </td>
-                    <td className={cn("px-4 py-2.5 text-right font-medium", stock.epsGrowth >= 20 ? "text-emerald-400" : "text-blue-400")}>
+                    <td className={cn("px-4 py-2.5 text-right font-medium", stock.epsGrowth >= 20 ? "text-emerald-400" : "text-primary")}>
                       {fmtPct(stock.epsGrowth)}
                     </td>
                     <td className={cn("px-4 py-2.5 text-right font-medium", stock.revenueAccel > 0 ? "text-emerald-400" : "text-rose-400")}>
@@ -948,7 +948,7 @@ function QualityScreenTab() {
                       <span className="block text-[11px] text-white/40">{stock.name}</span>
                     </td>
                     <td className="px-4 py-2.5"><SectorBadge sector={stock.sector} /></td>
-                    <td className={cn("px-4 py-2.5 text-right font-medium", stock.roic >= 20 ? "text-emerald-400" : "text-blue-400")}>
+                    <td className={cn("px-4 py-2.5 text-right font-medium", stock.roic >= 20 ? "text-emerald-400" : "text-primary")}>
                       {stock.roic.toFixed(1)}%
                     </td>
                     <td className={cn("px-4 py-2.5 text-right font-medium", metricColor(stock.roe, "high"))}>
@@ -1041,7 +1041,7 @@ function CustomScreenTab() {
           <CardHeader className="py-3 px-4 border-b border-white/[0.06]">
             <div className="flex items-center justify-between">
               <CardTitle className="text-sm font-semibold text-white flex items-center gap-2">
-                <Sliders size={14} className="text-blue-400" />
+                <Sliders size={14} className="text-primary" />
                 Filter Controls
               </CardTitle>
               <Button size="sm" variant="ghost" className="h-7 text-xs text-white/50 hover:text-white" onClick={resetFilters}>
@@ -1054,7 +1054,7 @@ function CustomScreenTab() {
             <div>
               <div className="flex justify-between items-center mb-2">
                 <label className="text-xs text-white/60">P/E Range</label>
-                <span className="text-xs text-blue-400 font-mono">{filters.peMin}–{filters.peMax}</span>
+                <span className="text-xs text-primary font-mono">{filters.peMin}–{filters.peMax}</span>
               </div>
               <div className="space-y-2">
                 <Slider
@@ -1102,7 +1102,7 @@ function CustomScreenTab() {
             <div>
               <div className="flex justify-between items-center mb-2">
                 <label className="text-xs text-white/60">Min Revenue Growth %</label>
-                <span className="text-xs text-blue-400 font-mono">{filters.minRevGrowth}%</span>
+                <span className="text-xs text-primary font-mono">{filters.minRevGrowth}%</span>
               </div>
               <Slider
                 min={-10} max={50} step={1}
@@ -1128,7 +1128,7 @@ function CustomScreenTab() {
             <div>
               <div className="flex justify-between items-center mb-2">
                 <label className="text-xs text-white/60">Min Gross Margin %</label>
-                <span className="text-xs text-purple-400 font-mono">{filters.minGrossMargin}%</span>
+                <span className="text-xs text-primary font-mono">{filters.minGrossMargin}%</span>
               </div>
               <Slider
                 min={0} max={80} step={5}
@@ -1141,7 +1141,7 @@ function CustomScreenTab() {
             <div>
               <div className="flex justify-between items-center mb-2">
                 <label className="text-xs text-white/60">Max Beta</label>
-                <span className="text-xs text-cyan-400 font-mono">{filters.maxBeta.toFixed(1)}</span>
+                <span className="text-xs text-muted-foreground font-mono">{filters.maxBeta.toFixed(1)}</span>
               </div>
               <Slider
                 min={0.2} max={3} step={0.1}
@@ -1187,7 +1187,7 @@ function CustomScreenTab() {
             <Card className="bg-white/[0.03] border-white/[0.06]">
               <CardContent className="p-3">
                 <p className="text-xs text-white/40">Avg P/E</p>
-                <p className="text-2xl font-bold text-blue-400">
+                <p className="text-2xl font-bold text-primary">
                   {results.length > 0 ? (results.reduce((a, s) => a + s.pe, 0) / results.length).toFixed(1) : "—"}
                 </p>
               </CardContent>
@@ -1215,7 +1215,7 @@ function CustomScreenTab() {
           <Card className="bg-white/[0.02] border-white/[0.08]">
             <CardHeader className="py-3 px-4 border-b border-white/[0.06]">
               <CardTitle className="text-sm font-semibold text-white flex items-center gap-2">
-                <Filter size={14} className="text-blue-400" />
+                <Filter size={14} className="text-primary" />
                 Custom Screen Results
                 {results.length === 0 && (
                   <Badge className="bg-rose-500/20 text-rose-300 text-xs ml-auto">
@@ -1261,7 +1261,7 @@ function CustomScreenTab() {
                           </td>
                           <td className="px-3 py-2.5 text-right text-amber-400">{stock.fcfYield.toFixed(1)}%</td>
                           <td className="px-3 py-2.5 text-right text-white/70">{stock.grossMargin.toFixed(1)}%</td>
-                          <td className={cn("px-3 py-2.5 text-right", stock.beta < 1 ? "text-blue-400" : stock.beta < 1.5 ? "text-yellow-400" : "text-rose-400")}>
+                          <td className={cn("px-3 py-2.5 text-right", stock.beta < 1 ? "text-primary" : stock.beta < 1.5 ? "text-yellow-400" : "text-rose-400")}>
                             {stock.beta.toFixed(2)}
                           </td>
                         </motion.tr>
@@ -1300,8 +1300,8 @@ export default function StockScreenerPage() {
         className="mb-6"
       >
         <div className="flex items-center gap-3 mb-1">
-          <div className="w-8 h-8 rounded-lg bg-blue-600/30 border border-blue-500/30 flex items-center justify-center">
-            <BarChart3 size={16} className="text-blue-400" />
+          <div className="w-8 h-8 rounded-lg bg-primary/30 border border-border flex items-center justify-center">
+            <BarChart3 size={16} className="text-primary" />
           </div>
           <h1 className="text-2xl font-bold text-white">Stock Screener</h1>
         </div>
@@ -1318,11 +1318,11 @@ export default function StockScreenerPage() {
         className="flex flex-wrap gap-2 mb-6"
       >
         {[
-          { icon: <BarChart3 size={12} />, label: "25 Stocks", color: "text-blue-400 bg-blue-500/10 border-blue-500/20" },
-          { icon: <Layers size={12} />, label: "8 Sectors", color: "text-purple-400 bg-purple-500/10 border-purple-500/20" },
+          { icon: <BarChart3 size={12} />, label: "25 Stocks", color: "text-primary bg-primary/10 border-border" },
+          { icon: <Layers size={12} />, label: "8 Sectors", color: "text-primary bg-primary/10 border-border" },
           { icon: <Star size={12} />, label: "Value Screens", color: "text-amber-400 bg-amber-500/10 border-amber-500/20" },
           { icon: <TrendingUp size={12} />, label: "Growth Screens", color: "text-emerald-400 bg-emerald-500/10 border-emerald-500/20" },
-          { icon: <Shield size={12} />, label: "Quality Screens", color: "text-cyan-400 bg-cyan-500/10 border-cyan-500/20" },
+          { icon: <Shield size={12} />, label: "Quality Screens", color: "text-muted-foreground bg-cyan-500/10 border-cyan-500/20" },
           { icon: <Sliders size={12} />, label: "Custom Filters", color: "text-rose-400 bg-rose-500/10 border-rose-500/20" },
         ].map((chip) => (
           <span
@@ -1341,19 +1341,19 @@ export default function StockScreenerPage() {
       {/* Tabs */}
       <Tabs defaultValue="screener">
         <TabsList className="bg-white/[0.05] border border-white/[0.08] mb-6 flex-wrap h-auto">
-          <TabsTrigger value="screener" className="data-[state=active]:bg-blue-600 data-[state=active]:text-white text-white/60 text-xs">
+          <TabsTrigger value="screener" className="data-[state=active]:bg-primary data-[state=active]:text-white text-white/60 text-xs">
             <BarChart3 size={12} className="mr-1.5" /> Screener
           </TabsTrigger>
-          <TabsTrigger value="value" className="data-[state=active]:bg-blue-600 data-[state=active]:text-white text-white/60 text-xs">
+          <TabsTrigger value="value" className="data-[state=active]:bg-primary data-[state=active]:text-white text-white/60 text-xs">
             <Star size={12} className="mr-1.5" /> Value Screen
           </TabsTrigger>
-          <TabsTrigger value="growth" className="data-[state=active]:bg-blue-600 data-[state=active]:text-white text-white/60 text-xs">
+          <TabsTrigger value="growth" className="data-[state=active]:bg-primary data-[state=active]:text-white text-white/60 text-xs">
             <TrendingUp size={12} className="mr-1.5" /> Growth Screen
           </TabsTrigger>
-          <TabsTrigger value="quality" className="data-[state=active]:bg-blue-600 data-[state=active]:text-white text-white/60 text-xs">
+          <TabsTrigger value="quality" className="data-[state=active]:bg-primary data-[state=active]:text-white text-white/60 text-xs">
             <Shield size={12} className="mr-1.5" /> Quality Screen
           </TabsTrigger>
-          <TabsTrigger value="custom" className="data-[state=active]:bg-blue-600 data-[state=active]:text-white text-white/60 text-xs">
+          <TabsTrigger value="custom" className="data-[state=active]:bg-primary data-[state=active]:text-white text-white/60 text-xs">
             <Sliders size={12} className="mr-1.5" /> Custom Screen
           </TabsTrigger>
         </TabsList>

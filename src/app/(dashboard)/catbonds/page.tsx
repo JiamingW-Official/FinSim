@@ -58,8 +58,8 @@ function StatChip({
     green: "bg-green-500/10 text-green-400 border-green-500/20",
     red: "bg-red-500/10 text-red-400 border-red-500/20",
     amber: "bg-amber-500/10 text-amber-400 border-amber-500/20",
-    blue: "bg-blue-500/10 text-blue-400 border-blue-500/20",
-    purple: "bg-purple-500/10 text-purple-400 border-purple-500/20",
+    blue: "bg-primary/10 text-primary border-border",
+    purple: "bg-primary/10 text-primary border-border",
     default: "bg-muted text-muted-foreground border-border",
   }[color];
   return (
@@ -83,8 +83,8 @@ function InfoBox({
     default: "border-border bg-muted/30",
     green: "border-green-500/20 bg-green-500/5",
     amber: "border-amber-500/20 bg-amber-500/5",
-    blue: "border-blue-500/20 bg-blue-500/5",
-    purple: "border-purple-500/20 bg-purple-500/5",
+    blue: "border-border bg-primary/5",
+    purple: "border-border bg-primary/5",
   }[variant];
   return (
     <div className={cn("rounded-lg border p-4", cls)}>
@@ -124,12 +124,12 @@ interface PerilData {
 }
 
 const PERILS: PerilData[] = [
-  { peril: "US Hurricane", share: 38, icon: <Wind size={14} />, color: "#3b82f6", colorClass: "text-blue-400" },
-  { peril: "US Earthquake", share: 20, icon: <Activity size={14} />, color: "#8b5cf6", colorClass: "text-purple-400" },
-  { peril: "Japan Earthquake", share: 10, icon: <Activity size={14} />, color: "#a855f7", colorClass: "text-purple-300" },
-  { peril: "Europe Windstorm", share: 12, icon: <Wind size={14} />, color: "#60a5fa", colorClass: "text-blue-300" },
+  { peril: "US Hurricane", share: 38, icon: <Wind size={14} />, color: "#3b82f6", colorClass: "text-primary" },
+  { peril: "US Earthquake", share: 20, icon: <Activity size={14} />, color: "#8b5cf6", colorClass: "text-primary" },
+  { peril: "Japan Earthquake", share: 10, icon: <Activity size={14} />, color: "#a855f7", colorClass: "text-primary" },
+  { peril: "Europe Windstorm", share: 12, icon: <Wind size={14} />, color: "#60a5fa", colorClass: "text-primary" },
   { peril: "Wildfire", share: 8, icon: <Flame size={14} />, color: "#f97316", colorClass: "text-orange-400" },
-  { peril: "Flood", share: 7, icon: <Droplets size={14} />, color: "#06b6d4", colorClass: "text-cyan-400" },
+  { peril: "Flood", share: 7, icon: <Droplets size={14} />, color: "#06b6d4", colorClass: "text-muted-foreground" },
   { peril: "Multi-Peril", share: 5, icon: <Globe size={14} />, color: "#6b7280", colorClass: "text-gray-400" },
 ];
 
@@ -631,16 +631,16 @@ function CatBondMechanicsTab() {
         <div className="text-sm font-medium text-foreground mb-3">SPV Deal Structure</div>
         <SPVDiagram />
         <div className="grid grid-cols-3 gap-3 mt-4 text-xs text-muted-foreground">
-          <div className="bg-blue-500/5 border border-blue-500/20 rounded-lg p-2">
-            <span className="font-medium text-blue-400 block mb-0.5">1. Setup</span>
+          <div className="bg-primary/5 border border-border rounded-lg p-2">
+            <span className="font-medium text-primary block mb-0.5">1. Setup</span>
             Sponsor establishes an offshore SPV (Cayman Islands / Bermuda) and pays an annual premium for catastrophe protection.
           </div>
-          <div className="bg-purple-500/5 border border-purple-500/20 rounded-lg p-2">
-            <span className="font-medium text-purple-400 block mb-0.5">2. Issuance</span>
+          <div className="bg-primary/5 border border-border rounded-lg p-2">
+            <span className="font-medium text-primary block mb-0.5">2. Issuance</span>
             SPV issues cat bond notes to capital market investors. Principal is held in a collateral trust (US T-Bills or money market funds).
           </div>
           <div className="bg-cyan-500/5 border border-cyan-500/20 rounded-lg p-2">
-            <span className="font-medium text-cyan-400 block mb-0.5">3. Settlement</span>
+            <span className="font-medium text-muted-foreground block mb-0.5">3. Settlement</span>
             If trigger activates, collateral is released to the sponsor. Otherwise, investors receive principal + SOFR + spread at maturity.
           </div>
         </div>
@@ -842,7 +842,7 @@ function PricingReturnsTab() {
                     <td className="px-4 py-2 font-medium text-foreground">{b.name}</td>
                     <td className="px-3 py-2 text-right text-muted-foreground">{b.peril}</td>
                     <td className="px-3 py-2 text-right text-red-400">{b.expectedLoss.toFixed(1)}%</td>
-                    <td className="px-3 py-2 text-right text-purple-400">{b.spread} bps</td>
+                    <td className="px-3 py-2 text-right text-primary">{b.spread} bps</td>
                     <td className="px-3 py-2 text-right">
                       <span className={cn("font-semibold", multiple >= 3 ? "text-green-400" : multiple >= 2 ? "text-amber-400" : "text-red-400")}>
                         {multiple.toFixed(1)}x
@@ -1003,9 +1003,9 @@ function PerilAnalysisTab() {
                 <tr key={e.returnPeriod} className={cn("border-b border-border/50", i % 2 === 0 ? "bg-muted/10" : "")}>
                   <td className="px-4 py-2 font-semibold text-foreground">{e.returnPeriod}-year</td>
                   <td className="px-3 py-2 text-right text-amber-400">{e.probability.toFixed(1)}%</td>
-                  <td className="px-3 py-2 text-right text-blue-400">${e.usHurricane}B</td>
-                  <td className="px-3 py-2 text-right text-purple-400">${e.usEarthquake}B</td>
-                  <td className="px-3 py-2 text-right text-cyan-400">${e.europeWind}B</td>
+                  <td className="px-3 py-2 text-right text-primary">${e.usHurricane}B</td>
+                  <td className="px-3 py-2 text-right text-primary">${e.usEarthquake}B</td>
+                  <td className="px-3 py-2 text-right text-muted-foreground">${e.europeWind}B</td>
                 </tr>
               ))}
             </tbody>
@@ -1302,9 +1302,9 @@ function PortfolioConstructionTab() {
                       : a.asset === "Equities"
                       ? "bg-amber-500"
                       : a.asset === "Corp Bonds IG"
-                      ? "bg-blue-500"
+                      ? "bg-primary"
                       : a.asset === "Corp Bonds HY"
-                      ? "bg-purple-500"
+                      ? "bg-primary"
                       : "bg-gray-500"
                   )}
                   style={{ width: `${(a.weight / 25) * 100}%` }}

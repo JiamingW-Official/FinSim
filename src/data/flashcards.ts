@@ -133,12 +133,12 @@ const quantCards: FlashcardItem[] = [
 export const FLASHCARDS: FlashcardItem[] = [...glossaryCards, ...indicatorCards, ...quantCards];
 
 export const CATEGORY_LABELS: Record<string, { label: string; color: string }> = {
-  basics: { label: "Basics", color: "text-blue-400" },
+  basics: { label: "Basics", color: "text-primary" },
   orders: { label: "Orders", color: "text-emerald-400" },
   indicators: { label: "Indicators", color: "text-amber-400" },
   risk: { label: "Risk", color: "text-rose-400" },
-  fundamental: { label: "Fundamental", color: "text-purple-400" },
+  fundamental: { label: "Fundamental", color: "text-primary" },
   "personal-finance": { label: "Personal Finance", color: "text-yellow-400" },
-  quant: { label: "Quantitative", color: "text-cyan-400" },
+  quant: { label: "Quantitative", color: "text-muted-foreground" },
   predictions: { label: "Predictions", color: "text-orange-400" },
 };

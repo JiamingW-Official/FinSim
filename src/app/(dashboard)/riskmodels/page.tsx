@@ -766,7 +766,7 @@ export default function RiskModelsPage() {
         <Chip label="99% VaR Confidence" value="2.326σ" color="text-indigo-400" />
         <Chip label="FRTB ES Level" value="97.5%" color="text-amber-400" />
         <Chip label="Basel Green Zone" value="≤ 4 Exceptions" color="text-emerald-400" />
-        <Chip label="SR 11-7 Pillars" value="3 Tiers" color="text-purple-400" />
+        <Chip label="SR 11-7 Pillars" value="3 Tiers" color="text-primary" />
       </div>
 
       <Tabs defaultValue="market" className="space-y-4">
@@ -896,7 +896,7 @@ export default function RiskModelsPage() {
           {/* FRTB & Sensitivity-Based Approach */}
           <ConceptCard
             title="FRTB: ES vs VaR — Fundamental Review of the Trading Book"
-            icon={<TrendingDown className="w-4 h-4 text-purple-400" />}
+            icon={<TrendingDown className="w-4 h-4 text-primary" />}
             defaultOpen
           >
             <div className="space-y-3">
@@ -929,7 +929,7 @@ export default function RiskModelsPage() {
           <Card className="bg-zinc-900 border-zinc-800">
             <CardHeader className="pb-2">
               <CardTitle className="text-sm font-medium text-zinc-300 flex items-center gap-2">
-                <Layers className="w-4 h-4 text-blue-400" />
+                <Layers className="w-4 h-4 text-primary" />
                 Correlation Matrix Construction Methods
               </CardTitle>
             </CardHeader>
@@ -1059,7 +1059,7 @@ export default function RiskModelsPage() {
           <Card className="bg-zinc-900 border-zinc-800">
             <CardHeader className="pb-2">
               <CardTitle className="text-sm font-medium text-zinc-300 flex items-center gap-2">
-                <GitBranch className="w-4 h-4 text-purple-400" />
+                <GitBranch className="w-4 h-4 text-primary" />
                 Credit Migration Matrix — 1-Year Rating Transition Probabilities (%)
               </CardTitle>
             </CardHeader>
@@ -1166,7 +1166,7 @@ export default function RiskModelsPage() {
                         <td className={cn("py-2 px-2 font-mono", sc.credit < 0 ? "text-red-400" : "text-amber-400")}>
                           {sc.credit > 0 ? `+${sc.credit}` : sc.credit}%
                         </td>
-                        <td className={cn("py-2 px-2 font-mono", sc.rates > 0 ? "text-amber-400" : "text-blue-400")}>
+                        <td className={cn("py-2 px-2 font-mono", sc.rates > 0 ? "text-amber-400" : "text-primary")}>
                           {sc.rates > 0 ? `+${sc.rates}` : sc.rates}
                         </td>
                         <td className={cn("py-2 px-2 font-mono", sc.fx < 0 ? "text-red-400" : "text-emerald-400")}>
@@ -1244,7 +1244,7 @@ export default function RiskModelsPage() {
             </ConceptCard>
             <ConceptCard
               title="CCAR / DFAST Regulatory Framework"
-              icon={<ShieldAlert className="w-4 h-4 text-purple-400" />}
+              icon={<ShieldAlert className="w-4 h-4 text-primary" />}
               defaultOpen
             >
               <div className="space-y-2 text-xs text-zinc-400">
@@ -1258,15 +1258,15 @@ export default function RiskModelsPage() {
           {/* Sensitivity vs Scenario */}
           <ConceptCard
             title="Sensitivity Analysis vs Scenario Analysis — Key Distinction"
-            icon={<BarChart2 className="w-4 h-4 text-blue-400" />}
+            icon={<BarChart2 className="w-4 h-4 text-primary" />}
           >
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
               <div className="bg-zinc-800/30 rounded-lg p-3">
-                <div className="text-xs font-semibold text-blue-300 mb-1">Sensitivity Analysis</div>
+                <div className="text-xs font-semibold text-primary mb-1">Sensitivity Analysis</div>
                 <div className="text-xs text-zinc-400">Varies one factor at a time (DV01, CS01, equity delta). Measures marginal impact. Fast, tractable. Ignores cross-factor correlations. Used for hedging, limit-setting, P&L attribution.</div>
               </div>
               <div className="bg-zinc-800/30 rounded-lg p-3">
-                <div className="text-xs font-semibold text-purple-300 mb-1">Scenario Analysis</div>
+                <div className="text-xs font-semibold text-primary mb-1">Scenario Analysis</div>
                 <div className="text-xs text-zinc-400">Moves multiple factors simultaneously using economic logic. Captures correlation and second-order effects. Historical: uses observed crisis moves. Hypothetical: custom narrative (e.g., geopolitical shock). Regulatorily required.</div>
               </div>
             </div>
@@ -1352,7 +1352,7 @@ export default function RiskModelsPage() {
           <Card className="bg-zinc-900 border-zinc-800">
             <CardHeader className="pb-2">
               <CardTitle className="text-sm font-medium text-zinc-300 flex items-center gap-2">
-                <Database className="w-4 h-4 text-blue-400" />
+                <Database className="w-4 h-4 text-primary" />
                 Model Inventory — Risk Tiering &amp; Monitoring Metrics
               </CardTitle>
             </CardHeader>
@@ -1377,7 +1377,7 @@ export default function RiskModelsPage() {
           {/* Backtesting vs Benchmarking */}
           <ConceptCard
             title="Backtesting vs Benchmarking — Validation Techniques"
-            icon={<Activity className="w-4 h-4 text-blue-400" />}
+            icon={<Activity className="w-4 h-4 text-primary" />}
             defaultOpen
           >
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs">

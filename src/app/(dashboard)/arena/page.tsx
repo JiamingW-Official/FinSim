@@ -180,7 +180,7 @@ export default function ArenaPage() {
             className={cn(
               "flex flex-1 items-center justify-center gap-1.5 border-b-2 px-3 py-2.5 text-xs font-bold transition-colors",
               activeTab === tab.id
-                ? "border-teal-500 text-teal-400"
+                ? "border-teal-500 text-emerald-400"
                 : "border-transparent text-zinc-500 hover:text-zinc-300",
             )}
           >

@@ -277,8 +277,8 @@ function PerformanceAttributionSection({ rows }: { rows: SectorRow[] }) {
       {/* Summary chips */}
       <div className="grid grid-cols-4 gap-2">
         {[
-          { label: "Allocation", value: totals.allocationEffect, color: "bg-blue-500/10 text-blue-400" },
-          { label: "Selection", value: totals.selectionEffect, color: "bg-violet-500/10 text-violet-400" },
+          { label: "Allocation", value: totals.allocationEffect, color: "bg-primary/10 text-primary" },
+          { label: "Selection", value: totals.selectionEffect, color: "bg-primary/10 text-primary" },
           { label: "Interaction", value: totals.interactionEffect, color: "bg-amber-500/10 text-amber-400" },
           { label: "Total Active", value: totals.totalContribution, color: totals.totalContribution >= 0 ? "bg-emerald-500/10 text-emerald-400" : "bg-red-500/10 text-red-400" },
         ].map((chip) => (
@@ -410,9 +410,9 @@ function FactorExposureSection({ factors }: { factors: Factor[] }) {
 
       {/* R-squared chip */}
       <div className="flex items-center gap-3">
-        <div className="rounded-md bg-blue-500/10 px-2 py-1">
+        <div className="rounded-md bg-primary/10 px-2 py-1">
           <span className="text-[11px] text-muted-foreground">Factor R²</span>
-          <span className="ml-1.5 text-xs font-bold text-blue-400">{(totalR2 * 100).toFixed(1)}%</span>
+          <span className="ml-1.5 text-xs font-bold text-primary">{(totalR2 * 100).toFixed(1)}%</span>
         </div>
         <p className="text-xs text-muted-foreground">
           {(totalR2 * 100).toFixed(0)}% of portfolio variance explained by 5 systematic factors
@@ -432,14 +432,14 @@ function FactorExposureSection({ factors }: { factors: Factor[] }) {
                 <div
                   className={cn(
                     "absolute h-full rounded-full transition-all",
-                    isPos ? "left-1/2 bg-blue-500/60" : "right-1/2 bg-amber-500/60"
+                    isPos ? "left-1/2 bg-primary/60" : "right-1/2 bg-amber-500/60"
                   )}
                   style={{ width: `${barPct * 50}%` }}
                 />
                 {/* center divider */}
                 <div className="absolute left-1/2 top-0 bottom-0 w-px bg-border/60" />
               </div>
-              <span className={cn("text-xs text-right tabular-nums font-medium", isPos ? "text-blue-400" : "text-amber-400")}>
+              <span className={cn("text-xs text-right tabular-nums font-medium", isPos ? "text-primary" : "text-amber-400")}>
                 {f.loading.toFixed(2)}
               </span>
               <span className={cn("text-xs text-right tabular-nums", effectColor(f.contribution))}>
@@ -472,7 +472,7 @@ function FactorExposureSection({ factors }: { factors: Factor[] }) {
               {factors.map((f) => (
                 <tr key={f.name} className="border-b border-border/20 hover:bg-muted/20">
                   <td className="py-1 px-1.5 font-medium">{f.name}</td>
-                  <td className={cn("py-1 px-1.5 text-right tabular-nums", f.loading >= 0 ? "text-blue-400" : "text-amber-400")}>
+                  <td className={cn("py-1 px-1.5 text-right tabular-nums", f.loading >= 0 ? "text-primary" : "text-amber-400")}>
                     {f.loading.toFixed(2)}
                   </td>
                   <td className="py-1 px-1.5 text-right tabular-nums text-muted-foreground">
@@ -561,7 +561,7 @@ function RollingPerformanceSection({ points }: { points: RollingPoint[] }) {
           <p className="text-xs font-bold text-emerald-400 tabular-nums">{alphaPositivePct.toFixed(0)}%</p>
           <p className="text-[11px] text-muted-foreground">rolling periods w/ positive alpha</p>
         </div>
-        <div className="rounded-md bg-blue-500/10 p-2">
+        <div className="rounded-md bg-primary/10 p-2">
           <p className="text-[11px] text-muted-foreground">Up-Mkt Alpha (avg)</p>
           <p className={cn("text-xs font-bold tabular-nums", effectColor(upAlpha))}>{pct(upAlpha, 2)}</p>
           <p className="text-[11px] text-muted-foreground">first half of period</p>
@@ -662,9 +662,9 @@ function RiskAttributionSection({ varPositions }: { varPositions: VaRPosition[] 
           <p className="text-xs font-bold text-rose-400 tabular-nums">{pct(totalPortfolioVaR, 3)}</p>
           <p className="text-[11px] text-muted-foreground">1-day at 95% confidence</p>
         </div>
-        <div className="rounded-md bg-blue-500/10 p-2">
+        <div className="rounded-md bg-primary/10 p-2">
           <p className="text-[11px] text-muted-foreground">Sum of Individual VaRs</p>
-          <p className="text-xs font-bold text-blue-400 tabular-nums">{pct(sumIndividualVaR, 3)}</p>
+          <p className="text-xs font-bold text-primary tabular-nums">{pct(sumIndividualVaR, 3)}</p>
           <p className="text-[11px] text-muted-foreground">undiversified VaR</p>
         </div>
         <div className="rounded-md bg-emerald-500/10 p-2">
@@ -761,11 +761,11 @@ export function AttributionAnalysis() {
   return (
     <div className="space-y-4">
       {/* Header banner */}
-      <div className="rounded-lg border border-blue-500/20 bg-blue-500/5 p-3">
+      <div className="rounded-lg border border-border bg-primary/5 p-3">
         <div className="flex items-start gap-2">
-          <Info className="h-3.5 w-3.5 text-blue-400 mt-0.5 shrink-0" />
+          <Info className="h-3.5 w-3.5 text-primary mt-0.5 shrink-0" />
           <div>
-            <p className="text-[11px] font-semibold text-blue-400">Portfolio Attribution Analysis</p>
+            <p className="text-[11px] font-semibold text-primary">Portfolio Attribution Analysis</p>
             <p className="text-xs text-muted-foreground mt-0.5">
               Comprehensive attribution using the Brinson-Hood-Beebower model, Fama-French 5-factor analysis,
               rolling performance metrics, and component VaR decomposition. Synthetic data seeded for demo purposes.

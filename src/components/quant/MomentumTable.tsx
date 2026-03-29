@@ -28,7 +28,7 @@ function generatePrices(ticker: string, bars: number = 260): number[] {
 function SignalBadge({ signal }: { signal: MomentumRank["signal"] }) {
   const config = {
     strong: { text: "Strong", className: "bg-emerald-500/10 text-emerald-500" },
-    moderate: { text: "Moderate", className: "bg-blue-500/10 text-blue-500" },
+    moderate: { text: "Moderate", className: "bg-primary/10 text-primary" },
     weak: { text: "Weak", className: "bg-amber-500/10 text-amber-500" },
     negative: { text: "Negative", className: "bg-red-500/10 text-red-500" },
   };

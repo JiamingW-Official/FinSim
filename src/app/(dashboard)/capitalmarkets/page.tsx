@@ -513,7 +513,7 @@ function InfoCard({ title, icon, children }: { title: string; icon: React.ReactN
   return (
     <div className="rounded-xl border border-slate-700 bg-slate-800/50 p-4">
       <div className="flex items-center gap-2 mb-3">
-        <span className="text-blue-400">{icon}</span>
+        <span className="text-primary">{icon}</span>
         <span className="text-sm font-semibold text-slate-200">{title}</span>
       </div>
       {children}
@@ -523,11 +523,11 @@ function InfoCard({ title, icon, children }: { title: string; icon: React.ReactN
 
 function StatChip({ label, value, color = "blue" }: { label: string; value: string; color?: "blue" | "green" | "red" | "amber" | "purple" }) {
   const colorMap = {
-    blue: "bg-blue-900/40 text-blue-300 border-blue-700/50",
+    blue: "bg-muted/60 text-primary border-border",
     green: "bg-green-900/40 text-green-300 border-green-700/50",
     red: "bg-red-900/40 text-red-300 border-red-700/50",
     amber: "bg-amber-900/40 text-amber-300 border-amber-700/50",
-    purple: "bg-purple-900/40 text-purple-300 border-purple-700/50",
+    purple: "bg-muted/60 text-primary border-border",
   };
   return (
     <div className={cn("inline-flex flex-col rounded-lg border px-3 py-2", colorMap[color])}>
@@ -566,8 +566,8 @@ function IPOProcessTab() {
                 <div className={cn(
                   "relative z-10 w-10 h-10 rounded-full flex items-center justify-center border-2 transition-all",
                   selectedStage?.id === stage.id
-                    ? "bg-blue-600 border-blue-400 text-white"
-                    : "bg-slate-800 border-slate-600 text-slate-400 group-hover:border-blue-500 group-hover:text-blue-300"
+                    ? "bg-primary border-primary text-white"
+                    : "bg-slate-800 border-slate-600 text-slate-400 group-hover:border-primary group-hover:text-primary"
                 )}>
                   {stage.icon}
                 </div>
@@ -585,10 +585,10 @@ function IPOProcessTab() {
               exit={{ opacity: 0, height: 0 }}
               className="overflow-hidden"
             >
-              <div className="mt-3 rounded-lg border border-blue-700/50 bg-blue-900/20 p-4">
+              <div className="mt-3 rounded-lg border border-border bg-muted/40 p-4">
                 <div className="flex items-center gap-2 mb-2">
-                  <span className="text-blue-400">{selectedStage.icon}</span>
-                  <span className="font-semibold text-blue-300">{selectedStage.name}</span>
+                  <span className="text-primary">{selectedStage.icon}</span>
+                  <span className="font-semibold text-primary">{selectedStage.name}</span>
                   <span className="text-xs text-slate-500 ml-auto">{selectedStage.duration}</span>
                 </div>
                 <p className="text-sm text-slate-300 leading-relaxed mb-3">{selectedStage.description}</p>
@@ -621,7 +621,7 @@ function IPOProcessTab() {
               { label: "Related Party Transactions", desc: "Self-dealing red flags with insiders" },
             ].map((item) => (
               <li key={item.label} className="flex gap-2">
-                <ChevronRight className="w-3.5 h-3.5 text-blue-400 flex-shrink-0 mt-0.5" />
+                <ChevronRight className="w-3.5 h-3.5 text-primary flex-shrink-0 mt-0.5" />
                 <span><span className="font-medium text-slate-200">{item.label}:</span> {item.desc}</span>
               </li>
             ))}
@@ -642,7 +642,7 @@ function IPOProcessTab() {
                   <div key={item.label} className="flex items-center gap-2">
                     <div className="w-28 text-xs text-slate-400 flex-shrink-0">{item.pct}%</div>
                     <div className="flex-1 h-2 bg-slate-800 rounded-full overflow-hidden">
-                      <div className="h-full bg-blue-500 rounded-full" style={{ width: `${item.pct}%` }} />
+                      <div className="h-full bg-primary rounded-full" style={{ width: `${item.pct}%` }} />
                     </div>
                     <div className="text-xs text-slate-400 w-52">{item.label}</div>
                   </div>
@@ -738,7 +738,7 @@ function IPOValuationTab() {
           {(["all", "profitable", "unprofitable", "lockup"] as const).map((f) => (
             <button key={f} onClick={() => setFilter(f)}
               className={cn("text-xs rounded-full px-3 py-1 transition-colors",
-                filter === f ? "bg-blue-600 text-white" : "bg-slate-700/50 text-slate-400 hover:bg-slate-700")}>
+                filter === f ? "bg-primary text-white" : "bg-slate-700/50 text-slate-400 hover:bg-slate-700")}>
               {f === "all" ? "All" : f === "profitable" ? "Profitable" : f === "unprofitable" ? "Underwater" : "Lockup Expired"}
             </button>
           ))}
@@ -759,7 +759,7 @@ function IPOValuationTab() {
                 return (
                   <tr key={ipo.id} className="border-b border-slate-800 hover:bg-slate-800/40 transition-colors">
                     <td className="py-2 pr-3 font-medium text-slate-200">{ipo.company}</td>
-                    <td className="pr-3 font-mono text-blue-300">{ipo.ticker}</td>
+                    <td className="pr-3 font-mono text-primary">{ipo.ticker}</td>
                     <td className="pr-3 text-slate-400">{ipo.sector}</td>
                     <td className="pr-3 font-mono">${ipo.offerPrice}</td>
                     <td className="pr-3 font-mono">${ipo.currentPrice}</td>
@@ -813,7 +813,7 @@ function SPACTab() {
               { step: "4. Shareholder Vote", desc: "SPAC shareholders vote to approve merger. Dissenting investors can redeem at trust value + interest", color: "amber" },
               { step: "5. deSPAC Close", desc: "Merger closes; target becomes new public company. PIPE investors fund deal alongside trust proceeds", color: "green" },
             ].map((item, i) => {
-              const colorMap: Record<string, string> = { blue: "bg-blue-600", amber: "bg-amber-500", green: "bg-green-600" };
+              const colorMap: Record<string, string> = { blue: "bg-primary", amber: "bg-amber-500", green: "bg-green-600" };
               return (
                 <div key={i} className="flex gap-3">
                   <div className={cn("mt-0.5 w-5 h-5 rounded-full flex-shrink-0 flex items-center justify-center text-white text-xs font-bold", colorMap[item.color])}>
@@ -836,8 +836,8 @@ function SPACTab() {
                 <thead>
                   <tr className="border-b border-slate-700">
                     <th className="text-left py-1.5 text-slate-500">Dimension</th>
-                    <th className="text-center py-1.5 text-blue-400">SPAC</th>
-                    <th className="text-center py-1.5 text-purple-400">Traditional IPO</th>
+                    <th className="text-center py-1.5 text-primary">SPAC</th>
+                    <th className="text-center py-1.5 text-primary">Traditional IPO</th>
                   </tr>
                 </thead>
                 <tbody className="divide-y divide-slate-800">
@@ -875,7 +875,7 @@ function SPACTab() {
           {(["all", "searching", "announced", "voting"] as const).map((f) => (
             <button key={f} onClick={() => setStatusFilter(f)}
               className={cn("text-xs rounded-full px-3 py-1 transition-colors capitalize",
-                statusFilter === f ? "bg-blue-600 text-white" : "bg-slate-700/50 text-slate-400 hover:bg-slate-700")}>
+                statusFilter === f ? "bg-primary text-white" : "bg-slate-700/50 text-slate-400 hover:bg-slate-700")}>
               {f}
             </button>
           ))}
@@ -892,11 +892,11 @@ function SPACTab() {
             <tbody>
               {filtered.map((sp) => {
                 const prem = ((sp.currentPrice - sp.trustValue) / sp.trustValue) * 100;
-                const statusColor = sp.status === "voting" ? "text-amber-400" : sp.status === "announced" ? "text-blue-400" : "text-slate-500";
+                const statusColor = sp.status === "voting" ? "text-amber-400" : sp.status === "announced" ? "text-primary" : "text-slate-500";
                 return (
                   <tr key={sp.id} className="border-b border-slate-800 hover:bg-slate-800/40 transition-colors">
                     <td className="py-2 pr-3 font-medium text-slate-200 max-w-[140px] truncate">{sp.name}</td>
-                    <td className="pr-3 font-mono text-blue-300">{sp.ticker}</td>
+                    <td className="pr-3 font-mono text-primary">{sp.ticker}</td>
                     <td className="pr-3 text-slate-400 max-w-[100px] truncate">{sp.sponsor}</td>
                     <td className={cn("pr-3", sp.target ? "text-slate-300" : "text-slate-600 italic")}>
                       {sp.target ?? "—"}
@@ -998,18 +998,18 @@ function SecondaryOfferingsTab() {
         {offeringTypes.map((ot) => {
           const cardColor = ot.color as "blue" | "green" | "red" | "amber" | "purple";
           const borderMap = {
-            blue: "border-blue-700/40",
+            blue: "border-border",
             green: "border-green-700/40",
             red: "border-red-700/40",
             amber: "border-amber-700/40",
-            purple: "border-purple-700/40",
+            purple: "border-border",
           };
           const iconColorMap = {
-            blue: "text-blue-400",
+            blue: "text-primary",
             green: "text-green-400",
             red: "text-red-400",
             amber: "text-amber-400",
-            purple: "text-purple-400",
+            purple: "text-primary",
           };
           return (
             <div key={ot.name} className={cn("rounded-xl border bg-slate-800/50 p-4", borderMap[cardColor])}>
@@ -1067,7 +1067,7 @@ function DCMTab() {
               { step: "Settlement (T+3)", desc: "Bonds delivered to investors via DTC/Euroclear. Company receives proceeds" },
             ].map((item, i) => (
               <div key={i} className="flex gap-2.5">
-                <div className="mt-0.5 w-5 h-5 rounded-full bg-slate-700 flex-shrink-0 flex items-center justify-center text-blue-300 text-xs font-bold">{i + 1}</div>
+                <div className="mt-0.5 w-5 h-5 rounded-full bg-slate-700 flex-shrink-0 flex items-center justify-center text-primary text-xs font-bold">{i + 1}</div>
                 <div>
                   <span className="text-xs font-medium text-slate-200">{item.step}: </span>
                   <span className="text-xs text-slate-400">{item.desc}</span>
@@ -1101,7 +1101,7 @@ function DCMTab() {
                 <thead>
                   <tr className="border-b border-slate-700">
                     <th className="text-left py-1.5 text-slate-500">Feature</th>
-                    <th className="text-center py-1.5 text-blue-400">Term Loan</th>
+                    <th className="text-center py-1.5 text-primary">Term Loan</th>
                     <th className="text-center py-1.5 text-amber-400">HY Bond</th>
                   </tr>
                 </thead>
@@ -1132,7 +1132,7 @@ function DCMTab() {
           {(["all", "investment-grade", "high-yield", "loan"] as const).map((f) => (
             <button key={f} onClick={() => setTypeFilter(f)}
               className={cn("text-xs rounded-full px-3 py-1 transition-colors",
-                typeFilter === f ? "bg-blue-600 text-white" : "bg-slate-700/50 text-slate-400 hover:bg-slate-700")}>
+                typeFilter === f ? "bg-primary text-white" : "bg-slate-700/50 text-slate-400 hover:bg-slate-700")}>
               {f === "all" ? "All" : f === "investment-grade" ? "Inv. Grade" : f === "high-yield" ? "High Yield" : "Loans"}
             </button>
           ))}
@@ -1150,7 +1150,7 @@ function DCMTab() {
               {filtered.map((deal) => {
                 const typeLabel = deal.type === "investment-grade" ? "IG" : deal.type === "high-yield" ? "HY" : "Loan";
                 const typeColor2 = deal.type === "investment-grade"
-                  ? "bg-blue-900/40 text-blue-300"
+                  ? "bg-muted/60 text-primary"
                   : deal.type === "high-yield"
                     ? "bg-amber-900/40 text-amber-300"
                     : "bg-green-900/40 text-green-300";
@@ -1206,7 +1206,7 @@ function ECMAnalyticsTab() {
                 <div className="text-xs text-slate-300 w-32 flex-shrink-0">{entry.bank}</div>
                 <div className="flex-1 h-2 bg-slate-800 rounded-full overflow-hidden">
                   <div
-                    className={cn("h-full rounded-full", entry.rank <= 3 ? "bg-amber-500" : "bg-blue-600")}
+                    className={cn("h-full rounded-full", entry.rank <= 3 ? "bg-amber-500" : "bg-primary")}
                     style={{ width: `${(entry.volume / maxVol) * 100}%` }}
                   />
                 </div>
@@ -1277,11 +1277,11 @@ function ECMAnalyticsTab() {
               {UPCOMING_IPOS.map((ipo) => {
                 const stageMap: Record<string, string> = {
                   filed: "bg-slate-700/50 text-slate-400",
-                  roadshow: "bg-blue-900/40 text-blue-300",
+                  roadshow: "bg-muted/60 text-primary",
                   pricing: "bg-green-900/40 text-green-300",
                 };
                 const impliedMultiple = ipo.lastValuation / (ipo.expectedSize * 8);
-                const multColor = impliedMultiple > 5 ? "text-amber-400" : impliedMultiple > 2 ? "text-blue-300" : "text-slate-400";
+                const multColor = impliedMultiple > 5 ? "text-amber-400" : impliedMultiple > 2 ? "text-primary" : "text-slate-400";
                 return (
                   <tr key={ipo.id} className="border-b border-slate-800 hover:bg-slate-800/40 transition-colors">
                     <td className="py-2 pr-4 font-medium text-slate-200">{ipo.company}</td>
@@ -1322,11 +1322,11 @@ export default function CapitalMarketsPage() {
         className="mb-6"
       >
         <div className="flex items-center gap-3 mb-1">
-          <div className="w-8 h-8 rounded-lg bg-blue-600/20 border border-blue-600/40 flex items-center justify-center">
-            <Building2 className="w-4 h-4 text-blue-400" />
+          <div className="w-8 h-8 rounded-lg bg-primary/20 border border-primary/40 flex items-center justify-center">
+            <Building2 className="w-4 h-4 text-primary" />
           </div>
           <h1 className="text-2xl font-bold text-slate-100">Capital Markets</h1>
-          <span className="ml-2 text-xs bg-blue-900/40 border border-blue-700/50 text-blue-300 rounded-full px-2 py-0.5">
+          <span className="ml-2 text-xs bg-muted/60 border border-border text-primary rounded-full px-2 py-0.5">
             IPO · SPAC · DCM · ECM
           </span>
         </div>
@@ -1349,7 +1349,7 @@ export default function CapitalMarketsPage() {
             <TabsTrigger
               key={tab.value}
               value={tab.value}
-              className="flex items-center gap-1.5 text-xs data-[state=active]:bg-blue-600 data-[state=active]:text-white text-slate-400 px-3 py-1.5"
+              className="flex items-center gap-1.5 text-xs data-[state=active]:bg-primary data-[state=active]:text-white text-slate-400 px-3 py-1.5"
             >
               {tab.icon}
               {tab.label}

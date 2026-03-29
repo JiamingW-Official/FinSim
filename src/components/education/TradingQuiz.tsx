@@ -123,7 +123,7 @@ function ResultScreen({
 
   const gradeColors: Record<string, string> = {
     A: "text-emerald-400 border-emerald-400/30 bg-emerald-400/10",
-    B: "text-blue-400 border-blue-400/30 bg-blue-400/10",
+    B: "text-primary border-border bg-primary/10",
     C: "text-amber-400 border-amber-400/30 bg-amber-400/10",
     D: "text-orange-400 border-orange-400/30 bg-orange-400/10",
     F: "text-red-400 border-red-400/30 bg-red-400/10",

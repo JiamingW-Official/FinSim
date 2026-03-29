@@ -54,16 +54,16 @@ const steps: StepConfig[] = [
     extra: null,
   },
   {
-    icon: <BarChart3 className="h-6 w-6 text-blue-400" />,
-    iconBg: "bg-blue-500/10",
+    icon: <BarChart3 className="h-6 w-6 text-primary" />,
+    iconBg: "bg-primary/10",
     title: "Trade Real Stocks",
     description:
       "Practice with real historical data. 10 tickers, candlestick charts, and 15 technical indicators.",
     extra: <MiniCandlestickSVG />,
   },
   {
-    icon: <GraduationCap className="h-6 w-6 text-violet-400" />,
-    iconBg: "bg-violet-500/10",
+    icon: <GraduationCap className="h-6 w-6 text-primary" />,
+    iconBg: "bg-primary/10",
     title: "Interactive Learning",
     description:
       "650+ bite-sized lessons with quizzes, flashcards, and practice simulators for hands-on skill building.",

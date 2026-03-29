@@ -78,7 +78,7 @@ export function RollingSharpeChart() {
     <div className="space-y-2">
       <div className="flex items-center justify-between text-xs text-muted-foreground">
         <span>30-trade rolling window</span>
-        <span className={`font-mono font-semibold ${lastVal >= 1 ? "text-green-400" : lastVal >= 0 ? "text-blue-400" : "text-red-400"}`}>
+        <span className={`font-mono font-semibold ${lastVal >= 1 ? "text-green-400" : lastVal >= 0 ? "text-primary" : "text-red-400"}`}>
           Current: {lastVal.toFixed(2)}
         </span>
       </div>

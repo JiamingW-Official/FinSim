@@ -110,14 +110,14 @@ export default function MonteCarloChart({ result, years }: MonteCarloChartProps)
         <path
           d={buildArea(p95, p5)}
           fill="currentColor"
-          className="text-blue-500/10 dark:text-blue-400/10"
+          className="text-primary/10 dark:text-primary/10"
         />
 
         {/* P25-P75 band (darker) */}
         <path
           d={buildArea(p75, p25)}
           fill="currentColor"
-          className="text-blue-500/20 dark:text-blue-400/20"
+          className="text-primary/20 dark:text-primary/20"
         />
 
         {/* P50 median line */}
@@ -125,7 +125,7 @@ export default function MonteCarloChart({ result, years }: MonteCarloChartProps)
           d={buildPath(p50)}
           fill="none"
           stroke="currentColor"
-          className="text-blue-600 dark:text-blue-400"
+          className="text-primary dark:text-primary"
           strokeWidth={2}
         />
 
@@ -135,7 +135,7 @@ export default function MonteCarloChart({ result, years }: MonteCarloChartProps)
           cy={yScale(p50[0])}
           r={4}
           fill="currentColor"
-          className="text-blue-600 dark:text-blue-400"
+          className="text-primary dark:text-primary"
         />
 
         {/* End value marker */}
@@ -144,7 +144,7 @@ export default function MonteCarloChart({ result, years }: MonteCarloChartProps)
           cy={yScale(p50[totalSteps - 1])}
           r={4}
           fill="currentColor"
-          className="text-blue-600 dark:text-blue-400"
+          className="text-primary dark:text-primary"
         />
 
         {/* Y-axis labels */}
@@ -194,11 +194,11 @@ export default function MonteCarloChart({ result, years }: MonteCarloChartProps)
 
         {/* Legend */}
         <rect x={CHART_W - PAD.right - 130} y={PAD.top} width={120} height={52} rx={4} fill="currentColor" className="text-background/80" />
-        <line x1={CHART_W - PAD.right - 120} x2={CHART_W - PAD.right - 100} y1={PAD.top + 14} y2={PAD.top + 14} stroke="currentColor" className="text-blue-600 dark:text-blue-400" strokeWidth={2} />
+        <line x1={CHART_W - PAD.right - 120} x2={CHART_W - PAD.right - 100} y1={PAD.top + 14} y2={PAD.top + 14} stroke="currentColor" className="text-primary dark:text-primary" strokeWidth={2} />
         <text x={CHART_W - PAD.right - 94} y={PAD.top + 18} className="fill-foreground text-[11px]">Median (P50)</text>
-        <rect x={CHART_W - PAD.right - 120} y={PAD.top + 24} width={20} height={8} rx={1} fill="currentColor" className="text-blue-500/20 dark:text-blue-400/20" />
+        <rect x={CHART_W - PAD.right - 120} y={PAD.top + 24} width={20} height={8} rx={1} fill="currentColor" className="text-primary/20 dark:text-primary/20" />
         <text x={CHART_W - PAD.right - 94} y={PAD.top + 33} className="fill-foreground text-[11px]">P25-P75</text>
-        <rect x={CHART_W - PAD.right - 120} y={PAD.top + 38} width={20} height={8} rx={1} fill="currentColor" className="text-blue-500/10 dark:text-blue-400/10" />
+        <rect x={CHART_W - PAD.right - 120} y={PAD.top + 38} width={20} height={8} rx={1} fill="currentColor" className="text-primary/10 dark:text-primary/10" />
         <text x={CHART_W - PAD.right - 94} y={PAD.top + 47} className="fill-foreground text-[11px]">P5-P95</text>
       </svg>
 

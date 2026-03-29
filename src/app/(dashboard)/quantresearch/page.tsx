@@ -234,8 +234,8 @@ const ML_MODELS: MLModel[] = [
 ];
 
 const CATEGORY_COLORS: Record<SignalCategory, string> = {
-  value: "bg-blue-500/20 text-blue-300 border-blue-500/30",
-  momentum: "bg-purple-500/20 text-purple-300 border-purple-500/30",
+  value: "bg-primary/20 text-primary border-border",
+  momentum: "bg-primary/20 text-primary border-border",
   quality: "bg-emerald-500/20 text-emerald-300 border-emerald-500/30",
   sentiment: "bg-amber-500/20 text-amber-300 border-amber-500/30",
   technical: "bg-rose-500/20 text-rose-300 border-rose-500/30",
@@ -471,8 +471,8 @@ function CompositeScore({ selected }: { selected: AlphaSignal[] }) {
     <div className="grid grid-cols-2 gap-3 sm:grid-cols-4">
       {[
         { label: "Avg Raw IC", val: composite.avgIC.toFixed(4), color: "text-zinc-300" },
-        { label: "Composite IC", val: composite.expectedIC.toFixed(4), color: "text-blue-400" },
-        { label: "Composite IR", val: composite.expectedIR.toFixed(3), color: "text-purple-400" },
+        { label: "Composite IC", val: composite.expectedIC.toFixed(4), color: "text-primary" },
+        { label: "Composite IR", val: composite.expectedIR.toFixed(3), color: "text-primary" },
         { label: "Div Benefit", val: "+" + (composite.divBenefit * 100).toFixed(1) + "%", color: "text-emerald-400" },
       ].map(({ label, val, color }) => (
         <div key={label} className="rounded-lg bg-zinc-800/60 p-3 text-center">
@@ -520,7 +520,7 @@ export default function QuantResearchPage() {
       {/* Header */}
       <div className="flex flex-col gap-1">
         <div className="flex items-center gap-2">
-          <FlaskConical className="h-6 w-6 text-blue-400" />
+          <FlaskConical className="h-6 w-6 text-primary" />
           <h1 className="text-2xl font-bold">Quantitative Research & Signal Generation</h1>
         </div>
         <p className="text-sm text-zinc-400 max-w-2xl">
@@ -544,7 +544,7 @@ export default function QuantResearchPage() {
           <Card className="bg-zinc-900/60 border-zinc-800">
             <CardHeader className="pb-2">
               <CardTitle className="text-base flex items-center gap-2">
-                <BarChart2 className="h-4 w-4 text-blue-400" />
+                <BarChart2 className="h-4 w-4 text-primary" />
                 Alpha Signal Library
               </CardTitle>
               <p className="text-xs text-zinc-500">
@@ -575,7 +575,7 @@ export default function QuantResearchPage() {
                         </span>
                       </td>
                       <td className="py-2 pr-3 text-right font-mono text-emerald-400">{sig.ic.toFixed(3)}</td>
-                      <td className="py-2 pr-3 text-right font-mono text-blue-400">{sig.ir.toFixed(2)}</td>
+                      <td className="py-2 pr-3 text-right font-mono text-primary">{sig.ir.toFixed(2)}</td>
                       <td className="py-2 pr-3 text-zinc-400">{DECAY_LABELS[sig.decay]}</td>
                       <td className="py-2 pr-3 text-zinc-400">{sig.universe}</td>
                       <td className="py-2 text-center">
@@ -584,7 +584,7 @@ export default function QuantResearchPage() {
                           className={cn(
                             "rounded-full w-6 h-6 flex items-center justify-center mx-auto transition-colors",
                             isSelected(sig)
-                              ? "bg-blue-500/20 text-blue-400 hover:bg-red-500/20 hover:text-red-400"
+                              ? "bg-primary/20 text-primary hover:bg-red-500/20 hover:text-red-400"
                               : "bg-zinc-800 text-zinc-500 hover:bg-zinc-700 hover:text-zinc-200"
                           )}
                         >
@@ -621,7 +621,7 @@ export default function QuantResearchPage() {
           <Card className="bg-zinc-900/60 border-zinc-800">
             <CardHeader className="pb-2">
               <CardTitle className="text-base flex items-center gap-2">
-                <TrendingUp className="h-4 w-4 text-purple-400" />
+                <TrendingUp className="h-4 w-4 text-primary" />
                 Signal Combination Framework
               </CardTitle>
               <p className="text-xs text-zinc-500">
@@ -644,8 +644,7 @@ export default function QuantResearchPage() {
                       className="flex items-center gap-1 bg-zinc-800 rounded-full px-2.5 py-1 text-xs text-zinc-200"
                     >
                       <span className={cn("w-2 h-2 rounded-full shrink-0", {
-                        "bg-blue-400": sig.category === "value",
-                        "bg-purple-400": sig.category === "momentum",
+                        "bg-primary": sig.category === "value" || sig.category === "momentum",
                         "bg-emerald-400": sig.category === "quality",
                         "bg-amber-400": sig.category === "sentiment",
                         "bg-rose-400": sig.category === "technical",
@@ -669,7 +668,7 @@ export default function QuantResearchPage() {
                       className={cn(
                         "px-2.5 py-1 rounded-full text-xs border transition-colors",
                         isSelected(sig)
-                          ? "bg-blue-500/20 border-blue-500/50 text-blue-300"
+                          ? "bg-primary/20 border-primary/50 text-primary"
                           : "bg-zinc-800/50 border-zinc-700 text-zinc-400 hover:border-zinc-500 hover:text-zinc-200"
                       )}
                     >
@@ -892,7 +891,7 @@ export default function QuantResearchPage() {
                     <div className="grid grid-cols-3 gap-2 text-xs">
                       <div>
                         <p className="text-zinc-500 text-xs">In-Sample R²</p>
-                        <p className="text-blue-400 font-mono font-semibold">{m.r2InSample.toFixed(2)}</p>
+                        <p className="text-primary font-mono font-semibold">{m.r2InSample.toFixed(2)}</p>
                       </div>
                       <div>
                         <p className="text-zinc-500 text-xs">OOS R²</p>
@@ -908,7 +907,7 @@ export default function QuantResearchPage() {
                       <div className="flex items-center gap-2">
                         <span className="text-xs text-zinc-500 w-20">In-sample</span>
                         <div className="flex-1 bg-zinc-700 rounded-full h-1.5 overflow-hidden">
-                          <div className="h-full rounded-full bg-blue-500" style={{ width: `${m.r2InSample * 100}%` }} />
+                          <div className="h-full rounded-full bg-primary" style={{ width: `${m.r2InSample * 100}%` }} />
                         </div>
                       </div>
                       <div className="flex items-center gap-2">

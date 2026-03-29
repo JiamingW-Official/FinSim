@@ -315,7 +315,7 @@ function OSSCalculator() {
     <Card className="bg-zinc-900 border-zinc-800">
       <CardHeader>
         <CardTitle className="text-sm text-zinc-300 flex items-center gap-2">
-          <Calculator className="w-4 h-4 text-blue-400" />
+          <Calculator className="w-4 h-4 text-primary" />
           Operational Self-Sufficiency (OSS) Calculator
         </CardTitle>
       </CardHeader>
@@ -540,7 +540,7 @@ function BorrowerDonut() {
               <span className="text-zinc-400">Women 68%</span>
             </div>
             <div className="flex items-center gap-1">
-              <div className="w-3 h-3 rounded-full bg-blue-500" />
+              <div className="w-3 h-3 rounded-full bg-primary" />
               <span className="text-zinc-400">Men 32%</span>
             </div>
           </div>
@@ -803,7 +803,7 @@ function GrameenFlowDiagram() {
             ))}
           </div>
           <div className="bg-zinc-800 rounded-lg p-4 space-y-2">
-            <p className="text-xs font-semibold text-blue-400 flex items-center gap-1">
+            <p className="text-xs font-semibold text-primary flex items-center gap-1">
               <Building className="w-3 h-3" /> Individual Lending
             </p>
             {[
@@ -815,7 +815,7 @@ function GrameenFlowDiagram() {
               "Higher risk of moral hazard",
             ].map((item) => (
               <div key={item} className="flex items-start gap-2 text-xs text-zinc-400">
-                <ArrowRight className="w-3 h-3 text-blue-500 mt-0.5 shrink-0" />
+                <ArrowRight className="w-3 h-3 text-primary mt-0.5 shrink-0" />
                 <span>{item}</span>
               </div>
             ))}
@@ -846,7 +846,7 @@ function InterestRateExplainer() {
       label: "Small Loan Sizes",
       detail: "Fixed origination costs are spread over tiny principal; 2% fixed cost on $200 = 1% APR just for paperwork.",
       icon: DollarSign,
-      color: "text-blue-400",
+      color: "text-primary",
     },
     {
       label: "Inflation & FX in Frontier Markets",
@@ -858,7 +858,7 @@ function InterestRateExplainer() {
       label: "Funding Cost of MFI Capital",
       detail: "MFIs borrow at 8–15%; must charge spread to cover cost of capital, provisions, and overhead.",
       icon: Percent,
-      color: "text-purple-400",
+      color: "text-primary",
     },
   ];
 
@@ -882,7 +882,7 @@ function InterestRateExplainer() {
         ))}
         <div className="bg-zinc-800 rounded-lg p-3 border border-zinc-700">
           <p className="text-xs text-zinc-300 font-semibold flex items-center gap-1">
-            <Info className="w-3 h-3 text-blue-400" />
+            <Info className="w-3 h-3 text-primary" />
             Controversy
           </p>
           <p className="text-xs text-zinc-400 mt-1">
@@ -943,7 +943,7 @@ export default function MicrofinancepagePage() {
       title: "Digital Lending Algorithms",
       desc: "ML models score borrowers using phone usage patterns, app data, and social graphs instead of credit bureau scores. Enables instant sub-$50 loans.",
       icon: Activity,
-      color: "text-blue-400",
+      color: "text-primary",
     },
     {
       title: "Agent Banking Networks",
@@ -955,7 +955,7 @@ export default function MicrofinancepagePage() {
       title: "Cross-Border Remittances",
       desc: "Mobile money slashes remittance fees from 7–10% to under 1%; workers sending money home can now do so instantly at near-zero cost.",
       icon: Globe,
-      color: "text-purple-400",
+      color: "text-primary",
     },
     {
       title: "CBDC for Financial Inclusion",
@@ -967,7 +967,7 @@ export default function MicrofinancepagePage() {
       title: "Fintech–MFI Partnerships",
       desc: "Fintechs (Tala, Branch, Kiva) originate loans digitally then sell portfolios to MFIs; separates technology from balance-sheet risk.",
       icon: Wifi,
-      color: "text-cyan-400",
+      color: "text-muted-foreground",
     },
   ];
 
@@ -1074,7 +1074,7 @@ export default function MicrofinancepagePage() {
             <Card className="bg-zinc-900 border-zinc-800">
               <CardHeader>
                 <CardTitle className="text-sm text-zinc-300 flex items-center gap-2">
-                  <Building className="w-4 h-4 text-blue-400" />
+                  <Building className="w-4 h-4 text-primary" />
                   MFI Types Comparison
                 </CardTitle>
               </CardHeader>
@@ -1115,7 +1115,7 @@ export default function MicrofinancepagePage() {
                           <td className="py-2 px-3 text-zinc-400">{mfi.clients}</td>
                           <td className="py-2 px-3">
                             {mfi.profitMotif ? (
-                              <Badge className="bg-blue-500/20 text-blue-400 border-blue-500/40 text-xs">
+                              <Badge className="bg-primary/20 text-primary border-primary/40 text-xs">
                                 Commercial
                               </Badge>
                             ) : (
@@ -1137,7 +1137,7 @@ export default function MicrofinancepagePage() {
             <Card className="bg-zinc-900 border-zinc-800">
               <CardHeader>
                 <CardTitle className="text-sm text-zinc-300 flex items-center gap-2">
-                  <BarChart3 className="w-4 h-4 text-purple-400" />
+                  <BarChart3 className="w-4 h-4 text-primary" />
                   Average Loan Size by Region (USD)
                 </CardTitle>
               </CardHeader>
@@ -1195,7 +1195,7 @@ export default function MicrofinancepagePage() {
                       onClick={() => setSelectedMFI(mfi)}
                       className={`px-3 py-1.5 rounded text-xs font-medium transition-colors ${
                         selectedMFI.name === mfi.name
-                          ? "bg-blue-600 text-white"
+                          ? "bg-primary text-white"
                           : "bg-zinc-800 text-zinc-400 hover:bg-zinc-700"
                       }`}
                     >
@@ -1310,7 +1310,7 @@ export default function MicrofinancepagePage() {
                         <tr
                           key={mfi.name}
                           className={`border-b border-zinc-800/50 cursor-pointer hover:bg-zinc-800/60 ${
-                            selectedMFI.name === mfi.name ? "bg-blue-900/20" : i % 2 === 0 ? "bg-zinc-900/40" : ""
+                            selectedMFI.name === mfi.name ? "bg-muted/40" : i % 2 === 0 ? "bg-zinc-900/40" : ""
                           }`}
                           onClick={() => setSelectedMFI(mfi)}
                         >
@@ -1334,7 +1334,7 @@ export default function MicrofinancepagePage() {
                           >
                             {mfi.oss}%
                           </td>
-                          <td className="py-2 px-2 font-mono text-blue-400">{mfi.yieldOnPortfolio}%</td>
+                          <td className="py-2 px-2 font-mono text-primary">{mfi.yieldOnPortfolio}%</td>
                           <td className="py-2 px-2 font-mono text-red-400">{mfi.costOfFunds}%</td>
                           <td className="py-2 px-2 font-mono text-amber-400">${mfi.costPerBorrower}</td>
                           <td className="py-2 px-2 font-mono text-green-400">
@@ -1365,13 +1365,13 @@ export default function MicrofinancepagePage() {
                       label: "OSS Benchmark",
                       value: "> 110%",
                       note: "Sustainable without subsidy",
-                      color: "text-blue-400",
+                      color: "text-primary",
                     },
                     {
                       label: "Cost/Borrower",
                       value: "< $60",
                       note: "Efficient for micro-lending",
-                      color: "text-purple-400",
+                      color: "text-primary",
                     },
                   ].map((b) => (
                     <div key={b.label} className="bg-zinc-800 rounded p-3">
@@ -1420,7 +1420,7 @@ export default function MicrofinancepagePage() {
             <Card className="bg-zinc-900 border-zinc-800">
               <CardHeader>
                 <CardTitle className="text-sm text-zinc-300 flex items-center gap-2">
-                  <Shield className="w-4 h-4 text-cyan-400" />
+                  <Shield className="w-4 h-4 text-muted-foreground" />
                   Social Performance Standards (SPTF / CERISE)
                 </CardTitle>
               </CardHeader>
@@ -1506,7 +1506,7 @@ export default function MicrofinancepagePage() {
             <Card className="bg-zinc-900 border-zinc-800">
               <CardHeader>
                 <CardTitle className="text-sm text-zinc-300 flex items-center gap-2">
-                  <BookOpen className="w-4 h-4 text-purple-400" />
+                  <BookOpen className="w-4 h-4 text-primary" />
                   Randomized Control Trial (RCT) Evidence Summary
                 </CardTitle>
               </CardHeader>
@@ -1630,9 +1630,9 @@ export default function MicrofinancepagePage() {
                 <div className="mt-4 grid grid-cols-2 md:grid-cols-4 gap-3">
                   {[
                     { label: "Kenya M-Pesa Agents", value: "500,000+", color: "text-green-400" },
-                    { label: "Bangladesh bKash", value: "300,000+", color: "text-blue-400" },
+                    { label: "Bangladesh bKash", value: "300,000+", color: "text-primary" },
                     { label: "India Business Corr.", value: "1.2M+", color: "text-amber-400" },
-                    { label: "Africa Total Agents", value: "3.7M+", color: "text-purple-400" },
+                    { label: "Africa Total Agents", value: "3.7M+", color: "text-primary" },
                   ].map((stat) => (
                     <div key={stat.label} className="bg-zinc-800 rounded p-3 text-center">
                       <p className="text-xs text-zinc-500">{stat.label}</p>
@@ -1709,8 +1709,8 @@ export default function MicrofinancepagePage() {
                     ))}
                   </div>
                 </div>
-                <div className="mt-4 bg-blue-500/10 border border-blue-500/30 rounded-lg p-3">
-                  <p className="text-xs font-semibold text-blue-400">Live CBDC Inclusion Programs</p>
+                <div className="mt-4 bg-primary/10 border border-border rounded-lg p-3">
+                  <p className="text-xs font-semibold text-primary">Live CBDC Inclusion Programs</p>
                   <p className="text-xs text-zinc-400 mt-1">
                     Nigeria eNaira (2021): 13M wallets registered, though adoption lagged. Bahamas Sand Dollar: offline card enables reaching remote Out Islands. India Digital Rupee pilot (2022–): RBI targeting financial inclusion via offline CBDC in UP and Bihar states. Most experts view tiered CBDC (small wallets = no KYC) as the best path to serving the unbanked.
                   </p>

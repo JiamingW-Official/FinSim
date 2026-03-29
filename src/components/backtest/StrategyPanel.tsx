@@ -43,7 +43,7 @@ const PRESET_ICONS: Record<BarGenPreset, React.ReactNode> = {
 const CATEGORY_COLORS: Record<string, string> = {
   momentum: "text-amber-400 bg-amber-500/10 border-amber-500/20",
   trend: "text-emerald-400 bg-emerald-500/10 border-emerald-500/20",
-  "mean-reversion": "text-cyan-400 bg-cyan-500/10 border-cyan-500/20",
+  "mean-reversion": "text-muted-foreground bg-cyan-500/10 border-cyan-500/20",
   volatility: "text-rose-400 bg-rose-500/10 border-rose-500/20",
 };
 
@@ -626,7 +626,7 @@ function ExitSlider({
     rose: { accent: "accent-rose-500", text: "text-rose-400", toggle: "bg-rose-500" },
     emerald: { accent: "accent-emerald-500", text: "text-emerald-400", toggle: "bg-emerald-500" },
     amber: { accent: "accent-amber-500", text: "text-amber-400", toggle: "bg-amber-500" },
-    cyan: { accent: "accent-cyan-500", text: "text-cyan-400", toggle: "bg-cyan-500" },
+    cyan: { accent: "accent-cyan-500", text: "text-muted-foreground", toggle: "bg-cyan-500" },
     violet: { accent: "accent-orange-500", text: "text-orange-400", toggle: "bg-orange-500" },
   };
   const c = colorMap[color] ?? colorMap.violet;

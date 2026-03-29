@@ -226,7 +226,7 @@ export default function OptimizationPanel({ savedStrategies }: Props) {
 
         <button
           onClick={handleRun}
-          className="flex items-center gap-2 rounded-lg bg-blue-600 px-4 py-2 text-xs font-semibold text-white transition-colors hover:bg-blue-500"
+          className="flex items-center gap-2 rounded-lg bg-primary px-4 py-2 text-xs font-semibold text-white transition-colors hover:bg-primary"
         >
           <Play className="h-3.5 w-3.5" />
           Run Grid Search ({p1Values.length} × {p2Values.length} = {p1Values.length * p2Values.length} combinations)
@@ -247,14 +247,14 @@ export default function OptimizationPanel({ savedStrategies }: Props) {
         <div className="space-y-3">
           {/* Best parameters callout */}
           {bestCell && (
-            <div className="rounded-lg border border-blue-500/20 bg-blue-500/5 px-4 py-2.5">
-              <div className="text-xs text-blue-400 font-semibold">Best Parameters Found</div>
+            <div className="rounded-lg border border-border bg-primary/5 px-4 py-2.5">
+              <div className="text-xs text-primary font-semibold">Best Parameters Found</div>
               <div className="mt-1 flex gap-4 text-xs">
                 <span className="text-zinc-300">
-                  {PARAM_CONFIGS[param1].label}: <span className="font-bold text-blue-300">{bestCell.p1}</span>
+                  {PARAM_CONFIGS[param1].label}: <span className="font-bold text-primary">{bestCell.p1}</span>
                 </span>
                 <span className="text-zinc-300">
-                  {PARAM_CONFIGS[param2].label}: <span className="font-bold text-blue-300">{bestCell.p2}</span>
+                  {PARAM_CONFIGS[param2].label}: <span className="font-bold text-primary">{bestCell.p2}</span>
                 </span>
                 <span className="text-zinc-300">
                   Sharpe: <span className="font-bold text-emerald-400">{bestCell.sharpe.toFixed(2)}</span>

@@ -21,7 +21,7 @@ const ARENA_ICONS: Record<string, React.ReactNode> = {
 
 const WEIGHT_COLORS: Record<string, string> = {
   pnl: "bg-emerald-500/40",
-  riskControl: "bg-blue-500/40",
+  riskControl: "bg-primary/40",
   efficiency: "bg-amber-500/40",
   speed: "bg-red-500/40",
 };

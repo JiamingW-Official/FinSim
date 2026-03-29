@@ -22,7 +22,7 @@ interface ChallengeResultsProps {
 const GRADE_CONFIG = {
   S: { color: "text-amber-400", bg: "bg-amber-400/10", border: "border-amber-400/30", label: "Outstanding!", glow: "", emoji: "🏆" },
   A: { color: "text-emerald-400", bg: "bg-emerald-400/10", border: "border-emerald-400/30", label: "Excellent!", glow: "", emoji: "⭐" },
-  B: { color: "text-blue-400", bg: "bg-blue-400/10", border: "border-blue-400/30", label: "Good job!", glow: "", emoji: "👍" },
+  B: { color: "text-primary", bg: "bg-primary/10", border: "border-border", label: "Good job!", glow: "", emoji: "👍" },
   C: { color: "text-muted-foreground", bg: "bg-muted/10", border: "border-border", label: "Keep practicing!", glow: "", emoji: "💪" },
 } as const;
 

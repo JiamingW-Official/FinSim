@@ -345,8 +345,8 @@ function BadgeChip({
   color: "blue" | "purple" | "indigo" | "amber" | "orange" | "green" | "red" | "zinc";
 }) {
   const colorMap: Record<string, string> = {
-    blue: "bg-blue-500/20 text-blue-300 border-blue-500/30",
-    purple: "bg-purple-500/20 text-purple-300 border-purple-500/30",
+    blue: "bg-primary/20 text-primary border-border",
+    purple: "bg-primary/20 text-primary border-border",
     indigo: "bg-indigo-500/20 text-indigo-300 border-indigo-500/30",
     amber: "bg-amber-500/20 text-amber-300 border-amber-500/30",
     orange: "bg-orange-500/20 text-orange-300 border-orange-500/30",
@@ -363,7 +363,7 @@ function BadgeChip({
 
 function InfoBox({ children }: { children: React.ReactNode }) {
   return (
-    <div className="flex gap-2 p-3 rounded-lg bg-blue-500/10 border border-blue-500/20 text-blue-300 text-sm">
+    <div className="flex gap-2 p-3 rounded-lg bg-primary/10 border border-border text-primary text-sm">
       <Info className="w-4 h-4 mt-0.5 shrink-0" />
       <div>{children}</div>
     </div>
@@ -385,24 +385,24 @@ function RegulatoryTab() {
   const [expanded, setExpanded] = useState<string | null>(null);
 
   const colorBorder: Record<string, string> = {
-    blue: "border-blue-500/40",
-    purple: "border-purple-500/40",
+    blue: "border-primary/40",
+    purple: "border-primary/40",
     indigo: "border-indigo-500/40",
     amber: "border-amber-500/40",
     orange: "border-orange-500/40",
   };
 
   const colorBg: Record<string, string> = {
-    blue: "bg-blue-500/10",
-    purple: "bg-purple-500/10",
+    blue: "bg-primary/10",
+    purple: "bg-primary/10",
     indigo: "bg-indigo-500/10",
     amber: "bg-amber-500/10",
     orange: "bg-orange-500/10",
   };
 
   const colorText: Record<string, string> = {
-    blue: "text-blue-300",
-    purple: "text-purple-300",
+    blue: "text-primary",
+    purple: "text-primary",
     indigo: "text-indigo-300",
     amber: "text-amber-300",
     orange: "text-orange-300",
@@ -413,7 +413,7 @@ function RegulatoryTab() {
       {/* JOBS Act History */}
       <div className="rounded-xl border border-zinc-800 bg-zinc-900/60 p-5">
         <div className="flex items-center gap-2 mb-3">
-          <BookOpen className="w-4 h-4 text-blue-400" />
+          <BookOpen className="w-4 h-4 text-primary" />
           <h3 className="text-sm font-semibold text-zinc-100">JOBS Act 2012 — Legislative History</h3>
         </div>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-3 text-xs text-zinc-400">
@@ -435,7 +435,7 @@ function RegulatoryTab() {
             },
           ].map((item) => (
             <div key={item.year} className="rounded-lg bg-zinc-800/60 p-3">
-              <div className="text-blue-400 font-medium mb-1">{item.year}</div>
+              <div className="text-primary font-medium mb-1">{item.year}</div>
               <div className="text-zinc-200 font-medium mb-1">{item.title}</div>
               <div className="leading-relaxed">{item.desc}</div>
             </div>
@@ -537,18 +537,18 @@ function RegulatoryTab() {
             </div>
             <div className="mt-2 text-zinc-500">Access: Reg D 506(b)/(c), all Reg CF/A+</div>
           </div>
-          <div className="rounded-lg bg-blue-500/5 border border-blue-500/20 p-4 space-y-2">
-            <div className="text-blue-400 font-semibold mb-2">Non-Accredited Investor</div>
+          <div className="rounded-lg bg-primary/5 border border-border p-4 space-y-2">
+            <div className="text-primary font-semibold mb-2">Non-Accredited Investor</div>
             <div className="flex items-start gap-2 text-zinc-400">
-              <Info className="w-3.5 h-3.5 text-blue-500 mt-0.5 shrink-0" />
+              <Info className="w-3.5 h-3.5 text-primary mt-0.5 shrink-0" />
               <span>Reg CF: Lesser of $2,500 or 5% of income/NW if both under $124K; 10% if higher; max $124K total/year</span>
             </div>
             <div className="flex items-start gap-2 text-zinc-400">
-              <Info className="w-3.5 h-3.5 text-blue-500 mt-0.5 shrink-0" />
+              <Info className="w-3.5 h-3.5 text-primary mt-0.5 shrink-0" />
               <span>Reg A+ Tier 1/2: 10% of greater of annual income or net worth per offering</span>
             </div>
             <div className="flex items-start gap-2 text-zinc-400">
-              <Info className="w-3.5 h-3.5 text-blue-500 mt-0.5 shrink-0" />
+              <Info className="w-3.5 h-3.5 text-primary mt-0.5 shrink-0" />
               <span>Reg D 506(b): Up to 35 sophisticated non-accredited investors</span>
             </div>
             <div className="flex items-start gap-2 text-zinc-400">
@@ -563,7 +563,7 @@ function RegulatoryTab() {
       {/* Blue Sky Laws */}
       <div className="rounded-xl border border-zinc-800 bg-zinc-900/60 p-5">
         <div className="flex items-center gap-2 mb-3">
-          <Globe className="w-4 h-4 text-purple-400" />
+          <Globe className="w-4 h-4 text-primary" />
           <h3 className="text-sm font-semibold text-zinc-100">State Blue Sky Laws</h3>
         </div>
         <div className="space-y-2 text-xs text-zinc-400">
@@ -590,13 +590,13 @@ function RegulatoryTab() {
             ].map((item) => (
               <div key={item.title} className={cn(
                 "rounded-lg p-3 border",
-                item.color === "blue" ? "bg-blue-500/5 border-blue-500/20" :
+                item.color === "blue" ? "bg-primary/5 border-border" :
                 item.color === "amber" ? "bg-amber-500/5 border-amber-500/20" :
                 "bg-green-500/5 border-green-500/20"
               )}>
                 <div className={cn(
                   "font-medium mb-1",
-                  item.color === "blue" ? "text-blue-300" :
+                  item.color === "blue" ? "text-primary" :
                   item.color === "amber" ? "text-amber-300" : "text-green-300"
                 )}>{item.title}</div>
                 <div className="leading-relaxed">{item.content}</div>
@@ -633,7 +633,7 @@ function PlatformTab() {
             className={cn(
               "rounded-xl border p-4 cursor-pointer transition-colors",
               selectedPlatform?.name === platform.name
-                ? "border-blue-500/60 bg-blue-500/10"
+                ? "border-primary/60 bg-primary/10"
                 : "border-zinc-800 bg-zinc-900/60 hover:border-zinc-700"
             )}
           >
@@ -670,7 +670,7 @@ function PlatformTab() {
                 <div className={cn(
                   "font-medium",
                   platform.dueDiligenceScore >= 9 ? "text-green-400" :
-                  platform.dueDiligenceScore >= 8 ? "text-blue-400" :
+                  platform.dueDiligenceScore >= 8 ? "text-primary" :
                   platform.dueDiligenceScore >= 7 ? "text-amber-400" : "text-red-400"
                 )}>
                   {platform.dueDiligenceScore}/10
@@ -725,7 +725,7 @@ function PlatformTab() {
       {/* Deal Flow SVG Bar Chart */}
       <div className="rounded-xl border border-zinc-800 bg-zinc-900/60 p-5">
         <div className="flex items-center gap-2 mb-4">
-          <BarChart2 className="w-4 h-4 text-blue-400" />
+          <BarChart2 className="w-4 h-4 text-primary" />
           <h3 className="text-sm font-semibold text-zinc-100">US Reg CF Market Growth</h3>
         </div>
         <div className="overflow-x-auto">
@@ -854,7 +854,7 @@ function PlatformTab() {
                   className={cn(
                     "h-full rounded-full",
                     p.dueDiligenceScore >= 9 ? "bg-green-500" :
-                    p.dueDiligenceScore >= 8 ? "bg-blue-500" :
+                    p.dueDiligenceScore >= 8 ? "bg-primary" :
                     p.dueDiligenceScore >= 7 ? "bg-amber-500" : "bg-red-500"
                   )}
                   style={{ width: `${(p.dueDiligenceScore / 10) * 100}%` }}
@@ -969,7 +969,7 @@ function DealAnalysisTab() {
       {/* SAFE vs Convertible Note vs Equity */}
       <div className="rounded-xl border border-zinc-800 bg-zinc-900/60 p-5">
         <div className="flex items-center gap-2 mb-4">
-          <Layers className="w-4 h-4 text-purple-400" />
+          <Layers className="w-4 h-4 text-primary" />
           <h3 className="text-sm font-semibold text-zinc-100">SAFE vs Convertible Note vs Equity Round</h3>
         </div>
         <div className="overflow-x-auto">
@@ -996,8 +996,8 @@ function DealAnalysisTab() {
               ].map(([feat, safe, conv, equity]) => (
                 <tr key={feat} className="border-b border-zinc-800/60">
                   <td className="py-1.5 pr-4 text-zinc-400 font-medium">{feat}</td>
-                  <td className="py-1.5 pr-4 text-blue-300">{safe}</td>
-                  <td className="py-1.5 pr-4 text-purple-300">{conv}</td>
+                  <td className="py-1.5 pr-4 text-primary">{safe}</td>
+                  <td className="py-1.5 pr-4 text-primary">{conv}</td>
                   <td className="py-1.5 pr-4 text-green-300">{equity}</td>
                 </tr>
               ))}
@@ -1096,17 +1096,17 @@ function DealAnalysisTab() {
               <div className="text-zinc-400 font-medium mb-2">Conversion Price</div>
               <div className="flex justify-between">
                 <span className="text-zinc-500">Cap conversion price</span>
-                <span className="text-blue-300">${safeResults.capConversionPrice}/share</span>
+                <span className="text-primary">${safeResults.capConversionPrice}/share</span>
               </div>
               <div className="flex justify-between">
                 <span className="text-zinc-500">Discount conversion price</span>
-                <span className="text-purple-300">${safeResults.discountConversionPrice}/share</span>
+                <span className="text-primary">${safeResults.discountConversionPrice}/share</span>
               </div>
               <div className="flex justify-between border-t border-zinc-700 pt-2">
                 <span className="text-zinc-400 font-medium">Effective price (lower of)</span>
                 <span className={cn(
                   "font-bold",
-                  safeResults.usingCap ? "text-blue-400" : "text-purple-400"
+                  safeResults.usingCap ? "text-primary" : "text-primary"
                 )}>
                   ${safeResults.effectiveConversionPrice}/share
                   <span className="text-zinc-500 font-normal ml-1">
@@ -1257,7 +1257,7 @@ function PortfolioTab() {
         {/* Sector bar */}
         <div className="rounded-xl border border-zinc-800 bg-zinc-900/60 p-4">
           <div className="flex items-center gap-2 mb-3">
-            <PieChart className="w-4 h-4 text-blue-400" />
+            <PieChart className="w-4 h-4 text-primary" />
             <h3 className="text-sm font-semibold text-zinc-100">Portfolio by Sector</h3>
           </div>
           <div className="space-y-2">
@@ -1284,7 +1284,7 @@ function PortfolioTab() {
         {/* Success Rate */}
         <div className="rounded-xl border border-zinc-800 bg-zinc-900/60 p-4">
           <div className="flex items-center gap-2 mb-3">
-            <BarChart2 className="w-4 h-4 text-purple-400" />
+            <BarChart2 className="w-4 h-4 text-primary" />
             <h3 className="text-sm font-semibold text-zinc-100">Success Rate by Stage / Sector</h3>
           </div>
           <div className="space-y-3 text-xs">
@@ -1294,7 +1294,7 @@ function PortfolioTab() {
                 <div key={stage} className="flex items-center gap-2 mb-1.5">
                   <div className="w-20 text-zinc-400 shrink-0">{stage}</div>
                   <div className="flex-1 h-2 bg-zinc-800 rounded-full overflow-hidden">
-                    <div className="h-full bg-purple-500 rounded-full" style={{ width: `${pct}%` }} />
+                    <div className="h-full bg-primary rounded-full" style={{ width: `${pct}%` }} />
                   </div>
                   <div className="w-8 text-right text-zinc-400">{pct}%</div>
                 </div>
@@ -1306,7 +1306,7 @@ function PortfolioTab() {
                 <div key={sector} className="flex items-center gap-2 mb-1.5">
                   <div className="w-20 text-zinc-400 shrink-0">{sector}</div>
                   <div className="flex-1 h-2 bg-zinc-800 rounded-full overflow-hidden">
-                    <div className="h-full bg-blue-500 rounded-full" style={{ width: `${pct}%` }} />
+                    <div className="h-full bg-primary rounded-full" style={{ width: `${pct}%` }} />
                   </div>
                   <div className="w-8 text-right text-zinc-400">{pct}%</div>
                 </div>
@@ -1383,8 +1383,8 @@ function PortfolioTab() {
               key={market.name}
               className={cn(
                 "rounded-lg border p-3",
-                market.color === "blue" ? "bg-blue-500/5 border-blue-500/20" :
-                market.color === "purple" ? "bg-purple-500/5 border-purple-500/20" :
+                market.color === "blue" ? "bg-primary/5 border-border" :
+                market.color === "purple" ? "bg-primary/5 border-border" :
                 market.color === "green" ? "bg-green-500/5 border-green-500/20" :
                 market.color === "indigo" ? "bg-indigo-500/5 border-indigo-500/20" :
                 market.color === "amber" ? "bg-amber-500/5 border-amber-500/20" :
@@ -1393,8 +1393,8 @@ function PortfolioTab() {
             >
               <div className={cn(
                 "font-semibold mb-1",
-                market.color === "blue" ? "text-blue-300" :
-                market.color === "purple" ? "text-purple-300" :
+                market.color === "blue" ? "text-primary" :
+                market.color === "purple" ? "text-primary" :
                 market.color === "green" ? "text-green-300" :
                 market.color === "indigo" ? "text-indigo-300" :
                 market.color === "amber" ? "text-amber-300" : "text-orange-300"
@@ -1452,7 +1452,7 @@ function PortfolioTab() {
                   <td className={cn(
                     "py-1.5 pr-3 font-bold",
                     p.multiple >= 5 ? "text-green-400" :
-                    p.multiple >= 2 ? "text-blue-400" :
+                    p.multiple >= 2 ? "text-primary" :
                     p.multiple >= 1 ? "text-zinc-300" : "text-red-400"
                   )}>
                     {p.multiple.toFixed(1)}x
@@ -1519,8 +1519,8 @@ export default function CrowdfundingPage() {
       {/* Header */}
       <div className="mb-6">
         <div className="flex items-center gap-3 mb-2">
-          <div className="w-8 h-8 rounded-lg bg-blue-500/20 border border-blue-500/30 flex items-center justify-center">
-            <Users className="w-4 h-4 text-blue-400" />
+          <div className="w-8 h-8 rounded-lg bg-primary/20 border border-border flex items-center justify-center">
+            <Users className="w-4 h-4 text-primary" />
           </div>
           <h1 className="text-xl font-bold text-zinc-100">Equity Crowdfunding & Alternative Financing</h1>
         </div>

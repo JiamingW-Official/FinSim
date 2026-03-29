@@ -253,7 +253,7 @@ export default function RiskReturnScatter({ baseConfig }: Props) {
           <span className="inline-block h-2.5 w-2.5 rounded-full bg-rose-500/60" />Low Sharpe
         </span>
         <span className="flex items-center gap-1">
-          <span className="inline-block h-0.5 w-5 border-t border-dashed border-violet-500/60" />Efficient frontier
+          <span className="inline-block h-0.5 w-5 border-t border-dashed border-primary/60" />Efficient frontier
         </span>
         <span className="text-zinc-600">Bubble size = Sharpe ratio</span>
       </div>
@@ -282,7 +282,7 @@ export default function RiskReturnScatter({ baseConfig }: Props) {
                     <td className={`py-1.5 text-center font-mono text-xs font-semibold ${p.returnPct >= 0 ? "text-emerald-400" : "text-rose-400"}`}>
                       {p.returnPct > 0 ? "+" : ""}{p.returnPct.toFixed(1)}
                     </td>
-                    <td className="py-1.5 pr-3 text-center font-mono text-xs font-semibold text-violet-400">
+                    <td className="py-1.5 pr-3 text-center font-mono text-xs font-semibold text-primary">
                       {p.sharpe.toFixed(2)}
                       {i === 0 && <span className="ml-1 text-[8px] text-emerald-400">best</span>}
                     </td>

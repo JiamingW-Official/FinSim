@@ -1046,7 +1046,7 @@ export default function WealthPlatformPage() {
   }, [riskAnswers]);
 
   const riskLabel = useMemo(() => {
-    if (riskScore < 30) return { label: "Conservative", color: "text-blue-400" };
+    if (riskScore < 30) return { label: "Conservative", color: "text-primary" };
     if (riskScore < 50) return { label: "Moderate", color: "text-sky-400" };
     if (riskScore < 70) return { label: "Balanced", color: "text-emerald-400" };
     if (riskScore < 85) return { label: "Growth", color: "text-amber-400" };

@@ -296,7 +296,7 @@ function WealthAccumulationTab() {
             </div>
             <div className="bg-gray-800 rounded-xl p-4 text-center">
               <div className="text-xs text-gray-400 mb-1">Total Contributions</div>
-              <div className="text-xl font-bold text-blue-400">{fmtK(totalContribs)}</div>
+              <div className="text-xl font-bold text-primary">{fmtK(totalContribs)}</div>
             </div>
             <div className="bg-gray-800 rounded-xl p-4 text-center">
               <div className="text-xs text-gray-400 mb-1">Market Growth</div>
@@ -307,7 +307,7 @@ function WealthAccumulationTab() {
           {/* Stacked Area Chart */}
           <div className="bg-gray-800/60 rounded-xl p-3">
             <div className="flex gap-4 text-xs mb-2">
-              <span className="flex items-center gap-1"><span className="inline-block w-3 h-2 rounded bg-blue-500/70" /> Contributions</span>
+              <span className="flex items-center gap-1"><span className="inline-block w-3 h-2 rounded bg-primary/70" /> Contributions</span>
               <span className="flex items-center gap-1"><span className="inline-block w-3 h-2 rounded bg-emerald-500/70" /> Growth</span>
             </div>
             <StackedAreaChart contributions={dataPoints.contribs} growth={dataPoints.growth} years={years} height={160} />
@@ -542,7 +542,7 @@ function NetWorthTab() {
                   className={cn(
                     "px-2 py-0.5 rounded text-xs border transition-colors",
                     ageBracket === bracket
-                      ? "bg-blue-600 border-blue-500 text-white"
+                      ? "bg-primary border-primary text-white"
                       : "bg-gray-800 border-gray-700 text-gray-400 hover:border-gray-600"
                   )}
                 >
@@ -554,7 +554,7 @@ function NetWorthTab() {
 
           <div className="bg-gray-800 rounded-lg p-3 text-center">
             <div className="text-xs text-gray-400">Wealth Percentile</div>
-            <div className="text-lg font-bold text-blue-400">{percentileLabel}</div>
+            <div className="text-lg font-bold text-primary">{percentileLabel}</div>
             <div className="text-xs text-gray-500">among {ageBracket} age group</div>
           </div>
         </Card>
@@ -781,7 +781,7 @@ function PassiveIncomeTab() {
           {capitalNeeded.map((row) => (
             <div key={row.yield} className="bg-gray-800 rounded-lg p-3 text-center">
               <div className="text-xs text-gray-400">{row.yield}% yield</div>
-              <div className="text-sm font-bold text-blue-400 mt-1">{fmtK(row.capital)}</div>
+              <div className="text-sm font-bold text-primary mt-1">{fmtK(row.capital)}</div>
             </div>
           ))}
         </div>
@@ -1184,9 +1184,9 @@ function RiskInsuranceTab() {
       {/* Human Capital */}
       <Card className="p-5 bg-gray-900 border-gray-800">
         <div className="flex items-center gap-2 mb-3">
-          <TrendingUp size={14} className="text-blue-400" />
+          <TrendingUp size={14} className="text-primary" />
           <h3 className="text-sm font-semibold text-gray-200">Human Capital — Your Most Valuable Asset</h3>
-          <Badge className="bg-blue-900/50 text-blue-400 border-blue-800">{fmtK(humanCapital)}</Badge>
+          <Badge className="bg-muted/70 text-primary border-border">{fmtK(humanCapital)}</Badge>
         </div>
         <p className="text-xs text-gray-500 mb-3">Present value of all future earnings at 5% discount rate. This is what life &amp; disability insurance protects.</p>
         <svg viewBox={`0 0 ${hcW} ${hcH}`} className="w-full" style={{ height: hcH }}>
@@ -1234,8 +1234,8 @@ function RiskInsuranceTab() {
             { label: "Medium Deductible ($1,500)", premium: 1800, savings: 600, note: "Sweet spot for most homeowners" },
             { label: "High Deductible ($5,000)", premium: 1200, savings: 1200, note: "Best if you have emergency fund, insure catastrophe only" },
           ].map((opt, i) => (
-            <div key={i} className={cn("bg-gray-800 rounded-xl p-4 border", i === 1 ? "border-blue-700" : "border-gray-700")}>
-              {i === 1 && <Badge className="bg-blue-900/50 text-blue-400 border-blue-800 text-xs mb-2">Recommended</Badge>}
+            <div key={i} className={cn("bg-gray-800 rounded-xl p-4 border", i === 1 ? "border-border" : "border-gray-700")}>
+              {i === 1 && <Badge className="bg-muted/70 text-primary border-border text-xs mb-2">Recommended</Badge>}
               <div className="text-sm font-semibold text-gray-200">{opt.label}</div>
               <div className="text-lg font-bold text-white mt-1">{fmt(opt.premium)}/yr</div>
               {opt.savings > 0 && <div className="text-xs text-green-400">Save {fmt(opt.savings)}/yr</div>}
@@ -1413,7 +1413,7 @@ function FIRoadmapTab() {
             </div>
             <div className="bg-gray-800 rounded-xl p-4 text-center">
               <div className="text-xs text-gray-400">Years to FI</div>
-              <div className="text-2xl font-bold text-blue-400">{yearsToFI}</div>
+              <div className="text-2xl font-bold text-primary">{yearsToFI}</div>
               <div className="text-xs text-gray-500 mt-1">at {fmtPct(annualSavingsRate)} savings rate</div>
             </div>
           </div>
@@ -1424,7 +1424,7 @@ function FIRoadmapTab() {
               <span>{fmtK(currentSavings)} / {fmtK(fiNumber)}</span>
             </div>
             <div className="relative h-4 bg-gray-700 rounded-full overflow-hidden">
-              <div className="absolute inset-y-0 left-0 bg-blue-600 rounded-full transition-all duration-500"
+              <div className="absolute inset-y-0 left-0 bg-primary rounded-full transition-all duration-500"
                 style={{ width: `${progressPct}%` }} />
               <div className="absolute inset-0 flex items-center justify-center text-xs font-bold text-white">
                 {fmtPct(progressPct)}
@@ -1478,7 +1478,7 @@ function FIRoadmapTab() {
           <div className="grid grid-cols-2 gap-3">
             <div className="bg-gray-800 rounded-xl p-3 text-center">
               <div className="text-xs text-gray-400">Standard FIRE</div>
-              <div className="text-lg font-bold text-blue-400">{fmtK(fiNumber)}</div>
+              <div className="text-lg font-bold text-primary">{fmtK(fiNumber)}</div>
               <div className="text-xs text-gray-500">{yearsToFI} years</div>
             </div>
             <div className="bg-gray-800 rounded-xl p-3 text-center">
@@ -1488,7 +1488,7 @@ function FIRoadmapTab() {
             </div>
           </div>
 
-          <div className="bg-blue-900/20 border border-blue-800/40 rounded-lg p-3 text-xs text-blue-300">
+          <div className="bg-muted/40 border border-border rounded-lg p-3 text-xs text-primary">
             Part-time income of {fmt(baristaEarnings)}/yr saves{" "}
             <span className="font-bold">{fmtK(fiNumber - fiBaristaNumber)}</span> in required capital and reaches FI{" "}
             <span className="font-bold">{yearsToFI - yearsToBarista} years earlier</span>.

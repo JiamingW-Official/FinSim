@@ -780,7 +780,7 @@ function ShariahTab() {
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
         <div className="rounded-xl border border-gray-700 bg-gray-800/40 p-4">
           <div className="flex items-center gap-2 mb-2">
-            <Scale className="h-4 w-4 text-blue-400" />
+            <Scale className="h-4 w-4 text-primary" />
             <span className="font-semibold text-white text-sm">Shariah Board Role</span>
           </div>
           <ul className="space-y-1.5 text-xs text-gray-400">
@@ -793,7 +793,7 @@ function ShariahTab() {
         </div>
         <div className="rounded-xl border border-gray-700 bg-gray-800/40 p-4">
           <div className="flex items-center gap-2 mb-2">
-            <BookOpen className="h-4 w-4 text-purple-400" />
+            <BookOpen className="h-4 w-4 text-primary" />
             <span className="font-semibold text-white text-sm">AAOIFI Standards</span>
           </div>
           <ul className="space-y-1.5 text-xs text-gray-400">
@@ -920,8 +920,8 @@ function StructuresTab() {
             ].map((row) => (
               <div key={row.feat} className="grid grid-cols-3 gap-2 text-xs border-b border-gray-700/40 pb-2 last:border-0">
                 <span className="text-gray-500 font-medium">{row.feat}</span>
-                <span className="text-blue-300">{row.sov}</span>
-                <span className="text-purple-300">{row.corp}</span>
+                <span className="text-primary">{row.sov}</span>
+                <span className="text-primary">{row.corp}</span>
               </div>
             ))}
           </div>
@@ -944,9 +944,9 @@ function MarketTab() {
       {/* Stats row */}
       <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
         {[
-          { label: "Total Outstanding", value: "$816B", sub: "2024 estimate", color: "text-blue-400" },
+          { label: "Total Outstanding", value: "$816B", sub: "2024 estimate", color: "text-primary" },
           { label: "New Issuance 2024", value: "$280B", sub: "+12% YoY", color: "text-emerald-400" },
-          { label: "Avg Tenor", value: "7.4 yrs", sub: "Global weighted avg", color: "text-purple-400" },
+          { label: "Avg Tenor", value: "7.4 yrs", sub: "Global weighted avg", color: "text-primary" },
           { label: "ESG / Green Sukuk", value: "$38B", sub: "4.7% of total", color: "text-amber-400" },
         ].map((stat) => (
           <div key={stat.label} className="rounded-xl border border-gray-700 bg-gray-800/40 p-3 text-center">
@@ -983,11 +983,11 @@ function MarketTab() {
                   <span className="mr-2">{c.flag}</span>
                   <span className="text-gray-200">{c.country}</span>
                 </td>
-                <td className="px-3 py-2.5 text-right text-blue-300 font-medium">{c.outstanding}</td>
+                <td className="px-3 py-2.5 text-right text-primary font-medium">{c.outstanding}</td>
                 <td className="px-3 py-2.5 text-right">
                   <div className="flex items-center justify-end gap-2">
                     <div className="w-16 bg-gray-700 rounded-full h-1.5">
-                      <div className="bg-blue-500 h-1.5 rounded-full" style={{ width: `${c.share * 2.5}%` }} />
+                      <div className="bg-primary h-1.5 rounded-full" style={{ width: `${c.share * 2.5}%` }} />
                     </div>
                     <span className="text-gray-300 text-xs w-10 text-right">{c.share}%</span>
                   </div>
@@ -1007,10 +1007,10 @@ function MarketTab() {
           <p className="text-xs text-gray-500 uppercase tracking-wide mb-3">Currency Breakdown</p>
           <div className="space-y-2">
             {[
-              { label: "USD", pct: 42, color: "bg-blue-500" },
+              { label: "USD", pct: 42, color: "bg-primary" },
               { label: "MYR", pct: 28, color: "bg-emerald-500" },
               { label: "SAR", pct: 15, color: "bg-amber-500" },
-              { label: "IDR", pct: 8, color: "bg-purple-500" },
+              { label: "IDR", pct: 8, color: "bg-primary" },
               { label: "Other", pct: 7, color: "bg-gray-500" },
             ].map((item) => (
               <div key={item.label} className="flex items-center gap-2">
@@ -1028,10 +1028,10 @@ function MarketTab() {
           <div className="space-y-2">
             {[
               { label: "1–3 yr", pct: 22, color: "bg-cyan-500" },
-              { label: "3–5 yr", pct: 31, color: "bg-blue-500" },
+              { label: "3–5 yr", pct: 31, color: "bg-primary" },
               { label: "5–10 yr", pct: 34, color: "bg-indigo-500" },
-              { label: "10–30 yr", pct: 11, color: "bg-violet-500" },
-              { label: "30+ yr", pct: 2, color: "bg-purple-500" },
+              { label: "10–30 yr", pct: 11, color: "bg-primary" },
+              { label: "30+ yr", pct: 2, color: "bg-primary" },
             ].map((item) => (
               <div key={item.label} className="flex items-center gap-2">
                 <span className="text-xs text-gray-400 w-10">{item.label}</span>
@@ -1085,7 +1085,7 @@ function ComparisonTab() {
             <tr className="bg-gray-800 text-gray-400 text-xs uppercase tracking-wide">
               <th className="text-left px-4 py-3 w-1/3">Feature</th>
               <th className="px-3 py-3 text-center text-emerald-400">Sukuk</th>
-              <th className="px-3 py-3 text-center text-blue-400">Conventional Bond</th>
+              <th className="px-3 py-3 text-center text-primary">Conventional Bond</th>
               <th className="px-3 py-3 text-center w-16"></th>
             </tr>
           </thead>
@@ -1125,7 +1125,7 @@ function ComparisonTab() {
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
         <div className="rounded-xl border border-gray-700 bg-gray-800/40 p-4">
           <div className="flex items-center gap-2 mb-3">
-            <BarChart3 className="h-4 w-4 text-blue-400" />
+            <BarChart3 className="h-4 w-4 text-primary" />
             <span className="text-sm font-semibold text-white">Liquidity Differences</span>
           </div>
           <div className="space-y-2 text-xs text-gray-400">
@@ -1153,7 +1153,7 @@ function ComparisonTab() {
         </div>
         <div className="rounded-xl border border-gray-700 bg-gray-800/40 p-4">
           <div className="flex items-center gap-2 mb-3">
-            <ArrowRightLeft className="h-4 w-4 text-purple-400" />
+            <ArrowRightLeft className="h-4 w-4 text-primary" />
             <span className="text-sm font-semibold text-white">Crossover Investor Flow</span>
           </div>
           <div className="space-y-3 text-xs text-gray-400">
@@ -1174,10 +1174,10 @@ function ComparisonTab() {
       </div>
 
       {/* Info card */}
-      <div className="rounded-xl border border-blue-800/40 bg-blue-900/10 p-4 flex gap-3">
-        <Info className="h-4 w-4 text-blue-400 shrink-0 mt-0.5" />
+      <div className="rounded-xl border border-border bg-muted/30 p-4 flex gap-3">
+        <Info className="h-4 w-4 text-primary shrink-0 mt-0.5" />
         <div className="text-xs text-gray-400">
-          <span className="text-blue-300 font-medium">Key insight: </span>
+          <span className="text-primary font-medium">Key insight: </span>
           From a cash flow perspective, investment-grade ijara sukuk often look nearly identical to conventional bonds — predictable periodic payments and a bullet redemption. The critical distinction is structural: sukuk holders legally co-own an underlying asset, while bondholders are unsecured creditors of the issuer. This difference has material implications in default scenarios.
         </div>
       </div>
@@ -1210,8 +1210,8 @@ export default function SukukPage() {
           <div className="flex flex-wrap gap-2 mt-3">
             {[
               { label: "Riba-Free", color: "bg-emerald-900/40 text-emerald-300 border-emerald-700/40" },
-              { label: "Asset-Backed", color: "bg-blue-900/40 text-blue-300 border-blue-700/40" },
-              { label: "$816B Market", color: "bg-purple-900/40 text-purple-300 border-purple-700/40" },
+              { label: "Asset-Backed", color: "bg-muted/60 text-primary border-border" },
+              { label: "$816B Market", color: "bg-muted/60 text-primary border-border" },
               { label: "AAOIFI Regulated", color: "bg-amber-900/40 text-amber-300 border-amber-700/40" },
             ].map((tag) => (
               <span key={tag.label} className={cn("text-xs px-2.5 py-1 rounded-full border", tag.color)}>

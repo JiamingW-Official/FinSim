@@ -128,7 +128,7 @@ function PnlRaceBar({ yourPnl, oppPnl }: { yourPnl: number; oppPnl: number }) {
         </div>
         {/* Center label */}
         <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
-          <span className={cn("text-[11px] font-bold tabular-nums", youAhead ? "text-teal-400" : "text-zinc-500")}>
+          <span className={cn("text-[11px] font-bold tabular-nums", youAhead ? "text-emerald-400" : "text-zinc-500")}>
             {(yourPnl - oppPnl) >= 0 ? "+" : ""}{(yourPnl - oppPnl).toFixed(0)}
           </span>
         </div>
@@ -257,8 +257,8 @@ function ActiveDuel({ mode, opponent, matchSeed, onComplete }: ActiveDuelProps) 
       <div className="grid grid-cols-2 gap-2">
         {/* Your side */}
         <div className="rounded-lg border border-teal-500/20 bg-teal-500/5 p-3">
-          <div className="text-xs font-bold text-teal-400 mb-1">YOU</div>
-          <div className={cn("text-lg font-bold tabular-nums", yours.pnl >= 0 ? "text-teal-400" : "text-red-400")}>
+          <div className="text-xs font-bold text-emerald-400 mb-1">YOU</div>
+          <div className={cn("text-lg font-bold tabular-nums", yours.pnl >= 0 ? "text-emerald-400" : "text-red-400")}>
             {yours.pnl >= 0 ? "+" : ""}${yours.pnl.toFixed(0)}
           </div>
           <div className="text-xs text-zinc-500 mt-0.5">{yours.trades} trades</div>
@@ -292,7 +292,7 @@ function ActiveDuel({ mode, opponent, matchSeed, onComplete }: ActiveDuelProps) 
         <button
           type="button"
           onClick={handleBuy}
-          className="flex items-center justify-center gap-2 rounded-lg bg-teal-500/20 border border-teal-500/30 py-3 text-sm font-bold text-teal-400 transition-colors hover:bg-teal-500/30 active:scale-95"
+          className="flex items-center justify-center gap-2 rounded-lg bg-teal-500/20 border border-teal-500/30 py-3 text-sm font-bold text-emerald-400 transition-colors hover:bg-teal-500/30 active:scale-95"
         >
           <TrendingUp className="h-4 w-4" />
           Buy / Long
@@ -346,7 +346,7 @@ function DuelResults({ yourPnl, oppPnl, yourTrades, opponent, mode, eloChange, e
         initial={{ scale: 0, rotate: -10 }}
         animate={{ scale: 1, rotate: 0 }}
         transition={{ type: "spring", stiffness: 300, damping: 15 }}
-        className={cn("text-4xl font-bold tracking-tight", won ? "text-teal-400" : "text-red-400")}
+        className={cn("text-4xl font-bold tracking-tight", won ? "text-emerald-400" : "text-red-400")}
       >
         {won ? "VICTORY!" : "DEFEAT"}
       </motion.div>
@@ -357,7 +357,7 @@ function DuelResults({ yourPnl, oppPnl, yourTrades, opponent, mode, eloChange, e
       <div className="flex items-center gap-6">
         <div className="text-center">
           <div className="text-xs text-zinc-500 mb-1">You</div>
-          <div className={cn("text-2xl font-bold tabular-nums", yourPnl >= 0 ? "text-teal-400" : "text-red-400")}>
+          <div className={cn("text-2xl font-bold tabular-nums", yourPnl >= 0 ? "text-emerald-400" : "text-red-400")}>
             {yourPnl >= 0 ? "+" : ""}${yourPnl.toFixed(0)}
           </div>
           <div className="text-xs text-zinc-600 mt-0.5">{yourTrades} trades</div>
@@ -380,7 +380,7 @@ function DuelResults({ yourPnl, oppPnl, yourTrades, opponent, mode, eloChange, e
         <span className="text-xs text-zinc-500">ELO</span>
         <span className="text-sm font-bold text-zinc-400 tabular-nums">{eloBefore}</span>
         <ChevronRight className="h-3 w-3 text-zinc-600" />
-        <span className={cn("text-sm font-bold tabular-nums", eloChange >= 0 ? "text-teal-400" : "text-red-400")}>
+        <span className={cn("text-sm font-bold tabular-nums", eloChange >= 0 ? "text-emerald-400" : "text-red-400")}>
           {eloChange >= 0 ? "+" : ""}{eloChange}
         </span>
         <ChevronRight className="h-3 w-3 text-zinc-600" />
@@ -393,7 +393,7 @@ function DuelResults({ yourPnl, oppPnl, yourTrades, opponent, mode, eloChange, e
         <button
           type="button"
           onClick={onRematch}
-          className="flex items-center gap-2 rounded-lg bg-teal-500/20 border border-teal-500/30 px-5 py-2.5 text-sm font-bold text-teal-400 transition-colors hover:bg-teal-500/30"
+          className="flex items-center gap-2 rounded-lg bg-teal-500/20 border border-teal-500/30 px-5 py-2.5 text-sm font-bold text-emerald-400 transition-colors hover:bg-teal-500/30"
         >
           <RotateCcw className="h-3.5 w-3.5" />
           Rematch
@@ -495,7 +495,7 @@ export function DuelsTab() {
                         : "border-white/5 bg-white/[0.02] hover:bg-white/[0.05]",
                     )}
                   >
-                    <div className={cn("text-xs font-bold", selectedMode.id === m.id ? "text-teal-400" : "text-zinc-300")}>
+                    <div className={cn("text-xs font-bold", selectedMode.id === m.id ? "text-emerald-400" : "text-zinc-300")}>
                       {m.label}
                     </div>
                     <div className="text-xs text-zinc-500 mt-0.5">{m.duration}s</div>
@@ -552,7 +552,7 @@ export function DuelsTab() {
               animate={{ rotate: 360 }}
               transition={{ duration: 1.5, repeat: Infinity, ease: "linear" }}
             >
-              <Search className="h-10 w-10 text-teal-400" />
+              <Search className="h-10 w-10 text-emerald-400" />
             </motion.div>
             <div className="text-sm font-bold text-zinc-200">Finding opponent...</div>
             <div className="text-xs text-zinc-500 tabular-nums">{searchSeconds}s elapsed</div>

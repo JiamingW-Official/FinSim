@@ -868,7 +868,7 @@ function ChangeChip({ value }: { value: number }) {
 
 function InfoBadge({ text }: { text: string }) {
   return (
-    <span className="inline-flex items-center gap-1 text-xs text-blue-400 bg-blue-500/10 px-2 py-0.5 rounded-full">
+    <span className="inline-flex items-center gap-1 text-xs text-primary bg-primary/10 px-2 py-0.5 rounded-full">
       <Info size={10} />
       {text}
     </span>
@@ -892,7 +892,7 @@ function CycleCard({
       onClick={onSelect}
       className={`rounded-lg border p-4 cursor-pointer transition-colors ${
         selected
-          ? "border-blue-500/50 bg-blue-500/5"
+          ? "border-primary/50 bg-primary/5"
           : "border-white/10 bg-white/[0.02] hover:bg-white/[0.04]"
       }`}
     >
@@ -933,7 +933,7 @@ function CycleCard({
                 <ul className="space-y-1">
                   {cycle.drivers.map((d) => (
                     <li key={d} className="flex items-center gap-1.5 text-gray-300">
-                      <ArrowRight size={10} className="text-blue-400 shrink-0" />
+                      <ArrowRight size={10} className="text-primary shrink-0" />
                       {d}
                     </li>
                   ))}
@@ -1060,7 +1060,7 @@ export default function CommodityCyclesPage() {
                       <p className="text-xs text-gray-500">Identified Cycles</p>
                     </div>
                     <div>
-                      <p className="text-2xl font-bold text-blue-400">25yr</p>
+                      <p className="text-2xl font-bold text-primary">25yr</p>
                       <p className="text-xs text-gray-500">Avg Duration</p>
                     </div>
                     <div>
@@ -1231,7 +1231,7 @@ export default function CommodityCyclesPage() {
               {[
                 {
                   title: "LNG Market",
-                  icon: <Droplets size={14} className="text-blue-400" />,
+                  icon: <Droplets size={14} className="text-primary" />,
                   body: "Asian LNG spot prices trade at a large premium to US Henry Hub. Europe became a major LNG importer post-2022, tightening global balances. New US LNG export capacity is adding ~4 bcf/d through 2026.",
                   color: "blue",
                 },
@@ -1473,8 +1473,8 @@ export default function CommodityCyclesPage() {
                   </CardTitle>
                 </CardHeader>
                 <CardContent className="space-y-3">
-                  <div className="rounded-lg p-3 bg-blue-500/5 border border-blue-500/20">
-                    <p className="text-xs font-semibold text-blue-400 mb-1.5">
+                  <div className="rounded-lg p-3 bg-primary/5 border border-border">
+                    <p className="text-xs font-semibold text-primary mb-1.5">
                       La Nina (cool Pacific)
                     </p>
                     <div className="grid grid-cols-2 gap-2 text-xs">
@@ -1591,7 +1591,7 @@ export default function CommodityCyclesPage() {
             <Card className="bg-white/[0.03] border-white/10">
               <CardHeader className="pb-2">
                 <CardTitle className="text-sm font-semibold text-gray-300 flex items-center gap-2">
-                  <Globe size={14} className="text-blue-400" />
+                  <Globe size={14} className="text-primary" />
                   Northern Hemisphere Crop Calendar
                 </CardTitle>
               </CardHeader>
@@ -1734,7 +1734,7 @@ export default function CommodityCyclesPage() {
                             <span className="font-medium text-white">
                               {v.name}
                             </span>
-                            <span className="text-blue-400 ml-1.5 font-mono text-xs">
+                            <span className="text-primary ml-1.5 font-mono text-xs">
                               {v.ticker}
                             </span>
                           </td>
@@ -1742,11 +1742,11 @@ export default function CommodityCyclesPage() {
                             <Badge
                               className={`text-xs ${
                                 v.type === "ETF"
-                                  ? "bg-blue-500/15 text-blue-400 border-blue-500/25"
+                                  ? "bg-primary/15 text-primary border-border"
                                   : v.type === "Futures"
                                   ? "bg-amber-500/15 text-amber-400 border-amber-500/25"
                                   : v.type === "Equity"
-                                  ? "bg-purple-500/15 text-purple-400 border-purple-500/25"
+                                  ? "bg-primary/15 text-primary border-border"
                                   : "bg-emerald-500/15 text-emerald-400 border-emerald-500/25"
                               }`}
                             >
@@ -1796,11 +1796,11 @@ export default function CommodityCyclesPage() {
                       <Badge
                         className={`text-xs ${
                           v.type === "ETF"
-                            ? "bg-blue-500/15 text-blue-400 border-blue-500/25"
+                            ? "bg-primary/15 text-primary border-border"
                             : v.type === "Futures"
                             ? "bg-amber-500/15 text-amber-400 border-amber-500/25"
                             : v.type === "Equity"
-                            ? "bg-purple-500/15 text-purple-400 border-purple-500/25"
+                            ? "bg-primary/15 text-primary border-border"
                             : "bg-emerald-500/15 text-emerald-400 border-emerald-500/25"
                         }`}
                       >
@@ -1809,7 +1809,7 @@ export default function CommodityCyclesPage() {
                       <span className="font-semibold text-white text-sm">
                         {v.name}
                       </span>
-                      <span className="font-mono text-blue-400 text-xs">
+                      <span className="font-mono text-primary text-xs">
                         {v.ticker}
                       </span>
                     </div>

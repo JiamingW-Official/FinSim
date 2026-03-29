@@ -101,7 +101,7 @@ function fmtK(n: number): string {
 // ── Key metrics data ──────────────────────────────────────────────────────────
 
 const KEY_METRICS = [
-  { label: "30Y Mortgage Rate", value: "6.82%", change: "+0.12%", up: true, icon: Percent, color: "text-blue-400" },
+  { label: "30Y Mortgage Rate", value: "6.82%", change: "+0.12%", up: true, icon: Percent, color: "text-primary" },
   { label: "Home Price Index", value: "321.4", change: "+4.2%", up: true, icon: Home, color: "text-emerald-400" },
   { label: "Affordability Ratio", value: "7.1x", change: "-0.3x", up: false, icon: Calculator, color: "text-amber-400" },
   { label: "MBS Spread (bps)", value: "152 bps", change: "+8 bps", up: true, icon: Activity, color: "text-rose-400" },
@@ -527,8 +527,8 @@ export default function MortgageFinancePage() {
         className="flex flex-col gap-1"
       >
         <div className="flex items-center gap-3">
-          <div className="p-2 rounded-lg bg-blue-500/10 border border-blue-500/20">
-            <Home className="w-5 h-5 text-blue-400" />
+          <div className="p-2 rounded-lg bg-primary/10 border border-border">
+            <Home className="w-5 h-5 text-primary" />
           </div>
           <div>
             <h1 className="text-2xl font-bold tracking-tight">Mortgage &amp; Real Estate Finance</h1>
@@ -587,7 +587,7 @@ export default function MortgageFinancePage() {
               <Card className="border-border bg-card">
                 <CardHeader className="pb-2">
                   <CardTitle className="text-sm flex items-center gap-2">
-                    <BarChart3 className="w-4 h-4 text-blue-400" />
+                    <BarChart3 className="w-4 h-4 text-primary" />
                     30-Year Amortization Schedule
                   </CardTitle>
                   <p className="text-xs text-muted-foreground">
@@ -705,8 +705,8 @@ export default function MortgageFinancePage() {
 
                   {/* Results */}
                   <div className="border-t border-border pt-3 grid grid-cols-2 gap-2">
-                    <div className="bg-blue-500/10 border border-blue-500/20 rounded p-2">
-                      <div className="text-xs text-blue-300 font-medium mb-1">Buy</div>
+                    <div className="bg-primary/10 border border-border rounded p-2">
+                      <div className="text-xs text-primary font-medium mb-1">Buy</div>
                       <div className="text-xs text-muted-foreground">Monthly all-in</div>
                       <div className="font-bold text-sm">{fmtUSD(bvr.totalMonthlyBuy)}</div>
                       <div className="text-xs text-muted-foreground mt-1">Future home value</div>
@@ -723,7 +723,7 @@ export default function MortgageFinancePage() {
 
                   <div className={cn(
                     "rounded p-2 text-center text-sm font-medium",
-                    bvr.npvDiff > 0 ? "bg-blue-500/10 text-blue-300" : "bg-emerald-500/10 text-emerald-300"
+                    bvr.npvDiff > 0 ? "bg-primary/10 text-primary" : "bg-emerald-500/10 text-emerald-300"
                   )}>
                     {bvr.npvDiff > 0
                       ? `Buying favored by ${fmtK(Math.abs(bvr.npvDiff))} NPV over ${horizonYears}yr`
@@ -765,7 +765,7 @@ export default function MortgageFinancePage() {
               <Card className="border-border bg-card">
                 <CardHeader className="pb-2">
                   <CardTitle className="text-sm flex items-center gap-2">
-                    <Layers className="w-4 h-4 text-purple-400" />
+                    <Layers className="w-4 h-4 text-primary" />
                     MBS Securitization Structure
                   </CardTitle>
                   <p className="text-xs text-muted-foreground">
@@ -787,7 +787,7 @@ export default function MortgageFinancePage() {
               <Card className="border-border bg-card">
                 <CardHeader className="pb-2">
                   <CardTitle className="text-sm flex items-center gap-2">
-                    <Building2 className="w-4 h-4 text-blue-400" />
+                    <Building2 className="w-4 h-4 text-primary" />
                     Agency &amp; Non-Agency MBS
                   </CardTitle>
                 </CardHeader>
@@ -817,7 +817,7 @@ export default function MortgageFinancePage() {
                                   t.rating.startsWith("AAA")
                                     ? "text-emerald-400"
                                     : t.rating.startsWith("AA")
-                                    ? "text-blue-400"
+                                    ? "text-primary"
                                     : "text-amber-400"
                                 )}
                               >
@@ -826,7 +826,7 @@ export default function MortgageFinancePage() {
                             </td>
                             <td className="py-1.5 text-right">{t.coupon}</td>
                             <td className="py-1.5 text-right text-amber-400">{t.spread}</td>
-                            <td className="py-1.5 text-right text-blue-400">{t.oas}</td>
+                            <td className="py-1.5 text-right text-primary">{t.oas}</td>
                             <td className="py-1.5 text-right">{t.duration}</td>
                             <td className="py-1.5 text-right text-rose-400">{t.convexity}</td>
                           </tr>
@@ -856,8 +856,8 @@ export default function MortgageFinancePage() {
               <CardContent>
                 <div className="grid md:grid-cols-3 gap-3">
                   {[
-                    { name: "Fannie Mae (FNMA)", detail: "GSE — conventional conforming loans (up to $766,550). Largest agency MBS issuer. Implicit USG guarantee.", color: "text-blue-400" },
-                    { name: "Freddie Mac (FHLMC)", detail: "GSE — conventional conforming. Issues Participation Certificates (PCs). Competes with FNMA for conforming volume.", color: "text-purple-400" },
+                    { name: "Fannie Mae (FNMA)", detail: "GSE — conventional conforming loans (up to $766,550). Largest agency MBS issuer. Implicit USG guarantee.", color: "text-primary" },
+                    { name: "Freddie Mac (FHLMC)", detail: "GSE — conventional conforming. Issues Participation Certificates (PCs). Competes with FNMA for conforming volume.", color: "text-primary" },
                     { name: "Ginnie Mae (GNMA)", detail: "Full-faith USG guarantee. Pools FHA/VA/USDA loans only. Highest credit quality. Used by banks for liquidity.", color: "text-emerald-400" },
                   ].map((a) => (
                     <div key={a.name} className="bg-muted/30 rounded p-3">
@@ -876,7 +876,7 @@ export default function MortgageFinancePage() {
               <Card className="border-border bg-card">
                 <CardHeader className="pb-2">
                   <CardTitle className="text-sm flex items-center gap-2">
-                    <TrendingUp className="w-4 h-4 text-blue-400" />
+                    <TrendingUp className="w-4 h-4 text-primary" />
                     Price-to-Income Ratio 2000–2024
                   </CardTitle>
                   <p className="text-xs text-muted-foreground">
@@ -910,7 +910,7 @@ export default function MortgageFinancePage() {
                 </CardHeader>
                 <CardContent className="space-y-3">
                   {[
-                    { label: "Mortgage Rate Impact", current: "6.82%", note: "+1% rate ≈ +10% monthly payment. Rate doubles payment cost vs. 3% era.", icon: Percent, color: "text-blue-400" },
+                    { label: "Mortgage Rate Impact", current: "6.82%", note: "+1% rate ≈ +10% monthly payment. Rate doubles payment cost vs. 3% era.", icon: Percent, color: "text-primary" },
                     { label: "Inventory Shortage", current: "3.2 mo supply", note: "Historical norm is 5–6 months. Tight supply keeps prices elevated despite rate pressure.", icon: Building2, color: "text-amber-400" },
                     { label: "Wage Growth Lag", current: "+4.1% YoY", note: "Home prices rose 40%+ since 2020 while wages grew ~15%. Structural affordability gap remains.", icon: TrendingUp, color: "text-emerald-400" },
                     { label: "Rent vs. Buy Premium", current: fmtUSD(bvr.totalMonthlyBuy - bvr.totalMonthlyRent) + "/mo", note: "Extra monthly cost of owning vs. renting the same property at current prices.", icon: Home, color: "text-rose-400" },
@@ -947,7 +947,7 @@ export default function MortgageFinancePage() {
                     { prog: "Conventional 97", dn: "3% down", rate: "Market", note: "620+ credit. PMI until 80% LTV." },
                   ].map((p) => (
                     <div key={p.prog} className="bg-muted/30 rounded p-2 text-xs">
-                      <div className="font-semibold text-blue-400 mb-1">{p.prog}</div>
+                      <div className="font-semibold text-primary mb-1">{p.prog}</div>
                       <div className="flex justify-between text-muted-foreground">
                         <span>Down:</span><span className="text-foreground">{p.dn}</span>
                       </div>
@@ -1018,7 +1018,7 @@ export default function MortgageFinancePage() {
                     {
                       factor: "Burnout Effect",
                       level: "Moderate",
-                      color: "text-blue-400",
+                      color: "text-primary",
                       desc: "After prolonged low rates, eligible borrowers have already refinanced. Pool becomes insensitive to further rate declines.",
                     },
                     {
@@ -1030,7 +1030,7 @@ export default function MortgageFinancePage() {
                     {
                       factor: "Default & Liquidation",
                       level: "Variable",
-                      color: "text-purple-400",
+                      color: "text-primary",
                       desc: "Non-agency MBS exposed to credit default prepayments. Loss severity depends on LTV, home prices, guarantees.",
                     },
                   ].map((r) => (
@@ -1053,7 +1053,7 @@ export default function MortgageFinancePage() {
             <Card className="border-border bg-card">
               <CardHeader className="pb-2">
                 <CardTitle className="text-sm flex items-center gap-2">
-                  <RefreshCw className="w-4 h-4 text-blue-400" />
+                  <RefreshCw className="w-4 h-4 text-primary" />
                   Negative Convexity &amp; Extension Risk
                 </CardTitle>
               </CardHeader>
@@ -1080,8 +1080,8 @@ export default function MortgageFinancePage() {
                     </ul>
                   </div>
                 </div>
-                <div className="mt-3 bg-blue-500/10 border border-blue-500/20 rounded p-3 text-xs text-muted-foreground">
-                  <span className="font-semibold text-blue-300">OAS Hedging: </span>
+                <div className="mt-3 bg-primary/10 border border-border rounded p-3 text-xs text-muted-foreground">
+                  <span className="font-semibold text-primary">OAS Hedging: </span>
                   MBS portfolio managers use interest-rate swaps, swaptions, and Treasury futures to hedge duration and convexity. The OAS measures the spread remaining after hedging away the embedded prepayment option.
                 </div>
               </CardContent>

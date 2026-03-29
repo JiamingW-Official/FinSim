@@ -150,7 +150,7 @@ const CONTRACT_SPECS: ContractSpec[] = [
     notional: 265000,
     unit: "index points",
     price: 5300.0,
-    icon: <BarChart2 className="w-4 h-4 text-blue-400" />,
+    icon: <BarChart2 className="w-4 h-4 text-primary" />,
   },
   {
     name: "10Y T-Note",
@@ -163,7 +163,7 @@ const CONTRACT_SPECS: ContractSpec[] = [
     notional: 109500,
     unit: "% of par",
     price: 109.5,
-    icon: <Landmark className="w-4 h-4 text-teal-400" />,
+    icon: <Landmark className="w-4 h-4 text-emerald-400" />,
   },
 ];
 
@@ -240,7 +240,7 @@ const SPREAD_TYPES: SpreadType[] = [
     shortLeg: "CL Jun 26",
     currentValue: -0.34,
     unit: "$/barrel",
-    color: "text-blue-400",
+    color: "text-primary",
   },
   {
     name: "TED Spread",
@@ -249,7 +249,7 @@ const SPREAD_TYPES: SpreadType[] = [
     shortLeg: "Eurodollar (GE)",
     currentValue: 42,
     unit: "basis points",
-    color: "text-teal-400",
+    color: "text-emerald-400",
   },
 ];
 
@@ -329,8 +329,8 @@ interface COTEntry {
 }
 
 const COT_CRUDE: COTEntry[] = [
-  { category: "Managed Money", longPct: 68, shortPct: 32, net: 245000, color: "bg-blue-500" },
-  { category: "Swap Dealers", longPct: 28, shortPct: 72, net: -180000, color: "bg-purple-500" },
+  { category: "Managed Money", longPct: 68, shortPct: 32, net: 245000, color: "bg-primary" },
+  { category: "Swap Dealers", longPct: 28, shortPct: 72, net: -180000, color: "bg-primary" },
   { category: "Producers/Merchants", longPct: 22, shortPct: 78, net: -320000, color: "bg-orange-500" },
   { category: "Other Reportables", longPct: 55, shortPct: 45, net: 42000, color: "bg-teal-500" },
 ];
@@ -883,14 +883,14 @@ function FuturesBasicsTab() {
         {[
           {
             title: "Mark-to-Market",
-            icon: <Activity className="w-4 h-4 text-blue-400" />,
-            color: "border-blue-500/30",
+            icon: <Activity className="w-4 h-4 text-primary" />,
+            color: "border-border",
             text: "Futures positions are settled daily. Gains credited and losses debited from your margin account each night — unlike options which settle at expiration.",
           },
           {
             title: "Delivery vs Cash",
-            icon: <ArrowUpDown className="w-4 h-4 text-purple-400" />,
-            color: "border-purple-500/30",
+            icon: <ArrowUpDown className="w-4 h-4 text-primary" />,
+            color: "border-border",
             text: "Physical delivery (CL, ZC, ZN) requires actual commodity exchange. Cash-settled contracts (ES) pay the cash difference. 99% of traders close before delivery.",
           },
           {
@@ -1003,7 +1003,7 @@ function ContangoTab() {
                 <div className="grid grid-cols-3 gap-3 text-center text-xs">
                   <div>
                     <p className="text-muted-foreground">Spot Return</p>
-                    <p className="text-blue-400 font-bold">+{row.spotReturn}%</p>
+                    <p className="text-primary font-bold">+{row.spotReturn}%</p>
                   </div>
                   <div>
                     <p className="text-muted-foreground">Roll Drag/Yield</p>
@@ -1143,7 +1143,7 @@ function BasisTab() {
               </div>
               <div className="rounded p-3 bg-muted/40 border border-border">
                 <p className="text-muted-foreground text-xs">HO Output</p>
-                <p className="text-blue-400 font-bold text-lg">$2.74/gal</p>
+                <p className="text-primary font-bold text-lg">$2.74/gal</p>
                 <p className="text-muted-foreground text-xs">1 × 42 gal → $115.08</p>
               </div>
             </div>
@@ -1203,7 +1203,7 @@ function HedgingTab() {
         <Card className="border-border bg-card">
           <CardContent className="pt-4 pb-4">
             <div className="flex items-center gap-2 mb-2">
-              <Shield className="w-4 h-4 text-blue-400" />
+              <Shield className="w-4 h-4 text-primary" />
               <h3 className="font-semibold text-foreground text-sm">Long Hedge</h3>
             </div>
             <p className="text-xs text-muted-foreground">
@@ -1283,9 +1283,9 @@ function HedgingTab() {
                 </p>
                 <p className="text-xs text-muted-foreground mt-1">{futuresPnL > 0 ? "Futures offset the loss" : "Opportunity cost of hedge"}</p>
               </div>
-              <div className={`rounded p-3 border ${Math.abs(netPnL) < 5000 ? "border-blue-500/30 bg-blue-500/10" : netPnL > 0 ? "border-green-500/30 bg-green-500/10" : "border-amber-500/30 bg-amber-500/10"}`}>
+              <div className={`rounded p-3 border ${Math.abs(netPnL) < 5000 ? "border-border bg-primary/10" : netPnL > 0 ? "border-green-500/30 bg-green-500/10" : "border-amber-500/30 bg-amber-500/10"}`}>
                 <p className="text-xs text-muted-foreground">Net P&L (Residual)</p>
-                <p className={`text-lg font-bold ${Math.abs(netPnL) < 5000 ? "text-blue-400" : netPnL > 0 ? "text-green-400" : "text-amber-400"}`}>
+                <p className={`text-lg font-bold ${Math.abs(netPnL) < 5000 ? "text-primary" : netPnL > 0 ? "text-green-400" : "text-amber-400"}`}>
                   {netPnL >= 0 ? "+" : ""}${Math.abs(netPnL / 1000).toFixed(0)}K
                 </p>
                 <p className="text-xs text-muted-foreground mt-1">Basis risk residual</p>
@@ -1348,7 +1348,7 @@ function SpeculativeTab() {
     { key: "crude", label: "Crude Oil", color: "text-orange-400" },
     { key: "gold", label: "Gold", color: "text-yellow-400" },
     { key: "corn", label: "Corn", color: "text-green-400" },
-    { key: "natgas", label: "Nat Gas", color: "text-blue-400" },
+    { key: "natgas", label: "Nat Gas", color: "text-primary" },
   ];
 
   const avgReturn = SEASONAL_DATA.reduce((acc, d) => acc + d[selectedCommodity], 0) / 12;
@@ -1362,8 +1362,8 @@ function SpeculativeTab() {
         {[
           {
             title: "Trend Following (CTA Style)",
-            icon: <TrendingUp className="w-4 h-4 text-blue-400" />,
-            color: "border-blue-500/30",
+            icon: <TrendingUp className="w-4 h-4 text-primary" />,
+            color: "border-border",
             points: [
               "Enter long when 50-day MA crosses above 200-day MA",
               "Enter short when 50-day MA crosses below 200-day MA",
@@ -1374,8 +1374,8 @@ function SpeculativeTab() {
           },
           {
             title: "Momentum in Commodities",
-            icon: <Activity className="w-4 h-4 text-purple-400" />,
-            color: "border-purple-500/30",
+            icon: <Activity className="w-4 h-4 text-primary" />,
+            color: "border-border",
             points: [
               "12-1 momentum: past 12 months minus last month performance",
               "Long top quintile, short bottom quintile across 24 commodities",

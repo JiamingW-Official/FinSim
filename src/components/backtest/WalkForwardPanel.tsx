@@ -92,7 +92,7 @@ export default function WalkForwardPanel({ result, isRunning }: Props) {
         <TimelineBar folds={folds} totalBars={totalBars} />
         <div className="mt-2 flex items-center gap-4 text-[11px] text-zinc-500">
           <span className="flex items-center gap-1">
-            <span className="inline-block h-2.5 w-5 rounded-sm bg-blue-600/60" /> In-Sample
+            <span className="inline-block h-2.5 w-5 rounded-sm bg-primary/60" /> In-Sample
           </span>
           <span className="flex items-center gap-1">
             <span className="inline-block h-2.5 w-5 rounded-sm bg-teal-600/60" /> Out-of-Sample
@@ -182,14 +182,14 @@ function TimelineBar({ folds, totalBars }: { folds: WalkForwardFold[]; totalBars
         return (
           <div key={fold.foldIndex} className="flex h-full" style={{ width: `${isPct + oosPct}%` }}>
             <div
-              className="flex h-full items-center justify-center bg-blue-600/60 text-[8px] text-blue-100 overflow-hidden"
+              className="flex h-full items-center justify-center bg-primary/60 text-[8px] text-primary overflow-hidden"
               style={{ width: `${(isPct / (isPct + oosPct)) * 100}%` }}
               title={`Fold ${fold.foldIndex + 1} IS: ${fold.inSampleBars} bars`}
             >
               {isPct > 5 ? `F${fold.foldIndex + 1} IS` : ""}
             </div>
             <div
-              className="flex h-full items-center justify-center bg-teal-600/60 text-[8px] text-teal-100 overflow-hidden border-l border-black/20"
+              className="flex h-full items-center justify-center bg-teal-600/60 text-[8px] text-emerald-100 overflow-hidden border-l border-black/20"
               style={{ width: `${(oosPct / (isPct + oosPct)) * 100}%` }}
               title={`Fold ${fold.foldIndex + 1} OOS: ${fold.outOfSampleBars} bars`}
             >

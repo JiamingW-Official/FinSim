@@ -25,10 +25,10 @@ interface PrebuiltStrategy {
 type PageTab = "library" | "my-strategies" | "builder";
 
 const CATEGORY_META: Record<StrategyCategory, { label: string; color: string; bg: string }> = {
-  trend:           { label: "Trend",           color: "text-blue-400",   bg: "bg-blue-500/10" },
+  trend:           { label: "Trend",           color: "text-primary",   bg: "bg-primary/10" },
   "mean-reversion":{ label: "Mean Reversion",  color: "text-amber-400",  bg: "bg-amber-500/10" },
-  momentum:        { label: "Momentum",         color: "text-violet-400", bg: "bg-violet-500/10" },
-  breakout:        { label: "Breakout",         color: "text-teal-400",   bg: "bg-teal-500/10" },
+  momentum:        { label: "Momentum",         color: "text-primary", bg: "bg-primary/10" },
+  breakout:        { label: "Breakout",         color: "text-emerald-400",   bg: "bg-teal-500/10" },
 };
 
 // ── Pre-built strategy definitions ────────────────────────────────────────────
@@ -452,7 +452,7 @@ function StrategyCard({
     (resultSharpe ?? strategy.sharpe) >= 1.5
       ? "text-emerald-400"
       : (resultSharpe ?? strategy.sharpe) >= 1.0
-      ? "text-blue-400"
+      ? "text-primary"
       : "text-amber-400";
 
   return (
@@ -513,7 +513,7 @@ function StrategyCard({
           </div>
           <div className="h-1 w-full rounded-full bg-white/5 overflow-hidden">
             <div
-              className="h-full bg-blue-500 transition-all duration-100"
+              className="h-full bg-primary transition-all duration-100"
               style={{ width: `${progress}%` }}
             />
           </div>
@@ -542,7 +542,7 @@ function StrategyCard({
         </button>
         <button
           onClick={() => onClone(strategy)}
-          className="flex flex-1 items-center justify-center gap-1.5 rounded-lg bg-blue-600 px-3 py-1.5 text-xs font-semibold text-white transition-colors hover:bg-blue-500"
+          className="flex flex-1 items-center justify-center gap-1.5 rounded-lg bg-primary px-3 py-1.5 text-xs font-semibold text-white transition-colors hover:bg-primary"
         >
           <Copy className="h-3 w-3" />
           Clone &amp; Customize
@@ -577,14 +577,14 @@ function SavedStrategyRow({ strategy, onEdit, onBacktest, onDelete, onExport, se
   return (
     <div
       className={`flex items-center gap-3 rounded-lg border px-4 py-3 transition-colors ${
-        selected ? "border-blue-500/40 bg-blue-500/5" : "border-white/5 bg-white/[0.02] hover:border-white/10"
+        selected ? "border-primary/40 bg-primary/5" : "border-white/5 bg-white/[0.02] hover:border-white/10"
       }`}
     >
       {/* Select checkbox for compare */}
       <button
         onClick={onSelect}
         className={`h-4 w-4 shrink-0 rounded border transition-colors ${
-          selected ? "border-blue-500 bg-blue-500" : "border-white/20 bg-transparent"
+          selected ? "border-primary bg-primary" : "border-white/20 bg-transparent"
         }`}
         aria-label="Select for comparison"
       >
@@ -607,7 +607,7 @@ function SavedStrategyRow({ strategy, onEdit, onBacktest, onDelete, onExport, se
         {strategy.lastBacktestSharpe != null && (
           <div className="text-center">
             <div className="text-[11px] text-zinc-600">Sharpe</div>
-            <div className={`text-xs font-bold tabular-nums ${strategy.lastBacktestSharpe >= 1 ? "text-blue-400" : "text-amber-400"}`}>
+            <div className={`text-xs font-bold tabular-nums ${strategy.lastBacktestSharpe >= 1 ? "text-primary" : "text-amber-400"}`}>
               {strategy.lastBacktestSharpe.toFixed(2)}
             </div>
           </div>
@@ -627,7 +627,7 @@ function SavedStrategyRow({ strategy, onEdit, onBacktest, onDelete, onExport, se
         <button onClick={onEdit} className="rounded p-1.5 text-zinc-600 hover:bg-white/5 hover:text-zinc-300 transition-colors" title="Edit">
           <Edit2 className="h-3.5 w-3.5" />
         </button>
-        <button onClick={onBacktest} className="rounded p-1.5 text-zinc-600 hover:bg-white/5 hover:text-blue-400 transition-colors" title="Backtest">
+        <button onClick={onBacktest} className="rounded p-1.5 text-zinc-600 hover:bg-white/5 hover:text-primary transition-colors" title="Backtest">
           <Play className="h-3.5 w-3.5" />
         </button>
         <button onClick={onExport} className="rounded p-1.5 text-zinc-600 hover:bg-white/5 hover:text-zinc-300 transition-colors" title="Export JSON">
@@ -678,7 +678,7 @@ function ComparePanel({ a, b, onClose }: { a: StoredStrategy; b: StoredStrategy;
     <div className="rounded-xl border border-white/10 bg-zinc-900 p-5 space-y-4">
       <div className="flex items-center justify-between">
         <div className="flex items-center gap-2">
-          <GitCompare className="h-4 w-4 text-violet-400" />
+          <GitCompare className="h-4 w-4 text-primary" />
           <span className="text-sm font-semibold text-zinc-200">Strategy Comparison</span>
         </div>
         <button onClick={onClose} className="text-zinc-600 hover:text-zinc-400 transition-colors">
@@ -688,11 +688,11 @@ function ComparePanel({ a, b, onClose }: { a: StoredStrategy; b: StoredStrategy;
 
       <div className="grid grid-cols-[1fr_auto_1fr] gap-4 text-center">
         <div className="rounded-lg border border-white/5 bg-white/[0.02] px-3 py-2">
-          <span className="text-xs font-semibold text-blue-400">{a.name}</span>
+          <span className="text-xs font-semibold text-primary">{a.name}</span>
         </div>
         <span className="flex items-center text-xs text-zinc-600">vs</span>
         <div className="rounded-lg border border-white/5 bg-white/[0.02] px-3 py-2">
-          <span className="text-xs font-semibold text-violet-400">{b.name}</span>
+          <span className="text-xs font-semibold text-primary">{b.name}</span>
         </div>
       </div>
 
@@ -825,8 +825,8 @@ export default function StrategiesPage() {
     <div className="flex h-full flex-col">
       {/* Header */}
       <div className="flex items-center gap-3 border-b border-white/5 bg-black/30 px-6 py-3">
-        <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-blue-500/15">
-          <BookMarked className="h-4 w-4 text-blue-400" />
+        <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-primary/15">
+          <BookMarked className="h-4 w-4 text-primary" />
         </div>
         <div>
           <h1 className="text-sm font-bold text-zinc-100">Strategy Library</h1>
@@ -846,7 +846,7 @@ export default function StrategiesPage() {
             onClick={() => setActiveTab(tab.id)}
             className={`flex items-center gap-2 px-5 py-2.5 text-xs font-medium transition-colors ${
               activeTab === tab.id
-                ? "border-b-2 border-blue-500 text-blue-300"
+                ? "border-b-2 border-primary text-primary"
                 : "text-zinc-500 hover:text-zinc-300"
             }`}
           >
@@ -916,9 +916,9 @@ export default function StrategiesPage() {
               <div className="mx-auto max-w-4xl space-y-4">
                 {/* Compare header */}
                 {selectedIds.length > 0 && (
-                  <div className="flex items-center gap-3 rounded-lg border border-violet-500/20 bg-violet-500/5 px-4 py-2.5">
-                    <GitCompare className="h-4 w-4 text-violet-400 shrink-0" />
-                    <span className="text-xs text-violet-300 flex-1">
+                  <div className="flex items-center gap-3 rounded-lg border border-border bg-primary/5 px-4 py-2.5">
+                    <GitCompare className="h-4 w-4 text-primary shrink-0" />
+                    <span className="text-xs text-primary flex-1">
                       {selectedIds.length === 1
                         ? "Select one more strategy to compare side-by-side"
                         : "2 strategies selected for comparison"}
@@ -926,7 +926,7 @@ export default function StrategiesPage() {
                     {selectedIds.length === 2 && (
                       <button
                         onClick={() => setShowCompare(true)}
-                        className="flex items-center gap-1.5 rounded-md bg-violet-600 px-3 py-1 text-xs font-medium text-white hover:bg-violet-500 transition-colors"
+                        className="flex items-center gap-1.5 rounded-md bg-primary px-3 py-1 text-xs font-medium text-white hover:bg-primary transition-colors"
                       >
                         <GitCompare className="h-3 w-3" />
                         Compare
@@ -960,7 +960,7 @@ export default function StrategiesPage() {
                     </p>
                     <button
                       onClick={() => setActiveTab("library")}
-                      className="mt-4 rounded-lg bg-blue-600 px-4 py-2 text-xs font-medium text-white hover:bg-blue-500 transition-colors"
+                      className="mt-4 rounded-lg bg-primary px-4 py-2 text-xs font-medium text-white hover:bg-primary transition-colors"
                     >
                       Browse Library
                     </button>
@@ -1090,10 +1090,10 @@ function StrategyBuilderWrapper({
     <div className="space-y-3">
       {/* Template notice */}
       {(cloneTemplate || editStrategy) && (
-        <div className="flex items-center justify-between rounded-lg border border-blue-500/20 bg-blue-500/5 px-4 py-2.5">
+        <div className="flex items-center justify-between rounded-lg border border-border bg-primary/5 px-4 py-2.5">
           <div className="flex items-center gap-2">
-            <Zap className="h-3.5 w-3.5 text-blue-400 shrink-0" />
-            <span className="text-xs text-blue-300">
+            <Zap className="h-3.5 w-3.5 text-primary shrink-0" />
+            <span className="text-xs text-primary">
               {editStrategy ? `Editing: ${editStrategy.name}` : `Cloned from: ${cloneTemplate?.name}`}
               {" — load it from the dropdown below"}
             </span>

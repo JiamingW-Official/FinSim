@@ -966,10 +966,10 @@ function DealStructuringTab() {
       <div className="bg-card border border-border rounded-xl p-5">
         <h3 className="text-sm font-semibold text-foreground mb-4">ECA-Covered Loan Pricing Formula</h3>
         <div className="flex flex-wrap items-center gap-2 mb-5 text-sm">
-          <div className="bg-blue-500/15 border border-blue-500/30 rounded-lg px-3 py-2 text-center">
+          <div className="bg-primary/15 border border-border rounded-lg px-3 py-2 text-center">
             <div className="text-xs text-muted-foreground">Base Rate</div>
-            <div className="font-semibold text-blue-400">CIRR / SOFR</div>
-            <div className="text-xs text-blue-400">{baseRate.toFixed(2)}%</div>
+            <div className="font-semibold text-primary">CIRR / SOFR</div>
+            <div className="text-xs text-primary">{baseRate.toFixed(2)}%</div>
           </div>
           <span className="text-muted-foreground font-bold text-lg">+</span>
           <div className="bg-amber-500/15 border border-amber-500/30 rounded-lg px-3 py-2 text-center">
@@ -978,10 +978,10 @@ function DealStructuringTab() {
             <div className="text-xs text-amber-400">{ecaPremium.toFixed(2)}%</div>
           </div>
           <span className="text-muted-foreground font-bold text-lg">+</span>
-          <div className="bg-purple-500/15 border border-purple-500/30 rounded-lg px-3 py-2 text-center">
+          <div className="bg-primary/15 border border-border rounded-lg px-3 py-2 text-center">
             <div className="text-xs text-muted-foreground">Bank Margin</div>
-            <div className="font-semibold text-purple-400">Credit spread</div>
-            <div className="text-xs text-purple-400">{bankMargin.toFixed(2)}%</div>
+            <div className="font-semibold text-primary">Credit spread</div>
+            <div className="text-xs text-primary">{bankMargin.toFixed(2)}%</div>
           </div>
           <span className="text-muted-foreground font-bold text-lg">=</span>
           <div className="bg-emerald-500/15 border border-emerald-500/30 rounded-lg px-3 py-2 text-center">

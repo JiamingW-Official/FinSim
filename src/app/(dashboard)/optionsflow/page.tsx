@@ -461,8 +461,8 @@ export default function OptionsFlowPage() {
           className="space-y-1"
         >
           <div className="flex items-center gap-3">
-            <div className="p-2 rounded-lg bg-violet-500/10 border border-violet-500/20">
-              <Eye className="w-5 h-5 text-violet-400" />
+            <div className="p-2 rounded-lg bg-primary/10 border border-border">
+              <Eye className="w-5 h-5 text-primary" />
             </div>
             <div>
               <h1 className="text-2xl font-bold tracking-tight">
@@ -487,9 +487,9 @@ export default function OptionsFlowPage() {
               label: "Total Premium Traded",
               value: `$${totalPremium}M`,
               icon: <DollarSign className="w-4 h-4" />,
-              color: "text-violet-400",
-              bg: "bg-violet-500/10",
-              border: "border-violet-500/20",
+              color: "text-primary",
+              bg: "bg-primary/10",
+              border: "border-border",
               sub: "today's flow",
             },
             {
@@ -631,7 +631,7 @@ export default function OptionsFlowPage() {
                             </td>
                             <td className="px-4 py-2.5 text-right font-mono text-xs">${trade.strike}</td>
                             <td className="px-4 py-2.5 text-xs text-muted-foreground font-mono">{trade.expiry}</td>
-                            <td className="px-4 py-2.5 text-right font-semibold text-violet-400 font-mono text-xs">
+                            <td className="px-4 py-2.5 text-right font-semibold text-primary font-mono text-xs">
                               ${trade.premium}M
                             </td>
                             <td className="px-4 py-2.5 text-right text-xs font-mono">
@@ -658,10 +658,10 @@ export default function OptionsFlowPage() {
               </Card>
 
               {/* Info note */}
-              <div className="flex items-start gap-2 p-3 rounded-lg bg-violet-500/5 border border-violet-500/20 text-xs text-muted-foreground">
-                <Info className="w-3.5 h-3.5 text-violet-400 mt-0.5 flex-shrink-0" />
+              <div className="flex items-start gap-2 p-3 rounded-lg bg-primary/5 border border-border text-xs text-muted-foreground">
+                <Info className="w-3.5 h-3.5 text-primary mt-0.5 flex-shrink-0" />
                 <span>
-                  <strong className="text-violet-400">Unusual activity</strong> is flagged when a trade has contract volume significantly above open interest or when premium size is outsized relative to historical norms for that ticker. This may indicate informed institutional positioning.
+                  <strong className="text-primary">Unusual activity</strong> is flagged when a trade has contract volume significantly above open interest or when premium size is outsized relative to historical norms for that ticker. This may indicate informed institutional positioning.
                 </span>
               </div>
             </TabsContent>
@@ -753,7 +753,7 @@ export default function OptionsFlowPage() {
                 {[
                   { label: "Avg Block Size", value: "185K shares", color: "text-sky-400" },
                   { label: "Net Dark Flow", value: "Buy-heavy", color: "text-emerald-400" },
-                  { label: "Largest Print", value: `${(+darkPoolPrints.reduce((a, b) => a.size > b.size ? a : b).size / 1000).toFixed(0)}K shares`, color: "text-violet-400" },
+                  { label: "Largest Print", value: `${(+darkPoolPrints.reduce((a, b) => a.size > b.size ? a : b).size / 1000).toFixed(0)}K shares`, color: "text-primary" },
                 ].map((stat) => (
                   <Card key={stat.label} className="border-border bg-card">
                     <CardContent className="pt-3 pb-3">
@@ -922,7 +922,7 @@ export default function OptionsFlowPage() {
               <Card className="border-border bg-card">
                 <CardHeader className="pb-2 pt-4">
                   <CardTitle className="text-sm text-foreground flex items-center gap-2">
-                    <Layers className="w-4 h-4 text-violet-400" />
+                    <Layers className="w-4 h-4 text-primary" />
                     Sector Options Flow Heatmap
                   </CardTitle>
                 </CardHeader>

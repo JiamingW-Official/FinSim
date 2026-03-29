@@ -383,7 +383,7 @@ function ProviderComparisonTable() {
                   <span className="text-green-400 font-semibold">{p.eWeight}%</span>
                 </td>
                 <td className="px-4 py-3">
-                  <span className="text-blue-400 font-semibold">{p.sWeight}%</span>
+                  <span className="text-primary font-semibold">{p.sWeight}%</span>
                 </td>
                 <td className="px-4 py-3">
                   <span className="text-amber-400 font-semibold">{p.gWeight}%</span>
@@ -432,7 +432,7 @@ function ProviderCorrelationScatter() {
     <Card className="bg-zinc-900/60 border-white/10">
       <CardHeader className="pb-2">
         <CardTitle className="text-base text-white flex items-center gap-2">
-          <BarChart2 className="w-4 h-4 text-blue-400" />
+          <BarChart2 className="w-4 h-4 text-primary" />
           Provider Rating Disagreement (Avg Correlation: 0.61)
         </CardTitle>
         <p className="text-xs text-zinc-500">
@@ -584,7 +584,7 @@ function ESGWeightBarChart() {
         </div>
         <div className="flex gap-4 mt-4 text-xs">
           <span className="flex items-center gap-1.5"><span className="w-3 h-3 rounded-sm bg-emerald-500" />Environmental</span>
-          <span className="flex items-center gap-1.5"><span className="w-3 h-3 rounded-sm bg-blue-500" />Social</span>
+          <span className="flex items-center gap-1.5"><span className="w-3 h-3 rounded-sm bg-primary" />Social</span>
           <span className="flex items-center gap-1.5"><span className="w-3 h-3 rounded-sm bg-amber-500" />Governance</span>
         </div>
       </CardContent>
@@ -709,8 +709,8 @@ function DoubleMaterialityCard() {
       </CardHeader>
       <CardContent>
         <div className="flex gap-4">
-          <div className="flex-1 rounded-lg bg-blue-500/10 border border-blue-500/30 p-3">
-            <div className="text-xs font-bold text-blue-300 mb-1">Financial Materiality</div>
+          <div className="flex-1 rounded-lg bg-primary/10 border border-border p-3">
+            <div className="text-xs font-bold text-primary mb-1">Financial Materiality</div>
             <p className="text-xs text-zinc-400">
               How sustainability risks & opportunities affect the company's financial position,
               performance, cash flows, and enterprise value. Used by TCFD, SASB, ISSB.
@@ -731,7 +731,7 @@ function DoubleMaterialityCard() {
         <div className="mt-2 grid grid-cols-3 gap-2 text-xs">
           {[
             { label: "SFDR Art. 6", desc: "No ESG integration claim", color: "bg-zinc-700 text-zinc-300" },
-            { label: "SFDR Art. 8", desc: "Promotes E/S characteristics", color: "bg-blue-500/20 text-blue-300" },
+            { label: "SFDR Art. 8", desc: "Promotes E/S characteristics", color: "bg-primary/20 text-primary" },
             { label: "SFDR Art. 9", desc: "Sustainable investment objective", color: "bg-emerald-500/20 text-emerald-300" },
           ].map((item) => (
             <div key={item.label} className={`rounded p-2 ${item.color} border border-white/10`}>
@@ -935,8 +935,8 @@ function ImpactVsESGWashing() {
       </CardHeader>
       <CardContent>
         <div className="grid grid-cols-2 gap-3">
-          <div className="rounded-lg bg-purple-500/10 border border-purple-500/30 p-3">
-            <div className="text-xs font-bold text-purple-300 mb-2">ESG Washing</div>
+          <div className="rounded-lg bg-primary/10 border border-border p-3">
+            <div className="text-xs font-bold text-primary mb-2">ESG Washing</div>
             <p className="text-xs text-zinc-400 mb-2">
               Overstating the integration of E/S/G factors in investment process or company operations.
             </p>
@@ -1019,7 +1019,7 @@ function SectorMaterialityMatrix() {
     <Card className="bg-zinc-900/60 border-white/10">
       <CardHeader className="pb-2">
         <CardTitle className="text-base text-white flex items-center gap-2">
-          <BarChart2 className="w-4 h-4 text-blue-400" />
+          <BarChart2 className="w-4 h-4 text-primary" />
           ESG Materiality by Sector (SASB Matrix)
         </CardTitle>
       </CardHeader>
@@ -1076,7 +1076,7 @@ function PRIGrowthChart() {
     <Card className="bg-zinc-900/60 border-white/10">
       <CardHeader className="pb-2">
         <CardTitle className="text-base text-white flex items-center gap-2">
-          <Globe className="w-4 h-4 text-blue-400" />
+          <Globe className="w-4 h-4 text-primary" />
           UN PRI Signatory Growth (2006–2024)
         </CardTitle>
         <p className="text-xs text-zinc-500">100 signatories / $6.5T AUM → 7,000 signatories / $120T AUM</p>
@@ -1135,7 +1135,7 @@ function ActiveOwnershipCard() {
     <Card className="bg-zinc-900/60 border-white/10">
       <CardHeader className="pb-2">
         <CardTitle className="text-base text-white flex items-center gap-2">
-          <Users className="w-4 h-4 text-blue-400" />
+          <Users className="w-4 h-4 text-primary" />
           Active Ownership: Engagement & Proxy Voting
         </CardTitle>
       </CardHeader>
@@ -1157,7 +1157,7 @@ function ActiveOwnershipCard() {
             <span className="text-zinc-400"><span className="text-white font-medium">Engagement</span> — direct dialogue with company management; climate commitments, diversity targets, executive pay</span>
           </div>
           <div className="flex gap-2 items-start">
-            <CheckCircle className="w-3.5 h-3.5 text-blue-400 shrink-0 mt-0.5" />
+            <CheckCircle className="w-3.5 h-3.5 text-primary shrink-0 mt-0.5" />
             <span className="text-zinc-400"><span className="text-white font-medium">Proxy Voting</span> — shareholder resolutions at AGMs; co-filing with activist groups; withhold votes on directors</span>
           </div>
           <div className="flex gap-2 items-start">
@@ -1197,7 +1197,7 @@ export default function ESGDataPage() {
         </div>
         <div className="flex flex-wrap gap-2 mt-3">
           {[
-            { icon: <BarChart2 className="w-3 h-3" />, label: "6 Major Providers", color: "text-blue-400" },
+            { icon: <BarChart2 className="w-3 h-3" />, label: "6 Major Providers", color: "text-primary" },
             { icon: <FileText className="w-3 h-3" />, label: "5 Disclosure Frameworks", color: "text-amber-400" },
             { icon: <Shield className="w-3 h-3" />, label: "8 Greenwashing Cases", color: "text-red-400" },
             { icon: <Globe className="w-3 h-3" />, label: "$120T PRI AUM", color: "text-emerald-400" },
@@ -1254,7 +1254,7 @@ export default function ESGDataPage() {
             <Card className="bg-zinc-900/60 border-white/10">
               <CardHeader className="pb-2">
                 <CardTitle className="text-sm text-white flex items-center gap-2">
-                  <Info className="w-4 h-4 text-blue-400" />
+                  <Info className="w-4 h-4 text-primary" />
                   Rating Revision Frequency & Lag
                 </CardTitle>
               </CardHeader>
@@ -1388,8 +1388,8 @@ export default function ESGDataPage() {
                 <CardTitle className="text-sm text-white">Assurance Requirements</CardTitle>
               </CardHeader>
               <CardContent className="space-y-3 text-xs">
-                <div className="rounded-lg bg-blue-500/10 border border-blue-500/30 p-3">
-                  <div className="font-bold text-blue-300 mb-1">Limited Assurance</div>
+                <div className="rounded-lg bg-primary/10 border border-border p-3">
+                  <div className="font-bold text-primary mb-1">Limited Assurance</div>
                   <p className="text-zinc-400">Negative assurance — nothing came to attention indicating material error. Lower cost; required initially under CSRD (2025–2027).</p>
                 </div>
                 <div className="rounded-lg bg-emerald-500/10 border border-emerald-500/30 p-3">
@@ -1425,13 +1425,13 @@ export default function ESGDataPage() {
             <Card className="bg-zinc-900/60 border-white/10">
               <CardHeader className="pb-2">
                 <CardTitle className="text-sm text-white flex items-center gap-2">
-                  <Shield className="w-4 h-4 text-blue-400" />
+                  <Shield className="w-4 h-4 text-primary" />
                   SEC ESG Fund Naming Rules (2023)
                 </CardTitle>
               </CardHeader>
               <CardContent className="text-xs space-y-2">
-                <div className="rounded bg-blue-500/10 border border-blue-500/30 p-2">
-                  <span className="font-bold text-blue-300">80% Rule:</span>
+                <div className="rounded bg-primary/10 border border-border p-2">
+                  <span className="font-bold text-primary">80% Rule:</span>
                   <span className="text-zinc-400 ml-1">Funds must invest ≥80% of assets in instruments consistent with the fund name (ESG, sustainable, green, climate, etc.)</span>
                 </div>
                 <div className="space-y-1.5">
@@ -1443,7 +1443,7 @@ export default function ESGDataPage() {
                     "Annual fund name review against holdings required",
                   ].map((rule) => (
                     <div key={rule} className="flex gap-2">
-                      <CheckCircle className="w-3 h-3 text-blue-400 shrink-0 mt-0.5" />
+                      <CheckCircle className="w-3 h-3 text-primary shrink-0 mt-0.5" />
                       <span className="text-zinc-400">{rule}</span>
                     </div>
                   ))}
@@ -1523,7 +1523,7 @@ export default function ESGDataPage() {
                     "2022 energy shock: High-ESG underperformed by ~5% due to energy exclusions",
                   ].map((pt) => (
                     <div key={pt} className="flex gap-2">
-                      <Info className="w-3 h-3 text-blue-400 shrink-0 mt-0.5" />
+                      <Info className="w-3 h-3 text-primary shrink-0 mt-0.5" />
                       <span className="text-zinc-400">{pt}</span>
                     </div>
                   ))}

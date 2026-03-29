@@ -958,7 +958,7 @@ export default function MarketPulseWidget() {
             className={cn(
               "px-3 py-2 text-xs font-mono whitespace-nowrap transition-colors shrink-0",
               activeTab === tab.id
-                ? "text-[#e6edf3] border-b-2 border-blue-500 -mb-px bg-[#0d1117]"
+                ? "text-[#e6edf3] border-b-2 border-primary -mb-px bg-[#0d1117]"
                 : "text-[#8b949e] hover:text-[#c9d1d9]",
             )}
           >

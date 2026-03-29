@@ -16,7 +16,7 @@ interface ScenarioCardProps {
 const GRADE_CONFIG = {
   S: { bg: "bg-amber-400/15", text: "text-amber-400", border: "border-amber-400/30", glow: "" },
   A: { bg: "bg-emerald-400/15", text: "text-emerald-400", border: "border-emerald-400/30", glow: "" },
-  B: { bg: "bg-blue-400/15", text: "text-blue-400", border: "border-blue-400/30", glow: "" },
+  B: { bg: "bg-primary/15", text: "text-primary", border: "border-border", glow: "" },
   C: { bg: "bg-muted/30", text: "text-muted-foreground", border: "border-border", glow: "" },
 };
 

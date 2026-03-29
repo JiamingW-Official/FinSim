@@ -25,16 +25,16 @@ const RING_CIRCUMFERENCE = 2 * Math.PI * RING_RADIUS;
 
 const CATEGORY_COLORS: Record<string, string> = {
   basics: "bg-emerald-500",
-  orders: "bg-blue-500",
-  indicators: "bg-violet-500",
+  orders: "bg-primary",
+  indicators: "bg-primary",
   risk: "bg-amber-500",
   fundamentals: "bg-rose-500",
 };
 
 const CATEGORY_TRACK: Record<string, string> = {
   basics: "bg-emerald-500/20",
-  orders: "bg-blue-500/20",
-  indicators: "bg-violet-500/20",
+  orders: "bg-primary/20",
+  indicators: "bg-primary/20",
   risk: "bg-amber-500/20",
   fundamentals: "bg-rose-500/20",
 };
@@ -159,7 +159,7 @@ export function LearningProgressCard() {
             value={`${totalCompleted}/${totalLessons}`}
           />
           <MiniStat
-            icon={<Target className="h-3 w-3 text-cyan-400" />}
+            icon={<Target className="h-3 w-3 text-muted-foreground" />}
             label="Skills Mastered"
             value={String(skillsMastered)}
           />
@@ -169,7 +169,7 @@ export function LearningProgressCard() {
             value={learningStreak > 0 ? `${learningStreak}d` : "--"}
           />
           <MiniStat
-            icon={<BookOpen className="h-3 w-3 text-violet-400" />}
+            icon={<BookOpen className="h-3 w-3 text-primary" />}
             label="Categories"
             value={`${categories.filter((c) => c.completed === c.total && c.total > 0).length}/${categories.length}`}
           />

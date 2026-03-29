@@ -399,7 +399,7 @@ function FXOptionsTab() {
           className={cn(
             "px-3 py-1 rounded text-xs font-medium transition-colors",
             !showExporter
-              ? "bg-blue-500/20 text-blue-300 border border-blue-500/40"
+              ? "bg-primary/20 text-primary border border-primary/40"
               : "text-zinc-500 hover:text-zinc-300",
           )}
         >
@@ -460,7 +460,7 @@ function FXOptionsTab() {
       <Card className="bg-zinc-900 border-zinc-800">
         <CardHeader className="pb-2">
           <CardTitle className="text-sm font-medium text-zinc-300 flex items-center gap-2">
-            <BarChart3 className="w-4 h-4 text-blue-400" />
+            <BarChart3 className="w-4 h-4 text-primary" />
             Vanilla vs Exotic Cost Comparison — $1M Notional, 90-day Tenor
           </CardTitle>
         </CardHeader>
@@ -492,7 +492,7 @@ function FXOptionsTab() {
                             : row.type === "Exotic"
                               ? "border-amber-500/40 text-amber-400"
                               : row.type === "Vanilla"
-                                ? "border-blue-500/40 text-blue-400"
+                                ? "border-primary/40 text-primary"
                                 : "border-zinc-600 text-zinc-400",
                         )}
                       >
@@ -578,7 +578,7 @@ function FXOptionsTab() {
                     ? "text-emerald-300"
                     : color === "amber"
                       ? "text-amber-300"
-                      : "text-blue-300",
+                      : "text-primary",
                 )}
               >
                 <Icon
@@ -588,7 +588,7 @@ function FXOptionsTab() {
                       ? "text-emerald-400"
                       : color === "amber"
                         ? "text-amber-400"
-                        : "text-blue-400",
+                        : "text-primary",
                   )}
                 />
                 {title}
@@ -605,7 +605,7 @@ function FXOptionsTab() {
                           ? "text-emerald-500"
                           : color === "amber"
                             ? "text-amber-500"
-                            : "text-blue-500",
+                            : "text-primary",
                       )}
                     >
                       •
@@ -891,7 +891,7 @@ function AccumulatorsTab() {
         <Card className="bg-zinc-900 border-zinc-800">
           <CardHeader className="pb-2">
             <CardTitle className="text-sm font-medium text-zinc-300 flex items-center gap-2">
-              <Target className="w-4 h-4 text-blue-400" />
+              <Target className="w-4 h-4 text-primary" />
               TARF: Cash Flow Waterfall
             </CardTitle>
           </CardHeader>
@@ -904,7 +904,7 @@ function AccumulatorsTab() {
               </div>
               <div className="bg-zinc-800/50 rounded p-2">
                 <div className="text-zinc-500">Redemption</div>
-                <div className="text-blue-400">Auto-redeems at target</div>
+                <div className="text-primary">Auto-redeems at target</div>
               </div>
               <div className="bg-zinc-800/50 rounded p-2">
                 <div className="text-zinc-500">Tenor</div>
@@ -919,7 +919,7 @@ function AccumulatorsTab() {
       <Card className="bg-zinc-900 border-zinc-800">
         <CardHeader className="pb-2">
           <CardTitle className="text-sm font-medium text-zinc-300 flex items-center gap-2">
-            <Layers className="w-4 h-4 text-purple-400" />
+            <Layers className="w-4 h-4 text-primary" />
             P&L Scenarios Under Different Spot Paths
           </CardTitle>
         </CardHeader>
@@ -935,7 +935,7 @@ function AccumulatorsTab() {
                     ? s.color === "emerald"
                       ? "bg-emerald-500/10 border-emerald-500/50"
                       : s.color === "blue"
-                        ? "bg-blue-500/10 border-blue-500/50"
+                        ? "bg-primary/10 border-primary/50"
                         : s.color === "red"
                           ? "bg-red-500/10 border-red-500/50"
                           : "bg-amber-500/10 border-amber-500/50"
@@ -951,7 +951,7 @@ function AccumulatorsTab() {
                     s.color === "emerald"
                       ? "border-emerald-500/40 text-emerald-400"
                       : s.color === "blue"
-                        ? "border-blue-500/40 text-blue-400"
+                        ? "border-primary/40 text-primary"
                         : s.color === "red"
                           ? "border-red-500/40 text-red-400"
                           : "border-amber-500/40 text-amber-400",
@@ -994,7 +994,7 @@ function AccumulatorsTab() {
                 ["Upside Participation", "Zero — if currency rallies past KO, contract dies with no compensation"],
               ].map(([term, def]) => (
                 <div key={term as string} className="flex gap-2">
-                  <dt className="text-blue-400 shrink-0 w-32">{term}</dt>
+                  <dt className="text-primary shrink-0 w-32">{term}</dt>
                   <dd className="text-zinc-400">{def}</dd>
                 </div>
               ))}
@@ -1015,7 +1015,7 @@ function AccumulatorsTab() {
                 ["Early Redemption", "Can occur any period once cumulative profit hits target amount"],
               ].map(([term, def]) => (
                 <div key={term as string} className="flex gap-2">
-                  <dt className="text-purple-400 shrink-0 w-32">{term}</dt>
+                  <dt className="text-primary shrink-0 w-32">{term}</dt>
                   <dd className="text-zinc-400">{def}</dd>
                 </div>
               ))}
@@ -1167,7 +1167,7 @@ function DualCurrencyTab() {
               <p>Investor deposits USD (or other base currency) for a fixed tenor (typically 1–4 weeks).</p>
             </div>
             <div className="flex gap-3 items-start">
-              <div className="w-6 h-6 rounded-full bg-blue-500/20 text-blue-400 flex items-center justify-center text-xs font-bold shrink-0">2</div>
+              <div className="w-6 h-6 rounded-full bg-primary/20 text-primary flex items-center justify-center text-xs font-bold shrink-0">2</div>
               <p>Bank pays an enhanced interest rate because investor has sold a put option to the bank (embedded option).</p>
             </div>
             <div className="flex gap-3 items-start">
@@ -1187,7 +1187,7 @@ function DualCurrencyTab() {
         <Card className="bg-zinc-900 border-zinc-800">
           <CardHeader className="pb-2">
             <CardTitle className="text-sm font-medium text-zinc-300 flex items-center gap-2">
-              <Calculator className="w-4 h-4 text-blue-400" />
+              <Calculator className="w-4 h-4 text-primary" />
               Yield Enhancement vs Strike Selection
             </CardTitle>
           </CardHeader>
@@ -1195,7 +1195,7 @@ function DualCurrencyTab() {
             <DCDYieldSVG />
             <div className="text-xs text-zinc-400 space-y-1">
               <p><span className="text-emerald-400">ATM strike (0%):</span> highest enhancement (deepest option premium)</p>
-              <p><span className="text-blue-400">Far OTM strike (±3%):</span> lower enhancement but less conversion risk</p>
+              <p><span className="text-primary">Far OTM strike (±3%):</span> lower enhancement but less conversion risk</p>
               <p className="text-zinc-500">Strike selection is the key trade-off between yield and safety.</p>
             </div>
           </CardContent>
@@ -1206,7 +1206,7 @@ function DualCurrencyTab() {
       <Card className="bg-zinc-900 border-zinc-800">
         <CardHeader className="pb-2">
           <CardTitle className="text-sm font-medium text-zinc-300 flex items-center gap-2">
-            <BarChart3 className="w-4 h-4 text-purple-400" />
+            <BarChart3 className="w-4 h-4 text-primary" />
             Worst-Case Scenario Analysis — USD/JPY DCD, Strike: 150.0, Yield: 5.8% p.a. (28-day)
           </CardTitle>
         </CardHeader>
@@ -1438,7 +1438,7 @@ function CorporateHedgingTab() {
       <Card className="bg-zinc-900 border-zinc-800">
         <CardHeader className="pb-2">
           <CardTitle className="text-sm font-medium text-zinc-300 flex items-center gap-2">
-            <Globe className="w-4 h-4 text-blue-400" />
+            <Globe className="w-4 h-4 text-primary" />
             FX Risk Exposure Mapping
           </CardTitle>
         </CardHeader>
@@ -1450,9 +1450,9 @@ function CorporateHedgingTab() {
                 className={cn(
                   "p-4 rounded-lg border",
                   exp.color === "blue"
-                    ? "bg-blue-500/5 border-blue-500/30"
+                    ? "bg-primary/5 border-border"
                     : exp.color === "purple"
-                      ? "bg-purple-500/5 border-purple-500/30"
+                      ? "bg-primary/5 border-border"
                       : "bg-amber-500/5 border-amber-500/30",
                 )}
               >
@@ -1460,9 +1460,9 @@ function CorporateHedgingTab() {
                   className={cn(
                     "text-sm font-semibold mb-3",
                     exp.color === "blue"
-                      ? "text-blue-300"
+                      ? "text-primary"
                       : exp.color === "purple"
-                        ? "text-purple-300"
+                        ? "text-primary"
                         : "text-amber-300",
                   )}
                 >
@@ -1474,9 +1474,9 @@ function CorporateHedgingTab() {
                       <span
                         className={cn(
                           exp.color === "blue"
-                            ? "text-blue-500"
+                            ? "text-primary"
                             : exp.color === "purple"
-                              ? "text-purple-500"
+                              ? "text-primary"
                               : "text-amber-500",
                         )}
                       >
@@ -1500,7 +1500,7 @@ function CorporateHedgingTab() {
       <Card className="bg-zinc-900 border-zinc-800">
         <CardHeader className="pb-2">
           <CardTitle className="text-sm font-medium text-zinc-300 flex items-center gap-2">
-            <BarChart3 className="w-4 h-4 text-purple-400" />
+            <BarChart3 className="w-4 h-4 text-primary" />
             Cost of Carry Comparison — Forward vs Option vs Zero-Cost Collar
           </CardTitle>
         </CardHeader>
@@ -1508,9 +1508,9 @@ function CorporateHedgingTab() {
           <HedgeCostSVG />
           <div className="grid grid-cols-3 gap-4 text-xs">
             {[
-              { name: "Forward Contract", color: "text-blue-400", pros: "Zero cost, certain outcome", cons: "No upside participation" },
+              { name: "Forward Contract", color: "text-primary", pros: "Zero cost, certain outcome", cons: "No upside participation" },
               { name: "Vanilla Put Option", color: "text-emerald-400", pros: "Full upside retained", cons: "$8,000 upfront premium" },
-              { name: "Zero-Cost Collar", color: "text-purple-400", pros: "No premium, downside floor", cons: "Upside capped at strike" },
+              { name: "Zero-Cost Collar", color: "text-primary", pros: "No premium, downside floor", cons: "Upside capped at strike" },
             ].map((s) => (
               <div key={s.name} className="bg-zinc-800/40 rounded p-3 space-y-1">
                 <div className={cn("font-medium", s.color)}>{s.name}</div>
@@ -1663,8 +1663,8 @@ function CorporateHedgingTab() {
                     fxGL: "+$275K hedge / −$275K exposed",
                     pnl: "+$380,000 vs unhedged",
                     verdict: "Balanced",
-                    pnlColor: "text-blue-400",
-                    verdictColor: "text-blue-400",
+                    pnlColor: "text-primary",
+                    verdictColor: "text-primary",
                   },
                 ].map((row) => (
                   <tr key={row.strategy} className="border-b border-zinc-800/50 hover:bg-zinc-800/20 transition-colors">
@@ -1693,8 +1693,8 @@ export default function FXStructuredPage() {
       {/* Header */}
       <div className="mb-6">
         <div className="flex items-center gap-3 mb-2">
-          <div className="p-2 bg-blue-500/10 rounded-lg border border-blue-500/20">
-            <Globe className="w-5 h-5 text-blue-400" />
+          <div className="p-2 bg-primary/10 rounded-lg border border-border">
+            <Globe className="w-5 h-5 text-primary" />
           </div>
           <div>
             <h1 className="text-xl font-semibold text-zinc-100">FX Structured Products</h1>

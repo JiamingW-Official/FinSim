@@ -945,7 +945,7 @@ function DirectInvestingTab() {
                     ci.status === "Active"
                       ? "text-emerald-400 border-emerald-400/30 bg-emerald-400/10"
                       : ci.status === "Exited"
-                      ? "text-blue-400 border-blue-400/30 bg-blue-400/10"
+                      ? "text-primary border-border bg-primary/10"
                       : "text-amber-400 border-amber-400/30 bg-amber-400/10";
                   return (
                     <tr key={ci.deal} className="hover:bg-white/5 transition-colors">

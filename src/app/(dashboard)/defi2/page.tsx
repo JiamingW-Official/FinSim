@@ -112,11 +112,11 @@ function InfoBox({
   variant?: "blue" | "amber" | "emerald" | "rose" | "purple";
 }) {
   const colors = {
-    blue: "bg-blue-500/10 border-blue-500/30 text-blue-200",
+    blue: "bg-primary/10 border-border text-primary",
     amber: "bg-amber-500/10 border-amber-500/30 text-amber-200",
     emerald: "bg-emerald-500/10 border-emerald-500/30 text-emerald-200",
     rose: "bg-rose-500/10 border-rose-500/30 text-rose-200",
-    purple: "bg-purple-500/10 border-purple-500/30 text-purple-200",
+    purple: "bg-primary/10 border-border text-primary",
   };
   return (
     <div className={cn("rounded-lg border p-3 text-xs leading-relaxed", colors[variant])}>
@@ -348,10 +348,10 @@ function LiquidityTab() {
 
       {/* Concentrated Liquidity */}
       <div>
-        <SectionTitle><Layers size={14} className="text-purple-400" />Uniswap V3 Concentrated Liquidity</SectionTitle>
+        <SectionTitle><Layers size={14} className="text-primary" />Uniswap V3 Concentrated Liquidity</SectionTitle>
         <div className="rounded-xl border border-white/10 bg-white/5 p-4">
           <p className="text-xs text-zinc-400 mb-4">
-            V3 allows LPs to provide liquidity within custom price ranges (ticks). Capital concentrates at the current price, achieving up to <span className="text-purple-300 font-semibold">4000x capital efficiency</span> vs V2. Positions become NFTs representing unique tick ranges.
+            V3 allows LPs to provide liquidity within custom price ranges (ticks). Capital concentrates at the current price, achieving up to <span className="text-primary font-semibold">4000x capital efficiency</span> vs V2. Positions become NFTs representing unique tick ranges.
           </p>
           <TickRangeSVG />
           <div className="mt-4 text-xs text-zinc-500 italic">
@@ -387,14 +387,14 @@ function LiquidityTab() {
 
       {/* CLMM vs AMM Comparison */}
       <div>
-        <SectionTitle><BarChart3 size={14} className="text-blue-400" />CLMM vs Classic AMM Comparison</SectionTitle>
+        <SectionTitle><BarChart3 size={14} className="text-primary" />CLMM vs Classic AMM Comparison</SectionTitle>
         <div className="rounded-xl border border-white/10 bg-white/5 overflow-hidden">
           <table className="w-full">
             <thead>
               <tr className="border-b border-white/10 bg-white/5">
                 <th className="py-2.5 px-3 text-left text-xs font-semibold text-zinc-300">Feature</th>
                 <th className="py-2.5 px-3 text-center text-xs font-semibold text-indigo-400">Classic AMM (V2)</th>
-                <th className="py-2.5 px-3 text-center text-xs font-semibold text-purple-400">CLMM (V3)</th>
+                <th className="py-2.5 px-3 text-center text-xs font-semibold text-primary">CLMM (V3)</th>
               </tr>
             </thead>
             <tbody>
@@ -414,18 +414,18 @@ function LiquidityTab() {
       {/* Curve Stableswap + Balancer */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
         <div>
-          <SectionTitle><Droplets size={14} className="text-cyan-400" />Curve Stableswap Invariant</SectionTitle>
+          <SectionTitle><Droplets size={14} className="text-muted-foreground" />Curve Stableswap Invariant</SectionTitle>
           <div className="rounded-xl border border-white/10 bg-white/5 p-4 space-y-3">
             <p className="text-xs text-zinc-400">
               Curve blends the constant-product formula (x·y=k) with constant-sum (x+y=k) via amplification parameter A. Near the price peg, behavior is nearly constant-sum (minimal slippage). Far from peg, it reverts to constant-product to prevent drain.
             </p>
-            <div className="bg-zinc-900/50 rounded p-2 font-mono text-xs text-cyan-300">
+            <div className="bg-zinc-900/50 rounded p-2 font-mono text-xs text-muted-foreground">
               An^n·Σxi + D = An^n·D + D^(n+1)/(n^n·Πxi)
             </div>
             <ul className="space-y-1 text-xs text-zinc-400">
-              <li className="flex gap-2"><span className="text-cyan-400">A</span><span>Amplification factor (50–2000). Higher A = tighter peg adherence.</span></li>
-              <li className="flex gap-2"><span className="text-cyan-400">D</span><span>Invariant representing total pool value when balanced.</span></li>
-              <li className="flex gap-2"><span className="text-cyan-400">n</span><span>Number of assets in pool (typically 2–4).</span></li>
+              <li className="flex gap-2"><span className="text-muted-foreground">A</span><span>Amplification factor (50–2000). Higher A = tighter peg adherence.</span></li>
+              <li className="flex gap-2"><span className="text-muted-foreground">D</span><span>Invariant representing total pool value when balanced.</span></li>
+              <li className="flex gap-2"><span className="text-muted-foreground">n</span><span>Number of assets in pool (typically 2–4).</span></li>
             </ul>
           </div>
         </div>
@@ -454,7 +454,7 @@ function LiquidityTab() {
 
       {/* veTokenomics */}
       <div>
-        <SectionTitle><Lock size={14} className="text-violet-400" />veTokenomics (Vote-Escrowed Model)</SectionTitle>
+        <SectionTitle><Lock size={14} className="text-primary" />veTokenomics (Vote-Escrowed Model)</SectionTitle>
         <div className="rounded-xl border border-white/10 bg-white/5 p-4">
           <p className="text-xs text-zinc-400 mb-4">
             Pioneered by Curve (veCRV), veTokenomics aligns long-term holders with protocol governance. Tokens locked longer receive more voting power and higher yield boosts — creating supply sink mechanics and reducing mercenary farming.
@@ -466,9 +466,9 @@ function LiquidityTab() {
               { label: "veCRV Boost", value: "2.5x", note: "LP reward multiplier" },
               { label: "Protocol Revenue Share", value: "50%", note: "To veCRV holders" },
             ].map((s) => (
-              <div key={s.label} className="rounded-lg border border-violet-500/20 bg-violet-500/5 p-3">
+              <div key={s.label} className="rounded-lg border border-border bg-primary/5 p-3">
                 <div className="text-xs text-zinc-400">{s.label}</div>
-                <div className="text-base font-bold text-violet-300">{s.value}</div>
+                <div className="text-base font-bold text-primary">{s.value}</div>
                 <div className="text-xs text-zinc-500">{s.note}</div>
               </div>
             ))}
@@ -509,8 +509,8 @@ function LiquidityTab() {
                   "rounded-lg border p-3 cursor-pointer",
                   m.color === "rose" && "border-rose-500/30 bg-rose-500/5",
                   m.color === "amber" && "border-amber-500/30 bg-amber-500/5",
-                  m.color === "blue" && "border-blue-500/30 bg-blue-500/5",
-                  m.color === "purple" && "border-purple-500/30 bg-purple-500/5"
+                  m.color === "blue" && "border-border bg-primary/5",
+                  m.color === "purple" && "border-border bg-primary/5"
                 )}
                 onClick={() => setExpandedMev(expandedMev === i ? null : i)}
               >
@@ -519,8 +519,8 @@ function LiquidityTab() {
                     <span className={cn(
                       m.color === "rose" && "text-rose-400",
                       m.color === "amber" && "text-amber-400",
-                      m.color === "blue" && "text-blue-400",
-                      m.color === "purple" && "text-purple-400"
+                      m.color === "blue" && "text-primary",
+                      m.color === "purple" && "text-primary"
                     )}>{m.icon}</span>
                     <span className="text-xs font-semibold text-zinc-200">{m.name}</span>
                   </div>
@@ -731,7 +731,7 @@ function RWATab() {
                   <td className="py-2.5 px-3 text-center">
                     <Badge className={cn("text-xs",
                       p.collateral === "Full" ? "bg-emerald-500/20 text-emerald-300 border-emerald-500/30" :
-                      p.collateral === "Over" ? "bg-blue-500/20 text-blue-300 border-blue-500/30" :
+                      p.collateral === "Over" ? "bg-primary/20 text-primary border-border" :
                       "bg-amber-500/20 text-amber-300 border-amber-500/30"
                     )}>
                       {p.collateral}collat.
@@ -967,7 +967,7 @@ function IntentTab() {
 
       {/* CoW Protocol */}
       <div>
-        <SectionTitle><RefreshCw size={14} className="text-blue-400" />CoW Protocol: Batch Auction Architecture</SectionTitle>
+        <SectionTitle><RefreshCw size={14} className="text-primary" />CoW Protocol: Batch Auction Architecture</SectionTitle>
         <div className="rounded-xl border border-white/10 bg-white/5 p-4">
           <CowBatchSVG />
           <div className="grid grid-cols-1 md:grid-cols-3 gap-3 mt-4">
@@ -1007,7 +1007,7 @@ function IntentTab() {
                   <td className="py-2.5 px-3 text-xs font-semibold text-zinc-200">{p.name}</td>
                   <td className="py-2.5 px-3 text-xs text-zinc-400">{p.mechanism}</td>
                   <td className="py-2.5 px-3 text-center">
-                    <Badge className={cn("text-xs", p.protection.includes("Full") ? "bg-emerald-500/20 text-emerald-300 border-emerald-500/30" : "bg-blue-500/20 text-blue-300 border-blue-500/30")}>
+                    <Badge className={cn("text-xs", p.protection.includes("Full") ? "bg-emerald-500/20 text-emerald-300 border-emerald-500/30" : "bg-primary/20 text-primary border-border")}>
                       {p.protection.includes("Full") ? "Full" : "Partial"}
                     </Badge>
                   </td>
@@ -1046,7 +1046,7 @@ function IntentTab() {
           </div>
         </div>
         <div>
-          <SectionTitle><Network size={14} className="text-purple-400" />Cross-Chain Bridge Security Taxonomy</SectionTitle>
+          <SectionTitle><Network size={14} className="text-primary" />Cross-Chain Bridge Security Taxonomy</SectionTitle>
           <div className="rounded-xl border border-white/10 bg-white/5 p-4 space-y-3">
             <p className="text-xs text-zinc-400 mb-2">Over $2.8B lost to bridge hacks 2021–2024. Security models differ fundamentally:</p>
             {[
@@ -1086,7 +1086,7 @@ function IntentTab() {
                   <span className="text-xs font-semibold text-zinc-200">{b.type}</span>
                   <Badge className={cn("text-xs",
                     b.risk === "Very Low" ? "bg-emerald-500/20 text-emerald-300 border-emerald-500/30" :
-                    b.risk === "Low" ? "bg-blue-500/20 text-blue-300 border-blue-500/30" :
+                    b.risk === "Low" ? "bg-primary/20 text-primary border-border" :
                     b.risk === "Medium" ? "bg-amber-500/20 text-amber-300 border-amber-500/30" :
                     "bg-rose-500/20 text-rose-300 border-rose-500/30"
                   )}>
@@ -1121,7 +1121,7 @@ function IntentTab() {
               <div className="text-xs font-semibold text-zinc-200 mb-1.5">Value Distribution</div>
               <ul className="space-y-1 text-xs text-zinc-400">
                 <li>User: <span className="text-emerald-400">60–80%</span> of MEV recovered</li>
-                <li>Wallet: <span className="text-blue-400">10–20%</span> kickback</li>
+                <li>Wallet: <span className="text-primary">10–20%</span> kickback</li>
                 <li>Market Maker: <span className="text-amber-400">10–30%</span> profit</li>
                 <li>Total MEV redirected: ~$400M/yr</li>
               </ul>
@@ -1129,10 +1129,10 @@ function IntentTab() {
             <div className="rounded-lg border border-white/10 bg-white/5 p-3">
               <div className="text-xs font-semibold text-zinc-200 mb-1.5">Active OFA Systems</div>
               <ul className="space-y-1 text-xs text-zinc-400">
-                <li><span className="text-purple-400">MEV Blocker</span> — CoW Protocol</li>
-                <li><span className="text-purple-400">Flashbots Protect</span> — builders/searchers</li>
-                <li><span className="text-purple-400">1inch Fusion+</span> — resolvers pay user</li>
-                <li><span className="text-purple-400">Cowswap Surplus</span> — P2P matching</li>
+                <li><span className="text-primary">MEV Blocker</span> — CoW Protocol</li>
+                <li><span className="text-primary">Flashbots Protect</span> — builders/searchers</li>
+                <li><span className="text-primary">1inch Fusion+</span> — resolvers pay user</li>
+                <li><span className="text-primary">Cowswap Surplus</span> — P2P matching</li>
               </ul>
             </div>
           </div>
@@ -1292,7 +1292,7 @@ function RestakingTab() {
 
       {/* EigenLayer mechanics */}
       <div>
-        <SectionTitle><Layers size={14} className="text-blue-400" />EigenLayer Restaking Architecture</SectionTitle>
+        <SectionTitle><Layers size={14} className="text-primary" />EigenLayer Restaking Architecture</SectionTitle>
         <div className="rounded-xl border border-white/10 bg-white/5 p-4">
           <RestakingSVG />
           <div className="mt-4 grid grid-cols-1 md:grid-cols-2 gap-3">
@@ -1333,7 +1333,7 @@ function RestakingTab() {
 
       {/* LRT table */}
       <div>
-        <SectionTitle><Coins size={14} className="text-violet-400" />Liquid Restaking Tokens (LRTs)</SectionTitle>
+        <SectionTitle><Coins size={14} className="text-primary" />Liquid Restaking Tokens (LRTs)</SectionTitle>
         <div className="rounded-xl border border-white/10 bg-white/5 overflow-x-auto">
           <table className="w-full min-w-[540px]">
             <thead>
@@ -1351,10 +1351,10 @@ function RestakingTab() {
                 <tr key={l.token} className="border-b border-white/5 hover:bg-white/5 transition-colors">
                   <td className="py-2.5 px-3 text-xs font-semibold text-zinc-200">{l.name}</td>
                   <td className="py-2.5 px-3 text-center">
-                    <Badge className="bg-violet-500/20 text-violet-300 border-violet-500/30 text-xs">{l.token}</Badge>
+                    <Badge className="bg-primary/20 text-primary border-border text-xs">{l.token}</Badge>
                   </td>
                   <td className="py-2.5 px-3 text-xs text-center text-emerald-400">{l.tvl}</td>
-                  <td className="py-2.5 px-3 text-xs text-center text-blue-300">{l.baseYield}</td>
+                  <td className="py-2.5 px-3 text-xs text-center text-primary">{l.baseYield}</td>
                   <td className="py-2.5 px-3 text-xs text-center text-indigo-300">{l.avsYield}</td>
                   <td className="py-2.5 px-3 text-center">
                     <Badge className={cn("text-xs",
@@ -1418,7 +1418,7 @@ function RestakingTab() {
       {/* Permissioned pools + Insurance */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
         <div>
-          <SectionTitle><Lock size={14} className="text-blue-400" />Permissioned DeFi Pools</SectionTitle>
+          <SectionTitle><Lock size={14} className="text-primary" />Permissioned DeFi Pools</SectionTitle>
           <div className="rounded-xl border border-white/10 bg-white/5 p-4 space-y-3">
             <p className="text-xs text-zinc-400">
               Permissioned pools offer DeFi yield mechanics within a KYC/AML framework — bridging institutional compliance with on-chain efficiency.
@@ -1451,7 +1451,7 @@ function RestakingTab() {
                   <Badge className={cn("text-xs",
                     pool.status === "Active" ? "bg-emerald-500/20 text-emerald-300 border-emerald-500/30" :
                     pool.status === "Paused" ? "bg-zinc-500/20 text-zinc-400 border-zinc-500/30" :
-                    "bg-blue-500/20 text-blue-300 border-blue-500/30"
+                    "bg-primary/20 text-primary border-border"
                   )}>
                     {pool.status}
                   </Badge>
@@ -1556,10 +1556,10 @@ export default function DeFi2Page() {
           <TabsTrigger value="rwa" className="data-[state=active]:bg-emerald-500/20 data-[state=active]:text-emerald-300 text-xs">
             <Globe size={13} className="mr-1.5" />Real-World Assets
           </TabsTrigger>
-          <TabsTrigger value="intent" className="data-[state=active]:bg-cyan-500/20 data-[state=active]:text-cyan-300 text-xs">
+          <TabsTrigger value="intent" className="data-[state=active]:bg-cyan-500/20 data-[state=active]:text-muted-foreground text-xs">
             <Zap size={13} className="mr-1.5" />Intent-Based Trading
           </TabsTrigger>
-          <TabsTrigger value="restaking" className="data-[state=active]:bg-violet-500/20 data-[state=active]:text-violet-300 text-xs">
+          <TabsTrigger value="restaking" className="data-[state=active]:bg-primary/20 data-[state=active]:text-primary text-xs">
             <Layers size={13} className="mr-1.5" />Restaking & Institutional
           </TabsTrigger>
         </TabsList>

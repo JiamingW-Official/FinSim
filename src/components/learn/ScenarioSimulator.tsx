@@ -93,7 +93,7 @@ const SCENARIOS: Scenario[] = [
       { day: 365, label: "Bear market continues", description: "NASDAQ down 78% from peak. Tech stocks decimated.", marketChange: -5 },
     ],
     lesson: "Concentration risk is deadly. Investors who put everything in tech lost 78%. But the S&P 500 (diversified) only dropped 49%, and a balanced portfolio with bonds fell just 15-20%. Diversification is your best defense against bubbles. Also: profitable companies with real revenue survived and thrived.",
-    color: "text-purple-400",
+    color: "text-primary",
   },
 ];
 

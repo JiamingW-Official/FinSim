@@ -65,7 +65,7 @@ export function CompoundCalculator() {
       {/* Inputs */}
       <div className="grid grid-cols-2 gap-3">
         <InputField
-          icon={<DollarSign className="h-3 w-3 text-blue-400" />}
+          icon={<DollarSign className="h-3 w-3 text-primary" />}
           label="Starting Amount"
           value={initial}
           onChange={setInitial}
@@ -92,7 +92,7 @@ export function CompoundCalculator() {
           step={0.5}
         />
         <InputField
-          icon={<Clock className="h-3 w-3 text-purple-400" />}
+          icon={<Clock className="h-3 w-3 text-primary" />}
           label="Years"
           value={years}
           onChange={setYears}
@@ -112,7 +112,7 @@ export function CompoundCalculator() {
         <ResultCard
           label="Total Contributed"
           value={formatCurrency(result.totalContributed)}
-          className="text-blue-400"
+          className="text-primary"
         />
         <ResultCard
           label="Interest Earned"
@@ -190,7 +190,7 @@ export function CompoundCalculator() {
             <span className="text-[11px] text-muted-foreground">Total Value</span>
           </div>
           <div className="flex items-center gap-1.5">
-            <div className="h-0.5 w-4 bg-blue-400 rounded" style={{ borderBottom: "1px dashed" }} />
+            <div className="h-0.5 w-4 bg-primary rounded" style={{ borderBottom: "1px dashed" }} />
             <span className="text-[11px] text-muted-foreground">Contributions</span>
           </div>
           <div className="flex items-center gap-1.5">

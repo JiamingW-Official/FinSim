@@ -720,7 +720,7 @@ function BHBTab() {
           </div>
           <div className="space-y-2">
             <div className="text-zinc-400 font-semibold uppercase tracking-wide">Hedging Overlay Impact</div>
-            <div className="font-mono bg-zinc-800 rounded px-3 py-2 text-purple-300">
+            <div className="font-mono bg-zinc-800 rounded px-3 py-2 text-primary">
               Overlay = Σ hedge_notional × (F_locked − spot)
             </div>
             <p className="text-zinc-400">
@@ -995,7 +995,7 @@ function FactorTab() {
       <Card className="border-zinc-800 bg-zinc-900/60">
         <CardHeader className="pb-2">
           <CardTitle className="text-sm font-semibold text-zinc-200 flex items-center gap-2">
-            <Shield className="w-4 h-4 text-blue-400" />
+            <Shield className="w-4 h-4 text-primary" />
             Fixed Income Factor Attribution
           </CardTitle>
         </CardHeader>
@@ -1278,7 +1278,7 @@ function RiskTab() {
       <Card className="border-zinc-800 bg-zinc-900/60">
         <CardHeader className="pb-2">
           <CardTitle className="text-sm font-semibold text-zinc-200 flex items-center gap-2">
-            <Info className="w-4 h-4 text-blue-400" />
+            <Info className="w-4 h-4 text-primary" />
             Benchmark Selection Impact
           </CardTitle>
         </CardHeader>

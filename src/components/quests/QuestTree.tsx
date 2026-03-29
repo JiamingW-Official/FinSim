@@ -123,8 +123,8 @@ function rarityForAchievement(id: string): Rarity {
 
 const RARITY_COLORS: Record<Rarity, string> = {
   Common: "text-zinc-400 border-zinc-600 bg-zinc-800",
-  Rare: "text-blue-400 border-blue-600 bg-blue-900/30",
-  Epic: "text-violet-400 border-violet-600 bg-violet-900/30",
+  Rare: "text-primary border-primary bg-muted/50",
+  Epic: "text-primary border-primary bg-muted/50",
   Legendary: "text-amber-400 border-amber-500 bg-amber-900/30",
 };
 
@@ -611,7 +611,7 @@ function buildQuestTree(
     {
       id: "options",
       name: "Options Mastery",
-      color: "text-blue-400",
+      color: "text-primary",
       strokeColor: "#3b82f6",
       fillColor: "#1d4ed8",
       nodes: options,
@@ -668,7 +668,7 @@ const SEASONAL: SeasonalChallenge[] = [
     current: synthInt(0, 4),
     target: 5,
     endsInDays: 14,
-    color: "text-blue-400",
+    color: "text-primary",
     icon: "BarChart2",
   },
   {
@@ -678,7 +678,7 @@ const SEASONAL: SeasonalChallenge[] = [
     current: synthInt(1, 7),
     target: 8,
     endsInDays: 14,
-    color: "text-violet-400",
+    color: "text-primary",
     icon: "BookOpen",
   },
 ];
@@ -1156,7 +1156,7 @@ export function QuestTree() {
             >
               {[
                 { label: "Trading", color: "text-emerald-400", x: COL_X.trading },
-                { label: "Options", color: "text-blue-400", x: COL_X.options },
+                { label: "Options", color: "text-primary", x: COL_X.options },
                 { label: "Risk Mgmt", color: "text-red-400", x: COL_X.risk },
                 { label: "Macro", color: "text-amber-400", x: COL_X.macro },
                 { label: "Elite", color: "text-yellow-300", x: COL_X.elite },

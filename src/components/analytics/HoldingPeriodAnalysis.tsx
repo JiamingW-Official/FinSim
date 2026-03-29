@@ -130,7 +130,7 @@ export function HoldingPeriodAnalysis() {
         {optimalBars !== null && (
           <span className="rounded border border-border bg-card/60 px-2 py-0.5">
             Trend break-even{" "}
-            <span className="font-mono text-blue-400">{optimalBars} bars</span>
+            <span className="font-mono text-primary">{optimalBars} bars</span>
           </span>
         )}
       </div>

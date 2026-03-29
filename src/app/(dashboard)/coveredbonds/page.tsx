@@ -143,7 +143,7 @@ function SectionCard({ title, icon, children, className }: {
   return (
     <div className={cn("bg-neutral-900 border border-neutral-800 rounded-xl p-5", className)}>
       <div className="flex items-center gap-2 mb-4">
-        <span className="text-blue-400">{icon}</span>
+        <span className="text-primary">{icon}</span>
         <h3 className="text-sm font-semibold text-white">{title}</h3>
       </div>
       {children}
@@ -153,11 +153,11 @@ function SectionCard({ title, icon, children, className }: {
 
 function InfoChip({ label, value, color = "blue" }: { label: string; value: string; color?: string }) {
   const colorMap: Record<string, string> = {
-    blue: "bg-blue-500/10 border-blue-500/30 text-blue-300",
+    blue: "bg-primary/10 border-border text-primary",
     green: "bg-green-500/10 border-green-500/30 text-green-300",
-    purple: "bg-purple-500/10 border-purple-500/30 text-purple-300",
+    purple: "bg-primary/10 border-border text-primary",
     amber: "bg-amber-500/10 border-amber-500/30 text-amber-300",
-    cyan: "bg-cyan-500/10 border-cyan-500/30 text-cyan-300",
+    cyan: "bg-cyan-500/10 border-cyan-500/30 text-muted-foreground",
   };
   return (
     <div className={cn("border rounded-lg px-3 py-2 text-center", colorMap[color] ?? colorMap.blue)}>
@@ -393,7 +393,7 @@ function FrameworksTab() {
           <InfoChip label="Liquidity Buffer" value="180 days" color="cyan" />
         </div>
         <div className="space-y-1 text-sm text-neutral-300">
-          <p className="leading-relaxed">The ECBD harmonised covered bond standards across EU member states, establishing minimum requirements for asset eligibility, OC levels, cover pool monitoring, liquidity buffers, and investor disclosure. Member states may apply stricter national rules — creating a two-tier structure of ECBD-compliant bonds and <span className="text-blue-300">European Covered Bonds (Premium)</span> meeting enhanced criteria.</p>
+          <p className="leading-relaxed">The ECBD harmonised covered bond standards across EU member states, establishing minimum requirements for asset eligibility, OC levels, cover pool monitoring, liquidity buffers, and investor disclosure. Member states may apply stricter national rules — creating a two-tier structure of ECBD-compliant bonds and <span className="text-primary">European Covered Bonds (Premium)</span> meeting enhanced criteria.</p>
         </div>
         <div className="mt-4 grid grid-cols-1 md:grid-cols-2 gap-3">
           {[
@@ -423,7 +423,7 @@ function FrameworksTab() {
             className={cn(
               "text-left p-4 rounded-xl border transition-all",
               selected === fw.id
-                ? "border-blue-500 bg-blue-500/10"
+                ? "border-primary bg-primary/10"
                 : "border-neutral-700 bg-neutral-900 hover:border-neutral-500"
             )}
           >
@@ -481,7 +481,7 @@ function FrameworksTab() {
         <div className="flex gap-4 items-start">
           <div className="flex-1 space-y-2 text-sm text-neutral-300 leading-relaxed">
             <p>Under the <span className="text-white">Bank Recovery and Resolution Directive (BRRD)</span>, covered bonds are explicitly <span className="text-green-400 font-medium">exempt from bail-in</span> (Art. 44(2)(b)). This means covered bond holders cannot have their claims written down or converted to equity in a bank resolution.</p>
-            <p>The exemption applies because covered bonds are <span className="text-blue-300">secured liabilities backed by specific ring-fenced assets</span>. In resolution, the cover pool continues to service covered bonds under a special administrator, even if the issuing bank is placed in resolution.</p>
+            <p>The exemption applies because covered bonds are <span className="text-primary">secured liabilities backed by specific ring-fenced assets</span>. In resolution, the cover pool continues to service covered bonds under a special administrator, even if the issuing bank is placed in resolution.</p>
           </div>
           <div className="shrink-0 w-36 space-y-2">
             <div className="p-3 bg-green-500/10 border border-green-500/20 rounded-lg text-center">
@@ -624,7 +624,7 @@ function MarketDataTab() {
                   <td className="py-2 text-center">
                     <span className="text-xs px-1.5 py-0.5 bg-green-500/10 border border-green-500/20 rounded text-green-400">{row.rating}</span>
                   </td>
-                  <td className="py-2 text-right text-cyan-400 text-xs font-mono">{row.spread}</td>
+                  <td className="py-2 text-right text-muted-foreground text-xs font-mono">{row.spread}</td>
                 </tr>
               ))}
             </tbody>
@@ -636,13 +636,13 @@ function MarketDataTab() {
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
         <SectionCard title="ECB Eligibility & CBPP3" icon={<Building2 size={16} />}>
           <div className="space-y-2 text-sm text-neutral-300 leading-relaxed">
-            <p>Covered bonds are <span className="text-white">ECB repo-eligible</span> as Category I collateral (haircut ~1–7%). The ECB's <span className="text-blue-300">Covered Bond Purchase Programmes (CBPP1, CBPP2, CBPP3)</span> bought covered bonds outright to support euro area credit.</p>
+            <p>Covered bonds are <span className="text-white">ECB repo-eligible</span> as Category I collateral (haircut ~1–7%). The ECB's <span className="text-primary">Covered Bond Purchase Programmes (CBPP1, CBPP2, CBPP3)</span> bought covered bonds outright to support euro area credit.</p>
             <p>CBPP3, launched Oct 2014, accumulated <span className="text-green-400">€280bn+</span> in holdings, compressing spreads by ~15–20bp and becoming a dominant investor in the market.</p>
           </div>
         </SectionCard>
         <SectionCard title="LCR Level 1B Treatment" icon={<Shield size={16} />}>
           <div className="space-y-2 text-sm text-neutral-300 leading-relaxed">
-            <p>Covered bonds rated <span className="text-white">AA– or above</span> qualify as <span className="text-blue-300">Level 1B HQLA</span> under Basel III LCR (subject to 7% haircut and 70% cap within total HQLA).</p>
+            <p>Covered bonds rated <span className="text-white">AA– or above</span> qualify as <span className="text-primary">Level 1B HQLA</span> under Basel III LCR (subject to 7% haircut and 70% cap within total HQLA).</p>
             <p>This makes covered bonds a preferred instrument for bank liquidity portfolios alongside government bonds, driving structural demand and tighter spreads vs. unsecured bank debt.</p>
           </div>
         </SectionCard>
@@ -684,8 +684,8 @@ function ABSComparisonTab() {
             <thead>
               <tr className="border-b border-neutral-700">
                 <th className="text-left text-neutral-400 font-medium pb-2 pr-4">Factor</th>
-                <th className="text-left text-blue-400 font-medium pb-2 pr-4">Covered Bond</th>
-                <th className="text-left text-purple-400 font-medium pb-2">ABS / RMBS</th>
+                <th className="text-left text-primary font-medium pb-2 pr-4">Covered Bond</th>
+                <th className="text-left text-primary font-medium pb-2">ABS / RMBS</th>
               </tr>
             </thead>
             <tbody>
@@ -700,11 +700,11 @@ function ABSComparisonTab() {
                       {row.coveredBondPositive === true && <CheckCircle size={10} className="text-green-400 mt-0.5 shrink-0" />}
                       {row.coveredBondPositive === false && <XCircle size={10} className="text-red-400 mt-0.5 shrink-0" />}
                       {row.coveredBondPositive === null && <Info size={10} className="text-neutral-500 mt-0.5 shrink-0" />}
-                      <span className="text-blue-300">{row.coveredBond}</span>
+                      <span className="text-primary">{row.coveredBond}</span>
                     </div>
                   </td>
                   <td className="py-2">
-                    <span className="text-purple-300">{row.abs}</span>
+                    <span className="text-primary">{row.abs}</span>
                   </td>
                 </tr>
               ))}
@@ -790,22 +790,22 @@ function ABSComparisonTab() {
         <SectionCard title="Investor Base & Structural Differences" icon={<Info size={16} />}>
           <div className="space-y-3 text-xs text-neutral-300">
             <div>
-              <div className="text-blue-400 font-semibold mb-1">Covered Bond Investors</div>
+              <div className="text-primary font-semibold mb-1">Covered Bond Investors</div>
               <div className="space-y-0.5">
                 {["Central banks & official sector", "Commercial banks (LCR)", "Insurance companies (Solvency II)", "Asset managers (core fixed income)"].map((i) => (
                   <div key={i} className="flex items-center gap-1.5">
-                    <ArrowRight size={10} className="text-blue-400 shrink-0" />
+                    <ArrowRight size={10} className="text-primary shrink-0" />
                     <span>{i}</span>
                   </div>
                 ))}
               </div>
             </div>
             <div>
-              <div className="text-purple-400 font-semibold mb-1">ABS / RMBS Investors</div>
+              <div className="text-primary font-semibold mb-1">ABS / RMBS Investors</div>
               <div className="space-y-0.5">
                 {["Hedge funds (mezzanine / equity)", "Insurance (senior tranches)", "Conduit / SIV vehicles", "Specialist ABS asset managers"].map((i) => (
                   <div key={i} className="flex items-center gap-1.5">
-                    <ArrowRight size={10} className="text-purple-400 shrink-0" />
+                    <ArrowRight size={10} className="text-primary shrink-0" />
                     <span>{i}</span>
                   </div>
                 ))}
@@ -833,8 +833,8 @@ export default function CoveredBondsPage() {
       {/* Header */}
       <div className="mb-6">
         <div className="flex items-center gap-3 mb-2">
-          <div className="p-2 bg-blue-500/10 border border-blue-500/20 rounded-lg">
-            <Shield size={20} className="text-blue-400" />
+          <div className="p-2 bg-primary/10 border border-border rounded-lg">
+            <Shield size={20} className="text-primary" />
           </div>
           <div>
             <h1 className="text-xl font-bold text-white">Covered Bonds</h1>
@@ -845,11 +845,11 @@ export default function CoveredBondsPage() {
         {/* Quick facts strip */}
         <div className="flex flex-wrap gap-2 mt-3">
           {[
-            { label: "Market Size", value: "~€3.2tn", color: "text-blue-400" },
-            { label: "Primary Markets", value: "EU (82%)", color: "text-purple-400" },
+            { label: "Market Size", value: "~€3.2tn", color: "text-primary" },
+            { label: "Primary Markets", value: "EU (82%)", color: "text-primary" },
             { label: "Typical Rating", value: "AAA", color: "text-green-400" },
             { label: "Bail-in", value: "Exempt (BRRD)", color: "text-amber-400" },
-            { label: "LCR", value: "Level 1B HQLA", color: "text-cyan-400" },
+            { label: "LCR", value: "Level 1B HQLA", color: "text-muted-foreground" },
           ].map(({ label, value, color }) => (
             <div key={label} className="flex items-center gap-1.5 bg-neutral-900 border border-neutral-800 rounded-lg px-3 py-1.5 text-xs">
               <span className="text-neutral-400">{label}:</span>
@@ -866,7 +866,7 @@ export default function CoveredBondsPage() {
             <TabsTrigger
               key={tab.id}
               value={tab.id}
-              className="flex items-center gap-1.5 px-3 py-1.5 text-xs data-[state=active]:bg-blue-600 data-[state=active]:text-white text-neutral-400 rounded-md transition-all"
+              className="flex items-center gap-1.5 px-3 py-1.5 text-xs data-[state=active]:bg-primary data-[state=active]:text-white text-neutral-400 rounded-md transition-all"
             >
               {tab.icon}
               {tab.label}

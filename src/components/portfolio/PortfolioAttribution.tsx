@@ -643,7 +643,7 @@ export function PortfolioAttribution() {
             {bhbData.rows.map((r) => (
               <div key={r.sector} className="grid grid-cols-[80px_1fr_1fr_1fr_1fr] gap-1 items-center py-1 border-b border-muted/20 text-xs">
                 <span className="text-muted-foreground truncate text-[11px]">{r.sector}</span>
-                <span className={cn("text-right font-mono", r.allocation >= 0 ? "text-blue-400" : "text-red-400")}>
+                <span className={cn("text-right font-mono", r.allocation >= 0 ? "text-primary" : "text-red-400")}>
                   {r.allocation >= 0 ? "+" : ""}{r.allocation.toFixed(2)}
                 </span>
                 <span className={cn("text-right font-mono", r.selection >= 0 ? "text-emerald-400" : "text-red-400")}>
@@ -660,7 +660,7 @@ export function PortfolioAttribution() {
             {/* Total row */}
             <div className="grid grid-cols-[80px_1fr_1fr_1fr_1fr] gap-1 items-center pt-1.5 text-xs">
               <span className="text-muted-foreground text-[11px] font-semibold">TOTAL</span>
-              <span className={cn("text-right font-mono font-semibold", bhbData.totalAlloc >= 0 ? "text-blue-400" : "text-red-400")}>
+              <span className={cn("text-right font-mono font-semibold", bhbData.totalAlloc >= 0 ? "text-primary" : "text-red-400")}>
                 {bhbData.totalAlloc >= 0 ? "+" : ""}{bhbData.totalAlloc.toFixed(2)}
               </span>
               <span className={cn("text-right font-mono font-semibold", bhbData.totalSel >= 0 ? "text-emerald-400" : "text-red-400")}>
@@ -740,7 +740,7 @@ export function PortfolioAttribution() {
             {sectorRows.map((r) => (
               <div key={r.sector} className="grid grid-cols-[80px_48px_56px_56px_56px] gap-1 items-center py-1 border-b border-muted/20 text-xs">
                 <span className="text-[11px] text-muted-foreground truncate">{r.sector}</span>
-                <span className="text-right font-mono text-blue-400">{r.portWeight.toFixed(1)}</span>
+                <span className="text-right font-mono text-primary">{r.portWeight.toFixed(1)}</span>
                 <span className="text-right font-mono text-muted-foreground">{r.benchWeight.toFixed(1)}</span>
                 <span className={cn("text-right font-mono", r.activeWeight >= 0 ? "text-emerald-400" : "text-red-400")}>
                   {r.activeWeight >= 0 ? "+" : ""}{r.activeWeight.toFixed(1)}
@@ -801,7 +801,7 @@ export function PortfolioAttribution() {
                   <span className="text-[11px] text-orange-400 font-mono">{r.varContrib.toFixed(1)}%</span>
                 </div>
                 <span className="text-right text-xs font-mono text-muted-foreground">{r.weight.toFixed(1)}</span>
-                <span className={cn("text-right text-xs font-mono", r.mctr >= 0 ? "text-blue-400" : "text-red-400")}>
+                <span className={cn("text-right text-xs font-mono", r.mctr >= 0 ? "text-primary" : "text-red-400")}>
                   {r.mctr.toFixed(2)}
                 </span>
                 <span className={cn("text-right text-xs font-mono", r.riskAdjReturn >= 0 ? "text-emerald-400" : "text-red-400")}>
@@ -872,13 +872,13 @@ export function PortfolioAttribution() {
                   <div className="flex items-center justify-between text-[11px] text-muted-foreground">
                     <span>{label}</span>
                     <span>
-                      Port <span className="text-blue-400 font-mono">{port.toFixed(0)}</span>
+                      Port <span className="text-primary font-mono">{port.toFixed(0)}</span>
                       {" "}vs Bench <span className="text-muted-foreground/70 font-mono">{bench}</span>
                     </span>
                   </div>
                   <div className="relative h-2 rounded-full bg-muted overflow-hidden">
                     <div className="absolute h-full rounded-full bg-muted-foreground/30" style={{ width: `${bench}%` }} />
-                    <div className="absolute h-full rounded-full bg-blue-500/70" style={{ width: `${Math.min(port, 100)}%` }} />
+                    <div className="absolute h-full rounded-full bg-primary/70" style={{ width: `${Math.min(port, 100)}%` }} />
                   </div>
                 </div>
               ))}

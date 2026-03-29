@@ -172,8 +172,8 @@ export default function BacktestChart({ bars, trades, isRunning, isPreview, onRe
       {isRunning && (
         <div className="backtest-running absolute inset-0 z-10 flex items-center justify-center bg-black/40">
           <div className="flex flex-col items-center gap-3">
-            <div className="h-8 w-8 animate-spin rounded-full border-2 border-violet-500 border-t-transparent" />
-            <span className="text-sm font-medium text-violet-300">Computing...</span>
+            <div className="h-8 w-8 animate-spin rounded-full border-2 border-primary border-t-transparent" />
+            <span className="text-sm font-medium text-primary">Computing...</span>
           </div>
         </div>
       )}
@@ -188,7 +188,7 @@ export default function BacktestChart({ bars, trades, isRunning, isPreview, onRe
             <button
               onClick={onRegenerate}
               title="Regenerate bars"
-              className="flex h-7 w-7 items-center justify-center rounded-lg border border-white/10 bg-zinc-900/90 text-zinc-400 shadow-lg backdrop-blur transition-colors hover:bg-violet-500/20 hover:text-violet-300"
+              className="flex h-7 w-7 items-center justify-center rounded-lg border border-white/10 bg-zinc-900/90 text-zinc-400 shadow-lg backdrop-blur transition-colors hover:bg-primary/20 hover:text-primary"
             >
               <RefreshCw className="h-3.5 w-3.5" />
             </button>

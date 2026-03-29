@@ -204,8 +204,8 @@ function Metric({ label, value, sub, color = "default" }: { label: string; value
 
 function InfoBox({ children }: { children: React.ReactNode }) {
   return (
-    <div className="flex gap-2 rounded-lg border border-blue-500/20 bg-blue-500/5 p-3 text-sm text-blue-300">
-      <Info size={14} className="mt-0.5 shrink-0 text-blue-400" />
+    <div className="flex gap-2 rounded-lg border border-border bg-primary/5 p-3 text-sm text-primary">
+      <Info size={14} className="mt-0.5 shrink-0 text-primary" />
       <div>{children}</div>
     </div>
   );
@@ -381,8 +381,8 @@ function CashSecuredPutTab() {
             </div>
           ))}
 
-          <div className="mt-4 p-3 rounded border border-purple-500/20 bg-purple-500/5 text-xs text-purple-300 space-y-1">
-            <div className="font-semibold text-purple-400">Wheel Strategy Flow</div>
+          <div className="mt-4 p-3 rounded border border-border bg-primary/5 text-xs text-primary space-y-1">
+            <div className="font-semibold text-primary">Wheel Strategy Flow</div>
             <div>1. Sell CSP → collect premium</div>
             <div>2. If assigned → own shares at effective price</div>
             <div>3. Sell Covered Call against shares</div>
@@ -671,7 +671,7 @@ function CalendarSpreadTab() {
                   onClick={() => setIsCall(t === "Call")}
                   className={`px-2.5 py-0.5 rounded text-xs font-medium transition-colors ${
                     (t === "Call") === isCall
-                      ? "bg-blue-600 text-white"
+                      ? "bg-primary text-white"
                       : "bg-neutral-800 text-neutral-400 hover:text-neutral-200"
                   }`}
                 >
@@ -904,7 +904,7 @@ function StrategyComparisonTab() {
             onClick={() => setSelectedIvScenario(s.key)}
             className={`px-3 py-1.5 rounded-lg text-xs font-medium transition-colors border ${
               selectedIvScenario === s.key
-                ? "border-blue-500 bg-blue-500/10 text-blue-300"
+                ? "border-primary bg-primary/10 text-primary"
                 : "border-neutral-700 bg-neutral-800 text-neutral-400 hover:text-neutral-200"
             }`}
           >
@@ -1005,12 +1005,12 @@ function StrategyComparisonTab() {
           {[
             {
               name: "Covered Call",
-              icon: <TrendingUp size={13} className="text-blue-400" />,
+              icon: <TrendingUp size={13} className="text-primary" />,
               conditions: ["Own 100+ shares already", "Neutral to mildly bullish", "Want income without buying more", "IV ≥ 25% for meaningful premium"],
             },
             {
               name: "Cash-Secured Put",
-              icon: <TrendingDown size={13} className="text-purple-400" />,
+              icon: <TrendingDown size={13} className="text-primary" />,
               conditions: ["Want to acquire shares at a discount", "Bullish long-term, neutral short-term", "Have cash available to deploy", "Prefer defined-risk income"],
             },
             {

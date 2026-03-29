@@ -1066,9 +1066,9 @@ export default function TransitionFinancePage() {
               </CardHeader>
               <CardContent className="space-y-3">
                 {[
-                  { label: "Public / DFI / MDB", pct: 38, color: "bg-blue-500" },
+                  { label: "Public / DFI / MDB", pct: 38, color: "bg-primary" },
                   { label: "Private Equity & Debt", pct: 42, color: "bg-emerald-500" },
-                  { label: "Corporate Balance Sheet", pct: 14, color: "bg-violet-500" },
+                  { label: "Corporate Balance Sheet", pct: 14, color: "bg-primary" },
                   { label: "Retail / Crowd", pct: 6, color: "bg-amber-500" },
                 ].map((row) => (
                   <div key={row.label}>
@@ -1098,7 +1098,7 @@ export default function TransitionFinancePage() {
                     <div>
                       <div className="font-medium text-white">{b.name}</div>
                       <div className="text-gray-400">
-                        <span className="text-blue-400">{b.provider}</span> · Risk: {b.risk} · Return: {b.return}
+                        <span className="text-primary">{b.provider}</span> · Risk: {b.risk} · Return: {b.return}
                       </div>
                       <div className="text-gray-500">{b.purpose}</div>
                     </div>
@@ -1126,7 +1126,7 @@ export default function TransitionFinancePage() {
               </div>
               <div className="grid grid-cols-2 gap-3 text-sm">
                 <div className="bg-gray-800/50 rounded-lg p-3">
-                  <div className="text-blue-400 font-mono font-semibold">${PLEDGE_PROGRESS.publicSources}B</div>
+                  <div className="text-primary font-mono font-semibold">${PLEDGE_PROGRESS.publicSources}B</div>
                   <div className="text-gray-400 text-xs">Public bilateral / multilateral</div>
                 </div>
                 <div className="bg-gray-800/50 rounded-lg p-3">
@@ -1318,7 +1318,7 @@ export default function TransitionFinancePage() {
           <Card className="bg-gray-900 border-gray-800">
             <CardHeader className="pb-2">
               <CardTitle className="text-sm flex items-center gap-2">
-                <TrendingUp className="w-4 h-4 text-blue-400" />
+                <TrendingUp className="w-4 h-4 text-primary" />
                 Carbon Price Forecasts 2030 — IEA Scenarios ($/tCO₂e)
               </CardTitle>
             </CardHeader>
@@ -1330,7 +1330,7 @@ export default function TransitionFinancePage() {
                     <div className="flex items-center gap-2">
                       {[
                         { label: "SDS Base", val: row.sdsBase, color: "bg-gray-500" },
-                        { label: "IEA 450ppm", val: row.iea450, color: "bg-blue-500" },
+                        { label: "IEA 450ppm", val: row.iea450, color: "bg-primary" },
                         { label: "Net Zero 2050", val: row.ieanetzero, color: "bg-emerald-500" },
                       ].map((sc) => (
                         <div key={sc.label} className="flex-1">
@@ -1358,7 +1358,7 @@ export default function TransitionFinancePage() {
             <Card className="bg-gray-900 border-gray-800">
               <CardHeader className="pb-2">
                 <CardTitle className="text-sm flex items-center gap-2">
-                  <Globe className="w-4 h-4 text-blue-400" />
+                  <Globe className="w-4 h-4 text-primary" />
                   Article 6 — Paris International Trading
                 </CardTitle>
               </CardHeader>
@@ -1369,7 +1369,7 @@ export default function TransitionFinancePage() {
                   { ref: "Art. 6.8", desc: "Non-market approaches; capacity-building, adaptation co-benefits; no credits issued." },
                 ].map((a) => (
                   <div key={a.ref} className="bg-gray-800/50 rounded p-2">
-                    <span className="text-blue-400 font-medium">{a.ref}:</span> {a.desc}
+                    <span className="text-primary font-medium">{a.ref}:</span> {a.desc}
                   </div>
                 ))}
               </CardContent>
@@ -1434,9 +1434,9 @@ export default function TransitionFinancePage() {
                       {cat.type === "Acute" ? (
                         <Flame className="w-4 h-4 text-red-400" />
                       ) : (
-                        <Droplets className="w-4 h-4 text-blue-400" />
+                        <Droplets className="w-4 h-4 text-primary" />
                       )}
-                      <span className={`text-sm font-medium ${cat.type === "Acute" ? "text-red-300" : "text-blue-300"}`}>
+                      <span className={`text-sm font-medium ${cat.type === "Acute" ? "text-red-300" : "text-primary"}`}>
                         {cat.type} Risks
                       </span>
                     </div>
@@ -1449,7 +1449,7 @@ export default function TransitionFinancePage() {
                           </div>
                           <div className="h-1.5 bg-gray-800 rounded-full overflow-hidden">
                             <div
-                              className={`h-full rounded-full ${cat.type === "Acute" ? "bg-red-500" : "bg-blue-500"} opacity-75`}
+                              className={`h-full rounded-full ${cat.type === "Acute" ? "bg-red-500" : "bg-primary"} opacity-75`}
                               style={{ width: `${ev.exposure}%` }}
                             />
                           </div>

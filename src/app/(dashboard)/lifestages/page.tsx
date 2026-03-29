@@ -370,7 +370,7 @@ function SectionHeader({
 // ── Tooltip hint ──────────────────────────────────────────────────────────────
 function Hint({ text }: { text: string }) {
   return (
-    <div className="flex items-start gap-2 p-3 rounded-lg bg-blue-500/10 border border-blue-500/20 text-xs text-blue-300">
+    <div className="flex items-start gap-2 p-3 rounded-lg bg-primary/10 border border-border text-xs text-primary">
       <Info className="w-3.5 h-3.5 mt-0.5 shrink-0" />
       <span>{text}</span>
     </div>
@@ -516,7 +516,7 @@ function Tab20s() {
           title="Roth IRA Limit (2025)"
           value="$7,000"
           sub="Tax-free after 59½"
-          color="text-purple-400"
+          color="text-primary"
         />
         <InfoCard
           icon={<CreditCard className="w-4 h-4" />}
@@ -882,7 +882,7 @@ function Tab40s() {
           title="Annual Gift Exclusion"
           value="$18,000"
           sub="Per recipient, tax-free (2025)"
-          color="text-purple-400"
+          color="text-primary"
         />
       </div>
 
@@ -1263,7 +1263,7 @@ function Tab60s() {
           title="Portfolio Longevity"
           value={`Age ${ageAtExhaust}`}
           sub="Before potential depletion"
-          color="text-purple-400"
+          color="text-primary"
         />
       </div>
 

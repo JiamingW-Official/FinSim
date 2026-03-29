@@ -334,14 +334,14 @@ function WithdrawalStrategiesTab() {
           {[
             {
               name: "Guardrails Method (Guyton-Klinger)",
-              colorCls: "text-blue-400",
-              bgCls: "bg-blue-500",
+              colorCls: "text-primary",
+              bgCls: "bg-primary",
               desc: "Set upper (5.5%) and lower (3.5%) guardrails. Cut withdrawals 10% if you hit the upper; take a 10% raise if you hit the lower.",
             },
             {
               name: "RMD Method",
-              colorCls: "text-purple-400",
-              bgCls: "bg-purple-500",
+              colorCls: "text-primary",
+              bgCls: "bg-primary",
               desc: "Withdraw portfolio / IRS life expectancy factor each year. Automatically adjusts to portfolio size — never depletes the portfolio.",
             },
             {
@@ -809,8 +809,8 @@ function SequenceRiskTab() {
             },
             {
               name: "Bond Tent (Rising equity glidepath)",
-              colorCls: "text-blue-400",
-              bgCls: "bg-blue-500/10",
+              colorCls: "text-primary",
+              bgCls: "bg-primary/10",
               desc: "Enter retirement with 40% bonds, decline to 20% over the first 10 years as the sequence risk window passes. Protects early years, captures equity growth later.",
             },
             {
@@ -973,8 +973,8 @@ function SocialSecurityTab() {
   return (
     <div className="space-y-6">
       <div className="flex items-start gap-3">
-        <div className="p-2 rounded-lg bg-blue-500/10">
-          <Landmark className="w-5 h-5 text-blue-400" />
+        <div className="p-2 rounded-lg bg-primary/10">
+          <Landmark className="w-5 h-5 text-primary" />
         </div>
         <div>
           <h2 className="text-lg font-semibold text-foreground">
@@ -1009,8 +1009,8 @@ function SocialSecurityTab() {
             age: 70,
             monthly: monthlyBenefit70,
             label: "Maximum",
-            colorCls: "text-purple-400",
-            bgCls: "bg-purple-500/10",
+            colorCls: "text-primary",
+            bgCls: "bg-primary/10",
             reduction: "+32% vs FRA",
           },
         ].map((opt) => (
@@ -1245,8 +1245,8 @@ function SocialSecurityTab() {
                 by 2/3 of pension. WEP reduces own SS benefit.
               </p>
             </div>
-            <div className="rounded-lg bg-blue-500/10 p-2">
-              <p className="font-semibold text-blue-400 mb-1">
+            <div className="rounded-lg bg-primary/10 p-2">
+              <p className="font-semibold text-primary mb-1">
                 Earnings Test (before FRA)
               </p>
               <p className="text-muted-foreground">
@@ -1400,8 +1400,8 @@ function IncomeFlooringTab() {
   return (
     <div className="space-y-6">
       <div className="flex items-start gap-3">
-        <div className="p-2 rounded-lg bg-purple-500/10">
-          <Umbrella className="w-5 h-5 text-purple-400" />
+        <div className="p-2 rounded-lg bg-primary/10">
+          <Umbrella className="w-5 h-5 text-primary" />
         </div>
         <div>
           <h2 className="text-lg font-semibold text-foreground">
@@ -1423,8 +1423,8 @@ function IncomeFlooringTab() {
           </span>
         </div>
         <div className="grid grid-cols-2 gap-4">
-          <div className="rounded-lg bg-blue-500/10 border border-blue-500/20 p-3">
-            <p className="text-xs font-semibold text-blue-400 mb-2">
+          <div className="rounded-lg bg-primary/10 border border-border p-3">
+            <p className="text-xs font-semibold text-primary mb-2">
               Income Floor (Guaranteed)
             </p>
             <p className="text-xs text-muted-foreground mb-2">
@@ -1442,14 +1442,14 @@ function IncomeFlooringTab() {
                   key={item}
                   className="flex items-center gap-1.5 text-xs text-foreground"
                 >
-                  <CheckCircle className="w-3 h-3 text-blue-400 shrink-0" />
+                  <CheckCircle className="w-3 h-3 text-primary shrink-0" />
                   {item}
                 </li>
               ))}
             </ul>
           </div>
-          <div className="rounded-lg bg-purple-500/10 border border-purple-500/20 p-3">
-            <p className="text-xs font-semibold text-purple-400 mb-2">
+          <div className="rounded-lg bg-primary/10 border border-border p-3">
+            <p className="text-xs font-semibold text-primary mb-2">
               Upside Portfolio (Growth)
             </p>
             <p className="text-xs text-muted-foreground mb-2">
@@ -1467,7 +1467,7 @@ function IncomeFlooringTab() {
                   key={item}
                   className="flex items-center gap-1.5 text-xs text-foreground"
                 >
-                  <TrendingUp className="w-3 h-3 text-purple-400 shrink-0" />
+                  <TrendingUp className="w-3 h-3 text-primary shrink-0" />
                   {item}
                 </li>
               ))}
@@ -1534,7 +1534,7 @@ function IncomeFlooringTab() {
                           key={i}
                           className={cn(
                             "w-2 h-2 rounded-sm",
-                            i < ann.upside ? "bg-purple-500" : "bg-muted/30"
+                            i < ann.upside ? "bg-primary" : "bg-muted/30"
                           )}
                         />
                       ))}
@@ -1832,7 +1832,7 @@ function IncomeFlooringTab() {
             {
               label: "Income from age 85",
               value: "$2,400/mo",
-              colorCls: "text-purple-400",
+              colorCls: "text-primary",
             },
             {
               label: "IRR if live to 95",
@@ -1851,8 +1851,8 @@ function IncomeFlooringTab() {
             </div>
           ))}
         </div>
-        <div className="mt-3 rounded-lg bg-blue-500/10 border border-blue-500/20 p-3 text-xs text-muted-foreground">
-          <span className="font-semibold text-blue-400">
+        <div className="mt-3 rounded-lg bg-primary/10 border border-border p-3 text-xs text-muted-foreground">
+          <span className="font-semibold text-primary">
             QLAC (Qualified Longevity Annuity Contract):{" "}
           </span>
           IRS allows up to the lesser of $200,000 or 25% of IRA balance to be

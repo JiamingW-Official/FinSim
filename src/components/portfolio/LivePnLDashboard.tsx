@@ -436,7 +436,7 @@ export function LivePnLDashboard() {
     return (
       <div className="rounded-lg border border-border bg-card p-4">
         <div className="flex items-center gap-1.5 text-xs font-medium text-muted-foreground mb-3">
-          <Activity className="h-3.5 w-3.5 text-blue-400" />
+          <Activity className="h-3.5 w-3.5 text-primary" />
           Live P&L Dashboard
         </div>
         <p className="text-xs text-muted-foreground py-6 text-center">
@@ -453,7 +453,7 @@ export function LivePnLDashboard() {
       {/* Header */}
       <div className="flex items-center justify-between">
         <div className="flex items-center gap-1.5 text-xs font-medium text-muted-foreground">
-          <Activity className="h-3.5 w-3.5 text-blue-400" />
+          <Activity className="h-3.5 w-3.5 text-primary" />
           Live P&L Dashboard
         </div>
         <span className="flex items-center gap-1 text-xs text-muted-foreground">
@@ -692,7 +692,7 @@ export function LivePnLDashboard() {
               <span
                 className={cn(
                   "text-xs font-semibold tabular-nums",
-                  spyPnL >= 0 ? "text-blue-400" : "text-red-400",
+                  spyPnL >= 0 ? "text-primary" : "text-red-400",
                 )}
               >
                 {spyPnL >= 0 ? "+" : ""}

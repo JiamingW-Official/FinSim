@@ -963,14 +963,14 @@ function GreeksExplorer() {
           <GreekCard
             label="Theta (Θ)"
             value={result.theta}
-            color="text-violet-400"
+            color="text-primary"
             description="Price decay per calendar day"
             delta={deltas.find((d) => d.name === "Theta") ?? null}
           />
           <GreekCard
             label="Vega (ν)"
             value={result.vega}
-            color="text-cyan-400"
+            color="text-muted-foreground"
             description="Price change per 1% IV move"
             delta={deltas.find((d) => d.name === "Vega") ?? null}
           />

@@ -777,7 +777,7 @@ function ThreeFundBuilder() {
           </div>
           <div>
             <div className="flex justify-between mb-1">
-              <span className="text-sm font-medium text-cyan-400">Intl Equity (VXUS)</span>
+              <span className="text-sm font-medium text-muted-foreground">Intl Equity (VXUS)</span>
               <span className="text-sm font-bold text-white">{intlAlloc}%</span>
             </div>
             <Slider
@@ -950,7 +950,7 @@ function ETFTable() {
                 <td className="py-2.5 pr-3 font-mono text-green-400">
                   {etf.lendingIncome > 0 ? `+${etf.lendingIncome.toFixed(3)}%` : "–"}
                 </td>
-                <td className="py-2.5 pr-3 font-mono text-cyan-400">{etf.totalCostDrag.toFixed(4)}%</td>
+                <td className="py-2.5 pr-3 font-mono text-muted-foreground">{etf.totalCostDrag.toFixed(4)}%</td>
                 <td className="py-2.5 pr-3 font-mono">
                   <span className={etf.costDollar > 5000 ? "text-red-400" : "text-slate-300"}>
                     ${etf.costDollar.toFixed(0).replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
@@ -1037,7 +1037,7 @@ function ActivePassiveSection() {
             label: "Survivorship Bias",
             value: `~${survivorshipPenalty}%`,
             sub: "funds liquidated/merged",
-            color: "text-purple-400",
+            color: "text-primary",
             icon: <AlertTriangle className="w-4 h-4" />,
           },
         ].map((stat) => (
@@ -1464,7 +1464,7 @@ export default function IndexInvestingPage() {
             <Card className="bg-slate-900 border-slate-700">
               <CardHeader className="pb-2">
                 <CardTitle className="text-base flex items-center gap-2">
-                  <Target className="w-4 h-4 text-cyan-400" />
+                  <Target className="w-4 h-4 text-muted-foreground" />
                   Weighting Methodology Comparison
                 </CardTitle>
               </CardHeader>
@@ -1561,7 +1561,7 @@ export default function IndexInvestingPage() {
           <Card className="bg-slate-900 border-slate-700">
             <CardHeader className="pb-2">
               <CardTitle className="text-base flex items-center gap-2">
-                <BarChart3 className="w-4 h-4 text-purple-400" />
+                <BarChart3 className="w-4 h-4 text-primary" />
                 Smart Beta / Factor ETF Comparison
               </CardTitle>
               <p className="text-xs text-slate-400">
@@ -1595,7 +1595,7 @@ export default function IndexInvestingPage() {
           <Card className="bg-slate-900 border-slate-700">
             <CardHeader className="pb-2">
               <CardTitle className="text-base flex items-center gap-2">
-                <Target className="w-4 h-4 text-cyan-400" />
+                <Target className="w-4 h-4 text-muted-foreground" />
                 Glide Path Simulator — Equity Allocation Over Time
               </CardTitle>
               <p className="text-xs text-slate-400">
@@ -1627,7 +1627,7 @@ export default function IndexInvestingPage() {
                   {
                     label: "Intl Equity",
                     value: `${Math.round(Math.max(5, Math.min(30, (110 - age) * 0.3)))}%`,
-                    color: "text-cyan-400",
+                    color: "text-muted-foreground",
                     fund: "VXUS",
                   },
                   {
@@ -1648,7 +1648,7 @@ export default function IndexInvestingPage() {
               {/* Rebalancing info */}
               <div className="bg-slate-800/50 rounded-lg p-4 border border-slate-700">
                 <div className="flex items-center gap-2 mb-2">
-                  <Info className="w-4 h-4 text-cyan-400" />
+                  <Info className="w-4 h-4 text-muted-foreground" />
                   <span className="font-semibold text-sm text-white">Rebalancing Guidelines</span>
                 </div>
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-3 text-xs text-slate-400">

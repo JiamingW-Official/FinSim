@@ -499,7 +499,7 @@ export default function RealAssets2Page() {
             { label: "Timberland Avg Return", value: "8–10% p.a.", color: "bg-emerald-500/10 text-emerald-400" },
             { label: "US Farmland CAGR (2010–24)", value: "+4.8%", color: "bg-amber-500/10 text-amber-400" },
             { label: "Mei Moses Art Real Return", value: "5–7%", color: "bg-pink-500/10 text-pink-400" },
-            { label: "Music Royalty Market", value: "$30B+", color: "bg-purple-500/10 text-purple-400" },
+            { label: "Music Royalty Market", value: "$30B+", color: "bg-primary/10 text-primary" },
           ].map((chip) => (
             <div key={chip.label} className={cn("px-3 py-1.5 rounded-full text-xs font-medium", chip.color)}>
               <span className="text-zinc-500 mr-1">{chip.label}:</span>{chip.value}
@@ -754,7 +754,7 @@ export default function RealAssets2Page() {
                 badgeColor: "text-amber-400 bg-amber-500/10",
               },
               {
-                icon: <Globe className="w-4 h-4 text-purple-400" />,
+                icon: <Globe className="w-4 h-4 text-primary" />,
                 title: "NFTs / Digital Art",
                 index: "NFT Market Cap",
                 return: "−80% from 2021 peak",
@@ -817,8 +817,8 @@ export default function RealAssets2Page() {
                   <p className="text-amber-300 font-medium mb-1">Provenance Risk</p>
                   <p>Nazi-looted art repatriation claims have voided titles on $1B+ of artworks. Clear chain of ownership from 1933–1945 is mandatory for auction houses. AAMD Task Force registers claims; Hector Feliciano's research exposed hundreds of cases.</p>
                 </div>
-                <div className="p-3 rounded-lg bg-blue-500/5 border border-blue-500/20">
-                  <p className="text-blue-300 font-medium mb-1">Liquidity Risk</p>
+                <div className="p-3 rounded-lg bg-primary/5 border border-border">
+                  <p className="text-primary font-medium mb-1">Liquidity Risk</p>
                   <p>Even blue-chip works can fail to sell at auction ('bought-in' at ~30–40% of lots). Reserve prices protect sellers but create false price signals. Illiquidity premium of 2–4% versus equities compensates patient capital — but forced sellers face severe discounts.</p>
                 </div>
               </div>
@@ -833,7 +833,7 @@ export default function RealAssets2Page() {
             <Card className="bg-zinc-900 border-zinc-800">
               <CardHeader className="pb-2">
                 <CardTitle className="text-sm text-zinc-300 flex items-center gap-2">
-                  <Music className="w-4 h-4 text-purple-400" />
+                  <Music className="w-4 h-4 text-primary" />
                   Music Publishing Revenue Streams
                 </CardTitle>
               </CardHeader>
@@ -867,8 +867,8 @@ export default function RealAssets2Page() {
                     </div>
                   ))}
                 </div>
-                <div className="p-3 rounded-lg bg-purple-500/5 border border-purple-500/20">
-                  <p className="text-purple-300 font-medium mb-1">Royalty DCF Model</p>
+                <div className="p-3 rounded-lg bg-primary/5 border border-border">
+                  <p className="text-primary font-medium mb-1">Royalty DCF Model</p>
                   <p>A song generating $100k NPS (Net Publisher Share) annually, valued at 20× = $2M catalog value. Hipgnosis Songs Fund paid ~$300M for Bob Dylan's entire catalog in late 2020. Streaming growth rate and decline curve assumptions drive valuation variance significantly.</p>
                 </div>
               </CardContent>
@@ -903,7 +903,7 @@ export default function RealAssets2Page() {
                 color: "amber",
               },
               {
-                icon: <ShieldCheck className="w-4 h-4 text-blue-400" />,
+                icon: <ShieldCheck className="w-4 h-4 text-primary" />,
                 title: "Technology Licensing",
                 model: "Patent Portfolio Monetization",
                 content: "Technology companies monetize patent portfolios through cross-licensing agreements, patent assertion entities (PAEs), and standard-essential patents (SEPs). QUALCOMM earns ~30% of revenues from licensing its CDMA/LTE patents. InterDigital, VIA Technologies specialize in wireless patent licensing. Royalty rate setting governed by FRAND principles for SEPs.",
@@ -953,7 +953,7 @@ export default function RealAssets2Page() {
           <Card className="bg-zinc-900 border-zinc-800">
             <CardHeader className="pb-2">
               <CardTitle className="text-sm text-zinc-300 flex items-center gap-2">
-                <Info className="w-4 h-4 text-blue-400" />
+                <Info className="w-4 h-4 text-primary" />
                 Royalty vs Working Interest — Key Distinction
               </CardTitle>
             </CardHeader>
@@ -996,7 +996,7 @@ export default function RealAssets2Page() {
           <Card className="bg-zinc-900 border-zinc-800">
             <CardHeader className="pb-2">
               <CardTitle className="text-sm text-zinc-300 flex items-center gap-2">
-                <Layers className="w-4 h-4 text-blue-400" />
+                <Layers className="w-4 h-4 text-primary" />
                 Real Assets Comparison Matrix (7 Dimensions × 6 Asset Types)
               </CardTitle>
             </CardHeader>
@@ -1009,7 +1009,7 @@ export default function RealAssets2Page() {
           <Card className="bg-zinc-900 border-zinc-800">
             <CardHeader className="pb-2">
               <CardTitle className="text-sm text-zinc-300 flex items-center gap-2">
-                <Activity className="w-4 h-4 text-purple-400" />
+                <Activity className="w-4 h-4 text-primary" />
                 Real Asset Liquidity Spectrum
               </CardTitle>
             </CardHeader>
@@ -1037,7 +1037,7 @@ export default function RealAssets2Page() {
             <Card className="bg-zinc-900 border-zinc-800">
               <CardHeader className="pb-2">
                 <CardTitle className="text-sm text-zinc-300 flex items-center gap-2">
-                  <BarChart2 className="w-4 h-4 text-blue-400" />
+                  <BarChart2 className="w-4 h-4 text-primary" />
                   Correlation Matrix with Traditional Assets
                 </CardTitle>
               </CardHeader>

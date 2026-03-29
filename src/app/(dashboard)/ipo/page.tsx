@@ -1151,7 +1151,7 @@ export default function IPOPage() {
                       <div className={cn(
                         "flex h-14 w-14 items-center justify-center rounded-xl text-2xl font-bold border-2",
                         gradeResult.score >= 78 ? "border-green-500 bg-green-500/10 text-green-400" :
-                        gradeResult.score >= 55 ? "border-blue-500 bg-blue-500/10 text-blue-400" :
+                        gradeResult.score >= 55 ? "border-primary bg-primary/10 text-primary" :
                         gradeResult.score >= 38 ? "border-amber-500 bg-amber-500/10 text-amber-400" :
                         "border-red-500 bg-red-500/10 text-red-400"
                       )}>
@@ -1164,7 +1164,7 @@ export default function IPOPage() {
                             className={cn(
                               "h-full rounded-full transition-all",
                               gradeResult.score >= 78 ? "bg-green-500" :
-                              gradeResult.score >= 55 ? "bg-blue-500" :
+                              gradeResult.score >= 55 ? "bg-primary" :
                               gradeResult.score >= 38 ? "bg-amber-500" : "bg-red-500"
                             )}
                             style={{ width: `${gradeResult.score}%` }}
@@ -1373,7 +1373,7 @@ export default function IPOPage() {
                   {[
                     {
                       title: "Broker IPO Programs",
-                      icon: <Users className="h-4 w-4 text-blue-400" />,
+                      icon: <Users className="h-4 w-4 text-primary" />,
                       desc: "Brokers like Fidelity, TD Ameritrade, and Schwab offer IPO access to eligible customers. Typically requires minimum account balance and active trading history.",
                     },
                     {
@@ -1383,7 +1383,7 @@ export default function IPOPage() {
                     },
                     {
                       title: "Direct Listings",
-                      icon: <TrendingUp className="h-4 w-4 text-purple-400" />,
+                      icon: <TrendingUp className="h-4 w-4 text-primary" />,
                       desc: "Companies like Spotify and Coinbase bypassed traditional IPO underwriting via direct listings. No lockup, no underwriter discount — shares trade immediately at market price.",
                     },
                     {
@@ -1401,9 +1401,9 @@ export default function IPOPage() {
                     </div>
                   ))}
                 </div>
-                <div className="mt-3 rounded-lg bg-blue-500/10 border border-blue-500/20 p-3 flex gap-2">
-                  <Info className="h-4 w-4 text-blue-400 shrink-0 mt-0.5" />
-                  <p className="text-xs text-blue-300 leading-relaxed">
+                <div className="mt-3 rounded-lg bg-primary/10 border border-border p-3 flex gap-2">
+                  <Info className="h-4 w-4 text-primary shrink-0 mt-0.5" />
+                  <p className="text-xs text-primary leading-relaxed">
                     Retail investors rarely receive offer-price allocations for hot IPOs. Most retail participation
                     happens in the after-market at a premium to the offer price, which significantly reduces
                     expected returns compared to institutional investors.

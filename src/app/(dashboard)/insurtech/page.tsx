@@ -60,7 +60,7 @@ const INSURTECH_CATEGORIES: InsurtechCategory[] = [
     examples: ["Arbol", "Etherisc", "FloodFlash", "Descartes"],
     fundingBn: 3.2,
     disruptionLevel: "extreme",
-    color: "text-violet-400",
+    color: "text-primary",
   },
   {
     id: "p2p",
@@ -69,7 +69,7 @@ const INSURTECH_CATEGORIES: InsurtechCategory[] = [
     examples: ["Lemonade", "Friendsurance", "Teambrella", "Besure"],
     fundingBn: 5.8,
     disruptionLevel: "high",
-    color: "text-blue-400",
+    color: "text-primary",
   },
   {
     id: "embedded",
@@ -105,7 +105,7 @@ const INSURTECH_CATEGORIES: InsurtechCategory[] = [
     examples: ["Nephila", "Stable", "Supercede", "Ledger Investing"],
     fundingBn: 4.1,
     disruptionLevel: "medium",
-    color: "text-cyan-400",
+    color: "text-muted-foreground",
   },
 ];
 
@@ -653,8 +653,8 @@ function BusinessModelsTab() {
     const styles: Record<InsurtechCategory["disruptionLevel"], string> = {
       low: "bg-slate-500/20 text-slate-400",
       medium: "bg-amber-500/20 text-amber-400",
-      high: "bg-blue-500/20 text-blue-400",
-      extreme: "bg-violet-500/20 text-violet-400",
+      high: "bg-primary/20 text-primary",
+      extreme: "bg-primary/20 text-primary",
     };
     return (
       <span className={cn("rounded-full px-2 py-0.5 text-[11px] font-semibold uppercase tracking-wide", styles[level])}>
@@ -755,7 +755,7 @@ function BusinessModelsTab() {
               {INCUMBENT_VS_CHALLENGER.map((row, i) => (
                 <tr key={row.dimension} className={cn("border-b border-border/40", i % 2 === 0 ? "bg-muted/10" : "")}>
                   <td className="py-1.5 pr-4 font-medium text-foreground">{row.dimension}</td>
-                  <td className={cn("py-1.5 pr-4", row.winner === "incumbent" ? "text-blue-400 font-semibold" : "text-muted-foreground")}>
+                  <td className={cn("py-1.5 pr-4", row.winner === "incumbent" ? "text-primary font-semibold" : "text-muted-foreground")}>
                     {row.incumbent}
                   </td>
                   <td className={cn("py-1.5 pr-4", row.winner === "challenger" ? "text-emerald-400 font-semibold" : "text-muted-foreground")}>
@@ -766,7 +766,7 @@ function BusinessModelsTab() {
                       <span className="text-[11px] rounded-full bg-emerald-500/20 text-emerald-400 px-2 py-0.5 font-semibold">Challenger</span>
                     )}
                     {row.winner === "incumbent" && (
-                      <span className="text-[11px] rounded-full bg-blue-500/20 text-blue-400 px-2 py-0.5 font-semibold">Incumbent</span>
+                      <span className="text-[11px] rounded-full bg-primary/20 text-primary px-2 py-0.5 font-semibold">Incumbent</span>
                     )}
                     {row.winner === "tie" && (
                       <span className="text-[11px] rounded-full bg-slate-500/20 text-slate-400 px-2 py-0.5 font-semibold">Tie</span>
@@ -831,7 +831,7 @@ function ParametricTab() {
                 </div>
                 <div>
                   <span className="text-muted-foreground">Basis Risk: </span>
-                  <span className="text-blue-300">{wt.basisRisk}</span>
+                  <span className="text-primary">{wt.basisRisk}</span>
                 </div>
               </div>
             </div>
@@ -927,12 +927,12 @@ function ParametricTab() {
       </div>
 
       {/* Cat bond connection */}
-      <div className="rounded-xl border border-violet-500/20 bg-violet-500/5 p-4">
+      <div className="rounded-xl border border-border bg-primary/5 p-4">
         <div className="flex gap-2.5">
-          <Shield className="h-4 w-4 text-violet-400 shrink-0 mt-0.5" />
+          <Shield className="h-4 w-4 text-primary shrink-0 mt-0.5" />
           <div>
-            <h3 className="text-xs font-semibold text-violet-400 mb-1">Cat Bond Connection</h3>
-            <p className="text-[11px] text-violet-300/80 leading-relaxed mb-3">
+            <h3 className="text-xs font-semibold text-primary mb-1">Cat Bond Connection</h3>
+            <p className="text-[11px] text-muted-foreground leading-relaxed mb-3">
               Catastrophe bonds (cat bonds) are the capital markets cousin of parametric insurance. Insurers/reinsurers
               transfer extreme-tail risk to investors via ILS (Insurance-Linked Securities). Bonds pay above-market coupons;
               principal is at risk only if a parametric trigger (e.g., hurricane category 4+ landfall in Florida) is breached.
@@ -941,9 +941,9 @@ function ParametricTab() {
             <div className="grid grid-cols-3 gap-3">
               {CAT_BOND_DATA.slice(-3).map((d) => (
                 <div key={d.year} className="text-center">
-                  <div className="text-sm font-bold font-mono text-violet-300">${d.issuance.toFixed(1)}B</div>
+                  <div className="text-sm font-bold font-mono text-primary">${d.issuance.toFixed(1)}B</div>
                   <div className="text-[11px] text-muted-foreground">issuance {d.year}</div>
-                  <div className="text-xs text-violet-400 font-mono">+{d.spread.toFixed(1)}% spread</div>
+                  <div className="text-xs text-primary font-mono">+{d.spread.toFixed(1)}% spread</div>
                 </div>
               ))}
             </div>
@@ -958,10 +958,10 @@ function AIDataTab() {
   const [activeInput, setActiveInput] = useState<string | null>(null);
 
   const categoryColor: Record<MLInput["category"], string> = {
-    telematics: "text-blue-400 bg-blue-500/10 border-blue-500/20",
+    telematics: "text-primary bg-primary/10 border-border",
     social: "text-amber-400 bg-amber-500/10 border-amber-500/20",
     iot: "text-emerald-400 bg-emerald-500/10 border-emerald-500/20",
-    claims: "text-violet-400 bg-violet-500/10 border-violet-500/20",
+    claims: "text-primary bg-primary/10 border-border",
   };
 
   const categoryIcon: Record<MLInput["category"], React.ReactNode> = {
@@ -1040,7 +1040,7 @@ function AIDataTab() {
         <div className="grid grid-cols-2 sm:grid-cols-4 gap-2 mt-3">
           {[
             { label: "Low mileage (<5k mi)", saving: "Up to 47% savings", color: "text-emerald-400" },
-            { label: "Average (10k mi)", saving: "~16% savings", color: "text-blue-400" },
+            { label: "Average (10k mi)", saving: "~16% savings", color: "text-primary" },
             { label: "High mileage (15k mi)", saving: "11% premium", color: "text-amber-400" },
             { label: "Very high (>18k mi)", saving: "28% premium", color: "text-red-400" },
           ].map((item) => (
@@ -1131,7 +1131,7 @@ function MarketDynamicsTab() {
         <QuarterlyFundingLineSVG />
         <div className="grid grid-cols-3 gap-3 mt-3">
           {[
-            { label: "Peak quarter (Q2 2021)", value: "$5.4B", color: "text-violet-400" },
+            { label: "Peak quarter (Q2 2021)", value: "$5.4B", color: "text-primary" },
             { label: "2023 trough", value: "$1.1B/qtr", color: "text-red-400" },
             { label: "2024 recovery", value: "$1.4B/qtr", color: "text-emerald-400" },
           ].map((item) => (
@@ -1175,8 +1175,8 @@ function MarketDynamicsTab() {
               <span className="text-xs font-mono text-emerald-400 shrink-0">{deal.value}</span>
               <span className={cn(
                 "text-[11px] rounded-full px-2 py-0.5 font-semibold shrink-0",
-                deal.type === "acquisition" ? "bg-blue-500/20 text-blue-400"
-                  : deal.type === "investment" ? "bg-violet-500/20 text-violet-400"
+                deal.type === "acquisition" ? "bg-primary/20 text-primary"
+                  : deal.type === "investment" ? "bg-primary/20 text-primary"
                   : "bg-amber-500/20 text-amber-400",
               )}>
                 {deal.type}
@@ -1187,12 +1187,12 @@ function MarketDynamicsTab() {
       </div>
 
       {/* Regulatory sandbox */}
-      <div className="rounded-xl border border-blue-500/20 bg-blue-500/5 p-4">
+      <div className="rounded-xl border border-border bg-primary/5 p-4">
         <div className="flex gap-2.5">
-          <CheckCircle className="h-4 w-4 text-blue-400 shrink-0 mt-0.5" />
+          <CheckCircle className="h-4 w-4 text-primary shrink-0 mt-0.5" />
           <div>
-            <h3 className="text-xs font-semibold text-blue-400 mb-1">Regulatory Sandbox Participation</h3>
-            <p className="text-[11px] text-blue-300/80 leading-relaxed mb-3">
+            <h3 className="text-xs font-semibold text-primary mb-1">Regulatory Sandbox Participation</h3>
+            <p className="text-[11px] text-muted-foreground leading-relaxed mb-3">
               Regulators across 50+ jurisdictions have created innovation sandboxes allowing InsurTech companies to
               test new products without full compliance requirements. Key jurisdictions: UK FCA, Singapore MAS,
               UAE ADGM, Arizona, Hawaii, and EU DORA framework.
@@ -1204,9 +1204,9 @@ function MarketDynamicsTab() {
                 { label: "Products tested", value: "2,100+" },
                 { label: "Conversion to licensed", value: "61%" },
               ].map((item) => (
-                <div key={item.label} className="rounded bg-blue-500/10 p-2 text-center">
-                  <div className="text-sm font-bold font-mono text-blue-300">{item.value}</div>
-                  <div className="text-[11px] text-blue-400/70">{item.label}</div>
+                <div key={item.label} className="rounded bg-primary/10 p-2 text-center">
+                  <div className="text-sm font-bold font-mono text-primary">{item.value}</div>
+                  <div className="text-[11px] text-muted-foreground">{item.label}</div>
                 </div>
               ))}
             </div>
@@ -1252,8 +1252,8 @@ function MarketDynamicsTab() {
       {/* Key metrics summary */}
       <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
         {[
-          { label: "Global InsurTech market", value: "$142B", sub: "2024 market size", icon: <DollarSign className="h-4 w-4" />, color: "text-violet-400" },
-          { label: "Premium digitized", value: "18%", sub: "vs. 3% in 2018", icon: <BarChart2 className="h-4 w-4" />, color: "text-blue-400" },
+          { label: "Global InsurTech market", value: "$142B", sub: "2024 market size", icon: <DollarSign className="h-4 w-4" />, color: "text-primary" },
+          { label: "Premium digitized", value: "18%", sub: "vs. 3% in 2018", icon: <BarChart2 className="h-4 w-4" />, color: "text-primary" },
           { label: "Avg combined ratio", value: "112", sub: "InsurTech 2024", icon: <Activity className="h-4 w-4" />, color: "text-amber-400" },
           { label: "Blockchain claims", value: "4min", sub: "avg settlement time", icon: <Zap className="h-4 w-4" />, color: "text-emerald-400" },
         ].map((item) => (
@@ -1296,10 +1296,10 @@ export default function InsurtechPage() {
           </p>
         </div>
         <div className="flex items-center gap-1.5">
-          <span className="text-[11px] rounded-full bg-violet-500/20 text-violet-400 px-2 py-0.5 font-semibold uppercase tracking-wide">
+          <span className="text-[11px] rounded-full bg-primary/20 text-primary px-2 py-0.5 font-semibold uppercase tracking-wide">
             Sector Analysis
           </span>
-          <span className="text-[11px] rounded-full bg-blue-500/20 text-blue-400 px-2 py-0.5 font-semibold uppercase tracking-wide">
+          <span className="text-[11px] rounded-full bg-primary/20 text-primary px-2 py-0.5 font-semibold uppercase tracking-wide">
             Interactive
           </span>
         </div>

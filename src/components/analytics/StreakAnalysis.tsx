@@ -173,7 +173,7 @@ export function StreakAnalysis() {
           Loss
         </div>
         <div className="flex items-center gap-1.5">
-          <span className="inline-block h-3 w-3 rounded-sm border border-blue-500/50 opacity-100 bg-green-700/40" />
+          <span className="inline-block h-3 w-3 rounded-sm border border-primary/50 opacity-100 bg-green-700/40" />
           Current streak
         </div>
         {sequence.length < MAX_TRADES ? null : (

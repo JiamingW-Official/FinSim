@@ -747,7 +747,7 @@ function categoryColor(cat: PatternCategory) {
   if (cat === "Reversal") return "text-rose-400 bg-rose-400/10";
   if (cat === "Continuation") return "text-emerald-400 bg-emerald-400/10";
   if (cat === "Bilateral") return "text-amber-400 bg-amber-400/10";
-  return "text-blue-400 bg-blue-400/10";
+  return "text-primary bg-primary/10";
 }
 
 function signalColor(signal: SignalDirection) {
@@ -890,8 +890,8 @@ function PatternDetail({
       </div>
 
       {/* Volume confirmation */}
-      <div className="rounded-lg border border-blue-400/20 bg-blue-400/5 p-3">
-        <p className="mb-1 text-xs font-semibold text-blue-400">Volume Confirmation</p>
+      <div className="rounded-lg border border-border bg-primary/5 p-3">
+        <p className="mb-1 text-xs font-semibold text-primary">Volume Confirmation</p>
         <p className="text-[11px] text-foreground/80 leading-snug">{pattern.volumeConfirmation}</p>
       </div>
 

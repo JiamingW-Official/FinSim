@@ -584,7 +584,7 @@ export default function MomentumBuilderPage() {
                     </div>
                     <div className="p-3 bg-muted/50 rounded-lg">
                       <p className="text-xs text-muted-foreground">IC Estimate</p>
-                      <p className="text-lg font-semibold text-blue-400">
+                      <p className="text-lg font-semibold text-primary">
                         {(0.04 + Math.max(0, signalScore) * 0.04).toFixed(3)}
                       </p>
                     </div>
@@ -596,7 +596,7 @@ export default function MomentumBuilderPage() {
                     </div>
                     <div className="p-3 bg-muted/50 rounded-lg">
                       <p className="text-xs text-muted-foreground">Concentration</p>
-                      <p className="text-lg font-semibold text-purple-400">
+                      <p className="text-lg font-semibold text-primary">
                         {portfolioSize <= 15 ? "High" : portfolioSize <= 25 ? "Med" : "Low"}
                       </p>
                     </div>
@@ -740,7 +740,7 @@ export default function MomentumBuilderPage() {
                   <MomentumHistogram stocks={stocks} />
                   <div className="flex gap-3 mt-2 text-xs">
                     <div className="flex items-center gap-1"><div className="w-3 h-3 rounded bg-green-500" />Top decile</div>
-                    <div className="flex items-center gap-1"><div className="w-3 h-3 rounded bg-blue-500 opacity-60" />Mid</div>
+                    <div className="flex items-center gap-1"><div className="w-3 h-3 rounded bg-primary opacity-60" />Mid</div>
                     <div className="flex items-center gap-1"><div className="w-3 h-3 rounded bg-red-500" />Bottom decile</div>
                   </div>
                 </CardContent>
@@ -799,8 +799,8 @@ export default function MomentumBuilderPage() {
           <div className="grid grid-cols-2 sm:grid-cols-5 gap-3 mb-4">
             {[
               { label: "Ann. Return", value: `${stats.annualReturn}%`, color: "text-green-400" },
-              { label: "Alpha vs S&P", value: `+${stats.alpha}%`, color: "text-blue-400" },
-              { label: "Sharpe", value: stats.sharpe.toFixed(2), color: "text-purple-400" },
+              { label: "Alpha vs S&P", value: `+${stats.alpha}%`, color: "text-primary" },
+              { label: "Sharpe", value: stats.sharpe.toFixed(2), color: "text-primary" },
               { label: "Sortino", value: stats.sortino.toFixed(2), color: "text-yellow-400" },
               { label: "Max DD", value: `${stats.maxDD}%`, color: "text-red-400" },
             ].map(item => (
@@ -866,10 +866,10 @@ export default function MomentumBuilderPage() {
                           <td className={`p-2 text-right font-mono ${row.sp500Return >= 0 ? "text-green-500" : "text-red-500"}`}>
                             {row.sp500Return > 0 ? "+" : ""}{row.sp500Return}%
                           </td>
-                          <td className={`p-2 text-right font-mono ${row.alpha >= 0 ? "text-blue-400" : "text-orange-400"}`}>
+                          <td className={`p-2 text-right font-mono ${row.alpha >= 0 ? "text-primary" : "text-orange-400"}`}>
                             {row.alpha > 0 ? "+" : ""}{row.alpha}%
                           </td>
-                          <td className="p-2 text-right font-mono text-purple-400">{row.sharpe}</td>
+                          <td className="p-2 text-right font-mono text-primary">{row.sharpe}</td>
                           <td className="p-2 text-right font-mono text-red-400">{row.maxDD}%</td>
                         </tr>
                       );
@@ -887,7 +887,7 @@ export default function MomentumBuilderPage() {
             <Card>
               <CardHeader className="pb-3">
                 <CardTitle className="text-sm flex items-center gap-2">
-                  <Activity className="w-4 h-4 text-blue-400" />
+                  <Activity className="w-4 h-4 text-primary" />
                   Information Coefficient by Holding Period
                 </CardTitle>
               </CardHeader>
@@ -908,7 +908,7 @@ export default function MomentumBuilderPage() {
                       {holdingRows.map(row => (
                         <tr key={row.period} className="border-b border-border/50 hover:bg-muted/20">
                           <td className="p-2 font-mono font-semibold">{row.period}</td>
-                          <td className="p-2 text-right font-mono text-blue-400">{row.ic.toFixed(4)}</td>
+                          <td className="p-2 text-right font-mono text-primary">{row.ic.toFixed(4)}</td>
                           <td className={`p-2 text-right font-mono ${Math.abs(row.tStat) >= 2 ? "text-green-400" : "text-amber-400"}`}>
                             {row.tStat}
                           </td>
@@ -949,7 +949,7 @@ export default function MomentumBuilderPage() {
                         </div>
                         <div className="relative h-2 bg-muted rounded-full overflow-hidden">
                           <div
-                            className="absolute h-full bg-blue-600 rounded-full"
+                            className="absolute h-full bg-primary rounded-full"
                             style={{ width: `${(row.grossReturn / 20) * 100}%` }}
                           />
                           <div
@@ -958,7 +958,7 @@ export default function MomentumBuilderPage() {
                           />
                         </div>
                         <div className="flex gap-2 text-xs text-muted-foreground">
-                          <span className="flex items-center gap-1"><span className="w-2 h-2 rounded-full bg-blue-600 inline-block" />Gross {row.grossReturn}%</span>
+                          <span className="flex items-center gap-1"><span className="w-2 h-2 rounded-full bg-primary inline-block" />Gross {row.grossReturn}%</span>
                           <span className="flex items-center gap-1"><span className="w-2 h-2 rounded-full bg-green-500 inline-block" />Net {row.netReturn}%</span>
                         </div>
                       </div>
@@ -986,8 +986,8 @@ export default function MomentumBuilderPage() {
                       Quarterly cuts this to 0.6% while preserving ~85% of IC value at the 3M horizon.
                     </p>
                   </div>
-                  <div className="p-3 bg-blue-950/30 border border-blue-800/30 rounded-lg">
-                    <p className="text-xs font-medium text-blue-400 mb-1">Current Params</p>
+                  <div className="p-3 bg-muted/40 border border-border rounded-lg">
+                    <p className="text-xs font-medium text-primary mb-1">Current Params</p>
                     <p className="text-xs text-muted-foreground">
                       Lookback {lookback}M, {rebalFreq === 1 ? "Monthly" : rebalFreq === 3 ? "Quarterly" : rebalFreq === 6 ? "Semi-Annual" : "Annual"} rebalance — estimated IC at optimal hold: {holdingRows[2]?.ic.toFixed(4)} (1M period)
                     </p>

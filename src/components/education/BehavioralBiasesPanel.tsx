@@ -44,9 +44,9 @@ function BiasCard({ bias }: { bias: BehavioralBias }) {
             <span
               className={cn(
                 "text-xs font-medium px-2 py-0.5 rounded-full shrink-0",
-                bias.category === "cognitive" && "bg-blue-500/10 text-blue-500",
+                bias.category === "cognitive" && "bg-primary/10 text-primary",
                 bias.category === "emotional" && "bg-amber-500/10 text-amber-500",
-                bias.category === "social" && "bg-purple-500/10 text-purple-500"
+                bias.category === "social" && "bg-primary/10 text-primary"
               )}
             >
               {bias.category}

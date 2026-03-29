@@ -57,8 +57,8 @@ const MOODS: {
   {
     value: "neutral",
     label: "Neutral",
-    activeClass: "border-blue-500/60 bg-blue-500/12 text-blue-400",
-    badgeClass: "bg-blue-500/15 text-blue-400 border-blue-500/30",
+    activeClass: "border-primary/60 bg-primary/12 text-primary",
+    badgeClass: "bg-primary/15 text-primary border-border",
   },
   {
     value: "anxious",

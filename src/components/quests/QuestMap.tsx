@@ -68,8 +68,8 @@ const MAP_NODES: MapNode[] = [
 const TIER_COLORS: Record<string, string> = {
   start:        "border-zinc-600 bg-zinc-800 text-zinc-400",
   beginner:     "border-green-500/60 bg-green-500/10 text-green-400",
-  intermediate: "border-cyan-500/60 bg-cyan-500/10 text-cyan-400",
-  advanced:     "border-violet-500/60 bg-violet-500/10 text-violet-400",
+  intermediate: "border-cyan-500/60 bg-cyan-500/10 text-muted-foreground",
+  advanced:     "border-primary/60 bg-primary/10 text-primary",
   legend:       "border-amber-500/60 bg-amber-500/10 text-amber-400",
 };
 
@@ -77,7 +77,7 @@ const TIER_LINE_COLORS: Record<string, string> = {
   start:        "bg-zinc-700",
   beginner:     "bg-green-500/40",
   intermediate: "bg-cyan-500/40",
-  advanced:     "bg-violet-500/40",
+  advanced:     "bg-primary/40",
   legend:       "bg-amber-500/40",
 };
 
@@ -115,9 +115,9 @@ export function QuestMap() {
           animate={{ opacity: 1, y: 0 }}
           className="flex items-start gap-2.5 rounded-lg border border-cyan-500/15 bg-cyan-500/5 px-3.5 py-3"
         >
-          <Milestone className="mt-0.5 h-4 w-4 shrink-0 text-cyan-400" />
+          <Milestone className="mt-0.5 h-4 w-4 shrink-0 text-muted-foreground" />
           <div>
-            <p className="text-xs font-bold text-cyan-300">Next milestone</p>
+            <p className="text-xs font-bold text-muted-foreground">Next milestone</p>
             <p className="text-[11px] text-zinc-400 mt-0.5">{activeNode.nextHint}</p>
             <p className="text-xs text-zinc-600 mt-0.5">
               {nextNode.sublabel} to reach <span className="text-zinc-400 font-semibold">{nextNode.label}</span>

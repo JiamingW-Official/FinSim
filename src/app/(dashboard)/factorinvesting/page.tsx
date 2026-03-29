@@ -55,7 +55,7 @@ interface FactorData {
 const FACTORS: FactorData[] = [
   {
     name: "Value",
-    color: "bg-blue-500",
+    color: "bg-primary",
     colorHex: "#3b82f6",
     ret1y: 11.4,
     ret3y: 9.2,
@@ -68,7 +68,7 @@ const FACTORS: FactorData[] = [
   },
   {
     name: "Momentum",
-    color: "bg-violet-500",
+    color: "bg-primary",
     colorHex: "#8b5cf6",
     ret1y: 18.7,
     ret3y: 14.3,
@@ -768,7 +768,7 @@ function FamaFrenchTab() {
   const coefDefs = [
     { key: "alpha" as FFCoefKey, label: "Alpha (α)", suffix: "%/yr", colorFn: (v: number) => v > 0 ? "text-emerald-400" : "text-red-400", desc: "Unexplained excess return" },
     { key: "smb" as FFCoefKey, label: "SMB Loading (s)", suffix: "", colorFn: (v: number) => v > 0 ? "text-rose-400" : "text-zinc-300", desc: "Small-cap tilt" },
-    { key: "hml" as FFCoefKey, label: "HML Loading (h)", suffix: "", colorFn: (v: number) => v > 0 ? "text-amber-400" : "text-violet-400", desc: "Value tilt" },
+    { key: "hml" as FFCoefKey, label: "HML Loading (h)", suffix: "", colorFn: (v: number) => v > 0 ? "text-amber-400" : "text-primary", desc: "Value tilt" },
   ] as const;
 
   const barColors: Record<FFCoefKey, string> = {
@@ -811,9 +811,9 @@ function FamaFrenchTab() {
         <div className="grid grid-cols-2 md:grid-cols-5 gap-4">
           {[
             { label: "Alpha (α)", value: selectedTicker.alpha, suffix: "%/yr", colorClass: selectedTicker.alpha > 0 ? "text-emerald-400" : "text-red-400", desc: "Unexplained excess return", showSign: true },
-            { label: "Market Beta (β)", value: selectedTicker.beta, suffix: "", colorClass: "text-blue-400", desc: "Mkt sensitivity", showSign: false },
+            { label: "Market Beta (β)", value: selectedTicker.beta, suffix: "", colorClass: "text-primary", desc: "Mkt sensitivity", showSign: false },
             { label: "SMB Loading (s)", value: selectedTicker.smb, suffix: "", colorClass: selectedTicker.smb > 0 ? "text-rose-400" : "text-zinc-300", desc: "Small-cap tilt", showSign: true },
-            { label: "HML Loading (h)", value: selectedTicker.hml, suffix: "", colorClass: selectedTicker.hml > 0 ? "text-amber-400" : "text-violet-400", desc: "Value tilt", showSign: true },
+            { label: "HML Loading (h)", value: selectedTicker.hml, suffix: "", colorClass: selectedTicker.hml > 0 ? "text-amber-400" : "text-primary", desc: "Value tilt", showSign: true },
             { label: "R² (fit)", value: selectedTicker.r2 * 100, suffix: "%", colorClass: "text-white", desc: "Model explanatory power", showSign: false },
           ].map((coef) => (
             <div key={coef.label} className="rounded-xl border border-white/10 bg-white/5 p-3 text-center">
@@ -879,7 +879,7 @@ function FamaFrenchTab() {
           <p className="text-xs text-zinc-400">Positive SMB loading = small-cap exposure. Historically ~3% annual premium but highly variable. Negative = large-cap tilt (tech, mega-caps).</p>
         </div>
         <div className="rounded-xl border border-white/10 bg-white/5 p-4">
-          <p className="text-xs text-blue-400 font-semibold mb-1">HML — Value Factor</p>
+          <p className="text-xs text-primary font-semibold mb-1">HML — Value Factor</p>
           <p className="text-xs text-zinc-400">Positive HML = value tilt (high book-to-price). Negative = growth/glamour tilt. TSLA shows -1.42 HML — extreme growth premium.</p>
         </div>
         <div className="rounded-xl border border-white/10 bg-white/5 p-4">

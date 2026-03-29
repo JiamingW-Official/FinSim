@@ -573,8 +573,8 @@ function ConfusionMatrix({ seed }: { seed: number }) {
           { label: "Recall", val: recall.toFixed(1) + "%" },
           { label: "F1 Score", val: f1.toFixed(1) + "%" },
         ].map((m) => (
-          <div key={m.label} className="bg-slate-800 rounded p-2">
-            <div className="text-slate-400">{m.label}</div>
+          <div key={m.label} className="bg-card/80 rounded p-2">
+            <div className="text-muted-foreground">{m.label}</div>
             <div className="text-white font-semibold">{m.val}</div>
           </div>
         ))}
@@ -587,8 +587,8 @@ function ConfusionMatrix({ seed }: { seed: number }) {
 
 function MetricChip({ label, value, positive }: { label: string; value: string; positive?: boolean }) {
   return (
-    <div className="bg-slate-800 rounded-lg px-3 py-2 flex flex-col gap-0.5">
-      <span className="text-xs text-slate-400">{label}</span>
+    <div className="bg-card/80 rounded-lg px-3 py-2 flex flex-col gap-0.5">
+      <span className="text-xs text-muted-foreground">{label}</span>
       <span className={`text-sm font-semibold ${positive === undefined ? "text-white" : positive ? "text-green-400" : "text-red-400"}`}>
         {value}
       </span>
@@ -626,13 +626,13 @@ function FactorModelsTab() {
             onClick={() => setSelected(model)}
             className={`text-left rounded-xl border p-3 transition-all ${
               selected.shortName === model.shortName
-                ? "border-opacity-100 bg-slate-800"
-                : "border-slate-700 bg-slate-900 hover:border-slate-600"
+                ? "border-opacity-100 bg-card/80"
+                : "border-border bg-card hover:border-border/60"
             }`}
             style={{ borderColor: selected.shortName === model.shortName ? model.color : undefined }}
           >
             <div className="font-semibold text-sm text-white">{model.shortName}</div>
-            <div className="text-xs text-slate-400 mt-0.5">{model.factors.length} factor{model.factors.length > 1 ? "s" : ""}</div>
+            <div className="text-xs text-muted-foreground mt-0.5">{model.factors.length} factor{model.factors.length > 1 ? "s" : ""}</div>
             <div className="text-xs font-medium mt-1" style={{ color: model.color }}>
               Sharpe {model.sharpe.toFixed(2)}
             </div>
@@ -640,13 +640,13 @@ function FactorModelsTab() {
         ))}
       </div>
 
-      <Card className="bg-slate-900 border-slate-700">
+      <Card className="bg-card border-border">
         <CardHeader className="pb-2">
           <div className="flex items-center justify-between">
             <CardTitle className="text-base text-white">{selected.name}</CardTitle>
             <SectionBadge color={selected.color}>R² = {(selected.rSquared * 100).toFixed(0)}%</SectionBadge>
           </div>
-          <p className="text-xs text-slate-400 mt-1">{selected.description}</p>
+          <p className="text-xs text-muted-foreground mt-1">{selected.description}</p>
         </CardHeader>
         <CardContent className="space-y-4">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-2">
@@ -656,12 +656,12 @@ function FactorModelsTab() {
             <MetricChip label="Sharpe Ratio" value={selected.sharpe.toFixed(2)} positive={selected.sharpe > 0.6} />
           </div>
           <div>
-            <div className="text-xs text-slate-400 mb-2">Factor Loadings</div>
+            <div className="text-xs text-muted-foreground mb-2">Factor Loadings</div>
             <FactorBarChart model={selected} />
           </div>
           <div className="flex flex-wrap gap-1.5">
             {selected.factors.map((f) => (
-              <Badge key={f} variant="outline" className="border-slate-600 text-slate-300 text-xs">
+              <Badge key={f} variant="outline" className="border-border/60 text-zinc-300 text-xs">
                 {f}
               </Badge>
             ))}
@@ -669,7 +669,7 @@ function FactorModelsTab() {
         </CardContent>
       </Card>
 
-      <Card className="bg-slate-900 border-slate-700">
+      <Card className="bg-card border-border">
         <CardHeader className="pb-2">
           <CardTitle className="text-sm text-white">Alpha / Beta Comparison</CardTitle>
         </CardHeader>
@@ -677,9 +677,9 @@ function FactorModelsTab() {
           <div className="overflow-x-auto">
             <table className="w-full text-xs">
               <thead>
-                <tr className="border-b border-slate-700">
+                <tr className="border-b border-border">
                   {["Model", "Factors", "Alpha", "Beta", "R²", "Sharpe"].map((h) => (
-                    <th key={h} className="text-left text-slate-400 pb-2 pr-4 font-medium">
+                    <th key={h} className="text-left text-muted-foreground pb-2 pr-4 font-medium">
                       {h}
                     </th>
                   ))}
@@ -689,8 +689,8 @@ function FactorModelsTab() {
                 {FACTOR_MODELS.map((m) => (
                   <tr
                     key={m.shortName}
-                    className={`border-b border-slate-800 cursor-pointer hover:bg-slate-800/50 transition-colors ${
-                      selected.shortName === m.shortName ? "bg-slate-800/30" : ""
+                    className={`border-b border-border/40 cursor-pointer hover:bg-card/80/50 transition-colors ${
+                      selected.shortName === m.shortName ? "bg-card/80/30" : ""
                     }`}
                     onClick={() => setSelected(m)}
                   >
@@ -699,11 +699,11 @@ function FactorModelsTab() {
                         {m.shortName}
                       </span>
                     </td>
-                    <td className="py-2 pr-4 text-slate-300">{m.factors.length}</td>
+                    <td className="py-2 pr-4 text-zinc-300">{m.factors.length}</td>
                     <td className="py-2 pr-4 text-green-400">+{m.alpha.toFixed(2)}%</td>
-                    <td className="py-2 pr-4 text-slate-300">{m.beta.toFixed(2)}</td>
-                    <td className="py-2 pr-4 text-slate-300">{(m.rSquared * 100).toFixed(0)}%</td>
-                    <td className="py-2 pr-4 text-slate-300">{m.sharpe.toFixed(2)}</td>
+                    <td className="py-2 pr-4 text-zinc-300">{m.beta.toFixed(2)}</td>
+                    <td className="py-2 pr-4 text-zinc-300">{(m.rSquared * 100).toFixed(0)}%</td>
+                    <td className="py-2 pr-4 text-zinc-300">{m.sharpe.toFixed(2)}</td>
                   </tr>
                 ))}
               </tbody>
@@ -735,7 +735,7 @@ function MomentumTab() {
       transition={{ duration: 0.35 }}
       className="space-y-4"
     >
-      <Card className="bg-slate-900 border-slate-700">
+      <Card className="bg-card border-border">
         <CardHeader className="pb-2">
           <CardTitle className="text-sm text-white">Momentum Concepts</CardTitle>
         </CardHeader>
@@ -758,11 +758,11 @@ function MomentumTab() {
                 desc: "Use 12-month lookback, skip most recent month to avoid microstructure reversal. Standard academic definition.",
               },
             ].map((c) => (
-              <div key={c.title} className="bg-slate-800 rounded-lg p-3 space-y-1">
+              <div key={c.title} className="bg-card/80 rounded-lg p-3 space-y-1">
                 <div className="font-semibold" style={{ color: c.color }}>
                   {c.title}
                 </div>
-                <p className="text-slate-400 leading-relaxed">{c.desc}</p>
+                <p className="text-muted-foreground leading-relaxed">{c.desc}</p>
               </div>
             ))}
           </div>
@@ -775,11 +775,11 @@ function MomentumTab() {
             key={s.name}
             onClick={() => setSelected(i)}
             className={`text-left rounded-xl border p-3 transition-all ${
-              selected === i ? "bg-slate-800" : "border-slate-700 bg-slate-900 hover:border-slate-600"
+              selected === i ? "bg-card/80" : "border-border bg-card hover:border-border/60"
             }`}
             style={{ borderColor: selected === i ? s.color : undefined }}
           >
-            <div className="text-xs text-slate-400">{s.formation}m / {s.holding}m</div>
+            <div className="text-xs text-muted-foreground">{s.formation}m / {s.holding}m</div>
             <div className="font-medium text-sm text-white mt-0.5 truncate">{s.name}</div>
             <div className="text-xs mt-1" style={{ color: s.color }}>
               {s.annualReturn.toFixed(1)}% ann.
@@ -788,13 +788,13 @@ function MomentumTab() {
         ))}
       </div>
 
-      <Card className="bg-slate-900 border-slate-700">
+      <Card className="bg-card border-border">
         <CardHeader className="pb-2">
           <div className="flex items-center justify-between">
             <CardTitle className="text-sm text-white">{strat.name}</CardTitle>
-            <div className="flex gap-2 text-xs text-slate-400">
-              <span>Formation: <strong className="text-slate-200">{strat.formation}m</strong></span>
-              <span>Holding: <strong className="text-slate-200">{strat.holding}m</strong></span>
+            <div className="flex gap-2 text-xs text-muted-foreground">
+              <span>Formation: <strong className="text-zinc-200">{strat.formation}m</strong></span>
+              <span>Holding: <strong className="text-zinc-200">{strat.holding}m</strong></span>
             </div>
           </div>
         </CardHeader>
@@ -806,7 +806,7 @@ function MomentumTab() {
             <MetricChip label="Win Rate" value={`${strat.winRate.toFixed(1)}%`} positive={strat.winRate > 55} />
           </div>
           <div>
-            <div className="text-xs text-slate-400 mb-2">Cumulative Return (1-year simulation)</div>
+            <div className="text-xs text-muted-foreground mb-2">Cumulative Return (1-year simulation)</div>
             <LineChart
               series={[curves[selected]]}
               colors={[strat.color]}
@@ -816,7 +816,7 @@ function MomentumTab() {
         </CardContent>
       </Card>
 
-      <Card className="bg-slate-900 border-slate-700">
+      <Card className="bg-card border-border">
         <CardHeader className="pb-2">
           <CardTitle className="text-sm text-white">All Strategies Compared</CardTitle>
         </CardHeader>
@@ -853,25 +853,25 @@ function MeanReversionTab() {
       className="space-y-4"
     >
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-        <Card className="bg-slate-900 border-slate-700">
+        <Card className="bg-card border-border">
           <CardHeader className="pb-2">
             <CardTitle className="text-sm text-white">Cointegration Concepts</CardTitle>
           </CardHeader>
-          <CardContent className="space-y-3 text-xs text-slate-400 leading-relaxed">
+          <CardContent className="space-y-3 text-xs text-muted-foreground leading-relaxed">
             <p>
-              Two assets are <strong className="text-slate-200">cointegrated</strong> when their price spread is stationary (mean-reverting) even
+              Two assets are <strong className="text-zinc-200">cointegrated</strong> when their price spread is stationary (mean-reverting) even
               though each individually follows a random walk.
             </p>
             <p>
-              The <strong className="text-slate-200">Engle-Granger test</strong> fits a linear regression of asset A on B, then tests residuals
+              The <strong className="text-zinc-200">Engle-Granger test</strong> fits a linear regression of asset A on B, then tests residuals
               for a unit root via ADF. A p-value &lt; 0.05 suggests cointegration.
             </p>
             <p>
-              <strong className="text-slate-200">Half-life</strong> measures mean-reversion speed: the expected time for the spread to revert
+              <strong className="text-zinc-200">Half-life</strong> measures mean-reversion speed: the expected time for the spread to revert
               halfway to its mean. Shorter = faster trades.
             </p>
-            <div className="bg-slate-800 rounded-lg p-3">
-              <div className="text-slate-300 font-medium mb-1">Z-Score Entry Rules</div>
+            <div className="bg-card/80 rounded-lg p-3">
+              <div className="text-zinc-300 font-medium mb-1">Z-Score Entry Rules</div>
               <div className="space-y-1">
                 <div className="flex items-center gap-2">
                   <span className="text-green-400">Enter Long</span>
@@ -882,7 +882,7 @@ function MeanReversionTab() {
                   <span>when z-score &gt; +2σ</span>
                 </div>
                 <div className="flex items-center gap-2">
-                  <span className="text-slate-300">Exit</span>
+                  <span className="text-zinc-300">Exit</span>
                   <span>when z-score crosses 0</span>
                 </div>
               </div>
@@ -890,7 +890,7 @@ function MeanReversionTab() {
           </CardContent>
         </Card>
 
-        <Card className="bg-slate-900 border-slate-700">
+        <Card className="bg-card border-border">
           <CardHeader className="pb-2">
             <CardTitle className="text-sm text-white">Pairs Universe</CardTitle>
           </CardHeader>
@@ -901,7 +901,7 @@ function MeanReversionTab() {
                   key={i}
                   onClick={() => setSelectedPair(i)}
                   className={`w-full text-left rounded-lg p-2.5 transition-colors ${
-                    selectedPair === i ? "bg-indigo-900/40 border border-indigo-600" : "bg-slate-800 hover:bg-slate-750"
+                    selectedPair === i ? "bg-primary/15 border border-primary/40" : "bg-card/80 hover:bg-card/60"
                   }`}
                 >
                   <div className="flex items-center justify-between">
@@ -909,13 +909,13 @@ function MeanReversionTab() {
                       {p.ticker1} / {p.ticker2}
                     </span>
                     <div className="flex items-center gap-2 text-xs">
-                      <span className="text-slate-400">corr:</span>
+                      <span className="text-muted-foreground">corr:</span>
                       <span className="text-green-400">{p.correlation.toFixed(2)}</span>
-                      <span className="text-slate-400">p:</span>
-                      <span className="text-blue-400">{p.cointegrationP.toFixed(2)}</span>
+                      <span className="text-muted-foreground">p:</span>
+                      <span className="text-primary">{p.cointegrationP.toFixed(2)}</span>
                     </div>
                   </div>
-                  <div className="flex gap-3 mt-1 text-xs text-slate-400">
+                  <div className="flex gap-3 mt-1 text-xs text-muted-foreground">
                     <span>Half-life: {p.halfLife}d</span>
                     <span>Return: {p.annualReturn.toFixed(1)}%</span>
                     <span>Sharpe: {p.sharpe.toFixed(2)}</span>
@@ -927,14 +927,14 @@ function MeanReversionTab() {
         </Card>
       </div>
 
-      <Card className="bg-slate-900 border-slate-700">
+      <Card className="bg-card border-border">
         <CardHeader className="pb-2">
           <div className="flex items-center justify-between">
             <CardTitle className="text-sm text-white">
               {pair.ticker1}/{pair.ticker2} Spread Z-Score
             </CardTitle>
             <div className="flex gap-2">
-              <Badge variant="outline" className="border-slate-600 text-slate-300 text-xs">
+              <Badge variant="outline" className="border-border/60 text-zinc-300 text-xs">
                 Half-life: {pair.halfLife}d
               </Badge>
               <Badge variant="outline" className="border-green-700 text-green-300 text-xs">
@@ -978,7 +978,7 @@ function StatArbTab() {
     >
       <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
         {STAT_ARB_RESULTS.map((r, i) => (
-          <Card key={r.name} className="bg-slate-900 border-slate-700">
+          <Card key={r.name} className="bg-card border-border">
             <CardHeader className="pb-2">
               <CardTitle className="text-sm font-semibold" style={{ color: r.color }}>
                 {r.name}
@@ -991,14 +991,14 @@ function StatArbTab() {
                 <MetricChip label="Max DD" value={`${r.maxDrawdown.toFixed(1)}%`} positive={false} />
                 <MetricChip label="Net Beta" value={r.beta.toFixed(2)} />
               </div>
-              <div className="text-xs text-slate-400">{r.pairs} active pairs</div>
+              <div className="text-xs text-muted-foreground">{r.pairs} active pairs</div>
               <Progress value={(r.sharpe / 1.5) * 100} className="h-1.5" />
             </CardContent>
           </Card>
         ))}
       </div>
 
-      <Card className="bg-slate-900 border-slate-700">
+      <Card className="bg-card border-border">
         <CardHeader className="pb-2">
           <CardTitle className="text-sm text-white">Equity Curves (Market-Neutral)</CardTitle>
         </CardHeader>
@@ -1012,14 +1012,14 @@ function StatArbTab() {
         </CardContent>
       </Card>
 
-      <Card className="bg-slate-900 border-slate-700">
+      <Card className="bg-card border-border">
         <CardHeader className="pb-2">
           <CardTitle className="text-sm text-white">Market Neutrality & Risk Factors</CardTitle>
         </CardHeader>
         <CardContent>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-xs">
             <div className="space-y-3">
-              <div className="text-slate-300 font-medium">Risk Controls</div>
+              <div className="text-zinc-300 font-medium">Risk Controls</div>
               {[
                 { label: "Net market exposure", val: "< 5% notional", ok: true },
                 { label: "Sector concentration", val: "< 20% per sector", ok: true },
@@ -1027,26 +1027,26 @@ function StatArbTab() {
                 { label: "Single pair weight", val: "< 3% NAV", ok: true },
                 { label: "Max position size", val: "2% per leg", ok: true },
               ].map((item) => (
-                <div key={item.label} className="flex items-center justify-between bg-slate-800 rounded p-2">
+                <div key={item.label} className="flex items-center justify-between bg-card/80 rounded p-2">
                   <div className="flex items-center gap-2">
                     {item.ok ? (
                       <CheckCircle className="w-3.5 h-3.5 text-green-400" />
                     ) : (
                       <XCircle className="w-3.5 h-3.5 text-red-400" />
                     )}
-                    <span className="text-slate-300">{item.label}</span>
+                    <span className="text-zinc-300">{item.label}</span>
                   </div>
-                  <span className="text-slate-400">{item.val}</span>
+                  <span className="text-muted-foreground">{item.val}</span>
                 </div>
               ))}
             </div>
             <div className="space-y-3">
-              <div className="text-slate-300 font-medium">Correlation-Based Pair Selection</div>
-              <p className="text-slate-400 leading-relaxed">
+              <div className="text-zinc-300 font-medium">Correlation-Based Pair Selection</div>
+              <p className="text-muted-foreground leading-relaxed">
                 Pairs are screened for rolling 6-month correlation &gt; 0.8, cointegration p &lt; 0.05, and minimum
                 trading history of 252 days. Pairs are re-tested monthly and rotated if conditions break.
               </p>
-              <div className="bg-slate-800 rounded-lg p-3 space-y-2">
+              <div className="bg-card/80 rounded-lg p-3 space-y-2">
                 {[
                   { label: "Correlation screen", pct: 85 },
                   { label: "Cointegration pass", pct: 62 },
@@ -1055,8 +1055,8 @@ function StatArbTab() {
                 ].map((f) => (
                   <div key={f.label}>
                     <div className="flex justify-between text-xs mb-0.5">
-                      <span className="text-slate-300">{f.label}</span>
-                      <span className="text-slate-400">{f.pct}%</span>
+                      <span className="text-zinc-300">{f.label}</span>
+                      <span className="text-muted-foreground">{f.pct}%</span>
                     </div>
                     <Progress value={f.pct} className="h-1" />
                   </div>
@@ -1091,7 +1091,7 @@ function MLSignalsTab() {
       className="space-y-4"
     >
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-        <Card className="bg-slate-900 border-slate-700">
+        <Card className="bg-card border-border">
           <CardHeader className="pb-2">
             <CardTitle className="text-sm text-white">Feature Importance</CardTitle>
           </CardHeader>
@@ -1104,11 +1104,11 @@ function MLSignalsTab() {
                       className="inline-block w-1.5 h-1.5 rounded-full"
                       style={{ background: categoryColors[f.category] }}
                     />
-                    <span className="text-slate-300 truncate max-w-[160px]">{f.name}</span>
+                    <span className="text-zinc-300 truncate max-w-[160px]">{f.name}</span>
                   </div>
-                  <span className="text-slate-400">{(f.importance * 100).toFixed(0)}%</span>
+                  <span className="text-muted-foreground">{(f.importance * 100).toFixed(0)}%</span>
                 </div>
-                <div className="relative h-1.5 bg-slate-800 rounded-full overflow-hidden">
+                <div className="relative h-1.5 bg-card/80 rounded-full overflow-hidden">
                   <div
                     className="h-full rounded-full transition-all"
                     style={{
@@ -1122,7 +1122,7 @@ function MLSignalsTab() {
           </CardContent>
         </Card>
 
-        <Card className="bg-slate-900 border-slate-700">
+        <Card className="bg-card border-border">
           <CardHeader className="pb-2">
             <CardTitle className="text-sm text-white">IC Metrics Table</CardTitle>
           </CardHeader>
@@ -1130,9 +1130,9 @@ function MLSignalsTab() {
             <div className="overflow-x-auto">
               <table className="w-full text-xs">
                 <thead>
-                  <tr className="border-b border-slate-700">
+                  <tr className="border-b border-border">
                     {["Feature", "IC", "ICIR", "Cat."].map((h) => (
-                      <th key={h} className="text-left text-slate-400 pb-2 pr-3 font-medium">
+                      <th key={h} className="text-left text-muted-foreground pb-2 pr-3 font-medium">
                         {h}
                       </th>
                     ))}
@@ -1140,8 +1140,8 @@ function MLSignalsTab() {
                 </thead>
                 <tbody>
                   {ML_FEATURES.map((f) => (
-                    <tr key={f.name} className="border-b border-slate-800 hover:bg-slate-800/40 transition-colors">
-                      <td className="py-1.5 pr-3 text-slate-300 truncate max-w-[120px]">{f.name}</td>
+                    <tr key={f.name} className="border-b border-border/40 hover:bg-card/80/40 transition-colors">
+                      <td className="py-1.5 pr-3 text-zinc-300 truncate max-w-[120px]">{f.name}</td>
                       <td className={`py-1.5 pr-3 font-medium ${f.ic > 0 ? "text-green-400" : "text-red-400"}`}>
                         {f.ic > 0 ? "+" : ""}{f.ic.toFixed(3)}
                       </td>
@@ -1166,11 +1166,11 @@ function MLSignalsTab() {
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-        <Card className="bg-slate-900 border-slate-700">
+        <Card className="bg-card border-border">
           <CardHeader className="pb-2">
             <CardTitle className="text-sm text-white">Signal Combination (Ensemble)</CardTitle>
           </CardHeader>
-          <CardContent className="space-y-3 text-xs text-slate-400">
+          <CardContent className="space-y-3 text-xs text-muted-foreground">
             <div className="grid grid-cols-2 gap-2">
               {[
                 { label: "Features Used", val: "10", color: "#6366f1" },
@@ -1178,8 +1178,8 @@ function MLSignalsTab() {
                 { label: "Train Period", val: "2010-2020", color: "#f59e0b" },
                 { label: "Test Period", val: "2021-2024", color: "#ec4899" },
               ].map((m) => (
-                <div key={m.label} className="bg-slate-800 rounded p-2">
-                  <div className="text-slate-400">{m.label}</div>
+                <div key={m.label} className="bg-card/80 rounded p-2">
+                  <div className="text-muted-foreground">{m.label}</div>
                   <div className="font-semibold mt-0.5" style={{ color: m.color }}>
                     {m.val}
                   </div>
@@ -1191,7 +1191,7 @@ function MLSignalsTab() {
               Features are ranked by IC and only those with ICIR &gt; 0.5 pass. Final score is the model output
               mapped to a percentile rank across the universe.
             </p>
-            <div className="bg-slate-800 rounded-lg p-3 space-y-1">
+            <div className="bg-card/80 rounded-lg p-3 space-y-1">
               {[
                 { label: "Out-of-sample Sharpe", val: "1.18" },
                 { label: "Out-of-sample IC", val: "0.058" },
@@ -1199,7 +1199,7 @@ function MLSignalsTab() {
                 { label: "Turnover (monthly)", val: "22%" },
               ].map((m) => (
                 <div key={m.label} className="flex justify-between">
-                  <span className="text-slate-400">{m.label}</span>
+                  <span className="text-muted-foreground">{m.label}</span>
                   <span className="text-white font-medium">{m.val}</span>
                 </div>
               ))}
@@ -1207,7 +1207,7 @@ function MLSignalsTab() {
           </CardContent>
         </Card>
 
-        <Card className="bg-slate-900 border-slate-700">
+        <Card className="bg-card border-border">
           <CardHeader className="pb-2">
             <CardTitle className="text-sm text-white">Confusion Matrix (Directional)</CardTitle>
           </CardHeader>
@@ -1217,7 +1217,7 @@ function MLSignalsTab() {
         </Card>
       </div>
 
-      <Card className="bg-slate-900 border-slate-700">
+      <Card className="bg-card border-border">
         <CardHeader className="pb-2">
           <CardTitle className="text-sm text-white">Category Legend</CardTitle>
         </CardHeader>
@@ -1255,22 +1255,25 @@ export default function QuantStrategiesPage() {
   rand(); // consume one to warm up
 
   return (
-    <div className="min-h-screen bg-slate-950 text-white p-4 md:p-6 space-y-6">
+    <div className="min-h-screen bg-background text-white p-4 md:p-6 space-y-8">
       {/* Header */}
       <motion.div
         initial={{ opacity: 0, y: -12 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.4 }}
-        className="space-y-1"
+        className="space-y-2"
       >
         <div className="flex items-center gap-3">
-          <div className="p-2 bg-indigo-900/40 rounded-lg">
-            <BarChart3 className="w-5 h-5 text-indigo-400" />
+          <div className="p-2 bg-primary/15 rounded-lg">
+            <BarChart3 className="w-5 h-5 text-primary" />
           </div>
           <div>
             <h1 className="text-xl font-bold text-white">Quantitative Strategies</h1>
-            <p className="text-sm text-slate-400">Factor models, momentum, mean reversion, stat arb & ML signals</p>
+            <p className="text-sm text-muted-foreground">Factor models, momentum, mean reversion, stat arb & ML signals</p>
           </div>
+          <span className="ml-4 rounded-full border border-primary/20 bg-primary/5 px-2.5 py-0.5 text-[10px] font-medium text-primary/70">
+            Educational simulation
+          </span>
         </div>
 
         {/* Summary chips */}
@@ -1296,7 +1299,7 @@ export default function QuantStrategiesPage() {
 
       {/* Tabs */}
       <Tabs defaultValue="factors">
-        <TabsList className="bg-slate-900 border border-slate-700 h-auto p-1 flex flex-wrap gap-1">
+        <TabsList className="bg-card border border-border h-auto p-1 flex flex-wrap gap-1">
           {[
             { value: "factors", label: "Factor Models" },
             { value: "momentum", label: "Momentum" },
@@ -1307,7 +1310,7 @@ export default function QuantStrategiesPage() {
             <TabsTrigger
               key={tab.value}
               value={tab.value}
-              className="flex items-center gap-1.5 text-xs data-[state=active]:bg-slate-700 data-[state=active]:text-white text-slate-400"
+              className="flex items-center gap-1.5 text-xs data-[state=active]:bg-primary/15 data-[state=active]:text-primary text-muted-foreground"
             >
               {TAB_ICONS[tab.value]}
               {tab.label}

@@ -715,7 +715,7 @@ export default function LongShortPage() {
                   {factorExposures.map((f) => (
                     <div key={f.factor} className="flex items-center justify-between text-xs">
                       <span className="text-muted-foreground w-20">{f.factor}</span>
-                      <span className={cn("font-mono", f.portfolio >= 0 ? "text-blue-400" : "text-red-400")}>
+                      <span className={cn("font-mono", f.portfolio >= 0 ? "text-primary" : "text-red-400")}>
                         {f.portfolio > 0 ? "+" : ""}{f.portfolio.toFixed(2)}
                       </span>
                       <TrafficLight status={f.neutral ? "ok" : Math.abs(f.portfolio) < 0.5 ? "warn" : "fail"} />
@@ -812,7 +812,7 @@ export default function LongShortPage() {
                 <CardContent className="space-y-2 text-xs">
                   {[
                     { label: "Total Sharpe",      value: "1.42",  color: "text-emerald-400" },
-                    { label: "Factor Sharpe",     value: "0.48",  color: "text-blue-400" },
+                    { label: "Factor Sharpe",     value: "0.48",  color: "text-primary" },
                     { label: "Alpha Sharpe",      value: "0.94",  color: "text-primary" },
                     { label: "Sortino Ratio",     value: "1.88",  color: "text-emerald-400" },
                     { label: "Calmar Ratio",      value: "2.14",  color: "text-emerald-400" },

@@ -25,7 +25,7 @@ function scoreToGrade(score: number): Grade {
 
 const GRADE_COLOR: Record<Grade, string> = {
   A: "text-emerald-400",
-  B: "text-blue-400",
+  B: "text-primary",
   C: "text-amber-400",
   D: "text-orange-400",
   F: "text-red-400",
@@ -33,7 +33,7 @@ const GRADE_COLOR: Record<Grade, string> = {
 
 const GRADE_BG: Record<Grade, string> = {
   A: "bg-emerald-500/10 border-emerald-500/20",
-  B: "bg-blue-500/10 border-blue-500/20",
+  B: "bg-primary/10 border-border",
   C: "bg-amber-500/10 border-amber-500/20",
   D: "bg-orange-500/10 border-orange-500/20",
   F: "bg-red-500/10 border-red-500/20",
@@ -351,7 +351,7 @@ export function ReportCard() {
               <div
                 className={cn("h-full rounded-full transition-all", {
                   "bg-emerald-500/70": m.grade === "A",
-                  "bg-blue-500/70": m.grade === "B",
+                  "bg-primary/70": m.grade === "B",
                   "bg-amber-500/70": m.grade === "C",
                   "bg-orange-500/70": m.grade === "D",
                   "bg-red-500/70": m.grade === "F",

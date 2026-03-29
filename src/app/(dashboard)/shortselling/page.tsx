@@ -578,13 +578,13 @@ function FamousShortCard({ short }: { short: FamousShort }) {
   const colorMap: Record<string, string> = {
     red: "border-red-500/30 bg-red-500/5",
     amber: "border-amber-500/30 bg-amber-500/5",
-    purple: "border-purple-500/30 bg-purple-500/5",
+    purple: "border-border bg-primary/5",
     green: "border-green-500/30 bg-green-500/5",
   };
   const badgeColorMap: Record<string, string> = {
     red: "bg-red-500/20 text-red-300 border-red-500/30",
     amber: "bg-amber-500/20 text-amber-300 border-amber-500/30",
-    purple: "bg-purple-500/20 text-purple-300 border-purple-500/30",
+    purple: "bg-primary/20 text-primary border-border",
     green: "bg-green-500/20 text-green-300 border-green-500/30",
   };
 
@@ -655,9 +655,9 @@ function FamousShortCard({ short }: { short: FamousShort }) {
 function EMHCard({ form, idx }: { form: EMHForm; idx: number }) {
   const colors = ["indigo", "violet", "purple"] as const;
   const color = colors[idx % colors.length];
-  const borderMap = { indigo: "border-indigo-500/30", violet: "border-violet-500/30", purple: "border-purple-500/30" };
-  const bgMap = { indigo: "bg-indigo-500/5", violet: "bg-violet-500/5", purple: "bg-purple-500/5" };
-  const titleMap = { indigo: "text-indigo-300", violet: "text-violet-300", purple: "text-purple-300" };
+  const borderMap = { indigo: "border-indigo-500/30", violet: "border-border", purple: "border-border" };
+  const bgMap = { indigo: "bg-indigo-500/5", violet: "bg-primary/5", purple: "bg-primary/5" };
+  const titleMap = { indigo: "text-indigo-300", violet: "text-primary", purple: "text-primary" };
 
   return (
     <Card className={`border ${borderMap[color]} ${bgMap[color]} bg-transparent`}>
@@ -791,8 +791,8 @@ export default function ShortSellingPage() {
                         step: "2",
                         title: "Borrow",
                         desc: "Shares are transferred to short seller's account. Borrow rate accrues daily (0.3%–85% p.a.)",
-                        color: "border-violet-500/30 text-violet-300",
-                        bg: "bg-violet-500/5",
+                        color: "border-border text-primary",
+                        bg: "bg-primary/5",
                       },
                       {
                         step: "3",
@@ -1003,7 +1003,7 @@ export default function ShortSellingPage() {
                 <CardHeader>
                   <div className="flex items-center justify-between">
                     <CardTitle className="flex items-center gap-2 text-base">
-                      <Target className="w-4 h-4 text-violet-400" />
+                      <Target className="w-4 h-4 text-primary" />
                       Interactive Conviction Scorer
                     </CardTitle>
                     <div className={`px-3 py-1.5 rounded-lg border text-sm font-semibold ${conviction.bg} ${conviction.color}`}>

@@ -113,7 +113,7 @@ const SOVEREIGN_BONDS: SovereignBond[] = [
     spreadUST: 148,
     cdsBps: 118,
     rating: "BBB",
-    ratingColor: "text-blue-400",
+    ratingColor: "text-primary",
     debtGDP: 52.8,
     currentAccount: -0.9,
   },
@@ -125,7 +125,7 @@ const SOVEREIGN_BONDS: SovereignBond[] = [
     spreadUST: 135,
     cdsBps: 98,
     rating: "BBB",
-    ratingColor: "text-blue-400",
+    ratingColor: "text-primary",
     debtGDP: 39.4,
     currentAccount: -1.7,
   },
@@ -173,7 +173,7 @@ const SOVEREIGN_BONDS: SovereignBond[] = [
     spreadUST: 88,
     cdsBps: 72,
     rating: "BBB-",
-    ratingColor: "text-blue-400",
+    ratingColor: "text-primary",
     debtGDP: 83.2,
     currentAccount: -1.5,
   },
@@ -269,14 +269,14 @@ function SovereignTab() {
         <StatChip label="Avg EMBI Spread" value="185 bps" sub="vs 2023 avg 230 bps" color="text-amber-400" />
         <StatChip label="EM FX YTD" value="-3.2%" sub="Broad EM currency index" color="text-rose-400" />
         <StatChip label="EMBI Total Return" value="+4.8%" sub="Year-to-date 2026" color="text-emerald-400" />
-        <StatChip label="GBI-EM Yield" value="6.88%" sub="Local currency index" color="text-blue-400" />
+        <StatChip label="GBI-EM Yield" value="6.88%" sub="Local currency index" color="text-primary" />
       </div>
 
       {/* Main table */}
       <Card className="bg-zinc-900 border-zinc-800">
         <CardHeader className="pb-2">
           <CardTitle className="text-sm font-medium text-zinc-300 flex items-center gap-2">
-            <Globe className="w-4 h-4 text-blue-400" />
+            <Globe className="w-4 h-4 text-primary" />
             EM Sovereign Bond Monitor — click a row for detail
           </CardTitle>
         </CardHeader>
@@ -301,7 +301,7 @@ function SovereignTab() {
                   onClick={() => setSelected(selected === b.country ? null : b.country)}
                   className={cn(
                     "border-b border-zinc-800/60 cursor-pointer transition-colors",
-                    selected === b.country ? "bg-blue-900/20" : "hover:bg-zinc-800/40"
+                    selected === b.country ? "bg-muted/40" : "hover:bg-zinc-800/40"
                   )}
                 >
                   <td className="py-2 px-3 text-zinc-200 font-medium">
@@ -330,9 +330,9 @@ function SovereignTab() {
       {/* Expanded detail */}
       {sel && (
         <motion.div initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.2 }}>
-          <Card className="bg-zinc-900 border-blue-700/40">
+          <Card className="bg-zinc-900 border-border">
             <CardHeader className="pb-2">
-              <CardTitle className="text-sm font-medium text-blue-300">
+              <CardTitle className="text-sm font-medium text-primary">
                 {sel.country} — Debt Profile Detail
               </CardTitle>
             </CardHeader>
@@ -493,9 +493,9 @@ function HardLocalTab() {
   return (
     <div className="space-y-6">
       <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
-        <StatChip label="EMBI+ Spread" value="185 bps" sub="Hard currency benchmark" color="text-blue-400" />
+        <StatChip label="EMBI+ Spread" value="185 bps" sub="Hard currency benchmark" color="text-primary" />
         <StatChip label="GBI-EM Avg Yield" value="6.88%" sub="Local currency bonds" color="text-amber-400" />
-        <StatChip label="EM Corp Spread" value="235 bps" sub="CEMBI vs UST" color="text-violet-400" />
+        <StatChip label="EM Corp Spread" value="235 bps" sub="CEMBI vs UST" color="text-primary" />
         <StatChip label="EM Real Yield" value="3.9%" sub="Avg local less inflation" color="text-emerald-400" />
       </div>
 
@@ -503,7 +503,7 @@ function HardLocalTab() {
       <Card className="bg-zinc-900 border-zinc-800">
         <CardHeader className="pb-2">
           <CardTitle className="text-sm font-medium text-zinc-300 flex items-center gap-2">
-            <BarChart3 className="w-4 h-4 text-blue-400" />
+            <BarChart3 className="w-4 h-4 text-primary" />
             Major EM Debt Benchmarks
           </CardTitle>
         </CardHeader>
@@ -521,7 +521,7 @@ function HardLocalTab() {
             <tbody>
               {embiFunds.map((f, i) => (
                 <tr key={i} className="border-b border-zinc-800/60 hover:bg-zinc-800/30">
-                  <td className="py-2 px-3 text-blue-400 font-medium">{f.name}</td>
+                  <td className="py-2 px-3 text-primary font-medium">{f.name}</td>
                   <td className="py-2 px-3 text-right font-mono text-emerald-400">{fmtPct(f.yield, 2)}</td>
                   <td className="py-2 px-3 text-right text-zinc-300">{f.duration} yr</td>
                   <td className="py-2 px-3 text-right text-zinc-400">{f.assets}</td>
@@ -1194,8 +1194,8 @@ export default function EmDebtPage() {
       {/* Header */}
       <div className="mb-6">
         <div className="flex items-center gap-3 mb-2 flex-wrap">
-          <div className="p-2 rounded-lg bg-blue-500/10 border border-blue-500/20">
-            <Landmark className="w-6 h-6 text-blue-400" />
+          <div className="p-2 rounded-lg bg-primary/10 border border-border">
+            <Landmark className="w-6 h-6 text-primary" />
           </div>
           <div>
             <h1 className="text-2xl font-bold text-zinc-100">Emerging Markets Debt</h1>
@@ -1204,7 +1204,7 @@ export default function EmDebtPage() {
             </p>
           </div>
           <div className="ml-auto flex gap-2 flex-wrap">
-            <Badge className="bg-blue-900/40 text-blue-400 border-blue-700 text-xs">EMBI +185 bps</Badge>
+            <Badge className="bg-muted/60 text-primary border-border text-xs">EMBI +185 bps</Badge>
             <Badge className="bg-amber-900/40 text-amber-400 border-amber-700 text-xs">GBI-EM 6.88%</Badge>
             <Badge className="bg-rose-900/40 text-rose-400 border-rose-700 text-xs">EM FX -3.2% YTD</Badge>
           </div>
@@ -1215,14 +1215,14 @@ export default function EmDebtPage() {
         <TabsList className="bg-zinc-900 border border-zinc-800 mb-6 flex flex-wrap gap-1 h-auto p-1">
           <TabsTrigger
             value="sovereign"
-            className="data-[state=active]:bg-blue-600 data-[state=active]:text-white text-xs px-3 py-1.5"
+            className="data-[state=active]:bg-primary data-[state=active]:text-white text-xs px-3 py-1.5"
           >
             <Globe className="w-3 h-3 mr-1" />
             Sovereign Dashboard
           </TabsTrigger>
           <TabsTrigger
             value="hardlocal"
-            className="data-[state=active]:bg-violet-600 data-[state=active]:text-white text-xs px-3 py-1.5"
+            className="data-[state=active]:bg-primary data-[state=active]:text-white text-xs px-3 py-1.5"
           >
             <DollarSign className="w-3 h-3 mr-1" />
             Hard vs Local

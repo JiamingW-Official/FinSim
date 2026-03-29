@@ -431,7 +431,7 @@ function ScreenerTab() {
                   <Badge className={cn("text-xs",
                     bond.type === "GO"
                       ? "bg-indigo-500/20 text-indigo-400 border-indigo-500/30"
-                      : "bg-cyan-500/20 text-cyan-400 border-cyan-500/30"
+                      : "bg-cyan-500/20 text-muted-foreground border-cyan-500/30"
                   )}>
                     {bond.type}
                   </Badge>
@@ -493,7 +493,7 @@ function ScreenerTab() {
               backed by the full taxing power of the issuer. Generally lower risk and lower yield.
             </p>
             <p>
-              <span className="text-cyan-400 font-semibold">Revenue bonds</span> are backed solely by
+              <span className="text-muted-foreground font-semibold">Revenue bonds</span> are backed solely by
               cash flows from a specific project — tolls, utility fees, tuition. Higher yield, but
               dependent on project performance.
             </p>
@@ -675,7 +675,7 @@ function AnalysisTab() {
         <Card className="bg-zinc-900 border-zinc-800">
           <CardHeader className="pb-3">
             <CardTitle className="text-base text-zinc-200 flex items-center gap-2">
-              <PieChart className="w-4 h-4 text-cyan-400" /> Sector Breakdown
+              <PieChart className="w-4 h-4 text-muted-foreground" /> Sector Breakdown
             </CardTitle>
           </CardHeader>
           <CardContent>
@@ -993,7 +993,7 @@ export default function MuniBondsPage() {
         {[
           { label: "Avg Muni Yield", value: "3.94%", sub: "across 8 bonds", icon: TrendingUp, color: "text-emerald-400" },
           { label: "Avg TEY (37%)", value: "6.45%", sub: "vs equivalent taxable", icon: Calculator, color: "text-indigo-400" },
-          { label: "Avg Duration", value: "8.8 yrs", sub: "interest rate sensitivity", icon: Shield, color: "text-cyan-400" },
+          { label: "Avg Duration", value: "8.8 yrs", sub: "interest rate sensitivity", icon: Shield, color: "text-muted-foreground" },
           { label: "AMT Bonds", value: "2 / 8", sub: "private activity bonds", icon: AlertTriangle, color: "text-amber-400" },
         ].map((stat, i) => (
           <Card key={`stat-${i}`} className="bg-zinc-900 border-zinc-800">

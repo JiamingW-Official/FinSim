@@ -409,7 +409,7 @@ function OptionsChainTable({ rows, expiry }: { rows: OptionRow[]; expiry: string
                 <td className="py-1.5 text-emerald-400">{row.callAsk}</td>
                 <td className="py-1.5 text-slate-300">{row.callIV}</td>
                 <td className="py-1.5 text-sky-400">{row.callDelta.toFixed(3)}</td>
-                <td className="py-1.5 text-violet-400">{row.callGamma.toFixed(4)}</td>
+                <td className="py-1.5 text-primary">{row.callGamma.toFixed(4)}</td>
                 <td
                   className={`py-1.5 text-center font-bold px-2 border-x border-[#1e293b] ${
                     isAtm ? "text-amber-400" : "text-slate-200"
@@ -420,7 +420,7 @@ function OptionsChainTable({ rows, expiry }: { rows: OptionRow[]; expiry: string
                     <span className="ml-1 text-[11px] text-amber-400">ATM</span>
                   )}
                 </td>
-                <td className="py-1.5 text-right text-violet-400">{row.putGamma.toFixed(4)}</td>
+                <td className="py-1.5 text-right text-primary">{row.putGamma.toFixed(4)}</td>
                 <td className="py-1.5 text-right text-sky-400">{row.putDelta.toFixed(3)}</td>
                 <td className="py-1.5 text-right text-slate-300">{row.putIV}</td>
                 <td className="py-1.5 text-right text-red-300">{row.putBid}</td>
@@ -458,14 +458,14 @@ function RRButterflyTable() {
               >
                 {row.rr25 >= 0 ? "+" : ""}{row.rr25.toFixed(3)}
               </td>
-              <td className="py-2 pr-3 text-right text-violet-400">{row.bf25.toFixed(3)}</td>
+              <td className="py-2 pr-3 text-right text-primary">{row.bf25.toFixed(3)}</td>
             </tr>
           ))}
         </tbody>
       </table>
       <div className="mt-3 px-3 py-2 bg-[#0f172a] border border-[#1e293b] rounded text-xs text-slate-400 leading-relaxed">
         <span className="text-amber-400 font-semibold">25D RR</span> = IV(25D Call) − IV(25D Put). Positive → call skew (EUR/USD call demand).{" "}
-        <span className="text-violet-400 font-semibold">25D Fly</span> = 0.5 × [IV(25D Call) + IV(25D Put)] − IV(ATM). Wing premium above ATM.
+        <span className="text-primary font-semibold">25D Fly</span> = 0.5 × [IV(25D Call) + IV(25D Put)] − IV(ATM). Wing premium above ATM.
       </div>
     </div>
   );
@@ -721,7 +721,7 @@ function GKCalculator() {
       {/* Results */}
       <div className="space-y-3">
         <h3 className="text-sm font-semibold text-slate-200 flex items-center gap-2">
-          <Activity size={14} className="text-violet-400" /> Results
+          <Activity size={14} className="text-primary" /> Results
         </h3>
         <div className="bg-[#0f172a] border border-[#1e293b] rounded-lg p-4 space-y-2">
           <div className="flex justify-between items-center border-b border-[#1e293b] pb-2 mb-3">
@@ -732,7 +732,7 @@ function GKCalculator() {
           </div>
           {[
             { label: "Delta (Δ)", val: result.delta.toFixed(5), color: "text-sky-400" },
-            { label: "Gamma (Γ)", val: result.gamma.toFixed(6), color: "text-violet-400" },
+            { label: "Gamma (Γ)", val: result.gamma.toFixed(6), color: "text-primary" },
             { label: "Vega (ν)", val: result.vega.toFixed(6), color: "text-amber-400" },
             { label: "d₁", val: result.d1.toFixed(5), color: "text-slate-300" },
             { label: "d₂", val: result.d2.toFixed(5), color: "text-slate-300" },
@@ -987,7 +987,7 @@ export default function FXOptionsPage() {
               <div className="flex gap-4 mb-3 text-xs flex-wrap">
                 {[
                   { label: "Δ Delta", color: "text-sky-400" },
-                  { label: "Γ Gamma", color: "text-violet-400" },
+                  { label: "Γ Gamma", color: "text-primary" },
                   { label: "IV Implied Vol", color: "text-slate-300" },
                 ].map(({ label, color }) => (
                   <span key={label} className={`${color} flex items-center gap-1`}>
@@ -1006,7 +1006,7 @@ export default function FXOptionsPage() {
           <Card className="bg-[#0c1526] border-[#1e293b]">
             <CardHeader className="pb-3">
               <CardTitle className="text-base text-white flex items-center gap-2">
-                <Activity size={16} className="text-violet-400" />
+                <Activity size={16} className="text-primary" />
                 Risk Reversal &amp; Butterfly Structures
                 <span className="ml-1 text-xs font-normal text-slate-400">EUR/USD</span>
               </CardTitle>

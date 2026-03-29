@@ -541,7 +541,7 @@ function SP500Tracker({ quarters, currentQ }: { quarters: QuarterSummary[]; curr
       {/* Current quarter headline */}
       <div className="grid grid-cols-2 gap-3 sm:grid-cols-4">
         {[
-          { label: "Reported", value: `${currentQ.reportedPct}%`, sublabel: "of S&P 500", color: "text-blue-400" },
+          { label: "Reported", value: `${currentQ.reportedPct}%`, sublabel: "of S&P 500", color: "text-primary" },
           { label: "EPS Beat Rate", value: `${currentQ.beatEpsPct}%`, sublabel: "above est.", color: pctColor(currentQ.beatEpsPct - 50) },
           { label: "Revenue Beat", value: `${currentQ.beatRevPct}%`, sublabel: "above est.", color: pctColor(currentQ.beatRevPct - 50) },
           { label: "Blended EPS Growth", value: `+${currentQ.epsGrowth}%`, sublabel: "YoY blended", color: "text-emerald-400" },
@@ -563,7 +563,7 @@ function SP500Tracker({ quarters, currentQ }: { quarters: QuarterSummary[]; curr
       <div className="rounded-lg border border-border/40 bg-card/60 p-3 space-y-2">
         <div className="flex items-center justify-between">
           <span className="text-xs font-medium">Q1 2025 Reporting Progress</span>
-          <span className="text-xs text-blue-400 font-semibold">{currentQ.reportedPct}% complete</span>
+          <span className="text-xs text-primary font-semibold">{currentQ.reportedPct}% complete</span>
         </div>
         <div className="h-3 rounded-full bg-slate-800 overflow-hidden">
           <motion.div
@@ -608,7 +608,7 @@ function SP500Tracker({ quarters, currentQ }: { quarters: QuarterSummary[]; curr
                   key={q.label}
                   className={cn(
                     "border-b border-border/20 last:border-0",
-                    i === quarters.length - 1 && "bg-blue-500/5 font-semibold"
+                    i === quarters.length - 1 && "bg-primary/5 font-semibold"
                   )}
                 >
                   <td className="py-1 text-slate-300">{q.label}</td>
@@ -823,7 +823,7 @@ function EarningsFeedSection({
                         </td>
                         <td className="px-3 py-1.5 text-center text-slate-300">{row.date}</td>
                         <td className="px-3 py-1.5 text-center">
-                          <span className={cn("px-1.5 py-0.5 rounded text-[11px] font-medium", row.time === "BMO" ? "bg-blue-500/15 text-blue-300" : "bg-purple-500/15 text-purple-300")}>
+                          <span className={cn("px-1.5 py-0.5 rounded text-[11px] font-medium", row.time === "BMO" ? "bg-primary/15 text-primary" : "bg-primary/15 text-primary")}>
                             {row.time}
                           </span>
                         </td>
@@ -1128,7 +1128,7 @@ function OptionsPositioningSection({ data }: { data: OptionsPositioning[] }) {
       {/* Put/Call skew explainer */}
       <div className="rounded-lg border border-border/40 bg-card/60 p-3 space-y-2">
         <div className="flex items-center gap-2">
-          <Eye className="w-3.5 h-3.5 text-blue-400" />
+          <Eye className="w-3.5 h-3.5 text-primary" />
           <p className="text-xs font-semibold">Put/Call Skew Interpretation</p>
         </div>
         <div className="grid grid-cols-3 gap-2">

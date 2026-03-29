@@ -242,7 +242,7 @@ function MergerArbitrageTab() {
             },
             {
               type: "Cash + Stock (Mixed)",
-              color: "text-purple-400",
+              color: "text-primary",
               desc: "Target holders receive part cash, part stock. Hedge stock component proportionally. CVRs may be issued for contingent payments.",
               mechanics: "Allocate capital proportionally. Consider CVR value independently (binary outcomes, milestone-based).",
             },
@@ -452,14 +452,14 @@ function ActivismTab() {
       <Card className="bg-zinc-900 border-zinc-800">
         <CardHeader className="pb-2">
           <CardTitle className="text-sm flex items-center gap-2">
-            <Zap className="w-4 h-4 text-purple-400" />
+            <Zap className="w-4 h-4 text-primary" />
             Activist Investor Playbook
           </CardTitle>
         </CardHeader>
         <CardContent>
           <ActivistPlaybookSVG />
           <div className="mt-3 grid grid-cols-1 gap-2 text-xs text-zinc-400">
-            <p><span className="text-purple-300 font-medium">13D filing:</span> Required within 10 days of crossing 5% beneficial ownership threshold; discloses intent (Schedule 13D for active intent vs 13G for passive).</p>
+            <p><span className="text-primary font-medium">13D filing:</span> Required within 10 days of crossing 5% beneficial ownership threshold; discloses intent (Schedule 13D for active intent vs 13G for passive).</p>
             <p><span className="text-amber-300 font-medium">Wolf pack tactics:</span> Multiple funds coordinate near-simultaneously without formal agreement; each stays below 5% to delay disclosure.</p>
             <p><span className="text-emerald-300 font-medium">Settlement rate:</span> ~70% of campaigns settle before annual meeting; board seats granted without full proxy fight.</p>
           </div>
@@ -538,7 +538,7 @@ function ActivismTab() {
             <p className="text-xs text-zinc-400">Company specifies range (e.g., $45–$50). Shareholders tender shares at price they will accept. Company buys at lowest clearing price that lets it purchase target quantity. All successful tenderers receive the same clearing price. Favors price discovery over fixed-price tender.</p>
           </div>
           <div className="rounded-lg bg-zinc-800/60 p-3">
-            <p className="text-xs font-semibold text-purple-300 mb-2">Odd-Lot Tender Premium</p>
+            <p className="text-xs font-semibold text-primary mb-2">Odd-Lot Tender Premium</p>
             <p className="text-xs text-zinc-400">Shareholders with fewer than 100 shares (odd lots) often get priority or slight premium in tender offers. Retail arb: buy &lt;100 share lots to participate without proration — especially valuable in heavily oversubscribed deals.</p>
           </div>
         </CardContent>
@@ -774,13 +774,13 @@ function SpinoffsTab() {
       <Card className="bg-zinc-900 border-zinc-800">
         <CardHeader className="pb-2">
           <CardTitle className="text-sm flex items-center gap-2">
-            <FileText className="w-4 h-4 text-purple-400" />
+            <FileText className="w-4 h-4 text-primary" />
             Morris Trust & Reverse Morris Trust
           </CardTitle>
         </CardHeader>
         <CardContent className="space-y-3">
           <div className="rounded-lg bg-zinc-800/60 p-3">
-            <p className="text-xs font-semibold text-purple-300 mb-1">Morris Trust</p>
+            <p className="text-xs font-semibold text-primary mb-1">Morris Trust</p>
             <p className="text-xs text-zinc-400">Parent spins off unwanted subsidiary tax-free, then the subsidiary merges with an acquirer. The parent's shareholders must receive ≥50% of the combined entity. Used to divest divisions without triggering gain on sale.</p>
           </div>
           <div className="rounded-lg bg-zinc-800/60 p-3">
@@ -994,7 +994,7 @@ function DistressedSPACTab() {
               },
               {
                 label: "Redemption Dynamics",
-                color: "text-purple-400",
+                color: "text-primary",
                 desc: "In 2021–22, many SPAC shareholders redeemed 80–95% of shares at trust NAV before vote; sponsors unable to fund de-SPAC without PIPE financing.",
               },
             ].map((m) => (
@@ -1126,7 +1126,7 @@ function DistressedSPACTab() {
             <p className="text-xs text-zinc-400">Units typically split into shares + warrants after 52 days. If unit trades below theoretical (share + warrant) value, buy units and split → arbitrage. Common in first few months post-IPO; gap typically closes within days.</p>
           </div>
           <div className="rounded-lg bg-zinc-800/60 p-3">
-            <p className="text-xs font-semibold text-purple-300 mb-1">Pure Arb Strategy (Pre-Deal)</p>
+            <p className="text-xs font-semibold text-primary mb-1">Pure Arb Strategy (Pre-Deal)</p>
             <p className="text-xs text-zinc-400">Buy SPAC at or below $10.00 trust NAV; hold for trust interest (3–5% annualized in 2022–24 high-rate environment); redeem at NAV if bad deal announced. Collect warrants as free option. Low-risk carry trade during search period.</p>
           </div>
         </CardContent>

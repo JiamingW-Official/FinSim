@@ -417,8 +417,8 @@ function BusinessCycleClock() {
     <div className="space-y-6">
       {/* Header */}
       <div className="flex items-center gap-3">
-        <div className="p-2 rounded-lg bg-blue-500/10">
-          <Clock className="w-5 h-5 text-blue-400" />
+        <div className="p-2 rounded-lg bg-primary/10">
+          <Clock className="w-5 h-5 text-primary" />
         </div>
         <div>
           <h2 className="text-base font-semibold text-white">Business Cycle Clock</h2>
@@ -774,7 +774,7 @@ function SectorPerformance() {
                 <tr className="border-b border-slate-700/50">
                   <th className="px-4 py-2 text-left text-slate-400 font-medium">Sector</th>
                   <th className="px-3 py-2 text-center text-green-400 font-medium">Recovery</th>
-                  <th className="px-3 py-2 text-center text-blue-400 font-medium">Expansion</th>
+                  <th className="px-3 py-2 text-center text-primary font-medium">Expansion</th>
                   <th className="px-3 py-2 text-center text-yellow-400 font-medium">Slowdown</th>
                   <th className="px-3 py-2 text-center text-red-400 font-medium">Contraction</th>
                 </tr>
@@ -896,7 +896,7 @@ function RotationSignals() {
                       >
                         <div className="pt-2 border-t border-slate-700/50 mt-1">
                           <div className="flex items-start gap-2 text-xs text-slate-300">
-                            <Info className="w-3.5 h-3.5 mt-0.5 flex-shrink-0 text-blue-400" />
+                            <Info className="w-3.5 h-3.5 mt-0.5 flex-shrink-0 text-primary" />
                             <p>{sig.detail}</p>
                           </div>
                         </div>
@@ -991,8 +991,8 @@ function FactorRotation() {
   return (
     <div className="space-y-6">
       <div className="flex items-center gap-3">
-        <div className="p-2 rounded-lg bg-purple-500/10">
-          <Layers className="w-5 h-5 text-purple-400" />
+        <div className="p-2 rounded-lg bg-primary/10">
+          <Layers className="w-5 h-5 text-primary" />
         </div>
         <div>
           <h2 className="text-base font-semibold text-white">Factor Rotation by Business Cycle</h2>
@@ -1308,7 +1308,7 @@ function ETFImplementation() {
                         <span className={cn(
                           "font-semibold",
                           pct >= 15 ? "text-green-400"
-                          : pct >= 8 ? "text-blue-400"
+                          : pct >= 8 ? "text-primary"
                           : pct >= 3 ? "text-slate-300"
                           : "text-slate-500",
                         )}>
@@ -1383,7 +1383,7 @@ function ETFImplementation() {
               <CardTitle className="text-sm flex items-center gap-2">
                 <span className={cn(
                   "p-1.5 rounded",
-                  color === "blue" && "bg-blue-500/10 text-blue-400",
+                  color === "blue" && "bg-primary/10 text-primary",
                   color === "yellow" && "bg-yellow-500/10 text-yellow-400",
                   color === "green" && "bg-green-500/10 text-green-400",
                 )}>

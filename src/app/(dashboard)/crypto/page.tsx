@@ -1013,7 +1013,7 @@ function YieldFarmingSimulator() {
       </div>
 
       {/* APY vs APR explanation */}
-      <div className="rounded-md bg-blue-500/5 border border-blue-500/20 px-3 py-2 text-xs text-muted-foreground leading-relaxed">
+      <div className="rounded-md bg-primary/5 border border-border px-3 py-2 text-xs text-muted-foreground leading-relaxed">
         <span className="font-semibold text-foreground">APR vs APY:</span> APR ({apr.toFixed(1)}%) is simple interest — the base rate without compounding.
         APY ({apy.toFixed(2)}%) accounts for compounding every day. The gap grows as the rate increases.
         Daily compounding turns {apr.toFixed(1)}% APR into {apy.toFixed(2)}% APY.
@@ -1887,7 +1887,7 @@ function CryptoPortfolioTab({ rows }: { rows: CryptoRow[] }) {
                 <span className="font-semibold text-primary w-10">{s.symbol}</span>
                 <span className="text-muted-foreground">
                   is {s.diff > 0 ? "over" : "under"}-weight by{" "}
-                  <span className={cn("font-medium", s.diff > 0 ? "text-amber-500" : "text-blue-400")}>
+                  <span className={cn("font-medium", s.diff > 0 ? "text-amber-500" : "text-primary")}>
                     {Math.abs(s.diff).toFixed(1)}%
                   </span>
                   {" "}(actual {s.actualWeight.toFixed(1)}% vs target {s.targetWeight}%)

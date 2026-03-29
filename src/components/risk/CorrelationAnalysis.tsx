@@ -481,7 +481,7 @@ export default function CorrelationAnalysis({ positions, portfolioValue }: Corre
                 <div className="flex items-center gap-2"><div className="h-3 w-6 rounded bg-orange-500/70" /><span>0.7–0.85 High</span></div>
                 <div className="flex items-center gap-2"><div className="h-3 w-6 rounded bg-yellow-500/60" /><span>0.5–0.7 Moderate</span></div>
                 <div className="flex items-center gap-2"><div className="h-3 w-6 rounded bg-green-500/55" /><span>0.3–0.5 Low</span></div>
-                <div className="flex items-center gap-2"><div className="h-3 w-6 rounded bg-blue-500/55" /><span>0.0–0.3 Very low</span></div>
+                <div className="flex items-center gap-2"><div className="h-3 w-6 rounded bg-primary/55" /><span>0.0–0.3 Very low</span></div>
               </div>
               <div className="rounded-lg border border-red-500/20 bg-red-500/5 p-2.5 text-xs">
                 <p className="font-semibold text-red-600 dark:text-red-400 mb-1">Crisis Correlation</p>

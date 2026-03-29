@@ -670,7 +670,7 @@ function PortfolioScatter({
       <div className="grid grid-cols-2 gap-2 mt-1.5">
         <div className="bg-zinc-800/60 border border-zinc-700/50 rounded p-2 text-center">
           <div className="text-zinc-400 text-xs">Avg Base Loss</div>
-          <div className="text-blue-400 font-bold text-sm">{fmtM(avgBase)}</div>
+          <div className="text-primary font-bold text-sm">{fmtM(avgBase)}</div>
         </div>
         <div className="bg-zinc-800/60 border border-zinc-700/50 rounded p-2 text-center">
           <div className="text-zinc-400 text-xs">Avg Stressed Loss</div>
@@ -762,8 +762,8 @@ export default function CreditRiskModelPage() {
       {/* Header */}
       <div className="mb-6">
         <div className="flex items-center gap-3 mb-2">
-          <div className="p-2 bg-blue-500/10 rounded-lg border border-blue-500/20">
-            <Shield className="w-5 h-5 text-blue-400" />
+          <div className="p-2 bg-primary/10 rounded-lg border border-border">
+            <Shield className="w-5 h-5 text-primary" />
           </div>
           <div>
             <h1 className="text-2xl font-bold text-white">Credit Risk Modeling</h1>
@@ -809,19 +809,19 @@ export default function CreditRiskModelPage() {
       {/* Tabs */}
       <Tabs defaultValue="merton">
         <TabsList className="bg-zinc-900 border border-zinc-800 mb-4 flex-wrap h-auto gap-1">
-          <TabsTrigger value="merton" className="text-xs data-[state=active]:bg-blue-600 data-[state=active]:text-white">
+          <TabsTrigger value="merton" className="text-xs data-[state=active]:bg-primary data-[state=active]:text-white">
             <Building2 className="w-3.5 h-3.5 mr-1" />
             Merton Model
           </TabsTrigger>
-          <TabsTrigger value="migration" className="text-xs data-[state=active]:bg-blue-600 data-[state=active]:text-white">
+          <TabsTrigger value="migration" className="text-xs data-[state=active]:bg-primary data-[state=active]:text-white">
             <ArrowRight className="w-3.5 h-3.5 mr-1" />
             Migration
           </TabsTrigger>
-          <TabsTrigger value="loss" className="text-xs data-[state=active]:bg-blue-600 data-[state=active]:text-white">
+          <TabsTrigger value="loss" className="text-xs data-[state=active]:bg-primary data-[state=active]:text-white">
             <BarChart3 className="w-3.5 h-3.5 mr-1" />
             Loss Distribution
           </TabsTrigger>
-          <TabsTrigger value="portfolio" className="text-xs data-[state=active]:bg-blue-600 data-[state=active]:text-white">
+          <TabsTrigger value="portfolio" className="text-xs data-[state=active]:bg-primary data-[state=active]:text-white">
             <PieChart className="w-3.5 h-3.5 mr-1" />
             Portfolio
           </TabsTrigger>
@@ -834,7 +834,7 @@ export default function CreditRiskModelPage() {
             <Card className="bg-zinc-900 border-zinc-800">
               <CardHeader className="pb-3">
                 <CardTitle className="text-base font-semibold text-white flex items-center gap-2">
-                  <Building2 className="w-4 h-4 text-blue-400" />
+                  <Building2 className="w-4 h-4 text-primary" />
                   Firm Parameters
                 </CardTitle>
               </CardHeader>
@@ -920,7 +920,7 @@ export default function CreditRiskModelPage() {
                   <div className="text-zinc-300">
                     = [{`ln(${fmtNum(firmValue/debtFace, 3)})`} + ({riskFree} - {fmtNum(0.5*Math.pow(firmVol/100,2),4)})×{maturity}] / {fmtNum(firmVol/100,3)}×{fmtNum(Math.sqrt(maturity),3)}
                   </div>
-                  <div className="text-blue-300 font-bold">= {fmtNum(merton.dd, 4)}</div>
+                  <div className="text-primary font-bold">= {fmtNum(merton.dd, 4)}</div>
                   <div className="text-zinc-400 mt-1.5">PD = N(-d₂) = N({fmtNum(-merton.dd, 4)})</div>
                   <div className="text-emerald-300 font-bold">= {fmtPct(merton.pd * 100, 4)}</div>
                 </div>
@@ -953,7 +953,7 @@ export default function CreditRiskModelPage() {
                     </div>
                     <div className="text-center">
                       <div className="text-zinc-400 text-xs">Buffer</div>
-                      <div className="font-bold text-sm text-blue-400">{fmtM(firmValue - debtFace)}</div>
+                      <div className="font-bold text-sm text-primary">{fmtM(firmValue - debtFace)}</div>
                     </div>
                   </div>
                 </CardContent>
@@ -1046,7 +1046,7 @@ export default function CreditRiskModelPage() {
             <Card className="bg-zinc-900 border-zinc-800 lg:col-span-3">
               <CardHeader className="pb-2">
                 <CardTitle className="text-base font-semibold text-white flex items-center gap-2">
-                  <BarChart3 className="w-4 h-4 text-blue-400" />
+                  <BarChart3 className="w-4 h-4 text-primary" />
                   1-Year Rating Transition Matrix
                   <Badge variant="outline" className="ml-auto text-xs text-zinc-400 border-zinc-700">S&P Based</Badge>
                 </CardTitle>
@@ -1097,7 +1097,7 @@ export default function CreditRiskModelPage() {
                   <div className="space-y-2 text-xs">
                     {[
                       { label: "Upgrade probability", val: upgradePct, color: "bg-emerald-500" },
-                      { label: "Stable (stay same)", val: stablePct, color: "bg-blue-500" },
+                      { label: "Stable (stay same)", val: stablePct, color: "bg-primary" },
                       { label: "Downgrade probability", val: downgradePct - defaultPct, color: "bg-amber-500" },
                       { label: "1-yr default rate", val: defaultPct, color: "bg-rose-600" },
                     ].map((item) => (
@@ -1181,7 +1181,7 @@ export default function CreditRiskModelPage() {
                         onClick={() => setAnimStep(i)}
                         className={`px-2 py-0.5 rounded text-xs transition-all border ${
                           animStep === i
-                            ? "bg-blue-600 border-blue-500 text-white"
+                            ? "bg-primary border-primary text-white"
                             : "bg-zinc-800 border-zinc-700 text-zinc-400 hover:border-zinc-500"
                         }`}
                       >
@@ -1270,7 +1270,7 @@ export default function CreditRiskModelPage() {
                 <div>
                   <div className="flex justify-between text-xs mb-1.5">
                     <span className="text-zinc-400">Exposure at Default (EAD)</span>
-                    <span className="text-blue-400 font-medium">{fmtM(ldEad)}</span>
+                    <span className="text-primary font-medium">{fmtM(ldEad)}</span>
                   </div>
                   <Slider
                     value={[ldEad]}
@@ -1287,7 +1287,7 @@ export default function CreditRiskModelPage() {
                 <div>
                   <div className="flex justify-between text-xs mb-1.5">
                     <span className="text-zinc-400">VaR Confidence Level</span>
-                    <span className="text-purple-400 font-medium">{confidence}%</span>
+                    <span className="text-primary font-medium">{confidence}%</span>
                   </div>
                   <Slider
                     value={[confidence]}
@@ -1319,13 +1319,13 @@ export default function CreditRiskModelPage() {
                   </div>
                   <div className="border-t border-zinc-700 pt-2 space-y-1 text-zinc-300">
                     <div>Econ Capital ≈ VaR({confidence}%) - EL</div>
-                    <div className="text-blue-300 text-xs">Capital to absorb tail losses at {confidence}% confidence</div>
+                    <div className="text-primary text-xs">Capital to absorb tail losses at {confidence}% confidence</div>
                   </div>
                 </div>
 
                 {/* Recovery rate note */}
-                <div className="bg-blue-500/10 border border-blue-500/20 rounded-lg p-3 text-xs">
-                  <div className="text-blue-400 font-semibold mb-1 flex items-center gap-1">
+                <div className="bg-primary/10 border border-border rounded-lg p-3 text-xs">
+                  <div className="text-primary font-semibold mb-1 flex items-center gap-1">
                     <Info className="w-3 h-3" /> Recovery Rate
                   </div>
                   <div className="text-zinc-400">
@@ -1342,7 +1342,7 @@ export default function CreditRiskModelPage() {
             <Card className="bg-zinc-900 border-zinc-800 lg:col-span-2">
               <CardHeader className="pb-2">
                 <CardTitle className="text-base font-semibold text-white flex items-center gap-2">
-                  <BarChart3 className="w-4 h-4 text-blue-400" />
+                  <BarChart3 className="w-4 h-4 text-primary" />
                   Loss Distribution
                   <Badge variant="outline" className="ml-auto text-xs border-zinc-700 text-zinc-400">Monte Carlo</Badge>
                 </CardTitle>
@@ -1391,7 +1391,7 @@ export default function CreditRiskModelPage() {
                       </div>
                       <div className="flex justify-between">
                         <span>Implied RWA%</span>
-                        <span className="text-blue-400">
+                        <span className="text-primary">
                           {fmtPct(Math.min(ldPd * ldLgd * 2.5, 150), 1)}
                         </span>
                       </div>
@@ -1416,7 +1416,7 @@ export default function CreditRiskModelPage() {
             <Card className="bg-zinc-900 border-zinc-800 lg:col-span-2">
               <CardHeader className="pb-2">
                 <CardTitle className="text-base font-semibold text-white flex items-center gap-2">
-                  <Layers className="w-4 h-4 text-blue-400" />
+                  <Layers className="w-4 h-4 text-primary" />
                   10-Loan Credit Portfolio
                   <Badge variant="outline" className="ml-auto border-zinc-700 text-zinc-400 text-xs">
                     EAD: {fmtM(totalEAD)}
@@ -1447,7 +1447,7 @@ export default function CreditRiskModelPage() {
                           }
                           className={`cursor-pointer transition-colors ${
                             selectedLoan === loan.id
-                              ? "bg-blue-500/10"
+                              ? "bg-primary/10"
                               : "hover:bg-zinc-800/40"
                           }`}
                           whileHover={{ x: 2 }}
@@ -1515,7 +1515,7 @@ export default function CreditRiskModelPage() {
               <Card className="bg-zinc-900 border-zinc-800">
                 <CardHeader className="pb-2">
                   <CardTitle className="text-sm font-semibold text-white flex items-center gap-2">
-                    <PieChart className="w-4 h-4 text-purple-400" />
+                    <PieChart className="w-4 h-4 text-primary" />
                     Portfolio Risk Metrics
                   </CardTitle>
                 </CardHeader>
@@ -1525,7 +1525,7 @@ export default function CreditRiskModelPage() {
                     { label: "Avg Weighted PD", val: fmtPct(avgPD * 100, 3), sub: "Expected annual default rate", color: "text-rose-400" },
                     { label: "Avg Weighted LGD", val: fmtPct(avgLGD * 100, 1), sub: "Expected severity on default", color: "text-amber-400" },
                     { label: "HHI Concentration", val: fmtPct(hhiPct, 2), sub: hhiPct < 15 ? "Well diversified" : "Moderate concentration", color: hhiPct < 15 ? "text-emerald-400" : "text-amber-400" },
-                    { label: "Diversification Benefit", val: fmtM(divBenefit), sub: `At ρ = ${fmtPct(portCorr * 100, 0)}`, color: "text-blue-400" },
+                    { label: "Diversification Benefit", val: fmtM(divBenefit), sub: `At ρ = ${fmtPct(portCorr * 100, 0)}`, color: "text-primary" },
                   ].map((m) => (
                     <div key={m.label} className="flex flex-col gap-0.5">
                       <div className="flex justify-between text-xs">
@@ -1553,7 +1553,7 @@ export default function CreditRiskModelPage() {
                             <span className="text-zinc-500 w-20 truncate">{sector}</span>
                             <div className="flex-1 h-1.5 bg-zinc-800 rounded overflow-hidden">
                               <div
-                                className="h-full bg-blue-500 rounded"
+                                className="h-full bg-primary rounded"
                                 style={{ width: `${(ead / totalEAD) * 100}%`, opacity: 0.7 }}
                               />
                             </div>
@@ -1610,9 +1610,9 @@ export default function CreditRiskModelPage() {
             icon: Shield,
             title: "Merton / KMV",
             desc: "Structural credit models treat equity as a call option on firm assets. Distance to default (DD) measures how many standard deviations the firm is from insolvency.",
-            color: "text-blue-400",
-            bg: "bg-blue-500/10",
-            border: "border-blue-500/20",
+            color: "text-primary",
+            bg: "bg-primary/10",
+            border: "border-border",
           },
           {
             icon: ArrowRight,

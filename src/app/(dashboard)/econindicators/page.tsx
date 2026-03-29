@@ -708,7 +708,7 @@ export default function EconIndicatorsPage() {
       positive: true,
       icon: Activity,
       description: "Expansion territory",
-      color: "text-blue-400",
+      color: "text-primary",
     },
     {
       label: "CPI YoY",
@@ -726,7 +726,7 @@ export default function EconIndicatorsPage() {
       positive: false,
       icon: Users,
       description: "Near full employment",
-      color: "text-purple-400",
+      color: "text-primary",
     },
     {
       label: "GDP Growth QoQ",
@@ -742,7 +742,7 @@ export default function EconIndicatorsPage() {
   const importanceColor = {
     high: "bg-red-500/20 text-red-400 border-red-500/30",
     medium: "bg-amber-500/20 text-amber-400 border-amber-500/30",
-    low: "bg-blue-500/20 text-blue-400 border-blue-500/30",
+    low: "bg-primary/20 text-primary border-border",
   };
 
   return (
@@ -756,7 +756,7 @@ export default function EconIndicatorsPage() {
       >
         <div>
           <div className="flex items-center gap-3 mb-1">
-            <Globe className="h-6 w-6 text-blue-400" />
+            <Globe className="h-6 w-6 text-primary" />
             <h1 className="text-2xl font-bold tracking-tight">Global Economic Indicators</h1>
           </div>
           <p className="text-muted-foreground text-sm">
@@ -829,7 +829,7 @@ export default function EconIndicatorsPage() {
                 <CardHeader className="pb-2">
                   <div className="flex items-center justify-between">
                     <CardTitle className="text-base flex items-center gap-2">
-                      <Activity className="h-4 w-4 text-blue-400" />
+                      <Activity className="h-4 w-4 text-primary" />
                       PMI Composite — Manufacturing &amp; Services
                     </CardTitle>
                     <div className="flex gap-1">
@@ -864,7 +864,7 @@ export default function EconIndicatorsPage() {
                     mfg: 52.1,
                     svc: 54.3,
                     trend: "up" as const,
-                    color: "border-blue-500/30",
+                    color: "border-border",
                   },
                   {
                     region: "Eurozone",
@@ -1021,7 +1021,7 @@ export default function EconIndicatorsPage() {
                   </div>
                   <div className="flex items-center justify-between mt-1">
                     <span className="text-sm font-medium">Core CPI YoY (ex-Food &amp; Energy)</span>
-                    <span className="text-lg font-semibold text-blue-400">3.6%</span>
+                    <span className="text-lg font-semibold text-primary">3.6%</span>
                   </div>
                 </CardContent>
               </Card>
@@ -1051,7 +1051,7 @@ export default function EconIndicatorsPage() {
               <Card className="bg-card border-border">
                 <CardHeader className="pb-2">
                   <CardTitle className="text-base flex items-center gap-2">
-                    <Users className="h-4 w-4 text-purple-400" />
+                    <Users className="h-4 w-4 text-primary" />
                     Unemployment Rate — 24 Month Trend
                   </CardTitle>
                 </CardHeader>
@@ -1063,8 +1063,8 @@ export default function EconIndicatorsPage() {
               {/* Labor Stats Grid */}
               <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
                 {[
-                  { label: "Unemployment Rate", value: "4.1%", sub: "Near 50-yr low", color: "text-purple-400" },
-                  { label: "Participation Rate", value: "62.7%", sub: "+0.2% MoM", color: "text-blue-400" },
+                  { label: "Unemployment Rate", value: "4.1%", sub: "Near 50-yr low", color: "text-primary" },
+                  { label: "Participation Rate", value: "62.7%", sub: "+0.2% MoM", color: "text-primary" },
                   { label: "Avg. Hourly Earnings", value: "+4.2%", sub: "YoY growth", color: "text-green-400" },
                   { label: "JOLTS Job Openings", value: "8.7M", sub: "-0.3M MoM", color: "text-amber-400" },
                 ].map((stat) => (
@@ -1086,7 +1086,7 @@ export default function EconIndicatorsPage() {
               <Card className="bg-card border-border">
                 <CardHeader className="pb-2">
                   <CardTitle className="text-base flex items-center gap-2">
-                    <Globe className="h-4 w-4 text-cyan-400" />
+                    <Globe className="h-4 w-4 text-muted-foreground" />
                     GDP Growth Rate by Country — 2025 Estimate
                   </CardTitle>
                   <p className="text-xs text-muted-foreground">
@@ -1188,7 +1188,7 @@ export default function EconIndicatorsPage() {
         <Card className="bg-card border-border">
           <CardHeader className="pb-2">
             <CardTitle className="text-base flex items-center gap-2">
-              <Calendar className="h-4 w-4 text-blue-400" />
+              <Calendar className="h-4 w-4 text-primary" />
               Economic Calendar — Next Major Releases
             </CardTitle>
             <p className="text-xs text-muted-foreground">

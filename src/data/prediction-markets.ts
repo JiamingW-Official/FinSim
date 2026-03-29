@@ -524,10 +524,10 @@ export const CATEGORY_LABELS: Record<MarketCategory, string> = {
 };
 
 export const CATEGORY_COLORS: Record<MarketCategory, string> = {
-  macro: "text-blue-400 bg-blue-400/10",
+  macro: "text-emerald-400 bg-emerald-400/10",
   equities: "text-emerald-400 bg-emerald-400/10",
   crypto: "text-amber-400 bg-amber-400/10",
-  fed: "text-violet-400 bg-violet-400/10",
-  earnings: "text-cyan-400 bg-cyan-400/10",
-  geopolitics: "text-red-400 bg-red-400/10",
+  fed: "text-rose-400 bg-rose-400/10",
+  earnings: "text-muted-foreground bg-muted/30",
+  geopolitics: "text-orange-400 bg-orange-400/10",
 };

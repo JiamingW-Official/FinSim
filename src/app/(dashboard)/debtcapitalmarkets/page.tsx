@@ -309,8 +309,8 @@ const PRICING_STEPS = [
     duration: "Day 1",
     description: "Issuer selects lead bookrunner(s). Engagement letter signed. NDA with syndicate team.",
     icon: <FileText size={18} />,
-    color: "text-blue-400",
-    bgColor: "bg-blue-500/10",
+    color: "text-primary",
+    bgColor: "bg-primary/10",
   },
   {
     id: 2,
@@ -318,8 +318,8 @@ const PRICING_STEPS = [
     duration: "Days 2–5",
     description: "Management meets institutional investors. One-on-ones and group calls. IOIs (Indications of Interest) collected.",
     icon: <Globe size={18} />,
-    color: "text-purple-400",
-    bgColor: "bg-purple-500/10",
+    color: "text-primary",
+    bgColor: "bg-primary/10",
   },
   {
     id: 3,
@@ -345,7 +345,7 @@ const PRICING_STEPS = [
     duration: "Day 8 (T+2)",
     description: "Bonds delivered vs. payment. CUSIP/ISIN assigned. Bonds begin secondary market trading.",
     icon: <CheckCircle2 size={18} />,
-    color: "text-teal-400",
+    color: "text-emerald-400",
     bgColor: "bg-teal-500/10",
   },
 ];
@@ -359,8 +359,8 @@ const SYNDICATE_ROLES = [
     description: "Primary bank coordinating the transaction. Runs the book of investor orders, sets pricing, and allocates bonds. Highest economics (~60% of fees).",
     responsibilities: ["Manages investor outreach", "Sets initial price guidance", "Allocates bonds to investors", "Stabilizes aftermarket trading"],
     icon: <Award size={20} />,
-    color: "text-blue-400",
-    bgColor: "bg-blue-500/10 border-blue-500/20",
+    color: "text-primary",
+    bgColor: "bg-primary/10 border-border",
   },
   {
     role: "Co-Manager",
@@ -368,8 +368,8 @@ const SYNDICATE_ROLES = [
     description: "Shares bookrunning duties and economics. Typically 2–4 co-managers on large deals. Share economics (~30% total).",
     responsibilities: ["Supplements investor coverage", "Joint pricing rights", "Shared underwriting risk", "Regional distribution"],
     icon: <Users size={20} />,
-    color: "text-purple-400",
-    bgColor: "bg-purple-500/10 border-purple-500/20",
+    color: "text-primary",
+    bgColor: "bg-primary/10 border-border",
   },
   {
     role: "Selling Group",
@@ -398,7 +398,7 @@ const LEAGUE_TABLE = [
 // ── Rating badge color ────────────────────────────────────────────────────────
 
 function ratingColor(rating: string): string {
-  if (rating.startsWith("Aaa") || rating.startsWith("Aa")) return "bg-blue-500/10 text-blue-400 border-blue-500/20";
+  if (rating.startsWith("Aaa") || rating.startsWith("Aa")) return "bg-primary/10 text-primary border-border";
   if (rating.startsWith("A")) return "bg-green-500/10 text-green-400 border-green-500/20";
   if (rating.startsWith("Baa")) return "bg-amber-500/10 text-amber-400 border-amber-500/20";
   return "bg-red-500/10 text-red-400 border-red-500/20";
@@ -406,7 +406,7 @@ function ratingColor(rating: string): string {
 
 function statusColor(status: BondDeal["status"]): string {
   if (status === "settled") return "bg-green-500/10 text-green-400 border-green-500/20";
-  if (status === "priced") return "bg-blue-500/10 text-blue-400 border-blue-500/20";
+  if (status === "priced") return "bg-primary/10 text-primary border-border";
   return "bg-amber-500/10 text-amber-400 border-amber-500/20";
 }
 
@@ -438,7 +438,7 @@ export default function DebtCapitalMarketsPage() {
         <div className="flex items-start justify-between gap-4 flex-wrap">
           <div>
             <h1 className="text-2xl font-bold text-foreground flex items-center gap-2">
-              <Building2 size={24} className="text-blue-400" />
+              <Building2 size={24} className="text-primary" />
               Debt Capital Markets
             </h1>
             <p className="text-muted-foreground text-sm mt-1">
@@ -515,7 +515,7 @@ export default function DebtCapitalMarketsPage() {
               <Card className="bg-card border-border">
                 <CardHeader className="pb-2">
                   <CardTitle className="text-sm font-semibold flex items-center gap-2">
-                    <BarChart3 size={15} className="text-blue-400" />
+                    <BarChart3 size={15} className="text-primary" />
                     Monthly Issuance Volume ($B)
                   </CardTitle>
                   <p className="text-xs text-muted-foreground">Past 12 months — IG vs. HY</p>
@@ -592,7 +592,7 @@ export default function DebtCapitalMarketsPage() {
             <Card className="bg-card border-border">
               <CardHeader className="pb-2">
                 <CardTitle className="text-sm font-semibold flex items-center gap-2">
-                  <Clock size={15} className="text-purple-400" />
+                  <Clock size={15} className="text-primary" />
                   Bond Issuance Process
                 </CardTitle>
                 <p className="text-xs text-muted-foreground">From mandate to settlement — click any step for details</p>
@@ -654,7 +654,7 @@ export default function DebtCapitalMarketsPage() {
                     {
                       title: "New Issue Concession",
                       desc: "Premium paid vs. secondary market to attract investors. Typically 5–15bps for IG issuers.",
-                      icon: <Percent size={14} className="text-blue-400" />,
+                      icon: <Percent size={14} className="text-primary" />,
                     },
                     {
                       title: "Oversubscription",
@@ -681,7 +681,7 @@ export default function DebtCapitalMarketsPage() {
               <Card className="bg-card border-border">
                 <CardHeader className="pb-2">
                   <CardTitle className="text-sm font-semibold flex items-center gap-2">
-                    <BookOpen size={15} className="text-blue-400" />
+                    <BookOpen size={15} className="text-primary" />
                     Demand Curve — $3B IG Deal
                   </CardTitle>
                   <p className="text-xs text-muted-foreground">Investor demand at various spread levels (T+X bps)</p>
@@ -706,7 +706,7 @@ export default function DebtCapitalMarketsPage() {
               <Card className="bg-card border-border">
                 <CardHeader className="pb-2">
                   <CardTitle className="text-sm font-semibold flex items-center gap-2">
-                    <Users size={15} className="text-purple-400" />
+                    <Users size={15} className="text-primary" />
                     Syndicate Desk Roles
                   </CardTitle>
                   <p className="text-xs text-muted-foreground">Click a role to expand</p>
@@ -774,7 +774,7 @@ export default function DebtCapitalMarketsPage() {
                     { pct: "5–15%", bucket: "Retail / Private Bank", note: "Via selling group concession" },
                   ].map((b) => (
                     <div key={b.bucket} className="bg-muted/20 rounded-lg p-3 border border-border text-center">
-                      <p className="text-lg font-bold text-blue-400">{b.pct}</p>
+                      <p className="text-lg font-bold text-primary">{b.pct}</p>
                       <p className="text-xs font-semibold text-foreground mt-1">{b.bucket}</p>
                       <p className="text-xs text-muted-foreground mt-0.5">{b.note}</p>
                     </div>
@@ -824,7 +824,7 @@ export default function DebtCapitalMarketsPage() {
                             <div className="flex items-center gap-2">
                               <div className="flex-1 bg-muted/30 rounded-full h-1.5 min-w-[60px]">
                                 <div
-                                  className="bg-blue-500 h-1.5 rounded-full"
+                                  className="bg-primary h-1.5 rounded-full"
                                   style={{ width: `${(row.share / 20) * 100}%` }}
                                 />
                               </div>
@@ -852,7 +852,7 @@ export default function DebtCapitalMarketsPage() {
                 <CardContent>
                   <div className="space-y-3">
                     {[
-                      { label: "IG (Baa) spread", value: 112, min: 80, max: 200, color: "bg-blue-500" },
+                      { label: "IG (Baa) spread", value: 112, min: 80, max: 200, color: "bg-primary" },
                       { label: "HY (Ba) spread", value: 368, min: 200, max: 800, color: "bg-amber-500" },
                       { label: "CCC spread", value: 820, min: 500, max: 1800, color: "bg-red-500" },
                     ].map((item) => {
@@ -880,7 +880,7 @@ export default function DebtCapitalMarketsPage() {
               <Card className="bg-card border-border">
                 <CardHeader className="pb-2">
                   <CardTitle className="text-sm font-semibold flex items-center gap-2">
-                    <Globe size={15} className="text-purple-400" />
+                    <Globe size={15} className="text-primary" />
                     Key DCM Concepts
                   </CardTitle>
                 </CardHeader>

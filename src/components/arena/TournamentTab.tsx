@@ -34,8 +34,8 @@ const TIER_COLORS: Record<EloTier, string> = {
   Bronze:   "text-amber-600",
   Silver:   "text-zinc-400",
   Gold:     "text-yellow-400",
-  Platinum: "text-cyan-300",
-  Diamond:  "text-blue-400",
+  Platinum: "text-muted-foreground",
+  Diamond:  "text-primary",
 };
 
 const TIER_BG: Record<EloTier, string> = {
@@ -43,7 +43,7 @@ const TIER_BG: Record<EloTier, string> = {
   Silver:   "bg-zinc-400/10 border-zinc-400/20",
   Gold:     "bg-yellow-400/10 border-yellow-400/25",
   Platinum: "bg-cyan-300/10 border-cyan-300/25",
-  Diamond:  "bg-blue-400/10 border-blue-400/25",
+  Diamond:  "bg-primary/10 border-border",
 };
 
 // Win probability: P(win) = 1 / (1 + 10^((oppElo - myElo)/400))
@@ -232,7 +232,7 @@ function MatchCard({ match }: { match: BracketMatch }) {
             {isWinner && match.winner !== null && (
               <Star className="h-2.5 w-2.5 text-yellow-400 shrink-0" />
             )}
-            <span className={cn("font-bold truncate flex-1", p.isPlayer ? "text-teal-300" : "text-zinc-300")}>
+            <span className={cn("font-bold truncate flex-1", p.isPlayer ? "text-emerald-300" : "text-zinc-300")}>
               {p.name}
             </span>
             <span className={cn("tabular-nums shrink-0 font-mono", TIER_COLORS[tier])}>
@@ -450,7 +450,7 @@ export function TournamentTab() {
                         style={{ width: `${prob * 100}%` }}
                       />
                     </div>
-                    <span className={cn("text-xs font-bold tabular-nums w-10 text-right", prob >= 0.5 ? "text-teal-400" : "text-red-400")}>
+                    <span className={cn("text-xs font-bold tabular-nums w-10 text-right", prob >= 0.5 ? "text-emerald-400" : "text-red-400")}>
                       {(prob * 100).toFixed(0)}%
                     </span>
                     <span className="text-xs text-zinc-600">vs {opp.name} ({opp.elo})</span>
@@ -490,7 +490,7 @@ export function TournamentTab() {
                     <Users className="h-2.5 w-2.5" /> Lv.{ev.minLevel}+
                   </span>
                   <span>Buy-in: {ev.buyin.toLocaleString()} VC</span>
-                  <span className="text-teal-400 font-bold">
+                  <span className="text-emerald-400 font-bold">
                     Prize: {ev.prizePool.toLocaleString()} VC
                   </span>
                   {!canEnter && (
@@ -526,10 +526,10 @@ export function TournamentTab() {
                 >
                   <td className="px-3 py-2 text-zinc-300 truncate max-w-[100px]">{r.name}</td>
                   <td className="px-3 py-2 font-bold text-zinc-200">{placementLabel(r.placement)}</td>
-                  <td className="px-3 py-2 text-teal-400 font-bold tabular-nums">
+                  <td className="px-3 py-2 text-emerald-400 font-bold tabular-nums">
                     +{r.prize.toLocaleString()}
                   </td>
-                  <td className={cn("px-3 py-2 font-bold tabular-nums flex items-center gap-1", r.eloChange >= 0 ? "text-teal-400" : "text-red-400")}>
+                  <td className={cn("px-3 py-2 font-bold tabular-nums flex items-center gap-1", r.eloChange >= 0 ? "text-emerald-400" : "text-red-400")}>
                     {r.eloChange >= 0 ? (
                       <TrendingUp className="h-3 w-3" />
                     ) : (

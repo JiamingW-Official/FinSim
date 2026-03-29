@@ -48,7 +48,7 @@ function BankrollBar({
         <div
           className={cn(
             "h-full rounded-full transition-all duration-300",
-            danger ? "bg-red-500/60" : color === "text-green-400" ? "bg-green-500/60" : color === "text-blue-400" ? "bg-blue-500/60" : "bg-amber-500/60",
+            danger ? "bg-red-500/60" : color === "text-green-400" ? "bg-green-500/60" : color === "text-primary" ? "bg-primary/60" : "bg-amber-500/60",
           )}
           style={{ width: `${Math.min(pct, 100)}%` }}
         />
@@ -209,7 +209,7 @@ export function KellyCalculator() {
                 <BankrollBar
                   fraction={halfKelly}
                   label="Half Kelly (recommended)"
-                  color="text-blue-400"
+                  color="text-primary"
                   danger={false}
                 />
               )}

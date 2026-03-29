@@ -193,7 +193,7 @@ export default function MonteCarloPanelV2({ result, startingCapital }: MonteCarl
 
           <button
             onClick={() => setUseCustom(true)}
-            className="flex items-center gap-2 rounded-lg bg-blue-600 px-4 py-1.5 text-xs font-semibold text-white transition-colors hover:bg-blue-500"
+            className="flex items-center gap-2 rounded-lg bg-primary px-4 py-1.5 text-xs font-semibold text-white transition-colors hover:bg-primary"
           >
             Run Custom Simulation
           </button>
@@ -274,9 +274,9 @@ export default function MonteCarloPanelV2({ result, startingCapital }: MonteCarl
             />
           ) : null}
           <div className="mt-1 flex flex-wrap items-center gap-3 text-[11px] text-zinc-600">
-            <span className="flex items-center gap-1"><span className="inline-block h-2 w-4 rounded-sm bg-blue-500/15" /> 10th-90th</span>
-            <span className="flex items-center gap-1"><span className="inline-block h-2 w-4 rounded-sm bg-blue-500/35" /> 25th-75th</span>
-            <span className="flex items-center gap-1"><span className="inline-block h-0.5 w-4 bg-blue-400" /> Median</span>
+            <span className="flex items-center gap-1"><span className="inline-block h-2 w-4 rounded-sm bg-primary/15" /> 10th-90th</span>
+            <span className="flex items-center gap-1"><span className="inline-block h-2 w-4 rounded-sm bg-primary/35" /> 25th-75th</span>
+            <span className="flex items-center gap-1"><span className="inline-block h-0.5 w-4 bg-primary" /> Median</span>
           </div>
         </div>
       )}

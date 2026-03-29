@@ -553,10 +553,10 @@ function ReturnChip({ value }: { value: number }) {
 // ── Category badge ────────────────────────────────────────────────────────────
 
 const CATEGORY_COLORS: Record<ETFCategory, string> = {
-  Equity: "bg-blue-500/10 text-blue-400",
+  Equity: "bg-primary/10 text-primary",
   Bond: "bg-amber-500/10 text-amber-400",
   Commodity: "bg-yellow-500/10 text-yellow-400",
-  "Real Estate": "bg-purple-500/10 text-purple-400",
+  "Real Estate": "bg-primary/10 text-primary",
   Thematic: "bg-pink-500/10 text-pink-400",
 };
 

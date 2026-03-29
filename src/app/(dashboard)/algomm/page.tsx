@@ -186,11 +186,11 @@ function InfoCard({
   accent?: "blue" | "amber" | "green" | "red" | "purple";
 }) {
   const colors: Record<string, string> = {
-    blue: "border-blue-500/40 bg-blue-500/5",
+    blue: "border-primary/40 bg-primary/5",
     amber: "border-amber-500/40 bg-amber-500/5",
     green: "border-green-500/40 bg-green-500/5",
     red: "border-red-500/40 bg-red-500/5",
-    purple: "border-purple-500/40 bg-purple-500/5",
+    purple: "border-primary/40 bg-primary/5",
   };
   return (
     <div className={cn("rounded-lg border p-4", colors[accent])}>
@@ -600,7 +600,7 @@ function PnlChartSVG({ data }: { data: PnlDay[] }) {
           Adverse Selection
         </span>
         <span className="flex items-center gap-1">
-          <span className="inline-block w-3 h-2 rounded-sm bg-blue-500" />
+          <span className="inline-block w-3 h-2 rounded-sm bg-primary" />
           Inventory P&L
         </span>
       </div>
@@ -902,13 +902,13 @@ function Tab3HFTStrategies() {
       id: "statarb",
       label: "Statistical Arbitrage",
       icon: BarChart3,
-      color: "text-blue-400",
+      color: "text-primary",
     },
     {
       id: "colocation",
       label: "Co-location Economics",
       icon: Cpu,
-      color: "text-purple-400",
+      color: "text-primary",
     },
     {
       id: "flashboys",
@@ -1022,7 +1022,7 @@ function Tab3HFTStrategies() {
               className="rounded-md border border-border/40 bg-muted/20 p-3"
             >
               <p className="text-[11px] text-muted-foreground mb-0.5">{item.label}</p>
-              <p className="text-sm font-semibold text-purple-300">{item.value}</p>
+              <p className="text-sm font-semibold text-primary">{item.value}</p>
             </div>
           ))}
         </div>
@@ -1149,8 +1149,8 @@ function Tab4PnlAttribution() {
             label: "Inventory P&L",
             value: totalInv,
             pct: invPct,
-            color: "bg-blue-500",
-            textColor: "text-blue-400",
+            color: "bg-primary",
+            textColor: "text-primary",
             desc: "Gain/loss from net inventory position carried across time",
           },
         ].map((item) => (
@@ -1217,7 +1217,7 @@ function Tab4PnlAttribution() {
                   <td className="p-2 text-muted-foreground">D{d.day}</td>
                   <td className="p-2 text-right text-green-400 font-mono">{fmtDollar(d.spreadCapture)}</td>
                   <td className="p-2 text-right text-red-400 font-mono">{fmtDollar(d.adverseSelection)}</td>
-                  <td className={cn("p-2 text-right font-mono", d.inventoryPnl >= 0 ? "text-blue-400" : "text-amber-400")}>
+                  <td className={cn("p-2 text-right font-mono", d.inventoryPnl >= 0 ? "text-primary" : "text-amber-400")}>
                     {fmtDollar(d.inventoryPnl)}
                   </td>
                   <td className={cn("p-2 text-right font-mono font-medium", d.total >= 0 ? "text-green-400" : "text-red-400")}>
@@ -1323,7 +1323,7 @@ function Tab5RegulationRisk() {
                         ? "border-amber-500/40 text-amber-400"
                         : cb.type === "Level 1"
                         ? "border-yellow-500/40 text-yellow-400"
-                        : "border-blue-500/40 text-blue-400"
+                        : "border-primary/40 text-primary"
                     )}
                   >
                     {cb.type}

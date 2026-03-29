@@ -30,7 +30,7 @@ const JournalEquityCurve = dynamic(
 // ── Grade helper ────────────────────────────────────────────────────────────
 export function gradeForPnLPct(pct: number): { grade: string; color: string } {
   if (pct > 15) return { grade: "A", color: "text-green-400" };
-  if (pct > 5)  return { grade: "B", color: "text-teal-400" };
+  if (pct > 5)  return { grade: "B", color: "text-emerald-400" };
   if (pct >= 0) return { grade: "C", color: "text-amber-400" };
   if (pct > -5) return { grade: "D", color: "text-orange-400" };
   return { grade: "F", color: "text-red-400" };
@@ -440,7 +440,7 @@ export default function JournalPageClient() {
                       };
                       const labelColors: Record<string, string> = {
                         A: "text-green-400",
-                        B: "text-teal-400",
+                        B: "text-emerald-400",
                         C: "text-amber-400",
                         D: "text-orange-400",
                         F: "text-red-400",

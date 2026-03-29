@@ -301,7 +301,7 @@ function AssetClassOverview() {
                   <td className="py-2 px-2 text-right text-emerald-400 font-medium">{fmtPct(asset.expectedReturn)}</td>
                   <td className="py-2 px-2 text-right text-amber-400">{fmtPct(asset.volatility)}</td>
                   <td className="py-2 px-2 text-right">
-                    <span className={cn("font-medium", asset.beta < 0 ? "text-blue-400" : asset.beta < 0.3 ? "text-neutral-400" : "text-neutral-200")}>
+                    <span className={cn("font-medium", asset.beta < 0 ? "text-primary" : asset.beta < 0.3 ? "text-neutral-400" : "text-neutral-200")}>
                       {asset.beta.toFixed(2)}
                     </span>
                   </td>
@@ -657,7 +657,7 @@ function PortfolioBuilder() {
                 { label: "Volatility", value: fmtPct(metrics.volatility), color: "text-amber-400", icon: Activity },
                 { label: "Sharpe Ratio", value: metrics.sharpe.toFixed(2), color: metrics.sharpe >= 0.5 ? "text-emerald-400" : "text-amber-400", icon: Zap },
                 { label: "Max Drawdown", value: `-${fmtPct(metrics.maxDrawdown)}`, color: "text-red-400", icon: TrendingDown },
-                { label: "Beta", value: metrics.beta.toFixed(2), color: "text-blue-400", icon: BarChart3 },
+                { label: "Beta", value: metrics.beta.toFixed(2), color: "text-primary", icon: BarChart3 },
               ].map(item => (
                 <div key={item.label} className="flex items-center justify-between">
                   <div className="flex items-center gap-1.5">
@@ -1472,7 +1472,7 @@ function LifecyclePlanning() {
               <tr className="border-b border-neutral-800/50">
                 <td className="py-2 text-neutral-400">Bonds</td>
                 {glidePath.map(p => (
-                  <td key={p.age} className={cn("py-2 text-center", p.age === currentAge ? "text-amber-400" : "text-blue-400")}>
+                  <td key={p.age} className={cn("py-2 text-center", p.age === currentAge ? "text-amber-400" : "text-primary")}>
                     {p.bondPct.toFixed(0)}%
                   </td>
                 ))}
@@ -1673,7 +1673,7 @@ export default function AllocationPage() {
               { label: "Expected Return", value: fmtPct(m.expectedReturn), color: "text-emerald-400", icon: TrendingUp, bg: "bg-emerald-500/10" },
               { label: "Portfolio Volatility", value: fmtPct(m.volatility), color: "text-amber-400", icon: Activity, bg: "bg-amber-500/10" },
               { label: "Sharpe Ratio", value: m.sharpe.toFixed(2), color: m.sharpe >= 0.5 ? "text-emerald-400" : "text-amber-400", icon: Zap, bg: "bg-indigo-500/10" },
-              { label: "Market Beta", value: m.beta.toFixed(2), color: "text-blue-400", icon: BarChart3, bg: "bg-blue-500/10" },
+              { label: "Market Beta", value: m.beta.toFixed(2), color: "text-primary", icon: BarChart3, bg: "bg-primary/10" },
             ];
           })().map(item => (
             <Card key={item.label} className="bg-neutral-900 border-neutral-800 p-3">

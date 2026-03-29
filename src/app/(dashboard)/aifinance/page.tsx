@@ -76,8 +76,8 @@ function InfoBadge({
     emerald: "bg-emerald-500/15 text-emerald-400 border-emerald-500/30",
     amber: "bg-amber-500/15 text-amber-400 border-amber-500/30",
     rose: "bg-rose-500/15 text-rose-400 border-rose-500/30",
-    blue: "bg-blue-500/15 text-blue-400 border-blue-500/30",
-    violet: "bg-violet-500/15 text-violet-400 border-violet-500/30",
+    blue: "bg-primary/15 text-primary border-border",
+    violet: "bg-primary/15 text-primary border-border",
   };
   return (
     <span
@@ -195,8 +195,8 @@ function MLTradingTab() {
       {/* Header stats */}
       <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
         {[
-          { label: "AUM in ML Strategies", value: "$1.2T", color: "text-blue-400" },
-          { label: "Quant Funds > 50% ML", value: "68%", color: "text-violet-400" },
+          { label: "AUM in ML Strategies", value: "$1.2T", color: "text-primary" },
+          { label: "Quant Funds > 50% ML", value: "68%", color: "text-primary" },
           { label: "Avg Sharpe (ML vs human)", value: "1.3 vs 0.9", color: "text-emerald-400" },
           { label: "Alt data spend (2025)", value: "$7.4B", color: "text-amber-400" },
         ].map((s) => (
@@ -281,7 +281,7 @@ function MLTradingTab() {
           <div className="flex flex-col gap-2">
             {RL_STAGES.map((stage, i) => (
               <div key={stage.label} className="flex items-center gap-3">
-                <div className="w-6 h-6 rounded-full bg-violet-500/20 border border-violet-500/40 flex items-center justify-center text-violet-400 text-xs font-bold flex-shrink-0">
+                <div className="w-6 h-6 rounded-full bg-primary/20 border border-primary/40 flex items-center justify-center text-primary text-xs font-bold flex-shrink-0">
                   {i + 1}
                 </div>
                 <div className="flex-1 bg-zinc-800/50 rounded px-3 py-1.5">
@@ -413,11 +413,11 @@ function CreditScoringTab() {
           <SectionTitle>Feature Importance Comparison</SectionTitle>
           <div className="flex gap-3 text-xs">
             <span className="flex items-center gap-1.5">
-              <span className="w-3 h-3 rounded-sm bg-blue-500 inline-block" />
+              <span className="w-3 h-3 rounded-sm bg-primary inline-block" />
               FICO weight
             </span>
             <span className="flex items-center gap-1.5">
-              <span className="w-3 h-3 rounded-sm bg-violet-500 inline-block" />
+              <span className="w-3 h-3 rounded-sm bg-primary inline-block" />
               ML importance
             </span>
           </div>
@@ -454,7 +454,7 @@ function CreditScoringTab() {
           <SectionTitle>SHAP Values — Explainability</SectionTitle>
           <button
             onClick={() => setShowShap((v) => !v)}
-            className="text-xs text-blue-400 hover:text-blue-300 transition-colors"
+            className="text-xs text-primary hover:text-primary transition-colors"
           >
             {showShap ? "Hide detail" : "Show example"}
           </button>
@@ -619,7 +619,7 @@ function FraudDetectionTab() {
       <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
         {[
           { label: "Global fraud losses (2024)", value: "$485B", color: "text-rose-400" },
-          { label: "Avg detection latency (ML)", value: "18ms", color: "text-blue-400" },
+          { label: "Avg detection latency (ML)", value: "18ms", color: "text-primary" },
           { label: "FP cost per alert (manual)", value: "$25–$50", color: "text-amber-400" },
           { label: "GNN fraud ring detection", value: "+34%", color: "text-emerald-400" },
         ].map((s) => (
@@ -641,7 +641,7 @@ function FraudDetectionTab() {
               className={cn(
                 "p-3 rounded-lg border cursor-pointer transition-colors",
                 selected === i
-                  ? "border-blue-500/50 bg-blue-500/10"
+                  ? "border-primary/50 bg-primary/10"
                   : "border-zinc-800 hover:bg-zinc-800/40"
               )}
             >
@@ -675,11 +675,11 @@ function FraudDetectionTab() {
                   <div className="flex items-center gap-2">
                     <div className="flex-1 h-1.5 bg-zinc-700 rounded-full overflow-hidden">
                       <div
-                        className="h-full bg-blue-500 rounded-full"
+                        className="h-full bg-primary rounded-full"
                         style={{ width: `${m.recall * 100}%` }}
                       />
                     </div>
-                    <span className="text-xs text-blue-400 font-mono w-8">
+                    <span className="text-xs text-primary font-mono w-8">
                       {(m.recall * 100).toFixed(0)}%
                     </span>
                   </div>
@@ -737,7 +737,7 @@ function FraudDetectionTab() {
                 <span className="w-16 text-amber-400">FN: {row.fnRate}%</span>
                 <div className="flex-1 h-4 bg-zinc-800 rounded overflow-hidden relative">
                   <div
-                    className="h-full bg-blue-600/60 rounded"
+                    className="h-full bg-primary/60 rounded"
                     style={{ width: `${(row.cost / 12) * 100}%` }}
                   />
                   <span className="absolute inset-0 flex items-center px-2 text-zinc-300 font-mono">
@@ -754,11 +754,11 @@ function FraudDetectionTab() {
       </div>
 
       {/* Graph Neural Network callout */}
-      <Card className="border-violet-500/30 bg-violet-500/5">
+      <Card className="border-border bg-primary/5">
         <div className="flex items-start gap-3">
-          <Layers className="w-5 h-5 text-violet-400 flex-shrink-0 mt-0.5" />
+          <Layers className="w-5 h-5 text-primary flex-shrink-0 mt-0.5" />
           <div>
-            <div className="text-sm font-semibold text-violet-300 mb-1">Graph Neural Networks for Fraud Rings</div>
+            <div className="text-sm font-semibold text-primary mb-1">Graph Neural Networks for Fraud Rings</div>
             <p className="text-xs text-zinc-400">
               GNNs model transactions as a directed graph where nodes are accounts and edges are transfers.
               Message-passing aggregates neighborhood features to detect coordinated fraud rings that
@@ -853,7 +853,7 @@ function AIResearchTab() {
           {NLP_PIPELINE.map((item, i) => (
             <div key={item.step} className="bg-zinc-800/40 rounded-lg p-3 relative">
               <div className="flex items-center gap-2 mb-1">
-                <span className="w-5 h-5 rounded-full bg-blue-500/20 text-blue-400 text-xs flex items-center justify-center font-bold">
+                <span className="w-5 h-5 rounded-full bg-primary/20 text-primary text-xs flex items-center justify-center font-bold">
                   {i + 1}
                 </span>
                 <span className="text-sm font-semibold text-zinc-200">{item.step}</span>
@@ -1095,7 +1095,7 @@ function RiskRegulationTab() {
                 {item.status === "Required" ? (
                   <CheckCircle className="w-4 h-4 text-emerald-400" />
                 ) : (
-                  <Info className="w-4 h-4 text-blue-400" />
+                  <Info className="w-4 h-4 text-primary" />
                 )}
               </div>
               <div>
@@ -1200,7 +1200,7 @@ function RiskRegulationTab() {
             {[
               { color: "bg-rose-500", label: "Critical (≥15)" },
               { color: "bg-amber-500", label: "High (9–14)" },
-              { color: "bg-blue-500", label: "Medium (4–8)" },
+              { color: "bg-primary", label: "Medium (4–8)" },
               { color: "bg-emerald-500", label: "Low (<4)" },
             ].map((item) => (
               <span key={item.label} className="flex items-center gap-1.5 text-zinc-500">
@@ -1218,7 +1218,7 @@ function RiskRegulationTab() {
         <div className="space-y-2">
           {EXPLAINABILITY_REQS.map((item) => (
             <div key={item.regulation} className="flex items-start gap-3 p-2 bg-zinc-800/30 rounded-lg">
-              <Lock className="w-4 h-4 text-violet-400 flex-shrink-0 mt-0.5" />
+              <Lock className="w-4 h-4 text-primary flex-shrink-0 mt-0.5" />
               <div className="flex-1">
                 <div className="flex items-center gap-2 mb-0.5">
                   <span className="text-sm font-medium text-zinc-200">{item.regulation}</span>
@@ -1287,8 +1287,8 @@ export default function AIFinancePage() {
       {/* Page header */}
       <div className="mb-6">
         <div className="flex items-center gap-3 mb-2">
-          <div className="w-9 h-9 rounded-xl bg-blue-500/15 border border-blue-500/30 flex items-center justify-center">
-            <Brain className="w-5 h-5 text-blue-400" />
+          <div className="w-9 h-9 rounded-xl bg-primary/15 border border-border flex items-center justify-center">
+            <Brain className="w-5 h-5 text-primary" />
           </div>
           <div>
             <h1 className="text-2xl font-bold text-zinc-100 tracking-tight">AI & ML in Finance</h1>
@@ -1301,9 +1301,9 @@ export default function AIFinancePage() {
         {/* Quick concept pills */}
         <div className="flex flex-wrap gap-2 mt-3">
           {[
-            { icon: TrendingUp, label: "Return prediction", color: "text-blue-400" },
+            { icon: TrendingUp, label: "Return prediction", color: "text-primary" },
             { icon: Shield, label: "Fraud detection", color: "text-emerald-400" },
-            { icon: FileText, label: "NLP filings", color: "text-violet-400" },
+            { icon: FileText, label: "NLP filings", color: "text-primary" },
             { icon: Eye, label: "Explainability", color: "text-amber-400" },
             { icon: Lock, label: "SR 11-7 compliance", color: "text-rose-400" },
           ].map(({ icon: Icon, label, color }) => (

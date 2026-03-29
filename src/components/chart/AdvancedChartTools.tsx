@@ -208,13 +208,13 @@ function MarketProfileSection({ currentPrice, seed }: { currentPrice: number; se
         <StatRow
           label="VAH"
           value={`$${vaHighPrice.toFixed(2)}`}
-          valueClass="text-blue-400"
+          valueClass="text-primary"
           tooltip="Value Area High — top of 70% volume zone"
         />
         <StatRow
           label="VAL"
           value={`$${vaLowPrice.toFixed(2)}`}
-          valueClass="text-blue-400"
+          valueClass="text-primary"
           tooltip="Value Area Low — bottom of 70% volume zone"
         />
       </div>
@@ -385,7 +385,7 @@ function VolumeProfileSection({
         <StatRow
           label="VWAP"
           value={`$${vwap.toFixed(2)}`}
-          valueClass="text-purple-400"
+          valueClass="text-primary"
           tooltip="Volume Weighted Average Price"
         />
         <StatRow
@@ -492,11 +492,11 @@ function VolumeProfileSection({
           <span className="text-muted-foreground">HVN = strong S/R</span>
         </span>
         <span className="flex items-center gap-1">
-          <span className="inline-block h-2 w-2 rounded-sm bg-blue-500/55" />
+          <span className="inline-block h-2 w-2 rounded-sm bg-primary/55" />
           <span className="text-muted-foreground">LVN = thin area</span>
         </span>
         <span className="flex items-center gap-1">
-          <span className="inline-block h-0.5 w-4 bg-purple-500" style={{ borderTop: "1px dashed #a855f7" }} />
+          <span className="inline-block h-0.5 w-4 bg-primary" style={{ borderTop: "1px dashed #a855f7" }} />
           <span className="text-muted-foreground">VWAP</span>
         </span>
       </div>
@@ -852,7 +852,7 @@ function MarketBreadthSection({ seed }: { seed: number }) {
   return (
     <Section
       title="Market Breadth"
-      badge={<Badge color="bg-blue-500/15 text-blue-400">BREADTH</Badge>}
+      badge={<Badge color="bg-primary/15 text-primary">BREADTH</Badge>}
     >
       <div className="mb-2 grid grid-cols-2 gap-x-4">
         <StatRow label="52W Highs" value={data.highs} valueClass="text-emerald-400" />
@@ -1053,11 +1053,11 @@ function ElliottWaveSection({
   return (
     <Section
       title="Elliott Wave Labeler"
-      badge={<Badge color="bg-purple-500/15 text-purple-400">EW</Badge>}
+      badge={<Badge color="bg-primary/15 text-primary">EW</Badge>}
     >
       <div className="mb-2 flex items-center gap-2">
         <span className="text-xs text-muted-foreground">Likely wave in progress:</span>
-        <Badge color="bg-purple-500/20 text-purple-300">{currentWave}</Badge>
+        <Badge color="bg-primary/20 text-primary">{currentWave}</Badge>
       </div>
 
       <svg viewBox="0 0 300 120" className="w-full" style={{ maxHeight: 130 }}>
@@ -1127,7 +1127,7 @@ function ElliottWaveSection({
                 "mt-0.5 shrink-0 rounded px-1 py-0 text-[8px] font-bold",
                 ["a", "b", "c"].includes(pt.label)
                   ? "bg-red-500/15 text-red-400"
-                  : "bg-blue-500/15 text-blue-400",
+                  : "bg-primary/15 text-primary",
               )}
             >
               {["a", "b", "c"].includes(pt.label) ? `(${pt.label})` : pt.label}
@@ -1370,14 +1370,14 @@ function WyckoffSection({
 
   const phaseColor: Record<WyckoffPhase, string> = {
     Accumulation: "text-emerald-400",
-    Markup: "text-blue-400",
+    Markup: "text-primary",
     Distribution: "text-amber-400",
     Markdown: "text-red-400",
   };
 
   const phaseBadgeColor: Record<WyckoffPhase, string> = {
     Accumulation: "bg-emerald-500/15 text-emerald-400",
-    Markup: "bg-blue-500/15 text-blue-400",
+    Markup: "bg-primary/15 text-primary",
     Distribution: "bg-amber-500/15 text-amber-400",
     Markdown: "bg-red-500/15 text-red-400",
   };

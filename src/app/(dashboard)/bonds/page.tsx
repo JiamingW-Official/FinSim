@@ -145,14 +145,14 @@ interface BondRow extends BondDef {
 
 function ratingColor(rating: string): string {
   if (["AAA", "AA+", "AA", "AA-"].includes(rating)) return "text-green-400 bg-green-500/10";
-  if (["A+", "A", "A-", "BBB+", "BBB", "BBB-"].includes(rating)) return "text-blue-400 bg-blue-500/10";
+  if (["A+", "A", "A-", "BBB+", "BBB", "BBB-"].includes(rating)) return "text-primary bg-primary/10";
   if (["BB+", "BB", "BB-", "B+"].includes(rating)) return "text-amber-400 bg-amber-500/10";
   return "text-red-400 bg-red-500/10";
 }
 
 function typeLabel(type: BondDef["type"]) {
-  if (type === "treasury") return { label: "GOVT", cls: "bg-blue-500/10 text-blue-400" };
-  if (type === "corporate-ig") return { label: "IG", cls: "bg-purple-500/10 text-purple-400" };
+  if (type === "treasury") return { label: "GOVT", cls: "bg-primary/10 text-primary" };
+  if (type === "corporate-ig") return { label: "IG", cls: "bg-primary/10 text-primary" };
   return { label: "HY", cls: "bg-red-500/10 text-red-400" };
 }
 
@@ -695,8 +695,8 @@ export default function BondsPage() {
               return (
                 <div key={type} className="mb-5">
                   <h3 className={cn("mb-3 text-xs font-semibold",
-                    type === "treasury" ? "text-blue-400" :
-                    type === "corporate-ig" ? "text-purple-400" :
+                    type === "treasury" ? "text-primary" :
+                    type === "corporate-ig" ? "text-primary" :
                     "text-red-400"
                   )}>
                     {sectionTitle}
@@ -949,7 +949,7 @@ export default function BondsPage() {
                       { shape: "Normal", color: "text-green-400", bg: "bg-green-500", desc: "Long > Short — growth & inflation expected" },
                       { shape: "Flat", color: "text-amber-400", bg: "bg-amber-500", desc: "Equal yields — uncertainty or transition" },
                       { shape: "Inverted", color: "text-red-400", bg: "bg-red-500", desc: "Short > Long — recession risk signal" },
-                      { shape: "Humped", color: "text-blue-400", bg: "bg-blue-500", desc: "Mid-term peak — complex growth dynamics" },
+                      { shape: "Humped", color: "text-primary", bg: "bg-primary", desc: "Mid-term peak — complex growth dynamics" },
                     ].map(s => (
                       <div key={s.shape} className="flex items-start gap-2">
                         <div className={cn("mt-1 h-1.5 w-1.5 shrink-0 rounded-full", s.bg)} />
@@ -972,10 +972,10 @@ export default function BondsPage() {
                 <div className="mt-4 grid grid-cols-2 gap-2 text-xs">
                   {[
                     { label: "10Y–2Y Spread", value: `${spreads.spread10y2y >= 0 ? "+" : ""}${spreads.spread10y2y.toFixed(1)} bps`, color: spreads.spread10y2y < 0 ? "text-red-400" : "text-green-400" },
-                    { label: "IG Credit Spread", value: `+${spreads.igCreditSpread.toFixed(1)} bps`, color: "text-purple-400" },
+                    { label: "IG Credit Spread", value: `+${spreads.igCreditSpread.toFixed(1)} bps`, color: "text-primary" },
                     { label: "HY Credit Spread", value: `+${spreads.hyCreditSpread.toFixed(1)} bps`, color: "text-amber-400" },
-                    { label: "TED Spread", value: `${spreads.tedSpread.toFixed(1)} bps`, color: "text-cyan-400" },
-                    { label: "OAS (IG)", value: `${spreads.oasIg.toFixed(0)} bps`, color: "text-purple-400" },
+                    { label: "TED Spread", value: `${spreads.tedSpread.toFixed(1)} bps`, color: "text-muted-foreground" },
+                    { label: "OAS (IG)", value: `${spreads.oasIg.toFixed(0)} bps`, color: "text-primary" },
                     { label: "OAS (HY)", value: `${spreads.oasHy.toFixed(0)} bps`, color: "text-amber-400" },
                   ].map(s => (
                     <div key={s.label} className="rounded-md border border-border/40 bg-muted/20 px-3 py-2">
@@ -1006,13 +1006,13 @@ export default function BondsPage() {
                       title: "TED Spread",
                       icon: Info,
                       desc: "Difference between 3M LIBOR (or SOFR) and 3M Treasury. Measures interbank credit risk. Spike = banking stress (2008 TED reached 465 bps). Normal: 10–50 bps.",
-                      color: "text-cyan-400",
+                      color: "text-muted-foreground",
                     },
                     {
                       title: "OAS (Option-Adjusted Spread)",
                       icon: BarChart3,
                       desc: "Spread after stripping embedded option value from callable bonds. Cleaner measure of credit premium. IG OAS < 150 bps healthy; HY OAS > 500 bps = elevated risk.",
-                      color: "text-blue-400",
+                      color: "text-primary",
                     },
                   ].map(item => {
                     const Icon = item.icon;
@@ -1149,7 +1149,7 @@ export default function BondsPage() {
                                     className="w-16 rounded border border-border/50 bg-background px-1.5 py-0.5 text-xs text-foreground focus:border-primary focus:outline-none"
                                   />
                                 </td>
-                                <td className="px-3 py-2.5 tabular-nums text-purple-400">{durContrib.toFixed(3)}</td>
+                                <td className="px-3 py-2.5 tabular-nums text-primary">{durContrib.toFixed(3)}</td>
                                 <td className="px-3 py-2.5 tabular-nums text-green-400">{(yldContrib * 100).toFixed(3)}%</td>
                                 <td className="px-3 py-2.5">
                                   <button onClick={() => removeBondFromPortfolio(h.bondId)}
@@ -1174,8 +1174,8 @@ export default function BondsPage() {
                     </h4>
                     <MaturityLadderSVG />
                     <div className="mt-2 flex items-center gap-4 text-[11px] text-muted-foreground/60">
-                      <span className="flex items-center gap-1"><span className="inline-block h-2 w-2 rounded-sm bg-blue-400" /> Treasury</span>
-                      <span className="flex items-center gap-1"><span className="inline-block h-2 w-2 rounded-sm bg-violet-400" /> IG Corp</span>
+                      <span className="flex items-center gap-1"><span className="inline-block h-2 w-2 rounded-sm bg-primary" /> Treasury</span>
+                      <span className="flex items-center gap-1"><span className="inline-block h-2 w-2 rounded-sm bg-primary" /> IG Corp</span>
                       <span className="flex items-center gap-1"><span className="inline-block h-2 w-2 rounded-sm bg-red-400" /> High Yield</span>
                     </div>
                   </div>

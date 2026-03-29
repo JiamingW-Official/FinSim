@@ -372,8 +372,8 @@ function StatChip({
     green: "bg-green-500/10 text-green-400 border-green-500/20",
     red: "bg-red-500/10 text-red-400 border-red-500/20",
     amber: "bg-amber-500/10 text-amber-400 border-amber-500/20",
-    blue: "bg-blue-500/10 text-blue-400 border-blue-500/20",
-    purple: "bg-purple-500/10 text-purple-400 border-purple-500/20",
+    blue: "bg-primary/10 text-primary border-border",
+    purple: "bg-primary/10 text-primary border-border",
     muted: "bg-white/5 text-white/60 border-white/10",
   };
   return (
@@ -744,7 +744,7 @@ export default function CryptoTrading2Page() {
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
             {[
               {
-                icon: <ArrowUpDown className="h-4 w-4 text-blue-400" />,
+                icon: <ArrowUpDown className="h-4 w-4 text-primary" />,
                 title: "Spot vs Perpetuals",
                 body: "Spot markets settle immediately; perpetual futures never expire. Perps use a funding rate mechanism to keep mark price tethered to spot — longs pay shorts when perps trade at premium.",
               },
@@ -754,7 +754,7 @@ export default function CryptoTrading2Page() {
                 body: "Funding is paid every 8 hours (Binance) or 1 hour (Bybit). Positive funding = market is long-biased, longs pay 0.01–0.1%. Extreme sustained funding signals crowded trades and potential squeeze.",
               },
               {
-                icon: <Scale className="h-4 w-4 text-purple-400" />,
+                icon: <Scale className="h-4 w-4 text-primary" />,
                 title: "Basis Trade",
                 body: "Basis = Futures Price − Spot Price. Positive basis (contango) is common in bull markets. Traders capture basis by buying spot and shorting futures, earning the annualized premium as delta-neutral yield.",
               },
@@ -777,7 +777,7 @@ export default function CryptoTrading2Page() {
           <Card className="bg-white/3 border-white/8">
             <CardHeader className="pb-3">
               <CardTitle className="text-sm flex items-center gap-2">
-                <Activity className="h-4 w-4 text-blue-400" />
+                <Activity className="h-4 w-4 text-primary" />
                 Perpetual Futures Markets
               </CardTitle>
             </CardHeader>
@@ -913,7 +913,7 @@ export default function CryptoTrading2Page() {
                 body: "Miners sell BTC to cover operational costs. High miner-to-exchange flows signal financial stress or distribution. Low miner outflows = miners are holding = confidence in price.",
               },
               {
-                icon: <Globe className="h-4 w-4 text-blue-400" />,
+                icon: <Globe className="h-4 w-4 text-primary" />,
                 title: "Whale Accumulation",
                 body: "Wallets with 1,000–10,000 BTC are tracked as whales. Increasing wallet count at these bands, especially near support levels, signals institutional accumulation.",
               },
@@ -936,7 +936,7 @@ export default function CryptoTrading2Page() {
           <Card className="bg-white/3 border-white/8">
             <CardHeader className="pb-3">
               <CardTitle className="text-sm flex items-center gap-2">
-                <Activity className="h-4 w-4 text-purple-400" />
+                <Activity className="h-4 w-4 text-primary" />
                 On-Chain Signal Scorecard
               </CardTitle>
             </CardHeader>
@@ -1012,7 +1012,7 @@ export default function CryptoTrading2Page() {
                         <Badge className={cn("text-xs capitalize", riskColor[opp.risk])}>
                           {opp.risk} risk
                         </Badge>
-                        <Badge className="text-xs bg-blue-500/15 text-blue-400 border-blue-500/30">
+                        <Badge className="text-xs bg-primary/15 text-primary border-border">
                           {opp.annualizedReturn.toFixed(1)}% APY
                         </Badge>
                       </div>
@@ -1043,7 +1043,7 @@ export default function CryptoTrading2Page() {
           <Card className="bg-white/3 border-white/8">
             <CardHeader className="pb-3">
               <CardTitle className="text-sm flex items-center gap-2">
-                <Scale className="h-4 w-4 text-purple-400" />
+                <Scale className="h-4 w-4 text-primary" />
                 Strategy Comparison
               </CardTitle>
             </CardHeader>
@@ -1148,7 +1148,7 @@ export default function CryptoTrading2Page() {
                     </div>
                   </div>
                   <div className="flex items-start gap-2 bg-white/4 rounded-lg px-3 py-2">
-                    <Shield className="h-3.5 w-3.5 text-blue-400 mt-0.5 shrink-0" />
+                    <Shield className="h-3.5 w-3.5 text-primary mt-0.5 shrink-0" />
                     <p className="text-xs text-white/60">{risk.mitigation}</p>
                   </div>
                 </div>
@@ -1201,15 +1201,15 @@ export default function CryptoTrading2Page() {
             <Card className="bg-white/3 border-white/8">
               <CardHeader className="pb-3">
                 <CardTitle className="text-sm flex items-center gap-2">
-                  <Layers className="h-4 w-4 text-purple-400" />
+                  <Layers className="h-4 w-4 text-primary" />
                   Crypto Portfolio Construction
                 </CardTitle>
               </CardHeader>
               <CardContent className="space-y-3">
                 {[
                   { label: "BTC (Store of Value Core)", weight: 50, color: "bg-amber-400" },
-                  { label: "ETH (Smart Contract Layer)", weight: 25, color: "bg-blue-400" },
-                  { label: "Large-Cap Alts (SOL, BNB)", weight: 12, color: "bg-purple-400" },
+                  { label: "ETH (Smart Contract Layer)", weight: 25, color: "bg-primary" },
+                  { label: "Large-Cap Alts (SOL, BNB)", weight: 12, color: "bg-primary" },
                   { label: "Small-Cap / DeFi", weight: 8, color: "bg-green-400" },
                   { label: "Stablecoins (Dry Powder)", weight: 5, color: "bg-white/40" },
                 ].map((item) => (
@@ -1240,7 +1240,7 @@ export default function CryptoTrading2Page() {
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
             {[
               {
-                icon: <RefreshCw className="h-4 w-4 text-blue-400" />,
+                icon: <RefreshCw className="h-4 w-4 text-primary" />,
                 title: "Perpetual Swaps Mechanism",
                 body: "Perpetuals have no expiry. Funding rate = clamp(premium_index + clamp(0.01% - premium_index, -0.05%, 0.05%)). Convergence force: if longs are paying 0.03%/8h, bears earn; crowd converges mark to index.",
               },
@@ -1250,7 +1250,7 @@ export default function CryptoTrading2Page() {
                 body: "Deribit dominates BTC/ETH options with 85%+ market share. Settlement in BTC/ETH (not USD). European-style, cash-settled at expiry UTC 8:00. Key use cases: covered calls, protective puts, volatility plays.",
               },
               {
-                icon: <TrendingUp className="h-4 w-4 text-purple-400" />,
+                icon: <TrendingUp className="h-4 w-4 text-primary" />,
                 title: "Volatility Term Structure",
                 body: "Crypto IV term structure typically slopes upward (contango) in calm markets — uncertainty grows with time. It inverts (backwardation) near major events (halvings, Fed decisions) or post-crash vol spikes.",
               },
@@ -1273,7 +1273,7 @@ export default function CryptoTrading2Page() {
           <Card className="bg-white/3 border-white/8">
             <CardHeader className="pb-3">
               <CardTitle className="text-sm flex items-center gap-2">
-                <BarChart3 className="h-4 w-4 text-blue-400" />
+                <BarChart3 className="h-4 w-4 text-primary" />
                 BTC Volatility Surface — Implied Vol Heatmap
               </CardTitle>
             </CardHeader>
@@ -1281,14 +1281,14 @@ export default function CryptoTrading2Page() {
               <VolSurfaceHeatmap data={volSurface} />
               <div className="mt-3 grid grid-cols-1 md:grid-cols-3 gap-3 text-xs text-white/50">
                 <div className="flex items-start gap-1.5">
-                  <Info className="h-3.5 w-3.5 text-blue-400 mt-0.5 shrink-0" />
+                  <Info className="h-3.5 w-3.5 text-primary mt-0.5 shrink-0" />
                   <span>
                     <strong className="text-white/70">Put Skew:</strong> OTM puts trade at higher IV than OTM calls — demand
                     for downside hedging is persistent.
                   </span>
                 </div>
                 <div className="flex items-start gap-1.5">
-                  <Info className="h-3.5 w-3.5 text-purple-400 mt-0.5 shrink-0" />
+                  <Info className="h-3.5 w-3.5 text-primary mt-0.5 shrink-0" />
                   <span>
                     <strong className="text-white/70">Term Structure:</strong> Longer expiries trade at higher IV due to event
                     uncertainty (halvings, regulatory, macro).
@@ -1360,12 +1360,12 @@ export default function CryptoTrading2Page() {
                   {
                     setup: "Low IV Rank (&lt;20%)",
                     action: "Buy vol — long straddles before known events. Cheap insurance.",
-                    color: "text-blue-400",
+                    color: "text-primary",
                   },
                   {
                     setup: "Steep Put Skew (&gt;5%)",
                     action: "Market fears downside. Consider put spreads for cheaper downside protection.",
-                    color: "text-purple-400",
+                    color: "text-primary",
                   },
                   {
                     setup: "Inverted Term Structure",

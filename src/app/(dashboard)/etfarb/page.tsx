@@ -667,14 +667,14 @@ export default function ETFArbPage() {
           label="Creation Unit Size"
           value="50,000"
           sub="Shares minimum per CU"
-          color="bg-blue-600"
+          color="bg-primary"
         />
         <MetricCard
           icon={Users}
           label="Authorized Participants"
           value="~30–50"
           sub="Registered per major ETF"
-          color="bg-purple-600"
+          color="bg-primary"
         />
         <MetricCard
           icon={DollarSign}

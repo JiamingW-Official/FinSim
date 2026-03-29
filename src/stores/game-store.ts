@@ -176,7 +176,7 @@ function notifyAchievementsAndLevel(
         title: `Level ${newLevel}!`,
         description: `You've reached ${getTitleForLevel(newLevel)}`,
         icon: "Sparkles",
-        color: "text-purple-400",
+        color: "text-primary",
       });
     }
   } catch {

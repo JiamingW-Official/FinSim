@@ -1235,7 +1235,7 @@ export default function StrategyLab() {
             className={cn(
               "flex items-center gap-1.5 px-4 py-2 text-xs font-medium whitespace-nowrap transition-colors",
               section === s.id
-                ? "border-b-2 border-violet-500 text-violet-300"
+                ? "border-b-2 border-primary text-primary"
                 : "text-zinc-500 hover:text-zinc-300"
             )}
           >
@@ -1261,7 +1261,7 @@ export default function StrategyLab() {
             <div className="flex flex-wrap gap-2">
               {PRESETS.map(p => (
                 <button key={p.id} onClick={() => handleLoadPreset(p)}
-                  className="rounded-full border border-white/10 bg-zinc-900 px-3 py-1 text-xs text-zinc-400 hover:border-violet-500/50 hover:text-violet-300 transition-colors"
+                  className="rounded-full border border-white/10 bg-zinc-900 px-3 py-1 text-xs text-zinc-400 hover:border-primary/50 hover:text-primary transition-colors"
                   title={p.description}
                 >
                   {p.name}
@@ -1283,7 +1283,7 @@ export default function StrategyLab() {
             <Button
               onClick={handleRunBacktest}
               disabled={isRunning || strategy.entryConditions.length === 0}
-              className="bg-violet-600 hover:bg-violet-500 text-white shrink-0 flex items-center gap-2"
+              className="bg-primary hover:bg-primary text-white shrink-0 flex items-center gap-2"
             >
               <Play className="h-3.5 w-3.5" />
               {isRunning ? "Running..." : "Run Backtest (1000 bars)"}
@@ -1451,7 +1451,7 @@ export default function StrategyLab() {
                 <div className="flex items-center justify-between mb-3">
                   <h3 className="text-xs font-bold text-zinc-400 uppercase tracking-wide">Equity Curve</h3>
                   <div className="flex items-center gap-4 text-xs text-zinc-500">
-                    <span className="flex items-center gap-1.5"><span className="inline-block h-0.5 w-4 bg-blue-500" /> Strategy</span>
+                    <span className="flex items-center gap-1.5"><span className="inline-block h-0.5 w-4 bg-primary" /> Strategy</span>
                     <span className="flex items-center gap-1.5"><span className="inline-block h-0.5 w-4 bg-zinc-600" style={{ borderTop: "1px dashed" }} /> B&H</span>
                     <span className="flex items-center gap-1.5"><span className="inline-block h-1.5 w-1.5 rounded-full bg-red-500/50" /> Drawdown</span>
                   </div>
@@ -1531,7 +1531,7 @@ export default function StrategyLab() {
                 </select>
               </div>
               <Button onClick={handleRunOptimization} disabled={isOptimizing}
-                className="bg-violet-600 hover:bg-violet-500 text-white text-xs">
+                className="bg-primary hover:bg-primary text-white text-xs">
                 {isOptimizing ? "Optimizing..." : "Run 25 Backtests"}
               </Button>
             </div>
@@ -1620,7 +1620,7 @@ export default function StrategyLab() {
             <Button
               onClick={handleRunMC}
               disabled={isRunningMC || !result || result.trades.length < 3}
-              className="bg-violet-600 hover:bg-violet-500 text-white text-xs flex items-center gap-2"
+              className="bg-primary hover:bg-primary text-white text-xs flex items-center gap-2"
             >
               <RefreshCw className={cn("h-3.5 w-3.5", isRunningMC && "animate-spin")} />
               {isRunningMC ? "Simulating..." : "Run 500 Simulations"}
@@ -1730,7 +1730,7 @@ export default function StrategyLab() {
                         <span className="font-bold text-zinc-200">{sig.ticker}</span>
                       </td>
                       <td className="py-1.5 pr-4">
-                        <Badge className="text-[11px] bg-violet-500/15 text-violet-300">{sig.signalType}</Badge>
+                        <Badge className="text-[11px] bg-primary/15 text-primary">{sig.signalType}</Badge>
                       </td>
                       <td className="py-1.5 pr-4 text-zinc-400">{sig.condition}</td>
                       <td className="py-1.5 pr-4 text-zinc-500">{sig.time}</td>

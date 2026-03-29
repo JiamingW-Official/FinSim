@@ -84,8 +84,8 @@ function InfoPill({ text, color = "zinc" }: { text: string; color?: string }) {
     emerald: "bg-emerald-900/50 text-emerald-300",
     amber: "bg-amber-900/50 text-amber-300",
     rose: "bg-rose-900/50 text-rose-300",
-    blue: "bg-blue-900/50 text-blue-300",
-    violet: "bg-violet-900/50 text-violet-300",
+    blue: "bg-muted/70 text-primary",
+    violet: "bg-muted/70 text-primary",
     orange: "bg-orange-900/50 text-orange-300",
     sky: "bg-sky-900/50 text-sky-300",
   };
@@ -113,9 +113,9 @@ function ValuationMethodsTab() {
       id: "dcf",
       name: "Discounted Cash Flow (DCF)",
       color: "blue",
-      colorClass: "text-blue-400",
-      borderClass: "border-blue-500/40",
-      bgClass: "bg-blue-900/20",
+      colorClass: "text-primary",
+      borderClass: "border-primary/40",
+      bgClass: "bg-muted/40",
       badge: "Intrinsic Value",
       summary: "Project free cash flows 5–10 years, discount at WACC, add terminal value.",
       details: [
@@ -131,9 +131,9 @@ function ValuationMethodsTab() {
       id: "comparable",
       name: "Comparable Company Analysis (Comps)",
       color: "violet",
-      colorClass: "text-violet-400",
-      borderClass: "border-violet-500/40",
-      bgClass: "bg-violet-900/20",
+      colorClass: "text-primary",
+      borderClass: "border-primary/40",
+      bgClass: "bg-muted/40",
       badge: "Market-Based",
       summary: "Apply peer EV/Revenue, EV/EBITDA, or P/E multiples to target metrics.",
       details: [
@@ -297,8 +297,8 @@ function ValuationMethodsTab() {
       <div className="rounded-xl border border-white/10 bg-white/5 p-5">
         <SectionHeading title="Growth Company vs. Mature Company Valuation" sub="Different metrics dominate depending on company stage" />
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-          <div className="rounded-lg border border-blue-500/30 bg-blue-900/10 p-4">
-            <p className="text-xs font-semibold text-blue-300 mb-3">High-Growth Tech / SaaS</p>
+          <div className="rounded-lg border border-border bg-muted/30 p-4">
+            <p className="text-xs font-semibold text-primary mb-3">High-Growth Tech / SaaS</p>
             <ul className="space-y-1.5 text-xs text-zinc-300">
               {[
                 "Primary metric: EV/NTM Revenue (5–25× range)",
@@ -309,7 +309,7 @@ function ValuationMethodsTab() {
                 "Multiple compression risk if growth slows",
               ].map((t, i) => (
                 <li key={i} className="flex gap-2">
-                  <span className="text-blue-400 mt-0.5">•</span>
+                  <span className="text-primary mt-0.5">•</span>
                   <span>{t}</span>
                 </li>
               ))}
@@ -358,7 +358,7 @@ function ValuationMethodsTab() {
                   row.color === "emerald" && "text-emerald-400",
                   row.color === "rose" && "text-rose-400",
                   row.color === "amber" && "text-amber-400",
-                  row.color === "blue" && "text-blue-400",
+                  row.color === "blue" && "text-primary",
                   row.color === "white" && "text-white text-sm"
                 )}
               >
@@ -426,9 +426,9 @@ function ValuationMethodsTab() {
             const Icon = f.icon;
             const colorMap: Record<string, string> = {
               amber: "text-amber-400",
-              blue: "text-blue-400",
+              blue: "text-primary",
               emerald: "text-emerald-400",
-              violet: "text-violet-400",
+              violet: "text-primary",
             };
             return (
               <div key={f.title} className="rounded-lg border border-white/10 bg-white/[0.03] p-4">
@@ -459,7 +459,7 @@ function ValuationMethodsTab() {
                 { step: "6", label: "Trading commences", time: "IPO day", note: "Stabilization period begins" },
               ].map((s) => (
                 <div key={s.step} className="flex gap-3 text-xs">
-                  <div className="w-5 h-5 rounded-full bg-blue-600 flex items-center justify-center text-xs font-bold text-white flex-shrink-0">
+                  <div className="w-5 h-5 rounded-full bg-primary flex items-center justify-center text-xs font-bold text-white flex-shrink-0">
                     {s.step}
                   </div>
                   <div>
@@ -488,7 +488,7 @@ function ValuationMethodsTab() {
                   const colorMap: Record<string, string> = {
                     emerald: "text-emerald-400",
                     amber: "text-amber-400",
-                    blue: "text-blue-400",
+                    blue: "text-primary",
                   };
                   return (
                     <div key={i} className="flex gap-2">
@@ -737,8 +737,8 @@ function BookbuildingTab() {
         <SectionHeading title="IPO Underwriter Economics — The 7% Club" sub="Typical gross spread breakdown for US IPOs" />
         <div className="space-y-3">
           {[
-            { label: "Management Fee", pct: 20, desc: "Lead left bookrunner; for S-1 drafting, valuation, SEC process", color: "bg-blue-500" },
-            { label: "Underwriting Fee", pct: 20, desc: "Risk compensation; shared pro-rata among syndicate members", color: "bg-violet-500" },
+            { label: "Management Fee", pct: 20, desc: "Lead left bookrunner; for S-1 drafting, valuation, SEC process", color: "bg-primary" },
+            { label: "Underwriting Fee", pct: 20, desc: "Risk compensation; shared pro-rata among syndicate members", color: "bg-primary" },
             { label: "Selling Concession", pct: 60, desc: "Distributed to brokers who place allocations; can be clawed back (penalty bid)", color: "bg-amber-500" },
           ].map((row) => (
             <div key={row.label}>
@@ -766,8 +766,8 @@ function BookbuildingTab() {
             <thead>
               <tr className="border-b border-white/10">
                 <th className="py-2 text-left text-zinc-500 font-medium">Requirement</th>
-                <th className="py-2 text-left text-blue-400 font-medium">NYSE</th>
-                <th className="py-2 text-left text-violet-400 font-medium">NASDAQ Global Select</th>
+                <th className="py-2 text-left text-primary font-medium">NYSE</th>
+                <th className="py-2 text-left text-primary font-medium">NASDAQ Global Select</th>
               </tr>
             </thead>
             <tbody>
@@ -978,9 +978,9 @@ function UnderpricingTab() {
             const isOpen = activeTheory === i;
             const colorMap: Record<string, string> = {
               rose: "text-rose-400 border-rose-500/40 bg-rose-900/10",
-              blue: "text-blue-400 border-blue-500/40 bg-blue-900/10",
+              blue: "text-primary border-primary/40 bg-muted/30",
               amber: "text-amber-400 border-amber-500/40 bg-amber-900/10",
-              violet: "text-violet-400 border-violet-500/40 bg-violet-900/10",
+              violet: "text-primary border-primary/40 bg-muted/30",
             };
             return (
               <div
@@ -1060,8 +1060,8 @@ function UnderpricingTab() {
       <div className="rounded-xl border border-white/10 bg-white/5 p-5">
         <SectionHeading title="Institutional Flipping vs. Retail Holding" sub="Asymmetric behavior between investor types on IPO day" />
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-          <div className="rounded-lg border border-blue-500/30 bg-blue-900/10 p-4">
-            <p className="text-xs font-semibold text-blue-300 mb-2">Institutional Investors — Early Flip</p>
+          <div className="rounded-lg border border-border bg-muted/30 p-4">
+            <p className="text-xs font-semibold text-primary mb-2">Institutional Investors — Early Flip</p>
             <ul className="space-y-1.5 text-xs text-zinc-400">
               {[
                 "Receive outsized IPO allocations (50–70% of deal)",
@@ -1070,7 +1070,7 @@ function UnderpricingTab() {
                 "Face 'penalty bid' risk: broker claw-back if caught",
                 "Sophisticated: track IPO price performance vs expectations",
               ].map((t, i) => (
-                <li key={i} className="flex gap-2"><ArrowRight className="w-3 h-3 mt-0.5 text-blue-400 flex-shrink-0" />{t}</li>
+                <li key={i} className="flex gap-2"><ArrowRight className="w-3 h-3 mt-0.5 text-primary flex-shrink-0" />{t}</li>
               ))}
             </ul>
           </div>
@@ -1262,15 +1262,15 @@ function PostIPOTab() {
               ].map((t, i) => <li key={i} className="flex gap-1.5"><span className="text-rose-600 mt-0.5">•</span>{t}</li>)}
             </ul>
           </div>
-          <div className="rounded-lg border border-blue-700/40 bg-blue-900/10 p-3">
-            <p className="text-xs font-semibold text-blue-300 mb-2">Block Trade Mechanics</p>
+          <div className="rounded-lg border border-border bg-muted/30 p-3">
+            <p className="text-xs font-semibold text-primary mb-2">Block Trade Mechanics</p>
             <ul className="space-y-1.5 text-xs text-zinc-400">
               {[
                 "Large insider sales via block trades (not open market)",
                 "Underwriter acts as principal buyer, resells to institutions",
                 "Discount: 3–7% to last sale price; overnight risk borne by bank",
                 "VWAP accelerated bookbuild: 1–4 hours to place",
-              ].map((t, i) => <li key={i} className="flex gap-1.5"><span className="text-blue-600 mt-0.5">•</span>{t}</li>)}
+              ].map((t, i) => <li key={i} className="flex gap-1.5"><span className="text-primary mt-0.5">•</span>{t}</li>)}
             </ul>
           </div>
         </div>
@@ -1287,7 +1287,7 @@ function PostIPOTab() {
             <thead>
               <tr className="border-b border-white/10">
                 <th className="py-2 text-left text-zinc-500 font-medium">Feature</th>
-                <th className="py-2 text-left text-blue-400 font-medium">Traditional IPO</th>
+                <th className="py-2 text-left text-primary font-medium">Traditional IPO</th>
                 <th className="py-2 text-left text-emerald-400 font-medium">Direct Listing</th>
                 <th className="py-2 text-left text-amber-400 font-medium">SPAC Merger</th>
               </tr>
@@ -1344,7 +1344,7 @@ function PostIPOTab() {
                 <tr key={row.company} className={cn("border-b border-white/5", i % 2 === 0 ? "bg-white/[0.02]" : "")}>
                   <td className="py-2 pr-4 text-zinc-200 font-medium">{row.company}</td>
                   <td className="py-2 pr-4 text-right font-mono text-zinc-300">${row.ipoPrice}</td>
-                  <td className="py-2 pr-4 text-right font-mono text-blue-300">${row.initTarget}</td>
+                  <td className="py-2 pr-4 text-right font-mono text-primary">${row.initTarget}</td>
                   <td className={cn("py-2 pr-4 text-right font-mono", row.actual12m < row.ipoPrice ? "text-rose-400" : "text-emerald-400")}>
                     ${row.actual12m}
                   </td>
@@ -1360,8 +1360,8 @@ function PostIPOTab() {
             </tbody>
           </table>
         </div>
-        <div className="rounded-lg border border-violet-500/30 bg-violet-900/10 p-3">
-          <p className="text-xs text-violet-300 font-medium mb-1">MiFID II Impact on Research (Europe)</p>
+        <div className="rounded-lg border border-border bg-muted/30 p-3">
+          <p className="text-xs text-primary font-medium mb-1">MiFID II Impact on Research (Europe)</p>
           <p className="text-xs text-zinc-400">
             EU MiFID II (2018) required asset managers to pay explicitly for research (unbundling from
             trading commissions). Result: 30–40% decline in small-cap analyst coverage in Europe.
@@ -1447,8 +1447,8 @@ export default function IPOPricingPage() {
           className="mb-8"
         >
           <div className="flex items-center gap-3 mb-3">
-            <div className="w-10 h-10 rounded-xl bg-blue-600/20 border border-blue-500/30 flex items-center justify-center">
-              <DollarSign className="w-5 h-5 text-blue-400" />
+            <div className="w-10 h-10 rounded-xl bg-primary/20 border border-border flex items-center justify-center">
+              <DollarSign className="w-5 h-5 text-primary" />
             </div>
             <div>
               <h1 className="text-2xl font-bold text-white">IPO Pricing & Aftermarket</h1>
@@ -1459,8 +1459,8 @@ export default function IPOPricingPage() {
           </div>
           <div className="flex flex-wrap gap-2 mt-3">
             {[
-              { label: "DCF & Comps", icon: BarChart2, color: "text-blue-400" },
-              { label: "Bookbuilding", icon: Layers, color: "text-violet-400" },
+              { label: "DCF & Comps", icon: BarChart2, color: "text-primary" },
+              { label: "Bookbuilding", icon: Layers, color: "text-primary" },
               { label: "First-Day Pop", icon: TrendingUp, color: "text-emerald-400" },
               { label: "Lockup Expiry", icon: Clock, color: "text-amber-400" },
               { label: "Direct Listings", icon: Activity, color: "text-sky-400" },

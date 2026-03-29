@@ -579,10 +579,10 @@ export default function EsgPage() {
           <Badge variant="outline" className="text-emerald-400 border-emerald-500/40">
             MSCI ESG Data
           </Badge>
-          <Badge variant="outline" className="text-blue-400 border-blue-500/40">
+          <Badge variant="outline" className="text-primary border-primary/40">
             TCFD Aligned
           </Badge>
-          <Badge variant="outline" className="text-purple-400 border-purple-500/40">
+          <Badge variant="outline" className="text-primary border-primary/40">
             SDG Framework
           </Badge>
         </div>
@@ -597,8 +597,8 @@ export default function EsgPage() {
       >
         {[
           { icon: <Leaf className="w-4 h-4 text-emerald-400" />, label: "Avg E Score", value: Math.round(COMPANIES.reduce((a, c) => a + c.eScore, 0) / COMPANIES.length) },
-          { icon: <Users className="w-4 h-4 text-blue-400" />, label: "Avg S Score", value: Math.round(COMPANIES.reduce((a, c) => a + c.sScore, 0) / COMPANIES.length) },
-          { icon: <Shield className="w-4 h-4 text-purple-400" />, label: "Avg G Score", value: Math.round(COMPANIES.reduce((a, c) => a + c.gScore, 0) / COMPANIES.length) },
+          { icon: <Users className="w-4 h-4 text-primary" />, label: "Avg S Score", value: Math.round(COMPANIES.reduce((a, c) => a + c.sScore, 0) / COMPANIES.length) },
+          { icon: <Shield className="w-4 h-4 text-primary" />, label: "Avg G Score", value: Math.round(COMPANIES.reduce((a, c) => a + c.gScore, 0) / COMPANIES.length) },
           { icon: <BarChart2 className="w-4 h-4 text-amber-400" />, label: "Avg ESG Total", value: Math.round(COMPANIES.reduce((a, c) => a + c.total, 0) / COMPANIES.length) },
         ].map((item, i) => (
           <Card key={i} className="bg-card border-border">
@@ -669,10 +669,10 @@ export default function EsgPage() {
                                 <span className="text-emerald-400">{c.eScore}</span>
                               </td>
                               <td className="px-2 py-2 text-right">
-                                <span className="text-blue-400">{c.sScore}</span>
+                                <span className="text-primary">{c.sScore}</span>
                               </td>
                               <td className="px-2 py-2 text-right">
-                                <span className="text-purple-400">{c.gScore}</span>
+                                <span className="text-primary">{c.gScore}</span>
                               </td>
                               <td className="px-2 py-2 text-right font-bold">{c.total}</td>
                               <td className="px-3 py-2 text-center">
@@ -709,11 +709,11 @@ export default function EsgPage() {
                       </div>
                       <ScoreBar value={selectedCompany.eScore} color="#10b981" />
                       <div className="flex items-center gap-1 text-xs text-muted-foreground mt-1 mb-1">
-                        <Users className="w-3 h-3 text-blue-400" /> Social
+                        <Users className="w-3 h-3 text-primary" /> Social
                       </div>
                       <ScoreBar value={selectedCompany.sScore} color="#3b82f6" />
                       <div className="flex items-center gap-1 text-xs text-muted-foreground mt-1 mb-1">
-                        <Shield className="w-3 h-3 text-purple-400" /> Governance
+                        <Shield className="w-3 h-3 text-primary" /> Governance
                       </div>
                       <ScoreBar value={selectedCompany.gScore} color="#8b5cf6" />
                     </div>
@@ -993,7 +993,7 @@ export default function EsgPage() {
               <Card className="bg-card border-border">
                 <CardHeader className="pb-2">
                   <CardTitle className="text-sm flex items-center gap-2">
-                    <Droplets className="w-4 h-4 text-blue-400" />
+                    <Droplets className="w-4 h-4 text-primary" />
                     Water Usage (ML per $M revenue)
                   </CardTitle>
                 </CardHeader>
@@ -1021,7 +1021,7 @@ export default function EsgPage() {
               <Card className="bg-card border-border">
                 <CardHeader className="pb-2">
                   <CardTitle className="text-sm flex items-center gap-2">
-                    <Users className="w-4 h-4 text-purple-400" />
+                    <Users className="w-4 h-4 text-primary" />
                     Board Diversity (% women &amp; minorities)
                   </CardTitle>
                 </CardHeader>
@@ -1231,7 +1231,7 @@ export default function EsgPage() {
                 <Card className="bg-card border-border">
                   <CardHeader className="pb-2">
                     <CardTitle className="text-sm flex items-center gap-2">
-                      <Globe className="w-4 h-4 text-blue-400" />
+                      <Globe className="w-4 h-4 text-primary" />
                       Thematic ESG ETFs &amp; SDG Alignment
                     </CardTitle>
                   </CardHeader>
@@ -1264,7 +1264,7 @@ export default function EsgPage() {
                             <td className="px-3 py-2">
                               <div className="flex gap-1 flex-wrap">
                                 {e.sdgAlignment.map((sdg) => (
-                                  <span key={sdg} className="text-xs bg-blue-500/20 text-blue-400 border border-blue-500/30 rounded px-1">SDG {sdg}</span>
+                                  <span key={sdg} className="text-xs bg-primary/20 text-primary border border-border rounded px-1">SDG {sdg}</span>
                                 ))}
                               </div>
                             </td>

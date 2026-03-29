@@ -652,8 +652,8 @@ function CashLiquidityTab() {
         </div>
         <CashPoolingDiagram />
         <div className="mt-3 grid grid-cols-2 gap-3 text-xs">
-          <div className="rounded-lg bg-violet-500/5 border border-violet-500/20 p-2.5">
-            <p className="font-semibold text-violet-400 mb-1">Physical Pooling — Pros</p>
+          <div className="rounded-lg bg-primary/5 border border-border p-2.5">
+            <p className="font-semibold text-primary mb-1">Physical Pooling — Pros</p>
             <ul className="space-y-0.5 text-muted-foreground">
               <li>• Full interest optimization on net position</li>
               <li>• Regulatory simplicity in most jurisdictions</li>
@@ -694,7 +694,7 @@ function CashLiquidityTab() {
                 <span className={cn(
                   "text-xs rounded px-1.5 py-0.5 font-medium",
                   tier.risk === "none"     ? "bg-emerald-500/15 text-emerald-400" :
-                  tier.risk === "very-low" ? "bg-blue-500/15 text-blue-400"       :
+                  tier.risk === "very-low" ? "bg-primary/15 text-primary"       :
                   tier.risk === "low"      ? "bg-yellow-500/15 text-yellow-400"   :
                   "bg-orange-500/15 text-orange-400",
                 )}>
@@ -868,8 +868,8 @@ function FXRiskTab() {
                   <td className="py-2 pr-4 font-semibold">
                     <span className="mr-1.5">{row.flag}</span>{row.currency}
                   </td>
-                  <td className="py-2 pr-4 tabular-nums text-blue-400">${row.transactional.toLocaleString()}</td>
-                  <td className="py-2 pr-4 tabular-nums text-violet-400">${row.translational.toLocaleString()}</td>
+                  <td className="py-2 pr-4 tabular-nums text-primary">${row.transactional.toLocaleString()}</td>
+                  <td className="py-2 pr-4 tabular-nums text-primary">${row.translational.toLocaleString()}</td>
                   <td className="py-2 pr-4 tabular-nums text-orange-400">${row.economic.toLocaleString()}</td>
                   <td className="py-2 pr-4">
                     <div className="flex items-center gap-2">
@@ -1009,7 +1009,7 @@ function DebtMarketsTab() {
         <div className="mt-3 grid grid-cols-1 gap-2 text-xs sm:grid-cols-3">
           {[
             { label: "Refinancing Cliff Risk",    desc: "Too much debt maturing in a single year — dangerous in rising rate environments. Best practice: spread maturities 2–3 years apart.",               icon: <AlertTriangle className="w-3 h-3 text-red-400" /> },
-            { label: "Revolving Credit Facility", desc: "Committed backup liquidity ($1–5B typical for large IG). Revolver itself has 3–5Y tenor. Acts as bridge to bond markets when needed.",             icon: <RefreshCw className="w-3 h-3 text-blue-400" /> },
+            { label: "Revolving Credit Facility", desc: "Committed backup liquidity ($1–5B typical for large IG). Revolver itself has 3–5Y tenor. Acts as bridge to bond markets when needed.",             icon: <RefreshCw className="w-3 h-3 text-primary" /> },
             { label: "Commercial Paper Program",  desc: "Issued at discount to face, maturities up to 270 days. Requires A1/P1 rating. Must be backstopped by undrawn revolver. Cheapest short-term funding.", icon: <Lock className="w-3 h-3 text-emerald-400" /> },
           ].map((item) => (
             <div key={item.label} className="rounded-lg border border-border/40 bg-card/40 p-2.5">
@@ -1194,15 +1194,15 @@ function CapitalAllocationTab() {
                   </td>
                   <td className="py-2 pr-4 tabular-nums text-emerald-400 font-medium">${co.cashOnHand}</td>
                   <td className="py-2 pr-4 tabular-nums text-primary font-medium">{co.fcfYield.toFixed(1)}%</td>
-                  <td className="py-2 pr-4 tabular-nums text-blue-400">{co.dividendYield.toFixed(1)}%</td>
-                  <td className="py-2 pr-4 tabular-nums text-violet-400 font-medium">{co.buybackYield.toFixed(1)}%</td>
+                  <td className="py-2 pr-4 tabular-nums text-primary">{co.dividendYield.toFixed(1)}%</td>
+                  <td className="py-2 pr-4 tabular-nums text-primary font-medium">{co.buybackYield.toFixed(1)}%</td>
                   <td className="py-2 pr-4 tabular-nums text-muted-foreground">{co.capexPct}%</td>
                   <td className="py-2 pr-4 tabular-nums text-muted-foreground">{co.maPct}%</td>
                   <td className="py-2 pr-4">
                     <span className={cn(
                       "text-xs font-semibold rounded px-1.5 py-0.5",
                       co.cashReturnPct >= 100 ? "bg-emerald-500/15 text-emerald-400" :
-                      co.cashReturnPct >= 80  ? "bg-blue-500/15 text-blue-400"       :
+                      co.cashReturnPct >= 80  ? "bg-primary/15 text-primary"       :
                       "bg-orange-500/15 text-orange-400",
                     )}>
                       {co.cashReturnPct}%
@@ -1304,7 +1304,7 @@ export default function CorpTreasuryPage() {
               <CheckCircle2 className="w-3 h-3" />
               IFRS 9 / ASC 815
             </span>
-            <span className="inline-flex items-center gap-1.5 rounded-full border border-violet-500/30 bg-violet-500/10 px-3 py-1 text-xs font-medium text-violet-400">
+            <span className="inline-flex items-center gap-1.5 rounded-full border border-border bg-primary/10 px-3 py-1 text-xs font-medium text-primary">
               <Shield className="w-3 h-3" />
               Investment Grade Focus
             </span>

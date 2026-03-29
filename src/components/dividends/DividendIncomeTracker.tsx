@@ -64,11 +64,11 @@ const SECTOR_COLORS_SVG: Record<string, string> = {
 
 const SECTOR_COLORS_CSS: Record<string, { text: string; bg: string; border: string }> = {
   Healthcare:    { text: "text-green-400",  bg: "bg-green-500/10",  border: "border-green-500/30" },
-  Consumer:      { text: "text-blue-400",   bg: "bg-blue-500/10",   border: "border-blue-500/30" },
+  Consumer:      { text: "text-primary",   bg: "bg-primary/10",   border: "border-border" },
   Telecom:       { text: "text-amber-400",  bg: "bg-amber-500/10",  border: "border-amber-500/30" },
   Energy:        { text: "text-orange-400", bg: "bg-orange-500/10", border: "border-orange-500/30" },
-  Retail:        { text: "text-cyan-400",   bg: "bg-cyan-500/10",   border: "border-cyan-500/30" },
-  "Real Estate": { text: "text-purple-400", bg: "bg-purple-500/10", border: "border-purple-500/30" },
+  Retail:        { text: "text-muted-foreground",   bg: "bg-cyan-500/10",   border: "border-cyan-500/30" },
+  "Real Estate": { text: "text-primary", bg: "bg-primary/10", border: "border-border" },
   Utilities:     { text: "text-red-400",    bg: "bg-red-500/10",    border: "border-red-500/30" },
   Financials:    { text: "text-emerald-400",bg: "bg-emerald-500/10",border: "border-emerald-500/30" },
 };
@@ -333,7 +333,7 @@ function IncomeDashboard() {
       <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
         {[
           { label: "Annual Income",     value: fmtK(portfolioIncome.annualIncome), color: "text-green-400",  sub: "forward projection" },
-          { label: "Monthly Average",   value: fmtK(monthlyIncome),               color: "text-blue-400",   sub: "$100k portfolio" },
+          { label: "Monthly Average",   value: fmtK(monthlyIncome),               color: "text-primary",   sub: "$100k portfolio" },
           { label: "YoY Income Growth", value: `+${fmt(portfolioIncome.growthRate, 1)}%`, color: "text-emerald-400", sub: "vs prior year" },
           { label: "Weighted Yield",    value: `${fmt((portfolioIncome.annualIncome / 100000) * 100, 2)}%`, color: "text-amber-400", sub: "portfolio average" },
         ].map((chip) => (
@@ -356,7 +356,7 @@ function IncomeDashboard() {
               <div key={i} className="flex-1 flex flex-col items-center gap-1">
                 <div className="w-full flex flex-col justify-end" style={{ height: 80 }}>
                   <div
-                    className="w-full rounded-sm bg-blue-500/70 transition-all"
+                    className="w-full rounded-sm bg-primary/70 transition-all"
                     style={{ height: `${height}%` }}
                     title={`${["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"][i]}: ${fmtK(v)}`}
                   />
@@ -483,7 +483,7 @@ function DividendSafetyScoring() {
 
   const gradeColor = (g: string) =>
     g === "A" ? "text-green-400 bg-green-500/10 border-green-500/30" :
-    g === "B" ? "text-cyan-400 bg-cyan-500/10 border-cyan-500/30" :
+    g === "B" ? "text-muted-foreground bg-cyan-500/10 border-cyan-500/30" :
     g === "C" ? "text-amber-400 bg-amber-500/10 border-amber-500/30" :
     g === "D" ? "text-orange-400 bg-orange-500/10 border-orange-500/30" :
     "text-red-400 bg-red-500/10 border-red-500/30";
@@ -500,7 +500,7 @@ function DividendSafetyScoring() {
       <div className="grid grid-cols-3 gap-3">
         <div className="bg-muted/30 border border-border/40 rounded-lg p-3">
           <p className="text-xs text-muted-foreground">Avg Safety Score</p>
-          <p className="text-lg font-semibold text-cyan-400 mt-0.5">
+          <p className="text-lg font-semibold text-muted-foreground mt-0.5">
             {fmt(results.reduce((s, r) => s + r.score, 0) / results.length, 0)}/100
           </p>
         </div>
@@ -561,7 +561,7 @@ function DividendSafetyScoring() {
                   <td className="px-3 py-2.5 text-right font-mono text-xs text-muted-foreground">
                     {r.stock.consecutiveYears}y
                     {r.stock.consecutiveYears >= 50 && <Crown className="inline w-3 h-3 ml-1 text-yellow-400" />}
-                    {r.stock.consecutiveYears >= 25 && r.stock.consecutiveYears < 50 && <Award className="inline w-3 h-3 ml-1 text-purple-400" />}
+                    {r.stock.consecutiveYears >= 25 && r.stock.consecutiveYears < 50 && <Award className="inline w-3 h-3 ml-1 text-primary" />}
                   </td>
                   <td className={cn("px-3 py-2.5 text-right font-mono text-xs", r.stock.debtEbitda > 4 ? "text-red-400" : r.stock.debtEbitda > 2.5 ? "text-amber-400" : "text-green-400")}>
                     {fmt(r.stock.debtEbitda, 1)}x
@@ -591,7 +591,7 @@ function DividendSafetyScoring() {
               <p className="text-xs text-muted-foreground">{selectedResult.stock.sector} · Cyclicality: {selectedResult.stock.cyclicality}</p>
             </div>
             <div className="text-right">
-              <div className={cn("text-2xl font-bold", selectedResult.score >= 85 ? "text-green-400" : selectedResult.score >= 70 ? "text-cyan-400" : selectedResult.score >= 55 ? "text-amber-400" : "text-red-400")}>
+              <div className={cn("text-2xl font-bold", selectedResult.score >= 85 ? "text-green-400" : selectedResult.score >= 70 ? "text-muted-foreground" : selectedResult.score >= 55 ? "text-amber-400" : "text-red-400")}>
                 {selectedResult.score}<span className="text-sm text-muted-foreground">/100</span>
               </div>
               <span className={cn("px-2 py-0.5 rounded text-xs font-bold border", gradeColor(selectedResult.grade))}>Grade {selectedResult.grade}</span>
@@ -707,7 +707,7 @@ function DripSimulator() {
             min: 10000, max: 100000, step: 5000,
             display: fmtK(startAmount),
             setter: setStartAmount,
-            color: "text-blue-400",
+            color: "text-primary",
           },
           {
             label: "Dividend Yield",
@@ -731,7 +731,7 @@ function DripSimulator() {
             min: 0, max: 12, step: 1,
             display: `${priceAppreciation}%`,
             setter: setPriceAppreciation,
-            color: "text-cyan-400",
+            color: "text-muted-foreground",
           },
           {
             label: "Time Horizon",
@@ -763,7 +763,7 @@ function DripSimulator() {
       <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
         {[
           { label: "Portfolio with DRIP",     value: fmtK(final.withDrip),              color: "text-green-400" },
-          { label: "Price Return Only",        value: fmtK(final.withoutDrip),           color: "text-blue-400" },
+          { label: "Price Return Only",        value: fmtK(final.withoutDrip),           color: "text-primary" },
           { label: "DRIP Bonus",               value: fmtK(dripBonus),                   color: "text-emerald-400" },
           { label: `Yr ${years} Annual Income`,value: fmtK(final.annualIncome),          color: "text-amber-400" },
         ].map((chip) => (
@@ -779,7 +779,7 @@ function DripSimulator() {
         <h4 className="text-sm font-medium mb-1">Portfolio Value: DRIP vs Price Return Only</h4>
         <div className="flex gap-4 mb-2">
           <span className="flex items-center gap-1.5 text-xs text-green-400"><span className="w-4 h-0.5 bg-green-400 inline-block" /> With DRIP (+{fmt(totalReturn, 0)}%)</span>
-          <span className="flex items-center gap-1.5 text-xs text-blue-400"><span className="w-4 h-0.5 bg-blue-400 inline-block border-dashed border-b border-blue-400 bg-transparent border" /> Price Only (+{fmt(priceOnlyReturn, 0)}%)</span>
+          <span className="flex items-center gap-1.5 text-xs text-primary"><span className="w-4 h-0.5 bg-primary inline-block border-dashed border-b border-primary bg-transparent border" /> Price Only (+{fmt(priceOnlyReturn, 0)}%)</span>
         </div>
         {dripData.length > 1 && (
           <svg viewBox={`0 0 ${W} ${H}`} className="w-full" style={{ height: H }}>
@@ -887,7 +887,7 @@ function ExDivCalendar() {
       <div className="grid grid-cols-3 gap-3">
         <div className="bg-muted/30 border border-border/40 rounded-lg p-3">
           <p className="text-xs text-muted-foreground">Events (3 months)</p>
-          <p className="text-lg font-semibold text-blue-400 mt-0.5">{events.length}</p>
+          <p className="text-lg font-semibold text-primary mt-0.5">{events.length}</p>
         </div>
         <div className="bg-muted/30 border border-border/40 rounded-lg p-3">
           <p className="text-xs text-muted-foreground">Qualified Dividends</p>
@@ -982,7 +982,7 @@ function ExDivCalendar() {
           onClick={() => setShowTaxInfo(!showTaxInfo)}
           className="flex items-center gap-2 text-sm font-medium w-full text-left"
         >
-          <Info className="w-4 h-4 text-blue-400" />
+          <Info className="w-4 h-4 text-primary" />
           Tax Treatment: Qualified vs. Ordinary Dividends
           <ChevronRight className={cn("w-4 h-4 text-muted-foreground ml-auto transition-transform", showTaxInfo && "rotate-90")} />
         </button>
@@ -1087,7 +1087,7 @@ function DividendGrowthStrategy() {
         <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
           {[
             { label: "Purchase Yield",     value: yocYield,  min: 1,  max: 6,  step: 0.5, display: `${fmt(yocYield, 1)}%`,  setter: setYocYield,  color: "text-green-400" },
-            { label: "Annual Div Growth",  value: yocGrowth, min: 1,  max: 15, step: 0.5, display: `${fmt(yocGrowth, 1)}%`, setter: setYocGrowth, color: "text-blue-400" },
+            { label: "Annual Div Growth",  value: yocGrowth, min: 1,  max: 15, step: 0.5, display: `${fmt(yocGrowth, 1)}%`, setter: setYocGrowth, color: "text-primary" },
             { label: "Years to Hold",      value: yocYears,  min: 5,  max: 30, step: 5,   display: `${yocYears} yrs`,        setter: setYocYears,  color: "text-amber-400" },
           ].map((s) => (
             <div key={s.label}>
@@ -1112,9 +1112,9 @@ function DividendGrowthStrategy() {
             <p className="text-2xl font-bold text-amber-400">{fmt(finalYoc.highYieldYoc, 1)}%</p>
             <p className="text-xs text-muted-foreground mt-0.5">often stagnates over time</p>
           </div>
-          <div className="bg-blue-500/10 border border-blue-500/30 rounded-lg px-4 py-3 text-center">
+          <div className="bg-primary/10 border border-border rounded-lg px-4 py-3 text-center">
             <p className="text-xs text-muted-foreground">DGI Advantage</p>
-            <p className={cn("text-2xl font-bold", finalYoc.yoc > finalYoc.highYieldYoc ? "text-blue-400" : "text-muted-foreground")}>
+            <p className={cn("text-2xl font-bold", finalYoc.yoc > finalYoc.highYieldYoc ? "text-primary" : "text-muted-foreground")}>
               {finalYoc.yoc > finalYoc.highYieldYoc ? "+" : ""}{fmt(finalYoc.yoc - finalYoc.highYieldYoc, 1)}%
             </p>
             <p className="text-xs text-muted-foreground mt-0.5">DGI vs high-yield</p>
@@ -1185,7 +1185,7 @@ function DividendGrowthStrategy() {
       <div className="bg-muted/20 border border-border/40 rounded-lg p-4 space-y-3">
         <div className="flex items-center justify-between">
           <h4 className="text-sm font-semibold flex items-center gap-2">
-            <Shield className="w-4 h-4 text-blue-400" />
+            <Shield className="w-4 h-4 text-primary" />
             DGI Stock Screen
           </h4>
           <div className="flex flex-wrap gap-1.5 text-xs text-muted-foreground">
@@ -1224,15 +1224,15 @@ function DividendGrowthStrategy() {
                         <span className={cn("px-1 py-0.5 rounded text-[11px] font-medium border mt-0.5 inline-block", sc.bg, sc.text, sc.border)}>{s.sector}</span>
                       </td>
                       <td className="px-3 py-2 text-right font-mono text-green-400">{fmt(s.currentYield, 1)}%</td>
-                      <td className={cn("px-3 py-2 text-right font-mono", s.divGrowthRate >= 10 ? "text-blue-400" : "text-cyan-400")}>+{fmt(s.divGrowthRate, 1)}%</td>
-                      <td className={cn("px-3 py-2 text-right font-mono", s.payoutRatio < 40 ? "text-green-400" : s.payoutRatio < 60 ? "text-cyan-400" : "text-amber-400")}>{s.payoutRatio}%</td>
-                      <td className={cn("px-3 py-2 text-right font-mono", s.fcfCoverage >= 3 ? "text-green-400" : s.fcfCoverage >= 1.5 ? "text-cyan-400" : "text-amber-400")}>{fmt(s.fcfCoverage, 1)}x</td>
+                      <td className={cn("px-3 py-2 text-right font-mono", s.divGrowthRate >= 10 ? "text-primary" : "text-muted-foreground")}>+{fmt(s.divGrowthRate, 1)}%</td>
+                      <td className={cn("px-3 py-2 text-right font-mono", s.payoutRatio < 40 ? "text-green-400" : s.payoutRatio < 60 ? "text-muted-foreground" : "text-amber-400")}>{s.payoutRatio}%</td>
+                      <td className={cn("px-3 py-2 text-right font-mono", s.fcfCoverage >= 3 ? "text-green-400" : s.fcfCoverage >= 1.5 ? "text-muted-foreground" : "text-amber-400")}>{fmt(s.fcfCoverage, 1)}x</td>
                       <td className="px-3 py-2 text-right font-mono text-muted-foreground">
                         {s.consecutiveYears}y
                         {s.consecutiveYears >= 50 && <Crown className="inline w-2.5 h-2.5 ml-0.5 text-yellow-400" />}
-                        {s.consecutiveYears >= 25 && s.consecutiveYears < 50 && <Award className="inline w-2.5 h-2.5 ml-0.5 text-purple-400" />}
+                        {s.consecutiveYears >= 25 && s.consecutiveYears < 50 && <Award className="inline w-2.5 h-2.5 ml-0.5 text-primary" />}
                       </td>
-                      <td className={cn("px-3 py-2 text-right font-mono font-semibold", s.yoc20 >= 10 ? "text-green-400" : s.yoc20 >= 5 ? "text-cyan-400" : "text-muted-foreground")}>
+                      <td className={cn("px-3 py-2 text-right font-mono font-semibold", s.yoc20 >= 10 ? "text-green-400" : s.yoc20 >= 5 ? "text-muted-foreground" : "text-muted-foreground")}>
                         {fmt(s.yoc20, 1)}%
                       </td>
                       <td className="px-3 py-2 text-center">

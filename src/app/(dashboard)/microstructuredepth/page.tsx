@@ -571,8 +571,8 @@ export default function MicrostructureDepthPage() {
         className="mb-6"
       >
         <div className="flex items-center gap-3 mb-2">
-          <div className="p-2 rounded-lg bg-blue-500/10 border border-blue-500/20">
-            <Layers className="w-6 h-6 text-blue-400" />
+          <div className="p-2 rounded-lg bg-primary/10 border border-border">
+            <Layers className="w-6 h-6 text-primary" />
           </div>
           <div>
             <h1 className="text-2xl font-bold text-slate-100">Market Microstructure Deep Dive</h1>
@@ -585,8 +585,8 @@ export default function MicrostructureDepthPage() {
             { label: "Adverse Selection", value: `${adverseSelectionPct}%`, color: "text-red-400 border-red-500/30 bg-red-500/5" },
             { label: "Avg VPIN", value: avgVPIN, color: "text-amber-400 border-amber-500/30 bg-amber-500/5" },
             { label: "Avg OFI", value: avgOFI, color: Number(avgOFI) >= 0 ? "text-green-400 border-green-500/30 bg-green-500/5" : "text-red-400 border-red-500/30 bg-red-500/5" },
-            { label: "Kyle λ (large-cap)", value: kyleLambdaAssets[0].lambda, color: "text-blue-400 border-blue-500/30 bg-blue-500/5" },
-            { label: "√-Impact @$1M", value: `${(sigma * Math.sqrt(1 / adv) * kappa * 10000).toFixed(2)}bp`, color: "text-purple-400 border-purple-500/30 bg-purple-500/5" },
+            { label: "Kyle λ (large-cap)", value: kyleLambdaAssets[0].lambda, color: "text-primary border-border bg-primary/5" },
+            { label: "√-Impact @$1M", value: `${(sigma * Math.sqrt(1 / adv) * kappa * 10000).toFixed(2)}bp`, color: "text-primary border-border bg-primary/5" },
           ].map((chip) => (
             <div key={chip.label} className={cn("flex items-center gap-1.5 border rounded-full px-3 py-1", chip.color)}>
               <span className="text-xs text-slate-400">{chip.label}</span>
@@ -599,16 +599,16 @@ export default function MicrostructureDepthPage() {
       {/* Tabs */}
       <Tabs defaultValue="spread" className="w-full">
         <TabsList className="bg-slate-900 border border-slate-800 flex-wrap h-auto gap-1 p-1 mb-4">
-          <TabsTrigger value="spread" className="data-[state=active]:bg-blue-600 data-[state=active]:text-white text-slate-400 text-xs sm:text-sm">
+          <TabsTrigger value="spread" className="data-[state=active]:bg-primary data-[state=active]:text-white text-slate-400 text-xs sm:text-sm">
             <BarChart3 className="w-3.5 h-3.5 mr-1.5" />Spread Analysis
           </TabsTrigger>
-          <TabsTrigger value="orderflow" className="data-[state=active]:bg-blue-600 data-[state=active]:text-white text-slate-400 text-xs sm:text-sm">
+          <TabsTrigger value="orderflow" className="data-[state=active]:bg-primary data-[state=active]:text-white text-slate-400 text-xs sm:text-sm">
             <Activity className="w-3.5 h-3.5 mr-1.5" />Order Flow
           </TabsTrigger>
-          <TabsTrigger value="impact" className="data-[state=active]:bg-blue-600 data-[state=active]:text-white text-slate-400 text-xs sm:text-sm">
+          <TabsTrigger value="impact" className="data-[state=active]:bg-primary data-[state=active]:text-white text-slate-400 text-xs sm:text-sm">
             <TrendingDown className="w-3.5 h-3.5 mr-1.5" />Price Impact
           </TabsTrigger>
-          <TabsTrigger value="execution" className="data-[state=active]:bg-blue-600 data-[state=active]:text-white text-slate-400 text-xs sm:text-sm">
+          <TabsTrigger value="execution" className="data-[state=active]:bg-primary data-[state=active]:text-white text-slate-400 text-xs sm:text-sm">
             <Target className="w-3.5 h-3.5 mr-1.5" />Execution Models
           </TabsTrigger>
         </TabsList>
@@ -620,7 +620,7 @@ export default function MicrostructureDepthPage() {
             <Card className="bg-slate-900 border-slate-800">
               <CardHeader className="pb-2">
                 <CardTitle className="text-sm text-slate-200 flex items-center gap-2">
-                  <Scale className="w-4 h-4 text-blue-400" />
+                  <Scale className="w-4 h-4 text-primary" />
                   Bid-Ask Spread Decomposition
                 </CardTitle>
               </CardHeader>
@@ -640,10 +640,10 @@ export default function MicrostructureDepthPage() {
                     color="border-amber-500/20 bg-amber-500/5"
                   />
                   <InfoCard
-                    icon={<Zap className="w-4 h-4 text-blue-400" />}
+                    icon={<Zap className="w-4 h-4 text-primary" />}
                     title={`Order Processing (${orderProcessingPct}%)`}
                     body="Fixed operational costs: infrastructure, clearing, regulatory fees. Relatively constant—dominant for liquid, low-volatility assets like on-the-run Treasuries."
-                    color="border-blue-500/20 bg-blue-500/5"
+                    color="border-border bg-primary/5"
                   />
                 </div>
               </CardContent>
@@ -663,7 +663,7 @@ export default function MicrostructureDepthPage() {
                 </div>
                 <div className="mt-3 p-3 bg-slate-800/50 rounded-lg border border-slate-700/50">
                   <p className="text-xs text-slate-400 leading-relaxed">
-                    <span className="text-blue-400 font-medium">Realized spread</span> measures actual dealer revenue after mid-quote reversion.
+                    <span className="text-primary font-medium">Realized spread</span> measures actual dealer revenue after mid-quote reversion.
                     <span className="text-amber-400 font-medium ml-1">Effective spread</span> is twice the distance from trade price to mid — the true round-trip cost.
                     When effective &gt; realized, dealers capture positive profits; the gap equals adverse selection cost.
                   </p>
@@ -700,9 +700,9 @@ export default function MicrostructureDepthPage() {
                       exit={{ opacity: 0, height: 0 }}
                       className="mb-3 overflow-hidden"
                     >
-                      <div className="p-3 bg-blue-500/5 border border-blue-500/20 rounded-lg">
+                      <div className="p-3 bg-primary/5 border border-border rounded-lg">
                         <p className="text-xs text-slate-300 font-mono mb-1">Roll (1984) Model:</p>
-                        <p className="text-xs text-blue-300 font-mono">S = 2√(-Cov(Δp_t, Δp_t-1))</p>
+                        <p className="text-xs text-primary font-mono">S = 2√(-Cov(Δp_t, Δp_t-1))</p>
                         <p className="text-xs text-slate-400 mt-2 leading-relaxed">
                           Negative serial covariance in trade-to-trade price changes implies a bid-ask bounce. The Roll measure estimates the effective half-spread from observable price data without requiring quote data.
                         </p>
@@ -731,7 +731,7 @@ export default function MicrostructureDepthPage() {
             <Card className="bg-slate-900 border-slate-800">
               <CardHeader className="pb-2">
                 <CardTitle className="text-sm text-slate-200 flex items-center gap-2">
-                  <Clock className="w-4 h-4 text-purple-400" />
+                  <Clock className="w-4 h-4 text-primary" />
                   Quote Lifetime Distribution
                 </CardTitle>
               </CardHeader>
@@ -753,7 +753,7 @@ export default function MicrostructureDepthPage() {
           <Card className="bg-slate-900 border-slate-800">
             <CardHeader className="pb-2">
               <CardTitle className="text-sm text-slate-200 flex items-center gap-2">
-                <Activity className="w-4 h-4 text-blue-400" />
+                <Activity className="w-4 h-4 text-primary" />
                 Order Flow Imbalance (OFI) by Interval
               </CardTitle>
             </CardHeader>
@@ -901,8 +901,8 @@ export default function MicrostructureDepthPage() {
                 </div>
                 <div className="mt-3 space-y-2 text-xs">
                   <div className="flex gap-2">
-                    <div className="flex-1 p-2 rounded bg-slate-800/40 border border-blue-500/20">
-                      <p className="text-blue-400 font-medium mb-0.5">Permanent Impact</p>
+                    <div className="flex-1 p-2 rounded bg-slate-800/40 border border-border">
+                      <p className="text-primary font-medium mb-0.5">Permanent Impact</p>
                       <p className="text-slate-400">Reflects the informational content of the trade — causes a lasting price update. Related to Kyle λ and information asymmetry.</p>
                     </div>
                     <div className="flex-1 p-2 rounded bg-slate-800/40 border border-amber-500/20">
@@ -923,9 +923,9 @@ export default function MicrostructureDepthPage() {
                 </CardTitle>
               </CardHeader>
               <CardContent>
-                <div className="p-3 mb-4 bg-blue-500/5 border border-blue-500/20 rounded-lg font-mono text-xs text-blue-300">
+                <div className="p-3 mb-4 bg-primary/5 border border-border rounded-lg font-mono text-xs text-primary">
                   Impact(bps) = σ · √(Q / ADV) · κ
-                  <p className="text-slate-400 mt-1 font-sans">σ={sigma} · κ={kappa} · ADV=$50M · Q=$<span className="text-blue-300 font-mono">{qm}M</span></p>
+                  <p className="text-slate-400 mt-1 font-sans">σ={sigma} · κ={kappa} · ADV=$50M · Q=$<span className="text-primary font-mono">{qm}M</span></p>
                 </div>
                 <div className="mb-4">
                   <div className="flex justify-between text-xs text-slate-400 mb-2">
@@ -949,7 +949,7 @@ export default function MicrostructureDepthPage() {
                     { label: "Impact (bps)", value: `${sqrtImpact}bp`, color: "text-red-400" },
                     { label: "Slippage ($)", value: `$${Number(slippageDollar).toLocaleString()}`, color: "text-amber-400" },
                     { label: "% of Trade", value: `${(slippageBps / 100).toFixed(3)}%`, color: "text-orange-400" },
-                    { label: "√(Q/ADV)", value: `${Math.sqrt(qm / adv).toFixed(3)}`, color: "text-blue-400" },
+                    { label: "√(Q/ADV)", value: `${Math.sqrt(qm / adv).toFixed(3)}`, color: "text-primary" },
                   ].map((s) => (
                     <div key={s.label} className="p-3 rounded-lg bg-slate-800/50 border border-slate-700/50 text-center">
                       <p className="text-xs text-slate-500 mb-1">{s.label}</p>
@@ -965,12 +965,12 @@ export default function MicrostructureDepthPage() {
           <Card className="bg-slate-900 border-slate-800">
             <CardHeader className="pb-2">
               <CardTitle className="text-sm text-slate-200 flex items-center gap-2">
-                <Waves className="w-4 h-4 text-purple-400" />
+                <Waves className="w-4 h-4 text-primary" />
                 Kyle Lambda (λ) — Price Impact per Unit Order Flow
               </CardTitle>
             </CardHeader>
             <CardContent>
-              <div className="mb-3 p-3 bg-purple-500/5 border border-purple-500/20 rounded-lg text-xs font-mono text-purple-300">
+              <div className="mb-3 p-3 bg-primary/5 border border-border rounded-lg text-xs font-mono text-primary">
                 Δp = λ · (Q_buy − Q_sell) + ε
                 <span className="text-slate-400 font-sans ml-2">— Kyle (1985) linear impact model</span>
               </div>
@@ -987,7 +987,7 @@ export default function MicrostructureDepthPage() {
                           className={cn(
                             "text-xs px-1.5",
                             asset.liquidity === "Very High" ? "border-green-500/30 text-green-400" :
-                            asset.liquidity === "High" ? "border-blue-500/30 text-blue-400" :
+                            asset.liquidity === "High" ? "border-border text-primary" :
                             asset.liquidity === "Medium" ? "border-amber-500/30 text-amber-400" :
                             "border-red-500/30 text-red-400"
                           )}
@@ -995,9 +995,9 @@ export default function MicrostructureDepthPage() {
                           {asset.liquidity}
                         </Badge>
                       </div>
-                      <p className="text-base font-bold text-purple-400 font-mono">{asset.lambda}</p>
+                      <p className="text-base font-bold text-primary font-mono">{asset.lambda}</p>
                       <div className="mt-1.5 bg-slate-700 rounded-full h-1.5">
-                        <div className="h-1.5 rounded-full bg-purple-500" style={{ width: `${pct}%` }} />
+                        <div className="h-1.5 rounded-full bg-primary" style={{ width: `${pct}%` }} />
                       </div>
                       <p className="text-xs text-slate-500 mt-1">λ × order flow = price Δ</p>
                     </div>
@@ -1018,7 +1018,7 @@ export default function MicrostructureDepthPage() {
             <Card className="bg-slate-900 border-slate-800">
               <CardHeader className="pb-2">
                 <CardTitle className="text-sm text-slate-200 flex items-center gap-2">
-                  <BarChart3 className="w-4 h-4 text-blue-400" />
+                  <BarChart3 className="w-4 h-4 text-primary" />
                   TWAP vs VWAP vs Implementation Shortfall
                 </CardTitle>
               </CardHeader>
@@ -1030,7 +1030,7 @@ export default function MicrostructureDepthPage() {
                   {[
                     {
                       name: "TWAP",
-                      color: "text-blue-400 border-blue-500/20",
+                      color: "text-primary border-border",
                       desc: "Time-Weighted Average Price — executes uniform slices over horizon. Simple, predictable, but ignores volume patterns. Best for transparent, low-impact orders.",
                     },
                     {
@@ -1040,7 +1040,7 @@ export default function MicrostructureDepthPage() {
                     },
                     {
                       name: "Implementation Shortfall (IS)",
-                      color: "text-purple-400 border-purple-500/20",
+                      color: "text-primary border-border",
                       desc: "Almgren-Chriss framework minimizes total execution cost = impact cost + timing risk. Front-loads in volatile markets; back-loads when mean-reverting.",
                     },
                   ].map((s) => (
@@ -1124,10 +1124,10 @@ export default function MicrostructureDepthPage() {
               <div className="mt-4 grid grid-cols-1 sm:grid-cols-3 gap-3 text-xs">
                 {[
                   {
-                    icon: <Shield className="w-4 h-4 text-blue-400" />,
+                    icon: <Shield className="w-4 h-4 text-primary" />,
                     title: "Glosten-Milgrom Model",
                     body: "Sequential trade model where each trade updates dealer beliefs about asset value. Spreads widen with probability of informed trading (α) and gain from informational trade (δ). Spread = 2αδ / (2αδ + (1−α)).",
-                    color: "border-blue-500/20 bg-blue-500/5",
+                    color: "border-border bg-primary/5",
                   },
                   {
                     icon: <Layers className="w-4 h-4 text-amber-400" />,

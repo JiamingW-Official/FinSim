@@ -772,7 +772,7 @@ export default function StructuredCreditPage() {
         <div className="flex items-start justify-between gap-4">
           <div>
             <h1 className="text-2xl font-bold flex items-center gap-2">
-              <Layers className="w-6 h-6 text-blue-400" />
+              <Layers className="w-6 h-6 text-primary" />
               Structured Credit & CLOs
             </h1>
             <p className="text-muted-foreground text-sm mt-1">
@@ -780,7 +780,7 @@ export default function StructuredCreditPage() {
             </p>
           </div>
           <div className="flex gap-2 flex-wrap">
-            <Badge variant="outline" className="border-blue-500/30 text-blue-400 text-xs">
+            <Badge variant="outline" className="border-border text-primary text-xs">
               CLO 2.0
             </Badge>
             <Badge variant="outline" className="border-emerald-500/30 text-emerald-400 text-xs">
@@ -825,7 +825,7 @@ export default function StructuredCreditPage() {
               <Card>
                 <CardHeader className="pb-2">
                   <CardTitle className="text-sm flex items-center gap-2">
-                    <Layers className="w-4 h-4 text-blue-400" />
+                    <Layers className="w-4 h-4 text-primary" />
                     Capital Structure Waterfall
                   </CardTitle>
                 </CardHeader>
@@ -837,7 +837,7 @@ export default function StructuredCreditPage() {
               <Card>
                 <CardHeader className="pb-2">
                   <CardTitle className="text-sm flex items-center gap-2">
-                    <Info className="w-4 h-4 text-blue-400" />
+                    <Info className="w-4 h-4 text-primary" />
                     How a CLO Works
                   </CardTitle>
                 </CardHeader>
@@ -863,13 +863,13 @@ export default function StructuredCreditPage() {
                       },
                       {
                         icon: TrendingUp,
-                        color: "text-purple-400",
+                        color: "text-primary",
                         title: "Equity Tranche",
                         desc: "Residual cash flows after all debt is serviced. Targets 15–20% IRR with first-loss exposure.",
                       },
                       {
                         icon: Activity,
-                        color: "text-blue-400",
+                        color: "text-primary",
                         title: "Coverage Tests",
                         desc: "OC (overcollateralization) and IC (interest coverage) tests protect senior noteholders; failures divert cash to de-lever.",
                       },
@@ -891,7 +891,7 @@ export default function StructuredCreditPage() {
             <Card>
               <CardHeader className="pb-2">
                 <CardTitle className="text-sm flex items-center gap-2">
-                  <PieChart className="w-4 h-4 text-blue-400" />
+                  <PieChart className="w-4 h-4 text-primary" />
                   Loan Pool Composition
                 </CardTitle>
               </CardHeader>
@@ -925,7 +925,7 @@ export default function StructuredCreditPage() {
             <Card>
               <CardHeader className="pb-2">
                 <CardTitle className="text-sm flex items-center gap-2">
-                  <BarChart3 className="w-4 h-4 text-blue-400" />
+                  <BarChart3 className="w-4 h-4 text-primary" />
                   Tranche Comparison
                 </CardTitle>
               </CardHeader>
@@ -945,7 +945,7 @@ export default function StructuredCreditPage() {
                 {
                   title: "OC Test",
                   icon: Droplets,
-                  color: "text-blue-400",
+                  color: "text-primary",
                   desc: "Overcollateralization ratio. Compares par value of loans to outstanding notes. A breach redirects interest payments to repay senior debt.",
                 },
                 {
@@ -971,7 +971,7 @@ export default function StructuredCreditPage() {
             <Card>
               <CardHeader className="pb-2">
                 <CardTitle className="text-sm flex items-center gap-2">
-                  <Activity className="w-4 h-4 text-blue-400" />
+                  <Activity className="w-4 h-4 text-primary" />
                   Historical Performance by Vintage
                 </CardTitle>
               </CardHeader>
@@ -1012,7 +1012,7 @@ export default function StructuredCreditPage() {
             <Card>
               <CardHeader className="pb-2">
                 <CardTitle className="text-sm flex items-center gap-2">
-                  <ArrowDownRight className="w-4 h-4 text-blue-400" />
+                  <ArrowDownRight className="w-4 h-4 text-primary" />
                   Interest Waterfall — {scenario === "base" ? "Base" : "Stress"} Case
                 </CardTitle>
               </CardHeader>
@@ -1030,11 +1030,11 @@ export default function StructuredCreditPage() {
                   {[
                     { n: 1, step: "Senior Management Fees", color: "text-foreground" },
                     { n: 2, step: "AAA Note Interest", color: "text-emerald-400" },
-                    { n: 3, step: "Coverage Test Check (OC/IC)", color: "text-blue-400" },
+                    { n: 3, step: "Coverage Test Check (OC/IC)", color: "text-primary" },
                     { n: 4, step: "AA → A → BBB Note Interest", color: "text-yellow-400" },
                     { n: 5, step: "Subordinated Mgmt Fees", color: "text-foreground" },
                     { n: 6, step: "BB Note Interest", color: "text-orange-400" },
-                    { n: 7, step: "Equity Residual Distribution", color: "text-purple-400" },
+                    { n: 7, step: "Equity Residual Distribution", color: "text-primary" },
                   ].map(({ n, step, color }) => (
                     <div key={n} className="flex items-center gap-2">
                       <span className="w-5 h-5 rounded-full bg-muted flex items-center justify-center text-xs font-bold text-foreground flex-shrink-0">
@@ -1090,7 +1090,7 @@ export default function StructuredCreditPage() {
             <Card>
               <CardHeader className="pb-2">
                 <CardTitle className="text-sm flex items-center gap-2">
-                  <Activity className="w-4 h-4 text-blue-400" />
+                  <Activity className="w-4 h-4 text-primary" />
                   CLO Tranche Spreads
                 </CardTitle>
               </CardHeader>
@@ -1115,7 +1115,7 @@ export default function StructuredCreditPage() {
                     },
                     {
                       icon: BarChart3,
-                      color: "text-blue-400",
+                      color: "text-primary",
                       title: "Refinancing Activity",
                       value: "$74B",
                       desc: "CLO refi/reset volume YTD",
@@ -1169,12 +1169,12 @@ export default function StructuredCreditPage() {
                       desc: "Market spread widening reduces mark-to-market value, especially for equity and mezzanine.",
                     },
                     {
-                      color: "bg-blue-500",
+                      color: "bg-primary",
                       label: "Liquidity Risk",
                       desc: "CLO tranches, especially BB and equity, can be illiquid in stressed market conditions.",
                     },
                     {
-                      color: "bg-purple-500",
+                      color: "bg-primary",
                       label: "Prepayment Risk",
                       desc: "Loan prepayments shorten CLO life and force reinvestment at potentially lower spreads.",
                     },

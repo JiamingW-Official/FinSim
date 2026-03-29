@@ -1004,13 +1004,13 @@ export default function RiskIntelPage() {
               <Card className="bg-slate-900 border-slate-800">
                 <CardHeader className="pb-2 pt-4 px-4">
                   <CardTitle className="text-sm font-medium text-slate-300 flex items-center gap-2">
-                    <GitBranch className="w-4 h-4 text-blue-400" />
+                    <GitBranch className="w-4 h-4 text-primary" />
                     Correlation Risk
                   </CardTitle>
                 </CardHeader>
                 <CardContent className="px-4 pb-4 space-y-3">
                   <div className="flex items-end gap-2">
-                    <span className="text-3xl font-bold text-blue-400">
+                    <span className="text-3xl font-bold text-primary">
                       {metrics.avgCorr.toFixed(2)}
                     </span>
                     <span className="text-slate-500 text-sm mb-1">avg pairwise</span>
@@ -1043,13 +1043,13 @@ export default function RiskIntelPage() {
               <Card className="bg-slate-900 border-slate-800">
                 <CardHeader className="pb-2 pt-4 px-4">
                   <CardTitle className="text-sm font-medium text-slate-300 flex items-center gap-2">
-                    <Activity className="w-4 h-4 text-purple-400" />
+                    <Activity className="w-4 h-4 text-primary" />
                     Beta Risk
                   </CardTitle>
                 </CardHeader>
                 <CardContent className="px-4 pb-4 space-y-3">
                   <div className="flex items-end gap-2">
-                    <span className="text-3xl font-bold text-purple-400">
+                    <span className="text-3xl font-bold text-primary">
                       {metrics.beta.toFixed(2)}
                     </span>
                     <span className="text-slate-500 text-sm mb-1">vs S&P 500</span>
@@ -1088,13 +1088,13 @@ export default function RiskIntelPage() {
               <Card className="bg-slate-900 border-slate-800">
                 <CardHeader className="pb-2 pt-4 px-4">
                   <CardTitle className="text-sm font-medium text-slate-300 flex items-center gap-2">
-                    <Layers className="w-4 h-4 text-cyan-400" />
+                    <Layers className="w-4 h-4 text-muted-foreground" />
                     Liquidity Risk
                   </CardTitle>
                 </CardHeader>
                 <CardContent className="px-4 pb-4 space-y-3">
                   <div className="flex items-end gap-2">
-                    <span className="text-3xl font-bold text-cyan-400">
+                    <span className="text-3xl font-bold text-muted-foreground">
                       {metrics.liquidity.toFixed(0)}%
                     </span>
                     <span className="text-slate-500 text-sm mb-1">1-day exit</span>
@@ -1104,7 +1104,7 @@ export default function RiskIntelPage() {
                     % of portfolio that can be fully exited in 1 trading day with &lt;0.1% market impact
                     (using 1% of ADV rule). All positions in large-caps — minimal liquidity risk.
                   </div>
-                  <div className="flex items-center gap-1.5 bg-cyan-500/10 border border-cyan-500/20 rounded-lg p-2 text-xs text-cyan-300">
+                  <div className="flex items-center gap-1.5 bg-cyan-500/10 border border-cyan-500/20 rounded-lg p-2 text-xs text-muted-foreground">
                     <Info className="w-3.5 h-3.5 flex-shrink-0" />
                     <span>At $100k notional, all 10 positions are &lt;1% of daily ADV — excellent liquidity.</span>
                   </div>
@@ -1283,7 +1283,7 @@ export default function RiskIntelPage() {
                 <Card className="bg-slate-900 border-slate-800">
                   <CardHeader className="pb-2 pt-4 px-4">
                     <CardTitle className="text-sm font-medium text-slate-300 flex items-center gap-2">
-                      <Info className="w-4 h-4 text-blue-400" />
+                      <Info className="w-4 h-4 text-primary" />
                       Cell Explanation
                     </CardTitle>
                   </CardHeader>
@@ -1386,7 +1386,7 @@ export default function RiskIntelPage() {
             <Card className="bg-slate-900 border-slate-800">
               <CardHeader className="pb-2 pt-4 px-4">
                 <CardTitle className="text-sm font-medium text-slate-300 flex items-center gap-2">
-                  <GitBranch className="w-4 h-4 text-blue-400" />
+                  <GitBranch className="w-4 h-4 text-primary" />
                   Risk Cluster Dendrogram
                   <span className="text-slate-500 text-xs font-normal ml-1">— hierarchical clustering by correlation distance</span>
                 </CardTitle>
@@ -1695,7 +1695,7 @@ export default function RiskIntelPage() {
             <Card className="bg-slate-900 border-slate-800">
               <CardHeader className="pb-3 pt-4 px-4">
                 <CardTitle className="text-sm font-medium text-slate-300 flex items-center gap-2">
-                  <RefreshCw className="w-4 h-4 text-blue-400" />
+                  <RefreshCw className="w-4 h-4 text-primary" />
                   Custom Scenario Builder
                 </CardTitle>
               </CardHeader>
@@ -1749,7 +1749,7 @@ export default function RiskIntelPage() {
                           min={ctrl.min}
                           max={ctrl.max}
                           step={ctrl.step}
-                          className="[&>span]:bg-slate-700 [&>span>span]:bg-blue-500"
+                          className="[&>span]:bg-slate-700 [&>span>span]:bg-primary"
                         />
                       </div>
                     ))}
@@ -1915,7 +1915,7 @@ export default function RiskIntelPage() {
               <Card className="bg-slate-900 border-slate-800">
                 <CardHeader className="pb-3 pt-4 px-4">
                   <CardTitle className="text-sm font-medium text-slate-300 flex items-center gap-2">
-                    <DollarSign className="w-4 h-4 text-blue-400" />
+                    <DollarSign className="w-4 h-4 text-primary" />
                     Volatility-Adjusted Position Sizing
                   </CardTitle>
                 </CardHeader>
@@ -1955,7 +1955,7 @@ export default function RiskIntelPage() {
                                 ? "bg-green-500/10 text-green-400 border-green-500/20"
                                 : p.weight / 100 > cappedSize
                                 ? "bg-red-500/10 text-red-400 border-red-500/20"
-                                : "bg-blue-500/10 text-blue-400 border-blue-500/20"
+                                : "bg-primary/10 text-primary border-border"
                             }`}
                           >
                             {currentOk ? "OK" : p.weight / 100 > cappedSize ? "Overweight" : "Underweight"}
@@ -1972,7 +1972,7 @@ export default function RiskIntelPage() {
             <Card className="bg-slate-900 border-slate-800">
               <CardHeader className="pb-3 pt-4 px-4">
                 <CardTitle className="text-sm font-medium text-slate-300 flex items-center gap-2">
-                  <BarChart3 className="w-4 h-4 text-purple-400" />
+                  <BarChart3 className="w-4 h-4 text-primary" />
                   Risk Budget Allocation (% of Total VaR)
                 </CardTitle>
               </CardHeader>
@@ -2077,7 +2077,7 @@ export default function RiskIntelPage() {
                             onClick={() => setNewTicker(t)}
                             className={`px-2.5 py-1 rounded text-xs font-medium transition-colors ${
                               newTicker === t
-                                ? "bg-blue-600 text-white"
+                                ? "bg-primary text-white"
                                 : "bg-slate-800 text-slate-400 hover:bg-slate-700"
                             }`}
                           >
@@ -2089,7 +2089,7 @@ export default function RiskIntelPage() {
                     <div className="space-y-2">
                       <div className="flex justify-between text-xs">
                         <span className="text-slate-400">Position Weight</span>
-                        <span className="font-mono text-blue-400">{newWeight[0]}%</span>
+                        <span className="font-mono text-primary">{newWeight[0]}%</span>
                       </div>
                       <Slider
                         value={newWeight}
@@ -2102,7 +2102,7 @@ export default function RiskIntelPage() {
                     <div className="space-y-2">
                       <div className="flex justify-between text-xs">
                         <span className="text-slate-400">Estimated Beta</span>
-                        <span className="font-mono text-purple-400">{newBeta[0]}</span>
+                        <span className="font-mono text-primary">{newBeta[0]}</span>
                       </div>
                       <Slider
                         value={newBeta}

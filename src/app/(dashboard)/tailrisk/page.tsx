@@ -340,7 +340,7 @@ function BlackSwanTab() {
         <p className="text-xs text-slate-500 mb-3">Real returns have heavier tails — extreme events occur far more often than a Gaussian model predicts.</p>
         <FatTailSVG />
         <div className="mt-2 flex gap-4 text-xs text-slate-500">
-          <span><span className="text-blue-400 font-semibold">Blue:</span> Normal (Gaussian) — underestimates tail events</span>
+          <span><span className="text-primary font-semibold">Blue:</span> Normal (Gaussian) — underestimates tail events</span>
           <span><span className="text-red-400 font-semibold">Red dashed:</span> Fat tail (Student-t df=3) — closer to reality</span>
         </div>
       </div>
@@ -351,8 +351,8 @@ function BlackSwanTab() {
         <p className="text-xs text-slate-500 mb-3">In calm markets, assets appear diversified. During crises, correlations converge toward +1 — diversification fails precisely when you need it most.</p>
         <CorrelationMatrixSVG />
         <div className="mt-3 grid grid-cols-2 gap-3 text-xs">
-          <div className="rounded-lg bg-blue-950/30 border border-blue-900/30 p-2.5">
-            <p className="text-blue-400 font-semibold mb-1">Normal Regime</p>
+          <div className="rounded-lg bg-muted/40 border border-border p-2.5">
+            <p className="text-primary font-semibold mb-1">Normal Regime</p>
             <p className="text-slate-400">Bonds negatively correlated with equities (-0.3). Gold and commodities provide diversification. Classic 60/40 portfolio appears resilient.</p>
           </div>
           <div className="rounded-lg bg-red-950/30 border border-red-900/30 p-2.5">
@@ -572,7 +572,7 @@ function HedgingInstrumentsTab() {
               key={i}
               className={cn(
                 "rounded-xl border p-3 cursor-pointer transition-colors",
-                selected === i ? "border-blue-600 bg-blue-950/30" : "border-slate-800 bg-slate-900/30 hover:border-slate-700"
+                selected === i ? "border-primary bg-muted/40" : "border-slate-800 bg-slate-900/30 hover:border-slate-700"
               )}
               onClick={() => setSelected(selected === i ? null : i)}
               whileTap={{ scale: 0.99 }}
@@ -934,14 +934,14 @@ function CostBenefitTab() {
         {[
           {
             title: "Barbell Strategy",
-            color: "border-purple-900/40 bg-purple-950/20",
-            titleColor: "text-purple-300",
+            color: "border-border bg-muted/30",
+            titleColor: "text-primary",
             body: "Taleb's barbell: allocate 85–90% to ultra-safe assets (T-bills, cash) and 10–15% to highly convex speculative positions. Avoid the middle. This way, you can never lose more than ~15% while retaining unlimited upside.",
           },
           {
             title: "Dynamic Hedging (VIX-Timed)",
             color: "border-cyan-900/40 bg-cyan-950/20",
-            titleColor: "text-cyan-300",
+            titleColor: "text-muted-foreground",
             body: "Buy protection when it is cheap (VIX < 15). Roll off expensive hedges when VIX spikes above 30 and fear is already priced in. This reduces annual drag by 30–50% versus static continuous hedging.",
           },
           {
@@ -1167,15 +1167,15 @@ function PortfolioConstructionTab() {
         </div>
         <div className="rounded-xl border border-slate-800 bg-slate-900/40 p-4">
           <div className="flex items-center gap-2 mb-2">
-            <Activity className="h-4 w-4 text-purple-400" />
+            <Activity className="h-4 w-4 text-primary" />
             <h3 className="text-sm font-semibold text-slate-300">Tail-Risk Parity</h3>
           </div>
           <p className="text-xs text-slate-400 leading-relaxed">
-            Traditional risk parity equalizes volatility contributions. Tail-risk parity equalizes the <span className="text-purple-300">Expected Tail Loss (CVaR)</span> contribution of each asset. This results in larger allocations to crisis-resilient assets (Treasuries, gold) and smaller equity exposure than standard risk parity.
+            Traditional risk parity equalizes volatility contributions. Tail-risk parity equalizes the <span className="text-primary">Expected Tail Loss (CVaR)</span> contribution of each asset. This results in larger allocations to crisis-resilient assets (Treasuries, gold) and smaller equity exposure than standard risk parity.
           </p>
           <div className="mt-3 flex gap-2 text-xs">
-            <div className="px-2 py-1 rounded bg-purple-950/40 border border-purple-900/30 text-purple-300">Equities: 25%</div>
-            <div className="px-2 py-1 rounded bg-blue-950/40 border border-blue-900/30 text-blue-300">Bonds: 45%</div>
+            <div className="px-2 py-1 rounded bg-muted/50 border border-border text-primary">Equities: 25%</div>
+            <div className="px-2 py-1 rounded bg-muted/50 border border-border text-primary">Bonds: 45%</div>
             <div className="px-2 py-1 rounded bg-yellow-950/40 border border-yellow-900/30 text-yellow-300">Gold: 20%</div>
             <div className="px-2 py-1 rounded bg-green-950/40 border border-green-900/30 text-green-300">Vol: 10%</div>
           </div>
@@ -1202,7 +1202,7 @@ function PortfolioConstructionTab() {
           ].map((r) => (
             <div key={r.regime} className={cn("flex items-start gap-3 p-2.5 rounded-lg border", {
               "border-green-900/40 bg-green-950/10": r.color === "green",
-              "border-blue-900/40 bg-blue-950/10": r.color === "blue",
+              "border-border bg-muted/20": r.color === "blue",
               "border-yellow-900/40 bg-yellow-950/10": r.color === "yellow",
               "border-orange-900/40 bg-orange-950/10": r.color === "orange",
               "border-red-900/40 bg-red-950/10": r.color === "red",
@@ -1210,14 +1210,14 @@ function PortfolioConstructionTab() {
               <div className="min-w-[120px]">
                 <p className={cn("text-xs font-semibold", {
                   "text-green-400": r.color === "green",
-                  "text-blue-400": r.color === "blue",
+                  "text-primary": r.color === "blue",
                   "text-yellow-400": r.color === "yellow",
                   "text-orange-400": r.color === "orange",
                   "text-red-400": r.color === "red",
                 })}>{r.regime}</p>
                 <span className={cn("text-[11px] px-1 py-0.5 rounded mt-0.5 inline-block font-medium", {
                   "bg-green-900/40 text-green-300": r.color === "green",
-                  "bg-blue-900/40 text-blue-300": r.color === "blue",
+                  "bg-muted/60 text-primary": r.color === "blue",
                   "bg-yellow-900/40 text-yellow-300": r.color === "yellow",
                   "bg-orange-900/40 text-orange-300": r.color === "orange",
                   "bg-red-900/40 text-red-300": r.color === "red",

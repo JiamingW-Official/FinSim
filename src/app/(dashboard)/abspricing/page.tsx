@@ -251,8 +251,8 @@ function ABSStructureTab() {
                       variant="outline"
                       className={cn(
                         "text-xs",
-                        t.rating === "AAA" ? "border-blue-500 text-blue-400" :
-                        t.rating === "AA" ? "border-violet-500 text-violet-400" :
+                        t.rating === "AAA" ? "border-primary text-primary" :
+                        t.rating === "AA" ? "border-primary text-primary" :
                         t.rating === "A" ? "border-amber-500 text-amber-400" :
                         t.rating === "BBB" ? "border-red-500 text-red-400" :
                         "border-gray-500 text-gray-400"
@@ -332,7 +332,7 @@ function ABSStructureTab() {
             <div className="flex justify-between"><span className="text-white/50">Initial Balance</span><span className="text-white">$1.5M</span></div>
             <div className="flex justify-between"><span className="text-white/50">Required Floor</span><span className="text-white">$1.0M (1.0%)</span></div>
             <div className="flex justify-between"><span className="text-white/50">Current Balance</span><span className="text-green-400 font-semibold">$1.48M</span></div>
-            <div className="flex justify-between"><span className="text-white/50">Excess Spread</span><span className="text-blue-400">2.85% p.a.</span></div>
+            <div className="flex justify-between"><span className="text-white/50">Excess Spread</span><span className="text-primary">2.85% p.a.</span></div>
           </div>
         </InfoCard>
       </div>
@@ -405,7 +405,7 @@ function PrepaymentModelsTab() {
       <div className="rounded-xl border border-white/10 bg-white/5 p-4">
         <div className="flex items-center justify-between mb-3">
           <p className="text-sm font-semibold text-white">PSA Prepayment Speed</p>
-          <Badge variant="outline" className="border-blue-500 text-blue-400 text-sm">
+          <Badge variant="outline" className="border-primary text-primary text-sm">
             {psaSpeed} PSA
           </Badge>
         </div>
@@ -434,7 +434,7 @@ function PrepaymentModelsTab() {
           </div>
           <div className="rounded bg-white/5 p-2 text-center">
             <p className="text-white/50">Computed WAL</p>
-            <p className="text-blue-400 font-semibold">{wal.toFixed(2)} yrs</p>
+            <p className="text-primary font-semibold">{wal.toFixed(2)} yrs</p>
           </div>
         </div>
       </div>
@@ -524,7 +524,7 @@ function PrepaymentModelsTab() {
             </thead>
             <tbody>
               {PREPAY_SCENARIOS.map((s, i) => (
-                <tr key={i} className={cn("border-b border-white/5 hover:bg-white/5 transition-colors", s.psa === psaSpeed ? "bg-blue-500/10" : "")}>
+                <tr key={i} className={cn("border-b border-white/5 hover:bg-white/5 transition-colors", s.psa === psaSpeed ? "bg-primary/10" : "")}>
                   <td className="py-2 text-white/90">{s.label}</td>
                   <td className="py-2 text-center text-white/80">{s.psa}</td>
                   <td className="py-2 text-center text-white/80">{s.wal}</td>
@@ -534,7 +534,7 @@ function PrepaymentModelsTab() {
                       {s.yieldPct.toFixed(2)}%
                     </span>
                   </td>
-                  <td className="py-2 text-center text-blue-400">+{Math.round(s.spread ?? (s.yieldPct - 4.5) * 100)}</td>
+                  <td className="py-2 text-center text-primary">+{Math.round(s.spread ?? (s.yieldPct - 4.5) * 100)}</td>
                 </tr>
               ))}
             </tbody>
@@ -611,11 +611,11 @@ function PricingYieldTab() {
       {/* Z-Spread vs OAS */}
       <div className="grid gap-4 sm:grid-cols-3">
         <InfoCard title="Z-Spread">
-          <p className="text-2xl font-bold text-blue-400">+{zSpread.toFixed(0)} bps</p>
+          <p className="text-2xl font-bold text-primary">+{zSpread.toFixed(0)} bps</p>
           <p className="text-xs text-white/50 mt-1">Constant spread over interpolated Treasury curve that equates PV to market price.</p>
         </InfoCard>
         <InfoCard title="Option-Adjusted Spread">
-          <p className="text-2xl font-bold text-violet-400">+{oasAdj.toFixed(0)} bps</p>
+          <p className="text-2xl font-bold text-primary">+{oasAdj.toFixed(0)} bps</p>
           <p className="text-xs text-white/50 mt-1">Z-spread minus embedded option cost (~18 bps for prepayment optionality).</p>
         </InfoCard>
         <InfoCard title="Discount Margin (DM)">
@@ -658,7 +658,7 @@ function PricingYieldTab() {
         </div>
         <div className="mt-4 rounded-lg bg-white/5 p-3 text-center">
           <p className="text-xs text-white/50">Computed Discount Margin</p>
-          <p className={cn("text-3xl font-bold mt-1", dm > margin ? "text-green-400" : dm < margin - 20 ? "text-red-400" : "text-blue-400")}>
+          <p className={cn("text-3xl font-bold mt-1", dm > margin ? "text-green-400" : dm < margin - 20 ? "text-red-400" : "text-primary")}>
             {dm.toFixed(0)} bps
           </p>
           <p className="text-xs text-white/40 mt-1">
@@ -724,7 +724,7 @@ function PricingYieldTab() {
           <InfoCard title="Effective Duration vs Nominal">
             <div className="space-y-2 text-xs">
               <div className="flex justify-between"><span className="text-white/50">Nominal Duration (no prepay)</span><span className="text-white">4.52 yrs</span></div>
-              <div className="flex justify-between"><span className="text-white/50">Effective Duration (150 PSA)</span><span className="text-blue-400 font-semibold">3.18 yrs</span></div>
+              <div className="flex justify-between"><span className="text-white/50">Effective Duration (150 PSA)</span><span className="text-primary font-semibold">3.18 yrs</span></div>
               <div className="flex justify-between"><span className="text-white/50">Extension Risk (50 PSA)</span><span className="text-amber-400">+1.8 yrs</span></div>
               <div className="flex justify-between"><span className="text-white/50">Contraction Risk (700 PSA)</span><span className="text-red-400">-1.9 yrs</span></div>
             </div>
@@ -765,11 +765,11 @@ function CreditEnhancementTab() {
       {/* CE Mechanisms */}
       <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
         {[
-          { icon: Layers, title: "Subordination", desc: "Junior tranches absorb losses before senior classes. Class E (5%) must lose entirely before Class D is touched.", color: "text-blue-400" },
-          { icon: Percent, title: "Excess Spread", desc: "Coupon income > note interest → forms first-loss protection buffer. Currently 2.85% p.a.", color: "text-violet-400" },
+          { icon: Layers, title: "Subordination", desc: "Junior tranches absorb losses before senior classes. Class E (5%) must lose entirely before Class D is touched.", color: "text-primary" },
+          { icon: Percent, title: "Excess Spread", desc: "Coupon income > note interest → forms first-loss protection buffer. Currently 2.85% p.a.", color: "text-primary" },
           { icon: DollarSign, title: "Reserve Account", desc: "Cash reserve of $1.5M held by trustee, funded at closing and replenished from excess spread.", color: "text-emerald-400" },
           { icon: Activity, title: "OC Ratio", desc: "Over-collateralization: pool value exceeds note balance by 5.3%. Trigger at 4% causes lock-out of junior principal.", color: "text-amber-400" },
-          { icon: ShieldCheck, title: "Insurance Wrap", desc: "Third-party financial guarantee covers senior tranche up to 70% LTV; provides AAA floor rating.", color: "text-cyan-400" },
+          { icon: ShieldCheck, title: "Insurance Wrap", desc: "Third-party financial guarantee covers senior tranche up to 70% LTV; provides AAA floor rating.", color: "text-muted-foreground" },
           { icon: BarChart3, title: "Spread Account", desc: "Trap for excess spread if OC ratio falls below trigger. Prevents cash leakage to equity.", color: "text-rose-400" },
         ].map((item, i) => (
           <motion.div
@@ -896,7 +896,7 @@ function CreditEnhancementTab() {
                   <td className="py-2 text-center">
                     <div className="flex items-center justify-center gap-1">
                       <div className="w-16 h-1.5 rounded-full bg-white/10 overflow-hidden">
-                        <div className="h-full rounded-full bg-blue-500" style={{ width: `${(row.avgLoss / 5) * 100}%` }} />
+                        <div className="h-full rounded-full bg-primary" style={{ width: `${(row.avgLoss / 5) * 100}%` }} />
                       </div>
                       <span className="text-white/80">{row.avgLoss.toFixed(1)}%</span>
                     </div>
@@ -934,8 +934,8 @@ export default function ABSPricingPage() {
           className="mb-8"
         >
           <div className="flex items-center gap-3 mb-2">
-            <div className="rounded-lg bg-blue-500/15 p-2">
-              <Layers className="h-6 w-6 text-blue-400" />
+            <div className="rounded-lg bg-primary/15 p-2">
+              <Layers className="h-6 w-6 text-primary" />
             </div>
             <div>
               <h1 className="text-2xl font-bold text-white">Asset-Backed Securities Pricing</h1>

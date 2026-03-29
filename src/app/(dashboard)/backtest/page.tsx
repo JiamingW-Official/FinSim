@@ -240,7 +240,7 @@ export default function BacktestPage() {
   return (
     <div className="flex h-full flex-col">
       {/* Header */}
-      <div className="flex items-center gap-3 border-b border-border bg-card/60 px-6 py-3">
+      <div className="flex items-center gap-3 border-b border-border bg-card/60 px-6 py-4">
         <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-primary/15">
           <FlaskConical className="h-4 w-4 text-primary" />
         </div>
@@ -248,6 +248,9 @@ export default function BacktestPage() {
           <h1 className="text-sm font-semibold text-zinc-100">Strategy Backtester</h1>
           <p className="text-xs text-muted-foreground">Build, test, and optimize on simulated market data</p>
         </div>
+        <span className="ml-4 rounded-full border border-primary/20 bg-primary/5 px-2.5 py-0.5 text-[10px] font-medium text-primary/70">
+          Simulated historical data
+        </span>
         {store.totalBacktestsRun > 0 && (
           <div className="ml-auto flex items-center gap-4 text-xs text-zinc-500">
             <span>{store.totalBacktestsRun} backtests run</span>
@@ -257,14 +260,14 @@ export default function BacktestPage() {
       </div>
 
       {/* Tab Bar */}
-      <div className="flex border-b border-white/5 bg-black/20">
+      <div className="flex border-b border-border/60 bg-card/30">
         {TABS.map((tab) => (
           <button
             key={tab.id}
             onClick={() => setActiveTab(tab.id)}
             className={`px-5 py-2.5 text-xs font-medium transition-colors ${
               activeTab === tab.id
-                ? "border-b-2 border-primary text-orange-400"
+                ? "border-b-2 border-primary text-primary"
                 : "text-zinc-500 hover:text-zinc-300"
             }`}
           >
@@ -294,8 +297,8 @@ export default function BacktestPage() {
 
             {/* Center: Chart + Visual Builder stacked */}
             <div className="flex flex-1 flex-col overflow-hidden">
-              {/* Visual Strategy Builder at top */}
-              <div className="border-b border-white/5 overflow-y-auto" style={{ maxHeight: "50%" }}>
+              {/* Visual Strategy Builder at top — action tier */}
+              <div className="border-b border-border/40 overflow-y-auto" style={{ maxHeight: "50%" }}>
                 <div className="p-4">
                   <VisualStrategyBuilder
                     savedStrategies={visualSavedStrategies}
@@ -340,11 +343,11 @@ export default function BacktestPage() {
           </div>
         )}
 
-        {/* Tab 2: Event Analysis */}
+        {/* Tab 2: Event Analysis — hero tier */}
         {activeTab === "earnings" && (
           <div className="flex flex-1 flex-col overflow-hidden">
             <div className="flex-1 overflow-y-auto p-6">
-              <div className="mx-auto max-w-4xl space-y-4">
+              <div className="mx-auto max-w-4xl space-y-6">
                 <div className="flex items-center justify-between">
                   <div>
                     <h2 className="text-sm font-bold text-zinc-200">Earnings Event Analysis</h2>
@@ -383,7 +386,7 @@ export default function BacktestPage() {
         {activeTab === "walkforward" && (
           <div className="flex flex-1 flex-col overflow-hidden">
             <div className="flex-1 overflow-y-auto p-6">
-              <div className="mx-auto max-w-3xl space-y-2">
+              <div className="mx-auto max-w-3xl space-y-4">
                 <div className="mb-4">
                   <h2 className="text-sm font-bold text-zinc-200">Walk-Forward Analysis</h2>
                   <p className="text-xs text-zinc-500">
@@ -400,7 +403,7 @@ export default function BacktestPage() {
         {activeTab === "optimization" && (
           <div className="flex flex-1 flex-col overflow-hidden">
             <div className="flex-1 overflow-y-auto p-6">
-              <div className="mx-auto max-w-4xl space-y-2">
+              <div className="mx-auto max-w-4xl space-y-4">
                 <div className="mb-4">
                   <h2 className="text-sm font-bold text-zinc-200">Parameter Optimization</h2>
                   <p className="text-xs text-zinc-500">
@@ -445,7 +448,7 @@ function EarningsTickerSelect({
     <select
       value={selected}
       onChange={(e) => onSelect(e.target.value)}
-      className="appearance-none rounded-md border border-white/10 bg-zinc-900 px-3 py-1.5 text-xs text-zinc-200 focus:outline-none focus:ring-1 focus:ring-primary"
+      className="appearance-none rounded-md border border-border bg-card px-3 py-1.5 text-xs text-zinc-200 focus:outline-none focus:ring-1 focus:ring-primary"
     >
       {tickers.map((t) => (
         <option key={t} value={t}>{t}</option>

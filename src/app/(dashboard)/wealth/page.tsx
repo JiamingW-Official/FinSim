@@ -1602,12 +1602,12 @@ function RoadmapTab() {
                 <div className="flex items-center justify-between text-xs">
                   <span className="font-medium">{rec.label}</span>
                   <div className="flex gap-2 text-muted-foreground">
-                    <span className="text-blue-500 font-semibold">{rec.stocks}% stocks</span>
+                    <span className="text-primary font-semibold">{rec.stocks}% stocks</span>
                     <span>{rec.bonds}% bonds</span>
                   </div>
                 </div>
                 <div className="flex h-3 overflow-hidden rounded-full bg-muted">
-                  <div className="h-full bg-blue-500 transition-all" style={{ width: `${rec.stocks}%` }} />
+                  <div className="h-full bg-primary transition-all" style={{ width: `${rec.stocks}%` }} />
                   <div className="h-full bg-amber-500 transition-all" style={{ width: `${rec.bonds}%` }} />
                   <div className="flex-1 bg-emerald-500/40" />
                 </div>
@@ -1615,7 +1615,7 @@ function RoadmapTab() {
               </div>
             ))}
             <div className="flex gap-3 text-xs text-muted-foreground">
-              <div className="flex items-center gap-1"><div className="h-2 w-2 rounded-sm bg-blue-500" /> Stocks</div>
+              <div className="flex items-center gap-1"><div className="h-2 w-2 rounded-sm bg-primary" /> Stocks</div>
               <div className="flex items-center gap-1"><div className="h-2 w-2 rounded-sm bg-amber-500" /> Bonds</div>
               <div className="flex items-center gap-1"><div className="h-2 w-2 rounded-sm bg-emerald-500/40" /> Other/Cash</div>
             </div>

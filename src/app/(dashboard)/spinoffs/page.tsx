@@ -223,9 +223,9 @@ function SpinoffMechanicsTab() {
       id: "pure",
       label: "Pure Spinoff",
       icon: <Scissors className="w-4 h-4" />,
-      color: "text-blue-400",
-      borderColor: "border-blue-500/40",
-      bgColor: "bg-blue-500/10",
+      color: "text-primary",
+      borderColor: "border-primary/40",
+      bgColor: "bg-primary/10",
       description:
         "Parent distributes 100% of subsidiary shares to existing shareholders as a dividend. No cash changes hands. Subsidiary becomes fully independent.",
       taxTreatment: "Tax-free under IRC Section 355 if requirements met",
@@ -306,7 +306,7 @@ function SpinoffMechanicsTab() {
 
   const spinoffReasons = [
     {
-      icon: <Target className="w-4 h-4 text-blue-400" />,
+      icon: <Target className="w-4 h-4 text-primary" />,
       title: "Conglomerate Discount",
       desc: "Diversified conglomerates often trade at 10–20% below sum-of-parts value. Separating units unlocks this trapped value.",
     },
@@ -321,7 +321,7 @@ function SpinoffMechanicsTab() {
       desc: "Antitrust regulators may require divestiture. Spinoffs are often cleaner than asset sales from a tax and continuity perspective.",
     },
     {
-      icon: <TrendingUp className="w-4 h-4 text-purple-400" />,
+      icon: <TrendingUp className="w-4 h-4 text-primary" />,
       title: "Valuation Arbitrage",
       desc: "High-growth unit trapped in low-multiple conglomerate. Independent listing attracts sector-specific investors and analysts.",
     },
@@ -411,8 +411,8 @@ function SpinoffMechanicsTab() {
                     </div>
 
                     <div className="flex items-center gap-2 text-xs text-white/50">
-                      <Info className="w-3.5 h-3.5 text-blue-400" />
-                      <span className="text-blue-400 font-medium">Tax:</span>
+                      <Info className="w-3.5 h-3.5 text-primary" />
+                      <span className="text-primary font-medium">Tax:</span>
                       {tx.taxTreatment}
                     </div>
                   </div>
@@ -562,7 +562,7 @@ function ShareholderDistributionSVG() {
   return (
     <div className="rounded-xl border border-white/10 bg-white/5 p-5">
       <h3 className="text-sm font-semibold text-white mb-3 flex items-center gap-2">
-        <Info className="w-4 h-4 text-blue-400" />
+        <Info className="w-4 h-4 text-primary" />
         Shareholder Distribution Timeline
       </h3>
       <svg viewBox={`0 0 ${W} ${H}`} className="w-full" style={{ height: 100 }}>
@@ -894,9 +894,9 @@ function HistoricalPerformanceTab() {
           <div className="text-xs text-emerald-400 mb-1">Avg SpinCo 1Y Return</div>
           <div className="text-2xl font-bold text-emerald-400">+{avgSpinoff1Y.toFixed(1)}%</div>
         </div>
-        <div className="rounded-xl border border-blue-500/30 bg-blue-500/10 p-4 text-center">
-          <div className="text-xs text-blue-400 mb-1">Avg Parent 1Y Return</div>
-          <div className="text-2xl font-bold text-blue-400">+{avgParent1Y.toFixed(1)}%</div>
+        <div className="rounded-xl border border-border bg-primary/10 p-4 text-center">
+          <div className="text-xs text-primary mb-1">Avg Parent 1Y Return</div>
+          <div className="text-2xl font-bold text-primary">+{avgParent1Y.toFixed(1)}%</div>
         </div>
         <div className="rounded-xl border border-white/10 bg-white/5 p-4 text-center">
           <div className="text-xs text-white/40 mb-1">Avg S&P 500 1Y</div>
@@ -931,7 +931,7 @@ function HistoricalPerformanceTab() {
                 return (
                   <tr key={i} className="border-b border-white/5 hover:bg-white/5 transition-colors">
                     <td className="px-4 py-3">
-                      <div className="text-white/90 font-medium">{row.parent} → <span className="text-blue-400">{row.spinoff}</span></div>
+                      <div className="text-white/90 font-medium">{row.parent} → <span className="text-primary">{row.spinoff}</span></div>
                       <div className="text-white/30 mt-0.5">{row.parentTicker} → {row.spinoffTicker}</div>
                     </td>
                     <td className="text-center px-3 py-3 text-white/60">{row.year}</td>
@@ -944,7 +944,7 @@ function HistoricalPerformanceTab() {
                       </span>
                     </td>
                     <td className="text-center px-3 py-3">
-                      <span className={cn("text-white/60", row.parent1Y >= 0 ? "text-blue-300" : "text-red-300")}>
+                      <span className={cn("text-white/60", row.parent1Y >= 0 ? "text-primary" : "text-red-300")}>
                         {row.parent1Y >= 0 ? "+" : ""}{row.parent1Y.toFixed(1)}%
                       </span>
                     </td>
@@ -1048,7 +1048,7 @@ function InvestingStrategyTab() {
       desc: "Index funds and ETFs that held the parent must sell spinoff shares if it does not qualify for their mandate. This creates artificial selling pressure — a buying opportunity for active investors.",
     },
     {
-      icon: <BarChart2 className="w-4 h-4 text-blue-400" />,
+      icon: <BarChart2 className="w-4 h-4 text-primary" />,
       title: "Complexity Discount",
       desc: "Analysts covering the parent rarely follow the spinoff initially. Low coverage means mispricing. As dedicated analysts initiate, the information gap closes and valuation re-rates.",
     },
@@ -1058,7 +1058,7 @@ function InvestingStrategyTab() {
       desc: "Leadership teams freed from corporate politics can allocate capital optimally. Management typically receives spinoff equity compensation, aligning incentives sharply.",
     },
     {
-      icon: <Scissors className="w-4 h-4 text-purple-400" />,
+      icon: <Scissors className="w-4 h-4 text-primary" />,
       title: "Hidden Jewels",
       desc: "Small units buried in large conglomerates may have best-in-class economics invisible to investors. Separation unlocks sector-specific multiple expansion.",
     },
@@ -1129,12 +1129,12 @@ function InvestingStrategyTab() {
           {timingStrategies.map((strat, i) => {
             const colorMap: Record<string, string> = {
               emerald: "border-emerald-500/30 bg-emerald-500/5",
-              blue: "border-blue-500/30 bg-blue-500/5",
+              blue: "border-border bg-primary/5",
               amber: "border-amber-500/30 bg-amber-500/5",
             };
             const labelMap: Record<string, string> = {
               emerald: "text-emerald-400",
-              blue: "text-blue-400",
+              blue: "text-primary",
               amber: "text-amber-400",
             };
             return (
@@ -1281,8 +1281,8 @@ export default function SpinoffsPage() {
         {/* Header */}
         <div className="mb-8">
           <div className="flex items-center gap-3 mb-2">
-            <div className="w-9 h-9 rounded-xl bg-blue-500/20 border border-blue-500/30 flex items-center justify-center">
-              <Scissors className="w-5 h-5 text-blue-400" />
+            <div className="w-9 h-9 rounded-xl bg-primary/20 border border-border flex items-center justify-center">
+              <Scissors className="w-5 h-5 text-primary" />
             </div>
             <div>
               <h1 className="text-2xl font-bold text-white">Corporate Spinoffs & Restructuring</h1>

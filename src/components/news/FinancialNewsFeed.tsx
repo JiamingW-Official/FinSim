@@ -398,10 +398,10 @@ function ArticleCard({ article }: { article: Article }) {
   }[article.sentiment];
 
   const categoryColor: Record<ArticleCategory, string> = {
-    Macro: "bg-blue-500/15 text-blue-400 border-blue-500/30",
+    Macro: "bg-primary/15 text-primary border-border",
     Equities: "bg-emerald-500/15 text-emerald-400 border-emerald-500/30",
     Bonds: "bg-amber-500/15 text-amber-400 border-amber-500/30",
-    Crypto: "bg-purple-500/15 text-purple-400 border-purple-500/30",
+    Crypto: "bg-primary/15 text-primary border-border",
     Options: "bg-orange-500/15 text-orange-400 border-orange-500/30",
   };
 
@@ -819,11 +819,11 @@ function SocialSentimentPulse({ data }: { data: SocialTicker[] }) {
     <div className="space-y-2">
       <div className="flex items-center gap-4 mb-3">
         <div className="flex items-center gap-1.5">
-          <div className="w-6 h-0.5 bg-blue-500" />
+          <div className="w-6 h-0.5 bg-primary" />
           <span className="text-xs text-muted-foreground">Price</span>
         </div>
         <div className="flex items-center gap-1.5">
-          <div className="w-6 h-0.5 bg-purple-500 border-dashed border-t" style={{ borderStyle: "dashed" }} />
+          <div className="w-6 h-0.5 bg-primary border-dashed border-t" style={{ borderStyle: "dashed" }} />
           <span className="text-xs text-muted-foreground">Social Sentiment</span>
         </div>
       </div>

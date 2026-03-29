@@ -409,12 +409,12 @@ function StatChip({
   color?: "blue" | "green" | "purple" | "amber" | "red" | "cyan";
 }) {
   const colors = {
-    blue: "bg-blue-500/10 border-blue-500/30 text-blue-400",
+    blue: "bg-primary/10 border-border text-primary",
     green: "bg-green-500/10 border-green-500/30 text-green-400",
-    purple: "bg-purple-500/10 border-purple-500/30 text-purple-400",
+    purple: "bg-primary/10 border-border text-primary",
     amber: "bg-amber-500/10 border-amber-500/30 text-amber-400",
     red: "bg-red-500/10 border-red-500/30 text-red-400",
-    cyan: "bg-cyan-500/10 border-cyan-500/30 text-cyan-400",
+    cyan: "bg-cyan-500/10 border-cyan-500/30 text-muted-foreground",
   };
   return (
     <div className={cn("border rounded-lg px-3 py-2 text-center", colors[color])}>
@@ -599,7 +599,7 @@ function IPOTimelineTab() {
           className="flex items-center justify-between w-full text-sm font-semibold text-white/80"
         >
           <span className="flex items-center gap-2">
-            <FileText className="w-4 h-4 text-blue-400" />
+            <FileText className="w-4 h-4 text-primary" />
             S-1 Registration Statement — Key Sections Explainer
           </span>
           <ChevronDown className={cn("w-4 h-4 text-white/40 transition-transform", showS1 && "rotate-180")} />
@@ -617,7 +617,7 @@ function IPOTimelineTab() {
                 {S1_SECTIONS.map((sec) => (
                   <div key={sec.item} className="bg-white/3 border border-white/8 rounded-lg p-3">
                     <div className="flex items-center gap-2 mb-1">
-                      <span className="text-xs font-mono text-blue-400">{sec.item}</span>
+                      <span className="text-xs font-mono text-primary">{sec.item}</span>
                       <span className="text-xs font-semibold text-white/90">{sec.title}</span>
                     </div>
                     <p className="text-xs text-white/55 leading-relaxed">{sec.description}</p>
@@ -713,7 +713,7 @@ function BookBuildingTab() {
             className={cn(
               "flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-medium border transition-all",
               activeSection === id
-                ? "bg-blue-500/20 border-blue-500/50 text-blue-300"
+                ? "bg-primary/20 border-primary/50 text-primary"
                 : "bg-white/3 border-white/10 text-white/50 hover:text-white/80"
             )}
           >
@@ -801,7 +801,7 @@ function BookBuildingTab() {
                       { phase: "Allocation", desc: "Bookrunner allocates shares discretionarily: reward long-term holders, penalize flippers. Institutional investors get 80–95%; retail gets 5–20%." },
                     ].map((p, i) => (
                       <div key={i} className="flex gap-3">
-                        <div className="w-5 h-5 rounded-full bg-blue-500/20 text-blue-400 text-xs flex items-center justify-center flex-shrink-0 mt-0.5">
+                        <div className="w-5 h-5 rounded-full bg-primary/20 text-primary text-xs flex items-center justify-center flex-shrink-0 mt-0.5">
                           {i + 1}
                         </div>
                         <div>
@@ -824,22 +824,22 @@ function BookBuildingTab() {
                   <StatChip label="Anchor Investors" value="20–30%" color="amber" />
                 </div>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                  <div className="bg-blue-500/5 border border-blue-500/15 rounded-lg p-4">
-                    <div className="text-xs font-semibold text-blue-400 mb-2">Institutional Advantages</div>
+                  <div className="bg-primary/5 border border-border rounded-lg p-4">
+                    <div className="text-xs font-semibold text-primary mb-2">Institutional Advantages</div>
                     <ul className="space-y-1 text-xs text-white/60">
-                      <li className="flex items-start gap-1.5"><CheckCircle2 className="w-3 h-3 text-blue-400 mt-0.5" />Priority allocation in hot deals</li>
-                      <li className="flex items-start gap-1.5"><CheckCircle2 className="w-3 h-3 text-blue-400 mt-0.5" />Can indicate at IPO price (firm commitment)</li>
-                      <li className="flex items-start gap-1.5"><CheckCircle2 className="w-3 h-3 text-blue-400 mt-0.5" />Access to management roadshow 1-on-1s</li>
-                      <li className="flex items-start gap-1.5"><CheckCircle2 className="w-3 h-3 text-blue-400 mt-0.5" />Receive analyst research before quiet period ends</li>
+                      <li className="flex items-start gap-1.5"><CheckCircle2 className="w-3 h-3 text-primary mt-0.5" />Priority allocation in hot deals</li>
+                      <li className="flex items-start gap-1.5"><CheckCircle2 className="w-3 h-3 text-primary mt-0.5" />Can indicate at IPO price (firm commitment)</li>
+                      <li className="flex items-start gap-1.5"><CheckCircle2 className="w-3 h-3 text-primary mt-0.5" />Access to management roadshow 1-on-1s</li>
+                      <li className="flex items-start gap-1.5"><CheckCircle2 className="w-3 h-3 text-primary mt-0.5" />Receive analyst research before quiet period ends</li>
                     </ul>
                   </div>
-                  <div className="bg-purple-500/5 border border-purple-500/15 rounded-lg p-4">
-                    <div className="text-xs font-semibold text-purple-400 mb-2">Retail Options</div>
+                  <div className="bg-primary/5 border border-border rounded-lg p-4">
+                    <div className="text-xs font-semibold text-primary mb-2">Retail Options</div>
                     <ul className="space-y-1 text-xs text-white/60">
-                      <li className="flex items-start gap-1.5"><ArrowRight className="w-3 h-3 text-purple-400 mt-0.5" />Directed Share Programs (employees, customers)</li>
-                      <li className="flex items-start gap-1.5"><ArrowRight className="w-3 h-3 text-purple-400 mt-0.5" />Broker IPO allocations (Schwab, Fidelity, TD)</li>
-                      <li className="flex items-start gap-1.5"><ArrowRight className="w-3 h-3 text-purple-400 mt-0.5" />Retail platforms: IBKR, Robinhood (select deals)</li>
-                      <li className="flex items-start gap-1.5"><ArrowRight className="w-3 h-3 text-purple-400 mt-0.5" />Reddit-style allocation (RDDT precedent)</li>
+                      <li className="flex items-start gap-1.5"><ArrowRight className="w-3 h-3 text-primary mt-0.5" />Directed Share Programs (employees, customers)</li>
+                      <li className="flex items-start gap-1.5"><ArrowRight className="w-3 h-3 text-primary mt-0.5" />Broker IPO allocations (Schwab, Fidelity, TD)</li>
+                      <li className="flex items-start gap-1.5"><ArrowRight className="w-3 h-3 text-primary mt-0.5" />Retail platforms: IBKR, Robinhood (select deals)</li>
+                      <li className="flex items-start gap-1.5"><ArrowRight className="w-3 h-3 text-primary mt-0.5" />Reddit-style allocation (RDDT precedent)</li>
                     </ul>
                   </div>
                 </div>
@@ -1066,7 +1066,7 @@ function BookBuildingTab() {
                         <div key={r.role} className="bg-white/3 border border-white/8 rounded-lg p-3">
                           <div className="flex justify-between items-center mb-1">
                             <span className="text-xs font-medium text-white/80">{r.role}</span>
-                            <span className="text-xs text-blue-400">{r.share}</span>
+                            <span className="text-xs text-primary">{r.share}</span>
                           </div>
                           <p className="text-xs text-white/50">{r.desc}</p>
                         </div>
@@ -1288,7 +1288,7 @@ function MarketAnalysisTab() {
                 <div className="flex-1 flex items-center gap-2">
                   <div className="w-12 text-xs text-white/40 text-right">2021:</div>
                   <div className="flex-1 bg-white/5 rounded-full h-2">
-                    <div className="h-2 rounded-full bg-blue-500/50" style={{ width: `${row.pct2021}%` }} />
+                    <div className="h-2 rounded-full bg-primary/50" style={{ width: `${row.pct2021}%` }} />
                   </div>
                   <div className="w-8 text-xs text-white/60">{row.pct2021}%</div>
                 </div>
@@ -1317,8 +1317,8 @@ function MarketAnalysisTab() {
               { rule: "Pre-Filing Quiet Period", desc: "Once the S-1 is filed, company executives cannot make public statements beyond the prospectus that might condition the market (gun-jumping rules).", type: "pre" },
               { rule: "Gun-Jumping Risk", desc: "Pre-S-1 press releases, CEO speeches, or interviews can constitute 'conditioning the market' — SEC can delay registration as a penalty.", type: "pre" },
             ].map((r) => (
-              <div key={r.rule} className={cn("rounded-lg p-3 border text-xs", r.type === "post" ? "bg-blue-500/5 border-blue-500/15" : "bg-amber-500/5 border-amber-500/15")}>
-                <div className={cn("font-semibold mb-1", r.type === "post" ? "text-blue-400" : "text-amber-400")}>{r.rule}</div>
+              <div key={r.rule} className={cn("rounded-lg p-3 border text-xs", r.type === "post" ? "bg-primary/5 border-border" : "bg-amber-500/5 border-amber-500/15")}>
+                <div className={cn("font-semibold mb-1", r.type === "post" ? "text-primary" : "text-amber-400")}>{r.rule}</div>
                 <p className="text-white/60 leading-relaxed">{r.desc}</p>
               </div>
             ))}
@@ -1354,18 +1354,18 @@ function AlternativesTab() {
             <thead>
               <tr className="border-b border-white/8 bg-white/3">
                 <th className="px-4 py-2.5 text-left text-white/50 w-36">Dimension</th>
-                <th className="px-3 py-2.5 text-left text-blue-400/80">Traditional IPO</th>
+                <th className="px-3 py-2.5 text-left text-primary">Traditional IPO</th>
                 <th className="px-3 py-2.5 text-left text-green-400/80">Direct Listing</th>
-                <th className="px-3 py-2.5 text-left text-purple-400/80">SPAC</th>
+                <th className="px-3 py-2.5 text-left text-primary">SPAC</th>
               </tr>
             </thead>
             <tbody>
               {COMPARISON_DIMENSIONS.map((dim, i) => {
                 const isSelected = selectedDim === i;
                 const advColors: Record<ComparisonDimension["advantage"], string> = {
-                  traditional: "bg-blue-500/15",
+                  traditional: "bg-primary/15",
                   direct: "bg-green-500/15",
-                  spac: "bg-purple-500/15",
+                  spac: "bg-primary/15",
                   neutral: "",
                 };
                 return (
@@ -1376,7 +1376,7 @@ function AlternativesTab() {
                   >
                     <td className="px-4 py-2.5 font-medium text-white/80">{dim.dimension}</td>
                     <td className={cn("px-3 py-2.5 text-white/65", dim.advantage === "traditional" && advColors.traditional)}>
-                      {dim.advantage === "traditional" && <CheckCircle2 className="w-3 h-3 text-blue-400 inline mr-1" />}
+                      {dim.advantage === "traditional" && <CheckCircle2 className="w-3 h-3 text-primary inline mr-1" />}
                       {dim.traditional}
                     </td>
                     <td className={cn("px-3 py-2.5 text-white/65", dim.advantage === "direct" && advColors.direct)}>
@@ -1384,7 +1384,7 @@ function AlternativesTab() {
                       {dim.directListing}
                     </td>
                     <td className={cn("px-3 py-2.5 text-white/65", dim.advantage === "spac" && advColors.spac)}>
-                      {dim.advantage === "spac" && <CheckCircle2 className="w-3 h-3 text-purple-400 inline mr-1" />}
+                      {dim.advantage === "spac" && <CheckCircle2 className="w-3 h-3 text-primary inline mr-1" />}
                       {dim.spac}
                     </td>
                   </tr>
@@ -1457,7 +1457,7 @@ function AlternativesTab() {
       {/* SPAC Structure SVG */}
       <div className="bg-[#0f1117] border border-white/10 rounded-xl p-5">
         <h3 className="text-sm font-semibold text-white/80 mb-4 flex items-center gap-2">
-          <Layers className="w-4 h-4 text-purple-400" />
+          <Layers className="w-4 h-4 text-primary" />
           SPAC Structure & De-SPAC Transaction
         </h3>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -1530,7 +1530,7 @@ function AlternativesTab() {
                   { step: "Merger Close + Listing", desc: "SPAC ticker changes to target ticker. Founder shares become registered. Warrants become exercisable." },
                 ].map((s, i) => (
                   <div key={i} className="flex gap-3">
-                    <span className="w-5 h-5 rounded-full bg-purple-500/20 text-purple-400 text-xs flex items-center justify-center flex-shrink-0 mt-0.5 font-bold">{i + 1}</span>
+                    <span className="w-5 h-5 rounded-full bg-primary/20 text-primary text-xs flex items-center justify-center flex-shrink-0 mt-0.5 font-bold">{i + 1}</span>
                     <div>
                       <div className="text-xs font-semibold text-white/80">{s.step}</div>
                       <p className="text-xs text-white/55 leading-relaxed">{s.desc}</p>
@@ -1632,8 +1632,8 @@ export default function IPOMechanicsPage() {
       {/* Page Header */}
       <div className="mb-6">
         <div className="flex items-center gap-3 mb-2">
-          <div className="w-9 h-9 rounded-xl bg-blue-500/20 border border-blue-500/30 flex items-center justify-center">
-            <Building2 className="w-5 h-5 text-blue-400" />
+          <div className="w-9 h-9 rounded-xl bg-primary/20 border border-border flex items-center justify-center">
+            <Building2 className="w-5 h-5 text-primary" />
           </div>
           <div>
             <h1 className="text-xl font-bold text-white">IPO Mechanics Deep Dive</h1>
@@ -1651,19 +1651,19 @@ export default function IPOMechanicsPage() {
       {/* Tabs */}
       <Tabs defaultValue="timeline">
         <TabsList className="bg-white/5 border border-white/10 mb-5 flex-wrap h-auto gap-1 p-1">
-          <TabsTrigger value="timeline" className="data-[state=active]:bg-blue-500/20 data-[state=active]:text-blue-300 text-white/50 text-xs px-3 py-1.5">
+          <TabsTrigger value="timeline" className="data-[state=active]:bg-primary/20 data-[state=active]:text-primary text-white/50 text-xs px-3 py-1.5">
             <Calendar className="w-3.5 h-3.5 mr-1.5" />
             IPO Timeline
           </TabsTrigger>
-          <TabsTrigger value="bookbuilding" className="data-[state=active]:bg-blue-500/20 data-[state=active]:text-blue-300 text-white/50 text-xs px-3 py-1.5">
+          <TabsTrigger value="bookbuilding" className="data-[state=active]:bg-primary/20 data-[state=active]:text-primary text-white/50 text-xs px-3 py-1.5">
             <BookOpen className="w-3.5 h-3.5 mr-1.5" />
             Book Building & Pricing
           </TabsTrigger>
-          <TabsTrigger value="analysis" className="data-[state=active]:bg-blue-500/20 data-[state=active]:text-blue-300 text-white/50 text-xs px-3 py-1.5">
+          <TabsTrigger value="analysis" className="data-[state=active]:bg-primary/20 data-[state=active]:text-primary text-white/50 text-xs px-3 py-1.5">
             <BarChart3 className="w-3.5 h-3.5 mr-1.5" />
             Market Analysis
           </TabsTrigger>
-          <TabsTrigger value="alternatives" className="data-[state=active]:bg-blue-500/20 data-[state=active]:text-blue-300 text-white/50 text-xs px-3 py-1.5">
+          <TabsTrigger value="alternatives" className="data-[state=active]:bg-primary/20 data-[state=active]:text-primary text-white/50 text-xs px-3 py-1.5">
             <Layers className="w-3.5 h-3.5 mr-1.5" />
             Alternatives
           </TabsTrigger>

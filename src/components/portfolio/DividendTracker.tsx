@@ -77,7 +77,7 @@ function DividendRow({
         ${annualIncome.toFixed(0)}
       </td>
       <td className="py-2 px-1 text-center">
-        <span className="text-xs px-1.5 py-0.5 rounded bg-blue-500/10 text-blue-400">
+        <span className="text-xs px-1.5 py-0.5 rounded bg-primary/10 text-primary">
           {nextExDiv}
         </span>
       </td>
@@ -290,7 +290,7 @@ export function DividendTracker() {
         {[
           { label: "Annual Income", value: `$${totalAnnualIncome.toFixed(0)}`, color: "text-emerald-400" },
           { label: "Monthly Income", value: `$${monthlyIncome.toFixed(0)}`, color: "text-foreground" },
-          { label: "Portfolio Yield", value: `${portfolioYield.toFixed(2)}%`, color: "text-blue-400" },
+          { label: "Portfolio Yield", value: `${portfolioYield.toFixed(2)}%`, color: "text-primary" },
           { label: "Quarterly", value: `$${quarterlyIncome.toFixed(0)}`, color: "text-foreground" },
         ].map((s) => (
           <div key={s.label} className="space-y-0.5">

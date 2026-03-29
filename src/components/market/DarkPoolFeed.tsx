@@ -32,7 +32,7 @@ function SignificanceBadge({
 }) {
   const styles = {
     routine: "bg-muted text-muted-foreground",
-    notable: "bg-blue-500/10 text-blue-500",
+    notable: "bg-primary/10 text-primary",
     unusual: "bg-amber-500/10 text-amber-500",
     massive: "bg-red-500/10 text-red-500",
   };

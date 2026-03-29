@@ -66,7 +66,7 @@ function StatCard({
     amber: "text-amber-400",
     sky: "text-sky-400",
     red: "text-red-400",
-    violet: "text-violet-400",
+    violet: "text-primary",
   };
   return (
     <div className="bg-white/5 rounded-lg p-3 flex flex-col gap-1">
@@ -675,9 +675,9 @@ function LettersOfCreditTab() {
                   {sec.content.map((item) => (
                     <div
                       key={item.term}
-                      className="border-l-2 border-violet-500/40 pl-3"
+                      className="border-l-2 border-primary/40 pl-3"
                     >
-                      <div className="text-xs font-semibold text-violet-300">
+                      <div className="text-xs font-semibold text-primary">
                         {item.term}
                       </div>
                       <div className="text-xs text-white/55 mt-0.5">
@@ -1689,7 +1689,7 @@ function DocumentaryCollectionsTab() {
                 <span className="text-white/50">{t.transfer}</span>
                 <span
                   className={cn(
-                    t.mode === "Sea" ? "text-blue-400" : "text-white/50"
+                    t.mode === "Sea" ? "text-primary" : "text-white/50"
                   )}
                 >
                   {t.mode}
@@ -2347,7 +2347,7 @@ function FintechDigitalTab() {
               },
             ].map((item) => (
               <div key={item.platform} className="bg-white/5 rounded-lg p-3">
-                <div className="text-xs font-semibold text-violet-300 mb-1">
+                <div className="text-xs font-semibold text-primary mb-1">
                   {item.platform}
                 </div>
                 <div className="text-xs text-white/50">{item.capability}</div>
@@ -2386,7 +2386,7 @@ function FintechDigitalTab() {
               sky: "border-sky-500/30 text-sky-300",
               emerald: "border-emerald-500/30 text-emerald-300",
               amber: "border-amber-500/30 text-amber-300",
-              violet: "border-violet-500/30 text-violet-300",
+              violet: "border-border text-primary",
             };
             return (
               <div

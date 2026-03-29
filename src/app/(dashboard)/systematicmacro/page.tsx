@@ -702,8 +702,8 @@ export default function SystematicMacroPage() {
               <CardContent>
                 <div className="space-y-3">
                   {[
-                    { label: "FX", pct: 28, color: "bg-blue-500" },
-                    { label: "Rates", pct: 22, color: "bg-violet-500" },
+                    { label: "FX", pct: 28, color: "bg-primary" },
+                    { label: "Rates", pct: 22, color: "bg-primary" },
                     { label: "Equity", pct: 31, color: "bg-green-500" },
                     { label: "Commodities", pct: 19, color: "bg-amber-500" },
                   ].map((item, i) => (

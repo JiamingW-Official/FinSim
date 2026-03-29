@@ -290,7 +290,7 @@ function generateConvertibleBonds(): ConvertibleBond[] {
 function StatusBadge({ status }: { status: SpacStatus }) {
   const cfg = {
     "Pre-deal": "bg-slate-500/20 text-slate-400 border-slate-500/30",
-    "Announced": "bg-blue-500/20 text-blue-400 border-blue-500/30",
+    "Announced": "bg-primary/20 text-primary border-border",
     "Voting": "bg-amber-500/20 text-amber-400 border-amber-500/30",
     "Completed": "bg-green-500/20 text-green-400 border-green-500/30",
   }[status];
@@ -314,7 +314,7 @@ function StatusBadge({ status }: { status: SpacStatus }) {
 function DeltaBadge({ delta }: { delta: number }) {
   const color =
     delta >= 0.7 ? "bg-green-500/20 text-green-400 border-green-500/30" :
-    delta >= 0.4 ? "bg-blue-500/20 text-blue-400 border-blue-500/30" :
+    delta >= 0.4 ? "bg-primary/20 text-primary border-border" :
     delta >= 0.2 ? "bg-amber-500/20 text-amber-400 border-amber-500/30" :
     "bg-slate-500/20 text-slate-400 border-slate-500/30";
   return (
@@ -350,7 +350,7 @@ function SpacDetailPanel({ spac, onClose }: { spac: SPAC; onClose: () => void })
       {/* Trust floor indicator */}
       <div className="mb-3 rounded-lg border border-border/50 bg-background/50 p-3">
         <div className="mb-2 flex items-center gap-1.5">
-          <Shield className="h-3.5 w-3.5 text-blue-400" />
+          <Shield className="h-3.5 w-3.5 text-primary" />
           <span className="text-xs font-semibold text-foreground">Trust Floor Safety</span>
         </div>
         <div className="grid grid-cols-3 gap-2">
@@ -420,8 +420,8 @@ function SpacDetailPanel({ spac, onClose }: { spac: SPAC; onClose: () => void })
       </div>
 
       {/* Redemption option */}
-      <div className="rounded-lg border border-blue-500/20 bg-blue-500/5 p-3">
-        <p className="mb-1.5 flex items-center gap-1.5 text-xs font-semibold text-blue-400">
+      <div className="rounded-lg border border-border bg-primary/5 p-3">
+        <p className="mb-1.5 flex items-center gap-1.5 text-xs font-semibold text-primary">
           <Shield className="h-3 w-3" /> Redemption Right
         </p>
         <p className="text-xs leading-relaxed text-foreground/70">
@@ -519,7 +519,7 @@ function BondDetailPanel({ bond, onClose }: { bond: ConvertibleBond; onClose: ()
             <span className="text-foreground/80">{bond.callProvision}</span>
           </div>
           <div className="flex items-start gap-1.5">
-            <span className="mt-0.5 text-blue-400">Put:</span>
+            <span className="mt-0.5 text-primary">Put:</span>
             <span className="text-foreground/80">{bond.putProvision}</span>
           </div>
         </div>
@@ -532,13 +532,13 @@ function BondDetailPanel({ bond, onClose }: { bond: ConvertibleBond; onClose: ()
         </p>
         <div className="mb-1.5 h-2 w-full rounded-full bg-slate-700">
           <div
-            className="h-2 rounded-full bg-blue-500 transition-all"
+            className="h-2 rounded-full bg-primary transition-all"
             style={{ width: `${bond.delta * 100}%` }}
           />
         </div>
         <div className="flex justify-between text-xs text-muted-foreground">
           <span>0 (Pure Bond)</span>
-          <span className="font-semibold text-blue-400">{bond.delta.toFixed(2)}</span>
+          <span className="font-semibold text-primary">{bond.delta.toFixed(2)}</span>
           <span>1 (Equity-like)</span>
         </div>
         <p className="mt-2 text-xs text-muted-foreground/70">
@@ -793,13 +793,13 @@ function SpacArbCalculatorTab() {
   return (
     <div className="mx-auto max-w-2xl space-y-4 p-4">
       {/* Educational callout */}
-      <div className="rounded-lg border border-blue-500/30 bg-blue-500/10 p-4">
+      <div className="rounded-lg border border-border bg-primary/10 p-4">
         <div className="mb-2 flex items-center gap-2">
-          <BookOpen className="h-4 w-4 text-blue-400" />
-          <span className="text-sm font-semibold text-blue-300">SPAC Arb Thesis</span>
+          <BookOpen className="h-4 w-4 text-primary" />
+          <span className="text-sm font-semibold text-primary">SPAC Arb Thesis</span>
         </div>
         <p className="text-xs leading-relaxed text-foreground/80">
-          SPAC arbitrage exploits the asymmetric return profile: <strong className="text-blue-300">downside is protected by the trust value</strong> (you can redeem at NAV),
+          SPAC arbitrage exploits the asymmetric return profile: <strong className="text-primary">downside is protected by the trust value</strong> (you can redeem at NAV),
           while upside comes from a successful deal announcement. Investors buy SPACs trading near trust value,
           collect the T-bill rate while waiting, and profit if a deal is announced above NAV. The warrant sweetener
           provides additional free upside optionality.
@@ -850,7 +850,7 @@ function SpacArbCalculatorTab() {
             {
               label: "Warrant Upside Estimate",
               value: `${results.warrantUpside.toFixed(2)}%`,
-              color: "text-blue-400",
+              color: "text-primary",
               icon: TrendingUp,
             },
             {
@@ -883,7 +883,7 @@ function SpacArbCalculatorTab() {
         />
         <div className="mt-2 flex gap-4 text-xs text-muted-foreground">
           <span className="flex items-center gap-1"><span className="inline-block h-2 w-4 rounded bg-green-500" /> Payoff</span>
-          <span className="flex items-center gap-1"><span className="inline-block h-0.5 w-4 border-t border-dashed border-blue-400" /> Trust Floor</span>
+          <span className="flex items-center gap-1"><span className="inline-block h-0.5 w-4 border-t border-dashed border-primary" /> Trust Floor</span>
           <span className="flex items-center gap-1"><span className="inline-block h-0.5 w-4 border-t border-dashed border-amber-400" /> Entry Price</span>
         </div>
       </div>

@@ -143,7 +143,7 @@ const CYCLE_MATRIX: Record<SectorName, [PhasePerf, PhasePerf, PhasePerf, PhasePe
 function phasePerfColor(p: PhasePerf): string {
   switch (p) {
     case "strong":   return "bg-emerald-500/25 text-emerald-300";
-    case "moderate": return "bg-blue-500/20 text-blue-300";
+    case "moderate": return "bg-primary/20 text-primary";
     case "weak":     return "bg-muted/30 text-muted-foreground";
     case "negative": return "bg-red-500/20 text-red-400";
   }
@@ -545,7 +545,7 @@ function CyclePerformanceMatrix() {
       </table>
       <div className="flex gap-3 px-4 py-2 text-xs text-muted-foreground border-t border-border/20">
         <span className="flex items-center gap-1"><span className="inline-block h-2 w-4 rounded bg-emerald-500/25" /> Strong</span>
-        <span className="flex items-center gap-1"><span className="inline-block h-2 w-4 rounded bg-blue-500/20" /> Moderate</span>
+        <span className="flex items-center gap-1"><span className="inline-block h-2 w-4 rounded bg-primary/20" /> Moderate</span>
         <span className="flex items-center gap-1"><span className="inline-block h-2 w-4 rounded bg-muted/30" /> Weak</span>
         <span className="flex items-center gap-1"><span className="inline-block h-2 w-4 rounded bg-red-500/20" /> Negative</span>
         <span className="ml-auto">* Current phase</span>
@@ -643,7 +643,7 @@ function RSMomentumMatrix({ ranked }: { ranked: SectorRS[] }) {
   const quadrants = [
     { label: "Leading",    desc: "Above 1.0 + Rising",  above1: true,  rising: true,  cls: "border-emerald-500/40 bg-emerald-500/5" },
     { label: "Weakening",  desc: "Above 1.0 + Falling", above1: true,  rising: false, cls: "border-amber-500/40 bg-amber-500/5" },
-    { label: "Improving",  desc: "Below 1.0 + Rising",  above1: false, rising: true,  cls: "border-blue-500/40 bg-blue-500/5" },
+    { label: "Improving",  desc: "Below 1.0 + Rising",  above1: false, rising: true,  cls: "border-primary/40 bg-primary/5" },
     { label: "Lagging",    desc: "Below 1.0 + Falling", above1: false, rising: false, cls: "border-red-500/40 bg-red-500/5" },
   ];
 
@@ -816,7 +816,7 @@ function BreadthBars({ perfs }: { perfs: SectorPerfData[] }) {
                 <div className="h-full rounded-full bg-emerald-500/60" style={{ width: `${p.above50ma}%` }} />
               </div>
               <div className="flex-1 h-1.5 rounded-full bg-muted/30 overflow-hidden">
-                <div className="h-full rounded-full bg-blue-500/60" style={{ width: `${p.above200ma}%` }} />
+                <div className="h-full rounded-full bg-primary/60" style={{ width: `${p.above200ma}%` }} />
               </div>
             </div>
           </div>
@@ -824,7 +824,7 @@ function BreadthBars({ perfs }: { perfs: SectorPerfData[] }) {
       </div>
       <div className="mt-2 flex gap-3 text-[11px] text-muted-foreground">
         <span className="flex items-center gap-1"><span className="h-2 w-3 rounded bg-emerald-500/60" /> % above 50MA</span>
-        <span className="flex items-center gap-1"><span className="h-2 w-3 rounded bg-blue-500/60" /> % above 200MA</span>
+        <span className="flex items-center gap-1"><span className="h-2 w-3 rounded bg-primary/60" /> % above 200MA</span>
       </div>
     </div>
   );
@@ -1302,7 +1302,7 @@ export default function SectorRotationStrategy() {
                 <div className="text-muted-foreground leading-relaxed">CHIPS Act + IRA drive domestic manufacturing build-out. Industrials & Materials positioned well.</div>
                 <div className="flex gap-1 flex-wrap">
                   {["XLI","XLB"].map((t) => (
-                    <span key={t} className="rounded bg-purple-500/10 px-1.5 py-0.5 font-mono font-semibold text-purple-400">{t}</span>
+                    <span key={t} className="rounded bg-primary/10 px-1.5 py-0.5 font-mono font-semibold text-primary">{t}</span>
                   ))}
                 </div>
               </div>

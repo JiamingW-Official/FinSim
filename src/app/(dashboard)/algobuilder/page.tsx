@@ -132,10 +132,10 @@ interface LiveSignal {
 // ── Category Metadata ─────────────────────────────────────────────────────────
 
 const CAT_META: Record<SignalCategory, { label: string; color: string; bg: string; icon: React.ReactNode }> = {
-  trend:           { label: "Trend",           color: "text-blue-400",   bg: "bg-blue-500/10",   icon: <TrendingUp size={12} /> },
+  trend:           { label: "Trend",           color: "text-primary",   bg: "bg-primary/10",   icon: <TrendingUp size={12} /> },
   "mean-reversion":{ label: "Mean Reversion",  color: "text-amber-400",  bg: "bg-amber-500/10",  icon: <RefreshCw size={12} /> },
-  momentum:        { label: "Momentum",        color: "text-violet-400", bg: "bg-violet-500/10", icon: <Zap size={12} /> },
-  volume:          { label: "Volume",          color: "text-teal-400",   bg: "bg-teal-500/10",   icon: <BarChart2 size={12} /> },
+  momentum:        { label: "Momentum",        color: "text-primary", bg: "bg-primary/10", icon: <Zap size={12} /> },
+  volume:          { label: "Volume",          color: "text-emerald-400",   bg: "bg-teal-500/10",   icon: <BarChart2 size={12} /> },
   sentiment:       { label: "Sentiment",       color: "text-pink-400",   bg: "bg-pink-500/10",   icon: <Activity size={12} /> },
   fundamental:     { label: "Fundamental",     color: "text-emerald-400",bg: "bg-emerald-500/10",icon: <Target size={12} /> },
   alternative:     { label: "Alternative",     color: "text-orange-400", bg: "bg-orange-500/10", icon: <Eye size={12} /> },
@@ -1111,7 +1111,7 @@ export default function AlgoBuilderPage() {
                             <span className={cn(
                               "text-xs font-bold px-1.5 py-0.5 rounded",
                               signal.rating === "A" ? "bg-emerald-500/20 text-emerald-400" :
-                              signal.rating === "B" ? "bg-blue-500/20 text-blue-400" :
+                              signal.rating === "B" ? "bg-primary/20 text-primary" :
                               "bg-red-500/20 text-red-400"
                             )}>
                               {signal.rating}
@@ -1146,7 +1146,7 @@ export default function AlgoBuilderPage() {
                           <div className="text-xs text-muted-foreground">Win Rate</div>
                         </div>
                         <div>
-                          <div className="text-xs font-semibold text-blue-400">+{signal.avgReturn}%</div>
+                          <div className="text-xs font-semibold text-primary">+{signal.avgReturn}%</div>
                           <div className="text-xs text-muted-foreground">Avg Return</div>
                         </div>
                         <div>
@@ -1352,7 +1352,7 @@ export default function AlgoBuilderPage() {
                       <div>
                         <div className="flex justify-between text-xs mb-2">
                           <span className="text-muted-foreground">Max Holding Days</span>
-                          <span className="font-mono text-blue-400">{strategy.timeExit} days</span>
+                          <span className="font-mono text-primary">{strategy.timeExit} days</span>
                         </div>
                         <Slider
                           value={[strategy.timeExit]}
@@ -1367,7 +1367,7 @@ export default function AlgoBuilderPage() {
                 {/* Universe & Rebalancing */}
                 <Card className="p-5">
                   <h3 className="text-sm font-semibold mb-4 flex items-center gap-2">
-                    <Filter size={14} className="text-blue-400" /> Universe & Rebalancing
+                    <Filter size={14} className="text-primary" /> Universe & Rebalancing
                   </h3>
                   <div className="grid grid-cols-2 gap-4">
                     <div>
@@ -1424,7 +1424,7 @@ export default function AlgoBuilderPage() {
                 {/* Position Sizing */}
                 <Card className="p-5">
                   <h3 className="text-sm font-semibold mb-4 flex items-center gap-2">
-                    <Gauge size={14} className="text-violet-400" /> Position Sizing
+                    <Gauge size={14} className="text-primary" /> Position Sizing
                   </h3>
                   <div className="grid grid-cols-3 gap-3">
                     {([
@@ -1556,8 +1556,8 @@ export default function AlgoBuilderPage() {
                           { label: "Total Return", value: `${backtestResult.totalReturn > 0 ? "+" : ""}${backtestResult.totalReturn.toFixed(1)}%`, color: backtestResult.totalReturn >= 0 ? "text-emerald-400" : "text-red-400" },
                           { label: "CAGR", value: `${backtestResult.cagr.toFixed(1)}%`, color: "text-emerald-400" },
                           { label: "Sharpe Ratio", value: backtestResult.sharpe.toFixed(2), color: backtestResult.sharpe >= 1 ? "text-emerald-400" : "text-amber-400" },
-                          { label: "Sortino", value: backtestResult.sortino.toFixed(2), color: "text-blue-400" },
-                          { label: "Calmar", value: backtestResult.calmar.toFixed(2), color: "text-violet-400" },
+                          { label: "Sortino", value: backtestResult.sortino.toFixed(2), color: "text-primary" },
+                          { label: "Calmar", value: backtestResult.calmar.toFixed(2), color: "text-primary" },
                           { label: "Max Drawdown", value: `${backtestResult.maxDrawdown.toFixed(1)}%`, color: "text-red-400" },
                           { label: "Win Rate", value: `${backtestResult.winRate.toFixed(0)}%`, color: "text-emerald-400" },
                           { label: "Avg Win", value: `+${backtestResult.avgWin.toFixed(1)}%`, color: "text-emerald-400" },
@@ -1619,7 +1619,7 @@ export default function AlgoBuilderPage() {
                         </Card>
                         <Card className="p-4">
                           <div className="text-xs text-muted-foreground mb-1">Avg Recovery Time</div>
-                          <div className="text-lg font-bold font-mono text-blue-400">{backtestResult.recoveryDays} days</div>
+                          <div className="text-lg font-bold font-mono text-primary">{backtestResult.recoveryDays} days</div>
                         </Card>
                         <Card className="p-4">
                           <div className="text-xs text-muted-foreground mb-1">Alpha vs SPY</div>
@@ -1710,7 +1710,7 @@ export default function AlgoBuilderPage() {
               {/* Stress Tests */}
               <Card className="p-5">
                 <h3 className="text-sm font-semibold mb-4 flex items-center gap-2">
-                  <Shield size={14} className="text-blue-400" /> Historical Stress Tests
+                  <Shield size={14} className="text-primary" /> Historical Stress Tests
                 </h3>
                 <div className="space-y-4">
                   {stressData.map(st => (
@@ -1764,7 +1764,7 @@ export default function AlgoBuilderPage() {
               {/* Diversification / Correlation */}
               <Card className="p-5 lg:col-span-2">
                 <h3 className="text-sm font-semibold mb-4 flex items-center gap-2">
-                  <Layers size={14} className="text-teal-400" /> Risk Factor Correlation & Diversification
+                  <Layers size={14} className="text-emerald-400" /> Risk Factor Correlation & Diversification
                 </h3>
                 <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
                   {[

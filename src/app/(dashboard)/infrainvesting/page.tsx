@@ -105,8 +105,8 @@ function InfoBox({
       : variant === "emerald"
       ? "border-emerald-500/30 bg-emerald-500/10 text-emerald-200"
       : variant === "purple"
-      ? "border-purple-500/30 bg-purple-500/10 text-purple-200"
-      : "border-blue-500/30 bg-blue-500/10 text-blue-200";
+      ? "border-border bg-primary/10 text-primary"
+      : "border-border bg-primary/10 text-primary";
   return (
     <div className={cn("rounded-lg border p-3 text-xs leading-relaxed", cls)}>
       {children}
@@ -392,7 +392,7 @@ function AssetClassesTab() {
               className={cn(
                 "rounded-xl border p-3 text-left transition-colors",
                 selectedSector === sec.name
-                  ? "border-blue-500/60 bg-blue-500/15"
+                  ? "border-primary/60 bg-primary/15"
                   : "border-white/10 bg-white/5 hover:border-white/20"
               )}
             >
@@ -432,7 +432,7 @@ function AssetClassesTab() {
                   <p className="text-sm text-zinc-300 leading-relaxed">{selected.desc}</p>
                   <div className="mt-2 flex flex-wrap gap-3 text-xs">
                     <span className="text-zinc-400">Return target: <span className="text-emerald-400 font-medium">{selected.yieldTarget}</span></span>
-                    <span className="text-zinc-400">Inflation link: <span className="text-blue-300">{selected.inflationLink}</span></span>
+                    <span className="text-zinc-400">Inflation link: <span className="text-primary">{selected.inflationLink}</span></span>
                   </div>
                 </div>
               </div>
@@ -1339,7 +1339,7 @@ function InstitutionalTab() {
                   </div>
                   <div className="relative h-4 bg-white/10 rounded-full overflow-hidden">
                     <div
-                      className="absolute inset-y-0 left-0 bg-blue-500/70 rounded-full"
+                      className="absolute inset-y-0 left-0 bg-primary/70 rounded-full"
                       style={{ width: `${currentW}%` }}
                     />
                     <div
@@ -1348,7 +1348,7 @@ function InstitutionalTab() {
                     />
                   </div>
                   <div className="flex justify-between text-xs mt-0.5">
-                    <span className="text-blue-400">Current: {fmtPct(pf.allocation)}</span>
+                    <span className="text-primary">Current: {fmtPct(pf.allocation)}</span>
                     <span className="text-emerald-400">Target: {fmtPct(pf.target)}</span>
                   </div>
                 </div>
@@ -1519,7 +1519,7 @@ function InstitutionalTab() {
         <div className="rounded-xl border border-white/10 bg-white/5 overflow-hidden">
           <div className="grid grid-cols-4 bg-white/10 text-xs font-semibold text-zinc-300 px-4 py-2">
             <span>Attribute</span>
-            <span className="text-center text-blue-400">Listed</span>
+            <span className="text-center text-primary">Listed</span>
             <span className="text-center text-emerald-400">Unlisted</span>
             <span className="text-center text-zinc-500">Winner</span>
           </div>
@@ -1534,7 +1534,7 @@ function InstitutionalTab() {
               <span className="text-zinc-300 font-medium">{row.attribute}</span>
               <span className="text-center text-zinc-400">{row.listed}</span>
               <span className="text-center text-zinc-400">{row.unlisted}</span>
-              <span className={cn("text-center font-medium", row.winner === "listed" ? "text-blue-400" : "text-emerald-400")}>
+              <span className={cn("text-center font-medium", row.winner === "listed" ? "text-primary" : "text-emerald-400")}>
                 {row.winner === "listed" ? "Listed" : "Unlisted"}
               </span>
             </div>
@@ -1556,7 +1556,7 @@ function InstitutionalTab() {
               >
                 <Badge
                   variant="outline"
-                  className={cn("text-xs flex-shrink-0 mt-0.5", idx.type === "Listed" ? "text-blue-400 border-blue-400/50" : "text-emerald-400 border-emerald-400/50")}
+                  className={cn("text-xs flex-shrink-0 mt-0.5", idx.type === "Listed" ? "text-primary border-primary/50" : "text-emerald-400 border-emerald-400/50")}
                 >
                   {idx.type}
                 </Badge>
@@ -1638,8 +1638,8 @@ export default function InfraInvestingPage() {
         className="mb-6"
       >
         <div className="flex items-center gap-3 mb-2">
-          <div className="flex items-center justify-center w-10 h-10 rounded-xl bg-blue-500/20 border border-blue-500/30">
-            <Building2 size={20} className="text-blue-400" />
+          <div className="flex items-center justify-center w-10 h-10 rounded-xl bg-primary/20 border border-border">
+            <Building2 size={20} className="text-primary" />
           </div>
           <div>
             <h1 className="text-2xl font-bold text-white">Infrastructure Investing</h1>
@@ -1665,16 +1665,16 @@ export default function InfraInvestingPage() {
       {/* Tabs */}
       <Tabs value={activeTab} onValueChange={setActiveTab}>
         <TabsList className="grid grid-cols-4 w-full bg-white/5 border border-white/10 h-10 mb-6">
-          <TabsTrigger value="asset-classes" className="text-xs data-[state=active]:bg-blue-600 data-[state=active]:text-white">
+          <TabsTrigger value="asset-classes" className="text-xs data-[state=active]:bg-primary data-[state=active]:text-white">
             Asset Classes
           </TabsTrigger>
-          <TabsTrigger value="project-finance" className="text-xs data-[state=active]:bg-blue-600 data-[state=active]:text-white">
+          <TabsTrigger value="project-finance" className="text-xs data-[state=active]:bg-primary data-[state=active]:text-white">
             Project Finance
           </TabsTrigger>
-          <TabsTrigger value="energy-transition" className="text-xs data-[state=active]:bg-blue-600 data-[state=active]:text-white">
+          <TabsTrigger value="energy-transition" className="text-xs data-[state=active]:bg-primary data-[state=active]:text-white">
             Energy Transition
           </TabsTrigger>
-          <TabsTrigger value="institutional" className="text-xs data-[state=active]:bg-blue-600 data-[state=active]:text-white">
+          <TabsTrigger value="institutional" className="text-xs data-[state=active]:bg-primary data-[state=active]:text-white">
             Institutional
           </TabsTrigger>
         </TabsList>

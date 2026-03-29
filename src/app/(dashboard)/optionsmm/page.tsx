@@ -183,7 +183,7 @@ function QuotingTab() {
   const puts = chain.filter((q) => q.type === "put");
 
   const spreadComponents = [
-    { label: "Order Processing", pct: 0.22, color: "bg-blue-500", desc: "System/clearing overhead" },
+    { label: "Order Processing", pct: 0.22, color: "bg-primary", desc: "System/clearing overhead" },
     { label: "Inventory Risk", pct: 0.31, color: "bg-amber-500", desc: "Price risk while holding position" },
     { label: "Adverse Selection", pct: 0.29, color: "bg-rose-500", desc: "Trading against informed flow" },
     { label: "Realized Spread", pct: 0.18, color: "bg-emerald-500", desc: "Net profit to MM" },
@@ -212,8 +212,8 @@ function QuotingTab() {
       {/* Header */}
       <div className="bg-zinc-900 border border-zinc-800 rounded-xl p-5">
         <div className="flex items-center gap-3 mb-3">
-          <div className="w-8 h-8 rounded-lg bg-blue-500/20 flex items-center justify-center">
-            <ArrowUpDown className="text-blue-400" size={16} />
+          <div className="w-8 h-8 rounded-lg bg-primary/20 flex items-center justify-center">
+            <ArrowUpDown className="text-primary" size={16} />
           </div>
           <h2 className="text-lg font-semibold text-zinc-100">Options Bid-Ask Spread Decomposition</h2>
         </div>
@@ -268,7 +268,7 @@ function QuotingTab() {
                   className={cn(
                     "px-2 py-1 text-xs rounded border transition-colors",
                     tick === t
-                      ? "bg-blue-500/20 border-blue-500 text-blue-400"
+                      ? "bg-primary/20 border-primary text-primary"
                       : "border-zinc-700 text-zinc-500 hover:border-zinc-500"
                   )}
                 >
@@ -359,8 +359,8 @@ function QuotingTab() {
                             <td className="py-1.5 px-2 text-emerald-400 font-mono">{fmt2(call.bid)}</td>
                             <td className="py-1.5 px-2 text-emerald-300 font-mono">{fmt2(call.ask)}</td>
                             <td className="py-1.5 px-2 text-zinc-500 font-mono">{fmt2(call.spread)}</td>
-                            <td className="py-1.5 px-2 text-violet-400 font-mono">{fmtPct(call.iv)}</td>
-                            <td className="py-1.5 px-2 text-blue-400 font-mono">{fmt2(call.delta)}</td>
+                            <td className="py-1.5 px-2 text-primary font-mono">{fmtPct(call.iv)}</td>
+                            <td className="py-1.5 px-2 text-primary font-mono">{fmt2(call.delta)}</td>
                           </>
                         )}
                         <td className="py-1.5 px-3 text-center">
@@ -379,7 +379,7 @@ function QuotingTab() {
                         {showPuts && put && (
                           <>
                             <td className="py-1.5 px-2 text-right text-rose-400 font-mono">{fmt2(put.delta)}</td>
-                            <td className="py-1.5 px-2 text-right text-violet-400 font-mono">{fmtPct(put.iv)}</td>
+                            <td className="py-1.5 px-2 text-right text-primary font-mono">{fmtPct(put.iv)}</td>
                             <td className="py-1.5 px-2 text-right text-zinc-500 font-mono">{fmt2(put.spread)}</td>
                             <td className="py-1.5 px-2 text-right text-rose-400 font-mono">{fmt2(put.bid)}</td>
                             <td className="py-1.5 px-2 text-right text-rose-300 font-mono">{fmt2(put.ask)}</td>
@@ -448,7 +448,7 @@ function QuotingTab() {
       {/* Quote Stuffing Protection */}
       <div className="bg-zinc-900 border border-zinc-800 rounded-xl p-5">
         <div className="flex items-center gap-2 mb-3">
-          <Shield className="text-violet-400" size={16} />
+          <Shield className="text-primary" size={16} />
           <h3 className="text-sm font-semibold text-zinc-200">Quote Stuffing Protection & Market Rules</h3>
         </div>
         <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 text-xs">
@@ -456,7 +456,7 @@ function QuotingTab() {
             {
               title: "Quote-to-Trade Ratio (QTR)",
               desc: "FINRA monitors QTR. Excessive cancellations relative to trades can trigger investigations. Options MMs are held to lower standards than equity MMs due to hedging needs.",
-              color: "text-blue-400",
+              color: "text-primary",
             },
             {
               title: "Market Access Rule (SEC 15c3-5)",
@@ -577,9 +577,9 @@ function InventoryTab() {
         <h3 className="text-sm font-semibold text-zinc-200 mb-4">Greeks Inventory Dashboard</h3>
         <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 mb-5">
           {[
-            { label: "Net Delta", value: fmt2(last.delta), unit: "Δ", color: "text-blue-400", bgColor: "bg-blue-500/10 border-blue-800" },
+            { label: "Net Delta", value: fmt2(last.delta), unit: "Δ", color: "text-primary", bgColor: "bg-primary/10 border-border" },
             { label: "Net Gamma", value: fmt2(last.gamma), unit: "Γ", color: "text-amber-400", bgColor: "bg-amber-500/10 border-amber-800" },
-            { label: "Net Vega", value: fmt2(last.vega), unit: "ν", color: "text-violet-400", bgColor: "bg-violet-500/10 border-violet-800" },
+            { label: "Net Vega", value: fmt2(last.vega), unit: "ν", color: "text-primary", bgColor: "bg-primary/10 border-border" },
             { label: "Net Theta", value: fmt2(last.theta), unit: "Θ", color: "text-emerald-400", bgColor: "bg-emerald-500/10 border-emerald-800" },
           ].map((g) => (
             <div key={g.label} className={cn("rounded-xl border p-3", g.bgColor)}>
@@ -653,7 +653,7 @@ function InventoryTab() {
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
         <div className="bg-zinc-900 border border-zinc-800 rounded-xl p-5">
           <div className="flex items-center gap-2 mb-3">
-            <RefreshCw className="text-blue-400" size={15} />
+            <RefreshCw className="text-primary" size={15} />
             <h3 className="text-sm font-semibold text-zinc-200">Dynamic Hedging Frequency</h3>
           </div>
           <div className="space-y-3 text-xs">
@@ -685,9 +685,9 @@ function InventoryTab() {
           </div>
           <div className="space-y-2 text-xs">
             {[
-              { limit: "Delta limit", value: "±5,000 shares equiv.", color: "text-blue-400" },
+              { limit: "Delta limit", value: "±5,000 shares equiv.", color: "text-primary" },
               { limit: "Gamma limit", value: "±500 per $1 move", color: "text-amber-400" },
-              { limit: "Vega limit", value: "±$50,000 per vol point", color: "text-violet-400" },
+              { limit: "Vega limit", value: "±$50,000 per vol point", color: "text-primary" },
               { limit: "Single-name conc.", value: "20% of book per ticker", color: "text-zinc-300" },
               { limit: "Loss stop (daily)", value: "$250,000 hard stop", color: "text-rose-400" },
               { limit: "Loss stop (weekly)", value: "$800,000 review trigger", color: "text-rose-500" },
@@ -884,7 +884,7 @@ function AdverseSelectionTab() {
       size: "Block (>10k contracts)",
       inference: "Institutional rebalance",
       action: "Risk manage post-fill",
-      color: "text-blue-400",
+      color: "text-primary",
     },
   ];
 
@@ -1014,7 +1014,7 @@ function AdverseSelectionTab() {
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
         <div className="bg-zinc-900 border border-zinc-800 rounded-xl p-5">
           <div className="flex items-center gap-2 mb-3">
-            <Layers className="text-blue-400" size={15} />
+            <Layers className="text-primary" size={15} />
             <h3 className="text-sm font-semibold text-zinc-200">Block Trade Mechanics</h3>
           </div>
           <div className="space-y-3 text-xs text-zinc-400">
@@ -1027,7 +1027,7 @@ function AdverseSelectionTab() {
                 { step: "1", desc: "Broker approaches MM with block inquiry (price + size)", color: "text-zinc-300" },
                 { step: "2", desc: "MM prices in adverse selection premium (typically 5-20%)", color: "text-amber-400" },
                 { step: "3", desc: "Trade executed at negotiated price, off-exchange", color: "text-zinc-300" },
-                { step: "4", desc: "MM immediately begins delta hedging to flatten exposure", color: "text-blue-400" },
+                { step: "4", desc: "MM immediately begins delta hedging to flatten exposure", color: "text-primary" },
                 { step: "5", desc: "MM unwinds position over time across multiple venues", color: "text-zinc-300" },
               ].map((s) => (
                 <div key={s.step} className="flex items-start gap-2">
@@ -1043,7 +1043,7 @@ function AdverseSelectionTab() {
 
         <div className="bg-zinc-900 border border-zinc-800 rounded-xl p-5">
           <div className="flex items-center gap-2 mb-3">
-            <Eye className="text-violet-400" size={15} />
+            <Eye className="text-primary" size={15} />
             <h3 className="text-sm font-semibold text-zinc-200">Dark Pool Interplay</h3>
           </div>
           <div className="space-y-3 text-xs text-zinc-400">
@@ -1054,7 +1054,7 @@ function AdverseSelectionTab() {
             <div className="space-y-2">
               {[
                 { label: "Dark pool equity share", value: "~38% of US equity volume", color: "text-zinc-200" },
-                { label: "Options MM dark activity", value: "Primarily for delta hedges", color: "text-blue-400" },
+                { label: "Options MM dark activity", value: "Primarily for delta hedges", color: "text-primary" },
                 { label: "Information leakage", value: "Dark prints reveal institutional flow", color: "text-amber-400" },
                 { label: "Latency advantage", value: "HFT firms monitor dark prints for alpha", color: "text-rose-400" },
               ].map((item) => (
@@ -1081,7 +1081,7 @@ function AdverseSelectionTab() {
               <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 text-xs">
                 <div>
                   <div className="text-zinc-500 mb-1">Detection signal</div>
-                  <div className="text-blue-400">{ex.detection}</div>
+                  <div className="text-primary">{ex.detection}</div>
                 </div>
                 <div>
                   <div className="text-zinc-500 mb-1">MM impact</div>
@@ -1158,8 +1158,8 @@ function EconomicsTab() {
   const minNet = Math.min(...profitData.map((d) => d.net));
 
   const marketPlayers = [
-    { name: "Citadel Securities", share: 0.28, specialty: "Equity & options, PFOF dominant", color: "bg-blue-500" },
-    { name: "Susquehanna (SIG)", share: 0.18, specialty: "Options specialist, vol arbitrage", color: "bg-violet-500" },
+    { name: "Citadel Securities", share: 0.28, specialty: "Equity & options, PFOF dominant", color: "bg-primary" },
+    { name: "Susquehanna (SIG)", share: 0.18, specialty: "Options specialist, vol arbitrage", color: "bg-primary" },
     { name: "Virtu Financial", share: 0.15, specialty: "Multi-asset HFT", color: "bg-emerald-500" },
     { name: "IMC Trading", share: 0.12, specialty: "Options & ETFs, European roots", color: "bg-amber-500" },
     { name: "Wolverine Trading", share: 0.08, specialty: "Options, complex spreads", color: "bg-rose-500" },
@@ -1312,7 +1312,7 @@ function EconomicsTab() {
                 model: "Maker-Taker (exchange)",
                 pro: "Transparent pricing, competitive quotes",
                 con: "Rebate races can reduce quote quality",
-                color: "text-blue-400",
+                color: "text-primary",
               },
               {
                 model: "PFOF (internalization)",
@@ -1437,7 +1437,7 @@ function EconomicsTab() {
                 { behavior: "Spread widening", detail: "SPX options spreads widened 5-15x. Bid-ask on 1-month ATM calls went from $0.50 to $5+", color: "text-rose-400" },
                 { behavior: "Quote pulling", detail: "Some MMs withdrew quotes entirely in extreme names. Exchange rule 2104 does not require MMs to quote during halts", color: "text-amber-400" },
                 { behavior: "Delta hedging panic", detail: "Massive gamma from short-dated options forced constant equity sales, amplifying the sell-off", color: "text-rose-400" },
-                { behavior: "Skew explosion", detail: "Put skew hit multi-decade extremes. 25-delta put IV exceeded ATM IV by 15+ vol points", color: "text-violet-400" },
+                { behavior: "Skew explosion", detail: "Put skew hit multi-decade extremes. 25-delta put IV exceeded ATM IV by 15+ vol points", color: "text-primary" },
               ].map((b) => (
                 <div key={b.behavior} className="p-2.5 bg-zinc-800/50 rounded">
                   <div className={cn("font-semibold mb-1", b.color)}>{b.behavior}</div>
@@ -1481,8 +1481,8 @@ export default function OptionsMmPage() {
           className="mb-8"
         >
           <div className="flex items-center gap-3 mb-3">
-            <div className="w-10 h-10 rounded-xl bg-blue-500/20 flex items-center justify-center">
-              <Activity className="text-blue-400" size={20} />
+            <div className="w-10 h-10 rounded-xl bg-primary/20 flex items-center justify-center">
+              <Activity className="text-primary" size={20} />
             </div>
             <div>
               <h1 className="text-2xl font-bold text-zinc-50">Options Market Making</h1>
@@ -1493,10 +1493,10 @@ export default function OptionsMmPage() {
           </div>
           <div className="flex flex-wrap gap-2">
             {[
-              { label: "Bid-Ask Mechanics", color: "border-blue-800 text-blue-400" },
+              { label: "Bid-Ask Mechanics", color: "border-border text-primary" },
               { label: "Greeks Risk", color: "border-amber-800 text-amber-400" },
               { label: "VPIN / Flow Toxicity", color: "border-rose-800 text-rose-400" },
-              { label: "PFOF & Rebates", color: "border-violet-800 text-violet-400" },
+              { label: "PFOF & Rebates", color: "border-border text-primary" },
             ].map((tag) => (
               <Badge key={tag.label} variant="outline" className={cn("text-xs", tag.color)}>
                 {tag.label}

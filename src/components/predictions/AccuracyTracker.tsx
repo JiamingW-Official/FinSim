@@ -20,7 +20,7 @@ function getGrade(accuracy: number): {
   if (accuracy >= 60)
     return {
       label: "Expert",
-      color: "text-blue-400",
+      color: "text-primary",
       description: "Well above average forecaster",
     };
   if (accuracy >= 50)

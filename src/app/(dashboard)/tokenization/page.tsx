@@ -567,7 +567,7 @@ function ExpandableRow({ protocol }: { protocol: (typeof TOP_PROTOCOLS)[0] }) {
       >
         <div className="flex items-center gap-3">
           <div className="w-8 h-8 rounded-full bg-slate-700 flex items-center justify-center">
-            <Network className="w-4 h-4 text-blue-400" />
+            <Network className="w-4 h-4 text-primary" />
           </div>
           <div className="text-left">
             <p className="text-sm font-semibold text-white">{protocol.name}</p>
@@ -751,7 +751,7 @@ export default function TokenizationPage() {
           <div className="flex items-start justify-between flex-wrap gap-4">
             <div>
               <div className="flex items-center gap-2 mb-1">
-                <Coins className="w-6 h-6 text-blue-400" />
+                <Coins className="w-6 h-6 text-primary" />
                 <h1 className="text-2xl font-bold text-white">Tokenization of Real-World Assets</h1>
               </div>
               <p className="text-slate-400 text-sm max-w-2xl">
@@ -760,9 +760,9 @@ export default function TokenizationPage() {
               </p>
             </div>
             <div className="flex gap-2 flex-wrap">
-              <Badge className="bg-blue-900/30 text-blue-400 border border-blue-800 text-xs">$21.4B Market</Badge>
+              <Badge className="bg-muted/50 text-primary border border-border text-xs">$21.4B Market</Badge>
               <Badge className="bg-emerald-900/30 text-emerald-400 border border-emerald-800 text-xs">+340% YoY</Badge>
-              <Badge className="bg-purple-900/30 text-purple-400 border border-purple-800 text-xs">40+ Issuers</Badge>
+              <Badge className="bg-muted/50 text-primary border border-border text-xs">40+ Issuers</Badge>
             </div>
           </div>
         </motion.div>
@@ -770,9 +770,9 @@ export default function TokenizationPage() {
         {/* KPI Strip */}
         <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
           {[
-            { icon: DollarSign, label: "Total RWA TVL", value: "$21.4B", sub: "+340% YoY", color: "text-blue-400" },
+            { icon: DollarSign, label: "Total RWA TVL", value: "$21.4B", sub: "+340% YoY", color: "text-primary" },
             { icon: Percent, label: "Avg Tokenized Yield", value: "5.18%", sub: "vs 5.0% T-Bill", color: "text-emerald-400" },
-            { icon: Building2, label: "Real Estate On-chain", value: "$5.1B", sub: "24% of RWA", color: "text-purple-400" },
+            { icon: Building2, label: "Real Estate On-chain", value: "$5.1B", sub: "24% of RWA", color: "text-primary" },
             { icon: Globe, label: "Jurisdictions Active", value: "15+", sub: "MiCA, MAS, FCA", color: "text-amber-400" },
           ].map((kpi, i) => (
             <motion.div
@@ -798,19 +798,19 @@ export default function TokenizationPage() {
         {/* Tabs */}
         <Tabs value={activeTab} onValueChange={setActiveTab}>
           <TabsList className="bg-slate-900 border border-slate-800 flex-wrap h-auto">
-            <TabsTrigger value="overview" className="text-xs data-[state=active]:bg-blue-600">
+            <TabsTrigger value="overview" className="text-xs data-[state=active]:bg-primary">
               RWA Overview
             </TabsTrigger>
-            <TabsTrigger value="treasuries" className="text-xs data-[state=active]:bg-blue-600">
+            <TabsTrigger value="treasuries" className="text-xs data-[state=active]:bg-primary">
               Tokenized Treasuries
             </TabsTrigger>
-            <TabsTrigger value="realestate" className="text-xs data-[state=active]:bg-blue-600">
+            <TabsTrigger value="realestate" className="text-xs data-[state=active]:bg-primary">
               Real Estate
             </TabsTrigger>
-            <TabsTrigger value="credit" className="text-xs data-[state=active]:bg-blue-600">
+            <TabsTrigger value="credit" className="text-xs data-[state=active]:bg-primary">
               Private Credit
             </TabsTrigger>
-            <TabsTrigger value="regulatory" className="text-xs data-[state=active]:bg-blue-600">
+            <TabsTrigger value="regulatory" className="text-xs data-[state=active]:bg-primary">
               Regulatory
             </TabsTrigger>
           </TabsList>
@@ -821,7 +821,7 @@ export default function TokenizationPage() {
               <Card className="bg-slate-900 border-slate-800">
                 <CardHeader className="pb-2">
                   <CardTitle className="text-sm font-semibold flex items-center gap-2">
-                    <BarChart3 className="w-4 h-4 text-blue-400" />
+                    <BarChart3 className="w-4 h-4 text-primary" />
                     Market Share by Asset Class
                   </CardTitle>
                 </CardHeader>
@@ -855,7 +855,7 @@ export default function TokenizationPage() {
             <Card className="bg-slate-900 border-slate-800">
               <CardHeader className="pb-2">
                 <CardTitle className="text-sm font-semibold flex items-center gap-2">
-                  <Network className="w-4 h-4 text-purple-400" />
+                  <Network className="w-4 h-4 text-primary" />
                   Top Protocols by TVL
                 </CardTitle>
               </CardHeader>
@@ -870,7 +870,7 @@ export default function TokenizationPage() {
             <Card className="bg-slate-900 border-slate-800">
               <CardHeader className="pb-2">
                 <CardTitle className="text-sm font-semibold flex items-center gap-2">
-                  <Layers className="w-4 h-4 text-cyan-400" />
+                  <Layers className="w-4 h-4 text-muted-foreground" />
                   How RWA Tokenization Works
                 </CardTitle>
               </CardHeader>
@@ -881,13 +881,13 @@ export default function TokenizationPage() {
                       step: "1",
                       title: "Asset Identification",
                       desc: "A real-world asset (property, bond, fund) is identified and legally isolated in an SPV or trust structure.",
-                      color: "text-blue-400",
+                      color: "text-primary",
                     },
                     {
                       step: "2",
                       title: "Legal Wrapper",
                       desc: "Lawyers structure the token as a security (regulated under local law). KYC/AML requirements defined. Smart contract terms set.",
-                      color: "text-purple-400",
+                      color: "text-primary",
                     },
                     {
                       step: "3",
@@ -913,7 +913,7 @@ export default function TokenizationPage() {
               <Card className="bg-slate-900 border-slate-800">
                 <CardHeader className="pb-2">
                   <CardTitle className="text-sm font-semibold flex items-center gap-2">
-                    <Activity className="w-4 h-4 text-blue-400" />
+                    <Activity className="w-4 h-4 text-primary" />
                     Yield: Tokenized vs Traditional T-Bills (2025)
                   </CardTitle>
                 </CardHeader>
@@ -940,7 +940,7 @@ export default function TokenizationPage() {
                     { icon: Layers, title: "Fractionalization", desc: "FOBXX min investment: $20. Traditional T-bills require $1,000+." },
                   ].map((item) => (
                     <div key={item.title} className="flex items-start gap-2">
-                      <item.icon className="w-4 h-4 text-blue-400 mt-0.5 flex-shrink-0" />
+                      <item.icon className="w-4 h-4 text-primary mt-0.5 flex-shrink-0" />
                       <div>
                         <p className="text-xs font-semibold text-white">{item.title}</p>
                         <p className="text-xs text-slate-400">{item.desc}</p>
@@ -955,7 +955,7 @@ export default function TokenizationPage() {
             <Card className="bg-slate-900 border-slate-800">
               <CardHeader className="pb-2">
                 <CardTitle className="text-sm font-semibold flex items-center gap-2">
-                  <FileText className="w-4 h-4 text-purple-400" />
+                  <FileText className="w-4 h-4 text-primary" />
                   Product Comparison
                 </CardTitle>
               </CardHeader>
@@ -975,7 +975,7 @@ export default function TokenizationPage() {
                              col === "minimum" ? "Min ($)" :
                              col.charAt(0).toUpperCase() + col.slice(1)}
                             {sortCol === col && (
-                              <span className="ml-1 text-blue-400">{sortDir === "desc" ? "↓" : "↑"}</span>
+                              <span className="ml-1 text-primary">{sortDir === "desc" ? "↓" : "↑"}</span>
                             )}
                           </th>
                         ))}
@@ -993,7 +993,7 @@ export default function TokenizationPage() {
                           <td className="py-2 px-2 font-semibold text-white">{prod.name}</td>
                           <td className="py-2 px-2 text-slate-300">{prod.issuer}</td>
                           <td className="py-2 px-2 font-mono text-emerald-400">{prod.yield.toFixed(2)}%</td>
-                          <td className="py-2 px-2 font-mono text-blue-400">{prod.aum}</td>
+                          <td className="py-2 px-2 font-mono text-primary">{prod.aum}</td>
                           <td className="py-2 px-2 text-slate-400">{prod.chain}</td>
                           <td className="py-2 px-2 font-mono text-slate-300">
                             {prod.minimum >= 1000000
@@ -1049,7 +1049,7 @@ export default function TokenizationPage() {
               <Card className="bg-slate-900 border-slate-800">
                 <CardHeader className="pb-2">
                   <CardTitle className="text-sm font-semibold flex items-center gap-2">
-                    <BarChart3 className="w-4 h-4 text-purple-400" />
+                    <BarChart3 className="w-4 h-4 text-primary" />
                     Tokenized RE vs Traditional REIT (Score 0–100)
                   </CardTitle>
                 </CardHeader>
@@ -1061,7 +1061,7 @@ export default function TokenizationPage() {
               <Card className="bg-slate-900 border-slate-800">
                 <CardHeader className="pb-2">
                   <CardTitle className="text-sm font-semibold flex items-center gap-2">
-                    <Building2 className="w-4 h-4 text-purple-400" />
+                    <Building2 className="w-4 h-4 text-primary" />
                     Fractional Ownership Mechanics
                   </CardTitle>
                 </CardHeader>
@@ -1080,7 +1080,7 @@ export default function TokenizationPage() {
                     ].map((item) => (
                       <div key={item.label} className="p-2 rounded bg-slate-800/50 border border-slate-700/50">
                         <p className="text-xs text-slate-400">{item.label}</p>
-                        <p className="text-sm font-bold text-purple-400">{item.value}</p>
+                        <p className="text-sm font-bold text-primary">{item.value}</p>
                         <p className="text-xs text-slate-500">{item.note}</p>
                       </div>
                     ))}
@@ -1093,20 +1093,20 @@ export default function TokenizationPage() {
             <Card className="bg-slate-900 border-slate-800">
               <CardHeader className="pb-2">
                 <CardTitle className="text-sm font-semibold flex items-center gap-2">
-                  <Lock className="w-4 h-4 text-cyan-400" />
+                  <Lock className="w-4 h-4 text-muted-foreground" />
                   Smart Contract Escrow Flow
                 </CardTitle>
               </CardHeader>
               <CardContent>
                 <div className="flex flex-wrap items-center gap-2 text-xs">
                   {[
-                    { step: "Buyer deposits USDC", color: "bg-blue-900/30 text-blue-400 border-blue-800" },
+                    { step: "Buyer deposits USDC", color: "bg-muted/50 text-primary border-border" },
                     { step: "→", color: "" },
                     { step: "Escrow contract locks funds", color: "bg-slate-800 text-slate-300 border-slate-700" },
                     { step: "→", color: "" },
                     { step: "Title verification oracle", color: "bg-amber-900/30 text-amber-400 border-amber-800" },
                     { step: "→", color: "" },
-                    { step: "Token transfer on success", color: "bg-purple-900/30 text-purple-400 border-purple-800" },
+                    { step: "Token transfer on success", color: "bg-muted/50 text-primary border-border" },
                     { step: "→", color: "" },
                     { step: "Funds released to seller", color: "bg-emerald-900/30 text-emerald-400 border-emerald-800" },
                   ].map((item, i) =>
@@ -1163,7 +1163,7 @@ export default function TokenizationPage() {
                       ].map((ex) => (
                         <div key={ex.exchange} className="flex justify-between items-center text-xs p-2 rounded bg-slate-800/40">
                           <span className="text-slate-300">{ex.exchange}</span>
-                          <span className="text-blue-400 font-mono">{ex.volume}</span>
+                          <span className="text-primary font-mono">{ex.volume}</span>
                           <span className="text-slate-500">Spread: {ex.spread}</span>
                         </div>
                       ))}
@@ -1180,7 +1180,7 @@ export default function TokenizationPage() {
             <Card className="bg-slate-900 border-slate-800">
               <CardHeader className="pb-2">
                 <CardTitle className="text-sm font-semibold flex items-center gap-2">
-                  <Network className="w-4 h-4 text-cyan-400" />
+                  <Network className="w-4 h-4 text-muted-foreground" />
                   On-Chain Credit Structure (SPV Flow)
                 </CardTitle>
               </CardHeader>
@@ -1198,7 +1198,7 @@ export default function TokenizationPage() {
             <Card className="bg-slate-900 border-slate-800">
               <CardHeader className="pb-2">
                 <CardTitle className="text-sm font-semibold flex items-center gap-2">
-                  <BarChart3 className="w-4 h-4 text-blue-400" />
+                  <BarChart3 className="w-4 h-4 text-primary" />
                   Protocol Comparison
                 </CardTitle>
               </CardHeader>
@@ -1224,7 +1224,7 @@ export default function TokenizationPage() {
                       <div className="space-y-1 text-xs">
                         <div className="flex justify-between">
                           <span className="text-slate-400">TVL</span>
-                          <span className="text-blue-400 font-mono">${proto.tvl}M</span>
+                          <span className="text-primary font-mono">${proto.tvl}M</span>
                         </div>
                         <div className="flex justify-between">
                           <span className="text-slate-400">Avg APY</span>
@@ -1290,7 +1290,7 @@ export default function TokenizationPage() {
             <Card className="bg-slate-900 border-slate-800">
               <CardHeader className="pb-2">
                 <CardTitle className="text-sm font-semibold flex items-center gap-2">
-                  <Scale className="w-4 h-4 text-blue-400" />
+                  <Scale className="w-4 h-4 text-primary" />
                   Jurisdictional Comparison
                 </CardTitle>
               </CardHeader>
@@ -1327,7 +1327,7 @@ export default function TokenizationPage() {
               <Card className="bg-slate-900 border-slate-800">
                 <CardHeader className="pb-2">
                   <CardTitle className="text-sm font-semibold flex items-center gap-2">
-                    <Landmark className="w-4 h-4 text-blue-400" />
+                    <Landmark className="w-4 h-4 text-primary" />
                     SEC No-Action Letters
                   </CardTitle>
                 </CardHeader>
@@ -1369,9 +1369,9 @@ export default function TokenizationPage() {
                   </p>
                   <div className="space-y-2">
                     {[
-                      { cat: "ART (Asset-Referenced)", rule: "Backed by basket of assets. White paper required. ESMA supervision.", color: "text-blue-400" },
-                      { cat: "EMT (E-Money Token)", rule: "Backed 1:1 by fiat. Only credit institutions / e-money firms may issue.", color: "text-purple-400" },
-                      { cat: "Security Tokens", rule: "Existing MiFID II rules apply. DLT Pilot Regime for trading & settlement.", color: "text-cyan-400" },
+                      { cat: "ART (Asset-Referenced)", rule: "Backed by basket of assets. White paper required. ESMA supervision.", color: "text-primary" },
+                      { cat: "EMT (E-Money Token)", rule: "Backed 1:1 by fiat. Only credit institutions / e-money firms may issue.", color: "text-primary" },
+                      { cat: "Security Tokens", rule: "Existing MiFID II rules apply. DLT Pilot Regime for trading & settlement.", color: "text-muted-foreground" },
                     ].map((item) => (
                       <div key={item.cat} className="p-2 rounded bg-slate-800/40 border border-slate-700/30 text-xs">
                         <p className={`font-semibold mb-0.5 ${item.color}`}>{item.cat}</p>
@@ -1440,7 +1440,7 @@ export default function TokenizationPage() {
             <Card className="bg-slate-900 border-slate-800">
               <CardHeader className="pb-2">
                 <CardTitle className="text-sm font-semibold flex items-center gap-2">
-                  <ExternalLink className="w-4 h-4 text-cyan-400" />
+                  <ExternalLink className="w-4 h-4 text-muted-foreground" />
                   What to Watch
                 </CardTitle>
               </CardHeader>
@@ -1451,7 +1451,7 @@ export default function TokenizationPage() {
                       title: "US FIT21 / Digital Asset Clarity",
                       desc: "Congress advancing framework to clarify commodity vs security for digital assets. Could unlock $100B+ institutional capital.",
                       icon: Landmark,
-                      color: "text-blue-400",
+                      color: "text-primary",
                     },
                     {
                       title: "CBDC Integration",
@@ -1463,13 +1463,13 @@ export default function TokenizationPage() {
                       title: "DLT Securities Settlement",
                       desc: "DTCC Project Ion + EU DLT Pilot could make T-bill / equity delivery vs. payment fully on-chain by 2027.",
                       icon: Activity,
-                      color: "text-purple-400",
+                      color: "text-primary",
                     },
                     {
                       title: "Interoperability Standards",
                       desc: "ERC-3643 (T-REX) and ERC-1400 competing as security token standards. Convergence = cross-chain secondary markets.",
                       icon: Network,
-                      color: "text-cyan-400",
+                      color: "text-muted-foreground",
                     },
                   ].map((item) => (
                     <div key={item.title} className="flex items-start gap-2 p-3 rounded-lg bg-slate-800/40 border border-slate-700/50">

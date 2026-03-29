@@ -412,7 +412,7 @@ function YieldCurveTab() {
         <StatChip
           label="2s30s"
           value={((curve[3].yield - curve[0].yield) * 100).toFixed(1) + " bps"}
-          color="text-violet-400"
+          color="text-primary"
         />
       </div>
 
@@ -420,7 +420,7 @@ function YieldCurveTab() {
       <Card className="bg-zinc-900 border-zinc-800">
         <CardHeader className="pb-2">
           <CardTitle className="text-sm text-zinc-300 flex items-center gap-2">
-            <Activity className="w-4 h-4 text-blue-400" />
+            <Activity className="w-4 h-4 text-primary" />
             US Treasury Yield Curve
           </CardTitle>
         </CardHeader>
@@ -518,7 +518,7 @@ function YieldCurveTab() {
             <motion.div
               initial={{ opacity: 0, y: -6 }}
               animate={{ opacity: 1, y: 0 }}
-              className="mt-2 bg-blue-950/40 border border-blue-800/40 rounded-lg p-3 grid grid-cols-4 gap-3"
+              className="mt-2 bg-muted/50 border border-border rounded-lg p-3 grid grid-cols-4 gap-3"
             >
               <div>
                 <p className="text-xs text-zinc-400">Tenor</p>
@@ -526,7 +526,7 @@ function YieldCurveTab() {
               </div>
               <div>
                 <p className="text-xs text-zinc-400">Yield</p>
-                <p className="text-sm font-semibold text-blue-300">
+                <p className="text-sm font-semibold text-primary">
                   {curve[selectedNode].yield.toFixed(3)}%
                 </p>
               </div>
@@ -551,7 +551,7 @@ function YieldCurveTab() {
       <Card className="bg-zinc-900 border-zinc-800">
         <CardHeader className="pb-2">
           <CardTitle className="text-sm text-zinc-300 flex items-center gap-2">
-            <ArrowLeftRight className="w-4 h-4 text-violet-400" />
+            <ArrowLeftRight className="w-4 h-4 text-primary" />
             Curve Trade Builder
           </CardTitle>
         </CardHeader>
@@ -565,7 +565,7 @@ function YieldCurveTab() {
                 className={cn(
                   "capitalize text-xs",
                   tradeType === t
-                    ? "bg-violet-600 hover:bg-violet-700 text-white"
+                    ? "bg-primary hover:bg-primary/80 text-white"
                     : "border-zinc-700 text-zinc-400 hover:bg-zinc-800",
                 )}
                 onClick={() => setTradeType(t)}
@@ -785,7 +785,7 @@ function SpreadTradesTab() {
             className={cn(
               "text-xs",
               selectedPair === i
-                ? "bg-blue-700 hover:bg-blue-800 text-white"
+                ? "bg-primary/80 hover:bg-primary/70 text-white"
                 : "border-zinc-700 text-zinc-400 hover:bg-zinc-800",
             )}
             onClick={() => setSelectedPair(i)}
@@ -820,8 +820,8 @@ function SpreadTradesTab() {
             {/* OTR Bond */}
             <div className="bg-zinc-800/50 rounded-lg p-3 border border-zinc-700">
               <div className="flex items-center justify-between mb-2">
-                <span className="text-xs font-medium text-blue-300">ON-THE-RUN</span>
-                <Badge className="bg-blue-900/50 text-blue-300 border-blue-800 text-xs">
+                <span className="text-xs font-medium text-primary">ON-THE-RUN</span>
+                <Badge className="bg-muted/70 text-primary border-border text-xs">
                   Benchmark
                 </Badge>
               </div>
@@ -922,7 +922,7 @@ function SpreadTradesTab() {
       <Card className="bg-zinc-900 border-zinc-800">
         <CardHeader className="pb-2">
           <CardTitle className="text-sm text-zinc-300 flex items-center gap-2">
-            <BarChart3 className="w-4 h-4 text-blue-400" />
+            <BarChart3 className="w-4 h-4 text-primary" />
             Historical OFR Spread (60 days)
           </CardTitle>
         </CardHeader>
@@ -1034,7 +1034,7 @@ function SpreadTradesTab() {
             </div>
             <div className="bg-zinc-800/50 rounded-lg p-3">
               <p className="text-xs text-zinc-400 mb-1">Short OTR (hedge)</p>
-              <p className="text-sm font-semibold text-blue-300">{activePair.otr.label}</p>
+              <p className="text-sm font-semibold text-primary">{activePair.otr.label}</p>
               <p className="text-xs text-zinc-400">
                 ${(tradeNotionalMM * activePair.hr).toFixed(1)}M face
               </p>
@@ -1173,7 +1173,7 @@ function ButterflyTab() {
       <Card className="bg-zinc-900 border-zinc-800">
         <CardHeader className="pb-2">
           <CardTitle className="text-sm text-zinc-300 flex items-center gap-2">
-            <Target className="w-4 h-4 text-violet-400" />
+            <Target className="w-4 h-4 text-primary" />
             Butterfly Setup
           </CardTitle>
         </CardHeader>
@@ -1241,7 +1241,7 @@ function ButterflyTab() {
             <div className="grid grid-cols-2 md:grid-cols-4 gap-3 bg-zinc-800/40 rounded-lg p-3">
               <div>
                 <p className="text-xs text-zinc-400">Fly Spread</p>
-                <p className="text-base font-bold text-violet-300">
+                <p className="text-base font-bold text-primary">
                   {fly.spreadBps.toFixed(1)} bps
                 </p>
               </div>
@@ -1325,7 +1325,7 @@ function ButterflyTab() {
         <CardHeader className="pb-2">
           <div className="flex items-center justify-between">
             <CardTitle className="text-sm text-zinc-300 flex items-center gap-2">
-              <BarChart3 className="w-4 h-4 text-blue-400" />
+              <BarChart3 className="w-4 h-4 text-primary" />
               P&L Surface vs Fly Spread Change
             </CardTitle>
           </div>
@@ -1491,7 +1491,7 @@ function SwapSpreadsTab() {
             className={cn(
               "text-xs",
               view === key
-                ? "bg-violet-600 hover:bg-violet-700 text-white"
+                ? "bg-primary hover:bg-primary/80 text-white"
                 : "border-zinc-700 text-zinc-400 hover:bg-zinc-800",
             )}
             onClick={() => setView(key)}
@@ -1505,7 +1505,7 @@ function SwapSpreadsTab() {
       <Card className="bg-zinc-900 border-zinc-800">
         <CardHeader className="pb-2">
           <CardTitle className="text-sm text-zinc-300 flex items-center gap-2">
-            <ArrowLeftRight className="w-4 h-4 text-blue-400" />
+            <ArrowLeftRight className="w-4 h-4 text-primary" />
             Swap Curve vs Treasury Curve
           </CardTitle>
         </CardHeader>
@@ -1625,7 +1625,7 @@ function SwapSpreadsTab() {
               <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
                 <div className="bg-zinc-800/50 rounded-lg p-3">
                   <p className="text-xs text-zinc-400">Treasury Yield</p>
-                  <p className="text-base font-bold text-blue-300">
+                  <p className="text-base font-bold text-primary">
                     {selected.treasuryYield.toFixed(3)}%
                   </p>
                 </div>
@@ -1637,7 +1637,7 @@ function SwapSpreadsTab() {
                 </div>
                 <div className="bg-zinc-800/50 rounded-lg p-3">
                   <p className="text-xs text-zinc-400">Asset Swap Spread</p>
-                  <p className="text-base font-bold text-violet-300">
+                  <p className="text-base font-bold text-primary">
                     {selected.assetSwapSpread.toFixed(1)} bps
                   </p>
                 </div>
@@ -1649,7 +1649,7 @@ function SwapSpreadsTab() {
                 </div>
                 <div className="bg-zinc-800/50 rounded-lg p-3">
                   <p className="text-xs text-zinc-400">LIBOR Spread</p>
-                  <p className="text-base font-bold text-cyan-300">
+                  <p className="text-base font-bold text-muted-foreground">
                     {selected.libSpread.toFixed(1)} bps
                   </p>
                 </div>
@@ -1663,7 +1663,7 @@ function SwapSpreadsTab() {
                   <p className="text-xs text-zinc-400 mb-1">ASW vs Z-Spread differential</p>
                   <div className="flex items-center gap-2">
                     <div
-                      className="h-2 rounded-full bg-violet-600"
+                      className="h-2 rounded-full bg-primary"
                       style={{
                         width: `${Math.min(100, (selected.assetSwapSpread / 40) * 100)}%`,
                       }}
@@ -1688,7 +1688,7 @@ function SwapSpreadsTab() {
       <Card className="bg-zinc-900 border-zinc-800">
         <CardHeader className="pb-2">
           <CardTitle className="text-sm text-zinc-300 flex items-center gap-2">
-            <BarChart3 className="w-4 h-4 text-violet-400" />
+            <BarChart3 className="w-4 h-4 text-primary" />
             {spreadViewLabel} Term Structure
           </CardTitle>
         </CardHeader>
@@ -1710,8 +1710,8 @@ function SwapSpreadsTab() {
                     className={cn(
                       "w-full rounded-t-sm transition-all",
                       selectedTenor === i
-                        ? "bg-violet-500"
-                        : "bg-violet-800/70 hover:bg-violet-700/70",
+                        ? "bg-primary"
+                        : "bg-primary/70 hover:bg-primary/70",
                     )}
                     style={{ height: `${pct}%` }}
                   />
@@ -1762,15 +1762,15 @@ function SwapSpreadsTab() {
                       className={cn(
                         "border-b border-zinc-800/50 transition-colors cursor-pointer",
                         selectedTenor === i
-                          ? "bg-violet-900/20"
+                          ? "bg-muted/40"
                           : "hover:bg-zinc-800/30",
                       )}
                       onClick={() => setSelectedTenor(i)}
                     >
                       <td className="py-2 px-2 font-medium text-white">{d.tenor}</td>
-                      <td className="py-2 px-2 text-blue-300">{d.treasuryYield.toFixed(3)}%</td>
+                      <td className="py-2 px-2 text-primary">{d.treasuryYield.toFixed(3)}%</td>
                       <td className="py-2 px-2 text-amber-300">{d.swapRate.toFixed(3)}%</td>
-                      <td className="py-2 px-2 text-violet-300">{d.assetSwapSpread.toFixed(1)}</td>
+                      <td className="py-2 px-2 text-primary">{d.assetSwapSpread.toFixed(1)}</td>
                       <td className="py-2 px-2 text-zinc-300">{d.zSpread.toFixed(1)}</td>
                       <td className="py-2 px-2 text-emerald-400">+{d.carryBps.toFixed(1)}</td>
                       <td className="py-2 px-2">
@@ -1809,8 +1809,8 @@ export default function FIRelValuePage() {
       {/* Header */}
       <div className="mb-6">
         <div className="flex items-center gap-3 mb-1">
-          <div className="p-2 rounded-lg bg-blue-900/40 border border-blue-800/40">
-            <Layers className="w-5 h-5 text-blue-400" />
+          <div className="p-2 rounded-lg bg-muted/60 border border-border">
+            <Layers className="w-5 h-5 text-primary" />
           </div>
           <div>
             <h1 className="text-xl font-bold text-white">Fixed Income Relative Value</h1>
@@ -1822,13 +1822,13 @@ export default function FIRelValuePage() {
 
         {/* Quick info chips */}
         <div className="flex flex-wrap gap-2 mt-3">
-          <div className="flex items-center gap-1.5 bg-blue-900/30 border border-blue-800/40 rounded-full px-3 py-1">
-            <Activity className="w-3 h-3 text-blue-400" />
-            <span className="text-[11px] text-blue-300">Live Yield Curve</span>
+          <div className="flex items-center gap-1.5 bg-muted/50 border border-border rounded-full px-3 py-1">
+            <Activity className="w-3 h-3 text-primary" />
+            <span className="text-[11px] text-primary">Live Yield Curve</span>
           </div>
-          <div className="flex items-center gap-1.5 bg-violet-900/30 border border-violet-800/40 rounded-full px-3 py-1">
-            <Target className="w-3 h-3 text-violet-400" />
-            <span className="text-[11px] text-violet-300">OTR/OFR Arb</span>
+          <div className="flex items-center gap-1.5 bg-muted/50 border border-border rounded-full px-3 py-1">
+            <Target className="w-3 h-3 text-primary" />
+            <span className="text-[11px] text-primary">OTR/OFR Arb</span>
           </div>
           <div className="flex items-center gap-1.5 bg-amber-900/30 border border-amber-800/40 rounded-full px-3 py-1">
             <ArrowLeftRight className="w-3 h-3 text-amber-400" />
@@ -1846,7 +1846,7 @@ export default function FIRelValuePage() {
         <TabsList className="bg-zinc-900 border border-zinc-800 h-auto p-1 flex flex-wrap gap-1 mb-4">
           <TabsTrigger
             value="yieldcurve"
-            className="data-[state=active]:bg-blue-700 data-[state=active]:text-white text-zinc-400 text-xs px-3 py-1.5"
+            className="data-[state=active]:bg-primary/80 data-[state=active]:text-white text-zinc-400 text-xs px-3 py-1.5"
           >
             <Activity className="w-3.5 h-3.5 mr-1.5" />
             Yield Curve
@@ -1860,7 +1860,7 @@ export default function FIRelValuePage() {
           </TabsTrigger>
           <TabsTrigger
             value="butterfly"
-            className="data-[state=active]:bg-violet-700 data-[state=active]:text-white text-zinc-400 text-xs px-3 py-1.5"
+            className="data-[state=active]:bg-primary/80 data-[state=active]:text-white text-zinc-400 text-xs px-3 py-1.5"
           >
             <Target className="w-3.5 h-3.5 mr-1.5" />
             Butterfly

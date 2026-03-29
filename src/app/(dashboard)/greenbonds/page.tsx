@@ -352,7 +352,7 @@ const IMPACT_DATA: ImpactKpi[] = [
 function ratingColor(r: string): string {
   if (r.startsWith("AAA") || r === "AA+") return "text-green-400";
   if (r.startsWith("AA")) return "text-emerald-400";
-  if (r.startsWith("A")) return "text-blue-400";
+  if (r.startsWith("A")) return "text-primary";
   if (r.startsWith("BBB")) return "text-yellow-400";
   return "text-red-400";
 }
@@ -362,9 +362,9 @@ function typeColor(t: GssBond["type"]): string {
     case "Green":
       return "bg-green-900/60 text-green-300 border-green-700";
     case "Social":
-      return "bg-blue-900/60 text-blue-300 border-blue-700";
+      return "bg-muted text-primary border-border";
     case "Sustainability":
-      return "bg-purple-900/60 text-purple-300 border-purple-700";
+      return "bg-muted text-primary border-border";
     case "SLB":
       return "bg-amber-900/60 text-amber-300 border-amber-700";
   }
@@ -777,9 +777,9 @@ export default function GreenBondsPage() {
 
   const statChips = [
     { label: "2024 GSS Issuance", value: `$${total2024.green + total2024.social + total2024.sustainability + total2024.linked}B`, icon: BarChart2, color: "text-green-400" },
-    { label: "Cumulative Market", value: `$${totalGssMarket}B`, icon: Globe, color: "text-blue-400" },
+    { label: "Cumulative Market", value: `$${totalGssMarket}B`, icon: Globe, color: "text-primary" },
     { label: "Avg Greenium", value: "-3.2 bps", icon: TrendingDown, color: "text-emerald-400" },
-    { label: "Verified Frameworks", value: "94%", icon: Shield, color: "text-purple-400" },
+    { label: "Verified Frameworks", value: "94%", icon: Shield, color: "text-primary" },
     { label: "Active Issuers", value: "4,200+", icon: Building2, color: "text-amber-400" },
     { label: "SDG Coverage", value: "13 of 17", icon: Award, color: "text-pink-400" },
   ];
@@ -852,7 +852,7 @@ export default function GreenBondsPage() {
             <Card className="bg-zinc-900 border-zinc-800">
               <CardHeader className="pb-2">
                 <CardTitle className="text-sm text-zinc-200 flex items-center gap-2">
-                  <Globe size={14} className="text-blue-400" />
+                  <Globe size={14} className="text-primary" />
                   Regional Breakdown — 2024
                 </CardTitle>
               </CardHeader>
@@ -895,8 +895,8 @@ export default function GreenBondsPage() {
                               iss.type === "Sovereign"
                                 ? "bg-amber-900/40 text-amber-300 border-amber-800"
                                 : iss.type === "Corporate"
-                                  ? "bg-blue-900/40 text-blue-300 border-blue-800"
-                                  : "bg-purple-900/40 text-purple-300 border-purple-800"
+                                  ? "bg-muted/60 text-primary border-border"
+                                  : "bg-muted/60 text-primary border-border"
                             }`}
                           >
                             {iss.type}
@@ -996,7 +996,7 @@ export default function GreenBondsPage() {
             <Card className="bg-zinc-900 border-zinc-800">
               <CardHeader className="pb-2">
                 <CardTitle className="text-sm text-zinc-200 flex items-center gap-2">
-                  <Shield size={14} className="text-blue-400" />
+                  <Shield size={14} className="text-primary" />
                   SFDR Classification
                 </CardTitle>
               </CardHeader>
@@ -1071,7 +1071,7 @@ export default function GreenBondsPage() {
                     num: 2,
                     title: "Climate Change Adaptation",
                     icon: Wind,
-                    color: "text-blue-400",
+                    color: "text-primary",
                     aligned: true,
                     desc: "Reduces risk from physical climate impacts on people and nature.",
                   },
@@ -1079,7 +1079,7 @@ export default function GreenBondsPage() {
                     num: 3,
                     title: "Sustainable Water & Marine Resources",
                     icon: Droplets,
-                    color: "text-cyan-400",
+                    color: "text-muted-foreground",
                     aligned: true,
                     desc: "Protects or restores water bodies and marine ecosystems.",
                   },
@@ -1095,7 +1095,7 @@ export default function GreenBondsPage() {
                     num: 5,
                     title: "Pollution Prevention & Control",
                     icon: Shield,
-                    color: "text-purple-400",
+                    color: "text-primary",
                     aligned: false,
                     desc: "Prevents, reduces or controls pollution of air, water and soil.",
                   },
@@ -1131,10 +1131,10 @@ export default function GreenBondsPage() {
                   </div>
                 ))}
 
-                <div className="mt-2 p-2.5 rounded border border-blue-800 bg-blue-900/20">
+                <div className="mt-2 p-2.5 rounded border border-border bg-muted/40">
                   <div className="flex items-center gap-2 mb-1">
-                    <Award size={12} className="text-blue-400" />
-                    <span className="text-xs font-semibold text-blue-300">CBI Certification</span>
+                    <Award size={12} className="text-primary" />
+                    <span className="text-xs font-semibold text-primary">CBI Certification</span>
                   </div>
                   <p className="text-xs text-zinc-400">
                     Climate Bonds Initiative certification provides assurance that assets are
@@ -1196,7 +1196,7 @@ export default function GreenBondsPage() {
                       <td className="py-2 text-right font-mono text-zinc-300">
                         {bond.currency} {bond.size.toFixed(1)}B
                       </td>
-                      <td className="py-2 text-right font-mono text-blue-400">
+                      <td className="py-2 text-right font-mono text-primary">
                         {bond.coupon.toFixed(2)}%
                       </td>
                       <td className={`py-2 text-right font-mono font-semibold ${bond.greenium < 0 ? "text-green-400" : "text-red-400"}`}>
@@ -1296,7 +1296,7 @@ export default function GreenBondsPage() {
             <Card className="bg-zinc-900 border-zinc-800">
               <CardHeader className="pb-2">
                 <CardTitle className="text-sm text-zinc-200 flex items-center gap-2">
-                  <BarChart2 size={14} className="text-blue-400" />
+                  <BarChart2 size={14} className="text-primary" />
                   Spread Analysis by Bond Type
                 </CardTitle>
               </CardHeader>
@@ -1335,7 +1335,7 @@ export default function GreenBondsPage() {
             <Card className="bg-zinc-900 border-zinc-800">
               <CardHeader className="pb-2">
                 <CardTitle className="text-sm text-zinc-200 flex items-center gap-2">
-                  <Shield size={14} className="text-purple-400" />
+                  <Shield size={14} className="text-primary" />
                   Second-Party Opinion Providers
                 </CardTitle>
               </CardHeader>
@@ -1429,7 +1429,7 @@ export default function GreenBondsPage() {
             <Card className="bg-zinc-900 border-zinc-800">
               <CardHeader className="pb-1">
                 <CardTitle className="text-xs text-zinc-400 flex items-center gap-2">
-                  <Building2 size={12} className="text-blue-400" />
+                  <Building2 size={12} className="text-primary" />
                   Green Buildings Certified (million m²)
                 </CardTitle>
               </CardHeader>
@@ -1440,7 +1440,7 @@ export default function GreenBondsPage() {
             <Card className="bg-zinc-900 border-zinc-800">
               <CardHeader className="pb-1">
                 <CardTitle className="text-xs text-zinc-400 flex items-center gap-2">
-                  <Droplets size={12} className="text-cyan-400" />
+                  <Droplets size={12} className="text-muted-foreground" />
                   Sustainable Water Treatment (bn m³/yr)
                 </CardTitle>
               </CardHeader>
@@ -1535,7 +1535,7 @@ export default function GreenBondsPage() {
                             {row.sdgs.map((sdg) => (
                               <span
                                 key={sdg}
-                                className="text-xs px-1.5 py-0.5 rounded bg-blue-900/40 text-blue-300 border border-blue-800"
+                                className="text-xs px-1.5 py-0.5 rounded bg-muted/60 text-primary border border-border"
                               >
                                 {sdg}
                               </span>
@@ -1555,7 +1555,7 @@ export default function GreenBondsPage() {
             <Card className="bg-zinc-900 border-zinc-800">
               <CardHeader className="pb-2">
                 <CardTitle className="text-sm text-zinc-200 flex items-center gap-2">
-                  <Globe size={14} className="text-blue-400" />
+                  <Globe size={14} className="text-primary" />
                   UN SDG Alignment Coverage
                 </CardTitle>
               </CardHeader>
@@ -1654,7 +1654,7 @@ export default function GreenBondsPage() {
                 </div>
 
                 <div className="p-2.5 rounded border border-zinc-700 bg-zinc-800/40 flex items-start gap-2">
-                  <Info size={12} className="text-blue-400 mt-0.5 shrink-0" />
+                  <Info size={12} className="text-primary mt-0.5 shrink-0" />
                   <p className="text-[11px] text-zinc-400">
                     Academic consensus (Flammer 2021, Ehlers & Packer 2017) finds modest but
                     statistically significant improvements in environmental performance post-issuance,

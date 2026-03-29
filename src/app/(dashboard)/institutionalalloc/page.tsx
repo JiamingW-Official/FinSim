@@ -781,8 +781,8 @@ export default function InstitutionalAllocPage() {
         className="mb-6"
       >
         <div className="flex items-center gap-3 mb-2">
-          <div className="p-2 rounded-lg bg-blue-500/10">
-            <Building2 className="w-6 h-6 text-blue-400" />
+          <div className="p-2 rounded-lg bg-primary/10">
+            <Building2 className="w-6 h-6 text-primary" />
           </div>
           <div>
             <h1 className="text-2xl font-bold text-white">Institutional Asset Allocation</h1>
@@ -803,19 +803,19 @@ export default function InstitutionalAllocPage() {
       {/* Tabs */}
       <Tabs defaultValue="models">
         <TabsList className="bg-gray-900 border border-gray-800 mb-6 flex-wrap h-auto gap-1 p-1">
-          <TabsTrigger value="models" className="data-[state=active]:bg-blue-600 text-sm">
+          <TabsTrigger value="models" className="data-[state=active]:bg-primary text-sm">
             <BarChart3 className="w-3.5 h-3.5 mr-1.5" />
             Models Comparison
           </TabsTrigger>
-          <TabsTrigger value="endowment" className="data-[state=active]:bg-blue-600 text-sm">
+          <TabsTrigger value="endowment" className="data-[state=active]:bg-primary text-sm">
             <BookOpen className="w-3.5 h-3.5 mr-1.5" />
             Endowment Model
           </TabsTrigger>
-          <TabsTrigger value="pension" className="data-[state=active]:bg-blue-600 text-sm">
+          <TabsTrigger value="pension" className="data-[state=active]:bg-primary text-sm">
             <Scale className="w-3.5 h-3.5 mr-1.5" />
             Pension LDI
           </TabsTrigger>
-          <TabsTrigger value="swf" className="data-[state=active]:bg-blue-600 text-sm">
+          <TabsTrigger value="swf" className="data-[state=active]:bg-primary text-sm">
             <Globe className="w-3.5 h-3.5 mr-1.5" />
             SWF Strategies
           </TabsTrigger>
@@ -835,7 +835,7 @@ export default function InstitutionalAllocPage() {
                 <button
                   key={m.shortName}
                   onClick={() => setActiveModel(m.shortName)}
-                  className={`rounded-xl border p-3 text-left transition-all ${activeModel === m.shortName ? "border-blue-500 bg-blue-500/10" : "border-gray-800 bg-gray-900/60 hover:border-gray-700"}`}
+                  className={`rounded-xl border p-3 text-left transition-all ${activeModel === m.shortName ? "border-primary bg-primary/10" : "border-gray-800 bg-gray-900/60 hover:border-gray-700"}`}
                 >
                   <div className="text-xs text-gray-400 mb-1 truncate">{m.name}</div>
                   <div className="text-lg font-bold" style={{ color: m.color }}>
@@ -851,7 +851,7 @@ export default function InstitutionalAllocPage() {
             <Card className="bg-gray-900/60 border-gray-800">
               <CardHeader className="pb-2">
                 <CardTitle className="text-sm font-medium text-gray-200 flex items-center gap-2">
-                  <PieChart className="w-4 h-4 text-blue-400" />
+                  <PieChart className="w-4 h-4 text-primary" />
                   Asset Allocation Comparison — 5 Institutional Models
                 </CardTitle>
               </CardHeader>
@@ -877,7 +877,7 @@ export default function InstitutionalAllocPage() {
             <Card className="bg-gray-900/60 border-gray-800">
               <CardHeader className="pb-2">
                 <CardTitle className="text-sm font-medium text-gray-200 flex items-center gap-2">
-                  <Info className="w-4 h-4 text-blue-400" />
+                  <Info className="w-4 h-4 text-primary" />
                   {selectedModel.name} — Key Principles
                 </CardTitle>
               </CardHeader>
@@ -905,14 +905,14 @@ export default function InstitutionalAllocPage() {
             {/* Swensen Principles */}
             <div>
               <h3 className="text-sm font-semibold text-gray-300 mb-3 flex items-center gap-2">
-                <BookOpen className="w-4 h-4 text-blue-400" />
+                <BookOpen className="w-4 h-4 text-primary" />
                 Swensen&apos;s Unconventional Portfolio Principles
               </h3>
               <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
                 {SWENSEN_PRINCIPLES.map((p) => (
                   <Card key={p.title} className="bg-gray-900/60 border-gray-800">
                     <CardContent className="pt-4 pb-4">
-                      <div className="text-xs font-semibold text-blue-400 mb-1">{p.title}</div>
+                      <div className="text-xs font-semibold text-primary mb-1">{p.title}</div>
                       <p className="text-xs text-gray-400 leading-relaxed">{p.body}</p>
                     </CardContent>
                   </Card>
@@ -934,14 +934,14 @@ export default function InstitutionalAllocPage() {
             <Card className="bg-gray-900/60 border-gray-800">
               <CardHeader className="pb-2">
                 <CardTitle className="text-sm font-medium text-gray-200 flex items-center gap-2">
-                  <Lock className="w-4 h-4 text-blue-400" />
+                  <Lock className="w-4 h-4 text-primary" />
                   Illiquidity Premium Theory
                 </CardTitle>
               </CardHeader>
               <CardContent>
                 <p className="text-sm text-gray-300 mb-4 leading-relaxed">
                   Endowments with perpetual time horizons can tolerate multi-year lock-up periods in exchange for
-                  a structural return premium. The <span className="text-blue-300 font-medium">illiquidity premium</span> is
+                  a structural return premium. The <span className="text-primary font-medium">illiquidity premium</span> is
                   estimated at 3–5% per annum over equivalent public market exposures. This advantage is only realizable
                   by investors who: (1) do not face forced selling, (2) have stable spending needs, and (3) can sustain
                   capital calls over 5–10 year fund life cycles.
@@ -965,7 +965,7 @@ export default function InstitutionalAllocPage() {
             {/* Asset class breakdown */}
             <div>
               <h3 className="text-sm font-semibold text-gray-300 mb-3 flex items-center gap-2">
-                <Layers className="w-4 h-4 text-blue-400" />
+                <Layers className="w-4 h-4 text-primary" />
                 Typical Endowment Asset Class Breakdown
               </h3>
               <div className="space-y-2">
@@ -1008,7 +1008,7 @@ export default function InstitutionalAllocPage() {
               <CardContent>
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-4">
                   <div className="bg-gray-800/60 rounded-lg p-3">
-                    <div className="text-xs font-semibold text-blue-400 mb-2">Simple 5% Rule</div>
+                    <div className="text-xs font-semibold text-primary mb-2">Simple 5% Rule</div>
                     <p className="text-xs text-gray-400 leading-relaxed">
                       Spend exactly 5% of trailing 12-month portfolio value each year. Pro: simple. Con: highly procyclical —
                       spending collapses after market crashes precisely when budget needs are highest.
@@ -1035,7 +1035,7 @@ export default function InstitutionalAllocPage() {
             {/* Liquidity ladder */}
             <div>
               <h3 className="text-sm font-semibold text-gray-300 mb-3 flex items-center gap-2">
-                <Activity className="w-4 h-4 text-blue-400" />
+                <Activity className="w-4 h-4 text-primary" />
                 Liquidity Ladder — Endowment Structure
               </h3>
               <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3">
@@ -1077,13 +1077,13 @@ export default function InstitutionalAllocPage() {
             <Card className="bg-gray-900/60 border-gray-800">
               <CardHeader className="pb-2">
                 <CardTitle className="text-sm font-medium text-gray-200 flex items-center gap-2">
-                  <Scale className="w-4 h-4 text-blue-400" />
+                  <Scale className="w-4 h-4 text-primary" />
                   Liability-Driven Investing (LDI) Basics
                 </CardTitle>
               </CardHeader>
               <CardContent>
                 <p className="text-sm text-gray-300 mb-4 leading-relaxed">
-                  LDI inverts traditional asset-only thinking: a pension fund&apos;s <span className="text-blue-300 font-medium">primary risk is underfunding</span> —
+                  LDI inverts traditional asset-only thinking: a pension fund&apos;s <span className="text-primary font-medium">primary risk is underfunding</span> —
                   the gap between present value of liabilities (future benefit payments discounted at corporate bond yields)
                   and plan assets. The liability portfolio behaves like a long-duration fixed income portfolio; duration
                   mismatch creates funding ratio volatility even when assets perform well.
@@ -1092,7 +1092,7 @@ export default function InstitutionalAllocPage() {
                   {[
                     {
                       title: "Duration Matching",
-                      icon: <Target className="w-4 h-4 text-blue-400" />,
+                      icon: <Target className="w-4 h-4 text-primary" />,
                       body: "Matching asset duration to liability duration (often 14–20 years) neutralizes interest rate risk. A 1% rate rise increases PV of liabilities — but also asset values if duration-matched.",
                     },
                     {
@@ -1124,7 +1124,7 @@ export default function InstitutionalAllocPage() {
             <Card className="bg-gray-900/60 border-gray-800">
               <CardHeader className="pb-2">
                 <CardTitle className="text-sm font-medium text-gray-200 flex items-center gap-2">
-                  <BarChart3 className="w-4 h-4 text-blue-400" />
+                  <BarChart3 className="w-4 h-4 text-primary" />
                   PV of Assets vs PV of Liabilities (Simulated Pension Plan, $B)
                 </CardTitle>
               </CardHeader>
@@ -1138,7 +1138,7 @@ export default function InstitutionalAllocPage() {
               <Card className="bg-gray-900/60 border-gray-800">
                 <CardHeader className="pb-2">
                   <CardTitle className="text-sm font-medium text-gray-200 flex items-center gap-2">
-                    <Activity className="w-4 h-4 text-blue-400" />
+                    <Activity className="w-4 h-4 text-primary" />
                     Funding Ratio Gauge
                   </CardTitle>
                 </CardHeader>
@@ -1184,11 +1184,11 @@ export default function InstitutionalAllocPage() {
                           <span className="text-xs text-gray-500">{g.label}</span>
                         </div>
                         <div className="flex rounded overflow-hidden h-3 gap-0.5">
-                          <div className="h-full bg-blue-500 transition-all" style={{ width: `${g.eq}%` }} title={`Equities ${g.eq}%`} />
+                          <div className="h-full bg-primary transition-all" style={{ width: `${g.eq}%` }} title={`Equities ${g.eq}%`} />
                           <div className="h-full bg-emerald-500 transition-all" style={{ width: `${g.ldi}%` }} title={`LDI ${g.ldi}%`} />
                         </div>
                         <div className="flex justify-between mt-1">
-                          <span className="text-xs text-blue-400">Eq {g.eq}%</span>
+                          <span className="text-xs text-primary">Eq {g.eq}%</span>
                           <span className="text-xs text-emerald-400">LDI {g.ldi}%</span>
                         </div>
                       </div>
@@ -1206,14 +1206,14 @@ export default function InstitutionalAllocPage() {
             <Card className="bg-gray-900/60 border-gray-800">
               <CardHeader className="pb-2">
                 <CardTitle className="text-sm font-medium text-gray-200 flex items-center gap-2">
-                  <Info className="w-4 h-4 text-blue-400" />
+                  <Info className="w-4 h-4 text-primary" />
                   Interest Rate Hedge via Swaps — Mechanics
                 </CardTitle>
               </CardHeader>
               <CardContent>
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                   <div>
-                    <div className="text-xs font-semibold text-blue-400 mb-2">Pay-Fixed Receiver Swap</div>
+                    <div className="text-xs font-semibold text-primary mb-2">Pay-Fixed Receiver Swap</div>
                     <p className="text-xs text-gray-400 leading-relaxed">
                       Pension pays fixed rate (e.g., 4.5%), receives floating SOFR. When rates fall, the swap gains
                       value (matching liability increase). Notional can be sized to achieve target duration extension
@@ -1286,7 +1286,7 @@ export default function InstitutionalAllocPage() {
                 <button
                   key={swf.name}
                   onClick={() => setActiveSWF(swf.name)}
-                  className={`px-3 py-1.5 rounded-lg text-xs font-medium border transition-all ${activeSWF === swf.name ? "text-white border-blue-500 bg-blue-500/20" : "text-gray-400 border-gray-700 hover:border-gray-600"}`}
+                  className={`px-3 py-1.5 rounded-lg text-xs font-medium border transition-all ${activeSWF === swf.name ? "text-white border-primary bg-primary/20" : "text-gray-400 border-gray-700 hover:border-gray-600"}`}
                 >
                   {swf.name}
                 </button>
@@ -1317,10 +1317,10 @@ export default function InstitutionalAllocPage() {
                     <div className="text-xs font-semibold text-gray-300 mb-1">Governance</div>
                     <p className="text-xs text-gray-400 leading-relaxed">{selectedSWF.governance}</p>
                   </div>
-                  <div className="bg-blue-500/10 border border-blue-500/20 rounded-lg p-3">
+                  <div className="bg-primary/10 border border-border rounded-lg p-3">
                     <div className="flex items-start gap-2">
-                      <CheckCircle className="w-3.5 h-3.5 text-blue-400 shrink-0 mt-0.5" />
-                      <p className="text-xs text-blue-300">{selectedSWF.highlight}</p>
+                      <CheckCircle className="w-3.5 h-3.5 text-primary shrink-0 mt-0.5" />
+                      <p className="text-xs text-primary">{selectedSWF.highlight}</p>
                     </div>
                   </div>
                   {/* Allocation bars */}
@@ -1347,7 +1347,7 @@ export default function InstitutionalAllocPage() {
               <Card className="bg-gray-900/60 border-gray-800">
                 <CardHeader className="pb-2">
                   <CardTitle className="text-sm font-medium text-gray-200 flex items-center gap-2">
-                    <BarChart3 className="w-4 h-4 text-blue-400" />
+                    <BarChart3 className="w-4 h-4 text-primary" />
                     Return Contribution by Asset Class
                   </CardTitle>
                 </CardHeader>
@@ -1416,7 +1416,7 @@ export default function InstitutionalAllocPage() {
             <Card className="bg-gray-900/60 border-gray-800">
               <CardHeader className="pb-2">
                 <CardTitle className="text-sm font-medium text-gray-200 flex items-center gap-2">
-                  <Target className="w-4 h-4 text-blue-400" />
+                  <Target className="w-4 h-4 text-primary" />
                   Benchmark Hugging vs High-Conviction — SWF Spectrum
                 </CardTitle>
               </CardHeader>
@@ -1441,7 +1441,7 @@ export default function InstitutionalAllocPage() {
                     </ul>
                   </div>
                   <div>
-                    <div className="text-xs font-semibold text-blue-400 mb-2 flex items-center gap-1">
+                    <div className="text-xs font-semibold text-primary mb-2 flex items-center gap-1">
                       <AlertTriangle className="w-3.5 h-3.5" /> High-Conviction (GIC, ADIA, CIC)
                     </div>
                     <ul className="space-y-1">
@@ -1453,7 +1453,7 @@ export default function InstitutionalAllocPage() {
                         "Lower disclosure; governance complexity higher",
                       ].map((pt) => (
                         <li key={pt} className="text-xs text-gray-400 flex items-start gap-1.5">
-                          <span className="text-blue-400 mt-0.5">•</span> {pt}
+                          <span className="text-primary mt-0.5">•</span> {pt}
                         </li>
                       ))}
                     </ul>

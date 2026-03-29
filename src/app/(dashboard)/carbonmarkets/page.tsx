@@ -451,8 +451,8 @@ function ComplianceTab() {
     <div className="space-y-6">
       <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
         <StatChip label="EUA Price (Mar 2026)" value="EUR 62/t" sub="Per tonne CO2eq" color="text-emerald-400" />
-        <StatChip label="EU ETS Annual Cap" value="1.39 Bt" sub="2024 cap; declining" color="text-blue-400" />
-        <StatChip label="MSR Holdings" value="2.7 Bt" sub="Withheld from market" color="text-purple-400" />
+        <StatChip label="EU ETS Annual Cap" value="1.39 Bt" sub="2024 cap; declining" color="text-primary" />
+        <StatChip label="MSR Holdings" value="2.7 Bt" sub="Withheld from market" color="text-primary" />
         <StatChip label="2025 Auction Revenue" value="EUR 37B" sub="EU member states" color="text-amber-400" />
       </div>
 
@@ -534,7 +534,7 @@ function ComplianceTab() {
       <Card className="bg-zinc-900 border-zinc-800">
         <CardHeader className="pb-2">
           <CardTitle className="text-sm font-medium text-zinc-300 flex items-center gap-2">
-            <Globe className="w-4 h-4 text-blue-400" />
+            <Globe className="w-4 h-4 text-primary" />
             Global ETS Comparison
           </CardTitle>
         </CardHeader>
@@ -551,7 +551,7 @@ function ComplianceTab() {
               <tbody>
                 {ETS_SYSTEMS.map((ets, i) => (
                   <tr key={i} className="border-b border-zinc-800/60 hover:bg-zinc-800/30">
-                    <td className="py-2 px-3 text-blue-400 font-medium">{ets.name}</td>
+                    <td className="py-2 px-3 text-primary font-medium">{ets.name}</td>
                     <td className="py-2 px-3 text-zinc-300">{ets.region}</td>
                     <td className="py-2 px-3 text-zinc-400">{ets.launched}</td>
                     <td className="py-2 px-3 text-emerald-400 font-mono">{ets.price}</td>
@@ -628,7 +628,7 @@ function VoluntaryTab() {
     <div className="space-y-6">
       <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
         <StatChip label="VCM Size 2023" value="$2.0B" color="text-emerald-400" />
-        <StatChip label="VCM Target 2030" value="$50B" color="text-blue-400" />
+        <StatChip label="VCM Target 2030" value="$50B" color="text-primary" />
         <StatChip label="Credits Retired 2023" value="195Mt" color="text-amber-400" />
         <StatChip label="REDD+ Share" value="~30%" color="text-green-400" />
       </div>
@@ -636,7 +636,7 @@ function VoluntaryTab() {
       <Card className="bg-zinc-900 border-zinc-800">
         <CardHeader className="pb-2">
           <CardTitle className="text-sm font-medium text-zinc-300 flex items-center gap-2">
-            <Layers className="w-4 h-4 text-purple-400" />
+            <Layers className="w-4 h-4 text-primary" />
             Carbon Credit Lifecycle
           </CardTitle>
         </CardHeader>
@@ -676,7 +676,7 @@ function VoluntaryTab() {
                 <tr className="border-b border-zinc-800">
                   <th className="text-left py-2 px-3 text-zinc-400">Aspect</th>
                   <th className="text-left py-2 px-3 text-emerald-400">Voluntary (VCM)</th>
-                  <th className="text-left py-2 px-3 text-blue-400">Compliance (ETS)</th>
+                  <th className="text-left py-2 px-3 text-primary">Compliance (ETS)</th>
                 </tr>
               </thead>
               <tbody>
@@ -907,9 +907,9 @@ function InvestmentTab() {
     <div className="space-y-6">
       <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
         <StatChip label="KRBN YTD" value={fmtPct(-18.3)} sub="Global carbon ETF" color="text-red-400" />
-        <StatChip label="EUA vs S&P500 Corr" value="0.12" sub="Low correlation benefit" color="text-blue-400" />
+        <StatChip label="EUA vs S&P500 Corr" value="0.12" sub="Low correlation benefit" color="text-primary" />
         <StatChip label="EUA Roll Yield" value="+2-4%" sub="Contango structure" color="text-emerald-400" />
-        <StatChip label="Carbon Beta" value="0.31" sub="vs MSCI World" color="text-purple-400" />
+        <StatChip label="Carbon Beta" value="0.31" sub="vs MSCI World" color="text-primary" />
       </div>
 
       <Card className="bg-zinc-900 border-zinc-800">
@@ -961,7 +961,7 @@ function InvestmentTab() {
               <tbody>
                 {CARBON_FUNDS.map((fund, i) => (
                   <tr key={i} className="border-b border-zinc-800/60 hover:bg-zinc-800/30">
-                    <td className="py-2 px-3 text-blue-400 font-mono font-bold">{fund.ticker}</td>
+                    <td className="py-2 px-3 text-primary font-mono font-bold">{fund.ticker}</td>
                     <td className="py-2 px-3 text-zinc-300">{fund.name}</td>
                     <td className="py-2 px-3 text-zinc-400">{fund.aum}</td>
                     <td className="py-2 px-3 text-zinc-400">{fund.exposure}</td>
@@ -1059,7 +1059,7 @@ function InvestmentTab() {
       <Card className="bg-zinc-900 border-zinc-800">
         <CardHeader className="pb-2">
           <CardTitle className="text-sm font-medium text-zinc-300 flex items-center gap-2">
-            <Target className="w-4 h-4 text-blue-400" />
+            <Target className="w-4 h-4 text-primary" />
             Transition Risk Hedging with Carbon
           </CardTitle>
         </CardHeader>
@@ -1100,7 +1100,7 @@ export default function CarbonMarketsPage() {
           </div>
           <div className="ml-auto flex gap-2 flex-wrap">
             <Badge className="bg-emerald-900/40 text-emerald-400 border-emerald-700 text-xs">EUA EUR 62/t</Badge>
-            <Badge className="bg-blue-900/40 text-blue-400 border-blue-700 text-xs">VCM $2B market</Badge>
+            <Badge className="bg-muted/60 text-primary border-border text-xs">VCM $2B market</Badge>
             <Badge className="bg-amber-900/40 text-amber-400 border-amber-700 text-xs">2030 target $150-250/t</Badge>
           </div>
         </div>
@@ -1120,7 +1120,7 @@ export default function CarbonMarketsPage() {
             <ShieldCheck className="w-3 h-3 mr-1" />
             Credit Quality
           </TabsTrigger>
-          <TabsTrigger value="investment" className="data-[state=active]:bg-blue-600 data-[state=active]:text-white text-xs px-3 py-1.5">
+          <TabsTrigger value="investment" className="data-[state=active]:bg-primary data-[state=active]:text-white text-xs px-3 py-1.5">
             <TrendingUp className="w-3 h-3 mr-1" />
             Investment Strategies
           </TabsTrigger>

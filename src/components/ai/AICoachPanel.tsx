@@ -689,7 +689,7 @@ function TradePlanCard({ plan, conviction }: { plan: TradePlan; conviction: stri
       {/* Position Sizing */}
       <div className="border-t border-border/30 pt-1 space-y-0.5">
         <div className="text-[8px] font-bold text-foreground/40">
-          AlphaBot Sizing (2% risk)
+          Position Sizing (2% risk)
         </div>
         <div className="flex justify-between text-[11px]">
           <span className="text-muted-foreground/70">Conservative (1%)</span>
@@ -731,29 +731,29 @@ function AlphaBotFace({
         {/* Face */}
         <rect x="2" y="3" width="24" height="22" rx="5" fill="#18181b" stroke="#3f3f46" strokeWidth="1.5" />
         {/* Antenna */}
-        <line x1="14" y1="3" x2="14" y2="1" stroke="#6366f1" strokeWidth="1.5" />
-        <circle cx="14" cy="0.8" r="1.5" fill="#6366f1" />
+        <line x1="14" y1="3" x2="14" y2="1" stroke="#10b981" strokeWidth="1.5" />
+        <circle cx="14" cy="0.8" r="1.5" fill="#10b981" />
 
         {/* Expression */}
         {loading ? (
           <g>
-            <circle cx="9.5" cy="13" r="2.5" fill="#60a5fa" opacity="0.5" />
-            <circle cx="18.5" cy="13" r="2.5" fill="#60a5fa" opacity="0.5" />
+            <circle cx="9.5" cy="13" r="2.5" fill="#94a3b8" opacity="0.5" />
+            <circle cx="18.5" cy="13" r="2.5" fill="#94a3b8" opacity="0.5" />
             {/* Bouncing dots */}
-            <motion.circle cx="10" cy="20.5" r="1.3" fill="#6366f1"
+            <motion.circle cx="10" cy="20.5" r="1.3" fill="#10b981"
               animate={{ cy: [20.5, 18.5, 20.5] }}
               transition={{ repeat: Infinity, duration: 0.7, delay: 0 }} />
-            <motion.circle cx="14" cy="20.5" r="1.3" fill="#6366f1"
+            <motion.circle cx="14" cy="20.5" r="1.3" fill="#10b981"
               animate={{ cy: [20.5, 18.5, 20.5] }}
               transition={{ repeat: Infinity, duration: 0.7, delay: 0.15 }} />
-            <motion.circle cx="18" cy="20.5" r="1.3" fill="#6366f1"
+            <motion.circle cx="18" cy="20.5" r="1.3" fill="#10b981"
               animate={{ cy: [20.5, 18.5, 20.5] }}
               transition={{ repeat: Infinity, duration: 0.7, delay: 0.3 }} />
           </g>
         ) : isHappy ? (
           <g>
-            <path d="M7 13.5 Q9.5 10.5 12 13.5" stroke="#60a5fa" strokeWidth="2" fill="none" strokeLinecap="round" />
-            <path d="M16 13.5 Q18.5 10.5 21 13.5" stroke="#60a5fa" strokeWidth="2" fill="none" strokeLinecap="round" />
+            <path d="M7 13.5 Q9.5 10.5 12 13.5" stroke="#94a3b8" strokeWidth="2" fill="none" strokeLinecap="round" />
+            <path d="M16 13.5 Q18.5 10.5 21 13.5" stroke="#94a3b8" strokeWidth="2" fill="none" strokeLinecap="round" />
             <path d="M9 19.5 Q14 23.5 19 19.5" stroke="#34d399" strokeWidth="1.5" fill="none" strokeLinecap="round" />
           </g>
         ) : isSad ? (
@@ -764,8 +764,8 @@ function AlphaBotFace({
           </g>
         ) : (
           <g>
-            <circle cx="9.5" cy="12.5" r="2" fill="#60a5fa" />
-            <circle cx="18.5" cy="12.5" r="2" fill="#60a5fa" />
+            <circle cx="9.5" cy="12.5" r="2" fill="#94a3b8" />
+            <circle cx="18.5" cy="12.5" r="2" fill="#94a3b8" />
             <path d="M9.5 19.5 L18.5 19.5" stroke="#52525b" strokeWidth="1.5" strokeLinecap="round" />
           </g>
         )}
@@ -1377,7 +1377,7 @@ export function AICoachPanel() {
               {/* Loading state (before result) */}
               {loading && !result && mode !== "ideas" && mode !== "scan" && mode !== "personalized" && (
                 <div className="text-xs text-muted-foreground animate-pulse text-center py-2">
-                  AlphaBot is analyzing…
+                  Analyzing signals…
                 </div>
               )}
 

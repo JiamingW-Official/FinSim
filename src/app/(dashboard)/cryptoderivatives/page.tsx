@@ -560,7 +560,7 @@ function DefiComparisonTable() {
                   className={`text-[11px] px-1.5 py-0 ${
                     row.type === "CEX"
                       ? "bg-sky-400/10 text-sky-400 border-sky-400/20"
-                      : "bg-violet-400/10 text-violet-400 border-violet-400/20"
+                      : "bg-primary/10 text-primary border-border"
                   }`}
                   variant="outline"
                 >
@@ -591,8 +591,8 @@ function DefiComparisonTable() {
             <li>• Advanced order types (TWAP, OCO)</li>
           </ul>
         </div>
-        <div className="bg-violet-400/5 border border-violet-400/20 rounded-lg p-3">
-          <div className="flex items-center gap-1.5 text-violet-400 text-xs font-medium mb-1.5">
+        <div className="bg-primary/5 border border-border rounded-lg p-3">
+          <div className="flex items-center gap-1.5 text-primary text-xs font-medium mb-1.5">
             <Zap className="w-3.5 h-3.5" />
             DEX Advantages
           </div>
@@ -959,7 +959,7 @@ export default function CryptoDerivativesPage() {
                     <span>At-The-Money — strike closest to current spot price. Highest time value, delta ≈ 0.50.</span>
                   </div>
                   <div className="flex gap-2">
-                    <span className="text-violet-400 font-semibold shrink-0">OI:</span>
+                    <span className="text-primary font-semibold shrink-0">OI:</span>
                     <span>Open Interest — total outstanding contracts. High OI signals where market participants have conviction.</span>
                   </div>
                 </CardContent>
@@ -1138,13 +1138,13 @@ export default function CryptoDerivativesPage() {
             <Card className="bg-card border-border">
               <CardHeader className="pb-2">
                 <CardTitle className="text-sm flex items-center gap-2">
-                  <Zap className="w-4 h-4 text-violet-400" />
+                  <Zap className="w-4 h-4 text-primary" />
                   DeFi Perps: How They Work
                 </CardTitle>
               </CardHeader>
               <CardContent className="space-y-3 text-[11px] text-muted-foreground">
-                <div className="bg-violet-400/5 border border-violet-400/20 rounded p-2.5">
-                  <p className="text-violet-400 font-medium text-xs mb-1">Virtual AMM (vAMM) — dYdX style</p>
+                <div className="bg-primary/5 border border-border rounded p-2.5">
+                  <p className="text-primary font-medium text-xs mb-1">Virtual AMM (vAMM) — dYdX style</p>
                   <p>Uses an off-chain order book on a sovereign blockchain (Cosmos). Funds stay in smart contracts, matching happens in a decentralized validator set. Near-CEX speed.</p>
                 </div>
                 <div className="bg-emerald-400/5 border border-emerald-400/20 rounded p-2.5">

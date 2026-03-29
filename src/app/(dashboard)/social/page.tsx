@@ -110,10 +110,10 @@ const TICKER_PRICES: Record<string, number> = {
 };
 
 const AVATAR_COLORS = [
-  "bg-blue-500", "bg-emerald-500", "bg-violet-500", "bg-amber-500",
+  "bg-primary", "bg-emerald-500", "bg-primary", "bg-amber-500",
   "bg-rose-500", "bg-cyan-500", "bg-orange-500", "bg-pink-500",
   "bg-teal-500", "bg-indigo-500", "bg-lime-500", "bg-fuchsia-500",
-  "bg-sky-500", "bg-red-500", "bg-green-500", "bg-purple-500",
+  "bg-sky-500", "bg-red-500", "bg-green-500", "bg-primary",
   "bg-yellow-500", "bg-slate-500", "bg-zinc-500", "bg-neutral-500",
 ];
 
@@ -213,7 +213,7 @@ function generateLeaderboard(): Trader[] {
       rank: i + 1,
       username,
       initials,
-      avatarColor: AVATAR_COLORS[colorIdx] ?? "bg-blue-500",
+      avatarColor: AVATAR_COLORS[colorIdx] ?? "bg-primary",
       returnPct: Math.round(returnPct * 10) / 10,
       sharpe: Math.round(sharpe * 100) / 100,
       winRate: Math.round(winRate * 10) / 10,
@@ -263,7 +263,7 @@ function generateTradeIdeas(): TradeIdea[] {
       trader: {
         username,
         initials: username.slice(0, 2).toUpperCase(),
-        avatarColor: AVATAR_COLORS[colorIdx] ?? "bg-blue-500",
+        avatarColor: AVATAR_COLORS[colorIdx] ?? "bg-primary",
       },
       ticker,
       direction,
@@ -309,7 +309,7 @@ function generateCopyTraders(): CopyTrader[] {
       id: `ct${i}`,
       username,
       initials: username.slice(0, 2).toUpperCase(),
-      avatarColor: AVATAR_COLORS[colorIdx] ?? "bg-blue-500",
+      avatarColor: AVATAR_COLORS[colorIdx] ?? "bg-primary",
       returnPct: Math.round((20 + rng() * 80) * 10) / 10,
       winRate: Math.round((45 + rng() * 30) * 10) / 10,
       speciality: SPECIALITIES[specialityIdx] ?? "Momentum",
@@ -1200,8 +1200,8 @@ function CommunityStatsTab() {
   const discussionData = ALL_TICKERS.map((t, i) => ({
     label: t,
     value: [420, 387, 312, 298, 540, 265, 470, 380, 290, 218][i] ?? 200,
-    color: ["text-blue-400", "text-emerald-400", "text-violet-400", "text-amber-400", "text-rose-400",
-      "text-cyan-400", "text-orange-400", "text-teal-400", "text-indigo-400", "text-yellow-400"][i] ?? "text-primary",
+    color: ["text-primary", "text-emerald-400", "text-primary", "text-amber-400", "text-rose-400",
+      "text-muted-foreground", "text-orange-400", "text-emerald-400", "text-indigo-400", "text-yellow-400"][i] ?? "text-primary",
   }));
 
   const histogramData = [

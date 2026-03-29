@@ -28,8 +28,8 @@ const PHASE_CONFIG: {
     id: "mid_expansion",
     label: "Mid Expansion",
     shortLabel: "Mid",
-    color: "text-blue-500",
-    bgColor: "bg-blue-500",
+    color: "text-primary",
+    bgColor: "bg-primary",
   },
   {
     id: "late_expansion",

@@ -750,7 +750,7 @@ function PEADSection() {
       <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 text-center">
         {[
           { label: "PEAD Win Rate", value: "58%", color: "text-emerald-400", sub: "buy beats day 2" },
-          { label: "Sharpe Ratio", value: "0.60", color: "text-blue-400", sub: "synthetic backtest" },
+          { label: "Sharpe Ratio", value: "0.60", color: "text-primary", sub: "synthetic backtest" },
           { label: "Avg Drift Day", value: "~30", color: "text-amber-400", sub: "days of drift" },
         ].map(({ label, value, color, sub }) => (
           <div key={label} className="bg-card border border-border rounded-lg p-3">
@@ -1090,10 +1090,10 @@ function SectorEarningsSection() {
       {/* Season tracker */}
       <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 text-center">
         {[
-          { label: "Avg Reported", value: `${totalReported}%`, color: "text-blue-400", sub: "of S&P 500" },
+          { label: "Avg Reported", value: `${totalReported}%`, color: "text-primary", sub: "of S&P 500" },
           { label: "Blended Growth", value: `${blendedAvg > 0 ? "+" : ""}${blendedAvg}%`, color: blendedAvg > 0 ? "text-emerald-400" : "text-red-400", sub: "TTM EPS" },
           { label: "Avg Beat Rate", value: `${Math.round(data.reduce((a, b) => a + b.beatRate, 0) / data.length)}%`, color: "text-amber-400", sub: "across sectors" },
-          { label: "Revision Breadth", value: `${Math.round(data.reduce((a, b) => a + b.revisionBreadth, 0) / data.length) > 0 ? "+" : ""}${Math.round(data.reduce((a, b) => a + b.revisionBreadth, 0) / data.length)}`, color: "text-purple-400", sub: "upgrades vs downgrades" },
+          { label: "Revision Breadth", value: `${Math.round(data.reduce((a, b) => a + b.revisionBreadth, 0) / data.length) > 0 ? "+" : ""}${Math.round(data.reduce((a, b) => a + b.revisionBreadth, 0) / data.length)}`, color: "text-primary", sub: "upgrades vs downgrades" },
         ].map(({ label, value, color, sub }) => (
           <div key={label} className="bg-card border border-border rounded-lg p-3">
             <div className="text-xs text-muted-foreground mb-1">{label}</div>
@@ -1201,7 +1201,7 @@ function SectorEarningsSection() {
                   <td className="px-3 py-2 text-right">
                     <div className="flex items-center justify-end gap-1.5">
                       <div className="w-12 h-1.5 bg-muted rounded-full overflow-hidden">
-                        <div className="h-full bg-blue-500 rounded-full" style={{ width: `${d.pctReported}%` }} />
+                        <div className="h-full bg-primary rounded-full" style={{ width: `${d.pctReported}%` }} />
                       </div>
                       <span className="font-mono text-muted-foreground">{d.pctReported}%</span>
                     </div>
@@ -1231,7 +1231,7 @@ function EarningsOptionsSection() {
     type === "sell"
       ? "text-amber-400 bg-amber-500/10 border-amber-500/30"
       : type === "buy"
-      ? "text-blue-400 bg-blue-500/10 border-blue-500/30"
+      ? "text-primary bg-primary/10 border-border"
       : "text-muted-foreground bg-muted/20 border-border";
 
   return (
@@ -1252,8 +1252,8 @@ function EarningsOptionsSection() {
             <div className="text-xs font-semibold text-amber-400 mb-1">IV Rich (Sell Strategies)</div>
             <div className="text-[11px] text-muted-foreground">Implied move &gt; historical. IV will likely crush after earnings. Sell straddle or iron condor to collect premium.</div>
           </div>
-          <div className="bg-blue-500/5 border border-blue-500/20 rounded p-2.5">
-            <div className="text-xs font-semibold text-blue-400 mb-1">IV Cheap (Buy Strategies)</div>
+          <div className="bg-primary/5 border border-border rounded p-2.5">
+            <div className="text-xs font-semibold text-primary mb-1">IV Cheap (Buy Strategies)</div>
             <div className="text-[11px] text-muted-foreground">Implied move &lt; historical. Market under-pricing volatility. Buy straddle or strangle to benefit from larger-than-expected move.</div>
           </div>
         </div>
@@ -1289,7 +1289,7 @@ function EarningsOptionsSection() {
             <tbody>
               {data.map((d) => {
                 const ratio = (d.impliedMove / d.historicalAvgMove);
-                const ratioColor = ratio > 1.2 ? "text-amber-400" : ratio < 0.85 ? "text-blue-400" : "text-muted-foreground";
+                const ratioColor = ratio > 1.2 ? "text-amber-400" : ratio < 0.85 ? "text-primary" : "text-muted-foreground";
                 return (
                   <tr
                     key={d.ticker}
@@ -1342,7 +1342,7 @@ function EarningsOptionsSection() {
             {[
               { label: "Implied Move", value: `±${company.impliedMove}%`, color: "text-foreground" },
               { label: "Historical Avg", value: `±${company.historicalAvgMove}%`, color: "text-muted-foreground" },
-              { label: "IV/Hist Ratio", value: `${(company.impliedMove / company.historicalAvgMove).toFixed(2)}x`, color: company.ivRich ? "text-amber-400" : "text-blue-400" },
+              { label: "IV/Hist Ratio", value: `${(company.impliedMove / company.historicalAvgMove).toFixed(2)}x`, color: company.ivRich ? "text-amber-400" : "text-primary" },
               { label: "IV Rank", value: `${company.ivRank}`, color: company.ivRank >= 70 ? "text-red-400" : company.ivRank >= 40 ? "text-amber-400" : "text-emerald-400" },
             ].map(({ label, value, color }) => (
               <div key={label} className="bg-muted/30 rounded-lg p-2">
@@ -1352,8 +1352,8 @@ function EarningsOptionsSection() {
             ))}
           </div>
 
-          <div className={cn("border rounded-lg p-3", company.ivRich ? "bg-amber-500/5 border-amber-500/20" : "bg-blue-500/5 border-blue-500/20")}>
-            <div className={cn("text-xs font-semibold mb-1.5", company.ivRich ? "text-amber-400" : "text-blue-400")}>
+          <div className={cn("border rounded-lg p-3", company.ivRich ? "bg-amber-500/5 border-amber-500/20" : "bg-primary/5 border-border")}>
+            <div className={cn("text-xs font-semibold mb-1.5", company.ivRich ? "text-amber-400" : "text-primary")}>
               {company.ivRich ? "IV Rich — Volatility Selling Setup" : "IV Cheap — Volatility Buying Setup"}
             </div>
             <div className="text-[11px] text-muted-foreground leading-relaxed mb-2">

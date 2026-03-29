@@ -40,11 +40,11 @@ const STRATEGIES = [
 ];
 
 const AVATAR_COLORS = [
-  "bg-blue-500",
+  "bg-primary",
   "bg-emerald-500",
   "bg-amber-500",
   "bg-rose-500",
-  "bg-purple-500",
+  "bg-primary",
   "bg-cyan-500",
   "bg-pink-500",
   "bg-indigo-500",

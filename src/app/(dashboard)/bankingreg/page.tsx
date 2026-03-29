@@ -389,7 +389,7 @@ export default function BankingRegPage() {
                   <StatChip label="CET1 Min" value="4.5%" color="text-emerald-400" />
                   <StatChip label="Tier 1 Min" value="6.0%" color="text-sky-400" />
                   <StatChip label="Total Cap" value="8.0%" color="text-indigo-400" />
-                  <StatChip label="Conservation" value="+2.5%" color="text-blue-400" />
+                  <StatChip label="Conservation" value="+2.5%" color="text-primary" />
                 </div>
               </CardContent>
             </Card>
@@ -452,7 +452,7 @@ export default function BankingRegPage() {
               <Card className="bg-zinc-900 border-zinc-800">
                 <CardHeader className="pb-2">
                   <CardTitle className="text-sm font-semibold text-zinc-200 flex items-center gap-2">
-                    <Building2 className="w-4 h-4 text-purple-400" />
+                    <Building2 className="w-4 h-4 text-primary" />
                     G-SIB Surcharge by Bucket
                   </CardTitle>
                 </CardHeader>
@@ -465,7 +465,7 @@ export default function BankingRegPage() {
                         className={cn(
                           "px-3 py-1 text-xs rounded-md border transition-colors",
                           gsibBucket === b
-                            ? "bg-purple-600 border-purple-500 text-white"
+                            ? "bg-primary border-primary text-white"
                             : "bg-zinc-800 border-zinc-700 text-zinc-400 hover:bg-zinc-700"
                         )}
                       >
@@ -493,7 +493,7 @@ export default function BankingRegPage() {
                           <div className="space-y-2 text-xs">
                             <div className="flex items-center gap-3">
                               <span className="text-zinc-500">CET1 Surcharge:</span>
-                              <Badge className="bg-purple-900/40 text-purple-300 text-sm font-bold">{info.surcharge}</Badge>
+                              <Badge className="bg-muted/60 text-primary text-sm font-bold">{info.surcharge}</Badge>
                               <span className="text-zinc-500">Effective CET1 min:</span>
                               <Badge className="bg-indigo-900/40 text-indigo-300 text-sm font-bold">{info.cet1}</Badge>
                             </div>
@@ -603,7 +603,7 @@ export default function BankingRegPage() {
                   <p><span className="text-emerald-300 font-medium">ICAAP (Internal Capital Adequacy Assessment Process):</span> Banks self-assess capital adequacy vs. all material risks over a 3-year planning horizon. Fed and ECB review outputs as part of SREP.</p>
                   <p className="mt-1"><span className="text-emerald-300 font-medium">ILAAP:</span> Equivalent process for liquidity. Tests institution-specific funding stress. Feeds Pillar 2 capital add-ons.</p>
                 </ExpandableRow>
-                <ExpandableRow title="Climate Stress Testing" accent="text-teal-300">
+                <ExpandableRow title="Climate Stress Testing" accent="text-emerald-300">
                   <p>Fed launched pilot Climate Scenario Analysis (CSA) in 2023 for 6 largest US banks. Covers physical risk (hurricane, wildfire) and transition risk (carbon pricing trajectory) over 10-year horizon.</p>
                   <p className="mt-1">ECB conducts annual climate stress tests since 2022. Findings informing Pillar 2 guidance and supervisory expectations for climate risk integration.</p>
                 </ExpandableRow>
@@ -611,7 +611,7 @@ export default function BankingRegPage() {
                   <p>Instead of projecting outcomes from scenarios, reverse stress testing asks: "What scenario would cause us to fail?" Forces banks to identify idiosyncratic vulnerabilities (concentration risk, model dependency) not captured by standard scenarios.</p>
                   <p className="mt-1">Required under EBA guidelines since 2010; increasingly adopted by US supervisors post-2023 failures.</p>
                 </ExpandableRow>
-                <ExpandableRow title="Model Validation Governance" accent="text-violet-300">
+                <ExpandableRow title="Model Validation Governance" accent="text-primary">
                   <p>SR 11-7 (OCC/Fed) requires independent model validation: conceptual soundness review, outcome analysis, benchmarking. Three lines of defense model: front office, model risk management, internal audit.</p>
                   <p className="mt-1">Stress models receive enhanced scrutiny — challenger models and sensitivity analysis required for high-risk models used in DFAST/CCAR submissions.</p>
                 </ExpandableRow>
@@ -635,7 +635,7 @@ export default function BankingRegPage() {
                 <ResolutionStrategySVG />
                 <div className="grid grid-cols-2 sm:grid-cols-4 gap-2 mt-3">
                   <StatChip label="TLAC Phase 1" value="16%" color="text-indigo-400" />
-                  <StatChip label="TLAC Phase 2" value="18%" color="text-purple-400" />
+                  <StatChip label="TLAC Phase 2" value="18%" color="text-primary" />
                   <StatChip label="TLAC of Lev" value="6%" color="text-sky-400" />
                   <StatChip label="Title I" value="Dodd-Frank" color="text-emerald-400" />
                 </div>
@@ -736,11 +736,11 @@ export default function BankingRegPage() {
                   <p className="mt-1"><span className="text-red-300 font-medium">Panic vs. fundamental runs:</span> Panic runs driven by coordination failure (deposit insurance solves). Fundamental runs occur when bank is genuinely insolvent — insurance doesn't prevent, only pays out.</p>
                   <p className="mt-1">Social media dramatically compressed run dynamics: SVB lost $42B in deposits in one day, with $100B more queued next morning.</p>
                 </ExpandableRow>
-                <ExpandableRow title="Fintech Bank Charter Options" accent="text-violet-300">
-                  <p><span className="text-violet-300 font-medium">National Bank Charter (OCC):</span> Full banking powers, federal preemption of state consumer laws. Requires CRA compliance, capital standards.</p>
-                  <p className="mt-1"><span className="text-violet-300 font-medium">Industrial Loan Company (ILC):</span> State-chartered, FDIC-insured, not subject to BHC Act. Allows commercial firms (e.g., Square/Block) to own a bank.</p>
-                  <p className="mt-1"><span className="text-violet-300 font-medium">Special Purpose Charter:</span> OCC proposed fintech charter in 2016; repeatedly challenged in courts. As of 2025, no approved fintech-specific national charter exists.</p>
-                  <p className="mt-1"><span className="text-violet-300 font-medium">BaaS (Banking-as-a-Service):</span> Most fintechs partner with FDIC-insured banks (sponsor banks) rather than obtaining their own charter.</p>
+                <ExpandableRow title="Fintech Bank Charter Options" accent="text-primary">
+                  <p><span className="text-primary font-medium">National Bank Charter (OCC):</span> Full banking powers, federal preemption of state consumer laws. Requires CRA compliance, capital standards.</p>
+                  <p className="mt-1"><span className="text-primary font-medium">Industrial Loan Company (ILC):</span> State-chartered, FDIC-insured, not subject to BHC Act. Allows commercial firms (e.g., Square/Block) to own a bank.</p>
+                  <p className="mt-1"><span className="text-primary font-medium">Special Purpose Charter:</span> OCC proposed fintech charter in 2016; repeatedly challenged in courts. As of 2025, no approved fintech-specific national charter exists.</p>
+                  <p className="mt-1"><span className="text-primary font-medium">BaaS (Banking-as-a-Service):</span> Most fintechs partner with FDIC-insured banks (sponsor banks) rather than obtaining their own charter.</p>
                 </ExpandableRow>
               </div>
               <div className="space-y-2">
@@ -748,12 +748,12 @@ export default function BankingRegPage() {
                   <p>Created by Dodd-Frank (2010), CFPB supervises banks &gt;$10B and nonbank financial companies (mortgage servicers, payday lenders, debt collectors).</p>
                   <p className="mt-1">Key powers: rulemaking under consumer financial laws, supervisory examination authority, enforcement actions (civil money penalties up to $1M/day for knowing violations), consumer complaint database.</p>
                 </ExpandableRow>
-                <ExpandableRow title="Consumer Regulations (Reg E / Reg Z / Reg DD)" accent="text-teal-300">
+                <ExpandableRow title="Consumer Regulations (Reg E / Reg Z / Reg DD)" accent="text-emerald-300">
                   <ul className="list-disc list-inside space-y-1">
-                    <li><span className="text-teal-300 font-medium">Reg E (EFTA):</span> Electronic fund transfer protections — unauthorized transfers, error resolution, overdraft opt-in.</li>
-                    <li><span className="text-teal-300 font-medium">Reg Z (TILA):</span> Truth in lending — APR disclosure, right of rescission, ability to repay for mortgages.</li>
-                    <li><span className="text-teal-300 font-medium">Reg DD (TISA):</span> Truth in savings — APY disclosure, fee transparency for deposit accounts.</li>
-                    <li><span className="text-teal-300 font-medium">UDAAP:</span> Unfair, Deceptive, or Abusive Acts or Practices — broad authority used by CFPB for enforcement beyond specific regulations.</li>
+                    <li><span className="text-emerald-300 font-medium">Reg E (EFTA):</span> Electronic fund transfer protections — unauthorized transfers, error resolution, overdraft opt-in.</li>
+                    <li><span className="text-emerald-300 font-medium">Reg Z (TILA):</span> Truth in lending — APR disclosure, right of rescission, ability to repay for mortgages.</li>
+                    <li><span className="text-emerald-300 font-medium">Reg DD (TISA):</span> Truth in savings — APY disclosure, fee transparency for deposit accounts.</li>
+                    <li><span className="text-emerald-300 font-medium">UDAAP:</span> Unfair, Deceptive, or Abusive Acts or Practices — broad authority used by CFPB for enforcement beyond specific regulations.</li>
                   </ul>
                 </ExpandableRow>
                 <ExpandableRow title="Fair Lending: CRA / ECOA / HMDA" accent="text-pink-300">

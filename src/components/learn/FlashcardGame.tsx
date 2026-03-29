@@ -110,9 +110,9 @@ export function FlashcardGame({ onClose }: FlashcardGameProps) {
         </div>
 
         <div className="grid grid-cols-3 gap-3 w-full max-w-xs">
-          <StatBox label="Reviewed" value={`${sessionTotal}`} color="text-blue-400" />
+          <StatBox label="Reviewed" value={`${sessionTotal}`} color="text-primary" />
           <StatBox label="Accuracy" value={`${accuracy}%`} color={accuracy >= 80 ? "text-emerald-400" : "text-amber-400"} />
-          <StatBox label="XP Earned" value={`+${sessionXP}`} color="text-purple-400" />
+          <StatBox label="XP Earned" value={`+${sessionXP}`} color="text-primary" />
         </div>
 
         {bestStreak >= 3 && (
@@ -158,7 +158,7 @@ export function FlashcardGame({ onClose }: FlashcardGameProps) {
       {/* Header */}
       <div className="flex items-center justify-between">
         <div className="flex items-center gap-2">
-          <Brain className="h-4 w-4 text-purple-400" />
+          <Brain className="h-4 w-4 text-primary" />
           <span className="text-sm font-bold">Flashcards</span>
         </div>
         <div className="flex items-center gap-3">
@@ -183,7 +183,7 @@ export function FlashcardGame({ onClose }: FlashcardGameProps) {
       <div className="flex items-center gap-2">
         <div className="flex-1 h-1.5 rounded-full bg-muted/30 overflow-hidden">
           <motion.div
-            className="h-full rounded-full bg-purple-400"
+            className="h-full rounded-full bg-primary"
             animate={{ width: `${progress}%` }}
             transition={{ duration: 0.3 }}
           />

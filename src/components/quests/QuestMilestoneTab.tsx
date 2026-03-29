@@ -105,7 +105,7 @@ export function QuestMilestoneTab() {
                           isClaimed
                             ? "bg-emerald-500/50"
                             : isComplete
-                              ? "bg-violet-500/30"
+                              ? "bg-primary/30"
                               : "bg-zinc-800",
                         )}
                         initial={{ scaleX: 0 }}
@@ -130,7 +130,7 @@ export function QuestMilestoneTab() {
                           isClaimed
                             ? "border-emerald-500 bg-emerald-500/20 text-emerald-400"
                             : isComplete
-                              ? "border-violet-500 bg-violet-500/20 text-violet-300"
+                              ? "border-primary bg-primary/20 text-primary"
                               : isLocked
                                 ? "border-zinc-800 bg-zinc-900 text-zinc-700 cursor-not-allowed"
                                 : "border-zinc-700 bg-zinc-900 text-zinc-500",

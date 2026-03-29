@@ -347,7 +347,7 @@ function LeverageDisplay() {
         </div>
         <div className="rounded-lg bg-muted/40 p-3">
           <div className="text-xs text-muted-foreground mb-1">Margin Used</div>
-          <div className="font-mono font-bold text-cyan-400">{margin}%</div>
+          <div className="font-mono font-bold text-muted-foreground">{margin}%</div>
         </div>
         <div className="rounded-lg bg-muted/40 p-3">
           <div className="text-xs text-muted-foreground mb-1">Unlevered Vol</div>
@@ -416,7 +416,7 @@ export default function RiskParityPage() {
           </div>
           <div className="ml-auto flex gap-2">
             <Badge variant="outline" className="text-primary border-primary/40">All-Weather</Badge>
-            <Badge variant="outline" className="text-cyan-400 border-cyan-400/40">Leveraged</Badge>
+            <Badge variant="outline" className="text-muted-foreground border-cyan-400/40">Leveraged</Badge>
           </div>
         </div>
       </motion.div>
@@ -644,7 +644,7 @@ export default function RiskParityPage() {
                 <div className="grid grid-cols-3 gap-3 mt-4 text-xs text-center">
                   {[
                     { label: "Risk Parity", value: finalValues.riskParity.toFixed(0), color: "text-primary" },
-                    { label: "60/40", value: finalValues.sixtyForty.toFixed(0), color: "text-cyan-400" },
+                    { label: "60/40", value: finalValues.sixtyForty.toFixed(0), color: "text-muted-foreground" },
                     { label: "All-Equity", value: finalValues.allEquity.toFixed(0), color: "text-slate-400" },
                   ].map(s => (
                     <div key={s.label} className="rounded-lg bg-muted/40 p-2">
@@ -694,7 +694,7 @@ export default function RiskParityPage() {
                       <tr className="text-muted-foreground border-b border-border">
                         <th className="text-left py-1">Metric</th>
                         <th className="text-right py-1 text-primary">Risk Parity</th>
-                        <th className="text-right py-1 text-cyan-400">60/40</th>
+                        <th className="text-right py-1 text-muted-foreground">60/40</th>
                       </tr>
                     </thead>
                     <tbody className="space-y-1">
@@ -708,7 +708,7 @@ export default function RiskParityPage() {
                         <tr key={r.metric} className="border-b border-border/30">
                           <td className="py-1.5 text-muted-foreground">{r.metric}</td>
                           <td className="py-1.5 text-right font-mono text-primary">{r.rp}</td>
-                          <td className="py-1.5 text-right font-mono text-cyan-400">{r.s60}</td>
+                          <td className="py-1.5 text-right font-mono text-muted-foreground">{r.s60}</td>
                         </tr>
                       ))}
                     </tbody>

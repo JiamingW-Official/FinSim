@@ -20,16 +20,16 @@ const CATEGORY_CONFIG: Record<
   GlossaryEntry["category"],
   { label: string; color: string }
 > = {
-  basics: { label: "Basics", color: "bg-blue-500/15 text-blue-400 border-blue-500/20" },
-  orders: { label: "Orders", color: "bg-violet-500/15 text-violet-400 border-violet-500/20" },
-  indicators: { label: "Indicators", color: "bg-teal-500/15 text-teal-400 border-teal-500/20" },
+  basics: { label: "Basics", color: "bg-primary/15 text-primary border-border" },
+  orders: { label: "Orders", color: "bg-primary/15 text-primary border-border" },
+  indicators: { label: "Indicators", color: "bg-teal-500/15 text-emerald-400 border-teal-500/20" },
   risk: { label: "Risk", color: "bg-red-500/15 text-red-400 border-red-500/20" },
   fundamental: { label: "Fundamental", color: "bg-amber-500/15 text-amber-400 border-amber-500/20" },
   "personal-finance": { label: "Personal Finance", color: "bg-green-500/15 text-green-400 border-green-500/20" },
   crypto: { label: "Crypto", color: "bg-orange-500/15 text-orange-400 border-orange-500/20" },
   macro: { label: "Macro", color: "bg-sky-500/15 text-sky-400 border-sky-500/20" },
   "options-advanced": { label: "Options", color: "bg-pink-500/15 text-pink-400 border-pink-500/20" },
-  technical: { label: "Technical", color: "bg-cyan-500/15 text-cyan-400 border-cyan-500/20" },
+  technical: { label: "Technical", color: "bg-cyan-500/15 text-muted-foreground border-cyan-500/20" },
 };
 
 const INDICATOR_FILTER_CONFIG: Record<string, string[]> = {
@@ -76,7 +76,7 @@ function TypeBadge({ type }: { type: "continuation" | "reversal" }) {
       className={cn(
         "text-xs",
         type === "continuation"
-          ? "bg-blue-500/15 text-blue-400 border-blue-500/20"
+          ? "bg-primary/15 text-primary border-border"
           : "bg-amber-500/15 text-amber-400 border-amber-500/20"
       )}
     >
@@ -734,10 +734,10 @@ function MarketWisdomTab() {
 
   const categoryColors: Record<string, string> = {
     risk: "bg-red-500/15 text-red-400 border-red-500/20",
-    psychology: "bg-violet-500/15 text-violet-400 border-violet-500/20",
-    strategy: "bg-blue-500/15 text-blue-400 border-blue-500/20",
+    psychology: "bg-primary/15 text-primary border-border",
+    strategy: "bg-primary/15 text-primary border-border",
     discipline: "bg-amber-500/15 text-amber-400 border-amber-500/20",
-    market: "bg-teal-500/15 text-teal-400 border-teal-500/20",
+    market: "bg-teal-500/15 text-emerald-400 border-teal-500/20",
   };
 
   return (
@@ -796,13 +796,13 @@ function EconomicIndicatorsTab() {
 
   const frequencyBadgeColor = (f: string) => {
     if (f === "weekly") return "bg-green-500/15 text-green-400 border-green-500/20";
-    if (f === "monthly") return "bg-blue-500/15 text-blue-400 border-blue-500/20";
+    if (f === "monthly") return "bg-primary/15 text-primary border-border";
     return "bg-amber-500/15 text-amber-400 border-amber-500/20";
   };
 
   const leadingBadgeColor = (l: string) => {
     if (l === "leading") return "bg-primary/15 text-primary border-primary/20";
-    if (l === "coincident") return "bg-teal-500/15 text-teal-400 border-teal-500/20";
+    if (l === "coincident") return "bg-teal-500/15 text-emerald-400 border-teal-500/20";
     return "bg-muted-foreground/15 text-muted-foreground border-muted-foreground/20";
   };
 

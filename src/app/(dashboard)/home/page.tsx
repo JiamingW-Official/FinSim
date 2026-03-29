@@ -11,11 +11,6 @@ import { getXPForNextLevel, LEVEL_THRESHOLDS } from "@/types/game";
 import { formatCurrency, cn } from "@/lib/utils";
 import { UNITS } from "@/data/lessons";
 import {
-  TrendingUp,
-  TrendingDown,
-  Wallet,
-  Flame,
-  Trophy,
   Target,
   BookOpen,
   BarChart3,
@@ -28,16 +23,7 @@ import {
   Zap,
   Star,
   Award,
-  PlayCircle,
   PieChart,
-  MessageSquare,
-  Newspaper,
-  ScanSearch,
-  NotebookPen,
-  CalendarClock,
-  Gauge,
-  Radio,
-  Globe,
   CircleDot,
 } from "lucide-react";
 import { mulberry32, simulateTickerPrice, BASE_PRICES, ALL_TICKERS } from "@/services/market-data/simulate-price";
@@ -391,7 +377,7 @@ export default function HomePage() {
           {/* Main hero body */}
           <div className="grid grid-cols-1 gap-0 lg:grid-cols-3">
             <div className="border-b border-border/20 p-6 lg:border-b-0 lg:border-r lg:border-border/20 lg:col-span-2">
-              <p className="mb-3 text-xs font-medium text-muted-foreground flex items-center gap-1.5">
+              <p className="mb-3 text-sm font-semibold flex items-center gap-1.5">
                 Key Insights
                 <span className="rounded bg-primary/10 px-1 py-0.5 text-[11px] font-semibold text-primary">AI</span>
               </p>
@@ -447,7 +433,7 @@ export default function HomePage() {
 
             {/* Right: Yesterday summary */}
             <div className="p-6">
-              <p className="mb-3 text-xs font-medium text-muted-foreground">Yesterday&apos;s Summary</p>
+              <p className="mb-3 text-xs font-medium">Yesterday&apos;s Summary</p>
               <div className="space-y-3">
                 <div className="flex items-center justify-between"><span className="text-xs text-muted-foreground">Trades made</span><span className="text-sm font-bold tabular-nums">{yesterdaySummary.count}</span></div>
                 <div className="flex items-center justify-between"><span className="text-xs text-muted-foreground">Session P&L</span><span className={cn("text-sm font-bold tabular-nums", yesterdaySummary.pnl >= 0 ? "text-emerald-400" : "text-red-400")}>{yesterdaySummary.pnl >= 0 ? "+" : ""}{formatCurrency(yesterdaySummary.pnl)}</span></div>
@@ -472,7 +458,7 @@ export default function HomePage() {
         <div className="grid grid-cols-4 gap-2">
           {TIER2_ACTIONS.map(({ label, href, Icon }) => (
             <Link key={href} href={href}>
-              <div className="group flex items-center justify-center gap-2 rounded-md border border-border bg-card p-2.5 transition-colors hover:bg-accent/50">
+              <div className="group flex items-center justify-center gap-2 rounded-md border border-border bg-card p-4 transition-colors hover:bg-accent/50">
                 <Icon className="h-3.5 w-3.5 text-muted-foreground" />
                 <span className="text-xs font-medium">{label}</span>
               </div>
@@ -482,10 +468,10 @@ export default function HomePage() {
 
         {/* ═══════ TIER 3 — REFERENCE ZONE ═══════ */}
         <div>
-          <p className="mb-2 text-xs font-medium text-muted-foreground">Market Intelligence</p>
+          <p className="mb-2 text-xs font-medium">Market Intelligence</p>
           <div className="grid grid-cols-1 gap-3 lg:grid-cols-3">
             <div className="rounded-md border border-border/30 bg-card p-3">
-              <p className="mb-2 text-xs font-medium text-muted-foreground">Market Pulse</p>
+              <p className="mb-2 text-xs text-muted-foreground">Market Pulse</p>
               <div className="space-y-2">
                 <div className="flex items-center justify-between"><span className="text-xs text-muted-foreground">Regime</span><span className={cn("rounded px-1.5 py-0.5 text-[11px] font-bold", marketPulse.regime === "Bull" ? "bg-emerald-500/15 text-emerald-400" : marketPulse.regime === "Bear" ? "bg-red-500/15 text-red-400" : "bg-amber-500/15 text-amber-400")}>{marketPulse.regime}</span></div>
                 <div className="flex items-center justify-between"><span className="text-xs text-muted-foreground">VIX</span><span className={cn("text-xs font-bold tabular-nums", marketPulse.vix > 25 ? "text-red-400" : marketPulse.vix > 18 ? "text-amber-400" : "text-emerald-400")}>{marketPulse.vix}</span></div>
@@ -496,7 +482,7 @@ export default function HomePage() {
               </div>
             </div>
             <div className="rounded-md border border-border/30 bg-card p-3">
-              <p className="mb-2 text-xs font-medium text-muted-foreground">Economic Calendar</p>
+              <p className="mb-2 text-xs text-muted-foreground">Economic Calendar</p>
               <div className="space-y-2">
                 {ECONOMIC_EVENTS.slice(dayIndex % 4, (dayIndex % 4) + 3).map((ev, i) => (
                   <div key={i} className="flex items-start justify-between gap-2">
@@ -510,7 +496,7 @@ export default function HomePage() {
               </div>
             </div>
             <div className="rounded-md border border-border/30 bg-card p-3">
-              <p className="mb-2 text-xs font-medium text-muted-foreground">Most Active Options</p>
+              <p className="mb-2 text-xs text-muted-foreground">Most Active Options</p>
               <div className="space-y-1.5">
                 {optionsVolume.map((item) => (
                   <div key={item.ticker} className="flex items-center gap-2">
@@ -530,7 +516,7 @@ export default function HomePage() {
         <div className="grid grid-cols-1 gap-3 lg:grid-cols-4">
           <div className="grid grid-cols-1 gap-3 sm:grid-cols-3 lg:col-span-3">
             <div className="rounded-md border border-border/30 bg-card">
-              <div className="flex items-center justify-between px-3 py-2"><p className="text-xs font-medium text-muted-foreground">Portfolio Equity</p><Link href="/portfolio" className="flex items-center gap-0.5 text-[11px] font-medium text-primary hover:underline">View <ChevronRight className="h-3 w-3" /></Link></div>
+              <div className="flex items-center justify-between px-3 py-2"><p className="text-xs text-muted-foreground">Portfolio Equity</p><Link href="/portfolio" className="flex items-center gap-0.5 text-[11px] font-medium text-primary hover:underline">View <ChevronRight className="h-3 w-3" /></Link></div>
               <div className="px-3 pb-3">
                 <div className="mb-2 flex items-baseline gap-2"><span className="text-sm font-bold tabular-nums">{formatCurrency(portfolioValue)}</span><span className={cn("text-xs font-semibold tabular-nums", totalPnL >= 0 ? "text-emerald-400" : "text-red-400")}>{totalPnL >= 0 ? "+" : ""}{formatCurrency(totalPnL)}</span></div>
                 <PortfolioEquityChart equityHistory={equityHistory} currentValue={portfolioValue} />
@@ -548,7 +534,7 @@ export default function HomePage() {
               </div>
             </div>
             <div className="rounded-md border border-border/30 bg-card">
-              <div className="flex items-center justify-between px-3 py-2"><p className="text-xs font-medium text-muted-foreground">Recent Trades</p>{tradeHistory.length > 0 && <Link href="/portfolio" className="text-[11px] font-medium text-primary hover:underline">View All</Link>}</div>
+              <div className="flex items-center justify-between px-3 py-2"><p className="text-xs text-muted-foreground">Recent Trades</p>{tradeHistory.length > 0 && <Link href="/portfolio" className="text-[11px] font-medium text-primary hover:underline">View All</Link>}</div>
               <div>
                 {recentTrades.length === 0 ? (
                   <div className="flex flex-col items-center gap-1.5 py-6 text-center"><p className="text-xs text-muted-foreground">No trades yet</p><Link href="/trade" className="text-[11px] font-medium text-primary hover:underline">Start trading</Link></div>
@@ -565,7 +551,7 @@ export default function HomePage() {
               </div>
             </div>
             <div className="rounded-md border border-border/30 bg-card">
-              <div className="flex items-center justify-between px-3 py-2"><p className="text-xs font-medium text-muted-foreground">Daily Goals</p><span className="text-[11px] text-muted-foreground">{dailyStreakCount}d streak</span></div>
+              <div className="flex items-center justify-between px-3 py-2"><p className="text-xs text-muted-foreground">Daily Goals</p><span className="text-[11px] text-muted-foreground">{dailyStreakCount}d streak</span></div>
               <div className="space-y-3 px-3 py-3">
                 {dailyGoals.map((goal) => {
                   const pct = Math.min((goal.current / goal.target) * 100, 100);
@@ -583,7 +569,7 @@ export default function HomePage() {
             </div>
           </div>
           <div className="rounded-md border border-border/30 bg-card lg:col-span-1">
-            <div className="px-3 py-2"><p className="text-xs font-medium text-muted-foreground">Activity Timeline</p></div>
+            <div className="px-3 py-2"><p className="text-xs text-muted-foreground">Activity Timeline</p></div>
             <div className="max-h-[380px] overflow-y-auto">
               {activityFeed.length === 0 ? (
                 <div className="flex flex-col items-center gap-1.5 py-8 text-center"><p className="text-xs text-muted-foreground">No recent activity</p><p className="text-[11px] text-muted-foreground/60">Trades, lessons, and achievements will appear here.</p></div>
@@ -614,7 +600,7 @@ export default function HomePage() {
         {/* Learning + Nav */}
         <div className="grid grid-cols-1 gap-3 lg:grid-cols-3">
           <div className="rounded-md border border-border/30 bg-card p-3 lg:col-span-2">
-            <div className="mb-3 flex items-center justify-between"><p className="text-xs font-medium text-muted-foreground">Learning Progress</p><Link href="/learn" className="flex items-center gap-0.5 text-[11px] font-medium text-primary hover:underline">Continue <ArrowRight className="h-3 w-3" /></Link></div>
+            <div className="mb-3 flex items-center justify-between"><p className="text-xs font-medium">Learning Progress</p><Link href="/learn" className="flex items-center gap-0.5 text-[11px] font-medium text-primary hover:underline">Continue <ArrowRight className="h-3 w-3" /></Link></div>
             <div className="flex items-center gap-5 mb-3">
               <div className="relative shrink-0"><ProgressRing pct={learnProgress.pct} size={60} /><div className="absolute inset-0 flex items-center justify-center"><span className="text-xs font-bold">{learnProgress.pct}%</span></div></div>
               <div className="flex-1">
@@ -634,7 +620,7 @@ export default function HomePage() {
             </div>
           </div>
           <div className="rounded-md border border-border/30 bg-card p-3">
-            <p className="mb-3 text-xs font-medium text-muted-foreground">Quick Navigation</p>
+            <p className="mb-3 text-xs text-muted-foreground">Quick Navigation</p>
             <div className="grid grid-cols-3 gap-1.5">
               {NAV_SHORTCUTS.map(({ label, href, Icon }) => (
                 <Link key={href} href={href}><div className="flex flex-col items-center gap-1.5 rounded border border-border/30 bg-muted/10 px-1.5 py-2 text-center transition-colors hover:bg-accent/20"><Icon className="h-4 w-4 text-muted-foreground" /><span className="text-[11px] font-medium">{label}</span></div></Link>

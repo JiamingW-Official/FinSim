@@ -252,7 +252,7 @@ export default function EfficientFrontierChart({ result }: EfficientFrontierChar
         <PortfolioCard
           title="Equal Weight"
           point={equalWeight}
-          dotColor="bg-purple-500"
+          dotColor="bg-primary"
         />
       </div>
     </div>

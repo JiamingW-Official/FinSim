@@ -356,8 +356,8 @@ export default function VolatilityArbPage() {
       {/* Header */}
       <div className="mb-6">
         <div className="flex items-center gap-3 mb-2">
-          <div className="p-2 bg-violet-500/10 rounded-lg">
-            <Sigma className="w-6 h-6 text-violet-400" />
+          <div className="p-2 bg-primary/10 rounded-lg">
+            <Sigma className="w-6 h-6 text-primary" />
           </div>
           <div>
             <h1 className="text-2xl font-bold tracking-tight">Volatility Arbitrage</h1>
@@ -370,8 +370,8 @@ export default function VolatilityArbPage() {
         {/* Summary chips */}
         <div className="flex flex-wrap gap-2 mt-4">
           <Badge variant="outline" className="gap-1">
-            <Activity className="w-3 h-3 text-violet-400" />
-            Avg IV-RV Spread: <span className="text-violet-400 ml-1">{(avgSpread * 100).toFixed(1)} vols</span>
+            <Activity className="w-3 h-3 text-primary" />
+            Avg IV-RV Spread: <span className="text-primary ml-1">{(avgSpread * 100).toFixed(1)} vols</span>
           </Badge>
           <Badge variant="outline" className="gap-1">
             <TrendingDown className="w-3 h-3 text-red-400" />
@@ -386,8 +386,8 @@ export default function VolatilityArbPage() {
             Dispersion Spread: <span className="text-amber-400 ml-1">{(dispersionSpread * 100).toFixed(1)} vols</span>
           </Badge>
           <Badge variant="outline" className="gap-1">
-            <Shield className="w-3 h-3 text-blue-400" />
-            VRP Win Rate: <span className="text-blue-400 ml-1">{positiveVRPYears}/20 years</span>
+            <Shield className="w-3 h-3 text-primary" />
+            VRP Win Rate: <span className="text-primary ml-1">{positiveVRPYears}/20 years</span>
           </Badge>
         </div>
       </div>
@@ -426,7 +426,7 @@ export default function VolatilityArbPage() {
               <Card>
                 <CardHeader className="pb-2">
                   <CardTitle className="text-sm font-medium flex items-center gap-2">
-                    <Activity className="w-4 h-4 text-violet-400" />
+                    <Activity className="w-4 h-4 text-primary" />
                     SPY 60-Day IV vs Realized Vol (20-day HV) Spread
                   </CardTitle>
                 </CardHeader>
@@ -478,9 +478,9 @@ export default function VolatilityArbPage() {
                     ))}
                   </svg>
                   <div className="flex items-center gap-4 mt-2 text-xs text-muted-foreground">
-                    <span className="flex items-center gap-1"><span className="w-3 h-1 bg-violet-400 inline-block rounded" /> Implied Vol (IV)</span>
+                    <span className="flex items-center gap-1"><span className="w-3 h-1 bg-primary inline-block rounded" /> Implied Vol (IV)</span>
                     <span className="flex items-center gap-1"><span className="w-3 h-1 bg-green-400 inline-block rounded" /> Realized Vol (20d HV)</span>
-                    <span className="flex items-center gap-1"><span className="w-3 h-1 bg-violet-300/30 inline-block rounded" /> Vol Premium (IV - RV)</span>
+                    <span className="flex items-center gap-1"><span className="w-3 h-1 bg-primary/30 inline-block rounded" /> Vol Premium (IV - RV)</span>
                   </div>
                 </CardContent>
               </Card>
@@ -595,7 +595,7 @@ export default function VolatilityArbPage() {
             >
               {/* Setup explanation */}
               <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-                <Card className="bg-violet-500/5 border-violet-500/20">
+                <Card className="bg-primary/5 border-border">
                   <CardContent className="pt-4">
                     <div className="text-xs text-muted-foreground mb-1">Strategy</div>
                     <div className="text-sm font-semibold">Short Straddle + Daily Delta Hedge</div>
@@ -626,7 +626,7 @@ export default function VolatilityArbPage() {
               <Card>
                 <CardHeader className="pb-2">
                   <CardTitle className="text-sm font-medium flex items-center gap-2">
-                    <TrendingUp className="w-4 h-4 text-blue-400" />
+                    <TrendingUp className="w-4 h-4 text-primary" />
                     Simulated Stock Path (30 days) — Seed 742008
                   </CardTitle>
                 </CardHeader>
@@ -674,7 +674,7 @@ export default function VolatilityArbPage() {
               <Card>
                 <CardHeader className="pb-2">
                   <CardTitle className="text-sm font-medium flex items-center gap-2">
-                    <BarChart3 className="w-4 h-4 text-violet-400" />
+                    <BarChart3 className="w-4 h-4 text-primary" />
                     P&L Decomposition: Gamma Scalp vs Theta Drag vs Net
                   </CardTitle>
                 </CardHeader>
@@ -729,7 +729,7 @@ export default function VolatilityArbPage() {
                   <div className="flex items-center gap-4 mt-2 text-xs text-muted-foreground">
                     <span className="flex items-center gap-1"><span className="w-3 h-1 bg-green-400 inline-block rounded" /> Gamma Scalp P&L</span>
                     <span className="flex items-center gap-1"><span className="w-3 h-1 bg-red-400 inline-block rounded" /> Theta Drag (short option premium decay received)</span>
-                    <span className="flex items-center gap-1"><span className="w-3 h-1 bg-violet-400 inline-block rounded" /> Net Cumulative P&L</span>
+                    <span className="flex items-center gap-1"><span className="w-3 h-1 bg-primary inline-block rounded" /> Net Cumulative P&L</span>
                   </div>
 
                   {/* Stats row */}
@@ -738,7 +738,7 @@ export default function VolatilityArbPage() {
                       { label: "Gamma Scalp", value: `$${lastPath.gammaPnl.toFixed(2)}`, color: "text-green-400" },
                       { label: "Theta Collected", value: `$${lastPath.thetaDrag.toFixed(2)}`, color: "text-red-400" },
                       { label: "Net P&L", value: `$${lastPath.cumPnl.toFixed(2)}`, color: lastPath.cumPnl >= 0 ? "text-green-400" : "text-red-400" },
-                      { label: "Vol Arb Edge", value: "8 vol pts", color: "text-violet-400" },
+                      { label: "Vol Arb Edge", value: "8 vol pts", color: "text-primary" },
                     ].map((s) => (
                       <div key={s.label} className="text-center p-2 bg-muted/30 rounded-lg">
                         <div className={`text-sm font-bold ${s.color}`}>{s.value}</div>
@@ -750,10 +750,10 @@ export default function VolatilityArbPage() {
               </Card>
 
               {/* Educational callout */}
-              <Card className="bg-blue-500/5 border-blue-500/20">
+              <Card className="bg-primary/5 border-border">
                 <CardContent className="pt-4">
                   <div className="flex items-start gap-2">
-                    <Info className="w-4 h-4 text-blue-400 mt-0.5 shrink-0" />
+                    <Info className="w-4 h-4 text-primary mt-0.5 shrink-0" />
                     <div className="text-xs text-muted-foreground space-y-1">
                       <p><span className="text-foreground font-medium">Gamma Scalping Mechanics:</span> When you sell a straddle, you are short gamma. Each day the stock moves, you re-hedge your delta — this costs money (gamma drag). However, you collect theta (time decay) every day. If IV{">"} realized vol, theta income exceeds gamma drag and you profit.</p>
                       <p><span className="text-foreground font-medium">Key formula:</span> Daily P&L ≈ Theta×dt − ½×Gamma×(ΔS)². The arb edge is positive when IV−RV{">"} 0.</p>
@@ -778,16 +778,16 @@ export default function VolatilityArbPage() {
             >
               {/* Summary metrics */}
               <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-                <Card className="bg-violet-500/5 border-violet-500/20">
+                <Card className="bg-primary/5 border-border">
                   <CardContent className="pt-4">
                     <div className="text-xs text-muted-foreground">Index IV (QQQ)</div>
-                    <div className="text-2xl font-bold text-violet-400">{(indexIV * 100).toFixed(1)}%</div>
+                    <div className="text-2xl font-bold text-primary">{(indexIV * 100).toFixed(1)}%</div>
                   </CardContent>
                 </Card>
-                <Card className="bg-blue-500/5 border-blue-500/20">
+                <Card className="bg-primary/5 border-border">
                   <CardContent className="pt-4">
                     <div className="text-xs text-muted-foreground">Basket IV (weighted)</div>
-                    <div className="text-2xl font-bold text-blue-400">{(basketIV * 100).toFixed(1)}%</div>
+                    <div className="text-2xl font-bold text-primary">{(basketIV * 100).toFixed(1)}%</div>
                   </CardContent>
                 </Card>
                 <Card className={dispersionSpread > 0 ? "bg-green-500/5 border-green-500/20" : "bg-red-500/5 border-red-500/20"}>
@@ -810,17 +810,17 @@ export default function VolatilityArbPage() {
               <Card>
                 <CardHeader className="pb-2">
                   <CardTitle className="text-sm font-medium flex items-center gap-2">
-                    <Info className="w-4 h-4 text-blue-400" />
+                    <Info className="w-4 h-4 text-primary" />
                     Dispersion Trade Construction
                   </CardTitle>
                 </CardHeader>
                 <CardContent className="space-y-3">
                   <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
                     <div className="p-3 bg-muted/30 rounded-lg">
-                      <div className="text-xs font-semibold text-violet-400 mb-1">SELL</div>
+                      <div className="text-xs font-semibold text-primary mb-1">SELL</div>
                       <div className="text-sm font-medium">Index Straddle (QQQ)</div>
                       <div className="text-xs text-muted-foreground mt-1">Profit from index IV being rich relative to realized correlation of components</div>
-                      <div className="text-xs text-violet-400 mt-2">IV: {(indexIV * 100).toFixed(1)}%</div>
+                      <div className="text-xs text-primary mt-2">IV: {(indexIV * 100).toFixed(1)}%</div>
                     </div>
                     <div className="p-3 bg-muted/30 rounded-lg">
                       <div className="text-xs font-semibold text-green-400 mb-1">BUY</div>
@@ -868,7 +868,7 @@ export default function VolatilityArbPage() {
                             <td className="text-right pr-4 font-mono" style={{ color: volColor(row.iv) }}>
                               {(row.iv * 100).toFixed(1)}%
                             </td>
-                            <td className="text-right pr-4 font-mono text-blue-400">
+                            <td className="text-right pr-4 font-mono text-primary">
                               {(row.contribution * 100).toFixed(2)}%
                             </td>
                             <td className="text-right">
@@ -881,8 +881,8 @@ export default function VolatilityArbPage() {
                         <tr className="border-t-2 border-border font-semibold">
                           <td className="py-2 pr-4 text-sm">BASKET</td>
                           <td className="text-right pr-4">100%</td>
-                          <td className="text-right pr-4 font-mono text-blue-400">{(basketIV * 100).toFixed(1)}%</td>
-                          <td className="text-right pr-4 font-mono text-blue-400">{(basketIV * 100).toFixed(2)}%</td>
+                          <td className="text-right pr-4 font-mono text-primary">{(basketIV * 100).toFixed(1)}%</td>
+                          <td className="text-right pr-4 font-mono text-primary">{(basketIV * 100).toFixed(2)}%</td>
                           <td className="text-right text-amber-400 text-xs">+{(dispersionSpread * 100).toFixed(1)} vs Index</td>
                         </tr>
                       </tbody>
@@ -897,13 +897,13 @@ export default function VolatilityArbPage() {
                     </div>
                     <div className="relative h-5 bg-muted rounded-full overflow-hidden">
                       <div
-                        className="absolute left-0 top-0 h-full bg-violet-500 rounded-full"
+                        className="absolute left-0 top-0 h-full bg-primary rounded-full"
                         style={{ width: `${(indexIV / 0.35) * 100}%` }}
                       />
                     </div>
                     <div className="relative h-5 bg-muted rounded-full overflow-hidden">
                       <div
-                        className="absolute left-0 top-0 h-full bg-blue-500 rounded-full"
+                        className="absolute left-0 top-0 h-full bg-primary rounded-full"
                         style={{ width: `${Math.min((basketIV / 0.35) * 100, 100)}%` }}
                       />
                     </div>
@@ -929,12 +929,12 @@ export default function VolatilityArbPage() {
               <Card>
                 <CardHeader className="pb-2">
                   <CardTitle className="text-sm font-medium flex items-center gap-2">
-                    <ArrowUpDown className="w-4 h-4 text-blue-400" />
+                    <ArrowUpDown className="w-4 h-4 text-primary" />
                     Calendar Spread Opportunities — Buy Cheap / Sell Rich Expiry
                   </CardTitle>
                 </CardHeader>
                 <CardContent>
-                  <div className="mb-3 p-3 bg-blue-500/5 border border-blue-500/20 rounded-lg text-xs text-muted-foreground">
+                  <div className="mb-3 p-3 bg-primary/5 border border-border rounded-lg text-xs text-muted-foreground">
                     <span className="text-foreground font-medium">Strategy:</span> Calendar spreads exploit term structure mispricings. When back-month IV {">"} front-month IV by {">"} 2 vols, sell back/buy front. When inverted by {">"} 2 vols, buy back/sell front.
                   </div>
                   <div className="overflow-x-auto">
@@ -985,12 +985,12 @@ export default function VolatilityArbPage() {
               <Card>
                 <CardHeader className="pb-2">
                   <CardTitle className="text-sm font-medium flex items-center gap-2">
-                    <Activity className="w-4 h-4 text-violet-400" />
+                    <Activity className="w-4 h-4 text-primary" />
                     25-Delta Risk Reversal — Skew Analysis
                   </CardTitle>
                 </CardHeader>
                 <CardContent>
-                  <div className="mb-3 p-3 bg-violet-500/5 border border-violet-500/20 rounded-lg text-xs text-muted-foreground">
+                  <div className="mb-3 p-3 bg-primary/5 border border-border rounded-lg text-xs text-muted-foreground">
                     <span className="text-foreground font-medium">Risk Reversal = Call(25Δ) IV − Put(25Δ) IV.</span> Positive = call skew (bullish sentiment / low demand for downside puts). Negative = put skew (fear / crash protection demanded). Trade by selling the rich side and buying the cheap side.
                   </div>
                   <div className="overflow-x-auto">
@@ -1115,17 +1115,17 @@ export default function VolatilityArbPage() {
                     <div className="text-xs text-muted-foreground">{((positiveVRPYears / 20) * 100).toFixed(0)}% years IV{">"} RV</div>
                   </CardContent>
                 </Card>
-                <Card className="bg-violet-500/5 border-violet-500/20">
+                <Card className="bg-primary/5 border-border">
                   <CardContent className="pt-4">
                     <div className="text-xs text-muted-foreground">Avg Annual VRP</div>
-                    <div className="text-2xl font-bold text-violet-400">{(avgVRP * 100).toFixed(1)} vols</div>
+                    <div className="text-2xl font-bold text-primary">{(avgVRP * 100).toFixed(1)} vols</div>
                     <div className="text-xs text-muted-foreground">IV consistently overstates RV</div>
                   </CardContent>
                 </Card>
-                <Card className="bg-blue-500/5 border-blue-500/20">
+                <Card className="bg-primary/5 border-border">
                   <CardContent className="pt-4">
                     <div className="text-xs text-muted-foreground">Short Vol Sharpe (est.)</div>
-                    <div className="text-2xl font-bold text-blue-400">0.8–1.2</div>
+                    <div className="text-2xl font-bold text-primary">0.8–1.2</div>
                     <div className="text-xs text-muted-foreground">pre-tail-event; skewed left</div>
                   </CardContent>
                 </Card>
@@ -1142,7 +1142,7 @@ export default function VolatilityArbPage() {
               <Card>
                 <CardHeader className="pb-2">
                   <CardTitle className="text-sm font-medium flex items-center gap-2">
-                    <BarChart3 className="w-4 h-4 text-violet-400" />
+                    <BarChart3 className="w-4 h-4 text-primary" />
                     20-Year VRP Evidence — IV vs RV Annual Average
                   </CardTitle>
                 </CardHeader>
@@ -1197,7 +1197,7 @@ export default function VolatilityArbPage() {
                     })()}
                   </svg>
                   <div className="flex items-center gap-4 mt-2 text-xs text-muted-foreground">
-                    <span className="flex items-center gap-1"><span className="w-3 h-3 bg-violet-400/70 inline-block rounded-sm" /> Implied Vol (IV)</span>
+                    <span className="flex items-center gap-1"><span className="w-3 h-3 bg-primary/70 inline-block rounded-sm" /> Implied Vol (IV)</span>
                     <span className="flex items-center gap-1"><span className="w-3 h-3 bg-green-400/70 inline-block rounded-sm" /> Realized Vol (RV)</span>
                     <span className="text-amber-400">IV {">"} RV in {positiveVRPYears}/20 years — the Vol Risk Premium</span>
                   </div>
@@ -1310,10 +1310,10 @@ export default function VolatilityArbPage() {
               </Card>
 
               {/* Sharpe attribution */}
-              <Card className="bg-blue-500/5 border-blue-500/20">
+              <Card className="bg-primary/5 border-border">
                 <CardHeader className="pb-2">
                   <CardTitle className="text-sm font-medium flex items-center gap-2">
-                    <Info className="w-4 h-4 text-blue-400" />
+                    <Info className="w-4 h-4 text-primary" />
                     Short-Vol Sharpe Decomposition
                   </CardTitle>
                 </CardHeader>

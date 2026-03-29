@@ -23,15 +23,15 @@ export function GlossaryTooltip({ term, children }: GlossaryTooltipProps) {
   }
 
   const categoryColors: Record<string, string> = {
-    basics: "bg-blue-500/20 text-blue-400",
+    basics: "bg-primary/20 text-primary",
     orders: "bg-amber-500/20 text-amber-400",
-    indicators: "bg-purple-500/20 text-purple-400",
+    indicators: "bg-primary/20 text-primary",
     risk: "bg-red-500/20 text-red-400",
     fundamental: "bg-emerald-500/20 text-emerald-400",
-    "personal-finance": "bg-cyan-500/20 text-cyan-400",
+    "personal-finance": "bg-cyan-500/20 text-muted-foreground",
     crypto: "bg-orange-500/20 text-orange-400",
     macro: "bg-yellow-500/20 text-yellow-400",
-    "options-advanced": "bg-violet-500/20 text-violet-400",
+    "options-advanced": "bg-primary/20 text-primary",
     technical: "bg-sky-500/20 text-sky-400",
   };
 

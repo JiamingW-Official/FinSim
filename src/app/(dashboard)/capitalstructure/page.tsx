@@ -672,7 +672,7 @@ const BADGE_META: Record<string, { label: string; color: string }> = {
   covenant: { label: "Covenant Stress", color: "bg-yellow-500/20 text-yellow-400 border-yellow-500/30" },
   maturity: { label: "Near Maturity", color: "bg-orange-500/20 text-orange-400 border-orange-500/30" },
   liquidity: { label: "Liquidity Squeeze", color: "bg-red-500/20 text-red-400 border-red-500/30" },
-  restructuring: { label: "Restructuring", color: "bg-purple-500/20 text-purple-400 border-purple-500/30" },
+  restructuring: { label: "Restructuring", color: "bg-primary/20 text-primary border-border" },
 };
 
 function DistressedScreener() {
@@ -799,7 +799,7 @@ export default function CapitalStructurePage() {
       <div className="flex items-start justify-between gap-4 flex-wrap">
         <div>
           <h1 className="text-2xl font-bold text-zinc-100 flex items-center gap-2">
-            <Layers className="w-6 h-6 text-blue-400" />
+            <Layers className="w-6 h-6 text-primary" />
             Capital Structure &amp; Distressed Investing
           </h1>
           <p className="text-zinc-400 text-sm mt-1">
@@ -807,7 +807,7 @@ export default function CapitalStructurePage() {
           </p>
         </div>
         <div className="flex gap-2 flex-wrap">
-          <Badge className="bg-blue-500/15 text-blue-400 border-blue-500/25 text-xs">
+          <Badge className="bg-primary/15 text-primary border-border text-xs">
             <BarChart2 className="w-3 h-3 mr-1" /> EV ${ev}M
           </Badge>
           <Badge className="bg-zinc-700/60 text-zinc-300 border-zinc-600/40 text-xs">
@@ -822,7 +822,7 @@ export default function CapitalStructurePage() {
           { label: "Total Debt", value: `$${debtCapital}M`, icon: DollarSign, color: "text-yellow-400" },
           { label: "Equity", value: `$${equityCapital}M`, icon: TrendingDown, color: "text-rose-400" },
           { label: "Est. Leverage", value: `${leverage}x`, icon: Activity, color: "text-orange-400" },
-          { label: "Fulcrum Security", value: fulcrumInfo.split("—")[0].trim(), icon: Target, color: "text-blue-400" },
+          { label: "Fulcrum Security", value: fulcrumInfo.split("—")[0].trim(), icon: Target, color: "text-primary" },
         ].map((k) => (
           <Card key={k.label} className="bg-zinc-800/60 border-zinc-700/40">
             <CardContent className="p-3 flex items-center gap-2">
@@ -837,11 +837,11 @@ export default function CapitalStructurePage() {
       </div>
 
       {/* Fulcrum callout */}
-      <div className="flex items-center gap-3 bg-blue-950/30 border border-blue-500/25 rounded-lg px-4 py-2.5">
-        <AlertTriangle className="w-4 h-4 text-blue-400 shrink-0" />
+      <div className="flex items-center gap-3 bg-muted/40 border border-border rounded-lg px-4 py-2.5">
+        <AlertTriangle className="w-4 h-4 text-primary shrink-0" />
         <div className="text-xs">
           <span className="text-zinc-400">Fulcrum Security at EV ${ev}M: </span>
-          <span className="text-blue-300 font-semibold">{fulcrumInfo}</span>
+          <span className="text-primary font-semibold">{fulcrumInfo}</span>
         </div>
       </div>
 
@@ -943,12 +943,12 @@ export default function CapitalStructurePage() {
                         const cents = t.amount > 0 ? (rec / t.amount) * 100 : 0;
                         const isFulcrum = rec > 0 && rec < t.amount;
                         return (
-                          <tr key={t.name} className={`border-b border-zinc-800/50 ${isFulcrum ? "bg-blue-950/20" : ""}`}>
+                          <tr key={t.name} className={`border-b border-zinc-800/50 ${isFulcrum ? "bg-muted/30" : ""}`}>
                             <td className="py-1.5 flex items-center gap-1.5">
                               <div className="w-2 h-2 rounded-sm" style={{ backgroundColor: t.color }} />
-                              <span className={isFulcrum ? "text-blue-300 font-medium" : "text-zinc-300"}>{t.name}</span>
+                              <span className={isFulcrum ? "text-primary font-medium" : "text-zinc-300"}>{t.name}</span>
                               {isFulcrum && (
-                                <Badge className="text-[11px] bg-blue-500/20 text-blue-400 border-blue-500/30 px-1 py-0">
+                                <Badge className="text-[11px] bg-primary/20 text-primary border-border px-1 py-0">
                                   FULCRUM
                                 </Badge>
                               )}
@@ -986,7 +986,7 @@ export default function CapitalStructurePage() {
           <Card className="bg-zinc-800/60 border-zinc-700/40">
             <CardHeader className="pb-2 pt-4 px-4">
               <CardTitle className="text-sm text-zinc-200 flex items-center gap-2">
-                <Activity className="w-4 h-4 text-purple-400" />
+                <Activity className="w-4 h-4 text-primary" />
                 Merton Structural Credit Model
               </CardTitle>
             </CardHeader>
@@ -1041,13 +1041,13 @@ export default function CapitalStructurePage() {
           },
           {
             icon: Target,
-            color: "text-blue-400",
+            color: "text-primary",
             title: "Fulcrum Security",
             body: "The tranche that transitions from full to zero recovery as enterprise value changes. These holders control restructuring outcomes.",
           },
           {
             icon: Activity,
-            color: "text-purple-400",
+            color: "text-primary",
             title: "Distressed Returns",
             body: "Distressed debt can yield 20–40%+ if the investor correctly assesses recovery value — a blend of credit analysis and legal expertise.",
           },

@@ -73,7 +73,7 @@ export function QuestCard({ quest, progress, onClaim }: QuestCardProps) {
         isClaimed
           ? "border-emerald-500/20 bg-emerald-500/5"
           : isComplete
-            ? "border-violet-500/30 bg-violet-500/5"
+            ? "border-border bg-primary/5"
             : "border-white/5 bg-white/[0.02] hover:border-white/10 hover:bg-white/[0.04]",
       )}
     >
@@ -85,7 +85,7 @@ export function QuestCard({ quest, progress, onClaim }: QuestCardProps) {
             isClaimed
               ? "bg-emerald-500/15 text-emerald-400"
               : isComplete
-                ? "bg-violet-500/15 text-violet-400"
+                ? "bg-primary/15 text-primary"
                 : "bg-white/5 text-zinc-500",
           )}
           animate={isComplete && !isClaimed ? { scale: [1, 1.1, 1] } : {}}
@@ -151,7 +151,7 @@ export function QuestCard({ quest, progress, onClaim }: QuestCardProps) {
               <motion.div
                 className={cn(
                   "h-full rounded-full",
-                  isComplete ? "bg-violet-500" : "bg-zinc-600",
+                  isComplete ? "bg-primary" : "bg-zinc-600",
                 )}
                 initial={{ width: 0 }}
                 animate={{ width: `${progressPercent}%` }}
@@ -183,7 +183,7 @@ export function QuestCard({ quest, progress, onClaim }: QuestCardProps) {
               whileHover={{ scale: 1.08 }}
               whileTap={{ scale: 0.9 }}
               onClick={handleClaim}
-              className="quest-claim flex items-center gap-1 rounded-lg bg-violet-500 px-3 py-1.5 text-xs font-bold text-white shadow-sm transition-colors hover:bg-violet-400"
+              className="quest-claim flex items-center gap-1 rounded-lg bg-primary px-3 py-1.5 text-xs font-bold text-white shadow-sm transition-colors hover:bg-primary"
             >
               <Gift className="h-3 w-3" />
               Claim
