@@ -173,7 +173,7 @@ export default function LandingPage() {
                   </div>
                 </div>
 
-                {/* SVG Candlestick Chart */}
+                {/* SVG Candlestick Chart — realistic AAPL intraday */}
                 <svg
                   viewBox="0 0 400 130"
                   className="w-full h-auto"
@@ -184,7 +184,7 @@ export default function LandingPage() {
                       <stop
                         offset="0%"
                         stopColor="hsl(var(--primary))"
-                        stopOpacity="0.15"
+                        stopOpacity="0.08"
                       />
                       <stop
                         offset="100%"
@@ -206,64 +206,73 @@ export default function LandingPage() {
                       strokeDasharray="2,4"
                     />
                   ))}
-                  {/* Candlesticks */}
+                  {/* Candlesticks — morning sell-off, midday consolidation, afternoon recovery */}
                   {[
-                    { x: 20, o: 95, c: 88, h: 98, l: 85, bull: true },
-                    { x: 36, o: 88, c: 92, h: 94, l: 86, bull: false },
-                    { x: 52, o: 90, c: 82, h: 93, l: 80, bull: true },
-                    { x: 68, o: 82, c: 78, h: 85, l: 75, bull: true },
-                    { x: 84, o: 78, c: 82, h: 84, l: 76, bull: false },
-                    { x: 100, o: 82, c: 75, h: 84, l: 72, bull: true },
-                    { x: 116, o: 75, c: 70, h: 77, l: 68, bull: true },
-                    { x: 132, o: 70, c: 74, h: 76, l: 68, bull: false },
-                    { x: 148, o: 72, c: 65, h: 75, l: 62, bull: true },
-                    { x: 164, o: 65, c: 68, h: 70, l: 63, bull: false },
-                    { x: 180, o: 68, c: 60, h: 70, l: 58, bull: true },
-                    { x: 196, o: 60, c: 55, h: 63, l: 52, bull: true },
-                    { x: 212, o: 56, c: 62, h: 64, l: 54, bull: false },
-                    { x: 228, o: 60, c: 52, h: 63, l: 50, bull: true },
-                    { x: 244, o: 52, c: 48, h: 55, l: 46, bull: true },
-                    { x: 260, o: 48, c: 52, h: 54, l: 46, bull: false },
-                    { x: 276, o: 50, c: 44, h: 53, l: 42, bull: true },
-                    { x: 292, o: 44, c: 40, h: 47, l: 38, bull: true },
-                    { x: 308, o: 40, c: 45, h: 47, l: 38, bull: false },
-                    { x: 324, o: 43, c: 36, h: 46, l: 34, bull: true },
-                    { x: 340, o: 36, c: 32, h: 39, l: 30, bull: true },
-                    { x: 356, o: 33, c: 38, h: 40, l: 31, bull: false },
-                    { x: 372, o: 36, c: 28, h: 38, l: 26, bull: true },
-                    { x: 388, o: 28, c: 24, h: 30, l: 22, bull: true },
+                    // Pre-market gap up, initial selling
+                    { x: 15, o: 62, c: 58, h: 64, l: 56 },   // bear
+                    { x: 28, o: 58, c: 63, h: 65, l: 57 },   // bull bounce
+                    { x: 41, o: 63, c: 60, h: 66, l: 58 },   // bear
+                    { x: 54, o: 60, c: 55, h: 62, l: 53 },   // bear sell-off
+                    { x: 67, o: 55, c: 52, h: 57, l: 49 },   // bear continues
+                    { x: 80, o: 52, c: 58, h: 59, l: 50 },   // bull reversal candle
+                    { x: 93, o: 58, c: 56, h: 60, l: 55 },   // small bear, doji-ish
+                    // Midday consolidation — small candles, tight range
+                    { x: 106, o: 56, c: 57, h: 59, l: 55 },  // tiny bull
+                    { x: 119, o: 57, c: 55, h: 58, l: 54 },  // tiny bear
+                    { x: 132, o: 55, c: 56, h: 58, l: 54 },  // doji
+                    { x: 145, o: 56, c: 54, h: 57, l: 53 },  // small bear
+                    { x: 158, o: 54, c: 57, h: 58, l: 53 },  // bull
+                    { x: 171, o: 57, c: 56, h: 59, l: 55 },  // indecision
+                    { x: 184, o: 56, c: 58, h: 60, l: 55 },  // small bull
+                    // Afternoon breakout with volume
+                    { x: 197, o: 58, c: 53, h: 59, l: 51 },  // bear shakeout
+                    { x: 210, o: 53, c: 50, h: 55, l: 48 },  // bear continuation
+                    { x: 223, o: 50, c: 55, h: 56, l: 48 },  // strong bull reversal
+                    { x: 236, o: 55, c: 52, h: 57, l: 51 },  // pullback
+                    { x: 249, o: 52, c: 48, h: 54, l: 46 },  // another pullback
+                    { x: 262, o: 48, c: 44, h: 50, l: 42 },  // bull breakout
+                    { x: 275, o: 44, c: 40, h: 45, l: 38 },  // momentum
+                    { x: 288, o: 40, c: 43, h: 44, l: 38 },  // small bear pause
+                    { x: 301, o: 43, c: 38, h: 44, l: 36 },  // bull
+                    { x: 314, o: 38, c: 42, h: 43, l: 37 },  // bear pullback
+                    { x: 327, o: 42, c: 36, h: 43, l: 34 },  // strong bull
+                    { x: 340, o: 36, c: 33, h: 37, l: 31 },  // continuation
+                    { x: 353, o: 33, c: 36, h: 38, l: 32 },  // small bear
+                    { x: 366, o: 36, c: 30, h: 37, l: 28 },  // bull close
+                    { x: 379, o: 30, c: 32, h: 34, l: 29 },  // end-of-day
+                    { x: 392, o: 32, c: 28, h: 33, l: 26 },  // final candle
                   ].map((c, i) => {
+                    const bull = c.c < c.o; // lower close value = higher on chart = bullish (inverted Y)
                     const top = Math.min(c.o, c.c);
                     const bot = Math.max(c.o, c.c);
-                    const color = c.bull
+                    const bodyH = Math.max(bot - top, 1.2);
+                    const color = bull
                       ? "hsl(var(--primary))"
                       : "hsl(0 84% 60%)";
                     return (
                       <g key={i}>
-                        {/* Wick */}
                         <line
                           x1={c.x}
                           y1={c.h}
                           x2={c.x}
                           y2={c.l}
                           stroke={color}
-                          strokeWidth="1"
+                          strokeWidth="0.8"
                         />
-                        {/* Body */}
                         <rect
-                          x={c.x - 5}
+                          x={c.x - 4.5}
                           y={top}
-                          width="10"
-                          height={Math.max(bot - top, 1.5)}
+                          width="9"
+                          height={bodyH}
                           fill={color}
                           rx="0.5"
                         />
                       </g>
                     );
                   })}
-                  {/* Area fill under trend */}
+                  {/* Subtle area fill */}
                   <path
-                    d="M15,92 L47,86 L79,80 L111,79 L143,68 L175,64 L207,58 L239,51 L271,48 L303,42 L335,35 L367,32 L399,26 L400,130 L0,130 Z"
+                    d="M15,60 L41,62 L67,54 L93,57 L119,56 L145,55 L171,57 L197,56 L223,52 L249,50 L275,42 L301,40 L327,38 L353,34 L379,31 L392,30 L400,30 L400,130 L0,130 Z"
                     fill="url(#chartGrad)"
                   />
                 </svg>
