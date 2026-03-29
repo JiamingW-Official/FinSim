@@ -91,7 +91,7 @@ export function EquityCurve() {
 
   if (equityHistory.length === 0) {
     return (
-      <div className="flex h-64 flex-col items-center justify-center py-12 text-center">
+      <div className="flex h-[340px] flex-col items-center justify-center py-12 text-center">
         <BarChart3 className="h-8 w-8 text-muted-foreground/50 mb-3" />
         <p className="text-sm font-medium text-muted-foreground">No equity data yet</p>
         <p className="text-xs text-muted-foreground/70 mt-1">Complete your first trade to start tracking performance</p>
@@ -99,5 +99,5 @@ export function EquityCurve() {
     );
   }
 
-  return <div ref={containerRef} className="h-64 w-full" />;
+  return <div ref={containerRef} className="h-[340px] w-full" />;
 }

@@ -164,7 +164,7 @@ export default function TradePage() {
         <PositionAlerts />
 
         {/* ── Top view switcher ── */}
-        <div className="flex items-center gap-1 border-b border-border bg-card px-3 py-1 shrink-0">
+        <div className="flex items-center gap-1 border-b border-border/40 bg-card/50 px-3 py-0.5 shrink-0">
           <button
             onClick={() => setMainView("trade")}
             className={cn(
@@ -200,10 +200,10 @@ export default function TradePage() {
         {/* ── Trade view ── */}
         <div className={cn("flex flex-1 overflow-hidden", mainView !== "trade" && "hidden")}>
 
-        {/* ── Left sidebar (220px): Watchlist + PriceAlerts ── */}
+        {/* ── Left sidebar (200px): Watchlist + PriceAlerts — subdued ── */}
         <div
-          className="relative flex flex-col border-r border-border bg-card shrink-0"
-          style={{ width: 220 }}
+          className="relative flex flex-col border-r border-border/40 bg-card/40 shrink-0"
+          style={{ width: 200 }}
           data-tutorial="watchlist"
         >
           {/* WatchlistPanel takes top 60% */}
@@ -227,13 +227,13 @@ export default function TradePage() {
           )}
         </div>
 
-        {/* ── Center: Chart + Controls (hero tier — generous spacing) ── */}
+        {/* ── Center: Chart + Controls (hero tier — chart is king) ── */}
         <div className="flex flex-1 flex-col overflow-hidden">
           <ChartToolbar data-tutorial="indicators" />
           <IndicatorInfoPanel />
 
-          {/* Chart row: DrawingToolbar (left strip) + chart area */}
-          <div className="flex flex-1 overflow-hidden">
+          {/* Chart row: DrawingToolbar (left strip) + chart area — generous */}
+          <div className="flex flex-1 overflow-hidden pt-1">
             <DrawingToolbar />
             <ChartWithDrawing flashClass={flashClass}>
               {isLoading && (
@@ -294,28 +294,28 @@ export default function TradePage() {
           <ContextualTip />
           <NewsTicker />
 
-          {/* Bottom panel: reference tier — compact spacing (p-3) */}
+          {/* Bottom panel: footnote tier — compressed, minimal chrome */}
           <div
-            className="h-40 shrink-0 overflow-hidden border-t border-border mt-1"
+            className="h-32 shrink-0 overflow-hidden border-t border-border/30 mt-0.5"
             data-tutorial="positions"
           >
             <Tabs defaultValue="fundamentals" className="h-full flex flex-col">
-              <TabsList className="h-7 w-full justify-start rounded-none border-b border-border bg-card px-2">
+              <TabsList className="h-6 w-full justify-start rounded-none border-b border-border/20 bg-transparent px-2">
                 <TabsTrigger
                   value="fundamentals"
-                  className="h-6 rounded-none border-b-2 border-transparent px-3 text-xs data-[state=active]:border-primary data-[state=active]:bg-transparent"
+                  className="h-5 rounded-none border-b border-transparent px-2 text-[11px] text-muted-foreground/60 data-[state=active]:border-primary/60 data-[state=active]:text-muted-foreground data-[state=active]:bg-transparent"
                 >
                   Fundamentals
                 </TabsTrigger>
                 <TabsTrigger
                   value="orderbook"
-                  className="h-6 rounded-none border-b-2 border-transparent px-3 text-xs data-[state=active]:border-primary data-[state=active]:bg-transparent"
+                  className="h-5 rounded-none border-b border-transparent px-2 text-[11px] text-muted-foreground/60 data-[state=active]:border-primary/60 data-[state=active]:text-muted-foreground data-[state=active]:bg-transparent"
                 >
                   Order Book
                 </TabsTrigger>
                 <TabsTrigger
                   value="compare"
-                  className="h-6 rounded-none border-b-2 border-transparent px-3 text-xs data-[state=active]:border-primary data-[state=active]:bg-transparent"
+                  className="h-5 rounded-none border-b border-transparent px-2 text-[11px] text-muted-foreground/60 data-[state=active]:border-primary/60 data-[state=active]:text-muted-foreground data-[state=active]:bg-transparent"
                 >
                   Compare
                 </TabsTrigger>
@@ -333,48 +333,48 @@ export default function TradePage() {
           </div>
         </div>
 
-        {/* ── Right sidebar (280px): Order Entry (action tier p-4) + Tabs ── */}
+        {/* ── Right sidebar (260px): Order Entry — subdued, chart is king ── */}
         <div
-          className="relative flex flex-col border-l border-border bg-card shrink-0"
-          style={{ width: 280 }}
+          className="relative flex flex-col border-l border-border/40 bg-card/40 shrink-0"
+          style={{ width: 260 }}
           data-tutorial="order-entry"
         >
           <Tabs defaultValue="order" className="flex flex-col h-full">
             {/* Tab bar */}
-            <TabsList className="h-7 w-full justify-start rounded-none border-b border-border bg-card px-1 shrink-0">
+            <TabsList className="h-6 w-full justify-start rounded-none border-b border-border/30 bg-transparent px-1 shrink-0">
               <TabsTrigger
                 value="order"
-                className="h-6 rounded-none border-b-2 border-transparent px-2 text-xs data-[state=active]:border-primary data-[state=active]:bg-transparent"
+                className="h-5 rounded-none border-b border-transparent px-1.5 text-[11px] text-muted-foreground/60 data-[state=active]:border-primary data-[state=active]:text-foreground data-[state=active]:bg-transparent"
               >
                 Order
               </TabsTrigger>
               <TabsTrigger
                 value="positions"
-                className="h-6 rounded-none border-b-2 border-transparent px-2 text-xs data-[state=active]:border-primary data-[state=active]:bg-transparent"
+                className="h-5 rounded-none border-b border-transparent px-1.5 text-[11px] text-muted-foreground/60 data-[state=active]:border-primary data-[state=active]:text-foreground data-[state=active]:bg-transparent"
               >
                 Positions
               </TabsTrigger>
               <TabsTrigger
                 value="pending"
-                className="h-6 rounded-none border-b-2 border-transparent px-2 text-xs data-[state=active]:border-primary data-[state=active]:bg-transparent"
+                className="h-5 rounded-none border-b border-transparent px-1.5 text-[11px] text-muted-foreground/60 data-[state=active]:border-primary data-[state=active]:text-foreground data-[state=active]:bg-transparent"
               >
                 Orders{pendingCount > 0 && ` (${pendingCount})`}
               </TabsTrigger>
               <TabsTrigger
                 value="history"
-                className="h-6 rounded-none border-b-2 border-transparent px-2 text-xs data-[state=active]:border-primary data-[state=active]:bg-transparent"
+                className="h-5 rounded-none border-b border-transparent px-1.5 text-[11px] text-muted-foreground/60 data-[state=active]:border-primary data-[state=active]:text-foreground data-[state=active]:bg-transparent"
               >
                 History
               </TabsTrigger>
               <TabsTrigger
                 value="execution"
-                className="h-6 rounded-none border-b-2 border-transparent px-2 text-xs data-[state=active]:border-primary data-[state=active]:bg-transparent"
+                className="h-5 rounded-none border-b border-transparent px-1.5 text-[11px] text-muted-foreground/60 data-[state=active]:border-primary data-[state=active]:text-foreground data-[state=active]:bg-transparent"
               >
                 Exec
               </TabsTrigger>
               <TabsTrigger
                 value="margin"
-                className="h-6 rounded-none border-b-2 border-transparent px-2 text-xs data-[state=active]:border-primary data-[state=active]:bg-transparent"
+                className="h-5 rounded-none border-b border-transparent px-1.5 text-[11px] text-muted-foreground/60 data-[state=active]:border-primary data-[state=active]:text-foreground data-[state=active]:bg-transparent"
               >
                 Margin
               </TabsTrigger>
@@ -389,8 +389,8 @@ export default function TradePage() {
                 <ErrorBoundary name="OrderEntry">
                   <OrderEntry />
                 </ErrorBoundary>
-                {/* Reference tier — compact spacing, separated from action tier */}
-                <div className="mx-4 mb-3 mt-2 border-t border-border/30" />
+                {/* Reference tier — subdued spacing */}
+                <div className="mx-3 mb-2 mt-2 border-t border-border/15" />
                 <div className="px-3 pb-3 space-y-2">
                   <ErrorBoundary name="ShortSqueezeAlert">
                     <ShortSqueezeAlert />

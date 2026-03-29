@@ -1100,16 +1100,19 @@ export function AICoachPanel() {
   })();
 
   return (
-    <div className="shrink-0 border-t border-border bg-card">
-      {/* Toggle header */}
+    <div className="shrink-0 border-t border-border/20 bg-transparent">
+      {/* Toggle header — nearly invisible when collapsed */}
       <button
         type="button"
         onClick={() => setExpanded((v) => !v)}
-        className="flex w-full items-center justify-between px-3 py-2 text-xs hover:bg-accent/20 transition-colors"
+        className={cn(
+          "flex w-full items-center justify-between px-3 transition-colors",
+          expanded ? "py-1.5 text-xs hover:bg-accent/20" : "py-1 text-[11px] hover:bg-accent/10 opacity-60 hover:opacity-100",
+        )}
       >
         <div className="flex items-center gap-1.5 flex-wrap">
           <AlphaBotFace loading={loading} bias={result?.bias} conviction={result?.conviction} />
-          <span className="font-bold">Market Analysis</span>
+          <span className={cn("font-medium", expanded ? "text-xs" : "text-[11px] text-muted-foreground/60")}>Analysis</span>
           {expanded && (
             <span className="text-[11px] text-muted-foreground/70 font-normal">Rules-based</span>
           )}

@@ -161,16 +161,14 @@ function Sparkline({ data, width = 60, height = 24 }: { data: number[]; width?: 
   );
 }
 
-// ── Market Card (compact grid view) ───────────────────────────────────────────
+// ── Compact Market Row (tiny list item) ──────────────────────────────────────
 
-function MarketCard({
+function MarketRow({
   market,
-  priceHistory,
   volume,
   onSelect,
 }: {
   market: PredictionMarket;
-  priceHistory: number[];
   volume: number;
   onSelect: (m: PredictionMarket) => void;
 }) {
@@ -179,76 +177,44 @@ function MarketCard({
   return (
     <button
       onClick={() => onSelect(market)}
-      className="group w-full rounded-lg border border-border bg-card p-4 text-left transition-colors hover:border-border/60 hover:bg-muted/10"
+      className="group flex w-full items-center gap-3 rounded px-2 py-2 text-left transition-colors hover:bg-muted/30"
     >
-      <div className="mb-2.5 flex items-start justify-between gap-2">
-        <div className="min-w-0 flex-1">
-          <div className="mb-1 flex items-center gap-1.5 flex-wrap">
-            <span className={cn("shrink-0 rounded px-1.5 py-0.5 text-[11px] font-medium", CATEGORY_COLORS[market.category])}>
-              {CATEGORY_LABELS[market.category]}
-            </span>
-            {bet && (
-              <span className="rounded bg-primary/10 px-1.5 py-0.5 text-[11px] font-semibold uppercase text-primary">
-                {bet.position.toUpperCase()}
-              </span>
-            )}
-          </div>
-          <p className="line-clamp-2 text-[13px] font-medium leading-snug text-foreground">
-            {market.question}
-          </p>
-        </div>
-        <Sparkline data={priceHistory} />
-      </div>
+      {/* Category pill */}
+      <span className={cn("shrink-0 rounded px-1.5 py-0.5 text-[10px] font-medium leading-none", CATEGORY_COLORS[market.category])}>
+        {CATEGORY_LABELS[market.category]}
+      </span>
 
-      {/* Current odds — YES/NO probability bar */}
-      <div className="mb-2.5">
-        <div className="mb-1 flex justify-between text-xs">
-          <span className="font-semibold text-emerald-500">YES {market.initialProbability}%</span>
-          <span className="font-semibold text-red-500">NO {100 - market.initialProbability}%</span>
-        </div>
-        <div className="h-1.5 w-full overflow-hidden rounded-full bg-red-500/15">
-          <div className="h-full rounded-full bg-emerald-500/60 transition-all" style={{ width: `${market.initialProbability}%` }} />
-        </div>
-      </div>
+      {/* Question */}
+      <span className="min-w-0 flex-1 truncate text-xs text-foreground">
+        {market.question}
+      </span>
 
-      {/* Confidence indicator */}
-      <div className="mb-2 flex items-center gap-1.5 text-[11px] text-muted-foreground">
-        <span className="font-medium">Confidence:</span>
-        <span className={cn(
-          "font-semibold",
-          market.initialProbability >= 75 || market.initialProbability <= 25
-            ? "text-emerald-500"
-            : market.initialProbability >= 60 || market.initialProbability <= 40
-              ? "text-amber-500"
-              : "text-muted-foreground",
-        )}>
-          {market.initialProbability >= 75 || market.initialProbability <= 25 ? "High" : market.initialProbability >= 60 || market.initialProbability <= 40 ? "Medium" : "Low"}
+      {/* Bet indicator */}
+      {bet && (
+        <span className={cn("shrink-0 rounded px-1 py-0.5 text-[10px] font-semibold uppercase leading-none", bet.position === "yes" ? "bg-emerald-500/10 text-emerald-500" : "bg-red-500/10 text-red-500")}>
+          {bet.position}
         </span>
-        <span className="text-muted-foreground/50">|</span>
-        <span className="font-mono tabular-nums">Odds: {market.initialProbability > 50 ? (market.initialProbability / (100 - market.initialProbability)).toFixed(1) : ((100 - market.initialProbability) / market.initialProbability).toFixed(1)}:1</span>
-      </div>
+      )}
 
-      {/* Meta row */}
-      <div className="flex items-center justify-between text-xs text-muted-foreground">
-        <div className="flex items-center gap-2 font-mono tabular-nums">
-          <span className="flex items-center gap-0.5">
-            <BarChart3 className="h-3 w-3" />
-            ${volume.toLocaleString()}
-          </span>
-          {market.expiresInDays <= 3 ? (
-            <span className="flex items-center gap-0.5 rounded bg-amber-500/10 px-1.5 py-0.5 text-[11px] font-semibold text-amber-500">
-              <Clock className="h-3 w-3" />
-              Closing soon
-            </span>
-          ) : (
-            <span className="flex items-center gap-0.5">
-              <Clock className="h-3 w-3" />
-              {market.expiresInDays}d
-            </span>
-          )}
-        </div>
-        <ChevronRight className="h-3 w-3 opacity-0 transition-opacity group-hover:opacity-60" />
-      </div>
+      {/* YES odds */}
+      <span className="shrink-0 w-10 text-right font-mono tabular-nums text-xs font-semibold text-emerald-500">
+        {market.initialProbability}%
+      </span>
+
+      {/* Volume */}
+      <span className="hidden shrink-0 w-14 text-right font-mono tabular-nums text-[11px] text-muted-foreground sm:inline">
+        ${(volume / 1000).toFixed(0)}K
+      </span>
+
+      {/* Expiry */}
+      <span className={cn(
+        "shrink-0 w-8 text-right font-mono tabular-nums text-[11px]",
+        market.expiresInDays <= 3 ? "font-semibold text-amber-500" : "text-muted-foreground",
+      )}>
+        {market.expiresInDays}d
+      </span>
+
+      <ChevronRight className="h-3 w-3 shrink-0 text-muted-foreground/0 transition-colors group-hover:text-muted-foreground/40" />
     </button>
   );
 }
@@ -652,61 +618,32 @@ function MyBetsTab() {
         </div>
       )}
 
-      {/* Resolved bets */}
+      {/* Resolved bets — minimal */}
       {resolvedBets.length > 0 && (
-        <div>
-          <h2 className="mb-3 text-xs font-normal text-muted-foreground">
-            Resolved Bets ({resolvedBets.length})
+        <div className="mt-4 opacity-60">
+          <h2 className="mb-1.5 text-[11px] font-normal text-muted-foreground/60">
+            Resolved ({resolvedBets.length})
           </h2>
-          <div className="overflow-x-auto rounded-lg border border-border bg-card">
-            <table className="w-full text-[11px] min-w-[480px]">
-              <thead className="sticky top-0 z-10 bg-card">
-                <tr className="border-b border-border/50">
-                  <th className="px-3 py-2 text-left text-[11px] font-medium text-muted-foreground">Market</th>
-                  <th className="px-3 py-2 text-center text-[11px] font-medium text-muted-foreground">Position</th>
-                  <th className="px-3 py-2 text-center text-[11px] font-medium text-muted-foreground">Outcome</th>
-                  <th className="px-3 py-2 text-right text-[11px] font-medium text-muted-foreground">Stake</th>
-                  <th className="px-3 py-2 text-right text-[11px] font-medium text-muted-foreground">P&L</th>
-                </tr>
-              </thead>
-              <tbody>
-                {resolvedBets.slice().reverse().map((bet) => {
-                  const market = PREDICTION_MARKETS.find((m) => m.id === bet.marketId);
-                  const isCorrect = (bet.position === "yes" && bet.outcome === true) || (bet.position === "no" && bet.outcome === false);
-                  const pnl = (bet.payout ?? 0) - bet.amount;
-                  return (
-                    <tr key={bet.marketId + bet.timestamp} className="border-b border-border/50 last:border-0 transition-colors hover:bg-muted/30">
-                      <td className="max-w-[200px] truncate px-3 py-1.5 text-foreground/70">
-                        {market?.question.slice(0, 40) ?? bet.marketId}
-                        {(market?.question.length ?? 0) > 40 ? "…" : ""}
-                      </td>
-                      <td className="px-3 py-1.5 text-center">
-                        <span className={cn("rounded px-1.5 py-0.5 text-xs font-medium uppercase", bet.position === "yes" ? "bg-emerald-500/10 text-emerald-500" : "bg-red-500/10 text-red-500")}>
-                          {bet.position.toUpperCase()}
-                        </span>
-                      </td>
-                      <td className="px-3 py-1.5 text-center">
-                        {isCorrect ? (
-                          <span className="flex items-center justify-center gap-0.5 text-emerald-500">
-                            <CheckCircle2 className="h-3 w-3" />
-                            <span className="text-xs font-medium">Correct</span>
-                          </span>
-                        ) : (
-                          <span className="flex items-center justify-center gap-0.5 text-red-500">
-                            <XCircle className="h-3 w-3" />
-                            <span className="text-xs font-medium">Wrong</span>
-                          </span>
-                        )}
-                      </td>
-                      <td className="px-3 py-1.5 text-right font-mono tabular-nums text-foreground/70">{bet.amount} pts</td>
-                      <td className={cn("px-3 py-1.5 text-right font-mono tabular-nums font-medium", pnl >= 0 ? "text-emerald-500" : "text-red-500")}>
-                        {pnl >= 0 ? "+" : ""}{pnl} pts
-                      </td>
-                    </tr>
-                  );
-                })}
-              </tbody>
-            </table>
+          <div className="space-y-0">
+            {resolvedBets.slice().reverse().map((bet) => {
+              const market = PREDICTION_MARKETS.find((m) => m.id === bet.marketId);
+              const isCorrect = (bet.position === "yes" && bet.outcome === true) || (bet.position === "no" && bet.outcome === false);
+              const pnl = (bet.payout ?? 0) - bet.amount;
+              return (
+                <div key={bet.marketId + bet.timestamp} className="flex items-center gap-2 py-0.5 text-[11px] text-muted-foreground">
+                  <span className={cn("shrink-0", isCorrect ? "text-emerald-500/70" : "text-red-500/70")}>
+                    {isCorrect ? "+" : "-"}
+                  </span>
+                  <span className="min-w-0 flex-1 truncate">
+                    {market?.question.slice(0, 50) ?? bet.marketId}
+                  </span>
+                  <span className="shrink-0 uppercase text-[10px]">{bet.position}</span>
+                  <span className={cn("shrink-0 font-mono tabular-nums text-[10px]", pnl >= 0 ? "text-emerald-500/70" : "text-red-500/70")}>
+                    {pnl >= 0 ? "+" : ""}{pnl}
+                  </span>
+                </div>
+              );
+            })}
           </div>
         </div>
       )}
@@ -1043,47 +980,59 @@ export function PredictionsPageClient() {
                   </div>
                 </div>
 
-                {/* Featured Market + Market grid */}
+                {/* Featured Market + Compact market list */}
                 <div className="flex-1 overflow-y-auto p-4">
-                  {/* Featured Market hero */}
+                  {/* ── FEATURED MARKET — dominant hero ── */}
                   {featuredMarket && !searchQuery.trim() && activeFilter === "all" && (
-                    <div className="mb-4">
-                      <div className="mb-2 flex items-center gap-1.5 text-xs font-semibold text-muted-foreground">
-                        <Zap className="h-3 w-3 text-primary" />
-                        Featured Market
-                      </div>
+                    <div className="mb-8">
                       <button
                         onClick={() => handleSelectMarket(featuredMarket)}
-                        className="group w-full rounded-lg border-l-4 border-primary bg-card p-6 text-left transition-colors hover:bg-muted/10"
+                        className="group w-full rounded-xl border border-border bg-card p-6 sm:p-8 text-left transition-colors hover:bg-muted/10"
                       >
-                        <div className="mb-1 flex items-center gap-2">
-                          <span className={cn("shrink-0 rounded px-1.5 py-0.5 text-[11px] font-medium", CATEGORY_COLORS[featuredMarket.category])}>
+                        {/* Top meta */}
+                        <div className="mb-3 flex items-center gap-2">
+                          <Zap className="h-3.5 w-3.5 text-primary" />
+                          <span className="text-[11px] font-semibold uppercase tracking-wider text-primary">Featured Market</span>
+                          <span className={cn("ml-1 rounded px-1.5 py-0.5 text-[10px] font-medium", CATEGORY_COLORS[featuredMarket.category])}>
                             {CATEGORY_LABELS[featuredMarket.category]}
                           </span>
                           {featuredMarket.expiresInDays <= 3 && (
-                            <span className="flex items-center gap-0.5 rounded bg-amber-500/10 px-1.5 py-0.5 text-[11px] font-semibold text-amber-500">
+                            <span className="flex items-center gap-0.5 rounded bg-amber-500/10 px-1.5 py-0.5 text-[10px] font-semibold text-amber-500">
                               <Clock className="h-3 w-3" />
                               Closing soon
                             </span>
                           )}
                         </div>
-                        <p className="mb-3 text-lg font-medium leading-snug text-foreground">
+
+                        {/* Large question */}
+                        <p className="mb-5 text-xl font-semibold leading-snug text-foreground sm:text-2xl">
                           {featuredMarket.question}
                         </p>
 
-                        {/* Large YES/NO probability bars */}
-                        <div className="mb-3">
-                          <div className="mb-1.5 flex justify-between text-sm">
-                            <span className="font-semibold text-emerald-500">YES {featuredMarket.initialProbability}%</span>
-                            <span className="font-semibold text-red-500">NO {100 - featuredMarket.initialProbability}%</span>
+                        {/* Description */}
+                        <p className="mb-5 max-w-2xl text-sm leading-relaxed text-muted-foreground">
+                          {featuredMarket.description}
+                        </p>
+
+                        {/* Massive YES / NO buttons */}
+                        <div className="mb-5 grid grid-cols-2 gap-3">
+                          <div className="flex h-12 items-center justify-center rounded-lg bg-emerald-500/12 text-base font-bold text-emerald-500 ring-1 ring-emerald-500/20">
+                            YES {featuredMarket.initialProbability}%
                           </div>
-                          <div className="h-3 w-full overflow-hidden rounded-full bg-red-500/15">
+                          <div className="flex h-12 items-center justify-center rounded-lg bg-red-500/12 text-base font-bold text-red-500 ring-1 ring-red-500/20">
+                            NO {100 - featuredMarket.initialProbability}%
+                          </div>
+                        </div>
+
+                        {/* Probability bar */}
+                        <div className="mb-5">
+                          <div className="h-2.5 w-full overflow-hidden rounded-full bg-red-500/15">
                             <div className="h-full rounded-full bg-emerald-500/60 transition-all" style={{ width: `${featuredMarket.initialProbability}%` }} />
                           </div>
                         </div>
 
-                        {/* Stats + confidence row */}
-                        <div className="mb-3 flex items-center gap-4 text-xs text-muted-foreground">
+                        {/* Stats row */}
+                        <div className="mb-5 flex flex-wrap items-center gap-4 text-xs text-muted-foreground">
                           <span className="flex items-center gap-1 font-mono tabular-nums">
                             <BarChart3 className="h-3 w-3" />
                             ${getMarketVolume(featuredMarket).toLocaleString()} vol
@@ -1096,51 +1045,40 @@ export function PredictionsPageClient() {
                             <Clock className="h-3 w-3" />
                             {featuredMarket.expiresInDays}d left
                           </span>
-                          <span className="text-muted-foreground/50">|</span>
-                          <span className={cn(
-                            "font-semibold",
-                            featuredMarket.initialProbability >= 75 || featuredMarket.initialProbability <= 25
-                              ? "text-emerald-500"
-                              : featuredMarket.initialProbability >= 60 || featuredMarket.initialProbability <= 40
-                                ? "text-amber-500"
-                                : "text-muted-foreground",
-                          )}>
-                            {featuredMarket.initialProbability >= 75 || featuredMarket.initialProbability <= 25 ? "High" : featuredMarket.initialProbability >= 60 || featuredMarket.initialProbability <= 40 ? "Medium" : "Low"} confidence
+                          <span className="text-muted-foreground/30">|</span>
+                          <span className="font-mono tabular-nums">
+                            Odds: {featuredMarket.initialProbability > 50 ? (featuredMarket.initialProbability / (100 - featuredMarket.initialProbability)).toFixed(1) : ((100 - featuredMarket.initialProbability) / featuredMarket.initialProbability).toFixed(1)}:1
                           </span>
                         </div>
 
-                        {/* CTA */}
-                        <span className="inline-flex items-center gap-1.5 rounded-md bg-primary px-3 py-1.5 text-xs font-semibold text-primary-foreground transition-colors group-hover:bg-primary/90">
-                          Make Your Prediction
-                          <ChevronRight className="h-3 w-3" />
-                        </span>
+                        {/* Sparkline + CTA */}
+                        <div className="flex items-end justify-between">
+                          <Sparkline data={getPriceHistory(featuredMarket)} width={120} height={32} />
+                          <span className="inline-flex items-center gap-1.5 rounded-md bg-primary px-4 py-2 text-xs font-semibold text-primary-foreground transition-colors group-hover:bg-primary/90">
+                            Make Your Prediction
+                            <ChevronRight className="h-3 w-3" />
+                          </span>
+                        </div>
                       </button>
-
-                      {/* Educational one-liner */}
-                      <p className="mt-3 text-center text-xs text-muted-foreground">
-                        Prediction markets train you to think in probabilities — a core skill for trading and investing.
-                      </p>
                     </div>
                   )}
 
-                  {/* All Markets heading — action tier */}
-                  <div className="mb-2 flex items-center justify-between">
-                    <span className="text-xs font-medium text-muted-foreground">
-                      Active Markets ({filteredMarkets.length})
+                  {/* ── ALL MARKETS — compact list ── */}
+                  <div className="mb-2">
+                    <span className="text-xs text-muted-foreground/50">
+                      All Markets ({filteredMarkets.length})
                     </span>
                   </div>
 
                   {filteredMarkets.length > 0 ? (
-                    <div className="grid grid-cols-1 gap-3 lg:grid-cols-2">
+                    <div className="divide-y divide-border/30">
                       {filteredMarkets.map((market) => (
-                        <div key={market.id} id={`market-${market.id}`}>
-                          <MarketCard
-                            market={market}
-                            priceHistory={getPriceHistory(market)}
-                            volume={getMarketVolume(market)}
-                            onSelect={handleSelectMarket}
-                          />
-                        </div>
+                        <MarketRow
+                          key={market.id}
+                          market={market}
+                          volume={getMarketVolume(market)}
+                          onSelect={handleSelectMarket}
+                        />
                       ))}
                     </div>
                   ) : (

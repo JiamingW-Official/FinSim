@@ -18,14 +18,13 @@ import {
   Activity,
   Swords,
   ChevronRight,
-  CheckCircle2,
   ArrowRight,
   Shield,
   Zap,
-  Star,
   Award,
   PieChart,
   CircleDot,
+  Star,
 } from "lucide-react";
 import { mulberry32, simulateTickerPrice, BASE_PRICES, ALL_TICKERS } from "@/services/market-data/simulate-price";
 
@@ -81,31 +80,6 @@ function PortfolioEquityChart({
     <svg width="100%" height={H} viewBox={`0 0 ${W} ${H}`} preserveAspectRatio="none" className="overflow-visible">
       <path d={areaPath} fill={fillColor} />
       <polyline points={linePts} fill="none" stroke={lineColor} strokeWidth="1.5" strokeLinejoin="round" strokeLinecap="round" />
-    </svg>
-  );
-}
-
-/* ─────────────────────────────────────────────
-   Progress ring SVG
-───────────────────────────────────────────── */
-function ProgressRing({ pct, size = 64 }: { pct: number; size?: number }) {
-  const r = (size - 8) / 2;
-  const circ = 2 * Math.PI * r;
-  const offset = circ * (1 - pct / 100);
-  return (
-    <svg width={size} height={size} className="-rotate-90">
-      <circle cx={size / 2} cy={size / 2} r={r} fill="none" stroke="rgba(255,255,255,0.06)" strokeWidth="6" />
-      <circle
-        cx={size / 2}
-        cy={size / 2}
-        r={r}
-        fill="none"
-        stroke="#10b981"
-        strokeWidth="6"
-        strokeDasharray={`${circ.toFixed(2)} ${circ.toFixed(2)}`}
-        strokeDashoffset={offset.toFixed(2)}
-        strokeLinecap="round"
-      />
     </svg>
   );
 }
@@ -259,20 +233,25 @@ export default function HomePage() {
     return { total, completed, pct: total > 0 ? Math.round((completed / total) * 100) : 0, xpEarnedThisWeek, sRankCount };
   }, [completedLessons, lessonScores, tradeHistory]);
 
-  const dailyGoals = useMemo(() => {
-    const todayTrades = tradeHistory.filter((t) => {
-      const d = new Date(t.timestamp);
-      const today = new Date();
-      return d.toDateString() === today.toDateString();
-    });
-    const todayWins = todayTrades.filter((t) => t.realizedPnL > 0).length;
-    const todayWinRate = todayTrades.length > 0 ? (todayWins / todayTrades.length) * 100 : 0;
-    return [
-      { label: "Make 3 trades today", current: Math.min(todayTrades.length, 3), target: 3, done: todayTrades.length >= 3 },
-      { label: "Earn 100 XP", current: Math.min(xp % 500, 100), target: 100, done: xp >= 100 },
-      { label: "Win rate above 60%", current: Math.round(todayWinRate), target: 60, done: todayTrades.length >= 3 && todayWinRate >= 60, suffix: "%" },
-    ];
-  }, [tradeHistory, xp]);
+  const morningBullets = useMemo(() => [
+    `${marketPulse.regime} regime detected \u2014 VIX at ${marketPulse.vix}, bias ${marketPulse.fg > 50 ? "bullish" : "cautious"}.`,
+    `${topOpportunity.ticker} showing ${topOpportunity.direction} signal with ${topOpportunity.confidence}% confidence. ${topOpportunity.reason}.`,
+    marketBrief.split(".")[0] + ".",
+    todayFocus,
+  ], [marketPulse, topOpportunity, marketBrief, todayFocus]);
+
+  const yesterdaySummary = useMemo(() => {
+    const cutoff = Date.now() - 24 * 3600000;
+    const recent = tradeHistory.filter((t) => t.timestamp >= cutoff);
+    return { count: recent.length, pnl: recent.reduce((s, t) => s + t.realizedPnL, 0) };
+  }, [tradeHistory]);
+
+  const greeting = useMemo(() => {
+    const h = new Date().getHours();
+    if (h < 12) return "Good morning";
+    if (h < 17) return "Good afternoon";
+    return "Good evening";
+  }, []);
 
   const nextLesson = useMemo(() => {
     for (const unit of UNITS) {
@@ -301,94 +280,68 @@ export default function HomePage() {
     return items.sort((a, b) => b.ts - a.ts).slice(0, 12);
   }, [tradeHistory, achievements, completedLessons]);
 
-  const morningBullets = useMemo(() => [
-    `${marketPulse.regime} regime detected \u2014 VIX at ${marketPulse.vix}, bias ${marketPulse.fg > 50 ? "bullish" : "cautious"}.`,
-    `${topOpportunity.ticker} showing ${topOpportunity.direction} signal with ${topOpportunity.confidence}% confidence. ${topOpportunity.reason}.`,
-    marketBrief.split(".")[0] + ".",
-    todayFocus,
-  ], [marketPulse, topOpportunity, marketBrief, todayFocus]);
-
-  const yesterdaySummary = useMemo(() => {
-    const cutoff = Date.now() - 24 * 3600000;
-    const recent = tradeHistory.filter((t) => t.timestamp >= cutoff);
-    return { count: recent.length, pnl: recent.reduce((s, t) => s + t.realizedPnL, 0) };
-  }, [tradeHistory]);
-
-  const greeting = useMemo(() => {
-    const h = new Date().getHours();
-    if (h < 12) return "Good morning";
-    if (h < 17) return "Good afternoon";
-    return "Good evening";
-  }, []);
-
-  const TIER2_ACTIONS = [
-    { label: "Trade", href: "/trade", Icon: BarChart3 },
-    { label: "Learn", href: "/learn", Icon: BookOpen },
-    { label: "Predictions", href: "/predictions", Icon: Target },
-    { label: "Portfolio", href: "/portfolio", Icon: PieChart },
-  ] as const;
-
   // Hydration: Zustand persisted stores aren't ready on first render
   const [mounted, setMounted] = useState(false);
   useEffect(() => { setMounted(true); }, []);
 
   return (
     <div className="flex h-full flex-col overflow-y-auto">
-      <div className="mx-auto w-full max-w-6xl space-y-5 p-6">
+      <div className="mx-auto w-full max-w-6xl p-6">
 
-        {/* ═══════ TIER 1 — HERO ZONE ═══════ */}
+        {/* ═══════════════════════════════════════════
+            TIER 1 — DOMINANT HERO (60%+ viewport)
+        ═══════════════════════════════════════════ */}
         <div className="rounded-lg border-l-4 border-primary bg-card overflow-hidden">
-          {/* Hero header */}
-          <div className="border-b border-border/30 px-6 py-4 flex items-center justify-between">
+          {/* Hero header — generous padding */}
+          <div className="border-b border-border/30 px-8 py-5 flex items-center justify-between">
             <div>
-              <p className="text-base font-semibold">{greeting}, Trader</p>
-              <p className="text-xs text-muted-foreground">
+              <p className="text-xl font-semibold tracking-tight">{greeting}, Trader</p>
+              <p className="text-sm text-muted-foreground mt-0.5">
                 {new Date().toLocaleDateString("en-US", { weekday: "long", month: "short", day: "numeric" })}
-                <span className="mx-1.5 text-border">|</span>
+                <span className="mx-2 text-border">|</span>
                 Lv.{level} {title}
               </p>
             </div>
-            <span className="rounded bg-muted/40 px-1.5 py-0.5 text-[11px] font-medium text-muted-foreground">Simulated</span>
+            <span className="rounded bg-muted/40 px-2 py-0.5 text-xs font-medium text-muted-foreground">Simulated</span>
           </div>
 
-          {/* Market state strip */}
-          <div className="border-b border-border/20 px-6 py-3 flex items-center gap-4 overflow-x-auto scrollbar-none">
+          {/* Market state strip — prominent */}
+          <div className="border-b border-border/20 px-8 py-4 flex items-center gap-5 overflow-x-auto scrollbar-none">
             {!mounted ? (
-              /* Skeleton while stores hydrate */
               <>
-                <Skeleton className="h-5 w-12 shrink-0" />
-                <Skeleton className="h-4 w-14 shrink-0" />
-                <Skeleton className="h-4 w-12 shrink-0" />
-                <div className="h-3 w-px bg-border/40 shrink-0" />
+                <Skeleton className="h-6 w-14 shrink-0" />
+                <Skeleton className="h-5 w-16 shrink-0" />
+                <Skeleton className="h-5 w-14 shrink-0" />
+                <div className="h-4 w-px bg-border/40 shrink-0" />
                 {OVERVIEW_TICKERS.map((t) => (
-                  <div key={t} className="flex shrink-0 items-center gap-1.5">
-                    <Skeleton className="h-4 w-8" />
-                    <Skeleton className="h-4 w-14" />
-                    <Skeleton className="h-4 w-12" />
+                  <div key={t} className="flex shrink-0 items-center gap-2">
+                    <Skeleton className="h-5 w-10" />
+                    <Skeleton className="h-5 w-16" />
+                    <Skeleton className="h-5 w-14" />
                   </div>
                 ))}
               </>
             ) : (
               <>
-                <span className={cn("shrink-0 rounded px-2 py-0.5 text-xs font-bold", marketPulse.regime === "Bull" ? "bg-emerald-500/15 text-emerald-400" : marketPulse.regime === "Bear" ? "bg-red-500/15 text-red-400" : "bg-amber-500/15 text-amber-400")}>
+                <span className={cn("shrink-0 rounded px-2.5 py-1 text-sm font-bold", marketPulse.regime === "Bull" ? "bg-emerald-500/15 text-emerald-400" : marketPulse.regime === "Bear" ? "bg-red-500/15 text-red-400" : "bg-amber-500/15 text-amber-400")}>
                   {marketPulse.regime}
                 </span>
-                <span className="shrink-0 text-xs text-muted-foreground">
+                <span className="shrink-0 text-sm text-muted-foreground">
                   VIX <span className={cn("font-bold tabular-nums", marketPulse.vix > 25 ? "text-red-400" : marketPulse.vix > 18 ? "text-amber-400" : "text-emerald-400")}>{marketPulse.vix}</span>
                 </span>
-                <span className={cn("shrink-0 text-xs font-medium", marketPulse.fg >= 55 ? "text-emerald-400" : marketPulse.fg <= 35 ? "text-red-400" : "text-amber-400")}>
+                <span className={cn("shrink-0 text-sm font-medium", marketPulse.fg >= 55 ? "text-emerald-400" : marketPulse.fg <= 35 ? "text-red-400" : "text-amber-400")}>
                   F&G {marketPulse.fg}
                 </span>
-                <div className="h-3 w-px bg-border/40 shrink-0" />
+                <div className="h-4 w-px bg-border/40 shrink-0" />
                 {overviewPrices.map(({ ticker, price, changePct }) => {
                   const isUp = changePct >= 0;
                   return (
-                    <div key={ticker} className="flex shrink-0 items-center gap-1.5">
-                      <span className="text-xs font-bold">{ticker}</span>
-                      <span className="text-xs tabular-nums text-muted-foreground">
+                    <div key={ticker} className="flex shrink-0 items-center gap-2">
+                      <span className="text-sm font-bold">{ticker}</span>
+                      <span className="text-sm tabular-nums text-muted-foreground">
                         {ticker === "BTC" ? `$${price.toLocaleString("en-US", { maximumFractionDigits: 0 })}` : ticker === "VIX" ? price.toFixed(2) : `$${price.toFixed(2)}`}
                       </span>
-                      <span className={cn("text-xs font-semibold tabular-nums", isUp ? "text-emerald-400" : "text-red-400")}>
+                      <span className={cn("text-sm font-semibold tabular-nums", isUp ? "text-emerald-400" : "text-red-400")}>
                         {isUp ? "+" : ""}{changePct.toFixed(2)}%
                       </span>
                     </div>
@@ -398,73 +351,75 @@ export default function HomePage() {
             )}
           </div>
 
-          {/* Main hero body */}
+          {/* Main hero body — generous py-8 */}
           <div className="grid grid-cols-1 gap-0 lg:grid-cols-3">
-            <div className="border-b border-border/20 p-6 lg:border-b-0 lg:border-r lg:border-border/20 lg:col-span-2">
-              <p className="mb-3 text-sm font-semibold flex items-center gap-1.5">
+            <div className="border-b border-border/20 px-8 py-8 lg:border-b-0 lg:border-r lg:border-border/20 lg:col-span-2">
+              <p className="mb-4 text-sm font-semibold flex items-center gap-1.5">
                 Key Insights
-                <span className="rounded bg-primary/10 px-1 py-0.5 text-[11px] font-semibold text-primary">AI</span>
+                <span className="rounded bg-primary/10 px-1.5 py-0.5 text-[11px] font-semibold text-primary">AI</span>
               </p>
-              <ul className="space-y-2.5">
+              <ul className="space-y-3">
                 {morningBullets.map((bullet, i) => (
-                  <li key={i} className="flex items-start gap-2.5">
-                    <span className="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-primary/60" />
-                    <span className="text-sm leading-relaxed text-foreground/90">{bullet}</span>
+                  <li key={i} className="flex items-start gap-3">
+                    <span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-primary/60" />
+                    <span className="text-base leading-relaxed text-foreground/90">{bullet}</span>
                   </li>
                 ))}
               </ul>
 
-              {/* TODAY'S FOCUS -- most prominent text */}
-              <div className="mt-5 rounded-lg border border-primary/20 bg-primary/5 px-4 py-3">
-                <p className="text-base font-medium text-foreground">{todayFocus}</p>
+              {/* TODAY'S FOCUS -- largest text in the hero */}
+              <div className="mt-6 rounded-lg border border-primary/20 bg-primary/5 px-5 py-4">
+                <p className="text-lg font-medium leading-snug text-foreground">{todayFocus}</p>
               </div>
 
-              {/* Your Next Step CTA -- inside hero */}
-              <div className="mt-4">
+              {/* Full-width CTA button */}
+              <div className="mt-6">
                 {completedLessons.length === 0 ? (
-                  <Link href="/learn">
-                    <div className="group flex items-center gap-3 rounded-lg bg-muted/20 px-4 py-3 transition-colors hover:bg-muted/40">
-                      <div className="flex-1">
-                        <p className="text-sm font-semibold">Start your first lesson</p>
-                        <p className="text-xs text-muted-foreground">Learn the basics of trading with interactive lessons.</p>
-                      </div>
-                      <ArrowRight className="h-4 w-4 shrink-0 text-primary transition-transform group-hover:translate-x-1" />
+                  <Link href="/learn" className="block">
+                    <div className="group flex items-center justify-center gap-3 rounded-lg bg-primary px-6 py-4 text-primary-foreground transition-colors hover:bg-primary/90">
+                      <span className="text-base font-semibold">Start your first lesson</span>
+                      <ArrowRight className="h-5 w-5 shrink-0 transition-transform group-hover:translate-x-1" />
                     </div>
                   </Link>
                 ) : stats.totalTrades === 0 ? (
-                  <Link href="/trade">
-                    <div className="group flex items-center gap-3 rounded-lg bg-muted/20 px-4 py-3 transition-colors hover:bg-muted/40">
-                      <div className="flex-1">
-                        <p className="text-sm font-semibold">Place your first practice trade</p>
-                        <p className="text-xs text-muted-foreground">Apply what you learned. No real money at risk.</p>
-                      </div>
-                      <ArrowRight className="h-4 w-4 shrink-0 text-primary transition-transform group-hover:translate-x-1" />
+                  <Link href="/trade" className="block">
+                    <div className="group flex items-center justify-center gap-3 rounded-lg bg-primary px-6 py-4 text-primary-foreground transition-colors hover:bg-primary/90">
+                      <span className="text-base font-semibold">Place your first practice trade</span>
+                      <ArrowRight className="h-5 w-5 shrink-0 transition-transform group-hover:translate-x-1" />
                     </div>
                   </Link>
                 ) : (
-                  <Link href="/portfolio">
-                    <div className="group flex items-center gap-3 rounded-lg bg-muted/20 px-4 py-3 transition-colors hover:bg-muted/40">
-                      <div className="flex-1">
-                        <p className="text-sm font-semibold">Review your performance</p>
-                        <p className="text-xs text-muted-foreground">{stats.totalTrades} trade{stats.totalTrades !== 1 ? "s" : ""} completed — check analytics and journal.</p>
-                      </div>
-                      <ArrowRight className="h-4 w-4 shrink-0 text-primary transition-transform group-hover:translate-x-1" />
+                  <Link href="/trade" className="block">
+                    <div className="group flex items-center justify-center gap-3 rounded-lg bg-primary px-6 py-4 text-primary-foreground transition-colors hover:bg-primary/90">
+                      <span className="text-base font-semibold">Open trading terminal</span>
+                      <ArrowRight className="h-5 w-5 shrink-0 transition-transform group-hover:translate-x-1" />
                     </div>
                   </Link>
                 )}
               </div>
             </div>
 
-            {/* Right: Yesterday summary */}
-            <div className="p-6">
-              <p className="mb-3 text-xs font-medium">Yesterday&apos;s Summary</p>
+            {/* Right column: Yesterday + Level — inside the hero */}
+            <div className="px-8 py-8">
+              <p className="mb-4 text-xs font-medium uppercase tracking-wider text-muted-foreground">Yesterday</p>
               <div className="space-y-3">
-                <div className="flex items-center justify-between"><span className="text-xs text-muted-foreground">Trades made</span><span className="text-sm font-bold tabular-nums">{yesterdaySummary.count}</span></div>
-                <div className="flex items-center justify-between"><span className="text-xs text-muted-foreground">Session P&L</span><span className={cn("text-sm font-bold tabular-nums", yesterdaySummary.pnl >= 0 ? "text-emerald-400" : "text-red-400")}>{yesterdaySummary.pnl >= 0 ? "+" : ""}{formatCurrency(yesterdaySummary.pnl)}</span></div>
-                <div className="flex items-center justify-between"><span className="text-xs text-muted-foreground">Win rate</span><span className="text-sm font-bold tabular-nums">{winRate.toFixed(1)}%</span></div>
-                <div className="flex items-center justify-between"><span className="text-xs text-muted-foreground">Streak</span><span className="text-sm font-bold tabular-nums">{dailyStreakCount}d</span></div>
+                <div className="flex items-center justify-between"><span className="text-sm text-muted-foreground">Trades</span><span className="text-base font-bold tabular-nums">{yesterdaySummary.count}</span></div>
+                <div className="flex items-center justify-between"><span className="text-sm text-muted-foreground">Session P&L</span><span className={cn("text-base font-bold tabular-nums", yesterdaySummary.pnl >= 0 ? "text-emerald-400" : "text-red-400")}>{yesterdaySummary.pnl >= 0 ? "+" : ""}{formatCurrency(yesterdaySummary.pnl)}</span></div>
+                <div className="flex items-center justify-between"><span className="text-sm text-muted-foreground">Win rate</span><span className="text-base font-bold tabular-nums">{winRate.toFixed(1)}%</span></div>
+                <div className="flex items-center justify-between"><span className="text-sm text-muted-foreground">Streak</span><span className="text-base font-bold tabular-nums">{dailyStreakCount}d</span></div>
               </div>
-              <div className="mt-5 border-t border-border/20 pt-3">
+
+              {/* Portfolio equity mini chart */}
+              <div className="mt-6 border-t border-border/20 pt-4">
+                <div className="mb-2 flex items-baseline justify-between">
+                  <span className="text-sm text-muted-foreground">Portfolio</span>
+                  <span className="text-base font-bold tabular-nums">{formatCurrency(portfolioValue)}</span>
+                </div>
+                <PortfolioEquityChart equityHistory={equityHistory} currentValue={portfolioValue} />
+              </div>
+
+              {/* XP bar */}
+              <div className="mt-4 border-t border-border/20 pt-3">
                 <div className="mb-1.5 flex items-center justify-between"><span className="text-xs text-muted-foreground">Level {level}</span><span className="text-xs text-muted-foreground">{xpToNext > 0 ? `${xpToNext} XP to next` : "Max"}</span></div>
                 <div className="h-1.5 overflow-hidden rounded-full bg-muted/30"><div className="h-full rounded-full bg-primary transition-all duration-300" style={{ width: `${xpProgress}%` }} /></div>
               </div>
@@ -472,189 +427,163 @@ export default function HomePage() {
           </div>
         </div>
 
-        {/* ═══════ TIER 2 — ACTION ZONE ═══════ */}
-        <div className="grid grid-cols-2 gap-2 sm:grid-cols-4">
-          <div className="rounded-md border border-border bg-card p-3"><p className="text-xs text-muted-foreground">Portfolio</p><p className="text-sm font-bold tabular-nums">{formatCurrency(portfolioValue)}</p><span className={cn("text-xs tabular-nums", totalPnLPct >= 0 ? "text-emerald-400" : "text-red-400")}>{totalPnLPct >= 0 ? "+" : ""}{totalPnLPct.toFixed(2)}%</span></div>
-          <div className="rounded-md border border-border bg-card p-3"><p className="text-xs text-muted-foreground">Daily P&amp;L</p><p className={cn("text-sm font-bold tabular-nums", dailyPnL >= 0 ? "text-emerald-400" : "text-red-400")}>{dailyPnL >= 0 ? "+" : ""}{formatCurrency(dailyPnL)}</p></div>
-          <div className="rounded-md border border-border bg-card p-3"><p className="text-xs text-muted-foreground">Level</p><p className="text-sm font-bold tabular-nums">{level}</p><span className="text-xs text-muted-foreground tabular-nums">{xp.toLocaleString()} XP</span></div>
-          <div className="rounded-md border border-border bg-card p-3"><p className="text-xs text-muted-foreground">Win Rate</p><p className="text-sm font-bold tabular-nums">{winRate.toFixed(1)}%</p><span className="text-xs text-muted-foreground tabular-nums">{stats.totalTrades} trades</span></div>
+        {/* ═══════════════════════════════════════════
+            TIER 2 — ACTION ZONE (tiny, inline)
+            Large gap from hero (mt-8), tight internal gap
+        ═══════════════════════════════════════════ */}
+        <div className="mt-8 flex flex-wrap items-center gap-x-6 gap-y-1">
+          <span className="text-sm font-bold tabular-nums">{formatCurrency(portfolioValue)}</span>
+          <span className={cn("text-sm tabular-nums", totalPnLPct >= 0 ? "text-emerald-400" : "text-red-400")}>{totalPnLPct >= 0 ? "+" : ""}{totalPnLPct.toFixed(2)}%</span>
+          <span className="text-xs text-muted-foreground">|</span>
+          <span className="text-sm text-muted-foreground">Daily <span className={cn("font-bold tabular-nums", dailyPnL >= 0 ? "text-emerald-400" : "text-red-400")}>{dailyPnL >= 0 ? "+" : ""}{formatCurrency(dailyPnL)}</span></span>
+          <span className="text-xs text-muted-foreground">|</span>
+          <span className="text-sm text-muted-foreground">Lv.{level} <span className="font-bold tabular-nums text-foreground">{xp.toLocaleString()}</span> XP</span>
+          <span className="text-xs text-muted-foreground">|</span>
+          <span className="text-sm text-muted-foreground">Win <span className="font-bold tabular-nums text-foreground">{winRate.toFixed(1)}%</span> <span className="text-xs">({stats.totalTrades})</span></span>
         </div>
-        <div className="grid grid-cols-2 gap-2 sm:grid-cols-4">
-          {TIER2_ACTIONS.map(({ label, href, Icon }) => (
-            <Link key={href} href={href}>
-              <div className="group flex items-center justify-center gap-2 rounded-md border border-border bg-card p-4 transition-colors hover:bg-accent/50">
-                <Icon className="h-3.5 w-3.5 text-muted-foreground" />
-                <span className="text-xs font-medium">{label}</span>
-              </div>
+
+        {/* Quick actions — small text links, not cards */}
+        <div className="mt-2 flex flex-wrap items-center gap-x-4 gap-y-1">
+          {[
+            { label: "Trade", href: "/trade", Icon: BarChart3 },
+            { label: "Learn", href: "/learn", Icon: BookOpen },
+            { label: "Predictions", href: "/predictions", Icon: Target },
+            { label: "Portfolio", href: "/portfolio", Icon: PieChart },
+          ].map(({ label, href, Icon }) => (
+            <Link key={href} href={href} className="group flex items-center gap-1.5 text-sm text-muted-foreground transition-colors hover:text-foreground">
+              <Icon className="h-3.5 w-3.5" />
+              <span>{label}</span>
+              <ChevronRight className="h-3 w-3 opacity-0 transition-opacity group-hover:opacity-100" />
             </Link>
           ))}
         </div>
 
-        {/* ═══════ TIER 3 — REFERENCE ZONE ═══════ */}
-        <div>
-          <p className="mb-2 text-xs font-medium">Market Intelligence</p>
-          <div className="grid grid-cols-1 gap-3 lg:grid-cols-3">
-            <div className="rounded-md border border-border/30 bg-card p-3">
-              <p className="mb-2 text-xs text-muted-foreground">Market Pulse</p>
-              <div className="space-y-2">
-                <div className="flex items-center justify-between"><span className="text-xs text-muted-foreground">Regime</span><span className={cn("rounded px-1.5 py-0.5 text-[11px] font-bold", marketPulse.regime === "Bull" ? "bg-emerald-500/15 text-emerald-400" : marketPulse.regime === "Bear" ? "bg-red-500/15 text-red-400" : "bg-amber-500/15 text-amber-400")}>{marketPulse.regime}</span></div>
-                <div className="flex items-center justify-between"><span className="text-xs text-muted-foreground">VIX</span><span className={cn("text-xs font-bold tabular-nums", marketPulse.vix > 25 ? "text-red-400" : marketPulse.vix > 18 ? "text-amber-400" : "text-emerald-400")}>{marketPulse.vix}</span></div>
-                <div>
-                  <div className="mb-1 flex items-center justify-between"><span className="text-xs text-muted-foreground">Fear &amp; Greed</span><span className={cn("text-xs font-bold tabular-nums", marketPulse.fg >= 55 ? "text-emerald-400" : marketPulse.fg <= 35 ? "text-red-400" : "text-amber-400")}>{marketPulse.fg} · {marketPulse.fgLabel}</span></div>
-                  <div className="relative h-1.5 overflow-hidden rounded-full bg-muted/30"><div className={cn("absolute left-0 top-0 h-full rounded-full transition-all duration-300", marketPulse.fg >= 55 ? "bg-emerald-400" : marketPulse.fg <= 35 ? "bg-red-400" : "bg-amber-400")} style={{ width: `${marketPulse.fg}%` }} /></div>
+        {/* ═══════════════════════════════════════════
+            VISUAL BUFFER — divider between action & reference
+        ═══════════════════════════════════════════ */}
+        <div className="my-6 border-t border-border/20" />
+
+        {/* ═══════════════════════════════════════════
+            TIER 3 — REFERENCE ZONE (footnote-sized)
+            text-xs, minimal borders, tight spacing
+        ═══════════════════════════════════════════ */}
+        <div className="grid grid-cols-1 gap-1 lg:grid-cols-3">
+          {/* Market Pulse */}
+          <div className="rounded bg-muted/20 px-3 py-2">
+            <p className="mb-1.5 text-xs text-muted-foreground">Market Pulse</p>
+            <div className="space-y-1">
+              <div className="flex items-center justify-between">
+                <span className="text-xs text-muted-foreground">Regime</span>
+                <span className={cn("text-xs font-bold", marketPulse.regime === "Bull" ? "text-emerald-400" : marketPulse.regime === "Bear" ? "text-red-400" : "text-amber-400")}>{marketPulse.regime}</span>
+              </div>
+              <div className="flex items-center justify-between">
+                <span className="text-xs text-muted-foreground">VIX</span>
+                <span className={cn("text-xs font-bold tabular-nums", marketPulse.vix > 25 ? "text-red-400" : marketPulse.vix > 18 ? "text-amber-400" : "text-emerald-400")}>{marketPulse.vix}</span>
+              </div>
+              <div className="flex items-center justify-between">
+                <span className="text-xs text-muted-foreground">F&G</span>
+                <span className={cn("text-xs font-bold tabular-nums", marketPulse.fg >= 55 ? "text-emerald-400" : marketPulse.fg <= 35 ? "text-red-400" : "text-amber-400")}>{marketPulse.fg} {marketPulse.fgLabel}</span>
+              </div>
+            </div>
+          </div>
+
+          {/* Economic Calendar */}
+          <div className="rounded bg-muted/20 px-3 py-2">
+            <p className="mb-1.5 text-xs text-muted-foreground">Economic Calendar</p>
+            <div className="space-y-1">
+              {ECONOMIC_EVENTS.slice(dayIndex % 4, (dayIndex % 4) + 3).map((ev, i) => (
+                <div key={i} className="flex items-center justify-between gap-2">
+                  <div className="flex items-center gap-1 min-w-0">
+                    <span className={cn("shrink-0 text-[10px] font-bold", ev.impact === "HIGH" ? "text-red-400" : "text-amber-400")}>{ev.impact}</span>
+                    <span className="truncate text-xs">{ev.name}</span>
+                  </div>
+                  <span className="shrink-0 text-[11px] text-muted-foreground">{ev.daysFromNow === 1 ? "Tmrw" : `${ev.daysFromNow}d`}</span>
                 </div>
-              </div>
+              ))}
             </div>
-            <div className="rounded-md border border-border/30 bg-card p-3">
-              <p className="mb-2 text-xs text-muted-foreground">Economic Calendar</p>
-              <div className="space-y-2">
-                {ECONOMIC_EVENTS.slice(dayIndex % 4, (dayIndex % 4) + 3).map((ev, i) => (
-                  <div key={i} className="flex items-start justify-between gap-2">
-                    <div className="flex items-start gap-1.5 min-w-0">
-                      <span className={cn("mt-0.5 shrink-0 rounded px-1 py-0.5 text-[11px] font-bold", ev.impact === "HIGH" ? "bg-red-500/15 text-red-400" : "bg-amber-500/15 text-amber-400")}>{ev.impact}</span>
-                      <div className="min-w-0"><p className="truncate text-xs font-medium">{ev.name}</p><p className="text-[11px] text-muted-foreground">{ev.time}</p></div>
-                    </div>
-                    <span className="shrink-0 text-[11px] text-muted-foreground whitespace-nowrap">{ev.daysFromNow === 1 ? "Tomorrow" : `In ${ev.daysFromNow}d`}</span>
-                  </div>
-                ))}
-              </div>
-            </div>
-            <div className="rounded-md border border-border/30 bg-card p-3">
-              <p className="mb-2 text-xs text-muted-foreground">Most Active Options</p>
-              <div className="space-y-1.5">
-                {optionsVolume.map((item) => (
-                  <div key={item.ticker} className="flex items-center gap-2">
-                    <span className="w-10 text-xs font-bold">{item.ticker}</span>
-                    <div className="flex-1"><div className="h-1 overflow-hidden rounded-full bg-muted/30"><div className="h-full rounded-full bg-amber-500/60" style={{ width: `${(item.volume / optionsVolume[0].volume) * 100}%` }} /></div></div>
-                    <span className="w-14 text-right text-[11px] font-mono text-muted-foreground tabular-nums">{(item.volume / 1000).toFixed(0)}K</span>
-                    <span className={cn("w-10 text-right text-[11px] font-semibold tabular-nums", item.callPutRatio > 1 ? "text-emerald-400" : "text-red-400")}>{item.callPutRatio}C/P</span>
-                  </div>
-                ))}
-              </div>
-              <Link href="/options" className="mt-2 flex items-center gap-1 text-[11px] font-medium text-primary hover:underline">View options flow <ChevronRight className="h-3 w-3" /></Link>
+          </div>
+
+          {/* Options Volume */}
+          <div className="rounded bg-muted/20 px-3 py-2">
+            <p className="mb-1.5 text-xs text-muted-foreground">Active Options</p>
+            <div className="space-y-0.5">
+              {optionsVolume.slice(0, 4).map((item) => (
+                <div key={item.ticker} className="flex items-center gap-2 text-xs">
+                  <span className="w-10 font-bold">{item.ticker}</span>
+                  <div className="flex-1"><div className="h-0.5 overflow-hidden rounded-full bg-muted/30"><div className="h-full rounded-full bg-amber-500/60" style={{ width: `${(item.volume / optionsVolume[0].volume) * 100}%` }} /></div></div>
+                  <span className="w-10 text-right font-mono text-[11px] text-muted-foreground tabular-nums">{(item.volume / 1000).toFixed(0)}K</span>
+                  <span className={cn("w-8 text-right text-[11px] tabular-nums", item.callPutRatio > 1 ? "text-emerald-400" : "text-red-400")}>{item.callPutRatio}</span>
+                </div>
+              ))}
             </div>
           </div>
         </div>
 
-        {/* Content grid */}
-        <div className="grid grid-cols-1 gap-3 lg:grid-cols-4">
-          <div className="grid grid-cols-1 gap-3 sm:grid-cols-3 lg:col-span-3">
-            <div className="rounded-md border border-border/30 bg-card">
-              <div className="flex items-center justify-between px-3 py-2"><p className="text-xs text-muted-foreground">Portfolio Equity</p><Link href="/portfolio" className="flex items-center gap-0.5 text-[11px] font-medium text-primary hover:underline">View <ChevronRight className="h-3 w-3" /></Link></div>
-              <div className="px-3 pb-3">
-                <div className="mb-2 flex items-baseline gap-2"><span className="text-sm font-bold tabular-nums">{formatCurrency(portfolioValue)}</span><span className={cn("text-xs font-semibold tabular-nums", totalPnL >= 0 ? "text-emerald-400" : "text-red-400")}>{totalPnL >= 0 ? "+" : ""}{formatCurrency(totalPnL)}</span></div>
-                <PortfolioEquityChart equityHistory={equityHistory} currentValue={portfolioValue} />
-                {positions.length > 0 && (
-                  <div className="mt-2 space-y-1 border-t border-border/20 pt-2">
-                    {positions.slice(0, 3).map((pos) => (
-                      <div key={pos.ticker} className="flex items-center justify-between text-[11px]">
-                        <div className="flex items-center gap-1.5"><div className={cn("h-1.5 w-1.5 rounded-full", pos.side === "long" ? "bg-emerald-400" : "bg-red-400")} /><span className="font-semibold">{pos.ticker}</span><span className="text-muted-foreground">{pos.side}</span></div>
-                        <span className={cn("font-semibold tabular-nums", pos.unrealizedPnL >= 0 ? "text-emerald-400" : "text-red-400")}>{pos.unrealizedPnL >= 0 ? "+" : ""}{formatCurrency(pos.unrealizedPnL)}</span>
-                      </div>
-                    ))}
-                    {positions.length > 3 && <p className="text-[11px] text-muted-foreground">+{positions.length - 3} more</p>}
+        {/* Recent trades + Positions — compressed row */}
+        <div className="mt-1 grid grid-cols-1 gap-1 lg:grid-cols-3">
+          <div className="rounded bg-muted/20 px-3 py-2">
+            <div className="flex items-center justify-between mb-1"><p className="text-xs text-muted-foreground">Recent Trades</p>{tradeHistory.length > 0 && <Link href="/portfolio" className="text-[11px] text-primary hover:underline">All</Link>}</div>
+            {recentTrades.length === 0 ? (
+              <p className="text-xs text-muted-foreground/60">No trades yet. <Link href="/trade" className="text-primary hover:underline">Start</Link></p>
+            ) : (
+              <div className="space-y-0.5">
+                {recentTrades.slice(0, 4).map((trade, i) => (
+                  <div key={`${trade.timestamp}-${i}`} className="flex items-center justify-between text-xs">
+                    <div className="flex items-center gap-1">
+                      <div className={cn("h-1 w-1 rounded-full", trade.side === "buy" ? "bg-emerald-400" : "bg-red-400")} />
+                      <span className="font-medium">{trade.ticker}</span>
+                      <span className="text-[11px] text-muted-foreground">{trade.side} x{trade.quantity}</span>
+                    </div>
+                    <span className={cn("text-[11px] font-bold tabular-nums", trade.realizedPnL >= 0 ? "text-emerald-400" : "text-red-400")}>{trade.realizedPnL >= 0 ? "+" : ""}{formatCurrency(trade.realizedPnL)}</span>
                   </div>
-                )}
+                ))}
               </div>
+            )}
+          </div>
+
+          <div className="rounded bg-muted/20 px-3 py-2">
+            <div className="flex items-center justify-between mb-1"><p className="text-xs text-muted-foreground">Learning</p><Link href="/learn" className="text-[11px] text-primary hover:underline">Continue</Link></div>
+            <div className="flex items-baseline gap-2 mb-1">
+              <span className="text-xs font-bold tabular-nums">{learnProgress.completed}/{learnProgress.total}</span>
+              <span className="text-[11px] text-muted-foreground">lessons ({learnProgress.pct}%)</span>
             </div>
-            <div className="rounded-md border border-border/30 bg-card">
-              <div className="flex items-center justify-between px-3 py-2"><p className="text-xs text-muted-foreground">Recent Trades</p>{tradeHistory.length > 0 && <Link href="/portfolio" className="text-[11px] font-medium text-primary hover:underline">View All</Link>}</div>
-              <div>
-                {recentTrades.length === 0 ? (
-                  <div className="flex flex-col items-center gap-1.5 py-6 text-center"><p className="text-xs text-muted-foreground">No trades yet</p><Link href="/trade" className="text-[11px] font-medium text-primary hover:underline">Start trading</Link></div>
-                ) : (
-                  <div className="divide-y divide-border/20">
-                    {recentTrades.map((trade, i) => (
-                      <div key={`${trade.timestamp}-${i}`} className="flex items-center justify-between px-3 py-2">
-                        <div className="flex items-center gap-1.5"><div className={cn("h-1.5 w-1.5 shrink-0 rounded-full", trade.side === "buy" ? "bg-emerald-400" : "bg-red-400")} /><div><p className="text-xs font-semibold">{trade.ticker}</p><p className="text-[11px] uppercase text-muted-foreground">{trade.side} &times; {trade.quantity}</p></div></div>
-                        <span className={cn("rounded px-1.5 py-0.5 text-[11px] font-bold tabular-nums", trade.realizedPnL >= 0 ? "bg-emerald-500/10 text-emerald-400" : "bg-red-500/10 text-red-400")}>{trade.realizedPnL >= 0 ? "+" : ""}{formatCurrency(trade.realizedPnL)}</span>
-                      </div>
-                    ))}
-                  </div>
-                )}
-              </div>
+            {nextLesson && <p className="text-[11px] text-muted-foreground truncate">Next: <span className="text-foreground">{nextLesson.lesson.title}</span></p>}
+            <div className="mt-1.5 flex items-center gap-3 text-[11px] text-muted-foreground">
+              <span>{learnProgress.sRankCount} A/S</span>
+              <span>{learningStreak > 0 ? `${learningStreak}d streak` : "--"}</span>
             </div>
-            <div className="rounded-md border border-border/30 bg-card">
-              <div className="flex items-center justify-between px-3 py-2"><p className="text-xs text-muted-foreground">Daily Goals</p><span className="text-[11px] text-muted-foreground">{dailyStreakCount}d streak</span></div>
-              <div className="space-y-3 px-3 py-3">
-                {dailyGoals.map((goal) => {
-                  const pct = Math.min((goal.current / goal.target) * 100, 100);
+          </div>
+
+          <div className="rounded bg-muted/20 px-3 py-2">
+            <p className="text-xs text-muted-foreground mb-1">Activity</p>
+            {activityFeed.length === 0 ? (
+              <p className="text-[11px] text-muted-foreground/60">No recent activity</p>
+            ) : (
+              <div className="space-y-0.5">
+                {activityFeed.slice(0, 5).map((item) => {
+                  const iconEl = item.type === "trade" ? <BarChart3 className="h-2 w-2" /> : item.type === "achievement" ? <Award className="h-2 w-2" /> : item.type === "quest" ? <CircleDot className="h-2 w-2" /> : item.type === "levelup" ? <Star className="h-2 w-2" /> : <BookOpen className="h-2 w-2" />;
                   return (
-                    <div key={goal.label}>
-                      <div className="mb-1 flex items-center justify-between">
-                        <div className="flex items-center gap-1.5">{goal.done ? <CheckCircle2 className="h-3 w-3 text-emerald-400" /> : <div className="h-3 w-3 rounded-full border border-border/60" />}<span className="text-xs text-foreground">{goal.label}</span></div>
-                        <span className="text-[11px] font-semibold tabular-nums text-muted-foreground">{goal.current}{"suffix" in goal ? (goal as { suffix?: string }).suffix ?? "" : ""}/{goal.target}{"suffix" in goal ? (goal as { suffix?: string }).suffix ?? "" : ""}</span>
-                      </div>
-                      <div className="h-1 overflow-hidden rounded-full bg-muted/30"><div className={cn("h-full rounded-full transition-all duration-300", goal.done ? "bg-emerald-400" : "bg-primary")} style={{ width: `${pct}%` }} /></div>
+                    <div key={item.id} className="flex items-center gap-1.5 text-[11px]">
+                      <span className="text-muted-foreground shrink-0">{iconEl}</span>
+                      <span className="truncate">{item.label}</span>
+                      <span className="shrink-0 text-muted-foreground ml-auto">{relativeTime(item.ts)}</span>
                     </div>
                   );
                 })}
               </div>
-            </div>
-          </div>
-          <div className="rounded-md border border-border/30 bg-card lg:col-span-1">
-            <div className="px-3 py-2"><p className="text-xs text-muted-foreground">Activity Timeline</p></div>
-            <div className="max-h-[380px] overflow-y-auto">
-              {activityFeed.length === 0 ? (
-                <div className="flex flex-col items-center gap-1.5 py-8 text-center"><p className="text-xs text-muted-foreground">No recent activity</p><p className="text-[11px] text-muted-foreground/60">Trades, lessons, and achievements will appear here.</p></div>
-              ) : (
-                <div className="relative px-3 py-2">
-                  <div className="absolute left-[22px] top-3 bottom-3 w-px bg-border/30" />
-                  <div className="space-y-2.5">
-                    {activityFeed.map((item) => {
-                      const iconEl = item.type === "trade" ? <BarChart3 className="h-2.5 w-2.5 text-muted-foreground" /> : item.type === "achievement" ? <Award className="h-2.5 w-2.5 text-muted-foreground" /> : item.type === "quest" ? <CircleDot className="h-2.5 w-2.5 text-muted-foreground" /> : item.type === "levelup" ? <Star className="h-2.5 w-2.5 text-muted-foreground" /> : <BookOpen className="h-2.5 w-2.5 text-muted-foreground" />;
-                      return (
-                        <div key={item.id} className="flex items-start gap-2">
-                          <div className="relative z-10 flex h-4 w-4 shrink-0 items-center justify-center rounded-full border border-border/40 bg-card">{iconEl}</div>
-                          <div className="min-w-0 flex-1">
-                            <div className="flex items-baseline justify-between gap-1"><p className="truncate text-[11px] font-medium">{item.label}</p><span className="shrink-0 text-[11px] text-muted-foreground">{relativeTime(item.ts)}</span></div>
-                            <p className="truncate text-[11px] text-muted-foreground">{item.sub}</p>
-                            {item.pnl !== undefined && item.pnl !== 0 && <span className={cn("text-[11px] font-semibold tabular-nums", item.pnl >= 0 ? "text-emerald-400" : "text-red-400")}>{item.pnl >= 0 ? "+" : ""}{formatCurrency(item.pnl)}</span>}
-                          </div>
-                        </div>
-                      );
-                    })}
-                  </div>
-                </div>
-              )}
-            </div>
+            )}
           </div>
         </div>
 
-        {/* Learning + Nav */}
-        <div className="grid grid-cols-1 gap-3 lg:grid-cols-3">
-          <div className="rounded-md border border-border/30 bg-card p-3 lg:col-span-2">
-            <div className="mb-3 flex items-center justify-between"><p className="text-xs font-medium">Learning Progress</p><Link href="/learn" className="flex items-center gap-0.5 text-[11px] font-medium text-primary hover:underline">Continue <ArrowRight className="h-3 w-3" /></Link></div>
-            <div className="flex items-center gap-5 mb-3">
-              <div className="relative shrink-0"><ProgressRing pct={learnProgress.pct} size={60} /><div className="absolute inset-0 flex items-center justify-center"><span className="text-xs font-bold">{learnProgress.pct}%</span></div></div>
-              <div className="flex-1">
-                <p className="mb-1 text-sm font-semibold">{learnProgress.completed} / {learnProgress.total} lessons</p>
-                {nextLesson ? <div className="rounded border border-border/30 bg-muted/10 px-2.5 py-1.5"><p className="text-[11px] text-muted-foreground">Next: <span className="font-medium text-foreground">{nextLesson.lesson.title}</span></p></div> : <p className="text-xs text-emerald-400 font-medium">All complete!</p>}
-              </div>
-            </div>
-            <div className="grid grid-cols-2 gap-2 sm:grid-cols-4">
-              {[
-                { val: learnProgress.sRankCount, label: "A/S Ranks" },
-                { val: learningStreak > 0 ? `${learningStreak}d` : "--", label: "Streak" },
-                { val: learnProgress.xpEarnedThisWeek, label: "XP/week" },
-                { val: level, label: "Level" },
-              ].map((s) => (
-                <div key={s.label} className="rounded border border-border/30 bg-muted/10 px-2 py-1.5 text-center"><p className="text-xs font-bold tabular-nums">{s.val}</p><p className="text-[11px] text-muted-foreground">{s.label}</p></div>
-              ))}
-            </div>
-          </div>
-          <div className="rounded-md border border-border/30 bg-card p-3">
-            <p className="mb-3 text-xs text-muted-foreground">Quick Navigation</p>
-            <div className="grid grid-cols-2 gap-1.5 sm:grid-cols-3">
-              {NAV_SHORTCUTS.map(({ label, href, Icon }) => (
-                <Link key={href} href={href}><div className="flex flex-col items-center gap-1.5 rounded border border-border/30 bg-muted/10 px-1.5 py-2 text-center transition-colors hover:bg-accent/20"><Icon className="h-4 w-4 text-muted-foreground" /><span className="text-[11px] font-medium">{label}</span></div></Link>
-              ))}
-            </div>
-          </div>
+        {/* Quick nav — smallest possible */}
+        <div className="mt-1 flex flex-wrap items-center gap-x-3 gap-y-0.5 px-1">
+          {NAV_SHORTCUTS.map(({ label, href }) => (
+            <Link key={href} href={href} className="text-[11px] text-muted-foreground hover:text-foreground transition-colors">{label}</Link>
+          ))}
         </div>
 
-        <div className="border-t border-border/20 pt-3 pb-2 text-center">
-          <p className="text-[11px] text-muted-foreground/50">All market data is simulated for educational purposes. Not financial advice.</p>
+        <div className="mt-4 text-center">
+          <p className="text-[11px] text-muted-foreground/40">All market data is simulated for educational purposes. Not financial advice.</p>
         </div>
       </div>
     </div>

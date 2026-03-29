@@ -2,7 +2,7 @@
 
 import { useState, useCallback, useRef, useMemo, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { FlaskConical } from "lucide-react";
+import { FlaskConical, Pencil, ChevronDown, ChevronUp } from "lucide-react";
 import { useBacktestStore } from "@/stores/backtest-store";
 import StrategyPanel from "@/components/backtest/StrategyPanel";
 import BacktestChart from "@/components/backtest/BacktestChart";
@@ -88,6 +88,14 @@ const DEFAULT_RSI_CONFIG: BacktestConfig = {
   monteCarloRuns: 0,
 };
 
+/** Build a compact summary string from a BacktestConfig */
+function buildConfigSummary(config: BacktestConfig): string {
+  const { strategy, barCount } = config;
+  const entryNames = strategy.entryRules.map((r) => r.label).join(" + ");
+  const direction = strategy.direction === "long" ? "Long only" : strategy.direction === "short" ? "Short only" : "Long/Short";
+  return `${entryNames} on ${strategy.ticker} \u2022 ${barCount} bars \u2022 ${direction}`;
+}
+
 // ── Page ──────────────────────────────────────────────────────────────────
 
 export default function BacktestPage() {
@@ -104,6 +112,9 @@ export default function BacktestPage() {
     bars: number;
   } | null>(null);
   const latestConfigRef = useRef<BacktestConfig | null>(null);
+
+  // Whether the strategy editor is expanded (when results are showing)
+  const [editorExpanded, setEditorExpanded] = useState(false);
 
   // Visual Strategy Builder state
   const [visualSavedStrategies, setVisualSavedStrategies] = useState<VisualStrategy[]>([]);
@@ -143,6 +154,7 @@ export default function BacktestPage() {
   const handleRun = useCallback(
     (config: BacktestConfig) => {
       setIsRunning(true);
+      setEditorExpanded(false);
       latestConfigRef.current = config;
 
       setTimeout(() => {
@@ -213,8 +225,6 @@ export default function BacktestPage() {
   }, []);
 
   const handleRunCustomBacktest = useCallback((_strategy: VisualStrategy) => {
-    // For the visual builder, we construct a best-effort BacktestConfig
-    // and run a backtest with trending_up preset as demonstration
     if (!latestConfigRef.current) return;
     handleRun({
       ...latestConfigRef.current,
@@ -236,6 +246,13 @@ export default function BacktestPage() {
 
   // Earnings ticker options
   const tickerOptions = WATCHLIST_STOCKS.map((s) => s.ticker);
+
+  // Config summary for the collapsed bar
+  const configSummary = latestConfigRef.current
+    ? buildConfigSummary(latestConfigRef.current)
+    : store.currentResult
+      ? buildConfigSummary(store.currentResult.config)
+      : "";
 
   return (
     <div className="flex h-full flex-col">
@@ -278,58 +295,71 @@ export default function BacktestPage() {
 
       {/* Tab Content */}
       <div className="flex flex-1 overflow-hidden">
-        {/* Tab 1: Strategy Backtest */}
+        {/* Tab 1: Strategy Backtest — Results-dominant layout */}
         {activeTab === "strategy" && (
-          <div className="flex flex-1 overflow-hidden">
-            {/* Left: Strategy Panel */}
-            <div className="flex flex-col overflow-hidden">
-              <StrategyPanel
-                onRun={handleRun}
-                isRunning={isRunning}
-                savedStrategies={store.savedStrategies}
-                onLoadStrategy={handleLoadStrategy}
-                onOpenTemplates={() => setShowTemplates(true)}
-                onPreviewChange={handlePreviewChange}
-                templateConfig={templateConfig}
-                onTemplateConsumed={handleTemplateConsumed}
-              />
-            </div>
-
-            {/* Center: Chart + Visual Builder stacked */}
-            <div className="flex flex-1 flex-col overflow-hidden">
-              {/* Visual Strategy Builder at top — action tier */}
-              <div className="border-b border-border/40 overflow-y-auto" style={{ maxHeight: "50%" }}>
-                <div className="p-4">
-                  <VisualStrategyBuilder
-                    savedStrategies={visualSavedStrategies}
-                    onSaveStrategy={handleSaveVisualStrategy}
-                    onRunCustomBacktest={handleRunCustomBacktest}
-                  />
-                </div>
-              </div>
-
-              {/* Chart below */}
-              <div className="flex-1 overflow-hidden">
-                <BacktestChart
-                  bars={chartBars}
-                  trades={chartTrades}
-                  isRunning={isRunning}
-                  isPreview={isPreview}
-                  onRegenerate={handleRegenerate}
-                />
-              </div>
-            </div>
-
-            {/* Right: Results Panel (shown when results available) */}
-            <AnimatePresence>
-              {hasResult && (
-                <motion.div
-                  initial={{ width: 0, opacity: 0 }}
-                  animate={{ width: 360, opacity: 1 }}
-                  exit={{ width: 0, opacity: 0 }}
-                  transition={{ type: "spring", damping: 20, stiffness: 200 }}
-                  className="overflow-hidden"
+          <div className="flex flex-1 flex-col overflow-hidden">
+            {/* When results exist: compact config summary bar at top */}
+            {hasResult && !editorExpanded && (
+              <div className="flex items-center gap-3 border-b border-border/40 bg-card/40 px-4 py-2">
+                <span className="flex-1 truncate text-xs text-muted-foreground">
+                  {configSummary}
+                </span>
+                <button
+                  onClick={() => setEditorExpanded(true)}
+                  className="flex items-center gap-1 rounded-md border border-border/60 bg-muted/40 px-2.5 py-1 text-xs font-medium text-muted-foreground transition-colors hover:bg-muted hover:text-foreground"
                 >
+                  <Pencil className="h-3 w-3" />
+                  Edit
+                </button>
+                <button
+                  onClick={() => setEditorExpanded(true)}
+                  className="text-muted-foreground/60 hover:text-muted-foreground"
+                >
+                  <ChevronDown className="h-3.5 w-3.5" />
+                </button>
+              </div>
+            )}
+
+            {/* Expandable editor overlay when results are showing */}
+            <AnimatePresence>
+              {hasResult && editorExpanded && (
+                <motion.div
+                  initial={{ height: 0, opacity: 0 }}
+                  animate={{ height: "auto", opacity: 1 }}
+                  exit={{ height: 0, opacity: 0 }}
+                  transition={{ type: "spring", damping: 24, stiffness: 260 }}
+                  className="overflow-hidden border-b border-border/40"
+                >
+                  <div className="flex">
+                    <div className="flex-1 overflow-y-auto" style={{ maxHeight: "50vh" }}>
+                      <StrategyPanel
+                        onRun={handleRun}
+                        isRunning={isRunning}
+                        savedStrategies={store.savedStrategies}
+                        onLoadStrategy={handleLoadStrategy}
+                        onOpenTemplates={() => setShowTemplates(true)}
+                        onPreviewChange={handlePreviewChange}
+                        templateConfig={templateConfig}
+                        onTemplateConsumed={handleTemplateConsumed}
+                      />
+                    </div>
+                    <button
+                      onClick={() => setEditorExpanded(false)}
+                      className="flex items-start px-3 pt-3 text-muted-foreground/60 hover:text-muted-foreground"
+                    >
+                      <ChevronUp className="h-4 w-4" />
+                    </button>
+                  </div>
+                </motion.div>
+              )}
+            </AnimatePresence>
+
+            {/* Main content area — switches between builder-first and results-first */}
+            {hasResult ? (
+              /* ── Results-dominant layout ─────────────────────────────── */
+              <div className="flex flex-1 overflow-hidden">
+                {/* Results panel takes the hero position (left, wider) */}
+                <div className="flex-1 overflow-hidden">
                   <ResultsPanel
                     result={store.currentResult!}
                     monteCarloResult={store.monteCarloResult}
@@ -337,9 +367,62 @@ export default function BacktestPage() {
                     onSave={handleSave}
                     onRerun={handleRerun}
                   />
-                </motion.div>
-              )}
-            </AnimatePresence>
+                </div>
+
+                {/* Chart as companion on the right */}
+                <div className="w-[420px] flex-shrink-0 border-l border-border/40">
+                  <BacktestChart
+                    bars={chartBars}
+                    trades={chartTrades}
+                    isRunning={isRunning}
+                    isPreview={false}
+                    onRegenerate={handleRegenerate}
+                  />
+                </div>
+              </div>
+            ) : (
+              /* ── Builder-first layout (no results) ──────────────────── */
+              <div className="flex flex-1 overflow-hidden">
+                {/* Left: Strategy Panel — front and center */}
+                <div className="flex flex-col overflow-hidden">
+                  <StrategyPanel
+                    onRun={handleRun}
+                    isRunning={isRunning}
+                    savedStrategies={store.savedStrategies}
+                    onLoadStrategy={handleLoadStrategy}
+                    onOpenTemplates={() => setShowTemplates(true)}
+                    onPreviewChange={handlePreviewChange}
+                    templateConfig={templateConfig}
+                    onTemplateConsumed={handleTemplateConsumed}
+                  />
+                </div>
+
+                {/* Center: Chart + Visual Builder stacked */}
+                <div className="flex flex-1 flex-col overflow-hidden">
+                  {/* Visual Strategy Builder at top */}
+                  <div className="border-b border-border/40 overflow-y-auto" style={{ maxHeight: "50%" }}>
+                    <div className="p-4">
+                      <VisualStrategyBuilder
+                        savedStrategies={visualSavedStrategies}
+                        onSaveStrategy={handleSaveVisualStrategy}
+                        onRunCustomBacktest={handleRunCustomBacktest}
+                      />
+                    </div>
+                  </div>
+
+                  {/* Chart below */}
+                  <div className="flex-1 overflow-hidden">
+                    <BacktestChart
+                      bars={chartBars}
+                      trades={chartTrades}
+                      isRunning={isRunning}
+                      isPreview={isPreview}
+                      onRegenerate={handleRegenerate}
+                    />
+                  </div>
+                </div>
+              </div>
+            )}
           </div>
         )}
 
@@ -357,8 +440,7 @@ export default function BacktestPage() {
                     tickers={tickerOptions}
                     selected={earningsTicker}
                     onSelect={(t) => {
-                      // Update via store or local state — here we use the chart store ticker
-                      // as a proxy; in production this would be its own state
+                      // Update via store or local state
                     }}
                   />
                 </div>

@@ -25,9 +25,7 @@ import {
   DollarSign,
   BarChart,
   Clock,
-  Star,
   ArrowRight,
-  Lightbulb,
   CheckCircle2,
 } from "lucide-react";
 import { useLearnStore } from "@/stores/learn-store";
@@ -94,7 +92,6 @@ const LEARNING_PATHS = [
 
 export default function LearnPage() {
   const completedLessons = useLearnStore((s) => s.completedLessons);
-  const lessonScores = useLearnStore((s) => s.lessonScores);
   const learningStreak = useLearnStore((s) => s.learningStreak);
   const xp = useGameStore((s) => s.xp);
   const flashcardDaily = useFlashcardStore((s) => s.dailyCardsReviewed);
@@ -142,29 +139,6 @@ export default function LearnPage() {
     }
     return null;
   }, [completedLessons]);
-
-  // Recently completed lessons (last 3)
-  const recentlyCompleted = useMemo(() => {
-    const results: Array<{ lesson: (typeof UNITS)[0]["lessons"][0]; unit: (typeof UNITS)[0]; score: { grade: string; totalPoints: number } | null }> = [];
-    // Walk in reverse through UNITS and their lessons to find completed ones
-    const allLessons: Array<{ lesson: (typeof UNITS)[0]["lessons"][0]; unit: (typeof UNITS)[0] }> = [];
-    for (const unit of UNITS) {
-      for (const lesson of unit.lessons) {
-        allLessons.push({ lesson, unit });
-      }
-    }
-    // Return last N completed in the order they appear (no timestamp, so use completedLessons order)
-    const completedInOrder = completedLessons.slice().reverse();
-    for (const id of completedInOrder) {
-      const found = allLessons.find((x) => x.lesson.id === id);
-      if (found) {
-        const score = lessonScores[id] ?? null;
-        results.push({ ...found, score });
-      }
-      if (results.length >= 3) break;
-    }
-    return results;
-  }, [completedLessons, lessonScores]);
 
   // Filtered units for unit browser
   const filteredUnits = useMemo(() => {
@@ -240,35 +214,40 @@ export default function LearnPage() {
           {/* ============ LEARNING PATH TAB ============ */}
           {activeTab === "path" && (
             <>
-              {/* Hero: Up Next / Begin Your Journey */}
+              {/* === DOMINANT "Up Next" hero card === */}
               {recommendedLesson ? (
-                <div className="rounded-lg border-l-4 border-primary bg-card p-6">
-                  <div className="flex items-center gap-2 mb-3">
-                    <span className="text-[11px] font-bold text-primary uppercase tracking-wide">Up Next</span>
+                <div className="rounded-xl border-2 border-primary/40 bg-card p-8">
+                  <div className="flex items-center gap-2 mb-4">
+                    <div className="relative flex h-3 w-3 items-center justify-center">
+                      <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-primary opacity-40" />
+                      <span className="relative inline-flex h-2 w-2 rounded-full bg-primary" />
+                    </div>
+                    <span className="text-xs font-bold text-primary uppercase tracking-widest">Up Next</span>
                   </div>
-                  <p className="text-base font-bold mb-1">{recommendedLesson.lesson.title}</p>
-                  <div className="flex items-center gap-3 text-[11px] text-muted-foreground mb-4">
-                    <span>{recommendedLesson.unit.title}</span>
-                    <span className="flex items-center gap-1"><Clock className="h-2.5 w-2.5" />{recommendedLesson.lesson.duration ?? 10} min</span>
-                    <span className="flex items-center gap-1 text-primary font-semibold"><Zap className="h-2.5 w-2.5" />+{recommendedLesson.lesson.xpReward} XP</span>
+                  <p className="text-xl font-bold mb-1">{recommendedLesson.lesson.title}</p>
+                  <p className="text-base text-muted-foreground mb-4">{recommendedLesson.lesson.description}</p>
+                  <div className="flex items-center gap-4 text-xs text-muted-foreground mb-6">
+                    <span className="font-medium">{recommendedLesson.unit.title}</span>
+                    <span className="flex items-center gap-1"><Clock className="h-3 w-3" />{recommendedLesson.lesson.duration ?? 10} min</span>
+                    <span className="flex items-center gap-1 text-primary font-semibold"><Zap className="h-3 w-3" />+{recommendedLesson.lesson.xpReward} XP</span>
                   </div>
                   <Link
-                    href="/learn"
-                    className="flex items-center justify-center gap-1.5 w-full rounded-md bg-primary py-2.5 text-sm font-semibold text-primary-foreground transition-colors hover:bg-primary/90"
+                    href={`/learn/${recommendedLesson.lesson.id}`}
+                    className="flex items-center justify-center gap-2 w-full rounded-lg bg-primary h-12 text-base font-semibold text-primary-foreground transition-colors hover:bg-primary/90"
                   >
                     {completedCount > 0 ? "Continue Learning" : "Begin Your Journey"}
-                    <ArrowRight className="h-3.5 w-3.5" />
+                    <ArrowRight className="h-4 w-4" />
                   </Link>
                 </div>
               ) : (
-                <div className="rounded-lg border-l-4 border-emerald-500 bg-card p-6 text-center">
-                  <CheckCircle2 className="h-6 w-6 text-emerald-400 mx-auto mb-2" />
-                  <p className="text-sm font-bold mb-1">All Lessons Complete</p>
-                  <p className="text-[11px] text-muted-foreground">You have finished every lesson. Try a practice trade to reinforce your skills.</p>
+                <div className="rounded-xl border-2 border-emerald-500/40 bg-card p-8 text-center">
+                  <CheckCircle2 className="h-8 w-8 text-emerald-400 mx-auto mb-3" />
+                  <p className="text-xl font-bold mb-2">All Lessons Complete</p>
+                  <p className="text-base text-muted-foreground">You have finished every lesson. Try a practice trade to reinforce your skills.</p>
                 </div>
               )}
 
-              {/* Compact Learning Journey — 3 connected steps */}
+              {/* Learning journey dots — prominent */}
               {(() => {
                 const progressPct = totalLessons > 0 ? completedCount / totalLessons : 0;
                 const currentStep = progressPct >= 0.8 ? 2 : progressPct >= 0.1 ? 1 : 0;
@@ -278,23 +257,30 @@ export default function LearnPage() {
                   { label: "Review", href: "/portfolio" },
                 ];
                 return (
-                  <div className="flex items-center justify-center gap-0 py-1">
+                  <div className="flex items-center justify-center gap-0 py-3">
                     {steps.map((step, idx) => {
                       const isActive = idx === currentStep;
                       const isDone = idx < currentStep;
                       return (
                         <div key={step.label} className="flex items-center gap-0">
-                          <Link href={step.href} className="flex items-center gap-1.5">
-                            <div className={`h-2.5 w-2.5 rounded-full border-2 ${
-                              isActive ? "border-primary bg-primary" : isDone ? "border-emerald-400 bg-emerald-400" : "border-muted-foreground/30 bg-transparent"
-                            }`} />
-                            <span className={`text-[11px] font-medium ${
+                          <Link href={step.href} className="flex flex-col items-center gap-1">
+                            <div className={`relative flex items-center justify-center rounded-full transition-transform ${
+                              isActive ? "h-5 w-5 scale-125 ring-2 ring-primary ring-offset-2 ring-offset-background" : "h-4 w-4"
+                            } ${
+                              isActive ? "bg-primary" : isDone ? "bg-emerald-400" : "bg-muted-foreground/20"
+                            }`}>
+                              {isActive && (
+                                <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-primary opacity-30" />
+                              )}
+                              {isDone && <Check className="h-2.5 w-2.5 text-white" />}
+                            </div>
+                            <span className={`text-xs font-semibold ${
                               isActive ? "text-primary" : isDone ? "text-emerald-400" : "text-muted-foreground"
                             }`}>{step.label}</span>
                           </Link>
                           {idx < steps.length - 1 && (
-                            <div className={`w-8 h-px mx-2 ${
-                              idx < currentStep ? "bg-emerald-400" : "bg-muted-foreground/20"
+                            <div className={`w-12 h-0.5 mx-3 rounded-full ${
+                              idx < currentStep ? "bg-emerald-400" : "bg-muted-foreground/15"
                             }`} />
                           )}
                         </div>
@@ -304,26 +290,18 @@ export default function LearnPage() {
                 );
               })()}
 
-              {/* Compact stats row */}
-              <div className="flex items-center justify-between rounded-md bg-muted/30 px-4 py-2.5">
-                <div className="flex items-center gap-1.5">
-                  <Zap className="h-3 w-3 text-primary" />
-                  <span className="text-[11px] font-bold">{xp.toLocaleString()}</span>
-                  <span className="text-[11px] text-muted-foreground">XP</span>
-                </div>
-                <div className="flex items-center gap-1.5">
-                  <Flame className="h-3 w-3 text-amber-400" />
-                  <span className="text-[11px] font-bold">{learningStreak}</span>
-                  <span className="text-[11px] text-muted-foreground">day streak</span>
-                </div>
-                <div className="flex items-center gap-1.5">
-                  <Trophy className="h-3 w-3 text-amber-400" />
-                  <span className="text-[11px] font-bold">{completedCount}/{totalLessons}</span>
-                  <span className="text-[11px] text-muted-foreground">done</span>
-                </div>
-              </div>
+              {/* Inline stats as a single text line */}
+              <p className="text-xs text-muted-foreground text-center">
+                {completedCount}/{totalLessons} lessons
+                {" \u00b7 "}
+                {xp.toLocaleString()} XP
+                {learningStreak > 0 && <>{" \u00b7 "}{learningStreak}-day streak</>}
+              </p>
 
-              {/* Learning path sections */}
+              {/* === Large visual buffer === */}
+              <div className="mb-10" />
+
+              {/* Learning path sections — compact catalog */}
               {(() => {
                 let foundNextIncomplete = false;
                 return LEARNING_PATHS.map((path) => {
@@ -340,184 +318,75 @@ export default function LearnPage() {
                     red: "bg-red-500",
                   };
                   return (
-                    <div key={path.label} className={`rounded-lg border bg-card p-4 transition-colors ${
-                      isNextIncomplete ? "border-primary hover:border-primary/80" : pathDone ? "border-emerald-500/30" : "border-border hover:border-primary/50"
+                    <div key={path.label} className={`rounded-lg border bg-card p-3 transition-colors ${
+                      isNextIncomplete ? "border-primary hover:border-primary/80" : pathDone ? "border-emerald-500/30 opacity-60" : "border-border hover:border-primary/50"
                     }`}>
                       <div className="flex items-center justify-between mb-1">
                         <div className="flex items-center gap-2">
-                          {pathDone && <CheckCircle2 className="h-3.5 w-3.5 text-emerald-400" />}
+                          {pathDone && <CheckCircle2 className="h-3 w-3 text-emerald-400" />}
                           <span className="text-xs font-bold">{path.label}</span>
                           {isNextIncomplete && <span className="text-[10px] font-semibold text-primary bg-primary/10 px-1.5 py-0.5 rounded">Current</span>}
                         </div>
-                        <span className="text-xs font-bold tabular-nums">
-                          {pathPct}%
+                        <span className="text-[11px] font-bold tabular-nums text-muted-foreground">
+                          {pathCompleted}/{pathLessons.length}
                         </span>
                       </div>
-                      <div className="h-2 w-full rounded-full bg-muted/20 mb-1">
+                      <div className="h-1.5 w-full rounded-full bg-muted/20">
                         <div
                           className={`h-full rounded-full transition-all ${barColorMap[path.color]}`}
                           style={{ width: `${pathPct}%` }}
                         />
-                      </div>
-                      <div className="flex items-center justify-between mb-2">
-                        <span className="text-[11px] text-muted-foreground">{pathCompleted}/{pathLessons.length} lessons</span>
-                      </div>
-                      <div className="flex flex-wrap gap-1.5">
-                        {pathUnits.map((u) => {
-                          const unitCompleted = u.lessons.filter((l) => completedLessons.includes(l.id)).length;
-                          const unitDone = unitCompleted === u.lessons.length;
-                          const UnitIconComp = getUnitIcon(u.icon);
-                          return (
-                            <div
-                              key={u.id}
-                              className={`flex items-center gap-1 rounded-md border px-2 py-1 ${
-                                unitDone ? "border-emerald-400/30 bg-emerald-400/5" : "border-border/40 bg-card/60"
-                              }`}
-                            >
-                              {unitDone ? (
-                                <Check className="h-2.5 w-2.5 text-emerald-400" />
-                              ) : (
-                                <UnitIconComp className="h-2.5 w-2.5 text-muted-foreground" />
-                              )}
-                              <span className={`text-[11px] ${unitDone ? "text-emerald-400" : "text-muted-foreground"}`}>{u.title}</span>
-                            </div>
-                          );
-                        })}
                       </div>
                     </div>
                   );
                 });
               })()}
 
-              {/* Recently Completed */}
-              {recentlyCompleted.length > 0 && (
-                <div className="space-y-2">
-                  <h3 className="text-xs font-bold text-muted-foreground uppercase tracking-wide flex items-center gap-1.5">
-                    <Clock className="h-3 w-3" />
-                    Recently Completed
-                  </h3>
-                  {recentlyCompleted.map(({ lesson, unit, score }) => (
-                    <div
-                      key={lesson.id}
-                      className="flex items-center justify-between rounded-md border border-border/30 px-3 py-2"
-                    >
-                      <div className="flex items-center gap-2">
-                        <div className="flex h-6 w-6 items-center justify-center rounded-md bg-emerald-400/10 border border-emerald-400/20">
-                          <Check className="h-3 w-3 text-emerald-400" />
-                        </div>
-                        <div>
-                          <p className="text-[11px] font-medium">{lesson.title}</p>
-                          <p className="text-[11px] text-muted-foreground">{unit.title}</p>
-                        </div>
-                      </div>
-                      <div className="flex items-center gap-2">
-                        {score && (
-                          <span className={`text-xs font-bold px-1.5 py-0.5 rounded ${
-                            score.grade === "S" ? "text-amber-400 bg-amber-400/10" :
-                            score.grade === "A" ? "text-emerald-400 bg-emerald-400/10" :
-                            "text-muted-foreground bg-muted/20"
-                          }`}>
-                            {score.grade}
-                          </span>
-                        )}
-                        <span className="text-[11px] text-primary">+{lesson.xpReward} XP</span>
-                      </div>
-                    </div>
-                  ))}
-                </div>
-              )}
-
-              {/* Mini-game cards */}
-              <h3 className="text-xs font-bold text-muted-foreground uppercase tracking-wide flex items-center gap-1.5">
-                <Star className="h-3 w-3" />
-                Practice Games
-              </h3>
-              <div className="grid grid-cols-2 gap-3">
+              {/* Practice & Tools — compact row */}
+              <div className="grid grid-cols-2 gap-2 mt-2">
                 <button
                   type="button"
                   onClick={() => setActiveGame("flashcards")}
-                  className="flex flex-col items-start gap-2 rounded-lg border border-orange-500/25 bg-orange-500/5 p-3 text-left transition-colors hover:bg-orange-500/10"
+                  className="flex items-center gap-2 rounded-md border border-orange-500/20 bg-orange-500/5 p-2 text-left transition-colors hover:bg-orange-500/10"
                 >
-                  <div className="flex items-center gap-2 w-full">
-                    <div className="flex h-7 w-7 items-center justify-center rounded-md bg-orange-500/15 border border-orange-500/25">
-                      <Brain className="h-3.5 w-3.5 text-orange-400" />
-                    </div>
-                    <span className="text-xs font-semibold text-orange-400">Flashcards</span>
+                  <Brain className="h-4 w-4 text-orange-400 shrink-0" />
+                  <div className="min-w-0">
+                    <span className="text-xs font-semibold text-orange-400 block">Flashcards</span>
+                    <span className="text-[10px] text-muted-foreground">{flashcardToday}/10 today</span>
                   </div>
-                  <div className="flex items-center gap-2 w-full">
-                    <div className="flex-1 h-1.5 rounded-full bg-muted/30 overflow-hidden">
-                      <div
-                        className="h-full rounded-full bg-orange-400 transition-all"
-                        style={{ width: `${Math.min((flashcardToday / 10) * 100, 100)}%` }}
-                      />
-                    </div>
-                    <span className="text-[11px] font-bold tabular-nums text-muted-foreground">
-                      {flashcardToday}/10
-                    </span>
-                    {flashcardToday >= 10 && <Check className="h-3 w-3 text-emerald-400" />}
-                  </div>
-                  <span className="text-[11px] text-muted-foreground">{overallMastery}% mastery</span>
                 </button>
-
                 <button
                   type="button"
                   onClick={() => setActiveGame("prediction")}
-                  className="flex flex-col items-start gap-2 rounded-lg border border-emerald-500/25 bg-emerald-500/5 p-3 text-left transition-colors hover:bg-emerald-500/10"
+                  className="flex items-center gap-2 rounded-md border border-emerald-500/20 bg-emerald-500/5 p-2 text-left transition-colors hover:bg-emerald-500/10"
                 >
-                  <div className="flex items-center gap-2 w-full">
-                    <div className="flex h-7 w-7 items-center justify-center rounded-md bg-emerald-500/15 border border-emerald-500/25">
-                      <TrendingUp className="h-3.5 w-3.5 text-emerald-400" />
-                    </div>
-                    <span className="text-xs font-semibold text-emerald-300">Prediction</span>
+                  <TrendingUp className="h-4 w-4 text-emerald-400 shrink-0" />
+                  <div className="min-w-0">
+                    <span className="text-xs font-semibold text-emerald-400 block">Prediction</span>
+                    <span className="text-[10px] text-muted-foreground">{predictionToday > 0 ? `${predictionToday} today` : "Start playing"}</span>
                   </div>
-                  <div className="flex items-center gap-2 w-full">
-                    {predictionStreak > 0 && (
-                      <div className="flex items-center gap-1">
-                        <Flame className="h-3 w-3 text-amber-400" />
-                        <span className="text-[11px] font-bold text-amber-400">{predictionStreak}</span>
-                      </div>
-                    )}
-                    <span className="text-[11px] text-muted-foreground flex-1">
-                      {predictionAccuracy > 0 ? `${predictionAccuracy}% accuracy` : "Predict next candle"}
-                    </span>
-                  </div>
-                  <span className="text-[11px] text-muted-foreground">
-                    {predictionToday > 0 ? `${predictionToday} played today` : "Start playing"}
-                  </span>
                 </button>
-              </div>
-
-              {/* Interactive Tools */}
-              <h3 className="text-xs font-bold text-muted-foreground uppercase tracking-wide flex items-center gap-1.5">
-                <Zap className="h-3 w-3" />
-                Interactive Tools
-              </h3>
-              <div className="grid grid-cols-2 gap-3">
                 <button
                   type="button"
                   onClick={() => setActiveTool(activeTool === "scenario" ? null : "scenario")}
-                  className="flex flex-col items-start gap-2 rounded-lg border border-orange-500/25 bg-orange-500/5 p-3 text-left transition-colors hover:bg-orange-500/10"
+                  className="flex items-center gap-2 rounded-md border border-border bg-muted/20 p-2 text-left transition-colors hover:bg-muted/30"
                 >
-                  <div className="flex items-center gap-2 w-full">
-                    <div className="flex h-7 w-7 items-center justify-center rounded-md bg-orange-500/15 border border-orange-500/25">
-                      <History className="h-3.5 w-3.5 text-orange-400" />
-                    </div>
-                    <span className="text-xs font-semibold text-orange-300">Scenarios</span>
+                  <History className="h-4 w-4 text-muted-foreground shrink-0" />
+                  <div className="min-w-0">
+                    <span className="text-xs font-semibold block">Scenarios</span>
+                    <span className="text-[10px] text-muted-foreground">Historical crashes</span>
                   </div>
-                  <span className="text-[11px] text-muted-foreground">Simulate historical crashes</span>
                 </button>
                 <button
                   type="button"
                   onClick={() => setActiveTool(activeTool === "calculator" ? null : "calculator")}
-                  className="flex flex-col items-start gap-2 rounded-lg border border-border bg-muted/30 p-3 text-left transition-colors hover:bg-muted/50"
+                  className="flex items-center gap-2 rounded-md border border-border bg-muted/20 p-2 text-left transition-colors hover:bg-muted/30"
                 >
-                  <div className="flex items-center gap-2 w-full">
-                    <div className="flex h-7 w-7 items-center justify-center rounded-md bg-orange-500/15 border border-orange-500/25">
-                      <Calculator className="h-3.5 w-3.5 text-orange-400" />
-                    </div>
-                    <span className="text-xs font-semibold text-orange-400">Calculator</span>
+                  <Calculator className="h-4 w-4 text-muted-foreground shrink-0" />
+                  <div className="min-w-0">
+                    <span className="text-xs font-semibold block">Calculator</span>
+                    <span className="text-[10px] text-muted-foreground">Compound interest</span>
                   </div>
-                  <span className="text-[11px] text-muted-foreground">Compound interest growth</span>
                 </button>
               </div>
 
@@ -536,16 +405,6 @@ export default function LearnPage() {
                   </motion.div>
                 )}
               </AnimatePresence>
-
-              {/* Reinforcement tip */}
-              <div className="flex items-start gap-2 rounded-lg border border-border/40 bg-muted/10 px-3 py-2.5">
-                <Lightbulb className="h-3.5 w-3.5 text-amber-400 shrink-0 mt-0.5" />
-                <p className="text-[11px] text-muted-foreground leading-relaxed">
-                  Complete a lesson, then try a{" "}
-                  <Link href="/trade" className="text-primary font-medium hover:underline">practice trade</Link>
-                  {" "}to reinforce what you learned.
-                </p>
-              </div>
             </>
           )}
 
@@ -582,14 +441,14 @@ export default function LearnPage() {
                 ))}
               </div>
 
-              {/* Compact unit grid */}
+              {/* Crushed unit grid — small catalog feel */}
               {filteredUnits.length === 0 ? (
-                <div className="rounded-lg border border-border bg-card/50 px-4 py-6 text-center">
-                  <Search className="h-5 w-5 text-muted-foreground mx-auto mb-1.5" />
+                <div className="rounded-md border border-border bg-card/50 px-4 py-6 text-center">
+                  <Search className="h-4 w-4 text-muted-foreground mx-auto mb-1" />
                   <p className="text-[11px] text-muted-foreground">No units match</p>
                 </div>
               ) : (
-                <div className="grid grid-cols-1 gap-2 sm:grid-cols-2 lg:grid-cols-3">
+                <div className="grid grid-cols-2 gap-2 sm:grid-cols-3 lg:grid-cols-4">
                   {filteredUnits.map((unit, i) => {
                     const isUnlocked = i === 0 || UNITS.slice(0, UNITS.indexOf(unit)).every((u) =>
                       u.lessons.every((l) => completedLessons.includes(l.id))
@@ -602,35 +461,31 @@ export default function LearnPage() {
                     return (
                       <div
                         key={unit.id}
-                        className={`rounded-lg border bg-card p-3 transition-colors cursor-pointer ${
-                          isUnlocked ? "border-border hover:border-primary/50" : "border-border/40 opacity-50"
+                        className={`rounded-md border bg-card p-2 transition-colors cursor-pointer ${
+                          isComplete ? "border-emerald-400/20 opacity-60" : isUnlocked ? "border-border hover:border-primary/50" : "border-border/40 opacity-40"
                         }`}
                       >
-                        <div className="flex items-center gap-2 mb-2">
+                        <div className="flex items-center gap-1.5 mb-1">
                           <div
-                            className="flex h-7 w-7 items-center justify-center rounded-md shrink-0"
-                            style={{ background: `${unit.color}15`, border: `1px solid ${unit.color}30` }}
+                            className="flex h-5 w-5 items-center justify-center rounded shrink-0"
+                            style={{ background: `${unit.color}12`, border: `1px solid ${unit.color}25` }}
                           >
                             {isComplete ? (
-                              <CheckCircle2 className="h-3.5 w-3.5 text-emerald-400" />
+                              <Check className="h-3 w-3 text-emerald-400" />
                             ) : (
-                              <UnitIconComp className="h-3.5 w-3.5" style={{ color: unit.color }} />
+                              <UnitIconComp className="h-3 w-3" style={{ color: unit.color }} />
                             )}
                           </div>
-                          <div className="flex-1 min-w-0">
-                            <span className="text-[11px] font-semibold truncate block">{unit.title}</span>
-                            <span className="text-[10px] text-muted-foreground">{unit.lessons.length} lessons</span>
-                          </div>
+                          <span className="text-[11px] font-semibold truncate">{unit.title}</span>
                         </div>
-                        {/* Small progress indicator */}
-                        <div className="flex items-center gap-2">
+                        <div className="flex items-center gap-1.5">
                           <div className="flex-1 h-1 rounded-full bg-muted/30 overflow-hidden">
                             <div
                               className="h-full rounded-full transition-all"
                               style={{ width: `${unitPct}%`, background: isComplete ? "#34d399" : unit.color }}
                             />
                           </div>
-                          <span className="text-[10px] tabular-nums text-muted-foreground w-7 text-right">{unitPct}%</span>
+                          <span className="text-[10px] tabular-nums text-muted-foreground">{unitCompletedCount}/{unit.lessons.length}</span>
                         </div>
                       </div>
                     );
