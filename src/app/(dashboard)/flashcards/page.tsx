@@ -305,10 +305,10 @@ function StatsTab() {
           sub={`${totalCorrect} correct`}
           valueColor={
             accuracy >= 80
-              ? "text-green-400"
+              ? "text-emerald-400"
               : accuracy >= 60
                 ? "text-amber-400"
-                : "text-rose-400"
+                : "text-red-400"
           }
         />
         <StatCard
@@ -317,7 +317,7 @@ function StatsTab() {
           sub={`${seenCount}/${totalCards} seen`}
           valueColor={
             overallMastery >= 80
-              ? "text-green-400"
+              ? "text-emerald-400"
               : overallMastery >= 50
                 ? "text-amber-400"
                 : "text-muted-foreground"

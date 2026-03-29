@@ -403,7 +403,7 @@ function catColor(cat: "large-cap" | "high-vol" | "beat-history") {
 
 function ratingColor(rating: string) {
   if (rating === "Strong Buy" || rating === "Outperform") return "text-emerald-400";
-  if (rating === "Buy") return "text-green-400";
+  if (rating === "Buy") return "text-emerald-400";
   if (rating === "Hold" || rating === "Neutral") return "text-amber-400";
   return "text-red-400";
 }
